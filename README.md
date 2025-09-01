@@ -1,16 +1,22 @@
-# grookai_vault
+﻿# Grookai Vault
 
-A new Flutter project.
+Flutter + Supabase app for TCG collection management.
 
-## Getting Started
+## Quick start
+1. Copy \lib/main.dart\ and set your Supabase URL/anon key.
+2. Run:
+   \\\powershell
+   flutter clean
+   flutter pub get
+   flutter run -d emulator-5554
+   \\\
 
-This project is a starting point for a Flutter application.
+## Backend
+- Tables: \card_catalog\, \ault_items\
+- View: \_vault_items\ (coalesces catalog → name/set/photo)
+- RPCs: \catalog_search\, \ault_add_from_catalog\, \ault_inc_qty\
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Roadmap
+- Phase 1: Vault polish (images from catalog, search/sort, edit/delete)
+- Phase 2: Market pricing + alerts
+- Phase 3: Camera → condition grading + AI signals
