@@ -1,0 +1,7 @@
+﻿* text=auto eol=lf
+
+# Keep images/binaries as-is
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.apk binary
