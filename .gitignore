@@ -1,0 +1,40 @@
+﻿# Flutter/Dart/Pub
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_export_environment.sh
+
+# Android
+*.apk
+*.aar
+*.iml
+.gradle/
+local.properties
+android/app/google-services.json
+android/app/src/debug/google-services.json
+android/app/src/profile/google-services.json
+
+# iOS
+ios/Pods/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+
+# macOS
+macos/Flutter/ephemeral/
+
+# VS Code / IntelliJ
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Supabase (CLI state)
+.supabase/
+
+# OS junk
+.DS_Store
+Thumbs.db
