@@ -20,3 +20,6 @@ Flutter + Supabase app for TCG collection management.
 - Phase 1: Vault polish (images from catalog, search/sort, edit/delete)
 - Phase 2: Market pricing + alerts
 - Phase 3: Camera → condition grading + AI signals
+
+## CI Status
+[![Flutter CI](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml)
