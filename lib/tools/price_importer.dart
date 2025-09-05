@@ -2,17 +2,11 @@ import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// PriceImporter – calls your `import-prices` Edge Function to populate pricing.
-/// Usage:
-///   final importer = PriceImporter(Supabase.instance.client);
-///   await importer.importSet('sv6', log: print);
-///   await importer.importAllSets(log: print);
-///   await importer.importSets(['base1','bw1'], log: print);
 class PriceImporter {
   final SupabaseClient _supa;
   PriceImporter(this._supa);
 
   /// Import prices for a single set (pages until done).
-  /// Returns total rows imported. Optional [log] streams progress.
   Future<int> importSet(
     String setCode, {
     String source = 'tcgplayer',
@@ -62,16 +56,19 @@ class PriceImporter {
           .where((c) => c.isNotEmpty)
           .toList();
     } catch (_) {
-      // REST fallback: /rest/v1/card_prints?select=set_code&distinct&set_code=not.is.null
-      final resp = await _supa.from('card_prints').select('set_code').execute();
+      // supabase-dart v2: awaiting the builder returns the rows; no `.execute()`
+      final resp = await _supa
+          .from('card_prints')
+          .select('set_code')
+          .not('set_code', 'is', null);
 
-      final data = (resp.data as List).cast<Map<String, dynamic>>();
-      final set = <String>{};
-      for (final r in data) {
+      final rows = (resp as List).cast<Map<String, dynamic>>();
+      final uniq = <String>{};
+      for (final r in rows) {
         final c = (r['set_code'] as String?)?.trim();
-        if (c != null && c.isNotEmpty) set.add(c);
+        if (c != null && c.isNotEmpty) uniq.add(c);
       }
-      final codes = set.toList()..sort();
+      final codes = uniq.toList()..sort();
       return codes;
     }
   }
