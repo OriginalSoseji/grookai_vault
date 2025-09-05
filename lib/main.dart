@@ -1,3 +1,4 @@
+import 'dev/price_import_page.dart';
 // lib/main.dart
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final supabase = Supabase.instance.client;
     return MaterialApp(
-      routes: {'/dev-price-import': (_) => const PriceImportPage()},
+      routes: {'/dev-price-import': (_) => PriceImportPage()},
 
       title: 'Grookai Vault',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
@@ -328,8 +329,8 @@ class HomePageState extends State<HomePage> {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        '$setCode Ã‚Â· Qty: $qty'
-                        '${mp > 0 ? ' Ã‚Â· \$${mp.toStringAsFixed(2)} ea' : ''}',
+                        '$setCode ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· Qty: $qty'
+                        '${mp > 0 ? ' ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· \$${mp.toStringAsFixed(2)} ea' : ''}',
                       ),
                       trailing: IconButton(
                         tooltip: 'Live',
@@ -628,11 +629,15 @@ class VaultPageState extends State<VaultPage> {
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
                   PopupMenuItem(
                     value: _SortBy.name,
-                    child: Text('Name (AÃ¢â‚¬â€œZ)'),
+                    child: Text(
+                      'Name (AÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“Z)',
+                    ),
                   ),
                   PopupMenuItem(
                     value: _SortBy.qty,
-                    child: Text('Qty (lowÃ¢â€ â€™high)'),
+                    child: Text(
+                      'Qty (lowÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢high)',
+                    ),
                   ),
                 ],
               ),
@@ -677,7 +682,9 @@ class VaultPageState extends State<VaultPage> {
                           _chip(cond),
                           Text('Qty: $qty'),
                           if (mp > 0)
-                            Text('Ã¢â‚¬Â¢ \$${mp.toStringAsFixed(2)} ea'),
+                            Text(
+                              'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ \$${mp.toStringAsFixed(2)} ea',
+                            ),
                         ],
                       ),
                       trailing: Row(
@@ -981,7 +988,7 @@ class WishlistPageState extends State<WishlistPage> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    '$setCode Ã‚Â· #$number${mp > 0 ? ' Ã‚Â· \$${mp.toStringAsFixed(2)}' : ''}',
+                    '$setCode ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· #$number${mp > 0 ? ' ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· \$${mp.toStringAsFixed(2)}' : ''}',
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -1090,7 +1097,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).viewInsets;
     final hint = _q.text.trim().length < 2
-        ? 'Type at least 2 characters to searchÃ¢â‚¬Â¦'
+        ? 'Type at least 2 characters to searchÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦'
         : '';
     return Padding(
       padding: EdgeInsets.only(bottom: padding.bottom),
@@ -1143,7 +1150,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                       itemBuilder: (context, i) {
                         final r = _rows[i];
                         final subtitle =
-                            '${(r['set_code'] ?? '').toString()} Ã‚Â· ${(r['number'] ?? '').toString()}';
+                            '${(r['set_code'] ?? '').toString()} ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· ${(r['number'] ?? '').toString()}';
                         return Card(
                           child: ListTile(
                             leading: _thumb(r['image_url']),
@@ -1250,7 +1257,7 @@ class _ScanPageState extends State<ScanPage> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '${card['name'] ?? 'Card'} Ã¢â‚¬Â¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                      '${card['name'] ?? 'Card'} ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
                       maxLines: 2,
                     ),
                   ),
@@ -1287,14 +1294,18 @@ class _ScanPageState extends State<ScanPage> {
       padding: const EdgeInsets.all(16),
       children: [
         const Text(
-          'Point your camera at a card. WeÃ¢â‚¬â„¢ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
+          'Point your camera at a card. WeÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
           style: TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
           onPressed: _busy ? null : _captureIdentifyAndAdd,
           icon: const Icon(Icons.camera_alt),
-          label: Text(_busy ? 'WorkingÃ¢â‚¬Â¦' : 'Scan & Add to Vault'),
+          label: Text(
+            _busy
+                ? 'WorkingÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦'
+                : 'Scan & Add to Vault',
+          ),
         ),
         const SizedBox(height: 12),
         const Text('Tip: good lighting + flat card = better ID/grade.'),
