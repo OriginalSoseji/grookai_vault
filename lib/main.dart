@@ -328,8 +328,8 @@ class HomePageState extends State<HomePage> {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        '$setCode Â· Qty: $qty'
-                        '${mp > 0 ? ' Â· \$${mp.toStringAsFixed(2)} ea' : ''}',
+                        '$setCode Ã‚Â· Qty: $qty'
+                        '${mp > 0 ? ' Ã‚Â· \$${mp.toStringAsFixed(2)} ea' : ''}',
                       ),
                       trailing: IconButton(
                         tooltip: 'Live',
@@ -628,11 +628,11 @@ class VaultPageState extends State<VaultPage> {
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
                   PopupMenuItem(
                     value: _SortBy.name,
-                    child: Text('Name (Aâ€“Z)'),
+                    child: Text('Name (AÃ¢â‚¬â€œZ)'),
                   ),
                   PopupMenuItem(
                     value: _SortBy.qty,
-                    child: Text('Qty (lowâ†’high)'),
+                    child: Text('Qty (lowÃ¢â€ â€™high)'),
                   ),
                 ],
               ),
@@ -676,7 +676,8 @@ class VaultPageState extends State<VaultPage> {
                           Text('#$number'),
                           _chip(cond),
                           Text('Qty: $qty'),
-                          if (mp > 0) Text('â€¢ \$${mp.toStringAsFixed(2)} ea'),
+                          if (mp > 0)
+                            Text('Ã¢â‚¬Â¢ \$${mp.toStringAsFixed(2)} ea'),
                         ],
                       ),
                       trailing: Row(
@@ -980,7 +981,7 @@ class WishlistPageState extends State<WishlistPage> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    '$setCode Â· #$number${mp > 0 ? ' Â· \$${mp.toStringAsFixed(2)}' : ''}',
+                    '$setCode Ã‚Â· #$number${mp > 0 ? ' Ã‚Â· \$${mp.toStringAsFixed(2)}' : ''}',
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -1089,7 +1090,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).viewInsets;
     final hint = _q.text.trim().length < 2
-        ? 'Type at least 2 characters to searchâ€¦'
+        ? 'Type at least 2 characters to searchÃ¢â‚¬Â¦'
         : '';
     return Padding(
       padding: EdgeInsets.only(bottom: padding.bottom),
@@ -1142,7 +1143,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                       itemBuilder: (context, i) {
                         final r = _rows[i];
                         final subtitle =
-                            '${(r['set_code'] ?? '').toString()} Â· ${(r['number'] ?? '').toString()}';
+                            '${(r['set_code'] ?? '').toString()} Ã‚Â· ${(r['number'] ?? '').toString()}';
                         return Card(
                           child: ListTile(
                             leading: _thumb(r['image_url']),
@@ -1249,7 +1250,7 @@ class _ScanPageState extends State<ScanPage> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '${card['name'] ?? 'Card'} â€¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                      '${card['name'] ?? 'Card'} Ã¢â‚¬Â¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
                       maxLines: 2,
                     ),
                   ),
@@ -1286,14 +1287,14 @@ class _ScanPageState extends State<ScanPage> {
       padding: const EdgeInsets.all(16),
       children: [
         const Text(
-          'Point your camera at a card. Weâ€™ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
+          'Point your camera at a card. WeÃ¢â‚¬â„¢ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
           style: TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
           onPressed: _busy ? null : _captureIdentifyAndAdd,
           icon: const Icon(Icons.camera_alt),
-          label: Text(_busy ? 'Workingâ€¦' : 'Scan & Add to Vault'),
+          label: Text(_busy ? 'WorkingÃ¢â‚¬Â¦' : 'Scan & Add to Vault'),
         ),
         const SizedBox(height: 12),
         const Text('Tip: good lighting + flat card = better ID/grade.'),
