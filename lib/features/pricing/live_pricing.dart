@@ -39,6 +39,17 @@ class PricingRepo {
     return (rows.first as Map<String, dynamic>);
   }
 
+  Future<Map<String, dynamic>?> printMeta(String setCode, String number) async {
+    final rows = await _supa
+        .from('card_prints')
+        .select('id,name,set_code,number,image_url')
+        .eq('set_code', setCode)
+        .eq('number', number)
+        .limit(1);
+    if (rows.isEmpty) return null;
+    return (rows.first as Map<String, dynamic>);
+  }
+
   Future<String?> cardPrintId(String setCode, String number) async {
     final rows = await _supa
         .from('card_prints')
@@ -76,7 +87,7 @@ class PricingRepo {
     return list;
   }
 
-  // Subscribe without server-side filter; filter in callback (works across SDK variants)
+  // Subscribe; filter in callback (SDK-compatible)
   Stream<Map<String, dynamic>> subscribeTicksByPrintId(String cardPrintId) {
     final controller = StreamController<Map<String, dynamic>>.broadcast();
     final channel = _supa.channel('ticks_$cardPrintId')
@@ -161,6 +172,7 @@ class TickerListTile extends StatefulWidget {
 class _TickerListTileState extends State<TickerListTile> {
   late final PricingRepo repo;
   Map<String, dynamic>? _ticker;
+  String? _name;
   StreamSubscription<Map<String, dynamic>>? _sub;
 
   @override
@@ -171,9 +183,16 @@ class _TickerListTileState extends State<TickerListTile> {
   }
 
   Future<void> _load() async {
+    // Fetch ticker (may include name)
     final t = await repo.ticker24h(widget.setCode, widget.number);
+    // Fetch meta name as fallback (always exists after catalog import)
+    final meta = await repo.printMeta(widget.setCode, widget.number);
     if (!mounted) return;
-    setState(() => _ticker = t);
+    setState(() {
+      _ticker = t;
+      _name = (t?['name'] as String?) ?? (meta?['name'] as String?);
+    });
+
     final printId = await repo.cardPrintId(widget.setCode, widget.number);
     if (printId != null) {
       _sub = repo.subscribeTicksByPrintId(printId).listen((tick) {
@@ -198,8 +217,7 @@ class _TickerListTileState extends State<TickerListTile> {
   @override
   Widget build(BuildContext context) {
     final titleText =
-        (_ticker?['name'] as String?) ??
-        '${widget.setCode.toUpperCase()}  #${widget.number}';
+        _name ?? '${widget.setCode.toUpperCase()}  #${widget.number}';
     final subText =
         '${widget.setCode.toUpperCase()}  #${widget.number} • Last updated: ${_ticker?['last_updated'] ?? '—'}';
     return ListTile(
@@ -257,6 +275,7 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
 
   Future<void> _bootstrap() async {
     final t = await repo.ticker24h(widget.setCode, widget.number);
+    final meta = await repo.printMeta(widget.setCode, widget.number);
     final pts = await repo.history(
       widget.setCode,
       widget.number,
@@ -267,6 +286,7 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
     setState(() {
       _name =
           (t?['name'] as String?) ??
+          (meta?['name'] as String?) ??
           '${widget.setCode.toUpperCase()} #${widget.number}';
       _data = pts;
     });
