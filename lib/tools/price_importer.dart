@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-/// PriceImporter – calls your `import-prices` Edge Function to populate pricing.
+/// PriceImporter â€“ calls your `import-prices` Edge Function to populate pricing.
 class PriceImporter {
   final SupabaseClient _supa;
   PriceImporter(this._supa);
@@ -57,7 +57,7 @@ class PriceImporter {
           .toList();
     } catch (_) {
       // v2: await the builder directly; no `.execute()`.
-      // Also add NOT IS NULL filter; we’ll uniq in Dart.
+      // Also add NOT IS NULL filter; weâ€™ll uniq in Dart.
       final resp = await _supa
           .from('card_prints')
           .select('set_code')
