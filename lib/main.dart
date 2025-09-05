@@ -1,4 +1,4 @@
-﻿// lib/main.dart
+// lib/main.dart
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -29,9 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
 
       // NEW: route to the live pricing demo
-      routes: {
-        '/pricing-demo': (_) => const PricingDemoPage(),
-      },
+      routes: {'/pricing-demo': (_) => const PricingDemoPage()},
 
       home: StreamBuilder<AuthState>(
         stream: supabase.auth.onAuthStateChange,
@@ -84,7 +82,10 @@ class _AppShellState extends State<AppShell> {
             icon: const Icon(Icons.show_chart_rounded),
             onPressed: () => Navigator.of(context).pushNamed('/pricing-demo'),
           ),
-          IconButton(icon: const Icon(Icons.refresh), onPressed: _refreshCurrent),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _refreshCurrent,
+          ),
           IconButton(icon: const Icon(Icons.logout), onPressed: _signOut),
         ],
       ),
@@ -101,17 +102,20 @@ class _AppShellState extends State<AppShell> {
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: const [
           NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: 'Home'),
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
           NavigationDestination(
-              icon: Icon(Icons.inventory_2_outlined),
-              selectedIcon: Icon(Icons.inventory_2),
-              label: 'Vault'),
+            icon: Icon(Icons.inventory_2_outlined),
+            selectedIcon: Icon(Icons.inventory_2),
+            label: 'Vault',
+          ),
           NavigationDestination(
-              icon: Icon(Icons.camera_outlined),
-              selectedIcon: Icon(Icons.camera_alt),
-              label: 'Scan'),
+            icon: Icon(Icons.camera_outlined),
+            selectedIcon: Icon(Icons.camera_alt),
+            label: 'Scan',
+          ),
         ],
       ),
       floatingActionButton: _index == 1
@@ -179,37 +183,44 @@ class _LoginPageState extends State<LoginPage> {
           constraints: const BoxConstraints(maxWidth: 420),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              TextField(
-                controller: _email,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: _email,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    prefixIcon: Icon(Icons.email),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _password,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.lock),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _password,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              FilledButton(
-                onPressed: _loading ? null : _signIn,
-                child: _loading
-                    ? const SizedBox(
-                        width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Sign in'),
-              ),
-              const SizedBox(height: 8),
-              TextButton(
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed: _loading ? null : _signIn,
+                  child: _loading
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Text('Sign in'),
+                ),
+                const SizedBox(height: 8),
+                TextButton(
                   onPressed: _loading ? null : _signUp,
-                  child: const Text('Create account')),
-            ]),
+                  child: const Text('Create account'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -269,17 +280,20 @@ class HomePageState extends State<HomePage> {
     final uid = supabase.auth.currentUser?.id;
     if (uid == null) return;
     try {
-      await supabase.rpc('refresh_vault_market_prices', params: {'p_user': uid});
+      await supabase.rpc(
+        'refresh_vault_market_prices',
+        params: {'p_user': uid},
+      );
       await reload();
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Prices refreshed')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Prices refreshed')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Refresh failed: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Refresh failed: $e')));
     }
   }
 
@@ -289,16 +303,25 @@ class HomePageState extends State<HomePage> {
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(14),
-          child: Row(children: [
-            Icon(icon, size: 28),
-            const SizedBox(width: 12),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(label, style: const TextStyle(color: Colors.black54)),
-              Text(value,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-            ]),
-          ]),
+          child: Row(
+            children: [
+              Icon(icon, size: 28),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label, style: const TextStyle(color: Colors.black54)),
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -307,8 +330,10 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final unique = _items.length;
-    final totalQty =
-        _items.fold<int>(0, (sum, r) => sum + ((r['qty'] ?? 0) as int));
+    final totalQty = _items.fold<int>(
+      0,
+      (sum, r) => sum + ((r['qty'] ?? 0) as int),
+    );
     final recent = List<Map<String, dynamic>>.from(_items.take(5));
     final totalValue = _sumValue(_items);
 
@@ -323,8 +348,11 @@ class HomePageState extends State<HomePage> {
                 children: [
                   _statCard('Unique cards', '$unique', Icons.style),
                   _statCard('Total quantity', '$totalQty', Icons.numbers),
-                  _statCard('Portfolio value',
-                      '\$${totalValue.toStringAsFixed(2)}', Icons.attach_money),
+                  _statCard(
+                    'Portfolio value',
+                    '\$${totalValue.toStringAsFixed(2)}',
+                    Icons.attach_money,
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
@@ -339,7 +367,8 @@ class HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(width: 8),
                   OutlinedButton.icon(
-                    onPressed: () => Navigator.of(context).pushNamed('/pricing-demo'),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed('/pricing-demo'),
                     icon: const Icon(Icons.show_chart_rounded),
                     label: const Text('Live Pricing'),
                   ),
@@ -347,8 +376,10 @@ class HomePageState extends State<HomePage> {
               ),
 
               const SizedBox(height: 16),
-              const Text('Recently added',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Recently added',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
               if (recent.isEmpty)
                 const Text('No recent items.')
@@ -360,10 +391,13 @@ class HomePageState extends State<HomePage> {
                   return Card(
                     child: ListTile(
                       leading: _thumb(row['photo_url']),
-                      title: Text(name,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(
+                        name,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Text(
-                          '${setName.isEmpty ? '—' : setName}   ·   Qty: $qty'),
+                        '${setName.isEmpty ? '—' : setName}   ·   Qty: $qty',
+                      ),
                     ),
                   );
                 }),
@@ -491,8 +525,14 @@ class VaultPageState extends State<VaultPage> {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Add'),
+          ),
         ],
       ),
     );
@@ -509,6 +549,16 @@ class VaultPageState extends State<VaultPage> {
       'condition_label': 'NM',
     });
 
+    // Trigger immediate price import for this set so the new item shows a price right away.
+    await Supabase.instance.client.functions.invoke(
+      'import-prices',
+      body: {
+        'setCode': picked['set_code'],
+        'page': 1,
+        'pageSize': 250,
+        'source': 'tcgplayer',
+      },
+    );
     await reload();
   }
 
@@ -523,12 +573,16 @@ class VaultPageState extends State<VaultPage> {
     if (picked == null) return;
 
     final file = File(picked.path);
-    final path = '$uid/$vaultItemId/${DateTime.now().millisecondsSinceEpoch}.jpg';
+    final path =
+        '$uid/$vaultItemId/${DateTime.now().millisecondsSinceEpoch}.jpg';
 
     await supabase.storage.from('card_photos').upload(path, file);
     final pub = supabase.storage.from('card_photos').getPublicUrl(path);
 
-    await supabase.from('vault_items').update({'photo_url': pub}).eq('id', vaultItemId);
+    await supabase
+        .from('vault_items')
+        .update({'photo_url': pub})
+        .eq('id', vaultItemId);
     await reload();
   }
 
@@ -559,11 +613,17 @@ class VaultPageState extends State<VaultPage> {
               const SizedBox(width: 8),
               PopupMenuButton<_SortBy>(
                 icon: const Icon(Icons.sort),
-                onSelected: (v) { setState(() => _sortBy = v); reload(); },
+                onSelected: (v) {
+                  setState(() => _sortBy = v);
+                  reload();
+                },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
                   PopupMenuItem(value: _SortBy.name, child: Text('Name (A–Z)')),
-                  PopupMenuItem(value: _SortBy.qty, child: Text('Qty (low→high)')),
+                  PopupMenuItem(
+                    value: _SortBy.qty,
+                    child: Text('Qty (low→high)'),
+                  ),
                 ],
               ),
             ],
@@ -573,71 +633,92 @@ class VaultPageState extends State<VaultPage> {
           child: _loading
               ? const Center(child: CircularProgressIndicator())
               : filtered.isEmpty
-                  ? const Center(child: Text('No items found.'))
-                  : ListView.separated(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final row = filtered[index];
-                        final id = (row['id'] ?? '').toString();
-                        final name = (row['name'] ?? 'Item').toString();
-                        final set = (row['set_name'] ?? '').toString();
-                        final qty = (row['qty'] ?? 0) as int;
-                        final cond = (row['condition_label'] ?? 'NM').toString();
+              ? const Center(child: Text('No items found.'))
+              : ListView.separated(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: filtered.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  itemBuilder: (context, index) {
+                    final row = filtered[index];
+                    final id = (row['id'] ?? '').toString();
+                    final name = (row['name'] ?? 'Item').toString();
+                    final set = (row['set_name'] ?? '').toString();
+                    final qty = (row['qty'] ?? 0) as int;
+                    final cond = (row['condition_label'] ?? 'NM').toString();
 
-                        final tile = ListTile(
-                          leading: _thumb(row['photo_url']),
-                          title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 8,
-                            children: [
-                              if (set.isNotEmpty) Text(set, style: const TextStyle(color: Colors.black54)),
-                              _chip(cond),
-                              Text('Qty: $qty'),
+                    final tile = ListTile(
+                      leading: _thumb(row['photo_url']),
+                      title: Text(
+                        name,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 8,
+                        children: [
+                          if (set.isNotEmpty)
+                            Text(
+                              set,
+                              style: const TextStyle(color: Colors.black54),
+                            ),
+                          _chip(cond),
+                          Text('Qty: $qty'),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.photo_camera_outlined),
+                            tooltip: 'Set photo',
+                            onPressed: () => _pickAndUploadPhoto(id),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: () => _incQty(id, -1),
+                          ),
+                          Text(
+                            '$qty',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () => _incQty(id, 1),
+                          ),
+                          PopupMenuButton<String>(
+                            onSelected: (v) {
+                              if (v == 'delete') _confirmDelete(id);
+                            },
+                            itemBuilder: (_) => const [
+                              PopupMenuItem(
+                                value: 'delete',
+                                child: Text('Delete'),
+                              ),
                             ],
                           ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.photo_camera_outlined),
-                                tooltip: 'Set photo',
-                                onPressed: () => _pickAndUploadPhoto(id),
-                              ),
-                              IconButton(icon: const Icon(Icons.remove), onPressed: () => _incQty(id, -1)),
-                              Text('$qty', style: const TextStyle(fontWeight: FontWeight.bold)),
-                              IconButton(icon: const Icon(Icons.add), onPressed: () => _incQty(id, 1)),
-                              PopupMenuButton<String>(
-                                onSelected: (v) { if (v == 'delete') _confirmDelete(id); },
-                                itemBuilder: (_) => const [
-                                  PopupMenuItem(value: 'delete', child: Text('Delete')),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
+                        ],
+                      ),
+                    );
 
-                        return Dismissible(
-                          key: ValueKey(id),
-                          background: Container(
-                            color: Colors.red,
-                            alignment: Alignment.centerLeft,
-                            padding: const EdgeInsets.only(left: 16),
-                            child: const Icon(Icons.delete, color: Colors.white),
-                          ),
-                          secondaryBackground: Container(
-                            color: Colors.red,
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.only(right: 16),
-                            child: const Icon(Icons.delete, color: Colors.white),
-                          ),
-                          confirmDismiss: (_) async => await _confirmDelete(id),
-                          child: Card(child: tile),
-                        );
-                      },
-                    ),
+                    return Dismissible(
+                      key: ValueKey(id),
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.only(left: 16),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      secondaryBackground: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 16),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      confirmDismiss: (_) async => await _confirmDelete(id),
+                      child: Card(child: tile),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -650,8 +731,14 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Delete item?'),
         content: const Text('This cannot be undone.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete'),
+          ),
         ],
       ),
     );
@@ -748,10 +835,13 @@ class _CatalogPickerState extends State<_CatalogPicker> {
           children: [
             const SizedBox(height: 8),
             Container(
-                height: 4,
-                width: 36,
-                decoration:
-                    BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(3))),
+              height: 4,
+              width: 36,
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -779,7 +869,10 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                   return Card(
                     child: ListTile(
                       leading: _thumb(r['image_url']),
-                      title: Text(r['name'], style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(
+                        r['name'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Text(subtitle),
                       onTap: () => Navigator.pop(context, r),
                     ),
@@ -846,11 +939,14 @@ class _ScanPageState extends State<ScanPage> {
           .createSignedUrl(objectPath, 60 * 60 * 24 * 7);
 
       // 4) Call the end-to-end function (identify + grade + price + add)
-      final res = await supabase.functions.invoke('intake-scan', body: {
-        'user_id': uid,
-        'object_path': objectPath,
-        'signed_url': signedUrl,
-      });
+      final res = await supabase.functions.invoke(
+        'intake-scan',
+        body: {
+          'user_id': uid,
+          'object_path': objectPath,
+          'signed_url': signedUrl,
+        },
+      );
 
       final data = Map<String, dynamic>.from(res.data ?? {});
       if (data.isEmpty) throw Exception('No data from intake-scan');
@@ -868,31 +964,38 @@ class _ScanPageState extends State<ScanPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(children: [
-                _thumb(card['image_url']),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    '${card['name'] ?? 'Card'} • ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
-                    maxLines: 2,
+              Row(
+                children: [
+                  _thumb(card['image_url']),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '${card['name'] ?? 'Card'} • ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                      maxLines: 2,
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               const SizedBox(height: 8),
               Text('Condition: $label'),
-              Text('Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}'),
+              Text(
+                'Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}',
+              ),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
+            ),
           ],
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Intake failed: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -925,8 +1028,12 @@ class _ScanPageState extends State<ScanPage> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Image.network(
-        u, width: 44, height: 44, fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => const CircleAvatar(child: Icon(Icons.broken_image)),
+        u,
+        width: 44,
+        height: 44,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) =>
+            const CircleAvatar(child: Icon(Icons.broken_image)),
       ),
     );
   }
