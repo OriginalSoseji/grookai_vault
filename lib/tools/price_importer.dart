@@ -46,7 +46,7 @@ class PriceImporter {
   }
 
   /// List all set codes present in your catalog.
-  /// Tries RPC `list_set_codes`; falls back to REST distinct if needed.
+  /// Tries RPC `list_set_codes`; falls back to REST (v2 style) if needed.
   Future<List<String>> listAllSetCodes() async {
     try {
       final rows = await _supa.rpc('list_set_codes');
@@ -56,7 +56,8 @@ class PriceImporter {
           .where((c) => c.isNotEmpty)
           .toList();
     } catch (_) {
-      // supabase-dart v2: awaiting the builder returns the rows; no `.execute()`
+      // v2: await the builder directly; no `.execute()`.
+      // Also add NOT IS NULL filter; we’ll uniq in Dart.
       final resp = await _supa
           .from('card_prints')
           .select('set_code')
