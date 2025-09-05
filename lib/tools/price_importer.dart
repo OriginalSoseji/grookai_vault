@@ -1,50 +1,81 @@
 import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-/// PriceImporter ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ calls your `import-prices` Edge Function to populate pricing.
+/// Calls your `import-prices` Edge Function and pages until the server says end=true.
+/// Ignores `imported < pageSize` and falls back to (page+1) if `nextPageHint` is missing.
 class PriceImporter {
   final SupabaseClient _supa;
   PriceImporter(this._supa);
 
-  /// Import prices for a single set (pages until done).
   Future<int> importSet(
     String setCode, {
     String source = 'tcgplayer',
     int pageSize = 250,
-    void Function(String message)? log,
+    int maxRetries = 3,
+    void Function(String m)? log,
   }) async {
     var page = 1;
     var total = 0;
 
     while (true) {
       final payload = <String, dynamic>{
+        // accept both server conventions
         'setCode': setCode,
+        'set_code': setCode,
         'page': page,
+        'page_size': pageSize,
         'pageSize': pageSize,
         'source': source,
       };
 
-      final res = await _supa.functions.invoke('import-prices', body: payload);
-      final data = Map<String, dynamic>.from(res.data ?? {});
-      final imported = (data['imported'] ?? 0) as int;
-      total += imported;
+      Map<String, dynamic>? data;
+      int attempt = 0;
 
-      log?.call('$setCode page $page -> priced $imported');
+      // Retry current page a few times if the function throws
+      while (true) {
+        try {
+          final res = await _supa.functions.invoke(
+            'import-prices',
+            body: payload,
+          );
+          data = Map<String, dynamic>.from(res.data ?? {});
+          break;
+        } catch (e) {
+          attempt++;
+          if (attempt >= maxRetries) {
+            log?.call('ERROR $setCode page $page: $e (giving up)');
+            rethrow;
+          }
+          final delayMs = 400 * attempt;
+          log?.call('WARN  $setCode page $page: $e (retry in ${delayMs}ms)');
+          await Future<void>.delayed(Duration(milliseconds: delayMs));
+        }
+      }
 
-      final end = data['end'] == true;
-
-      if (end) break;
-
+      final imported = (data!['imported'] ?? 0) as int;
+      final fetched =
+          (data['fetched'] ?? data['count'] ?? data['pageCount'])
+              as int?; // optional from server
+      final end =
+          data['end'] == true || (fetched != null && fetched < pageSize);
       final nph = data['nextPageHint'];
-      page = (nph is num) ? nph.toInt() : (page + 1);
+      final next = end ? null : (nph is num ? nph.toInt() : page + 1);
+
+      total += imported;
+      log?.call(
+        '$setCode page $page -> priced $imported (fetched=${fetched ?? "?"}, end=$end, next=$next)',
+      );
+
+      if (end || next == null) break;
+
+      page = next;
       await Future<void>.delayed(const Duration(milliseconds: 150));
     }
 
     return total;
   }
 
-  /// List all set codes present in your catalog.
-  /// Tries RPC `list_set_codes`; falls back to REST (v2 style) if needed.
+  /// List all set codes. Tries RPC `list_set_codes` first; falls back to REST distinct.
   Future<List<String>> listAllSetCodes() async {
     try {
       final rows = await _supa.rpc('list_set_codes');
@@ -54,13 +85,10 @@ class PriceImporter {
           .where((c) => c.isNotEmpty)
           .toList();
     } catch (_) {
-      // v2: await the builder directly; no `.execute()`.
-      // Also add NOT IS NULL filter; weÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll uniq in Dart.
       final resp = await _supa
           .from('card_prints')
           .select('set_code')
           .not('set_code', 'is', null);
-
       final rows = (resp as List).cast<Map<String, dynamic>>();
       final uniq = <String>{};
       for (final r in rows) {
@@ -72,7 +100,6 @@ class PriceImporter {
     }
   }
 
-  /// Import prices for all sets in the catalog.
   Future<void> importAllSets({
     String source = 'tcgplayer',
     void Function(String m)? log,
@@ -84,7 +111,6 @@ class PriceImporter {
     }
   }
 
-  /// Import prices for just these set codes.
   Future<void> importSets(
     Iterable<String> codes, {
     String source = 'tcgplayer',
