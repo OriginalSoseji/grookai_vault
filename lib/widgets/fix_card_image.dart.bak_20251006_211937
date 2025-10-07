@@ -237,33 +237,20 @@ List<String> _setSlugCandidates(String setCode) {
   final original = setCode.trim();
   addUnique(original);
 
-  // case-flex for PokémonTCG (some sets care)
-  addUnique(original.toLowerCase());
-  // keep an UpperCamel variant if applicable (e.g., a1a -> A1a)
-  final upperCamel = original.isEmpty ? original : original[0].toUpperCase() + original.substring(1);
-  addUnique(upperCamel);
-
-  // .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5, ex5.5 → ex5pt5, sm3.5 → sm3pt5)
-  final dotFixed = original.replaceAll('.5', 'pt5');
-  addUnique(dotFixed);
-
-  // Shining Legends: sm3.5 / sm3pt5 -> slg (PokémonTCG code)
-  final low = original.toLowerCase();
-  if (low == 'sm3.5' || low == 'sm3pt5') {
-    addUnique('sm3pt5');
-    addUnique('slg');
-  }
+  // .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5, ex5.5 → ex5pt5)
+  addUnique(original.replaceAll('.5', 'pt5'));
 
   // sv0X → svX
-  addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv'));
+  addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv${m.group(1)}'));
 
   // svX → sv0X  (only when X is a single digit)
-  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'));
+  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0${m.group(1)}'));
 
   // EX Trainer Kit 2
+  final low = original.toLowerCase();
   if (low == 'ex5.5' || low == 'ex5pt5') {
     addUnique('ex5pt5');
-    addUnique('tk2');
+    addUnique('tk2'); // PokémonTCG.io slug
   }
 
   return out;
@@ -278,4 +265,3 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
