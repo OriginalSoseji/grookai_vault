@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Grookai Vault • Sign in')),
+      appBar: AppBar(title: const Text('Grookai Vault ï¿½ Sign in')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(children: [
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final email = Supabase.instance.client.auth.currentUser?.email ?? '(unknown)';
     return Scaffold(
-      appBar: AppBar(title: const Text('Grookai Vault • Home'), actions: [
+      appBar: AppBar(title: const Text('Grookai Vault ï¿½ Home'), actions: [
         IconButton(
           onPressed: () async { await Supabase.instance.client.auth.signOut(); },
           icon: const Icon(Icons.logout),
@@ -197,8 +197,7 @@ class _VaultPageState extends State<VaultPage> {
     final uid = Supabase.instance.client.auth.currentUser!.id;
     try {
       final rows = await Supabase.instance.client
-          .from('v_vault_items')
-          .select('id, card_id, qty, condition_label, condition_score, card_name, card_number')
+          .from('v_vault_items').select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
           .eq('user_id', Supabase.instance.client.auth.currentUser!.id)
           .order('created_at', ascending: false)')
           .eq('user_id', uid)
@@ -295,7 +294,7 @@ class _VaultPageState extends State<VaultPage> {
                     return ListTile(
                       leading: const Icon(Icons.inventory_2),
                       title: Text(name),
-                      subtitle: Text('No. $number • Qty: $qty • Cond: $label ($score)'),
+                      subtitle: Text('No. $number ï¿½ Qty: $qty ï¿½ Cond: $label ($score)'),
                     );
                   },
                 ),
@@ -307,4 +306,6 @@ class _VaultPageState extends State<VaultPage> {
     );
   }
 }
+
+
 

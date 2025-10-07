@@ -1,0 +1,9 @@
+﻿subtitle: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    // keep your existing subtitle line if you have one; otherwise this prints set code + number
+    Text('${row['set_code'] ?? setCode} • ${row['number'] ?? number}'),
+    const SizedBox(height: 6),
+    Wrap(children: buildBadges(row ?? const {})),
+  ],
+),

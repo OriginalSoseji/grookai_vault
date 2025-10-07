@@ -1,0 +1,20 @@
+﻿[
+    {
+        "id":  "bw11-1",
+        "localId":  "1",
+        "name":  "Tangela",
+        "image":  "https://assets.tcgdex.net/en/bw/bw11/1"
+    },
+    {
+        "id":  "bw11-2",
+        "localId":  "2",
+        "name":  "Tangrowth",
+        "image":  "https://assets.tcgdex.net/en/bw/bw11/2"
+    },
+    {
+        "id":  "bw11-3",
+        "localId":  "3",
+        "name":  "Shuckle",
+        "image":  "https://assets.tcgdex.net/en/bw/bw11/3"
+    }
+]

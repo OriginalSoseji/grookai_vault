@@ -1,0 +1,14 @@
+﻿[
+    {
+        "set_code":  "sv8",
+        "ok":  true,
+        "fetched":  250,
+        "inserted":  415
+    },
+    {
+        "set_code":  "sv8pt5",
+        "ok":  true,
+        "fetched":  180,
+        "inserted":  280
+    }
+]

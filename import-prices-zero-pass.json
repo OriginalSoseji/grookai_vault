@@ -1,0 +1,80 @@
+﻿[
+    {
+        "set_code":  "sv1",
+        "ok":  true,
+        "fetched":  250,
+        "inserted":  436
+    },
+    {
+        "set_code":  "sv2",
+        "ok":  true,
+        "fetched":  250,
+        "inserted":  426
+    },
+    {
+        "set_code":  "sv3pt5",
+        "ok":  true,
+        "fetched":  207,
+        "inserted":  360
+    },
+    {
+        "set_code":  "sv4",
+        "ok":  true,
+        "fetched":  250,
+        "inserted":  227
+    },
+    {
+        "set_code":  "sv5",
+        "ok":  true,
+        "fetched":  218,
+        "inserted":  358
+    },
+    {
+        "set_code":  "sv8",
+        "ok":  false,
+        "status":  504,
+        "note":  "The remote server returned an error: (504) Gateway Timeout."
+    },
+    {
+        "set_code":  "sv8pt5",
+        "ok":  false,
+        "status":  504,
+        "note":  "The remote server returned an error: (504) Gateway Timeout."
+    },
+    {
+        "set_code":  "swsh11tg",
+        "ok":  true,
+        "fetched":  30,
+        "inserted":  30
+    },
+    {
+        "set_code":  "swsh12pt5",
+        "ok":  true,
+        "fetched":  160,
+        "inserted":  272
+    },
+    {
+        "set_code":  "swsh35",
+        "ok":  true,
+        "fetched":  80,
+        "inserted":  134
+    },
+    {
+        "set_code":  "tk1b",
+        "ok":  true,
+        "fetched":  10,
+        "inserted":  0
+    },
+    {
+        "set_code":  "tk2a",
+        "ok":  true,
+        "fetched":  12,
+        "inserted":  0
+    },
+    {
+        "set_code":  "tk2b",
+        "ok":  true,
+        "fetched":  12,
+        "inserted":  0
+    }
+]

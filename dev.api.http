@@ -1,0 +1,12 @@
+﻿### Trigger import-prices
+POST https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljZHhicGlibmNxY2NocWlpaGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1MjM4NzIsImV4cCI6MjA3MTA5OTg3Mn0.3Y7KWRmroVYeyl-jhweLpkCNyE5X6yOrYR__dbalRsg
+Content-Type: application/json
+
+{
+  "setCode": "sv2",
+  "page": 1,
+  "pageSize": 25,
+  "source": "tcgplayer",
+  "debug": true
+}

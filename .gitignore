@@ -38,3 +38,6 @@ macos/Flutter/ephemeral/
 # OS junk
 .DS_Store
 Thumbs.db
+snapshots/
+.chatgpt_sync/*.ps1
+.chatgpt_sync/CHANGELOG.md

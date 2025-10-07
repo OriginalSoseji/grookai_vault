@@ -1,0 +1,114 @@
+# ==== CONFIG (edit these 3 lines) ====
+$SUPABASE_URL = 'https://ycdxbpibncqcchqiihfz.supabase.co'
+$ANON         = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljZHhicGlibmNxY2NocWlpaGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1MjM4NzIsImV4cCI6MjA3MTA5OTg3Mn0.3Y7KWRmroVYeyl-jhweLpkCNyE5X6yOrYR__dbalRsg'
+$PTCG         = '1dc2c93f-b270-4fb5-ac15-239f159638c6'   # PokémonTCG API key
+# =====================================
+
+$uri      = ($SUPABASE_URL.TrimEnd('/')) + '/functions/v1/import-cards'
+$headers  = @{ apikey = $ANON; Authorization = "Bearer $ANON" }
+$state    = Join-Path $PWD 'import_state.json'
+$summary  = New-Object System.Collections.Generic.List[Object]
+$seen     = @{}
+
+# load resume state if present
+if (Test-Path $state) {
+  try { $seen = Get-Content $state -Raw | ConvertFrom-Json } catch { $seen = @{} }
+  if ($seen -eq $null) { $seen = @{} }
+}
+
+function Save-State { param($obj) $obj | ConvertTo-Json -Depth 6 | Set-Content $state -Encoding UTF8 }
+
+# -- 0) Health sanity
+Invoke-RestMethod -Method GET -Uri $uri -Headers $headers | Out-Null
+
+# -- 1) Fetch all set codes (250/page; page through until none)
+$allSets = @()
+$page=1; $pageSize=250
+while ($true) {
+  $setsResp = Invoke-RestMethod -Method GET `
+    -Uri "https://api.pokemontcg.io/v2/sets?page=$page&pageSize=$pageSize" `
+    -Headers @{ 'X-Api-Key' = $PTCG } -TimeoutSec 60
+  if (-not $setsResp -or -not $setsResp.data -or $setsResp.count -le 0) { break }
+  $allSets += $setsResp.data
+  if ($setsResp.count -lt $pageSize) { break }
+  $page++
+}
+
+# Pick the ID key they use (id is the short code like 'sv6')
+$setCodes = $allSets | ForEach-Object { $_.id } | Sort-Object -Unique
+
+Write-Host "Found $($setCodes.Count) sets."
+
+# -- 2) Import each set (client fetch -> server ingest)
+foreach ($set in $setCodes) {
+  if ($seen.ContainsKey($set) -and $seen.$set -eq "done") {
+    Write-Host "[$set] already imported (resume)."
+    continue
+  }
+
+  $total=0; $page=1; $pageSize=250
+  while ($true) {
+    # client fetch
+    try {
+      $cardsResp = Invoke-RestMethod -Method GET `
+        -Uri "https://api.pokemontcg.io/v2/cards?q=set.id:$set&page=$page&pageSize=$pageSize" `
+        -Headers @{ 'X-Api-Key' = $PTCG } -TimeoutSec 60
+    } catch {
+      Write-Host "[$set] page $page: client fetch transient error; retrying..." -ForegroundColor Yellow
+      Start-Sleep 2
+      continue
+    }
+
+    $count = 0
+    if ($cardsResp -and $cardsResp.count) { $count = [int]$cardsResp.count }
+
+    if ($count -le 0) { "[$set] end at client page $page"; break }
+
+    # server ingest
+    $payload = @{
+      setCode  = $set
+      page     = $page
+      pageSize = $pageSize
+      cards    = $cardsResp.data
+    } | ConvertTo-Json -Depth 12
+
+    $ingestUri = ($uri.Trim()) + '?op=ingest'
+    try {
+      $resp = Invoke-RestMethod -Method POST -Uri $ingestUri -Headers $headers -ContentType 'application/json' -Body $payload -TimeoutSec 120
+      "[$set] ingested client page $page -> $($resp.imported)"
+      $total += [int]$resp.imported
+    } catch {
+      # print server error body
+      $r = $_.Exception.Response
+      if ($r) {
+        $reader = New-Object IO.StreamReader($r.GetResponseStream())
+        $text = $reader.ReadToEnd()
+        Write-Host "[$set] page $page: server error" -ForegroundColor Red
+        Write-Host $text
+      } else {
+        Write-Host "[$set] page $page: server error (no body)" -ForegroundColor Red
+      }
+      Start-Sleep 2
+      continue
+    }
+
+    if ($count -lt $pageSize) { "[$set] finished at client page $page"; break }
+    Start-Sleep 1
+    $page++
+  }
+
+  $seen[$set] = "done"
+  Save-State $seen
+
+  # record summary
+  $summary.Add([pscustomobject]@{ set_code=$set; imported=$total })
+  "[$set] TOTAL imported: $total"
+}
+
+# -- 3) Write a CSV summary
+$csv = Join-Path $PWD 'import_summary.csv'
+$summary | Export-Csv -NoTypeInformation -Encoding UTF8 $csv
+Write-Host "Summary saved: $csv"
+
+# -- 4) Quick DB validation (optional): counts via REST (requires you created the v_card_prints view)
+# $check = Invoke-RestMethod -Method GET -Uri "$SUPABASE_URL/rest/v1/rpc" ...

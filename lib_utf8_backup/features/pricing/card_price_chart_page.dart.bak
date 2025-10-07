@@ -1,0 +1,208 @@
+﻿import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../widgets/big_card_image.dart';
+
+class CardPriceChartPage extends StatefulWidget {
+  /// You can pass either a whole card map or individual fields.
+  final Map<String, dynamic>? card;
+  final String? setCode;
+  final String? number;
+  final String? name;
+  final String? imageBest;
+
+  /// Pricing source (e.g., "tcgplayer", "vault", etc.)
+  final String? source;
+
+  const CardPriceChartPage({
+    super.key,
+    this.card,
+    this.setCode,
+    this.number,
+    this.name,
+    this.imageBest,
+    this.source,
+  });
+
+  @override
+  State<CardPriceChartPage> createState() => _CardPriceChartPageState();
+}
+
+class _CardPriceChartPageState extends State<CardPriceChartPage> {
+  Map<String, dynamic>? _displayCard;  // what we’ll show in BigCardImage
+  bool _loading = false;
+  String? _loadError;
+
+  String _val(dynamic v) => (v ?? '').toString();
+
+  @override
+  void initState() {
+    super.initState();
+    _prepareCard();
+  }
+
+  Future<void> _prepareCard() async {
+    // 1) If a full card map with image is provided, use it.
+    final incoming = widget.card;
+    final incomingUrl = _val(incoming?['image_best']);
+    if (incoming != null && incomingUrl.isNotEmpty) {
+      setState(() => _displayCard = incoming);
+      return;
+    }
+
+    // 2) If explicit imageBest prop was passed, synthesize a map.
+    if (_val(widget.imageBest).isNotEmpty) {
+      setState(() {
+        _displayCard = {
+          'name': widget.name,
+          'set_code': widget.setCode,
+          'number': widget.number,
+          'image_best': widget.imageBest,
+        };
+      });
+      return;
+    }
+
+    // 3) Fallback: fetch from Supabase by (set_code, number)
+    final code = _val(widget.setCode);
+    final num  = _val(widget.number);
+    if (code.isEmpty || num.isEmpty) {
+      // Nothing to fetch with — we’ll render "No image"
+      setState(() => _displayCard = incoming ?? {});
+      return;
+    }
+
+    setState(() {
+      _loading = true;
+      _loadError = null;
+    });
+
+    try {
+      final supa = Supabase.instance.client;
+      final data = await supa
+          .from('v_card_prints') // your view/table that has image_best
+          .select('id,name,set_code,number,image_best,image_url,image_alt_url,source')
+          .eq('set_code', code)
+          .eq('number', num)
+          .maybeSingle();
+
+      setState(() {
+        // prefer fetched, fallback to incoming/minimal
+        _displayCard = (data != null && data.isNotEmpty)
+            ? data
+            : (incoming ?? {
+                'name': widget.name,
+                'set_code': code,
+                'number': num,
+              });
+      });
+    } catch (e) {
+      setState(() => _loadError = e.toString());
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final titleRaw = _val(
+      (_val(widget.name).trim().isNotEmpty ? widget.name : widget.card?['name']),
+    );
+    final title = titleRaw.isEmpty ? 'Card Pricing' : titleRaw;
+
+    final code = _val(
+      (_val(widget.setCode).trim().isNotEmpty ? widget.setCode : widget.card?['set_code']),
+    );
+    final num  = _val(
+      (_val(widget.number).trim().isNotEmpty ? widget.number  : widget.card?['number']),
+    );
+    final src  = _val(widget.source ?? widget.card?['source']);
+
+    return Scaffold(
+      appBar: AppBar(title: Text(title, overflow: TextOverflow.ellipsis)),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          if (_loading)
+            const SizedBox(
+              height: 260,
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else
+            BigCardImage(row: _displayCard ?? (widget.card ?? {
+              // Minimal synthetic map if we truly have nothing
+              'name': title,
+              'set_code': code,
+              'number': num,
+              'image_best': widget.imageBest, // may be empty
+            })),
+
+          if (_loadError != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              'Load error: $_loadError',
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ],
+
+          const SizedBox(height: 16),
+          Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          Text('$code · $num', style: Theme.of(context).textTheme.bodyMedium),
+          const SizedBox(height: 8),
+          if (src.isNotEmpty)
+            Text('Source: $src', style: Theme.of(context).textTheme.bodySmall),
+
+          const SizedBox(height: 24),
+          // Pricing placeholders (wire to your rollup later)
+          _InfoTile(label: 'Vault Value', value: '—'),
+          const SizedBox(height: 8),
+          _InfoTile(label: 'Last Sold', value: '—'),
+          const SizedBox(height: 8),
+          _InfoTile(label: 'Low / High', value: '— / —'),
+
+          const SizedBox(height: 24),
+          FilledButton.icon(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Add to Vault coming soon')),
+              );
+            },
+            icon: const Icon(Icons.add),
+            label: const Text('Add to Vault'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InfoTile extends StatelessWidget {
+  final String label;
+  final String value;
+  const _InfoTile({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.4),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
+          ),
+          Text(value),
+        ],
+      ),
+    );
+  }
+}

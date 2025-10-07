@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Calls your `import-prices` Edge Function and pages until the server says end=true.
@@ -9,7 +9,7 @@ class PriceImporter {
 
   Future<int> importSet(
     String setCode, {
-    String source = 'tcgplayer',
+    String source = 'tcgdex',
     int pageSize = 250,
     int maxRetries = 3,
     void Function(String m)? log,
@@ -101,7 +101,7 @@ class PriceImporter {
   }
 
   Future<void> importAllSets({
-    String source = 'tcgplayer',
+    String source = 'tcgdex',
     void Function(String m)? log,
   }) async {
     final codes = await listAllSetCodes();
@@ -113,7 +113,7 @@ class PriceImporter {
 
   Future<void> importSets(
     Iterable<String> codes, {
-    String source = 'tcgplayer',
+    String source = 'tcgdex',
     void Function(String m)? log,
   }) async {
     for (final code in codes) {
@@ -122,3 +122,5 @@ class PriceImporter {
     }
   }
 }
+
+

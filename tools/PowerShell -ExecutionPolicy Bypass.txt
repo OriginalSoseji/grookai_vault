@@ -1,0 +1,1 @@
+PowerShell -ExecutionPolicy Bypass -File C:\grookai_vault\tools\Export-GrookaiSnapshot.ps1

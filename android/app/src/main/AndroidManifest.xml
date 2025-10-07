@@ -2,7 +2,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
+    <application android:enableOnBackInvokedCallback="true"
         android:label="grookai_vault"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
@@ -47,3 +47,4 @@
         </intent>
     </queries>
 </manifest>
+

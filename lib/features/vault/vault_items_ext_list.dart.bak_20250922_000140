@@ -1,0 +1,22 @@
+﻿import "package:flutter/material.dart";
+import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import "package:supabase_flutter/supabase_flutter.dart";
+import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import "../../models/vault_item_ext.dart";
+import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import "../../data/pricing_api.dart";
+import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import "../../widgets/price_tiers_sheet.dart";
+import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+
+class VaultItemsExtList extends StatefulWidget {
+  const VaultItemsExtList({super.key});
+  @override
+  State<VaultItemsExtList> createState() => _VaultItemsExtListState();
+}
+
+ param($m)
+      $hdr = $m.Value
+      # inject before the last closing brace of the class
+      $hdr -replace '\}\s*, "`r`n$replacement`r`n}"
+    

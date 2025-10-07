@@ -1,0 +1,54 @@
+﻿import "dart:async";
+import "package:http/http.dart" as http;
+
+/// Resolves a working card image URL by probing multiple CDNs/paths.
+/// Caches the first working URL per (set|number|tcgplayerId) key.
+class CardImageResolver {
+  static final _cache = <String, String>{};
+
+  static Future<String?> resolve({
+    required String setCode,
+    required String number,
+    String? tcgplayerId,
+    Duration timeout = const Duration(seconds: 4),
+  }) async {
+    final key = "$setCode|$number|${tcgplayerId ?? ""}";
+    if (_cache.containsKey(key)) return _cache[key];
+
+    final candidates = <String>[
+      // TCGdex
+      "https://assets.tcgdex.net/en/$setCode/$number/high.png",
+      "https://assets.tcgdex.net/en/$setCode/$number/high.webp",
+      "https://assets.tcgdex.net/en/$setCode/$number/normal.png",
+      "https://assets.tcgdex.net/en/$setCode/$number/normal.webp",
+      // PokemonTCG.io
+      "https://images.pokemontcg.io/$setCode/${number}_hires.png",
+      "https://images.pokemontcg.io/$setCode/$number.png",
+      // Optional: TCGplayer by product id (may 302)
+      if (tcgplayerId != null && tcgplayerId.isNotEmpty)
+        "https://tcgplayer-cdn.tcgplayer.com/product/${tcgplayerId}_in_500x500.jpg",
+    ];
+
+    for (final url in candidates) {
+      if (await _ok(url, timeout)) {
+        _cache[key] = url;
+        return url;
+      }
+    }
+    return null;
+  }
+
+  static Future<bool> _ok(String url, Duration timeout) async {
+    try {
+      final res = await http.head(Uri.parse(url)).timeout(timeout);
+      if (res.statusCode == 200) return true;
+      if (res.statusCode == 405) {
+        final g = await http.get(Uri.parse(url)).timeout(timeout);
+        return g.statusCode == 200;
+      }
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
+}

@@ -1,0 +1,2 @@
+﻿[functions.price-cron]
+verify_jwt = false
