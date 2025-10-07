@@ -1,0 +1,20 @@
+﻿[
+    {
+        "set_code":  "sv8",
+        "ok":  true,
+        "tried":  "sv8",
+        "note":  null,
+        "status":  200,
+        "query":  "set.id:sv8",
+        "count":  250
+    },
+    {
+        "set_code":  "sv8pt5",
+        "ok":  true,
+        "tried":  "sv8pt5",
+        "note":  null,
+        "status":  200,
+        "query":  "set.id:sv8pt5",
+        "count":  180
+    }
+]

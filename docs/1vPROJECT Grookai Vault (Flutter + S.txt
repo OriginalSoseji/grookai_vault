@@ -1,0 +1,9 @@
+vPROJECT: Grookai Vault (Flutter + Supabase)
+STATE: docs/STATE_OF_PROJECT.md
+DECISIONS: docs/DECISIONS.md
+API: docs/API_SURFACE.md
+CODE MAP: docs/CONTEXT_PACK.md
+
+REQUEST: Continue from this state. Use exact file names and paths from CONTEXT_PACK. 
+Do not rename files without updating DECISIONS.md. 
+When giving code, reference full relative paths (e.g., lib/features/search/search_page.dart).

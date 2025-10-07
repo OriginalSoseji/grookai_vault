@@ -1,0 +1,210 @@
+﻿timestamp,set_code,set_name,page,imported,status
+2025-09-04T13:48:20,base1,"Base",1,102,OK
+2025-09-04T13:48:59,base2,"Jungle",1,64,OK
+2025-09-04T13:49:04,basep,"Wizards Black Star Promos",1,53,OK
+2025-09-04T13:49:29,base3,"Fossil",1,62,OK
+2025-09-04T13:50:08,base4,"Base Set 2",1,130,OK
+2025-09-04T13:50:45,base5,"Team Rocket",1,83,OK
+2025-09-04T13:51:34,gym1,"Gym Heroes",1,0,ERROR
+2025-09-04T13:52:10,gym2,"Gym Challenge",1,132,OK
+2025-09-04T13:52:49,neo1,"Neo Genesis",1,111,OK
+2025-09-04T13:53:15,neo2,"Neo Discovery",1,75,OK
+2025-09-04T13:54:23,si1,"Southern Islands",1,0,ERROR
+2025-09-04T13:54:37,neo3,"Neo Revelation",1,66,OK
+2025-09-04T13:55:33,neo4,"Neo Destiny",1,113,OK
+2025-09-04T13:55:47,base6,"Legendary Collection",1,110,OK
+2025-09-04T13:56:18,ecard1,"Expedition Base Set",1,165,OK
+2025-09-04T13:57:16,ecard2,"Aquapolis",1,182,OK
+2025-09-04T13:57:59,ecard3,"Skyridge",1,182,OK
+2025-09-04T13:58:10,ex1,"Ruby & Sapphire",1,109,OK
+2025-09-04T13:58:59,ex2,"Sandstorm",1,0,ERROR
+2025-09-04T13:59:54,ex3,"Dragon",1,100,OK
+2025-09-04T14:00:04,np,"Nintendo Black Star Promos",1,40,OK
+2025-09-04T14:00:30,ex4,"Team Magma vs Team Aqua",1,97,OK
+2025-09-04T14:00:41,ex5,"Hidden Legends",1,102,OK
+2025-09-04T14:01:40,ex6,"FireRed & LeafGreen",1,116,OK
+2025-09-04T14:02:42,pop1,"POP Series 1",1,17,OK
+2025-09-04T14:03:00,ex7,"Team Rocket Returns",1,111,OK
+2025-09-04T14:03:09,ex8,"Deoxys",1,108,OK
+2025-09-04T14:03:13,ex9,"Emerald",1,107,OK
+2025-09-04T14:03:25,ex10,"Unseen Forces",1,145,OK
+2025-09-04T14:03:36,pop2,"POP Series 2",1,17,OK
+2025-09-04T14:04:44,ex11,"Delta Species",1,0,ERROR
+2025-09-04T14:05:00,ex12,"Legend Maker",1,93,OK
+2025-09-04T14:05:12,pop3,"POP Series 3",1,17,OK
+2025-09-04T14:05:19,ex13,"Holon Phantoms",1,111,OK
+2025-09-04T14:06:18,ex14,"Crystal Guardians",1,100,OK
+2025-09-04T14:06:18,pop4,"POP Series 4",1,0,OK
+2025-09-04T14:06:19,ex15,"Dragon Frontiers",1,0,OK
+2025-09-04T14:06:20,pop5,"POP Series 5",1,0,OK
+2025-09-04T14:06:20,ex16,"Power Keepers",1,0,OK
+2025-09-04T14:06:21,dp1,"Diamond & Pearl",1,0,OK
+2025-09-04T14:06:22,dpp,"DP Black Star Promos",1,0,OK
+2025-09-04T14:06:22,dp2,"Mysterious Treasures",1,0,OK
+2025-09-04T14:06:44,pop6,"POP Series 6",1,0,OK
+2025-09-04T14:06:45,dp3,"Secret Wonders",1,0,OK
+2025-09-04T14:06:45,dp4,"Great Encounters",1,0,OK
+2025-09-04T14:06:46,pop7,"POP Series 7",1,0,OK
+2025-09-04T14:06:47,dp5,"Majestic Dawn",1,0,OK
+2025-09-04T14:06:47,dp6,"Legends Awakened",1,0,OK
+2025-09-04T14:06:48,pop8,"POP Series 8",1,0,OK
+2025-09-04T14:06:49,dp7,"Stormfront",1,0,OK
+2025-09-04T14:06:49,pl1,"Platinum",1,0,OK
+2025-09-04T14:06:50,pop9,"POP Series 9",1,0,OK
+2025-09-04T14:06:50,pl2,"Rising Rivals",1,0,OK
+2025-09-04T14:07:00,pl3,"Supreme Victors",1,153,OK
+2025-09-04T14:08:02,pl4,"Arceus",1,111,OK
+2025-09-04T14:08:26,ru1,"Pokémon Rumble",1,0,OK
+2025-09-04T14:08:27,hgss1,"HeartGold & SoulSilver",1,0,OK
+2025-09-04T14:08:27,hsp,"HGSS Black Star Promos",1,0,OK
+2025-09-04T14:08:28,hgss2,"HS—Unleashed",1,0,OK
+2025-09-04T14:08:29,hgss3,"HS—Undaunted",1,0,OK
+2025-09-04T14:08:29,hgss4,"HS—Triumphant",1,0,OK
+2025-09-04T14:08:30,col1,"Call of Legends",1,0,OK
+2025-09-04T14:08:34,bwp,"BW Black Star Promos",1,0,OK
+2025-09-04T14:08:34,bw1,"Black & White",1,0,OK
+2025-09-04T14:08:35,mcd11,"McDonald's Collection 2011",1,0,OK
+2025-09-04T14:08:36,bw2,"Emerging Powers",1,0,OK
+2025-09-04T14:08:39,bw3,"Noble Victories",1,0,OK
+2025-09-04T14:08:40,bw4,"Next Destinies",1,0,OK
+2025-09-04T14:08:43,bw5,"Dark Explorers",1,0,OK
+2025-09-04T14:08:44,mcd12,"McDonald's Collection 2012",1,0,OK
+2025-09-04T14:08:45,bw6,"Dragons Exalted",1,0,OK
+2025-09-04T14:08:46,dv1,"Dragon Vault",1,0,OK
+2025-09-04T14:08:46,bw7,"Boundaries Crossed",1,0,OK
+2025-09-04T14:08:50,bw8,"Plasma Storm",1,0,OK
+2025-09-04T14:08:50,bw9,"Plasma Freeze",1,0,OK
+2025-09-04T14:08:51,bw10,"Plasma Blast",1,0,OK
+2025-09-04T14:08:51,xyp,"XY Black Star Promos",1,0,OK
+2025-09-04T14:08:52,bw11,"Legendary Treasures",1,0,OK
+2025-09-04T14:08:59,xy0,"Kalos Starter Set",1,0,OK
+2025-09-04T14:08:59,xy1,"XY",1,0,OK
+2025-09-04T14:09:00,xy2,"Flashfire",1,0,OK
+2025-09-04T14:09:28,xy3,"Furious Fists",1,0,ERROR
+2025-09-04T14:10:16,xy4,"Phantom Forces",1,0,ERROR
+2025-09-04T14:10:45,xy5,"Primal Clash",1,0,ERROR
+2025-09-04T14:10:46,dc1,"Double Crisis",1,0,OK
+2025-09-04T14:10:46,xy6,"Roaring Skies",1,0,OK
+2025-09-04T14:10:47,xy7,"Ancient Origins",1,0,OK
+2025-09-04T14:10:50,xy8,"BREAKthrough",1,0,OK
+2025-09-04T14:10:51,xy9,"BREAKpoint",1,0,OK
+2025-09-04T14:10:52,g1,"Generations",1,0,OK
+2025-09-04T14:10:52,xy10,"Fates Collide",1,0,OK
+2025-09-04T14:10:53,xy11,"Steam Siege",1,0,OK
+2025-09-04T14:10:56,mcd16,"McDonald's Collection 2016",1,0,OK
+2025-09-04T14:10:57,xy12,"Evolutions",1,0,OK
+2025-09-04T14:10:58,sm1,"Sun & Moon",1,0,OK
+2025-09-04T14:11:01,smp,"SM Black Star Promos",1,0,OK
+2025-09-04T14:11:01,sm2,"Guardians Rising",1,0,OK
+2025-09-04T14:11:02,sm3,"Burning Shadows",1,0,OK
+2025-09-04T14:11:03,sm35,"Shining Legends",1,0,OK
+2025-09-04T14:11:03,sm4,"Crimson Invasion",1,0,OK
+2025-09-04T14:11:04,sm5,"Ultra Prism",1,0,OK
+2025-09-04T14:11:05,sm6,"Forbidden Light",1,0,OK
+2025-09-04T14:11:05,sm7,"Celestial Storm",1,0,OK
+2025-09-04T14:11:13,sm75,"Dragon Majesty",1,0,ERROR
+2025-09-04T14:12:02,sm8,"Lost Thunder",1,0,ERROR
+2025-09-04T14:13:10,sm9,"Team Up",1,0,ERROR
+2025-09-04T14:13:12,det1,"Detective Pikachu",1,18,OK
+2025-09-04T14:13:48,sm10,"Unbroken Bonds",1,238,OK
+2025-09-04T14:14:02,sm11,"Unified Minds",1,250,OK
+2025-09-04T14:14:11,sm11,"Unified Minds",2,11,OK
+2025-09-04T14:14:50,sm115,"Hidden Fates",1,69,OK
+2025-09-04T14:15:09,sma,"Hidden Fates Shiny Vault",1,94,OK
+2025-09-04T14:15:15,mcd19,"McDonald's Collection 2019",1,12,OK
+2025-09-04T14:16:03,sm12,"Cosmic Eclipse",1,0,ERROR
+2025-09-04T14:16:52,swshp,"SWSH Black Star Promos",1,0,ERROR
+2025-09-04T14:17:20,swsh1,"Sword & Shield",1,0,ERROR
+2025-09-04T14:18:09,swsh2,"Rebel Clash",1,0,ERROR
+2025-09-04T14:19:11,swsh3,"Darkness Ablaze",1,201,OK
+2025-09-04T14:20:00,swsh35,"Champion's Path",1,0,ERROR
+2025-09-04T14:21:08,swsh4,"Vivid Voltage",1,0,ERROR
+2025-09-04T14:22:13,swsh45,"Shining Fates",1,73,OK
+2025-09-04T14:23:02,swsh45sv,"Shining Fates Shiny Vault",1,0,ERROR
+2025-09-04T14:24:16,swsh5,"Battle Styles",1,0,ERROR
+2025-09-04T14:25:24,swsh6,"Chilling Reign",1,0,ERROR
+2025-09-04T14:26:33,swsh7,"Evolving Skies",1,0,ERROR
+2025-09-04T14:26:39,cel25,"Celebrations",1,25,OK
+2025-09-04T14:26:49,cel25c,"Celebrations: Classic Collection",1,22,OK
+2025-09-04T14:27:02,mcd14,"McDonald's Collection 2014",1,12,OK
+2025-09-04T14:27:42,mcd15,"McDonald's Collection 2015",1,12,OK
+2025-09-04T14:28:47,mcd18,"McDonald's Collection 2018",1,12,OK
+2025-09-04T14:29:06,mcd17,"McDonald's Collection 2017",1,12,OK
+2025-09-04T14:29:19,mcd21,"McDonald's Collection 2021",1,25,OK
+2025-09-04T14:29:28,bp,"Best of Game",1,9,OK
+2025-09-04T14:29:56,swsh8,"Fusion Strike",1,0,ERROR
+2025-09-04T14:29:57,fut20,"Pokémon Futsal Collection",1,5,OK
+2025-09-04T14:29:58,tk1a,"EX Trainer Kit Latias",1,10,OK
+2025-09-04T14:30:08,tk1b,"EX Trainer Kit Latios",1,10,OK
+2025-09-04T14:30:25,tk2a,"EX Trainer Kit 2 Plusle",1,12,OK
+2025-09-04T14:31:34,tk2b,"EX Trainer Kit 2 Minun",1,0,ERROR
+2025-09-04T14:31:48,swsh9,"Brilliant Stars",1,186,OK
+2025-09-04T14:32:27,swsh9tg,"Brilliant Stars Trainer Gallery",1,30,OK
+2025-09-04T14:33:08,swsh10,"Astral Radiance",1,216,OK
+2025-09-04T14:33:35,swsh10tg,"Astral Radiance Trainer Gallery",1,30,OK
+2025-09-04T14:34:37,pgo,"Pokémon GO",1,88,OK
+2025-09-04T14:35:28,swsh11,"Lost Origin",1,0,ERROR
+2025-09-04T14:36:09,swsh11tg,"Lost Origin Trainer Gallery",1,30,OK
+2025-09-04T14:36:57,swsh12,"Silver Tempest",1,0,ERROR
+2025-09-04T14:37:07,swsh12tg,"Silver Tempest Trainer Gallery",1,30,OK
+2025-09-04T14:37:31,mcd22,"McDonald's Collection 2022",1,15,OK
+2025-09-04T14:37:45,swsh12pt5,"Crown Zenith",1,160,OK
+2025-09-04T14:37:49,swsh12pt5gg,"Crown Zenith Galarian Gallery",1,70,OK
+2025-09-04T14:38:05,sv1,"Scarlet & Violet",1,250,OK
+2025-09-04T14:38:15,sv1,"Scarlet & Violet",2,8,OK
+2025-09-04T14:38:27,svp,"Scarlet & Violet Black Star Promos",1,200,OK
+2025-09-04T14:38:47,sv2,"Paldea Evolved",1,250,OK
+2025-09-04T14:38:55,sv2,"Paldea Evolved",2,29,OK
+2025-09-04T14:39:07,sve,"Scarlet & Violet Energies",1,16,OK
+2025-09-04T14:40:16,sv3,"Obsidian Flames",1,0,ERROR
+2025-09-04T14:40:59,sv3pt5,"151",1,207,OK
+2025-09-04T14:41:16,sv4,"Paradox Rift",1,250,OK
+2025-09-04T14:42:01,sv4,"Paradox Rift",2,16,OK
+2025-09-04T14:42:09,sv4pt5,"Paldean Fates",1,245,OK
+2025-09-04T14:42:23,sv5,"Temporal Forces",1,218,OK
+2025-09-04T14:42:36,sv6,"Twilight Masquerade",1,226,OK
+2025-09-04T14:42:47,sv6pt5,"Shrouded Fable",1,99,OK
+2025-09-04T14:43:29,sv7,"Stellar Crown",1,175,OK
+2025-09-04T14:43:36,sv8,"Surging Sparks",1,250,OK
+2025-09-04T14:43:46,sv8,"Surging Sparks",2,2,OK
+2025-09-04T14:44:26,sv8pt5,"Prismatic Evolutions",1,180,OK
+2025-09-04T14:44:43,sv9,"Journey Together",1,190,OK
+2025-09-04T14:45:03,sv10,"Destined Rivals",1,244,OK
+2025-09-04T14:45:48,zsv10pt5,"Black Bolt",1,171,OK
+2025-09-04T14:46:18,rsv10pt5,"White Flare",1,173,OK
+2025-09-04T22:35:27,sm9,"sm9",1,198,OK
+2025-09-04T22:35:42,sv3,"sv3",1,230,OK
+2025-09-04T22:36:44,ex2,"ex2",1,100,OK
+2025-09-04T22:37:25,xy5,"xy5",1,164,OK
+2025-09-04T22:38:08,xy4,"xy4",1,124,OK
+2025-09-04T22:39:16,swshp,"swshp",1,0,ERROR
+2025-09-04T22:40:25,sm8,"sm8",1,0,ERROR
+2025-09-04T22:40:55,swsh11,"swsh11",1,217,OK
+2025-09-04T22:41:48,swsh2,"swsh2",1,209,OK
+2025-09-04T22:42:28,swsh12,"swsh12",1,215,OK
+2025-09-04T22:43:11,sm75,"sm75",1,80,OK
+2025-09-04T22:43:46,swsh35,"swsh35",1,80,OK
+2025-09-04T22:43:58,swsh45sv,"swsh45sv",1,122,OK
+2025-09-04T22:44:40,swsh1,"swsh1",1,216,OK
+2025-09-04T22:45:49,sm12,"sm12",1,0,ERROR
+2025-09-04T22:46:37,gym1,"gym1",1,0,ERROR
+2025-09-04T22:46:57,swsh8,"swsh8",1,250,OK
+2025-09-04T22:48:06,swsh8,"swsh8",2,0,ERROR
+2025-09-04T22:49:14,swsh6,"swsh6",1,0,ERROR
+2025-09-04T22:50:18,ex11,"ex11",1,114,OK
+2025-09-04T22:51:27,swsh4,"swsh4",1,0,ERROR
+2025-09-04T22:51:55,si1,"si1",1,0,ERROR
+2025-09-04T22:52:10,swsh7,"swsh7",1,237,OK
+2025-09-04T22:52:46,tk2b,"tk2b",1,12,OK
+2025-09-04T22:53:02,swsh5,"swsh5",1,183,OK
+2025-09-04T22:53:14,xy3,"xy3",1,114,OK
+2025-09-05T07:29:25,swshp,1,250,OK
+2025-09-05T07:29:36,swshp,2,54,OK
+2025-09-05T07:30:05,sm8,1,240,OK
+2025-09-05T07:31:14,sm12,1,0,ERROR
+2025-09-05T07:31:37,gym1,1,0,OK
+2025-09-05T07:31:37,swsh8,2,0,OK
+2025-09-05T07:31:37,swsh6,1,0,OK
+2025-09-05T07:31:37,swsh4,1,0,OK
+2025-09-05T07:31:38,si1,1,0,OK
+2025-09-05T07:31:38,sm12,1,0,OK

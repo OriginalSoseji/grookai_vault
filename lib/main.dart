@@ -1,22 +1,30 @@
-﻿import 'dart:convert';
-import 'dev/price_import_page.dart';
-
-String fixMojibake(String s) {
-  try { return utf8.decode(latin1.encode(s)); } catch (_) { return s; }
-}
+﻿import 'package:grookai_vault/net/tcgdex_http_override.dart';
+import 'features/pricing/card_price_chart_page.dart';
 // lib/main.dart
+import 'dart:convert'; // for fixMojibake + jsonEncode
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'secrets.dart';
 
-// Live pricing (ticker + chart)
+// Live price chart page from earlier work
 import 'features/pricing/live_pricing.dart';
+// Dev page to run pricing imports (defined below)
+import 'dev/price_import_page.dart';
+// NEW: search feature
+import 'features/search/search_page.dart';
+import 'features/vault/vault_items_ext_list.dart';
+import 'features/vault/vault_items_ext_list.dart';
+// NEW: badge pills
+// import 'widgets/badges.dart';
+ import 'features/home/recently_added_page.dart';
 
-/// --- Supabase config ---
-const String kSupabaseUrl = 'https://ycdxbpibncqcchqiihfz.supabase.co';
-const String kSupabaseAnonKey =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljZHhicGlibmNxY2NocWlpaGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1MjM4NzIsImV4cCI6MjA3MTA5OTg3Mn0.3Y7KWRmroVYeyl-jhweLpkCNyE5X6yOrYR__dbalRsg';
+
+/// --- Supabase config (replace in production) ---
+final kSupabaseUrl = supabaseUrl;
+final kSupabaseAnonKey = supabaseAnonKey;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,17 +32,184 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+/// Fixes mojibake like "ÃƒÆ’Ã‚¢" if a string was saved/viewed in a wrong encoding.
+String fixMojibake(String s) {
+  try {
+    return utf8.decode(latin1.encode(s));
+  } catch (_) {
+    return s;
+  }
+}
+
+/// ================= Image helpers (global) =================
+
+/// Convert any raw value to a usable image URL.
+String _toImageUrl(dynamic raw) {
+  if (raw == null) return '';
+  String s = raw.toString().trim();
+  if (s.isEmpty) return '';
+
+  // Already a URL?
+  if (s.startsWith('http://') || s.startsWith('https://')) {
+    final isTcgDex = s.contains('assets.tcgdex.net/');
+    final hasQuality = RegExp(r'/(high|low)\.(png|jpg|jpeg|webp)$', caseSensitive: false).hasMatch(s);
+    final hasImageExt = RegExp(r'\.(png|jpg|jpeg|webp)$', caseSensitive: false).hasMatch(s);
+
+    // TCGDex needs "/high.png" (or "/low.png") after the number
+    if (isTcgDex && !hasQuality && !hasImageExt) {
+      s = '$s/high.png';
+    }
+    return s;
+  }
+
+  // Treat as Storage path in public bucket
+  try {
+    return Supabase.instance.client.storage.from('public').getPublicUrl(s);
+  } catch (e) {
+    debugPrint('? Failed to build public URL from path "$s": $e');
+    return '';
+  }
+}
+
+/// Build the best image URL from a row that may use different field names.
+String cardImageUrlFromRow(Map row) {
+  final direct = (row['image_url'] ?? row['photo_url'] ?? row['image'] ?? '')
+      .toString()
+      .trim();
+  if (direct.isNotEmpty) return _toImageUrl(direct);
+
+  final path = (row['image_path'] ?? '').toString().trim();
+  if (path.isNotEmpty) return _toImageUrl(path);
+
+  final setCode =
+      (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '').toString().trim().toLowerCase();
+  final number =
+      (row['number'] ?? row['collector_number'] ?? '').toString().trim().toLowerCase();
+
+  if (setCode.isNotEmpty && number.isNotEmpty) {
+    // Guess the series for TCGDex
+    String series;
+    if (setCode.startsWith('sv')) {
+      series = 'sv';
+    } else if (setCode.startsWith('sm')) {
+      series = 'sm';
+    } else if (setCode.startsWith('bw')) {
+      series = 'bw';
+    } else if (setCode.startsWith('xy')) {
+      series = 'xy';
+    } else if (setCode.startsWith('base')) {
+      series = 'base';
+    } else {
+      series = setCode.replaceAll(RegExp(r'[^a-z]'), '');
+    }
+    return 'https://assets.tcgdex.net/en/$series/$setCode/$number/high.png';
+  }
+
+  return '';
+}
+
+// --- Smart image with automatic fallbacks (high -> low -> webp) ---
+class SmartImage extends StatefulWidget {
+  final List<String> urls;
+  final double size;
+  const SmartImage({super.key, required this.urls, this.size = 44});
+
+  @override
+  State<SmartImage> createState() => _SmartImageState();
+}
+
+class _SmartImageState extends State<SmartImage> {
+  int _idx = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = widget.urls[_idx];
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.network(
+        url,
+        width: widget.size,
+        height: widget.size,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stack) {
+          // Try the next fallback if available
+          if (_idx + 1 < widget.urls.length) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) setState(() => _idx += 1);
+            });
+            return SizedBox(
+              width: widget.size,
+              height: widget.size,
+              child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+            );
+          }
+          return const CircleAvatar(child: Icon(Icons.broken_image));
+        },
+        loadingBuilder: (context, child, progress) {
+          if (progress == null) return child;
+          return SizedBox(
+            width: widget.size,
+            height: widget.size,
+            child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+          );
+        },
+      ),
+    );
+  }
+}
+
+/// Single thumbnail widget used everywhere.
+Widget _thumb(dynamic urlOrPath, {double size = 44}) {
+  // Start from the normalized URL
+  final primary = _toImageUrl(urlOrPath);
+  if (primary.isEmpty) {
+    debugPrint('? Image URL missing/empty for value: $urlOrPath');
+    return const CircleAvatar(child: Icon(Icons.image_not_supported));
+  }
+
+  // If it's a TCGDex URL, prepare fallbacks: high.png -> low.png -> high.webp
+  final isTcgDex = primary.contains('assets.tcgdex.net/');
+  final urls = <String>[primary];
+  if (isTcgDex) {
+    if (primary.endsWith('/high.png')) {
+      urls.add(primary.replaceFirst('/high.png', '/low.png'));
+      urls.add(primary.replaceFirst('/high.png', '/high.webp'));
+    } else if (primary.endsWith('/low.png')) {
+      urls.add(primary.replaceFirst('/low.png', '/high.png'));
+      urls.add(primary.replaceFirst('/low.png', '/low.webp'));
+    } else if (primary.endsWith('.png')) {
+      urls.add(primary.replaceFirst('.png', '.webp'));
+    }
+  }
+
+  return SmartImage(urls: urls, size: size);
+}
+
+/// ================= App =================
+
 /// Root app with an auth gate: session -> AppShell, else -> LoginPage.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final supabase = Supabase.instance.client;
     return MaterialApp(
-      routes: {'/dev-price-import': (_) => PriceImportPage()},
-
       title: 'Grookai Vault',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
+      routes: {
+        '/search': (_) => SearchPage(),
+        '/dev-price-import': (_) => const PriceImportPage(),
+        '/vault-ext': (_) => Scaffold(
+              appBar: AppBar(title: Text('Vault (Effective Prices)')),
+              body: VaultItemsExtList(),
+            ),
+        '/vault-ext': (_) => Scaffold(
+              appBar: AppBar(title: Text('Vault (Effective Prices)')),
+              body: VaultItemsExtList(),
+            ),
+        '/recent': (_) => const RecentlyAddedPage(),
+      },
       home: StreamBuilder<AuthState>(
         stream: supabase.auth.onAuthStateChange,
         initialData: AuthState(
@@ -43,7 +218,7 @@ class MyApp extends StatelessWidget {
         ),
         builder: (context, _) {
           final session = supabase.auth.currentSession;
-          return session == null ? const LoginPage() : const AppShell();
+          return const AppShell();
         },
       ),
     );
@@ -67,9 +242,17 @@ class _AppShellState extends State<AppShell> {
   Future<void> _signOut() async => supabase.auth.signOut();
 
   void _refreshCurrent() {
-    if (_index == 0) _homeKey.currentState?.reload();
-    if (_index == 1) _vaultKey.currentState?.reload();
-    if (_index == 2) _wishKey.currentState?.reload();
+    switch (_index) {
+      case 0:
+        _homeKey.currentState?.reload();
+        break;
+      case 1:
+        _vaultKey.currentState?.reload();
+        break;
+      case 2:
+        _wishKey.currentState?.reload();
+        break;
+    }
   }
 
   @override
@@ -79,11 +262,16 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         title: Text(titles[_index]),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _refreshCurrent,
-          ),
-          IconButton(icon: const Icon(Icons.logout), onPressed: _signOut),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+          IconButton(icon: const Icon(Icons.refresh), tooltip: 'Refresh', onPressed: _refreshCurrent),
+          IconButton(icon: const Icon(Icons.search), tooltip: 'Search cards', onPressed: () => Navigator.of(context).pushNamed('/search')),
+          IconButton(tooltip: 'Price Import (Dev)', icon: const Icon(Icons.developer_mode),
+              onPressed: () => Navigator.of(context).pushNamed('/dev-price-import')),
+          IconButton(icon: const Icon(Icons.logout), tooltip: 'Sign out', onPressed: _signOut),
         ],
       ),
       body: IndexedStack(
@@ -99,39 +287,12 @@ class _AppShellState extends State<AppShell> {
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.inventory_2_outlined),
-            selectedIcon: Icon(Icons.inventory_2),
-            label: 'Vault',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite_border),
-            selectedIcon: Icon(Icons.favorite),
-            label: 'Wishlist',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.camera_outlined),
-            selectedIcon: Icon(Icons.camera_alt),
-            label: 'Scan',
-          ),
+          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Vault'),
+          NavigationDestination(icon: Icon(Icons.favorite_border), selectedIcon: Icon(Icons.favorite), label: 'Wishlist'),
+          NavigationDestination(icon: Icon(Icons.camera_outlined), selectedIcon: Icon(Icons.camera_alt), label: 'Scan'),
         ],
       ),
-      floatingActionButton: switch (_index) {
-        1 => FloatingActionButton(
-          onPressed: () => _vaultKey.currentState?.showAddOrEditDialog(),
-          child: const Icon(Icons.add),
-        ),
-        2 => FloatingActionButton(
-          onPressed: () => _wishKey.currentState?.showAddOrEditDialog(),
-          child: const Icon(Icons.add),
-        ),
-        _ => null,
-      },
     );
   }
 }
@@ -191,44 +352,28 @@ class _LoginPageState extends State<LoginPage> {
           constraints: const BoxConstraints(maxWidth: 420),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _password,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                FilledButton(
-                  onPressed: _loading ? null : _signIn,
-                  child: _loading
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : const Text('Sign in'),
-                ),
-                const SizedBox(height: 8),
-                TextButton(
-                  onPressed: _loading ? null : _signUp,
-                  child: const Text('Create account'),
-                ),
-              ],
-            ),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              TextField(
+                controller: _email,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email)),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _password,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'Password', prefixIcon: Icon(Icons.lock)),
+              ),
+              const SizedBox(height: 16),
+              FilledButton(
+                onPressed: _loading ? null : _signIn,
+                child: _loading
+                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                    : const Text('Sign in'),
+              ),
+              const SizedBox(height: 8),
+              TextButton(onPressed: _loading ? null : _signUp, child: const Text('Create account')),
+            ]),
           ),
         ),
       ),
@@ -264,11 +409,10 @@ class HomePageState extends State<HomePage> {
     setState(() => _loading = true);
     try {
       final data = await supabase
-          .from('v_vault_items')
-          .select()
+          .from('v_vault_items').select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
           .eq('user_id', _uid!)
           .order('created_at', ascending: false);
-      setState(() => _items = List<Map<String, dynamic>>.from(data));
+      setState(() => _items = List<Map<String, dynamic>>.from(data as List));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -287,10 +431,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final unique = _items.length;
-    final totalQty = _items.fold<int>(
-      0,
-      (sum, r) => sum + ((r['qty'] ?? 0) as int),
-    );
+    final totalQty = _items.fold<int>(0, (sum, r) => sum + ((r['qty'] ?? 0) as int));
     final recent = List<Map<String, dynamic>>.from(_items.take(5));
     final totalValue = _sumValue(_items);
 
@@ -305,37 +446,50 @@ class HomePageState extends State<HomePage> {
                 children: [
                   _statCard('Unique cards', '$unique', Icons.style),
                   _statCard('Total quantity', '$totalQty', Icons.numbers),
-                  _statCard(
-                    'Portfolio value',
-                    '\$${totalValue.toStringAsFixed(2)}',
-                    Icons.attach_money,
+                  _statCard('Portfolio value', '\$${totalValue.toStringAsFixed(2)}', Icons.attach_money),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  FilledButton.icon(onPressed: reload, icon: const Icon(Icons.refresh), label: const Text('Refresh')),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).pushNamed('/dev-price-import'),
+                    icon: const Icon(Icons.developer_mode),
+                    label: const Text('Price Import (Dev)'),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Recently added',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+              const Text('Recently added', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               if (recent.isEmpty)
                 const Text('No recent items.')
               else
                 ...recent.map((row) {
+                  // ?–– Step 2A: Log the exact row so we can fix badges if keys differ
+                  debugPrint('RecentlyAdded row: ${jsonEncode(row)}');
+
                   final name = (row['name'] ?? 'Item').toString();
                   final setCode = (row['set_name'] ?? '').toString();
-                  final qty = (row['qty'] ?? 0) as int;
+                  final number = (row['number'] ?? '').toString();
                   final mp = (row['market_price'] ?? 0) as num;
                   return Card(
                     child: ListTile(
                       leading: _thumb(row['image_url']),
-                      title: Text(
-                        fixMojibake(name),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        '$setCode ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â\u00B7 Qty: $qty'
-                        '${mp > 0 ? ' ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â\u00B7 \$${mp.toStringAsFixed(2)} ea' : ''}',
+                      title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${setCode.isEmpty ? '–' : setCode} • #$number'
+                            '${mp > 0 ? ' • \$${mp.toStringAsFixed(2)} ea' : ''}',
+                          ),
+                          const SizedBox(height: 6),
+                          const SizedBox.shrink(),
+
+                        ],
                       ),
                       trailing: IconButton(
                         tooltip: 'Live',
@@ -344,8 +498,8 @@ class HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (_) => CardPriceChartPage(
                               setCode: setCode,
-                              number: (row['number'] ?? '').toString(),
-                              source: 'tcgplayer',
+                              number: number,
+                              
                             ),
                           ),
                         ),
@@ -363,48 +517,21 @@ class HomePageState extends State<HomePage> {
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(14),
-          child: Row(
-            children: [
-              Icon(icon, size: 28),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(label, style: const TextStyle(color: Colors.black54)),
-                  Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: Row(children: [
+            Icon(icon, size: 28),
+            const SizedBox(width: 12),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(label, style: const TextStyle(color: Colors.black54)),
+              Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            ]),
+          ]),
         ),
-      ),
-    );
-  }
-
-  Widget _thumb(dynamic url) {
-    final u = (url ?? '').toString();
-    if (u.isEmpty) return const CircleAvatar(child: Icon(Icons.style));
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(
-        u,
-        width: 44,
-        height: 44,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            const CircleAvatar(child: Icon(Icons.broken_image)),
       ),
     );
   }
 }
 
-/// ---------------------- VAULT PAGE (with Move to Wishlist) ----------------------
+/// ---------------------- VAULT PAGE ----------------------
 class VaultPage extends StatefulWidget {
   const VaultPage({super.key});
   @override
@@ -433,18 +560,18 @@ class VaultPageState extends State<VaultPage> {
     }
     setState(() => _loading = true);
     try {
-      final orderCol = _sortBy == _SortBy.newest
-          ? 'created_at'
-          : _sortBy == _SortBy.name
-          ? 'name'
-          : 'qty';
+      final orderCol = switch (_sortBy) {
+        _SortBy.newest => 'created_at',
+        _SortBy.name => 'name',
+        _SortBy.qty => 'qty',
+      };
       final ascending = _sortBy != _SortBy.newest;
+
       final data = await supabase
-          .from('v_vault_items')
-          .select()
+          .from('v_vault_items').select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
           .eq('user_id', _uid!)
           .order(orderCol, ascending: ascending);
-      setState(() => _items = List<Map<String, dynamic>>.from(data));
+      setState(() => _items = List<Map<String, dynamic>>.from(data as List));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -477,14 +604,8 @@ class VaultPageState extends State<VaultPage> {
       builder: (_) => SimpleDialog(
         title: const Text('Add to'),
         children: [
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, 'vault'),
-            child: const Text('Vault'),
-          ),
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, 'wishlist'),
-            child: const Text('Wishlist'),
-          ),
+          SimpleDialogOption(onPressed: () => Navigator.pop(context, 'vault'), child: const Text('Vault')),
+          SimpleDialogOption(onPressed: () => Navigator.pop(context, 'wishlist'), child: const Text('Wishlist')),
         ],
       ),
     );
@@ -502,25 +623,25 @@ class VaultPageState extends State<VaultPage> {
             decoration: const InputDecoration(labelText: 'Qty'),
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Add'),
-            ),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+            TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+            FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
           ],
         ),
       );
       if (ok != true) return;
       final qty = int.tryParse(qtyCtrl.text) ?? 1;
 
+      // Standardize on image_url
       await supabase.from('vault_items').insert({
         'card_id': picked['id'],
         'name': picked['name'],
-        'set_name': picked['set_code'], // code; swap to friendly set name later
-        'photo_url': picked['image_url'],
+        'set_name': picked['set_code'],
+        'image_url': picked['image_url'],
         'qty': qty,
         'condition_label': 'NM',
       });
@@ -533,23 +654,18 @@ class VaultPageState extends State<VaultPage> {
 
     // Trigger immediate price import for the set
     try {
-      await Supabase.instance.client.functions.invoke(
-        'import-prices',
-        body: {
-          'setCode': picked['set_code'],
-          'page': 1,
-          'pageSize': 250,
-          'source': 'tcgplayer',
-        },
-      );
+      await Supabase.instance.client.functions.invoke('import-prices', body: {
+        'setCode': picked['set_code'],
+        'page': 1,
+        'pageSize': 250,
+        'source': 'tcgdex',
+      });
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Added to ${choice == 'vault' ? 'Vault' : 'Wishlist'}'),
-      ),
+      SnackBar(content: Text('Added to ${choice == 'vault' ? 'Vault' : 'Wishlist'}')),
     );
   }
 
@@ -560,18 +676,15 @@ class VaultPageState extends State<VaultPage> {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Move to Wishlist?'),
-        content: const Text(
-          'This will remove the card from Vault and add it to Wishlist.',
-        ),
+        content: const Text('This will remove the card from Vault and add it to Wishlist.'),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Move'),
-          ),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
         ],
       ),
     );
@@ -583,17 +696,13 @@ class VaultPageState extends State<VaultPage> {
     }, onConflict: 'user_id,card_id');
     await supabase.from('vault_items').delete().eq('id', id);
 
-    // price import (non-fatal)
     try {
-      await Supabase.instance.client.functions.invoke(
-        'import-prices',
-        body: {
-          'setCode': (row['set_name'] ?? '').toString(),
-          'page': 1,
-          'pageSize': 250,
-          'source': 'tcgplayer',
-        },
-      );
+      await Supabase.instance.client.functions.invoke('import-prices', body: {
+        'setCode': (row['set_name'] ?? '').toString(),
+        'page': 1,
+        'pageSize': 250,
+        'source': 'tcgdex',
+      });
     } catch (_) {}
 
     await reload();
@@ -626,24 +735,11 @@ class VaultPageState extends State<VaultPage> {
               const SizedBox(width: 8),
               PopupMenuButton<_SortBy>(
                 icon: const Icon(Icons.sort),
-                onSelected: (v) {
-                  setState(() => _sortBy = v);
-                  reload();
-                },
+                onSelected: (v) { setState(() => _sortBy = v); reload(); },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
-                  PopupMenuItem(
-                    value: _SortBy.name,
-                    child: Text(
-                      'Name (AÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“Z)',
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: _SortBy.qty,
-                    child: Text(
-                      'Qty (lowÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢high)',
-                    ),
-                  ),
+                  PopupMenuItem(value: _SortBy.name, child: Text('Name (A–Z)')),
+                  PopupMenuItem(value: _SortBy.qty, child: Text('Qty (low?high)')),
                 ],
               ),
             ],
@@ -653,112 +749,87 @@ class VaultPageState extends State<VaultPage> {
           child: _loading
               ? const Center(child: CircularProgressIndicator())
               : filtered.isEmpty
-              ? const Center(child: Text('No items found.'))
-              : ListView.separated(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) {
-                    final row = filtered[index];
-                    final id = (row['id'] ?? '').toString();
-                    final name = (row['name'] ?? 'Item').toString();
-                    final setCode = (row['set_name'] ?? '').toString();
-                    final number = (row['number'] ?? '').toString();
-                    final qty = (row['qty'] ?? 0) as int;
-                    final cond = (row['condition_label'] ?? 'NM').toString();
-                    final mp = (row['market_price'] ?? 0) as num;
+                  ? const Center(child: Text('No items found.'))
+                  : ListView.separated(
+                      padding: const EdgeInsets.all(8),
+                      itemCount: filtered.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                      itemBuilder: (context, index) {
+                        final row = filtered[index];
+                        final id = (row['id'] ?? '').toString();
+                        final name = (row['name'] ?? 'Item').toString();
+                        final setCode = (row['set_name'] ?? '').toString();
+                        final number = (row['number'] ?? '').toString();
+                        final qty = (row['qty'] ?? 0) as int;
+                        final cond = (row['condition_label'] ?? 'NM').toString();
+                        final mp = (row['market_price'] ?? 0) as num;
 
-                    final tile = ListTile(
-                      leading: _thumb(row['image_url']),
-                      title: Text(
-                        fixMojibake(name),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 8,
-                        children: [
-                          if (setCode.isNotEmpty)
-                            Text(
-                              setCode,
-                              style: const TextStyle(color: Colors.black54),
-                            ),
-                          Text('#$number'),
-                          _chip(cond),
-                          Text('Qty: $qty'),
-                          if (mp > 0)
-                            Text(
-                              'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ \$${mp.toStringAsFixed(2)} ea',
-                            ),
-                        ],
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            tooltip: 'Live',
-                            icon: const Icon(Icons.show_chart_rounded),
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => CardPriceChartPage(
-                                  setCode: setCode,
-                                  number: number,
-                                  source: 'tcgplayer',
+                        final tile = ListTile(
+                          leading: _thumb(row['image_url']),
+                          title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 8,
+                            children: [
+                              if (setCode.isNotEmpty) Text(setCode, style: const TextStyle(color: Colors.black54)),
+                              Text('#$number'),
+                              _chip(cond),
+                              Text('Qty: $qty'),
+                              if (mp > 0) Text('€¢ \$${mp.toStringAsFixed(2)} ea'),
+                            ],
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                tooltip: 'Live',
+                                icon: const Icon(Icons.show_chart_rounded),
+                                onPressed: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => CardPriceChartPage(
+                                      setCode: setCode,
+                                      number: number,
+                                      
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () => _incQty(id, -1),
-                          ),
-                          Text(
-                            '$qty',
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () => _incQty(id, 1),
-                          ),
-                          PopupMenuButton<String>(
-                            onSelected: (v) {
-                              if (v == 'delete') _confirmDelete(id);
-                              if (v == 'move_wishlist') _moveToWishlist(row);
-                            },
-                            itemBuilder: (_) => const [
-                              PopupMenuItem(
-                                value: 'move_wishlist',
-                                child: Text('Move to Wishlist'),
-                              ),
-                              PopupMenuItem(
-                                value: 'delete',
-                                child: Text('Delete'),
+                              IconButton(icon: const Icon(Icons.remove), onPressed: () => _incQty(id, -1)),
+                              Text('$qty', style: const TextStyle(fontWeight: FontWeight.bold)),
+                              IconButton(icon: const Icon(Icons.add), onPressed: () => _incQty(id, 1)),
+                              PopupMenuButton<String>(
+                                onSelected: (v) {
+                                  if (v == 'delete') _delete(id);
+                                  if (v == 'move_wishlist') _moveToWishlist(row);
+                                },
+                                itemBuilder: (_) => const [
+                                  PopupMenuItem(value: 'move_wishlist', child: Text('Move to Wishlist')),
+                                  PopupMenuItem(value: 'delete', child: Text('Delete')),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    );
+                        );
 
-                    return Dismissible(
-                      key: ValueKey(id),
-                      background: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 16),
-                        child: const Icon(Icons.delete, color: Colors.white),
-                      ),
-                      secondaryBackground: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 16),
-                        child: const Icon(Icons.delete, color: Colors.white),
-                      ),
-                      confirmDismiss: (_) async => await _confirmDelete(id),
-                      child: Card(child: tile),
-                    );
-                  },
-                ),
+                        return Dismissible(
+                          key: ValueKey(id),
+                          background: Container(
+                            color: Colors.red,
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(left: 16),
+                            child: const Icon(Icons.delete, color: Colors.white),
+                          ),
+                          secondaryBackground: Container(
+                            color: Colors.red,
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 16),
+                            child: const Icon(Icons.delete, color: Colors.white),
+                          ),
+                          confirmDismiss: (_) async => await _confirmDelete(id),
+                          child: Card(child: tile),
+                        );
+                      },
+                    ),
         ),
       ],
     );
@@ -771,14 +842,13 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Delete item?'),
         content: const Text('This cannot be undone.'),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
-          ),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
         ],
       ),
     );
@@ -814,25 +884,9 @@ class VaultPageState extends State<VaultPage> {
       side: BorderSide(color: color.withOpacity(.6)),
     );
   }
-
-  Widget _thumb(dynamic url) {
-    final u = (url ?? '').toString();
-    if (u.isEmpty) return const CircleAvatar(child: Icon(Icons.style));
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(
-        u,
-        width: 44,
-        height: 44,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            const CircleAvatar(child: Icon(Icons.broken_image)),
-      ),
-    );
-  }
 }
 
-/// ---------------------- WISHLIST PAGE (with Move to Vault) ----------------------
+/// ---------------------- WISHLIST PAGE ----------------------
 class WishlistPage extends StatefulWidget {
   const WishlistPage({super.key});
   @override
@@ -864,7 +918,7 @@ class WishlistPageState extends State<WishlistPage> {
           .select()
           .eq('user_id', _uid!)
           .order('created_at', ascending: false);
-      setState(() => _items = List<Map<String, dynamic>>.from(data));
+      setState(() => _items = List<Map<String, dynamic>>.from(data as List));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -883,24 +937,20 @@ class WishlistPageState extends State<WishlistPage> {
       'card_id': picked['id'],
     }, onConflict: 'user_id,card_id');
 
-    // Trigger price import so wishlist shows a price immediately
     try {
-      await Supabase.instance.client.functions.invoke(
-        'import-prices',
-        body: {
-          'setCode': picked['set_code'],
-          'page': 1,
-          'pageSize': 250,
-          'source': 'tcgplayer',
-        },
-      );
+      await Supabase.instance.client.functions.invoke('import-prices', body: {
+        'setCode': picked['set_code'],
+        'page': 1,
+        'pageSize': 250,
+        'source': 'tcgdex',
+      });
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Added to Wishlist')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Added to Wishlist')),
+    );
   }
 
   Future<void> _moveToVault(Map<String, dynamic> row) async {
@@ -915,14 +965,13 @@ class WishlistPageState extends State<WishlistPage> {
           decoration: const InputDecoration(labelText: 'Quantity'),
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Move'),
-          ),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
+          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
         ],
       ),
     );
@@ -933,33 +982,26 @@ class WishlistPageState extends State<WishlistPage> {
       'card_id': row['card_id'],
       'name': row['name'],
       'set_name': row['set_name'],
-      'photo_url': row['image_url'],
+      'image_url': row['image_url'],
       'qty': qty,
       'condition_label': 'NM',
     });
-    await supabase
-        .from('wishlist_items')
-        .delete()
-        .eq('id', (row['id'] ?? '').toString());
+    await supabase.from('wishlist_items').delete().eq('id', (row['id'] ?? '').toString());
 
-    // Non-fatal price import
     try {
-      await Supabase.instance.client.functions.invoke(
-        'import-prices',
-        body: {
-          'setCode': (row['set_name'] ?? '').toString(),
-          'page': 1,
-          'pageSize': 250,
-          'source': 'tcgplayer',
-        },
-      );
+      await Supabase.instance.client.functions.invoke('import-prices', body: {
+        'setCode': (row['set_name'] ?? '').toString(),
+        'page': 1,
+        'pageSize': 250,
+        'source': 'tcgdex',
+      });
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Moved to Vault')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Moved to Vault')),
+    );
   }
 
   Future<void> _delete(String id) async {
@@ -972,80 +1014,56 @@ class WishlistPageState extends State<WishlistPage> {
     return _loading
         ? const Center(child: CircularProgressIndicator())
         : _items.isEmpty
-        ? const Center(child: Text('Wishlist is empty.'))
-        : ListView.separated(
-            padding: const EdgeInsets.all(8),
-            itemCount: _items.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 8),
-            itemBuilder: (context, i) {
-              final row = _items[i];
-              final id = (row['id'] ?? '').toString();
-              final name = (row['name'] ?? 'Card').toString();
-              final setCode = (row['set_name'] ?? '').toString();
-              final number = (row['number'] ?? '').toString();
-              final mp = (row['market_price'] ?? 0) as num;
+            ? const Center(child: Text('Wishlist is empty.'))
+            : ListView.separated(
+                padding: const EdgeInsets.all(8),
+                itemCount: _items.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+                itemBuilder: (context, i) {
+                  final row = _items[i];
+                  final id = (row['id'] ?? '').toString();
+                  final name = (row['name'] ?? 'Card').toString();
+                  final setCode = (row['set_name'] ?? '').toString();
+                  final number = (row['number'] ?? '').toString();
+                  final mp = (row['market_price'] ?? 0) as num;
 
-              return Card(
-                child: ListTile(
-                  leading: _thumb(row['image_url']),
-                  title: Text(
-                    fixMojibake(name),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    '$setCode ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â\u00B7 #$number${mp > 0 ? ' ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â\u00B7 \$${mp.toStringAsFixed(2)}' : ''}',
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        tooltip: 'Live',
-                        icon: const Icon(Icons.show_chart_rounded),
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => CardPriceChartPage(
-                              setCode: setCode,
-                              number: number,
-                              source: 'tcgplayer',
+                  return Card(
+                    child: ListTile(
+                      leading: _thumb(row['image_url']),
+                      title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('$setCode \u00B7 #$number${mp > 0 ? ' \u00B7 \$${mp.toStringAsFixed(2)}' : ''}'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            tooltip: 'Live',
+                            icon: const Icon(Icons.show_chart_rounded),
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => CardPriceChartPage(
+                                  setCode: setCode,
+                                  number: number,
+                                  
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      PopupMenuButton<String>(
-                        onSelected: (v) {
-                          if (v == 'move_vault') _moveToVault(row);
-                          if (v == 'delete') _delete(id);
-                        },
-                        itemBuilder: (_) => const [
-                          PopupMenuItem(
-                            value: 'move_vault',
-                            child: Text('Move to Vault'),
+                          PopupMenuButton<String>(
+                            onSelected: (v) {
+                              if (v == 'move_vault') _moveToVault(row);
+                              if (v == 'delete') _delete(id);
+                            },
+                            itemBuilder: (_) => const [
+                              PopupMenuItem(value: 'move_vault', child: Text('Move to Vault')),
+                              PopupMenuItem(value: 'delete', child: Text('Remove')),
+                            ],
                           ),
-                          PopupMenuItem(value: 'delete', child: Text('Remove')),
                         ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               );
-            },
-          );
-  }
-
-  Widget _thumb(dynamic url) {
-    final u = (url ?? '').toString();
-    if (u.isEmpty) return const CircleAvatar(child: Icon(Icons.style));
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(
-        u,
-        width: 44,
-        height: 44,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            const CircleAvatar(child: Icon(Icons.broken_image)),
-      ),
-    );
   }
 }
 
@@ -1068,23 +1086,23 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   @override
   void initState() {
     super.initState();
-    // no initial fetch: stays empty until user types
+    // no initial fetch; wait for >= 2 chars
   }
 
   Future<void> _fetch(String query) async {
-    final q = query.trim();
-    if (q.length < 2) {
+    final s = query.trim();
+    if (s.length < 2) {
       setState(() => _rows = []);
       return;
-    } // min chars guard
+    }
     setState(() => _loading = true);
     try {
       final data = await supabase
           .from('v_card_search')
           .select('id, set_code, name, number, image_url')
-          .or('name.ilike.%$q%,set_code.ilike.%$q%')
+          .or('name.ilike.%$s%,set_code.ilike.%$s%')
           .limit(50);
-      setState(() => _rows = List<Map<String, dynamic>>.from(data));
+      _rows = List<Map<String, dynamic>>.from(data as List);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -1101,9 +1119,6 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   @override
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).viewInsets;
-    final hint = _q.text.trim().length < 2
-        ? 'Type at least 2 characters to searchÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦'
-        : '';
     return Padding(
       padding: EdgeInsets.only(bottom: padding.bottom),
       child: SafeArea(
@@ -1131,14 +1146,6 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                 onChanged: _onChanged,
               ),
             ),
-            if (hint.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Text(
-                  hint,
-                  style: const TextStyle(color: Colors.black54),
-                ),
-              ),
             const SizedBox(height: 8),
             if (_loading) const LinearProgressIndicator(minHeight: 2),
             Flexible(
@@ -1154,19 +1161,23 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                       separatorBuilder: (_, __) => const SizedBox(height: 6),
                       itemBuilder: (context, i) {
                         final r = _rows[i];
-                        final subtitle =
-                            '${(r['set_code'] ?? '').toString()} ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â\u00B7 ${(r['number'] ?? '').toString()}';
+                        final title = (r['name'] ?? 'Card').toString();
+                        final subtitle = '${(r['set_code'] ?? '').toString()} \u00B7 ${(r['number'] ?? '').toString()}';
+
                         return Card(
                           child: ListTile(
-                            leading: _thumb(r['image_url']),
-                            title: Text(
-                              r['name'],
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            leading: _thumb(cardImageUrlFromRow(r)),
+                            title: Text(fixMojibake(title), style: const TextStyle(fontWeight: FontWeight.bold)),
                             subtitle: Text(subtitle),
-                            onTap: () => Navigator.pop(context, r),
+                            onTap: () {
+                              final url = cardImageUrlFromRow(r);
+                              final out = Map<String, dynamic>.from(r);
+                              final current = (out['image_url'] ?? '').toString().trim();
+                              if (current.isEmpty && url.isNotEmpty) {
+                                out['image_url'] = url; // ensure callers get a solid URL
+                              }
+                              Navigator.pop(context, out);
+                            },
                           ),
                         );
                       },
@@ -1174,22 +1185,6 @@ class _CatalogPickerState extends State<_CatalogPicker> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _thumb(dynamic url) {
-    final u = (url ?? '').toString();
-    if (u.isEmpty) return const CircleAvatar(child: Icon(Icons.style));
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(
-        u,
-        width: 44,
-        height: 44,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            const CircleAvatar(child: Icon(Icons.broken_image)),
       ),
     );
   }
@@ -1209,7 +1204,6 @@ class _ScanPageState extends State<ScanPage> {
   Future<void> _captureIdentifyAndAdd() async {
     setState(() => _busy = true);
     try {
-      // 1) Capture
       final shot = await ImagePicker().pickImage(
         source: ImageSource.camera,
         maxWidth: 2000,
@@ -1218,27 +1212,20 @@ class _ScanPageState extends State<ScanPage> {
       if (shot == null) return;
       final file = File(shot.path);
 
-      // 2) Upload to Storage (private scans bucket)
       final uid = supabase.auth.currentUser!.id;
       final filename = '${DateTime.now().millisecondsSinceEpoch}.jpg';
       final objectPath = '$uid/intake/$filename';
 
       await supabase.storage.from('scans').upload(objectPath, file);
 
-      // 3) Signed URL (if your function needs it)
-      final signedUrl = await supabase.storage
-          .from('scans')
-          .createSignedUrl(objectPath, 60 * 60 * 24 * 7);
+      final signedUrl =
+          await supabase.storage.from('scans').createSignedUrl(objectPath, 60 * 60 * 24 * 7);
 
-      // 4) Call end-to-end intake function (identify + grade + price + add)
-      final res = await supabase.functions.invoke(
-        'intake-scan',
-        body: {
-          'user_id': uid,
-          'object_path': objectPath,
-          'signed_url': signedUrl,
-        },
-      );
+      final res = await supabase.functions.invoke('intake-scan', body: {
+        'user_id': uid,
+        'object_path': objectPath,
+        'signed_url': signedUrl,
+      });
 
       final data = Map<String, dynamic>.from(res.data ?? {});
       if (data.isEmpty) throw Exception('No data from intake-scan');
@@ -1246,8 +1233,8 @@ class _ScanPageState extends State<ScanPage> {
       final card = Map<String, dynamic>.from(data['card'] ?? {});
       final label = (data['label'] ?? '').toString();
       final price = (data['market_price'] ?? 0);
-      if (!mounted) return;
 
+      if (!mounted) return;
       await showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -1256,38 +1243,34 @@ class _ScanPageState extends State<ScanPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  _thumb(card['image_url']),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '${card['name'] ?? 'Card'} ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
-                      maxLines: 2,
-                    ),
+              Row(children: [
+                _thumb(card['image_url']),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    '${card['name'] ?? 'Card'} €¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                    maxLines: 2,
                   ),
-                ],
-              ),
+                ),
+              ]),
               const SizedBox(height: 8),
               Text('Condition: $label'),
-              Text(
-                'Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}',
-              ),
+              Text('Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}'),
             ],
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
+    IconButton(
+      tooltip: 'Vault (Effective Prices)',
+      icon: const Icon(Icons.price_change),
+      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
+    ),
+            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
           ],
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -1299,40 +1282,25 @@ class _ScanPageState extends State<ScanPage> {
       padding: const EdgeInsets.all(16),
       children: [
         const Text(
-          'Point your camera at a card. WeÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¾ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
+          'Point your camera at a card. We€™ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
           style: TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
           onPressed: _busy ? null : _captureIdentifyAndAdd,
           icon: const Icon(Icons.camera_alt),
-          label: Text(
-            _busy
-                ? 'WorkingÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦'
-                : 'Scan & Add to Vault',
-          ),
+          label: Text(_busy ? 'Working€¦' : 'Scan & Add to Vault'),
         ),
         const SizedBox(height: 12),
         const Text('Tip: good lighting + flat card = better ID/grade.'),
       ],
     );
   }
-
-  Widget _thumb(dynamic url) {
-    final u = (url ?? '').toString();
-    if (u.isEmpty) return const CircleAvatar(child: Icon(Icons.style));
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(
-        u,
-        width: 44,
-        height: 44,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            const CircleAvatar(child: Icon(Icons.broken_image)),
-      ),
-    );
-  }
 }
+
+
+
+
+
 
 

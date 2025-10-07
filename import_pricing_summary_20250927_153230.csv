@@ -1,0 +1,170 @@
+"set_id","fetched","inserted","ok","note"
+"base1","102","102","True",
+"base2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"base3","62","30","True",
+"base4","130","130","True",
+"base5","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"base6","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"basep","53","51","True",
+"bp","9","9","True",
+"bw1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw10","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw11","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw2","98","194","True",
+"bw3","102","197","True",
+"bw4","103","189","True",
+"bw5","111","206","True",
+"bw6","128","239","True",
+"bw7","153","281","True",
+"bw8","138","257","True",
+"bw9","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bwp","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"cel25","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"cel25c","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"col1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dc1","34","66","True",
+"det1","18","18","True",
+"dp1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dp2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dp3","132","261","True",
+"dp4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dp5","100","195","True",
+"dp6","146","282","True",
+"dp7","106","200","True",
+"dpp","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dv1","21","21","True",
+"ecard1","165","319","True",
+"ecard2","182","305","True",
+"ecard3","182","290","True",
+"ex1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex10","145","243","True",
+"ex11","114","218","True",
+"ex12","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex13","111","209","True",
+"ex14","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex15","101","190","True",
+"ex16","108","199","True",
+"ex2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex3","100","186","True",
+"ex4","97","184","True",
+"ex5","102","192","True",
+"ex6","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex7","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex8","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex9","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"fut20","5","5","True",
+"g1","117","184","True",
+"gym1","132","38","True",
+"gym2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"hgss1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"hgss2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"hgss3","91","170","True",
+"hgss4","103","192","True",
+"hsp","25","25","True",
+"mcd11","12","12","True",
+"mcd12","12","12","True",
+"mcd14","12","0","True",
+"mcd15","12","0","True",
+"mcd16","12","0","True",
+"mcd17","12","0","True",
+"mcd18","12","0","True",
+"mcd19","12","12","True",
+"mcd21","25","50","True",
+"mcd22","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"me1","188","0","True",
+"neo1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"neo2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"neo3","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"neo4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"np","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"pgo","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"pl1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"pl2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"pl3","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"pl4","111","203","True",
+"pop1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop2",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop3",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop4",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop6",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop7",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop8",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"pop9",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"rsv10pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"ru1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"si1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm10",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm11",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm115",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm12",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm2",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm3",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm35",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm4",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm6",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm7",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm75",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm8",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sm9",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sma",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"smp",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv10",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv2",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv3",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv3pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv4",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv4pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv6",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv6pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv7",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv8",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv8pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sv9",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"sve",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"svp",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh10",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh10tg",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh11",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh11tg",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh12",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh12pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh12pt5gg",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh12tg",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh2",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh3",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh35",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh4",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh45",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh45sv",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh6",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh7",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh8",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh9",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swsh9tg",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"swshp",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"tk1a",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"tk1b",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"tk2a",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"tk2b",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy0",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy1",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy10",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy11",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy12",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy2",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy3",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy4",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy6",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy7",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy8",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xy9",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"xyp",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."
+"zsv10pt5",,,"False","ERROR: The remote server returned an error: (401) Unauthorized."

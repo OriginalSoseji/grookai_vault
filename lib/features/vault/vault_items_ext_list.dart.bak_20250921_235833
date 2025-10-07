@@ -1,0 +1,84 @@
+﻿import "package:flutter/material.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+import "../../models/vault_item_ext.dart";
+import "../../data/pricing_api.dart";
+import "../../widgets/price_tiers_sheet.dart";
+
+class VaultItemsExtList extends StatefulWidget {
+  const VaultItemsExtList({super.key});
+  @override
+  State<VaultItemsExtList> createState() => _VaultItemsExtListState();
+}
+
+class _VaultItemsExtListState extends State<VaultItemsExtList> {
+  final _client = Supabase.instance.client;
+  late Future<List<VaultItemExt>> _future;
+
+  @override
+  void initState() { super.initState(); _future = _fetch(); }
+
+  Future<List<VaultItemExt>> _fetch() async {
+    final rows = await _client
+        .from("v_vault_items_ext")
+        .select("""
+          id, card_id, name, set_code, number, price,
+          condition_label, is_graded, grade_company, grade_value, grade_label,
+          effective_mode, effective_source, effective_price, created_at
+        """)
+        .order("created_at", ascending: false)
+        .limit(50);
+    return (rows as List).map((j) => VaultItemExt.fromJson(j as Map<String, dynamic>)).toList();
+  }
+
+  void _showTiers(BuildContext context, String vaultItemId, String cardId) async {
+    final api = PricingApi(_client);
+    final changed = await showModalBottomSheet<bool>(
+      context: context, isScrollControlled: true,
+      builder: (_) => PriceTiersSheet(api: api, vaultItemId: vaultItemId, cardId: cardId),
+    );
+    if (changed == true) setState(() => _future = _fetch());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<VaultItemExt>>(
+      future: _future,
+      builder: (context, snap) {
+        if (snap.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final items = snap.data ?? const <VaultItemExt>[];
+        if (items.isEmpty) return const Center(child: Text("No items yet."));
+        return ListView.separated(
+          itemCount: items.length,
+          separatorBuilder: (_, __) => const Divider(height: 1),
+          itemBuilder: (context, i) {
+            final it = items[i];
+            final sub = it.isGraded
+                ? "${it.gradeCompany ?? ""} ${it.gradeValue?.toStringAsFixed(1) ?? ""} ${it.gradeLabel ?? ""}".trim()
+                : "Condition: ${it.conditionLabel ?? "—"}";
+            final price = (it.effectivePrice ?? it.price)?.toStringAsFixed(2) ?? "—";
+            final tag = it.effectiveMode ?? (it.price != null ? "base" : "");
+            return ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              title: Text("${it.name}  •  ${it.setCode.toUpperCase()} #${it.number}"),
+              subtitle: Text(sub),
+              trailing: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("\$$price", style: const TextStyle(fontWeight: FontWeight.w700)),
+                  const SizedBox(height: 2),
+                  Text(tag, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                ],
+              ),
+              onTap: () => _showTiers(context, it.id, it.cardId),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+

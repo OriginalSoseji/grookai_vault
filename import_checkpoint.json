@@ -1,0 +1,844 @@
+﻿{
+    "sets":  {
+                 "xy0":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex10":  {
+                              "imported":  145,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "neo3":  {
+                              "imported":  66,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "base2":  {
+                               "imported":  64,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sv8pt5":  {
+                                "imported":  180,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "ex15":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sm9":  {
+                             "imported":  198,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pgo":  {
+                             "imported":  88,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv3":  {
+                             "imported":  230,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swsh12tg":  {
+                                  "imported":  30,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "dv1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv5":  {
+                             "imported":  218,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex2":  {
+                             "imported":  100,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw10":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "xy5":  {
+                             "imported":  164,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "mcd17":  {
+                               "imported":  12,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "mcd21":  {
+                               "imported":  25,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "dp2":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pop4":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "dc1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw8":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pl1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "neo4":  {
+                              "imported":  113,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sv1":  {
+                             "imported":  258,
+                             "nextPage":  2,
+                             "done":  true
+                         },
+                 "xy4":  {
+                             "imported":  124,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ru1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swshp":  {
+                               "imported":  0,
+                               "nextPage":  2,
+                               "done":  true
+                           },
+                 "bw11":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "mcd15":  {
+                               "imported":  12,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sm8":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swsh10tg":  {
+                                  "imported":  30,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "dp4":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swsh11":  {
+                                "imported":  217,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "sm2":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv9":  {
+                             "imported":  190,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "base1":  {
+                               "imported":  102,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "swsh2":  {
+                               "imported":  209,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sm115":  {
+                               "imported":  69,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "xy1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "xyp":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "det1":  {
+                              "imported":  18,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "bwp":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex8":  {
+                             "imported":  108,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv2":  {
+                             "imported":  279,
+                             "nextPage":  2,
+                             "done":  true
+                         },
+                 "sv10":  {
+                              "imported":  244,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "xy7":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "col1":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "mcd22":  {
+                               "imported":  15,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "dp3":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pop5":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sm10":  {
+                              "imported":  238,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "gym2":  {
+                              "imported":  132,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh12":  {
+                                "imported":  215,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "sve":  {
+                             "imported":  16,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "tk2a":  {
+                              "imported":  12,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sma":  {
+                             "imported":  94,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex12":  {
+                              "imported":  93,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "mcd14":  {
+                               "imported":  12,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "np":  {
+                            "imported":  40,
+                            "nextPage":  1,
+                            "done":  true
+                        },
+                 "dp5":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "fut20":  {
+                               "imported":  5,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "pop7":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "pl2":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm3":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "xy12":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh9":  {
+                               "imported":  186,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm75":  {
+                              "imported":  80,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh3":  {
+                               "imported":  201,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "mcd12":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "swsh35":  {
+                                "imported":  80,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "xy6":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex14":  {
+                              "imported":  100,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "dp7":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "rsv10pt5":  {
+                                  "imported":  173,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "bw5":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swsh45sv":  {
+                                  "imported":  122,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "sv3pt5":  {
+                                "imported":  207,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "svp":  {
+                             "imported":  200,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "swsh1":  {
+                               "imported":  216,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sv8":  {
+                             "imported":  252,
+                             "nextPage":  2,
+                             "done":  true
+                         },
+                 "sm12":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "ex4":  {
+                             "imported":  97,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv4pt5":  {
+                                "imported":  245,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "swsh12pt5":  {
+                                   "imported":  160,
+                                   "nextPage":  1,
+                                   "done":  true
+                               },
+                 "pop6":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh45":  {
+                                "imported":  73,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "sm7":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "gym1":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "pl3":  {
+                             "imported":  153,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ecard3":  {
+                                "imported":  182,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "swsh9tg":  {
+                                 "imported":  30,
+                                 "nextPage":  1,
+                                 "done":  true
+                             },
+                 "swsh8":  {
+                               "imported":  250,
+                               "nextPage":  2,
+                               "done":  true
+                           },
+                 "tk1a":  {
+                              "imported":  10,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "hgss2":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "swsh11tg":  {
+                                  "imported":  30,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "ex13":  {
+                              "imported":  111,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "base6":  {
+                               "imported":  110,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "dp6":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw4":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "xy11":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh6":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw2":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex11":  {
+                              "imported":  114,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "tk1b":  {
+                              "imported":  10,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "mcd11":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "ex5":  {
+                             "imported":  102,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pop2":  {
+                              "imported":  17,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "bw6":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm6":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ecard2":  {
+                                "imported":  182,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "swsh4":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "cel25":  {
+                               "imported":  25,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "ex6":  {
+                             "imported":  116,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm11":  {
+                              "imported":  261,
+                              "nextPage":  2,
+                              "done":  true
+                          },
+                 "ex7":  {
+                             "imported":  111,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv7":  {
+                             "imported":  175,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "g1":  {
+                            "imported":  0,
+                            "nextPage":  1,
+                            "done":  true
+                        },
+                 "dpp":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "mcd19":  {
+                               "imported":  12,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sm4":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "si1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "hgss3":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "ex9":  {
+                             "imported":  107,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex1":  {
+                             "imported":  109,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "base5":  {
+                               "imported":  83,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "pop1":  {
+                              "imported":  17,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "zsv10pt5":  {
+                                  "imported":  171,
+                                  "nextPage":  1,
+                                  "done":  true
+                              },
+                 "cel25c":  {
+                                "imported":  22,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "swsh7":  {
+                               "imported":  237,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw3":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "hgss1":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bp":  {
+                            "imported":  9,
+                            "nextPage":  1,
+                            "done":  true
+                        },
+                 "xy9":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "neo2":  {
+                              "imported":  75,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "base3":  {
+                               "imported":  62,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "pop3":  {
+                              "imported":  17,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh10":  {
+                                "imported":  216,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "bw7":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sm35":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "tk2b":  {
+                              "imported":  12,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "pop9":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "swsh5":  {
+                               "imported":  183,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw9":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "basep":  {
+                               "imported":  53,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sv6":  {
+                             "imported":  226,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex3":  {
+                             "imported":  100,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ex16":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sv6pt5":  {
+                                "imported":  99,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "mcd18":  {
+                               "imported":  12,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "sm5":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "dp1":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "hsp":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "ecard1":  {
+                                "imported":  165,
+                                "nextPage":  1,
+                                "done":  true
+                            },
+                 "smp":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "pl4":  {
+                             "imported":  111,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "xy8":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "neo1":  {
+                              "imported":  111,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "sv4":  {
+                             "imported":  266,
+                             "nextPage":  2,
+                             "done":  true
+                         },
+                 "swsh12pt5gg":  {
+                                     "imported":  70,
+                                     "nextPage":  1,
+                                     "done":  true
+                                 },
+                 "base4":  {
+                               "imported":  130,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "xy3":  {
+                             "imported":  114,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "xy10":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "mcd16":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "xy2":  {
+                             "imported":  0,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "hgss4":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "pop8":  {
+                              "imported":  0,
+                              "nextPage":  1,
+                              "done":  true
+                          }
+             }
+}

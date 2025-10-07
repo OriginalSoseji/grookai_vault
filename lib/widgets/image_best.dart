@@ -1,0 +1,24 @@
+﻿import 'package:flutter/material.dart';
+import 'package:grookai_vault/widgets/smart_card_image.dart';
+
+/// Drop-in replacement for any old image helper:
+/// - For tcgdex URLs, this will auto-parse setCode/number and use FixCardImage with fallbacks.
+/// - For all other URLs, it uses CachedNetworkImage under the hood.
+/// Keep your existing calls: imageBest(url, width:..., height:..., ...)
+Widget imageBest(
+  String url, {
+  double? width,
+  double? height,
+  BoxFit fit = BoxFit.cover,
+  BorderRadius? borderRadius,
+  bool logFailures = true, // set false to silence fallback logs in release
+}) {
+  return SmartCardImage.network(
+    url,
+    width: width,
+    height: height,
+    fit: fit,
+    borderRadius: borderRadius,
+    logFailures: logFailures,
+  );
+}

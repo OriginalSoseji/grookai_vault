@@ -1,0 +1,43 @@
+﻿import 'package:supabase_flutter/supabase_flutter.dart';
+
+String _normSet(String s) => s.trim().toLowerCase();
+
+String _normNum(String n) {
+  final left = (n.trim().split('/').first);
+  final core = left.replaceAll(RegExp(r'[^0-9a-zA-Z]'), '');
+  final m = RegExp(r'^(\d+)([a-zA-Z]+)$').firstMatch(core);
+  if (m != null) {
+    final num = int.parse(m.group(1)!);
+    final suf = m.group(2)!.toLowerCase();
+    return num.toString().padLeft(3, '0') + suf;   // 1a -> 001a
+  }
+  if (RegExp(r'^\d+$').hasMatch(core)) {
+    return int.parse(core).toString().padLeft(3, '0'); // 1 -> 001
+  }
+  return core.toLowerCase();
+}
+
+class PriceService {
+  final SupabaseClient _supa;
+  PriceService(this._supa);
+
+  Future<Map<String, dynamic>?> latestPrice({
+    required String setCode,
+    required String number,
+    String? variant,
+  }) async {
+    final set = _normSet(setCode);
+    final num = _normNum(number);
+
+    var q = _supa.from('latest_prices').select()
+      .eq('set_code', set)
+      .eq('number', num);
+
+    if (variant != null && variant.isNotEmpty) {
+      q = q.eq('variant', variant);
+    }
+
+    final rows = await q.order('observed_at', ascending: false).limit(1);
+    return rows.isNotEmpty ? (rows.first as Map<String, dynamic>) : null;
+  }
+}

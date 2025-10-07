@@ -1,0 +1,170 @@
+"set_id","fetched","inserted","ok","note"
+"base1","102","102","True",
+"base2","64","32","True",
+"base3","62","30","True",
+"base4","130","130","True",
+"base5","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"base6","110","220","True",
+"basep","53","51","True",
+"bp","9","9","True",
+"bw1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw10","105","190","True",
+"bw11","140","240","True",
+"bw2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw3","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"bw5","111","206","True",
+"bw6","128","239","True",
+"bw7","153","281","True",
+"bw8","138","257","True",
+"bw9","122","222","True",
+"bwp","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"cel25","25","25","True",
+"cel25c","25","25","True",
+"col1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"dc1","34","66","True",
+"det1","18","18","True",
+"dp1","130","250","True",
+"dp2","124","244","True",
+"dp3","132","261","True",
+"dp4","106","207","True",
+"dp5","100","195","True",
+"dp6","146","282","True",
+"dp7","106","200","True",
+"dpp","56","53","True",
+"dv1","21","21","True",
+"ecard1","165","319","True",
+"ecard2","182","305","True",
+"ecard3","182","290","True",
+"ex1","109","210","True",
+"ex10","145","243","True",
+"ex11","114","218","True",
+"ex12","93","174","True",
+"ex13","111","209","True",
+"ex14","100","188","True",
+"ex15","101","190","True",
+"ex16","108","199","True",
+"ex2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"ex3","100","186","True",
+"ex4","97","184","True",
+"ex5","102","192","True",
+"ex6","116","233","True",
+"ex7","111","214","True",
+"ex8","108","212","True",
+"ex9","107","211","True",
+"fut20","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"g1","117","184","True",
+"gym1","132","38","True",
+"gym2","132","39","True",
+"hgss1","124","227","True",
+"hgss2","96","179","True",
+"hgss3","91","170","True",
+"hgss4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"hsp","25","25","True",
+"mcd11","12","12","True",
+"mcd12","12","12","True",
+"mcd14","12","0","True",
+"mcd15","12","0","True",
+"mcd16","12","0","True",
+"mcd17","12","0","True",
+"mcd18","12","0","True",
+"mcd19","12","12","True",
+"mcd21","25","50","True",
+"mcd22","15","15","True",
+"me1","188","0","True",
+"neo1","111","38","True",
+"neo2","75","34","True",
+"neo3","66","29","True",
+"neo4","113","41","True",
+"np","40","40","True",
+"pgo","88","145","True",
+"pl1","133","254","True",
+"pl2","120","222","True",
+"pl3","153","289","True",
+"pl4","111","203","True",
+"pop1","17","22","True",
+"pop2","17","23","True",
+"pop3","17","23","True",
+"pop4","17","24","True",
+"pop5","17","22","True",
+"pop6","17","24","True",
+"pop7","17","23","True",
+"pop8","17","29","True",
+"pop9","17","22","True",
+"rsv10pt5","173","253","True",
+"ru1","16","16","True",
+"si1","18","18","True",
+"sm1","173","289","True",
+"sm10","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"sm11","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"sm115","69","125","True",
+"sm12","250","439","True",
+"sm2","180","287","True",
+"sm3","177","285","True",
+"sm35","81","138","True",
+"sm4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"sm5","178","297","True",
+"sm6","150","250","True",
+"sm7","187","319","True",
+"sm75","80","134","True",
+"sm8","240","410","True",
+"sm9","198","339","True",
+"sma","94","94","True",
+"smp","250","251","True",
+"sv1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"sv10","244","409","True",
+"sv2","250","426","True",
+"sv3","230","406","True",
+"sv3pt5","207","360","True",
+"sv4","250","412","True",
+"sv4pt5","245","325","True",
+"sv5","218","358","True",
+"sv6","226","373","True",
+"sv6pt5","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"sv7","175","300","True",
+"sv8","250","415","True",
+"sv8pt5","180","280","True",
+"sv9","190","333","True",
+"sve","16","0","True",
+"svp","200","184","True",
+"swsh1","216","381","True",
+"swsh10","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"swsh10tg","30","30","True",
+"swsh11","217","366","True",
+"swsh11tg","30","30","True",
+"swsh12","215","357","True",
+"swsh12pt5","160","272","True",
+"swsh12pt5gg","70","70","True",
+"swsh12tg","30","30","True",
+"swsh2","209","361","True",
+"swsh3","201","356","True",
+"swsh35","80","134","True",
+"swsh4","203","345","True",
+"swsh45","73","119","True",
+"swsh45sv","122","122","True",
+"swsh5","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"swsh6","233","369","True",
+"swsh7","237","369","True",
+"swsh8","250","467","True",
+"swsh9","186","310","True",
+"swsh9tg","30","30","True",
+"swshp","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"tk1a","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"tk1b","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"tk2a","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"tk2b","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy0","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy1","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy10","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy11","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy12","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy2","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy3","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy4","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy5","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy6","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy7","0","0","True","No cards returned for any set_code variant. Check DB set_code vs Pok??monTCG set.id."
+"xy8","165","302","True",
+"xy9","126","220","True",
+"xyp","216","209","True",
+"zsv10pt5","172","252","True",

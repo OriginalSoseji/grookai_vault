@@ -1,0 +1,273 @@
+﻿import "package:flutter/material.dart";
+import "package:cached_network_image/cached_network_image.dart";
+import 'package:grookai_vault/services/image_resolver.dart';
+
+typedef TcgdexUrlBuilder = String? Function(String setCode, String number);
+
+/// Builds a list of candidate image URLs. We optionally prepend a
+/// resolver-found URL at runtime (see _resolveFirst()).
+List<String> buildCardImageUrls(
+  String setCode,
+  String number, {
+  TcgdexUrlBuilder? tcgdexBuilder,
+}) {
+  final urls = <String>[];
+
+  // Skip tcgdex for NP promos – rely on PokémonTCG.io for these
+  final scLower = setCode.trim().toLowerCase();
+  final allowTcgDex = !(scLower == 'np');
+
+  if (allowTcgDex) {
+    final base = (tcgdexBuilder ?? tcgdexImageUrl).call(setCode, number);
+    if (base != null && base.isNotEmpty) {
+      urls.add(base);
+      urls.add(base.replaceFirst('/high.png', '/high.webp'));
+      urls.add(base.replaceFirst('/high.png', '/normal.png'));
+    }
+  }
+
+  // PokémonTCG.io fallbacks (we also normalize .5 -> pt5 elsewhere)
+  final setSlugs = _setSlugCandidates(setCode);
+  final numSlug = _numSlug(number);
+
+  for (final slug in setSlugs) {
+    urls.add('https://images.pokemontcg.io/' + slug + '/' + numSlug + '_hires.png');
+    urls.add('https://images.pokemontcg.io/' + slug + '/' + numSlug + '.png');
+  }
+
+  return urls;
+}class FixCardImage extends StatefulWidget {
+  const FixCardImage({
+    super.key,
+    required this.setCode,
+    required this.number,
+    this.width,
+    this.height,
+    this.fit,
+    this.borderRadius,
+    this.tcgDexBuilder,
+    this.logFailures = true,
+  });
+
+  final String setCode;
+  final String number;
+  final double? width;
+  final double? height;
+  final BoxFit? fit;
+  final BorderRadius? borderRadius;
+  final TcgdexUrlBuilder? tcgDexBuilder;
+  final bool logFailures;
+
+  @override
+  State<FixCardImage> createState() => _FixCardImageState();
+}
+
+class _FixCardImageState extends State<FixCardImage> {
+  late List<String> _candidates;
+  int _index = 0;
+  final Set<String> _logged = <String>{};
+  bool _advancing = false;
+  bool _resolvedAttempted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _rebuildCandidates();
+    _resolveFirst(); // prepend resolver URL if available
+  }
+
+  @override
+  void didUpdateWidget(covariant FixCardImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.setCode != widget.setCode || oldWidget.number != widget.number) {
+      _rebuildCandidates();
+      _resolveFirst();
+    }
+  }
+
+  void _rebuildCandidates() {
+    _candidates = buildCardImageUrls(
+      widget.setCode,
+      widget.number,
+      tcgdexBuilder: widget.tcgDexBuilder,
+    );
+    _index = 0;
+    _logged.clear();
+    _advancing = false;
+    _resolvedAttempted = false;
+  }
+
+  Future<void> _resolveFirst() async {
+    if (_resolvedAttempted) return;
+    _resolvedAttempted = true;
+
+    final url = await CardImageResolver.resolve(
+      setCode: widget.setCode,
+      number: widget.number,
+      // tcgplayerId: widget.tcgplayerId, // if available on this widget
+    );
+
+    if (!mounted || url == null || url.isEmpty) return;
+    if (_candidates.isEmpty || _candidates.first != url) {
+      setState(() {
+        if (!_candidates.contains(url)) {
+          _candidates.insert(0, url);
+        } else {
+          _candidates.remove(url);
+          _candidates.insert(0, url);
+        }
+        _index = 0;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget child = _buildCurrent();
+    if (widget.borderRadius != null) {
+      child = ClipRRect(borderRadius: widget.borderRadius!, child: child);
+    }
+    return child;
+  }
+
+  Widget _buildCurrent() {
+    if (_candidates.isEmpty) return _failurePlaceholder();
+    final url = _candidates[_index];
+
+    return CachedNetworkImage(
+      key: ValueKey(url),
+      imageUrl: url,
+      width: widget.width,
+      height: widget.height,
+      fit: widget.fit ?? BoxFit.cover,
+      placeholder: (context, _) => _placeholder(),
+      imageBuilder: (context, provider) => Container(
+        width: widget.width,
+        height: widget.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: provider, fit: widget.fit ?? BoxFit.cover),
+        ),
+      ),
+      errorWidget: (context, failedUrl, error) {
+        // Log each failed URL once (debug only)
+        if (!_logged.contains(failedUrl)) {
+          assert(() {
+            if (widget.logFailures) {
+              debugPrint('[FixCardImage] failed: $failedUrl');
+            }
+            return true;
+          }());
+          _logged.add(failedUrl);
+        }
+
+        // Advance to next candidate (non-recursive)
+        if (_index < _candidates.length - 1 && !_advancing) {
+          _advancing = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            setState(() {
+              _index += 1;
+              _advancing = false;
+            });
+          });
+          return _placeholder();
+        }
+
+        // Nothing left
+        return _failurePlaceholder();
+      },
+    );
+  }
+
+  Widget _placeholder() =>
+      Container(width: widget.width, height: widget.height, color: Colors.black12);
+
+  Widget _failurePlaceholder() => Container(
+        width: widget.width,
+        height: widget.height,
+        alignment: Alignment.center,
+        color: Colors.black12,
+        child: const Icon(Icons.image_not_supported_outlined),
+      );
+}
+
+/// tcgdex expects a series segment for many sets, e.g.
+/// en/base/base1/58/high.png, en/gym/gym2/84/high.png, en/neo/neo1/70/high.png
+String? tcgdexImageUrl(String setCode, String number) {
+  final raw = setCode.trim().toLowerCase();
+  final nRaw = number.trim();
+  if (raw.isEmpty || nRaw.isEmpty) return null;
+
+  // Normalize set slug for tcgdex (e.g., ex5.5 -> ex5pt5)
+  String s = raw.replaceAll(".5", "pt5");
+  final n = _numSlug(nRaw);
+
+  String seriesFor(String sc) {
+    // Modern families
+    if (sc.startsWith("sv")) return "sv";
+    if (sc.startsWith("swsh")) return "swsh";
+    if (sc.startsWith("sm")) return "sm";
+    if (sc.startsWith("xy")) return "xy";
+    if (sc.startsWith("bw")) return "bw";
+    if (sc.startsWith("dp")) return "dp";
+    if (sc.startsWith("hgss")) return "hgss";
+    if (sc.startsWith("ex")) return "ex";
+    // POP series
+    if (sc.startsWith("pop")) return "pop";
+    // Legacy families
+    if (sc.startsWith("base")) return "base";
+    if (sc.startsWith("gym")) return "gym";
+    if (sc.startsWith("neo")) return "neo";
+    if (sc.startsWith("ecard")) return "ecard";
+    if (sc == "lc") return "lc";
+    // Promos – tcgdex NP can be inconsistent. Mark as "promo" if needed.
+    if (sc == "np" || sc.endsWith("p")) return "promo";
+
+    final m = RegExp(r'^[a-z]+').firstMatch(sc);
+    return m?.group(0) ?? "sv";
+  }
+
+  final series = seriesFor(s);
+  return "https://assets.tcgdex.net/en/$series/$s/$n/high.png";
+}
+
+  final series = seriesFor(s);
+  return 'https://assets.tcgdex.net/en/$series/$s/$n/high.png';
+}
+
+/// Candidate set slugs:
+/// - original
+/// - .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5)
+/// - sv0X → svX (sv03 → sv3)
+/// - svX  → sv0X (sv3 → sv03)
+List<String> _setSlugCandidates(String setCode) {
+  final out = <String>[];
+  void addUnique(String s) {
+    if (s.isNotEmpty && !out.contains(s)) out.add(s);
+  }
+
+  final original = setCode.trim();
+  addUnique(original);
+
+  // .5 → pt5
+  addUnique(original.replaceAll('.5', 'pt5'));
+
+  // sv0X → svX
+  addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv${m.group(1)}'));
+
+  // svX → sv0X  (only when X is a single digit)
+  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0${m.group(1)}'));
+
+  return out;
+}
+
+/// Strip leading zeros on numeric part, keep suffix (e.g., 001a → 1a).
+String _numSlug(String number) {
+  final m = RegExp(r'^0*([0-9]+)([A-Za-z]*)$').firstMatch(number.trim());
+  if (m == null) return number.trim();
+  final numeric = m.group(1)!;
+  final suffix = m.group(2)!;
+  final stripped = int.tryParse(numeric)?.toString() ?? numeric;
+  return '$stripped$suffix';
+}
+

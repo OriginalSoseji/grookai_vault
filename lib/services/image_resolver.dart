@@ -1,0 +1,114 @@
+﻿import "dart:async";
+import "package:http/http.dart" as http;
+
+/// Resolves a working image URL for a card, trying multiple CDNs/paths.
+/// Caches successes to avoid repeated network checks.
+class CardImageResolver {
+  static final _cache = <String, String>{};
+
+  static Future<String?> resolve({
+    required String setCode,
+    required String number,
+    String? tcgplayerId,
+    Duration timeout = const Duration(seconds: 4),
+  }) async {
+    final sc = _normalizeSet(setCode);
+    final num = _numSlug(number);
+    final key = '$sc|$num|${tcgplayerId ?? ""}';
+    if (_cache.containsKey(key)) return _cache[key];
+
+    final series = _seriesFor(sc);
+
+    // Special-case: EX Trainer Kit 2 (ex5.5/ex5pt5)
+    final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
+
+    final candidates = <String>[
+      // --- TCGdex (series-aware) ---
+      if (!(sc == 'np')) // skip NP promos on tcgdex (often flaky)
+        if (isTk2)
+          'https://assets.tcgdex.net/en/ex/tk2/$num/high.png'
+        else
+          'https://assets.tcgdex.net/en/$series/$sc/$num/high.png',
+      if (!(sc == 'np'))
+        if (isTk2)
+          'https://assets.tcgdex.net/en/ex/tk2/$num/high.webp'
+        else
+          'https://assets.tcgdex.net/en/$series/$sc/$num/high.webp',
+      if (!(sc == 'np'))
+        if (isTk2)
+          'https://assets.tcgdex.net/en/ex/tk2/$num/normal.png'
+        else
+          'https://assets.tcgdex.net/en/$series/$sc/$num/normal.png',
+
+      // --- PokemonTCG.io (add tk2 for Trainer Kit) ---
+      if (isTk2) 'https://images.pokemontcg.io/tk2/${num}_hires.png',
+      if (isTk2) 'https://images.pokemontcg.io/tk2/$num.png',
+
+      'https://images.pokemontcg.io/$sc/${num}_hires.png',
+      'https://images.pokemontcg.io/$sc/$num.png',
+
+      // Optional: TCGplayer product (if you have the id)
+      if (tcgplayerId != null && tcgplayerId.isNotEmpty)
+        'https://tcgplayer-cdn.tcgplayer.com/product/${tcgplayerId}_in_500x500.jpg',
+    ];
+
+    for (final url in candidates) {
+      if (await _isReachable(url, timeout)) {
+        _cache[key] = url;
+        return url;
+      }
+    }
+    return null;
+  }
+
+  static Future<bool> _isReachable(String url, Duration timeout) async {
+    try {
+      final res = await http.head(Uri.parse(url)).timeout(timeout);
+      if (res.statusCode == 200) return true;
+      if (res.statusCode == 405) {
+        final g = await http.get(Uri.parse(url)).timeout(timeout);
+        return g.statusCode == 200;
+      }
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  // --- helpers ---
+
+  static String _normalizeSet(String setCode) {
+    final raw = setCode.trim().toLowerCase();
+    // normalize .5 -> pt5 (sv8.5 -> sv8pt5, swsh12.5 -> swsh12pt5, ex5.5 -> ex5pt5)
+    return raw.replaceAll('.5', 'pt5');
+  }
+
+  static String _seriesFor(String sc) {
+    if (sc.startsWith('sv')) return 'sv';
+    if (sc.startsWith('swsh')) return 'swsh';
+    if (sc.startsWith('sm')) return 'sm';
+    if (sc.startsWith('xy')) return 'xy';
+    if (sc.startsWith('bw')) return 'bw';
+    if (sc.startsWith('dp')) return 'dp';
+    if (sc.startsWith('hgss')) return 'hgss';
+    if (sc.startsWith('ex')) return 'ex';
+    if (sc.startsWith('pop')) return 'pop';
+    if (sc.startsWith('base')) return 'base';
+    if (sc.startsWith('gym')) return 'gym';
+    if (sc.startsWith('neo')) return 'neo';
+    if (sc.startsWith('ecard')) return 'ecard';
+    if (sc == 'lc') return 'lc';
+    if (sc == 'np' || sc.endsWith('p')) return 'promo';
+    final m = RegExp(r'^[a-z]+').firstMatch(sc);
+    return m?.group(0) ?? 'sv';
+  }
+
+  static String _numSlug(String number) {
+    final m = RegExp(r'^0*([0-9]+)([A-Za-z]*)$').firstMatch(number.trim());
+    if (m == null) return number.trim();
+    final numeric = m.group(1)!;
+    final suffix = m.group(2)!;
+    final stripped = int.tryParse(numeric)?.toString() ?? numeric;
+    return '$stripped$suffix';
+  }
+}

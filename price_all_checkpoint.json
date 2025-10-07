@@ -1,0 +1,124 @@
+﻿{
+    "sets":  {
+                 "bw8":  {
+                             "imported":  138,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "sv6":  {
+                             "imported":  226,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw7":  {
+                             "imported":  153,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw3":  {
+                             "imported":  102,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "base6":  {
+                               "imported":  110,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw9":  {
+                             "imported":  122,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "basep":  {
+                               "imported":  51,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "cel25":  {
+                               "imported":  25,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw11":  {
+                              "imported":  140,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "base5":  {
+                               "imported":  18,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "base3":  {
+                               "imported":  15,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bp":  {
+                            "imported":  9,
+                            "nextPage":  1,
+                            "done":  true
+                        },
+                 "bwp":  {
+                             "imported":  99,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "UNCAT":  {
+                               "imported":  0,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw10":  {
+                              "imported":  105,
+                              "nextPage":  1,
+                              "done":  true
+                          },
+                 "base4":  {
+                               "imported":  130,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "base2":  {
+                               "imported":  16,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw5":  {
+                             "imported":  111,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw1":  {
+                             "imported":  115,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "base1":  {
+                               "imported":  101,
+                               "nextPage":  1,
+                               "done":  true
+                           },
+                 "bw4":  {
+                             "imported":  103,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw6":  {
+                             "imported":  128,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "bw2":  {
+                             "imported":  98,
+                             "nextPage":  1,
+                             "done":  true
+                         },
+                 "cel25c":  {
+                                "imported":  0,
+                                "nextPage":  1,
+                                "done":  false
+                            }
+             }
+}

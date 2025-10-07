@@ -1,0 +1,252 @@
+﻿[
+    {
+        "path":  "C:\\grookai_vault\\pubspec.yaml",
+        "size":  4072,
+        "sha1":  "F79AFD9A263192B4B0E36C65AA1DDFB92B14DA13"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\data\\pricing_api.dart",
+        "size":  1145,
+        "sha1":  "766F933A438DBE6DCDBDA715B4830DD3AEA492FE"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\dev\\price_import_page.dart",
+        "size":  4433,
+        "sha1":  "FDF120BAD01BDED6FCEC5E3F64CA31733CA35FFB"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\home\\app_shell.dart",
+        "size":  665,
+        "sha1":  "9A4EB02AC57320463599265A629C58420FA1D3E4"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\home\\recently_added_page.dart",
+        "size":  753,
+        "sha1":  "A03DC5943189E1DB8C26D3EFDEDC7A00CBE77FC5"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\home\\recently_added_repo.dart",
+        "size":  532,
+        "sha1":  "AB48FB3160BC78F0917F65878FEBE2BA36962C2A"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\pricing\\card_detail_page.dart",
+        "size":  2610,
+        "sha1":  "4EF13D2C31BF0D91989184C95D9D5AEA59FC86F1"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\pricing\\card_price_chart_page.dart",
+        "size":  7785,
+        "sha1":  "DA20A72623BA5B7329384C93B65340E88CCACB14"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\pricing\\live_pricing.backup.dart",
+        "size":  6076,
+        "sha1":  "DE00FBAE68C521635B7A41562BF7D8B08DFAEECE"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\pricing\\live_pricing.dart",
+        "size":  426,
+        "sha1":  "3CB08D63A8C00378FBFE5FAF59432BA15F6466CE"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\search\\search_controller.dart",
+        "size":  413,
+        "sha1":  "F95922A06E55230E75E1CA7CC70EAE0540E714AB"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\search\\search_page.backup.dart",
+        "size":  4577,
+        "sha1":  "9FBE888289BB5BB5B5EE5802FFB82A4654F6C33C"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\search\\search_page.dart",
+        "size":  4642,
+        "sha1":  "A5B2AE2202E5E6A11619B762B5704D3CA7D0BB8B"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\features\\vault\\vault_items_ext_list.dart",
+        "size":  3351,
+        "sha1":  "1F51862147099FDCCF4E69F0589EF531C0366AE5"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\models\\price_option.dart",
+        "size":  589,
+        "sha1":  "065976FC4DCDC95305B6DBAD5BB37D9E98711F4E"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\models\\price_tiers_sheet.dart",
+        "size":  5742,
+        "sha1":  "FFA540B41A0AA269CBADC0C50B8D0F30A81D4258"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\models\\pricing_api.dart",
+        "size":  1225,
+        "sha1":  "87F439509F30F4FE1793199B4283A8AA3F197B25"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\models\\vault_item_ext.dart",
+        "size":  1954,
+        "sha1":  "9356BDB8C4D4D0E50DEBDDC0545BDDAAEE78E410"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\tools\\price_importer.dart",
+        "size":  3869,
+        "sha1":  "5FC80022FA9360D582B870C84A245D885AEBC75E"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\badges.dart",
+        "size":  4171,
+        "sha1":  "4073679574A6B1F6125EF18DC186EFAFE6EC0B4D"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\big_card_image.dart",
+        "size":  1443,
+        "sha1":  "5C8DF21BED857F0DA64B6C07D42C34819646D8FA"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\image_best.dart",
+        "size":  963,
+        "sha1":  "C10F7F566F84974D05D1C97CB9F1993B85E2B61B"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\price_tiers_sheet.dart",
+        "size":  5276,
+        "sha1":  "066059931B5DB52C2841C9443910F08647CA0EE7"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\thumb_from_row.dart",
+        "size":  750,
+        "sha1":  "4D7B3E4330920779B87B3E2CBEF41634B4F1DF0C"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\variant_badges.dart",
+        "size":  1039,
+        "sha1":  "4A48F0F256DF8EBD60DF263111DF69C31E4EAFC5"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\widgets\\version_badge.dart",
+        "size":  1692,
+        "sha1":  "F3B4E51E04D43770080BAF552CF017906847AF51"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\main.backup.badges.dart",
+        "size":  45644,
+        "sha1":  "87E7C0CAEFFB6CC8213192BAA3485B3E2A986B74"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\main.backup.dart",
+        "size":  11487,
+        "sha1":  "6FD8789FD1B24BB5AF2988DA3C1A9F733982696B"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\main.dart",
+        "size":  47227,
+        "sha1":  "6082E3846838C9C4A1CC87C698092A019C485ECA"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\main.vault-backup.dart",
+        "size":  5682,
+        "sha1":  "8226276F55C0EC49543D2DE284A69D7C910B2E07"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\pricing_demo_main.dart",
+        "size":  908,
+        "sha1":  "64EE5585A69BE38BAFCA08A04CF6391DE5FAADDA"
+    },
+    {
+        "path":  "C:\\grookai_vault\\lib\\secrets.dart",
+        "size":  425,
+        "sha1":  "8ADD7656CFFDE12B2D7FBC91689B715944F31D0E"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\grade-scan\\index.ts",
+        "size":  1094,
+        "sha1":  "17093FD4D0806F04231F8025F79932D82D66B871"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\import-cards\\index.ts",
+        "size":  10571,
+        "sha1":  "BEF41A3297FA1A973C9DD6A5C868EDF9374D1060"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\import-prices\\index.ts",
+        "size":  8392,
+        "sha1":  "A10C197BAE4A6ECCB8E3E68E23060C8123631C0D"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\import-prices-sep6\\index.ts",
+        "size":  0,
+        "sha1":  "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\import-set\\index.ts",
+        "size":  0,
+        "sha1":  "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\intake-scan\\index.ts",
+        "size":  4417,
+        "sha1":  "0809AC71075AAE63CC5536D9B6741BBBD01F86CA"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\functions\\price-cron\\index.ts",
+        "size":  3048,
+        "sha1":  "B51F861484C5A3202363566F0AECC733365E4A0B"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\_archive\\005_fix_v_vault_items_ext.sql",
+        "size":  3595,
+        "sha1":  "9C785587D0E6DE725CA8B47363CE4ACC2A711AB8"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\_archive\\20250912022259_gv_step2_condition_and_graded_tables.sql",
+        "size":  1448,
+        "sha1":  "11BC67F394D81956D448EEBA7A367A86A158ECAE"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\_archive\\20250912022331_gv_step2_condition_and_graded_tables.sql",
+        "size":  1448,
+        "sha1":  "11BC67F394D81956D448EEBA7A367A86A158ECAE"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\_archive\\20250912023214_gv_step_fix_condition_graded_ext.sql",
+        "size":  4549,
+        "sha1":  "15FA758CD899EBA5E9919DFB6B5342787144F657"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\_archive\\20250912024450_gv_step3_helpers_upserts_and_utils.sql",
+        "size":  3000,
+        "sha1":  "239719AB499C9A32DF90423F081812CF5225EBD7"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\003_views_vault_items_recent.sql",
+        "size":  2221,
+        "sha1":  "EBAB5472F31C27B0052284E2B810056B21C5B215"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\004_condition_and_graded_pricing.sql",
+        "size":  3089,
+        "sha1":  "D516E11B77D3DE0640D8BC3804ECE6A85101007E"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\20250912022227_gv_step1_extend_vault_items.sql",
+        "size":  409,
+        "sha1":  "6475FDE6A3D4B024FAA05BBE5C8E4029B38C9C33"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\20250912023806_gv_step_fix2_v_vault_items_ext.sql",
+        "size":  1492,
+        "sha1":  "68210556C37566D923724B9E968AF0110D9640D7"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\20250912024648_gv_step3b_cleanup_and_helpers.sql",
+        "size":  3648,
+        "sha1":  "649DE1D33D85BC2CB5310F1A2B9D2FA0EC4AC8AF"
+    },
+    {
+        "path":  "C:\\grookai_vault\\supabase\\migrations\\20250914_pricing_observations.sql",
+        "size":  4526,
+        "sha1":  "4A8D85893301D60B23CD4A865F53CE3080363DDD"
+    }
+]
