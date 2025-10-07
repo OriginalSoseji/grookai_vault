@@ -190,14 +190,14 @@ class _FixCardImageState extends State<FixCardImage> {
 }
 
 /// tcgdex expects a series segment, and some sets need normalization:
-/// - ex5.5 -> ex5pt5 (Trainer Kit 2 lives under ex/tk2)
+/// - ex5.5 -> ex5pt5   (Trainer Kit style)
 /// - popX  -> series 'pop'
 String? tcgdexImageUrl(String setCode, String number) {
   final raw = setCode.trim().toLowerCase();
   final nRaw = number.trim();
   if (raw.isEmpty || nRaw.isEmpty) return null;
 
-  // Normalize set slug for tcgdex (.5 -> pt5)
+  // Normalize .5 -> pt5 (sv8.5→sv8pt5, swsh12.5→swsh12pt5, ex5.5→ex5pt5)
   final s = raw.replaceAll('.5', 'pt5');
   final n = _numSlug(nRaw);
 
@@ -230,6 +230,10 @@ String? tcgdexImageUrl(String setCode, String number) {
   return 'https://assets.tcgdex.net/en/' + series + '/' + s + '/' + n + '/high.png';
 }
 
+  final series = seriesFor(s);
+  return 'https://assets.tcgdex.net/en/$series/$s/$n/high.png';
+}
+
 List<String> _setSlugCandidates(String setCode) {
   final out = <String>[];
   void addUnique(String s) { if (s.isNotEmpty && !out.contains(s)) out.add(s); }
@@ -237,22 +241,8 @@ List<String> _setSlugCandidates(String setCode) {
   final original = setCode.trim();
   addUnique(original);
 
-  // case-flex for PokémonTCG (some sets care)
-  addUnique(original.toLowerCase());
-  // keep an UpperCamel variant if applicable (e.g., a1a -> A1a)
-  final upperCamel = original.isEmpty ? original : original[0].toUpperCase() + original.substring(1);
-  addUnique(upperCamel);
-
-  // .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5, ex5.5 → ex5pt5, sm3.5 → sm3pt5)
-  final dotFixed = original.replaceAll('.5', 'pt5');
-  addUnique(dotFixed);
-
-  // Shining Legends: sm3.5 / sm3pt5 -> slg (PokémonTCG code)
-  final low = original.toLowerCase();
-  if (low == 'sm3.5' || low == 'sm3pt5') {
-    addUnique('sm3pt5');
-    addUnique('slg');
-  }
+  // .5 → pt5
+  addUnique(original.replaceAll('.5', 'pt5'));
 
   // sv0X → svX
   addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv'));
@@ -261,9 +251,10 @@ List<String> _setSlugCandidates(String setCode) {
   addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'));
 
   // EX Trainer Kit 2
+  final low = original.toLowerCase();
   if (low == 'ex5.5' || low == 'ex5pt5') {
     addUnique('ex5pt5');
-    addUnique('tk2');
+    addUnique('tk2'); // PokemonTCG.io slug
   }
 
   return out;
@@ -278,4 +269,5 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
+
 
