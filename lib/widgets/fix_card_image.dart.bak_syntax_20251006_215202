@@ -13,7 +13,7 @@ List<String> buildCardImageUrls(
 
   // Skip tcgdex for NP promos – rely on PokémonTCG.io for these
   final scLower = setCode.trim().toLowerCase();
-final allowTcgDex = !(scLower.endsWith('p') || ['ex5.5','ex5pt5','tk2','tk2a','tk2b'].contains(scLower));
+final allowTcgDex = !(scLower.EndsWith('p') -or @('ex5.5','ex5pt5','tk2','tk2a','tk2b') -contains scLower);
   // 1) Try tcgdex (guarded) with common variants FIRST
   if (allowTcgDex) {
     final base = (tcgdexBuilder ?? tcgdexImageUrl).call(setCode, number);
@@ -149,7 +149,7 @@ class _FixCardImageState extends State<FixCardImage> {
         ),
       ),
       errorWidget: (context, failedUrl, error) {
-        if (!_logged.contains(failedUrl) && _logged.length < 3) {
+        if (!_logged.contains(failedUrl)) {
           assert(() {
             if (widget.logFailures) {
               debugPrint('[FixCardImage] failed: $failedUrl');
@@ -266,7 +266,7 @@ List<String> _setSlugCandidates(String setCode) {
   }
 
     // EX Trainer Kit 2 aliases (deck A/B)
-
+  final low = original.toLowerCase();
   if (low == 'ex5.5' || low == 'ex5pt5' || low == 'tk2') {
     addUnique('ex5pt5');  // normalized alias
     addUnique('tk2');     // generic
@@ -285,7 +285,5 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
-
 
 
