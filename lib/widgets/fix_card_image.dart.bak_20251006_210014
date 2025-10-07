@@ -197,8 +197,8 @@ String? tcgdexImageUrl(String setCode, String number) {
   final nRaw = number.trim();
   if (raw.isEmpty || nRaw.isEmpty) return null;
 
-  // Normalize .5 -> pt5 (sv8.5→sv8pt5, swsh12.5→swsh12pt5, ex5.5→ex5pt5)
-  final s = raw.replaceAll('.5', 'pt5');
+  // Normalize set slug for tcgdex
+  final s = raw.replaceAll('.5', 'pt5'); // ex5.5 -> ex5pt5 etc.
   final n = _numSlug(nRaw);
 
   String seriesFor(String sc) {
@@ -216,19 +216,11 @@ String? tcgdexImageUrl(String setCode, String number) {
     if (sc.startsWith('neo')) return 'neo';
     if (sc.startsWith('ecard')) return 'ecard';
     if (sc == 'lc') return 'lc';
+    // NP promos are inconsistent on tcgdex; if called, attempt a generic series
     if (sc == 'np' || sc.endsWith('p')) return 'promo';
     final m = RegExp(r'^[a-z]+').firstMatch(sc);
     return m?.group(0) ?? 'sv';
   }
-
-  // EX Trainer Kit 2 (ex5.5/ex5pt5) lives under 'tk2' on tcgdex
-  if (s == 'ex5pt5' || s == 'ex5.5') {
-    return 'https://assets.tcgdex.net/en/ex/tk2/' + n + '/high.png';
-  }
-
-  final series = seriesFor(s);
-  return 'https://assets.tcgdex.net/en/' + series + '/' + s + '/' + n + '/high.png';
-}
 
   final series = seriesFor(s);
   return 'https://assets.tcgdex.net/en/$series/$s/$n/high.png';
@@ -236,26 +228,21 @@ String? tcgdexImageUrl(String setCode, String number) {
 
 List<String> _setSlugCandidates(String setCode) {
   final out = <String>[];
-  void addUnique(String s) { if (s.isNotEmpty && !out.contains(s)) out.add(s); }
+  void addUnique(String s) {
+    if (s.isNotEmpty && !out.contains(s)) out.add(s);
+  }
 
   final original = setCode.trim();
   addUnique(original);
 
-  // .5 → pt5
+  // .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5, ex5.5 → ex5pt5)
   addUnique(original.replaceAll('.5', 'pt5'));
 
   // sv0X → svX
-  addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv'));
+  addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv${m.group(1)}'));
 
   // svX → sv0X  (only when X is a single digit)
-  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'));
-
-  // EX Trainer Kit 2
-  final low = original.toLowerCase();
-  if (low == 'ex5.5' || low == 'ex5pt5') {
-    addUnique('ex5pt5');
-    addUnique('tk2'); // PokemonTCG.io slug
-  }
+  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0${m.group(1)}'));
 
   return out;
 }
@@ -269,5 +256,3 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
-
