@@ -22,6 +22,10 @@ class CardImageResolver {
     // Special-case: EX Trainer Kit 2 (ex5.5/ex5pt5)
     final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
 
+    final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
+final isSLG = (sc == 'sm3.5' || sc == 'sm3pt5');
+
+final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
 final isSLG = (sc == 'sm3.5' || sc == 'sm3pt5');
 final candidates = <String>[
   // --- TCGdex (series-aware) ---
@@ -121,6 +125,5 @@ final candidates = <String>[
     return '$stripped$suffix';
   }
 }
-
 
 
