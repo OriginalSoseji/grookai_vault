@@ -149,7 +149,7 @@ class _FixCardImageState extends State<FixCardImage> {
         ),
       ),
       errorWidget: (context, failedUrl, error) {
-        if (!_logged.contains(failedUrl) && _logged.length < 3) {
+        if (!_logged.contains(failedUrl)) {
           assert(() {
             if (widget.logFailures) {
               debugPrint('[FixCardImage] failed: $failedUrl');
@@ -285,7 +285,6 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
 
 
 
