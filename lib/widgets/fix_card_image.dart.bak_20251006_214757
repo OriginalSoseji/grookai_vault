@@ -13,7 +13,8 @@ List<String> buildCardImageUrls(
 
   // Skip tcgdex for NP promos – rely on PokémonTCG.io for these
   final scLower = setCode.trim().toLowerCase();
-final allowTcgDex = !(scLower.EndsWith('p') -or @('ex5.5','ex5pt5','tk2','tk2a','tk2b') -contains scLower);
+  final allowTcgDex = !(scLower == 'np');
+
   // 1) Try tcgdex (guarded) with common variants FIRST
   if (allowTcgDex) {
     final base = (tcgdexBuilder ?? tcgdexImageUrl).call(setCode, number);
@@ -265,14 +266,6 @@ List<String> _setSlugCandidates(String setCode) {
     addUnique('tk2');
   }
 
-    // EX Trainer Kit 2 aliases (deck A/B)
-  final low = original.toLowerCase();
-  if (low == 'ex5.5' || low == 'ex5pt5' || low == 'tk2') {
-    addUnique('ex5pt5');  // normalized alias
-    addUnique('tk2');     // generic
-    addUnique('tk2a');    // deck A
-    addUnique('tk2b');    // deck B
-  }
   return out;
 }
 
@@ -285,5 +278,4 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
 
