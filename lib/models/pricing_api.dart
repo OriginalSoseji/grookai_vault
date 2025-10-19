@@ -6,8 +6,8 @@ class PricingApi {
   PricingApi(this._sb);
 
   Future<bool> allowClientConditionEdits() async {
-    final rows = await _sb.from('app_settings').select('allow_client_condition_edits').limit(1);
-    if (rows is List && rows.isNotEmpty) {
+    final rows = await _sb.from('app_settings').select('allow_client_condition_edits').limit(1) as List;
+    if (rows.isNotEmpty) {
       return rows.first['allow_client_condition_edits'] == true;
     }
     return false;

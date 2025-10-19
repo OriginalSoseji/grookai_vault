@@ -123,7 +123,7 @@ class _SearchPageState extends State<SearchPage> {
                 : ListView.separated(
                     padding: const EdgeInsets.all(8),
                     itemCount: _rows.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 6),
+                    separatorBuilder: (context, _) => const SizedBox(height: 6),
                     itemBuilder: (context, i) {
                       final r = _rows[i];
                       final title = (r['name'] ?? 'Card').toString();
@@ -134,7 +134,7 @@ class _SearchPageState extends State<SearchPage> {
                         if (setCode.isNotEmpty) setCode,
                         if (number.isNotEmpty) number,
                         if (rarity.isNotEmpty) rarity,
-                      ].join(' • ');
+                      ].join(' | ');
 
                       return Card(
                         child: ListTile(

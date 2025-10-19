@@ -24,7 +24,7 @@ class _VersionBadgeState extends State<VersionBadge> {
   Future<void> _init() async {
     final info = await PackageInfo.fromPlatform();
     final version = '${info.version}+${info.buildNumber}';
-    final label = 'v$version • $_buildTag';
+    final label = 'v$version | $_buildTag';
     // Print to console too so you can see it in logs
     // ignore: avoid_print
     print('GrookaiVault Build => $label');
@@ -39,7 +39,7 @@ class _VersionBadgeState extends State<VersionBadge> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.9),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(999),
         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
       ),

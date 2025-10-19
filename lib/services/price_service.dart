@@ -40,8 +40,8 @@ class PriceService {
           .eq('number', num)
           .eq('variant', variant)
           .order('observed_at', ascending: false)
-          .limit(1);
-      if (rows1 is List && rows1.isNotEmpty) {
+          .limit(1) as List;
+      if (rows1.isNotEmpty) {
         return rows1.first as Map<String, dynamic>;
       }
     }
@@ -53,10 +53,8 @@ class PriceService {
         .eq('set_code', set)
         .eq('number', num)
         .order('observed_at', ascending: false)
-        .limit(1);
-    return (rows2 is List && rows2.isNotEmpty)
-        ? rows2.first as Map<String, dynamic>
-        : null;
+        .limit(1) as List;
+    return rows2.isNotEmpty ? rows2.first as Map<String, dynamic> : null;
   }
 
   /// Discover available variants for this print, newest first (deduped).
@@ -73,14 +71,12 @@ class PriceService {
         .eq('set_code', set)
         .eq('number', num)
         .order('observed_at', ascending: false)
-        .limit(20);
+        .limit(20) as List;
 
     final out = <String>[];
-    if (rows is List) {
-      for (final r in rows) {
-        final v = (r['variant'] ?? '').toString();
-        if (v.isNotEmpty && !out.contains(v)) out.add(v);
-      }
+    for (final r in rows) {
+      final v = (r['variant'] ?? '').toString();
+      if (v.isNotEmpty && !out.contains(v)) out.add(v);
     }
     return out;
   }

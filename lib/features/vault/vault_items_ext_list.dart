@@ -74,11 +74,11 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
     }
     return ListView.separated(
       itemCount: _rows.length,
-      separatorBuilder: (_, __) => const Divider(height: 1),
+      separatorBuilder: (context, _) => const Divider(height: 1),
       itemBuilder: (context, i) {
         final r = _rows[i];
         final title = (r['name'] ?? 'Card').toString();
-        final sub   = '${(r['set_code'] ?? '').toString()} • ${(r['number'] ?? '').toString()}';
+        final sub   = '${(r['set_code'] ?? '').toString()} | ${(r['number'] ?? '').toString()}';
         return ListTile(
           title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
           subtitle: Text(sub),

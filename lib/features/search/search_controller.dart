@@ -1,6 +1,4 @@
-﻿import 'package:grookai_vault/widgets/fix_card_image.dart';
-import 'package:grookai_vault/widgets/smart_card_image.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+﻿import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<List<Map<String, dynamic>>> fetchCardsByName(String q) async {
   final supa = Supabase.instance.client;

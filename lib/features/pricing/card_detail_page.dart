@@ -33,7 +33,7 @@ class CardDetailPage extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          Text('$setCode · $number',
+          Text('$setCode - $number',
               style: Theme.of(context).textTheme.bodyMedium),
 
           const SizedBox(height: 24),
@@ -71,7 +71,7 @@ class _InfoTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.4),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
       ),
       child: Row(
         children: [
@@ -85,5 +85,6 @@ class _InfoTile extends StatelessWidget {
     );
   }
 }
+
 
 
