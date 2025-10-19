@@ -9,6 +9,16 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - lib_utf8_backup/**
+    - lib/**.backup.dart
+    - lib/**/main.backup*.dart
+    - lib/main.backup.dart
+    - lib/main.backup.badges.dart
+    - lib/main.vault-backup.dart
+    - lib/pricing_demo_main.dart
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

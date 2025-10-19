@@ -54,8 +54,9 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
           .eq("set_code", widget.setCode)
           .eq("number", widget.number)
           .limit(1);
-        if (rows is List && rows.isNotEmpty) {
-          cardId = rows.first["id"]?.toString();
+        final rowsList = (rows as List);
+        if (rowsList.isNotEmpty) {
+          cardId = rowsList.first["id"]?.toString();
         }
       }
       if (cardId == null || cardId.isEmpty) {
@@ -69,8 +70,9 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
         .select("market_price, source, ts")
         .eq("card_id", cardId)
         .limit(1);
-      if (latest is List && latest.isNotEmpty) {
-        final row = latest.first;
+      final latestList = (latest as List);
+      if (latestList.isNotEmpty) {
+        final row = latestList.first;
         _latest = (row["market_price"] ?? 0) as num;
         _source = row["source"]?.toString();
         final tsRaw = row["ts"]?.toString();
@@ -85,15 +87,14 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
         .order("ts", ascending: true);
 
       _series = [];
-      if (series is List) {
-        for (final r in series) {
+      final seriesList = (series as List);
+      for (final r in seriesList) {
           final tsRaw = r["ts"]?.toString();
           final dt = tsRaw != null ? DateTime.tryParse(tsRaw) : null;
           final p  = r["market_price"];
           if (dt != null && p is num) {
             _series.add(_PricePoint(dt, p.toDouble()));
           }
-        }
       }
     } catch (e) {
       _error = e.toString();
@@ -104,7 +105,7 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
 
   @override
   Widget build(BuildContext context) {
-    final title = "${widget.setCode} · #${widget.number}";
+    final title = "${widget.setCode} - #${widget.number}";
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -238,7 +239,7 @@ class _SparklinePainter extends CustomPainter {
 
     final Paint fill = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.blueAccent.withOpacity(0.12);
+      ..color = Colors.blueAccent.withValues(alpha: 0.12);
 
     final Path path = Path();
     final Path fillPath = Path();

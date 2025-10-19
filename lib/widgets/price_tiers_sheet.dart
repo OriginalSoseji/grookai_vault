@@ -56,13 +56,13 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
                   child: ListView.separated(
                     shrinkWrap: true,
                     itemCount: tiers.length,
-                    separatorBuilder: (_, __) => const Divider(height: 1),
-                    itemBuilder: (_, i) {
+                    separatorBuilder: (context, _) => const Divider(height: 1),
+                    itemBuilder: (context, i) {
                       final t = tiers[i];
                       final price = t.price != null ? _fmt.format(t.price) : "—";
                       return ListTile(
                         dense: true,
-                        title: Text("${t.type}${t.detail != null ? " • ${t.detail}" : ""}"),
+                        title: Text("${t.type}${t.detail != null ? " - ${t.detail}" : ""}"),
                         subtitle: Text("source: ${t.source ?? "—"}"),
                         trailing: Text(price, style: const TextStyle(fontWeight: FontWeight.w600)),
                       );
@@ -78,7 +78,8 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
                       cardId: widget.cardId,
                       marketPrice: maybePrice,
                     );
-                    if (mounted) Navigator.pop(context, true);
+                    if (!context.mounted) return;
+                    Navigator.pop(context, true);
                   },
                 ) : const Text("Manual condition edits are disabled", style: TextStyle(color: Colors.grey)),
               ],
@@ -147,5 +148,6 @@ class _ConditionChangerState extends State<_ConditionChanger> {
     );
   }
 }
+
 
 

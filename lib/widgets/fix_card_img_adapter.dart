@@ -1,5 +1,4 @@
-﻿import 'package:grookai_vault/widgets/fix_card_img_adapter.dart';
-import "package:flutter/material.dart";
+﻿import "package:flutter/material.dart";
 import "package:grookai_vault/widgets/fix_card_image.dart";
 
 /// Drop-in adapter so existing calls keep working:

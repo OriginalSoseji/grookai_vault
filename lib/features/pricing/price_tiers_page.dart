@@ -178,12 +178,12 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
                           'acquired_price': _priceRow!['price_usd'],
                           'source': 'app',
                         });
-                        if (!mounted) return;
+                        if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Added to Vault')),
                         );
                       } catch (e) {
-                        if (!mounted) return;
+                        if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Add failed: $e')),
                         );

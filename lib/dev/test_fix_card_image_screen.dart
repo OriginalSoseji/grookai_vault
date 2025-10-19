@@ -18,7 +18,7 @@ class TestFixCardImageScreen extends StatelessWidget {
       (setCode: 'sv8pt5',  number: '010', label: 'B) tcgdex miss -> pokemontcg.io'),
       // (c) Bogus code to verify graceful failure
       (setCode: 'zz99',    number: '999', label: 'C) bogus -> placeholder'),
-      // (d) sv0X ↔ svX mapping checks
+      // (d) sv0X -> svX mapping checks
       (setCode: 'sv03',    number: '125', label: 'D) sv03 -> sv3 try'),
       (setCode: 'sv3',     number: '001a', label: 'E) sv3 -> sv03 try + suffix'),
     ];
@@ -28,7 +28,7 @@ class TestFixCardImageScreen extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
         itemCount: cases.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
+        separatorBuilder: (context, _) => const SizedBox(height: 16),
         itemBuilder: (context, i) {
           final c = cases[i];
           return Row(

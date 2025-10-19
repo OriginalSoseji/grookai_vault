@@ -63,7 +63,7 @@ class _PriceImportPageState extends State<PriceImportPage> {
             Row(children: [
               Expanded(
                 child: DropdownButtonFormField<String>(
-                  value: _source,
+                  initialValue: _source,
                   items: const [
                     DropdownMenuItem(value: 'tcgdex', child: Text('TCGplayer (USD)')),
                     DropdownMenuItem(value: 'cardmarket', child: Text('Cardmarket (EUR)')),

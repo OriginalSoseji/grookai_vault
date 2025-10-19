@@ -49,38 +49,18 @@ class _TcgdexClient implements HttpClient {
     return "$stripped$suffix";
   }
 
-  static List<Uri> _fallbacks(String setCode, String number) {
-    final numSlug = _numSlug(number);
-    final out = <Uri>[];
-    for (final slug in _setSlugCandidates(setCode)) {
-      out.add(Uri.parse("https://images.pokemontcg.io/$slug/${numSlug}_hires.png"));
-      out.add(Uri.parse("https://images.pokemontcg.io/$slug/$numSlug.png"));
-    }
-    return out;
-  }
-
-  static Future<Uri?> _firstOk(HttpClient c, List<Uri> candidates) async {
-    for (final u in candidates) {
-      try {
-        final req = await c.openUrl("HEAD", u);
-        final res = await req.close();
-        if (res.statusCode == 200) return u;
-      } catch (_) {}
-    }
-    return null;
-  }
+  // Removed old network HEAD probing helpers; we rewrite directly.
 
   @override
   Future<HttpClientRequest> openUrl(String method, Uri url) async {
     if ((method == "GET" || method == "HEAD") && _isTcgdex(url)) {
-  assert(() { print('[OVERRIDE] tcgdex hit: ' + url.toString()); return true; }());
       final parsed = _parseTcgdex(url);
       if (parsed != null) {
         final (setCode, number) = parsed;
         // Prefer .png (more reliable across older sets), try original slug variants in order.
         final numSlug = _numSlug(number);
         for (final slug in _setSlugCandidates(setCode)) {
-          final rewritten = Uri.parse("https://images.pokemontcg.io/\/\.png");
+          final rewritten = Uri.parse("https://images.pokemontcg.io/$slug/$numSlug.png");
           // Rewrite immediately to images.pokemontcg.io; skip HEAD probes.
           return _inner.openUrl(method, rewritten);
         }
@@ -145,12 +125,12 @@ class _TcgdexClient implements HttpClient {
   set maxConnectionsPerHost(int? v) { _inner.maxConnectionsPerHost = v; }
 
   @override
-  void set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String? proxyHost, int? proxyPort)? f) {
+  set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String? proxyHost, int? proxyPort)? f) {
     _inner.connectionFactory = f;
   }
 
   @override
-  void set keyLog(void Function(String line)? callback) { _inner.keyLog = callback; }
+  set keyLog(void Function(String line)? callback) { _inner.keyLog = callback; }
 
   // --- IMPORTANT: route network lookups through our interceptor ---
   @override

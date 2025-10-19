@@ -9,7 +9,7 @@
 List<Widget> buildBadges(Map row) {
   final chips = <Widget>[];
 
-  bool _asBool(dynamic v) {
+  bool asBool(dynamic v) {
     if (v == null) return false;
     if (v is bool) return v;
     if (v is num) return v != 0;
@@ -17,27 +17,27 @@ List<Widget> buildBadges(Map row) {
     return ["1","true","yes","y","t"].contains(s);
   }
 
-  String _s(dynamic v) => (v ?? "").toString().trim();
+  String s(dynamic v) => (v ?? "").toString().trim();
 
-  bool _anyTrue(List<String> keys) => keys.any((k) => _asBool(row[k]));
-  String _anyStr(List<String> keys) {
+  bool anyTrue(List<String> keys) => keys.any((k) => asBool(row[k]));
+  String anyStr(List<String> keys) {
     for (final k in keys) {
-      final val = _s(row[k]);
+      final val = s(row[k]);
       if (val.isNotEmpty) return val;
     }
     return "";
   }
 
   // Common strings
-  final name      = _s(row["name"]);
-  final setName   = _s(row["set_name"] ?? row["set"] ?? row["setCode"] ?? row["set_code"]);
-  final rarity    = _s(row["rarity"]);
-  final holoType  = _s(row["holo_type"] ?? row["holoType"]);
-  final foilType  = _s(row["foil_type"] ?? row["foilType"]);
-  final edition   = _s(row["edition"]);
+  final name      = s(row["name"]);
+  final setName   = s(row["set_name"] ?? row["set"] ?? row["setCode"] ?? row["set_code"]);
+  final rarity    = s(row["rarity"]);
+  final holoType  = s(row["holo_type"] ?? row["holoType"]);
+  final foilType  = s(row["foil_type"] ?? row["foilType"]);
+  final edition   = s(row["edition"]);
 
   // First Edition
-  final firstEdition = _anyTrue(["first_edition","is_first_edition","firstEdition","first"])
+  final firstEdition = anyTrue(["first_edition","is_first_edition","firstEdition","first"])
     || edition.toLowerCase().contains("1st")
     || name.toLowerCase().contains("1st edition")
     || rarity.toLowerCase().contains("1st");
@@ -47,7 +47,7 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Shadowless
-  final shadowless = _anyTrue(["shadowless","is_shadowless"])
+  final shadowless = anyTrue(["shadowless","is_shadowless"])
     || name.toLowerCase().contains("shadowless")
     || rarity.toLowerCase().contains("shadowless");
 
@@ -56,7 +56,7 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Promo
-  final isPromo = _anyTrue(["promo","is_promo"])
+  final isPromo = anyTrue(["promo","is_promo"])
     || rarity.toLowerCase().contains("promo")
     || setName.toUpperCase().contains("PR");
 
@@ -65,12 +65,12 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Holo / Reverse Holo
-  final looksReverse = _anyTrue(["reverse_holo","is_reverse_holo","reverse"])
+  final looksReverse = anyTrue(["reverse_holo","is_reverse_holo","reverse"])
     || holoType.toLowerCase().contains("reverse")
     || name.toLowerCase().contains("reverse holo")
     || foilType.toLowerCase().contains("reverse");
 
-  final looksHolo = _anyTrue(["holo","is_holo","foil","is_foil"])
+  final looksHolo = anyTrue(["holo","is_holo","foil","is_foil"])
     || holoType.toLowerCase().contains("holo")
     || foilType.toLowerCase().contains("holo")
     || rarity.toLowerCase().contains("holo")
@@ -88,13 +88,13 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Language
-  final lang = _anyStr(["language","lang","card_lang"]);
+  final lang = anyStr(["language","lang","card_lang"]);
   if (lang.isNotEmpty) {
     chips.add(_chip(_titleCase(lang), Colors.blueGrey));
   }
 
   // Grade (if graded info ever stored)
-  final grade = _anyStr(["grade","graded_label","psa_grade","cgc_grade","bgs_grade"]);
+  final grade = anyStr(["grade","graded_label","psa_grade","cgc_grade","bgs_grade"]);
   if (grade.isNotEmpty) {
     chips.add(_chip("Grade $grade", Colors.orange));
   }
@@ -113,8 +113,8 @@ Widget _chip(String text, Color color) {
     child: Chip(
       label: Text(text),
       visualDensity: VisualDensity.compact,
-      backgroundColor: color.withOpacity(.12),
-      side: BorderSide(color: color.withOpacity(.6)),
+      backgroundColor: color.withValues(alpha: .12),
+      side: BorderSide(color: color.withValues(alpha: .6)),
       labelStyle: const TextStyle(fontWeight: FontWeight.w600),
     ),
   );

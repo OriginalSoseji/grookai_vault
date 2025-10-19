@@ -11,7 +11,7 @@ List<String> buildCardImageUrls(
 }) {
   final urls = <String>[];
 
-  // Skip tcgdex for NP promos – rely on PokémonTCG.io for these
+  // Skip tcgdex for NP promos - rely on PokemonTCG.io for these
   final scLower = setCode.trim().toLowerCase();
 final allowTcgDex = !(scLower.endsWith('p') || ['ex5.5','ex5pt5','tk2','tk2a','tk2b'].contains(scLower));
   // 1) Try tcgdex (guarded) with common variants FIRST
@@ -24,13 +24,13 @@ final allowTcgDex = !(scLower.endsWith('p') || ['ex5.5','ex5pt5','tk2','tk2a','t
     }
   }
 
-  // 2) Fall back to images.pokemontcg.io with slug variants
+  // 2) Fall back to images.PokemonTCG.io with slug variants
   final setSlugs = _setSlugCandidates(setCode);
   final numSlug = _numSlug(number);
 
   for (final slug in setSlugs) {
-    urls.add('https://images.pokemontcg.io/$slug/${numSlug}_hires.png');
-    urls.add('https://images.pokemontcg.io/$slug/$numSlug.png');
+    urls.add('https://images.PokemonTCG.io/$slug/${numSlug}_hires.png');
+    urls.add('https://images.PokemonTCG.io/$slug/$numSlug.png');
   }
 
   return urls;
@@ -196,7 +196,7 @@ String? tcgdexImageUrl(String setCode, String number) {
   final nRaw = number.trim();
   if (raw.isEmpty || nRaw.isEmpty) return null;
 
-  // Normalize set slug for tcgdex (.5 -> pt5)
+  // Normalize set slug for tcgdex (\.5 -> pt5)
   final s = raw.replaceAll('.5', 'pt5');
   final n = _numSlug(nRaw);
 
@@ -222,11 +222,11 @@ String? tcgdexImageUrl(String setCode, String number) {
 
   // EX Trainer Kit 2 (ex5.5/ex5pt5) lives under 'tk2' on tcgdex
   if (s == 'ex5pt5' || s == 'ex5.5') {
-    return 'https://assets.tcgdex.net/en/ex/tk2/' + n + '/high.png';
+    return 'https://assets.tcgdex.net/en/ex/tk2/$n/high.png';
   }
 
   final series = seriesFor(s);
-  return 'https://assets.tcgdex.net/en/' + series + '/' + s + '/' + n + '/high.png';
+  return 'https://assets.tcgdex.net/en/$series/$s/$n/high.png';
 }
 
 List<String> _setSlugCandidates(String setCode) {
@@ -236,27 +236,27 @@ List<String> _setSlugCandidates(String setCode) {
   final original = setCode.trim();
   addUnique(original);
 
-  // case-flex for PokémonTCG (some sets care)
+  // case-flex for PokemonTCG (some sets care)
   addUnique(original.toLowerCase());
   // keep an UpperCamel variant if applicable (e.g., a1a -> A1a)
   final upperCamel = original.isEmpty ? original : original[0].toUpperCase() + original.substring(1);
   addUnique(upperCamel);
 
-  // .5 → pt5  (sv8.5 → sv8pt5, swsh12.5 → swsh12pt5, ex5.5 → ex5pt5, sm3.5 → sm3pt5)
+  // .5 -> pt5  (sv8.5 -> sv8pt5, swsh12.5 -> swsh12pt5, ex5.5 -> ex5pt5, sm3.5 -> sm3pt5)
   final dotFixed = original.replaceAll('.5', 'pt5');
   addUnique(dotFixed);
 
-  // Shining Legends: sm3.5 / sm3pt5 -> slg (PokémonTCG code)
+  // Shining Legends: sm3.5 / sm3pt5 -> slg (PokemonTCG code)
   final low = original.toLowerCase();
   if (low == 'sm3.5' || low == 'sm3pt5') {
     addUnique('sm3pt5');
     addUnique('slg');
   }
 
-  // sv0X → svX
+  // sv0X -> svX
   addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv'));
 
-  // svX → sv0X  (only when X is a single digit)
+  // svX -> sv0X  (only when X is a single digit)
   addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'));
 
   // EX Trainer Kit 2
@@ -276,7 +276,7 @@ List<String> _setSlugCandidates(String setCode) {
   return out;
 }
 
-/// Strip leading zeros on numeric part, keep suffix (e.g., 001a → 1a).
+/// Strip leading zeros on numeric part, keep suffix (e.g., 001a -> 1a).
 String _numSlug(String number) {
   final m = RegExp(r'^0*([0-9]+)([A-Za-z]*)$').firstMatch(number.trim());
   if (m == null) return number.trim();
@@ -285,6 +285,7 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
+
 
 
 

@@ -28,7 +28,7 @@ class PriceImporter {
         'source': source,
       };
 
-      Map<String, dynamic>? data;
+      Map<String, dynamic> data = const {};
       int attempt = 0;
 
       // Retry current page a few times if the function throws
@@ -52,7 +52,7 @@ class PriceImporter {
         }
       }
 
-      final imported = (data!['imported'] ?? 0) as int;
+      final imported = (data['imported'] ?? 0) as int;
       final fetched =
           (data['fetched'] ?? data['count'] ?? data['pageCount'])
               as int?; // optional from server

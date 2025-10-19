@@ -1,26 +1,29 @@
-﻿import 'package:grookai_vault/net/tcgdex_http_override.dart';
-import 'features/pricing/card_price_chart_page.dart';
-// lib/main.dart
-import 'dart:convert'; // for fixMojibake + jsonEncode
+﻿// lib/main.dart
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'secrets.dart';
 
 // Live price chart page from earlier work
-import 'features/pricing/live_pricing.dart';
+import 'features/pricing/card_price_chart_page.dart';
+
 // Dev page to run pricing imports (defined below)
 import 'dev/price_import_page.dart';
-// NEW: search feature
-import 'features/search/search_page.dart';
-import 'features/vault/vault_items_ext_list.dart';
-import 'features/vault/vault_items_ext_list.dart';
-// NEW: badge pills
-// import 'widgets/badges.dart';
- import 'features/home/recently_added_page.dart';
 
+// NEW: search feature (you already had this route)
+import 'features/search/search_page.dart';
+
+// Recent + vault pages
+import 'features/home/recently_added_page.dart';
+import 'features/vault/vault_items_ext_list.dart';
+
+// NEW: blend gateway (lazy first, legacy fallback)
+import 'services/search_gateway.dart';
 
 /// --- Supabase config (replace in production) ---
 final kSupabaseUrl = supabaseUrl;
@@ -28,11 +31,15 @@ final kSupabaseAnonKey = supabaseAnonKey;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load .env so GV_USE_LAZY_SEARCH is available app-wide
+  await dotenv.load(fileName: ".env");
+
   await Supabase.initialize(url: kSupabaseUrl, anonKey: kSupabaseAnonKey);
   runApp(const MyApp());
 }
 
-/// Fixes mojibake like "ÃƒÆ’Ã‚¢" if a string was saved/viewed in a wrong encoding.
+/// Fixes mojibake like "ÃƒÆ’Ã‚Â¢" if a string was saved/viewed in a wrong encoding.
 String fixMojibake(String s) {
   try {
     return utf8.decode(latin1.encode(s));
@@ -200,15 +207,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/search': (_) => SearchPage(),
         '/dev-price-import': (_) => const PriceImportPage(),
-        '/vault-ext': (_) => Scaffold(
-              appBar: AppBar(title: Text('Vault (Effective Prices)')),
-              body: VaultItemsExtList(),
-            ),
-        '/vault-ext': (_) => Scaffold(
-              appBar: AppBar(title: Text('Vault (Effective Prices)')),
-              body: VaultItemsExtList(),
-            ),
         '/recent': (_) => const RecentlyAddedPage(),
+        // NEW route for effective pricing list
+        '/vault-ext': (_) => Scaffold(
+              appBar: AppBar(title: Text('Vault (Effective Prices)')),
+              body: VaultItemsExtList(),
+            ),
       },
       home: StreamBuilder<AuthState>(
         stream: supabase.auth.onAuthStateChange,
@@ -216,9 +220,9 @@ class MyApp extends StatelessWidget {
           AuthChangeEvent.initialSession,
           supabase.auth.currentSession,
         ),
-        builder: (context, _) {
+        builder: (context, snapshot) {
           final session = supabase.auth.currentSession;
-          return const AppShell();
+          return session == null ? const LoginPage() : const AppShell();
         },
       ),
     );
@@ -262,16 +266,32 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         title: Text(titles[_index]),
         actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
-          IconButton(icon: const Icon(Icons.refresh), tooltip: 'Refresh', onPressed: _refreshCurrent),
-          IconButton(icon: const Icon(Icons.search), tooltip: 'Search cards', onPressed: () => Navigator.of(context).pushNamed('/search')),
-          IconButton(tooltip: 'Price Import (Dev)', icon: const Icon(Icons.developer_mode),
-              onPressed: () => Navigator.of(context).pushNamed('/dev-price-import')),
-          IconButton(icon: const Icon(Icons.logout), tooltip: 'Sign out', onPressed: _signOut),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: 'Refresh',
+            onPressed: _refreshCurrent,
+          ),
+          if (_index == 1) // Only show on Vault tab
+            IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Add card (Catalog Picker)',
+              onPressed: () => _vaultKey.currentState?.showAddOrEditDialog(),
+            ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Search cards',
+            onPressed: () => Navigator.of(context).pushNamed('/search'),
+          ),
+          IconButton(
+            tooltip: 'Price Import (Dev)',
+            icon: const Icon(Icons.developer_mode),
+            onPressed: () => Navigator.of(context).pushNamed('/dev-price-import'),
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sign out',
+            onPressed: _signOut,
+          ),
         ],
       ),
       body: IndexedStack(
@@ -468,7 +488,6 @@ class HomePageState extends State<HomePage> {
                 const Text('No recent items.')
               else
                 ...recent.map((row) {
-                  // ?–– Step 2A: Log the exact row so we can fix badges if keys differ
                   debugPrint('RecentlyAdded row: ${jsonEncode(row)}');
 
                   final name = (row['name'] ?? 'Item').toString();
@@ -483,12 +502,11 @@ class HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${setCode.isEmpty ? '–' : setCode} • #$number'
-                            '${mp > 0 ? ' • \$${mp.toStringAsFixed(2)} ea' : ''}',
+                            '${setCode.isEmpty ? '' : '$setCode - '}#$number'
+                            '${mp > 0 ? ' - \$${mp.toStringAsFixed(2)} ea' : ''}',
                           ),
                           const SizedBox(height: 6),
                           const SizedBox.shrink(),
-
                         ],
                       ),
                       trailing: IconButton(
@@ -499,7 +517,6 @@ class HomePageState extends State<HomePage> {
                             builder: (_) => CardPriceChartPage(
                               setCode: setCode,
                               number: number,
-                              
                             ),
                           ),
                         ),
@@ -592,15 +609,17 @@ class VaultPageState extends State<VaultPage> {
 
   /// Picker -> choose Vault or Wishlist -> insert -> trigger pricing -> reload
   Future<void> showAddOrEditDialog({Map<String, dynamic>? row}) async {
+    final rootContext = context;
     final picked = await showModalBottomSheet<Map<String, dynamic>>(
       context: context,
       isScrollControlled: true,
       builder: (context) => _CatalogPicker(),
     );
+    if (!rootContext.mounted) return;
     if (picked == null || _uid == null) return;
 
     final choice = await showDialog<String>(
-      context: context,
+      context: rootContext,
       builder: (_) => SimpleDialog(
         title: const Text('Add to'),
         children: [
@@ -609,12 +628,13 @@ class VaultPageState extends State<VaultPage> {
         ],
       ),
     );
+    if (!rootContext.mounted) return;
     if (choice == null) return;
 
     if (choice == 'vault') {
       final qtyCtrl = TextEditingController(text: '1');
       final ok = await showDialog<bool>(
-        context: context,
+        context: rootContext,
         builder: (_) => AlertDialog(
           title: const Text('Quantity'),
           content: TextField(
@@ -623,16 +643,12 @@ class VaultPageState extends State<VaultPage> {
             decoration: const InputDecoration(labelText: 'Qty'),
           ),
           actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
             TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
             FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
           ],
         ),
       );
+      if (!rootContext.mounted) return;
       if (ok != true) return;
       final qty = int.tryParse(qtyCtrl.text) ?? 1;
 
@@ -678,11 +694,6 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Move to Wishlist?'),
         content: const Text('This will remove the card from Vault and add it to Wishlist.'),
         actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
           FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
         ],
@@ -738,8 +749,8 @@ class VaultPageState extends State<VaultPage> {
                 onSelected: (v) { setState(() => _sortBy = v); reload(); },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
-                  PopupMenuItem(value: _SortBy.name, child: Text('Name (A–Z)')),
-                  PopupMenuItem(value: _SortBy.qty, child: Text('Qty (low?high)')),
+                  PopupMenuItem(value: _SortBy.name, child: Text('Name (A-Z)')),
+                  PopupMenuItem(value: _SortBy.qty, child: Text('Qty (low->high)')),
                 ],
               ),
             ],
@@ -753,7 +764,7 @@ class VaultPageState extends State<VaultPage> {
                   : ListView.separated(
                       padding: const EdgeInsets.all(8),
                       itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                      separatorBuilder: (context, _) => const SizedBox(height: 8),
                       itemBuilder: (context, index) {
                         final row = filtered[index];
                         final id = (row['id'] ?? '').toString();
@@ -775,7 +786,7 @@ class VaultPageState extends State<VaultPage> {
                               Text('#$number'),
                               _chip(cond),
                               Text('Qty: $qty'),
-                              if (mp > 0) Text('€¢ \$${mp.toStringAsFixed(2)} ea'),
+                              if (mp > 0) Text('â€¢ \$${mp.toStringAsFixed(2)} ea'),
                             ],
                           ),
                           trailing: Row(
@@ -789,7 +800,6 @@ class VaultPageState extends State<VaultPage> {
                                     builder: (_) => CardPriceChartPage(
                                       setCode: setCode,
                                       number: number,
-                                      
                                     ),
                                   ),
                                 ),
@@ -842,11 +852,6 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Delete item?'),
         content: const Text('This cannot be undone.'),
         actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
           FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
         ],
@@ -880,8 +885,8 @@ class VaultPageState extends State<VaultPage> {
     return Chip(
       label: Text(cond),
       visualDensity: VisualDensity.compact,
-      backgroundColor: color.withOpacity(.15),
-      side: BorderSide(color: color.withOpacity(.6)),
+      backgroundColor: color.withValues(alpha: .15),
+      side: BorderSide(color: color.withValues(alpha: .6)),
     );
   }
 }
@@ -965,11 +970,6 @@ class WishlistPageState extends State<WishlistPage> {
           decoration: const InputDecoration(labelText: 'Quantity'),
         ),
         actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
           FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
         ],
@@ -1018,7 +1018,7 @@ class WishlistPageState extends State<WishlistPage> {
             : ListView.separated(
                 padding: const EdgeInsets.all(8),
                 itemCount: _items.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
+                separatorBuilder: (context, _) => const SizedBox(height: 8),
                 itemBuilder: (context, i) {
                   final row = _items[i];
                   final id = (row['id'] ?? '').toString();
@@ -1043,7 +1043,6 @@ class WishlistPageState extends State<WishlistPage> {
                                 builder: (_) => CardPriceChartPage(
                                   setCode: setCode,
                                   number: number,
-                                  
                                 ),
                               ),
                             ),
@@ -1069,8 +1068,9 @@ class WishlistPageState extends State<WishlistPage> {
 
 enum _SortBy { newest, name, qty }
 
-/// ---------------------- Catalog Picker (debounced, no initial fetch) ----------------------
-/// Uses v_card_search (=> card_prints) so selected id is a valid card_prints.id
+/// ---------------------- Catalog Picker (debounced, BLENDED search) ----------------------
+/// Uses SearchGateway: lazy-import search first, falls back to legacy if needed.
+/// Expects results with: id, set_code, name, number, image_url (the gateway maps them).
 class _CatalogPicker extends StatefulWidget {
   @override
   State<_CatalogPicker> createState() => _CatalogPickerState();
@@ -1078,6 +1078,7 @@ class _CatalogPicker extends StatefulWidget {
 
 class _CatalogPickerState extends State<_CatalogPicker> {
   final supabase = Supabase.instance.client;
+  final _gateway = SearchGateway(); // blend entry point
   final _q = TextEditingController();
   List<Map<String, dynamic>> _rows = [];
   bool _loading = false;
@@ -1097,12 +1098,20 @@ class _CatalogPickerState extends State<_CatalogPicker> {
     }
     setState(() => _loading = true);
     try {
-      final data = await supabase
-          .from('v_card_search')
-          .select('id, set_code, name, number, image_url')
-          .or('name.ilike.%$s%,set_code.ilike.%$s%')
-          .limit(50);
-      _rows = List<Map<String, dynamic>>.from(data as List);
+      // BLEND: new lazy search with silent fallback to legacy
+      debugPrint('GV search query="$s" (blend)');
+      final results = await _gateway.search(s);
+
+      // Ensure expected keys for the picker UI
+      _rows = results.map<Map<String, dynamic>>((r) {
+        return {
+          'id'       : r['id'] ?? r['card_id'] ?? r['print_id'],
+          'set_code' : r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
+          'name'     : r['name'] ?? r['name_local'] ?? 'Card',
+          'number'   : r['number'] ?? '',
+          'image_url': r['image_url'] ?? '',
+        };
+      }).toList();
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -1158,7 +1167,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(8),
                       itemCount: _rows.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 6),
+                       separatorBuilder: (context, _) => const SizedBox(height: 6),
                       itemBuilder: (context, i) {
                         final r = _rows[i];
                         final title = (r['name'] ?? 'Card').toString();
@@ -1248,7 +1257,7 @@ class _ScanPageState extends State<ScanPage> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    '${card['name'] ?? 'Card'} €¢ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                    '${card['name'] ?? 'Card'} - ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
                     maxLines: 2,
                   ),
                 ),
@@ -1259,11 +1268,6 @@ class _ScanPageState extends State<ScanPage> {
             ],
           ),
           actions: [
-    IconButton(
-      tooltip: 'Vault (Effective Prices)',
-      icon: const Icon(Icons.price_change),
-      onPressed: () => Navigator.of(context).pushNamed('/vault-ext'),
-    ),
             TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
           ],
         ),
@@ -1282,14 +1286,14 @@ class _ScanPageState extends State<ScanPage> {
       padding: const EdgeInsets.all(16),
       children: [
         const Text(
-          'Point your camera at a card. We€™ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
+          'Point your camera at a card. We\'ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
           style: TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
           onPressed: _busy ? null : _captureIdentifyAndAdd,
           icon: const Icon(Icons.camera_alt),
-          label: Text(_busy ? 'Working€¦' : 'Scan & Add to Vault'),
+          label: Text(_busy ? 'Working...' : 'Scan & Add to Vault'),
         ),
         const SizedBox(height: 12),
         const Text('Tip: good lighting + flat card = better ID/grade.'),
@@ -1297,6 +1301,9 @@ class _ScanPageState extends State<ScanPage> {
     );
   }
 }
+
+
+
 
 
 

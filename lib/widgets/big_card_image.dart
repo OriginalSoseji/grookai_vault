@@ -35,7 +35,7 @@ class BigCardImage extends StatelessWidget {
             child: SmartCardImage.network(
               url,
               fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) =>
+              errorBuilder: (context, error, stack) =>
                   const Center(child: Text("Image failed to load (control)")),
             ),
           )

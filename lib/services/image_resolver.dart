@@ -17,7 +17,7 @@ class CardImageResolver {
     final key = '$sc|$num|${tcgplayerId ?? ""}';
     if (_cache.containsKey(key)) return _cache[key];
 
-    final series = _seriesFor(sc);
+    // final series = _seriesFor(sc); // not currently used
 
     // Special-case: EX Trainer Kit 2 (ex5.5/ex5pt5)
     final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
@@ -92,6 +92,7 @@ final candidates = <String>[
     return raw.replaceAll('.5', 'pt5');
   }
 
+// ignore: unused_element
   static String _seriesFor(String sc) {
     if (sc.startsWith('sv')) return 'sv';
     if (sc.startsWith('swsh')) return 'swsh';
