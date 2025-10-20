@@ -47,47 +47,106 @@ on conflict (condition_label) do nothing;
 -- 5) Best prices across base/condition/graded
 drop view if exists public.v_best_prices_all;
 
-create view public.v_best_prices_all as
-with
-base as (
-  select distinct on (pr.card_id)
-    pr.card_id,
-    pr.market_price as base_market,
-    pr.source       as base_source,
-    pr.ts           as base_ts
-  from public.prices pr
-  where pr.currency = 'USD' and pr.market_price is not null
-  order by pr.card_id, pr.ts desc nulls last
-),
-cond as (
-  select distinct on (cp.card_id, cp.condition_label)
-    cp.card_id,
-    cp.condition_label,
-    cp.market_price as cond_market,
-    cp.source       as cond_source,
-    cp.ts           as cond_ts
-  from public.condition_prices cp
-  where cp.currency = 'USD' and cp.market_price is not null
-  order by cp.card_id, cp.condition_label, cp.ts desc nulls last
-),
-grad as (
-  select distinct on (gp.card_id, gp.grade_company, gp.grade_value)
-    gp.card_id,
-    gp.grade_company,
-    gp.grade_value,
-    gp.grade_label,
-    gp.market_price as grad_market,
-    gp.source       as grad_source,
-    gp.ts           as grad_ts
-  from public.graded_prices gp
-  where gp.currency = 'USD' and gp.market_price is not null
-  order by gp.card_id, gp.grade_company, gp.grade_value, gp.ts desc nulls last
-)
-select
-  coalesce(grad.card_id, cond.card_id, base.card_id) as card_id,
-  base.base_market, base.base_source, base.base_ts,
-  cond.condition_label, cond.cond_market, cond.cond_source, cond.cond_ts,
-  grad.grade_company, grad.grade_value, grad.grade_label, grad.grad_market, grad.grad_source, grad.grad_ts
-from base
-full join cond on cond.card_id = base.card_id
-full join grad on grad.card_id = coalesce(base.card_id, cond.card_id);
+-- Resilient creation: use full definition if public.prices exists; otherwise a fallback
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM pg_class c
+    WHERE c.relnamespace = 'public'::regnamespace
+      AND c.relkind IN ('r','v','m')
+      AND c.relname = 'prices'
+  ) THEN
+    EXECUTE $FULL$
+      CREATE VIEW public.v_best_prices_all AS
+      WITH
+      base AS (
+        SELECT DISTINCT ON (pr.card_id)
+          pr.card_id,
+          pr.market_price::numeric(10,2) AS base_market,
+          pr.source       AS base_source,
+          pr.ts           AS base_ts
+        FROM public.prices pr
+        WHERE pr.currency = 'USD' AND pr.market_price IS NOT NULL
+        ORDER BY pr.card_id, pr.ts DESC NULLS LAST
+      ),
+      cond AS (
+        SELECT DISTINCT ON (cp.card_id, cp.condition_label)
+          cp.card_id,
+          cp.condition_label,
+          cp.market_price::numeric(10,2) AS cond_market,
+          cp.source       AS cond_source,
+          cp.ts           AS cond_ts
+        FROM public.condition_prices cp
+        WHERE cp.currency = 'USD' AND cp.market_price IS NOT NULL
+        ORDER BY cp.card_id, cp.condition_label, cp.ts DESC NULLS LAST
+      ),
+      grad AS (
+        SELECT DISTINCT ON (gp.card_id, gp.grade_company, gp.grade_value)
+          gp.card_id,
+          gp.grade_company,
+          gp.grade_value,
+          gp.grade_label,
+          gp.market_price::numeric(10,2) AS grad_market,
+          gp.source       AS grad_source,
+          gp.ts           AS grad_ts
+        FROM public.graded_prices gp
+        WHERE gp.currency = 'USD' AND gp.market_price IS NOT NULL
+        ORDER BY gp.card_id, gp.grade_company, gp.grade_value, gp.ts DESC NULLS LAST
+      )
+      SELECT
+        COALESCE(grad.card_id, cond.card_id, base.card_id) AS card_id,
+        base.base_market, base.base_source, base.base_ts,
+        cond.condition_label, cond.cond_market, cond.cond_source, cond.cond_ts,
+        grad.grade_company, grad.grade_value, grad.grade_label, grad.grad_market, grad.grad_source, grad.grad_ts
+      FROM base
+      FULL JOIN cond ON cond.card_id = base.card_id
+      FULL JOIN grad ON grad.card_id = COALESCE(base.card_id, cond.card_id)
+    $FULL$;
+  ELSE
+    EXECUTE $FALLBACK$
+      CREATE VIEW public.v_best_prices_all AS
+      WITH
+      base AS (
+        SELECT
+          NULL::uuid        AS card_id,
+          NULL::numeric(10,2)     AS base_market,
+          NULL::text        AS base_source,
+          NULL::timestamptz AS base_ts
+        WHERE 1=0
+      ),
+      cond AS (
+        SELECT DISTINCT ON (cp.card_id, cp.condition_label)
+          cp.card_id,
+          cp.condition_label,
+          cp.market_price AS cond_market,
+          cp.source       AS cond_source,
+          cp.ts           AS cond_ts
+        FROM public.condition_prices cp
+        WHERE cp.currency = 'USD' AND cp.market_price IS NOT NULL
+        ORDER BY cp.card_id, cp.condition_label, cp.ts DESC NULLS LAST
+      ),
+      grad AS (
+        SELECT DISTINCT ON (gp.card_id, gp.grade_company, gp.grade_value)
+          gp.card_id,
+          gp.grade_company,
+          gp.grade_value,
+          gp.grade_label,
+          gp.market_price AS grad_market,
+          gp.source       AS grad_source,
+          gp.ts           AS grad_ts
+        FROM public.graded_prices gp
+        WHERE gp.currency = 'USD' AND gp.market_price IS NOT NULL
+        ORDER BY gp.card_id, gp.grade_company, gp.grade_value, gp.ts DESC NULLS LAST
+      )
+      SELECT
+        COALESCE(grad.card_id, cond.card_id, base.card_id) AS card_id,
+        base.base_market, base.base_source, base.base_ts,
+        cond.condition_label, cond.cond_market, cond.cond_source, cond.cond_ts,
+        grad.grade_company, grad.grade_value, grad.grade_label, grad.grad_market, grad.grad_source, grad.grad_ts
+      FROM base
+      FULL JOIN cond ON cond.card_id = base.card_id
+      FULL JOIN grad ON grad.card_id = COALESCE(base.card_id, cond.card_id)
+    $FALLBACK$;
+  END IF;
+END
+$$;
