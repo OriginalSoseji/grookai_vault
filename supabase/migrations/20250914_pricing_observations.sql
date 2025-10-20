@@ -1,5 +1,9 @@
--- === PRICING OBSERVATIONS (history) + LATEST (materialized) ===
 -- Idempotent where possible.
+
+-- Ensure minimal dependency exists for FK
+create table if not exists public.card_prints (
+  id uuid primary key
+);
 
 -- 1) TABLE: price_observations (history)
 create table if not exists public.price_observations (

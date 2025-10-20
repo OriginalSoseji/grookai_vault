@@ -1,4 +1,4 @@
-﻿-- Recompute the materialized view after imports.
+-- Recompute the materialized view after imports.
 create or replace function public.refresh_latest_prices()
 returns void
 language sql
