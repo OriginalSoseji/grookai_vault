@@ -181,3 +181,8 @@ To run from source:
 # Go >= 1.22
 go run . help
 ```
+
+## Database: Clean Sync + Resilient Views
+- See `docs/DB_MIGRATION_NOTES.md` for details.
+- Validation script (no persistent data): `scripts/sql/validate_vault_add_item.sql`
+- Lint remote: `supabase db lint --db-url "postgres://postgres:<pwd>@db.<ref>.supabase.co:5432/postgres?sslmode=require"`
