@@ -7,7 +7,8 @@ class OcrResult {
   final String name;
   final String collectorNumber;
   final String? languageHint; // e.g., 'en'
-  OcrResult({required this.name, required this.collectorNumber, this.languageHint});
+  final List<int>? nameCropJpeg;
+  OcrResult({required this.name, required this.collectorNumber, this.languageHint, this.nameCropJpeg});
 }
 
 class ScannerOcr {
@@ -20,6 +21,7 @@ class ScannerOcr {
     List<String> fullLines = <String>[];
     List<String> numLines = <String>[];
     List<String> nameLines = <String>[];
+    List<int>? nameCropJpeg;
     if (decoded != null) {
       final h = decoded.height;
       final w = decoded.width;
@@ -43,6 +45,7 @@ class ScannerOcr {
       // Recognize name band
       try {
         final tmpName = await _writeTempJpg(nameCrop);
+        nameCropJpeg = img.encodeJpg(nameCrop, quality: 92);
         final recName = await _text.processImage(InputImage.fromFile(tmpName));
         for (final b in recName.blocks) {
           for (final l in b.lines) {
@@ -79,7 +82,7 @@ class ScannerOcr {
 
     final lang = _guessLang(allText) ?? 'en';
     if (kDebugMode) debugPrint('[SCAN] ocr: name="$name" number="$number" lang="$lang"');
-    return OcrResult(name: name, collectorNumber: number, languageHint: lang);
+    return OcrResult(name: name, collectorNumber: number, languageHint: lang, nameCropJpeg: nameCropJpeg);
   }
 
   String? _extractName(List<String> lines) {
