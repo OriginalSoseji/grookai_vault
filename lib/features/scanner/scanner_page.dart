@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../ui/widgets/scan_frame.dart';
 import '../../widgets/fix_card_image.dart';
@@ -21,6 +22,7 @@ class _ScannerPageState extends State<ScannerPage> {
   CameraController? _cam;
   Future<void>? _init;
   late final ScanController _scan;
+  bool _cameraGranted = false;
 
   @override
   void initState() {
@@ -31,6 +33,17 @@ class _ScannerPageState extends State<ScannerPage> {
 
   Future<void> _initCamera() async {
     try {
+      // Permission gate
+      final st = await Permission.camera.status;
+      if (!st.isGranted) {
+        final req = await Permission.camera.request();
+        if (!req.isGranted) {
+          if (mounted) setState(() => _cameraGranted = false);
+          debugPrint('[PERM] camera denied');
+          return;
+        }
+      }
+      if (mounted) setState(() => _cameraGranted = true);
       final cams = await availableCameras();
       final back = cams.firstWhere((c) => c.lensDirection == CameraLensDirection.back, orElse: () => cams.first);
       final ctrl = CameraController(back, ResolutionPreset.medium, enableAudio: false, imageFormatGroup: ImageFormatGroup.jpeg);
@@ -176,6 +189,9 @@ class _ScannerPageState extends State<ScannerPage> {
             child: FutureBuilder(
               future: _init,
               builder: (context, snap) {
+                if (!_cameraGranted) {
+                  return _buildPermissionExplainer();
+                }
                 if (snap.connectionState != ConnectionState.done || cam == null || !cam.value.isInitialized) {
                   return const Center(child: CircularProgressIndicator());
                 }
@@ -198,6 +214,39 @@ class _ScannerPageState extends State<ScannerPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _capture,
         child: const Icon(Icons.camera_alt),
+      ),
+    );
+  }
+
+  Widget _buildPermissionExplainer() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(GVSpacing.s16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.camera_alt, size: 48),
+            const SizedBox(height: GVSpacing.s12),
+            const Text('Camera access is required to scan cards.'),
+            const SizedBox(height: GVSpacing.s8),
+            FilledButton(
+              onPressed: () async {
+                final req = await Permission.camera.request();
+                if (req.isGranted) {
+                  if (mounted) {
+                    setState(() => _cameraGranted = true);
+                    _init = _initCamera();
+                  }
+                } else {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Camera permission denied')));
+                  }
+                }
+              },
+              child: const Text('Allow Camera'),
+            ),
+          ],
+        ),
       ),
     );
   }
