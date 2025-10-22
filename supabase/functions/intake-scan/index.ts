@@ -4,14 +4,23 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 // ---- Helpers
-function err(status: number, message: string) {
-  return new Response(JSON.stringify({ error: { message } }), {
+const CORS = {
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'authorization,apikey,content-type',
+    'Content-Type': 'application/json',
+  },
+};
+function err(status: number, message: string, details?: unknown) {
+  return new Response(JSON.stringify({ ok: false, code: status, message, details }), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: CORS.headers,
   });
 }
 
 Deno.serve(async (req: Request) => {
+  if (req.method === 'OPTIONS') return new Response(null, { headers: CORS.headers });
   try {
     // --- Enforce auth (verify_jwt should be true or config.toml removed)
     const authHeader = req.headers.get("Authorization");
@@ -129,7 +138,7 @@ Deno.serve(async (req: Request) => {
         condition_label: label,
         market_price: marketPrice,
       }),
-      { headers: { "Content-Type": "application/json" }, status: 200 },
+      { headers: CORS.headers, status: 200 },
     );
   } catch (e: any) {
     console.error("intake-scan error", e);

@@ -25,12 +25,15 @@ final allowTcgDex = !(scLower.endsWith('p') || ['ex5.5','ex5pt5','tk2','tk2a','t
   }
 
   // 2) Fall back to images.PokemonTCG.io with slug variants
-  final setSlugs = _setSlugCandidates(setCode);
-  final numSlug = _numSlug(number);
-
-  for (final slug in setSlugs) {
-    urls.add('https://images.PokemonTCG.io/$slug/${numSlug}_hires.png');
-    urls.add('https://images.PokemonTCG.io/$slug/$numSlug.png');
+  // Skip for alias/invalid families like 'me01' to avoid noisy failures
+  final lower = setCode.trim().toLowerCase();
+  if (!lower.startsWith('me')) {
+    final setSlugs = _setSlugCandidates(setCode);
+    final numSlug = _numSlug(number);
+    for (final slug in setSlugs) {
+      urls.add('https://images.PokemonTCG.io/$slug/${numSlug}_hires.png');
+      urls.add('https://images.PokemonTCG.io/$slug/$numSlug.png');
+    }
   }
 
   return urls;
@@ -201,6 +204,11 @@ String? tcgdexImageUrl(String setCode, String number) {
   final n = _numSlug(nRaw);
 
   String seriesFor(String sc) {
+    // Generations sets like g1 live under xy on tcgdex
+    if (RegExp(r'^g\d+$').hasMatch(sc)) {
+      assert(() { debugPrint('[LAZY] image-url-fixed map-series g* -> xy (set="$setCode" num="$number")'); return true; }());
+      return 'xy';
+    }
     if (sc.startsWith('sv')) return 'sv';
     if (sc.startsWith('swsh')) return 'swsh';
     if (sc.startsWith('sm')) return 'sm';
@@ -222,7 +230,14 @@ String? tcgdexImageUrl(String setCode, String number) {
 
   // EX Trainer Kit 2 (ex5.5/ex5pt5) lives under 'tk2' on tcgdex
   if (s == 'ex5pt5' || s == 'ex5.5') {
+    assert(() { debugPrint('[LAZY] image-url-fixed ex5.5 -> ex/tk2 (num="$n")'); return true; }());
     return 'https://assets.tcgdex.net/en/ex/tk2/$n/high.png';
+  }
+
+  // Unknown/invalid family prefix like 'me' -> skip tcgdex to avoid wrong URLs
+  if (s.startsWith('me')) {
+    assert(() { debugPrint('[LAZY] image-url-fixed skip invalid family (set="$setCode")'); return true; }());
+    return null;
   }
 
   final series = seriesFor(s);

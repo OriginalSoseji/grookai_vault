@@ -1,0 +1,3 @@
+[functions.keep_alive]
+verify_jwt = false
+schedule = "*/2 * * * *"

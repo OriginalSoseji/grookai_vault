@@ -1,0 +1,3 @@
+[functions.price-cron]
+# archived: verify_jwt disabled schedule removed
+verify_jwt = false

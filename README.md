@@ -167,6 +167,25 @@ The bootstrap command will guide you through the process of setting up a Supabas
 
 Command & config reference can be found [here](https://supabase.com/docs/reference/cli/about).
 
+## Edge Functions
+- Primary reference: `docs/API_SURFACE.md`
+- Primary operational functions:
+  - `check-sets` — Catalog completeness audit and optional auto-fix via `import-prices`
+  - `import-prices` — Set-level importer that writes `price_observations`
+  - `check-prices` — Price freshness/coverage audit with optional re-import trigger
+- Additional functions:
+  - `search_cards`, `hydrate_card`, `keep_alive`
+  - `import-all-prices`, `import-cards`, `import-card`
+  - `intake-scan`, `price-cron` (provider TODOs)
+
+## CI: Edge Functions Audit
+- Workflow: `.github/workflows/edge-functions-audit.yml`
+- Validates every function folder under `supabase/functions/` (excluding `_archive/`) has a `config.toml` or `README.md`.
+- Enforces auth policy:
+  - Public (`search_cards`, `hydrate_card`, `intake-scan`) must NOT set `verify_jwt = false`.
+  - Internal (`import-prices`, `import-all-prices`, `import-cards`, `keep_alive`, `check-prices`, `check-sets`) must set `verify_jwt = false`.
+- Optional local hook: `.githooks/pre-commit.ps1` (enable once with `git config core.hooksPath .githooks`).
+
 ## Breaking changes
 
 We follow semantic versioning for changes that directly impact CLI commands, flags, and configurations.
@@ -186,3 +205,50 @@ go run . help
 - See `docs/DB_MIGRATION_NOTES.md` for details.
 - Validation script (no persistent data): `scripts/sql/validate_vault_add_item.sql`
 - Lint remote: `supabase db lint --db-url "postgres://postgres:<pwd>@db.<ref>.supabase.co:5432/postgres?sslmode=require"`
+
+## Operations: Price Freshness Audit
+- Runbook: `docs/OPERATOR_RUNBOOK.md` (inputs, sample payloads, responses, log locations)
+- Primary scheduler: `supabase/functions/check-prices/config.toml` (06:00 UTC daily)
+- Manual/override: `.github/workflows/check-prices-nightly.yml` (06:15 UTC daily + on-demand)
+- Edge endpoint: `${SUPABASE_URL}/functions/v1/check-prices`
+
+## Google Sign‑In (Supabase OAuth)
+- App code: `lib/features/auth/login_page.dart` uses `supabase.auth.signInWithOAuth(OAuthProvider.google, redirectTo: Env.oauthRedirectUrl)`.
+- Configure secrets (Supabase Dashboard → Authentication → Providers → Google):
+  1) In Google Cloud Console, create OAuth credentials (Web application):
+     - Authorized redirect URI: `https://<PROJECT_REF>.supabase.co/auth/v1/callback`
+     - Copy Client ID/Secret
+  2) In Supabase Dashboard, paste Google Client ID/Secret under the Google provider and enable it.
+  3) Supabase Dashboard → Authentication → URL Configuration → Additional Redirect URLs:
+     - Add: `io.supabase.flutter://login-callback/` (or your custom value)
+  4) App `.env` (optional override):
+     - `OAUTH_REDIRECT_URL=io.supabase.flutter://login-callback/`
+
+- Android Deep Link (AndroidManifest.xml):
+```
+<activity android:name="io.flutter.embedding.android.FlutterActivity" ...>
+  <intent-filter>
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="io.supabase.flutter" android:host="login-callback" />
+  </intent-filter>
+</activity>
+```
+
+- iOS URL Scheme (Info.plist):
+```
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>io.supabase.flutter</string>
+    </array>
+  </dict>
+</array>
+```
+
+- Notes:
+  - If you customize the scheme/host, set `OAUTH_REDIRECT_URL` accordingly and update both Android and iOS to match.
+  - Ensure the Google provider is enabled in Supabase and your redirect URL(s) are authorized. The app will transition from `LoginPage` to the authed shell automatically via `auth.onAuthStateChange`.

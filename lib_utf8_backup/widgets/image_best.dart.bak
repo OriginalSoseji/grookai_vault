@@ -1,8 +1,0 @@
-﻿String imageBestFromRow(Map row) {
-  final best = row['image_best'] ??
-               row['image'] ??
-               row['large_image'] ??
-               row['thumb'];
-  if (best is String && best.trim().isNotEmpty) return best.trim();
-  return ''; // no image available
-}

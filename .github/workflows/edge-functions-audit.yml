@@ -1,0 +1,99 @@
+name: Edge Functions Audit
+
+on:
+  pull_request:
+  push:
+    branches: [ main, develop, staging, "**/edge**", "**/chore**" ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit Edge Functions layout & auth settings
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ROOT="supabase/functions"
+          if [[ ! -d "$ROOT" ]]; then
+            echo "::notice ::No supabase/functions directory found. Skipping."
+            exit 0
+          fi
+
+          # Project policy
+          PUBLIC_FNS="search_cards hydrate_card intake-scan"
+          INTERNAL_FNS="import-prices import-all-prices import-cards keep_alive check-prices check-sets"
+
+          err() { echo "::error file=$1,line=1::${2}"; FAIL=1; }
+          notice() { echo "::notice ::$1"; }
+
+          FAIL=0
+
+          # Enumerate function dirs (exclude _archive and non-dirs)
+          mapfile -t DIRS < <(find "$ROOT" -maxdepth 1 -mindepth 1 -type d ! -name "_archive" -printf "%f\n" | sort)
+
+          # Nothing to audit?
+          if [[ ${#DIRS[@]} -eq 0 ]]; then
+            notice "No function folders under $ROOT."
+            exit 0
+          fi
+
+          for fn in "${DIRS[@]}"; do
+            PATH_FN="$ROOT/$fn"
+            # Skip folders that are clearly tool/meta dirs
+            [[ "$fn" == "_archive" ]] && continue
+
+            has_cfg=false
+            has_readme=false
+            if [[ -f "$PATH_FN/config.toml" ]]; then has_cfg=true; fi
+            if ls "$PATH_FN"/README* >/dev/null 2>&1; then has_readme=true; fi
+
+            if [[ "$has_cfg" == false && "$has_readme" == false ]]; then
+              err "$PATH_FN" "Function '$fn' must include config.toml or README.md describing auth/usage."
+            fi
+
+            # Auth rules
+            if [[ "$has_cfg" == true ]]; then
+              cfg="$PATH_FN/config.toml"
+              # normalize whitespace, get verify_jwt value if present
+              vjwt_line=$(grep -E "verify_jwt\s*=" "$cfg" || true)
+              vjwt_val=""
+              if [[ -n "$vjwt_line" ]]; then
+                vjwt_val=$(echo "$vjwt_line" | sed -E 's/.*verify_jwt\s*=\s*([a-zA-Z]+).*/\1/i' | tr '[:upper:]' '[:lower:]')
+              fi
+
+              # Schedules are allowed; just informational
+              if grep -E '^\s*(schedule\s*=|cron\s*=)' "$cfg" >/dev/null 2>&1; then
+                notice "Detected schedule/cron in $cfg (ok)."
+              fi
+
+              # INTERNAL must have verify_jwt=false
+              if echo " $INTERNAL_FNS " | grep -q " $fn "; then
+                if [[ "$vjwt_val" != "false" ]]; then
+                  err "$cfg" "Internal/job function '$fn' must set verify_jwt = false (server/keyed access only)."
+                fi
+              fi
+
+              # PUBLIC must NOT have verify_jwt=false
+              if echo " $PUBLIC_FNS " | grep -q " $fn "; then
+                if [[ "$vjwt_val" == "false" ]]; then
+                  err "$cfg" "Public function '$fn' must NOT set verify_jwt = false (should require auth by default)."
+                fi
+              fi
+            else
+              # If no config.toml, still enforce that PUBLIC fns are allowed and INTERNAL fns should have config.toml
+              if echo " $INTERNAL_FNS " | grep -q " $fn "; then
+                err "$PATH_FN" "Internal/job function '$fn' requires a config.toml with verify_jwt = false."
+              fi
+            fi
+          done
+
+          if [[ "${FAIL:-0}" -ne 0 ]]; then
+            echo "Edge Functions audit failed."
+            exit 1
+          fi
+
+          echo "Edge Functions audit passed."
+

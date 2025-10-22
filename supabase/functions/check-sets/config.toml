@@ -1,0 +1,5 @@
+[functions.check-sets]
+verify_jwt = false
+# Daily at 05:00 UTC
+schedule = "0 5 * * *"
+

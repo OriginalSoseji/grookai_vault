@@ -1,43 +1,30 @@
-﻿# Flutter/Dart/Pub
-.dart_tool/
-.packages
-.pub-cache/
-.pub/
-build/
-flutter_export_environment.sh
-
-# Android
-*.apk
-*.aar
-*.iml
-.gradle/
-local.properties
-android/app/google-services.json
-android/app/src/debug/google-services.json
-android/app/src/profile/google-services.json
-
-# iOS
-ios/Pods/
-ios/Flutter/Flutter.framework
-ios/Flutter/Flutter.podspec
-ios/Flutter/Generated.xcconfig
-ios/Flutter/ephemeral/
-
-# macOS
-macos/Flutter/ephemeral/
-
-# VS Code / IntelliJ
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Supabase (CLI state)
-.supabase/
-
-# OS junk
+# OS noise
 .DS_Store
 Thumbs.db
-snapshots/
-.chatgpt_sync/*.ps1
-.chatgpt_sync/CHANGELOG.md
+
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# IDEs
+.idea/
+.vscode/
+
+# Backups & archives
+*.bak
+*.backup.*
+*_backup/**
+lib/_bak/**
+*.zip
+*.tar.gz
+*.tgz
+
+# Logs, checkpoints
+*.log
+*.csv
+*.json
+*checkpoint*.json
+

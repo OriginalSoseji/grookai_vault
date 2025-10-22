@@ -1,0 +1,5 @@
+[functions.check-prices]
+verify_jwt = false
+# Nightly at 06:00 UTC
+schedule = "0 6 * * *"
+

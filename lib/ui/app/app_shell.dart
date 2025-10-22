@@ -121,6 +121,13 @@ class _AppShellState extends State<AppShell> {
           const ScanPage(),
         ],
       ),
+      floatingActionButton: _index == 1
+          ? FloatingActionButton.extended(
+              onPressed: () => Navigator.of(context).pushNamed(RouteNames.scanner),
+              icon: const Icon(Icons.camera_alt),
+              label: const Text('Scan Card'),
+            )
+          : null,
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),

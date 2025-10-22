@@ -364,6 +364,11 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.of(context).pushNamed('/scanner'),
+        icon: const Icon(Icons.camera_alt),
+        label: const Text('Scan Card'),
+      ),
     );
   }
 
@@ -429,38 +434,6 @@ class _SearchPageState extends State<SearchPage> {
                     );
                   },
                 ),
-              ),
-              const SizedBox(width: GVSpacing.s8),
-            ],
-            if (rarity.isNotEmpty) ...[
-              PriceChip(label: rarity, positive: true),
-              const SizedBox(width: GVSpacing.s8),
-            ],
-            _sourceBadge(source),
-            if (source.toLowerCase() != 'db') ...[
-              const SizedBox(width: GVSpacing.s8),
-              if (qStatus == 'queued' || qStatus == 'processing')
-                const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
-              else
-                IconButton(
-                  icon: const Icon(Icons.add_task),
-                  tooltip: 'Add to Catalog',
-                  onPressed: (_loading || inCooldown) ? null : () async {
-                    setState(() => _importing.add(key));
-                    try { await _importRow(r); } finally { if (mounted) setState(() => _importing.remove(key)); }
-                  },
-                ),
-            ],
-          ],
-        ),
-        onTap: () => Navigator.pop(context, r),
-      ),
-    );
-  }
-}
- : '') + midOrFallback,
-                  );
-                }),
               ),
               const SizedBox(width: GVSpacing.s8),
             ],

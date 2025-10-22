@@ -1,6 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import 'package:grookai_vault/ui/tokens/spacing.dart';
+import 'package:grookai_vault/ui/widgets/list_cell.dart';
 
 class VaultItemsExtList extends StatefulWidget {
   const VaultItemsExtList({super.key});
@@ -52,8 +54,7 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
           name: name,
           setCode: setCode,
           number: number,
-          defaultVariant: 'normal',
-        ),
+                  ),
       ),
     );
 
@@ -66,6 +67,7 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('[UI] VaultItemsExtList build (rows=${_rows.length}, loading=$_loading)');
     if (_loading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -73,14 +75,15 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
       return const Center(child: Text('No items yet'));
     }
     return ListView.separated(
+      padding: const EdgeInsets.all(GVSpacing.s8),
       itemCount: _rows.length,
-      separatorBuilder: (context, _) => const Divider(height: 1),
+      separatorBuilder: (context, _) => const SizedBox(height: GVSpacing.s8),
       itemBuilder: (context, i) {
         final r = _rows[i];
         final title = (r['name'] ?? 'Card').toString();
         final sub   = '${(r['set_code'] ?? '').toString()} | ${(r['number'] ?? '').toString()}';
-        return ListTile(
-          title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+        return ListCell(
+          title: Text(title),
           subtitle: Text(sub),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => _showTiers(r),
@@ -89,3 +92,5 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
     );
   }
 }
+
+

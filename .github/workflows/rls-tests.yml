@@ -1,0 +1,20 @@
+name: RLS Tests
+on:
+  pull_request:
+  push:
+    branches: [ main, develop, staging ]
+jobs:
+  rls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Start local Supabase (ephemeral)
+        run: supabase start
+      - name: Apply migrations
+        run: supabase db reset
+      - name: Run RLS tests
+        run: supabase db test
+
