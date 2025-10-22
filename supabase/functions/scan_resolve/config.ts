@@ -7,4 +7,5 @@ export const WEIGHTS = {
 }
 export const CONF_STRONG = parseFloat(Deno.env.get('SCAN_CONF_STRONG') ?? '0.95')
 export const CONF_ACCEPT = parseFloat(Deno.env.get('SCAN_CONF_ACCEPT') ?? '0.90')
-
+export const MAX_CONCURRENT = parseInt(Deno.env.get('SCAN_MAX_CONCURRENT') ?? '4')
+export const FUNC_TIMEOUT_MS = parseInt(Deno.env.get('SCAN_FUNC_TIMEOUT_MS') ?? '5000')
