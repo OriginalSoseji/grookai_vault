@@ -13,7 +13,7 @@ class ScanFrame extends StatelessWidget {
       child: Center(
         child: CustomPaint(
           size: Size.square(size),
-          painter: _ScanFramePainter(strokeWidth: strokeWidth, color: color.withOpacity(0.9)),
+          painter: _ScanFramePainter(strokeWidth: strokeWidth, color: color.withValues(alpha: 0.9)),
         ),
       ),
     );
@@ -51,4 +51,3 @@ class _ScanFramePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
-
