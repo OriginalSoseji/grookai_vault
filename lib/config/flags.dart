@@ -14,3 +14,8 @@ final bool GV_SCAN_LAZY_IMPORT =
 
 final int GV_SCAN_LAZY_COOLDOWN_MS =
     int.tryParse(dotenv.env['GV_SCAN_LAZY_COOLDOWN_MS'] ?? '4000') ?? 4000;
+
+final int GV_SCAN_LAZY_MAX_RETRIES =
+    int.tryParse(dotenv.env['GV_SCAN_LAZY_MAX_RETRIES'] ?? '1') ?? 1;
+
+final String GV_ENV_STAGE = (dotenv.env['GV_ENV_STAGE'] ?? 'dev').toLowerCase();
