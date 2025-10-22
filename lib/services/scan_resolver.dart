@@ -25,6 +25,7 @@ class ScanResolver {
   final SupabaseClient _client;
   final ScannerEmbedService _embed;
   ScanResolver(this._client) : _embed = ScannerEmbedService(_client);
+  bool lastUsedServer = false;
 
   Future<List<ResolvedCandidate>> resolve({
     required String name,
@@ -101,6 +102,7 @@ class ScanResolver {
 
     // If we reach here means confidence is low. Try server-side resolver (P1)
     try {
+      lastUsedServer = true;
       // Import here to avoid cyclic import at top
       // ignore: avoid_dynamic_calls
       final embed = await _embed.resolve(
@@ -133,6 +135,7 @@ class ScanResolver {
       }
     } catch (e) {
       if (kDebugMode) debugPrint('[SCAN] server-resolve error $e');
+      lastUsedServer = false;
     }
     return const [];
   }

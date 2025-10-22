@@ -12,12 +12,16 @@ class ScanMetrics {
     required int candidates,
     double? bestConfidence,
     int? elapsedMs,
+    bool? usedServer,
+    bool? usedLazy,
   }) async {
     final payload = {
       'type': type,
       'candidates': candidates,
       if (bestConfidence != null) 'best_confidence': bestConfidence,
       if (elapsedMs != null) 'elapsed_ms': elapsedMs,
+      if (usedServer != null) 'used_server': usedServer,
+      if (usedLazy != null) 'used_lazy': usedLazy,
       'ts': DateTime.now().toIso8601String(),
     };
     debugPrint('[SCAN] metrics:${payload.toString()}');

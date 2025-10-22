@@ -6,8 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/scanner_ocr.dart';
 import '../../services/scan_resolver.dart';
 import '../../services/scan_metrics.dart';
+import '../../config/flags.dart';
 
-enum ScanState { idle, capturing, ocr, resolving, done }
+enum ScanState { idle, capturing, ocr, resolving, importing, done }
 
 class ScanController extends ChangeNotifier {
   final SupabaseClient supabase;
@@ -34,6 +35,8 @@ class ScanController extends ChangeNotifier {
 
   ResolvedCandidate? _chosen;
   ResolvedCandidate? get chosen => _chosen;
+  static final Map<String, DateTime> _cooldown = <String, DateTime>{};
+  bool _usedLazy = false;
 
   Future<void> processCapture(File file) async {
     if (_busy) return; // ignore duplicate taps
@@ -66,6 +69,40 @@ class ScanController extends ChangeNotifier {
         debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
       }
       _setState(ScanState.done);
+      // Lazy import integration on miss/low confidence
+      final low = _candidates.isEmpty || (_candidates.first.confidence < 0.50);
+      if (low && GV_SCAN_LAZY_IMPORT) {
+        final key = '${name.trim().toUpperCase()}|${num.trim().toUpperCase()}|${(_ocr?.languageHint ?? 'en').toUpperCase()}';
+        final until = _cooldown[key];
+        if (until != null && until.isAfter(DateTime.now())) {
+          debugPrint('[SCAN→LAZY] skip (cooldown) key=$key');
+        } else {
+          debugPrint('[SCAN→LAZY] trigger key=$key');
+          _setState(ScanState.importing);
+          _usedLazy = true;
+          try {
+            await supabase.functions.invoke('import-cards', body: {
+              'name': name,
+              'number': num,
+              'lang': _ocr?.languageHint ?? 'en',
+            });
+          } catch (_) {}
+          _cooldown[key] = DateTime.now().add(Duration(milliseconds: GV_SCAN_LAZY_COOLDOWN_MS));
+          await Future.delayed(const Duration(seconds: 3));
+          // Retry once
+          _setState(ScanState.resolving);
+          _candidates = await resolver.resolve(
+            name: name,
+            collectorNumber: num,
+            languageHint: _ocr?.languageHint,
+            imageJpegBytes: _ocr?.nameCropJpeg,
+          );
+          if (_candidates.isNotEmpty) {
+            debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
+          }
+          _setState(ScanState.done);
+        }
+      }
       // Telemetry
       final elapsed = DateTime.now().difference(t0).inMilliseconds;
       final type = _candidates.isEmpty
@@ -78,6 +115,8 @@ class ScanController extends ChangeNotifier {
         candidates: _candidates.length,
         bestConfidence: _candidates.isEmpty ? null : _candidates.first.confidence,
         elapsedMs: elapsed,
+        usedServer: resolver.lastUsedServer,
+        usedLazy: _usedLazy,
       );
     } catch (e, st) {
       if (kDebugMode) debugPrint('[SCAN] error $e\n$st');
