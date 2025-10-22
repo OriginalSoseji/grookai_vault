@@ -1,0 +1,65 @@
+name: Check Sets Nightly
+
+on:
+  schedule:
+    # Run daily at 05:10 UTC
+    - cron: '10 5 * * *'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Comma-separated set codes to restrict (optional)'
+        required: false
+      fix:
+        description: 'If true, trigger import-prices for missing sets'
+        required: false
+      throttleMs:
+        description: 'Delay between imports (default 200)'
+        required: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build request body
+        id: body
+        shell: bash
+        env:
+          INPUT_ONLY: ${{ github.event.inputs.only }}
+          INPUT_FIX: ${{ github.event.inputs.fix }}
+          INPUT_THROTTLE: ${{ github.event.inputs.throttleMs }}
+        run: |
+          ONLY_JSON=null
+          if [ -n "${INPUT_ONLY}" ]; then
+            IFS=',' read -ra ARR <<< "${INPUT_ONLY}"
+            ONLY_JSON=$(printf '"%s",' "${ARR[@]}" | sed 's/,$//')
+            ONLY_JSON="[${ONLY_JSON}]"
+          fi
+
+          FIX=${INPUT_FIX:-false}
+          THR=${INPUT_THROTTLE:-200}
+
+          if [ "${ONLY_JSON}" = "null" ]; then
+            echo BODY=$(jq -nc --argjson f ${FIX} --argjson t ${THR} '{ fix: $f, throttleMs: $t }') >> $GITHUB_OUTPUT
+          else
+            echo BODY=$(jq -nc --argjson f ${FIX} --argjson t ${THR} --argjson o ${ONLY_JSON} '{ fix: $f, throttleMs: $t, only: $o }') >> $GITHUB_OUTPUT
+          fi
+
+      - name: Invoke check-sets
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SERVICE_ROLE_KEY" ]; then
+            echo "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY secrets" >&2
+            exit 1
+          fi
+          set -e
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${SERVICE_ROLE_KEY}" \
+            -H "apikey: ${SERVICE_ROLE_KEY}" \
+            -H 'Content-Type: application/json' \
+            --data '${{ steps.body.outputs.BODY }}' \
+            "${SUPABASE_URL%/}/functions/v1/check-sets" | tee response.json
+          echo "--- Response preview ---"
+          cat response.json | jq '{ ok, total_api, total_db, missing_count, extra_count, fix }'
+

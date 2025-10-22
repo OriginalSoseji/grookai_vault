@@ -15,7 +15,11 @@ class _PriceImportPageState extends State<PriceImportPage> {
   String _source = 'tcgdex'; // or 'cardmarket'
   final _setCtrl = TextEditingController();
 
-  void _append(String m) => setState(() => _logs.add(m));
+  void _append(String m) {
+    if (!mounted) return;
+    // Ensure we update only when the widget is alive
+    setState(() => _logs.add(m));
+  }
 
   Future<void> _runAll() async {
     if (_busy) return;

@@ -94,12 +94,36 @@ async function runImportPrices(set_code: string, debug=false) {
   return await res.json().catch(()=> ({}));
 }
 
+async function runImportCards(set_code: string, pageSize = 200, throttleMs = 150) {
+  let page = 1;
+  let totalImported = 0;
+  while (true) {
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/import-cards`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "Authorization": `Bearer ${SERVICE_ROLE_KEY}`,
+        "apikey": SERVICE_ROLE_KEY,
+      },
+      body: JSON.stringify({ setCode: set_code, page, pageSize }),
+    });
+    if (!res.ok) throw new Error(`import-cards ${set_code} page=${page} -> ${res.status}: ${await res.text()}`);
+    const j = await res.json().catch(()=> ({} as any));
+    totalImported += Number(j?.imported ?? 0);
+    const next = j?.nextPageHint as number | null | undefined;
+    if (!next || next === page) break;
+    page = next;
+    if (throttleMs > 0) await new Promise(r => setTimeout(r, throttleMs));
+  }
+  return { imported: totalImported };
+}
+
 // ---- HTTP handler ----------------------------------------------------------
 
 export default {
   async fetch(req: Request) {
     try {
-      const { fix = false, throttleMs = 150, only } = await req.json().catch(()=> ({}));
+      const { fix = false, throttleMs = 150, only, fixMode = 'prices' } = await req.json().catch(()=> ({} as any));
 
       const apiSetIds = Array.isArray(only) && only.length
         ? Array.from(new Set(only.map(String))).sort()
@@ -111,29 +135,6 @@ export default {
       const db  = new Set(dbSetCodes);
 
       const missing = apiSetIds.filter(id => !db.has(id));
-const __fix = (typeof body !== "undefined" && body && Boolean(body.fix)) || false;
-if (__fix) {
-  const throttleMs = Number(body.throttleMs ?? 200);
-  const results: Array<any> = [];
-  for (const sid of missing) {
-    try {
-      const r = await importOne(sid, false);
-      results.push({
-        set: sid,
-        status: r.status,
-        fetched: r.body?.fetched ?? 0,
-        inserted: r.body?.inserted ?? 0,
-        note: r.body?.note,
-      });
-    } catch (e) {
-      results.push({ set: sid, error: String(e) });
-    }
-    await new Promise(r => setTimeout(r, throttleMs));
-  }
-  return new Response(JSON.stringify({ ok: true, tried: results.length, results }), {
-    headers: { "Content-Type": "application/json" },
-  });
-}
       const extra   = dbSetCodes.filter(code => !api.has(code));
 
       // Optional: auto-fix by seeding prices for missing sets
@@ -142,9 +143,19 @@ if (__fix) {
         for (const id of missing) {
           fixTried++;
           try {
-            const r = await runImportPrices(id, false);
-            if (typeof r?.fetched === "number") fixOk++;
-          } catch { /* count as failure */ }
+            if (fixMode === 'cards' || fixMode === 'both') {
+              await runImportCards(id, 200, throttleMs);
+            }
+            if (fixMode === 'prices' || fixMode === 'both') {
+              const r = await runImportPrices(id, false);
+              if (typeof r?.fetched === "number") fixOk++;
+            } else {
+              // If only cards were imported, count as ok
+              fixOk++;
+            }
+          } catch {
+            // count as failure
+          }
           if (throttleMs > 0) await new Promise(r => setTimeout(r, throttleMs));
         }
       }
@@ -157,7 +168,7 @@ if (__fix) {
         extra_count: extra.length,
         missing,
         extra,
-        fix: { requested: !!fix, tried: fixTried, ok: fixOk }
+        fix: { requested: !!fix, mode: String(fixMode), tried: fixTried, ok: fixOk }
       };
 
       await writeAudit({ run_at: new Date().toISOString(), ...report });

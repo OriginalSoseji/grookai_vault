@@ -126,6 +126,8 @@ class SmartCardImage extends StatelessWidget {
   final setCode = segs[2];
   final number = segs[3];
   if (setCode.isEmpty || number.isEmpty) return null;
+  // Avoid routing alias/invalid families like 'me01' into FixCardImage
+  if (setCode.toLowerCase().startsWith('me')) return null;
   return (setCode, number);
 }
 

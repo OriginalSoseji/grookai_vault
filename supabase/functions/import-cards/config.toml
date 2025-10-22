@@ -1,0 +1,3 @@
+[functions.import-cards]
+verify_jwt = false
+

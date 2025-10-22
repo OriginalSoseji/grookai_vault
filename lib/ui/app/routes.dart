@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../features/search/search_page.dart';
+import '../../features/scanner/scanner_page.dart';
 import '../../dev/price_import_page.dart';
 import '../../features/home/recently_added_page.dart';
 import '../../features/vault/vault_items_ext_list.dart';
@@ -15,6 +16,7 @@ import '../../features/alerts/alerts_page.dart';
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
     RouteNames.search: (_) => const SearchPage(),
+    RouteNames.scanner: (_) => const ScannerPage(),
     RouteNames.devPriceImport: (_) => const PriceImportPage(),
     RouteNames.recent: (_) => const RecentlyAddedPage(),
     RouteNames.vaultExt: (_) => Scaffold(

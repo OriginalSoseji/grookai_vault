@@ -1,0 +1,66 @@
+name: Check Prices Nightly
+
+on:
+  schedule:
+    # Run daily at 06:15 UTC
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Comma-separated set codes to restrict (optional)'
+        required: false
+      maxAgeDays:
+        description: 'Staleness window in days (default 7)'
+        required: false
+      dry_run:
+        description: 'If true, audit only (no imports)'
+        required: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build request body
+        id: body
+        shell: bash
+        env:
+          INPUT_ONLY: ${{ github.event.inputs.only }}
+          INPUT_MAX_AGE: ${{ github.event.inputs.maxAgeDays }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          ONLY_JSON=null
+          if [ -n "${INPUT_ONLY}" ]; then
+            IFS=',' read -ra ARR <<< "${INPUT_ONLY}"
+            # shellcheck disable=SC2016
+            ONLY_JSON=$(printf '"%s",' "${ARR[@]}" | sed 's/,$//')
+            ONLY_JSON="[${ONLY_JSON}]"
+          fi
+
+          MAX_AGE=${INPUT_MAX_AGE:-7}
+          DRY=${INPUT_DRY_RUN:-false}
+
+          if [ "${ONLY_JSON}" = "null" ]; then
+            echo BODY=$(jq -nc --argjson d ${DRY} --argjson m ${MAX_AGE} '{ maxAgeDays: $m, dry_run: $d, throttleMs: 200 }') >> $GITHUB_OUTPUT
+          else
+            echo BODY=$(jq -nc --argjson d ${DRY} --argjson m ${MAX_AGE} --argjson o ${ONLY_JSON} '{ maxAgeDays: $m, dry_run: $d, throttleMs: 200, only: $o }') >> $GITHUB_OUTPUT
+          fi
+
+      - name: Invoke check-prices
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SERVICE_ROLE_KEY" ]; then
+            echo "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY secrets" >&2
+            exit 1
+          fi
+          set -e
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${SERVICE_ROLE_KEY}" \
+            -H "apikey: ${SERVICE_ROLE_KEY}" \
+            -H 'Content-Type: application/json' \
+            --data '${{ steps.body.outputs.BODY }}' \
+            "${SUPABASE_URL%/}/functions/v1/check-prices" | tee response.json
+          echo "--- Response preview ---"
+          cat response.json | jq '{ ok, cutoff, to_import, triggered, considered_sets, total_sets }'
+

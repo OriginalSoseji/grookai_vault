@@ -61,8 +61,8 @@ Deno.serve(async (req) => {
     }
 
     // Read secrets once (probe/ingest/importer use these)
-    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
-    const SERVICE_ROLE_KEY = Deno.env.get("SERVICE_ROLE_KEY");
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? Deno.env.get("PROJECT_URL");
+    const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SERVICE_ROLE_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY");
     const POKEMONTCG_API_KEY = Deno.env.get("POKEMONTCG_API_KEY");
     const POKEMON_GAME_ID = Deno.env.get("POKEMON_GAME_ID");
 

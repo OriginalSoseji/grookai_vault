@@ -1,5 +1,6 @@
-﻿import "dart:async";
+import "dart:async";
 import "package:http/http.dart" as http;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Resolves a working image URL for a card, trying multiple CDNs/paths.
 /// Caches successes to avoid repeated network checks.
@@ -17,49 +18,34 @@ class CardImageResolver {
     final key = '$sc|$num|${tcgplayerId ?? ""}';
     if (_cache.containsKey(key)) return _cache[key];
 
-    // final series = _seriesFor(sc); // not currently used
-
-    // Special-case: EX Trainer Kit 2 (ex5.5/ex5pt5)
+    // Special-case flags
     final isTk2 = (sc == 'ex5pt5' || sc == 'ex5.5');
+    final isSLG = (sc == 'sm3.5' || sc == 'sm3pt5');
 
-final isSLG = (sc == 'sm3.5' || sc == 'sm3pt5');
-final candidates = <String>[
-  // --- TCGdex (series-aware) ---
-  if (!(sc.endsWith('p')))
-    if (isTk2)
-      'https://assets.tcgdex.net/en/ex/tk2//high.png'
-    else
-      'https://assets.tcgdex.net/en////high.png',
-  if (!(sc.endsWith('p')))
-    if (isTk2)
-      'https://assets.tcgdex.net/en/ex/tk2//high.webp'
-    else
-      'https://assets.tcgdex.net/en////high.webp',
-  if (!(sc.endsWith('p')))
-    if (isTk2)
-      'https://assets.tcgdex.net/en/ex/tk2//normal.png'
-    else
-      'https://assets.tcgdex.net/en////normal.png',
+    final candidates = <String>[
+      // --- TCGdex (series-aware) ---
+      if (!sc.endsWith('p'))
+        if (isTk2)
+          'https://assets.tcgdex.net/en/ex/tk2/$num/high.png'
+        else
+          tcgdexFromSetAndNumber(setCode: sc, number: num),
+      if (!sc.endsWith('p'))
+        if (isTk2)
+          'https://assets.tcgdex.net/en/ex/tk2/$num/high.webp'
+        else
+          ensureTcgdexImageUrl(tcgdexFromSetAndNumber(setCode: sc, number: num).replaceAll('/high.png', '')),
 
-  // --- PokemonTCG.io (aliases + case-flex) ---
-  if (isTk2) 'https://images.pokemontcg.io/tk2/_hires.png',
-  if (isTk2) 'https://images.pokemontcg.io/tk2/.png',
+      // --- PokemonTCG.io (aliases + case-flex) ---
+      if (isTk2) 'https://images.pokemontcg.io/tk2/${num}_hires.png',
+      if (isTk2) 'https://images.pokemontcg.io/tk2/.png',
+      if (isSLG) 'https://images.pokemontcg.io/slg/${num}_hires.png',
+      if (isSLG) 'https://images.pokemontcg.io/slg/.png',
+      'https://images.pokemontcg.io/$sc/${num}_hires.png',
+      'https://images.pokemontcg.io/$sc/.png',
 
-  if (isSLG) 'https://images.pokemontcg.io/slg/_hires.png',
-  if (isSLG) 'https://images.pokemontcg.io/slg/.png',
-
-  'https://images.pokemontcg.io//_hires.png',
-  'https://images.pokemontcg.io//.png',
-
-  // try case variants for stubborn sets (e.g., A1a)
-  'https://images.pokemontcg.io//_hires.png',
-  'https://images.pokemontcg.io//.png',
-  'https://images.pokemontcg.io//_hires.png',
-  'https://images.pokemontcg.io//.png',
-
-  if (tcgplayerId != null && tcgplayerId.isNotEmpty)
-    'https://tcgplayer-cdn.tcgplayer.com/product/_in_500x500.jpg',
-];
+      if (tcgplayerId != null && tcgplayerId.isNotEmpty)
+        'https://tcgplayer-cdn.tcgplayer.com/product/_in_500x500.jpg',
+    ];
 
     for (final url in candidates) {
       if (await _isReachable(url, timeout)) {
@@ -88,29 +74,7 @@ final candidates = <String>[
 
   static String _normalizeSet(String setCode) {
     final raw = setCode.trim().toLowerCase();
-    // normalize .5 -> pt5 (sv8.5 -> sv8pt5, swsh12.5 -> swsh12pt5, ex5.5 -> ex5pt5)
     return raw.replaceAll('.5', 'pt5');
-  }
-
-// ignore: unused_element
-  static String _seriesFor(String sc) {
-    if (sc.startsWith('sv')) return 'sv';
-    if (sc.startsWith('swsh')) return 'swsh';
-    if (sc.startsWith('sm')) return 'sm';
-    if (sc.startsWith('xy')) return 'xy';
-    if (sc.startsWith('bw')) return 'bw';
-    if (sc.startsWith('dp')) return 'dp';
-    if (sc.startsWith('hgss')) return 'hgss';
-    if (sc.startsWith('ex')) return 'ex';
-    if (sc.startsWith('pop')) return 'pop';
-    if (sc.startsWith('base')) return 'base';
-    if (sc.startsWith('gym')) return 'gym';
-    if (sc.startsWith('neo')) return 'neo';
-    if (sc.startsWith('ecard')) return 'ecard';
-    if (sc == 'lc') return 'lc';
-    if (sc == 'np' || sc.endsWith('p')) return 'promo';
-    final m = RegExp(r'^[a-z]+').firstMatch(sc);
-    return m?.group(0) ?? 'sv';
   }
 
   static String _numSlug(String number) {
@@ -123,6 +87,76 @@ final candidates = <String>[
   }
 }
 
+/// --- Centralized helpers (no network) ---
+
+/// Append quality suffix for tcgdex assets if missing.
+String ensureTcgdexImageUrl(String url) {
+  final u = url.trim();
+  if (u.isEmpty) return u;
+  try {
+    final uri = Uri.parse(u);
+    final host = uri.host.toLowerCase();
+    final hasExt = RegExp(r"\.(png|jpg|jpeg|webp)$", caseSensitive: false).hasMatch(uri.path);
+    if (host.contains('tcgdex.net') && !hasExt) {
+      var path = uri.path;
+      if (!path.endsWith('/')) path = '$path/';
+      return uri.replace(path: '$path' 'high.png').toString();
+    }
+  } catch (_) {}
+  return u;
+}
+
+/// Heuristic tcgdex asset URL from set_code/number.
+String tcgdexFromSetAndNumber({String lang = 'en', required String setCode, required String number}) {
+  final sc = setCode.trim().toLowerCase();
+  final num = number.trim().toLowerCase();
+  if (RegExp(r'^g\d+$').hasMatch(sc)) {
+    return 'https://assets.tcgdex.net/$lang/xy/$sc/$num/high.png';
+  }
+  if (sc == 'ex5.5' || sc == 'ex5pt5' || sc == 'tk2') {
+    return 'https://assets.tcgdex.net/$lang/ex/tk2/$num/high.png';
+  }
+  if (sc.startsWith('me')) {
+    return '';
+  }
+  String series = 'base';
+  if (sc.startsWith('sv')) { series = 'sv'; }
+  else if (sc.startsWith('sm')) { series = 'sm'; }
+  else if (sc.startsWith('bw')) { series = 'bw'; }
+  else if (sc.startsWith('xy')) { series = 'xy'; }
+  else if (sc.startsWith('base')) { series = 'base'; }
+  else { series = sc.replaceAll(RegExp(r'[^a-z]'), ''); }
+  return 'https://assets.tcgdex.net/$lang/$series/$sc/$num/high.png';
+}
+
+/// Normalizes a raw image URL or storage path into a usable URL.
+String toImageUrl(dynamic raw) {
+  if (raw == null) return '';
+  String s = raw.toString().trim();
+  if (s.isEmpty) return '';
+  if (s.startsWith('http://') || s.startsWith('https://')) {
+    return ensureTcgdexImageUrl(s);
+  }
+  try {
+    return Supabase.instance.client.storage.from('public').getPublicUrl(s);
+  } catch (_) {
+    return '';
+  }
+}
+
+/// Builds best-effort image URL from a DB row.
+String imageUrlFromRow(Map row, {String lang = 'en'}) {
+  final direct = (row['image_url'] ?? row['photo_url'] ?? row['image'] ?? '').toString().trim();
+  if (direct.isNotEmpty) return toImageUrl(direct);
+  final path = (row['image_path'] ?? '').toString().trim();
+  if (path.isNotEmpty) return toImageUrl(path);
+  final setCode = (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '').toString().trim();
+  final number  = (row['number'] ?? row['collector_number'] ?? '').toString().trim();
+  if (setCode.isNotEmpty && number.isNotEmpty) {
+    return tcgdexFromSetAndNumber(lang: lang, setCode: setCode, number: number);
+  }
+  return '';
+}
 
 
 

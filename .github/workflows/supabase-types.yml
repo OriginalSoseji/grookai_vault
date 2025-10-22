@@ -1,0 +1,40 @@
+name: Supabase Types Auto-Refresh
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/functions/**'
+  push:
+    branches: [ main, develop, staging ]
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/functions/**'
+
+jobs:
+  gen-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+
+      - name: Generate DB types (TypeScript)
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DB_URL:-}" ]; then
+            echo "::notice ::SUPABASE_DB_URL not set; skipping types generation."
+            exit 0
+          fi
+          mkdir -p supabase/types
+          supabase gen types typescript --db-url "$DB_URL" > supabase/types/database.types.ts
+
+      - name: Commit updated types (if changed)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(types): refresh Supabase DB types'
+          file_pattern: supabase/types/database.types.ts
+
