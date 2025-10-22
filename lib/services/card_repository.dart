@@ -38,8 +38,8 @@ class CardRepository {
       final Map<String, dynamic> m = d is Map<String, dynamic>
           ? d
           : (d is String
-              ? (json.decode(d) as Map<String, dynamic>)
-              : <String, dynamic>{});
+                ? (json.decode(d) as Map<String, dynamic>)
+                : <String, dynamic>{});
       if (m['card'] != null) return Map<String, dynamic>.from(m['card']);
     } catch (_) {}
     return null;

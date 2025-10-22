@@ -61,7 +61,9 @@ class VaultService {
     };
     // ignore: avoid_print
     print('[UPSERT] vault_items $payload');
-    await _client.from('vault_items').upsert(payload, onConflict: 'user_id,card_id');
+    await _client
+        .from('vault_items')
+        .upsert(payload, onConflict: 'user_id,card_id');
 
     // Load current qty and increment
     final existing = await _client
@@ -83,7 +85,11 @@ class VaultService {
 
     await _client.from('vault_items').update({'qty': next}).eq('id', id);
 
-    final after = await _client.from('vault_items').select('*').eq('id', id).single();
+    final after = await _client
+        .from('vault_items')
+        .select('*')
+        .eq('id', id)
+        .single();
 
     // ignore: avoid_print
     print('[UPSERT OK] id=$id qty $cur -> $next');
@@ -143,7 +149,11 @@ class VaultService {
     };
     // ignore: avoid_print
     print('[INSERT] vault_items $payload');
-    final res = await _client.from('vault_items').insert(payload).select().single();
+    final res = await _client
+        .from('vault_items')
+        .insert(payload)
+        .select()
+        .single();
     // ignore: avoid_print
     print('[INSERT OK] $res');
     return Map<String, dynamic>.from(res);

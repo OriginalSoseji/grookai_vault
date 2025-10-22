@@ -32,14 +32,18 @@ class _ScanPageState extends State<ScanPage> {
 
       await supabase.storage.from('scans').upload(objectPath, file);
 
-      final signedUrl =
-          await supabase.storage.from('scans').createSignedUrl(objectPath, 60 * 60 * 24 * 7);
+      final signedUrl = await supabase.storage
+          .from('scans')
+          .createSignedUrl(objectPath, 60 * 60 * 24 * 7);
 
-      final res = await supabase.functions.invoke('intake-scan', body: {
-        'user_id': uid,
-        'object_path': objectPath,
-        'signed_url': signedUrl,
-      });
+      final res = await supabase.functions.invoke(
+        'intake-scan',
+        body: {
+          'user_id': uid,
+          'object_path': objectPath,
+          'signed_url': signedUrl,
+        },
+      );
 
       final data = Map<String, dynamic>.from(res.data ?? {});
       if (data.isEmpty) throw Exception('No data from intake-scan');
@@ -57,33 +61,42 @@ class _ScanPageState extends State<ScanPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(children: [
-                AsyncImage(
-                  (card['image_url'] ?? '').toString(),
-                  width: 44,
-                  height: 44,
-                ),
-                const SizedBox(width: GVSpacing.s8),
-                Expanded(
-                  child: Text(
-                    '${card['name'] ?? 'Card'} - ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
-                    maxLines: 2,
+              Row(
+                children: [
+                  AsyncImage(
+                    (card['image_url'] ?? '').toString(),
+                    width: 44,
+                    height: 44,
                   ),
-                ),
-              ]),
+                  const SizedBox(width: GVSpacing.s8),
+                  Expanded(
+                    child: Text(
+                      '${card['name'] ?? 'Card'} - ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: GVSpacing.s8),
               Text('Condition: $label'),
-              Text('Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}'),
+              Text(
+                'Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}',
+              ),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
+            ),
           ],
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -110,4 +123,3 @@ class _ScanPageState extends State<ScanPage> {
     );
   }
 }
-

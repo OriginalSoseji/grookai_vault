@@ -1,4 +1,4 @@
-﻿import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<List<Map<String, dynamic>>> fetchCardsByName(String q) async {
   final supa = Supabase.instance.client;
@@ -11,7 +11,3 @@ Future<List<Map<String, dynamic>>> fetchCardsByName(String q) async {
 
   return (rows as List).cast<Map<String, dynamic>>();
 }
-
-
-
-

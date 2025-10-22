@@ -9,7 +9,7 @@ String _normNum(String n) {
   if (m != null) {
     final parsed = int.tryParse(m.group(1) ?? '') ?? 0;
     final suf = (m.group(2) ?? '').toLowerCase();
-    return parsed.toString().padLeft(3, '0') + suf;   // 1a -> 001a
+    return parsed.toString().padLeft(3, '0') + suf; // 1a -> 001a
   }
   if (RegExp(r'^\d+$').hasMatch(core)) {
     final v = int.tryParse(core) ?? 0;
@@ -68,13 +68,15 @@ class PriceService {
     final set = _normSet(setCode);
     final num = _normNum(number);
 
-    final rows = await _supa
-        .from('v_latest_print_prices')
-        .select('source,observed_at')
-        .eq('set_code', set)
-        .eq('number', num)
-        .order('observed_at', ascending: false)
-        .limit(20) as List;
+    final rows =
+        await _supa
+                .from('v_latest_print_prices')
+                .select('source,observed_at')
+                .eq('set_code', set)
+                .eq('number', num)
+                .order('observed_at', ascending: false)
+                .limit(20)
+            as List;
 
     final out = <String>[];
     for (final r in rows) {

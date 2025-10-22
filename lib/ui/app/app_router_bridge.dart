@@ -13,4 +13,3 @@ class AppRouterBridge extends StatelessWidget {
     return child;
   }
 }
-

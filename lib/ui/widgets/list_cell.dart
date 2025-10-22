@@ -10,7 +10,14 @@ class ListCell extends StatelessWidget {
   final Widget? subtitle;
   final Widget? trailing;
   final VoidCallback? onTap;
-  const ListCell({super.key, this.leading, required this.title, this.subtitle, this.trailing, this.onTap});
+  const ListCell({
+    super.key,
+    this.leading,
+    required this.title,
+    this.subtitle,
+    this.trailing,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,9 @@ class ListCell extends StatelessWidget {
                     if (subtitle != null) ...[
                       const SizedBox(height: GVSpacing.s4),
                       DefaultTextStyle.merge(
-                        style: gv.typography.footnote.copyWith(color: gv.colors.textSecondary),
+                        style: gv.typography.footnote.copyWith(
+                          color: gv.colors.textSecondary,
+                        ),
                         child: subtitle!,
                       ),
                     ],
@@ -62,4 +71,3 @@ class ListCell extends StatelessWidget {
     );
   }
 }
-

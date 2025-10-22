@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:grookai_vault/widgets/smart_card_image.dart';
 
 /// Drop-in replacement for any old image helper:
@@ -29,19 +29,25 @@ String imageBestFromRow(Map row) {
   String s1(dynamic v) => (v ?? '').toString().trim();
 
   // Direct URL fields commonly found
-  final direct = s1(row['image_best'] ?? row['image_url'] ?? row['photo_url'] ?? row['image']);
-  if (direct.isNotEmpty && (direct.startsWith('http://') || direct.startsWith('https://'))) {
+  final direct = s1(
+    row['image_best'] ?? row['image_url'] ?? row['photo_url'] ?? row['image'],
+  );
+  if (direct.isNotEmpty &&
+      (direct.startsWith('http://') || direct.startsWith('https://'))) {
     return direct;
   }
 
   // Some rows have relative path; return as-is for upstream resolvers to handle
   final path = s1(row['image_path']);
-  if (path.isNotEmpty && (path.startsWith('http://') || path.startsWith('https://'))) {
+  if (path.isNotEmpty &&
+      (path.startsWith('http://') || path.startsWith('https://'))) {
     return path;
   }
 
   // Build from set code + number via TCGDex convention
-  final setCode = s1(row['set_code'] ?? row['set'] ?? row['set_name']).toLowerCase();
+  final setCode = s1(
+    row['set_code'] ?? row['set'] ?? row['set_name'],
+  ).toLowerCase();
   final number = s1(row['number'] ?? row['collector_number']).toLowerCase();
   if (setCode.isNotEmpty && number.isNotEmpty) {
     String series;

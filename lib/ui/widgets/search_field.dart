@@ -7,7 +7,12 @@ class SearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
   final String hintText;
-  const SearchField({super.key, required this.controller, this.onChanged, required this.hintText});
+  const SearchField({
+    super.key,
+    required this.controller,
+    this.onChanged,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,10 @@ class SearchField extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         placeholder: hintText,
-        padding: const EdgeInsets.symmetric(horizontal: GVSpacing.s8, vertical: GVSpacing.s8),
+        padding: const EdgeInsets.symmetric(
+          horizontal: GVSpacing.s8,
+          vertical: GVSpacing.s8,
+        ),
       );
     }
     return TextField(
@@ -33,4 +41,3 @@ class SearchField extends StatelessWidget {
     );
   }
 }
-

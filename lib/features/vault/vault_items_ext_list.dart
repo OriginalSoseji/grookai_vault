@@ -43,18 +43,15 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
   }
 
   Future<void> _showTiers(Map<String, dynamic> r) async {
-    final name    = (r['name'] ?? 'Card').toString();
+    final name = (r['name'] ?? 'Card').toString();
     final setCode = (r['set_code'] ?? '').toString();
-    final number  = (r['number'] ?? '').toString();
+    final number = (r['number'] ?? '').toString();
 
     // Async navigation OUTSIDE setState (fixes your crash)
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => PriceTiersPage(
-          name: name,
-          setCode: setCode,
-          number: number,
-                  ),
+        builder: (_) =>
+            PriceTiersPage(name: name, setCode: setCode, number: number),
       ),
     );
 
@@ -67,7 +64,9 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('[UI] VaultItemsExtList build (rows=${_rows.length}, loading=$_loading)');
+    debugPrint(
+      '[UI] VaultItemsExtList build (rows=${_rows.length}, loading=$_loading)',
+    );
     if (_loading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -81,7 +80,8 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
       itemBuilder: (context, i) {
         final r = _rows[i];
         final title = (r['name'] ?? 'Card').toString();
-        final sub   = '${(r['set_code'] ?? '').toString()} | ${(r['number'] ?? '').toString()}';
+        final sub =
+            '${(r['set_code'] ?? '').toString()} | ${(r['number'] ?? '').toString()}';
         return ListCell(
           title: Text(title),
           subtitle: Text(sub),
@@ -92,5 +92,3 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
     );
   }
 }
-
-

@@ -15,22 +15,30 @@ class _DevAdminPageState extends State<DevAdminPage> {
   String _log = '';
 
   Future<void> _runCheckSets() async {
-    setState(() { _busy = true; _log = ''; });
+    setState(() {
+      _busy = true;
+      _log = '';
+    });
     try {
-      final body = {
-        'fix': !_dryRun,
-        'fixMode': 'both',
-        'throttleMs': 200,
-      };
+      final body = {'fix': !_dryRun, 'fixMode': 'both', 'throttleMs': 200};
       final res = await supabase.functions.invoke('check-sets', body: body);
-      setState(() { _log = const JsonEncoder.withIndent('  ').convert(res.data); });
+      setState(() {
+        _log = const JsonEncoder.withIndent('  ').convert(res.data);
+      });
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('check-sets completed')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('check-sets completed')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('check-sets failed: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('check-sets failed: $e')));
     } finally {
-      if (mounted) setState(() { _busy = false; });
+      if (mounted)
+        setState(() {
+          _busy = false;
+        });
     }
   }
 
@@ -43,11 +51,16 @@ class _DevAdminPageState extends State<DevAdminPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(children: [
-              Switch(value: _dryRun, onChanged: (v) => setState(() => _dryRun = v)),
-              const SizedBox(width: 8),
-              const Text('Dry run (no imports)')
-            ]),
+            Row(
+              children: [
+                Switch(
+                  value: _dryRun,
+                  onChanged: (v) => setState(() => _dryRun = v),
+                ),
+                const SizedBox(width: 8),
+                const Text('Dry run (no imports)'),
+              ],
+            ),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: _busy ? null : _runCheckSets,
@@ -62,7 +75,9 @@ class _DevAdminPageState extends State<DevAdminPage> {
                   color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: SingleChildScrollView(child: Text(_log.isEmpty ? 'Logs will appear here.' : _log)),
+                child: SingleChildScrollView(
+                  child: Text(_log.isEmpty ? 'Logs will appear here.' : _log),
+                ),
               ),
             ),
           ],

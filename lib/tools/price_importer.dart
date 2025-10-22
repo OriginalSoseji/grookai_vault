@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Calls your `import-prices` Edge Function and pages until the server says end=true.
@@ -122,5 +122,3 @@ class PriceImporter {
     }
   }
 }
-
-

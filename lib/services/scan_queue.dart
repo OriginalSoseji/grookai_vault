@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/foundation.dart';
+import 'package:grookai_vault/services/scan_resolver.dart';
 
 class ScanQueueItem {
   final String name;
@@ -8,7 +11,13 @@ class ScanQueueItem {
   final String lang;
   final List<int>? imageJpegBytes;
   final DateTime ts;
-  ScanQueueItem({required this.name, required this.number, required this.lang, this.imageJpegBytes, required this.ts});
+  ScanQueueItem({
+    required this.name,
+    required this.number,
+    required this.lang,
+    this.imageJpegBytes,
+    required this.ts,
+  });
   Map<String, dynamic> toJson() => {
     'name': name,
     'number': number,
@@ -27,14 +36,94 @@ class ScanQueueItem {
 
 class ScanQueue {
   static const _file = 'scan_queue.json';
-  Future<File> _path() async { final dir = await getApplicationDocumentsDirectory(); return File('${dir.path}/$_file'); }
+  Future<File> _path() async {
+    final dir = await getApplicationDocumentsDirectory();
+    return File('${dir.path}/$_file');
+  }
+
+  bool _syncing = false;
 
   Future<List<ScanQueueItem>> load() async {
-    try { final f = await _path(); if (!await f.exists()) return []; final txt = await f.readAsString(); final list = (jsonDecode(txt) as List).cast<dynamic>(); return list.map((e)=>ScanQueueItem.fromJson((e as Map).cast<String,dynamic>())).toList(); } catch (_) { return []; }
+    try {
+      final f = await _path();
+      if (!await f.exists()) return [];
+      final txt = await f.readAsString();
+      final list = (jsonDecode(txt) as List).cast<dynamic>();
+      return list
+          .map(
+            (e) => ScanQueueItem.fromJson((e as Map).cast<String, dynamic>()),
+          )
+          .toList();
+    } catch (_) {
+      return [];
+    }
   }
-  Future<void> save(List<ScanQueueItem> items) async { final f = await _path(); await f.writeAsString(jsonEncode(items.map((e)=>e.toJson()).toList())); }
-  Future<void> enqueue(ScanQueueItem it) async { final list = await load(); list.add(it); await save(list); }
-  Future<ScanQueueItem?> peek() async { final list = await load(); return list.isEmpty ? null : list.first; }
-  Future<void> removeFirst() async { final list = await load(); if (list.isEmpty) return; list.removeAt(0); await save(list); }
-}
 
+  Future<void> save(List<ScanQueueItem> items) async {
+    final f = await _path();
+    await f.writeAsString(jsonEncode(items.map((e) => e.toJson()).toList()));
+  }
+
+  Future<void> enqueue(ScanQueueItem it) async {
+    final list = await load();
+    list.add(it);
+    await save(list);
+  }
+
+  Future<ScanQueueItem?> peek() async {
+    final list = await load();
+    return list.isEmpty ? null : list.first;
+  }
+
+  Future<void> removeFirst() async {
+    final list = await load();
+    if (list.isEmpty) return;
+    list.removeAt(0);
+    await save(list);
+  }
+
+  Future<bool> _online() async {
+    try {
+      await Supabase.instance.client.functions
+          .invoke('keep_alive')
+          .timeout(const Duration(seconds: 3));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Idempotent background sync: tries to process a few queued items if online.
+  Future<void> syncIfOnline({int maxItems = 3}) async {
+    if (_syncing) return;
+    if (!await _online()) return;
+    _syncing = true;
+    debugPrint('[OFFLINE] sync tick');
+    try {
+      final client = Supabase.instance.client;
+      final resolver = ScanResolver(client);
+      for (int i = 0; i < maxItems; i++) {
+        final it = await peek();
+        if (it == null) break;
+        try {
+          final res = await resolver.resolve(
+            name: it.name,
+            collectorNumber: it.number,
+            languageHint: it.lang,
+            imageJpegBytes: it.imageJpegBytes,
+          );
+          if (res.isNotEmpty) {
+            await removeFirst();
+            debugPrint('[OFFLINE] synced');
+          } else {
+            break; // stop early if still unresolved
+          }
+        } catch (_) {
+          break;
+        }
+      }
+    } finally {
+      _syncing = false;
+    }
+  }
+}

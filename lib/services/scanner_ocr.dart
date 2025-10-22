@@ -8,11 +8,18 @@ class OcrResult {
   final String collectorNumber;
   final String? languageHint; // e.g., 'en'
   final List<int>? nameCropJpeg;
-  OcrResult({required this.name, required this.collectorNumber, this.languageHint, this.nameCropJpeg});
+  OcrResult({
+    required this.name,
+    required this.collectorNumber,
+    this.languageHint,
+    this.nameCropJpeg,
+  });
 }
 
 class ScannerOcr {
-  final TextRecognizer _text = TextRecognizer(script: TextRecognitionScript.latin);
+  final TextRecognizer _text = TextRecognizer(
+    script: TextRecognitionScript.latin,
+  );
 
   Future<OcrResult> extract(File imageFile) async {
     // Load image and prepare two crops to improve accuracy
@@ -26,9 +33,21 @@ class ScannerOcr {
       final h = decoded.height;
       final w = decoded.width;
       final bottomH = (h * 0.26).round().clamp(1, h);
-      final numCrop = img.copyCrop(decoded, x: 0, y: h - bottomH, width: w, height: bottomH);
+      final numCrop = img.copyCrop(
+        decoded,
+        x: 0,
+        y: h - bottomH,
+        width: w,
+        height: bottomH,
+      );
       final topH = (h * 0.36).round().clamp(1, h);
-      final nameCrop = img.copyCrop(decoded, x: 0, y: 0, width: w, height: topH);
+      final nameCrop = img.copyCrop(
+        decoded,
+        x: 0,
+        y: 0,
+        width: w,
+        height: topH,
+      );
 
       // Recognize number band
       try {
@@ -71,18 +90,31 @@ class ScannerOcr {
     }
 
     final allText = [...nameLines, ...numLines, ...fullLines].join('\n');
-    if (kDebugMode) debugPrint('[SCAN] ocr.lines name=${nameLines.length} num=${numLines.length} full=${fullLines.length}');
+    if (kDebugMode)
+      debugPrint(
+        '[SCAN] ocr.lines name=${nameLines.length} num=${numLines.length} full=${fullLines.length}',
+      );
 
     // Collector number from number-band first, then fallback to all text
-    String number = _extractCollectorNumber(numLines.join(' ')) ?? _extractCollectorNumber(allText) ?? '';
+    String number =
+        _extractCollectorNumber(numLines.join(' ')) ??
+        _extractCollectorNumber(allText) ??
+        '';
     number = _normalizeNumber(number);
 
     // Name from name-band first, then fallback to all text lines
-    String name = _extractName(nameLines.isNotEmpty ? nameLines : fullLines) ?? '';
+    String name =
+        _extractName(nameLines.isNotEmpty ? nameLines : fullLines) ?? '';
 
     final lang = _guessLang(allText) ?? 'en';
-    if (kDebugMode) debugPrint('[SCAN] ocr: name="$name" number="$number" lang="$lang"');
-    return OcrResult(name: name, collectorNumber: number, languageHint: lang, nameCropJpeg: nameCropJpeg);
+    if (kDebugMode)
+      debugPrint('[SCAN] ocr: name="$name" number="$number" lang="$lang"');
+    return OcrResult(
+      name: name,
+      collectorNumber: number,
+      languageHint: lang,
+      nameCropJpeg: nameCropJpeg,
+    );
   }
 
   String? _extractName(List<String> lines) {
@@ -95,19 +127,22 @@ class ScannerOcr {
       if (alpha.hasMatch(s)) return s;
     }
     // fallback: longest line
-    return lines.isEmpty ? null : (lines..sort((a,b)=>b.length.compareTo(a.length))).first.trim();
+    return lines.isEmpty
+        ? null
+        : (lines..sort((a, b) => b.length.compareTo(a.length))).first.trim();
   }
 
   String? _extractCollectorNumber(String text) {
     final t = text.replaceAll('\n', ' ');
     // Match N/D form e.g., 12/190 or 3/102
-    final m = RegExp(r'\b([A-Z]*\d{1,3}\s*/\s*\d{1,3})\b', caseSensitive: false).firstMatch(t);
+    final m = RegExp(
+      r'\b([A-Z]*\d{1,3}\s*/\s*\d{1,3})\b',
+      caseSensitive: false,
+    ).firstMatch(t);
     if (m != null) return m.group(1)!.replaceAll(' ', '');
     // Fallback: standalone like RC23 or SV-P
     final m2 = RegExp(r'\b([A-Z]{0,3}\d{1,3}[A-Z]{0,2})\b').firstMatch(t);
-    if (m2 != null) return m2.group(1)!
-      .replaceAll(' ', '')
-      .toUpperCase();
+    if (m2 != null) return m2.group(1)!.replaceAll(' ', '').toUpperCase();
     return null;
   }
 
@@ -115,7 +150,9 @@ class ScannerOcr {
     final lc = text.toLowerCase();
     if (lc.contains('pokemon')) return 'en';
     // Quick & naive: Japanese kana/kanji
-    final hasKana = RegExp(r'[\u3040-\u30ff]').hasMatch(text); // Hiragana/Katakana
+    final hasKana = RegExp(
+      r'[\u3040-\u30ff]',
+    ).hasMatch(text); // Hiragana/Katakana
     final hasHan = RegExp(r'[\u4e00-\u9fff]').hasMatch(text); // CJK unified
     if (hasKana) return 'ja';
     if (hasHan) return 'zh';
@@ -147,7 +184,9 @@ class ScannerOcr {
 
   Future<File> _writeTempJpg(img.Image im) async {
     final tmpDir = Directory.systemTemp.createTempSync('scan_');
-    final f = File('${tmpDir.path}/crop_${DateTime.now().microsecondsSinceEpoch}.jpg');
+    final f = File(
+      '${tmpDir.path}/crop_${DateTime.now().microsecondsSinceEpoch}.jpg',
+    );
     final bytes = img.encodeJpg(im, quality: 92);
     await f.writeAsBytes(bytes, flush: true);
     return f;

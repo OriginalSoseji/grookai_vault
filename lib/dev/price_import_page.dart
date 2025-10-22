@@ -1,4 +1,4 @@
-﻿// lib/dev/price_import_page.dart
+// lib/dev/price_import_page.dart
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../tools/price_importer.dart';
@@ -41,7 +41,11 @@ class _PriceImportPageState extends State<PriceImportPage> {
     setState(() => _busy = true);
     try {
       final importer = PriceImporter(Supabase.instance.client);
-      final total = await importer.importSet(code, source: _source, log: _append);
+      final total = await importer.importSet(
+        code,
+        source: _source,
+        log: _append,
+      );
       _append('-- $code total: $total');
     } catch (e) {
       _append('ERROR: $e');
@@ -64,52 +68,67 @@ class _PriceImportPageState extends State<PriceImportPage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(children: [
-              Expanded(
-                child: DropdownButtonFormField<String>(
-                  initialValue: _source,
-                  items: const [
-                    DropdownMenuItem(value: 'tcgdex', child: Text('TCGplayer (USD)')),
-                    DropdownMenuItem(value: 'cardmarket', child: Text('Cardmarket (EUR)')),
-                  ],
-                  onChanged: _busy ? null : (v) => setState(() => _source = v ?? 'tcgdex'),
-                  decoration: const InputDecoration(labelText: 'Source'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: TextField(
-                  controller: _setCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Set code (optional)',
-                    hintText: 'e.g., sv6',
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownButtonFormField<String>(
+                    initialValue: _source,
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'tcgdex',
+                        child: Text('TCGplayer (USD)'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'cardmarket',
+                        child: Text('Cardmarket (EUR)'),
+                      ),
+                    ],
+                    onChanged: _busy
+                        ? null
+                        : (v) => setState(() => _source = v ?? 'tcgdex'),
+                    decoration: const InputDecoration(labelText: 'Source'),
                   ),
                 ),
-              ),
-            ]),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: TextField(
+                    controller: _setCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Set code (optional)',
+                      hintText: 'e.g., sv6',
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 12),
-            Row(children: [
-              Expanded(
-                child: FilledButton.icon(
-                  onPressed: _busy ? null : _runOne,
-                  icon: const Icon(Icons.play_arrow),
-                  label: const Text('Import One Set'),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: _busy ? null : _runOne,
+                    icon: const Icon(Icons.play_arrow),
+                    label: const Text('Import One Set'),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _busy ? null : _runAll,
-                  icon: const Icon(Icons.all_inclusive),
-                  label: const Text('Import ALL Sets'),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: _busy ? null : _runAll,
+                    icon: const Icon(Icons.all_inclusive),
+                    label: const Text('Import ALL Sets'),
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
             const SizedBox(height: 12),
             const Divider(),
             const Align(
               alignment: Alignment.centerLeft,
-              child: Text('Logs', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Text(
+                'Logs',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 8),
             Expanded(
@@ -121,7 +140,10 @@ class _PriceImportPageState extends State<PriceImportPage> {
                 child: ListView.builder(
                   itemCount: _logs.length,
                   itemBuilder: (_, i) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 6,
+                    ),
                     child: Text(_logs[i]),
                   ),
                 ),
@@ -133,5 +155,3 @@ class _PriceImportPageState extends State<PriceImportPage> {
     );
   }
 }
-
-

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../widgets/big_card_image.dart';
 import 'package:grookai_vault/ui/app/theme.dart';
 import 'package:grookai_vault/ui/tokens/spacing.dart';
@@ -16,12 +16,7 @@ class CardDetailPage extends StatelessWidget {
     final number = row['number'] ?? '';
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          title,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
+      appBar: AppBar(title: Text(title, overflow: TextOverflow.ellipsis)),
       body: ListView(
         padding: const EdgeInsets.all(GVSpacing.s16),
         children: [
@@ -29,26 +24,35 @@ class CardDetailPage extends StatelessWidget {
           BigCardImage(row: row),
           const SizedBox(height: GVSpacing.s16),
 
-          Builder(builder: (context) {
-            final gv = GVTheme.of(context);
-            return Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: gv.typography.title.copyWith(fontWeight: FontWeight.w700, color: gv.colors.textPrimary),
-                    overflow: TextOverflow.ellipsis,
+          Builder(
+            builder: (context) {
+              final gv = GVTheme.of(context);
+              return Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: gv.typography.title.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: gv.colors.textPrimary,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                const SizedBox(width: GVSpacing.s8),
-                if ((row['condition_label'] ?? '').toString().isNotEmpty)
-                  ConditionBadge(condition: (row['condition_label'] ?? '').toString()),
-              ],
-            );
-          }),
+                  const SizedBox(width: GVSpacing.s8),
+                  if ((row['condition_label'] ?? '').toString().isNotEmpty)
+                    ConditionBadge(
+                      condition: (row['condition_label'] ?? '').toString(),
+                    ),
+                ],
+              );
+            },
+          ),
           const SizedBox(height: GVSpacing.s8),
-          Text('$setCode - $number',
-              style: Theme.of(context).textTheme.bodyMedium),
+          Text(
+            '$setCode - $number',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
 
           const SizedBox(height: GVSpacing.s24),
           // Placeholders for additional info you may add later
@@ -83,16 +87,23 @@ class _InfoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final gv = GVTheme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: GVSpacing.s12, vertical: GVSpacing.s12),
+      padding: const EdgeInsets.symmetric(
+        horizontal: GVSpacing.s12,
+        vertical: GVSpacing.s12,
+      ),
       decoration: BoxDecoration(
         borderRadius: GVRadius.br12,
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        color: Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
       ),
       child: Row(
         children: [
           Expanded(
-            child: Text(label,
-                style: gv.typography.body.copyWith(fontWeight: FontWeight.w600)),
+            child: Text(
+              label,
+              style: gv.typography.body.copyWith(fontWeight: FontWeight.w600),
+            ),
           ),
           Text(value),
         ],
@@ -100,6 +111,3 @@ class _InfoTile extends StatelessWidget {
     );
   }
 }
-
-
-

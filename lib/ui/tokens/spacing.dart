@@ -15,4 +15,3 @@ class GVSpacing {
 
   static const EdgeInsets page = EdgeInsets.symmetric(horizontal: s16);
 }
-

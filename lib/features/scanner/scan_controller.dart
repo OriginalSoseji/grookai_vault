@@ -18,14 +18,18 @@ class ScanController extends ChangeNotifier {
   late final ScanMetrics metrics;
 
   ScanController(this.supabase)
-      : ocr = ScannerOcr(),
-        resolver = ScanResolver(supabase) {
+    : ocr = ScannerOcr(),
+      resolver = ScanResolver(supabase) {
     metrics = ScanMetrics(supabase);
   }
 
   ScanState _state = ScanState.idle;
   ScanState get state => _state;
-  void _setState(ScanState s) { _state = s; notifyListeners(); }
+  void _setState(ScanState s) {
+    _state = s;
+    notifyListeners();
+  }
+
   bool _busy = false;
 
   OcrResult? _ocr;
@@ -49,24 +53,34 @@ class ScanController extends ChangeNotifier {
     try {
       debugPrint('[SCAN] capture');
       _setState(ScanState.ocr);
-      _ocr = await ocr.extract(file).timeout(const Duration(seconds: 8), onTimeout: () {
-        debugPrint('[SCAN] timeout:ocr');
-        throw TimeoutException('ocr');
-      });
+      _ocr = await ocr
+          .extract(file)
+          .timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              debugPrint('[SCAN] timeout:ocr');
+              throw TimeoutException('ocr');
+            },
+          );
       final name = _ocr?.name ?? '';
       final num = _ocr?.collectorNumber ?? '';
       debugPrint('[SCAN] ocr:$name#$num');
 
       _setState(ScanState.resolving);
-      _candidates = await resolver.resolve(
-        name: name,
-        collectorNumber: num,
-        languageHint: _ocr?.languageHint,
-        imageJpegBytes: _ocr?.nameCropJpeg,
-      ).timeout(const Duration(seconds: 8), onTimeout: () {
-        debugPrint('[SCAN] timeout:resolve');
-        throw TimeoutException('resolve');
-      });
+      _candidates = await resolver
+          .resolve(
+            name: name,
+            collectorNumber: num,
+            languageHint: _ocr?.languageHint,
+            imageJpegBytes: _ocr?.nameCropJpeg,
+          )
+          .timeout(
+            const Duration(seconds: 8),
+            onTimeout: () {
+              debugPrint('[SCAN] timeout:resolve');
+              throw TimeoutException('resolve');
+            },
+          );
       if (_candidates.isNotEmpty) {
         debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
       }
@@ -75,7 +89,8 @@ class ScanController extends ChangeNotifier {
       // Lazy import integration on miss/low confidence
       final low = _candidates.isEmpty || (_candidates.first.confidence < 0.50);
       if (low && GV_SCAN_LAZY_IMPORT) {
-        final key = '${name.trim().toUpperCase()}|${num.trim().toUpperCase()}|${(_ocr?.languageHint ?? 'en').toUpperCase()}';
+        final key =
+            '${name.trim().toUpperCase()}|${num.trim().toUpperCase()}|${(_ocr?.languageHint ?? 'en').toUpperCase()}';
         final until = _cooldown[key];
         if (until != null && until.isAfter(DateTime.now())) {
           debugPrint('[SCAN?LAZY] skip (cooldown) key=$key');
@@ -86,13 +101,18 @@ class ScanController extends ChangeNotifier {
           int retries = 0;
           do {
             try {
-              await supabase.functions.invoke('import-cards', body: {
-                'name': name,
-                'number': num,
-                'lang': _ocr?.languageHint ?? 'en',
-              });
+              await supabase.functions.invoke(
+                'import-cards',
+                body: {
+                  'name': name,
+                  'number': num,
+                  'lang': _ocr?.languageHint ?? 'en',
+                },
+              );
             } catch (_) {}
-            _cooldown[key] = DateTime.now().add(Duration(milliseconds: GV_SCAN_LAZY_COOLDOWN_MS));
+            _cooldown[key] = DateTime.now().add(
+              Duration(milliseconds: GV_SCAN_LAZY_COOLDOWN_MS),
+            );
             await Future.delayed(const Duration(seconds: 3));
             _setState(ScanState.resolving);
             _candidates = await resolver.resolve(
@@ -115,12 +135,14 @@ class ScanController extends ChangeNotifier {
       final type = _candidates.isEmpty
           ? 'scan_none'
           : _isAmbiguous(_candidates)
-              ? 'scan_ambiguous'
-              : 'scan_success';
+          ? 'scan_ambiguous'
+          : 'scan_success';
       await metrics.log(
         type: type,
         candidates: _candidates.length,
-        bestConfidence: _candidates.isEmpty ? null : _candidates.first.confidence,
+        bestConfidence: _candidates.isEmpty
+            ? null
+            : _candidates.first.confidence,
         elapsedMs: elapsed,
         usedServer: resolver.lastUsedServer,
         usedLazy: _usedLazy,
@@ -129,18 +151,22 @@ class ScanController extends ChangeNotifier {
       if (kDebugMode) debugPrint('[SCAN] error $e\n$st');
       // Offline/failed: enqueue for later processing
       try {
-        await _queue.enqueue(ScanQueueItem(
-          name: _ocr?.name ?? '',
-          number: _ocr?.collectorNumber ?? '',
-          lang: _ocr?.languageHint ?? 'en',
-          imageJpegBytes: _ocr?.nameCropJpeg,
-          ts: DateTime.now(),
-        ));
+        await _queue.enqueue(
+          ScanQueueItem(
+            name: _ocr?.name ?? '',
+            number: _ocr?.collectorNumber ?? '',
+            lang: _ocr?.languageHint ?? 'en',
+            imageJpegBytes: _ocr?.nameCropJpeg,
+            ts: DateTime.now(),
+          ),
+        );
         debugPrint('[OFFLINE] queued');
       } catch (_) {}
       _setState(ScanState.done);
       rethrow;
-    } finally { _busy = false; }
+    } finally {
+      _busy = false;
+    }
   }
 
   /// Attempt to process one queued scan in background
@@ -175,6 +201,3 @@ class ScanController extends ChangeNotifier {
     return false;
   }
 }
-
-
-

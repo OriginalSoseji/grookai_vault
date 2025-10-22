@@ -1,4 +1,4 @@
-﻿import 'package:grookai_vault/widgets/smart_card_image.dart';
+import 'package:grookai_vault/widgets/smart_card_image.dart';
 import "package:flutter/material.dart";
 import "image_best.dart";
 
@@ -40,14 +40,8 @@ class BigCardImage extends StatelessWidget {
             ),
           )
         else
-          const SizedBox(
-            height: 260,
-            child: Center(child: Text("No image")),
-          ),
+          const SizedBox(height: 260, child: Center(child: Text("No image"))),
       ],
     );
   }
 }
-
-
-

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:grookai_vault/widgets/fix_card_image.dart';
 
 void main() {
@@ -13,14 +13,18 @@ class TestFixCardImageScreen extends StatelessWidget {
     // Replace these with known-good examples from your data:
     const cases = <({String setCode, String number, String label})>[
       // (a) Expected tcgdex hit (adjust to a set/number you know tcgdex serves)
-      (setCode: 'sv8',     number: '001', label: 'A) Likely tcgdex hit'),
+      (setCode: 'sv8', number: '001', label: 'A) Likely tcgdex hit'),
       // (b) Intentionally one that 404s on tcgdex but exists on images.pokemontcg.io
-      (setCode: 'sv8pt5',  number: '010', label: 'B) tcgdex miss -> pokemontcg.io'),
+      (
+        setCode: 'sv8pt5',
+        number: '010',
+        label: 'B) tcgdex miss -> pokemontcg.io',
+      ),
       // (c) Bogus code to verify graceful failure
-      (setCode: 'zz99',    number: '999', label: 'C) bogus -> placeholder'),
+      (setCode: 'zz99', number: '999', label: 'C) bogus -> placeholder'),
       // (d) sv0X -> svX mapping checks
-      (setCode: 'sv03',    number: '125', label: 'D) sv03 -> sv3 try'),
-      (setCode: 'sv3',     number: '001a', label: 'E) sv3 -> sv03 try + suffix'),
+      (setCode: 'sv03', number: '125', label: 'D) sv03 -> sv3 try'),
+      (setCode: 'sv3', number: '001a', label: 'E) sv3 -> sv03 try + suffix'),
     ];
 
     return Scaffold(
@@ -56,4 +60,3 @@ class TestFixCardImageScreen extends StatelessWidget {
     );
   }
 }
-

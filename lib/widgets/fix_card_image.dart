@@ -1,4 +1,4 @@
-﻿import "package:flutter/material.dart";
+import "package:flutter/material.dart";
 import "package:cached_network_image/cached_network_image.dart";
 import 'package:grookai_vault/services/image_resolver.dart';
 
@@ -13,7 +13,9 @@ List<String> buildCardImageUrls(
 
   // Skip tcgdex for NP promos - rely on PokemonTCG.io for these
   final scLower = setCode.trim().toLowerCase();
-final allowTcgDex = !(scLower.endsWith('p') || ['ex5.5','ex5pt5','tk2','tk2a','tk2b'].contains(scLower));
+  final allowTcgDex =
+      !(scLower.endsWith('p') ||
+          ['ex5.5', 'ex5pt5', 'tk2', 'tk2a', 'tk2b'].contains(scLower));
   // 1) Try tcgdex (guarded) with common variants FIRST
   if (allowTcgDex) {
     final base = (tcgdexBuilder ?? tcgdexImageUrl).call(setCode, number);
@@ -82,7 +84,8 @@ class _FixCardImageState extends State<FixCardImage> {
   @override
   void didUpdateWidget(covariant FixCardImage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.setCode != widget.setCode || oldWidget.number != widget.number) {
+    if (oldWidget.setCode != widget.setCode ||
+        oldWidget.number != widget.number) {
       _rebuildCandidates();
       _resolveFirst();
     }
@@ -148,7 +151,10 @@ class _FixCardImageState extends State<FixCardImage> {
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
-          image: DecorationImage(image: provider, fit: widget.fit ?? BoxFit.cover),
+          image: DecorationImage(
+            image: provider,
+            fit: widget.fit ?? BoxFit.cover,
+          ),
         ),
       ),
       errorWidget: (context, failedUrl, error) {
@@ -179,16 +185,19 @@ class _FixCardImageState extends State<FixCardImage> {
     );
   }
 
-  Widget _placeholder() =>
-      Container(width: widget.width, height: widget.height, color: Colors.black12);
+  Widget _placeholder() => Container(
+    width: widget.width,
+    height: widget.height,
+    color: Colors.black12,
+  );
 
   Widget _failurePlaceholder() => Container(
-        width: widget.width,
-        height: widget.height,
-        alignment: Alignment.center,
-        color: Colors.black12,
-        child: const Icon(Icons.image_not_supported_outlined),
-      );
+    width: widget.width,
+    height: widget.height,
+    alignment: Alignment.center,
+    color: Colors.black12,
+    child: const Icon(Icons.image_not_supported_outlined),
+  );
 }
 
 /// tcgdex expects a series segment, and some sets need normalization:
@@ -206,7 +215,12 @@ String? tcgdexImageUrl(String setCode, String number) {
   String seriesFor(String sc) {
     // Generations sets like g1 live under xy on tcgdex
     if (RegExp(r'^g\d+$').hasMatch(sc)) {
-      assert(() { debugPrint('[LAZY] image-url-fixed map-series g* -> xy (set="$setCode" num="$number")'); return true; }());
+      assert(() {
+        debugPrint(
+          '[LAZY] image-url-fixed map-series g* -> xy (set="$setCode" num="$number")',
+        );
+        return true;
+      }());
       return 'xy';
     }
     if (sc.startsWith('sv')) return 'sv';
@@ -230,13 +244,19 @@ String? tcgdexImageUrl(String setCode, String number) {
 
   // EX Trainer Kit 2 (ex5.5/ex5pt5) lives under 'tk2' on tcgdex
   if (s == 'ex5pt5' || s == 'ex5.5') {
-    assert(() { debugPrint('[LAZY] image-url-fixed ex5.5 -> ex/tk2 (num="$n")'); return true; }());
+    assert(() {
+      debugPrint('[LAZY] image-url-fixed ex5.5 -> ex/tk2 (num="$n")');
+      return true;
+    }());
     return 'https://assets.tcgdex.net/en/ex/tk2/$n/high.png';
   }
 
   // Unknown/invalid family prefix like 'me' -> skip tcgdex to avoid wrong URLs
   if (s.startsWith('me')) {
-    assert(() { debugPrint('[LAZY] image-url-fixed skip invalid family (set="$setCode")'); return true; }());
+    assert(() {
+      debugPrint('[LAZY] image-url-fixed skip invalid family (set="$setCode")');
+      return true;
+    }());
     return null;
   }
 
@@ -246,7 +266,9 @@ String? tcgdexImageUrl(String setCode, String number) {
 
 List<String> _setSlugCandidates(String setCode) {
   final out = <String>[];
-  void addUnique(String s) { if (s.isNotEmpty && !out.contains(s)) out.add(s); }
+  void addUnique(String s) {
+    if (s.isNotEmpty && !out.contains(s)) out.add(s);
+  }
 
   final original = setCode.trim();
   addUnique(original);
@@ -254,7 +276,9 @@ List<String> _setSlugCandidates(String setCode) {
   // case-flex for PokemonTCG (some sets care)
   addUnique(original.toLowerCase());
   // keep an UpperCamel variant if applicable (e.g., a1a -> A1a)
-  final upperCamel = original.isEmpty ? original : original[0].toUpperCase() + original.substring(1);
+  final upperCamel = original.isEmpty
+      ? original
+      : original[0].toUpperCase() + original.substring(1);
   addUnique(upperCamel);
 
   // .5 -> pt5  (sv8.5 -> sv8pt5, swsh12.5 -> swsh12pt5, ex5.5 -> ex5pt5, sm3.5 -> sm3pt5)
@@ -272,7 +296,9 @@ List<String> _setSlugCandidates(String setCode) {
   addUnique(original.replaceAllMapped(RegExp(r'^sv0(\d+)'), (m) => 'sv'));
 
   // svX -> sv0X  (only when X is a single digit)
-  addUnique(original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'));
+  addUnique(
+    original.replaceFirstMapped(RegExp(r'^sv(\d)(?!\d)'), (m) => 'sv0'),
+  );
 
   // EX Trainer Kit 2
   if (low == 'ex5.5' || low == 'ex5pt5') {
@@ -280,13 +306,13 @@ List<String> _setSlugCandidates(String setCode) {
     addUnique('tk2');
   }
 
-    // EX Trainer Kit 2 aliases (deck A/B)
+  // EX Trainer Kit 2 aliases (deck A/B)
 
   if (low == 'ex5.5' || low == 'ex5pt5' || low == 'tk2') {
-    addUnique('ex5pt5');  // normalized alias
-    addUnique('tk2');     // generic
-    addUnique('tk2a');    // deck A
-    addUnique('tk2b');    // deck B
+    addUnique('ex5pt5'); // normalized alias
+    addUnique('tk2'); // generic
+    addUnique('tk2a'); // deck A
+    addUnique('tk2b'); // deck B
   }
   return out;
 }
@@ -300,8 +326,3 @@ String _numSlug(String number) {
   final stripped = int.tryParse(numeric)?.toString() ?? numeric;
   return '$stripped$suffix';
 }
-
-
-
-
-

@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 
 class WishlistService {
   final SupabaseClient _client;
-  WishlistService([SupabaseClient? client]) : _client = client ?? Supabase.instance.client;
+  WishlistService([SupabaseClient? client])
+    : _client = client ?? Supabase.instance.client;
 
   Future<bool> isWishlisted(String cardId) async {
     try {
@@ -36,7 +37,10 @@ class WishlistService {
         if (kDebugMode) debugPrint('[WISHLIST] removed card_id=$cardId');
         return false;
       } else {
-        await _client.from('wishlist_items').insert({'user_id': uid, 'card_id': cardId});
+        await _client.from('wishlist_items').insert({
+          'user_id': uid,
+          'card_id': cardId,
+        });
         if (kDebugMode) debugPrint('[WISHLIST] added card_id=$cardId');
         return true;
       }
@@ -46,4 +50,3 @@ class WishlistService {
     }
   }
 }
-

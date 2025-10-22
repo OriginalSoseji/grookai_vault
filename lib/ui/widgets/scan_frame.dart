@@ -5,7 +5,12 @@ class ScanFrame extends StatelessWidget {
   final double size;
   final double strokeWidth;
   final Color color;
-  const ScanFrame({super.key, this.size = 240, this.strokeWidth = 3, this.color = Colors.white});
+  const ScanFrame({
+    super.key,
+    this.size = 240,
+    this.strokeWidth = 3,
+    this.color = Colors.white,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,10 @@ class ScanFrame extends StatelessWidget {
       child: Center(
         child: CustomPaint(
           size: Size.square(size),
-          painter: _ScanFramePainter(strokeWidth: strokeWidth, color: color.withValues(alpha: 0.9)),
+          painter: _ScanFramePainter(
+            strokeWidth: strokeWidth,
+            color: color.withValues(alpha: 0.9),
+          ),
         ),
       ),
     );
@@ -35,17 +43,49 @@ class _ScanFramePainter extends CustomPainter {
     // Draw corner marks
     const corner = 18.0;
     // Top-left
-    canvas.drawLine(Offset(r.left, r.top), Offset(r.left + corner, r.top), paint);
-    canvas.drawLine(Offset(r.left, r.top), Offset(r.left, r.top + corner), paint);
+    canvas.drawLine(
+      Offset(r.left, r.top),
+      Offset(r.left + corner, r.top),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(r.left, r.top),
+      Offset(r.left, r.top + corner),
+      paint,
+    );
     // Top-right
-    canvas.drawLine(Offset(r.right, r.top), Offset(r.right - corner, r.top), paint);
-    canvas.drawLine(Offset(r.right, r.top), Offset(r.right, r.top + corner), paint);
+    canvas.drawLine(
+      Offset(r.right, r.top),
+      Offset(r.right - corner, r.top),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(r.right, r.top),
+      Offset(r.right, r.top + corner),
+      paint,
+    );
     // Bottom-left
-    canvas.drawLine(Offset(r.left, r.bottom), Offset(r.left + corner, r.bottom), paint);
-    canvas.drawLine(Offset(r.left, r.bottom), Offset(r.left, r.bottom - corner), paint);
+    canvas.drawLine(
+      Offset(r.left, r.bottom),
+      Offset(r.left + corner, r.bottom),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(r.left, r.bottom),
+      Offset(r.left, r.bottom - corner),
+      paint,
+    );
     // Bottom-right
-    canvas.drawLine(Offset(r.right, r.bottom), Offset(r.right - corner, r.bottom), paint);
-    canvas.drawLine(Offset(r.right, r.bottom), Offset(r.right, r.bottom - corner), paint);
+    canvas.drawLine(
+      Offset(r.right, r.bottom),
+      Offset(r.right - corner, r.bottom),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(r.right, r.bottom),
+      Offset(r.right, r.bottom - corner),
+      paint,
+    );
   }
 
   @override
