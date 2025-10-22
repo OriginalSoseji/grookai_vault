@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'scanner_embed.dart';
 
 class ResolvedCandidate {
   final String cardPrintId;
@@ -22,12 +23,14 @@ class ResolvedCandidate {
 
 class ScanResolver {
   final SupabaseClient _client;
-  ScanResolver(this._client);
+  final ScannerEmbedService _embed;
+  ScanResolver(this._client) : _embed = ScannerEmbedService(_client);
 
   Future<List<ResolvedCandidate>> resolve({
     required String name,
     required String collectorNumber,
     String? languageHint,
+    List<int>? imageJpegBytes,
   }) async {
     final lang = _normLang(languageHint);
     final trimmedName = name.trim();
@@ -96,6 +99,41 @@ class ScanResolver {
       if (kDebugMode) debugPrint('[SCAN] resolve.name-only error $e');
     }
 
+    // If we reach here means confidence is low. Try server-side resolver (P1)
+    try {
+      // Import here to avoid cyclic import at top
+      // ignore: avoid_dynamic_calls
+      final embed = await _embed.resolve(
+        imageJpegBytes: imageJpegBytes,
+        nameHint: trimmedName,
+        numberHint: normNum,
+        langHint: lang,
+      );
+      if (embed?.best != null) {
+        final b = embed!.best!;
+        final mapped = _mapRow({
+          'id': b['card_print_id'] ?? b['id'],
+          'set_code': b['set_code'],
+          'name': b['name'] ?? name,
+          'number': b['number'],
+          'lang': b['lang'],
+          'image_url': b['image_url'],
+          'image_alt_url': b['image_alt_url'],
+        }, confidence: (b['confidence'] ?? 0.85) * 1.0);
+        final rest = (embed.alternatives).map((r) => _mapRow({
+          'id': r['card_print_id'] ?? r['id'],
+          'set_code': r['set_code'],
+          'name': r['name'] ?? name,
+          'number': r['number'],
+          'lang': r['lang'],
+          'image_url': r['image_url'],
+          'image_alt_url': r['image_alt_url'],
+        }, confidence: (r['confidence'] ?? 0.75) * 1.0)).toList();
+        return [mapped, ...rest];
+      }
+    } catch (e) {
+      if (kDebugMode) debugPrint('[SCAN] server-resolve error $e');
+    }
     return const [];
   }
 

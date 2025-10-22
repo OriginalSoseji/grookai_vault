@@ -57,6 +57,7 @@ class ScanController extends ChangeNotifier {
         name: name,
         collectorNumber: num,
         languageHint: _ocr?.languageHint,
+        imageJpegBytes: _ocr?.nameCropJpeg,
       ).timeout(const Duration(seconds: 8), onTimeout: () {
         debugPrint('[SCAN] timeout:resolve');
         throw TimeoutException('resolve');
