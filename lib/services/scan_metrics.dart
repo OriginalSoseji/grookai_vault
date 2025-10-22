@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../config/flags.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ScanMetrics {
   final SupabaseClient client;
-  final bool enabled = (dotenv.env['GV_SCAN_TELEMETRY'] ?? 'false').toLowerCase() == 'true';
+  final bool enabled = GV_SCAN_TELEMETRY;
   ScanMetrics(this.client);
 
   Future<void> log({
@@ -29,4 +29,3 @@ class ScanMetrics {
     }
   }
 }
-
