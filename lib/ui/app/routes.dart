@@ -15,6 +15,9 @@ import '../../config/flags.dart';
 import '../../features/alerts/alerts_page.dart';
 import '../../features/scanner/scan_history_page.dart';
 import '../../features/pricing/card_detail_page.dart';
+import '../../features/wall/wall_feed_page.dart';
+import '../../features/wall/wall_post_composer.dart';
+import '../../features/wall/wall_profile_page.dart';
 
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
@@ -32,6 +35,13 @@ Map<String, WidgetBuilder> buildAppRoutes() {
       body: const VaultItemsExtList(),
     ),
     RouteNames.account: (_) => const AccountPage(),
+    RouteNames.wallFeed: (_) => const WallFeedPage(),
+    RouteNames.wallCompose: (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map<String, dynamic>) ? args : null;
+      return WallPostComposer(initialCard: map);
+    },
+    RouteNames.wallProfile: (_) => const WallProfilePage(),
     RouteNames.devAdmin: (_) => const DevAdminPage(),
     if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
     if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),

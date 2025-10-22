@@ -13,4 +13,7 @@ class RouteNames {
   static const String alerts = '/alerts';
   static const String scanner = '/scanner';
   static const String scanHistory = '/scan-history';
+  static const String wallFeed = '/wall-feed';
+  static const String wallCompose = '/wall-compose';
+  static const String wallProfile = '/wall-profile';
 }
