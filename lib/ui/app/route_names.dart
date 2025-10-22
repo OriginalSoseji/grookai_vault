@@ -11,4 +11,5 @@ class RouteNames {
   static const String devDiagPricing = '/dev/diag/pricing';
   static const String alerts = '/alerts';
   static const String scanner = '/scanner';
+  static const String scanHistory = '/scan-history';
 }
