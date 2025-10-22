@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:async';
+import '../../services/scan_resolver.dart';
 
 import '../../ui/widgets/scan_frame.dart';
 import '../../widgets/fix_card_image.dart';
@@ -207,6 +209,24 @@ class _ScannerPageState extends State<ScannerPage> {
                     CameraPreview(cam),
                     const Positioned.fill(child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(color: Colors.transparent)))),
                     const ScanFrame(size: 260),
+                    if (_scan.state == ScanState.importing)
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          color: Colors.black54,
+                          padding: const EdgeInsets.all(GVSpacing.s8),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
+                              SizedBox(width: GVSpacing.s8),
+                              Text('Importing from server…', style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                        ),
+                      ),
                   ],
                 );
               },
