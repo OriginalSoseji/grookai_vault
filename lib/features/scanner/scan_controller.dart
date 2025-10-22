@@ -7,6 +7,7 @@ import '../../services/scanner_ocr.dart';
 import 'package:grookai_vault/services/scan_resolver.dart';
 import '../../services/scan_metrics.dart';
 import '../../config/flags.dart';
+import 'package:grookai_vault/services/scan_queue.dart';
 
 enum ScanState { idle, capturing, ocr, resolving, importing, done }
 
@@ -37,6 +38,7 @@ class ScanController extends ChangeNotifier {
   ResolvedCandidate? get chosen => _chosen;
   static final Map<String, DateTime> _cooldown = <String, DateTime>{};
   bool _usedLazy = false;
+  final _queue = ScanQueue();
 
   Future<void> processCapture(File file) async {
     if (_busy) return; // ignore duplicate taps
@@ -125,9 +127,38 @@ class ScanController extends ChangeNotifier {
       );
     } catch (e, st) {
       if (kDebugMode) debugPrint('[SCAN] error $e\n$st');
+      // Offline/failed: enqueue for later processing
+      try {
+        await _queue.enqueue(ScanQueueItem(
+          name: _ocr?.name ?? '',
+          number: _ocr?.collectorNumber ?? '',
+          lang: _ocr?.languageHint ?? 'en',
+          imageJpegBytes: _ocr?.nameCropJpeg,
+          ts: DateTime.now(),
+        ));
+        debugPrint('[OFFLINE] queued');
+      } catch (_) {}
       _setState(ScanState.done);
       rethrow;
     } finally { _busy = false; }
+  }
+
+  /// Attempt to process one queued scan in background
+  Future<void> processQueueOnce() async {
+    final it = await _queue.peek();
+    if (it == null) return;
+    try {
+      final res = await resolver.resolve(
+        name: it.name,
+        collectorNumber: it.number,
+        languageHint: it.lang,
+        imageJpegBytes: it.imageJpegBytes,
+      );
+      if (res.isNotEmpty) {
+        await _queue.removeFirst();
+        debugPrint('[OFFLINE] synced');
+      }
+    } catch (_) {}
   }
 
   void choose(ResolvedCandidate c) {
