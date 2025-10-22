@@ -121,7 +121,7 @@ class _AppShellState extends State<AppShell> {
           const ScanPage(),
         ],
       ),
-      floatingActionButton: _index == 1
+      floatingActionButton: _index == 1 && GV_FEATURE_SCANNER
           ? FloatingActionButton.extended(
               onPressed: () => Navigator.of(context).pushNamed(RouteNames.scanner),
               icon: const Icon(Icons.camera_alt),
