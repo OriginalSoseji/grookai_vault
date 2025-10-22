@@ -4,6 +4,8 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { embedImage } from './model.ts'
+import { MODEL, TIMEOUT_MS, WEIGHTS, CONF_ACCEPT, CONF_STRONG } from './config.ts'
 
 type Req = {
   image_base64?: string
@@ -28,8 +30,20 @@ serve(async (req: Request) => {
       vector = embedding
       usedEmbedding = true
     } else if (image_base64) {
-      logs.push('no-embed:TODO-image->embedding')
-      // TODO: model hook to produce 768-dim vector from image
+      try {
+        const bytes = Uint8Array.from(atob(image_base64), c => c.charCodeAt(0))
+        const controller = new AbortController()
+        const t = setTimeout(() => controller.abort(), TIMEOUT_MS)
+        // We don't actually pass signal to embedImage since it's a local call;
+        // timeout is best-effort (in case of remote provider implementation)
+        const v = await embedImage(bytes)
+        clearTimeout(t)
+        vector = v
+        usedEmbedding = true
+        logs.push(`embed.ok model=${MODEL}`)
+      } catch (e) {
+        logs.push('embed.error:' + String(e))
+      }
     }
 
     // Query by embedding if available
@@ -46,10 +60,15 @@ serve(async (req: Request) => {
     const name = (name_hint ?? '').toLowerCase().trim()
 
     const fused = candidates.map((c) => {
-      let conf = Number(c.score ?? 0)
-      if (num && (c.number ?? '').toUpperCase() === num && lang && (c.lang ?? '').toLowerCase() === lang) conf += 0.10
-      else if (name && (c.name ?? '').toLowerCase().includes(name) && lang && (c.lang ?? '').toLowerCase() === lang) conf += 0.05
-      return { ...c, confidence: Math.min(conf, 0.99) }
+      const e = Number(c.score ?? 0) // embedding similarity in [0,1]
+      const isNumLang = num && (c.number ?? '').toUpperCase() === num && lang && (c.lang ?? '').toLowerCase() === lang
+      const isNameLang = name && (c.name ?? '').toLowerCase().includes(name) && lang && (c.lang ?? '').toLowerCase() === lang
+      const numBoost = isNumLang ? 1 : 0
+      const txtBoost = isNameLang ? 1 : 0
+      let score = WEIGHTS.wE * e + WEIGHTS.wN * numBoost + WEIGHTS.wT * txtBoost
+      if (isNumLang) score += 0.08 // promote exact number+lang
+      const confidence = Math.max(0, Math.min(score, 1))
+      return { ...c, confidence }
     })
 
     fused.sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))
@@ -57,11 +76,10 @@ serve(async (req: Request) => {
     const alternatives = fused.slice(1, 4)
 
     return new Response(
-      JSON.stringify({ best, alternatives, logs, used_embedding: usedEmbedding }),
+      JSON.stringify({ best, alternatives, logs, used_embedding: usedEmbedding, model: MODEL, thresholds: { CONF_ACCEPT, CONF_STRONG } }),
       { headers: { 'Content-Type': 'application/json' } },
     )
   } catch (e) {
     return new Response(JSON.stringify({ error: String(e) }), { status: 400, headers: { 'Content-Type': 'application/json' } })
   }
 })
-
