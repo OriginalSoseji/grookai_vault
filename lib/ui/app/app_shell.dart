@@ -10,6 +10,7 @@ import 'package:grookai_vault/features/home/home_page.dart';
 import 'package:grookai_vault/features/vault/vault_page.dart';
 import 'package:grookai_vault/features/wishlist/wishlist_page.dart';
 import 'package:grookai_vault/features/scan/scan_page.dart';
+import 'package:grookai_vault/services/feature_rollout.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -121,7 +122,7 @@ class _AppShellState extends State<AppShell> {
           const ScanPage(),
         ],
       ),
-      floatingActionButton: _index == 1 && GV_FEATURE_SCANNER
+      floatingActionButton: _index == 1 && GV_FEATURE_SCANNER && gvScannerEnabledForUser(supabase.auth.currentUser?.id)
           ? FloatingActionButton.extended(
               onPressed: () => Navigator.of(context).pushNamed(RouteNames.scanner),
               icon: const Icon(Icons.camera_alt),

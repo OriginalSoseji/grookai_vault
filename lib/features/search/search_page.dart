@@ -4,12 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grookai_vault/config/flags.dart';
 
 import 'package:grookai_vault/services/search_gateway.dart';
 import 'package:grookai_vault/services/cards_service.dart';
 import 'package:grookai_vault/services/import_queue_service.dart';
 import 'package:grookai_vault/services/image_resolver.dart';
 import 'package:grookai_vault/services/wishlist_service.dart';
+import 'package:grookai_vault/services/feature_rollout.dart';
 
 // UI foundation
 import 'package:grookai_vault/ui/tokens/spacing.dart';
@@ -364,7 +366,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
       ),
-      floatingActionButton: GV_FEATURE_SCANNER
+      floatingActionButton: (GV_FEATURE_SCANNER && gvScannerEnabledForUser(supabase.auth.currentUser?.id))
           ? FloatingActionButton.extended(
               onPressed: () => Navigator.of(context).pushNamed('/scanner'),
               icon: const Icon(Icons.camera_alt),
