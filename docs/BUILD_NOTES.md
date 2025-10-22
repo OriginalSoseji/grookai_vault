@@ -14,5 +14,8 @@ Highlights:
 P0.5 specifics:
 - Confidence scoring: strict number+lang+name ≈0.97; number+lang ≈0.90; name+lang ≈0.80; name-only ≈0.60. Alternatives within 0.05 of best are shown.
 - Timeout guards for OCR/resolve (8s), user feedback.
-- See repo for implementation details in lib/features/scanner/* and lib/services/*.
 
+Staging (P1c)
+- See `configs/staging_flags.json` for safe defaults used in staging.
+- Rollout guide: `docs/ROLL_OUT_SCANNER.md`.
+- See repo for implementation details in lib/features/scanner/* and lib/services/*.
