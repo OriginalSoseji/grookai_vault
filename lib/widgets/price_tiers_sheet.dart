@@ -1,4 +1,4 @@
-﻿import "package:flutter/material.dart";
+import "package:flutter/material.dart";
 import "package:intl/intl.dart";
 import "../data/pricing_api.dart";
 import "../models/price_option.dart";
@@ -7,7 +7,12 @@ class PriceTiersSheet extends StatefulWidget {
   final PricingApi api;
   final String vaultItemId;
   final String cardId;
-  const PriceTiersSheet({super.key, required this.api, required this.vaultItemId, required this.cardId});
+  const PriceTiersSheet({
+    super.key,
+    required this.api,
+    required this.vaultItemId,
+    required this.cardId,
+  });
 
   @override
   State<PriceTiersSheet> createState() => _PriceTiersSheetState();
@@ -39,7 +44,10 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
       future: _future,
       builder: (context, snap) {
         if (!snap.hasData) {
-          return const SizedBox(height: 280, child: Center(child: CircularProgressIndicator()));
+          return const SizedBox(
+            height: 280,
+            child: Center(child: CircularProgressIndicator()),
+          );
         }
         final (flag, tiers) = snap.data!;
         return SafeArea(
@@ -48,9 +56,19 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(height: 4, width: 40, decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(999))),
+                Container(
+                  height: 4,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
                 const SizedBox(height: 12),
-                Text("Price tiers", style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  "Price tiers",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 const SizedBox(height: 8),
                 Flexible(
                   child: ListView.separated(
@@ -59,29 +77,41 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
                     separatorBuilder: (context, _) => const Divider(height: 1),
                     itemBuilder: (context, i) {
                       final t = tiers[i];
-                      final price = t.price != null ? _fmt.format(t.price) : "—";
+                      final price = t.price != null
+                          ? _fmt.format(t.price)
+                          : "—";
                       return ListTile(
                         dense: true,
-                        title: Text("${t.type}${t.detail != null ? " - ${t.detail}" : ""}"),
+                        title: Text(
+                          "${t.type}${t.detail != null ? " - ${t.detail}" : ""}",
+                        ),
                         subtitle: Text("source: ${t.source ?? "—"}"),
-                        trailing: Text(price, style: const TextStyle(fontWeight: FontWeight.w600)),
+                        trailing: Text(
+                          price,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
                       );
                     },
                   ),
                 ),
                 const SizedBox(height: 8),
-                flag ? _ConditionChanger(
-                  onPick: (label, maybePrice) async {
-                    await widget.api.setItemCondition(
-                      vaultItemId: widget.vaultItemId,
-                      conditionLabel: label,
-                      cardId: widget.cardId,
-                      marketPrice: maybePrice,
-                    );
-                    if (!context.mounted) return;
-                    Navigator.pop(context, true);
-                  },
-                ) : const Text("Manual condition edits are disabled", style: TextStyle(color: Colors.grey)),
+                flag
+                    ? _ConditionChanger(
+                        onPick: (label, maybePrice) async {
+                          await widget.api.setItemCondition(
+                            vaultItemId: widget.vaultItemId,
+                            conditionLabel: label,
+                            cardId: widget.cardId,
+                            marketPrice: maybePrice,
+                          );
+                          if (!context.mounted) return;
+                          Navigator.pop(context, true);
+                        },
+                      )
+                    : const Text(
+                        "Manual condition edits are disabled",
+                        style: TextStyle(color: Colors.grey),
+                      ),
               ],
             ),
           ),
@@ -104,7 +134,10 @@ class _ConditionChangerState extends State<_ConditionChanger> {
   final _priceCtrl = TextEditingController();
 
   @override
-  void dispose() { _priceCtrl.dispose(); super.dispose(); }
+  void dispose() {
+    _priceCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,8 +150,13 @@ class _ConditionChangerState extends State<_ConditionChanger> {
             const SizedBox(width: 10),
             DropdownButton<String>(
               value: _label,
-              items: const ["NM", "LP", "MP", "HP", "DMG"]
-                  .map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
+              items: const [
+                "NM",
+                "LP",
+                "MP",
+                "HP",
+                "DMG",
+              ].map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
               onChanged: (v) => setState(() => _label = v!),
             ),
             const Spacer(),
@@ -126,8 +164,13 @@ class _ConditionChangerState extends State<_ConditionChanger> {
               width: 120,
               child: TextField(
                 controller: _priceCtrl,
-                decoration: const InputDecoration(hintText: "price (opt)", isDense: true),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration: const InputDecoration(
+                  hintText: "price (opt)",
+                  isDense: true,
+                ),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
               ),
             ),
           ],
@@ -148,6 +191,3 @@ class _ConditionChangerState extends State<_ConditionChanger> {
     );
   }
 }
-
-
-

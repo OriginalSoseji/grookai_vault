@@ -1,4 +1,4 @@
-﻿import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:grookai_vault/widgets/fix_card_image.dart';
 
@@ -31,7 +31,8 @@ class SmartCardImage extends StatelessWidget {
     TcgdexUrlBuilder? tcgDexBuilder,
     bool logFailures = true,
     WidgetBuilder? placeholder, // placeholder-only builder (context) => widget
-    Widget Function(BuildContext context, Object error, StackTrace?)? errorBuilder,
+    Widget Function(BuildContext context, Object error, StackTrace?)?
+    errorBuilder,
   }) {
     final parsed = _parseTcgdex(url);
     if (parsed != null) {
@@ -95,7 +96,11 @@ class SmartCardImage extends StatelessWidget {
         fit: fit ?? BoxFit.cover,
         placeholder: (context, _) =>
             placeholder?.call(context) ??
-            Container(width: width, height: height, color: const Color(0x1F000000)),
+            Container(
+              width: width,
+              height: height,
+              color: const Color(0x1F000000),
+            ),
         errorWidget: (context, failedUrl, error) =>
             errorBuilder?.call(context, error, null) ??
             Container(
@@ -107,7 +112,10 @@ class SmartCardImage extends StatelessWidget {
       );
     } else {
       child = Container(
-        width: width, height: height, alignment: Alignment.center, color: const Color(0x1F000000),
+        width: width,
+        height: height,
+        alignment: Alignment.center,
+        color: const Color(0x1F000000),
       );
     }
 
@@ -119,7 +127,12 @@ class SmartCardImage extends StatelessWidget {
 }
 
 (String, String)? _parseTcgdex(String url) {
-  Uri? u; try { u = Uri.parse(url); } catch (_) { return null; }
+  Uri? u;
+  try {
+    u = Uri.parse(url);
+  } catch (_) {
+    return null;
+  }
   if (u.host.isEmpty || !u.host.contains('tcgdex.net')) return null;
   final segs = u.path.split('/').where((s) => s.isNotEmpty).toList();
   if (segs.length < 4) return null; // ["en","<series>","<setCode>","<number>"]
@@ -130,4 +143,3 @@ class SmartCardImage extends StatelessWidget {
   if (setCode.toLowerCase().startsWith('me')) return null;
   return (setCode, number);
 }
-

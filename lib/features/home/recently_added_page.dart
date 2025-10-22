@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class RecentlyAddedPage extends StatelessWidget {
   const RecentlyAddedPage({super.key});
@@ -22,5 +22,3 @@ class RecentlyAddedPage extends StatelessWidget {
     );
   }
 }
-
-

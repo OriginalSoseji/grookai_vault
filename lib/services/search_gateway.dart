@@ -1,7 +1,7 @@
-﻿import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'cards_service.dart';         // lazy (Edge Functions)
+import 'cards_service.dart'; // lazy (Edge Functions)
 import 'legacy_search_service.dart'; // DB (Supabase SQL/view)
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -11,14 +11,20 @@ class SearchGateway {
   final _lazy = CardsService();
   final _legacy = LegacySearchService();
 
-  bool get _useLazy => (dotenv.env['GV_USE_LAZY_SEARCH'] ?? 'true').toLowerCase() == 'true';
-  String get _searchSource => (dotenv.env['GV_SEARCH_SOURCE'] ?? 'db').toLowerCase();
-  bool get _lazyOverlay => (dotenv.env['GV_LAZY_OVERLAY'] ?? 'true').toLowerCase() == 'true';
+  bool get _useLazy =>
+      (dotenv.env['GV_USE_LAZY_SEARCH'] ?? 'true').toLowerCase() == 'true';
+  String get _searchSource =>
+      (dotenv.env['GV_SEARCH_SOURCE'] ?? 'db').toLowerCase();
+  bool get _lazyOverlay =>
+      (dotenv.env['GV_LAZY_OVERLAY'] ?? 'true').toLowerCase() == 'true';
 
   Future<List<Map<String, dynamic>>> search(String query) async {
     // DB-first mode (default): always fetch DB results; optionally overlay lazy
     if (_searchSource == 'db') {
-      if (kDebugMode) debugPrint('[LAZY] gateway source=db q="$query" overlay=${_lazyOverlay}');
+      if (kDebugMode)
+        debugPrint(
+          '[LAZY] gateway source=db q="$query" overlay=${_lazyOverlay}',
+        );
       final dbRows = await _legacy.search(query);
       var normDb = _normalize(dbRows, defaultSource: 'db');
       normDb = await _attachPrices(normDb);
@@ -30,18 +36,24 @@ class SearchGateway {
       try {
         lazy = await _lazy
             .search(query)
-            .timeout(const Duration(seconds: 4), onTimeout: () => <Map<String, dynamic>>[]);
-        if (kDebugMode) debugPrint('[LAZY] overlay lazy-result count=${lazy.length}');
+            .timeout(
+              const Duration(seconds: 4),
+              onTimeout: () => <Map<String, dynamic>>[],
+            );
+        if (kDebugMode)
+          debugPrint('[LAZY] overlay lazy-result count=${lazy.length}');
       } catch (e) {
         if (kDebugMode) debugPrint('[LAZY] overlay lazy-error: $e');
       }
       if (lazy.isEmpty) return normDb;
       final set = {
         for (final d in normDb)
-          '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}': true
+          '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}':
+              true,
       };
       final extra = lazy.where((r) {
-        final k = '${(r['set_code'] ?? '').toString().toLowerCase()}|${(r['number'] ?? '').toString().toLowerCase()}';
+        final k =
+            '${(r['set_code'] ?? '').toString().toLowerCase()}|${(r['number'] ?? '').toString().toLowerCase()}';
         return !set.containsKey(k);
       }).toList();
       var normExtra = _normalize(extra, defaultSource: 'tcgdex');
@@ -54,7 +66,10 @@ class SearchGateway {
     try {
       final r = await _lazy
           .search(query)
-          .timeout(const Duration(seconds: 4), onTimeout: () => <Map<String, dynamic>>[]);
+          .timeout(
+            const Duration(seconds: 4),
+            onTimeout: () => <Map<String, dynamic>>[],
+          );
       if (kDebugMode) debugPrint('[LAZY] lazy-result count=${r.length}');
       if (r.isNotEmpty) {
         _telemetry(hit: true);
@@ -72,7 +87,9 @@ class SearchGateway {
   }
 
   /// If DB has the same print (by set_code+number), prefer DB row and mark source=db.
-  Future<List<Map<String, dynamic>>> _overlayWithDb(List<Map<String, dynamic>> lazyRows) async {
+  Future<List<Map<String, dynamic>>> _overlayWithDb(
+    List<Map<String, dynamic>> lazyRows,
+  ) async {
     final client = Supabase.instance.client;
     // Collect pairs
     final pairs = <Map<String, String>>[];
@@ -87,16 +104,27 @@ class SearchGateway {
 
     // Try batch RPC first; fallback to OR chain if unavailable
     try {
-      final data = await client.rpc('get_prints_by_pairs', params: { 'pairs': pairs });
-      final dbRows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
+      final data = await client.rpc(
+        'get_prints_by_pairs',
+        params: {'pairs': pairs},
+      );
+      final dbRows = List<Map<String, dynamic>>.from(
+        (data as List?) ?? const [],
+      );
       if (dbRows.isEmpty) {
         // Fallback: OR expression
-        final orParts = pairs.map((p) => 'and(set_code.eq.${p['set']},number.eq.${p['num']})').join(',');
+        final orParts = pairs
+            .map((p) => 'and(set_code.eq.${p['set']},number.eq.${p['num']})')
+            .join(',');
         final data2 = await client
             .from('card_prints')
-            .select('id,set_code,name,number,image_url,image_alt_url,name_local,lang')
+            .select(
+              'id,set_code,name,number,image_url,image_alt_url,name_local,lang',
+            )
             .or(orParts);
-        final dbRows2 = List<Map<String, dynamic>>.from((data2 as List?) ?? const []);
+        final dbRows2 = List<Map<String, dynamic>>.from(
+          (data2 as List?) ?? const [],
+        );
         if (dbRows2.isEmpty) return lazyRows;
         return _blendRows(lazyRows, dbRows2);
       }
@@ -104,12 +132,18 @@ class SearchGateway {
     } catch (_) {
       // Fallback: OR expression
       try {
-        final orParts = pairs.map((p) => 'and(set_code.eq.${p['set']},number.eq.${p['num']})').join(',');
+        final orParts = pairs
+            .map((p) => 'and(set_code.eq.${p['set']},number.eq.${p['num']})')
+            .join(',');
         final data = await client
             .from('card_prints')
-            .select('id,set_code,name,number,image_url,image_alt_url,name_local,lang')
+            .select(
+              'id,set_code,name,number,image_url,image_alt_url,name_local,lang',
+            )
             .or(orParts);
-        final dbRows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
+        final dbRows = List<Map<String, dynamic>>.from(
+          (data as List?) ?? const [],
+        );
         if (dbRows.isEmpty) return lazyRows;
         return _blendRows(lazyRows, dbRows);
       } catch (_) {
@@ -118,10 +152,14 @@ class SearchGateway {
     }
   }
 
-  List<Map<String, dynamic>> _blendRows(List<Map<String, dynamic>> lazyRows, List<Map<String, dynamic>> dbRows) {
+  List<Map<String, dynamic>> _blendRows(
+    List<Map<String, dynamic>> lazyRows,
+    List<Map<String, dynamic>> dbRows,
+  ) {
     final map = <String, Map<String, dynamic>>{};
     for (final d in dbRows) {
-      final k = '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}';
+      final k =
+          '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}';
       map[k] = d;
     }
 
@@ -150,16 +188,19 @@ class SearchGateway {
 
   /// Ensure a consistent shape for UI:
   /// { id, set_code, name, number, image_url, lang? }
-  List<Map<String, dynamic>> _normalize(List<Map<String, dynamic>> rows, {String? defaultSource}) {
+  List<Map<String, dynamic>> _normalize(
+    List<Map<String, dynamic>> rows, {
+    String? defaultSource,
+  }) {
     return rows.map<Map<String, dynamic>>((r) {
       return {
-        'id'       : r['id'] ?? r['card_id'] ?? r['print_id'],
-        'set_code' : r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
-        'name'     : r['name_local'] ?? r['name'] ?? 'Card',
-        'number'   : r['number'] ?? '',
+        'id': r['id'] ?? r['card_id'] ?? r['print_id'],
+        'set_code': r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
+        'name': r['name_local'] ?? r['name'] ?? 'Card',
+        'number': r['number'] ?? '',
         'image_url': r['image_url'] ?? r['photo_url'] ?? '',
-        'source'   : r['source'] ?? defaultSource ?? 'db',
-        'lang'     : r['lang'] ?? 'en',
+        'source': r['source'] ?? defaultSource ?? 'db',
+        'lang': r['lang'] ?? 'en',
         // price fields if present
         'price_low': r['price_low'],
         'price_mid': r['price_mid'],
@@ -178,17 +219,25 @@ class SearchGateway {
   }
 
   /// Fetch latest prices for the given card ids and merge into rows.
-  Future<List<Map<String, dynamic>>> _attachPrices(List<Map<String, dynamic>> rows) async {
+  Future<List<Map<String, dynamic>>> _attachPrices(
+    List<Map<String, dynamic>> rows,
+  ) async {
     try {
-      final ids = rows.map((r) => (r['id'] ?? '').toString()).where((s) => s.isNotEmpty).toList();
+      final ids = rows
+          .map((r) => (r['id'] ?? '').toString())
+          .where((s) => s.isNotEmpty)
+          .toList();
       if (ids.isEmpty) return rows;
       if (kDebugMode) debugPrint('[PRICES] attach.start ids=${ids.length}');
       final client = Supabase.instance.client;
-      if (kDebugMode) debugPrint('[PRICES] diag.attach.start ids=${ids.length}');
+      if (kDebugMode)
+        debugPrint('[PRICES] diag.attach.start ids=${ids.length}');
       final data = await client
           .from('latest_card_prices_v')
           // Required fields for mapping; currency is optional but helpful
-          .select('card_id, price_low, price_mid, price_high, observed_at, currency')
+          .select(
+            'card_id, price_low, price_mid, price_high, observed_at, currency',
+          )
           .inFilter('card_id', ids);
       final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       if (kDebugMode) debugPrint('[PRICES] diag.attach.rows=${list.length}');
@@ -203,7 +252,8 @@ class SearchGateway {
       for (final r in list) {
         final id = (r['card_id'] ?? '').toString();
         if (id.isEmpty) continue;
-        if (!latest.containsKey(id)) latest[id] = r; // first is latest due to order desc
+        if (!latest.containsKey(id))
+          latest[id] = r; // first is latest due to order desc
       }
       return rows.map((r) {
         final id = (r['id'] ?? '').toString();
@@ -219,8 +269,11 @@ class SearchGateway {
         };
       }).toList();
     } catch (e) {
-      if (kDebugMode) debugPrint('[VIEW] latest_card_prices_v unavailable → prices disabled ($e)');
-      return rows.map((r) => { ...r, 'priceStatus': 'unavailable' }).toList();
+      if (kDebugMode)
+        debugPrint(
+          '[VIEW] latest_card_prices_v unavailable → prices disabled ($e)',
+        );
+      return rows.map((r) => {...r, 'priceStatus': 'unavailable'}).toList();
     }
   }
 }

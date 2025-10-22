@@ -6,7 +6,12 @@ class PriceTiersPage extends StatefulWidget {
   final String setCode;
   final String number;
   final String name;
-  const PriceTiersPage({super.key, required this.setCode, required this.number, required this.name});
+  const PriceTiersPage({
+    super.key,
+    required this.setCode,
+    required this.number,
+    required this.name,
+  });
 
   @override
   State<PriceTiersPage> createState() => _PriceTiersPageState();
@@ -25,7 +30,10 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
 
   Future<void> _load() async {
     setState(() => _loading = true);
-    final row = await svc.latestPrice(setCode: widget.setCode, number: widget.number);
+    final row = await svc.latestPrice(
+      setCode: widget.setCode,
+      number: widget.number,
+    );
     if (!mounted) return;
     setState(() {
       _priceRow = row;
@@ -33,7 +41,11 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
     });
     if (row == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No pricing found for ${widget.setCode}/${widget.number}.')),
+        SnackBar(
+          content: Text(
+            'No pricing found for ${widget.setCode}/${widget.number}.',
+          ),
+        ),
       );
     }
   }
@@ -49,7 +61,8 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (_loading) const Center(child: CircularProgressIndicator()),
-            if (!_loading && _priceRow == null) const Text('No price found for this print.'),
+            if (!_loading && _priceRow == null)
+              const Text('No price found for this print.'),
             if (!_loading && _priceRow != null)
               Card(
                 child: Padding(
@@ -63,7 +76,10 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
                         const SizedBox(height: 8),
                         Text("price_usd: \$"),
                         Text('source    : ${_priceRow!['source']}'),
-                        Text('observed  : ${_priceRow!['observed_at']}', style: theme.textTheme.bodySmall),
+                        Text(
+                          'observed  : ${_priceRow!['observed_at']}',
+                          style: theme.textTheme.bodySmall,
+                        ),
                       ],
                     ),
                   ),
@@ -75,22 +91,30 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
                   ? () async {
                       final user = Supabase.instance.client.auth.currentUser;
                       if (user == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sign in required')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Sign in required')),
+                        );
                         return;
                       }
                       try {
-                        await Supabase.instance.client.from('user_vault').insert({
-                          'user_id': user.id,
-                          'set_code': widget.setCode.toLowerCase(),
-                          'number': widget.number,
-                          'acquired_price': _priceRow!['price_usd'],
-                          'source': 'app',
-                        });
+                        await Supabase.instance.client
+                            .from('user_vault')
+                            .insert({
+                              'user_id': user.id,
+                              'set_code': widget.setCode.toLowerCase(),
+                              'number': widget.number,
+                              'acquired_price': _priceRow!['price_usd'],
+                              'source': 'app',
+                            });
                         if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Added to Vault')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to Vault')),
+                        );
                       } catch (e) {
                         if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Add failed: $e')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Add failed: $e')),
+                        );
                       }
                     }
                   : null,
@@ -103,6 +127,3 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
     );
   }
 }
-
-
-

@@ -103,38 +103,65 @@ class _CatalogPickerState extends State<CatalogPicker> {
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(GVSpacing.s8),
                       itemCount: _rows.length,
-                      separatorBuilder: (context, _) => const SizedBox(height: GVSpacing.s8),
+                      separatorBuilder: (context, _) =>
+                          const SizedBox(height: GVSpacing.s8),
                       itemBuilder: (context, i) {
                         final r = _rows[i];
                         final title = (r['name'] ?? 'Card').toString();
-                        final subtitle = '${(r['set_code'] ?? '').toString()} · ${(r['number'] ?? '').toString()}';
+                        final subtitle =
+                            '${(r['set_code'] ?? '').toString()} · ${(r['number'] ?? '').toString()}';
                         final url = imageUrlFromRow(r);
                         return Card(
                           child: ListTile(
                             leading: AsyncImage(url, width: 44, height: 44),
-                            title: Text(_fix(title), style: const TextStyle(fontWeight: FontWeight.bold)),
+                            title: Text(
+                              _fix(title),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             subtitle: Text(subtitle),
                             onTap: () async {
                               final out = Map<String, dynamic>.from(r);
-                              final current = (out['image_url'] ?? '').toString().trim();
+                              final current = (out['image_url'] ?? '')
+                                  .toString()
+                                  .trim();
                               if (current.isEmpty && url.isNotEmpty) {
                                 out['image_url'] = url;
                               }
 
                               // Ensure we return a valid id; hydrate or DB-lookup if needed.
-                              var id = (out['id'] ?? out['card_id'] ?? out['print_id'] ?? '').toString();
+                              var id =
+                                  (out['id'] ??
+                                          out['card_id'] ??
+                                          out['print_id'] ??
+                                          '')
+                                      .toString();
                               if (id.isEmpty) {
                                 try {
                                   final sc = (out['set_code'] ?? '').toString();
                                   final num = (out['number'] ?? '').toString();
                                   if (sc.isNotEmpty && num.isNotEmpty) {
-                                    final hyd = await CardsService().hydrate(setCode: sc, number: num);
-                                    final hid = (hyd['id'] ?? hyd['card_id'] ?? hyd['print_id'] ?? '').toString();
+                                    final hyd = await CardsService().hydrate(
+                                      setCode: sc,
+                                      number: num,
+                                    );
+                                    final hid =
+                                        (hyd['id'] ??
+                                                hyd['card_id'] ??
+                                                hyd['print_id'] ??
+                                                '')
+                                            .toString();
                                     if (hid.isNotEmpty) {
                                       id = hid;
                                       out['id'] = id;
-                                      final himg = (hyd['image_url'] ?? hyd['photo_url'] ?? '').toString();
-                                      if (himg.isNotEmpty) out['image_url'] = himg;
+                                      final himg =
+                                          (hyd['image_url'] ??
+                                                  hyd['photo_url'] ??
+                                                  '')
+                                              .toString();
+                                      if (himg.isNotEmpty)
+                                        out['image_url'] = himg;
                                     }
                                   }
                                 } catch (_) {}
@@ -155,8 +182,13 @@ class _CatalogPickerState extends State<CatalogPicker> {
                                     if (did.isNotEmpty) {
                                       id = did;
                                       out['id'] = id;
-                                      final img = (d?['image_url'] ?? d?['image_alt_url'] ?? '').toString();
-                                      if (img.isNotEmpty) out['image_url'] = img;
+                                      final img =
+                                          (d?['image_url'] ??
+                                                  d?['image_alt_url'] ??
+                                                  '')
+                                              .toString();
+                                      if (img.isNotEmpty)
+                                        out['image_url'] = img;
                                     }
                                   }
                                 } catch (_) {}
@@ -165,7 +197,11 @@ class _CatalogPickerState extends State<CatalogPicker> {
                               if (id.isEmpty) {
                                 if (!context.mounted) return;
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Could not resolve this card. Try another result.')),
+                                  const SnackBar(
+                                    content: Text(
+                                      'Could not resolve this card. Try another result.',
+                                    ),
+                                  ),
                                 );
                                 return;
                               }
@@ -184,8 +220,3 @@ class _CatalogPickerState extends State<CatalogPicker> {
     );
   }
 }
-
-
-
-
-

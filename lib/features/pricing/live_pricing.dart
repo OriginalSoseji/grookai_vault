@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class LivePricingPage extends StatelessWidget {
   const LivePricingPage({super.key});
@@ -12,5 +12,3 @@ class LivePricingPage extends StatelessWidget {
     );
   }
 }
-
-

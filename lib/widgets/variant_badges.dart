@@ -1,4 +1,4 @@
-﻿import "package:flutter/material.dart";
+import "package:flutter/material.dart";
 
 List<String> variantTagsFromRow(Map row) {
   final v = (row["variant_key"] ?? "").toString().toLowerCase();
@@ -32,13 +32,8 @@ class VariantBadges extends StatelessWidget {
       runSpacing: 8,
       children: [
         for (final t in tags)
-          Chip(
-            label: Text(t),
-            visualDensity: VisualDensity.compact,
-          )
+          Chip(label: Text(t), visualDensity: VisualDensity.compact),
       ],
     );
   }
 }
-
-

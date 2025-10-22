@@ -12,12 +12,23 @@ class PriceChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final gv = GVTheme.of(context);
-    final bg = (positive ? gv.colors.success : gv.colors.accent).withValues(alpha: 0.12);
+    final bg = (positive ? gv.colors.success : gv.colors.accent).withValues(
+      alpha: 0.12,
+    );
     final fg = positive ? gv.colors.success : gv.colors.accent;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: GVSpacing.s8, vertical: GVSpacing.s4),
+      padding: const EdgeInsets.symmetric(
+        horizontal: GVSpacing.s8,
+        vertical: GVSpacing.s4,
+      ),
       decoration: BoxDecoration(color: bg, borderRadius: GVRadius.br12),
-      child: Text(label, style: gv.typography.footnote.copyWith(color: fg, fontWeight: FontWeight.w600)),
+      child: Text(
+        label,
+        style: gv.typography.footnote.copyWith(
+          color: fg,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }

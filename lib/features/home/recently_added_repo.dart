@@ -1,4 +1,4 @@
-﻿import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RecentlyAddedRepo {
   final _client = Supabase.instance.client;
@@ -16,5 +16,3 @@ class RecentlyAddedRepo {
     return (rows as List).cast<Map<String, dynamic>>();
   }
 }
-
-

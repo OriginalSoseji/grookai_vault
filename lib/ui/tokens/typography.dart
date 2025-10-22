@@ -20,13 +20,19 @@ class GVTypography {
     final cupertino = CupertinoThemeData(brightness: b).textTheme;
     return GVTypography(
       largeTitle: cupertino.navLargeTitleTextStyle,
-      title: cupertino.textStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
+      title: cupertino.textStyle.copyWith(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
       body: cupertino.textStyle.copyWith(fontSize: 16),
-      footnote: cupertino.textStyle.copyWith(fontSize: 14, color: cupertino.textStyle.color?.withValues(alpha: 0.85)),
-      caption: cupertino.textStyle.copyWith(fontSize: 12, color: cupertino.textStyle.color?.withValues(alpha: 0.72)),
+      footnote: cupertino.textStyle.copyWith(
+        fontSize: 14,
+        color: cupertino.textStyle.color?.withValues(alpha: 0.85),
+      ),
+      caption: cupertino.textStyle.copyWith(
+        fontSize: 12,
+        color: cupertino.textStyle.color?.withValues(alpha: 0.72),
+      ),
     );
   }
 }
-
-
-

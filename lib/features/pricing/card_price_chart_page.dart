@@ -1,4 +1,4 @@
-﻿import "dart:math" as math;
+import "dart:math" as math;
 import "package:flutter/material.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
@@ -31,8 +31,8 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
 
   // Data
   List<_PricePoint> _series = [];
-  num? _latest;     // from v_latest_price_pref
-  String? _source;  // source of the latest row
+  num? _latest; // from v_latest_price_pref
+  String? _source; // source of the latest row
   DateTime? _latestTs;
 
   @override
@@ -42,34 +42,39 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
   }
 
   Future<void> _init() async {
-    setState(() { _loading = true; _error = null; });
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
 
     try {
       // 1) Resolve card_id
       String? cardId = widget.cardId;
       if (cardId == null || cardId.isEmpty) {
         final rows = await supabase
-          .from("card_prints")
-          .select("id")
-          .eq("set_code", widget.setCode)
-          .eq("number", widget.number)
-          .limit(1);
+            .from("card_prints")
+            .select("id")
+            .eq("set_code", widget.setCode)
+            .eq("number", widget.number)
+            .limit(1);
         final rowsList = (rows as List);
         if (rowsList.isNotEmpty) {
           cardId = rowsList.first["id"]?.toString();
         }
       }
       if (cardId == null || cardId.isEmpty) {
-        throw Exception("Could not resolve card_id for ${widget.setCode} #${widget.number}");
+        throw Exception(
+          "Could not resolve card_id for ${widget.setCode} #${widget.number}",
+        );
       }
       _cardId = cardId;
 
       // 2) Load preferred latest (source-agnostic)
       final latest = await supabase
-        .from("v_latest_price_pref")
-        .select("market_price, source, ts")
-        .eq("card_id", cardId)
-        .limit(1);
+          .from("v_latest_price_pref")
+          .select("market_price, source, ts")
+          .eq("card_id", cardId)
+          .limit(1);
       final latestList = (latest as List);
       if (latestList.isNotEmpty) {
         final row = latestList.first;
@@ -81,20 +86,20 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
 
       // 3) Load full time series for this card
       final series = await supabase
-        .from("prices")
-        .select("ts, market_price")
-        .eq("card_id", cardId)
-        .order("ts", ascending: true);
+          .from("prices")
+          .select("ts, market_price")
+          .eq("card_id", cardId)
+          .order("ts", ascending: true);
 
       _series = [];
       final seriesList = (series as List);
       for (final r in seriesList) {
-          final tsRaw = r["ts"]?.toString();
-          final dt = tsRaw != null ? DateTime.tryParse(tsRaw) : null;
-          final p  = r["market_price"];
-          if (dt != null && p is num) {
-            _series.add(_PricePoint(dt, p.toDouble()));
-          }
+        final tsRaw = r["ts"]?.toString();
+        final dt = tsRaw != null ? DateTime.tryParse(tsRaw) : null;
+        final p = r["market_price"];
+        if (dt != null && p is num) {
+          _series.add(_PricePoint(dt, p.toDouble()));
+        }
       }
     } catch (e) {
       _error = e.toString();
@@ -114,12 +119,12 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
             tooltip: "Refresh",
             icon: const Icon(Icons.refresh),
             onPressed: _loading ? null : _init,
-          )
+          ),
         ],
       ),
       body: _loading
-        ? const Center(child: CircularProgressIndicator())
-        : _error != null
+          ? const Center(child: CircularProgressIndicator())
+          : _error != null
           ? _errorView()
           : _contentView(),
     );
@@ -135,7 +140,9 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
   }
 
   Widget _contentView() {
-    final latestLine = _latest != null ? "\$${_latest!.toStringAsFixed(2)}" : "—";
+    final latestLine = _latest != null
+        ? "\$${_latest!.toStringAsFixed(2)}"
+        : "—";
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -153,8 +160,13 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
   Widget _kv(String k, String v) {
     return Row(
       children: [
-        SizedBox(width: 150, child: Text(k, style: const TextStyle(color: Colors.black54))),
-        Expanded(child: Text(v, style: const TextStyle(fontWeight: FontWeight.w600))),
+        SizedBox(
+          width: 150,
+          child: Text(k, style: const TextStyle(color: Colors.black54)),
+        ),
+        Expanded(
+          child: Text(v, style: const TextStyle(fontWeight: FontWeight.w600)),
+        ),
       ],
     );
   }
@@ -174,12 +186,12 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
   Widget _chartCard(List<_PricePoint> points) {
     // Compute bounds
     double minY = points.first.price, maxY = points.first.price;
-    DateTime minX = points.first.ts,   maxX = points.first.ts;
+    DateTime minX = points.first.ts, maxX = points.first.ts;
     for (final p in points) {
       if (p.price < minY) minY = p.price;
       if (p.price > maxY) maxY = p.price;
       if (p.ts.isBefore(minX)) minX = p.ts;
-      if (p.ts.isAfter(maxX))  maxX = p.ts;
+      if (p.ts.isAfter(maxX)) maxX = p.ts;
     }
     // Expand a bit for nice padding
     final double pad = (maxY - minY) * 0.08;
@@ -192,7 +204,10 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Price over time", style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text(
+              "Price over time",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             SizedBox(
               height: 220,
@@ -229,7 +244,8 @@ class _SparklinePainter extends CustomPainter {
 
     final double w = size.width;
     final double h = size.height;
-    final double dx = (maxX.millisecondsSinceEpoch - minX.millisecondsSinceEpoch).toDouble();
+    final double dx =
+        (maxX.millisecondsSinceEpoch - minX.millisecondsSinceEpoch).toDouble();
     final double dy = (maxY - minY);
 
     final Paint line = Paint()
@@ -246,7 +262,9 @@ class _SparklinePainter extends CustomPainter {
 
     for (int i = 0; i < pts.length; i++) {
       final p = pts[i];
-      final double tx = (p.ts.millisecondsSinceEpoch - minX.millisecondsSinceEpoch).toDouble();
+      final double tx =
+          (p.ts.millisecondsSinceEpoch - minX.millisecondsSinceEpoch)
+              .toDouble();
       final double x = dx == 0.0 ? 0.0 : (tx / dx) * (w - 1.0);
       final double yNorm = dy == 0.0 ? 0.5 : (p.price - minY) / dy;
       final double y = math.max(0.0, math.min(h, h - yNorm * (h - 1.0)));
@@ -272,5 +290,3 @@ class _SparklinePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
-
-

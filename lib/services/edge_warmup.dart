@@ -9,7 +9,10 @@ class EdgeWarmup {
       if (kDebugMode) debugPrint('[LAZY] warmup-start');
       unawaited(() async {
         try {
-          await client.functions.invoke('search_cards', body: {'query': 'warmup', 'limit': 1});
+          await client.functions.invoke(
+            'search_cards',
+            body: {'query': 'warmup', 'limit': 1},
+          );
         } catch (_) {}
       }());
       unawaited(() async {

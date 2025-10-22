@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+ï»¿import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'scanner_embed.dart';
 
@@ -245,8 +245,8 @@ class ScanResolver {
         .replaceAll('/', '/') // fullwidth slash
         .replaceAll('/', '/') // fraction slash
         .replaceAll('-', '/') // seen in some prints
-        .replaceAll('–', '/')
-        .replaceAll('—', '/')
+        .replaceAll('â€“', '/')
+        .replaceAll('â€”', '/')
         .replaceAll(' ', '')
         .toUpperCase();
     final parts = n.split('/');
@@ -269,3 +269,4 @@ class ScanResolver {
     return false;
   }
 }
+

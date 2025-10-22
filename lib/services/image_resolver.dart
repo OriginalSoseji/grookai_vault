@@ -33,7 +33,12 @@ class CardImageResolver {
         if (isTk2)
           'https://assets.tcgdex.net/en/ex/tk2/$num/high.webp'
         else
-          ensureTcgdexImageUrl(tcgdexFromSetAndNumber(setCode: sc, number: num).replaceAll('/high.png', '')),
+          ensureTcgdexImageUrl(
+            tcgdexFromSetAndNumber(
+              setCode: sc,
+              number: num,
+            ).replaceAll('/high.png', ''),
+          ),
 
       // --- PokemonTCG.io (aliases + case-flex) ---
       if (isTk2) 'https://images.pokemontcg.io/tk2/${num}_hires.png',
@@ -96,18 +101,31 @@ String ensureTcgdexImageUrl(String url) {
   try {
     final uri = Uri.parse(u);
     final host = uri.host.toLowerCase();
-    final hasExt = RegExp(r"\.(png|jpg|jpeg|webp)$", caseSensitive: false).hasMatch(uri.path);
+    final hasExt = RegExp(
+      r"\.(png|jpg|jpeg|webp)$",
+      caseSensitive: false,
+    ).hasMatch(uri.path);
     if (host.contains('tcgdex.net') && !hasExt) {
       var path = uri.path;
       if (!path.endsWith('/')) path = '$path/';
-      return uri.replace(path: '$path' 'high.png').toString();
+      return uri
+          .replace(
+            path:
+                '$path'
+                'high.png',
+          )
+          .toString();
     }
   } catch (_) {}
   return u;
 }
 
 /// Heuristic tcgdex asset URL from set_code/number.
-String tcgdexFromSetAndNumber({String lang = 'en', required String setCode, required String number}) {
+String tcgdexFromSetAndNumber({
+  String lang = 'en',
+  required String setCode,
+  required String number,
+}) {
   final sc = setCode.trim().toLowerCase();
   final num = number.trim().toLowerCase();
   if (RegExp(r'^g\d+$').hasMatch(sc)) {
@@ -120,12 +138,19 @@ String tcgdexFromSetAndNumber({String lang = 'en', required String setCode, requ
     return '';
   }
   String series = 'base';
-  if (sc.startsWith('sv')) { series = 'sv'; }
-  else if (sc.startsWith('sm')) { series = 'sm'; }
-  else if (sc.startsWith('bw')) { series = 'bw'; }
-  else if (sc.startsWith('xy')) { series = 'xy'; }
-  else if (sc.startsWith('base')) { series = 'base'; }
-  else { series = sc.replaceAll(RegExp(r'[^a-z]'), ''); }
+  if (sc.startsWith('sv')) {
+    series = 'sv';
+  } else if (sc.startsWith('sm')) {
+    series = 'sm';
+  } else if (sc.startsWith('bw')) {
+    series = 'bw';
+  } else if (sc.startsWith('xy')) {
+    series = 'xy';
+  } else if (sc.startsWith('base')) {
+    series = 'base';
+  } else {
+    series = sc.replaceAll(RegExp(r'[^a-z]'), '');
+  }
   return 'https://assets.tcgdex.net/$lang/$series/$sc/$num/high.png';
 }
 
@@ -146,17 +171,20 @@ String toImageUrl(dynamic raw) {
 
 /// Builds best-effort image URL from a DB row.
 String imageUrlFromRow(Map row, {String lang = 'en'}) {
-  final direct = (row['image_url'] ?? row['photo_url'] ?? row['image'] ?? '').toString().trim();
+  final direct = (row['image_url'] ?? row['photo_url'] ?? row['image'] ?? '')
+      .toString()
+      .trim();
   if (direct.isNotEmpty) return toImageUrl(direct);
   final path = (row['image_path'] ?? '').toString().trim();
   if (path.isNotEmpty) return toImageUrl(path);
-  final setCode = (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '').toString().trim();
-  final number  = (row['number'] ?? row['collector_number'] ?? '').toString().trim();
+  final setCode = (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '')
+      .toString()
+      .trim();
+  final number = (row['number'] ?? row['collector_number'] ?? '')
+      .toString()
+      .trim();
   if (setCode.isNotEmpty && number.isNotEmpty) {
     return tcgdexFromSetAndNumber(lang: lang, setCode: setCode, number: number);
   }
   return '';
 }
-
-
-

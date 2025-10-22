@@ -13,4 +13,3 @@ class GVRadius {
   static const BorderRadius br16 = BorderRadius.all(Radius.circular(r16));
   static const BorderRadius br24 = BorderRadius.all(Radius.circular(r24));
 }
-

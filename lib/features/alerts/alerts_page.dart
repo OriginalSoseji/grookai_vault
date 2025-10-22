@@ -33,7 +33,9 @@ class _AlertsPageState extends State<AlertsPage> {
       });
     } catch (_) {
       // View/table missing: dev fallback
-      setState(() { _devFallback = true; });
+      setState(() {
+        _devFallback = true;
+      });
     }
   }
 
@@ -47,13 +49,26 @@ class _AlertsPageState extends State<AlertsPage> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(controller: queryCtrl, decoration: const InputDecoration(labelText: 'Card / Search')), 
-            TextField(controller: thrCtrl, decoration: const InputDecoration(labelText: 'Price threshold'), keyboardType: TextInputType.number),
+            TextField(
+              controller: queryCtrl,
+              decoration: const InputDecoration(labelText: 'Card / Search'),
+            ),
+            TextField(
+              controller: thrCtrl,
+              decoration: const InputDecoration(labelText: 'Price threshold'),
+              keyboardType: TextInputType.number,
+            ),
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          ElevatedButton(onPressed: () => Navigator.pop(context, true), child: const Text('Save')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Save'),
+          ),
         ],
       ),
     );
@@ -62,16 +77,31 @@ class _AlertsPageState extends State<AlertsPage> {
     final thr = double.tryParse(thrCtrl.text.trim());
     if (query.isEmpty || thr == null) return;
     if (_devFallback) {
-      setState(() { _rows.add({'id': 'dev_${DateTime.now().millisecondsSinceEpoch}', 'query': query, 'price_threshold': thr, 'enabled': true, 'dev': true}); });
+      setState(() {
+        _rows.add({
+          'id': 'dev_${DateTime.now().millisecondsSinceEpoch}',
+          'query': query,
+          'price_threshold': thr,
+          'enabled': true,
+          'dev': true,
+        });
+      });
       return;
     }
     try {
       final uid = _client.auth.currentUser?.id;
       if (uid == null) return;
-      await _client.from('alerts').insert({ 'user_id': uid, 'query': query, 'price_threshold': thr, 'enabled': true });
+      await _client.from('alerts').insert({
+        'user_id': uid,
+        'query': query,
+        'price_threshold': thr,
+        'enabled': true,
+      });
       await _load();
     } catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Failed to create alert')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to create alert')));
     }
   }
 
@@ -79,7 +109,10 @@ class _AlertsPageState extends State<AlertsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Alerts' + (_devFallback ? ' [DEV]' : ''))),
-      floatingActionButton: FloatingActionButton(onPressed: _createAlert, child: const Icon(Icons.add_alert)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _createAlert,
+        child: const Icon(Icons.add_alert),
+      ),
       body: ListView.separated(
         itemCount: _rows.length,
         separatorBuilder: (_, __) => const Divider(height: 1),
@@ -92,17 +125,29 @@ class _AlertsPageState extends State<AlertsPage> {
             leading: const Icon(Icons.notifications),
             title: Text(q.isEmpty ? (r['card_id'] ?? 'Card').toString() : q),
             subtitle: Text('Threshold: $thr'),
-            trailing: Switch(value: en, onChanged: (v) async {
-              if (_devFallback) { setState(() { _rows[i]['enabled'] = v; }); return; }
-              try {
-                await _client.from('alerts').update({'enabled': v}).eq('id', r['id']);
-                setState(() { _rows[i]['enabled'] = v; });
-              } catch (_) {}
-            }),
+            trailing: Switch(
+              value: en,
+              onChanged: (v) async {
+                if (_devFallback) {
+                  setState(() {
+                    _rows[i]['enabled'] = v;
+                  });
+                  return;
+                }
+                try {
+                  await _client
+                      .from('alerts')
+                      .update({'enabled': v})
+                      .eq('id', r['id']);
+                  setState(() {
+                    _rows[i]['enabled'] = v;
+                  });
+                } catch (_) {}
+              },
+            ),
           );
         },
       ),
     );
   }
 }
-

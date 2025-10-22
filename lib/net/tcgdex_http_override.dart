@@ -1,4 +1,4 @@
-﻿import "dart:async";
+import "dart:async";
 import "dart:io";
 
 /// Intercepts requests to assets.tcgdex.net and rewrites them to images.pokemontcg.io
@@ -31,12 +31,21 @@ class _TcgdexClient implements HttpClient {
 
   static List<String> _setSlugCandidates(String setCode) {
     final out = <String>[];
-    void addUnique(String s) { if (!out.contains(s)) out.add(s); }
+    void addUnique(String s) {
+      if (!out.contains(s)) out.add(s);
+    }
 
     addUnique(setCode);
     addUnique(setCode.replaceAll(".5", "pt5"));
-    addUnique(setCode.replaceAllMapped(RegExp(r"^sv0(\d+)"), (m) => "sv${m.group(1)}"));
-    addUnique(setCode.replaceAllMapped(RegExp(r"^sv(\d{1})($|[^0-9])"), (m) => "sv0${m.group(1)}${m.group(2)}"));
+    addUnique(
+      setCode.replaceAllMapped(RegExp(r"^sv0(\d+)"), (m) => "sv${m.group(1)}"),
+    );
+    addUnique(
+      setCode.replaceAllMapped(
+        RegExp(r"^sv(\d{1})($|[^0-9])"),
+        (m) => "sv0${m.group(1)}${m.group(2)}",
+      ),
+    );
     return out;
   }
 
@@ -60,7 +69,9 @@ class _TcgdexClient implements HttpClient {
         // Prefer .png (more reliable across older sets), try original slug variants in order.
         final numSlug = _numSlug(number);
         for (final slug in _setSlugCandidates(setCode)) {
-          final rewritten = Uri.parse("https://images.pokemontcg.io/$slug/$numSlug.png");
+          final rewritten = Uri.parse(
+            "https://images.pokemontcg.io/$slug/$numSlug.png",
+          );
           // Rewrite immediately to images.pokemontcg.io; skip HEAD probes.
           return _inner.openUrl(method, rewritten);
         }
@@ -75,44 +86,69 @@ class _TcgdexClient implements HttpClient {
   @override
   bool get autoUncompress => _inner.autoUncompress;
   @override
-  set autoUncompress(bool v) { _inner.autoUncompress = v; }
+  set autoUncompress(bool v) {
+    _inner.autoUncompress = v;
+  }
 
   @override
   Duration? get connectionTimeout => _inner.connectionTimeout;
   @override
-  set connectionTimeout(Duration? v) { _inner.connectionTimeout = v; }
+  set connectionTimeout(Duration? v) {
+    _inner.connectionTimeout = v;
+  }
 
   @override
   Duration get idleTimeout => _inner.idleTimeout;
   @override
-  set idleTimeout(Duration v) { _inner.idleTimeout = v; }
+  set idleTimeout(Duration v) {
+    _inner.idleTimeout = v;
+  }
 
   @override
   String? get userAgent => _inner.userAgent;
   @override
-  set userAgent(String? v) { _inner.userAgent = v; }
+  set userAgent(String? v) {
+    _inner.userAgent = v;
+  }
 
   @override
-  set findProxy(String Function(Uri url)? f) { _inner.findProxy = f; }
+  set findProxy(String Function(Uri url)? f) {
+    _inner.findProxy = f;
+  }
 
   @override
-  void addCredentials(Uri url, String realm, HttpClientCredentials credentials) =>
-      _inner.addCredentials(url, realm, credentials);
+  void addCredentials(
+    Uri url,
+    String realm,
+    HttpClientCredentials credentials,
+  ) => _inner.addCredentials(url, realm, credentials);
   @override
-  void addProxyCredentials(String host, int port, String realm, HttpClientCredentials credentials) =>
-      _inner.addProxyCredentials(host, port, realm, credentials);
+  void addProxyCredentials(
+    String host,
+    int port,
+    String realm,
+    HttpClientCredentials credentials,
+  ) => _inner.addProxyCredentials(host, port, realm, credentials);
 
   @override
-  set authenticate(Future<bool> Function(Uri url, String scheme, String? realm)? f) {
+  set authenticate(
+    Future<bool> Function(Uri url, String scheme, String? realm)? f,
+  ) {
     _inner.authenticate = f;
   }
+
   @override
-  set authenticateProxy(Future<bool> Function(String host, int port, String scheme, String? realm)? f) {
+  set authenticateProxy(
+    Future<bool> Function(String host, int port, String scheme, String? realm)?
+    f,
+  ) {
     _inner.authenticateProxy = f;
   }
 
   @override
-  set badCertificateCallback(bool Function(X509Certificate cert, String host, int port)? callback) {
+  set badCertificateCallback(
+    bool Function(X509Certificate cert, String host, int port)? callback,
+  ) {
     _inner.badCertificateCallback = callback;
   }
 
@@ -122,15 +158,26 @@ class _TcgdexClient implements HttpClient {
   @override
   int? get maxConnectionsPerHost => _inner.maxConnectionsPerHost;
   @override
-  set maxConnectionsPerHost(int? v) { _inner.maxConnectionsPerHost = v; }
+  set maxConnectionsPerHost(int? v) {
+    _inner.maxConnectionsPerHost = v;
+  }
 
   @override
-  set connectionFactory(Future<ConnectionTask<Socket>> Function(Uri url, String? proxyHost, int? proxyPort)? f) {
+  set connectionFactory(
+    Future<ConnectionTask<Socket>> Function(
+      Uri url,
+      String? proxyHost,
+      int? proxyPort,
+    )?
+    f,
+  ) {
     _inner.connectionFactory = f;
   }
 
   @override
-  set keyLog(void Function(String line)? callback) { _inner.keyLog = callback; }
+  set keyLog(void Function(String line)? callback) {
+    _inner.keyLog = callback;
+  }
 
   // --- IMPORTANT: route network lookups through our interceptor ---
   @override
@@ -140,31 +187,38 @@ class _TcgdexClient implements HttpClient {
 
   // The host/port/path helpers can safely delegate to inner
   @override
-  Future<HttpClientRequest> get(String host, int port, String path) => _inner.get(host, port, path);
+  Future<HttpClientRequest> get(String host, int port, String path) =>
+      _inner.get(host, port, path);
   @override
-  Future<HttpClientRequest> head(String host, int port, String path) => _inner.head(host, port, path);
+  Future<HttpClientRequest> head(String host, int port, String path) =>
+      _inner.head(host, port, path);
 
   @override
-  Future<HttpClientRequest> delete(String host, int port, String path) => _inner.delete(host, port, path);
+  Future<HttpClientRequest> delete(String host, int port, String path) =>
+      _inner.delete(host, port, path);
   @override
   Future<HttpClientRequest> deleteUrl(Uri url) => _inner.deleteUrl(url);
 
   @override
-  Future<HttpClientRequest> open(String method, String host, int port, String path) => _inner.open(method, host, port, path);
+  Future<HttpClientRequest> open(
+    String method,
+    String host,
+    int port,
+    String path,
+  ) => _inner.open(method, host, port, path);
   @override
-  Future<HttpClientRequest> patch(String host, int port, String path) => _inner.patch(host, port, path);
+  Future<HttpClientRequest> patch(String host, int port, String path) =>
+      _inner.patch(host, port, path);
   @override
   Future<HttpClientRequest> patchUrl(Uri url) => _inner.patchUrl(url);
   @override
-  Future<HttpClientRequest> post(String host, int port, String path) => _inner.post(host, port, path);
+  Future<HttpClientRequest> post(String host, int port, String path) =>
+      _inner.post(host, port, path);
   @override
   Future<HttpClientRequest> postUrl(Uri url) => _inner.postUrl(url);
   @override
-  Future<HttpClientRequest> put(String host, int port, String path) => _inner.put(host, port, path);
+  Future<HttpClientRequest> put(String host, int port, String path) =>
+      _inner.put(host, port, path);
   @override
   Future<HttpClientRequest> putUrl(Uri url) => _inner.putUrl(url);
 }
-
-
-
-

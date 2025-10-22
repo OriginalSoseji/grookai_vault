@@ -28,11 +28,21 @@ class ConditionBadge extends StatelessWidget {
         base = gv.colors.textSecondary;
     }
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: GVSpacing.s8, vertical: GVSpacing.s4),
-      decoration: BoxDecoration(color: base.withValues(alpha: 0.12), borderRadius: GVRadius.br8),
+      padding: const EdgeInsets.symmetric(
+        horizontal: GVSpacing.s8,
+        vertical: GVSpacing.s4,
+      ),
+      decoration: BoxDecoration(
+        color: base.withValues(alpha: 0.12),
+        borderRadius: GVRadius.br8,
+      ),
       child: Text(
         condition.toUpperCase(),
-        style: gv.typography.caption.copyWith(color: base, fontWeight: FontWeight.w700, letterSpacing: 0.4),
+        style: gv.typography.caption.copyWith(
+          color: base,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.4,
+        ),
       ),
     );
   }

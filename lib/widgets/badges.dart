@@ -1,4 +1,4 @@
-﻿import "package:flutter/material.dart";
+import "package:flutter/material.dart";
 
 /// Build a list of small “pill” Chips based on any fields we can detect
 /// from a row (coming from v_vault_items or similar).
@@ -14,7 +14,7 @@ List<Widget> buildBadges(Map row) {
     if (v is bool) return v;
     if (v is num) return v != 0;
     final s = v.toString().toLowerCase().trim();
-    return ["1","true","yes","y","t"].contains(s);
+    return ["1", "true", "yes", "y", "t"].contains(s);
   }
 
   String s(dynamic v) => (v ?? "").toString().trim();
@@ -29,52 +29,59 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Common strings
-  final name      = s(row["name"]);
-  final setName   = s(row["set_name"] ?? row["set"] ?? row["setCode"] ?? row["set_code"]);
-  final rarity    = s(row["rarity"]);
-  final holoType  = s(row["holo_type"] ?? row["holoType"]);
-  final foilType  = s(row["foil_type"] ?? row["foilType"]);
-  final edition   = s(row["edition"]);
+  final name = s(row["name"]);
+  final setName = s(
+    row["set_name"] ?? row["set"] ?? row["setCode"] ?? row["set_code"],
+  );
+  final rarity = s(row["rarity"]);
+  final holoType = s(row["holo_type"] ?? row["holoType"]);
+  final foilType = s(row["foil_type"] ?? row["foilType"]);
+  final edition = s(row["edition"]);
 
   // First Edition
-  final firstEdition = anyTrue(["first_edition","is_first_edition","firstEdition","first"])
-    || edition.toLowerCase().contains("1st")
-    || name.toLowerCase().contains("1st edition")
-    || rarity.toLowerCase().contains("1st");
+  final firstEdition =
+      anyTrue(["first_edition", "is_first_edition", "firstEdition", "first"]) ||
+      edition.toLowerCase().contains("1st") ||
+      name.toLowerCase().contains("1st edition") ||
+      rarity.toLowerCase().contains("1st");
 
   if (firstEdition) {
     chips.add(_chip("1st Edition", Colors.indigo));
   }
 
   // Shadowless
-  final shadowless = anyTrue(["shadowless","is_shadowless"])
-    || name.toLowerCase().contains("shadowless")
-    || rarity.toLowerCase().contains("shadowless");
+  final shadowless =
+      anyTrue(["shadowless", "is_shadowless"]) ||
+      name.toLowerCase().contains("shadowless") ||
+      rarity.toLowerCase().contains("shadowless");
 
   if (shadowless) {
     chips.add(_chip("Shadowless", Colors.brown));
   }
 
   // Promo
-  final isPromo = anyTrue(["promo","is_promo"])
-    || rarity.toLowerCase().contains("promo")
-    || setName.toUpperCase().contains("PR");
+  final isPromo =
+      anyTrue(["promo", "is_promo"]) ||
+      rarity.toLowerCase().contains("promo") ||
+      setName.toUpperCase().contains("PR");
 
   if (isPromo) {
     chips.add(_chip("Promo", Colors.purple));
   }
 
   // Holo / Reverse Holo
-  final looksReverse = anyTrue(["reverse_holo","is_reverse_holo","reverse"])
-    || holoType.toLowerCase().contains("reverse")
-    || name.toLowerCase().contains("reverse holo")
-    || foilType.toLowerCase().contains("reverse");
+  final looksReverse =
+      anyTrue(["reverse_holo", "is_reverse_holo", "reverse"]) ||
+      holoType.toLowerCase().contains("reverse") ||
+      name.toLowerCase().contains("reverse holo") ||
+      foilType.toLowerCase().contains("reverse");
 
-  final looksHolo = anyTrue(["holo","is_holo","foil","is_foil"])
-    || holoType.toLowerCase().contains("holo")
-    || foilType.toLowerCase().contains("holo")
-    || rarity.toLowerCase().contains("holo")
-    || name.toLowerCase().contains("holo");
+  final looksHolo =
+      anyTrue(["holo", "is_holo", "foil", "is_foil"]) ||
+      holoType.toLowerCase().contains("holo") ||
+      foilType.toLowerCase().contains("holo") ||
+      rarity.toLowerCase().contains("holo") ||
+      name.toLowerCase().contains("holo");
 
   if (looksReverse) {
     chips.add(_chip("Reverse Holo", Colors.teal));
@@ -88,20 +95,28 @@ List<Widget> buildBadges(Map row) {
   }
 
   // Language
-  final lang = anyStr(["language","lang","card_lang"]);
+  final lang = anyStr(["language", "lang", "card_lang"]);
   if (lang.isNotEmpty) {
     chips.add(_chip(_titleCase(lang), Colors.blueGrey));
   }
 
   // Grade (if graded info ever stored)
-  final grade = anyStr(["grade","graded_label","psa_grade","cgc_grade","bgs_grade"]);
+  final grade = anyStr([
+    "grade",
+    "graded_label",
+    "psa_grade",
+    "cgc_grade",
+    "bgs_grade",
+  ]);
   if (grade.isNotEmpty) {
     chips.add(_chip("Grade $grade", Colors.orange));
   }
 
   // DEBUG: see what fields came in if nothing matched
   if (chips.isEmpty) {
-    debugPrint("?? No badges ? keys: ${row.keys} | rarity=${row['rarity']} | name=${row['name']}");
+    debugPrint(
+      "?? No badges ? keys: ${row.keys} | rarity=${row['rarity']} | name=${row['name']}",
+    );
   }
 
   return chips;
@@ -122,11 +137,12 @@ Widget _chip(String text, Color color) {
 
 String _titleCase(String s) {
   if (s.isEmpty) return s;
-  return s.split(RegExp(r"[\s_\-]+")).map((w) {
-    if (w.isEmpty) return w;
-    final lower = w.toLowerCase();
-    return lower[0].toUpperCase() + lower.substring(1);
-  }).join(" ");
+  return s
+      .split(RegExp(r"[\s_\-]+"))
+      .map((w) {
+        if (w.isEmpty) return w;
+        final lower = w.toLowerCase();
+        return lower[0].toUpperCase() + lower.substring(1);
+      })
+      .join(" ");
 }
-
-

@@ -15,7 +15,10 @@ class AppLifecycle with WidgetsBindingObserver {
     _started = true;
     WidgetsBinding.instance.addObserver(this);
     // periodic sync every 10 minutes
-    _timer = Timer.periodic(const Duration(minutes: 10), (_) => _queue.syncIfOnline());
+    _timer = Timer.periodic(
+      const Duration(minutes: 10),
+      (_) => _queue.syncIfOnline(),
+    );
   }
 
   void stop() {
@@ -33,4 +36,3 @@ class AppLifecycle with WidgetsBindingObserver {
     }
   }
 }
-

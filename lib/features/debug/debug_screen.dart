@@ -8,10 +8,7 @@ class DebugScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Debug Tools')),
-      body: const Center(
-        child: DebugImportButton(),
-      ),
+      body: const Center(child: DebugImportButton()),
     );
   }
 }
-

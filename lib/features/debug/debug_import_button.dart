@@ -15,7 +15,9 @@ class _DebugImportButtonState extends State<DebugImportButton> {
     setState(() => msg = 'Running...');
     await controller.find('sv4', '12');
     if (controller.card != null) {
-      setState(() => msg = '✅ Card retrieved: ${controller.card!['name'] ?? 'ok'}');
+      setState(
+        () => msg = '✅ Card retrieved: ${controller.card!['name'] ?? 'ok'}',
+      );
     } else {
       setState(() => msg = '⚠️ ${controller.error ?? 'No data'}');
     }
@@ -23,8 +25,7 @@ class _DebugImportButtonState extends State<DebugImportButton> {
 
   @override
   Widget build(BuildContext context) => ElevatedButton(
-        onPressed: _run,
-        child: Text(msg.isEmpty ? 'Test Import-Card' : msg),
-      );
+    onPressed: _run,
+    child: Text(msg.isEmpty ? 'Test Import-Card' : msg),
+  );
 }
-

@@ -28,11 +28,13 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
           .select('ts, meta')
           .order('ts', ascending: false)
           .limit(50);
-      final list = List<Map<String, dynamic>>.from((data as List? ) ?? const []);
+      final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       setState(() => _rows = list);
     } catch (_) {
       setState(() => _rows = const []);
-    } finally { if (mounted) setState(() => _loading = false); }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
   }
 
   @override
@@ -55,11 +57,12 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
                 final ts = (r['ts'] ?? '').toString();
                 return ListTile(
                   title: Text('Confidence $conf'),
-                  subtitle: Text('type=$type server=${usedServer ? 'Y':'N'} lazy=${usedLazy ? 'Y':'N'}\n$ts'),
+                  subtitle: Text(
+                    'type=$type server=${usedServer ? 'Y' : 'N'} lazy=${usedLazy ? 'Y' : 'N'}\n$ts',
+                  ),
                 );
               },
             ),
     );
   }
 }
-

@@ -61,7 +61,8 @@ class _AsyncImageState extends State<AsyncImage> {
             if (!mounted) return;
             setState(() {
               final sep = _url.contains('?') ? '&' : '?';
-              _url = '$_url${sep}retry=${DateTime.now().millisecondsSinceEpoch}';
+              _url =
+                  '$_url${sep}retry=${DateTime.now().millisecondsSinceEpoch}';
             });
           });
           // Light log; avoid noisy spam
@@ -80,7 +81,9 @@ class _AsyncImageState extends State<AsyncImage> {
         );
       },
     );
-    final clipped = widget.borderRadius != null ? ClipRRect(borderRadius: widget.borderRadius!, child: image) : image;
+    final clipped = widget.borderRadius != null
+        ? ClipRRect(borderRadius: widget.borderRadius!, child: image)
+        : image;
     // Reserve space regardless of load/error to prevent layout shift.
     return SizedBox(width: widget.width, height: widget.height, child: clipped);
   }
@@ -89,7 +92,10 @@ class _AsyncImageState extends State<AsyncImage> {
     return Container(
       width: w,
       height: h,
-      decoration: BoxDecoration(borderRadius: GVRadius.br8, color: const Color(0x1F000000)),
+      decoration: BoxDecoration(
+        borderRadius: GVRadius.br8,
+        color: const Color(0x1F000000),
+      ),
       alignment: Alignment.center,
       child: const Icon(Icons.image, size: 20),
     );

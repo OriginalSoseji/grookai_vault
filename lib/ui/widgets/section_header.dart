@@ -11,7 +11,12 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final gv = GVTheme.of(context);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(GVSpacing.s16, GVSpacing.s16, GVSpacing.s16, GVSpacing.s8),
+      padding: const EdgeInsets.fromLTRB(
+        GVSpacing.s16,
+        GVSpacing.s16,
+        GVSpacing.s16,
+        GVSpacing.s8,
+      ),
       child: Text(
         text,
         style: gv.typography.title.copyWith(color: gv.colors.textPrimary),
@@ -19,4 +24,3 @@ class SectionHeader extends StatelessWidget {
     );
   }
 }
-

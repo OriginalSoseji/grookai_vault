@@ -13,16 +13,23 @@ class CardLookupController extends ChangeNotifier {
   bool get loading => _loading;
 
   Future<void> find(String setCode, String number, {String lang = 'en'}) async {
-    _loading = true; _error = null; notifyListeners();
+    _loading = true;
+    _error = null;
+    notifyListeners();
     try {
-      _card = await _repo.getOrImportCard(setCode: setCode, number: number, lang: lang);
+      _card = await _repo.getOrImportCard(
+        setCode: setCode,
+        number: number,
+        lang: lang,
+      );
       if (_card == null) {
         _error = 'Card not found after import attempt.';
       }
     } catch (e) {
       _error = e.toString();
     } finally {
-      _loading = false; notifyListeners();
+      _loading = false;
+      notifyListeners();
     }
   }
 }

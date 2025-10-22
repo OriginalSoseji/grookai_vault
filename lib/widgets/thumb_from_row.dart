@@ -1,4 +1,4 @@
-﻿import 'package:grookai_vault/widgets/smart_card_image.dart';
+import 'package:grookai_vault/widgets/smart_card_image.dart';
 import "package:flutter/material.dart";
 import "image_best.dart";
 
@@ -28,6 +28,3 @@ Widget thumbFromRow(Map row, {double size = 56}) {
     ),
   );
 }
-
-
-

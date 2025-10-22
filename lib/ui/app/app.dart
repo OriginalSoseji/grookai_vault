@@ -14,16 +14,28 @@ class MyApp extends StatelessWidget {
     final supabase = Supabase.instance.client;
     return MaterialApp(
       title: 'Grookai Vault',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF00A2FF)),
-      darkTheme: ThemeData(useMaterial3: true, brightness: Brightness.dark, colorSchemeSeed: const Color(0xFF00A2FF)),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: const Color(0xFF00A2FF),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorSchemeSeed: const Color(0xFF00A2FF),
+      ),
       themeMode: ThemeMode.system,
       builder: (context, child) {
-        return GVTheme.adaptive(child: AppRouterBridge(child: child ?? const SizedBox.shrink()));
+        return GVTheme.adaptive(
+          child: AppRouterBridge(child: child ?? const SizedBox.shrink()),
+        );
       },
       routes: buildAppRoutes(),
       home: StreamBuilder<AuthState>(
         stream: supabase.auth.onAuthStateChange,
-        initialData: AuthState(AuthChangeEvent.initialSession, supabase.auth.currentSession),
+        initialData: AuthState(
+          AuthChangeEvent.initialSession,
+          supabase.auth.currentSession,
+        ),
         builder: (context, snapshot) {
           final session = supabase.auth.currentSession;
           return session == null ? const LoginPage() : const AppShell();
@@ -32,4 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

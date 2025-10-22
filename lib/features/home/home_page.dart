@@ -9,7 +9,11 @@ import 'package:grookai_vault/services/image_resolver.dart';
 import 'package:grookai_vault/features/pricing/card_price_chart_page.dart';
 
 String _fix(String s) {
-  try { return utf8.decode(latin1.encode(s)); } catch (_) { return s; }
+  try {
+    return utf8.decode(latin1.encode(s));
+  } catch (_) {
+    return s;
+  }
 }
 
 class HomePage extends StatefulWidget {
@@ -40,7 +44,9 @@ class HomePageState extends State<HomePage> {
     try {
       final data = await supabase
           .from('v_vault_items')
-          .select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
+          .select(
+            'id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts',
+          )
           .eq('user_id', _uid!)
           .order('created_at', ascending: false);
       setState(() => _items = List<Map<String, dynamic>>.from(data as List));
@@ -62,7 +68,10 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final unique = _items.length;
-    final totalQty = _items.fold<int>(0, (sum, r) => sum + ((r['qty'] ?? 0) as int));
+    final totalQty = _items.fold<int>(
+      0,
+      (sum, r) => sum + ((r['qty'] ?? 0) as int),
+    );
     final recent = List<Map<String, dynamic>>.from(_items.take(5));
     final totalValue = _sumValue(_items);
 
@@ -77,23 +86,37 @@ class HomePageState extends State<HomePage> {
                 children: [
                   _statCard('Unique cards', '$unique', Icons.style),
                   _statCard('Total quantity', '$totalQty', Icons.numbers),
-                  _statCard('Portfolio value', '\$${totalValue.toStringAsFixed(2)}', Icons.attach_money),
+                  _statCard(
+                    'Portfolio value',
+                    '\$${totalValue.toStringAsFixed(2)}',
+                    Icons.attach_money,
+                  ),
                 ],
               ),
               const SizedBox(height: GVSpacing.s8),
               Row(
                 children: [
-                  FilledButton.icon(onPressed: reload, icon: const Icon(Icons.refresh), label: const Text('Refresh')),
+                  FilledButton.icon(
+                    onPressed: reload,
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Refresh'),
+                  ),
                   const SizedBox(width: GVSpacing.s8),
                   OutlinedButton.icon(
-                    onPressed: () => Navigator.of(context).pushNamed('/dev-price-import'),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed('/dev-price-import'),
                     icon: const Icon(Icons.developer_mode),
                     label: const Text('Price Import (Dev)'),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              Text('Recently added', style: GVTheme.of(context).typography.title.copyWith(color: GVTheme.of(context).colors.textPrimary)),
+              Text(
+                'Recently added',
+                style: GVTheme.of(context).typography.title.copyWith(
+                  color: GVTheme.of(context).colors.textPrimary,
+                ),
+              ),
               const SizedBox(height: GVSpacing.s8),
               if (recent.isEmpty)
                 const Text('No recent items.')
@@ -107,7 +130,10 @@ class HomePageState extends State<HomePage> {
                   return Card(
                     child: ListTile(
                       leading: AsyncImage(url, width: 44, height: 44),
-                      title: Text(_fix(name), style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(
+                        _fix(name),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -141,25 +167,44 @@ class HomePageState extends State<HomePage> {
   Widget _statCard(String label, String value, IconData icon) {
     return SizedBox(
       width: 220,
-      child: Builder(builder: (context) {
-        final gv = GVTheme.of(context);
-        return Card(
-          color: gv.colors.card,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(GVRadius.r12)),
-          child: Padding(
-            padding: const EdgeInsets.all(GVSpacing.s12),
-            child: Row(children: [
-              Icon(icon, size: 28, color: gv.colors.accent),
-              const SizedBox(width: GVSpacing.s12),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(label, style: gv.typography.caption.copyWith(color: gv.colors.textSecondary)),
-                Text(value, style: gv.typography.title.copyWith(fontWeight: FontWeight.w700, color: gv.colors.textPrimary)),
-              ]),
-            ]),
-          ),
-        );
-      }),
+      child: Builder(
+        builder: (context) {
+          final gv = GVTheme.of(context);
+          return Card(
+            color: gv.colors.card,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(GVRadius.r12),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(GVSpacing.s12),
+              child: Row(
+                children: [
+                  Icon(icon, size: 28, color: gv.colors.accent),
+                  const SizedBox(width: GVSpacing.s12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        label,
+                        style: gv.typography.caption.copyWith(
+                          color: gv.colors.textSecondary,
+                        ),
+                      ),
+                      Text(
+                        value,
+                        style: gv.typography.title.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: gv.colors.textPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
-

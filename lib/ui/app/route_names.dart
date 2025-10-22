@@ -2,6 +2,7 @@
 
 class RouteNames {
   static const String search = '/search';
+  static const String cardDetail = '/card-detail';
   static const String devPriceImport = '/dev-price-import';
   static const String recent = '/recent';
   static const String vaultExt = '/vault-ext';

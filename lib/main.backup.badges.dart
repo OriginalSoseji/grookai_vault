@@ -1,4 +1,4 @@
-﻿import 'features/pricing/card_price_chart_page.dart';
+import 'features/pricing/card_price_chart_page.dart';
 // lib/main.dart
 import 'dart:convert'; // for fixMojibake
 import 'dart:io';
@@ -48,8 +48,14 @@ String _toImageUrl(dynamic raw) {
   // Already a URL?
   if (s.startsWith('http://') || s.startsWith('https://')) {
     final isTcgDex = s.contains('assets.tcgdex.net/');
-    final hasQuality = RegExp(r'/(high|low)\.(png|jpg|jpeg|webp)$', caseSensitive: false).hasMatch(s);
-    final hasImageExt = RegExp(r'\.(png|jpg|jpeg|webp)$', caseSensitive: false).hasMatch(s);
+    final hasQuality = RegExp(
+      r'/(high|low)\.(png|jpg|jpeg|webp)$',
+      caseSensitive: false,
+    ).hasMatch(s);
+    final hasImageExt = RegExp(
+      r'\.(png|jpg|jpeg|webp)$',
+      caseSensitive: false,
+    ).hasMatch(s);
 
     // TCGDex needs "/high.png" (or "/low.png") after the number
     if (isTcgDex && !hasQuality && !hasImageExt) {
@@ -78,10 +84,14 @@ String cardImageUrlFromRow(Map row) {
   final path = (row['image_path'] ?? '').toString().trim();
   if (path.isNotEmpty) return _toImageUrl(path);
 
-  final setCode =
-      (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '').toString().trim().toLowerCase();
-  final number =
-      (row['number'] ?? row['collector_number'] ?? '').toString().trim().toLowerCase();
+  final setCode = (row['set_code'] ?? row['set'] ?? row['set_name'] ?? '')
+      .toString()
+      .trim()
+      .toLowerCase();
+  final number = (row['number'] ?? row['collector_number'] ?? '')
+      .toString()
+      .trim()
+      .toLowerCase();
 
   if (setCode.isNotEmpty && number.isNotEmpty) {
     // Guess the series for TCGDex
@@ -137,7 +147,9 @@ class _SmartImageState extends State<SmartImage> {
             return SizedBox(
               width: widget.size,
               height: widget.size,
-              child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+              child: const Center(
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
             );
           }
           return const CircleAvatar(child: Icon(Icons.broken_image));
@@ -147,7 +159,9 @@ class _SmartImageState extends State<SmartImage> {
           return SizedBox(
             width: widget.size,
             height: widget.size,
-            child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+            child: const Center(
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
           );
         },
       ),
@@ -194,7 +208,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Grookai Vault',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
-      routes: {'/search': (_)=> SearchPage(),
+      routes: {
+        '/search': (_) => SearchPage(),
         '/dev-price-import': (_) => const PriceImportPage(),
       },
       home: StreamBuilder<AuthState>(
@@ -249,11 +264,27 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         title: Text(titles[_index]),
         actions: [
-          IconButton(icon: const Icon(Icons.refresh), tooltip: 'Refresh', onPressed: _refreshCurrent),
-          IconButton(icon: const Icon(Icons.search), tooltip: 'Search cards', onPressed: () => Navigator.of(context).pushNamed('/search')),
-          IconButton(tooltip: 'Price Import (Dev)', icon: const Icon(Icons.developer_mode),
-              onPressed: () => Navigator.of(context).pushNamed('/dev-price-import')),
-          IconButton(icon: const Icon(Icons.logout), tooltip: 'Sign out', onPressed: _signOut),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: 'Refresh',
+            onPressed: _refreshCurrent,
+          ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Search cards',
+            onPressed: () => Navigator.of(context).pushNamed('/search'),
+          ),
+          IconButton(
+            tooltip: 'Price Import (Dev)',
+            icon: const Icon(Icons.developer_mode),
+            onPressed: () =>
+                Navigator.of(context).pushNamed('/dev-price-import'),
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sign out',
+            onPressed: _signOut,
+          ),
         ],
       ),
       body: IndexedStack(
@@ -269,10 +300,26 @@ class _AppShellState extends State<AppShell> {
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Vault'),
-          NavigationDestination(icon: Icon(Icons.favorite_border), selectedIcon: Icon(Icons.favorite), label: 'Wishlist'),
-          NavigationDestination(icon: Icon(Icons.camera_outlined), selectedIcon: Icon(Icons.camera_alt), label: 'Scan'),
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.inventory_2_outlined),
+            selectedIcon: Icon(Icons.inventory_2),
+            label: 'Vault',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_border),
+            selectedIcon: Icon(Icons.favorite),
+            label: 'Wishlist',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.camera_outlined),
+            selectedIcon: Icon(Icons.camera_alt),
+            label: 'Scan',
+          ),
         ],
       ),
     );
@@ -334,28 +381,44 @@ class _LoginPageState extends State<LoginPage> {
           constraints: const BoxConstraints(maxWidth: 420),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              TextField(
-                controller: _email,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email)),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _password,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password', prefixIcon: Icon(Icons.lock)),
-              ),
-              const SizedBox(height: 16),
-              FilledButton(
-                onPressed: _loading ? null : _signIn,
-                child: _loading
-                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Sign in'),
-              ),
-              const SizedBox(height: 8),
-              TextButton(onPressed: _loading ? null : _signUp, child: const Text('Create account')),
-            ]),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: _email,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    prefixIcon: Icon(Icons.email),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _password,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed: _loading ? null : _signIn,
+                  child: _loading
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Text('Sign in'),
+                ),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: _loading ? null : _signUp,
+                  child: const Text('Create account'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -391,7 +454,10 @@ class HomePageState extends State<HomePage> {
     setState(() => _loading = true);
     try {
       final data = await supabase
-          .from('v_vault_items').select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
+          .from('v_vault_items')
+          .select(
+            'id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts',
+          )
           .eq('user_id', _uid!)
           .order('created_at', ascending: false);
       setState(() => _items = List<Map<String, dynamic>>.from(data as List));
@@ -413,7 +479,10 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final unique = _items.length;
-    final totalQty = _items.fold<int>(0, (sum, r) => sum + ((r['qty'] ?? 0) as int));
+    final totalQty = _items.fold<int>(
+      0,
+      (sum, r) => sum + ((r['qty'] ?? 0) as int),
+    );
     final recent = List<Map<String, dynamic>>.from(_items.take(5));
     final totalValue = _sumValue(_items);
 
@@ -428,23 +497,35 @@ class HomePageState extends State<HomePage> {
                 children: [
                   _statCard('Unique cards', '$unique', Icons.style),
                   _statCard('Total quantity', '$totalQty', Icons.numbers),
-                  _statCard('Portfolio value', '\$${totalValue.toStringAsFixed(2)}', Icons.attach_money),
+                  _statCard(
+                    'Portfolio value',
+                    '\$${totalValue.toStringAsFixed(2)}',
+                    Icons.attach_money,
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  FilledButton.icon(onPressed: reload, icon: const Icon(Icons.refresh), label: const Text('Refresh')),
+                  FilledButton.icon(
+                    onPressed: reload,
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Refresh'),
+                  ),
                   const SizedBox(width: 8),
                   OutlinedButton.icon(
-                    onPressed: () => Navigator.of(context).pushNamed('/dev-price-import'),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed('/dev-price-import'),
                     icon: const Icon(Icons.developer_mode),
                     label: const Text('Price Import (Dev)'),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              const Text('Recently added', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Recently added',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 8),
               if (recent.isEmpty)
                 const Text('No recent items.')
@@ -457,7 +538,10 @@ class HomePageState extends State<HomePage> {
                   return Card(
                     child: ListTile(
                       leading: _thumb(row['image_url']),
-                      title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(
+                        fixMojibake(name),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Text(
                         '${setCode.isEmpty ? '\u2014' : setCode} \u00B7 #$number'
                         '${mp > 0 ? ' \u00B7 \$${mp.toStringAsFixed(2)} ea' : ''}',
@@ -470,7 +554,6 @@ class HomePageState extends State<HomePage> {
                             builder: (_) => CardPriceChartPage(
                               setCode: setCode,
                               number: number,
-                              
                             ),
                           ),
                         ),
@@ -488,14 +571,25 @@ class HomePageState extends State<HomePage> {
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(14),
-          child: Row(children: [
-            Icon(icon, size: 28),
-            const SizedBox(width: 12),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(label, style: const TextStyle(color: Colors.black54)),
-              Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            ]),
-          ]),
+          child: Row(
+            children: [
+              Icon(icon, size: 28),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label, style: const TextStyle(color: Colors.black54)),
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -539,7 +633,10 @@ class VaultPageState extends State<VaultPage> {
       final ascending = _sortBy != _SortBy.newest;
 
       final data = await supabase
-          .from('v_vault_items').select('id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts')
+          .from('v_vault_items')
+          .select(
+            'id,card_id,qty,market_price,total,created_at,name,number,set_code,variant,tcgplayer_id,game,image_url,price_source,price_ts',
+          )
           .eq('user_id', _uid!)
           .order(orderCol, ascending: ascending);
       setState(() => _items = List<Map<String, dynamic>>.from(data as List));
@@ -575,8 +672,14 @@ class VaultPageState extends State<VaultPage> {
       builder: (_) => SimpleDialog(
         title: const Text('Add to'),
         children: [
-          SimpleDialogOption(onPressed: () => Navigator.pop(context, 'vault'), child: const Text('Vault')),
-          SimpleDialogOption(onPressed: () => Navigator.pop(context, 'wishlist'), child: const Text('Wishlist')),
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, 'vault'),
+            child: const Text('Vault'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, 'wishlist'),
+            child: const Text('Wishlist'),
+          ),
         ],
       ),
     );
@@ -594,8 +697,14 @@ class VaultPageState extends State<VaultPage> {
             decoration: const InputDecoration(labelText: 'Qty'),
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-            FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Add'),
+            ),
           ],
         ),
       );
@@ -620,18 +729,23 @@ class VaultPageState extends State<VaultPage> {
 
     // Trigger immediate price import for the set
     try {
-      await Supabase.instance.client.functions.invoke('import-prices', body: {
-        'setCode': picked['set_code'],
-        'page': 1,
-        'pageSize': 250,
-        'source': 'tcgdex',
-      });
+      await Supabase.instance.client.functions.invoke(
+        'import-prices',
+        body: {
+          'setCode': picked['set_code'],
+          'page': 1,
+          'pageSize': 250,
+          'source': 'tcgdex',
+        },
+      );
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Added to ${choice == 'vault' ? 'Vault' : 'Wishlist'}')),
+      SnackBar(
+        content: Text('Added to ${choice == 'vault' ? 'Vault' : 'Wishlist'}'),
+      ),
     );
   }
 
@@ -642,10 +756,18 @@ class VaultPageState extends State<VaultPage> {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Move to Wishlist?'),
-        content: const Text('This will remove the card from Vault and add it to Wishlist.'),
+        content: const Text(
+          'This will remove the card from Vault and add it to Wishlist.',
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Move'),
+          ),
         ],
       ),
     );
@@ -658,12 +780,15 @@ class VaultPageState extends State<VaultPage> {
     await supabase.from('vault_items').delete().eq('id', id);
 
     try {
-      await Supabase.instance.client.functions.invoke('import-prices', body: {
-        'setCode': (row['set_name'] ?? '').toString(),
-        'page': 1,
-        'pageSize': 250,
-        'source': 'tcgdex',
-      });
+      await Supabase.instance.client.functions.invoke(
+        'import-prices',
+        body: {
+          'setCode': (row['set_name'] ?? '').toString(),
+          'page': 1,
+          'pageSize': 250,
+          'source': 'tcgdex',
+        },
+      );
     } catch (_) {}
 
     await reload();
@@ -696,11 +821,20 @@ class VaultPageState extends State<VaultPage> {
               const SizedBox(width: 8),
               PopupMenuButton<_SortBy>(
                 icon: const Icon(Icons.sort),
-                onSelected: (v) { setState(() => _sortBy = v); reload(); },
+                onSelected: (v) {
+                  setState(() => _sortBy = v);
+                  reload();
+                },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
-                  PopupMenuItem(value: _SortBy.name, child: Text('Name (Aï¿½Z)')),
-                  PopupMenuItem(value: _SortBy.qty, child: Text('Qty (low?high)')),
+                  PopupMenuItem(
+                    value: _SortBy.name,
+                    child: Text('Name (Aï¿½Z)'),
+                  ),
+                  PopupMenuItem(
+                    value: _SortBy.qty,
+                    child: Text('Qty (low?high)'),
+                  ),
                 ],
               ),
             ],
@@ -710,87 +844,108 @@ class VaultPageState extends State<VaultPage> {
           child: _loading
               ? const Center(child: CircularProgressIndicator())
               : filtered.isEmpty
-                  ? const Center(child: Text('No items found.'))
-                  : ListView.separated(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final row = filtered[index];
-                        final id = (row['id'] ?? '').toString();
-                        final name = (row['name'] ?? 'Item').toString();
-                        final setCode = (row['set_name'] ?? '').toString();
-                        final number = (row['number'] ?? '').toString();
-                        final qty = (row['qty'] ?? 0) as int;
-                        final cond = (row['condition_label'] ?? 'NM').toString();
-                        final mp = (row['market_price'] ?? 0) as num;
+              ? const Center(child: Text('No items found.'))
+              : ListView.separated(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: filtered.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  itemBuilder: (context, index) {
+                    final row = filtered[index];
+                    final id = (row['id'] ?? '').toString();
+                    final name = (row['name'] ?? 'Item').toString();
+                    final setCode = (row['set_name'] ?? '').toString();
+                    final number = (row['number'] ?? '').toString();
+                    final qty = (row['qty'] ?? 0) as int;
+                    final cond = (row['condition_label'] ?? 'NM').toString();
+                    final mp = (row['market_price'] ?? 0) as num;
 
-                        final tile = ListTile(
-                          leading: _thumb(row['image_url']),
-                          title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 8,
-                            children: [
-                              if (setCode.isNotEmpty) Text(setCode, style: const TextStyle(color: Colors.black54)),
-                              Text('#$number'),
-                              _chip(cond),
-                              Text('Qty: $qty'),
-                              if (mp > 0) Text('ï¿½ \$${mp.toStringAsFixed(2)} ea'),
-                            ],
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                tooltip: 'Live',
-                                icon: const Icon(Icons.show_chart_rounded),
-                                onPressed: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) => CardPriceChartPage(
-                                      setCode: setCode,
-                                      number: number,
-                                      
-                                    ),
-                                  ),
+                    final tile = ListTile(
+                      leading: _thumb(row['image_url']),
+                      title: Text(
+                        fixMojibake(name),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 8,
+                        children: [
+                          if (setCode.isNotEmpty)
+                            Text(
+                              setCode,
+                              style: const TextStyle(color: Colors.black54),
+                            ),
+                          Text('#$number'),
+                          _chip(cond),
+                          Text('Qty: $qty'),
+                          if (mp > 0) Text('ï¿½ \$${mp.toStringAsFixed(2)} ea'),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            tooltip: 'Live',
+                            icon: const Icon(Icons.show_chart_rounded),
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => CardPriceChartPage(
+                                  setCode: setCode,
+                                  number: number,
                                 ),
                               ),
-                              IconButton(icon: const Icon(Icons.remove), onPressed: () => _incQty(id, -1)),
-                              Text('$qty', style: const TextStyle(fontWeight: FontWeight.bold)),
-                              IconButton(icon: const Icon(Icons.add), onPressed: () => _incQty(id, 1)),
-                              PopupMenuButton<String>(
-                                onSelected: (v) {
-                                  if (v == 'delete') _delete(id);
-                                  if (v == 'move_wishlist') _moveToWishlist(row);
-                                },
-                                itemBuilder: (_) => const [
-                                  PopupMenuItem(value: 'move_wishlist', child: Text('Move to Wishlist')),
-                                  PopupMenuItem(value: 'delete', child: Text('Delete')),
-                                ],
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.remove),
+                            onPressed: () => _incQty(id, -1),
+                          ),
+                          Text(
+                            '$qty',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: () => _incQty(id, 1),
+                          ),
+                          PopupMenuButton<String>(
+                            onSelected: (v) {
+                              if (v == 'delete') _delete(id);
+                              if (v == 'move_wishlist') _moveToWishlist(row);
+                            },
+                            itemBuilder: (_) => const [
+                              PopupMenuItem(
+                                value: 'move_wishlist',
+                                child: Text('Move to Wishlist'),
+                              ),
+                              PopupMenuItem(
+                                value: 'delete',
+                                child: Text('Delete'),
                               ),
                             ],
                           ),
-                        );
+                        ],
+                      ),
+                    );
 
-                        return Dismissible(
-                          key: ValueKey(id),
-                          background: Container(
-                            color: Colors.red,
-                            alignment: Alignment.centerLeft,
-                            padding: const EdgeInsets.only(left: 16),
-                            child: const Icon(Icons.delete, color: Colors.white),
-                          ),
-                          secondaryBackground: Container(
-                            color: Colors.red,
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.only(right: 16),
-                            child: const Icon(Icons.delete, color: Colors.white),
-                          ),
-                          confirmDismiss: (_) async => await _confirmDelete(id),
-                          child: Card(child: tile),
-                        );
-                      },
-                    ),
+                    return Dismissible(
+                      key: ValueKey(id),
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.only(left: 16),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      secondaryBackground: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 16),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      confirmDismiss: (_) async => await _confirmDelete(id),
+                      child: Card(child: tile),
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -803,8 +958,14 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Delete item?'),
         content: const Text('This cannot be undone.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete'),
+          ),
         ],
       ),
     );
@@ -894,19 +1055,22 @@ class WishlistPageState extends State<WishlistPage> {
     }, onConflict: 'user_id,card_id');
 
     try {
-      await Supabase.instance.client.functions.invoke('import-prices', body: {
-        'setCode': picked['set_code'],
-        'page': 1,
-        'pageSize': 250,
-        'source': 'tcgdex',
-      });
+      await Supabase.instance.client.functions.invoke(
+        'import-prices',
+        body: {
+          'setCode': picked['set_code'],
+          'page': 1,
+          'pageSize': 250,
+          'source': 'tcgdex',
+        },
+      );
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Added to Wishlist')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Added to Wishlist')));
   }
 
   Future<void> _moveToVault(Map<String, dynamic> row) async {
@@ -921,8 +1085,14 @@ class WishlistPageState extends State<WishlistPage> {
           decoration: const InputDecoration(labelText: 'Quantity'),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Move')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Move'),
+          ),
         ],
       ),
     );
@@ -937,22 +1107,28 @@ class WishlistPageState extends State<WishlistPage> {
       'qty': qty,
       'condition_label': 'NM',
     });
-    await supabase.from('wishlist_items').delete().eq('id', (row['id'] ?? '').toString());
+    await supabase
+        .from('wishlist_items')
+        .delete()
+        .eq('id', (row['id'] ?? '').toString());
 
     try {
-      await Supabase.instance.client.functions.invoke('import-prices', body: {
-        'setCode': (row['set_name'] ?? '').toString(),
-        'page': 1,
-        'pageSize': 250,
-        'source': 'tcgdex',
-      });
+      await Supabase.instance.client.functions.invoke(
+        'import-prices',
+        body: {
+          'setCode': (row['set_name'] ?? '').toString(),
+          'page': 1,
+          'pageSize': 250,
+          'source': 'tcgdex',
+        },
+      );
     } catch (_) {}
 
     await reload();
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Moved to Vault')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Moved to Vault')));
   }
 
   Future<void> _delete(String id) async {
@@ -965,56 +1141,63 @@ class WishlistPageState extends State<WishlistPage> {
     return _loading
         ? const Center(child: CircularProgressIndicator())
         : _items.isEmpty
-            ? const Center(child: Text('Wishlist is empty.'))
-            : ListView.separated(
-                padding: const EdgeInsets.all(8),
-                itemCount: _items.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
-                itemBuilder: (context, i) {
-                  final row = _items[i];
-                  final id = (row['id'] ?? '').toString();
-                  final name = (row['name'] ?? 'Card').toString();
-                  final setCode = (row['set_name'] ?? '').toString();
-                  final number = (row['number'] ?? '').toString();
-                  final mp = (row['market_price'] ?? 0) as num;
+        ? const Center(child: Text('Wishlist is empty.'))
+        : ListView.separated(
+            padding: const EdgeInsets.all(8),
+            itemCount: _items.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 8),
+            itemBuilder: (context, i) {
+              final row = _items[i];
+              final id = (row['id'] ?? '').toString();
+              final name = (row['name'] ?? 'Card').toString();
+              final setCode = (row['set_name'] ?? '').toString();
+              final number = (row['number'] ?? '').toString();
+              final mp = (row['market_price'] ?? 0) as num;
 
-                  return Card(
-                    child: ListTile(
-                      leading: _thumb(row['image_url']),
-                      title: Text(fixMojibake(name), style: const TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text('$setCode \u00B7 #$number${mp > 0 ? ' \u00B7 \$${mp.toStringAsFixed(2)}' : ''}'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            tooltip: 'Live',
-                            icon: const Icon(Icons.show_chart_rounded),
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => CardPriceChartPage(
-                                  setCode: setCode,
-                                  number: number,
-                                  
-                                ),
-                              ),
+              return Card(
+                child: ListTile(
+                  leading: _thumb(row['image_url']),
+                  title: Text(
+                    fixMojibake(name),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    '$setCode \u00B7 #$number${mp > 0 ? ' \u00B7 \$${mp.toStringAsFixed(2)}' : ''}',
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        tooltip: 'Live',
+                        icon: const Icon(Icons.show_chart_rounded),
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => CardPriceChartPage(
+                              setCode: setCode,
+                              number: number,
                             ),
                           ),
-                          PopupMenuButton<String>(
-                            onSelected: (v) {
-                              if (v == 'move_vault') _moveToVault(row);
-                              if (v == 'delete') _delete(id);
-                            },
-                            itemBuilder: (_) => const [
-                              PopupMenuItem(value: 'move_vault', child: Text('Move to Vault')),
-                              PopupMenuItem(value: 'delete', child: Text('Remove')),
-                            ],
+                        ),
+                      ),
+                      PopupMenuButton<String>(
+                        onSelected: (v) {
+                          if (v == 'move_vault') _moveToVault(row);
+                          if (v == 'delete') _delete(id);
+                        },
+                        itemBuilder: (_) => const [
+                          PopupMenuItem(
+                            value: 'move_vault',
+                            child: Text('Move to Vault'),
                           ),
+                          PopupMenuItem(value: 'delete', child: Text('Remove')),
                         ],
                       ),
-                    ),
-                  );
-                },
+                    ],
+                  ),
+                ),
               );
+            },
+          );
   }
 }
 
@@ -1113,19 +1296,28 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                       itemBuilder: (context, i) {
                         final r = _rows[i];
                         final title = (r['name'] ?? 'Card').toString();
-                        final subtitle = '${(r['set_code'] ?? '').toString()} \u00B7 ${(r['number'] ?? '').toString()}';
+                        final subtitle =
+                            '${(r['set_code'] ?? '').toString()} \u00B7 ${(r['number'] ?? '').toString()}';
 
                         return Card(
                           child: ListTile(
                             leading: _thumb(cardImageUrlFromRow(r)),
-                            title: Text(fixMojibake(title), style: const TextStyle(fontWeight: FontWeight.bold)),
+                            title: Text(
+                              fixMojibake(title),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             subtitle: Text(subtitle),
                             onTap: () {
                               final url = cardImageUrlFromRow(r);
                               final out = Map<String, dynamic>.from(r);
-                              final current = (out['image_url'] ?? '').toString().trim();
+                              final current = (out['image_url'] ?? '')
+                                  .toString()
+                                  .trim();
                               if (current.isEmpty && url.isNotEmpty) {
-                                out['image_url'] = url; // ensure callers get a solid URL
+                                out['image_url'] =
+                                    url; // ensure callers get a solid URL
                               }
                               Navigator.pop(context, out);
                             },
@@ -1169,14 +1361,18 @@ class _ScanPageState extends State<ScanPage> {
 
       await supabase.storage.from('scans').upload(objectPath, file);
 
-      final signedUrl =
-          await supabase.storage.from('scans').createSignedUrl(objectPath, 60 * 60 * 24 * 7);
+      final signedUrl = await supabase.storage
+          .from('scans')
+          .createSignedUrl(objectPath, 60 * 60 * 24 * 7);
 
-      final res = await supabase.functions.invoke('intake-scan', body: {
-        'user_id': uid,
-        'object_path': objectPath,
-        'signed_url': signedUrl,
-      });
+      final res = await supabase.functions.invoke(
+        'intake-scan',
+        body: {
+          'user_id': uid,
+          'object_path': objectPath,
+          'signed_url': signedUrl,
+        },
+      );
 
       final data = Map<String, dynamic>.from(res.data ?? {});
       if (data.isEmpty) throw Exception('No data from intake-scan');
@@ -1194,29 +1390,38 @@ class _ScanPageState extends State<ScanPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(children: [
-                _thumb(card['image_url']),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    '${card['name'] ?? 'Card'} ï¿½ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
-                    maxLines: 2,
+              Row(
+                children: [
+                  _thumb(card['image_url']),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '${card['name'] ?? 'Card'} ï¿½ ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
+                      maxLines: 2,
+                    ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               const SizedBox(height: 8),
               Text('Condition: $label'),
-              Text('Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}'),
+              Text(
+                'Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}',
+              ),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
+            ),
           ],
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Intake failed: $e')));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -1233,7 +1438,9 @@ class _ScanPageState extends State<ScanPage> {
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
-          onPressed: _busy ? null : _captureIdentifyAndAdd, // pass the function, don't call it
+          onPressed: _busy
+              ? null
+              : _captureIdentifyAndAdd, // pass the function, don't call it
           icon: const Icon(Icons.camera_alt),
           label: Text(_busy ? 'Workingï¿½' : 'Scan & Add to Vault'),
         ),
@@ -1243,13 +1450,3 @@ class _ScanPageState extends State<ScanPage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-

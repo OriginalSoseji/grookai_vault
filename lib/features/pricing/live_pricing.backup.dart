@@ -1,18 +1,23 @@
-﻿// lib/features/pricing/live_pricing.dart
+// lib/features/pricing/live_pricing.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 String fixMojibake(String s) {
-  try { return utf8.decode(latin1.encode(s), allowMalformed: true); }
-  catch (_) { return s; }
+  try {
+    return utf8.decode(latin1.encode(s), allowMalformed: true);
+  } catch (_) {
+    return s;
+  }
 }
 
 Widget thumb(String? url, {double size = 56}) {
   final u = (url ?? '').trim();
   if (u.isEmpty) {
     return Container(
-      width: size, height: size, alignment: Alignment.center,
+      width: size,
+      height: size,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: const Color(0xFFEFEFEF),
@@ -24,9 +29,13 @@ Widget thumb(String? url, {double size = 56}) {
     borderRadius: BorderRadius.circular(8),
     child: Image.network(
       u,
-      width: size, height: size, fit: BoxFit.cover,
+      width: size,
+      height: size,
+      fit: BoxFit.cover,
       errorBuilder: (_, __, ___) => Container(
-        width: size, height: size, alignment: Alignment.center,
+        width: size,
+        height: size,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xFFEFEFEF),
@@ -54,14 +63,17 @@ class _LivePricingPageState extends State<LivePricingPage> {
   List<Map<String, dynamic>> _rows = <Map<String, dynamic>>[];
 
   Future<void> _load({String query = ''}) async {
-    setState(() { _loading = true; _error = ''; });
+    setState(() {
+      _loading = true;
+      _error = '';
+    });
 
     try {
       final q = query.trim();
 
       var req = supabase
-        .from('v_card_images')
-        .select('id, name, set_code, number, image_best');
+          .from('v_card_images')
+          .select('id, name, set_code, number, image_best');
 
       if (q.isNotEmpty) {
         req = req.or('name.ilike.%$q%,set_code.ilike.%$q%');
@@ -72,7 +84,9 @@ class _LivePricingPageState extends State<LivePricingPage> {
         _rows = (data as List).cast<Map<String, dynamic>>();
       });
     } catch (e) {
-      setState(() { _error = e.toString(); });
+      setState(() {
+        _error = e.toString();
+      });
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -136,24 +150,37 @@ class _LivePricingPageState extends State<LivePricingPage> {
                     separatorBuilder: (_, __) => const SizedBox(height: 6),
                     itemBuilder: (context, i) {
                       final r = _rows[i];
-                      final name = fixMojibake((r['name'] ?? 'Card').toString());
+                      final name = fixMojibake(
+                        (r['name'] ?? 'Card').toString(),
+                      );
                       final setCode = (r['set_code'] ?? '').toString();
                       final number = (r['number'] ?? '').toString();
                       final img = r['image_best'] as String?;
 
                       final priceWidget = Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.6),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.secondaryContainer.withOpacity(0.6),
                           borderRadius: BorderRadius.circular(999),
                         ),
-                        child: const Text('Price: —', style: TextStyle(fontWeight: FontWeight.w600)),
+                        child: const Text(
+                          'Price: —',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
                       );
 
                       return Card(
                         child: ListTile(
                           leading: thumb(img, size: 48),
-                          title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                          title: Text(
+                            name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           subtitle: Text('$setCode · $number'),
                           trailing: priceWidget,
                           onTap: () {
@@ -183,5 +210,3 @@ class _LivePricingPageState extends State<LivePricingPage> {
     );
   }
 }
-
-
