@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/scanner_ocr.dart';
 import '../../services/scan_resolver.dart';
+import '../../services/scan_metrics.dart';
 
 enum ScanState { idle, capturing, ocr, resolving, done }
 
@@ -12,10 +13,13 @@ class ScanController extends ChangeNotifier {
   final SupabaseClient supabase;
   final ScannerOcr ocr;
   final ScanResolver resolver;
+  late final ScanMetrics metrics;
 
   ScanController(this.supabase)
       : ocr = ScannerOcr(),
-        resolver = ScanResolver(supabase);
+        resolver = ScanResolver(supabase) {
+    metrics = ScanMetrics(supabase);
+  }
 
   ScanState _state = ScanState.idle;
   ScanState get state => _state;
@@ -34,6 +38,7 @@ class ScanController extends ChangeNotifier {
   Future<void> processCapture(File file) async {
     if (_busy) return; // ignore duplicate taps
     _busy = true;
+    final t0 = DateTime.now();
     debugPrint('[SCAN] start');
     _setState(ScanState.capturing);
     try {
@@ -60,6 +65,19 @@ class ScanController extends ChangeNotifier {
         debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
       }
       _setState(ScanState.done);
+      // Telemetry
+      final elapsed = DateTime.now().difference(t0).inMilliseconds;
+      final type = _candidates.isEmpty
+          ? 'scan_none'
+          : _isAmbiguous(_candidates)
+              ? 'scan_ambiguous'
+              : 'scan_success';
+      await metrics.log(
+        type: type,
+        candidates: _candidates.length,
+        bestConfidence: _candidates.isEmpty ? null : _candidates.first.confidence,
+        elapsedMs: elapsed,
+      );
     } catch (e, st) {
       if (kDebugMode) debugPrint('[SCAN] error $e\n$st');
       _setState(ScanState.done);
@@ -70,5 +88,14 @@ class ScanController extends ChangeNotifier {
   void choose(ResolvedCandidate c) {
     _chosen = c;
     notifyListeners();
+  }
+
+  bool _isAmbiguous(List<ResolvedCandidate> list) {
+    if (list.length < 2) return false;
+    final best = list.first;
+    for (final c in list.skip(1).take(2)) {
+      if ((best.confidence - c.confidence).abs() <= 0.05) return true;
+    }
+    return false;
   }
 }
