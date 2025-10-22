@@ -78,7 +78,13 @@ class _ScannerPageState extends State<ScannerPage> {
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Capture failed: $e')));
+      final isTimeout = e is TimeoutException || (e.toString()).contains('TimeoutException');
+      if (isTimeout) {
+        debugPrint('[SCAN] timeout:ui');
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scanner timed out — try again')));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Capture failed: $e')));
+      }
     }
   }
 
