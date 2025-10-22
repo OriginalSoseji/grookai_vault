@@ -10,6 +10,7 @@ import '../../features/debug/dev_admin_page.dart';
 import '../../features/dev/dev_health_page.dart';
 import '../../features/dev/diagnostics/pricing_probe_page.dart';
 import 'route_names.dart';
+import '../../features/alerts/alerts_page.dart';
 
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
@@ -24,5 +25,6 @@ Map<String, WidgetBuilder> buildAppRoutes() {
     RouteNames.devAdmin: (_) => const DevAdminPage(),
     if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
     if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),
+    RouteNames.alerts: (_) => const AlertsPage(),
   };
 }
