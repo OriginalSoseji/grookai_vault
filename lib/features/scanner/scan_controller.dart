@@ -20,6 +20,7 @@ class ScanController extends ChangeNotifier {
   ScanState _state = ScanState.idle;
   ScanState get state => _state;
   void _setState(ScanState s) { _state = s; notifyListeners(); }
+  bool _busy = false;
 
   OcrResult? _ocr;
   OcrResult? get ocrResult => _ocr;
@@ -31,12 +32,17 @@ class ScanController extends ChangeNotifier {
   ResolvedCandidate? get chosen => _chosen;
 
   Future<void> processCapture(File file) async {
+    if (_busy) return; // ignore duplicate taps
+    _busy = true;
     debugPrint('[SCAN] start');
     _setState(ScanState.capturing);
     try {
       debugPrint('[SCAN] capture');
       _setState(ScanState.ocr);
-      _ocr = await ocr.extract(file);
+      _ocr = await ocr.extract(file).timeout(const Duration(seconds: 8), onTimeout: () {
+        debugPrint('[SCAN] timeout:ocr');
+        throw TimeoutException('ocr');
+      });
       final name = _ocr?.name ?? '';
       final num = _ocr?.collectorNumber ?? '';
       debugPrint('[SCAN] ocr:$name#$num');
@@ -46,7 +52,10 @@ class ScanController extends ChangeNotifier {
         name: name,
         collectorNumber: num,
         languageHint: _ocr?.languageHint,
-      );
+      ).timeout(const Duration(seconds: 8), onTimeout: () {
+        debugPrint('[SCAN] timeout:resolve');
+        throw TimeoutException('resolve');
+      });
       if (_candidates.isNotEmpty) {
         debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
       }
@@ -55,7 +64,7 @@ class ScanController extends ChangeNotifier {
       if (kDebugMode) debugPrint('[SCAN] error $e\n$st');
       _setState(ScanState.done);
       rethrow;
-    }
+    } finally { _busy = false; }
   }
 
   void choose(ResolvedCandidate c) {
@@ -63,4 +72,3 @@ class ScanController extends ChangeNotifier {
     notifyListeners();
   }
 }
-
