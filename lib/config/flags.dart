@@ -19,3 +19,6 @@ final int GV_SCAN_LAZY_MAX_RETRIES =
     int.tryParse(dotenv.env['GV_SCAN_LAZY_MAX_RETRIES'] ?? '1') ?? 1;
 
 final String GV_ENV_STAGE = (dotenv.env['GV_ENV_STAGE'] ?? 'dev').toLowerCase();
+
+final bool GV_ENABLE_WALL =
+    (dotenv.env['GV_ENABLE_WALL'] ?? 'true').toLowerCase() == 'true';

@@ -9,6 +9,8 @@ import 'package:grookai_vault/widgets/fix_card_image.dart';
 import 'package:grookai_vault/services/search_gateway.dart';
 import 'package:grookai_vault/services/wishlist_service.dart';
 import 'package:grookai_vault/services/vault_service.dart';
+import 'package:grookai_vault/config/flags.dart';
+import 'package:grookai_vault/ui/app/route_names.dart';
 
 class UnifiedSearchSheet extends StatefulWidget {
   final String? initialQuery;
@@ -198,6 +200,26 @@ class _UnifiedSearchSheetState extends State<UnifiedSearchSheet> {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          if (GV_ENABLE_WALL)
+                            PopupMenuButton<String>(
+                              tooltip: 'More',
+                              itemBuilder: (_) => const [
+                                PopupMenuItem(
+                                  value: 'wall',
+                                  child: Text('Add to Wall'),
+                                ),
+                              ],
+                              onSelected: (v) {
+                                if (v == 'wall') {
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pushNamed(
+                                    RouteNames.wallCompose,
+                                    arguments: r,
+                                  );
+                                }
+                              },
+                            ),
+                          const SizedBox(width: GVSpacing.s8),
                           if (priceMid.isNotEmpty)
                             PriceChip(
                               label: (currency == 'USD' ? '\$' : '') + priceMid,
