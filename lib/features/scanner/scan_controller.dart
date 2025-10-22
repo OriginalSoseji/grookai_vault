@@ -139,3 +139,4 @@ class ScanController extends ChangeNotifier {
     return false;
   }
 }
+
