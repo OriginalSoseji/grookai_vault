@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:grookai_vault/data/prices/price_attach_worker.dart';
 
 import 'package:grookai_vault/ui/tokens/spacing.dart';
 import 'package:grookai_vault/ui/widgets/list_cell.dart';
@@ -76,9 +78,59 @@ class _UnifiedSearchSheetState extends State<UnifiedSearchSheet> {
       final r = await _gateway.search(q);
       if (!mounted) return;
       setState(() => _rows = r);
+      // If async prices flag is enabled, attach prices without blocking UI.
+      final flag = (dotenv.env['GV_PRICES_ASYNC'] ?? '1');
+      final useAsync = flag == '1' || flag.toLowerCase() == 'true';
+      if (useAsync) {
+        // Fire and await internally but UI is already updated above.
+        await _attachPricesAsync();
+      }
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+  }
+
+  Future<void> _attachPricesAsync() async {
+    // Collect ids
+    final ids = _rows
+        .map((r) => (r['id'] ?? r['card_id'] ?? r['print_id'] ?? '').toString())
+        .where((s) => s.isNotEmpty)
+        .toList();
+    if (ids.isEmpty) return;
+    // Batch in larger groups to allow incremental UI refreshes
+    final client = Supabase.instance.client;
+    final worker = PriceAttachWorker(client, chunkSize: 20, maxConcurrent: 6);
+    const groupSize = 60;
+    final total = ids.length;
+    int done = 0;
+    for (var i = 0; i < ids.length; i += groupSize) {
+      final group = ids.sublist(i, i + groupSize > ids.length ? ids.length : i + groupSize);
+      final map = await worker.attachByIds(group);
+      if (!mounted || map.isEmpty) continue;
+      // Merge back into _rows
+      final merged = _rows.map((r) {
+        final id = (r['id'] ?? r['card_id'] ?? r['print_id'] ?? '').toString();
+        final p = map[id];
+        if (p == null) return r;
+        return {
+          ...r,
+          'price_low': p.low,
+          'price_mid': p.mid,
+          'price_high': p.high,
+          'currency': r['currency'] ?? 'USD',
+          'price_last_updated': r['price_last_updated'],
+        };
+      }).toList();
+      done += group.length;
+      if (!mounted) return;
+      setState(() => _rows = merged);
+      // ignore: avoid_print
+      print('[PRICES] attach.progress ${done} / ${total}');
+      // Yield briefly
+      await Future.delayed(const Duration(milliseconds: 1));
+    }
+    // ignore: avoid_print
+    print('[PRICES] attach.done updated=${ids.length} of ${_rows.length}');
   }
 
   Future<void> _addToVault(Map<String, dynamic> r) async {

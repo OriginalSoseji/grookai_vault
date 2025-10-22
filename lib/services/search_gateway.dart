@@ -17,6 +17,9 @@ class SearchGateway {
       (dotenv.env['GV_SEARCH_SOURCE'] ?? 'db').toLowerCase();
   bool get _lazyOverlay =>
       (dotenv.env['GV_LAZY_OVERLAY'] ?? 'true').toLowerCase() == 'true';
+  bool get _pricesAsync =>
+      ((dotenv.env['GV_PRICES_ASYNC'] ?? '1')).toLowerCase() == '1' ||
+      ((dotenv.env['GV_PRICES_ASYNC'] ?? '1')).toLowerCase() == 'true';
 
   Future<List<Map<String, dynamic>>> search(String query) async {
     // DB-first mode (default): always fetch DB results; optionally overlay lazy
@@ -27,7 +30,9 @@ class SearchGateway {
         );
       final dbRows = await _legacy.search(query);
       var normDb = _normalize(dbRows, defaultSource: 'db');
-      normDb = await _attachPrices(normDb);
+      if (!_pricesAsync) {
+        normDb = await _attachPrices(normDb);
+      }
       if (!_lazyOverlay || !_useLazy) {
         return normDb;
       }
@@ -57,7 +62,9 @@ class SearchGateway {
         return !set.containsKey(k);
       }).toList();
       var normExtra = _normalize(extra, defaultSource: 'tcgdex');
-      normExtra = await _attachPrices(normExtra);
+      if (!_pricesAsync) {
+        normExtra = await _attachPrices(normExtra);
+      }
       return [...normDb, ...normExtra];
     }
 
@@ -271,9 +278,10 @@ class SearchGateway {
     } catch (e) {
       if (kDebugMode)
         debugPrint(
-          '[VIEW] latest_card_prices_v unavailable → prices disabled ($e)',
+          '[VIEW] latest_card_prices_v unavailable ? prices disabled ()',
         );
       return rows.map((r) => {...r, 'priceStatus': 'unavailable'}).toList();
     }
   }
 }
+
