@@ -1,0 +1,12 @@
+-- Template view for scan events daily rollup (create if scan_events exists)
+-- select date(ts) as day,
+--        count(*) as scans,
+--        avg((meta->>'elapsed_ms')::numeric) as mean_ms,
+--        percentile_disc(0.95) within group (order by (meta->>'elapsed_ms')::numeric) as p95_ms,
+--        avg(case when (meta->>'used_server')::boolean then 1 else 0 end) as used_server_ratio,
+--        avg(case when (meta->>'used_lazy')::boolean then 1 else 0 end) as used_lazy_ratio,
+--        avg((meta->>'best_confidence')::numeric) as mean_conf
+-- from scan_events
+-- group by 1
+-- order by 1 desc;
+
