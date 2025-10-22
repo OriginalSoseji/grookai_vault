@@ -60,10 +60,96 @@ class _ScannerPageState extends State<ScannerPage> {
           const SnackBar(content: Text('No match found – Try again')),
         );
       }
+      if (mounted && _scan.candidates.isNotEmpty) {
+        await _showConfirmationSheet();
+      }
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Capture failed: $e')));
     }
+  }
+
+  Future<void> _showConfirmationSheet() async {
+    final list = [..._scan.candidates];
+    if (list.isEmpty) return;
+    list.sort((a, b) => b.confidence.compareTo(a.confidence));
+    final best = list.first;
+    final viable = list.where((c) => (best.confidence - c.confidence).abs() <= 0.05).take(3).toList();
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: false,
+      builder: (ctx) {
+        ResolvedCandidate sel = best;
+        bool adding = false;
+        bool added = false;
+        return StatefulBuilder(builder: (context, setS) {
+          Future<void> doAdd() async {
+            if (adding) return;
+            setS(() { adding = true; added = true; });
+            final prev = added;
+            try {
+              await _addToVault(sel);
+            } catch (_) {
+              setS(() { added = prev; });
+            } finally {
+              setS(() { adding = false; });
+            }
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(GVSpacing.s16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FixCardImage(setCode: sel.setCode, number: sel.collectorNumber, width: 72, height: 72, fit: BoxFit.cover),
+                    const SizedBox(width: GVSpacing.s12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(sel.name, style: const TextStyle(fontWeight: FontWeight.w700)),
+                          const SizedBox(height: GVSpacing.s4),
+                          Text('${sel.setCode} #${sel.collectorNumber} • ${sel.language}'),
+                          const SizedBox(height: GVSpacing.s4),
+                          Text('Confidence ${(sel.confidence * 100).toStringAsFixed(0)}%'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: GVSpacing.s12),
+                Row(
+                  children: [
+                    FilledButton.icon(
+                      onPressed: adding ? null : doAdd,
+                      icon: Icon(added ? Icons.check : Icons.add),
+                      label: Text(added ? 'Added' : 'Add to Vault'),
+                    ),
+                    const SizedBox(width: GVSpacing.s8),
+                    TextButton(onPressed: () => Navigator.pop(context), child: const Text('Scan again')),
+                  ],
+                ),
+                if (viable.length >= 2) ...[
+                  const SizedBox(height: GVSpacing.s12),
+                  const Text('Other matches', style: TextStyle(fontWeight: FontWeight.w700)),
+                  const SizedBox(height: GVSpacing.s8),
+                  ...viable.skip(1).map((c) => ListTile(
+                        leading: FixCardImage(setCode: c.setCode, number: c.collectorNumber, width: 40, height: 40, fit: BoxFit.cover),
+                        title: Text(c.name),
+                        subtitle: Text('${c.setCode} #${c.collectorNumber} • ${c.language} • ${(c.confidence * 100).toStringAsFixed(0)}%'),
+                        onTap: () => setS(() => sel = c),
+                      )),
+                ],
+              ],
+            ),
+          );
+        });
+      },
+    );
   }
 
   Future<void> _addToVault(ResolvedCandidate c) async {
