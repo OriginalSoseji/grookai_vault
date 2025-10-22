@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
 import '../../services/scan_resolver.dart';
+import '../../services/scan_resolver.dart';
 
 import '../../ui/widgets/scan_frame.dart';
 import '../../widgets/fix_card_image.dart';
@@ -95,6 +96,7 @@ class _ScannerPageState extends State<ScannerPage> {
     if (list.isEmpty) return;
     list.sort((a, b) => b.confidence.compareTo(a.confidence));
     final best = list.first;
+    // Auto-select if strong, but keep sheet visible
     final viable = list.where((c) => (best.confidence - c.confidence).abs() <= 0.05).take(3).toList();
     await showModalBottomSheet(
       context: context,
