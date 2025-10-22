@@ -18,4 +18,7 @@ P0.5 specifics:
 Staging (P1c)
 - See `configs/staging_flags.json` for safe defaults used in staging.
 - Rollout guide: `docs/ROLL_OUT_SCANNER.md`.
+
+Production (P2)
+- See `configs/production_flags.json` for live defaults and rollout percent.
 - See repo for implementation details in lib/features/scanner/* and lib/services/*.
