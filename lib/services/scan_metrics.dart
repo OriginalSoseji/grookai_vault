@@ -16,6 +16,7 @@ class ScanMetrics {
     bool? usedLazy,
   }) async {
     final payload = {
+      'stage': GV_ENV_STAGE,
       'type': type,
       'candidates': candidates,
       if (bestConfidence != null) 'best_confidence': bestConfidence,
