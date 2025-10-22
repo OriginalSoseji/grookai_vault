@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:async';
 import 'services/edge_warmup.dart';
+import 'services/app_lifecycle.dart';
 
 import 'config/env.dart';
 
@@ -30,6 +31,8 @@ Future<void> main() async {
   await Supabase.initialize(url: kSupabaseUrl, anonKey: kSupabaseAnonKey);
   // Pre-warm Edge Functions to avoid first-call cold starts
   EdgeWarmup.warm();
+  // Start lifecycle observer for offline queue auto-sync
+  AppLifecycle.instance.start();
   runApp(const MyApp());
 }
 
