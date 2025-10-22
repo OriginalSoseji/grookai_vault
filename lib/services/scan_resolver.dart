@@ -231,7 +231,7 @@ class ScanResolver {
   }
 
   String _escapeLike(String s) {
-    return s.replaceAll('%', '\\%').replaceAll('_', '\\_');
+    return s.replaceAll('%' , '\\%' ).replaceAll('_','\\_');
   }
 
   // Normalize number to DB format: uppercase, normalize slash, strip spaces,
@@ -242,11 +242,11 @@ class ScanResolver {
     // Normalize unicode slashes/dashes
     n = n
         .replaceAll('\u2215', '/') // division slash
-        .replaceAll('／', '/') // fullwidth slash
-        .replaceAll('⁄', '/') // fraction slash
+        .replaceAll('/', '/') // fullwidth slash
+        .replaceAll('/', '/') // fraction slash
         .replaceAll('-', '/') // seen in some prints
-        .replaceAll('–', '/')
-        .replaceAll('—', '/')
+        .replaceAll('�', '/')
+        .replaceAll('�', '/')
         .replaceAll(' ', '')
         .toUpperCase();
     final parts = n.split('/');
@@ -259,7 +259,6 @@ class ScanResolver {
     }
     return n;
   }
-}
 
   bool _isAmbiguous(List<ResolvedCandidate> list) {
     if (list.length < 2) return false;
@@ -270,4 +269,3 @@ class ScanResolver {
     return false;
   }
 }
-

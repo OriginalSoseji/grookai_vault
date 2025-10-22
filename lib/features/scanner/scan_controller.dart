@@ -90,7 +90,7 @@ class ScanController extends ChangeNotifier {
                 'lang': _ocr?.languageHint ?? 'en',
               });
             } catch (_) {}
-            _cooldown[key] = DateTime.Now.AddMilliseconds(GV_SCAN_LAZY_COOLDOWN_MS);
+            _cooldown[key] = DateTime.now().add(Duration(milliseconds: GV_SCAN_LAZY_COOLDOWN_MS));
             await Future.delayed(const Duration(seconds: 3));
             _setState(ScanState.resolving);
             _candidates = await resolver.resolve(
