@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/scanner_ocr.dart';
-import '../../services/scan_resolver.dart';
+import 'package:grookai_vault/services/scan_resolver.dart';
 import '../../services/scan_metrics.dart';
 import '../../config/flags.dart';
 
