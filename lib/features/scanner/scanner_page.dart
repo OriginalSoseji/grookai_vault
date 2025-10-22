@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
-import '../../services/scan_resolver.dart';
-import '../../services/scan_resolver.dart';
+import 'package:grookai_vault/services/scan_resolver.dart';
 
 import '../../ui/widgets/scan_frame.dart';
 import '../../widgets/fix_card_image.dart';
