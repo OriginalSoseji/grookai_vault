@@ -5,7 +5,7 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { embedImage } from './model.ts'
-import { MODEL, TIMEOUT_MS, WEIGHTS, CONF_ACCEPT, CONF_STRONG } from './config.ts'
+import { MODEL, TIMEOUT_MS, WEIGHTS, CONF_ACCEPT, CONF_STRONG, MAX_CONCURRENT, FUNC_TIMEOUT_MS } from './config.ts'
 
 type Req = {
   image_base64?: string
@@ -15,8 +15,16 @@ type Req = {
   lang_hint?: string
 }
 
+// naive per-invocation semaphore (doesn't span instances; placeholder)
+let inFlight = 0
+
 serve(async (req: Request) => {
   try {
+    const start = Date.now()
+    if (inFlight >= MAX_CONCURRENT) {
+      return new Response(JSON.stringify({ error: 'busy' }), { status: 429, headers: { 'Content-Type': 'application/json' } })
+    }
+    inFlight++
     const { image_base64, embedding, name_hint, number_hint, lang_hint }: Req = await req.json()
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -75,11 +83,10 @@ serve(async (req: Request) => {
     const best = fused[0] || null
     const alternatives = fused.slice(1, 4)
 
-    return new Response(
-      JSON.stringify({ best, alternatives, logs, used_embedding: usedEmbedding, model: MODEL, thresholds: { CONF_ACCEPT, CONF_STRONG } }),
-      { headers: { 'Content-Type': 'application/json' } },
-    )
+    const body = { best, alternatives, logs, used_embedding: usedEmbedding, model: MODEL, thresholds: { CONF_ACCEPT, CONF_STRONG }, ms: Date.now() - start }
+    return new Response(JSON.stringify(body), { headers: { 'Content-Type': 'application/json' } })
   } catch (e) {
     return new Response(JSON.stringify({ error: String(e) }), { status: 400, headers: { 'Content-Type': 'application/json' } })
   }
+  finally { inFlight = Math.max(0, inFlight - 1) }
 })
