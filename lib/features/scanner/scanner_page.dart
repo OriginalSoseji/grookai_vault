@@ -144,7 +144,7 @@ class _ScannerPageState extends State<ScannerPage> {
                 Row(
                   children: [
                     FilledButton.icon(
-                      onPressed: adding ? null : doAdd,
+                      onPressed: (adding || added) ? null : doAdd,
                       icon: Icon(added ? Icons.check : Icons.add),
                       label: Text(added ? 'Added' : 'Add to Vault'),
                     ),
