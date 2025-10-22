@@ -364,11 +364,13 @@ class _SearchPageState extends State<SearchPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.of(context).pushNamed('/scanner'),
-        icon: const Icon(Icons.camera_alt),
-        label: const Text('Scan Card'),
-      ),
+      floatingActionButton: GV_FEATURE_SCANNER
+          ? FloatingActionButton.extended(
+              onPressed: () => Navigator.of(context).pushNamed('/scanner'),
+              icon: const Icon(Icons.camera_alt),
+              label: const Text('Scan Card'),
+            )
+          : null,
     );
   }
 

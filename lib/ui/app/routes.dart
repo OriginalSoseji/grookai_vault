@@ -11,12 +11,13 @@ import '../../features/debug/dev_admin_page.dart';
 import '../../features/dev/dev_health_page.dart';
 import '../../features/dev/diagnostics/pricing_probe_page.dart';
 import 'route_names.dart';
+import '../../config/flags.dart';
 import '../../features/alerts/alerts_page.dart';
 
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
     RouteNames.search: (_) => const SearchPage(),
-    RouteNames.scanner: (_) => const ScannerPage(),
+    if (GV_FEATURE_SCANNER) RouteNames.scanner: (_) => const ScannerPage(),
     RouteNames.devPriceImport: (_) => const PriceImportPage(),
     RouteNames.recent: (_) => const RecentlyAddedPage(),
     RouteNames.vaultExt: (_) => Scaffold(
