@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:image/image.dart' as img;
 
 class OcrResult {
   final String name;
@@ -13,27 +14,71 @@ class ScannerOcr {
   final TextRecognizer _text = TextRecognizer(script: TextRecognitionScript.latin);
 
   Future<OcrResult> extract(File imageFile) async {
-    final input = InputImage.fromFile(imageFile);
-    final recognized = await _text.processImage(input);
-    final lines = <String>[];
-    for (final block in recognized.blocks) {
-      for (final line in block.lines) {
-        final t = line.text.trim();
-        if (t.isNotEmpty) lines.add(t);
-      }
+    // Load image and prepare two crops to improve accuracy
+    final bytes = await imageFile.readAsBytes();
+    final decoded = img.decodeImage(bytes);
+    List<String> fullLines = <String>[];
+    List<String> numLines = <String>[];
+    List<String> nameLines = <String>[];
+    if (decoded != null) {
+      final h = decoded.height;
+      final w = decoded.width;
+      final bottomH = (h * 0.26).round().clamp(1, h);
+      final numCrop = img.copyCrop(decoded, x: 0, y: h - bottomH, width: w, height: bottomH);
+      final topH = (h * 0.36).round().clamp(1, h);
+      final nameCrop = img.copyCrop(decoded, x: 0, y: 0, width: w, height: topH);
+
+      // Recognize number band
+      try {
+        final tmpNum = await _writeTempJpg(numCrop);
+        final recNum = await _text.processImage(InputImage.fromFile(tmpNum));
+        for (final b in recNum.blocks) {
+          for (final l in b.lines) {
+            final t = l.text.trim();
+            if (t.isNotEmpty) numLines.add(t);
+          }
+        }
+      } catch (_) {}
+
+      // Recognize name band
+      try {
+        final tmpName = await _writeTempJpg(nameCrop);
+        final recName = await _text.processImage(InputImage.fromFile(tmpName));
+        for (final b in recName.blocks) {
+          for (final l in b.lines) {
+            final t = l.text.trim();
+            if (t.isNotEmpty) nameLines.add(t);
+          }
+        }
+      } catch (_) {}
     }
-    final text = lines.join('\n');
-    if (kDebugMode) debugPrint('[SCAN] ocr.lines=${lines.length}');
 
-    // Heuristic: find collector number like "12/190" or alphanum like "RC12/RC"
-    String number = _extractCollectorNumber(text) ?? '';
+    // Fallback: recognize the full image if crops produced nothing
+    if (numLines.isEmpty || nameLines.isEmpty) {
+      try {
+        final input = InputImage.fromFile(imageFile);
+        final recognized = await _text.processImage(input);
+        for (final block in recognized.blocks) {
+          for (final line in block.lines) {
+            final t = line.text.trim();
+            if (t.isNotEmpty) fullLines.add(t);
+          }
+        }
+      } catch (_) {}
+    }
 
-    // Heuristic for name: take the first long-ish alpha line without '/'
-    String name = _extractName(lines) ?? '';
+    final allText = [...nameLines, ...numLines, ...fullLines].join('\n');
+    if (kDebugMode) debugPrint('[SCAN] ocr.lines name=${nameLines.length} num=${numLines.length} full=${fullLines.length}');
 
-    // Basic language guess (very naive): look for small language tag strings
-    String? lang = _guessLang(text);
+    // Collector number from number-band first, then fallback to all text
+    String number = _extractCollectorNumber(numLines.join(' ')) ?? _extractCollectorNumber(allText) ?? '';
+    number = _normalizeNumber(number);
 
+    // Name from name-band first, then fallback to all text lines
+    String name = _extractName(nameLines.isNotEmpty ? nameLines : fullLines) ?? '';
+
+    final lang = _guessLang(allText) ?? 'en';
+    if (kDebugMode) debugPrint('[SCAN] ocr: name="$name" number="$number" lang="$lang"');
     return OcrResult(name: name, collectorNumber: number, languageHint: lang);
   }
 
@@ -66,7 +111,42 @@ class ScannerOcr {
   String? _guessLang(String text) {
     final lc = text.toLowerCase();
     if (lc.contains('pokemon')) return 'en';
+    // Quick & naive: Japanese kana/kanji
+    final hasKana = RegExp(r'[\u3040-\u30ff]').hasMatch(text); // Hiragana/Katakana
+    final hasHan = RegExp(r'[\u4e00-\u9fff]').hasMatch(text); // CJK unified
+    if (hasKana) return 'ja';
+    if (hasHan) return 'zh';
     return null;
   }
-}
 
+  String _normalizeNumber(String n) {
+    var s = n.trim();
+    if (s.isEmpty) return s;
+    s = s
+        .replaceAll('\u2215', '/')
+        .replaceAll('／', '/')
+        .replaceAll('⁄', '/')
+        .replaceAll('-', '/')
+        .replaceAll('–', '/')
+        .replaceAll('—', '/')
+        .replaceAll(' ', '')
+        .toUpperCase();
+    final parts = s.split('/');
+    if (parts.length == 2) {
+      final left = parts[0].replaceFirst(RegExp(r'^0+'), '');
+      final right = parts[1].replaceFirst(RegExp(r'^0+'), '');
+      final l = left.isEmpty ? '0' : left;
+      final r = right.isEmpty ? right : right;
+      return '$l/$r';
+    }
+    return s;
+  }
+
+  Future<File> _writeTempJpg(img.Image im) async {
+    final tmpDir = Directory.systemTemp.createTempSync('scan_');
+    final f = File('${tmpDir.path}/crop_${DateTime.now().microsecondsSinceEpoch}.jpg');
+    final bytes = img.encodeJpg(im, quality: 92);
+    await f.writeAsBytes(bytes, flush: true);
+    return f;
+  }
+}
