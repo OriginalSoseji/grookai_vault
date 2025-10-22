@@ -47,7 +47,40 @@ class ScanResolver {
           .limit(5);
       final rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       if (rows.isNotEmpty) {
-        return rows.map((r) => _mapRow(r, confidence: 0.97)).toList();
+        final list = rows.map((r) => _mapRow(r, confidence: 0.97)).toList();
+        // If still ambiguous/low, try server resolver
+        if (_isAmbiguous(list) || list.first.confidence < 0.90) {
+          final s = await _embed.resolve(
+            imageJpegBytes: imageJpegBytes,
+            nameHint: trimmedName,
+            numberHint: normNum,
+            langHint: lang,
+          );
+          if (s?.best != null) {
+            final b = s!.best!;
+            final mapped = _mapRow({
+              'id': b['card_print_id'] ?? b['id'],
+              'set_code': b['set_code'],
+              'name': b['name'] ?? name,
+              'number': b['number'],
+              'lang': b['lang'],
+              'image_url': b['image_url'],
+              'image_alt_url': b['image_alt_url'],
+            }, confidence: (b['confidence'] ?? 0.90) * 1.0);
+            final rest = (s.alternatives).map((r) => _mapRow({
+              'id': r['card_print_id'] ?? r['id'],
+              'set_code': r['set_code'],
+              'name': r['name'] ?? name,
+              'number': r['number'],
+              'lang': r['lang'],
+              'image_url': r['image_url'],
+              'image_alt_url': r['image_alt_url'],
+            }, confidence: (r['confidence'] ?? 0.80) * 1.0)).toList();
+            lastUsedServer = true;
+            return [mapped, ...rest];
+          }
+        }
+        return list;
       }
     } catch (e) {
       if (kDebugMode) debugPrint('[SCAN] resolve.strict error $e');
@@ -63,7 +96,39 @@ class ScanResolver {
           .limit(5);
       final rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       if (rows.isNotEmpty) {
-        return rows.map((r) => _mapRow(r, confidence: 0.90)).toList();
+        final list = rows.map((r) => _mapRow(r, confidence: 0.90)).toList();
+        if (_isAmbiguous(list)) {
+          final s = await _embed.resolve(
+            imageJpegBytes: imageJpegBytes,
+            nameHint: trimmedName,
+            numberHint: normNum,
+            langHint: lang,
+          );
+          if (s?.best != null) {
+            final b = s!.best!;
+            final mapped = _mapRow({
+              'id': b['card_print_id'] ?? b['id'],
+              'set_code': b['set_code'],
+              'name': b['name'] ?? name,
+              'number': b['number'],
+              'lang': b['lang'],
+              'image_url': b['image_url'],
+              'image_alt_url': b['image_alt_url'],
+            }, confidence: (b['confidence'] ?? 0.90) * 1.0);
+            final rest = (s.alternatives).map((r) => _mapRow({
+              'id': r['card_print_id'] ?? r['id'],
+              'set_code': r['set_code'],
+              'name': r['name'] ?? name,
+              'number': r['number'],
+              'lang': r['lang'],
+              'image_url': r['image_url'],
+              'image_alt_url': r['image_alt_url'],
+            }, confidence: (r['confidence'] ?? 0.80) * 1.0)).toList();
+            lastUsedServer = true;
+            return [mapped, ...rest];
+          }
+        }
+        return list;
       }
     } catch (e) {
       if (kDebugMode) debugPrint('[SCAN] resolve.num-only error $e');
@@ -195,3 +260,14 @@ class ScanResolver {
     return n;
   }
 }
+
+  bool _isAmbiguous(List<ResolvedCandidate> list) {
+    if (list.length < 2) return false;
+    final best = list.first;
+    for (final c in list.skip(1).take(2)) {
+      if ((best.confidence - c.confidence).abs() <= 0.05) return true;
+    }
+    return false;
+  }
+}
+
