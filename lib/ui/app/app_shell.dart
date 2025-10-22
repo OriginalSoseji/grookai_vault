@@ -103,11 +103,13 @@ class _AppShellState extends State<AppShell> {
             onSelected: (v) {
               if (v == 'alerts' && GV_FEATURE_ALERTS) Navigator.of(context).pushNamed(RouteNames.alerts);
               if (v == 'account') Navigator.of(context).pushNamed(RouteNames.account);
+              if (v == 'scan_history') Navigator.of(context).pushNamed(RouteNames.scanHistory);
               if (v == 'signout') _signOut();
             },
             itemBuilder: (_) => [
               if (GV_FEATURE_ALERTS) const PopupMenuItem(value: 'alerts', child: Text('Alerts')),
               const PopupMenuItem(value: 'account', child: Text('Account')),
+              const PopupMenuItem(value: 'scan_history', child: Text('Scan History')),
               const PopupMenuItem(value: 'signout', child: Text('Sign out')),
             ],
           ),
