@@ -25,8 +25,9 @@ class CardImageFill extends StatelessWidget {
           height: h,
           fit: fit,
         );
-        if (borderRadius != null)
+        if (borderRadius != null) {
           child = ClipRRect(borderRadius: borderRadius!, child: child);
+        }
         return SizedBox(width: w, height: h, child: child);
       },
     );

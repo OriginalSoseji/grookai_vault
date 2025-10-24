@@ -26,19 +26,18 @@ class _DevAdminPageState extends State<DevAdminPage> {
         _log = const JsonEncoder.withIndent('  ').convert(res.data);
       });
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('check-sets completed')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('check-sets completed')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('check-sets failed: $e')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('check-sets failed: $e')));
     } finally {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _busy = false;
         });
+      }
     }
   }
 

@@ -1,3 +1,7 @@
+import java.util.Properties
+import java.io.File
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -28,6 +32,26 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // Configure OAuth redirect placeholders used by AndroidManifest
+        // Defaults to Supabase Flutter scheme unless overridden via
+        //  - android/local.properties: appAuthRedirectScheme, appAuthRedirectHost
+        //  - or environment variables: APP_AUTH_REDIRECT_SCHEME, APP_AUTH_REDIRECT_HOST
+        val lp = Properties()
+        val f = rootProject.file("local.properties")
+        if (f.exists()) {
+            f.inputStream().use { lp.load(it) }
+        }
+        val scheme = (System.getenv("APP_AUTH_REDIRECT_SCHEME")
+            ?: lp.getProperty("appAuthRedirectScheme")
+            ?: "io.supabase.flutter")
+        val host = (System.getenv("APP_AUTH_REDIRECT_HOST")
+            ?: lp.getProperty("appAuthRedirectHost")
+            ?: "login-callback")
+        manifestPlaceholders += mapOf(
+            "appAuthRedirectScheme" to scheme,
+            "appAuthRedirectHost" to host,
+        )
     }
 
     buildTypes {

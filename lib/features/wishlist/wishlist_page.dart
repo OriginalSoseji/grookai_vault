@@ -222,8 +222,9 @@ class WishlistPageState extends State<WishlistPage> {
                           final current = (out['image_url'] ?? '')
                               .toString()
                               .trim();
-                          if (current.isEmpty && url.isNotEmpty)
+                          if (current.isEmpty && url.isNotEmpty) {
                             out['image_url'] = url;
+                          }
 
                           var id =
                               (out['id'] ??
@@ -254,7 +255,9 @@ class WishlistPageState extends State<WishlistPage> {
                                               hyd['photo_url'] ??
                                               '')
                                           .toString();
-                                  if (himg.isNotEmpty) out['image_url'] = himg;
+                                  if (himg.isNotEmpty) {
+                                    out['image_url'] = himg;
+                                  }
                                 }
                               }
                             } catch (_) {}
@@ -279,7 +282,9 @@ class WishlistPageState extends State<WishlistPage> {
                                               d?['image_alt_url'] ??
                                               '')
                                           .toString();
-                                  if (img.isNotEmpty) out['image_url'] = img;
+                                  if (img.isNotEmpty) {
+                                    out['image_url'] = img;
+                                  }
                                 }
                               }
                             } catch (_) {}
@@ -300,9 +305,12 @@ class WishlistPageState extends State<WishlistPage> {
                         },
                         trailing: PopupMenuButton<String>(
                           onSelected: (v) {
-                            if (v == 'move_vault') _moveToVault(r);
-                            if (v == 'delete')
+                            if (v == 'move_vault') {
+                              _moveToVault(r);
+                            }
+                            if (v == 'delete') {
                               _delete((r['id'] ?? '').toString());
+                            }
                           },
                           itemBuilder: (_) => const [
                             PopupMenuItem(
@@ -324,3 +332,4 @@ class WishlistPageState extends State<WishlistPage> {
     );
   }
 }
+

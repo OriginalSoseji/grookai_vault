@@ -44,7 +44,7 @@ class ProfileButton extends StatelessWidget {
                 onTap: () =>
                     Navigator.of(context).pushNamed(RouteNames.account),
               ),
-              if (GV_ENABLE_WALL)
+              if (gvEnableWall)
                 _sheetTile(
                   context,
                   icon: Icons.public,
@@ -52,7 +52,7 @@ class ProfileButton extends StatelessWidget {
                   onTap: () =>
                       Navigator.of(context).pushNamed(RouteNames.wallFeed),
                 ),
-              if (GV_FEATURE_ALERTS)
+              if (gvFeatureAlerts)
                 _sheetTile(
                   context,
                   icon: Icons.notifications,

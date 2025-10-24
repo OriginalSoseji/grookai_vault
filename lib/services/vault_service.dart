@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grookai_vault/core/result.dart';
 
 class VaultService {
   final SupabaseClient _client;
@@ -96,6 +97,26 @@ class VaultService {
     return Map<String, dynamic>.from(after);
   }
 
+  /// Result-based variant used by VMs; keeps legacy method above untouched.
+  Future<Result<bool>> addOrIncrementResult({
+    required String cardId,
+    int deltaQty = 1,
+    String conditionLabel = 'NM',
+    String? notes,
+  }) async {
+    try {
+      final r = await addOrIncrement(
+        cardId: cardId,
+        deltaQty: deltaQty,
+        conditionLabel: conditionLabel,
+        notes: notes,
+      );
+      return r == null ? const Err('import_failed', code: 500) : const Ok(true);
+    } catch (_) {
+      return const Err('import_failed', code: 500);
+    }
+  }
+
   Future<Map<String, dynamic>?> addItem({
     required String cardId,
     int qty = 1,
@@ -157,6 +178,25 @@ class VaultService {
     // ignore: avoid_print
     print('[INSERT OK] $res');
     return Map<String, dynamic>.from(res);
+  }
+
+  Future<Result<bool>> addItemResult({
+    required String cardId,
+    int qty = 1,
+    String conditionLabel = 'NM',
+    String? notes,
+  }) async {
+    try {
+      final r = await addItem(
+        cardId: cardId,
+        qty: qty,
+        conditionLabel: conditionLabel,
+        notes: notes,
+      );
+      return r == null ? const Err('import_failed', code: 500) : const Ok(true);
+    } catch (_) {
+      return const Err('import_failed', code: 500);
+    }
   }
 
   Future<int> updateQty({required String id, required int next}) async {

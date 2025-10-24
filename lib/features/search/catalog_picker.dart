@@ -160,8 +160,9 @@ class _CatalogPickerState extends State<CatalogPicker> {
                                                   hyd['photo_url'] ??
                                                   '')
                                               .toString();
-                                      if (himg.isNotEmpty)
+                                      if (himg.isNotEmpty) {
                                         out['image_url'] = himg;
+                                      }
                                     }
                                   }
                                 } catch (_) {}
@@ -187,8 +188,9 @@ class _CatalogPickerState extends State<CatalogPicker> {
                                                   d?['image_alt_url'] ??
                                                   '')
                                               .toString();
-                                      if (img.isNotEmpty)
+                                      if (img.isNotEmpty) {
                                         out['image_url'] = img;
+                                      }
                                     }
                                   }
                                 } catch (_) {}
@@ -220,3 +222,4 @@ class _CatalogPickerState extends State<CatalogPicker> {
     );
   }
 }
+

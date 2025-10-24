@@ -88,7 +88,7 @@ class ScanController extends ChangeNotifier {
 
       // Lazy import integration on miss/low confidence
       final low = _candidates.isEmpty || (_candidates.first.confidence < 0.50);
-      if (low && GV_SCAN_LAZY_IMPORT) {
+      if (low && gvScanLazyImport) {
         final key =
             '${name.trim().toUpperCase()}|${num.trim().toUpperCase()}|${(_ocr?.languageHint ?? 'en').toUpperCase()}';
         final until = _cooldown[key];
@@ -111,7 +111,7 @@ class ScanController extends ChangeNotifier {
               );
             } catch (_) {}
             _cooldown[key] = DateTime.now().add(
-              Duration(milliseconds: GV_SCAN_LAZY_COOLDOWN_MS),
+              Duration(milliseconds: gvScanLazyCooldownMs),
             );
             await Future.delayed(const Duration(seconds: 3));
             _setState(ScanState.resolving);
@@ -123,7 +123,7 @@ class ScanController extends ChangeNotifier {
             );
             if (_candidates.isNotEmpty) break;
             retries += 1;
-          } while (retries < GV_SCAN_LAZY_MAX_RETRIES);
+          } while (retries < gvScanLazyMaxRetries);
           if (_candidates.isNotEmpty) {
             debugPrint('[SCAN] resolve:${_candidates.first.cardPrintId}');
           }

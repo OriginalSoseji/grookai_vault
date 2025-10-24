@@ -24,8 +24,7 @@ const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('
 const JUSTTCG_BASE = (Deno.env.get('JUSTTCG_BASE_URL') || '').replace(/\/$/, '')
 const JUSTTCG_KEY = Deno.env.get('JUSTTCG_API_KEY') || ''
 
-const PRICECHARTING_CSV_URL = Deno.env.get('PRICECHARTING_DOWNLOAD_URL') || ''
-const PRICECHARTING_API_KEY = Deno.env.get('PRICECHARTING_API_KEY') || ''
+// Pricing v2: PriceCharting disabled/removed
 
 const json = (d: unknown, status = 200) => new Response(JSON.stringify(d), { status, headers: CORS.headers })
 const err  = (code: number, message: string, details?: unknown) => json({ ok: false, code, message, details }, code)
@@ -72,48 +71,7 @@ async function getJustTcgQuote(set_code: string, number: string, lang: string): 
   }
 }
 
-async function getPriceChartingCsvQuote(set_code: string, number: string): Promise<Quote> {
-  if (!PRICECHARTING_CSV_URL) return null
-  try {
-    const r = await fetch(PRICECHARTING_CSV_URL, { headers: { 'Accept': 'text/csv' } })
-    if (!r.ok) { console.error('[PRICES] aggregate.source', { name: 'pricecharting.csv', ok: false, status: r.status }); return null }
-    const text = await r.text()
-    const lines = text.split(/\r?\n/)
-    if (lines.length < 2) return null
-    const header = lines[0].split(',')
-    const hIdx = (name: string) => header.findIndex(h => h.trim() === name)
-    const iProd = hIdx('product-name'), iLoose = hIdx('loose-price'), iNew = hIdx('new-price'), iGraded = hIdx('graded-price')
-    if (iProd < 0) return null
-    const nn = normNumber(number)
-    const candidates: { low?: number; mid?: number; high?: number }[] = []
-    for (let i = 1; i < Math.min(lines.length, 20000); i++) {
-      const row = lines[i]
-      if (!row) continue
-      // naive CSV split (ok for provided export which has simple commas)
-      const cols = row.split(',')
-      const prod = (cols[iProd] || '').toString()
-      // heuristic: match " #<n>" tokens
-      if (!prod.match(new RegExp(`\\s#(${nn.intLike}|${nn.pad3}|${nn.raw})($|[^0-9a-z])`, 'i'))) continue
-      const low = iLoose >= 0 ? parseDollar(cols[iLoose]) : undefined
-      const mid = iNew >= 0 ? parseDollar(cols[iNew]) : (low ?? undefined)
-      const high = iGraded >= 0 ? parseDollar(cols[iGraded]) : (mid ?? low)
-      if (mid != null) candidates.push({ low: low ?? mid, mid, high: high ?? mid })
-      if (candidates.length >= 3) break
-    }
-    if (candidates.length === 0) return null
-    // average candidates
-    const avg = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / Math.max(1, arr.length)
-    const lows = candidates.map(c => c.low ?? c.mid!).filter(v => typeof v === 'number') as number[]
-    const mids = candidates.map(c => c.mid!).filter(v => typeof v === 'number') as number[]
-    const highs = candidates.map(c => c.high ?? c.mid!).filter(v => typeof v === 'number') as number[]
-    const out = { low: avg(lows), mid: avg(mids), high: Math.max(...highs), currency: 'USD' }
-    console.log('[PRICES] aggregate.source', { name: 'pricecharting', ok: true })
-    return out
-  } catch (e) {
-    console.error('[PRICES] aggregate.source', { name: 'pricecharting.csv', ok: false, detail: String(e) })
-    return null
-  }
-}
+async function getPriceChartingCsvQuote(_set_code: string, _number: string): Promise<Quote> { return null }
 
 function mergeQuotes({ ebay, just, pc }: { ebay?: Quote, just?: Quote, pc?: Quote }): Required<NonNullable<Quote>> {
   const weights = (ebay ? { pc: 0.3, just: 0.2, ebay: 0.5 } : { pc: 0.6, just: 0.4 }) as any
@@ -215,7 +173,7 @@ Deno.serve(async (req) => {
   const ebay: Quote = ebayEnabled ? null : null
 
   const just = await getJustTcgQuote(sc, num, langNorm)
-  const pc = await getPriceChartingCsvQuote(sc, num)
+  const pc = null
 
   if (!just && !pc && !ebay) {
     console.error('[PRICES] aggregate.error', { message: 'no_sources_returned' })
@@ -233,9 +191,6 @@ Deno.serve(async (req) => {
   if (printId) {
     // Append raw observations per source
     try {
-      if (pc) {
-        await sb.from('price_observations').insert({ card_print_id: printId, source: 'pricecharting', low: pc.low ?? null, mid: pc.mid ?? null, high: pc.high ?? null, sample_size: 1 })
-      }
       if (just) {
         await sb.from('price_observations').insert({ card_print_id: printId, source: 'justtcg', low: just.low ?? null, mid: just.mid ?? null, high: just.high ?? null, sample_size: 1 })
       }
@@ -255,7 +210,7 @@ Deno.serve(async (req) => {
     }
   }
 
-  console.log('[PRICES] aggregate.success', { price_mid: agg.mid, used: [just ? 'justtcg' : null, pc ? 'pricecharting' : null, ebay ? 'ebay' : null].filter(Boolean) })
+  console.log('[PRICES] aggregate.success', { price_mid: agg.mid, used: [just ? 'justtcg' : null, ebay ? 'ebay' : null].filter(Boolean) })
 
   return json({
     ok: true,

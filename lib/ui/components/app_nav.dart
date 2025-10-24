@@ -10,8 +10,10 @@ import 'package:grookai_vault/config/flags.dart';
 
 import 'package:grookai_vault/features/home/home_page.dart';
 import 'package:grookai_vault/features/vault/vault_page.dart';
-import 'package:grookai_vault/features/wishlist/wishlist_page.dart';
-import 'package:grookai_vault/features/search/unified_search_page.dart';
+// Wishlist replaced by Profile tab in the main nav
+// import 'package:grookai_vault/features/wishlist/wishlist_page.dart';
+import 'package:grookai_vault/features/profile/profile_page.dart';
+import 'package:grookai_vault/features/search/search_page.dart';
 
 class AppNav extends StatefulWidget {
   const AppNav({super.key});
@@ -31,31 +33,30 @@ class _TabItem {
 }
 
 class _AppNavState extends State<AppNav> {
-
-  // Simple, editable tab config (keep order: Home, Vault, Search, Wishlist)
+  // Simple tab config (Home, Search, Vault, Profile). Scan is a center action.
   late final List<_TabItem> _tabs = [
     _TabItem(label: 'Home', icon: Icons.home, builder: () => const HomePage()),
+    _TabItem(
+      label: 'Search',
+      icon: Icons.search,
+      builder: () => const SearchPage(),
+    ),
     _TabItem(
       label: 'Vault',
       icon: Icons.inventory_2,
       builder: () => const VaultPage(),
     ),
     _TabItem(
-      label: 'Search',
-      icon: Icons.search,
-      builder: () => const UnifiedSearchPage(),
-    ),
-    _TabItem(
-      label: 'Wishlist',
-      icon: Icons.favorite,
-      builder: () => const WishlistPage(),
+      label: 'Profile',
+      icon: Icons.person_outline,
+      builder: () => const ProfilePage(),
     ),
   ];
 
   int _index = 0;
 
   void _openScanner() {
-    if (!GV_FEATURE_SCANNER) return;
+    if (!gvFeatureScanner) return;
     Navigator.of(context).pushNamed(RouteNames.scanner);
   }
 
@@ -80,7 +81,7 @@ class _AppNavState extends State<AppNav> {
         children: _tabs.map((t) => t.builder()).toList(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GV_FEATURE_SCANNER
+      floatingActionButton: gvFeatureScanner
           ? FloatingActionButton(
               onPressed: _openScanner,
               child: const Icon(Icons.camera_alt),
@@ -105,14 +106,14 @@ class _AppNavState extends State<AppNav> {
     // Provide sensible outlined variants when possible
     if (filled == Icons.home) return Icons.home_outlined;
     if (filled == Icons.inventory_2) return Icons.inventory_2_outlined;
-    if (filled == Icons.favorite) return Icons.favorite_border;
+    if (filled == Icons.person_outline) return Icons.person_outline;
     if (filled == Icons.search) return Icons.search;
     return filled;
   }
 
   Widget _buildCupertino() {
     final gv = GVTheme.of(context);
-    // Cupertino: middle scan as action; tabs are Home, Vault, Search, Wishlist
+    // Cupertino: 5 items with center placeholder; middle scan as floating action
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         items: const [
@@ -121,21 +122,31 @@ class _AppNavState extends State<AppNav> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.search),
+            label: 'Search',
+          ),
+          // Center placeholder
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.camera_viewfinder),
+            label: '',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.cube_box),
             label: 'Vault',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.heart),
-            label: 'Wishlist',
+            icon: Icon(CupertinoIcons.person),
+            label: 'Profile',
           ),
         ],
       ),
       tabBuilder: (context, index) {
-        final tab = _tabs[index];
+        final mapped = index < 2 ? index : (index == 2 ? -1 : index - 1);
+        if (mapped == -1) {
+          // Center slot is handled by the floating pill
+          return const SizedBox.shrink();
+        }
+        final tab = _tabs[mapped];
         return CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
             middle: Text(tab.label, style: gv.typography.title),
@@ -148,7 +159,7 @@ class _AppNavState extends State<AppNav> {
                 // Tab content
                 Positioned.fill(child: tab.builder()),
                 // Center scan affordance overlayed above tab bar
-                if (GV_FEATURE_SCANNER)
+                if (gvFeatureScanner)
                   Positioned(
                     bottom: 8,
                     left: 0,

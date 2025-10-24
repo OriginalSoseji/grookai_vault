@@ -28,3 +28,5 @@ lib/_bak/**
 *.json
 *checkpoint*.json
 
+# Local environment (do not commit secrets)
+.env
