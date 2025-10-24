@@ -162,4 +162,46 @@ class PriceService {
       return null;
     }
   }
+
+  /// Historical Grookai Index points for sparkline (newest -> oldest)
+  Future<List<Map<String, dynamic>>> indexHistory(String cardId, String condition, {int limit = 14}) async {
+    final rows = await _supa
+        .from('card_prices')
+        .select('price_mid,observed_at')
+        .eq('card_id', cardId)
+        .eq('condition', condition)
+        .eq('source', 'grookai_index')
+        .order('observed_at', ascending: false)
+        .limit(limit) as List;
+    return rows.cast<Map<String, dynamic>>();
+  }
+
+  /// Last 5 sold comps from eBay via edge function
+  Future<List<Map<String, dynamic>>> latestSold5(String cardId, String condition, {String? query}) async {
+    try {
+      final resp = await _supa.functions.invoke('ebay_sold_engine', body: {
+        'cardId': cardId,
+        'condition': condition,
+        if (query != null) 'query': query,
+        'limit': 5,
+      });
+      final data = (resp.data is Map) ? resp.data as Map : const {};
+      final raw = (data['sales'] is List) ? data['sales'] as List : const [];
+      return raw
+          .map((e) => e is Map ? e as Map<String, dynamic> : <String, dynamic>{})
+          .map((e) => {
+                'price': e['price'],
+                'currency': e['currency'] ?? 'USD',
+                'date': e['date'],
+                'title': (e['title'] ?? '').toString(),
+                'url': (e['url'] ?? '').toString(),
+                'condition': e['condition'] ?? condition,
+                'shipping': e['shipping'],
+              })
+          .toList();
+    } catch (_) {
+      // TODO: If function doesn't return 'sales', adapt when available.
+      return const [];
+    }
+  }
 }

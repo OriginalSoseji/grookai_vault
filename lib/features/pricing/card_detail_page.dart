@@ -8,6 +8,7 @@ import 'package:grookai_vault/services/supa_client.dart';
 import 'package:grookai_vault/viewmodels/card_detail_vm.dart';
 import 'package:grookai_vault/widgets/condition_chips.dart';
 import 'package:grookai_vault/widgets/price_card.dart';
+import 'package:grookai_vault/widgets/recent_sales_list.dart';
 
 class CardDetailPage extends StatefulWidget {
   final Map row;
@@ -92,7 +93,32 @@ class _CardDetailPageState extends State<CardDetailPage> {
               retailFloor: vm?.retailFloor,
               marketFloor: vm?.marketFloor,
               gv: vm?.gvBaseline,
+              trend: vm?.trend,
+              age: vm?.age,
+              sources: vm?.sources ?? const [],
             ),
+
+          const SizedBox(height: GVSpacing.s16),
+          Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              initiallyExpanded: false,
+              title: Row(
+                children: [
+                  const Icon(Icons.history, size: 18),
+                  const SizedBox(width: 6),
+                  Text('Recent Sales (eBay)', style: Theme.of(context).textTheme.titleMedium),
+                ],
+              ),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: RecentSalesList(sales: vm?.sold5 ?? const []),
+                ),
+              ],
+            ),
+          ),
 
           const SizedBox(height: GVSpacing.s24),
           _InfoTile(label: 'Low / High', value: '${vm?.giLow?.toStringAsFixed(2) ?? '-'} / ${vm?.giHigh?.toStringAsFixed(2) ?? '-'}'),
