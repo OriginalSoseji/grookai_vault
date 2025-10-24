@@ -27,8 +27,9 @@ class _DevHealthPageState extends State<DevHealthPage> {
       Map<String, dynamic>? status;
       try {
         final r = await client.functions.invoke('prices_status');
-        if (r.data is Map<String, dynamic>)
+        if (r.data is Map<String, dynamic>) {
           status = (r.data as Map<String, dynamic>);
+        }
       } catch (_) {}
       List<Map<String, dynamic>> errors = const [];
       try {
@@ -50,12 +51,13 @@ class _DevHealthPageState extends State<DevHealthPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!kDebugMode)
+    if (!kDebugMode) {
       return const Scaffold(
         body: Center(
           child: Text('Dev Health is available in debug builds only.'),
         ),
       );
+    }
     final envs = {
       'GV_SEARCH_SOURCE': dotenv.env['GV_SEARCH_SOURCE'] ?? 'db',
       'GV_LAZY_OVERLAY': dotenv.env['GV_LAZY_OVERLAY'] ?? 'true',
@@ -75,8 +77,7 @@ class _DevHealthPageState extends State<DevHealthPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    (_status?['ok'] == true ? 'OK' : 'Not OK') +
-                        ' • reachable=${_status?['reachable']} status=${_status?['status'] ?? '-'}',
+                    '${_status?['ok'] == true ? 'OK' : 'Not OK'} · reachable=${_status?['reachable']} status=${_status?['status'] ?? '-'}',
                   ),
                   const SizedBox(height: 16),
                   const Text(

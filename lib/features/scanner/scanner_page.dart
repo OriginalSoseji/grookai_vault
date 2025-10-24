@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
@@ -81,13 +82,18 @@ class _ScannerPageState extends State<ScannerPage> {
     if (_cam == null || !_cam!.value.isInitialized) return;
     try {
       final file = await _cam!.takePicture();
+      if (!mounted) return;
       await _scan.processCapture(File(file.path));
+      if (!mounted) return;
       if (mounted && _scan.candidates.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No match found – Try again')),
+          const SnackBar(
+            content: Text('No match found ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Try again'),
+          ),
         );
       }
-      if (mounted && _scan.candidates.isNotEmpty) {
+      if (!mounted) return;
+      if (_scan.candidates.isNotEmpty) {
         await _showConfirmationSheet();
       }
     } catch (e) {
@@ -97,7 +103,9 @@ class _ScannerPageState extends State<ScannerPage> {
       if (isTimeout) {
         debugPrint('[SCAN] timeout:ui');
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Scanner timed out — try again')),
+          const SnackBar(
+            content: Text('Scanner timed out ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â try again'),
+          ),
         );
       } else {
         ScaffoldMessenger.of(
@@ -127,9 +135,9 @@ class _ScannerPageState extends State<ScannerPage> {
         .toList();
     await showModalBottomSheet(
       context: context,
-      isScrollControlled: false,
-      builder: (ctx) {
-        ResolvedCandidate sel = best;
+      isScrollControlled: true,
+      builder: (context) {
+        var sel = best;
         bool adding = false;
         bool added = false;
         return StatefulBuilder(
@@ -183,7 +191,7 @@ class _ScannerPageState extends State<ScannerPage> {
                             ),
                             const SizedBox(height: GVSpacing.s4),
                             Text(
-                              '${sel.setCode} #${sel.collectorNumber} • ${sel.language}',
+                              '${sel.setCode} #${sel.collectorNumber} Ãƒâ€šÃ‚Â· ${sel.language}',
                             ),
                             const SizedBox(height: GVSpacing.s4),
                             Text(
@@ -229,7 +237,7 @@ class _ScannerPageState extends State<ScannerPage> {
                             ),
                             title: Text(c.name),
                             subtitle: Text(
-                              '${c.setCode} #${c.collectorNumber} • ${c.language} • ${(c.confidence * 100).toStringAsFixed(0)}%',
+                              '${c.setCode} #${c.collectorNumber} Ãƒâ€šÃ‚Â· ${c.language} Ãƒâ€šÃ‚Â· ${(c.confidence * 100).toStringAsFixed(0)}%',
                             ),
                             onTap: () => setS(() => sel = c),
                           ),
@@ -317,7 +325,7 @@ class _ScannerPageState extends State<ScannerPage> {
                               ),
                               SizedBox(width: GVSpacing.s8),
                               Text(
-                                'Importing from server…',
+                                'Importing from serverÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -400,7 +408,9 @@ class _ScannerPageState extends State<ScannerPage> {
           children: [
             const Icon(Icons.error_outline),
             const SizedBox(width: GVSpacing.s8),
-            const Expanded(child: Text('No match found – Try again')),
+            const Expanded(
+              child: Text('No match found ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Try again'),
+            ),
           ],
         ),
       );
@@ -415,7 +425,7 @@ class _ScannerPageState extends State<ScannerPage> {
           ),
           child: Text('Matches', style: TextStyle(fontWeight: FontWeight.w700)),
         ),
-        ...results.map((c) => _buildCandidateTile(c)).toList(),
+        ...results.map((c) => _buildCandidateTile(c)),
       ],
     );
   }
@@ -429,8 +439,10 @@ class _ScannerPageState extends State<ScannerPage> {
         height: 44,
         fit: BoxFit.cover,
       ),
-      title: Text('${c.name}'),
-      subtitle: Text('${c.setCode} #${c.collectorNumber} • ${c.language}'),
+      title: Text(c.name),
+      subtitle: Text(
+        '${c.setCode} #${c.collectorNumber} Ãƒâ€šÃ‚Â· ${c.language}',
+      ),
       trailing: FilledButton(
         onPressed: () => _addToVault(c),
         child: const Text('Add to Vault'),

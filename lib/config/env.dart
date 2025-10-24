@@ -4,12 +4,18 @@ import '../secrets.dart' as secrets;
 class Env {
   static String get supabaseUrl {
     final v = (dotenv.env['SUPABASE_URL'] ?? '').trim();
-    return v.isNotEmpty ? v : secrets.supabaseUrl;
+    // Ignore obvious placeholders or invalid values to avoid breaking auth
+    final looksPlaceholder = v.contains('<') || v.contains('project-ref');
+    final looksValidHost = v.startsWith('http') && v.contains('.supabase.co');
+    return (v.isNotEmpty && !looksPlaceholder && looksValidHost)
+        ? v
+        : secrets.supabaseUrl;
   }
 
   static String get supabaseAnonKey {
     final v = (dotenv.env['SUPABASE_ANON_KEY'] ?? '').trim();
-    return v.isNotEmpty ? v : secrets.supabaseAnonKey;
+    final looksPlaceholder = v.contains('<your_anon_key_here>') || v.isEmpty;
+    return !looksPlaceholder ? v : secrets.supabaseAnonKey;
   }
 
   /// Optional OAuth redirect URL used for mobile/desktop OAuth flows.

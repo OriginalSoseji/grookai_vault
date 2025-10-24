@@ -90,10 +90,11 @@ class ScannerOcr {
     }
 
     final allText = [...nameLines, ...numLines, ...fullLines].join('\n');
-    if (kDebugMode)
+    if (kDebugMode) {
       debugPrint(
         '[SCAN] ocr.lines name=${nameLines.length} num=${numLines.length} full=${fullLines.length}',
       );
+    }
 
     // Collector number from number-band first, then fallback to all text
     String number =
@@ -107,8 +108,9 @@ class ScannerOcr {
         _extractName(nameLines.isNotEmpty ? nameLines : fullLines) ?? '';
 
     final lang = _guessLang(allText) ?? 'en';
-    if (kDebugMode)
+    if (kDebugMode) {
       debugPrint('[SCAN] ocr: name="$name" number="$number" lang="$lang"');
+    }
     return OcrResult(
       name: name,
       collectorNumber: number,

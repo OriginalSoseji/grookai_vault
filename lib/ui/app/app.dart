@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/ui/app/app_router_bridge.dart';
+import 'package:grookai_vault/dev/dev_overlay.dart';
 import 'package:grookai_vault/ui/app/theme.dart';
 import 'package:grookai_vault/ui/app/routes.dart';
 import 'package:grookai_vault/ui/app/app_shell.dart';
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       builder: (context, child) {
         return GVTheme.adaptive(
-          child: AppRouterBridge(child: child ?? const SizedBox.shrink()),
+          child: DevOverlay(
+            child: AppRouterBridge(child: child ?? const SizedBox.shrink()),
+          ),
         );
       },
       routes: buildAppRoutes(),

@@ -1,0 +1,222 @@
+﻿import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grookai_vault/services/search_gateway.dart';
+import 'package:grookai_vault/services/cards_service.dart';
+import 'package:grookai_vault/ui/tokens/spacing.dart';
+import 'package:grookai_vault/ui/widgets/async_image.dart';
+import 'package:grookai_vault/services/image_resolver.dart';
+
+String _fix(String s) {
+  try {
+    return utf8.decode(latin1.encode(s));
+  } catch (_) {
+    return s;
+  }
+}
+
+class CatalogPicker extends StatefulWidget {
+  const CatalogPicker({super.key});
+  @override
+  State<CatalogPicker> createState() => _CatalogPickerState();
+}
+
+class _CatalogPickerState extends State<CatalogPicker> {
+  final supabase = Supabase.instance.client;
+  final _gateway = SearchGateway();
+  final _q = TextEditingController();
+  List<Map<String, dynamic>> _rows = [];
+  bool _loading = false;
+  DateTime _lastType = DateTime.now();
+
+  Future<void> _fetch(String query) async {
+    final s = query.trim();
+    if (s.length < 2) {
+      setState(() => _rows = []);
+      return;
+    }
+    setState(() => _loading = true);
+    try {
+      final results = await _gateway.search(s);
+      _rows = results.map<Map<String, dynamic>>((r) {
+        return {
+          'id': r['id'] ?? r['card_id'] ?? r['print_id'],
+          'set_code': r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
+          'name': r['name'] ?? r['name_local'] ?? 'Card',
+          'number': r['number'] ?? '',
+          'image_url': r['image_url'] ?? '',
+        };
+      }).toList();
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  void _onChanged(String s) {
+    _lastType = DateTime.now();
+    Future.delayed(const Duration(milliseconds: 350), () {
+      if (!mounted) return;
+      final elapsed = DateTime.now().difference(_lastType).inMilliseconds;
+      if (elapsed >= 350) _fetch(s);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final padding = MediaQuery.of(context).viewInsets;
+    return Padding(
+      padding: EdgeInsets.only(bottom: padding.bottom),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: GVSpacing.s8),
+            Container(
+              height: 4,
+              width: 36,
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
+            const SizedBox(height: GVSpacing.s8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: GVSpacing.s12),
+              child: TextField(
+                controller: _q,
+                decoration: const InputDecoration(
+                  hintText: 'Search name or set code (e.g., Pikachu, BAS, OBF)',
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: _onChanged,
+              ),
+            ),
+            const SizedBox(height: GVSpacing.s8),
+            if (_loading) const LinearProgressIndicator(minHeight: 2),
+            Flexible(
+              child: _rows.isEmpty
+                  ? const Padding(
+                      padding: EdgeInsets.all(GVSpacing.s16),
+                      child: Text('No results'),
+                    )
+                  : ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(GVSpacing.s8),
+                      itemCount: _rows.length,
+                      separatorBuilder: (context, _) =>
+                          const SizedBox(height: GVSpacing.s8),
+                      itemBuilder: (context, i) {
+                        final r = _rows[i];
+                        final title = (r['name'] ?? 'Card').toString();
+                        final subtitle =
+                            '${(r['set_code'] ?? '').toString()} Â· ${(r['number'] ?? '').toString()}';
+                        final url = imageUrlFromRow(r);
+                        return Card(
+                          child: ListTile(
+                            leading: AsyncImage(url, width: 44, height: 44),
+                            title: Text(
+                              _fix(title),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(subtitle),
+                            onTap: () async {
+                              final out = Map<String, dynamic>.from(r);
+                              final current = (out['image_url'] ?? '')
+                                  .toString()
+                                  .trim();
+                              if (current.isEmpty && url.isNotEmpty) {
+                                out['image_url'] = url;
+                              }
+
+                              // Ensure we return a valid id; hydrate or DB-lookup if needed.
+                              var id =
+                                  (out['id'] ??
+                                          out['card_id'] ??
+                                          out['print_id'] ??
+                                          '')
+                                      .toString();
+                              if (id.isEmpty) {
+                                try {
+                                  final sc = (out['set_code'] ?? '').toString();
+                                  final num = (out['number'] ?? '').toString();
+                                  if (sc.isNotEmpty && num.isNotEmpty) {
+                                    final hyd = await CardsService().hydrate(
+                                      setCode: sc,
+                                      number: num,
+                                    );
+                                    final hid =
+                                        (hyd['id'] ??
+                                                hyd['card_id'] ??
+                                                hyd['print_id'] ??
+                                                '')
+                                            .toString();
+                                    if (hid.isNotEmpty) {
+                                      id = hid;
+                                      out['id'] = id;
+                                      final himg =
+                                          (hyd['image_url'] ??
+                                                  hyd['photo_url'] ??
+                                                  '')
+                                              .toString();
+                                      if (himg.isNotEmpty)
+                                        out['image_url'] = himg;
+                                    }
+                                  }
+                                } catch (_) {}
+                              }
+
+                              if (id.isEmpty) {
+                                try {
+                                  final sc = (out['set_code'] ?? '').toString();
+                                  final num = (out['number'] ?? '').toString();
+                                  if (sc.isNotEmpty && num.isNotEmpty) {
+                                    final d = await supabase
+                                        .from('card_prints')
+                                        .select('id,image_url,image_alt_url')
+                                        .eq('set_code', sc)
+                                        .eq('number', num)
+                                        .maybeSingle();
+                                    final did = (d?['id'] ?? '').toString();
+                                    if (did.isNotEmpty) {
+                                      id = did;
+                                      out['id'] = id;
+                                      final img =
+                                          (d?['image_url'] ??
+                                                  d?['image_alt_url'] ??
+                                                  '')
+                                              .toString();
+                                      if (img.isNotEmpty)
+                                        out['image_url'] = img;
+                                    }
+                                  }
+                                } catch (_) {}
+                              }
+
+                              if (id.isEmpty) {
+                                if (!context.mounted) return;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Could not resolve this card. Try another result.',
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
+
+                              if (!context.mounted) return;
+                              Navigator.pop(context, out);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

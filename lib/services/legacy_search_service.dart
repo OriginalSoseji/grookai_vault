@@ -18,8 +18,9 @@ class LegacySearchService {
     // Try your search view first if it exists
     // Fallback: use a generic cards view/table
     try {
-      if (kDebugMode)
+      if (kDebugMode) {
         debugPrint('[HTTP] SQL v_card_search q="$s" limit=$limit');
+      }
       final data = await _client
           .from('v_card_search') // view provides image_best
           .select('id, set_code, name, number, rarity, image_best')
@@ -30,8 +31,9 @@ class LegacySearchService {
       if (kDebugMode) debugPrint('[LAZY] v_card_search error: $e');
       // Fallback path: try card_prints directly (if present)
       try {
-        if (kDebugMode)
+        if (kDebugMode) {
           debugPrint('[HTTP] SQL card_prints q="$s" limit=$limit');
+        }
         final data = await _client
             .from('card_prints')
             .select(

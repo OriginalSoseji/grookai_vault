@@ -85,4 +85,53 @@ class PriceService {
     }
     return out;
   }
+
+  /// Latest Grookai Index for a given print and condition.
+  Future<Map<String, dynamic>?> latestIndex({
+    required String cardId,
+    required String condition,
+  }) async {
+    final rows = await _supa
+        .from('latest_card_prices_v')
+        .select('card_id, condition, source, price_low, price_mid, price_high, currency, observed_at, grookai_index')
+        .eq('card_id', cardId)
+        .eq('condition', condition)
+        .eq('source', 'grookai_index')
+        .limit(1) as List;
+    return rows.isNotEmpty ? rows.first as Map<String, dynamic> : null;
+  }
+
+  /// Latest floors for a given print and condition.
+  Future<Map<String, num?>> latestFloors({
+    required String cardId,
+    required String condition,
+  }) async {
+    final rows = await _supa
+        .from('latest_card_floors_v')
+        .select('source,floor_price')
+        .eq('card_id', cardId)
+        .eq('condition', condition) as List;
+    num? retail;
+    num? market;
+    for (final r in rows) {
+      final s = (r['source'] ?? '').toString();
+      if (s == 'retail') retail = r['floor_price'] as num?;
+      if (s == 'market') market = r['floor_price'] as num?;
+    }
+    return { 'retail': retail, 'market': market };
+  }
+
+  /// Optional GV baseline for a given print and condition.
+  Future<num?> latestGvBaseline({
+    required String cardId,
+    required String condition,
+  }) async {
+    final rows = await _supa
+        .from('latest_card_gv_baselines_v')
+        .select('value')
+        .eq('card_id', cardId)
+        .eq('condition', condition)
+        .limit(1) as List;
+    return rows.isNotEmpty ? rows.first['value'] as num? : null;
+  }
 }

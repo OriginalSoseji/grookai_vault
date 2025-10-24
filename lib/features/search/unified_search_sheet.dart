@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:grookai_vault/data/prices/price_attach_worker.dart';
+import 'package:grookai_vault/services/prices_repository.dart';
 
 import 'package:grookai_vault/ui/tokens/spacing.dart';
 import 'package:grookai_vault/ui/widgets/list_cell.dart';
@@ -27,7 +27,8 @@ class UnifiedSearchSheet extends StatefulWidget {
         minChildSize: 0.5,
         maxChildSize: 0.95,
         expand: false,
-        builder: (_, __) => UnifiedSearchSheet(initialQuery: initialQuery),
+        builder: (_, controller) =>
+            UnifiedSearchSheet(initialQuery: initialQuery),
       ),
     );
   }
@@ -99,33 +100,36 @@ class _UnifiedSearchSheetState extends State<UnifiedSearchSheet> {
     if (ids.isEmpty) return;
     // Batch in larger groups to allow incremental UI refreshes
     final client = Supabase.instance.client;
-    final worker = PriceAttachWorker(client, chunkSize: 20, maxConcurrent: 6);
+    final repo = PricesRepository(client);
     const groupSize = 60;
     final total = ids.length;
     int done = 0;
     for (var i = 0; i < ids.length; i += groupSize) {
-      final group = ids.sublist(i, i + groupSize > ids.length ? ids.length : i + groupSize);
-      final map = await worker.attachByIds(group);
-      if (!mounted || map.isEmpty) continue;
-      // Merge back into _rows
+      final group = ids.sublist(
+        i,
+        i + groupSize > ids.length ? ids.length : i + groupSize,
+      );
+      // Run repository method over the subset by filtering rows for ids in this group
+      final subRows = _rows.where((r) {
+        final id = (r['id'] ?? r['card_id'] ?? r['print_id'] ?? '').toString();
+        return group.contains(id);
+      }).toList();
+      final mergedSubset = await repo.attachPricesToRows(subRows);
+      if (!mounted) return;
+      // Replace only those subset rows in _rows by id
+      final byId = {
+        for (final r in mergedSubset)
+          (r['id'] ?? r['card_id'] ?? r['print_id'] ?? '').toString(): r,
+      };
       final merged = _rows.map((r) {
         final id = (r['id'] ?? r['card_id'] ?? r['print_id'] ?? '').toString();
-        final p = map[id];
-        if (p == null) return r;
-        return {
-          ...r,
-          'price_low': p.low,
-          'price_mid': p.mid,
-          'price_high': p.high,
-          'currency': r['currency'] ?? 'USD',
-          'price_last_updated': r['price_last_updated'],
-        };
+        return byId[id] ?? r;
       }).toList();
       done += group.length;
       if (!mounted) return;
       setState(() => _rows = merged);
       // ignore: avoid_print
-      print('[PRICES] attach.progress ${done} / ${total}');
+      print('[PRICES] attach.progress $done / $total');
       // Yield briefly
       await Future.delayed(const Duration(milliseconds: 1));
     }
@@ -252,7 +256,7 @@ class _UnifiedSearchSheetState extends State<UnifiedSearchSheet> {
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (GV_ENABLE_WALL)
+                          if (gvEnableWall)
                             PopupMenuButton<String>(
                               tooltip: 'More',
                               itemBuilder: (_) => const [

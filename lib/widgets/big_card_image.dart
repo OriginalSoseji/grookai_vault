@@ -1,4 +1,4 @@
-import 'package:grookai_vault/widgets/smart_card_image.dart';
+import 'package:grookai_vault/widgets/gv_image.dart';
 import "package:flutter/material.dart";
 import "image_best.dart";
 
@@ -32,11 +32,12 @@ class BigCardImage extends StatelessWidget {
         if (url.isNotEmpty)
           SizedBox(
             height: 260,
-            child: SmartCardImage.network(
-              url,
+            child: GVImage(
+              url: url,
+              width: double.infinity,
+              height: 260,
+              radius: BorderRadius.circular(12),
               fit: BoxFit.contain,
-              errorBuilder: (context, error, stack) =>
-                  const Center(child: Text("Image failed to load (control)")),
             ),
           )
         else

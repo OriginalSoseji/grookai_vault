@@ -21,16 +21,16 @@ const err = (code: number, message: string, details?: unknown) => json({ ok: fal
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
 const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SERVICE_ROLE_KEY') || Deno.env.get('SB_SERVICE_ROLE_KEY')
 
-// Centralized aggregation via price_aggregate function
-async function fetchPricesViaAggregate(sb: ReturnType<typeof createClient>, setCode: string, number: string, lang: string) {
+// v2: delegate to import-prices-v2 by card id + condition (default NM)
+async function importPricesV2(sb: ReturnType<typeof createClient>, cardId: string, condition: string = 'NM') {
   try {
-    const r = await sb.functions.invoke('price_aggregate', { body: { set_code: setCode, number, lang } })
+    const r = await sb.functions.invoke('import-prices-v2', { body: { cardId, condition } })
     const d: any = r?.data ?? null
     if (d && d.ok) {
-      return { low: d.price_low as number | undefined, mid: d.price_mid as number | undefined, high: d.price_high as number | undefined, currency: (d.currency ?? 'USD') as string }
+      return { low: d.low as number | undefined, mid: d.mid as number | undefined, high: d.high as number | undefined, currency: 'USD' }
     }
   } catch (e) {
-    console.error('[PRICES] fetch.error', String(e))
+    console.error('[PRICES] v2.error', String(e))
   }
   return null
 }
@@ -53,12 +53,9 @@ Deno.serve(async (req) => {
   for (const c of cards ?? []) {
     processed++
     const id = c.id as string
-    const sc = c.set_code as string
-    const num = c.number as string
-    const lang = 'en'
     let wrote = false
     for (let attempt = 0; attempt < 3; attempt++) {
-      const pq = await fetchPricesViaAggregate(sb, sc, num, lang)
+      const pq = await importPricesV2(sb, id, 'NM')
       if (pq) {
         // anomaly detection vs latest
         let okToInsert = true
@@ -75,8 +72,8 @@ Deno.serve(async (req) => {
             if (delta > 0.8 || delta < -0.6) {
               okToInsert = false
               priceErrors++
-              await sb.from('price_error_log').insert({ set_code: sc, number: num, lang, error_text: `anomaly delta=${delta.toFixed(2)} prev=${prevMid} new=${pq.mid}` })
-              console.error('[PRICES] fetch.error', { set_code: sc, number: num, lang, reason: 'anomaly', delta })
+              await sb.from('price_error_log').insert({ set_code: null, number: null, lang: 'en', error_text: `anomaly delta=${delta.toFixed(2)} prev=${prevMid} new=${pq.mid}`, extra_json: { card_id: id } })
+              console.error('[PRICES] v2.anomaly', { card_id: id, reason: 'anomaly', delta })
             }
           }
         } catch {}

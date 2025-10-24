@@ -1,3 +1,4 @@
+﻿// ignore_for_file: use_build_context_synchronously
 // DEV-ONLY: Pricing probe page
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ class PricingProbePage extends StatefulWidget {
 
 class _PricingProbePageState extends State<PricingProbePage> {
   bool _loading = true;
-  String _status = '';
   int _viewCount = 0;
   List<Map<String, dynamic>> _viewSample = const [];
   Map<String, dynamic>? _pricesStatus;
@@ -32,12 +32,14 @@ class _PricingProbePageState extends State<PricingProbePage> {
     final url = (dotenv.env['SUPABASE_URL'] ?? '').toString();
     final key = (dotenv.env['SUPABASE_ANON_KEY'] ?? '').toString();
     if (kDebugMode) {
-      debugPrint(
-        '[PRICES] probe.env url=${url.isEmpty ? '-' : url.substring(0, (url.length > 12 ? 12 : url.length))}…',
-      );
-      debugPrint(
-        '[PRICES] probe.env key=${key.isEmpty ? '-' : key.substring(0, (key.length > 8 ? 8 : key.length))}…',
-      );
+      final urlShort = url.isEmpty
+          ? '-'
+          : url.substring(0, url.length > 12 ? 12 : url.length);
+      final keyShort = key.isEmpty
+          ? '-'
+          : key.substring(0, key.length > 8 ? 8 : key.length);
+      debugPrint('[PRICES] probe.env url=$urlShort');
+      debugPrint('[PRICES] probe.env key=$keyShort');
     }
 
     // b) prices_status function
@@ -45,7 +47,7 @@ class _PricingProbePageState extends State<PricingProbePage> {
       final r = await sb.functions.invoke('prices_status');
       if (r.data is Map<String, dynamic>) {
         _pricesStatus = (r.data as Map<String, dynamic>);
-        if (kDebugMode) debugPrint('[PRICES] probe.status ${_pricesStatus}');
+        if (kDebugMode) debugPrint('[PRICES] probe.status $_pricesStatus');
       }
     } catch (e) {
       if (kDebugMode) debugPrint('[PRICES] probe.status.error $e');
@@ -58,10 +60,11 @@ class _PricingProbePageState extends State<PricingProbePage> {
         (sample as List?) ?? const [],
       );
       _viewCount = _viewSample.length;
-      if (kDebugMode)
+      if (kDebugMode) {
         debugPrint(
           '[PRICES] probe.view count~$_viewCount sample=${_viewSample.length}',
         );
+      }
     } catch (e) {
       if (kDebugMode) debugPrint('[PRICES] probe.view.error $e');
     }
@@ -76,10 +79,12 @@ class _PricingProbePageState extends State<PricingProbePage> {
     try {
       final r = await sb.functions.invoke('update_prices', body: {'limit': 5});
       if (kDebugMode) debugPrint('[PRICES] update.summary ${r.data}');
+      if (!context.mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('update_prices invoked')));
     } catch (_) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('update_prices failed')));
@@ -98,6 +103,7 @@ class _PricingProbePageState extends State<PricingProbePage> {
       await Future.delayed(const Duration(seconds: 3));
       await _runProbe();
     } catch (_) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('enqueue_import failed')));
@@ -106,12 +112,13 @@ class _PricingProbePageState extends State<PricingProbePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!kDebugMode)
+    if (!kDebugMode) {
       return const Scaffold(
         body: Center(
           child: Text('Diagnostics available in debug builds only.'),
         ),
       );
+    }
     return Scaffold(
       appBar: AppBar(title: const Text('Pricing Probe (DEV)')),
       body: _loading

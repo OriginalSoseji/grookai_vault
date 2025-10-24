@@ -12,8 +12,9 @@ class CardsService {
     String query, {
     int limit = 20,
   }) async {
-    if (kDebugMode)
+    if (kDebugMode) {
       debugPrint('[HTTP] FUNC search_cards q="$query" limit=$limit');
+    }
     final res = await _client.functions.invoke(
       'search_cards',
       body: {'query': query, 'limit': limit},
@@ -41,8 +42,9 @@ class CardsService {
       if (name != null && name.isNotEmpty) 'name': name,
       'lang': lang,
     };
-    if (kDebugMode)
+    if (kDebugMode) {
       debugPrint('[HTTP] FUNC hydrate_card body=${body.toString()}');
+    }
     Future<Map<String, dynamic>> callFn() async {
       try {
         final res = await _client.functions.invoke('hydrate_card', body: body);
@@ -80,10 +82,13 @@ class CardsService {
           msg.contains('503') ||
           msg.contains('BOOT_ERROR') ||
           msg.contains('Service Unavailable');
-      if (!isBoot || i == delays.length - 1)
+      if (!isBoot || i == delays.length - 1) {
         return out; // give up with structured error
+      }
       await Future.delayed(delays[i]);
-      if (kDebugMode) debugPrint('[HTTP] FUNC hydrate_card retrying...');
+      if (kDebugMode) {
+        debugPrint('[HTTP] FUNC hydrate_card retrying...');
+      }
     }
     return <String, dynamic>{
       'ok': false,

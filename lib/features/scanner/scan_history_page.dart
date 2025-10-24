@@ -46,7 +46,7 @@ class _ScanHistoryPageState extends State<ScanHistoryPage> {
           : ListView.separated(
               padding: const EdgeInsets.all(GVSpacing.s12),
               itemCount: _rows.length,
-              separatorBuilder: (_, __) => const SizedBox(height: GVSpacing.s8),
+              separatorBuilder: (_, idx) => const SizedBox(height: GVSpacing.s8),
               itemBuilder: (context, i) {
                 final r = _rows[i];
                 final meta = Map<String, dynamic>.from(r['meta'] ?? {});

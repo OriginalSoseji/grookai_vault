@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ScanMetrics {
   final SupabaseClient client;
-  final bool enabled = GV_SCAN_TELEMETRY;
+  final bool enabled = gvScanTelemetry;
   ScanMetrics(this.client);
 
   Future<void> log({
@@ -16,7 +16,7 @@ class ScanMetrics {
     bool? usedLazy,
   }) async {
     final payload = {
-      'stage': GV_ENV_STAGE,
+      'stage': gvEnvStage,
       'type': type,
       'candidates': candidates,
       if (bestConfidence != null) 'best_confidence': bestConfidence,

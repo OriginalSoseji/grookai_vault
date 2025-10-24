@@ -99,23 +99,24 @@ class _AlertsPageState extends State<AlertsPage> {
       });
       await _load();
     } catch (_) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Failed to create alert')));
+      if (!context.mounted) return;
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Failed to create alert')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Alerts' + (_devFallback ? ' [DEV]' : ''))),
+      appBar: AppBar(title: Text('Alerts${_devFallback ? ' [DEV]' : ''}')),
       floatingActionButton: FloatingActionButton(
         onPressed: _createAlert,
         child: const Icon(Icons.add_alert),
       ),
       body: ListView.separated(
         itemCount: _rows.length,
-        separatorBuilder: (_, __) => const Divider(height: 1),
+        separatorBuilder: (_, i) => const Divider(height: 1),
         itemBuilder: (_, i) {
           final r = _rows[i];
           final q = (r['query'] ?? '').toString();

@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'cards_service.dart'; // lazy (Edge Functions)
 import 'legacy_search_service.dart'; // DB (Supabase SQL/view)
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grookai_vault/core/result.dart';
 
 /// Tries lazy-import search first; if it returns nothing or errors,
 /// silently falls back to the legacy search.
@@ -22,54 +23,74 @@ class SearchGateway {
       ((dotenv.env['GV_PRICES_ASYNC'] ?? '1')).toLowerCase() == 'true';
 
   Future<List<Map<String, dynamic>>> search(String query) async {
+    // Legacy signature preserved. Delegate to result-based API for consistency.
+    final r = await searchResult(query);
+    if (r is Ok<List<Map<String, dynamic>>>) {
+      return r.value;
+    }
+    return <Map<String, dynamic>>[];
+  }
+
+  /// New: result-based search for safer error handling in VMs.
+  Future<Result<List<Map<String, dynamic>>>> searchResult(String query) async {
     // DB-first mode (default): always fetch DB results; optionally overlay lazy
     if (_searchSource == 'db') {
-      if (kDebugMode)
-        debugPrint(
-          '[LAZY] gateway source=db q="$query" overlay=${_lazyOverlay}',
-        );
-      final dbRows = await _legacy.search(query);
-      var normDb = _normalize(dbRows, defaultSource: 'db');
-      if (!_pricesAsync) {
-        normDb = await _attachPrices(normDb);
+      if (kDebugMode) {
+        debugPrint('[LAZY] gateway source=db q="$query" overlay=$_lazyOverlay');
       }
-      if (!_lazyOverlay || !_useLazy) {
-        return normDb;
-      }
-      // Overlay lazy: fetch external and append those not present in DB
-      List<Map<String, dynamic>> lazy = <Map<String, dynamic>>[];
       try {
-        lazy = await _lazy
-            .search(query)
-            .timeout(
-              const Duration(seconds: 4),
-              onTimeout: () => <Map<String, dynamic>>[],
-            );
-        if (kDebugMode)
-          debugPrint('[LAZY] overlay lazy-result count=${lazy.length}');
+        final dbRows = await _legacy.search(query);
+        var normDb = _normalize(dbRows, defaultSource: 'db');
+        if (!_pricesAsync) {
+          normDb = await _attachPrices(normDb);
+        }
+        if (!_lazyOverlay || !_useLazy) {
+          return Ok(normDb);
+        }
+        // Overlay lazy: fetch external and append those not present in DB
+        List<Map<String, dynamic>> lazy = <Map<String, dynamic>>[];
+        try {
+          lazy = await _lazy
+              .search(query)
+              .timeout(
+                const Duration(seconds: 4),
+                onTimeout: () => <Map<String, dynamic>>[],
+              );
+          if (kDebugMode) {
+            debugPrint('[LAZY] overlay lazy-result count=${lazy.length}');
+          }
+        } catch (e) {
+          if (kDebugMode) debugPrint('[LAZY] overlay lazy-error: $e');
+          // Lazy failure should not fail the whole query
+        }
+        if (lazy.isEmpty) {
+          return Ok(normDb);
+        }
+        final set = {
+          for (final d in normDb)
+            '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}':
+                true,
+        };
+        final extra = lazy.where((r) {
+          final k =
+              '${(r['set_code'] ?? '').toString().toLowerCase()}|${(r['number'] ?? '').toString().toLowerCase()}';
+          return !set.containsKey(k);
+        }).toList();
+        var normExtra = _normalize(extra, defaultSource: 'tcgdex');
+        if (!_pricesAsync) {
+          normExtra = await _attachPrices(normExtra);
+        }
+        return Ok([...normDb, ...normExtra]);
       } catch (e) {
-        if (kDebugMode) debugPrint('[LAZY] overlay lazy-error: $e');
+        if (kDebugMode) debugPrint('[LAZY] db-source error: $e');
+        return Err('search_failed');
       }
-      if (lazy.isEmpty) return normDb;
-      final set = {
-        for (final d in normDb)
-          '${(d['set_code'] ?? '').toString().toLowerCase()}|${(d['number'] ?? '').toString().toLowerCase()}':
-              true,
-      };
-      final extra = lazy.where((r) {
-        final k =
-            '${(r['set_code'] ?? '').toString().toLowerCase()}|${(r['number'] ?? '').toString().toLowerCase()}';
-        return !set.containsKey(k);
-      }).toList();
-      var normExtra = _normalize(extra, defaultSource: 'tcgdex');
-      if (!_pricesAsync) {
-        normExtra = await _attachPrices(normExtra);
-      }
-      return [...normDb, ...normExtra];
     }
 
     // Lazy-first (legacy behavior) for compatibility
-    if (kDebugMode) debugPrint('[LAZY] gateway source=lazy q="$query"');
+    if (kDebugMode) {
+      debugPrint('[LAZY] gateway source=lazy q="$query"');
+    }
     try {
       final r = await _lazy
           .search(query)
@@ -77,20 +98,29 @@ class SearchGateway {
             const Duration(seconds: 4),
             onTimeout: () => <Map<String, dynamic>>[],
           );
-      if (kDebugMode) debugPrint('[LAZY] lazy-result count=${r.length}');
+      if (kDebugMode) {
+        debugPrint('[LAZY] lazy-result count=${r.length}');
+      }
       if (r.isNotEmpty) {
         _telemetry(hit: true);
         final blended = await _overlayWithDb(r);
-        return _normalize(blended);
+        return Ok(_normalize(blended));
       }
     } catch (e) {
       if (kDebugMode) debugPrint('[LAZY] lazy-error: $e');
+      return Err('lazy_search_failed');
     }
     _telemetry(hit: false);
-    if (kDebugMode) debugPrint('[LAZY] legacy-fallback q="$query"');
-    final f = await _legacy.search(query);
-    if (kDebugMode) debugPrint('[LAZY] legacy-result count=${f.length}');
-    return _normalize(f, defaultSource: 'db');
+    if (kDebugMode) {
+      debugPrint('[LAZY] legacy-fallback q="$query"');
+    }
+    try {
+      final f = await _legacy.search(query);
+      if (kDebugMode) debugPrint('[LAZY] legacy-result count=${f.length}');
+      return Ok(_normalize(f, defaultSource: 'db'));
+    } catch (_) {
+      return Err('search_failed');
+    }
   }
 
   /// If DB has the same print (by set_code+number), prefer DB row and mark source=db.
@@ -107,7 +137,9 @@ class SearchGateway {
       // Attempt overlay even for alias-like set codes; DB match will simply return none.
       pairs.add({'set': sc, 'num': num});
     }
-    if (pairs.isEmpty) return lazyRows;
+    if (pairs.isEmpty) {
+      return lazyRows;
+    }
 
     // Try batch RPC first; fallback to OR chain if unavailable
     try {
@@ -132,7 +164,9 @@ class SearchGateway {
         final dbRows2 = List<Map<String, dynamic>>.from(
           (data2 as List?) ?? const [],
         );
-        if (dbRows2.isEmpty) return lazyRows;
+        if (dbRows2.isEmpty) {
+          return lazyRows;
+        }
         return _blendRows(lazyRows, dbRows2);
       }
       return _blendRows(lazyRows, dbRows);
@@ -151,7 +185,9 @@ class SearchGateway {
         final dbRows = List<Map<String, dynamic>>.from(
           (data as List?) ?? const [],
         );
-        if (dbRows.isEmpty) return lazyRows;
+        if (dbRows.isEmpty) {
+          return lazyRows;
+        }
         return _blendRows(lazyRows, dbRows);
       } catch (_) {
         return lazyRows;
@@ -234,11 +270,16 @@ class SearchGateway {
           .map((r) => (r['id'] ?? '').toString())
           .where((s) => s.isNotEmpty)
           .toList();
-      if (ids.isEmpty) return rows;
-      if (kDebugMode) debugPrint('[PRICES] attach.start ids=${ids.length}');
+      if (ids.isEmpty) {
+        return rows;
+      }
+      if (kDebugMode) {
+        debugPrint('[PRICES] attach.start ids=${ids.length}');
+      }
       final client = Supabase.instance.client;
-      if (kDebugMode)
+      if (kDebugMode) {
         debugPrint('[PRICES] diag.attach.start ids=${ids.length}');
+      }
       final data = await client
           .from('latest_card_prices_v')
           // Required fields for mapping; currency is optional but helpful
@@ -247,25 +288,36 @@ class SearchGateway {
           )
           .inFilter('card_id', ids);
       final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
-      if (kDebugMode) debugPrint('[PRICES] diag.attach.rows=${list.length}');
+      if (kDebugMode) {
+        debugPrint('[PRICES] diag.attach.rows=${list.length}');
+      }
       if (list.isEmpty) {
-        if (kDebugMode) debugPrint('[PRICES] attach.empty');
-        if (kDebugMode) debugPrint('[PRICES] diag.attach.ZERO');
+        if (kDebugMode) {
+          debugPrint('[PRICES] attach.empty');
+        }
+        if (kDebugMode) {
+          debugPrint('[PRICES] diag.attach.ZERO');
+        }
         // When empty, keep rows; priceStatus remains implicit
         return rows;
       }
-      if (kDebugMode) debugPrint('[PRICES] attach.done count=${list.length}');
+      if (kDebugMode) {
+        debugPrint('[PRICES] attach.done count=${list.length}');
+      }
       final latest = <String, Map<String, dynamic>>{};
       for (final r in list) {
         final id = (r['card_id'] ?? '').toString();
         if (id.isEmpty) continue;
-        if (!latest.containsKey(id))
+        if (!latest.containsKey(id)) {
           latest[id] = r; // first is latest due to order desc
+        }
       }
       return rows.map((r) {
         final id = (r['id'] ?? '').toString();
         final p = latest[id];
-        if (p == null) return r;
+        if (p == null) {
+          return r;
+        }
         return {
           ...r,
           'price_low': p['price_low'],
@@ -276,12 +328,12 @@ class SearchGateway {
         };
       }).toList();
     } catch (e) {
-      if (kDebugMode)
+      if (kDebugMode) {
         debugPrint(
           '[VIEW] latest_card_prices_v unavailable ? prices disabled ()',
         );
+      }
       return rows.map((r) => {...r, 'priceStatus': 'unavailable'}).toList();
     }
   }
 }
-
