@@ -177,13 +177,14 @@ class PriceService {
   }
 
   /// Last 5 sold comps from eBay via edge function
-  Future<List<Map<String, dynamic>>> latestSold5(String cardId, String condition, {String? query}) async {
+  Future<List<Map<String, dynamic>>> latestSold5(String cardId, String condition, {String? query, bool debug = false}) async {
     try {
       final resp = await _supa.functions.invoke('ebay_sold_engine', body: {
         'cardId': cardId,
         'condition': condition,
         if (query != null) 'query': query,
         'limit': 5,
+        if (debug) 'debug': true,
       });
       final data = (resp.data is Map) ? resp.data as Map : const {};
       final raw = (data['sales'] is List) ? data['sales'] as List : const [];

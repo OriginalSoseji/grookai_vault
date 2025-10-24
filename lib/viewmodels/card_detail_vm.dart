@@ -7,12 +7,15 @@ class CardDetailVM extends ChangeNotifier {
   final SupabaseClient? supabase;
   late final PriceService _prices;
 
+  final bool debugSold;
+
   CardDetailVM({
     required this.cardId,
     SupabaseClient? supabase,
     PriceService? priceService,
     String initialCondition = 'NM',
-  }) : supabase = supabase {
+    bool debugSold = false,
+  }) : supabase = supabase, debugSold = debugSold {
     if (priceService != null) {
       _prices = priceService;
     } else {
@@ -28,7 +31,8 @@ class CardDetailVM extends ChangeNotifier {
     required this.cardId,
     required PriceService priceService,
     String initialCondition = 'NM',
-  }) : supabase = null {
+    bool debugSold = false,
+  }) : supabase = null, debugSold = debugSold {
     _prices = priceService;
     _condition = initialCondition.toUpperCase();
   }
@@ -109,7 +113,7 @@ class CardDetailVM extends ChangeNotifier {
       if (soldHit != null && DateTime.now().difference(soldHit.at) < soldTtl) {
         sold5 = soldHit.rows;
       } else {
-        final comps = await _prices.latestSold5(cardId, _condition);
+        final comps = await _prices.latestSold5(cardId, _condition, debug: debugSold);
         sold5 = comps;
         _soldCache[soldKey] = _SoldCacheEntry(DateTime.now(), comps);
       }
