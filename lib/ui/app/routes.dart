@@ -15,6 +15,7 @@ import '../../features/account/account_page.dart';
 import '../../features/debug/dev_admin_page.dart';
 import '../../features/dev/dev_health_page.dart';
 import '../../features/dev/diagnostics/pricing_probe_page.dart';
+import '../../features/dev/diagnostics/pricing_smoke_page.dart';
 import 'route_names.dart';
 import '../../config/flags.dart';
 import '../../features/alerts/alerts_page.dart';
@@ -61,6 +62,7 @@ Map<String, WidgetBuilder> buildAppRoutes() {
     RouteNames.devAdmin: (_) => const DevAdminPage(),
     if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
     if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),
+    if (kDebugMode) '/dev-pricing-smoke': (_) => const PricingSmokePage(),
     RouteNames.alerts: (_) => const AlertsPage(),
     RouteNames.scanHistory: (_) => const ScanHistoryPage(),
     '/goal-detail': (ctx) {
