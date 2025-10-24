@@ -22,7 +22,10 @@ String _normNum(String n) {
 /// View columns: set_code, number, print_id, condition, grade_agency, grade_value, source, price_usd, observed_at
 class PriceService {
   final SupabaseClient _supa;
-  PriceService(this._supa);
+  final bool debug;
+  PriceService(this._supa, {this.debug = false});
+
+  void _log(String m) { if (debug) print('[PriceService] ' + m); }
 
   /// Newest price row for a set/number (optionally filter by condition/grade).
   Future<Map<String, dynamic>?> latestPrice({
@@ -87,22 +90,37 @@ class PriceService {
   }
 
   /// Latest Grookai Index for a given print and condition.
-  Future<Map<String, dynamic>?> latestIndex({
+  Future<Map<String, dynamic>> latestIndex({
     required String cardId,
     required String condition,
   }) async {
     final rows = await _supa
         .from('latest_card_prices_v')
-        .select('card_id, condition, source, price_low, price_mid, price_high, currency, observed_at, grookai_index')
+        .select('price_low,price_mid,price_high,observed_at')
         .eq('card_id', cardId)
         .eq('condition', condition)
         .eq('source', 'grookai_index')
         .limit(1) as List;
-    return rows.isNotEmpty ? rows.first as Map<String, dynamic> : null;
+    if (rows.isEmpty) {
+      _log('latestIndex: no rows for ' + cardId + '/' + condition);
+      return {
+        'price_low': null,
+        'price_mid': null,
+        'price_high': null,
+        'observed_at': null,
+      };
+    }
+    final r = rows.first as Map<String, dynamic>;
+    return {
+      'price_low': r['price_low'],
+      'price_mid': r['price_mid'],
+      'price_high': r['price_high'],
+      'observed_at': r['observed_at'],
+    };
   }
 
   /// Latest floors for a given print and condition.
-  Future<Map<String, num?>> latestFloors({
+  Future<Map<String, dynamic>> latestFloors({
     required String cardId,
     required String condition,
   }) async {
@@ -115,23 +133,33 @@ class PriceService {
     num? market;
     for (final r in rows) {
       final s = (r['source'] ?? '').toString();
-      if (s == 'retail') retail = r['floor_price'] as num?;
-      if (s == 'market') market = r['floor_price'] as num?;
+      final fp = r['floor_price'];
+      final val = fp is num ? fp : num.tryParse('$fp');
+      if (s == 'retail') retail = val;
+      if (s == 'market') market = val;
     }
+    _log('latestFloors: retail=' + (retail?.toString() ?? 'null') + ' market=' + (market?.toString() ?? 'null') + ' for ' + cardId + '/' + condition);
     return { 'retail': retail, 'market': market };
   }
 
   /// Optional GV baseline for a given print and condition.
-  Future<num?> latestGvBaseline({
+  Future<Map<String, dynamic>?> latestGvBaseline({
     required String cardId,
     required String condition,
   }) async {
-    final rows = await _supa
-        .from('latest_card_gv_baselines_v')
-        .select('value')
-        .eq('card_id', cardId)
-        .eq('condition', condition)
-        .limit(1) as List;
-    return rows.isNotEmpty ? rows.first['value'] as num? : null;
+    try {
+      final rows = await _supa
+          .from('latest_card_gv_baselines_v')
+          .select('value')
+          .eq('card_id', cardId)
+          .eq('condition', condition)
+          .limit(1) as List;
+      if (rows.isEmpty) return null;
+      final v = rows.first['value'];
+      final n = v is num ? v : num.tryParse('$v');
+      return n == null ? null : { 'value': n };
+    } catch (_) {
+      return null;
+    }
   }
 }
