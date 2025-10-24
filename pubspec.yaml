@@ -1,4 +1,4 @@
-﻿name: grookai_vault
+name: grookai_vault
 description: "A new Flutter project."
 publish_to: 'none'
 version: 1.0.0+1
@@ -28,6 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
   flutter_lints: ^6.0.0
 
 flutter:
@@ -35,3 +36,4 @@ flutter:
   assets:
     - assets/images/kit_placeholder.png
     - .env
+

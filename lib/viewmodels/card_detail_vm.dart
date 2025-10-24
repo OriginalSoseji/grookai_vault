@@ -3,14 +3,34 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../services/price_service.dart';
 
 class CardDetailVM extends ChangeNotifier {
-  final SupabaseClient supabase;
+  final String cardId;
+  final SupabaseClient? supabase;
   late final PriceService _prices;
 
-  final String cardId;
+  CardDetailVM({
+    required this.cardId,
+    SupabaseClient? supabase,
+    PriceService? priceService,
+    String initialCondition = 'NM',
+  }) : supabase = supabase {
+    if (priceService != null) {
+      _prices = priceService;
+    } else {
+      if (supabase == null) {
+        throw ArgumentError('Either priceService or supabase must be provided');
+      }
+      _prices = PriceService(supabase);
+    }
+    _condition = initialCondition.toUpperCase();
+  }
 
-  CardDetailVM({ required this.supabase, required this.cardId, String? initialCondition }) {
-    _prices = PriceService(supabase);
-    _condition = (initialCondition ?? 'NM').toUpperCase();
+  CardDetailVM.withService({
+    required this.cardId,
+    required PriceService priceService,
+    String initialCondition = 'NM',
+  }) : supabase = null {
+    _prices = priceService;
+    _condition = initialCondition.toUpperCase();
   }
 
   String _condition = 'NM';
@@ -31,16 +51,24 @@ class CardDetailVM extends ChangeNotifier {
   Future<void> load() async {
     _isLoading = true; error = null; notifyListeners();
     try {
-      final floors = await _prices.latestFloors(cardId: cardId, condition: _condition);
-      retailFloor = floors['retail'];
-      marketFloor = floors['market'];
-      gvBaseline = await _prices.latestGvBaseline(cardId: cardId, condition: _condition);
       final idx = await _prices.latestIndex(cardId: cardId, condition: _condition);
-      giLow = (idx?['price_low'] as num?)?.toDouble();
-      giMid = (idx?['price_mid'] as num?)?.toDouble();
-      giHigh = (idx?['price_high'] as num?)?.toDouble();
-      final ts = (idx?['observed_at'] ?? '') as String;
-      observedAt = ts.isNotEmpty ? DateTime.tryParse(ts) : null;
+      giLow = _num(idx?['price_low']);
+      giMid = _num(idx?['price_mid']);
+      giHigh = _num(idx?['price_high']);
+      observedAt = _ts(idx?['observed_at']);
+
+      final floors = await _prices.latestFloors(cardId: cardId, condition: _condition);
+      retailFloor = _num(floors['retail']);
+      marketFloor = _num(floors['market']);
+
+      final gv = await _prices.latestGvBaseline(cardId: cardId, condition: _condition);
+      if (gv == null) {
+        gvBaseline = null;
+      } else if (gv is num) {
+        gvBaseline = gv;
+      } else if (gv is Map) {
+        gvBaseline = _num(gv['value']);
+      }
     } catch (e) {
       error = e.toString();
     } finally {
@@ -54,5 +82,17 @@ class CardDetailVM extends ChangeNotifier {
     _condition = v;
     notifyListeners();
     await load();
+  }
+
+  num? _num(dynamic v) {
+    if (v == null) return null;
+    if (v is num) return v;
+    return num.tryParse(v.toString());
+  }
+
+  DateTime? _ts(dynamic v) {
+    if (v == null) return null;
+    if (v is DateTime) return v;
+    return DateTime.tryParse(v.toString());
   }
 }
