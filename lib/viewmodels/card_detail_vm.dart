@@ -8,13 +8,17 @@ class CardDetailVM extends ChangeNotifier {
 
   final String cardId;
 
-  CardDetailVM({ required this.supabase, required this.cardId }) {
+  CardDetailVM({ required this.supabase, required this.cardId, String? initialCondition }) {
     _prices = PriceService(supabase);
+    _condition = (initialCondition ?? 'NM').toUpperCase();
   }
 
   String _condition = 'NM';
   String get condition => _condition;
-  set condition(String v) { if (_condition != v) { _condition = v; load(); notifyListeners(); } }
+  bool get isLoading => _isLoading;
+
+  bool _isLoading = false;
+  String? error;
 
   num? retailFloor;
   num? marketFloor;
@@ -23,10 +27,9 @@ class CardDetailVM extends ChangeNotifier {
   num? giMid;
   num? giHigh;
   DateTime? observedAt;
-  bool loading = false;
 
   Future<void> load() async {
-    loading = true; notifyListeners();
+    _isLoading = true; error = null; notifyListeners();
     try {
       final floors = await _prices.latestFloors(cardId: cardId, condition: _condition);
       retailFloor = floors['retail'];
@@ -38,9 +41,18 @@ class CardDetailVM extends ChangeNotifier {
       giHigh = (idx?['price_high'] as num?)?.toDouble();
       final ts = (idx?['observed_at'] ?? '') as String;
       observedAt = ts.isNotEmpty ? DateTime.tryParse(ts) : null;
+    } catch (e) {
+      error = e.toString();
     } finally {
-      loading = false; notifyListeners();
+      _isLoading = false; notifyListeners();
     }
   }
-}
 
+  Future<void> setCondition(String next) async {
+    final v = (next).toUpperCase();
+    if (v == _condition) return;
+    _condition = v;
+    notifyListeners();
+    await load();
+  }
+}
