@@ -4,6 +4,8 @@ import 'package:grookai_vault/viewmodels/card_detail_vm.dart';
 import 'package:grookai_vault/widgets/condition_chips.dart';
 import 'package:grookai_vault/widgets/price_card.dart';
 
+const bool kEbaySoldDebug = true; // set false for normal runs
+
 class PricingSmokePage extends StatefulWidget {
   const PricingSmokePage({super.key});
   @override
@@ -17,7 +19,7 @@ class _PricingSmokePageState extends State<PricingSmokePage> {
   @override
   void initState() {
     super.initState();
-    vm = CardDetailVM(supabase: sb, cardId: cardId, initialCondition: 'NM');
+    vm = CardDetailVM(supabase: sb, cardId: cardId, initialCondition: 'NM', debugSold: kEbaySoldDebug);
     vm.addListener(() { if (mounted) setState(() {}); });
     WidgetsBinding.instance.addPostFrameCallback((_) { vm.load(); });
   }
@@ -45,4 +47,3 @@ class _PricingSmokePageState extends State<PricingSmokePage> {
     );
   }
 }
-

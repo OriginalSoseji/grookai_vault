@@ -7,17 +7,17 @@ class RecentSalesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (sales.isEmpty) {
+    final safe = sales
+        .where((s) => s is Map && ((s as Map)['price'] != null || (s as Map)['title'] != null))
+        .cast<Map<String, dynamic>>()
+        .toList();
+    if (safe.isEmpty) {
       return const Padding(
         padding: EdgeInsets.all(12),
-        child: Text('No recent sales found for this condition.'),
+        child: Text('No recent eBay sales for this condition.'),
       );
     }
-    return Column(
-      children: [
-        for (final s in sales.take(5)) _row(context, s),
-      ],
-    );
+    return Column(children: [ for (final s in safe.take(5)) _row(context, s) ]);
   }
 
   Widget _row(BuildContext context, Map<String, dynamic> s) {
@@ -28,11 +28,11 @@ class RecentSalesList extends StatelessWidget {
     final url = (s['url'] ?? '').toString();
 
     final eff = price + (shipping > 0 ? shipping : 0);
-    final effStr = '4${eff.toStringAsFixed(2)}'
-        '${shipping > 0 ? ' (+4${shipping.toStringAsFixed(2)} ship)' : ''}';
+    final effStr = '\$${eff.toStringAsFixed(2)}'
+        '${shipping > 0 ? ' (+\$${shipping.toStringAsFixed(2)} ship)' : ''}';
 
     return InkWell(
-      onTap: url.isEmpty ? null : () => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication),
+      onTap: url.isEmpty ? null : () async { try { await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication); } catch (_) {} },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
@@ -71,4 +71,6 @@ class RecentSalesList extends StatelessWidget {
     return dt == null ? iso : dt.toLocal().toString().split('.').first;
   }
 }
+
+
 
