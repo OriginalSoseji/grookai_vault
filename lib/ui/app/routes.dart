@@ -25,6 +25,28 @@ import '../../features/wall/wall_feed_page.dart';
 import '../../features/wall/wall_post_composer.dart';
 import '../../features/wall/wall_profile_page.dart';
 import '../../features/wall/wall_post_detail.dart';
+import '../../services/supa_client.dart';
+
+Future<String?> _resolveCardIdIfMissing(Map map) async {
+  final id = (map['card_print_id'] ?? map['id'] ?? map['cardId'] ?? map['card_id'])?.toString();
+  if (id != null && id.isNotEmpty) return id;
+  final setCode = (map['set_code'] ?? map['setCode'])?.toString();
+  final number = (map['number'] ?? map['card_number'])?.toString();
+  if (setCode == null || setCode.isEmpty || number == null || number.isEmpty) return null;
+  try {
+    final rows = await sb
+        .from('card_prints')
+        .select('id')
+        .eq('set_code', setCode)
+        .eq('number', number)
+        .limit(1) as List<dynamic>;
+    if (rows.isEmpty) return null;
+    final rid = (rows.first as Map)['id']?.toString();
+    return (rid != null && rid.isNotEmpty) ? rid : null;
+  } catch (_) {
+    return null;
+  }
+}
 
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
@@ -35,7 +57,16 @@ Map<String, WidgetBuilder> buildAppRoutes() {
     RouteNames.cardDetail: (ctx) {
       final args = ModalRoute.of(ctx)?.settings.arguments;
       final map = (args is Map) ? args : <String, dynamic>{};
-      return CardDetailPage(row: map);
+      return FutureBuilder<String?>(
+        future: _resolveCardIdIfMissing(map),
+        builder: (context, snap) {
+          final resolved = Map<String, dynamic>.from(map);
+          if (snap.connectionState == ConnectionState.done && (snap.data ?? '').toString().isNotEmpty) {
+            resolved['card_print_id'] = snap.data;
+          }
+          return CardDetailPage(row: resolved);
+        },
+      );
     },
     '/details': (ctx) {
       final args = ModalRoute.of(ctx)?.settings.arguments;
