@@ -94,6 +94,7 @@ class _CardDetailPageState extends State<CardDetailPage> {
               marketFloor: vm?.marketFloor,
               gv: vm?.gvBaseline,
               trend: vm?.trend,
+              pct7d: vm?.pct7d,
               age: vm?.age,
               sources: vm?.sources ?? const [],
             ),
