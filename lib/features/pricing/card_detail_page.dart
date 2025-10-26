@@ -99,6 +99,23 @@ class _CardDetailPageState extends State<CardDetailPage> {
               sources: vm?.sources ?? const [],
             ),
 
+          if ((vm?.age?.inHours ?? 0) > 24) ...[
+            const SizedBox(height: GVSpacing.s8),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.06),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.red.withOpacity(0.25)),
+              ),
+              child: Row(children: [
+                const Icon(Icons.warning_amber_rounded, color: Colors.red, size: 18),
+                const SizedBox(width: 8),
+                Expanded(child: Text('Pricing is stale (>24h). Data will refresh automatically or when you reopen.', style: Theme.of(context).textTheme.bodySmall)),
+              ]),
+            ),
+          ],
+
           const SizedBox(height: GVSpacing.s16),
           Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),

@@ -16,6 +16,7 @@ import '../../features/debug/dev_admin_page.dart';
 import '../../features/dev/dev_health_page.dart';
 import '../../features/dev/diagnostics/pricing_probe_page.dart';
 import '../../features/dev/diagnostics/pricing_smoke_page.dart';
+import '../../features/dev/diagnostics/pricing_diagnostics_page.dart';
 import 'route_names.dart';
 import '../../config/flags.dart';
 import '../../features/alerts/alerts_page.dart';
@@ -94,6 +95,14 @@ Map<String, WidgetBuilder> buildAppRoutes() {
     if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
     if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),
     if (kDebugMode) '/dev-pricing-smoke': (_) => const PricingSmokePage(),
+    if (kDebugMode) '/dev-pricing-diag': (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String,dynamic>{};
+      return PricingDiagnosticsPage(
+        cardId: (map['cardId'] ?? map['card_print_id'] ?? map['id'] ?? '').toString(),
+        condition: (map['condition'] ?? 'NM').toString(),
+      );
+    },
     RouteNames.alerts: (_) => const AlertsPage(),
     RouteNames.scanHistory: (_) => const ScanHistoryPage(),
     '/goal-detail': (ctx) {
