@@ -123,7 +123,12 @@ async function runImportCards(set_code: string, pageSize = 200, throttleMs = 150
 export default {
   async fetch(req: Request) {
     try {
-      const { fix = false, throttleMs = 150, only, fixMode = 'prices' } = await req.json().catch(()=> ({} as any));
+      const AUTO_FIX = (Deno.env.get("CHECK_SETS_AUTO_FIX") || "").toLowerCase();
+      const DEFAULT_FIX = AUTO_FIX === "1" || AUTO_FIX === "true" || AUTO_FIX === "yes";
+      const DEFAULT_THROTTLE = Number.parseInt(Deno.env.get("CHECK_SETS_THROTTLE_MS") || "150", 10) || 150;
+      const DEFAULT_FIX_MODE = Deno.env.get("CHECK_SETS_FIX_MODE") || 'prices';
+
+      const { fix = DEFAULT_FIX, throttleMs = DEFAULT_THROTTLE, only, fixMode = DEFAULT_FIX_MODE } = await req.json().catch(()=> ({} as any));
 
       const apiSetIds = Array.isArray(only) && only.length
         ? Array.from(new Set(only.map(String))).sort()

@@ -53,6 +53,7 @@ class CardDetailVM extends ChangeNotifier {
   DateTime? observedAt;
   // Polish: trend sparkline, staleness, dynamic sources
   List<num> trend = const [];
+  double? pct7d;
   Duration? age;
   List<String> sources = const [];
   List<Map<String, dynamic>> sold5 = const [];
@@ -66,7 +67,7 @@ class CardDetailVM extends ChangeNotifier {
   Future<void> load() async {
     _isLoading = true; error = null; notifyListeners();
     try {
-      final key = cardId + ':' + _condition;
+      final key = '$cardId:$_condition';
       final now = DateTime.now();
       final hit = _cache[key];
       if (hit != null && now.difference(hit.at) < cacheTtl) {
@@ -75,40 +76,43 @@ class CardDetailVM extends ChangeNotifier {
       }
 
       final idx = await _prices.latestIndex(cardId: cardId, condition: _condition);
-      giLow = _num(idx?['price_low']);
-      giMid = _num(idx?['price_mid']);
-      giHigh = _num(idx?['price_high']);
-      observedAt = _ts(idx?['observed_at']);
+      giLow = _num(idx['price_low']);
+      giMid = _num(idx['price_mid']);
+      giHigh = _num(idx['price_high']);
+      observedAt = _ts(idx['observed_at']);
 
       final floors = await _prices.latestFloors(cardId: cardId, condition: _condition);
       retailFloor = _num(floors['retail']);
       marketFloor = _num(floors['market']);
 
-      final gv = await _prices.latestGvBaseline(cardId: cardId, condition: _condition);
-      if (gv == null) {
-        gvBaseline = null;
-      } else if (gv is num) {
-        gvBaseline = gv;
-      } else if (gv is Map) {
-        gvBaseline = _num(gv['value']);
-      }
+      final gvMap = await _prices.latestGvBaseline(cardId: cardId, condition: _condition);
+      gvBaseline = (gvMap is Map && gvMap != null && gvMap['value'] != null) ? _num(gvMap['value']) : null;
 
       final hist = await _prices.indexHistory(cardId, _condition, limit: 14);
       final points = hist.reversed.map((r) => _num(r['price_mid'])).whereType<num>().toList();
       trend = points;
 
+      // pct7d: compare last vs first in our window
+      if (points.length >= 2) {
+        final first = points.first;
+        final last = points.last;
+        pct7d = (first != 0) ? ((last - first) / first) * 100.0 : null;
+      } else {
+        pct7d = null;
+      }
+
+      // age from observedAt
       if (observedAt != null) { age = DateTime.now().difference(observedAt!); } else { age = null; }
 
+      // dynamic sources
       final s = <String>[];
       if (retailFloor != null) s.add('JTCG');
       if (marketFloor != null) s.add('eBay');
       if (gvBaseline != null) s.add('GV');
       sources = s;
 
-      _cache[key] = _CacheEntry(now, idx ?? {}, floors, (gv is Map) ? gv as Map<String, dynamic>? : (gv == null ? null : {'value': gv}), hist);
-
       // Recent sold comps (with cache)
-      final soldKey = cardId + ':' + _condition;
+      final soldKey = '$cardId:$_condition';
       final soldHit = _soldCache[soldKey];
       if (soldHit != null && DateTime.now().difference(soldHit.at) < soldTtl) {
         sold5 = soldHit.rows;
@@ -117,6 +121,9 @@ class CardDetailVM extends ChangeNotifier {
         sold5 = comps;
         _soldCache[soldKey] = _SoldCacheEntry(DateTime.now(), comps);
       }
+
+      // write to cache (including history and sold5)
+      _cache[key] = _CacheEntry(now, idx, floors, (gvMap is Map) ? gvMap : null, hist, sold5);
     } catch (e) {
       error = e.toString();
     } finally {
@@ -155,12 +162,19 @@ class CardDetailVM extends ChangeNotifier {
     gvBaseline = gv == null ? null : _num(gv['value']);
     final points = c.history.reversed.map((r) => _num(r['price_mid'])).whereType<num>().toList();
     trend = points;
+    if (points.length >= 2) {
+      final first = points.first; final last = points.last;
+      pct7d = (first != 0) ? ((last - first) / first) * 100.0 : null;
+    } else {
+      pct7d = null;
+    }
     if (observedAt != null) { age = DateTime.now().difference(observedAt!); } else { age = null; }
     final s = <String>[];
     if (retailFloor != null) s.add('JTCG');
     if (marketFloor != null) s.add('eBay');
     if (gvBaseline != null) s.add('GV');
     sources = s;
+    sold5 = c.sold5;
   }
 }
 
@@ -170,7 +184,8 @@ class _CacheEntry {
   final Map<String, dynamic> floors;
   final Map<String, dynamic>? gv;
   final List<Map<String, dynamic>> history;
-  _CacheEntry(this.at, this.index, this.floors, this.gv, this.history);
+  final List<Map<String, dynamic>> sold5;
+  _CacheEntry(this.at, this.index, this.floors, this.gv, this.history, this.sold5);
 }
 
 class _SoldCacheEntry {

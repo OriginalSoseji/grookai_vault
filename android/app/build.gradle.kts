@@ -11,8 +11,12 @@ plugins {
 
 android {
     namespace = "com.example.grookai_vault"
-    compileSdk = flutter.compileSdkVersion
+    // Pin stable SDK/build-tools to avoid aapt issues with preview/RC toolchains
+    // Compile against 36 to satisfy recent plugins (camera, activity, etc.)
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
+    // Use stable build-tools. If only RC is installed, install 36.0.0 via the VS Code task.
+    buildToolsVersion = "36.0.0"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -29,7 +33,8 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        // targetSdk can remain at prior stable while compiling against 36
+        targetSdk = 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
@@ -65,4 +70,19 @@ android {
 
 flutter {
     source = "../.."
+}
+
+// Diagnostics: print detected build-tools and warn on preview/RC usage
+gradle.projectsEvaluated {
+    val sdk = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT") ?: ""
+    val bt = File("$sdk/build-tools")
+    if (bt.exists()) {
+        val dirs = bt.listFiles()?.map { it.name }?.sortedDescending() ?: emptyList()
+        println(">> ANDROID build-tools present: $dirs")
+        if (dirs.any { it.contains("36") && it.contains("rc", ignoreCase = true) }) {
+            println("!! WARNING: Preview/RC build-tools detected. Please install build-tools;36.0.0 (stable).")
+        }
+    } else {
+        println("!! WARNING: ANDROID_SDK not found; ensure build-tools 36.0.0 installed.")
+    }
 }

@@ -8,7 +8,7 @@ class RecentSalesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safe = sales
-        .where((s) => s is Map && ((s as Map)['price'] != null || (s as Map)['title'] != null))
+        .where((s) => ((s as Map)['price'] != null || (s as Map)['title'] != null))
         .cast<Map<String, dynamic>>()
         .toList();
     if (safe.isEmpty) {

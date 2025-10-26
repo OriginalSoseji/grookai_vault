@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/foundation.dart';
 
 String _normSet(String s) => s.trim().toLowerCase();
 
@@ -25,7 +26,7 @@ class PriceService {
   final bool debug;
   PriceService(this._supa, {this.debug = false});
 
-  void _log(String m) { if (debug) print('[PriceService] ' + m); }
+  void _log(String m) { if (debug) debugPrint('[PriceService] $m'); }
 
   /// Newest price row for a set/number (optionally filter by condition/grade).
   Future<Map<String, dynamic>?> latestPrice({
@@ -102,7 +103,7 @@ class PriceService {
         .eq('source', 'grookai_index')
         .limit(1) as List;
     if (rows.isEmpty) {
-      _log('latestIndex: no rows for ' + cardId + '/' + condition);
+      _log('latestIndex: no rows for $cardId/$condition');
       return {
         'price_low': null,
         'price_mid': null,
@@ -138,7 +139,7 @@ class PriceService {
       if (s == 'retail') retail = val;
       if (s == 'market') market = val;
     }
-    _log('latestFloors: retail=' + (retail?.toString() ?? 'null') + ' market=' + (market?.toString() ?? 'null') + ' for ' + cardId + '/' + condition);
+    _log('latestFloors: retail=${retail?.toString() ?? 'null'} market=${market?.toString() ?? 'null'} for $cardId/$condition');
     return { 'retail': retail, 'market': market };
   }
 
