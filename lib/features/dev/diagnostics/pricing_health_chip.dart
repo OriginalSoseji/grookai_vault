@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/ui/tokens/colors.dart';
+import 'package:grookai_vault/config/flags.dart';
 import 'package:grookai_vault/models/pricing_health.dart';
 import 'package:grookai_vault/services/pricing_health_service.dart';
 
@@ -33,27 +34,48 @@ class _PricesAsOfChipState extends State<PricesAsOfChip> {
       future: _future,
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
-          return Chip(label: const Text('Prices as of…'), backgroundColor: palette.card);
+          // Neutral loading state – small dot-only if prod
+          return _buildStatus(null, null, palette, prod: gvEnvStage == 'prod');
         }
         final ph = snap.data;
         if (ph == null) {
-          return Chip(label: const Text('Prices as of: unknown'), backgroundColor: palette.warning.withOpacity(0.15));
+          return _buildStatus(null, null, palette, prod: gvEnvStage == 'prod', unknown: true);
         }
         final ts = ph.mvLatestObservedAt;
         final age = ph.age;
         final isStale = age == null ? true : age > widget.staleAfter;
-        final color = isStale ? palette.warning : palette.success;
-        final text = ts == null ? 'unknown' : _fmt(ts);
-        final rows = ph.mvRows;
-
-        return Chip(
-          avatar: Icon(isStale ? Icons.schedule : Icons.check_circle, size: 18, color: color),
-          label: Text('Prices as of $text • $rows rows'),
-          labelStyle: theme.textTheme.bodySmall,
-          backgroundColor: color.withOpacity(0.08),
-          side: BorderSide(color: color.withOpacity(0.35)),
-        );
+        return _buildStatus(ts, ph.mvRows, palette, prod: gvEnvStage == 'prod', stale: isStale, theme: theme);
       },
+    );
+  }
+
+  Widget _buildStatus(DateTime? ts, int? rows, GVPalette palette,
+      {bool prod = false, bool stale = false, bool unknown = false, ThemeData? theme}) {
+    final isUnknown = unknown || ts == null;
+    final color = isUnknown
+        ? (theme?.colorScheme.outline ?? palette.textSecondary)
+        : (stale ? palette.warning : palette.success);
+
+    if (prod) {
+      // Minimal dot in prod with tooltip
+      return Tooltip(
+        message: isUnknown
+            ? 'Price freshness: unknown'
+            : 'Updated every ~15 min. Shows last successful refresh.'
+              '\nAs of ${_fmt(ts!)} (${rows ?? 0} rows)'.trim(),
+        child: Icon(Icons.circle, size: 10, color: color),
+      );
+    }
+
+    final text = isUnknown ? 'unknown' : _fmt(ts!);
+    final label = rows == null ? 'Prices as of $text' : 'Prices as of $text • $rows rows';
+    return Chip(
+      avatar: Icon(isUnknown ? Icons.help_outline : (stale ? Icons.schedule : Icons.check_circle),
+          size: 18, color: color),
+      label: Text(label),
+      labelStyle: theme?.textTheme.bodySmall,
+      backgroundColor: color.withOpacity(0.08),
+      side: BorderSide(color: color.withOpacity(0.35)),
     );
   }
 
@@ -68,4 +90,3 @@ class _PricesAsOfChipState extends State<PricesAsOfChip> {
 
   String _2(int n) => n.toString().padLeft(2, '0');
 }
-
