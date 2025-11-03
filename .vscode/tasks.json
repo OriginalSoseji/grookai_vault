@@ -1,0 +1,113 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "GV: test CardDetailVM",
+      "type": "shell",
+      "command": "flutter test test/viewmodels/card_detail_vm_test.dart",
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: pricing e2e verify (NM)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile","-Command",
+        "$ErrorActionPreference='Stop';",
+        "$u=(Get-Content .env | %{ if($_ -match '^SUPABASE_URL=(.+)$'){ $Matches[1] } });",
+        "$k=(Get-Content .env | %{ if($_ -match '^SUPABASE_ANON_KEY=(.+)$'){ $Matches[1] } });",
+        "$card='<REPLACE_CARD_PRINT_ID>';",
+        "Write-Host \"Using $card\";",
+        "$hdr=@{ 'apikey'=$k; 'Authorization'=\"Bearer $k\" };",
+        "$b1=@{ cardId=$card; condition='NM'; limit=5 } | ConvertTo-Json;",
+        "Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/ebay_sold_engine\" -Headers $hdr -ContentType 'application/json' -Body $b1 | ConvertTo-Json -Depth 6;",
+        "Invoke-RestMethod -Method Get -Uri \"$u/rest/v1/latest_card_prices_v?card_id=eq.$card&condition=eq.NM&select=*\" -Headers $hdr | ConvertTo-Json -Depth 6;",
+        "Invoke-RestMethod -Method Get -Uri \"$u/rest/v1/latest_card_floors_v?card_id=eq.$card&condition=eq.NM&select=*\" -Headers $hdr | ConvertTo-Json -Depth 6;"
+      ],
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: run (Pricing Smoke)",
+      "type": "shell",
+      "command": "flutter run -d R5CY71V9ETR --route=/dev-pricing-smoke",
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: verify ebay_sold_engine (NM, last 5)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$ErrorActionPreference='Stop';",
+        "$u=(Get-Content .env | %{ if($_ -match '^SUPABASE_URL=(.+)$'){ $Matches[1] } });",
+        "$k=(Get-Content .env | %{ if($_ -match '^SUPABASE_ANON_KEY=(.+)$'){ $Matches[1] } });",
+        "$card='00000000-0000-0000-0000-000000000000'; # REPLACE_WITH_REAL_CARD_PRINT_ID",
+        "$body=@{ cardId=$card; condition='NM'; limit=5; debug=$true } | ConvertTo-Json;",
+        "Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/ebay_sold_engine\" -Headers @{ 'apikey'=$k; 'Authorization'=\"Bearer $k\" } -ContentType 'application/json' -Body $body | ConvertTo-Json -Depth 6"
+      ],
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Android: install build-tools 36.0.0",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$ErrorActionPreference='Stop';",
+        "$sdk=$env:ANDROID_SDK_ROOT; if (-not $sdk) { $sdk=$env:ANDROID_HOME }",
+        "if (-not $sdk) { throw 'ANDROID_SDK_ROOT or ANDROID_HOME not set' }",
+        "Write-Host \"SDK at: $sdk\";",
+        "& \"$sdk\\cmdline-tools\\latest\\bin\\sdkmanager.bat\" \"build-tools;36.0.0\" \"platform-tools\""
+      ],
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Android: clean & run (stable aapt)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "cd C:\\grookai_vault;",
+        "flutter clean;",
+        "Remove-Item -Force -ErrorAction SilentlyContinue build\\app\\outputs\\flutter-apk\\app-debug.apk;",
+        "flutter pub get;",
+        "flutter run -d R5CY71V9ETR"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: create price indexes (+refresh)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy","Bypass",
+        ".\\scripts\\tools\\create_card_price_indexes.ps1"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: create price indexes (skip refresh)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy","Bypass",
+        ".\\scripts\\tools\\create_card_price_indexes.ps1",
+        "-SkipRefresh"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
+
