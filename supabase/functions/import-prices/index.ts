@@ -22,6 +22,49 @@ if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
   throw new Error("Missing env: SERVICE_ROLE_KEY and/or PROJECT_URL.");
 }
 
+function srHeaders() {
+  return {
+    apikey: SERVICE_ROLE_KEY,
+    Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+    "Content-Type": "application/json",
+    Prefer: "count=exact",
+  } as Record<string,string>;
+}
+
+async function getQueuedCount(): Promise<number> {
+  const url = `${SUPABASE_URL}/rest/v1/jobs?name=eq.refresh_latest_card_prices_mv&status=in.(queued,running)&select=id`;
+  const res = await fetch(url, { headers: srHeaders() });
+  if (!res.ok) return 0;
+  const cr = res.headers.get('content-range');
+  if (cr && cr.includes('/')) {
+    const total = cr.split('/')[1];
+    const n = parseInt(total, 10);
+    if (!Number.isNaN(n)) return n;
+  }
+  const arr = await res.json().catch(() => []);
+  return Array.isArray(arr) ? arr.length : 0;
+}
+
+async function enqueueRefreshIfNeeded(): Promise<boolean> {
+  try {
+    const cnt = await getQueuedCount();
+    if (cnt > 0) return false;
+    const url = `${SUPABASE_URL}/rest/v1/jobs`;
+    const res = await fetch(url, { method: 'POST', headers: srHeaders(), body: JSON.stringify([{ name: 'refresh_latest_card_prices_mv', payload: {} }]) });
+    return res.ok;
+  } catch (_) { return false; }
+}
+
+async function runWorkerOnce(): Promise<number> {
+  try {
+    const url = `${SUPABASE_URL}/rest/v1/rpc/process_jobs`;
+    const res = await fetch(url, { method: 'POST', headers: srHeaders(), body: JSON.stringify({ p_limit: 1 }) });
+    if (!res.ok) return 0;
+    const v = await res.json().catch(() => 0);
+    return typeof v === 'number' ? v : (v?.process_jobs ?? 0) ?? 0;
+  } catch (_) { return 0; }
+}
+
 // ---------- Helpers ----------
 function codeVariants(raw: string): string[] {
   const base = (raw || "").toLowerCase().replace(/\s+/g, "");
@@ -174,6 +217,14 @@ export const handler = async (req: Request) => {
     }
 
     const { count } = await insertPriceObservations(rows);
+    // Post-import: enqueue refresh + run worker once (service role; deduped)
+    let refreshQueued = false; let handled = 0;
+    try {
+      refreshQueued = await enqueueRefreshIfNeeded();
+      handled = await runWorkerOnce();
+    } catch (e) {
+      console.error(`[import-prices] post-refresh err: ${String(e).slice(0,200)}`);
+    }
     const next_offset = (cardLimit > 0 && (cardOffset + cardLimit) < fetched.length)
       ? (cardOffset + cardLimit) : null;
 
@@ -181,6 +232,8 @@ export const handler = async (req: Request) => {
       ok:true, tried, fetched: fetched.length,
       processed: cardsToProcess.length, staged: rows.length, inserted: count,
       next_offset,
+      refreshQueued,
+      handled,
       ...(debug ? { ptcg_diag } : {}),
     }), { headers:{ "Content-Type":"application/json" }});
 
