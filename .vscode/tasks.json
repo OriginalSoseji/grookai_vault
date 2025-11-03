@@ -107,7 +107,26 @@
       ],
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "GV: Pricing — enqueue+run now",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile","-Command",
+        "$ErrorActionPreference='Stop';",
+        "$envVars = @{}; if (Test-Path .env) { Get-Content .env | ?{ $_ -match '=' -and -not $_.StartsWith('#') } | % { $p=$_.Split('=',2); $envVars[$p[0].Trim()]=$p[1].Trim() } }",
+        "$u = if ($env:SUPABASE_URL) { $env:SUPABASE_URL } elseif ($envVars['SUPABASE_URL']) { $envVars['SUPABASE_URL'] } else { throw 'SUPABASE_URL missing' }",
+        "$srk = if ($env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY } elseif ($envVars['SERVICE_ROLE_KEY']) { $envVars['SERVICE_ROLE_KEY'] } else { throw 'SERVICE_ROLE_KEY missing (set in env or .env)' }",
+        "$hdr = @{ 'Authorization'=\"Bearer $srk\"; 'apikey'=$srk; 'Content-Type'='application/json' }",
+        "Write-Host 'Calling pricing_refresh...';",
+        "$resp = Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/pricing_refresh\" -Headers $hdr -Body '{}' -ErrorAction Stop; $resp | ConvertTo-Json -Depth 5;",
+        "try { psql --version | Out-Null; } catch { Write-Host 'psql not found; skipping health query.'; exit 0 }",
+        "Write-Host '\npricing_health_v:';",
+        "psql -X -c \"select * from public.pricing_health_v;\""
+      ],
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }
-

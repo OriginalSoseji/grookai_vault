@@ -42,3 +42,20 @@ entrypoint = "./functions/ebay-account-notify/index.ts"
 # Specifies static files to be bundled with the function. Supports glob patterns.
 # For example, if you want to serve static HTML pages in your function:
 # static_files = [ "./functions/ebay-account-notify/*.html" ]
+
+[functions.import-cards]
+verify_jwt = false
+
+[functions.check-sets]
+verify_jwt = true
+
+# Pricing refresh runs every 15 minutes with Service Role privileges
+[[functions.schedules]]
+name = "pricing_refresh"
+cron = "*/15 * * * *"
+
+[functions.pricing_refresh]
+enabled = true
+verify_jwt = false
+import_map = "./functions/pricing_refresh/deno.json"
+entrypoint = "./functions/pricing_refresh/index.ts"
