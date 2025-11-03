@@ -1,0 +1,1 @@
+Pricing refresh: Price imports now auto-enqueue a refresh job and run the in-DB worker once using service role. No client refresh calls. Health chip reflects staleness (Search in all envs, Detail only in dev/stage).
