@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grookai_vault/services/supa_client.dart';
+import 'package:grookai_vault/features/dev/diagnostics/pricing_health_chip.dart';
 import 'package:grookai_vault/viewmodels/card_detail_vm.dart';
 import 'package:grookai_vault/widgets/condition_chips.dart';
 import 'package:grookai_vault/widgets/price_card.dart';
@@ -36,6 +37,8 @@ class _PricingSmokePageState extends State<PricingSmokePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            PricesAsOfChip(supabase: sb),
+            const SizedBox(height: 8),
             ConditionChips(value: vm.condition, onChanged: (c) => vm.setCondition(c)),
             const SizedBox(height: 12),
             if (vm.isLoading) const Center(child: CircularProgressIndicator())
