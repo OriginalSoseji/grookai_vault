@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/features/pricing/price_tiers_page.dart';
+import 'package:grookai_vault/ui/app/route_names.dart';
 import 'package:grookai_vault/ui/tokens/spacing.dart';
 import 'package:grookai_vault/ui/widgets/list_cell.dart';
+import 'package:grookai_vault/services/listings_api.dart';
 
 class VaultItemsExtList extends StatefulWidget {
   const VaultItemsExtList({super.key});
@@ -80,13 +82,122 @@ class _VaultItemsExtListState extends State<VaultItemsExtList> {
       itemBuilder: (context, i) {
         final r = _rows[i];
         final title = (r['name'] ?? 'Card').toString();
-        final sub =
-            '${(r['set_code'] ?? '').toString()} | ${(r['number'] ?? '').toString()}';
+        final sub = (r['set_code'] ?? '').toString();
+        final vaultItemId = (r['vault_item_id'] ?? '').toString();
         return ListCell(
           title: Text(title),
           subtitle: Text(sub),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (vaultItemId.isNotEmpty)
+                IconButton(
+                  tooltip: 'Post to Wall',
+                  icon: const Icon(Icons.campaign_outlined),
+                  onPressed: () => _showQuickPostSheet(context, r),
+                ),
+              if (vaultItemId.isNotEmpty)
+                IconButton(
+                  tooltip: 'Create Listing',
+                  icon: const Icon(Icons.add_photo_alternate_outlined),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      RouteNames.createListing,
+                      arguments: {
+                        'vaultItemId': vaultItemId,
+                        'cardName': title,
+                      },
+                    );
+                  },
+                ),
+              const Icon(Icons.chevron_right),
+            ],
+          ),
           onTap: () => _showTiers(r),
+        );
+      },
+    );
+  }
+
+  void _showQuickPostSheet(BuildContext context, Map<String, dynamic> row) {
+    final vaultItemId = (row['vault_item_id'] ?? '').toString();
+    if (vaultItemId.isEmpty) return;
+    final qtyCtl = TextEditingController(text: '1');
+    final priceCtl = TextEditingController();
+    final noteCtl = TextEditingController();
+    bool useVaultImage = true;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(ctx).viewInsets.bottom + 16,
+            left: 16,
+            right: 16,
+            top: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Post to Public Wall', style: Theme.of(ctx).textTheme.titleMedium),
+              const SizedBox(height: 12),
+              Row(children: [
+                Expanded(child: TextField(controller: priceCtl, decoration: const InputDecoration(labelText: 'Price (cents)'), keyboardType: TextInputType.number)),
+                const SizedBox(width: 12),
+                SizedBox(width: 96, child: TextField(controller: qtyCtl, decoration: const InputDecoration(labelText: 'Qty'), keyboardType: TextInputType.number)),
+              ]),
+              const SizedBox(height: 8),
+              TextField(controller: noteCtl, decoration: const InputDecoration(labelText: 'Note (optional)')),
+              const SizedBox(height: 8),
+              StatefulBuilder(builder: (ctx2, setSt) {
+                return CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  value: useVaultImage,
+                  onChanged: (v) => setSt(() => useVaultImage = v ?? true),
+                  title: const Text('Use vault image'),
+                );
+              }),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.of(ctx).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  const Spacer(),
+                  FilledButton(
+                    onPressed: () async {
+                      final qty = int.tryParse(qtyCtl.text.trim());
+                      final price = int.tryParse(priceCtl.text.trim());
+                      if (qty == null || qty <= 0 || price == null || price < 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Enter valid price and quantity')));
+                        return;
+                      }
+                      try {
+                        final api = GVListingsApi();
+                        await api.postFromVault(
+                          vaultItemId,
+                          priceCents: price,
+                          quantity: qty,
+                          note: noteCtl.text,
+                          useVaultImage: useVaultImage,
+                        );
+                        if (!mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Posted to Wall')));
+                        Navigator.of(ctx).pop();
+                      } catch (e) {
+                        if (!mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Post failed: $e')));
+                      }
+                    },
+                    child: const Text('Post'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );
