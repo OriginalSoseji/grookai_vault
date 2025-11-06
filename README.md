@@ -1,3 +1,4 @@
+﻿[![Staging Probe](https://github.com/${{ github.repository }}/actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
 # Supabase CLI
 
 [![Coverage Status](https://coveralls.io/repos/github/supabase/cli/badge.svg?branch=main)](https://coveralls.io/github/supabase/cli?branch=main) [![Bitbucket Pipelines](https://img.shields.io/bitbucket/pipelines/supabase-cli/setup-cli/master?style=flat-square&label=Bitbucket%20Canary)](https://bitbucket.org/supabase-cli/setup-cli/pipelines) [![Gitlab Pipeline Status](https://img.shields.io/gitlab/pipeline-status/sweatybridge%2Fsetup-cli?label=Gitlab%20Canary)
@@ -12,6 +13,13 @@ This repository contains all the functionality for Supabase CLI.
 - [x] Creating and deploying Supabase Functions
 - [x] Generating types directly from your database schema
 - [x] Making authenticated HTTP requests to [Management API](https://supabase.com/docs/reference/api/introduction)
+
+## Production-First Mode
+
+Baseline achieved: PROD 200/200. Local is re-enabled for feature development.
+
+- Continue using the audit/probe tasks to verify environments.
+- Use the guarded scripts for any Production changes.
 
 ## Getting started
 
@@ -170,9 +178,9 @@ Command & config reference can be found [here](https://supabase.com/docs/referen
 ## Edge Functions
 - Primary reference: `docs/API_SURFACE.md`
 - Primary operational functions:
-  - `check-sets` — Catalog completeness audit and optional auto-fix via `import-prices`
-  - `import-prices` — Set-level importer that writes `price_observations`
-  - `check-prices` — Price freshness/coverage audit with optional re-import trigger
+  - `check-sets` â€” Catalog completeness audit and optional auto-fix via `import-prices`
+  - `import-prices` â€” Set-level importer that writes `price_observations`
+  - `check-prices` â€” Price freshness/coverage audit with optional re-import trigger
 - Additional functions:
   - `search_cards`, `hydrate_card`, `keep_alive`
   - `import-all-prices`, `import-cards`, `import-card`
@@ -212,14 +220,14 @@ go run . help
 - Manual/override: `.github/workflows/check-prices-nightly.yml` (06:15 UTC daily + on-demand)
 - Edge endpoint: `${SUPABASE_URL}/functions/v1/check-prices`
 
-## Google Sign‑In (Supabase OAuth)
+## Google Signâ€‘In (Supabase OAuth)
 - App code: `lib/features/auth/login_page.dart` uses `supabase.auth.signInWithOAuth(OAuthProvider.google, redirectTo: Env.oauthRedirectUrl)`.
-- Configure secrets (Supabase Dashboard → Authentication → Providers → Google):
+- Configure secrets (Supabase Dashboard â†’ Authentication â†’ Providers â†’ Google):
   1) In Google Cloud Console, create OAuth credentials (Web application):
      - Authorized redirect URI: `https://<PROJECT_REF>.supabase.co/auth/v1/callback`
      - Copy Client ID/Secret
   2) In Supabase Dashboard, paste Google Client ID/Secret under the Google provider and enable it.
-  3) Supabase Dashboard → Authentication → URL Configuration → Additional Redirect URLs:
+  3) Supabase Dashboard â†’ Authentication â†’ URL Configuration â†’ Additional Redirect URLs:
      - Add: `io.supabase.flutter://login-callback/` (or your custom value)
   4) App `.env` (optional override):
      - `OAUTH_REDIRECT_URL=io.supabase.flutter://login-callback/`
@@ -252,3 +260,4 @@ go run . help
 - Notes:
   - If you customize the scheme/host, set `OAUTH_REDIRECT_URL` accordingly and update both Android and iOS to match.
   - Ensure the Google provider is enabled in Supabase and your redirect URL(s) are authorized. The app will transition from `LoginPage` to the authed shell automatically via `auth.onAuthStateChange`.
+

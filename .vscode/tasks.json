@@ -2,131 +2,222 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "GV: test CardDetailVM",
+      "label": "Grookai: Repair → Pull → Push",
       "type": "shell",
-      "command": "flutter test test/viewmodels/card_detail_vm_test.dart",
-      "options": { "cwd": "C:\\grookai_vault" },
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tools/repair_pull_push.ps1 -Versions 20250916,20251022,20251102",
       "problemMatcher": []
     },
     {
-      "label": "GV: pricing e2e verify (NM)",
+      "label": "Grookai: Reset+Seed (LOCAL)",
       "type": "shell",
-      "command": "powershell",
-      "args": [
-        "-NoProfile","-Command",
-        "$ErrorActionPreference='Stop';",
-        "$u=(Get-Content .env | %{ if($_ -match '^SUPABASE_URL=(.+)$'){ $Matches[1] } });",
-        "$k=(Get-Content .env | %{ if($_ -match '^SUPABASE_ANON_KEY=(.+)$'){ $Matches[1] } });",
-        "$card='<REPLACE_CARD_PRINT_ID>';",
-        "Write-Host \"Using $card\";",
-        "$hdr=@{ 'apikey'=$k; 'Authorization'=\"Bearer $k\" };",
-        "$b1=@{ cardId=$card; condition='NM'; limit=5 } | ConvertTo-Json;",
-        "Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/ebay_sold_engine\" -Headers $hdr -ContentType 'application/json' -Body $b1 | ConvertTo-Json -Depth 6;",
-        "Invoke-RestMethod -Method Get -Uri \"$u/rest/v1/latest_card_prices_v?card_id=eq.$card&condition=eq.NM&select=*\" -Headers $hdr | ConvertTo-Json -Depth 6;",
-        "Invoke-RestMethod -Method Get -Uri \"$u/rest/v1/latest_card_floors_v?card_id=eq.$card&condition=eq.NM&select=*\" -Headers $hdr | ConvertTo-Json -Depth 6;"
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"supabase db reset --local --no-seed --yes; if ($LASTEXITCODE) { exit $LASTEXITCODE }\"",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Grookai: Smoke (LOCAL)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev/smoke_local.ps1",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Deploy wall_feed",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command supabase functions deploy wall_feed",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Grookai: Start Supabase",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command supabase start",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Grookai: Functions Serve",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command supabase functions serve --no-verify-jwt",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Grookai: Flutter Run (R5CY71V9ETR)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"flutter clean; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter pub get; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter run -d R5CY71V9ETR\"",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Flutter Run (LOCAL)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"flutter clean; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter pub get; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter run -d R5CY71V9ETR --dart-define=GV_ENV=local\"",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Flutter Run (STAGING)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"flutter clean; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter pub get; if ($LASTEXITCODE) { exit $LASTEXITCODE }; flutter run -d R5CY71V9ETR --dart-define=GV_ENV=staging\"",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Dev (ALL)",
+      "dependsOn": [
+        "Grookai: Start Supabase",
+        "Grookai: Functions Serve",
+        "Grookai: Flutter Run (R5CY71V9ETR)"
       ],
-      "options": { "cwd": "C:\\grookai_vault" },
-      "problemMatcher": []
+      "dependsOrder": "sequence",
+      "runOptions": { "runOn": "default" }
     },
     {
-      "label": "GV: run (Pricing Smoke)",
+      "label": "Grookai: Dev (LOCAL)",
+      "dependsOn": [
+        "Grookai: Ensure Local Ready",
+        "Grookai: Start Supabase",
+        "Grookai: Functions Serve",
+        "Grookai: Flutter Run (LOCAL)"
+      ],
+      "dependsOrder": "sequence",
+      "runOptions": { "runOn": "default" }
+    },
+    {
+      "label": "Grookai: Dev (STAGING)",
+      "dependsOn": [ "Grookai: Flutter Run (STAGING)" ],
+      "dependsOrder": "sequence",
+      "runOptions": { "runOn": "default" }
+    },
+    {
+      "label": "Grookai: Stop (ALL)",
       "type": "shell",
-      "command": "flutter run -d R5CY71V9ETR --route=/dev-pricing-smoke",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"& 'tools/Stop-FunctionsServe.ps1'; & 'tools/Stop-Flutter.ps1'; & 'tools/Stop-Supabase.ps1'\"",
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Grookai: Ensure Local Ready",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\dev\\ensure_local_ready.ps1",
+      "presentation": { "panel": "dedicated", "reveal": "always" },
+      "options": { "cwd": "C:\\grookai_vault" }
+    },
+    {
+      "label": "Grookai: Ensure + Run (LOCAL)",
+      "dependsOn": [
+        "Grookai: Ensure Local Ready",
+        "Grookai: Flutter Run (LOCAL)"
+      ],
+      "dependsOrder": "sequence",
+      "runOptions": { "runOn": "default" },
+      "presentation": { "panel": "shared", "reveal": "always" },
+      "options": { "cwd": "C:\\grookai_vault" }
+    },
+    {
+      "label": "Grookai: Gen Types (TS)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"if (-not (Test-Path supabase/types)) { New-Item -ItemType Directory supabase/types | Out-Null }; supabase gen types typescript --db-url 'postgres://postgres:postgres@127.0.0.1:54322/postgres' | Out-File -FilePath supabase/types/database.ts -Encoding utf8\"",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Seed (LOCAL)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\dev\\seed_local.ps1 -Email tester@grookai.local",
       "options": { "cwd": "C:\\grookai_vault" },
       "problemMatcher": []
     },
     {
-      "label": "GV: verify ebay_sold_engine (NM, last 5)",
+      "label": "Grookai: ADB Reverse (LOCAL)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\dev\\adb_reverse.ps1",
+      "options": { "cwd": "C:\\grookai_vault" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Grookai: Fix Local Cards",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\dev\\fix_local_cards.ps1",
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: smoke search_cards",
       "type": "shell",
       "command": "powershell",
       "args": [
         "-NoProfile",
         "-Command",
-        "$ErrorActionPreference='Stop';",
-        "$u=(Get-Content .env | %{ if($_ -match '^SUPABASE_URL=(.+)$'){ $Matches[1] } });",
-        "$k=(Get-Content .env | %{ if($_ -match '^SUPABASE_ANON_KEY=(.+)$'){ $Matches[1] } });",
-        "$card='00000000-0000-0000-0000-000000000000'; # REPLACE_WITH_REAL_CARD_PRINT_ID",
-        "$body=@{ cardId=$card; condition='NM'; limit=5; debug=$true } | ConvertTo-Json;",
-        "Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/ebay_sold_engine\" -Headers @{ 'apikey'=$k; 'Authorization'=\"Bearer $k\" } -ContentType 'application/json' -Body $body | ConvertTo-Json -Depth 6"
+        "$pub=(supabase status|Select-String 'Publishable key:').ToString().Split(':')[-1].Trim(); Invoke-RestMethod 'http://127.0.0.1:54321/rest/v1/rpc/search_cards' -Method POST -Headers @{ apikey=$pub; 'Content-Type'='application/json' } -Body (@{ q=''; limit=5; offset=0 } | ConvertTo-Json) | ConvertTo-Json -Depth 5 | Write-Host"
       ],
-      "options": { "cwd": "C:\\grookai_vault" },
       "problemMatcher": []
-    },
+    }
+    ,
     {
-      "label": "Android: install build-tools 36.0.0",
+      "label": "GV: probe STAGING (RPC + wall)",
       "type": "shell",
       "command": "powershell",
       "args": [
         "-NoProfile",
         "-Command",
-        "$ErrorActionPreference='Stop';",
-        "$sdk=$env:ANDROID_SDK_ROOT; if (-not $sdk) { $sdk=$env:ANDROID_HOME }",
-        "if (-not $sdk) { throw 'ANDROID_SDK_ROOT or ANDROID_HOME not set' }",
-        "Write-Host \"SDK at: $sdk\";",
-        "& \"$sdk\\cmdline-tools\\latest\\bin\\sdkmanager.bat\" \"build-tools;36.0.0\" \"platform-tools\""
+        "$ErrorActionPreference='Stop'; $ts=Get-Date -Format yyyyMMdd_HHmm; $OUT=Join-Path -Path (Resolve-Path .) -ChildPath (\"reports/staging_scan_{0}\" -f $ts); New-Item -ItemType Directory -Force -Path $OUT | Out-Null; $envPath=Join-Path (Resolve-Path .) '.env.staging'; if (-not (Test-Path $envPath)) { throw '.env.staging missing' }; $envLines=Get-Content $envPath; $kv=@{}; foreach ($l in $envLines) { if ($l -match '^(\u005Cs*#|\u005Cs*$)') { continue }; if ($l -match '^(?<k>[A-Za-z0-9_]+)=(?<v>.*)$') { $kv[$Matches.k]=$Matches.v } }; $REST=$kv['SUPABASE_REST_URL']; if (-not $REST) { $REST=($kv['SUPABASE_URL'].TrimEnd('/')) + '/rest/v1' }; $ANON=$kv['SUPABASE_ANON_KEY']; if (-not $REST -or -not $ANON) { throw 'Missing REST URL or ANON KEY' }; $tail= if ($ANON.Length -gt 4) { $ANON.Substring($ANON.Length-4) } else { $ANON }; \"REST: $REST | ANON: xxxxx...$tail\" | Out-File (Join-Path $OUT 'env_redacted.txt') -Encoding utf8; & curl.exe -s -X POST \"$REST/rpc/search_cards\" -H \"apikey: $ANON\" -H \"Content-Type: application/json\" --connect-timeout 10 --max-time 20 --data '{\"q\":\"\",\"limit\":1,\"offset\":0}' -o (Join-Path $OUT 'rpc_search_cards.json') -w \" HTTP:%{http_code}`n\" | Tee-Object (Join-Path $OUT 'rpc_search_cards.status.txt') | Out-Null; & curl.exe -s \"$REST/v_wall_feed?select=card_id,thumb_url&limit=1\" -H \"apikey: $ANON\" --connect-timeout 10 --max-time 20 -o (Join-Path $OUT 'view_wall_feed.json') -w \" HTTP:%{http_code}`n\" | Tee-Object (Join-Path $OUT 'view_wall_feed.status.txt') | Out-Null; $lines=@(); function S($n,$f) { if (Test-Path $f) { $s=(Get-Content $f -Raw).Trim(); return (\"- {0}: {1}\" -f $n,$s) } else { return (\"- {0}: (missing)\" -f $n) } }; $lines += '# REST Checks (staging, read-only)'; $lines += (S 'RPC search_cards' (Join-Path $OUT 'rpc_search_cards.status.txt')); $lines += (S 'view v_wall_feed' (Join-Path $OUT 'view_wall_feed.status.txt')); $lines -join "`n" | Out-File -FilePath (Join-Path $OUT 'rest_checks.md') -Encoding utf8; Write-Host \"Probe complete. OUT=$OUT\""
       ],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Grookai: Refresh Stage Gate (PROBE + PARSE)",
+      "type": "shell",
       "options": { "cwd": "C:\\grookai_vault" },
-      "problemMatcher": []
-    },
-    {
-      "label": "Android: clean & run (stable aapt)",
-      "type": "shell",
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
-        "-NoProfile",
-        "-Command",
-        "cd C:\\grookai_vault;",
-        "flutter clean;",
-        "Remove-Item -Force -ErrorAction SilentlyContinue build\\app\\outputs\\flutter-apk\\app-debug.apk;",
-        "flutter pub get;",
-        "flutter run -d R5CY71V9ETR"
+        "-NoProfile","-ExecutionPolicy","Bypass","-Command",
+        "& { $wf='Staging Probe (read-only)'; gh workflow run $wf; gh run watch --exit-status --workflow $wf; ./scripts/dev/update_ready_to_stage_gate.ps1 }"
       ],
       "problemMatcher": []
     },
     {
-      "label": "GV: create price indexes (+refresh)",
+      "label": "Grookai: Refresh Stage Gate (LOCAL PARSE ONLY)",
       "type": "shell",
-      "command": "powershell",
+      "options": { "cwd": "C:\\grookai_vault" },
+      "command": "pwsh",
       "args": [
-        "-NoProfile",
-        "-ExecutionPolicy","Bypass",
-        ".\\scripts\\tools\\create_card_price_indexes.ps1"
+        "-NoProfile","-ExecutionPolicy","Bypass","-File","scripts/dev/update_ready_to_stage_gate.ps1"
       ],
-      "group": "build",
       "problemMatcher": []
     },
     {
-      "label": "GV: create price indexes (skip refresh)",
+      "label": "GV: Probe STAGING (READ-ONLY)",
       "type": "shell",
       "command": "powershell",
       "args": [
-        "-NoProfile",
-        "-ExecutionPolicy","Bypass",
-        ".\\scripts\\tools\\create_card_price_indexes.ps1",
-        "-SkipRefresh"
+        "-NoProfile","-ExecutionPolicy","Bypass","-Command",
+        "& { $out=Get-ChildItem reports -Filter 'prod_audit_*' | Sort-Object Name -Descending | Select-Object -First 1; if(-not $out){$out=New-Item -ItemType Directory -Path reports/prod_audit_manual -Force}; $wf='staging-probe.yml'; if(Get-Command gh -ErrorAction SilentlyContinue){ gh workflow run $wf | Out-Null; Start-Sleep -Seconds 2; $runId=$null; try { $json = gh run list --workflow $wf --limit 1 --json databaseId | Out-String; if($json -and $json.Trim().StartsWith('[')){ $arr = $json | ConvertFrom-Json; if($arr -and $arr.Count -ge 1){ $runId=$arr[0].databaseId } } } catch {}; if(-not $runId){ $txt = gh run list --workflow $wf --limit 1 | Out-String; if($txt){ $m=[regex]::Match($txt,'^(\d+)\s'); if($m.Success){ $runId=$m.Groups[1].Value } } }; if($runId){ gh run watch $runId --exit-status | Out-Null; $log = gh run view $runId --log } else { $log = @('RPC: HTTP N/A','VIEW: HTTP N/A') }; $rpc=($log | Select-String 'RPC: HTTP (\d+)' -AllMatches).Matches | Select-Object -Last 1; $view=($log | Select-String 'VIEW: HTTP (\d+)' -AllMatches).Matches | Select-Object -Last 1; $rpcCode=if($rpc){$rpc.Groups[1].Value}else{'N/A'}; $viewCode=if($view){$view.Groups[1].Value}else{'N/A'}; "RPC: HTTP $rpcCode","VIEW: HTTP $viewCode" | Out-File -Encoding utf8 (Join-Path $out.FullName 'staging_probe.txt') } else { 'SKIPPED: gh not installed' | Out-File -Encoding utf8 (Join-Path $out.FullName 'staging_probe.txt') } }"
       ],
-      "group": "build",
-      "problemMatcher": []
+      "presentation": { "reveal": "always", "panel": "shared" }
     },
     {
-      "label": "GV: Pricing — enqueue+run now",
+      "label": "GV: Probe PROD (READ-ONLY)",
       "type": "shell",
       "command": "powershell",
       "args": [
-        "-NoProfile","-Command",
-        "$ErrorActionPreference='Stop';",
-        "$envVars = @{}; if (Test-Path .env) { Get-Content .env | ?{ $_ -match '=' -and -not $_.StartsWith('#') } | % { $p=$_.Split('=',2); $envVars[$p[0].Trim()]=$p[1].Trim() } }",
-        "$u = if ($env:SUPABASE_URL) { $env:SUPABASE_URL } elseif ($envVars['SUPABASE_URL']) { $envVars['SUPABASE_URL'] } else { throw 'SUPABASE_URL missing' }",
-        "$srk = if ($env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY } elseif ($envVars['SERVICE_ROLE_KEY']) { $envVars['SERVICE_ROLE_KEY'] } else { throw 'SERVICE_ROLE_KEY missing (set in env or .env)' }",
-        "$hdr = @{ 'Authorization'=\"Bearer $srk\"; 'apikey'=$srk; 'Content-Type'='application/json' }",
-        "Write-Host 'Calling pricing_refresh...';",
-        "$resp = Invoke-RestMethod -Method Post -Uri \"$u/functions/v1/pricing_refresh\" -Headers $hdr -Body '{}' -ErrorAction Stop; $resp | ConvertTo-Json -Depth 5;",
-        "try { psql --version | Out-Null; } catch { Write-Host 'psql not found; skipping health query.'; exit 0 }",
-        "Write-Host '\npricing_health_v:';",
-        "psql -X -c \"select * from public.pricing_health_v;\""
+        "-NoProfile","-ExecutionPolicy","Bypass","-Command",
+        "& { $env:REST='https://ycdxbpibncqcchqiihfz.supabase.co/rest/v1'; $out=Get-ChildItem reports -Filter 'prod_audit_*' | Sort-Object Name -Descending | Select-Object -First 1; if(-not $out){$out=New-Item -ItemType Directory -Path reports/prod_audit_manual -Force}; $anon = (Get-Content .env.prod -ErrorAction SilentlyContinue) -match '^S_ANON_KEY=' | ForEach-Object { $_.Split('=')[1].Trim() } | Select-Object -First 1; if (-not $anon) { Write-Error 'Missing S_ANON_KEY in .env.prod'; exit 1 }; $body='{""q"":""pikachu"",""limit"":5,""offset"":0}'; try { $rpc=(curl -s -o NUL -w "%{http_code}" -H ""apikey: $anon"" -H ""Authorization: Bearer $anon"" -H ""Content-Type: application/json"" -H ""Content-Profile: public"" -d $body "$env:REST/rpc/search_cards"); } catch { $rpc='N/A' } ; try { $view=(curl -s -o NUL -w "%{http_code}" -H ""apikey: $anon"" -H ""Authorization: Bearer $anon"" -H ""Accept-Profile: public"" "$env:REST/v_wall_feed?select=card_id&limit=1"); } catch { $view='N/A' } ; Write-Host "RPC: HTTP $rpc"; Write-Host "VIEW: HTTP $view"; "RPC: HTTP $rpc","VIEW: HTTP $view" | Out-File -Encoding utf8 (Join-Path $out.FullName 'prod_probe.txt') }"
       ],
-      "group": "build",
-      "problemMatcher": []
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GV: Prod Audit (staging+prod)",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile","-ExecutionPolicy","Bypass","-File","scripts/ops/prod_first_audit.ps1"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GV: Fix PROD (apply wall_feed expose)",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile","-ExecutionPolicy","Bypass","-File","scripts/ops/prod_apply_expose.ps1"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GV: Fix PROD (apply search_cards RPC)",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-NoProfile","-ExecutionPolicy","Bypass","-File","scripts/ops/prod_apply_search_rpc.ps1"],
+      "presentation": { "reveal": "always", "panel": "shared" }
     }
   ]
 }
