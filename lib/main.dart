@@ -15,22 +15,24 @@ export 'ui/app/app.dart';
 // UI foundation
 import 'ui/app/app.dart';
 
-/// --- Supabase config (dotenv fallback to secrets.dart) ---
-final kSupabaseUrl = Env.supabaseUrl;
-final kSupabaseAnonKey = Env.supabaseAnonKey;
+/// --- Supabase config (dotenv loaded via Env.load; secrets.dart as fallback) ---
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load .env so GV_USE_LAZY_SEARCH is available app-wide
-  await dotenv.load(fileName: ".env");
+  // Load env file based on --dart-define=GV_ENV=local|staging|prod
+  await Env.load();
   // Log the lazy-search feature flag early for verification
   // Example: [LAZY] GV_USE_LAZY_SEARCH=true
   final lazyFlag = (dotenv.env['GV_USE_LAZY_SEARCH'] ?? '').toString();
   debugPrint('[LAZY] GV_USE_LAZY_SEARCH=$lazyFlag');
   _logStartupFlags();
 
-  await Supabase.initialize(url: kSupabaseUrl, anonKey: kSupabaseAnonKey);
+  final supabaseUrl = Env.supabaseUrl;
+  final supabaseAnonKey = Env.supabaseAnonKey;
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
+  // ignore: avoid_print
+  print('***** Supabase init completed *****');
   // Pre-warm Edge Functions to avoid first-call cold starts
   EdgeWarmup.warm();
   // Start lifecycle observer for offline queue auto-sync
