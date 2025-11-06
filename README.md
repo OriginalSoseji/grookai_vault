@@ -1,4 +1,5 @@
 ﻿[![Staging Probe](https://github.com/${{ github.repository }}/actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
+[![Staging Probe](../../actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
 # Supabase CLI
 
 [![Coverage Status](https://coveralls.io/repos/github/supabase/cli/badge.svg?branch=main)](https://coveralls.io/github/supabase/cli?branch=main) [![Bitbucket Pipelines](https://img.shields.io/bitbucket/pipelines/supabase-cli/setup-cli/master?style=flat-square&label=Bitbucket%20Canary)](https://bitbucket.org/supabase-cli/setup-cli/pipelines) [![Gitlab Pipeline Status](https://img.shields.io/gitlab/pipeline-status/sweatybridge%2Fsetup-cli?label=Gitlab%20Canary)
