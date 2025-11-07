@@ -12,10 +12,10 @@ permissions:
   contents: read
 
 env:
-  PROJECT_URL: ${{ secrets.PROD_REST_URL }}
-  SUPABASE_URL: ${{ secrets.PROD_REST_URL }}
+  PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
+  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
   SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
-  SERVICE_ROLE_KEY: ${{ secrets.PROD_ANON_KEY }}
+  SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
   GV_ENV: prod
 
 jobs:
