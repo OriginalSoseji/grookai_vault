@@ -15,12 +15,13 @@
 *.sh            text eol=lf
 
 # PowerShell scripts on Windows: CRLF
+# (keeps VS/PowerShell happy on Windows)
 *.ps1           text eol=crlf
 *.psm1          text eol=crlf
 *.cmd           text eol=crlf
 *.bat           text eol=crlf
 
-# Images/binary: never touch line endings
+# Images/binaries: never touch line endings
 *.png           -text
 *.jpg           -text
 *.jpeg          -text
@@ -29,6 +30,3 @@
 *.pdf           -text
 *.docx          -text
 *.lock          -text
-
-# Ensure this file stays LF
-.gitattributes text eol=lf
