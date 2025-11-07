@@ -1,10 +1,29 @@
-# Prevent future oversized assets from entering Git history
-*.zip filter=lfs diff=lfs merge=lfs -text
-*.7z  filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-*.mov filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.webp filter=lfs diff=lfs merge=lfs -text
+# Normalize everything as text by default
+*               text=auto
 
+# Source files: keep LF (cross-platform)
+*.ts            text eol=lf
+*.tsx           text eol=lf
+*.js            text eol=lf
+*.jsx           text eol=lf
+*.json          text eol=lf
+*.dart          text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.md            text eol=lf
+*.sql           text eol=lf
+*.sh            text eol=lf
+*.ps1           text eol=crlf   # PowerShell wants CRLF on Windows
+*.psm1          text eol=crlf
+*.cmd           text eol=crlf
+*.bat           text eol=crlf
+
+# Images/binary: never touch line endings
+*.png           -text
+*.jpg           -text
+*.jpeg          -text
+*.gif           -text
+*.ico           -text
+*.pdf           -text
+*.docx          -text
+*.lock          -text
