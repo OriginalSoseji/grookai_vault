@@ -1,0 +1,19 @@
+﻿--- supabase db lint ---
+supabase.exe : Connecting to local database...
+At C:\grookai_vault\.codex\run_sanity_scan.ps1:176 char:17
++   try { $lint = & supabase db lint 2>&1 } catch { $lint = $_ | Out-St ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Connecting to local database...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+
+--- supabase db diff --linked ---
+supabase.exe : Creating shadow database...
+At C:\grookai_vault\.codex\run_sanity_scan.ps1:177 char:17
++   try { $diff = & supabase db diff --linked 2>&1 } catch { $diff = $_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Creating shadow database...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

@@ -19,6 +19,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      POKEMON_TCG_API_KEY: ${{ secrets.POKEMON_TCG_API_KEY }}
     steps:
       - name: Build request body
         id: body
@@ -62,4 +64,3 @@ jobs:
             "${SUPABASE_URL%/}/functions/v1/check-sets" | tee response.json
           echo "--- Response preview ---"
           cat response.json | jq '{ ok, total_api, total_db, missing_count, extra_count, fix }'
-
