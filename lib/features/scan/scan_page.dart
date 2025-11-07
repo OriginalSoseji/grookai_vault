@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/ui/tokens/spacing.dart';
-import 'package:grookai_vault/ui/widgets/async_image.dart';
+import 'package:grookai_vault/theme/thunder_palette.dart';
+import 'package:grookai_vault/features/scanner/widgets/scan_result_sheet.dart';
+import 'package:grookai_vault/features/scanner/widgets/scanner_overlay.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -16,6 +19,7 @@ class _ScanPageState extends State<ScanPage> {
   bool _busy = false;
 
   Future<void> _captureIdentifyAndAdd() async {
+    HapticFeedback.lightImpact();
     setState(() => _busy = true);
     try {
       final shot = await ImagePicker().pickImage(
@@ -53,44 +57,16 @@ class _ScanPageState extends State<ScanPage> {
       final price = (data['market_price'] ?? 0);
 
       if (!mounted) return;
-      await showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: const Text('Added to Vault'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  AsyncImage(
-                    (card['image_url'] ?? '').toString(),
-                    width: 44,
-                    height: 44,
-                  ),
-                  const SizedBox(width: GVSpacing.s8),
-                  Expanded(
-                    child: Text(
-                      '${card['name'] ?? 'Card'} - ${card['set_code'] ?? ''} #${card['number'] ?? ''}',
-                      maxLines: 2,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: GVSpacing.s8),
-              Text('Condition: $label'),
-              Text(
-                'Market: \$${(price is num ? price.toStringAsFixed(2) : price.toString())}',
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
-          ],
-        ),
+      await ScanResultSheet.show(
+        context,
+        name: (card['name'] ?? 'Card').toString(),
+        setCode: (card['set_code'] ?? '').toString(),
+        number: (card['number'] ?? '').toString(),
+        imageUrl: (card['image_url'] ?? '').toString(),
+        conditionLabel: label,
+        priceDisplay: price is num ? '\$${price.toStringAsFixed(2)}' : price.toString(),
+        onAdd: () {},
+        onScanAgain: () {},
       );
     } catch (e) {
       if (!mounted) return;
@@ -104,22 +80,32 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(GVSpacing.s16),
-      children: [
+    return ScannerOverlay(
+      hint: 'Scan card face up',
+      child: ListView(
+        padding: const EdgeInsets.all(GVSpacing.s16),
+        children: [
         const Text(
           'Point your camera at a card. We\'ll identify it, grade condition, fetch market price, and add it to your Vault automatically.',
           style: TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 16),
-        FilledButton.icon(
-          onPressed: _busy ? null : _captureIdentifyAndAdd,
-          icon: const Icon(Icons.camera_alt),
-          label: Text(_busy ? 'Working...' : 'Scan & Add to Vault'),
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Thunder.accent.withOpacity(_busy ? 0.0 : 0.5)),
+          ),
+          child: FilledButton.icon(
+            onPressed: _busy ? null : _captureIdentifyAndAdd,
+            icon: const Icon(Icons.camera_alt),
+            label: Text(_busy ? 'Working...' : 'Scan & Add to Vault'),
+          ),
         ),
         const SizedBox(height: GVSpacing.s12),
         const Text('Tip: good lighting + flat card = better ID/grade.'),
       ],
+      ),
     );
   }
 }

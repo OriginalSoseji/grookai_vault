@@ -56,7 +56,7 @@ class _AddToVaultSheetState extends State<_AddToVaultSheet> {
                     width: 36,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Colors.black26,
+                      color: Theme.of(context).colorScheme.outlineVariant,
                       borderRadius: BorderRadius.circular(3),
                     ),
                   ),

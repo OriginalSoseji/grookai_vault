@@ -4,6 +4,8 @@ Param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
+. "$PSScriptRoot\load_env.ps1"
+
 function New-ReportDir {
   $ts = Get-Date -Format "yyyyMMdd_HHmmss"
   $dir = Join-Path (Resolve-Path ".").Path "reports\ship_edges_prod_$ts"
@@ -11,10 +13,16 @@ function New-ReportDir {
   return $dir
 }
 
-function Get-Env([string]$name, [string]$fallbackName=$null) {
-  if ($env:$name) { return $env:$name }
-  if ($fallbackName -and $env:$fallbackName) { return $env:$fallbackName }
-  return $null
+function Get-Env([string]$name, [string]$fallbackName = $null) {
+  $v = [System.Environment]::GetEnvironmentVariable($name, 'Process')
+  if (-not $v) { $v = [System.Environment]::GetEnvironmentVariable($name, 'User') }
+  if (-not $v) { $v = [System.Environment]::GetEnvironmentVariable($name, 'Machine') }
+  if (-not $v -and $fallbackName) {
+    $v = [System.Environment]::GetEnvironmentVariable($fallbackName, 'Process')
+    if (-not $v) { $v = [System.Environment]::GetEnvironmentVariable($fallbackName, 'User') }
+    if (-not $v) { $v = [System.Environment]::GetEnvironmentVariable($fallbackName, 'Machine') }
+  }
+  return $v
 }
 
 Write-Host "=== Ship Edges (PROD) ===" -ForegroundColor Cyan
@@ -53,9 +61,9 @@ $funcs = @('import-prices','check-sets','wall_feed')
 foreach ($f in $funcs) {
   try {
     & supabase functions deploy $f --project-ref $ProjectRef | Out-Null
-    ("- $f: deployed") | Out-File $sum -Append -Encoding UTF8
+    ("- {0}: deployed" -f $f) | Out-File $sum -Append -Encoding UTF8
   } catch {
-    ("- $f: deploy failed: $($_.Exception.Message)" ) | Out-File $sum -Append -Encoding UTF8
+    ("- {0}: deploy failed: {1}" -f $f, $_.Exception.Message) | Out-File $sum -Append -Encoding UTF8
   }
 }
 
@@ -103,9 +111,8 @@ $code3 = $null
 try { $resp3 = Invoke-WebRequest -Method GET -Uri $baseWall -Headers $h3 -TimeoutSec 45 -ErrorAction Stop; $code3 = [int]$resp3.StatusCode } catch { $ex=$_.Exception; if ($ex.Response -and $ex.Response.StatusCode) { try { $code3 = [int]$ex.Response.StatusCode.value__ } catch { $code3 = [int]$ex.Response.StatusCode } } }
 $ms3 = [int]((Get-Date) - $start3).TotalMilliseconds
 
-("- import-prices: {0} in {1} ms" -f ($r1.code ?? 'n/a'), $r1.ms) | Out-File $sum -Append -Encoding UTF8
-("- check-sets: {0} in {1} ms" -f ($r2.code ?? 'n/a'), $r2.ms) | Out-File $sum -Append -Encoding UTF8
-("- wall_feed: {0} in {1} ms" -f ($code3 ?? 'n/a'), $ms3) | Out-File $sum -Append -Encoding UTF8
+("- import-prices: {0} in {1} ms" -f ($(if ($null -ne $r1.code) { $r1.code } else { 'n/a' }), $r1.ms)) | Out-File $sum -Append -Encoding UTF8
+("- check-sets: {0} in {1} ms" -f ($(if ($null -ne $r2.code) { $r2.code } else { 'n/a' }), $r2.ms)) | Out-File $sum -Append -Encoding UTF8
+("- wall_feed: {0} in {1} ms" -f ($(if ($null -ne $code3) { $code3 } else { 'n/a' }), $ms3)) | Out-File $sum -Append -Encoding UTF8
 
 Write-Host "Summary -> $sum" -ForegroundColor Green
-

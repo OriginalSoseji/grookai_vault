@@ -67,7 +67,7 @@ class _CreateListingPageState extends State<CreateListingPage> {
           .from('vault_items')
           .select('card_print_id,image_url')
           .eq('id', vaultItemId)
-          .maybeSingle() as Map<String, dynamic>?;
+          .maybeSingle();
       if (vi != null) {
         final cpId = (vi['card_print_id'] ?? '').toString();
         final img = (vi['image_url'] ?? '').toString();
@@ -79,7 +79,7 @@ class _CreateListingPageState extends State<CreateListingPage> {
               .from('v_card_search')
               .select('name')
               .eq('id', cpId)
-              .maybeSingle() as Map<String, dynamic>?;
+              .maybeSingle();
           final nm = (row?['name'] ?? '').toString();
           if (nm.isNotEmpty) {
             setState(() { _title.text = nm; });

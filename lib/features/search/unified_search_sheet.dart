@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -7,7 +7,7 @@ import 'package:grookai_vault/services/prices_repository.dart';
 import 'package:grookai_vault/ui/tokens/spacing.dart';
 import 'package:grookai_vault/ui/widgets/list_cell.dart';
 import 'package:grookai_vault/ui/widgets/price_chip.dart';
-import 'package:grookai_vault/widgets/fix_card_image.dart';
+import 'package:grookai_vault/widgets/thumb_from_row.dart';
 import 'package:grookai_vault/services/search_gateway.dart';
 import 'package:grookai_vault/services/wishlist_service.dart';
 import 'package:grookai_vault/services/vault_service.dart';
@@ -237,20 +237,14 @@ class _UnifiedSearchSheetState extends State<UnifiedSearchSheet> {
                   final sub = [
                     if (setCode.isNotEmpty) setCode,
                     if (number.isNotEmpty) number,
-                  ].join(' · ');
+                  ].join(' • ');
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: GVSpacing.s8,
                       vertical: GVSpacing.s4,
                     ),
                     child: ListCell(
-                      leading: FixCardImage(
-                        setCode: setCode,
-                        number: number,
-                        width: 44,
-                        height: 44,
-                        fit: BoxFit.cover,
-                      ),
+                      leading: thumbFromRow(r, size: 44),
                       title: Text(title),
                       subtitle: Text(sub),
                       trailing: Row(

@@ -12,6 +12,8 @@ Param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
+. "$PSScriptRoot\load_env.ps1"
+
 function Ensure-Tool($name, $checkCmd, $installHint) {
   try {
     $null = & $checkCmd 2>$null
@@ -176,7 +178,7 @@ function Verify-EdgeFunctions {
           if ($n -eq 'wall_feed') {
             if ($anon) { $headers['apikey'] = $anon; $authMode = 'anon' } else { $authMode = 'none' }
           } else {
-            if ($service) { $headers['Authorization'] = "Bearer $service"; $headers['apikey'] = $service; $authMode = 'service-role' }
+            if ($service) { $headers['Authorization'] = "Bearer $service"; $headers["apikey"] = $anon; $authMode = 'service-role' }
           }
           $url = "$base/$n"
           $method = 'POST'

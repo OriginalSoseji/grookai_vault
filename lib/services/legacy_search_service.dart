@@ -25,7 +25,8 @@ class LegacySearchService {
           .from('v_card_search') // view provides image_best
           .select('id, set_code, name, number, rarity, image_best')
           .or('name.ilike.%$s%,set_code.ilike.%$s%')
-          .limit(limit);
+          .limit(limit)
+          .timeout(const Duration(seconds: 10));
       return List<Map<String, dynamic>>.from(data as List);
     } catch (e) {
       if (kDebugMode) debugPrint('[LAZY] v_card_search error: $e');
@@ -37,10 +38,11 @@ class LegacySearchService {
         final data = await _client
             .from('card_prints')
             .select(
-              'id, set_code, name, number, image_url, image_alt_url, name_local, lang',
+              'id, set_code, name, number, image_url, image_alt_url, lang',
             )
-            .or('name.ilike.%$s%,name_local.ilike.%$s%,set_code.ilike.%$s%')
-            .limit(limit);
+            .or('name.ilike.%$s%,set_code.ilike.%$s%')
+            .limit(limit)
+            .timeout(const Duration(seconds: 10));
         final list = List<Map<String, dynamic>>.from(data as List);
         // synthesize image_best from url/alt_url
         return list

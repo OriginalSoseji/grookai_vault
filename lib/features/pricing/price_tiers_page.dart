@@ -74,7 +74,9 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
                       children: [
                         Text('Latest Price', style: theme.textTheme.titleLarge),
                         const SizedBox(height: 8),
-                        Text("price_usd: \$"),
+                        Text(
+                          'price_usd: ${_fmtPrice(_priceRow?['price_usd'])}',
+                        ),
                         Text('source    : ${_priceRow!['source']}'),
                         Text(
                           'observed  : ${_priceRow!['observed_at']}',
@@ -126,4 +128,11 @@ class _PriceTiersPageState extends State<PriceTiersPage> {
       ),
     );
   }
+}
+
+String _fmtPrice(dynamic v) {
+  if (v == null) return '—';
+  if (v is num) return '\$${v.toStringAsFixed(2)}';
+  final n = num.tryParse(v.toString());
+  return n == null ? '—' : '\$${n.toStringAsFixed(2)}';
 }

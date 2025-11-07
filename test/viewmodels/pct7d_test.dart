@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/viewmodels/card_detail_vm.dart';
 import 'package:grookai_vault/services/price_service.dart';
+
 class _StubPriceService implements PriceService {
   @override
   bool get debug => false;
+
   @override
   Future<List<String>> availableVariants({required String setCode, required String number}) async => const [];
 
@@ -36,6 +38,12 @@ class _StubPriceService implements PriceService {
 
   @override
   Future<List<Map<String, dynamic>>> latestSold5(String cardId, String condition, {String? query, bool debug = false}) async => const [];
+
+  @override
+  Future<List<Map<String, dynamic>>> soldCompsFromView(String cardId, {int limit = 25}) async => const [];
+
+  @override
+  Future<List<Map<String, dynamic>>> pricesByCondition(String cardId) async => const [];
 }
 
 void main() {
@@ -46,3 +54,4 @@ void main() {
     expect(vm.pct7d, closeTo(10.0, 1e-6)); // (110-100)/100 * 100 = 10%
   });
 }
+

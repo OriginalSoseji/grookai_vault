@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:grookai_vault/ui/tokens/spacing.dart';
 
 class RecentSalesList extends StatelessWidget {
   final List<Map<String, dynamic>> sales; // normalized
@@ -13,7 +14,7 @@ class RecentSalesList extends StatelessWidget {
         .toList();
     if (safe.isEmpty) {
       return const Padding(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(GVSpacing.s12),
         child: Text('No recent eBay sales for this condition.'),
       );
     }
@@ -34,7 +35,7 @@ class RecentSalesList extends StatelessWidget {
     return InkWell(
       onTap: url.isEmpty ? null : () async { try { await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication); } catch (_) {} },
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: GVSpacing.s8),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

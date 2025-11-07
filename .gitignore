@@ -30,3 +30,5 @@ lib/_bak/**
 
 # Local environment (do not commit secrets)
 .env
+.env.prod
+reports/sanity_scan_*/

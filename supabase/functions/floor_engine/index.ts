@@ -77,7 +77,23 @@ Deno.serve(async (req) => {
   const card = await fetchPrint(sb, cardId)
   if (!card) return err(404, 'card_not_found')
 
-  const jtSamples = await fetchJustTcgListings(card, condition)
+  const USE_GATEWAY = (Deno.env.get('USE_EXT_GATEWAY') || '').toLowerCase() === 'true'
+  let jtSamples: number[] = []
+  if (USE_GATEWAY) {
+    try {
+      const gw = await fetch(`${SUPABASE_URL}/functions/v1/ext_gateway`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'Authorization': `Bearer ${SERVICE_ROLE}`, 'apikey': SERVICE_ROLE as string },
+        body: JSON.stringify({ provider: 'justtcg', endpoint: 'cards', params: { set: card?.set_code, number: card?.number }, ttlSec: 900 })
+      })
+      const gj: any = await gw.json().catch(() => ({}))
+      const rows: any[] = Array.isArray(gj?.data) ? gj.data : (Array.isArray(gj?.data?.data) ? gj.data.data : [])
+      jtSamples = rows.map((it: any) => Number(it?.price ?? it?.market ?? it?.mid ?? it?.low)).filter((n: number) => typeof n === 'number' && isFinite(n))
+    } catch {}
+  }
+  if (!jtSamples.length) {
+    jtSamples = await fetchJustTcgListings(card, condition)
+  }
   const retailFloor = p10(jtSamples) || null
 
   const ebayRaw = await fetchEbayBin(card)
@@ -100,4 +116,3 @@ Deno.serve(async (req) => {
 
   return json({ ok: true, retailFloor, marketFloor, samples: { justtcg: jtSamples.length, ebay: ebayEff.length }, observedAt })
 })
-

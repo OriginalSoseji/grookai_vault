@@ -1,0 +1,9 @@
+﻿Manual Action required (one-time):
+1) In GitHub → Settings → Secrets → Actions, add:
+   S_REST_URL = https://ycdxbpibncqcchqiihfz.supabase.co/rest/v1
+   S_ANON_KEY = <publishable anon key>
+2) Go to Actions → Staging Probe (read-only) → Run workflow (no inputs).
+3) Open the latest run → Job Summary shows:
+   RPC: HTTP 2xx/3xx/4xx
+   VIEW: HTTP 2xx/3xx/4xx
+4) Download artifacts 'staging-probe-results' if you want the tiny JSON bodies.

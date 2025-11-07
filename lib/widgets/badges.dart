@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:grookai_vault/ui/app/theme.dart';
 
 /// Build a list of small “pill” Chips based on any fields we can detect
 /// from a row (coming from v_vault_items or similar).
@@ -46,7 +47,7 @@ List<Widget> buildBadges(Map row) {
       rarity.toLowerCase().contains("1st");
 
   if (firstEdition) {
-    chips.add(_chip("1st Edition", Colors.indigo));
+    chips.add(_chip(context: null, text: "1st Edition", color: null, role: _Role.info));
   }
 
   // Shadowless
@@ -56,7 +57,7 @@ List<Widget> buildBadges(Map row) {
       rarity.toLowerCase().contains("shadowless");
 
   if (shadowless) {
-    chips.add(_chip("Shadowless", Colors.brown));
+    chips.add(_chip(context: null, text: "Shadowless", color: null, role: _Role.info));
   }
 
   // Promo
@@ -66,7 +67,7 @@ List<Widget> buildBadges(Map row) {
       setName.toUpperCase().contains("PR");
 
   if (isPromo) {
-    chips.add(_chip("Promo", Colors.purple));
+    chips.add(_chip(context: null, text: "Promo", color: null, role: _Role.info));
   }
 
   // Holo / Reverse Holo
@@ -84,20 +85,20 @@ List<Widget> buildBadges(Map row) {
       name.toLowerCase().contains("holo");
 
   if (looksReverse) {
-    chips.add(_chip("Reverse Holo", Colors.teal));
+    chips.add(_chip(context: null, text: "Reverse Holo", color: null, role: _Role.info));
   } else if (looksHolo) {
-    chips.add(_chip("Holo", Colors.cyan));
+    chips.add(_chip(context: null, text: "Holo", color: null, role: _Role.info));
   }
 
   // Always show rarity if present
   if (rarity.isNotEmpty) {
-    chips.add(_chip(_titleCase(rarity), Colors.grey));
+    chips.add(_chip(context: null, text: _titleCase(rarity), color: null, role: _Role.neutral));
   }
 
   // Language
   final lang = anyStr(["language", "lang", "card_lang"]);
   if (lang.isNotEmpty) {
-    chips.add(_chip(_titleCase(lang), Colors.blueGrey));
+    chips.add(_chip(context: null, text: _titleCase(lang), color: null, role: _Role.neutral));
   }
 
   // Grade (if graded info ever stored)
@@ -109,7 +110,7 @@ List<Widget> buildBadges(Map row) {
     "bgs_grade",
   ]);
   if (grade.isNotEmpty) {
-    chips.add(_chip("Grade $grade", Colors.orange));
+    chips.add(_chip(context: null, text: "Grade $grade", color: null, role: _Role.warning));
   }
 
   // DEBUG: see what fields came in if nothing matched
@@ -122,17 +123,28 @@ List<Widget> buildBadges(Map row) {
   return chips;
 }
 
-Widget _chip(String text, Color color) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 6, bottom: 6),
-    child: Chip(
-      label: Text(text),
-      visualDensity: VisualDensity.compact,
-      backgroundColor: color.withValues(alpha: .12),
-      side: BorderSide(color: color.withValues(alpha: .6)),
-      labelStyle: const TextStyle(fontWeight: FontWeight.w600),
-    ),
-  );
+enum _Role { info, warning, success, neutral }
+
+Widget _chip({required String text, Color? color, _Role role = _Role.neutral, BuildContext? context}) {
+  return Builder(builder: (ctx) {
+    final gv = (context != null ? GVTheme.of(context) : GVTheme.of(ctx));
+    final base = color ?? (
+      role == _Role.warning ? gv.colors.warning :
+      role == _Role.success ? gv.colors.success :
+      role == _Role.info ? gv.colors.accent :
+      gv.colors.textSecondary
+    );
+    return Padding(
+      padding: const EdgeInsets.only(right: 6, bottom: 6),
+      child: Chip(
+        label: Text(text),
+        visualDensity: VisualDensity.compact,
+        backgroundColor: base.withValues(alpha: .12),
+        side: BorderSide(color: base.withValues(alpha: .6)),
+        labelStyle: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+    );
+  });
 }
 
 String _titleCase(String s) {

@@ -36,4 +36,9 @@ flutter:
   assets:
     - assets/images/kit_placeholder.png
     - .env
+    - .env.local
+    - .env.staging
+    - .env.prod
+    - assets/stamps/
+    - assets/condition/
 

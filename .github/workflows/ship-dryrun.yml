@@ -1,0 +1,32 @@
+name: Ship Dry-Run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ship:
+    runs-on: windows-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preflight (no push)
+        shell: pwsh
+        run: |
+          if (Test-Path scripts/ship/finish_option_a.ps1) {
+            pwsh -NoProfile -File scripts/ship/finish_option_a.ps1 -Phase C -NoPush
+          } else { Write-Host 'finish_option_a.ps1 not present; skipping' }
+
+      - name: Collect artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ship-dryrun-logs
+          path: |
+            **/db_preflight_*.log
+            scripts/diagnostics/output/**
+

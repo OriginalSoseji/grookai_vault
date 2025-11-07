@@ -1,0 +1,268 @@
+﻿PAGES:
+lib\main.dart.bak_override:300:class LoginPage extends StatefulWidget {
+lib\main.dart.bak_override:384:class HomePage extends StatefulWidget {
+lib\main.dart.bak_override:534:class VaultPage extends StatefulWidget {
+lib\main.dart.bak_override:889:class WishlistPage extends StatefulWidget {
+lib\main.dart.bak_override:1193:class ScanPage extends StatefulWidget {
+lib\main.vault-backup.dart:44:class LoginPage extends StatefulWidget {
+lib\main.vault-backup.dart:130:class HomePage extends StatefulWidget {
+lib\dev\price_import_page.dart:6:class PriceImportPage extends StatefulWidget {
+lib\features\alerts\alerts_page.dart:4:class AlertsPage extends StatefulWidget {
+lib\features\account\account_page.dart:7:class AccountPage extends StatefulWidget {
+lib\features\auth\login_page.dart:8:class LoginPage extends StatefulWidget {
+lib\features\debug\dev_admin_page.dart:5:class DevAdminPage extends StatefulWidget {
+lib\features\home\home_page.dart:13:class HomePage extends StatefulWidget {
+lib\features\home\recently_added_page.dart:3:class RecentlyAddedPage extends StatelessWidget {
+lib\features\dev\dev_health_page.dart:6:class DevHealthPage extends StatefulWidget {
+lib\features\scan\scan_page.dart:11:class ScanPage extends StatefulWidget {
+lib\features\profile\profile_page.dart:8:class ProfilePage extends StatefulWidget {
+lib\features\pricing\card_detail_page.dart:17:class CardDetailPage extends StatefulWidget {
+lib\features\dev\diagnostics_page.dart:9:class DiagnosticsPage extends StatelessWidget {
+lib\features\wishlist\wishlist_page.dart:19:class WishlistPage extends StatefulWidget {
+lib\features\pricing\card_price_chart_page.dart:9:class CardPriceChartPage extends StatefulWidget {
+lib\features\dev\diagnostics\pricing_smoke_page.dart:12:class PricingSmokePage extends StatefulWidget {
+lib\features\pricing\live_pricing.dart:3:class LivePricingPage extends StatelessWidget {
+lib\features\dev\diagnostics\pricing_probe_page.dart:8:class PricingProbePage extends StatefulWidget {
+lib\features\dev\diagnostics\pricing_diagnostics_page.dart:5:class PricingDiagnosticsPage extends StatefulWidget {
+lib\features\explore\explore_feed_page.dart:16:class ExploreFeedPage extends StatefulWidget {
+lib\features\scanner\scanner_advanced_page.dart:9:class ScannerAdvancedPage extends StatelessWidget {
+lib\features\scanner\scanner_page.dart:18:class ScannerPage extends StatefulWidget {
+lib\features\scanner\scan_history_page.dart:5:class ScanHistoryPage extends StatefulWidget {
+lib\features\pricing\price_tiers_page.dart:5:class PriceTiersPage extends StatefulWidget {
+lib\features\vault\goal_detail_page.dart:4:class GoalDetailPage extends StatefulWidget {
+lib\features\vault\vault_page.dart:12:class VaultPage extends StatefulWidget {
+lib\features\search\search_page.dart:12:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_20251005_214115:65:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_20250920_064608:42:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_20251005_210918:69:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_20250927_175911:43:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_search_20251005_205432:68:class SearchPage extends StatefulWidget {
+lib\features\search\search_page.dart.bak_20250927_180339:68:class SearchPage extends StatefulWidget {
+lib\features\wall\wall_profile_page.dart:3:class WallProfilePage extends StatelessWidget {
+lib\features\search\unified_search_page.dart:5:class UnifiedSearchPage extends StatelessWidget {
+lib\features\wall\wall_feed_page.dart:8:class WallFeedPage extends StatefulWidget {
+lib\features\wall\create_listing_page.dart:9:class CreateListingPage extends StatefulWidget {
+lib\ui\app\routes.dart:132:class _SearchSheetPage extends StatelessWidget {
+
+ROUTES:
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../features/search/unified_search_page.dart';
+import '../../features/search/unified_search_sheet.dart';
+// import '../../features/search/search_page.dart';
+import '../../features/scan/scan_entry.dart';
+import '../../features/scan/scan_page.dart';
+import '../../features/dev/dev_flags.dart';
+import '../../features/scanner/scanner_advanced_page.dart';
+import '../../features/profile/profile_page.dart';
+import '../../features/vault/goal_detail_page.dart';
+import '../../dev/price_import_page.dart';
+import '../../features/home/recently_added_page.dart';
+import '../../features/vault/vault_items_ext_list.dart';
+import '../../features/account/account_page.dart';
+import '../../features/debug/dev_admin_page.dart';
+import '../../features/dev/dev_health_page.dart';
+import '../../features/dev/diagnostics/pricing_probe_page.dart';
+import '../../features/dev/diagnostics/pricing_smoke_page.dart';
+import '../../features/dev/diagnostics/pricing_diagnostics_page.dart';
+import 'route_names.dart';
+import '../../config/flags.dart';
+import '../../features/alerts/alerts_page.dart';
+import '../../features/scanner/scan_history_page.dart';
+import '../../features/pricing/card_detail_page.dart';
+import '../../features/wall/wall_feed_page.dart';
+import '../../features/wall/wall_post_composer.dart';
+import '../../features/wall/wall_profile_page.dart';
+import '../../features/wall/wall_post_detail.dart';
+import '../../features/wall/create_listing_page.dart';
+import '../../services/supa_client.dart';
+import '../../features/explore/explore_feed_page.dart';
+
+Future<String?> _resolveCardIdIfMissing(Map map) async {
+  final id = (map['card_print_id'] ?? map['id'] ?? map['cardId'] ?? map['card_id'])?.toString();
+  if (id != null && id.isNotEmpty) return id;
+  final setCode = (map['set_code'] ?? map['setCode'])?.toString();
+  final number = (map['number'] ?? map['card_number'])?.toString();
+  if (setCode == null || setCode.isEmpty || number == null || number.isEmpty) return null;
+  try {
+    final rows = await sb
+        .from('card_prints')
+        .select('id')
+        .eq('set_code', setCode)
+        .eq('number', number)
+        .limit(1) as List<dynamic>;
+    if (rows.isEmpty) return null;
+    final rid = (rows.first as Map)['id']?.toString();
+    return (rid != null && rid.isNotEmpty) ? rid : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+Map<String, WidgetBuilder> buildAppRoutes() {
+  return {
+    RouteNames.search: (_) => const UnifiedSearchPage(),
+    // Aliases for convenience and deep links
+    '/scan': (_) => gvFeatureScanner ? const ScanPage() : const ScanEntry(),
+    '/unified-search-sheet': (_) => const _SearchSheetPage(),
+    RouteNames.cardDetail: (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String, dynamic>{};
+      return FutureBuilder<String?>(
+        future: _resolveCardIdIfMissing(map),
+        builder: (context, snap) {
+          final resolved = Map<String, dynamic>.from(map);
+          if (snap.connectionState == ConnectionState.done && (snap.data ?? '').toString().isNotEmpty) {
+            resolved['card_print_id'] = snap.data;
+          }
+          return CardDetailPage(row: resolved);
+        },
+      );
+    },
+    '/details': (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String, dynamic>{};
+      return CardDetailPage(row: map);
+    },
+    if (gvFeatureScanner) RouteNames.scanner: (_) => const ScanPage(),
+    RouteNames.devPriceImport: (_) => const PriceImportPage(),
+    RouteNames.recent: (_) => const RecentlyAddedPage(),
+    RouteNames.vaultExt: (_) => Scaffold(
+      appBar: AppBar(title: const Text('Vault (Effective Prices)')),
+      body: const VaultItemsExtList(),
+    ),
+    RouteNames.account: (_) => const AccountPage(),
+    // Profile tab page
+    '/profile': (_) => const ProfilePage(),
+    RouteNames.wallFeed: (_) => const WallFeedPage(),
+    RouteNames.wallCompose: (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map<String, dynamic>) ? args : null;
+      return WallPostComposer(initialCard: map);
+    },
+    RouteNames.wallProfile: (_) => const WallProfilePage(),
+    RouteNames.explore: (_) => const ExploreFeedPage(),
+    if (kDebugMode || kProfileMode) RouteNames.createListing: (_) => const CreateListingPage(),
+    RouteNames.devAdmin: (_) => const DevAdminPage(),
+    if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
+    if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),
+    if (kDebugMode) '/dev-pricing-smoke': (_) => const PricingSmokePage(),
+    if (kDebugMode) '/dev-pricing-diag': (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String,dynamic>{};
+      return PricingDiagnosticsPage(
+        cardId: (map['cardId'] ?? map['card_print_id'] ?? map['id'] ?? '').toString(),
+        condition: (map['condition'] ?? 'NM').toString(),
+      );
+    },
+    RouteNames.alerts: (_) => const AlertsPage(),
+    RouteNames.scanHistory: (_) => const ScanHistoryPage(),
+    if (kShowAdvancedScanner) '/scanner-advanced': (_) => const ScannerAdvancedPage(),
+    '/goal-detail': (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String, dynamic>{};
+      final id = (map['id'] ?? '').toString();
+      final name = (map['name'] ?? '').toString();
+      return GoalDetailPage(id: id, name: name);
+    },
+    '/wall-post': (ctx) {
+      final args = ModalRoute.of(ctx)?.settings.arguments;
+      final map = (args is Map) ? args : <String, dynamic>{};
+      final id = (map['id'] ?? '').toString();
+      return WallPostDetail(id: id);
+    },
+  };
+}
+
+/// Simple page that hosts the bottom search sheet for routing purposes.
+class _SearchSheetPage extends StatelessWidget {
+  const _SearchSheetPage();
+  @override
+  Widget build(BuildContext context) {
+    // Show the sheet on first frame then pop this host page when closed
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await UnifiedSearchSheet.show(context);
+      if (context.mounted) Navigator.of(context).maybePop();
+    });
+    return const Scaffold(body: SizedBox.shrink());
+  }
+}
+
+
+FLAGS:
+// Global feature flags (env-backed where applicable)
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart';
+
+// LowerCamelCase primary, with deprecated aliases for back-compat
+// Default OFF in release; enable via env/remote config
+const bool gvFeatureAlerts = false; // TODO: env-gate via dotenv if needed
+@Deprecated('Use gvFeatureAlerts')
+// ignore: constant_identifier_names
+const bool GV_FEATURE_ALERTS = gvFeatureAlerts;
+
+// Scanner: default ON in debug/profile builds unless explicitly disabled by env.
+// In release, remains OFF unless explicitly enabled by env.
+final bool gvFeatureScanner = (() {
+  final raw = (dotenv.env['GV_FEATURE_SCANNER'] ?? '').toLowerCase();
+  if (raw == 'true') return true;
+  if (raw == 'false') return false;
+  // Unset: enable in dev/profile to aid iteration
+  return kDebugMode || kProfileMode;
+})();
+@Deprecated('Use gvFeatureScanner')
+// ignore: non_constant_identifier_names
+final bool GV_FEATURE_SCANNER = gvFeatureScanner;
+
+final bool gvScanTelemetry =
+    (dotenv.env['GV_SCAN_TELEMETRY'] ?? 'false').toLowerCase() == 'true';
+@Deprecated('Use gvScanTelemetry')
+// ignore: non_constant_identifier_names
+final bool GV_SCAN_TELEMETRY = gvScanTelemetry;
+
+final bool gvScanLazyImport =
+    (dotenv.env['GV_SCAN_LAZY_IMPORT'] ?? 'true').toLowerCase() == 'true';
+@Deprecated('Use gvScanLazyImport')
+// ignore: non_constant_identifier_names
+final bool GV_SCAN_LAZY_IMPORT = gvScanLazyImport;
+
+final int gvScanLazyCooldownMs =
+    int.tryParse(dotenv.env['GV_SCAN_LAZY_COOLDOWN_MS'] ?? '4000') ?? 4000;
+@Deprecated('Use gvScanLazyCooldownMs')
+// ignore: non_constant_identifier_names
+final int GV_SCAN_LAZY_COOLDOWN_MS = gvScanLazyCooldownMs;
+
+final int gvScanLazyMaxRetries =
+    int.tryParse(dotenv.env['GV_SCAN_LAZY_MAX_RETRIES'] ?? '1') ?? 1;
+@Deprecated('Use gvScanLazyMaxRetries')
+// ignore: non_constant_identifier_names
+final int GV_SCAN_LAZY_MAX_RETRIES = gvScanLazyMaxRetries;
+
+final String gvEnvStage = (dotenv.env['GV_ENV_STAGE'] ?? 'dev').toLowerCase();
+@Deprecated('Use gvEnvStage')
+// ignore: non_constant_identifier_names
+final String GV_ENV_STAGE = gvEnvStage;
+
+final bool gvEnableWall =
+    (dotenv.env['GV_ENABLE_WALL'] ?? 'false').toLowerCase() == 'true';
+@Deprecated('Use gvEnableWall')
+// ignore: non_constant_identifier_names
+final bool GV_ENABLE_WALL = gvEnableWall;
+
+const bool kUseGlowWidgets = true;
+
+
+DEV_FLAGS:
+import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+// Dev-only advanced scanner exposure
+final bool kShowAdvancedScanner = (() {
+  final raw = (dotenv.env['GV_SHOW_ADVANCED_SCANNER'] ?? '').toLowerCase();
+  if (raw == 'true') return true;
+  if (raw == 'false') return false;
+  return kDebugMode || kProfileMode;
+})();
+
+

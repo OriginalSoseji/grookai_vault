@@ -1,0 +1,2 @@
+﻿REST_URL: https://<your-staging>.supabase.co/rest/v1
+ANON_KEY: xxxxx...key>

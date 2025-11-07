@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../features/search/unified_search_page.dart';
-import '../../features/search/unified_search_sheet.dart';
-// import '../../features/search/search_page.dart';
-import '../../features/scan/scan_entry.dart';
+// Unified search pages removed; using production SearchPage
+import '../../features/dev/dev_flags.dart';
+import '../../features/scanner/scanner_advanced_page.dart';
 import '../../features/profile/profile_page.dart';
-import '../../features/scanner/scanner_page.dart';
 import '../../features/vault/goal_detail_page.dart';
 import '../../dev/price_import_page.dart';
 import '../../features/home/recently_added_page.dart';
@@ -21,12 +19,20 @@ import 'route_names.dart';
 import '../../config/flags.dart';
 import '../../features/alerts/alerts_page.dart';
 import '../../features/scanner/scan_history_page.dart';
-import '../../features/pricing/card_detail_page.dart';
+// old pricing detail kept for other flows; card detail route uses prod detail
 import '../../features/wall/wall_feed_page.dart';
 import '../../features/wall/wall_post_composer.dart';
 import '../../features/wall/wall_profile_page.dart';
 import '../../features/wall/wall_post_detail.dart';
+import '../../features/wall/create_listing_page.dart';
 import '../../services/supa_client.dart';
+import '../../features/explore/explore_feed_page.dart';
+import '../../features/explore/discover_page.dart';
+// DEV/DEMO FEATURES ARE ALWAYS VISIBLE (INTENTIONAL)
+// Before public release, re-introduce a single feature flag or environment check if needed.
+import '../../features/search/search_page.dart' as prod_search;
+import '../../features/detail/card_detail_page.dart' as prod_detail;
+import '../../features/scanner/scanner_page.dart' as prod_scan;
 
 Future<String?> _resolveCardIdIfMissing(Map map) async {
   final id = (map['card_print_id'] ?? map['id'] ?? map['cardId'] ?? map['card_id'])?.toString();
@@ -51,10 +57,9 @@ Future<String?> _resolveCardIdIfMissing(Map map) async {
 
 Map<String, WidgetBuilder> buildAppRoutes() {
   return {
-    RouteNames.search: (_) => const UnifiedSearchPage(),
+    RouteNames.search: (_) => const prod_search.SearchPage(),
     // Aliases for convenience and deep links
-    '/scan': (_) => const ScanEntry(),
-    '/unified-search-sheet': (_) => const _SearchSheetPage(),
+    '/scan': (_) => const prod_scan.ScannerPage(),
     RouteNames.cardDetail: (ctx) {
       final args = ModalRoute.of(ctx)?.settings.arguments;
       final map = (args is Map) ? args : <String, dynamic>{};
@@ -65,16 +70,16 @@ Map<String, WidgetBuilder> buildAppRoutes() {
           if (snap.connectionState == ConnectionState.done && (snap.data ?? '').toString().isNotEmpty) {
             resolved['card_print_id'] = snap.data;
           }
-          return CardDetailPage(row: resolved);
+          return prod_detail.CardDetailPage(row: resolved);
         },
       );
     },
     '/details': (ctx) {
       final args = ModalRoute.of(ctx)?.settings.arguments;
       final map = (args is Map) ? args : <String, dynamic>{};
-      return CardDetailPage(row: map);
+      return prod_detail.CardDetailPage(row: Map<String, dynamic>.from(map));
     },
-    if (gvFeatureScanner) RouteNames.scanner: (_) => const ScannerPage(),
+    if (gvFeatureScanner) RouteNames.scanner: (_) => const prod_scan.ScannerPage(),
     RouteNames.devPriceImport: (_) => const PriceImportPage(),
     RouteNames.recent: (_) => const RecentlyAddedPage(),
     RouteNames.vaultExt: (_) => Scaffold(
@@ -91,6 +96,10 @@ Map<String, WidgetBuilder> buildAppRoutes() {
       return WallPostComposer(initialCard: map);
     },
     RouteNames.wallProfile: (_) => const WallProfilePage(),
+    RouteNames.explore: (_) => const ExploreFeedPage(),
+    RouteNames.discover: (_) => const DiscoverPage(),
+    // '/wall', '/search', and '/card' are covered by named RouteNames above
+    if (kDebugMode || kProfileMode) RouteNames.createListing: (_) => const CreateListingPage(),
     RouteNames.devAdmin: (_) => const DevAdminPage(),
     if (kDebugMode) RouteNames.devHealth: (_) => const DevHealthPage(),
     if (kDebugMode) RouteNames.devDiagPricing: (_) => const PricingProbePage(),
@@ -105,6 +114,7 @@ Map<String, WidgetBuilder> buildAppRoutes() {
     },
     RouteNames.alerts: (_) => const AlertsPage(),
     RouteNames.scanHistory: (_) => const ScanHistoryPage(),
+    if (kShowAdvancedScanner) '/scanner-advanced': (_) => const ScannerAdvancedPage(),
     '/goal-detail': (ctx) {
       final args = ModalRoute.of(ctx)?.settings.arguments;
       final map = (args is Map) ? args : <String, dynamic>{};
@@ -121,16 +131,4 @@ Map<String, WidgetBuilder> buildAppRoutes() {
   };
 }
 
-/// Simple page that hosts the bottom search sheet for routing purposes.
-class _SearchSheetPage extends StatelessWidget {
-  const _SearchSheetPage();
-  @override
-  Widget build(BuildContext context) {
-    // Show the sheet on first frame then pop this host page when closed
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await UnifiedSearchSheet.show(context);
-      if (context.mounted) Navigator.of(context).maybePop();
-    });
-    return const Scaffold(body: SizedBox.shrink());
-  }
-}
+// unified search sheet routing removed; using production SearchPage

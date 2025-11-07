@@ -75,7 +75,7 @@ class _VaultPageState extends State<VaultPage> {
                     final have = m['have'] as int;
                     final total = m['total'] as int;
                     return InputChip(
-                      label: Text('$set â€¢ $pct% ($have/$total)'),
+                      label: Text('$set • $pct% ($have/$total)'),
                       onPressed: () async {
                         Telemetry.log('vault_set_chip', {'set': set});
                         final supabase = Supabase.instance.client;
@@ -102,8 +102,7 @@ class _VaultPageState extends State<VaultPage> {
                             if (!mounted) return;
                             messenger.showSnackBar(
                               const SnackBar(
-                                content:
-                                    Text('No goal found for this set yet'),
+                                content: Text('No goal found for this set yet'),
                               ),
                             );
                           }
@@ -118,8 +117,7 @@ class _VaultPageState extends State<VaultPage> {
                       },
                     );
                   },
-                  separatorBuilder: (_, _) =>
-                      const SizedBox(width: GVSpacing.s8),
+                  separatorBuilder: (_, __) => const SizedBox(width: GVSpacing.s8),
                   itemCount: progress.length,
                 ),
               );
@@ -217,3 +215,4 @@ class _VaultPageState extends State<VaultPage> {
     );
   }
 }
+

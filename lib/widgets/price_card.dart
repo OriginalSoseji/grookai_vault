@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Backward-compatible PriceCard with header polish:
-/// - Accepts legacy names (gi, ts, gv) and new names (giMid, observedAt, gvBaseline)
-/// - Adds optional trend (oldest→newest), pct7d, age, and dynamic sources
+// Backward-compatible PriceCard with header polish.
+// Accepts legacy names (gi, ts, gv) and new names (giMid, observedAt, gvBaseline).
+// Adds optional trend (oldest->newest), pct7d, age, and dynamic sources.
 class PriceCard extends StatelessWidget {
   // New names
   final num? giMid;
@@ -17,10 +17,10 @@ class PriceCard extends StatelessWidget {
   final num? gv;
 
   // Header polish
-  final List<num>? trend;       // oldest → newest
+  final List<num>? trend;       // oldest->newest
   final double? pct7d;          // percent change over window
   final Duration? age;          // staleness
-  final List<String>? sources;  // dynamic badges: ['JTCG','eBay','GV']
+  final List<String>? sources;  // e.g., ['JTCG','eBay','GV']
 
   const PriceCard({
     super.key,
@@ -66,7 +66,7 @@ class PriceCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(_mid != null ? _money(_mid!) : '—', style: text.headlineSmall),
+                Text(_mid != null ? _money(_mid!) : '-', style: text.headlineSmall),
                 const SizedBox(width: 8),
                 _Delta(pct7d: pct7d),
                 const Spacer(),
@@ -89,7 +89,7 @@ class PriceCard extends StatelessWidget {
             // Dynamic badges + blend note
             Row(
               children: [
-                _Badges(sources: sources ?? const ['JTCG','eBay'] + ( (_gv!=null) ? ['GV'] : [] )),
+                _Badges(sources: sources ?? const ['JTCG','eBay'] + ((_gv!=null) ? ['GV'] : [])),
                 const SizedBox(width: 8),
                 const Expanded(child: _BlendInfo()),
               ],
@@ -109,7 +109,7 @@ class PriceCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: Text(label, style: small)),
-          Text(v != null ? _money(v) : '—'),
+          Text(v != null ? _money(v) : '-'),
         ],
       ),
     );
@@ -125,7 +125,8 @@ class _Delta extends StatelessWidget {
     if (pct7d == null) return const SizedBox.shrink();
     final v = pct7d!;
     final up = v >= 0;
-    final color = up ? Colors.green : Colors.red;
+    final scheme = Theme.of(context).colorScheme;
+    final color = up ? scheme.primary : scheme.error;
     final arrow = up ? Icons.trending_up : Icons.trending_down;
     return Row(
       children: [
@@ -142,12 +143,13 @@ class _Updated extends StatelessWidget {
   final DateTime ts;
   const _Updated({required this.age, required this.ts});
 
-  Color _ageColor() {
-    if (age == null) return Colors.black54;
+  Color _ageColor(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    if (age == null) return scheme.onSurface.withValues(alpha: 0.54);
     final m = age!.inMinutes;
-    if (m <= 360) return Colors.green;   // ≤ 6h
-    if (m <= 1440) return Colors.orange; // ≤ 24h
-    return Colors.red;                   // > 24h
+    if (m <= 360) return scheme.primary;   // <= 6h
+    if (m <= 1440) return scheme.tertiary; // <= 24h
+    return scheme.error;                   // > 24h
   }
 
   @override
@@ -156,7 +158,7 @@ class _Updated extends StatelessWidget {
     final pretty = ts.toLocal().toString().split('.').first;
     return Row(
       children: [
-        Icon(Icons.circle, size: 8, color: _ageColor()),
+        Icon(Icons.circle, size: 8, color: _ageColor(context)),
         const SizedBox(width: 6),
         Text('Updated $pretty', style: small),
       ],
@@ -174,16 +176,19 @@ class _Badges extends StatelessWidget {
     return Row(
       children: [
         for (int i=0;i<sources.length;i++) ...[
-          _pill(sources[i], s),
+          _pill(context, sources[i], s),
           if (i < sources.length-1) const SizedBox(width: 4),
         ]
       ],
     );
   }
 
-  Widget _pill(String t, TextStyle? s) => Container(
+  Widget _pill(BuildContext context, String t, TextStyle? s) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-    decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(8)),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
+      borderRadius: BorderRadius.circular(8),
+    ),
     child: Text(t, style: s),
   );
 }
@@ -204,18 +209,20 @@ class _BlendInfo extends StatelessWidget {
 
 // Lightweight sparkline painter (no deps)
 class _Sparkline extends StatelessWidget {
-  final List<num> points; // oldest → newest
+  final List<num> points; // oldest->newest
   const _Sparkline({required this.points});
   @override
   Widget build(BuildContext context) {
     if (points.length < 2) return const SizedBox.shrink();
-    return SizedBox(height: 36, child: CustomPaint(painter: _SparklinePainter(points)));
+    final c = Theme.of(context).colorScheme.outline;
+    return SizedBox(height: 36, child: CustomPaint(painter: _SparklinePainter(points, c)));
   }
 }
 
 class _SparklinePainter extends CustomPainter {
   final List<num> pts;
-  _SparklinePainter(this.pts);
+  final Color strokeColor;
+  _SparklinePainter(this.pts, this.strokeColor);
   @override
   void paint(Canvas canvas, Size size) {
     final points = pts.map((e) => e.toDouble()).toList();
@@ -227,15 +234,23 @@ class _SparklinePainter extends CustomPainter {
     for (var i = 0; i < points.length; i++) {
       final x = i * dx;
       final y = size.height - ((points[i] - minV) / span) * size.height;
-      if (i == 0) path.moveTo(x, y); else path.lineTo(x, y);
+      if (i == 0) {
+        path.moveTo(x, y);
+      } else {
+        path.lineTo(x, y);
+      }
     }
     final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
-      ..color = Colors.black45;
+      ..color = strokeColor;
     canvas.drawPath(path, paint);
   }
   @override
   bool shouldRepaint(covariant _SparklinePainter old) => old.pts != pts;
 }
+
+
+
+
 

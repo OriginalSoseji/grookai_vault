@@ -219,7 +219,25 @@ Deno.serve(async (req) => {
     u.searchParams.set("page", String(page));
     u.searchParams.set("pageSize", String(pageSize));
 
-    const upstream = await fetchPTCG(u, { "X-Api-Key": POKEMONTCG_API_KEY! });
+    const USE_GATEWAY = (Deno.env.get('USE_EXT_GATEWAY') || '').toLowerCase() === 'true'
+    let upstream: Response | null = null
+    if (USE_GATEWAY) {
+      try {
+        const gwUrl = new URL((SUPABASE_URL || '').replace(/\/$/, '') + '/functions/v1/ext_gateway')
+        const gres = await fetch(gwUrl.toString(), {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', 'Authorization': `Bearer ${SERVICE_ROLE_KEY}`, 'apikey': SERVICE_ROLE_KEY! },
+          body: JSON.stringify({ provider: 'ptcg', endpoint: 'cards', params: { q: `set.id:${setCode}`, page, pageSize }, ttlSec: 1800 })
+        })
+        const gj: any = await gres.json().catch(() => ({}))
+        if (typeof gj?.status === 'number') {
+          upstream = new Response(JSON.stringify(gj?.data ?? {}), { status: gj.status, headers: { 'content-type': 'application/json' } })
+        }
+      } catch {}
+    }
+    if (!upstream) {
+      upstream = await fetchPTCG(u, { "X-Api-Key": POKEMONTCG_API_KEY! })
+    }
     if (!upstream) return J({ error: "Upstream Pokemon TCG API error", status: "no-response" }, 502);
     if (upstream.status === 404) {
       return J({ imported: 0, setCode, page, pageSize, nextPageHint: null, end: true });

@@ -188,14 +188,14 @@ class _FixCardImageState extends State<FixCardImage> {
   Widget _placeholder() => Container(
     width: widget.width,
     height: widget.height,
-    color: Colors.black12,
+    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
   );
 
   Widget _failurePlaceholder() => Container(
     width: widget.width,
     height: widget.height,
     alignment: Alignment.center,
-    color: Colors.black12,
+    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
     child: const Icon(Icons.image_not_supported_outlined),
   );
 }

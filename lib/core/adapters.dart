@@ -12,7 +12,7 @@ CardPrintView cardPrintFromDb(Map r) {
   final id = _s(r['id'] ?? r['card_id'] ?? r['print_id']);
   return CardPrintView(
     id: id,
-    name: _s(r['name'] ?? r['name_local'] ?? 'Card'),
+    name: _s(r['name'] ?? 'Card'),
     setCode: _s(r['set_code'] ?? r['set'] ?? r['set_name']),
     number: _s(r['number']),
     imageUrl: _s(r['image_url'] ?? r['photo_url'] ?? r['image_alt_url']),

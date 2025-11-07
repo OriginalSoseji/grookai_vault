@@ -55,7 +55,10 @@ class _PricingProbePageState extends State<PricingProbePage> {
 
     // c) Query latest_card_prices_v
     try {
-      final sample = await sb.from('latest_card_prices_v').select('*').limit(5);
+      final sample = await sb
+          .from('latest_card_prices_v')
+          .select('card_id,condition,observed_at,price_mid')
+          .limit(5);
       _viewSample = List<Map<String, dynamic>>.from(
         (sample as List?) ?? const [],
       );

@@ -1,0 +1,15 @@
+﻿Setting secrets (names only):
+- SUPABASE_ANON_KEY (set)
+- SUPABASE_URL (set)
+- PROJECT_URL (set)
+- SERVICE_ROLE_KEY (set)
+- SUPABASE_SERVICE_ROLE_KEY (set)
+- POKEMON_TCG_API_KEY (skipped: not present in env)
+\nDeploying functions:
+- import-prices: deployed
+- check-sets: deployed
+- wall_feed: deployed
+\nHealth invokes:
+- import-prices: n/a in 45037 ms
+- check-sets: 200 in 43240 ms
+- wall_feed: 401 in 474 ms

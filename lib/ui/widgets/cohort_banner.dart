@@ -35,7 +35,7 @@ class _CohortBannerState extends State<CohortBanner> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.amber.shade100,
+        color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(

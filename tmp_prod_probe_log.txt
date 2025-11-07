@@ -1,0 +1,72 @@
+﻿probe	Set up job	∩╗┐2025-11-06T23:33:17.1435437Z Current runner version: '2.329.0'
+probe	Set up job	2025-11-06T23:33:17.1460462Z ##[group]Runner Image Provisioner
+probe	Set up job	2025-11-06T23:33:17.1461271Z Hosted Compute Agent
+probe	Set up job	2025-11-06T23:33:17.1461953Z Version: 20251016.436
+probe	Set up job	2025-11-06T23:33:17.1462781Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+probe	Set up job	2025-11-06T23:33:17.1463499Z Build Date: 2025-10-15T20:44:12Z
+probe	Set up job	2025-11-06T23:33:17.1464173Z ##[endgroup]
+probe	Set up job	2025-11-06T23:33:17.1464695Z ##[group]Operating System
+probe	Set up job	2025-11-06T23:33:17.1465232Z Ubuntu
+probe	Set up job	2025-11-06T23:33:17.1465758Z 24.04.3
+probe	Set up job	2025-11-06T23:33:17.1466253Z LTS
+probe	Set up job	2025-11-06T23:33:17.1466699Z ##[endgroup]
+probe	Set up job	2025-11-06T23:33:17.1467255Z ##[group]Runner Image
+probe	Set up job	2025-11-06T23:33:17.1467833Z Image: ubuntu-24.04
+probe	Set up job	2025-11-06T23:33:17.1468335Z Version: 20251030.96.2
+probe	Set up job	2025-11-06T23:33:17.1469407Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251030.96/images/ubuntu/Ubuntu2404-Readme.md
+probe	Set up job	2025-11-06T23:33:17.1470886Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251030.96
+probe	Set up job	2025-11-06T23:33:17.1472118Z ##[endgroup]
+probe	Set up job	2025-11-06T23:33:17.1473343Z ##[group]GITHUB_TOKEN Permissions
+probe	Set up job	2025-11-06T23:33:17.1475612Z Contents: read
+probe	Set up job	2025-11-06T23:33:17.1476173Z Metadata: read
+probe	Set up job	2025-11-06T23:33:17.1476689Z Packages: read
+probe	Set up job	2025-11-06T23:33:17.1477338Z ##[endgroup]
+probe	Set up job	2025-11-06T23:33:17.1479458Z Secret source: Actions
+probe	Set up job	2025-11-06T23:33:17.1480462Z Prepare workflow directory
+probe	Set up job	2025-11-06T23:33:17.2004293Z Prepare all required actions
+probe	Set up job	2025-11-06T23:33:17.2059988Z Complete job name: probe
+probe	Print inputs (redacted)	∩╗┐2025-11-06T23:33:17.2659465Z ##[group]Run tail=${ANON##*${ANON:0:${#ANON}-4}}
+probe	Print inputs (redacted)	2025-11-06T23:33:17.2660359Z [36;1mtail=${ANON##*${ANON:0:${#ANON}-4}}[0m
+probe	Print inputs (redacted)	2025-11-06T23:33:17.2661173Z [36;1mecho "REST: ${REST:-<missing>} | ANON: xxxxx...${tail:-<missing>}"[0m
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3137815Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3139130Z env:
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3139898Z   REST: ***
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3142650Z   ANON: ***
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3143150Z ##[endgroup]
+probe	Print inputs (redacted)	2025-11-06T23:33:17.3342133Z REST: *** | ANON: xxxxx...lRsg
+probe	Probe RPC and VIEW (read-only)	∩╗┐2025-11-06T23:33:17.3478006Z ##[group]Run set -e
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3479121Z [36;1mset -e[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3480064Z [36;1mRPC_CODE="N/A"; VIEW_CODE="N/A"[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3481135Z [36;1mif [[ -n "$REST" && -n "$ANON" ]]; then[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3482598Z [36;1m  BODY='{"q":"pikachu","limit":5,"offset":0}'[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3483948Z [36;1m  RPC_CODE=$(curl -s -o /dev/null -w "%{http_code}" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3485141Z [36;1m    -H "apikey: $ANON" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3486411Z [36;1m    -H "Authorization: ***" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3487624Z [36;1m    -H "Content-Type: application/json" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3488816Z [36;1m    -H "Content-Profile: public" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3489994Z [36;1m    -d "$BODY" "$REST/rpc/search_cards" || echo N/A)[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3491400Z [36;1m  VIEW_CODE=$(curl -s -o /dev/null -w "%{http_code}" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3492888Z [36;1m    -H "apikey: $ANON" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3493998Z [36;1m    -H "Authorization: ***" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3495365Z [36;1m    -H "Accept-Profile: public" \[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3496680Z [36;1m    "$REST/v_wall_feed?select=card_id&limit=1" || echo N/A)[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3497795Z [36;1mfi[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3498787Z [36;1mecho "RPC: HTTP $RPC_CODE"[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3499837Z [36;1mecho "VIEW: HTTP $VIEW_CODE"[0m
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3547075Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3548264Z env:
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3549238Z   REST: ***
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3553556Z   ANON: ***
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.3554381Z ##[endgroup]
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.8951496Z RPC: HTTP 200
+probe	Probe RPC and VIEW (read-only)	2025-11-06T23:33:17.8952291Z VIEW: HTTP 200
+probe	Always succeed (read-only signal)	∩╗┐2025-11-06T23:33:17.8991729Z ##[group]Run echo "Probe finished"
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.8992731Z [36;1mecho "Probe finished"[0m
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9026455Z shell: /usr/bin/bash -e {0}
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9026987Z env:
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9027640Z   REST: ***
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9029764Z   ANON: ***
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9030409Z ##[endgroup]
+probe	Always succeed (read-only signal)	2025-11-06T23:33:17.9094101Z Probe finished
+probe	Complete job	∩╗┐2025-11-06T23:33:17.9153105Z Cleaning up orphan processes
+

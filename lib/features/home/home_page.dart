@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:grookai_vault/ui/tokens/spacing.dart';
 import 'package:grookai_vault/ui/app/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grookai_vault/config/flags.dart';
+import 'package:grookai_vault/ui/widgets/glow_chip.dart';
 import 'home_vm.dart';
 import 'package:grookai_vault/core/load_state.dart';
 import 'package:grookai_vault/core/ui_contracts.dart';
 import 'package:grookai_vault/features/wall/public_wall_feed.dart';
+import 'package:grookai_vault/ui/app/route_names.dart';
 // import 'package:grookai_vault/core/telemetry.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,36 +33,38 @@ class _HomePageState extends State<HomePage> {
     return ListView(
       padding: const EdgeInsets.all(GVSpacing.s16),
       children: [
-        // Public Wall
-        Text('Community',
-            style: gv.typography.title.copyWith(color: gv.colors.textPrimary)),
-        const SizedBox(height: GVSpacing.s8),
-        ValueListenableBuilder<LoadState<List<Map<String, dynamic>>>>(
-          valueListenable: _vm.wallItems,
-          builder: (context, state, _) {
-            if (state.loading) return const LinearProgressIndicator(minHeight: 2);
-            final list = state.data ?? const <Map<String, dynamic>>[];
-            if (list.isEmpty) return const PublicWallFeed();
-            // Simple preview of first few posts
-            return Column(
-              children: [
-                for (final r in list.take(5))
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text((r['title'] ?? 'Post').toString()),
-                    subtitle: Text((r['summary'] ?? '').toString()),
-                    onTap: () => Navigator.of(context).pushNamed(
-                      '/wall-post',
-                      arguments: {'id': (r['id'] ?? '').toString()},
+        if (gvEnableWall) ...[
+          // Public Wall
+          Text('Community',
+              style: gv.typography.title.copyWith(color: gv.colors.textPrimary)),
+          const SizedBox(height: GVSpacing.s8),
+          ValueListenableBuilder<LoadState<List<Map<String, dynamic>>>>(
+            valueListenable: _vm.wallItems,
+            builder: (context, state, _) {
+              if (state.loading) return const LinearProgressIndicator(minHeight: 2);
+              final list = state.data ?? const <Map<String, dynamic>>[];
+              if (list.isEmpty) return const PublicWallFeed();
+              // Simple preview of first few posts
+              return Column(
+                children: [
+                  for (final r in list.take(5))
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text((r['title'] ?? 'Post').toString()),
+                      subtitle: Text((r['summary'] ?? '').toString()),
+                      onTap: () => Navigator.of(context).pushNamed(
+                        '/wall-post',
+                        arguments: {'id': (r['id'] ?? '').toString()},
+                      ),
                     ),
-                  ),
-              ],
-            );
-          },
-        ),
-        const SizedBox(height: GVSpacing.s16),
-        const Divider(),
-        const SizedBox(height: GVSpacing.s16),
+                ],
+              );
+            },
+          ),
+          const SizedBox(height: GVSpacing.s16),
+          const Divider(),
+          const SizedBox(height: GVSpacing.s16),
+        ],
         // Price Movers
         Text('Price Movers',
             style: gv.typography.title.copyWith(color: gv.colors.textPrimary)),
@@ -84,16 +89,32 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(width: GVSpacing.s8),
                         Icon(
                           m.deltaPct >= 0 ? Icons.trending_up : Icons.trending_down,
-                          color: m.deltaPct >= 0 ? Colors.green : Colors.red,
+                          color: m.deltaPct >= 0 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.error,
                         ),
                         const SizedBox(width: 4),
-                        Text('${m.deltaPct.toStringAsFixed(1)}%'),
+                        if (kUseGlowWidgets)
+                          GlowChip(
+                            selected: m.deltaPct.abs() >= 5.0,
+                            label: Text('${m.deltaPct.toStringAsFixed(1)}%'),
+                          )
+                        else
+                          Text('${m.deltaPct.toStringAsFixed(1)}%'),
                       ],
                     ),
                   ),
               ],
             );
           },
+        ),
+        const SizedBox(height: GVSpacing.s16),
+        // Explore shortcut
+        Card(
+          child: ListTile(
+            leading: Icon(Icons.explore, color: gv.colors.accent),
+            title: const Text('Explore'),
+            subtitle: const Text('Discover card trends and sets'),
+            onTap: () => Navigator.of(context).pushNamed(RouteNames.explore),
+          ),
         ),
       ],
     );

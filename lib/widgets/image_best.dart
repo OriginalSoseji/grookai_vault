@@ -30,7 +30,7 @@ String imageBestFromRow(Map row) {
 
   // Direct URL fields commonly found
   final direct = s1(
-    row['image_best'] ?? row['image_url'] ?? row['photo_url'] ?? row['image'],
+    row['thumb_url'] ?? row['image_best'] ?? row['image_url'] ?? row['photo_url'] ?? row['image'],
   );
   if (direct.isNotEmpty &&
       (direct.startsWith('http://') || direct.startsWith('https://'))) {
@@ -74,4 +74,53 @@ String imageBestFromRow(Map row) {
   }
 
   return '';
+}
+
+class _ShimmerBox extends StatefulWidget {
+  final double? width;
+  final double? height;
+  final BorderRadius? borderRadius;
+  const _ShimmerBox({this.width, this.height, this.borderRadius});
+  @override
+  State<_ShimmerBox> createState() => _ShimmerBoxState();
+}
+
+class _ShimmerBoxState extends State<_ShimmerBox> with SingleTickerProviderStateMixin {
+  late final AnimationController _c;
+  @override
+  void initState() {
+    super.initState();
+    _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))..repeat();
+  }
+  @override
+  void dispose() { _c.dispose(); super.dispose(); }
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _c,
+      builder: (_, __) {
+        return Container(
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.grey.shade300,
+                Colors.grey.shade200,
+                Colors.grey.shade300,
+              ],
+              stops: [0.0, (_c.value * 0.6) + 0.2, 1.0],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+Widget imageBestPlaceholder({double? width, double? height, BorderRadius? borderRadius}) {
+  return _ShimmerBox(width: width, height: height, borderRadius: borderRadius);
 }
