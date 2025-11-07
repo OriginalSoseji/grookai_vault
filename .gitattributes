@@ -1,32 +1,13 @@
-# Normalize everything as text by default
-*               text=auto
-
-# Source files: keep LF (cross-platform)
-*.ts            text eol=lf
-*.tsx           text eol=lf
-*.js            text eol=lf
-*.jsx           text eol=lf
-*.json          text eol=lf
-*.dart          text eol=lf
-*.yml           text eol=lf
-*.yaml          text eol=lf
-*.md            text eol=lf
-*.sql           text eol=lf
-*.sh            text eol=lf
-
-# PowerShell scripts on Windows: CRLF
-# (keeps VS/PowerShell happy on Windows)
-*.ps1           text eol=crlf
-*.psm1          text eol=crlf
-*.cmd           text eol=crlf
-*.bat           text eol=crlf
-
-# Images/binaries: never touch line endings
-*.png           -text
-*.jpg           -text
-*.jpeg          -text
-*.gif           -text
-*.ico           -text
-*.pdf           -text
-*.docx          -text
-*.lock          -text
+*         text=auto eol=lf
+*.ps1     text eol=crlf
+*.bat     text eol=crlf
+*.sh      text eol=lf
+*.sql     text eol=lf
+*.dart    text eol=lf
+*.md      text eol=lf
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.zip     binary
+*.pdf     binary
