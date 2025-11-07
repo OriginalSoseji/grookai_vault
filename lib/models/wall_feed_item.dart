@@ -83,29 +83,18 @@ class WallFeedItem {
     final url = (primaryPhotoUrl ?? '').trim();
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
     final set = setCode.toLowerCase();
-    final numStr = cardNumber.toLowerCase();
-    if (set.isNotEmpty && numStr.isNotEmpty) {
-      String series;
-      if (set.startsWith('sv')) {
-        series = 'sv';
-      } else if (set.startsWith('swsh')) {
-        series = 'swsh';
-      } else if (set.startsWith('sm')) {
-        series = 'sm';
-      } else if (set.startsWith('xy')) {
-        series = 'xy';
-      } else if (set.startsWith('bw')) {
-        series = 'bw';
-      } else if (set.startsWith('dp')) {
-        series = 'dp';
-      } else if (set.startsWith('ex')) {
-        series = 'ex';
-      } else if (set.startsWith('base')) {
-        series = 'base';
-      } else {
-        series = set.replaceAll(RegExp(r'[^a-z]'), '');
+    final rawNum = cardNumber.toLowerCase();
+    if (set.isNotEmpty && rawNum.isNotEmpty) {
+      // Normalize to images.pokemontcg.io slugs directly to avoid tcgdex 404s.
+      String mapSet(String s) {
+        if (s == 'lc') return 'base6';
+        if (s == 'bs' || s == 'base') return 'base1';
+        return s;
       }
-      return 'https://assets.tcgdex.net/en/$series/$set/$numStr/high.png';
+      final slug = mapSet(set);
+      final m = RegExp(r'^0*([0-9]+)([a-z]*)$').firstMatch(rawNum);
+      final numSlug = (m != null) ? '${int.parse(m.group(1)!)}${m.group(2)!}' : rawNum;
+      return 'https://images.pokemontcg.io/$slug/$numSlug.png';
     }
     return '';
   }

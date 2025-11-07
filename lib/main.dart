@@ -1,5 +1,6 @@
 // lib/main.dart
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -7,6 +8,7 @@ import 'dart:async';
 import 'services/edge_warmup.dart';
 import 'services/app_lifecycle.dart';
 import 'core/telemetry.dart';
+import 'net/tcgdex_http_override.dart';
 
 import 'config/env.dart';
 
@@ -22,6 +24,8 @@ Future<void> main() async {
 
   // Load env file based on --dart-define=GV_ENV=local|staging|prod
   await Env.load();
+  // Rewrite tcgdex asset URLs to a more reliable CDN when needed
+  HttpOverrides.global = TcgdexHttpOverrides();
   // Log the lazy-search feature flag early for verification
   // Example: [LAZY] GV_USE_LAZY_SEARCH=true
   final lazyFlag = (dotenv.env['GV_USE_LAZY_SEARCH'] ?? '').toString();

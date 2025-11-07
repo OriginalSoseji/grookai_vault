@@ -24,13 +24,13 @@ function Redact($s) { if (-not $s) { return $s }; return ($s -replace '([A-Za-z0
 $repo = Resolve-Path .
 $envMap = Read-DotEnv (Join-Path $repo '.env')
 $SUPABASE_URL = $env:SUPABASE_URL; if (-not $SUPABASE_URL) { $SUPABASE_URL = $envMap['SUPABASE_URL'] }
-$SERVICE = $env:SUPABASE_SERVICE_ROLE_KEY; if (-not $SERVICE) { $SERVICE = $envMap['SUPABASE_SERVICE_ROLE_KEY'] }
+$SERVICE = $env:SUPABASE_SECRET_KEY; if (-not $SERVICE) { $SERVICE = $env:SUPABASE_SERVICE_ROLE_KEY }; if (-not $SERVICE) { $SERVICE = $envMap['SUPABASE_SECRET_KEY'] }; if (-not $SERVICE) { $SERVICE = $envMap['SUPABASE_SERVICE_ROLE_KEY'] }
 
 if (-not $SUPABASE_URL -or -not $SERVICE) {
   Write-Host 'Missing SUPABASE_URL or SERVICE_ROLE; skipping.'; exit 0
 }
 
-$hdr = @{ 'apikey' = $SERVICE; 'Authorization' = "Bearer $SERVICE"; 'Content-Type' = 'application/json' }
+$hdr = @{ 'apikey' = $SERVICE; 'Content-Type' = 'application/json' }
 
 # Pick latest 5 listings
 $list = Invoke-RestMethod -Method Get -Uri "$SUPABASE_URL/rest/v1/listings?select=id,title,created_at&order=created_at.desc&limit=5" -Headers $hdr -ErrorAction SilentlyContinue
@@ -47,4 +47,3 @@ New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $out = Join-Path $outDir 'seed_wall_photos.md'
 Set-Content -Path $out -Value ("Seeded thumbs for $i listings at listing-photos/public/thumbs/seed_<n>_720x960.jpg")
 Write-Host "Wrote $out"
-

@@ -1,0 +1,2 @@
+[TODO] Fill .env.* with real keys after Dashboard copy.
+[TODO] Update GitHub repo secrets with new names and values.

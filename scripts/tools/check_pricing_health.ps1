@@ -33,10 +33,10 @@ function Get-Var([string]$key){
 }
 
 $u  = Get-Var 'SUPABASE_URL'
-$sr = (Get-Var 'SERVICE_ROLE_KEY'); if (-not $sr) { $sr = Get-Var 'SUPABASE_SERVICE_ROLE_KEY' }
+$sr = (Get-Var 'SUPABASE_SECRET_KEY'); if (-not $sr) { $sr = Get-Var 'SERVICE_ROLE_KEY' }; if (-not $sr) { $sr = Get-Var 'SUPABASE_SERVICE_ROLE_KEY' }
 if (-not $u -or -not $sr) { throw 'Missing SUPABASE_URL or SERVICE_ROLE_KEY (set in .env or environment).' }
 
-$hdr = @{ 'Authorization'="Bearer $sr"; 'apikey'=$sr; 'Content-Type'='application/json' }
+$hdr = @{ 'apikey'=$sr; 'Content-Type'='application/json' }
 $uri = "$u/rest/v1/pricing_health_v?select=mv_latest_observed_at,mv_rows,jobs_failed_24h,jobs_finished_24h"
 
 function Get-Health(){
@@ -137,4 +137,3 @@ try {
   Write-Err ("❌ {0}" -f $_.Exception.Message)
   exit 1
 }
-

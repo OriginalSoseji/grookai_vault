@@ -50,16 +50,15 @@ jobs:
       - name: Invoke check-prices
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
         run: |
-          if [ -z "$SUPABASE_URL" ] || [ -z "$SERVICE_ROLE_KEY" ]; then
-            echo "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY secrets" >&2
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SECRET_KEY" ]; then
+            echo "Missing SUPABASE_URL or SUPABASE_SECRET_KEY secrets" >&2
             exit 1
           fi
           set -e
           curl -sS -X POST \
-            -H "Authorization: Bearer ${SERVICE_ROLE_KEY}" \
-            -H "apikey: ${SERVICE_ROLE_KEY}" \
+            -H "apikey: ${SUPABASE_SECRET_KEY}" \
             -H 'Content-Type: application/json' \
             --data '${{ steps.body.outputs.BODY }}' \
             "${SUPABASE_URL%/}/functions/v1/check-prices" | tee response.json

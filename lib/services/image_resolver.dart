@@ -13,8 +13,8 @@ class CardImageResolver {
     String? tcgplayerId,
     Duration timeout = const Duration(seconds: 4),
   }) async {
-    final sc = _normalizeSet(setCode);
-    final num = _numSlug(number);
+    final sc = CardImageResolver._normalizeSet(setCode);
+    final num = CardImageResolver._numSlug(number);
     final key = '$sc|$num|${tcgplayerId ?? ""}';
     if (_cache.containsKey(key)) return _cache[key];
 
@@ -160,6 +160,14 @@ String toImageUrl(dynamic raw) {
   String s = raw.toString().trim();
   if (s.isEmpty) return '';
   if (s.startsWith('http://') || s.startsWith('https://')) {
+    // Rewrite tcgdex URLs to images.pokemontcg.io
+    try {
+      final u = Uri.parse(s);
+      if (u.host.contains('tcgdex.net')) {
+        final mapped = _mapTcgdexToPtcg(u);
+        if (mapped.isNotEmpty) return mapped;
+      }
+    } catch (_) {}
     return ensureTcgdexImageUrl(s);
   }
   try {
@@ -192,7 +200,35 @@ String imageUrlFromRow(Map row, {String lang = 'en'}) {
       .toString()
       .trim();
   if (setCode.isNotEmpty && number.isNotEmpty) {
-    return tcgdexFromSetAndNumber(lang: lang, setCode: setCode, number: number);
+    // Prefer images.pokemontcg.io directly
+    final sc = _normalizeSet(setCode);
+    final num = _numSlug(number);
+    final slug = _mapKnownSet(sc);
+    return 'https://images.pokemontcg.io/$slug/$num.png';
   }
   return '';
+}
+
+// --- Mapping helpers for tcgdex -> images.pokemontcg.io ---
+String _mapKnownSet(String setCode) {
+  final s = setCode.toLowerCase();
+  if (s == 'lc') return 'base6';
+  if (s == 'bs' || s == 'base') return 'base1';
+  return s;
+}
+
+String _mapTcgdexToPtcg(Uri url) {
+  try {
+    final segs = url.pathSegments.where((e) => e.isNotEmpty).toList();
+    if (segs.length < 4) return '';
+    // ex: /en/ex/ex2/72 -> set=ex2, num=72
+    final setCode = segs[2].toLowerCase();
+    final numRaw = segs[3].toLowerCase();
+    final slug = _mapKnownSet(setCode);
+    final m = RegExp(r'^0*([0-9]+)([a-z]*)$').firstMatch(numRaw);
+    final numSlug = (m != null) ? '${int.parse(m.group(1)!)}${m.group(2)!}' : numRaw;
+    return 'https://images.pokemontcg.io/$slug/$numSlug.png';
+  } catch (_) {
+    return '';
+  }
 }
