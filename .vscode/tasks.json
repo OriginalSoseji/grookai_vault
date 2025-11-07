@@ -286,7 +286,4 @@
       ],
       "options": { "cwd": "C\\grookai_vault" },
       "problemMatcher": []
-    }
-  ]
-}
-
+    ,{ "label": "Grookai: Dev (PROD)", "type": "shell", "command": "powershell", "args": ["-NoProfile","-ExecutionPolicy","Bypass","-Command","flutter run -d R5CY71V9ETR --dart-define=GV_ENV=prod"], "options": {"cwd": "${workspaceFolder}"}, "problemMatcher": [] } ] }
