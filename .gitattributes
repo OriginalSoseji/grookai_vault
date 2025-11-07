@@ -29,3 +29,6 @@
 *.pdf           -text
 *.docx          -text
 *.lock          -text
+
+# Ensure this file stays LF
+.gitattributes text eol=lf
