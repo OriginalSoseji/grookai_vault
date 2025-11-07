@@ -1,4 +1,8 @@
-﻿[![Staging Probe](https://github.com/${{ github.repository }}/actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
+﻿# Grookai Vault
+
+[![Prod Edge Probe](../../actions/workflows/prod-edge-probe.yml/badge.svg)](../../actions/workflows/prod-edge-probe.yml)
+
+[![Staging Probe](https://github.com/${{ github.repository }}/actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
 [![Staging Probe](../../actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
 # Supabase CLI
 
@@ -261,4 +265,5 @@ go run . help
 - Notes:
   - If you customize the scheme/host, set `OAUTH_REDIRECT_URL` accordingly and update both Android and iOS to match.
   - Ensure the Google provider is enabled in Supabase and your redirect URL(s) are authorized. The app will transition from `LoginPage` to the authed shell automatically via `auth.onAuthStateChange`.
+
 

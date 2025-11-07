@@ -30,6 +30,18 @@ Get-Content $envPath |
 if ($env:SUPABASE_SERVICE_ROLE_KEY -and -not $env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY = $env:SUPABASE_SERVICE_ROLE_KEY }
 if ($env:SUPABASE_URL -and -not $env:PROJECT_URL) { $env:PROJECT_URL = $env:SUPABASE_URL }
 
+# Tunables with sane defaults (process scope only)
+function Set-IfMissing([string]$name, [string]$value) {
+  if (-not [System.Environment]::GetEnvironmentVariable($name, 'Process')) {
+    [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
+  }
+}
+Set-IfMissing 'IMPORT_PRICES_TIMEOUT_MS' '5000'
+Set-IfMissing 'IMPORT_PRICES_MAX_CONCURRENCY' '3'
+Set-IfMissing 'IMPORT_PRICES_BREAKER_FAILS' '5'
+Set-IfMissing 'IMPORT_PRICES_BREAKER_WINDOW_MS' '60000'
+Set-IfMissing 'IMPORT_PRICES_BREAKER_COOLDOWN_MS' '120000'
+
 # Optional one-time key (manual override if not stored in .env)
 # if (-not $env:POKEMON_TCG_API_KEY) { $env:POKEMON_TCG_API_KEY = '<your key>' }
 

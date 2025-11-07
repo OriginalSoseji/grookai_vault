@@ -6,6 +6,54 @@
    - Writes via PostgREST using SERVICE_ROLE_KEY from Secrets (never from clients)
 */
 
+import { retryFetch } from "../_shared/retryFetch.ts";
+
+// --- Fast-path health, guarded vendor calls, tunables & strict timeouts ---
+function numEnv(name: string, dflt: number): number {
+  const v = Number(Deno.env.get(name));
+  return Number.isFinite(v) && v > 0 ? v : dflt;
+}
+
+const T_OUT = numEnv("IMPORT_PRICES_TIMEOUT_MS", 5000); // ms
+const MAX_CONC = numEnv("IMPORT_PRICES_MAX_CONCURRENCY", 3);
+const BRK_FAILS = numEnv("IMPORT_PRICES_BREAKER_FAILS", 5);
+const BRK_WINDOW = numEnv("IMPORT_PRICES_BREAKER_WINDOW_MS", 60_000);
+const BRK_COOLDOWN = numEnv("IMPORT_PRICES_BREAKER_COOLDOWN_MS", 120_000);
+
+function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit = {}, ms = T_OUT) {
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), ms);
+  const merged: RequestInit = { ...init, signal: ctrl.signal } as RequestInit;
+  return fetch(input, merged).finally(() => clearTimeout(id));
+}
+
+function now() { return new Date().toISOString(); }
+function rid() { try { return (crypto as any).randomUUID?.() ?? Math.random().toString(36).slice(2); } catch { return Math.random().toString(36).slice(2); } }
+
+type Lvl = "info"|"warn"|"error";
+function jlog(level: Lvl, msg: string, extra: Record<string, unknown> = {}) {
+  const entry: Record<string, unknown> = { t: now(), level, msg, ...extra };
+  const line = JSON.stringify(entry);
+  if (level === "error") console.error(line); else if (level === "warn") console.warn(line); else console.log(line);
+}
+
+type BreakerState = { fails: number; windowStart: number; openUntil: number };
+async function readBreaker(): Promise<BreakerState | null> {
+  try {
+    const kv = await (Deno as any).openKv?.();
+    if (!kv) return null;
+    const r = await kv.get<BreakerState>(["import_prices:breaker"]);
+    return (r?.value as BreakerState) ?? { fails: 0, windowStart: 0, openUntil: 0 };
+  } catch { return null }
+}
+async function writeBreaker(next: BreakerState): Promise<void> {
+  try {
+    const kv = await (Deno as any).openKv?.();
+    if (!kv) return;
+    await kv.set(["import_prices:breaker"], next);
+  } catch { /* ignore */ }
+}
+
 const SUPABASE_URL =
   Deno.env.get("SUPABASE_URL") ||
   Deno.env.get("PROJECT_URL") ||
@@ -155,12 +203,13 @@ async function fetchCardsBySetCode(setCode: string, dbg: boolean) {
   for (const q of queries) {
     const url = make(q); let status = 0; let text = "";
     try {
-      const res = await fetch(url, { headers }); status = res.status; text = await res.text();
+      const res = await fetchWithTimeout(url, { headers }, T_OUT); status = res.status; text = await res.text();
       let data: any[] = []; try { const json = JSON.parse(text); data = Array.isArray(json?.data) ? json.data : []; } catch {}
       lastDiag = { url, tried: q, status, count: data.length, sample: text.slice(0,200) };
       if (data.length > 0) return { data, diag: lastDiag };
     } catch (e) {
-      lastDiag = { url, tried: q, error: String(e) };
+      const msg = (e as any)?.name === 'AbortError' ? 'timeout' : String(e);
+      lastDiag = { url, tried: q, error: msg };
     }
   }
   return { data: [] as any[], diag: lastDiag };
@@ -170,7 +219,20 @@ async function fetchCardsBySetCode(setCode: string, dbg: boolean) {
 export const handler = async (req: Request) => {
   try {
     const url = new URL(req.url);
-    const body = await req.json().catch(() => ({} as any));
+    const id = rid();
+    const method = req.method;
+    jlog("info", "IMPORT start", { rid: id, method, path: url.pathname, q: url.search, timeout_ms: T_OUT, max_conc: MAX_CONC });
+
+    // Quick health pings
+    if (method === "GET" && url.searchParams.get("ping") === "1") {
+      jlog("info", "IMPORT ping", { rid: id, phase: "ping" });
+      return new Response(JSON.stringify({ ok: true, rid: id }), { headers: { "Content-Type": "application/json" }});
+    }
+    let body = await req.json().catch(() => ({} as any));
+    if (method === "POST" && body?.ping === true) {
+      jlog("info", "IMPORT ping(body)", { rid: id, phase: "ping" });
+      return new Response(JSON.stringify({ ok: true, rid: id }), { headers: { "Content-Type": "application/json" }});
+    }
 
     const set_code: string | null =
       body?.set_code ?? body?.set ?? body?.setCode ?? body?.code ??
@@ -185,6 +247,26 @@ export const handler = async (req: Request) => {
     if (!set_code) {
       return new Response(JSON.stringify({ ok:false, error:"Missing set_code" }),
         { status:400, headers:{ "Content-Type":"application/json" }});
+    }
+
+    // Env key guard before vendor usage
+    if (!POKEMON_TCG_KEY || !POKEMON_TCG_KEY.trim()) {
+      jlog("warn", "IMPORT missing-key", { rid: id, key: "POKEMON_TCG_API_KEY" });
+      return new Response(JSON.stringify({ ok:false, error:"missing POKEMON_TCG_API_KEY", rid:id }),
+        { status:400, headers:{ "Content-Type":"application/json" }});
+    }
+
+    // Circuit breaker
+    const nowMs = Date.now();
+    let brk = await readBreaker();
+    if (brk) {
+      if (brk.openUntil && nowMs < brk.openUntil) {
+        jlog("warn", "IMPORT breaker-open", { rid: id, open_until: brk.openUntil });
+        return new Response(JSON.stringify({ ok:false, error:"breaker-open", rid:id }), { status:503, headers:{"Content-Type":"application/json"}});
+      }
+      if (brk.windowStart && (nowMs - brk.windowStart) > BRK_WINDOW) {
+        brk.fails = 0; brk.windowStart = nowMs; await writeBreaker(brk);
+      }
     }
 
     const tried: string[] = [];
@@ -228,6 +310,8 @@ export const handler = async (req: Request) => {
     const next_offset = (cardLimit > 0 && (cardOffset + cardLimit) < fetched.length)
       ? (cardOffset + cardLimit) : null;
 
+    if (brk && brk.fails > 0) { brk.fails = Math.max(0, brk.fails - 1); brk.windowStart ||= nowMs; await writeBreaker(brk); }
+    jlog("info", "IMPORT done", { rid: id, t: now(), ok: true, fetched: fetched.length, staged: rows.length });
     return new Response(JSON.stringify({
       ok:true, tried, fetched: fetched.length,
       processed: cardsToProcess.length, staged: rows.length, inserted: count,
@@ -238,9 +322,23 @@ export const handler = async (req: Request) => {
     }), { headers:{ "Content-Type":"application/json" }});
 
   } catch (err) {
-    console.error(err);
-    return new Response(JSON.stringify({ ok:false, error:String(err) }),
-      { status:500, headers:{ "Content-Type":"application/json" }});
+    const msg = (err as any)?.name === 'AbortError' ? 'timeout' : String(err);
+    jlog("error", "IMPORT fail", { err: msg });
+    const nowMs = Date.now();
+    const brk = await readBreaker();
+    if (brk) {
+      const within = brk.windowStart && (nowMs - brk.windowStart) <= BRK_WINDOW;
+      brk.windowStart = within ? brk.windowStart : nowMs;
+      brk.fails = within ? (brk.fails + 1) : 1;
+      if (brk.fails >= BRK_FAILS) {
+        brk.openUntil = nowMs + BRK_COOLDOWN;
+        jlog("warn", "IMPORT breaker-trip", { fails: brk.fails, open_until: brk.openUntil });
+      }
+      await writeBreaker(brk);
+    }
+    // Return 502 (bad gateway) for vendor/timeout failures to avoid platform 504s
+    return new Response(JSON.stringify({ ok:false, error: msg }),
+      { status:502, headers:{ "Content-Type":"application/json" }});
   }
 };
 
