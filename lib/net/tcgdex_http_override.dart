@@ -29,13 +29,26 @@ class _TcgdexClient implements HttpClient {
     return (setCode, number);
   }
 
+  static String _mapKnown(String setCode) {
+    // Known tcgdex -> images.pokemontcg.io mappings
+    switch (setCode.toLowerCase()) {
+      case 'lc':
+        return 'base6'; // Legendary Collection
+      case 'bs':
+      case 'base':
+        return 'base1';
+      default:
+        return setCode;
+    }
+  }
+
   static List<String> _setSlugCandidates(String setCode) {
     final out = <String>[];
     void addUnique(String s) {
       if (!out.contains(s)) out.add(s);
     }
 
-    addUnique(setCode);
+    addUnique(_mapKnown(setCode));
     addUnique(setCode.replaceAll(".5", "pt5"));
     addUnique(
       setCode.replaceAllMapped(RegExp(r"^sv0(\d+)"), (m) => "sv${m.group(1)}"),

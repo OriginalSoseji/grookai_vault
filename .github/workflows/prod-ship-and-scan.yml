@@ -13,12 +13,15 @@ permissions:
   contents: read
 
 env:
-  # Map secrets into ENV for scripts
+  # Map secrets into ENV for scripts (new names + legacy)
   PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
   SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-  SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
-  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
-  SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+  SUPABASE_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
+  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+  # Legacy fallbacks to ease rollout
+  SERVICE_ROLE_KEY: ${{ secrets.PROD_SECRET_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PROD_SECRET_KEY }}
+  SUPABASE_ANON_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
   POKEMON_TCG_API_KEY: ${{ secrets.POKEMON_TCG_API_KEY }}
   GV_ENV: prod
 
@@ -38,6 +41,8 @@ jobs:
       - name: Mask sensitive values in logs
         shell: pwsh
         run: |
+          echo "::add-mask::$env:SUPABASE_SECRET_KEY"
+          echo "::add-mask::$env:SUPABASE_PUBLISHABLE_KEY"
           echo "::add-mask::$env:SERVICE_ROLE_KEY"
           echo "::add-mask::$env:SUPABASE_SERVICE_ROLE_KEY"
           echo "::add-mask::$env:SUPABASE_ANON_KEY"
@@ -64,4 +69,3 @@ jobs:
           } else {
             "No SUMMARY.md found." | Out-Host
           }
-

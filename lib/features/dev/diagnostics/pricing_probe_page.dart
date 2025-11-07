@@ -30,7 +30,7 @@ class _PricingProbePageState extends State<PricingProbePage> {
     final sb = Supabase.instance.client;
     // a) Env indicators (partial)
     final url = (dotenv.env['SUPABASE_URL'] ?? '').toString();
-    final key = (dotenv.env['SUPABASE_ANON_KEY'] ?? '').toString();
+    final key = (dotenv.env['SUPABASE_PUBLISHABLE_KEY'] ?? dotenv.env['SUPABASE_ANON_KEY'] ?? '').toString();
     if (kDebugMode) {
       final urlShort = url.isEmpty
           ? '-'

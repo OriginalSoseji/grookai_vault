@@ -62,9 +62,12 @@ class Env {
   }
 
   static String get supabaseAnonKey {
-    final v = _get('SUPABASE_ANON_KEY');
-    final looksPlaceholder = v.contains('<your_anon_key_here>') || v.isEmpty;
-    return !looksPlaceholder ? v : secrets.supabaseAnonKey;
+    // Prefer new name first, then legacy, then secrets fallback
+    final primary = _get('SUPABASE_PUBLISHABLE_KEY');
+    final legacy = _get('SUPABASE_ANON_KEY');
+    final chosen = (primary.isNotEmpty) ? primary : legacy;
+    final looksPlaceholder = chosen.contains('<PLACEHOLDER>') || chosen.isEmpty;
+    return !looksPlaceholder ? chosen : secrets.supabaseAnonKey;
   }
 
   /// Optional OAuth redirect URL used for mobile/desktop OAuth flows.

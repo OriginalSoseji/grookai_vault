@@ -7,12 +7,12 @@ $ErrorActionPreference = 'Stop'
 
 if (-not (Test-Path $EnvFile)) { throw ".env not found: $EnvFile" }
 $u = (Get-Content $EnvFile | % { if ($_ -match '^SUPABASE_URL=(.+)$'){ $Matches[1].Trim() } }) | Select-Object -First 1
-$anon = (Get-Content $EnvFile | % { if ($_ -match '^SUPABASE_ANON_KEY=(.+)$'){ $Matches[1].Trim() } }) | Select-Object -First 1
-$srk = (Get-Content $EnvFile | % { if ($_ -match '^(SUPABASE_SERVICE_ROLE_KEY|SERVICE_ROLE_KEY|SB_SERVICE_ROLE_KEY)=(.+)$'){ $Matches[2].Trim() } }) | Select-Object -First 1
-if (-not $u -or -not $anon) { throw 'Missing SUPABASE_URL or SUPABASE_ANON_KEY in env' }
+$anon = (Get-Content $EnvFile | % { if ($_ -match '^(SUPABASE_PUBLISHABLE_KEY|SUPABASE_ANON_KEY)=(.+)$'){ $Matches[2].Trim() } }) | Select-Object -First 1
+$srk = (Get-Content $EnvFile | % { if ($_ -match '^(SUPABASE_SECRET_KEY|SUPABASE_SERVICE_ROLE_KEY|SERVICE_ROLE_KEY|SB_SERVICE_ROLE_KEY)=(.+)$'){ $Matches[2].Trim() } }) | Select-Object -First 1
+if (-not $u -or -not $anon) { throw 'Missing SUPABASE_URL or PUBLISHABLE/ANON KEY in env' }
 
-$hdrAnon = @{ apikey=$anon; Authorization="Bearer $anon" }
-$hdrSr = $null; if ($srk) { $hdrSr = @{ apikey=$srk; Authorization="Bearer $srk" } }
+$hdrAnon = @{ apikey=$anon }
+$hdrSr = $null; if ($srk) { $hdrSr = @{ apikey=$srk } }
 
 Write-Host "Scan base: $u (SRK present=$([bool]$srk))"
 

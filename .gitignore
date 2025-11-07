@@ -32,3 +32,8 @@ lib/_bak/**
 .env
 .env.prod
 reports/sanity_scan_*/
+## Guard against env files in reports and backups
+/reports/**/*.env
+*.env.local.backup
+*.env.staging.backup
+*.env.prod.backup

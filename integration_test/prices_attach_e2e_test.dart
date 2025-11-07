@@ -20,7 +20,7 @@ void main() {
 
   test('prices: view exists + repo attach pipeline works (smoke)', () async {
     final url = Platform.environment['SUPABASE_URL'] ?? '';
-    final anon = Platform.environment['SUPABASE_ANON_KEY'] ?? '';
+    final anon = Platform.environment['SUPABASE_PUBLISHABLE_KEY'] ?? Platform.environment['SUPABASE_ANON_KEY'] ?? '';
     expect(url.isNotEmpty && anon.isNotEmpty, true,
         reason: 'Missing SUPABASE_URL / ANON KEY env for test');
 

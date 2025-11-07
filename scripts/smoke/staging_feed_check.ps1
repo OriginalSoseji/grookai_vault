@@ -8,10 +8,10 @@ if (!(Test-Path $EnvFile)) { Write-Error "Env file not found: $EnvFile"; exit 1 
 
 $lines = Get-Content $EnvFile
 $base = ($lines | Where-Object { $_ -match '^SUPABASE_URL=' } | ForEach-Object { ($_ -split '=',2)[1] }) -replace '"',''
-$key  = ($lines | Where-Object { $_ -match '^SUPABASE_ANON_KEY=' } | ForEach-Object { ($_ -split '=',2)[1] }) -replace '"',''
-if (-not $base -or -not $key) { Write-Error 'Missing SUPABASE_URL or SUPABASE_ANON_KEY'; exit 1 }
+$key  = ($lines | Where-Object { $_ -match '^(SUPABASE_PUBLISHABLE_KEY|SUPABASE_ANON_KEY)=' } | ForEach-Object { ($_ -split '=',2)[1] }) -replace '"',''
+if (-not $base -or -not $key) { Write-Error 'Missing SUPABASE_URL or PUBLISHABLE/ANON KEY'; exit 1 }
 
-$h = @{ apikey=$key; Authorization = "Bearer $key" }
+$h = @{ apikey=$key }
 
 function Fetch($url){
   try { Invoke-RestMethod -Method Get -Uri $url -Headers $h -TimeoutSec 20 } catch { $null }
@@ -33,4 +33,3 @@ Write-Host ("Feed: {0} rows" -f $fc)
 if ($fc -gt 0) { $feed | ForEach-Object { Write-Host (" - {0} ({1})" -f $_.title, $_.created_at) } }
 
 if ($lc -lt 1 -or $fc -lt 1) { exit 2 } else { exit 0 }
-

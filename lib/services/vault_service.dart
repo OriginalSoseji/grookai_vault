@@ -13,11 +13,27 @@ class VaultService {
   Future<AddResult> addToVault({required String cardId, required String condition, required int qty, String? grade, String? notes}) async {
     final uid = client.auth.currentUser?.id;
     if (uid == null) throw Exception('Not signed in');
+    // Try to fetch card metadata to satisfy NOT NULL constraints (e.g., name)
+    String name = '';
+    try {
+      final meta = await client
+          .from('v_card_search')
+          .select('name')
+          .eq('id', cardId)
+          .maybeSingle();
+      name = (meta?['name'] ?? '').toString();
+    } catch (_) {}
+    if (name.isEmpty) {
+      // Fallback to a safe placeholder to satisfy NOT NULL constraint
+      name = cardId;
+    }
+
     final row = {
       'user_id': uid,
       'card_id': cardId,
       'qty': qty <= 0 ? 1 : qty,
       'condition_label': condition.toUpperCase(),
+      'name': name,
       if (grade != null && grade.isNotEmpty) 'grade_label': grade,
       if (notes != null && notes.isNotEmpty) 'notes': notes,
     };

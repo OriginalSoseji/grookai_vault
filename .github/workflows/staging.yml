@@ -11,7 +11,7 @@ on:
 # - STAGING_DB_URL           (postgres://...)
 # - STAGING_DB_URL_SHADOW    (postgres://... shadow DB)
 # - STAGING_REST_URL         (https://<ref>.supabase.co)
-# - STAGING_ANON_KEY
+# - STAGING_PUBLISHABLE_KEY
 
 jobs:
   staging:
@@ -54,8 +54,8 @@ jobs:
       - name: REST smoke on STAGING
         env:
           STAGING_REST_URL: ${{ secrets.STAGING_REST_URL }}
-          STAGING_ANON_KEY: ${{ secrets.STAGING_ANON_KEY }}
+          STAGING_PUBLISHABLE_KEY: ${{ secrets.STAGING_PUBLISHABLE_KEY }}
         run: |
           set -e
-          curl -sSf -H "apikey: $STAGING_ANON_KEY" "$STAGING_REST_URL/rest/v1/listings?select=id&limit=1" > /dev/null
-          curl -sSf -H "apikey: $STAGING_ANON_KEY" "$STAGING_REST_URL/rest/v1/wall_feed_view?select=listing_id&limit=1" > /dev/null
+          curl -sSf -H "apikey: $STAGING_PUBLISHABLE_KEY" "$STAGING_REST_URL/rest/v1/listings?select=id&limit=1" > /dev/null
+          curl -sSf -H "apikey: $STAGING_PUBLISHABLE_KEY" "$STAGING_REST_URL/rest/v1/wall_feed_view?select=listing_id&limit=1" > /dev/null

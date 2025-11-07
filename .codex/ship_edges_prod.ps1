@@ -37,6 +37,9 @@ try { & supabase projects list | Out-Null } catch { throw "Supabase CLI not logg
 $secrets = @{
   'PROJECT_URL'               = (Get-Env 'PROJECT_URL' 'SUPABASE_URL');
   'SUPABASE_URL'              = (Get-Env 'SUPABASE_URL' 'PROJECT_URL');
+  # Prefer new names; keep legacy for compatibility
+  'SUPABASE_SECRET_KEY'       = (Get-Env 'SUPABASE_SECRET_KEY' 'SUPABASE_SERVICE_ROLE_KEY');
+  'SUPABASE_PUBLISHABLE_KEY'  = (Get-Env 'SUPABASE_PUBLISHABLE_KEY' 'SUPABASE_ANON_KEY');
   'SERVICE_ROLE_KEY'          = (Get-Env 'SERVICE_ROLE_KEY' 'SUPABASE_SERVICE_ROLE_KEY');
   'SUPABASE_SERVICE_ROLE_KEY' = (Get-Env 'SUPABASE_SERVICE_ROLE_KEY' 'SERVICE_ROLE_KEY');
   'SUPABASE_ANON_KEY'         = (Get-Env 'SUPABASE_ANON_KEY' 'ANON_KEY');
@@ -70,8 +73,8 @@ foreach ($f in $funcs) {
 # Health invokes (status + duration only, no secrets)
 "\nHealth invokes:" | Out-File $sum -Append -Encoding UTF8
 $base = "https://$ProjectRef.functions.supabase.co"
-$srk = (Get-Env 'SERVICE_ROLE_KEY' 'SUPABASE_SERVICE_ROLE_KEY')
-$anon = (Get-Env 'SUPABASE_ANON_KEY' 'ANON_KEY')
+$srk = (Get-Env 'SUPABASE_SECRET_KEY' 'SUPABASE_SERVICE_ROLE_KEY')
+$anon = (Get-Env 'SUPABASE_PUBLISHABLE_KEY' 'SUPABASE_ANON_KEY')
 
 function Invoke-Health($name, $method, $headers, $body) {
   $url = "$base/$name"
@@ -94,12 +97,12 @@ function Invoke-Health($name, $method, $headers, $body) {
 
 # import-prices (POST service-role)
 $h1 = @{ 'Content-Type'='application/json' }
-if ($srk) { $h1['Authorization'] = "Bearer $srk"; $h1['apikey'] = $srk }
+if ($srk) { $h1['apikey'] = $srk }
 $r1 = Invoke-Health 'import-prices' 'POST' $h1 '{"set_code":"sv1","debug":false}'
 
 # check-sets (POST service-role)
 $h2 = @{ 'Content-Type'='application/json' }
-if ($srk) { $h2['Authorization'] = "Bearer $srk"; $h2['apikey'] = $srk }
+if ($srk) { $h2['apikey'] = $srk }
 $r2 = Invoke-Health 'check-sets' 'POST' $h2 '{"fix":false,"throttleMs":200}'
 
 # wall_feed (GET anon)

@@ -27,6 +27,15 @@ Get-Content $envPath |
   }
 
 # Map common aliases for production ship/scan scripts
+# Prefer new names, but keep legacy compatibility
+if ($env:SUPABASE_SECRET_KEY) {
+  if (-not $env:SERVICE_ROLE_KEY)          { $env:SERVICE_ROLE_KEY = $env:SUPABASE_SECRET_KEY }
+  if (-not $env:SUPABASE_SERVICE_ROLE_KEY) { $env:SUPABASE_SERVICE_ROLE_KEY = $env:SUPABASE_SECRET_KEY }
+}
+if ($env:SUPABASE_PUBLISHABLE_KEY) {
+  if (-not $env:ANON_KEY)           { $env:ANON_KEY = $env:SUPABASE_PUBLISHABLE_KEY }
+  if (-not $env:SUPABASE_ANON_KEY)  { $env:SUPABASE_ANON_KEY = $env:SUPABASE_PUBLISHABLE_KEY }
+}
 if ($env:SUPABASE_SERVICE_ROLE_KEY -and -not $env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY = $env:SUPABASE_SERVICE_ROLE_KEY }
 if ($env:SUPABASE_URL -and -not $env:PROJECT_URL) { $env:PROJECT_URL = $env:SUPABASE_URL }
 

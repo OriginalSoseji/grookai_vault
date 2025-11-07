@@ -45,7 +45,8 @@ function Get-ProjectRef {
 }
 
 function Get-SupabaseAnonKey {
-  # Try env vars then common files
+  # Try env vars then common files (prefer new name)
+  if ($env:SUPABASE_PUBLISHABLE_KEY) { return $env:SUPABASE_PUBLISHABLE_KEY }
   if ($env:SUPABASE_ANON_KEY) { return $env:SUPABASE_ANON_KEY }
   $paths = @(
     "supabase/.env",
@@ -56,7 +57,7 @@ function Get-SupabaseAnonKey {
   foreach ($p in $paths) {
     if (Test-Path $p) {
       $raw = Get-Content $p -Raw
-      $pattern = '(?i)(SUPABASE_ANON_KEY|anonKey)\W*[:=]\W*[''\"]?([^''"\r\n]+)'
+      $pattern = '(?i)(SUPABASE_PUBLISHABLE_KEY|SUPABASE_ANON_KEY|anonKey)\W*[:=]\W*["\']?([^"\'\r\n]+)'
       $m = [regex]::Match($raw, $pattern)
       if ($m.Success) { return $m.Groups[2].Value }
     }
@@ -155,7 +156,7 @@ function Verify-EdgeFunctions {
   $projectRef = Get-ProjectRef
   $anon = Get-SupabaseAnonKey
   $envMap = Get-EnvMapFromFiles
-  $service = if ($env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY } elseif ($env:SUPABASE_SERVICE_ROLE_KEY) { $env:SUPABASE_SERVICE_ROLE_KEY } elseif ($envMap.ContainsKey('SERVICE_ROLE_KEY')) { $envMap['SERVICE_ROLE_KEY'] } elseif ($envMap.ContainsKey('SUPABASE_SERVICE_ROLE_KEY')) { $envMap['SUPABASE_SERVICE_ROLE_KEY'] } else { $null }
+  $service = if ($env:SUPABASE_SECRET_KEY) { $env:SUPABASE_SECRET_KEY } elseif ($env:SERVICE_ROLE_KEY) { $env:SERVICE_ROLE_KEY } elseif ($env:SUPABASE_SERVICE_ROLE_KEY) { $env:SUPABASE_SERVICE_ROLE_KEY } elseif ($envMap.ContainsKey('SUPABASE_SECRET_KEY')) { $envMap['SUPABASE_SECRET_KEY'] } elseif ($envMap.ContainsKey('SERVICE_ROLE_KEY')) { $envMap['SERVICE_ROLE_KEY'] } elseif ($envMap.ContainsKey('SUPABASE_SERVICE_ROLE_KEY')) { $envMap['SUPABASE_SERVICE_ROLE_KEY'] } else { $null }
   $listOut = ""
   try { $listOut = & supabase functions list 2>$null } catch { $listOut = "" }
   $deployed = @{}
@@ -178,7 +179,7 @@ function Verify-EdgeFunctions {
           if ($n -eq 'wall_feed') {
             if ($anon) { $headers['apikey'] = $anon; $authMode = 'anon' } else { $authMode = 'none' }
           } else {
-            if ($service) { $headers['Authorization'] = "Bearer $service"; $headers["apikey"] = $anon; $authMode = 'service-role' }
+            if ($service) { $headers['apikey'] = $service; $authMode = 'service-role' }
           }
           $url = "$base/$n"
           $method = 'POST'

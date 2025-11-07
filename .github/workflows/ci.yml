@@ -7,6 +7,16 @@ on:
     branches: [ "**" ]
 
 jobs:
+  leak-guard:
+    name: Leak Guard
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deny env files in reports
+        shell: pwsh
+        run: .\scripts\ci\deny-env-in-reports.ps1
+
   flutter:
     runs-on: ubuntu-latest
     steps:
@@ -39,4 +49,3 @@ jobs:
         uses: supabase/setup-cli@v1
       - name: Supabase DB Lint
         run: supabase db lint
-

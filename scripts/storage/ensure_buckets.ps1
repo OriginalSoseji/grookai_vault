@@ -35,8 +35,10 @@ $envMap = Read-DotEnv $envFile
 
 $SUPABASE_URL = $env:SUPABASE_URL
 if (-not $SUPABASE_URL) { $SUPABASE_URL = $envMap['SUPABASE_URL'] }
-$SERVICE_ROLE = $env:SUPABASE_SERVICE_ROLE_KEY
+$SERVICE_ROLE = $env:SUPABASE_SECRET_KEY
+if (-not $SERVICE_ROLE) { $SERVICE_ROLE = $env:SUPABASE_SERVICE_ROLE_KEY }
 if (-not $SERVICE_ROLE) { $SERVICE_ROLE = $env:SERVICE_ROLE_KEY }
+if (-not $SERVICE_ROLE) { $SERVICE_ROLE = $envMap['SUPABASE_SECRET_KEY'] }
 if (-not $SERVICE_ROLE) { $SERVICE_ROLE = $envMap['SUPABASE_SERVICE_ROLE_KEY'] }
 if (-not $SERVICE_ROLE) { $SERVICE_ROLE = $envMap['SERVICE_ROLE_KEY'] }
 
@@ -59,7 +61,7 @@ function Redact($s) {
 # Use Supabase Management API: Storage buckets via REST
 # Note: We avoid network writes that mutate policies; reads and idempotent create only.
 try {
-  $headers = @{ 'apikey' = $SERVICE_ROLE; 'Authorization' = "Bearer $SERVICE_ROLE"; 'Content-Type' = 'application/json' }
+  $headers = @{ 'apikey' = $SERVICE_ROLE; 'Content-Type' = 'application/json' }
   $bucketsUrl = "$SUPABASE_URL/storage/v1/bucket"
   $list = Invoke-RestMethod -Method Get -Uri ($bucketsUrl + 's') -Headers $headers -ErrorAction Stop
   $exists = $false

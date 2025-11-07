@@ -14,8 +14,8 @@ $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot\load_env.ps1"
 
 # 1) Normalize keys/URL
-$SRK  = $env:SERVICE_ROLE_KEY; if (-not $SRK)  { $SRK  = $env:SUPABASE_SERVICE_ROLE_KEY }
-$ANON = $env:ANON_KEY;          if (-not $ANON) { $ANON = $env:SUPABASE_ANON_KEY }
+$SRK  = $env:SUPABASE_SECRET_KEY; if (-not $SRK)  { $SRK  = $env:SERVICE_ROLE_KEY }; if (-not $SRK)  { $SRK  = $env:SUPABASE_SERVICE_ROLE_KEY }
+$ANON = $env:SUPABASE_PUBLISHABLE_KEY; if (-not $ANON) { $ANON = $env:ANON_KEY }; if (-not $ANON) { $ANON = $env:SUPABASE_ANON_KEY }
 $URL  = $env:PROJECT_URL;       if (-not $URL)  { $URL  = $env:SUPABASE_URL }
 
 if (-not $SRK -or -not $ANON -or -not $URL) {
@@ -24,7 +24,8 @@ if (-not $SRK -or -not $ANON -or -not $URL) {
 }
 
 # 2) Headers
-$HeadersAdmin = @{ Authorization = "Bearer $SRK"; apikey = $ANON; "Content-Type"="application/json" }
+# Admin: standardize on apikey: SECRET (no client anon)
+$HeadersAdmin = @{ apikey = $SRK; "Content-Type"="application/json" }
 $HeadersAnon  = @{ apikey = $ANON; "Content-Type"="application/json" }
 
 # 3) Helpers

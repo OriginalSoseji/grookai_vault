@@ -11,7 +11,7 @@ function Redact([string]$s){ if(-not $s){return $s}; $r=[regex]::Replace($s, ':/
 
 $envMap = Load-DotEnv
 $base = $envMap['SUPABASE_URL']
-$srk = $env:SERVICE_ROLE_KEY; if(-not $srk){ $srk = $envMap['SUPABASE_SERVICE_ROLE_KEY'] }
+$srk = $env:SUPABASE_SECRET_KEY; if(-not $srk){ $srk = $env:SERVICE_ROLE_KEY }; if(-not $srk){ $srk = $envMap['SUPABASE_SECRET_KEY'] }; if(-not $srk){ $srk = $envMap['SUPABASE_SERVICE_ROLE_KEY'] }
 if (-not $base -or -not $srk) { Write-Host 'Missing SUPABASE_URL or SERVICE_ROLE_KEY in env'; exit 1 }
 
 $outDir = "scripts/diagnostics/output"
@@ -20,7 +20,7 @@ $log = Join-Path $outDir ("seed_demo_" + (Get-Date).ToString('yyyyMMdd_HHmmss') 
 
 function Rest($path,$method='GET',$body=$null,$headers=@{}){
   $u = "$base$path"
-  $hdr = @{ 'apikey'=$srk; 'Authorization'="Bearer $srk"; 'Content-Type'='application/json' }
+  $hdr = @{ 'apikey'=$srk; 'Content-Type'='application/json' }
   foreach($k in $headers.Keys){ $hdr[$k]=$headers[$k] }
   try {
     if ($body){ return Invoke-WebRequest -UseBasicParsing -Method $method -Uri $u -Headers $hdr -Body ($body|ConvertTo-Json -Depth 6) }
@@ -48,4 +48,3 @@ try { Rest "/rest/v1/pricing_health?on_conflict=observed_at" 'POST' @{ observed_
 
 Add-Content -Path $log -Value 'Done.'
 exit 0
-
