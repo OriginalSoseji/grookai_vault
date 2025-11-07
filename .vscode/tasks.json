@@ -8,6 +8,18 @@
       "problemMatcher": []
     },
     {
+      "label": "GV: Append Probe → EXEC_SUMMARY",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", ".\\.codex\\append_probe_to_exec.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
       "label": "GV: Test Edges (PRODUCTION)",
       "type": "shell",
       "command": "powershell",
