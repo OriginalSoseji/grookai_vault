@@ -1,11 +1,18 @@
-{
+﻿{
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Grookai: Repair → Pull → Push",
+      "label": "Grookai: Repair â†’ Pull â†’ Push",
       "type": "shell",
       "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tools/repair_pull_push.ps1 -Versions 20250916,20251022,20251102",
       "problemMatcher": []
+    },
+    {
+      "label": "Secrets: Push Pokémon TCG key to Supabase (PROD)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ops/push_ptcg_key.ps1 -ProjectRef ycdxbpibncqcchqiihfz",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
     },
     {
       "label": "Grookai: Reset+Seed (LOCAL)",
@@ -218,6 +225,31 @@
       "command": "powershell",
       "args": ["-NoProfile","-ExecutionPolicy","Bypass","-File","scripts/ops/prod_apply_search_rpc.ps1"],
       "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "GV: Staging Probe (one-shot)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}\\scripts\\ci\\run_staging_probe.ps1"
+      ],
+      "options": { "cwd": "C:\\grookai_vault" },
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: Append Probe → EXEC_SUMMARY",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}\\scripts\\reports\\append_probe_to_exec_summary.ps1"
+      ],
+      "options": { "cwd": "C\\grookai_vault" },
+      "problemMatcher": []
     }
   ]
 }
+

@@ -19,6 +19,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      POKEMON_TCG_API_KEY: ${{ secrets.POKEMON_TCG_API_KEY }}
     steps:
       - name: Build request body
         id: body
@@ -63,4 +65,3 @@ jobs:
             "${SUPABASE_URL%/}/functions/v1/check-prices" | tee response.json
           echo "--- Response preview ---"
           cat response.json | jq '{ ok, cutoff, to_import, triggered, considered_sets, total_sets }'
-
