@@ -8,6 +8,31 @@
       "problemMatcher": []
     },
     {
+      "label": "GV: Test Edges (PRODUCTION)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy","Bypass",
+        "-File",".\\.codex\\test_edges_prod.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Grookai: Ship + Scan (PRODUCTION)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        ". .\\.codex\\load_env.ps1; .\\.codex\\ship_edges_prod.ps1; .\\.codex\\run_sanity_scan.ps1 -SkipInstall"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
       "label": "Secrets: Push Pokémon TCG key to Supabase (PROD)",
       "type": "shell",
       "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ops/push_ptcg_key.ps1 -ProjectRef ycdxbpibncqcchqiihfz",
