@@ -1,54 +1,77 @@
-name: Prod Edge Probe
+﻿name: Prod Edge Probe (read-only)
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: "0 * * * *"
   push:
     branches: [ main ]
     paths:
-      - 'supabase/functions/**'
+      - "supabase/functions/**"
 
 permissions:
   contents: read
 
-env:
-  PROJECT_URL: ${{ secrets.PROD_REST_URL }}
-  SUPABASE_URL: ${{ secrets.PROD_REST_URL }}
-  SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
-  SERVICE_ROLE_KEY: ${{ secrets.PROD_ANON_KEY }}
-  GV_ENV: prod
-
 jobs:
   probe:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+      SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+      SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
+      GV_ENV: prod
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: PowerShell version
-        run: $PSVersionTable.PSVersion
-        shell: pwsh
-
-      - name: Mask secrets
-        shell: pwsh
+      - name: Show workspace + confirm script exists
         run: |
-          echo "::add-mask::$env:SUPABASE_ANON_KEY"
-          echo "::add-mask::$env:SERVICE_ROLE_KEY"
+          Write-Host "WORKSPACE: $env:GITHUB_WORKSPACE"
+          Set-Location $env:GITHUB_WORKSPACE
+          if (Test-Path ".\.codex\test_edges_prod.ps1") {
+            Write-Host "Found .\.codex\test_edges_prod.ps1"
+          } else {
+            $hit = Get-ChildItem -Recurse -Filter "test_edges_prod.ps1" -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($null -eq $hit) { throw "Missing test_edges_prod.ps1 in repo." }
+            Write-Host "Found at: $($hit.FullName)"
+            "TEST_SCRIPT=$($hit.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          }
 
       - name: Run PROD edge test
-        shell: pwsh
-        run: .\.codex\test_edges_prod.ps1
+        run: |
+          Set-Location $env:GITHUB_WORKSPACE
+          $script = ".\.codex\test_edges_prod.ps1"
+          if (-not (Test-Path $script)) {
+            $hit = Get-ChildItem -Recurse -Filter "test_edges_prod.ps1" | Select-Object -First 1
+            if ($null -eq $hit) { throw "Missing test_edges_prod.ps1 in repo." }
+            $script = $hit.FullName
+          }
+          Write-Host "Running: $script"
+          powershell -NoProfile -ExecutionPolicy Bypass -File $script
 
       - name: Summarize last report
-        shell: pwsh
+        id: show
         run: |
-          $dir = Get-ChildItem reports -Directory -Filter 'edge_test_*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-          if ($null -eq $dir) { Write-Host 'No report.'; exit 0 }
-          $edge = Join-Path $dir.FullName 'edge_results.txt'
+          $dir = Get-ChildItem .\reports -Directory -Filter 'edge_test_*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if (-not $dir) { throw "No report folder created by test_edges_prod.ps1" }
           $sum  = Join-Path $dir.FullName 'SUMMARY.md'
-          echo "## PROD Edge Probe" >> $env:GITHUB_STEP_SUMMARY
+          echo "## PROD Edge Probe"       >> $env:GITHUB_STEP_SUMMARY
           echo "Report: $($dir.FullName)" >> $env:GITHUB_STEP_SUMMARY
-          Get-Content $edge | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
-          echo "" >> $env:GITHUB_STEP_SUMMARY
-          Get-Content $sum  | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          Get-Content $sum -Raw | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          "summary_path=$sum" | Out-File -Append -FilePath $env:GITHUB_OUTPUT -Encoding utf8
 
+      - name: Gate on results (expect 200/True for all)
+        run: |
+          $sum = Get-Content "${{ steps.show.outputs.summary_path }}" -Raw
+          $ok1 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
+          $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
+          $ok3 = $sum -match '\|\swall_feed\s\|\sGET\s\|\sanon\s\|\s200\s\|\sTrue'
+          if (-not ($ok1 -and $ok2 -and $ok3)) { Write-Error "Edge probe failed. One or more endpoints not 200." }
