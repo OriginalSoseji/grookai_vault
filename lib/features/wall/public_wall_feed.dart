@@ -34,7 +34,7 @@ class PublicWallFeed extends StatelessWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text((r['title'] ?? 'Post').toString()),
-                subtitle: Text((r['summary'] ?? '').toString()),
+                subtitle: Text((r['created_at'] ?? '').toString()),
               ),
           ],
         );
@@ -45,14 +45,13 @@ class PublicWallFeed extends StatelessWidget {
 
 Future<List<Map<String, dynamic>>> _fetchWall(SupabaseClient client) async {
   try {
-    final data = await client.from('public_wall_v').select().limit(10);
+    final data = await client
+        .from('wall_feed_view')
+        .select('listing_id, card_id, title, price_cents, thumb_url, created_at')
+        .limit(10);
     return List<Map<String, dynamic>>.from((data as List?) ?? const []);
   } catch (_) {
-    try {
-      final data = await client.from('public_wall_posts').select().limit(10);
-      return List<Map<String, dynamic>>.from((data as List?) ?? const []);
-    } catch (_) {
-      return const <Map<String, dynamic>>[];
-    }
+    return const <Map<String, dynamic>>[];
   }
 }
+

@@ -57,6 +57,7 @@ class CardDetailVM extends ChangeNotifier {
   Duration? age;
   List<String> sources = const [];
   List<Map<String, dynamic>> sold5 = const [];
+  List<_CondRow> _pricesByCond = const [];
 
   // Simple in-memory cache per (cardId, condition)
   final Map<String, _CacheEntry> _cache = {};
@@ -124,6 +125,9 @@ class CardDetailVM extends ChangeNotifier {
 
       // write to cache (including history and sold5)
       _cache[key] = _CacheEntry(now, idx, floors, (gvMap is Map) ? gvMap : null, hist, sold5);
+
+      // Prices by condition (GV index)
+      _pricesByCond = await _loadPricesByCondition();
     } catch (e) {
       error = e.toString();
     } finally {
@@ -176,6 +180,53 @@ class CardDetailVM extends ChangeNotifier {
     sources = s;
     sold5 = c.sold5;
   }
+
+  Future<List<_CondRow>> _loadPricesByCondition() async {
+    try {
+      final rows = await _prices.pricesByCondition(cardId);
+      rows.sort((a, b) => _orderIndex((a['condition'] ?? '').toString())
+          .compareTo(_orderIndex((b['condition'] ?? '').toString())));
+      return rows
+          .map((r) => _CondRow(
+                (r['condition'] ?? '').toString(),
+                _fmt(r['price_mid']),
+                _ago(r['observed_at']),
+              ))
+          .toList();
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  List<_CondRow> conditionsWithPrices() => _pricesByCond;
+
+  String _fmt(dynamic v) {
+    final n = (v is num) ? v : num.tryParse('$v');
+    return n == null ? '-' : '\$${n.toStringAsFixed(2)}';
+  }
+  String _ago(dynamic ts) {
+    final d = DateTime.tryParse(ts?.toString() ?? '');
+    if (d == null) return '';
+    final dd = DateTime.now().difference(d);
+    if (dd.inDays >= 1) return '${dd.inDays}d ago';
+    if (dd.inHours >= 1) return '${dd.inHours}h ago';
+    if (dd.inMinutes >= 1) return '${dd.inMinutes}m ago';
+    return 'just now';
+  }
+  int _orderIndex(String c) {
+    const order = ['NM', 'LP', 'MP', 'HP', 'DMG'];
+    final u = c.toUpperCase();
+    final i = order.indexOf(u);
+    return i >= 0 ? i : 999;
+  }
+
+}
+
+class _CondRow {
+  final String label;
+  final String price;
+  final String updated;
+  _CondRow(this.label, this.price, this.updated);
 }
 
 class _CacheEntry {

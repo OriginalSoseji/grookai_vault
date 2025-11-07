@@ -5,6 +5,8 @@ import 'cards_service.dart'; // lazy (Edge Functions)
 import 'legacy_search_service.dart'; // DB (Supabase SQL/view)
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/core/result.dart';
+import 'package:grookai_vault/config/env.dart';
+import 'search_service_unified.dart';
 
 /// Tries lazy-import search first; if it returns nothing or errors,
 /// silently falls back to the legacy search.
@@ -21,6 +23,8 @@ class SearchGateway {
   bool get _pricesAsync =>
       ((dotenv.env['GV_PRICES_ASYNC'] ?? '1')).toLowerCase() == '1' ||
       ((dotenv.env['GV_PRICES_ASYNC'] ?? '1')).toLowerCase() == 'true';
+  bool get _rpcFirst =>
+      (dotenv.env['GV_SEARCH_RPC_FIRST'] ?? 'true').toLowerCase() == 'true';
 
   Future<List<Map<String, dynamic>>> search(String query) async {
     // Legacy signature preserved. Delegate to result-based API for consistency.
@@ -33,12 +37,29 @@ class SearchGateway {
 
   /// New: result-based search for safer error handling in VMs.
   Future<Result<List<Map<String, dynamic>>>> searchResult(String query) async {
-    // DB-first mode (default): always fetch DB results; optionally overlay lazy
+    // DB-first mode (default): try RPC unified first; fallback to DB; optionally overlay lazy
     if (_searchSource == 'db') {
       if (kDebugMode) {
-        debugPrint('[LAZY] gateway source=db q="$query" overlay=$_lazyOverlay');
+        debugPrint('[LAZY] gateway source=db q="$query" overlay=$_lazyOverlay rpcFirst=$_rpcFirst');
       }
       try {
+        if (_rpcFirst) {
+          try {
+            final rpc = GVSearchApi(Env.supabaseUrl, Env.supabaseAnonKey);
+            final rpcRows = await rpc
+                .searchCardsUnified(query)
+                .timeout(const Duration(seconds: 4), onTimeout: () => <Map<String, dynamic>>[]);
+            if (rpcRows.isNotEmpty) {
+              var normRpc = _normalize(rpcRows, defaultSource: 'db');
+              if (!_pricesAsync) {
+                normRpc = await _attachPrices(normRpc);
+              }
+              return Ok(normRpc);
+            }
+          } catch (e) {
+            if (kDebugMode) debugPrint('[RPC] unified search error: $e');
+          }
+        }
         final dbRows = await _legacy.search(query);
         var normDb = _normalize(dbRows, defaultSource: 'db');
         if (!_pricesAsync) {
@@ -158,7 +179,7 @@ class SearchGateway {
         final data2 = await client
             .from('card_prints')
             .select(
-              'id,set_code,name,number,image_url,image_alt_url,name_local,lang',
+              'id,set_code,name,number,image_url,image_alt_url,lang',
             )
             .or(orParts);
         final dbRows2 = List<Map<String, dynamic>>.from(
@@ -179,7 +200,7 @@ class SearchGateway {
         final data = await client
             .from('card_prints')
             .select(
-              'id,set_code,name,number,image_url,image_alt_url,name_local,lang',
+              'id,set_code,name,number,image_url,image_alt_url,lang',
             )
             .or(orParts);
         final dbRows = List<Map<String, dynamic>>.from(
@@ -239,7 +260,7 @@ class SearchGateway {
       return {
         'id': r['id'] ?? r['card_id'] ?? r['print_id'],
         'set_code': r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
-        'name': r['name_local'] ?? r['name'] ?? 'Card',
+        'name': r['name'] ?? 'Card',
         'number': r['number'] ?? '',
         'image_url': r['image_url'] ?? r['photo_url'] ?? '',
         'source': r['source'] ?? defaultSource ?? 'db',
@@ -334,6 +355,22 @@ class SearchGateway {
         );
       }
       return rows.map((r) => {...r, 'priceStatus': 'unavailable'}).toList();
+    }
+  }
+
+  // Grookai Vault — smart search via RPC (server-parsed numbers + name)
+  // Uses PostgREST RPC "search_cards(q, limit)". Returns empty list if RPC is absent.
+  Future<List<Map<String, dynamic>>> searchCardsUnified(String raw, {int limit = 50}) async {
+    final client = Supabase.instance.client;
+    try {
+      final data = await client.rpc(
+        'search_cards',
+        params: {'q': raw, 'limit': limit},
+      );
+      return List<Map<String, dynamic>>.from((data as List?) ?? const []);
+    } catch (_) {
+      // Safe fallback: return empty and let caller try legacy path if desired.
+      return <Map<String, dynamic>>[];
     }
   }
 }

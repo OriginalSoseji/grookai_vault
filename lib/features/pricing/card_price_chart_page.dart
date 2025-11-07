@@ -162,7 +162,7 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
       children: [
         SizedBox(
           width: 150,
-          child: Text(k, style: const TextStyle(color: Colors.black54)),
+          child: Text(k, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.54))),
         ),
         Expanded(
           child: Text(v, style: const TextStyle(fontWeight: FontWeight.w600)),
@@ -212,7 +212,15 @@ class _CardPriceChartPageState extends State<CardPriceChartPage> {
             SizedBox(
               height: 220,
               child: CustomPaint(
-                painter: _SparklinePainter(points, minX, maxX, minY, maxY),
+                painter: _SparklinePainter(
+                  points,
+                  minX,
+                  maxX,
+                  minY,
+                  maxY,
+                  strokeColor: Theme.of(context).colorScheme.primary,
+                  fillColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+                ),
                 child: Container(),
               ),
             ),
@@ -235,8 +243,10 @@ class _SparklinePainter extends CustomPainter {
   final List<_PricePoint> pts;
   final DateTime minX, maxX;
   final double minY, maxY;
+  final Color strokeColor;
+  final Color fillColor;
 
-  _SparklinePainter(this.pts, this.minX, this.maxX, this.minY, this.maxY);
+  _SparklinePainter(this.pts, this.minX, this.maxX, this.minY, this.maxY, {required this.strokeColor, required this.fillColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -251,11 +261,11 @@ class _SparklinePainter extends CustomPainter {
     final Paint line = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0
-      ..color = Colors.blueAccent;
+      ..color = strokeColor;
 
     final Paint fill = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.blueAccent.withValues(alpha: 0.12);
+      ..color = fillColor;
 
     final Path path = Path();
     final Path fillPath = Path();

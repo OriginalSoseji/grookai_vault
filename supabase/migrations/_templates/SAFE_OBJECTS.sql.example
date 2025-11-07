@@ -1,0 +1,32 @@
+-- SAFE OBJECTS TEMPLATE — Grookai Vault
+-- Use these patterns to keep migrations idempotent and order-safe.
+-- RULE OF THUMB:
+--   1) Create base tables first (idempotent).
+--   2) Then create derived objects (views/mviews/functions), guarded or dropped+recreated as needed.
+--   3) Add indexes with IF NOT EXISTS.
+
+-- Base table (idempotent)
+create table if not exists public.listings (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz default now()
+  -- ...add real columns here...
+);
+
+-- View creation guarded (recreate safely)
+drop view if exists public.v_my_view cascade;
+create view public.v_my_view as
+select 1;
+
+-- Materialized view guarded (create only if missing)
+do $$
+begin
+  if not exists (
+    select 1 from pg_matviews where schemaname = 'public' and matviewname = 'wall_thumbs_3x4'
+  ) then
+    create materialized view public.wall_thumbs_3x4 as
+    select 1;
+  end if;
+end $$;
+
+-- Indexes (idempotent)
+create index if not exists idx_listings_created_at on public.listings (created_at);

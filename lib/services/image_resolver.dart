@@ -163,7 +163,15 @@ String toImageUrl(dynamic raw) {
     return ensureTcgdexImageUrl(s);
   }
   try {
-    return Supabase.instance.client.storage.from('public').getPublicUrl(s);
+    // Try common buckets
+    final client = Supabase.instance.client;
+    // 1) public bucket
+    final fromPublic = client.storage.from('public').getPublicUrl(s);
+    if (fromPublic.isNotEmpty) return fromPublic;
+    // 2) listing-photos bucket
+    final fromListing = client.storage.from('listing-photos').getPublicUrl(s);
+    if (fromListing.isNotEmpty) return fromListing;
+    return '';
   } catch (_) {
     return '';
   }

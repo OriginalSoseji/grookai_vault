@@ -27,15 +27,15 @@ class _AlertsPageState extends State<AlertsPage> {
           .select('id, card_id, query, price_threshold, enabled, created_at')
           .eq('user_id', uid)
           .order('created_at');
+      if (!mounted) return;
       setState(() {
         _rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
         _devFallback = false;
       });
     } catch (_) {
       // View/table missing: dev fallback
-      setState(() {
-        _devFallback = true;
-      });
+      if (!mounted) return;
+      setState(() { _devFallback = true; });
     }
   }
 
@@ -77,6 +77,7 @@ class _AlertsPageState extends State<AlertsPage> {
     final thr = double.tryParse(thrCtrl.text.trim());
     if (query.isEmpty || thr == null) return;
     if (_devFallback) {
+      if (!mounted) return;
       setState(() {
         _rows.add({
           'id': 'dev_${DateTime.now().millisecondsSinceEpoch}',
@@ -140,6 +141,7 @@ class _AlertsPageState extends State<AlertsPage> {
                       .from('alerts')
                       .update({'enabled': v})
                       .eq('id', r['id']);
+                  if (!mounted) return;
                   setState(() {
                     _rows[i]['enabled'] = v;
                   });

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:grookai_vault/ui/app/theme.dart';
-import 'package:grookai_vault/ui/tokens/spacing.dart';
-import 'unified_search_sheet.dart';
+import 'unified_search_inline.dart';
 
 class UnifiedSearchPage extends StatelessWidget {
   const UnifiedSearchPage({super.key});
@@ -17,16 +16,8 @@ class UnifiedSearchPage extends StatelessWidget {
           style: gv.typography.title.copyWith(color: gv.colors.textPrimary),
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(GVSpacing.s16),
-          child: FilledButton.icon(
-            icon: const Icon(Icons.search),
-            label: const Text('Open Search'),
-            onPressed: () => UnifiedSearchSheet.show(context),
-          ),
-        ),
-      ),
+      body: const UnifiedSearchInline(),
     );
   }
 }
+

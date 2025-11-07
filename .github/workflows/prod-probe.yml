@@ -1,0 +1,41 @@
+name: Prod Probe (read-only)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    env:
+      REST: ${{ secrets.PROD_REST }}
+      ANON: ${{ secrets.PROD_ANON }}
+    steps:
+      - name: Print inputs (redacted)
+        shell: bash
+        run: |
+          tail=${ANON##*${ANON:0:${#ANON}-4}}
+          echo "REST: ${REST:-<missing>} | ANON: xxxxx...${tail:-<missing>}"
+      - name: Probe RPC and VIEW (read-only)
+        shell: bash
+        run: |
+          set -e
+          RPC_CODE="N/A"; VIEW_CODE="N/A"
+          if [[ -n "$REST" && -n "$ANON" ]]; then
+            BODY='{"q":"pikachu","limit":5,"offset":0}'
+            RPC_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+              -H "apikey: $ANON" \
+              -H "Authorization: Bearer $ANON" \
+              -H "Content-Type: application/json" \
+              -H "Content-Profile: public" \
+              -d "$BODY" "$REST/rpc/search_cards" || echo N/A)
+            VIEW_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+              -H "apikey: $ANON" \
+              -H "Authorization: Bearer $ANON" \
+              -H "Accept-Profile: public" \
+              "$REST/v_wall_feed?select=card_id&limit=1" || echo N/A)
+          fi
+          echo "RPC: HTTP $RPC_CODE"
+          echo "VIEW: HTTP $VIEW_CODE"
+      - name: Always succeed (read-only signal)
+        run: echo "Probe finished"
+

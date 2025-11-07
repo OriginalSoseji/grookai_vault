@@ -60,7 +60,7 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
                   height: 4,
                   width: 40,
                   decoration: BoxDecoration(
-                    color: Colors.grey[400],
+                    color: Theme.of(context).colorScheme.outlineVariant,
                     borderRadius: BorderRadius.circular(999),
                   ),
                 ),
@@ -108,9 +108,11 @@ class _PriceTiersSheetState extends State<PriceTiersSheet> {
                           Navigator.pop(context, true);
                         },
                       )
-                    : const Text(
+                    : Text(
                         "Manual condition edits are disabled",
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                        ),
                       ),
               ],
             ),

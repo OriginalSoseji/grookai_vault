@@ -6,6 +6,8 @@ import 'package:grookai_vault/core/ui_contracts.dart';
 import 'package:grookai_vault/core/adapters.dart';
 import 'package:grookai_vault/core/telemetry.dart';
 import 'package:grookai_vault/services/search_gateway.dart';
+import 'package:grookai_vault/services/cards_query_parser.dart';
+import 'package:grookai_vault/services/cards_service.dart';
 import 'package:grookai_vault/services/vault_service.dart';
 import 'package:grookai_vault/core/result.dart';
 import 'package:grookai_vault/core/event_bus.dart';
@@ -41,6 +43,57 @@ class SearchVm {
     items.value = LoadState.loading();
     try {
       Telemetry.log('search_open', {'q': q, 'mode': mode.name});
+      // Number-aware parsing path first
+      final parsed = parseQuery(q);
+      if ((parsed.setCode ?? '').isNotEmpty && (parsed.collectorNumber ?? '').isNotEmpty) {
+        final svc = CardsService();
+        List<Map<String, dynamic>> rows = await svc.searchBySetAndNumber(parsed.setCode!, parsed.collectorNumber!, total: parsed.totalInSet);
+        if (rows.isEmpty) {
+          final res = await _gateway.searchResult(q);
+          if (res is Ok<List<Map<String, dynamic>>>) {
+            final mapped = res.value.map(cardPrintFromDb).toList();
+            items.value = LoadState.data(mapped);
+          } else {
+            items.value = LoadState.data(const <CardPrintView>[]);
+          }
+          return;
+        }
+        final mapped = rows.map(cardPrintFromDb).toList();
+        items.value = LoadState.data(mapped);
+        Telemetry.log('search_success', {
+          'result_count': mapped.length,
+          'q': q,
+          'mode': mode.name,
+        });
+        return;
+      } else if ((parsed.collectorNumber ?? '').isNotEmpty) {
+        final svc = CardsService();
+        List<Map<String, dynamic>> rows;
+        if ((parsed.name ?? '').isNotEmpty) {
+          rows = await svc.searchByNameAndNumber(parsed.name!, parsed.collectorNumber!, total: parsed.totalInSet);
+        } else {
+          rows = await svc.searchByNumberOnly(parsed.collectorNumber!, total: parsed.totalInSet);
+        }
+        // Fallback to gateway if DB returns nothing
+        if (rows.isEmpty) {
+          final res = await _gateway.searchResult(q);
+          if (res is Ok<List<Map<String, dynamic>>>) {
+            final mapped = res.value.map(cardPrintFromDb).toList();
+            items.value = LoadState.data(mapped);
+          } else {
+            items.value = LoadState.data(const <CardPrintView>[]);
+          }
+          return;
+        }
+        final mapped = rows.map(cardPrintFromDb).toList();
+        items.value = LoadState.data(mapped);
+        Telemetry.log('search_success', {
+          'result_count': mapped.length,
+          'q': q,
+          'mode': mode.name,
+        });
+        return;
+      }
       final res = await _gateway.searchResult(q);
       if (res is Ok<List<Map<String, dynamic>>>) {
         final mapped = res.value.map(cardPrintFromDb).toList();

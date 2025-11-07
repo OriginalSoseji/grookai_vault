@@ -1,0 +1,52 @@
+name: Quality
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PowerShell 7
+        uses: PowerShell/PowerShell@v1
+        with:
+          pwsh-versions: '7.4.x'
+
+      - name: Restore ci/.env.example
+        shell: pwsh
+        run: |
+          if (!(Test-Path ci)) { New-Item -ItemType Directory -Path ci | Out-Null }
+          if (!(Test-Path ci/.env.example)) { "SUPABASE_URL=
+SUPABASE_DB_URL=
+SUPABASE_PROJECT_REF=
+SUPABASE_ACCESS_TOKEN=
+TEST_USER_JWT=
+" | Set-Content ci/.env.example }
+
+      - name: Run probes (no secrets)
+        shell: pwsh
+        run: |
+          if (!(Test-Path scripts/diagnostics/output)) { New-Item -ItemType Directory scripts/diagnostics/output | Out-Null }
+          if (Test-Path scripts/security/rls_probe.ps1) { pwsh -NoProfile -File scripts/security/rls_probe.ps1 } else { Write-Host 'rls_probe.ps1 missing (ok for now)' }
+          if (Test-Path scripts/db/run_explain_checks.ps1) { pwsh -NoProfile -File scripts/db/run_explain_checks.ps1 } else { Write-Host 'run_explain_checks.ps1 missing (ok for now)' }
+          if (Test-Path scripts/tools/seed_demo.ps1) { pwsh -NoProfile -File scripts/tools/seed_demo.ps1 } else { Write-Host 'seed_demo.ps1 missing (ok for now)' }
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostics
+          path: scripts/diagnostics/output/**
+
+      - name: Fail if EXPLAIN shows RED
+        shell: pwsh
+        run: |
+          $f = 'scripts/diagnostics/output/EXPLAIN_SUMMARY.md'
+          if (Test-Path $f) {
+            if (Select-String -Path $f -Pattern 'RED' -Quiet) { Write-Error 'EXPLAIN errors detected.' }
+          } else { Write-Host 'No EXPLAIN summary found.' }
+

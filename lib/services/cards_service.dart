@@ -15,10 +15,10 @@ class CardsService {
     if (kDebugMode) {
       debugPrint('[HTTP] FUNC search_cards q="$query" limit=$limit');
     }
-    final res = await _client.functions.invoke(
-      'search_cards',
-      body: {'query': query, 'limit': limit},
-    );
+    final res = await _client
+        .functions
+        .invoke('search_cards', body: {'query': query, 'limit': limit})
+        .timeout(const Duration(seconds: 10));
 
     final data = res.data;
     if (data is! Map<String, dynamic>) return <Map<String, dynamic>>[];
@@ -47,7 +47,10 @@ class CardsService {
     }
     Future<Map<String, dynamic>> callFn() async {
       try {
-        final res = await _client.functions.invoke('hydrate_card', body: body);
+        final res = await _client
+            .functions
+            .invoke('hydrate_card', body: body)
+            .timeout(const Duration(seconds: 10));
         final data = res.data;
         if (data is Map<String, dynamic>) return data;
         return <String, dynamic>{
@@ -96,4 +99,86 @@ class CardsService {
       'message': 'Service unavailable',
     };
   }
+
+  Future<List<Map<String, dynamic>>> searchByNameAndNumber(
+    String name,
+    String number, {
+    String? total,
+    int limit = 20,
+  }) async {
+    final pattern = '%${_escapeLike(name)}%';
+    final data = await _client
+        .from('v_card_prints_search')
+        .select('card_print_id,set_code,collector_number,lang,name_search,name_canonical,image_url,image_alt_url')
+        .eq('collector_number', number)
+        .ilike('name_search', pattern)
+        .limit(limit)
+        .timeout(const Duration(seconds: 10));
+    final rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
+    return rows
+        .map((r) => {
+              'id': (r['card_print_id'] ?? r['id'] ?? '').toString(),
+              'set_code': (r['set_code'] ?? '').toString(),
+              'name': (r['name_search'] ?? r['name_canonical'] ?? 'Card').toString(),
+              'number': (r['collector_number'] ?? r['number'] ?? '').toString(),
+              'image_url': (r['image_url'] ?? r['image_alt_url'] ?? '').toString(),
+              'lang': (r['lang'] ?? 'en').toString(),
+              'source': 'db',
+            })
+        .toList();
+  }
+
+  Future<List<Map<String, dynamic>>> searchByNumberOnly(
+    String number, {
+    String? total,
+    int limit = 20,
+  }) async {
+    final data = await _client
+        .from('v_card_prints_search')
+        .select('card_print_id,set_code,collector_number,lang,name_search,name_canonical,image_url,image_alt_url')
+        .eq('collector_number', number)
+        .limit(limit)
+        .timeout(const Duration(seconds: 10));
+    final rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
+    return rows
+        .map((r) => {
+              'id': (r['card_print_id'] ?? r['id'] ?? '').toString(),
+              'set_code': (r['set_code'] ?? '').toString(),
+              'name': (r['name_search'] ?? r['name_canonical'] ?? 'Card').toString(),
+              'number': (r['collector_number'] ?? r['number'] ?? '').toString(),
+              'image_url': (r['image_url'] ?? r['image_alt_url'] ?? '').toString(),
+              'lang': (r['lang'] ?? 'en').toString(),
+              'source': 'db',
+            })
+        .toList();
+  }
+
+  Future<List<Map<String, dynamic>>> searchBySetAndNumber(
+    String setCode,
+    String number, {
+    String? total,
+    int limit = 20,
+  }) async {
+    final data = await _client
+        .from('v_card_prints_search')
+        .select('card_print_id,set_code,collector_number,lang,name_search,name_canonical,image_url,image_alt_url')
+        .eq('set_code', setCode.toLowerCase())
+        .eq('collector_number', number)
+        .limit(limit)
+        .timeout(const Duration(seconds: 10));
+    final rows = List<Map<String, dynamic>>.from((data as List?) ?? const []);
+    return rows
+        .map((r) => {
+              'id': (r['card_print_id'] ?? r['id'] ?? '').toString(),
+              'set_code': (r['set_code'] ?? '').toString(),
+              'name': (r['name_search'] ?? r['name_canonical'] ?? 'Card').toString(),
+              'number': (r['collector_number'] ?? r['number'] ?? '').toString(),
+              'image_url': (r['image_url'] ?? r['image_alt_url'] ?? '').toString(),
+              'lang': (r['lang'] ?? 'en').toString(),
+              'source': 'db',
+            })
+        .toList();
+  }
 }
+
+String _escapeLike(String s) => s.replaceAll('%', '\\%').replaceAll('_', '\\_');

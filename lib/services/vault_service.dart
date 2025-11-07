@@ -1,215 +1,77 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/core/result.dart';
 
+class AddResult {
+  final String vaultItemId;
+  const AddResult(this.vaultItemId);
+}
+
 class VaultService {
-  final SupabaseClient _client;
-  VaultService(this._client);
-  static bool _loggedViewFallback = false;
+  final SupabaseClient client;
+  VaultService(this.client);
 
-  /// Adds a card or increments quantity.
-  /// Always uses enriched client upsert + qty update (no RPC).
-  Future<Map<String, dynamic>?> addOrIncrement({
-    required String cardId,
-    int deltaQty = 1,
-    String conditionLabel = 'NM',
-    String? notes,
-  }) async {
-    final session = _client.auth.currentSession;
-    final userId = session?.user.id;
-    if (userId == null) {
-      // ignore: avoid_print
-      print('[UPsert ERR] No user session');
-      throw Exception('Not signed in');
-    }
-
-    // Enrich with name (and set) to satisfy DBs that enforce NOT NULL on name.
-    Map<String, dynamic>? meta;
-    try {
-      final m = await _client
-          .from('card_prints')
-          .select('name,set_code')
-          .eq('id', cardId)
-          .maybeSingle();
-      if (m != null) meta = Map<String, dynamic>.from(m);
-    } catch (_) {
-      try {
-        final m = await _client
-            .from('v_card_prints')
-            .select('name,set_code')
-            .eq('id', cardId)
-            .maybeSingle();
-        if (m != null) meta = Map<String, dynamic>.from(m);
-      } catch (_) {
-        if (!_loggedViewFallback) {
-          // ignore: avoid_print
-          print('[VIEW] v_card_prints missing → using card_prints');
-          _loggedViewFallback = true;
-        }
-      }
-    }
-    final name = (meta?['name'] ?? 'Card').toString();
-    final setCode = (meta?['set_code'] ?? '').toString();
-
-    // Ensure row exists or is updated with qty/name
-    final payload = {
-      'user_id': userId,
+  Future<AddResult> addToVault({required String cardId, required String condition, required int qty, String? grade, String? notes}) async {
+    final uid = client.auth.currentUser?.id;
+    if (uid == null) throw Exception('Not signed in');
+    final row = {
+      'user_id': uid,
       'card_id': cardId,
-      'qty': deltaQty > 0 ? deltaQty : 1,
-      'condition_label': conditionLabel,
-      'name': name,
-      if (setCode.isNotEmpty) 'set_name': setCode,
-      if (notes != null && notes.trim().isNotEmpty) 'notes': notes.trim(),
+      'qty': qty <= 0 ? 1 : qty,
+      'condition_label': condition.toUpperCase(),
+      if (grade != null && grade.isNotEmpty) 'grade_label': grade,
+      if (notes != null && notes.isNotEmpty) 'notes': notes,
     };
-    // ignore: avoid_print
-    print('[UPSERT] vault_items $payload');
-    await _client
-        .from('vault_items')
-        .upsert(payload, onConflict: 'user_id,card_id');
+    final res = await client.from('vault_items').insert(row).select('id').maybeSingle();
+    final id = (res is Map ? (res as Map)['id'] : '').toString();
+    return AddResult(id);
+  }
 
-    // Load current qty and increment
-    final existing = await _client
-        .from('vault_items')
-        .select('id, qty')
-        .eq('user_id', userId)
+  Future<bool> toggleWishlist(String cardId) async {
+    final uid = client.auth.currentUser?.id;
+    if (uid == null) throw Exception('Not signed in');
+    final existing = await client
+        .from('wishlist_items')
+        .select('id')
+        .eq('user_id', uid)
         .eq('card_id', cardId)
         .maybeSingle();
-
-    final id = existing?['id']?.toString();
-    final cur = (existing?['qty'] ?? 0) as int;
-    final next = cur + (deltaQty > 0 ? deltaQty : 1);
-
-    if (id == null || id.isEmpty) {
-      // ignore: avoid_print
-      print('[FALLBACK ERR] Row not found after upsert');
-      return null;
+    if (existing != null) {
+      await client.from('wishlist_items').delete().eq('id', existing['id']);
+      return false;
+    } else {
+      await client.from('wishlist_items').insert({'user_id': uid, 'card_id': cardId});
+      return true;
     }
+  }
 
-    await _client.from('vault_items').update({'qty': next}).eq('id', id);
+  Future<void> undoAdd({required String vaultItemId}) async {
+    await client.from('vault_items').delete().eq('id', vaultItemId);
+  }
 
-    final after = await _client
+  Future<Result<bool>> addOrIncrementResult({required String cardId, required int deltaQty}) async {
+    final uid = client.auth.currentUser?.id;
+    if (uid == null) return const Err('Not signed in');
+    // Try to find existing row
+    final row = await client
         .from('vault_items')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-    // ignore: avoid_print
-    print('[UPSERT OK] id=$id qty $cur -> $next');
-    return Map<String, dynamic>.from(after);
-  }
-
-  /// Result-based variant used by VMs; keeps legacy method above untouched.
-  Future<Result<bool>> addOrIncrementResult({
-    required String cardId,
-    int deltaQty = 1,
-    String conditionLabel = 'NM',
-    String? notes,
-  }) async {
-    try {
-      final r = await addOrIncrement(
-        cardId: cardId,
-        deltaQty: deltaQty,
-        conditionLabel: conditionLabel,
-        notes: notes,
-      );
-      return r == null ? const Err('import_failed', code: 500) : const Ok(true);
-    } catch (_) {
-      return const Err('import_failed', code: 500);
+        .select('id, qty')
+        .eq('user_id', uid)
+        .eq('card_id', cardId)
+        .maybeSingle();
+    if (row != null) {
+      final id = (row['id'] ?? '').toString();
+      final q = (row['qty'] as num?)?.toInt() ?? 0;
+      final next = (q + (deltaQty <= 0 ? 1 : deltaQty)).clamp(1, 9999);
+      await client.from('vault_items').update({'qty': next}).eq('id', id);
+      return const Ok(true);
+    } else {
+      await addToVault(cardId: cardId, condition: 'NM', qty: deltaQty <= 0 ? 1 : deltaQty);
+      return const Ok(true);
     }
   }
 
-  Future<Map<String, dynamic>?> addItem({
-    required String cardId,
-    int qty = 1,
-    String conditionLabel = 'NM',
-    String? notes,
-  }) async {
-    final session = _client.auth.currentSession;
-    final userId = session?.user.id;
-    if (userId == null) {
-      // ignore: avoid_print
-      print('[INSERT ERR] No user session');
-      throw Exception('Not signed in');
-    }
-
-    // Enrich with name
-    Map<String, dynamic>? meta;
-    try {
-      final m = await _client
-          .from('card_prints')
-          .select('name,set_code')
-          .eq('id', cardId)
-          .maybeSingle();
-      if (m != null) meta = Map<String, dynamic>.from(m);
-    } catch (_) {
-      try {
-        final m = await _client
-            .from('v_card_prints')
-            .select('name,set_code')
-            .eq('id', cardId)
-            .maybeSingle();
-        if (m != null) meta = Map<String, dynamic>.from(m);
-      } catch (_) {
-        if (!_loggedViewFallback) {
-          // ignore: avoid_print
-          print('[VIEW] v_card_prints missing → using card_prints');
-          _loggedViewFallback = true;
-        }
-      }
-    }
-    final name = (meta?['name'] ?? 'Card').toString();
-    final setCode = (meta?['set_code'] ?? '').toString();
-
-    final payload = {
-      'user_id': userId,
-      'card_id': cardId,
-      'qty': qty,
-      'condition_label': conditionLabel,
-      'name': name,
-      if (setCode.isNotEmpty) 'set_name': setCode,
-      if (notes != null && notes.trim().isNotEmpty) 'notes': notes.trim(),
-    };
-    // ignore: avoid_print
-    print('[INSERT] vault_items $payload');
-    final res = await _client
-        .from('vault_items')
-        .insert(payload)
-        .select()
-        .single();
-    // ignore: avoid_print
-    print('[INSERT OK] $res');
-    return Map<String, dynamic>.from(res);
-  }
-
-  Future<Result<bool>> addItemResult({
-    required String cardId,
-    int qty = 1,
-    String conditionLabel = 'NM',
-    String? notes,
-  }) async {
-    try {
-      final r = await addItem(
-        cardId: cardId,
-        qty: qty,
-        conditionLabel: conditionLabel,
-        notes: notes,
-      );
-      return r == null ? const Err('import_failed', code: 500) : const Ok(true);
-    } catch (_) {
-      return const Err('import_failed', code: 500);
-    }
-  }
-
-  Future<int> updateQty({required String id, required int next}) async {
-    await _client.from('vault_items').update({'qty': next}).eq('id', id);
-    // ignore: avoid_print
-    print('[UPDATE OK] id=$id next=$next');
-    return 1;
-  }
-
-  Future<int> deleteItem({required String id}) async {
-    await _client.from('vault_items').delete().eq('id', id);
-    // ignore: avoid_print
-    print('[DELETE OK] id=$id');
-    return 1;
+  Future<void> addOrIncrement({required String cardId, required int deltaQty, String? conditionLabel}) async {
+    final res = await addOrIncrementResult(cardId: cardId, deltaQty: deltaQty);
+    if (res is Err) throw Exception(res.message);
   }
 }

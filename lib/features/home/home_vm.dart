@@ -24,7 +24,8 @@ class HomeVm {
       final data = await client
           .from('v_price_movers')
           .select('card_id,name,set_code,delta_pct,current')
-          .limit(20);
+          .limit(20)
+          .timeout(const Duration(seconds: 8));
       final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       if (list.isEmpty) throw Exception('fallback');
       final mapped = list
@@ -49,7 +50,8 @@ class HomeVm {
                 .select('card_id,name,set_code,market_price')
                 .eq('user_id', uid)
                 .order('created_at', ascending: false)
-                .limit(10);
+                .limit(10)
+                .timeout(const Duration(seconds: 8));
         final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
         final rnd = Random();
         final mapped = list
@@ -71,12 +73,11 @@ class HomeVm {
   Future<void> _loadWall() async {
     wallItems.value = LoadState.loading();
     try {
-      dynamic data;
-      try {
-        data = await client.from('public_wall_v').select().limit(20);
-      } catch (_) {
-        data = await client.from('public_wall_posts').select().limit(20);
-      }
+      final data = await client
+          .from('wall_feed_view')
+          .select('listing_id, card_id, title, price_cents, thumb_url, created_at')
+          .limit(20)
+          .timeout(const Duration(seconds: 8));
       final list = List<Map<String, dynamic>>.from((data as List?) ?? const []);
       wallItems.value = LoadState.data(list);
     } catch (_) {

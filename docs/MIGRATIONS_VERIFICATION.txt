@@ -1,0 +1,21 @@
+﻿### VERIFICATION — Master stabilization
+Quarantined (moved → _archive_local/*.bak):
+- 20251103_wall_feed_view.sql yes
+- 20251103_wall_posting_mvp.sql yes
+- 20251103_wall_thumbs_3x4.sql yes
+
+Stubs archived:
+- Files moved to _archive_local/stubs: 56
+
+Kept in place:
+- 20251104040802_search_view.sql present: yes
+
+Docs & templates:
+- docs/MIGRATIONS_BASELINE.md present: yes
+- docs/MIGRATIONS_POLICY.md present: yes
+- _templates/SAFE_OBJECTS.sql.example present: yes
+
+Tooling:
+- scripts/tools/repair_pull_push.ps1 present: yes
+- VS Code task “Grookai: Repair → Pull → Push” installed: 
+yes

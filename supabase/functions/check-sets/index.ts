@@ -8,23 +8,46 @@
  *   SERVICE_ROLE_KEY, PROJECT_URL, (optional) POKEMON_TCG_API_KEY
  */
 
-const SUPABASE_URL     = Deno.env.get("PROJECT_URL") || Deno.env.get("SUPABASE_URL") || Deno.env.get("SB_URL") || "";
+const PROJECT_URL      = Deno.env.get("PROJECT_URL") || Deno.env.get("SUPABASE_URL") || Deno.env.get("SB_URL") || "";
 const SERVICE_ROLE_KEY = Deno.env.get("SERVICE_ROLE_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const SRK = SERVICE_ROLE_KEY;
+const REST_BASE        = PROJECT_URL ? `${PROJECT_URL}/rest/v1` : "";
+const REST_HEADERS: Record<string,string> = SERVICE_ROLE_KEY ? {
+  apikey: SERVICE_ROLE_KEY,
+  Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+  "content-type": "application/json",
+  "Accept-Profile": "public",
+  "Content-Profile": "public",
+} : {} as any;
 const POKEMON_TCG_KEY  = Deno.env.get("POKEMON_TCG_API_KEY") ?? "";
 
-if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
+if (!PROJECT_URL || !SERVICE_ROLE_KEY) {
   throw new Error("Missing env: SERVICE_ROLE_KEY and/or PROJECT_URL (or SUPABASE_URL/SB_URL).");
 }
 
 // ---- Helpers ---------------------------------------------------------------
 
 async function listAllSetIds(): Promise<string[]> {
+  const USE_GATEWAY = (Deno.env.get('USE_EXT_GATEWAY') || '').toLowerCase() === 'true'
+  if (USE_GATEWAY && PROJECT_URL && SERVICE_ROLE_KEY) {
+    try {
+      const gw = await fetch(`${PROJECT_URL}/functions/v1/ext_gateway`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'Authorization': `Bearer ${SERVICE_ROLE_KEY}`, 'apikey': SERVICE_ROLE_KEY },
+        body: JSON.stringify({ provider: 'ptcg', endpoint: 'sets', params: { page: 1, pageSize: 250 }, ttlSec: 86400 })
+      })
+      if (gw.ok) {
+        const gj: any = await gw.json().catch(() => ({}))
+        const data: any[] = Array.isArray(gj?.data?.data) ? gj.data.data : []
+        const out = data.map((s: any) => String(s?.id)).filter(Boolean)
+        if (out.length) return Array.from(new Set(out)).sort()
+      }
+    } catch {}
+  }
+  // Fallback to direct
   const headers: Record<string,string> = { accept: "application/json" };
   if (POKEMON_TCG_KEY.trim()) headers["X-Api-Key"] = POKEMON_TCG_KEY.trim();
-
-  let page = 1;
-  const out = new Set<string>();
+  let page = 1; const out = new Set<string>()
   while (true) {
     const r = await fetch(`https://api.pokemontcg.io/v2/sets?pageSize=250&page=${page}`, { headers });
     if (!r.ok) throw new Error(`PTCG sets ${r.status}`);
@@ -43,13 +66,8 @@ async function listDbSetCodesFromCardPrints(): Promise<string[]> {
   let offset = 0;
 
   while (true) {
-    const url = `${SUPABASE_URL}/rest/v1/card_prints?select=set_code&order=set_code&limit=${pageSize}&offset=${offset}`;
-    const r = await fetch(url, {
-      headers: {
-        apikey: SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${SERVICE_ROLE_KEY}`
-      }
-    });
+    const url = `${REST_BASE}/card_prints?select=set_code&order=set_code&limit=${pageSize}&offset=${offset}`;
+    const r = await fetch(url, { headers: REST_HEADERS });
     if (!r.ok) throw new Error(`card_prints ${r.status}`);
     const arr = await r.json().catch(()=> []);
     if (!Array.isArray(arr) || arr.length === 0) break;
@@ -64,14 +82,9 @@ async function listDbSetCodesFromCardPrints(): Promise<string[]> {
 async function writeAudit(row: any) {
   // Optional: persist a summary row if table exists
   try {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/set_sync_audit`, {
+    const r = await fetch(`${REST_BASE}/set_sync_audit`, {
       method: "POST",
-      headers: {
-        apikey: SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
-        "content-type": "application/json",
-        Prefer: "resolution=merge-duplicates"
-      },
+      headers: { ...REST_HEADERS, Prefer: "resolution=merge-duplicates" },
       body: JSON.stringify([row])
     });
     // ignore failure (table might not exist)
@@ -80,7 +93,7 @@ async function writeAudit(row: any) {
 }
 
 async function runImportPrices(set_code: string, debug=false) {
-  const url = `${SUPABASE_URL}/functions/v1/import-prices`;
+  const url = `${PROJECT_URL}/functions/v1/import-prices`;
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -97,8 +110,29 @@ async function runImportPrices(set_code: string, debug=false) {
 async function runImportCards(set_code: string, pageSize = 200, throttleMs = 150) {
   let page = 1;
   let totalImported = 0;
+  async function fetchWithRetry(url: string, init: RequestInit, attempts = 5) {
+    let lastErr: any = null;
+    for (let i = 0; i < attempts; i++) {
+      try {
+        const r = await fetch(url, init);
+        if (r.ok) return r;
+        // Retry only on transient upstream errors propagated by import-cards
+        if (r.status >= 500 && r.status < 600) {
+          lastErr = new Error(`HTTP ${r.status}: ${await r.text().catch(()=>"")}`);
+        } else {
+          // Non-retryable
+          const txt = await r.text().catch(()=>"");
+          throw new Error(`HTTP ${r.status}: ${txt}`);
+        }
+      } catch (e) {
+        lastErr = e;
+      }
+      await new Promise(res => setTimeout(res, Math.min(2000, 200 * (2 ** i))));
+    }
+    throw lastErr ?? new Error("fetch failed");
+  }
   while (true) {
-    const res = await fetch(`${SUPABASE_URL}/functions/v1/import-cards`, {
+    const res = await fetchWithRetry(`${PROJECT_URL}/functions/v1/import-cards`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -123,6 +157,16 @@ async function runImportCards(set_code: string, pageSize = 200, throttleMs = 150
 export default {
   async fetch(req: Request) {
     try {
+      // Early REST probe to surface base URL or header issues
+      const probe = await fetch(`${REST_BASE}/card_prints?select=id&limit=1`, { headers: REST_HEADERS });
+      if (probe.status === 404) {
+        const txt = await probe.text().catch(()=>"");
+        return new Response(JSON.stringify({ ok:false, error:"rest_404_card_prints", detail: txt }), { status: 500, headers: { "content-type": "application/json" }});
+      }
+      if (!probe.ok) {
+        const txt = await probe.text().catch(()=>"");
+        return new Response(JSON.stringify({ ok:false, error:"rest_probe_failed", status: probe.status, detail: txt }), { status: 500, headers: { "content-type": "application/json" }});
+      }
       const AUTO_FIX = (Deno.env.get("CHECK_SETS_AUTO_FIX") || "").toLowerCase();
       const DEFAULT_FIX = AUTO_FIX === "1" || AUTO_FIX === "true" || AUTO_FIX === "yes";
       const DEFAULT_THROTTLE = Number.parseInt(Deno.env.get("CHECK_SETS_THROTTLE_MS") || "150", 10) || 150;

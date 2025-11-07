@@ -62,20 +62,20 @@ class _PricesAsOfChipState extends State<PricesAsOfChip> {
         message: isUnknown
             ? 'Price freshness: unknown'
             : 'Updated every ~15 min. Shows last successful refresh.'
-              '\nAs of ${_fmt(ts!)} (${rows ?? 0} rows)'.trim(),
+              '\nAs of ${_fmt(ts)} (${rows ?? 0} rows)'.trim(),
         child: Icon(Icons.circle, size: 10, color: color),
       );
     }
 
-    final text = isUnknown ? 'unknown' : _fmt(ts!);
+    final text = isUnknown ? 'unknown' : _fmt(ts);
     final label = rows == null ? 'Prices as of $text' : 'Prices as of $text • $rows rows';
     return Chip(
       avatar: Icon(isUnknown ? Icons.help_outline : (stale ? Icons.schedule : Icons.check_circle),
           size: 18, color: color),
       label: Text(label),
       labelStyle: theme?.textTheme.bodySmall,
-      backgroundColor: color.withOpacity(0.08),
-      side: BorderSide(color: color.withOpacity(0.35)),
+      backgroundColor: color.withValues(alpha: 0.08),
+      side: BorderSide(color: color.withValues(alpha: 0.35)),
     );
   }
 
@@ -85,8 +85,9 @@ class _PricesAsOfChipState extends State<PricesAsOfChip> {
     final diff = now.difference(utc);
     if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
     if (diff.inHours < 24) return '${diff.inHours}h ago';
-    return '${utc.year}-${_2(utc.month)}-${_2(utc.day)} ${_2(utc.hour)}:${_2(utc.minute)}Z';
+    return '${utc.year}-${_two(utc.month)}-${_two(utc.day)} ${_two(utc.hour)}:${_two(utc.minute)}Z';
   }
 
-  String _2(int n) => n.toString().padLeft(2, '0');
+  String _two(int n) => n.toString().padLeft(2, '0');
 }
+

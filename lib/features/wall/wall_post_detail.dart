@@ -22,8 +22,8 @@ class WallPostDetail extends StatelessWidget {
           if (r == null) return const Center(child: Text('Not found'));
           final title = (r['title'] ?? 'Post').toString();
           final body = (r['summary'] ?? r['body'] ?? '').toString();
-          final img = (r['image_url'] ?? '').toString();
-          final owner = (r['owner'] ?? '').toString();
+          final img = (r['thumb_url'] ?? r['image_url'] ?? '').toString();
+          final owner = (r['owner_id'] ?? r['owner'] ?? '').toString();
           final ts = (r['created_at'] ?? '').toString();
           return ListView(
             padding: const EdgeInsets.all(GVSpacing.s16),
@@ -53,21 +53,12 @@ class WallPostDetail extends StatelessWidget {
 
 Future<Map<String, dynamic>?> _fetchPost(SupabaseClient client, String id) async {
   try {
-    try {
-      final r = await client
-          .from('public_wall_v')
-          .select()
-          .eq('id', id)
-          .maybeSingle();
-      if (r != null) return Map<String, dynamic>.from(r);
-    } catch (_) {}
-    final r2 = await client
-        .from('public_wall_posts')
-        .select()
-        .eq('id', id)
+    final r = await client
+        .from('wall_feed_view')
+        .select('listing_id, owner_id, card_id, title, price_cents, thumb_url, created_at')
+        .eq('listing_id', id)
         .maybeSingle();
-    if (r2 != null) return Map<String, dynamic>.from(r2);
+    if (r != null) return Map<String, dynamic>.from(r);
   } catch (_) {}
   return null;
 }
-

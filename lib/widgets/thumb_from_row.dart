@@ -7,16 +7,18 @@ import "image_best.dart";
 Widget thumbFromRow(Map row, {double size = 56}) {
   final url = imageBestFromRow(row);
   if (url.isEmpty) {
-    return Container(
-      width: size,
-      height: size,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: const Icon(Icons.image_not_supported),
-    );
+    return Builder(builder: (context) {
+      return Container(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Icon(Icons.image_not_supported),
+      );
+    });
   }
   return ClipRRect(
     borderRadius: BorderRadius.circular(8),

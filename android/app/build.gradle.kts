@@ -72,6 +72,17 @@ flutter {
     source = "../.."
 }
 
+dependencies {
+    // Ensure ML Kit Text Recognition dependencies are present to satisfy
+    // google_mlkit_text_recognition plugin references during R8 minification.
+    // If you only need Latin, you can remove language-specific modules below.
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+    implementation("com.google.mlkit:text-recognition-chinese:16.0.0")
+    implementation("com.google.mlkit:text-recognition-japanese:16.0.0")
+    implementation("com.google.mlkit:text-recognition-korean:16.0.0")
+    implementation("com.google.mlkit:text-recognition-devanagari:16.0.0")
+}
+
 // Diagnostics: print detected build-tools and warn on preview/RC usage
 gradle.projectsEvaluated {
     val sdk = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT") ?: ""

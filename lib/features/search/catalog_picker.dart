@@ -42,7 +42,7 @@ class _CatalogPickerState extends State<CatalogPicker> {
         return {
           'id': r['id'] ?? r['card_id'] ?? r['print_id'],
           'set_code': r['set_code'] ?? r['set'] ?? r['set_name'] ?? '',
-          'name': r['name'] ?? r['name_local'] ?? 'Card',
+          'name': r['name'] ?? 'Card',
           'number': r['number'] ?? '',
           'image_url': r['image_url'] ?? '',
         };
@@ -75,7 +75,7 @@ class _CatalogPickerState extends State<CatalogPicker> {
               height: 4,
               width: 36,
               decoration: BoxDecoration(
-                color: Colors.black26,
+                color: Theme.of(context).colorScheme.outlineVariant,
                 borderRadius: BorderRadius.circular(3),
               ),
             ),

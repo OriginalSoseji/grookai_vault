@@ -103,7 +103,8 @@ $verdict = if ($allOk) { "GREEN" } else { "RED" }
 
 Write-Host "Results -> $edgeTxt"
 Write-Host "Summary -> $sumMd"
-Write-Host "Verdict: $verdict" -ForegroundColor (if ($allOk) { 'Green' } else { 'Red' })
+$color = if ($allOk) { 'Green' } else { 'Red' }
+Write-Host "Verdict: $verdict" -ForegroundColor $color
 
 if (-not $allOk) { exit 2 } else { exit 0 }
 
@@ -113,4 +114,3 @@ if ($VerboseOutput) {
 }
 
 # End of script
-

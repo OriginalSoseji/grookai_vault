@@ -16,4 +16,7 @@ class RouteNames {
   static const String wallFeed = '/wall-feed';
   static const String wallCompose = '/wall-compose';
   static const String wallProfile = '/wall-profile';
+  static const String explore = '/explore';
+  static const String discover = '/discover';
+  static const String createListing = '/create-listing';
 }

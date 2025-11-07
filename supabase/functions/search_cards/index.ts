@@ -86,6 +86,25 @@ async function searchLocal(sb: ReturnType<typeof createClient>, q: string, limit
 }
 
 async function searchTcgdex(q: string, limit: number, lang: string) {
+  const USE_GATEWAY = (Deno.env.get('USE_EXT_GATEWAY') || '').toLowerCase() === 'true'
+  if (USE_GATEWAY) {
+    try {
+      const gw = await fetch(new URL('/functions/v1/ext_gateway', SUPABASE_URL).toString(), {
+        method: 'POST', headers: { 'content-type': 'application/json', ...(SERVICE_ROLE ? { 'Authorization': `Bearer ${SERVICE_ROLE}`, 'apikey': SERVICE_ROLE } : {}) },
+        body: JSON.stringify({ provider: 'tcgdex', endpoint: 'search_cards', params: { name: q, lang }, ttlSec: 1800 })
+      })
+      const gj: any = await gw.json().catch(() => ({}))
+      if (Array.isArray(gj?.data)) {
+        return gj.data.slice(0, limit).map((c: any) => {
+          let setCode = c?.set?.id ?? c?.setId ?? ''
+          let number = c?.localId ?? c?.number ?? ''
+          const name = c?.name ?? 'Card'
+          let image_url: string | null = c?.image ?? null
+          return { set_code: setCode, number, name, image_url: image_url ?? undefined, source: 'tcgdex' }
+        })
+      }
+    } catch {}
+  }
   try {
     // Best-effort: TCGdex public API search by name
     const url = `https://api.tcgdex.net/v2/${lang}/cards?name=${encodeURIComponent(q)}`

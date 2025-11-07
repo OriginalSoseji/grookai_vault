@@ -66,6 +66,18 @@ class _DevAdminPageState extends State<DevAdminPage> {
               icon: const Icon(Icons.build),
               label: Text(_busy ? 'Running…' : 'Run check-sets (fixMode=both)'),
             ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).pushNamed('/explore'),
+              icon: const Icon(Icons.explore),
+              label: const Text('Open Explore (Wall Feed)'),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).pushNamed('/create-listing'),
+              icon: const Icon(Icons.add_photo_alternate),
+              label: const Text('Create Listing (debug)'),
+            ),
             const SizedBox(height: 16),
             Expanded(
               child: Container(

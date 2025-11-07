@@ -12,7 +12,7 @@ class CardRepository {
   }) async {
     final localList = await _sb
         .from('card_prints') // switch to your view if preferred
-        .select('id, set_code, name, number, image_url, name_local, lang')
+        .select('id, set_code, name, number, image_url, lang')
         .eq('set_code', setCode)
         .eq('number', number)
         .limit(1);
@@ -26,7 +26,7 @@ class CardRepository {
 
     final againList = await _sb
         .from('card_prints')
-        .select('id, set_code, name, number, image_url, name_local, lang')
+        .select('id, set_code, name, number, image_url, lang')
         .eq('set_code', setCode)
         .eq('number', number)
         .limit(1);
