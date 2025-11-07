@@ -1,0 +1,67 @@
+name: Prod Ship & Sanity Scan
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - ".codex/**"
+      - "supabase/**"
+      - "lib/**"
+      - ".github/workflows/prod-ship-and-scan.yml"
+
+permissions:
+  contents: read
+
+env:
+  # Map secrets into ENV for scripts
+  PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
+  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+  SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
+  SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+  POKEMON_TCG_API_KEY: ${{ secrets.POKEMON_TCG_API_KEY }}
+  GV_ENV: prod
+
+jobs:
+  ship-and-scan:
+    name: Ship edges + sanity (PROD)
+    runs-on: windows-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PowerShell version
+        run: $PSVersionTable.PSVersion
+        shell: pwsh
+
+      - name: Mask sensitive values in logs
+        shell: pwsh
+        run: |
+          echo "::add-mask::$env:SERVICE_ROLE_KEY"
+          echo "::add-mask::$env:SUPABASE_SERVICE_ROLE_KEY"
+          echo "::add-mask::$env:SUPABASE_ANON_KEY"
+          echo "::add-mask::$env:POKEMON_TCG_API_KEY"
+
+      # We do NOT load .env in CI; we rely on env from secrets above.
+      - name: Ship Edge Functions (PROD)
+        shell: pwsh
+        run: .\.codex\ship_edges_prod.ps1
+
+      - name: Run Sanity Scan (read-only)
+        shell: pwsh
+        run: .\.codex\run_sanity_scan.ps1 -SkipInstall
+
+      - name: Collect summaries
+        shell: pwsh
+        run: |
+          $latest = Get-ChildItem -Recurse -Path reports -Filter "SUMMARY.md" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if ($null -ne $latest) {
+            "SUMMARY path: $($latest.FullName)" | Out-Host
+            Get-Content $latest.FullName | Out-Host
+            echo "## Sanity Scan Summary" >> $env:GITHUB_STEP_SUMMARY
+            Get-Content $latest.FullName | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          } else {
+            "No SUMMARY.md found." | Out-Host
+          }
+
