@@ -1,3 +1,0 @@
-﻿import-prices	code=n/a	duration_ms=351	FAIL
-check-sets	code=n/a	duration_ms=68	FAIL
-wall_feed	code=n/a	duration_ms=0	NOT_DEPLOYED
