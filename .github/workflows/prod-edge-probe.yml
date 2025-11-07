@@ -51,4 +51,3 @@ jobs:
           Get-Content $edge | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
           echo "" >> $env:GITHUB_STEP_SUMMARY
           Get-Content $sum  | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
-
