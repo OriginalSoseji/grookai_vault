@@ -1,6 +1,6 @@
 ﻿# Grookai Vault
 
-[![Prod Edge Probe](../../actions/workflows/prod-edge-probe.yml/badge.svg)](../../actions/workflows/prod-edge-probe.yml)
+[![Prod Edge Probe](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml/badge.svg?branch=main)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml)
 
 [![Staging Probe](https://github.com/${{ github.repository }}/actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
 [![Staging Probe](../../actions/workflows/staging-probe.yml/badge.svg)](../../actions/workflows/staging-probe.yml)
