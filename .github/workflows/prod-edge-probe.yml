@@ -1,0 +1,53 @@
+﻿name: Prod Edge Probe
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+  push:
+    branches: [ main ]
+    paths:
+      - 'supabase/functions/**'
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_URL: ${{ secrets.PROD_REST_URL }}
+  SUPABASE_URL: ${{ secrets.PROD_REST_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+  SERVICE_ROLE_KEY: ${{ secrets.PROD_ANON_KEY }}
+  GV_ENV: prod
+
+jobs:
+  probe:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PowerShell version
+        run: $PSVersionTable.PSVersion
+        shell: pwsh
+
+      - name: Mask secrets
+        shell: pwsh
+        run: |
+          echo "::add-mask::$env:SUPABASE_ANON_KEY"
+          echo "::add-mask::$env:SERVICE_ROLE_KEY"
+
+      - name: Run PROD edge test
+        shell: pwsh
+        run: .\.codex\test_edges_prod.ps1
+
+      - name: Summarize last report
+        shell: pwsh
+        run: |
+          $dir = Get-ChildItem reports -Directory -Filter 'edge_test_*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if ($null -eq $dir) { Write-Host 'No report.'; exit 0 }
+          $edge = Join-Path $dir.FullName 'edge_results.txt'
+          $sum  = Join-Path $dir.FullName 'SUMMARY.md'
+          echo "## PROD Edge Probe" >> $env:GITHUB_STEP_SUMMARY
+          echo "Report: $($dir.FullName)" >> $env:GITHUB_STEP_SUMMARY
+          Get-Content $edge | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          echo "" >> $env:GITHUB_STEP_SUMMARY
+          Get-Content $sum  | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
