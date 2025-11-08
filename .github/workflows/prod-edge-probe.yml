@@ -22,10 +22,10 @@ jobs:
       # Map secrets to ALL names the scripts might read
       PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-      ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
-      SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
-      SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
-      GV_ENV: prod
+  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+  SUPABASE_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
+  GV_ENV: prod
 
     steps:
       - name: Checkout
