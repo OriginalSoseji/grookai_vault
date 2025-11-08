@@ -6,13 +6,13 @@ jobs:
         shell: pwsh
 
     env:
-      # Primary (new) names
+      # New names (preferred)
       PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
       SUPABASE_SECRET_KEY:      ${{ secrets.PROD_SECRET_KEY }}
       GV_ENV: prod
-      # Legacy aliases (kept for backward-compat in scripts)
+      # Legacy aliases to keep old scripts working
       ANON_KEY:             ${{ secrets.PROD_PUBLISHABLE_KEY }}
       SUPABASE_ANON_KEY:    ${{ secrets.PROD_PUBLISHABLE_KEY }}
       SERVICE_ROLE_KEY:     ${{ secrets.PROD_SECRET_KEY }}
@@ -38,11 +38,23 @@ jobs:
             Write-Host "All required env vars are present."
           }
 
-      - name: Run PROD edge test (pwsh)
+      - name: Run PROD edge test (pwsh, loud)
         run: |
           $ErrorActionPreference = 'Stop'
-          if (-not (Test-Path '.\.codex\test_edges_prod.ps1')) {
-            throw "Missing .\.codex\test_edges_prod.ps1"
+          $ProgressPreference = 'SilentlyContinue'
+          Set-StrictMode -Version Latest
+
+          $script = ".\.codex\test_edges_prod.ps1"
+          if (-not (Test-Path $script)) { throw "Missing $script" }
+
+          $log = Join-Path $env:RUNNER_TEMP "probe.log"
+          try {
+            & $script *>&1 | Tee-Object -FilePath $log
+            $code = $LASTEXITCODE
+            if ($code -ne 0) { throw "Probe script exit code $code" }
+          } catch {
+            Write-Host "---- probe.log (captured output) ----"
+            if (Test-Path $log) { Get-Content $log -Raw | Write-Host }
+            Write-Error $_
+            exit 1
           }
-          # Execute directly in pwsh (no nested 'powershell' call)
-          & .\.codex\test_edges_prod.ps1
