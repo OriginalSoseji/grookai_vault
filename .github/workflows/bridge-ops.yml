@@ -7,6 +7,7 @@ on:
 
 jobs:
   bridge-ops:
+    permissions:       contents: write
     runs-on: windows-latest
     steps:
       - name: Checkout repository
@@ -23,4 +24,22 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bridge-reports
+          path: reports/**
+      - name: Post Bridge summary comment
+        if: always()
+        shell: pwsh
+        run: |
+          $pattern = Get-ChildItem -Recurse -Include summary.csv -Path reports | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if ($pattern) {
+            $content = Get-Content $pattern.FullName -Raw
+            Write-Host "Latest summary:`n$content"
+            gh auth status
+            $sha = (git rev-parse HEAD).Trim()
+            $comment = "### Bridge Ops Summary`n```
+      $content
+      ```"
+            gh api repos/${{ github.repository }}/commits/$sha/comments -f body="$comment"
+          } else {
+            Write-Host "No summary found, skipping comment."
+          }
           path: reports/**
