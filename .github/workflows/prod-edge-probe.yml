@@ -40,7 +40,26 @@ jobs:
           Write-Host "PUBLISHABLE present: $([bool]$env:SUPABASE_PUBLISHABLE_KEY)"
           Write-Host "SECRET present: $([bool]$env:SUPABASE_SECRET_KEY)"
 
-      - name: Run PS7-safe edge probe
+          - name: Diagnostics: wall_feed
+      shell: pwsh
+      env:
+        BASE: https://${{ env.SUPABASE_HOST }}
+        PUB:  ${{ env.SUPABASE_PUBLISHABLE_KEY }}
+      run: |
+        Write-Host "URL: $env:BASE/functions/v1/wall_feed"
+        Write-Host "Auth (Bearer): PUBLISHABLE"
+        try {
+          $r = Invoke-WebRequest -UseBasicParsing -Method GET "$env:BASE/functions/v1/wall_feed" -Headers @{ "apikey"=$env:PUB; "Authorization"="Bearer $env:PUB" }
+          Write-Host "Status:" $r.StatusCode
+          $body = $r.Content
+        } catch {
+          if ($_.Exception.Response) {
+            Write-Host "Status:" ([int]$_.Exception.Response.StatusCode.Value__)
+            $sr = New-Object System.IO.StreamReader ($_.Exception.Response.GetResponseStream())
+            $body = $sr.ReadToEnd()
+          } else { Write-Host "ERROR:" $_.Exception.Message }
+        }
+        if ($body) { Write-Host "Body[0..300]:" ($body.Substring(0,[Math]::Min(300,$body.Length))) }- name: Run PS7-safe edge probe
         continue-on-error: true
         run: |
           $ErrorActionPreference='Stop'
@@ -85,5 +104,6 @@ jobs:
           $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
           $ok3 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
           if (-not ($ok1 -and $ok2 -and $ok3)) { Write-Error "Edge probe failed. One or more endpoints not 200." }
+
 
 
