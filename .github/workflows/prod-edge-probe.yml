@@ -82,6 +82,7 @@ jobs:
         run: |
           $sum = Get-Content "${{ steps.show.outputs.summary_path }}" -Raw
           $ok1 = $sum -match '\|\swall_feed\s\|\sGET\s\|\sanon\s\|\s200\s\|\sTrue'
-          $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
-          $ok3 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
+          $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
+          $ok3 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
           if (-not ($ok1 -and $ok2 -and $ok3)) { Write-Error "Edge probe failed. One or more endpoints not 200." }
+
