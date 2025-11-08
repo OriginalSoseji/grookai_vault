@@ -12,7 +12,7 @@
 - feat(pricing): finalize v2; remove legacy PC constraints; add smoke tests ($(Get-Date -Format o))
 
 - docs(pricing): Global 'Prices as of' appears in Search (all envs). On Detail, global chip shows only in dev/stage for QA; prod shows only the per-card 'Updated â€¦' row.
-- chore(pricing): imports auto-enqueue MV refresh and run worker once (service-role)
+- chore(pricing): imports auto-enqueue MV refresh and run worker once (secret)
 
  - chore(bulletproofing): P1 grants for pricing_health_v, replace broad selects in hot paths, add Edge fetch timeouts; perf indexes for price & wall; diagnostics bundle task.
 
@@ -25,4 +25,5 @@
 - [ ] Add fetch timeouts to `import-prices`, `system_health`, `prices_status` Edge Functions.
 - [ ] Run diagnostics bundle and stash outputs under `scripts/diagnostics/output/`.
 - [ ] Validate indices for price lookups and `wall_feed_v` paths; add if missing.
+
 
