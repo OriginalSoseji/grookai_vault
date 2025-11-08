@@ -46,11 +46,13 @@ jobs:
           Write-Host "ANON_KEY present: $([bool]$env:ANON_KEY)"
           Write-Host "SUPABASE_ANON_KEY present: $([bool]$env:SUPABASE_ANON_KEY)"
 
-      - name: Run PROD edge test
+      - name: Run PS7-safe edge probe
+        shell: pwsh
         run: |
+          $ErrorActionPreference='Stop'
+          $ProgressPreference='SilentlyContinue'
           Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          powershell -NoProfile -ExecutionPolicy Bypass -File .\.codex\test_edges_prod.ps1
+          . ./.codex/test_edges_prod.ps1
 
       - name: Summarize last report
         id: show
@@ -65,6 +67,15 @@ jobs:
           ""                                     | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
           Get-Content $sum  | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
           "summary_path=$sum" | Out-File -Append -FilePath $env:GITHUB_OUTPUT -Encoding utf8
+
+      - name: Upload probe artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: prod-edge-probe
+          path: |
+            reports/**/edge_results.txt
+            reports/**/SUMMARY.md
+          if-no-files-found: warn
 
       # Optional: make the job fail if any endpoint != 200
       - name: Gate on results
