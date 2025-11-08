@@ -1,0 +1,100 @@
+﻿# Codex Queue
+
+Paste tasks below using this exact format. The dispatcher will grab the **last** block:
+
+### TASK: Probe workflow sanity (demo)
+You are in Windows PowerShell at C:\grookai_vault.
+- Open `.github/workflows/prod-edge-probe.yml`
+- Confirm steps: Install Supabase CLI, List functions (runner view), Diagnose wall_feed (anon).
+- Ensure the List step uses SUPABASE_ACCESS_TOKEN from repo secrets.
+- Keep the GET headers for anon: `apikey: <anon>`, `Authorization: Bearer <anon>`.
+- Do not modify unrelated steps.
+---
+
+### TASK: Clean baseline for the probe workflow (drop-in)
+
+> You are in Windows PowerShell at `C:\grookai_vault`. Replace `.github/workflows/prod-edge-probe.yml` with this minimal, valid baseline; commit and push.
+>
+> ```yaml
+> name: Prod Edge Probe (read-only)
+>
+> on:
+>   workflow_dispatch:
+>   schedule:
+>     - cron: '0 * * * *'
+>   push:
+>     branches: [ main ]
+>     paths:
+>       - 'supabase/functions/**'
+>       - '.codex/test_edges_prod.ps1'
+>       - '.github/workflows/prod-edge-probe.yml'
+>
+> permissions:
+>   contents: read
+>
+> jobs:
+>   probe:
+>     runs-on: windows-latest
+>     defaults:
+>       run:
+>         shell: pwsh
+>     env:
+>       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+>       SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+>       GV_ENV: prod
+>     steps:
+>       - name: Checkout
+>         uses: actions/checkout@v4
+>         with:
+>           fetch-depth: 0
+>
+>       - name: Preflight — check SUPABASE_ACCESS_TOKEN
+>         run: echo "SUPABASE_ACCESS_TOKEN present? ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}"
+>         continue-on-error: true
+>
+>       - name: Install Supabase CLI
+>         if: ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}
+>         uses: supabase/setup-cli@v1
+>
+>       - name: List functions (runner view)
+>         if: ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}
+>         env:
+>           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+>         run: |
+>           supabase functions list --project-ref ycdxbpibncqcchqiihfz
+>
+>       - name: Diagnose wall_feed (anon)
+>         continue-on-error: true
+>         run: |
+>           $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
+>           $h = @{ apikey=$env:SUPABASE_ANON_KEY; Authorization="Bearer $($env:SUPABASE_ANON_KEY)" }
+>           try {
+>             $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
+>             $status = $r.StatusCode; $body = $r.Content
+>           } catch {
+>             if ($_.Exception.Response) {
+>               $status = [int]$_.Exception.Response.StatusCode.Value__
+>               $sr = New-Object IO.StreamReader ($_.Exception.Response.GetResponseStream())
+>               $body = $sr.ReadToEnd()
+>             } else { $status = "ERR"; $body = $_.Exception.Message }
+>           }
+>           $snippet = if ($body) { $body.Substring(0,[Math]::Min(300,$body.Length)) } else { "" }
+>           "URL: $url"              | Out-File -Encoding UTF8 SUMMARY.md
+>           "STATUS: $status"        | Out-File -Append -Encoding UTF8 SUMMARY.md
+>           "BODY[0..300]: $snippet" | Out-File -Append -Encoding UTF8 SUMMARY.md
+>
+>       - name: Upload probe summary
+>         if: ${{ always() }}
+>         uses: actions/upload-artifact@v4
+>         with:
+>           name: prod-edge-probe
+>           path: SUMMARY.md
+>           if-no-files-found: warn
+> ```
+>
+> ```powershell
+> git add .github/workflows/prod-edge-probe.yml
+> git commit -m "CI: reset probe to clean baseline"
+> git push
+> ```
+---
