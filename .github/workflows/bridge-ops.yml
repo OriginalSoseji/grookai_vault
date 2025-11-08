@@ -1,0 +1,26 @@
+name: Bridge Ops Loop
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # every day at 08:00 UTC
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  bridge-ops:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PowerShell
+        shell: pwsh
+        run: |
+          Write-Host "=== Bridge Ops Loop (CI) ==="
+          ./scripts/bridge_ops_loop.ps1
+
+      - name: Upload Bridge reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bridge-reports
+          path: reports/**
