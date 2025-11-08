@@ -1,11 +1,12 @@
-﻿# Flutter/Dart/Pub
+# Flutter/Dart/Pub
+
+
 .dart_tool/
 .packages
 .pub-cache/
 .pub/
 build/
 flutter_export_environment.sh
-
 # Android
 *.apk
 *.aar
@@ -15,26 +16,47 @@ local.properties
 android/app/google-services.json
 android/app/src/debug/google-services.json
 android/app/src/profile/google-services.json
-
 # iOS
 ios/Pods/
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
 ios/Flutter/Generated.xcconfig
 ios/Flutter/ephemeral/
-
 # macOS
 macos/Flutter/ephemeral/
-
 # VS Code / IntelliJ
 .vscode/
 .idea/
 *.swp
 *.swo
-
 # Supabase (CLI state)
 .supabase/
-
 # OS junk
 .DS_Store
 Thumbs.db
+
+
+# ---------- OS / Editor ----------
+# ---------- VS Code ----------
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+# ---------- Flutter ----------
+# Keep pubspec.lock committed for Flutter apps
+**/GeneratedPluginRegistrant.*.dart
+android/local.properties
+# ---------- Supabase ----------
+# Track schema/functions when you add them, but ignore local temp/env
+supabase/.temp/
+supabase/.branches/
+supabase/docker/
+supabase/.env
+supabase/.dev*
+# ---------- Bridge / Local scripts ----------
+reports/
+CON
+# Ignore ad-hoc codex helper scripts, but keep the dispatcher
+.codex/*.ps1
+!.codex/dispatch_last_task.ps1
+# Keep queue + scripts tracked
+# (scripts/ folder itself is added below)
