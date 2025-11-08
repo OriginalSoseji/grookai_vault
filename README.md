@@ -1,4 +1,4 @@
-﻿# Grookai Vault
+# Grookai Vault
 
 [![Prod Edge Probe](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml/badge.svg?branch=main)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/prod-edge-probe.yml)
 
@@ -28,4 +28,5 @@ Flutter + Supabase app for TCG collection management.
 ## CI Status
 [![Flutter CI](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml)
 
+![Bridge Status](https://img.shields.io/badge/bridge-clean-brightgreen)
 
