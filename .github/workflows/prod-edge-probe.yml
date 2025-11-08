@@ -59,7 +59,15 @@ jobs:
             $body = $sr.ReadToEnd()
           } else { Write-Host "ERROR:" $_.Exception.Message }
         }
-        if ($body) { Write-Host "Body[0..300]:" ($body.Substring(0,[Math]::Min(300,$body.Length))) }- name: Run PS7-safe edge probe
+        if ($body) { Write-Host "Body[0..300]:" ($body.Substring(0,[Math]::Min(300,$body.Length))) }    - name: Install Supabase CLI
+      uses: supabase/setup-cli@v1
+
+    - name: List functions (runner view)
+      shell: pwsh
+      env:
+        SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      run: |
+        supabase functions list --project-ref ycdxbpibncqcchqiihfz- name: Run PS7-safe edge probe
         continue-on-error: true
         run: |
           $ErrorActionPreference='Stop'
@@ -67,7 +75,28 @@ jobs:
           Set-StrictMode -Version Latest
           . ./.codex/test_edges_prod.ps1
 
-      - name: Summarize last report
+          - name: Diagnose wall_feed (anon)
+      shell: pwsh
+      env:
+        SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+        SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+      run: |
+        $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
+        $h = @{ "apikey"=$env:SUPABASE_ANON_KEY; "Authorization"="Bearer $($env:SUPABASE_ANON_KEY)" }
+        try {
+          $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
+          $status = $r.StatusCode; $body = $r.Content
+        } catch {
+          if ($_.Exception.Response) {
+            $status = [int]$_.Exception.Response.StatusCode.Value__
+            $sr = New-Object System.IO.StreamReader ($_.Exception.Response.GetResponseStream())
+            $body = $sr.ReadToEnd()
+          } else { $status = 'ERR'; $body = $_.Exception.Message }
+        }
+        $snippet = if ($body) { $body.Substring(0,[Math]::Min(300,$body.Length)) } else { '' }
+        "URL: $url"
+        "STATUS: $status"
+        "BODY[0..300]: $snippet"- name: Summarize last report
         if: always()
         id: show
         run: |
@@ -104,6 +133,7 @@ jobs:
           $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
           $ok3 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\ssecret\s\|\s200\s\|\sTrue'
           if (-not ($ok1 -and $ok2 -and $ok3)) { Write-Error "Edge probe failed. One or more endpoints not 200." }
+
 
 
 
