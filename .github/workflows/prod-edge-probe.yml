@@ -1,21 +1,30 @@
+name: Prod Edge Probe (read-only)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+  push:
+    branches: [ main ]
+    paths:
+      - 'supabase/functions/**'
+
+permissions:
+  contents: read
+
 jobs:
   probe:
     runs-on: windows-latest
     defaults:
       run:
         shell: pwsh
-
     env:
-      # New names (preferred)
+      # Map secrets to ALL names the scripts might read
       PROJECT_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
-      SUPABASE_SECRET_KEY:      ${{ secrets.PROD_SECRET_KEY }}
+      SUPABASE_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
       GV_ENV: prod
-      # Legacy aliases to keep old scripts working
-      ANON_KEY:             ${{ secrets.PROD_PUBLISHABLE_KEY }}
-      SUPABASE_ANON_KEY:    ${{ secrets.PROD_PUBLISHABLE_KEY }}
-      SERVICE_ROLE_KEY:     ${{ secrets.PROD_SECRET_KEY }}
 
     steps:
       - name: Checkout
@@ -23,38 +32,57 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Diagnostics — PS version & env presence
+      - name: Mask secrets
         run: |
-          $ErrorActionPreference = 'Stop'
-          Write-Host "PSVersion:"; $PSVersionTable
-          $required = @(
-            'PROJECT_URL','SUPABASE_URL',
-            'SUPABASE_PUBLISHABLE_KEY','SUPABASE_SECRET_KEY','GV_ENV'
-          )
-          $missing = $required | Where-Object { -not $env:$_ -or [string]::IsNullOrWhiteSpace($env:$_) }
-          if ($missing.Count -gt 0) {
-            Write-Error ("Missing required env vars: {0}" -f ($missing -join ', '))
-          } else {
-            Write-Host "All required env vars are present."
-          }
+          echo "::add-mask::$env:ANON_KEY"
+          echo "::add-mask::$env:SUPABASE_ANON_KEY"
+          echo "::add-mask::$env:SERVICE_ROLE_KEY"
 
-      - name: Run PROD edge test (pwsh, loud)
+      - name: Sanity echo (sanitized)
         run: |
-          $ErrorActionPreference = 'Stop'
-          $ProgressPreference = 'SilentlyContinue'
+          Write-Host "PROJECT_URL set: $([bool]$env:PROJECT_URL)"
+          Write-Host "SUPABASE_URL set: $([bool]$env:SUPABASE_URL)"
+          Write-Host "ANON_KEY present: $([bool]$env:ANON_KEY)"
+          Write-Host "SUPABASE_ANON_KEY present: $([bool]$env:SUPABASE_ANON_KEY)"
+
+      - name: Run PS7-safe edge probe
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $ProgressPreference='SilentlyContinue'
           Set-StrictMode -Version Latest
+          . ./.codex/test_edges_prod.ps1
 
-          $script = ".\.codex\test_edges_prod.ps1"
-          if (-not (Test-Path $script)) { throw "Missing $script" }
+      - name: Summarize last report
+        id: show
+        run: |
+          $dir = Get-ChildItem .\reports -Directory -Filter 'edge_test_*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if (-not $dir) { throw "No report folder created by test_edges_prod.ps1" }
+          $edge = Join-Path $dir.FullName 'edge_results.txt'
+          $sum  = Join-Path $dir.FullName 'SUMMARY.md'
+          echo "## PROD Edge Probe"              >> $env:GITHUB_STEP_SUMMARY
+          echo "Report: $($dir.FullName)"        >> $env:GITHUB_STEP_SUMMARY
+          Get-Content $edge | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          ""                                     | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          Get-Content $sum  | Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          "summary_path=$sum" | Out-File -Append -FilePath $env:GITHUB_OUTPUT -Encoding utf8
 
-          $log = Join-Path $env:RUNNER_TEMP "probe.log"
-          try {
-            & $script *>&1 | Tee-Object -FilePath $log
-            $code = $LASTEXITCODE
-            if ($code -ne 0) { throw "Probe script exit code $code" }
-          } catch {
-            Write-Host "---- probe.log (captured output) ----"
-            if (Test-Path $log) { Get-Content $log -Raw | Write-Host }
-            Write-Error $_
-            exit 1
+      - name: Upload probe artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: prod-edge-probe
+          path: |
+            reports/**/edge_results.txt
+            reports/**/SUMMARY.md
+          if-no-files-found: warn
+
+      # Optional: make the job fail if any endpoint != 200
+      - name: Gate on results
+        run: |
+          $sum = Get-Content "${{ steps.show.outputs.summary_path }}" -Raw
+          $ok1 = $sum -match '\|\simport-prices\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
+          $ok2 = $sum -match '\|\scheck-sets\s\|\sPOST\s\|\sservice-role\s\|\s200\s\|\sTrue'
+          $ok3 = $sum -match '\|\swall_feed\s\|\sGET\s\|\sanon\s\|\s200\s\|\sTrue'
+          if (-not ($ok1 -and $ok2 -and $ok3)) {
+            Write-Error "Edge probe failed. One or more endpoints not 200."
           }
