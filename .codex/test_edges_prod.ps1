@@ -1,4 +1,4 @@
-Set-StrictMode -Version Latest
+﻿Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
@@ -6,7 +6,7 @@ function Invoke-Probe {
   param(
     [Parameter(Mandatory)] [string]$Name,
     [Parameter(Mandatory)] [ValidateSet("GET","POST")] [string]$Method,
-    [Parameter(Mandatory)] [string]$Auth,    # "anon" or "service-role"
+    [Parameter(Mandatory)] [string]$Auth,    # "anon" or "secret"
     [Parameter(Mandatory)] [string]$Url,
     [hashtable]$Headers = @{},
     $Body = $null
@@ -94,8 +94,8 @@ $uChk  = "${base}functions/v1/check-sets"
 
 $results = @()
 $results += Invoke-Probe -Name "wall_feed"     -Method GET  -Auth "anon"         -Url $uWall -Headers $hAnon
-$results += Invoke-Probe -Name "import-prices" -Method POST -Auth "service-role"  -Url $uImp  -Headers $hSrv -Body @{ dryRun = $true }
-$results += Invoke-Probe -Name "check-sets"    -Method POST -Auth "service-role"  -Url $uChk  -Headers $hSrv -Body @{ dryRun = $true }
+$results += Invoke-Probe -Name "import-prices" -Method POST -Auth "secret"  -Url $uImp  -Headers $hSrv -Body @{ dryRun = $true }
+$results += Invoke-Probe -Name "check-sets"    -Method POST -Auth "secret"  -Url $uChk  -Headers $hSrv -Body @{ dryRun = $true }
 
 # Output folder
 $ts = (Get-Date -Format "yyyyMMdd_HHmmss")
@@ -123,3 +123,4 @@ $md -join "`r`n" | Out-File -FilePath $mdPath -Encoding utf8
 
 # Exit code for CI
 if ($allOk) { exit 0 } else { exit 1 }
+

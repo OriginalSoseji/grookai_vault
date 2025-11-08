@@ -7,7 +7,7 @@
 Flutter + Supabase app for TCG collection management.
 
 ## Quick start
-1. Copy \lib/main.dart\ and set your Supabase URL/anon key.
+1. Copy \lib/main.dart\ and set your Supabase URL/Publishable key.
 2. Run:
    \\\powershell
    flutter clean
@@ -27,4 +27,5 @@ Flutter + Supabase app for TCG collection management.
 
 ## CI Status
 [![Flutter CI](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/OriginalSoseji/grookai_vault/actions/workflows/flutter-ci.yml)
+
 
