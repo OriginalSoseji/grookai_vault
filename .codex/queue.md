@@ -98,3 +98,97 @@ You are in Windows PowerShell at C:\grookai_vault.
 > git push
 > ```
 ---
+
+---
+
+> ### TASK: Modernize `import-prices` Edge Function auth and redeploy (Supabase → SECRET_KEY) CONFIRM: YES
+>
+> **Context:** Windows PowerShell @ `C:\\grookai_vault`
+> Goal: Update `supabase/functions/import-prices/index.ts` to use the new `SECRET_KEY` convention instead of `SERVICE_ROLE_KEY`, redeploy, and verify the function returns `200 OK` in the Bridge probe.
+>
+> ---
+>
+> #### **Steps to perform**
+>
+> 1. **Locate file:**
+>    `C:\\grookai_vault\\supabase\\functions\\import-prices\\index.ts`
+>
+> 2. **Replace the legacy key block**
+>
+>    * **Find**:
+>
+>      ```ts
+>      const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SERVICE_ROLE_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY") || "";
+>      if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
+>        throw new Error("Missing env: SERVICE_ROLE_KEY and/or PROJECT_URL.");
+>      }
+>      function srHeaders() {
+>        return {
+>          apikey: SERVICE_ROLE_KEY,
+>          Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+>          "Content-Type": "application/json",
+>          Prefer: "count=exact"
+>        };
+>      }
+>      ```
+>
+>    * **Replace with:**
+>
+>      ```ts
+>      const SECRET_KEY =
+>        Deno.env.get("SUPABASE_SECRET_KEY") ||
+>        Deno.env.get("SECRET_KEY") ||
+>        Deno.env.get("SB_SECRET_KEY") ||
+>        "";
+>
+>      if (!SUPABASE_URL || !SECRET_KEY) {
+>        throw new Error("Missing env: SECRET_KEY and/or PROJECT_URL.");
+>      }
+>
+>      function srHeaders() {
+>        return {
+>          apikey: SECRET_KEY,
+>          Authorization: `Bearer ${SECRET_KEY}`,
+>          "Content-Type": "application/json",
+>          Prefer: "count=exact"
+>        };
+>      }
+>      ```
+>
+> 3. **Save and redeploy**
+>
+>    ```powershell
+>    supabase functions deploy import-prices
+>    ```
+>
+> 4. **Run Bridge probe to verify**
+>
+>    ```powershell
+>    ./scripts/bridge_task_import_prices.ps1
+>    ```
+>
+> 5. **If output shows**
+>
+>    ```
+>    [Bridge] import-prices → Code=200 Ok=True
+>    ```
+>
+>    then commit and push:
+>
+>    ```powershell
+>    git add supabase/functions/import-prices/index.ts
+>    git commit -m "fix(import-prices): align auth with SUPABASE_SECRET_KEY"
+>    git push
+>    ```
+>
+> ---
+>
+> #### ✅ **Validation**
+>
+> * `import-prices` redeploys successfully to project `ycdxbpibncqcchqiihfz`.
+> * Bridge probe output returns `Code=200 Ok=True`.
+> * Nightly CI comment shows `import-prices ✅` in summary.
+>
+> ---
+>
+> **Goal:** Fully modernize the `import-prices` function to match new environment variable standards and confirm successful operation through Bridge automation.
