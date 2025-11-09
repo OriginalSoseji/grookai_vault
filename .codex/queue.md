@@ -101,6 +101,124 @@ You are in Windows PowerShell at C:\grookai_vault.
 
 ---
 
+### TASK: Make import-prices SRK-free via SECURITY DEFINER RPC + publishable key CONFIRM: YES
+
+Context: Windows PowerShell at `C:\grookai_vault`; project is linked (`ycdxbpibncqcchqiihfz`). Goal: remove SRK usage, call a definer RPC from Edge using only publishable key + shared token, redeploy, probe, and log.
+
+1) Add SQL RPC (security definer)
+
+Create `supabase/migrations/now_import_prices_definer.sql` with:
+
+```
+create schema if not exists admin;
+create or replace function admin.import_prices_do(_payload jsonb, _bridge_token text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  if _bridge_token is distinct from current_setting('app.bridge_token', true) then
+    raise exception 'unauthorized';
+  end if;
+  -- TODO: perform the real inserts/updates using _payload
+  return jsonb_build_object('ok', true, 'received', _payload);
+end;
+$$;
+revoke all on function admin.import_prices_do(jsonb, text) from public;
+grant execute on function admin.import_prices_do(jsonb, text) to anon;
+```
+
+Apply migration (psql or your normal migration runner).
+
+2) Set function secrets (no SRK)
+
+Ensure (or set):
+
+```
+supabase secrets set "SUPABASE_URL=https://ycdxbpibncqcchqiihfz.supabase.co"
+supabase secrets set "SUPABASE_PUBLISHABLE_KEY=$env:SUPABASE_PUBLISHABLE_KEY"
+```
+
+Generate a private bridge token once (GUID) and set:
+
+```
+if (-not $env:BRIDGE_IMPORT_TOKEN) { $env:BRIDGE_IMPORT_TOKEN=[guid]::NewGuid().ToString() }
+supabase secrets set "BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN"
+```
+
+3) Patch Edge Function (`supabase/functions/import-prices/index.ts`) to SRK-free
+
+Replace auth + write logic with:
+
+```ts
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+const url   = Deno.env.get("SUPABASE_URL")!;
+const pub   = Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!;
+const token = Deno.env.get("BRIDGE_IMPORT_TOKEN")!;
+
+export default async (req: Request) => {
+  if (req.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
+  const body = await req.json().catch(() => ({}));
+  if (req.headers.get("x-bridge-token") !== token) return new Response("Unauthorized", { status: 401 });
+
+  const supabase = createClient(url, pub);
+  // Optionally set GUC so the RPC can read it via current_setting
+  await supabase.rpc('set_config', { parameter: 'app.bridge_token', value: token, is_local: true });
+
+  const { data, error } = await supabase.rpc('admin.import_prices_do', {
+    _payload: body,
+    _bridge_token: token, // or null if you rely solely on set_config above
+  });
+
+  if (error) return new Response(JSON.stringify({ ok:false, error }), { status: 500 });
+  return new Response(JSON.stringify({ ok:true, data }), { status: 200, headers: { "content-type": "application/json" }});
+};
+```
+
+Stage/commit if changed:
+
+```
+git add supabase/functions/import-prices/index.ts supabase/migrations/*.sql
+git commit -m "feat(import-prices): SRK-free via SECURITY DEFINER RPC + publishable key"
+git push
+```
+
+4) Update Bridge probe to use publishable key + token
+
+Edit `scripts/bridge_task_import_prices.ps1` headers to:
+
+```
+$headers = @{
+  "Authorization" = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"
+  "apikey"        = $env:SUPABASE_PUBLISHABLE_KEY
+  "x-bridge-token"= $env:BRIDGE_IMPORT_TOKEN
+}
+```
+
+5) Redeploy + probe + log
+```
+supabase functions deploy import-prices
+./scripts/bridge_task_import_prices.ps1
+```
+
+Write `reports/import_prices_srk_free_<timestamp>.txt` with the single probe result line.
+
+✅ Acceptance
+
+- No SRK or SUPABASE_SECRET_KEY used anywhere in the function.
+- Secrets set: SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, BRIDGE_IMPORT_TOKEN.
+- Probe prints: [Bridge] import-prices → Code=200 Ok=True.
+- SQL function exists and is SECURITY DEFINER with anon execute.
+
+Notes
+
+Keep BRIDGE_IMPORT_TOKEN private; it’s not a user-facing secret.
+
+If you later expand, you can reuse this pattern for other write flows (one RPC per capability).
+
+---
+
 > ### TASK: Modernize `import-prices` Edge Function auth and redeploy (Supabase → SECRET_KEY) CONFIRM: YES
 >
 > **Context:** Windows PowerShell @ `C:\\grookai_vault`
