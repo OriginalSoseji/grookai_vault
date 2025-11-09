@@ -1,7 +1,9 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const url   = Deno.env.get("SUPABASE_URL")!;
-const pub   = Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!;
+const url = Deno.env.get("SUPABASE_URL")!;
+const pub =
+  Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ||
+  Deno.env.get("SUPABASE_ANON_KEY")!;
 const token = Deno.env.get("BRIDGE_IMPORT_TOKEN")!;
 
 export default async (req: Request) => {
