@@ -93,6 +93,20 @@
         "cwd": "C:\\\\grookai_vault"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Bridge: Mint Import Token",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Set-Location C:\\\\grookai_vault; ./scripts/mint_import_token.ps1"
+      ],
+      "options": {
+        "cwd": "C:\\\\grookai_vault"
+      },
+      "problemMatcher": []
     }
   ]
 }
