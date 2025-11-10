@@ -119,6 +119,46 @@ jobs:
 # bump: 2025-11-09T23:14:29
 
       # GV-DIAG-ALWAYS (do not remove)
+      - name: Pre-diagnostics (export codes even on failure)
+        if: always()
+        shell: pwsh
+        continue-on-error: true
+        env:
+          SUPABASE_URL:          ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:  ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          BRIDGE_IMPORT_TOKEN:   ${{ secrets.PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+
+          function Hash8([string]$s){ if([string]::IsNullOrWhiteSpace($s)){return "<missing>"} ($d=[Security.Cryptography.SHA256]::Create()).ComputeHash([Text.Encoding]::UTF8.GetBytes($s))|%{$_.ToString('x2')} -join '' | % { $_.Substring(0,8) } }
+          function Export([string]$k,[string]$v){ "$($k)=$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+
+          # B: GET root (publishable headers)
+          $diagB = "<unknown>"
+          try {
+            $h = @{ Authorization = "Bearer $env:SUPABASE_PUBLISHABLE"; apikey = $env:SUPABASE_PUBLISHABLE }
+            $resp = Invoke-WebRequest -Method GET -Uri "$($env:SUPABASE_URL)" -Headers $h -UseBasicParsing -TimeoutSec 15
+            $diagB = $resp.StatusCode
+          } catch {
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $diagB = $_.Exception.Response.StatusCode.value__ }
+          }
+          Export "DIAG_B_CODE" "$diagB"
+
+          # A: import-prices ping (verify_jwt=false)
+          $diagA = "<unknown>"
+          try {
+            $eh = @{ "x-bridge-token" = "$env:BRIDGE_IMPORT_TOKEN" }
+            $eurl = "$($env:SUPABASE_URL.TrimEnd('/'))/functions/v1/import-prices"
+            $ebody = @{ ping = "diag" } | ConvertTo-Json
+            $eresp = Invoke-WebRequest -Method POST -Uri $eurl -Headers $eh -Body $ebody -ContentType 'application/json' -UseBasicParsing -TimeoutSec 20
+            $diagA = $eresp.StatusCode
+          } catch {
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $diagA = $_.Exception.Response.StatusCode.value__ }
+          }
+          Export "DIAG_A_CODE" "$diagA"
+          Export "FINAL_CODE"    "$diagA"
+          Export "IMPORT_PRICES_VARIANT" "publishable"
       - name: Emit diagnostics (always)
         if: always()
         shell: pwsh
