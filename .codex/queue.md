@@ -926,3 +926,161 @@ $bridgeHash = Grab @("(?m)Bridge\s+hash8\s*[:=]\s*([a-f0-9]{8})")
 ```
 ---
 
+### TASK: Purge legacy queue items + enforce **apikey-only + bridge** validator (single-pass)
+
+You are in Windows PowerShell at `C:\grookai_vault`. **Replace the entire contents** of `.codex/queue.md` with this task and execute it. The task will:
+
+* Remove/disable any tasks and workflow files that still reference **legacy** keys or `Authorization: Bearer ...` for Supabase **Functions**
+* Keep only the **apikey-only + x-bridge-token** model
+* Add/normalize a single validator workflow and a one-click local validator script
+* Leave a short success note in the commit message
+
+---
+
+**Edits to perform (exact):**
+
+1. **Delete these legacy/conflicting tasks from `.codex/queue.md` (if present):**
+
+* “TASK: Probe workflow sanity (demo)”
+* “TASK: Clean baseline for the probe workflow (drop-in)”
+* “TASK: Modernize import-prices … (Supabase → SECRET_KEY)”
+* Any task that uses `Authorization: Bearer` to call `functions/v1/*`
+  Keep none of them. Replace the queue with this task only.
+
+2. **Remove/disable legacy probe workflows** if they still exist:
+
+* Delete `.github/workflows/prod-edge-probe.yml`
+* Delete `.github/workflows/prod-import-prices-validate-pub.yml`
+* If you prefer not to delete, replace their content with:
+
+  ```
+  name: DISABLED (legacy)
+  on: workflow_dispatch
+  jobs: { disabled: { runs-on: ubuntu-latest, steps: [ { run: 'echo "disabled"' } ] } }
+  ```
+
+3. **Create/replace** `.github/workflows/prod-import-prices-validate-edge.yml` with an **apikey-only** validator:
+
+```yaml
+name: Prod Import-Prices Validate (apikey-only)
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "supabase/functions/import-prices/**"
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: read
+
+env:
+  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Emit six-line probe (apikey-only + bridge)
+        shell: pwsh
+        env:
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Stop"
+          $u = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+          $H = @{
+            apikey           = $env:SUPABASE_PUBLISHABLE_KEY
+            'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
+            'Content-Type'   = 'application/json'
+          }
+          $B = '{"ping":"ci-emit"}'
+          try {
+            $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 20
+            $status = [string]$r.StatusCode
+            $content = [string]$r.Content
+          } catch {
+            $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
+            $content = ''
+          }
+          function Hash8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+          $body300 = if ($content.Length -gt 300) { $content.Substring(0,300) } else { $content }
+          Write-Output "URL: $u"
+          Write-Output "Method: POST"
+          Write-Output "Status: $status"
+          Write-Output "GatewayAuth: apikey_only"
+          Write-Output ("BridgeTokenHash8: " + (Hash8 $env:BRIDGE_IMPORT_TOKEN))
+          Write-Output "Body[0..300]: $body300"
+```
+
+4. **Ensure function config is set**:
+
+* File: `supabase/functions/import-prices/config.toml`
+
+```
+verify_jwt = false
+```
+
+5. **Create/replace** `scripts/session_sync_bridge_and_validate.ps1` with **apikey-only** headers and short log retries:
+
+```powershell
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
+
+function ReadSecret($label){ $s=Read-Host $label -AsSecureString; (New-Object System.Net.NetworkCredential('', $s)).Password }
+if (-not $env:SUPABASE_PUBLISHABLE_KEY) { $env:SUPABASE_PUBLISHABLE_KEY = ReadSecret 'SUPABASE_PUBLISHABLE_KEY (sb_publishable_...)' }
+if (-not $env:BRIDGE_IMPORT_TOKEN)      { $env:BRIDGE_IMPORT_TOKEN      = ReadSecret 'BRIDGE_IMPORT_TOKEN' }
+
+$u = 'https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices'
+$H = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }
+$B = @{ ping='diag' } | ConvertTo-Json
+
+# Direct POST (for status & body)
+try {
+  $resp = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing
+  $status = [string]$resp.StatusCode
+  $body   = [string]$resp.Content
+} catch {
+  $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
+  $body   = ''
+}
+
+function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+
+Write-Output "URL: $u"
+Write-Output "Method: POST"
+Write-Output "Status: $status"
+Write-Output "GatewayAuth: apikey_only"
+Write-Output ("BridgeTokenHash8: " + (H8 $env:BRIDGE_IMPORT_TOKEN))
+Write-Output ("Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length))))
+
+# Gate snapshot (best-effort: fetch logs a few times)
+$gate = '<none>'
+for ($i=0; $i -lt 5; $i++) {
+  try {
+    $log = supabase functions logs -f import-prices --project-ref ycdxbpibncqcchqiihfz 2>$null
+    $line = ($log -split "`n") | Where-Object { $_ -match '\[IMPORT-PRICES\]\s+token\.check' } | Select-Object -First 1
+    if ($line) { $gate = $line; break }
+  } catch {}
+  Start-Sleep -Seconds 2
+}
+Write-Output "`n--- Function Gate Snapshot ---"
+Write-Output ($gate)
+```
+
+6. **Repo guard** (if not already present): `scripts/guard_no_legacy_keys.ps1`
+
+* Fail on any of these **anywhere**: `SUPABASE_ANON_KEY`, `PROD_ANON_KEY`, `STAGING_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SERVICE_ROLE_KEY`, `PROD_SERVICE_ROLE_KEY`, `STAGING_SERVICE_ROLE_KEY`, or `Authorization:\s*Bearer` when targeting Supabase **functions**.
+
+7. **Commit message:**
+
+```
+chore(ci/auth): purge legacy queue + enforce apikey-only validator and session probe
+```
+
+**End of task.**

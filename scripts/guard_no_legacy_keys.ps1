@@ -7,7 +7,9 @@ $patterns = @(
 )
 $bad = @()
 Get-ChildItem -Recurse -File | Where-Object {
-  $_.Extension -in '.ts','.tsx','.js','.jsx','.ps1','.psm1','.psd1','.sh','.bash','.zsh','.yml','.yaml','.json','.toml'
+  $_.FullName -notmatch "\\\.git\\" -and $_.FullName -notmatch "\\reports\\" -and $_.FullName -notmatch "\\\.codex\\" -and $_.FullName -notmatch "scripts\\guard_no_legacy_keys\.ps1$" -and (
+    $_.Extension -in '.ts','.tsx','.js','.jsx','.ps1','.psm1','.psd1','.sh','.bash','.zsh','.yml','.yaml','.json','.toml'
+  )
 } | ForEach-Object {
   $t = try { Get-Content $_.FullName -Raw } catch { '' }
   foreach ($p in $patterns) { if ($t -match $p) { $bad += "$( $_.FullName ): $p" } }

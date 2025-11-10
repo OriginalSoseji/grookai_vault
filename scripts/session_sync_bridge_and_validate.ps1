@@ -104,3 +104,46 @@ Write-Host ("Publishable hash8: " + $pubH)
 Write-Host ("Bridge hash8: " + $bri8)
 Write-Host ("CI logs -> " + $CiLog)
 Write-Host "-----------------------------"
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
+
+function ReadSecret($label){ $s=Read-Host $label -AsSecureString; (New-Object System.Net.NetworkCredential('', $s)).Password }
+if (-not $env:SUPABASE_PUBLISHABLE_KEY) { $env:SUPABASE_PUBLISHABLE_KEY = ReadSecret 'SUPABASE_PUBLISHABLE_KEY (sb_publishable_...)' }
+if (-not $env:BRIDGE_IMPORT_TOKEN)      { $env:BRIDGE_IMPORT_TOKEN      = ReadSecret 'BRIDGE_IMPORT_TOKEN' }
+
+$u = 'https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices'
+$H = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }
+$B = @{ ping='diag' } | ConvertTo-Json
+
+# Direct POST (for status & body)
+try {
+  $resp = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing
+  $status = [string]$resp.StatusCode
+  $body   = [string]$resp.Content
+} catch {
+  $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
+  $body   = ''
+}
+
+function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+
+Write-Output "URL: $u"
+Write-Output "Method: POST"
+Write-Output "Status: $status"
+Write-Output "GatewayAuth: apikey_only"
+Write-Output ("BridgeTokenHash8: " + (H8 $env:BRIDGE_IMPORT_TOKEN))
+Write-Output ("Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length))))
+
+# Gate snapshot (best-effort: fetch logs a few times)
+$gate = '<none>'
+for ($i=0; $i -lt 5; $i++) {
+  try {
+    $log = supabase functions logs -f import-prices --project-ref ycdxbpibncqcchqiihfz 2>$null
+    $line = ($log -split "`n") | Where-Object { $_ -match '\[IMPORT-PRICES\]\s+token\.check' } | Select-Object -First 1
+    if ($line) { $gate = $line; break }
+  } catch {}
+  Start-Sleep -Seconds 2
+}
+Write-Output "`n--- Function Gate Snapshot ---"
+Write-Output ($gate)

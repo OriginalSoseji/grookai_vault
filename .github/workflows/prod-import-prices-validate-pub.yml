@@ -11,4 +11,10 @@ jobs:
         shell: pwsh
         run: |
           Write-Output 'GV_CI_DISABLED: superseded by prod-import-prices-validate-edge.yml'
-
+name: DISABLED (legacy)
+on: workflow_dispatch
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "disabled"
