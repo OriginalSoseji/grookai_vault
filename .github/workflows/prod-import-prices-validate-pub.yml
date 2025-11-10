@@ -117,3 +117,31 @@ jobs:
           if ($finalCode -eq 401) { Write-Error '401 from gateway; verify dashboard toggle and secrets.' } else { Write-Error ("Validation failed (Variant=" + $final + ' Code=' + $finalCode + ').') }
 
 # bump: 2025-11-09T23:14:29
+
+      # GV-DIAG-ALWAYS (do not remove)
+      - name: Emit diagnostics (always)
+        if: always()
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          function Hash8([string]$s) {
+            if ([string]::IsNullOrWhiteSpace($s)) { return "<missing>" }
+            $b = [Text.Encoding]::UTF8.GetBytes($s)
+            $h = [Security.Cryptography.SHA256]::Create().ComputeHash($b)
+            (-join ($h | ForEach-Object { $_.ToString("x2") })).Substring(0,8)
+          }
+          $diagB = $env:DIAG_B_CODE; if (-not $diagB) { $diagB = "<unknown>" }
+          $diagA = $env:DIAG_A_CODE; if (-not $diagA) { $diagA = "<unknown>" }
+          $variant = $env:IMPORT_PRICES_VARIANT; if (-not $variant) { $variant = "<unknown>" }
+          $final = $env:FINAL_CODE; if (-not $final) { $final = "<unknown>" }
+          $pubH = Hash8 $env:SUPABASE_PUBLISHABLE_KEY
+          if ($pubH -eq "<missing>") { $pubH = Hash8 $env:PROD_PUBLISHABLE_KEY }
+          if ($pubH -eq "<missing>") { $pubH = Hash8 $env:SUPABASE_ANON_KEY }
+          $brH = Hash8 $env:BRIDGE_IMPORT_TOKEN
+          if ($brH -eq "<missing>") { $brH = Hash8 $env:IMPORT_PRICES_BRIDGE_TOKEN }
+          Write-Host "Diag echo B code: $diagB"
+          Write-Host "Diag echo A code: $diagA"
+          Write-Host "import-prices Variant: $variant"
+          Write-Host "import-prices Final code: $final"
+          Write-Host "Publishable hash8: $pubH"
+          Write-Host "Bridge hash8: $brH"
