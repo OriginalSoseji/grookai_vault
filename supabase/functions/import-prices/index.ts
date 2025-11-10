@@ -10,6 +10,10 @@ export default async (req: Request) => {
   try {
     if (req.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
     const body = await req.json().catch(() => ({}));
+    // Lightweight health path: accept ping without touching DB
+    if ((body && (body.ping || body.source === "bridge_health"))) {
+      return new Response(JSON.stringify({ ok: true, health: true }), { status: 200, headers: { "content-type": "application/json" } });
+    }
     if (req.headers.get("x-bridge-token") !== token) return new Response("Unauthorized", { status: 401 });
 
     const supabase = createClient(url, pub);
