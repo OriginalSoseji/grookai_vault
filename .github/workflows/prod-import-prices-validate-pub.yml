@@ -181,6 +181,50 @@ jobs:
           $ErrorActionPreference = "Continue"
           function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
           $FUNCS = $env:SUPABASE_URL -replace '\.supabase\.co
+      - name: Diag B (diag-echo via REST /functions/v1 with publishable key)
+        if: always()
+        shell: pwsh
+        env:
+          SUPABASE_URL:          ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:  ${{ secrets.PROD_PUBLISHABLE_KEY }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          $BASE = $env:SUPABASE_URL.TrimEnd('/')
+          $url  = "$BASE/functions/v1/diag-echo"
+          $H = @{ Authorization = "Bearer $($env:SUPABASE_PUBLISHABLE)"; apikey = $env:SUPABASE_PUBLISHABLE }
+          try { $r = Invoke-WebRequest -Method GET -Uri $url -Headers $H -UseBasicParsing -TimeoutSec 20; $code = $r.StatusCode }
+          catch { $code = if ($_.Exception.Response){ $_.Exception.Response.StatusCode.value__ } else { "<unknown>" } }
+          Export "DIAG_B_CODE" "$code"
+      - name: Validate import-prices (REST /functions/v1 + publishable + bridge)
+        if: always()
+        shell: pwsh
+        env:
+          SUPABASE_URL:          ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:  ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          BRIDGE_IMPORT_TOKEN:   ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          $BASE = $env:SUPABASE_URL.TrimEnd('/')
+          $url  = "$BASE/functions/v1/import-prices"
+          $body = @{ ping = "diag" } | ConvertTo-Json
+          $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $H["Authorization"]  = "Bearer $($env:SUPABASE_PUBLISHABLE)"
+          $H["apikey"]         = $env:SUPABASE_PUBLISHABLE
+          $H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN
+          $H["X-Bridge-Token"] = $env:BRIDGE_IMPORT_TOKEN
+          try {
+            $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 30
+            $code = $r.StatusCode
+          } catch {
+            $code = if ($_.Exception.Response){ $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }
+          }
+          Export "DIAG_A_CODE" "$code"
+          Export "FINAL_CODE"  "$code"
+          Export "IMPORT_PRICES_VARIANT" "publishable-rest"
       - name: Emit diagnostics (always)
         if: always()
         shell: pwsh
