@@ -115,3 +115,5 @@ jobs:
           $sum | ForEach-Object { Write-Host $_ }
           if ($finalCode -ge 200 -and $finalCode -lt 300) { exit 0 }
           if ($finalCode -eq 401) { Write-Error '401 from gateway; verify dashboard toggle and secrets.' } else { Write-Error ("Validation failed (Variant=" + $final + ' Code=' + $finalCode + ').') }
+
+# bump: 2025-11-09T23:14:29
