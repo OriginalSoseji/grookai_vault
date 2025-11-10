@@ -59,6 +59,38 @@
         "./scripts/bridge_token_doctor.ps1"
       ],
       "problemMatcher": []
+    },
+    {
+      "label": "Bridge: Import Prices Probe",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location C:\\\\grookai_vault; ./scripts/bridge_status.ps1"
+      ],
+      "options": {
+        "cwd": "C:\\\\grookai_vault"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Direct POST: import-prices (publishable)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location C:\\\\grookai_vault; ./scripts/test_import_prices.ps1"
+      ],
+      "options": {
+        "cwd": "C:\\\\grookai_vault"
+      },
+      "problemMatcher": []
     }
   ]
 }

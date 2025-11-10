@@ -47,3 +47,54 @@ if ($dirty) {
 "BRIDGE_STATUS_OK"
 
 Pop-Location
+
+
+function Invoke-GVImportPricesProbe {
+  [CmdletBinding()]
+  param()
+  Set-StrictMode -Version Latest
+  $ErrorActionPreference = "Stop"
+
+  if (-not $env:SUPABASE_URL -or -not $env:SUPABASE_PUBLISHABLE_KEY -or -not $env:BRIDGE_IMPORT_TOKEN) {
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=-1; Ok=$false; Note='Missing required env' }
+  }
+
+  $url = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+  $body = @{ ping = 'ok' } | ConvertTo-Json -Depth 5
+
+  # Variant A: apikey only (preferred)
+  $headers = @{
+    "apikey"         = $env:SUPABASE_PUBLISHABLE_KEY
+    "x-bridge-token" = $env:BRIDGE_IMPORT_TOKEN
+    "Content-Type"   = "application/json"
+  }
+
+  try {
+    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='A' }
+  } catch {
+    $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
+    if ($code -ne 401) {
+      return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$code; Ok=$false; Note='A' }
+    }
+  }
+
+  # Variant B: apikey + Authorization mirroring apikey (back-compat)
+  $headers["Authorization"] = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"  # MUST match apikey
+  try {
+    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='B' }
+  } catch {
+    $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
+    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$code; Ok=$false; Note='B' }
+  }
+}
+
+$probe = Invoke-GVImportPricesProbe
+$stamp = Get-Date -Format "yyyyMMdd_HHmmss"
+$outDir = "reports"
+if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir | Out-Null }
+$reportPath = Join-Path $outDir "import_prices_token_sync_$stamp.txt"
+"NAME, METHOD, AUTH, CODE, OK, VARIANT" | Out-File -FilePath $reportPath -Encoding utf8
+"$($probe.Name), $($probe.Method), $($probe.Auth), $($probe.Code), $($probe.Ok), $($probe.Note)" | Out-File -FilePath $reportPath -Append -Encoding utf8
+Write-Host "[Bridge] import-prices -> Code=$($probe.Code) Ok=$($probe.Ok) Variant=$($probe.Note)  Report=$reportPath"
