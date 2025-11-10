@@ -20,9 +20,44 @@ jobs:
 
       - name: Validate import-prices (bridge-only)
         shell: pwsh
-        env:
+        `env:
           FUNCS_BASE: ${{ env.FUNCS_BASE }}
-          BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+          BRIDGE_IMPORT_TOKEN:`n          EDGE_BEARER_FOR_GATEWAY: ${{ secrets.EDGE_BEARER_FOR_GATEWAY }}`n          PROD_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}`n          PROD_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}`n          PROD_SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }} ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          if (-not $env:BRIDGE_IMPORT_TOKEN) { Write-Host "Missing BRIDGE_IMPORT_TOKEN"; exit 1 }
+
+          # Build URL and headers — NOTE: no Authorization/apikey for verify_jwt=false
+          $url  = "$env:FUNCS_BASE/import-prices"
+          $body = @{ ping = "diag" } | ConvertTo-Json
+          $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $H["Authorization"] = "Bearer " + (@($env:EDGE_BEARER_FOR_GATEWAY,$env:PROD_ANON_KEY,$env:PROD_SECRET_KEY,$env:PROD_SERVICE_ROLE_KEY) | Where-Object { name: Prod Import-Prices Validate (EDGE — bridge-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GV_ENV: prod
+  PROJECT_REF: ycdxbpibncqcchqiihfz
+  FUNCS_BASE: https://ycdxbpibncqcchqiihfz.functions.supabase.co
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate import-prices (bridge-only)
+        shell: pwsh
+        `env:
+          FUNCS_BASE: ${{ env.FUNCS_BASE }}
+          BRIDGE_IMPORT_TOKEN:`n          EDGE_BEARER_FOR_GATEWAY: ${{ secrets.EDGE_BEARER_FOR_GATEWAY }}`n          PROD_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}`n          PROD_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}`n          PROD_SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }} ${{ secrets.BRIDGE_IMPORT_TOKEN }}
         run: |
           Set-StrictMode -Version Latest
           $ErrorActionPreference = "Continue"
@@ -35,6 +70,32 @@ jobs:
           $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
           $H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN
           try {
+            $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 30
+            $code = $r.StatusCode
+          } catch {
+            $code = if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }
+          }
+
+          # Emit six-line compatible fields
+          Export "DIAG_B_CODE"  "n/a"
+          Export "DIAG_A_CODE"  "$code"
+          Export "FINAL_CODE"   "$code"
+          Export "IMPORT_PRICES_VARIANT" "bridge-edge"
+          Export "PUBLISHABLE_HASH8" "<missing>"
+          Write-Host "import-prices Final code: $code"
+
+      - name: Emit diagnostics (always)
+        if: always()
+        shell: pwsh
+        run: |
+          "`nDiag echo B code: $env:DIAG_B_CODE"
+          "Diag echo A code: $env:DIAG_A_CODE"
+          "import-prices Variant: $env:IMPORT_PRICES_VARIANT"
+          "import-prices Final code: $env:FINAL_CODE"
+          "Publishable hash8: $env:PUBLISHABLE_HASH8"
+          "Bridge hash8: <hidden>" | Write-Output
+
+ } | Select-Object -First 1);`n          try {
             $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 30
             $code = $r.StatusCode
           } catch {
