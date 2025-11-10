@@ -1,5 +1,44 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+
+/** GV_BRIDGE_TOKEN_GATE: accept token via multiple header names; compare to env; log hash8s only */
+function hash8(s: string | null | undefined): string {
+  if (!s) return "<missing>";
+  const enc = new TextEncoder().encode(s);
+  // simple hash8 without external deps:
+  let h = 2166136261 >>> 0; // FNV-1a 32-bit
+  for (let i = 0; i < enc.length; i++) { h ^= enc[i]; h = Math.imul(h, 16777619) >>> 0; }
+  return ("00000000" + h.toString(16)).slice(-8);
+}
+
+function readBridgeHeader(req: Request): string {
+  const h = req.headers;
+  return (
+    h.get("x-bridge-token") ??
+    h.get("X-Bridge-Token") ??
+    h.get("bridge-token") ??
+    ""
+  );
+}
+
+async function requireBridgeToken(req: Request): Promise<Response | null> {
+  const headerToken = readBridgeHeader(req);
+  const secret = Deno.env.get("BRIDGE_IMPORT_TOKEN") ?? "";
+  const h8 = hash8(headerToken);
+  const s8 = hash8(secret);
+  console.log(`[IMPORT-PRICES] token.check header8=${h8} env8=${s8}`);
+  if (!secret) {
+    console.warn("[IMPORT-PRICES] BRIDGE_IMPORT_TOKEN env missing");
+    return new Response(JSON.stringify({ ok: false, code: 401, reason: "env-missing" }), { status: 401, headers: { "Content-Type": "application/json" } });
+  }
+  if (!headerToken) {
+    return new Response(JSON.stringify({ ok: false, code: 401, reason: "header-missing" }), { status: 401, headers: { "Content-Type": "application/json" } });
+  }
+  if (headerToken !== secret) {
+    return new Response(JSON.stringify({ ok: false, code: 401, reason: "token-mismatch", header8: h8, env8: s8 }), { status: 401, headers: { "Content-Type": "application/json" } });
+  }
+  return null; // pass
+}
 const url = Deno.env.get("SUPABASE_URL")!;
 const pub =
   Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ||
