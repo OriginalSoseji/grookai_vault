@@ -7,10 +7,8 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
-        "-ExecutionPolicy",
-        "Bypass",
         "-File",
         ".codex/dispatch_last_task.ps1"
       ],
@@ -22,10 +20,8 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
-        "-ExecutionPolicy",
-        "Bypass",
         "-File",
         "scripts/bridge_playlist.ps1",
         "local_only"
@@ -38,10 +34,8 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
-        "-ExecutionPolicy",
-        "Bypass",
         "-File",
         "scripts/bridge_status.ps1"
       ],
@@ -50,11 +44,9 @@
     {
       "label": "Bridge: Token Doctor (import-prices)",
       "type": "shell",
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
         "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
         "-Command",
         "./scripts/bridge_token_doctor.ps1"
       ],
@@ -63,11 +55,9 @@
     {
       "label": "Bridge: Import Prices Probe",
       "type": "shell",
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
         "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
         "-Command",
         "Set-Location C:\\\\grookai_vault; ./scripts/bridge_status.ps1"
       ],
@@ -79,13 +69,25 @@
     {
       "label": "Direct POST: import-prices (publishable)",
       "type": "shell",
-      "command": "powershell",
+      "command": "pwsh",
       "args": [
         "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
         "-Command",
         "Set-Location C:\\\\grookai_vault; ./scripts/test_import_prices.ps1"
+      ],
+      "options": {
+        "cwd": "C:\\\\grookai_vault"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate: import-prices (publishable, A→B→curl)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Set-Location C:\\\\grookai_vault; ./scripts/validate_import_prices_now.ps1"
       ],
       "options": {
         "cwd": "C:\\\\grookai_vault"
