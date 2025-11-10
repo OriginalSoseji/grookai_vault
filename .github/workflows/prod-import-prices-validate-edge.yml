@@ -60,9 +60,11 @@ jobs:
         if: always()
         shell: pwsh
         run: |
-          "`nDiag echo B code: $env:DIAG_B_CODE"
-          "Diag echo A code: $env:DIAG_A_CODE"
-          "import-prices Variant: $env:IMPORT_PRICES_VARIANT"
-          "import-prices Final code: $env:FINAL_CODE"
-          "Publishable hash8: $env:PUBLISHABLE_HASH8"
-          "Bridge hash8: <hidden>" | Write-Output
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          Write-Output "Diag echo B code: $env:DIAG_B_CODE"
+          Write-Output "Diag echo A code: $env:DIAG_A_CODE"
+          Write-Output "import-prices Variant: $env:IMPORT_PRICES_VARIANT"
+          Write-Output "import-prices Final code: $env:FINAL_CODE"
+          Write-Output "Publishable hash8: $env:PUBLISHABLE_HASH8"
+          Write-Output "Bridge hash8: <hidden>"
