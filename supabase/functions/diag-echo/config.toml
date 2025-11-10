@@ -1,0 +1,2 @@
+[functions.diag-echo]
+verify_jwt = false
