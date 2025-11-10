@@ -33,7 +33,7 @@ Write-Host ("Bridge token hash8 (input): " + $bri8) -ForegroundColor Cyan
 # 1a) Direct probe to Edge Functions using bridge-only header, capture HTTP status/body preview
 $FnUrl = "https://$ProjRef.functions.supabase.co/import-prices"
 $Body  = @{ ping = 'diag' }
-$H     = @{ 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN }
+$H     = @{ 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; apikey = $env:SUPABASE_PUBLISHABLE_KEY }
 $Status = '<unknown>'
 $BodyPreview = '<empty>'
 try {
@@ -46,11 +46,7 @@ try {
 }
 
 # Determine gateway bearer visibility (not used in direct POST)
-$GatewayAuth = '<none>'
-if ($env:EDGE_BEARER_FOR_GATEWAY) { $GatewayAuth = 'edge_bearer' }
-elseif ($env:PROD_ANON_KEY)       { $GatewayAuth = 'prod_anon' }
-elseif ($env:PROD_SECRET_KEY)     { $GatewayAuth = 'prod_secret' }
-elseif ($env:PROD_SERVICE_ROLE_KEY){ $GatewayAuth = 'service_role' }
+$GatewayAuth = 'apikey_only'
 
 # 2) Sync token to GitHub + Supabase, redeploy import-prices
 gh secret set BRIDGE_IMPORT_TOKEN --repo "$Owner/$Repo" --body "$BRI" | Out-Null
@@ -108,4 +104,3 @@ Write-Host ("Publishable hash8: " + $pubH)
 Write-Host ("Bridge hash8: " + $bri8)
 Write-Host ("CI logs -> " + $CiLog)
 Write-Host "-----------------------------"
-
