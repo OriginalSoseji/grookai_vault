@@ -80,3 +80,10 @@ jobs:
           name: prod-edge-probe
           path: SUMMARY.md
           if-no-files-found: warn
+name: DISABLED (legacy)
+on: workflow_dispatch
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "disabled"
