@@ -159,6 +159,33 @@ jobs:
           Export "DIAG_A_CODE" "$diagA"
           Export "FINAL_CODE"    "$diagA"
           Export "IMPORT_PRICES_VARIANT" "publishable"
+      - name: Validate import-prices (dual-casing token headers)
+        if: always()
+        shell: pwsh
+        env:
+          SUPABASE_URL:          ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:  ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          BRIDGE_IMPORT_TOKEN:   ${{ secrets.PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "$($k)=$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          $url = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+          $body = @{ ping = "diag" } | ConvertTo-Json
+          $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN
+          $H["X-Bridge-Token"] = $env:BRIDGE_IMPORT_TOKEN
+          $H["Authorization"]  = "Bearer $($env:SUPABASE_PUBLISHABLE)"
+          $H["apikey"]         = $env:SUPABASE_PUBLISHABLE
+          try {
+            $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 25
+            $code = $r.StatusCode
+          } catch {
+            $code = if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }
+          }
+          Export "DIAG_A_CODE" "$code"
+          Export "FINAL_CODE"  "$code"
+          Export "IMPORT_PRICES_VARIANT" "publishable"
       - name: Emit diagnostics (always)
         if: always()
         shell: pwsh
