@@ -225,6 +225,63 @@ jobs:
           Export "DIAG_A_CODE" "$code"
           Export "FINAL_CODE"  "$code"
           Export "IMPORT_PRICES_VARIANT" "publishable-rest"
+      - name: Diag B (REST /functions/v1 with CI-only bearer)
+        if: always()
+        shell: pwsh
+        env:
+          SUPABASE_URL:                ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:        ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          EDGE_BEARER_FOR_GATEWAY:     ${{ secrets.EDGE_BEARER_FOR_GATEWAY }}
+          PROD_ANON_KEY:               ${{ secrets.PROD_ANON_KEY }}
+          PROD_SECRET_KEY:             ${{ secrets.PROD_SECRET_KEY }}
+          PROD_SERVICE_ROLE_KEY:       ${{ secrets.PROD_SERVICE_ROLE_KEY }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          $BASE = $env:SUPABASE_URL.TrimEnd('/')
+          $url  = "$BASE/functions/v1/diag-echo"
+          $BEARER = $env:EDGE_BEARER_FOR_GATEWAY; if (-not $BEARER) { $BEARER = $env:PROD_ANON_KEY }
+          if (-not $BEARER) { $BEARER = $env:PROD_SECRET_KEY }
+          if (-not $BEARER) { $BEARER = $env:PROD_SERVICE_ROLE_KEY }
+          $H = @{ Authorization = "Bearer $BEARER"; apikey = $env:SUPABASE_PUBLISHABLE }
+          try { $r = Invoke-WebRequest -Method GET -Uri $url -Headers $H -UseBasicParsing -TimeoutSec 20; $code = $r.StatusCode }
+          catch { $code = if ($_.Exception.Response){ $_.Exception.Response.StatusCode.value__ } else { "<unknown>" } }
+          Export "DIAG_B_CODE" "$code"
+      - name: Validate import-prices (REST /functions/v1 + CI-only bearer + bridge)
+        if: always()
+        shell: pwsh
+        env:
+          SUPABASE_URL:                ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE:        ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          EDGE_BEARER_FOR_GATEWAY:     ${{ secrets.EDGE_BEARER_FOR_GATEWAY }}
+          PROD_ANON_KEY:               ${{ secrets.PROD_ANON_KEY }}
+          PROD_SECRET_KEY:             ${{ secrets.PROD_SECRET_KEY }}
+          PROD_SERVICE_ROLE_KEY:       ${{ secrets.PROD_SERVICE_ROLE_KEY }}
+          BRIDGE_IMPORT_TOKEN:         ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Continue"
+          function Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }
+          $BASE = $env:SUPABASE_URL.TrimEnd('/')
+          $url  = "$BASE/functions/v1/import-prices"
+          $body = @{ ping = "diag" } | ConvertTo-Json
+          $BEARER = $env:EDGE_BEARER_FOR_GATEWAY; if (-not $BEARER) { $BEARER = $env:PROD_ANON_KEY }
+          if (-not $BEARER) { $BEARER = $env:PROD_SECRET_KEY }
+          if (-not $BEARER) { $BEARER = $env:PROD_SERVICE_ROLE_KEY }
+          $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $H["Authorization"]  = "Bearer $BEARER"
+          $H["apikey"]         = $env:SUPABASE_PUBLISHABLE
+          $H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN
+          try {
+            $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 30
+            $code = $r.StatusCode
+          } catch {
+            $code = if ($_.Exception.Response){ $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }
+          }
+          Export "DIAG_A_CODE" "$code"
+          Export "FINAL_CODE"  "$code"
+          Export "IMPORT_PRICES_VARIANT" "rest-ci-bearer"
       - name: Emit diagnostics (always)
         if: always()
         shell: pwsh
