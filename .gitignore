@@ -60,3 +60,7 @@ CON
 !.codex/dispatch_last_task.ps1
 # Keep queue + scripts tracked
 # (scripts/ folder itself is added below)
+
+# Track VS Code Token Doctor task
+!.vscode/tasks.json
+!.vscode/
