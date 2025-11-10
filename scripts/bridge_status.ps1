@@ -70,7 +70,7 @@ function Invoke-GVImportPricesProbe {
   }
 
   try {
-    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing
+    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 8
     return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='A' }
   } catch {
     $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
@@ -82,7 +82,7 @@ function Invoke-GVImportPricesProbe {
   # Variant B: apikey + Authorization mirroring apikey (back-compat)
   $headers["Authorization"] = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"  # MUST match apikey
   try {
-    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing
+    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 8
     return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='B' }
   } catch {
     $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
