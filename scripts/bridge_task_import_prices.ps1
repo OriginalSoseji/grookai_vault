@@ -9,14 +9,14 @@ $ErrorActionPreference = "Stop"
 $base = "https://ycdxbpibncqcchqiihfz.supabase.co"
 $url  = "$base/functions/v1/import-prices"
 
-if ((-not $env:SUPABASE_PUBLISHABLE_KEY -and -not $env:SUPABASE_ANON_KEY) -or -not $env:BRIDGE_IMPORT_TOKEN) {
+if ((-not $env:SUPABASE_PUBLISHABLE_KEY -and -not $env:SUPABASE_PUBLISHABLE_KEY) -or -not $env:BRIDGE_IMPORT_TOKEN) {
     Write-Host "[INFO] SUPABASE_PUBLISHABLE_KEY or BRIDGE_IMPORT_TOKEN not set. Skipping safely." -ForegroundColor Yellow
     exit 0
 }
 
 $headers = @{
-    "Authorization" = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_ANON_KEY)"
-    "apikey"        = ($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_ANON_KEY)
+    "Authorization" = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_PUBLISHABLE_KEY)"
+    "apikey"        = ($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_PUBLISHABLE_KEY)
     "x-bridge-token"= $env:BRIDGE_IMPORT_TOKEN
 }
 

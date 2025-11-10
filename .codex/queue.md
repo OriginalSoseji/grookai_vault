@@ -1,4 +1,4 @@
-﻿# Codex Queue
+# Codex Queue
 
 Paste tasks below using this exact format. The dispatcher will grab the **last** block:
 
@@ -40,7 +40,7 @@ You are in Windows PowerShell at C:\grookai_vault.
 >         shell: pwsh
 >     env:
 >       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
->       SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+>       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
 >       GV_ENV: prod
 >     steps:
 >       - name: Checkout
@@ -67,7 +67,7 @@ You are in Windows PowerShell at C:\grookai_vault.
 >         continue-on-error: true
 >         run: |
 >           $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
->           $h = @{ apikey=$env:SUPABASE_ANON_KEY; Authorization="Bearer $($env:SUPABASE_ANON_KEY)" }
+>           $h = @{ apikey=$env:SUPABASE_PUBLISHABLE_KEY; Authorization="Bearer $($env:SUPABASE_PUBLISHABLE_KEY)" }
 >           try {
 >             $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
 >             $status = $r.StatusCode; $body = $r.Content
@@ -222,7 +222,7 @@ If you later expand, you can reuse this pattern for other write flows (one RPC p
 > ### TASK: Modernize `import-prices` Edge Function auth and redeploy (Supabase → SECRET_KEY) CONFIRM: YES
 >
 > **Context:** Windows PowerShell @ `C:\\grookai_vault`
-> Goal: Update `supabase/functions/import-prices/index.ts` to use the new `SECRET_KEY` convention instead of `SERVICE_ROLE_KEY`, redeploy, and verify the function returns `200 OK` in the Bridge probe.
+> Goal: Update `supabase/functions/import-prices/index.ts` to use the new `SECRET_KEY` convention instead of `SECRET_KEY`, redeploy, and verify the function returns `200 OK` in the Bridge probe.
 >
 > ---
 >
@@ -236,14 +236,14 @@ If you later expand, you can reuse this pattern for other write flows (one RPC p
 >    * **Find**:
 >
 >      ```ts
->      const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SERVICE_ROLE_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY") || "";
->      if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
->        throw new Error("Missing env: SERVICE_ROLE_KEY and/or PROJECT_URL.");
+>      const SECRET_KEY = Deno.env.get("SUPABASE_SECRET_KEY") || Deno.env.get("SECRET_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY") || "";
+>      if (!SUPABASE_URL || !SECRET_KEY) {
+>        throw new Error("Missing env: SECRET_KEY and/or PROJECT_URL.");
 >      }
 >      function srHeaders() {
 >        return {
->          apikey: SERVICE_ROLE_KEY,
->          Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+>          apikey: SECRET_KEY,
+>          Authorization: `Bearer ${SECRET_KEY}`,
 >          "Content-Type": "application/json",
 >          Prefer: "count=exact"
 >        };

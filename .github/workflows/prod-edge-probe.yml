@@ -22,7 +22,7 @@ jobs:
         shell: pwsh
     env:
       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-      SUPABASE_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
+      SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
       GV_ENV: prod
 
     steps:
@@ -51,8 +51,8 @@ jobs:
         run: |
           $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
           $h = @{
-            apikey       = $env:SUPABASE_ANON_KEY
-            Authorization= "Bearer $($env:SUPABASE_ANON_KEY)"
+            apikey       = $env:SUPABASE_PUBLISHABLE_KEY
+            Authorization= "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"
           }
           try {
             $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
