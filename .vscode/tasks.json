@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Codex: Dispatch last task",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        ".codex/dispatch_last_task.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Bridge: Playlist (manual)",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/bridge_playlist.ps1",
+        "local_only"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Bridge: Status",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/bridge_status.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Bridge: Token Doctor (import-prices)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "./scripts/bridge_token_doctor.ps1"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
