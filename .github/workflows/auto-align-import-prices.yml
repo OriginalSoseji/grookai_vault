@@ -173,15 +173,27 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
             reports/ci_logs/latest/sixline.txt
             reports/ci_logs/latest/attempts.txt
 
-      - name: Commit proofs to repo (always)
+            - name: Commit proofs to repo (always)
         if: always()
         shell: pwsh
         run: |
           Set-StrictMode -Version Latest
           $ErrorActionPreference = "Stop"
+
           git config --global --add safe.directory "$PWD"
           git config user.name  "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/ci_logs/latest/sixline.txt reports/ci_logs/latest/attempts.txt
-          git commit -m "ci(auto): proofs" 2>$null
+
+          # Rebase first so push succeeds
+          git pull --rebase
+
+          # Show what changed
+          git status --porcelain
+          git ls-files -v reports/ci_logs/latest || $true
+
+          # Force-add proofs even if any ignore patterns still apply
+          git add -A -f reports/ci_logs/latest
+
+          # If nothing changed, still create a commit so the runner can detect a new run
+          git commit --allow-empty -m "ci(auto): proofs"
           git push
