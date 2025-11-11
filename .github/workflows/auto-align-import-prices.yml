@@ -1,4 +1,4 @@
-﻿name: Auto-Align Import-Prices (SMOKE)
+﻿name: smoke-auto-align
 
 on:
   workflow_dispatch:
@@ -8,16 +8,9 @@ on:
       - .github/workflows/auto-align-import-prices.yml
       - .github/auto_align_import_prices.bump
 
-permissions:
-  contents: read
-  actions: read
-
 jobs:
   sanity:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Echo OK
-        shell: pwsh
-        run: |
-          Write-Host "SMOKE OK: YAML parsed and runner started."
+        run: echo "SMOKE OK: YAML parsed and runner started."
