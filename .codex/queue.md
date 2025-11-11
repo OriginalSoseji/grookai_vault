@@ -1084,3 +1084,140 @@ chore(ci/auth): purge legacy queue + enforce apikey-only validator and session p
 ```
 
 **End of task.**
+
+
+### TASK: CONFIRM: YES — Add Auto-Align + Validate CI for `import-prices` (no manual tests)
+
+````md
+### TASK: Add **Auto-Align + Validate** CI for `import-prices` (no manual tests)
+
+Goal: A single GitHub Actions workflow that (1) aligns the function’s env with the repo secret `BRIDGE_IMPORT_TOKEN`, (2) redeploys `import-prices`, and (3) validates using **apikey-only + x-bridge-token**. It should retry alignment+deploy up to 3 times until `Status: 200`, and upload a summary artifact. No local/manual steps required.
+
+Edits:
+
+1) Create `.github/workflows/auto-align-import-prices.yml`:
+```yaml
+name: Auto-Align Import-Prices (bridge-only)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_REF: ycdxbpibncqcchqiihfz
+  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+
+jobs:
+  align-and-validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard required secrets
+        shell: pwsh
+        run: |
+          if (-not "${{ secrets.SUPABASE_ACCESS_TOKEN }}") { throw "Missing SUPABASE_ACCESS_TOKEN" }
+          if (-not "${{ secrets.PROD_PUBLISHABLE_KEY }}") { throw "Missing PROD_PUBLISHABLE_KEY" }
+          if (-not "${{ secrets.BRIDGE_IMPORT_TOKEN }}") { throw "Missing BRIDGE_IMPORT_TOKEN" }
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+
+      - name: Ensure verify_jwt=false (idempotent)
+        shell: pwsh
+        run: |
+          $p = "supabase/functions/import-prices/config.toml"
+          if (-not (Test-Path $p)) { New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null; Set-Content $p "verify_jwt = false" -NoNewline; git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true }
+          else {
+            $txt = Get-Content $p -Raw
+            if ($txt -notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {
+              ($txt -replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set-Content $p
+              git add $p; git commit -m "ci(auto): enforce verify_jwt=false" || $true; git push || $true
+            }
+          }
+
+      - name: Align function env (project-level) + redeploy (up to 3 tries)
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          BRIDGE_IMPORT_TOKEN:   ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Stop"
+          for ($i=1; $i -le 3; $i++) {
+            supabase secrets set BRIDGE_IMPORT_TOKEN="${env:BRIDGE_IMPORT_TOKEN}" --project-ref "${env:PROJECT_REF}"
+            supabase functions deploy import-prices --project-ref "${env:PROJECT_REF}"
+            # tiny wait to avoid race between deploy and gateway
+            Start-Sleep -Seconds 2
+            # validate
+            $Url = "$env:SUPABASE_URL/functions/v1/import-prices"
+            $H = @{ apikey="${{ secrets.PROD_PUBLISHABLE_KEY }}"; 'x-bridge-token'="${{ secrets.BRIDGE_IMPORT_TOKEN }}"; 'Content-Type'='application/json' }
+            $B = '{"ping":"ci-auto"}'
+            try {
+              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 20
+              $code = [int]$r.StatusCode
+              $body = [string]$r.Content
+            } catch {
+              $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
+              $body = ''
+            }
+            $six = @(
+              "URL: $Url",
+              "Method: POST",
+              "Status: $code",
+              "GatewayAuth: apikey_only",
+              "BridgeTokenHash8: $((([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes('${{ secrets.BRIDGE_IMPORT_TOKEN }}'))|% ToString x2) -join '').Substring(0,8))",
+              "Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length)))
+            ) -join "`n"
+            $six | Out-File -FilePath sixline.txt -Encoding utf8
+            Write-Host $six
+            if ($code -ge 200 -and $code -lt 300) { echo "PASS"; break }
+            if ($i -lt 3) { Start-Sleep -Seconds 4 }
+          }
+          if ($code -lt 200 -or $code -ge 300) { Write-Error "Auto-align failed after 3 attempts (last Status=$code)" }
+
+      - name: Upload validation summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: import-prices-auto-validate
+          path: sixline.txt
+```
+
+2. Keep `.github/workflows/prod-import-prices-validate-edge.yml` as your simple apikey-only validator (no changes), and ensure any legacy validators are disabled with a clear “DISABLED (legacy)” header.
+
+3. Add a convenience badge to `README.md`:
+
+```md
+[![Auto-Align Import-Prices](https://img.shields.io/badge/CI-Auto--Align%20Import--Prices-blue)](../../actions/workflows/auto-align-import-prices.yml)
+```
+
+Commit message:
+
+```
+ci(auto): add Auto-Align + Validate (bridge-only) — sets project-level secret, redeploys, verifies 200
+```
+
+````
+
+### Submit it, then run it (two commands)
+
+```powershell
+# 1) Have Codex apply the changes
+pwsh -NoProfile -File .\.codex\dispatch_last_task.ps1
+
+# 2) Kick the fully-automated CI run (no manual probes)
+gh workflow run .github/workflows/auto-align-import-prices.yml
+```
+
+The Action will:
+
+* set `BRIDGE_IMPORT_TOKEN` at **project level** using your repo secret,
+* redeploy `import-prices`,
+* validate with **apikey + x-bridge-token**, retry up to 3x,
+* upload `sixline.txt` as an artifact (your six-line proof).
+
+If you want it to stay self-healing, just leave the schedule (`*/30`) on; it’ll keep the function’s env aligned automatically.
