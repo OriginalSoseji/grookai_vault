@@ -77,3 +77,63 @@ jobs:
           Write-Host $fc
           Write-Host $al
           Write-Host ("Result: " + $result + " (last code = " + $code + ")")
+name: Kick Auto-Align (import-prices)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  kick:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dispatch auto-align and wait
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference="Stop"
+          $anchor = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+          gh workflow run .github/workflows/auto-align-import-prices.yml | Out-Null
+          function Get-FreshRun {
+            for($p=1;$p -le 5;$p++){
+              $runs = gh api repos/:owner/:repo/actions/workflows/auto-align-import-prices.yml/runs --paginate -F per_page=50 -F page=$p --jq ".workflow_runs[] | {id: .id, created_at: .created_at}" 2>$null
+              if(-not $runs){ continue }
+              $objs = @(); $runs -split "`n" | % { if($_.Trim()){ $objs += ($_ | ConvertFrom-Json) } }
+              $candidates = $objs | ? { ([DateTime]$_.created_at) -ge ([DateTime]$anchor) } | Sort-Object { [DateTime]$_.created_at } -Descending
+              if($candidates){ return $candidates[0].id }
+            }
+            return $null
+          }
+          $rid = $null; for($i=0;$i -lt 24;$i++){ $rid = Get-FreshRun; if($rid){break}; Start-Sleep (5 + ($i*2)) }
+          if(-not $rid){ throw "Could not locate newly dispatched run." }
+          do{
+            $o = gh api repos/:owner/:repo/actions/runs/$rid --jq "{status:.status, conclusion:.conclusion}" | ConvertFrom-Json
+            if($o.status -eq "completed"){ break }
+            Start-Sleep 10
+          }while($true)
+
+      - name: Pull proofs and print summary
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference="Stop"
+          git pull --rebase --autostash | Out-Host
+          $six = "reports/ci_logs/latest/sixline.txt"
+          $att = "reports/ci_logs/latest/attempts.txt"
+          if(!(Test-Path $six) -or !(Test-Path $att)){ throw "Proofs missing. Check auto-align job logs." }
+          $sixC = Get-Content $six -Raw
+          $attC = Get-Content $att -Raw
+          $gw = ($sixC -split "\r?\n" | ? { $_ -like "GatewayAuth:*" })[0]
+          $fc = ($sixC -split "\r?\n" | ? { $_ -like "FinalCode:*"   })[0]
+          $al = ($attC -split "\r?\n" | ? { $_ -like "Attempts:*"    })[0]
+          $code = $fc -replace "[^\d]",""
+          $result = if($code -eq "200"){"PASS"} else {"FAIL"}
+          Write-Host "`n=== Auto-Align Proofs ==="
+          Write-Host $gw
+          Write-Host $fc
+          Write-Host $al
+          Write-Host ("Result: " + $result + " (last code = " + $code + ")")
