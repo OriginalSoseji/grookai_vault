@@ -1,5 +1,4 @@
-﻿name: smoke-auto-align
-
+name: smoke-auto-align
 on:
   workflow_dispatch:
   push:
@@ -7,10 +6,9 @@ on:
     paths:
       - .github/workflows/auto-align-import-prices.yml
       - .github/auto_align_import_prices.bump
-
 jobs:
   sanity:
     runs-on: ubuntu-latest
     steps:
       - name: Echo OK
-        run: echo "SMOKE OK: YAML parsed and runner started."
+        run: echo SMOKE OK
