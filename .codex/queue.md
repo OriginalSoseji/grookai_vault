@@ -13,6 +13,34 @@ You are in Windows PowerShell at C:\grookai_vault.
 
 ### TASK: Clean baseline for the probe workflow (drop-in)
 
+### TASK: Fresh proofs + bridge token realignment (Windows, no bash)
+You are on Windows PowerShell at C:\\grookai_vault.
+
+Scope: only import-prices for project ycdxbpibncqcchqiihfz.
+
+Steps:
+- Prompt once for the actual BRIDGE_IMPORT_TOKEN value (not the digest).
+- Write the same value in both places:
+  - Function env file: `supabase/functions/import-prices/.env` → `BRIDGE_IMPORT_TOKEN=<value>`
+  - Project secret: `supabase secrets set --project-ref ycdxbpibncqcchqiihfz BRIDGE_IMPORT_TOKEN <value>`
+- Redeploy the function with the env file:
+  - `supabase functions deploy import-prices --project-ref ycdxbpibncqcchqiihfz --no-verify-jwt --env-file supabase/functions/import-prices/.env`
+- Ensure `.github/workflows/auto-align-import-prices.yml` sends the header `x-bridge-token: ${{ secrets.BRIDGE_IMPORT_TOKEN }}` and has:
+  - permissions:
+    - contents: write
+    - actions: read
+  - plus an explicit `git add reports/ci_logs/latest/sixline.txt reports/ci_logs/latest/attempts.txt && git commit -m "ci(auto): proofs" && git push` when persisting proofs.
+- Delete local proofs folder `reports/ci_logs/latest`.
+- Run the loop: `pwsh -NoProfile -File scripts/ci/align_until_proofs.ps1` and let it stop when both proof files exist.
+- Print the contents of both final files to console.
+
+Implementation notes:
+- You may call the helper: `scripts/ci/realign_bridge_and_redeploy.ps1` to handle the prompt + env write + secret set + deploy.
+- Proof files expected:
+  - `reports/ci_logs/latest/sixline.txt`
+  - `reports/ci_logs/latest/attempts.txt`
+---
+
 > You are in Windows PowerShell at `C:\grookai_vault`. Replace `.github/workflows/prod-edge-probe.yml` with this minimal, valid baseline; commit and push.
 >
 > ```yaml
@@ -1551,4 +1579,3 @@ Set-Content -Path ".github/workflows/auto-align-import-prices.yml" -Value $yaml 
 git add .github/workflows/auto-align-import-prices.yml
 git commit -m "ci(auto): triple-safety attempts.txt + debug listing (Windows)"
 git push
-
