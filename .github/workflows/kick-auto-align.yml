@@ -4,18 +4,39 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   kick:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Bump file to trigger auto-align workflow via push
+      - name: Dispatch auto-align and wait, then print proofs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .github/auto_align_import_prices.bump
-          git config user.name  "grookai-ci"
-          git config user.email "grookai-ci@users.noreply.github.com"
-          git add .github/auto_align_import_prices.bump
-          git commit -m "ci(kick): trigger auto-align-import-prices via push"
-          git push
-
+          set -euo pipefail
+          echo "Dispatching auto-align workflow..."
+          gh workflow run .github/workflows/auto-align-import-prices.yml || true
+          echo "Polling for latest auto-align run..."
+          # get latest run id (most recent)
+          RUN_ID=""
+          for i in {1..60}; do
+            RUN_ID=$(gh api repos/:owner/:repo/actions/workflows/auto-align-import-prices.yml/runs --jq '.workflow_runs[0].id' || echo "")
+            if [[ -n "$RUN_ID" ]]; then break; fi
+            sleep 5
+          done
+          if [[ -z "$RUN_ID" ]]; then echo "No run found"; exit 1; fi
+          echo "Run ID: $RUN_ID — waiting for completion"
+          for i in {1..60}; do
+            STATUS=$(gh api repos/:owner/:repo/actions/runs/$RUN_ID --jq '.status')
+            [[ "$STATUS" == "completed" ]] && break
+            sleep 10
+          done
+          echo "Pulling proofs from repo..."
+          git pull --rebase
+          echo "=== Auto-Align Proofs ==="
+          echo "GatewayAuth: $(grep -m1 '^GatewayAuth:' reports/ci_logs/latest/sixline.txt || true)"
+          echo "FinalCode:  $(grep -m1 '^FinalCode:'  reports/ci_logs/latest/sixline.txt || true)"
+          echo "$(grep -m1 '^Attempts:' reports/ci_logs/latest/attempts.txt || true)"
