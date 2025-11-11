@@ -27,6 +27,8 @@ env:
 jobs:
   align-and-validate:
     runs-on: windows-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +41,8 @@ jobs:
 
       - name: Install Supabase CLI
         uses: supabase/setup-cli@v1
+        with:
+          version: latest
 
       - name: Initialize proofs (force overwrite)
         shell: pwsh
@@ -47,38 +51,35 @@ jobs:
           $ErrorActionPreference = "Stop"
           $ProofDir = "reports/ci_logs/latest"
           New-Item -ItemType Directory -Force -Path $ProofDir | Out-Null
-
           $six = Join-Path $ProofDir "sixline.txt"
           $att = Join-Path $ProofDir "attempts.txt"
 
-@"
+          @'
 ProjectRef: ycdxbpibncqcchqiihfz
 Function: import-prices
 GatewayAuth: (pending)
 FinalCode: (pending)
 FinalURL: (pending)
 Timestamp: (pending)
-"@ | Set-Content $six -Encoding UTF8
+'@ | Set-Content $six -Encoding UTF8
 
-          "Attempts:" | Set-Content $att -Encoding UTF8
+          'Attempts:' | Set-Content $att -Encoding UTF8
 
       - name: Ensure verify_jwt=false (idempotent)
         shell: pwsh
         run: |
           $p = "supabase/functions/import-prices/config.toml"
-          if (-not (Test-Path $p)) { New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null; Set-Content $p "verify_jwt = false" -NoNewline; git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true }
-          else {
+          if (-not (Test-Path $p)) {
+            New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null
+            Set-Content $p "verify_jwt = false" -NoNewline
+            git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true
+          } else {
             $txt = Get-Content $p -Raw
             if ($txt -notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {
               ($txt -replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set-Content $p
               git add $p; git commit -m "ci(auto): enforce verify_jwt=false" || $true; git push || $true
             }
           }
-
-      - name: Install Supabase CLI (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: choco install supabase -y
 
       - name: Align (env) + deploy + 4-variant validate (5 tries)
         shell: pwsh
@@ -100,10 +101,10 @@ Timestamp: (pending)
 BRIDGE_IMPORT_TOKEN=$env:BRIDGE
 "@ -Encoding UTF8
 
-          supabase secrets set --project-ref ycdxbpibncqcchqiihfz BRIDGE_IMPORT_TOKEN=$env:BRIDGE
-          supabase functions deploy import-prices --project-ref ycdxbpibncqcchqiihfz --no-verify-jwt --env-file "supabase/functions/import-prices/.env"
+          supabase secrets set --project-ref $env:PROJECT_REF BRIDGE_IMPORT_TOKEN=$env:BRIDGE
+          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --no-verify-jwt --env-file "supabase/functions/import-prices/.env"
 
-          $fnUrl  = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"
+          $fnUrl  = "https://$($env:PROJECT_REF).functions.supabase.co/import-prices"
           $prjUrl = "$env:PRJ/functions/v1/import-prices"
           $pub    = "$env:PUB"
 
