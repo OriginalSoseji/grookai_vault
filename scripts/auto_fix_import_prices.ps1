@@ -74,6 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Bridge-only probe
+        id: probe
         shell: pwsh
         env:
           BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
@@ -105,6 +106,19 @@ jobs:
           Write-Output "BRIDGE_HASH8: <hidden>"
           $body100 = if($content.Length -gt 100){ $content.Substring(0,100) } else { $content }
           Write-Output "BODY100: $body100"
+          $s = @()
+          $s += "DIAG: B/A"
+          $s += "VARIANT: EDGE-bridge-only"
+          $s += "FINAL: $status"
+          $s += "PUBLISHABLE_HASH8: <missing>"
+          $s += "BRIDGE_HASH8: <hidden>"
+          $s += "BODY100: $body100"
+          Set-Content -Path summary.txt -Value ($s -join "`n") -Encoding UTF8
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bridge-validate
+          path: summary.txt
 '@
   Set-Content -Path $wfPath -Value $wf -Encoding UTF8
   Write-Info "Wrote/updated $wfPath (bridge-only)"
@@ -202,9 +216,17 @@ function Download-Logs([string]$runId){
   Write-Info "Downloading logs to $dest"
   $all = Join-Path $dest 'ALL.txt'
   try {
-    $jobsJson = gh run view $runId --json jobs | ConvertFrom-Json
-    $jobId = $jobsJson.jobs[0].databaseId
-    gh run view $runId --job $jobId --log | Set-Content -Path $all -Encoding UTF8
+    # Prefer artifact summary if available
+    gh run download $runId --name bridge-validate --dir $dest | Out-Null
+    $summary = Join-Path $dest 'summary.txt'
+    if(Test-Path $summary){
+      Get-Content $summary | Set-Content -Path $all -Encoding UTF8
+    } else {
+      # Fallback to console logs
+      $jobsJson = gh run view $runId --json jobs | ConvertFrom-Json
+      $jobId = $jobsJson.jobs[0].databaseId
+      gh run view $runId --job $jobId --log | Set-Content -Path $all -Encoding UTF8
+    }
   } catch {
     Write-Warn "Failed gh run view --log: $($_.Exception.Message)"
     "<logs_unavailable>" | Set-Content -Path $all -Encoding UTF8
