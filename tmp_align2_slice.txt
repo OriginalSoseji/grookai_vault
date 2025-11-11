@@ -1,0 +1,90 @@
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	∩╗┐2025-11-11T02:12:48.3343543Z ##[group]Run Set***StrictMode ***Version Latest
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344004Z [36;1mSet***StrictMode ***Version Latest[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344293Z [36;1m$ErrorActionPreference = "Stop"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344550Z [36;1mfor ($i=1; $i ***le 3; $i++) {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3345024Z [36;1m  supabase secrets set BRIDGE_IMPORT_TOKEN="${env:BRIDGE_IMPORT_TOKEN}" ***project***ref "${env:PROJECT_REF}"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3345632Z [36;1m  supabase functions deploy import***prices ***project***ref "${env:PROJECT_REF}"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346051Z [36;1m  # tiny wait to avoid race between deploy and gateway[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346345Z [36;1m  Start***Sleep ***Seconds 2[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346582Z [36;1m  # validate[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346840Z [36;1m  $Url = "$env:SUPABASE_URL/functions/v1/import***prices"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347403Z [36;1m  $H = @{ apikey="***"; 'x***bridge***token'="***"; 'Content***Type'='application/json' }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347743Z [36;1m  $B = '{"ping":"ci***auto"}'[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347994Z [36;1m  try {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3348368Z [36;1m    $r = Invoke***WebRequest ***Method POST ***Uri $Url ***Headers $H ***Body $B ***UseBasicParsing ***TimeoutSec 20[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3348793Z [36;1m    $code = [int]$r.StatusCode[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349030Z [36;1m    $body = [string]$r.Content[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349250Z [36;1m  } catch {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349552Z [36;1m    $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { ***1 }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349888Z [36;1m    $body = ''[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350071Z [36;1m  }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350228Z [36;1m  $six = @([0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350396Z [36;1m    "URL: $Url",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350596Z [36;1m    "Method: POST",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350804Z [36;1m    "Status: $code",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3351024Z [36;1m    "GatewayAuth: apikey_only",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3351624Z [36;1m    "BridgeTokenHash8: $((([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes('***'))|% ToString x2) ***join '').Substring(0,8))",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352287Z [36;1m    "Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length)))[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352587Z [36;1m  ) ***join "`n"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352851Z [36;1m  $six | Out***File ***FilePath sixline.txt ***Encoding utf8[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353342Z [36;1m  Write***Host $six[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353641Z [36;1m  if ($code ***ge 200 ***and $code ***lt 300) { echo "PASS"; break }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353978Z [36;1m  if ($i ***lt 3) { Start***Sleep ***Seconds 4 }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3354228Z [36;1m}[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3354679Z [36;1mif ($code ***lt 200 ***or $code ***ge 300) { Write***Error "Auto***align failed after 3 attempts (last Status=$code)" }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413070Z shell: C:\Program Files\PowerShell\7\pwsh.EXE ***command ". '{0}'"
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413392Z env:
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413595Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413918Z   SUPABASE_URL: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414117Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414382Z   SUPABASE_ACCESS_TOKEN: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414601Z   BRIDGE_IMPORT_TOKEN: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414800Z ##[endgroup]
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.7696896Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.7697793Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.8518697Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.8519442Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0517662Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0517981Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518147Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518311Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518518Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518712Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0520996Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.1370548Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.1371134Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.2094177Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.2095158Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4512854Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513345Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513618Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513897Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514229Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514526Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514696Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.5496961Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.5500979Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.6488002Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.6493256Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8193308Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8193797Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194073Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194353Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194713Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8195075Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8195256Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:12.7275965Z [31;1mWrite***Error: [31;1mAuto***align failed after 3 attempts (last Status=401)[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:12.7509773Z ##[error]Process completed with exit code 1.
+align-and-validate	Post Run actions/checkout@v4	∩╗┐2025-11-11T02:13:12.7724605Z Post job cleanup.
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.0567319Z [command]"C:\Program Files\Git\bin\git.exe" version
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.0965471Z git version 2.51.2.windows.1
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1069364Z Temporarily overriding HOME='D:\a\_temp\8b03b82d***efd2***460d***9fc8***775a7ebd447d' before making global git config changes
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1070675Z Adding repository directory to the temporary git global config as a safe directory
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1086394Z [command]"C:\Program Files\Git\bin\git.exe" config ***global ***add safe.directory D:\a\grookai_vault\grookai_vault
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1521277Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp core\.sshCommand
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1865140Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'core\.sshCommand' && git config ***local ***unset***all 'core.sshCommand' || :\""
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8148313Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp http\.https\:\/\/github\.com\/\.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8480891Z http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8552125Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***unset***all http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8973197Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config ***local ***unset***all 'http.https://github.com/.extraheader' || :\""
+align-and-validate	Complete job	∩╗┐2025-11-11T02:13:14.4817261Z Cleaning up orphan processes

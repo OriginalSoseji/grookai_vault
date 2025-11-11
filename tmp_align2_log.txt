@@ -1,0 +1,213 @@
+align-and-validate	Set up job	∩╗┐2025-11-11T02:12:28.3233610Z Current runner version: '2.329.0'
+align-and-validate	Set up job	2025-11-11T02:12:28.3321030Z ##[group]Runner Image Provisioner
+align-and-validate	Set up job	2025-11-11T02:12:28.3322144Z Hosted Compute Agent
+align-and-validate	Set up job	2025-11-11T02:12:28.3322803Z Version: 20251016.436
+align-and-validate	Set up job	2025-11-11T02:12:28.3323398Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+align-and-validate	Set up job	2025-11-11T02:12:28.3324132Z Build Date: 2025***10***15T20:44:12Z
+align-and-validate	Set up job	2025-11-11T02:12:28.3324712Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T02:12:28.3325198Z ##[group]Operating System
+align-and-validate	Set up job	2025-11-11T02:12:28.3325729Z Microsoft Windows Server 2025
+align-and-validate	Set up job	2025-11-11T02:12:28.3326285Z 10.0.26100
+align-and-validate	Set up job	2025-11-11T02:12:28.3326700Z Datacenter
+align-and-validate	Set up job	2025-11-11T02:12:28.3327134Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T02:12:28.3327616Z ##[group]Runner Image
+align-and-validate	Set up job	2025-11-11T02:12:28.3328145Z Image: windows***2025
+align-and-validate	Set up job	2025-11-11T02:12:28.3328600Z Version: 20251102.77.1
+align-and-validate	Set up job	2025-11-11T02:12:28.3329614Z Included Software: https://github.com/actions/runner***images/blob/win25/20251102.77/images/windows/Windows2025***Readme.md
+align-and-validate	Set up job	2025-11-11T02:12:28.3330969Z Image Release: https://github.com/actions/runner***images/releases/tag/win25%2F20251102.77
+align-and-validate	Set up job	2025-11-11T02:12:28.3332301Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T02:12:28.3333301Z ##[group]GITHUB_TOKEN Permissions
+align-and-validate	Set up job	2025-11-11T02:12:28.3335037Z Contents: read
+align-and-validate	Set up job	2025-11-11T02:12:28.3335673Z Metadata: read
+align-and-validate	Set up job	2025-11-11T02:12:28.3336415Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T02:12:28.3338596Z Secret source: Actions
+align-and-validate	Set up job	2025-11-11T02:12:28.3339278Z Prepare workflow directory
+align-and-validate	Set up job	2025-11-11T02:12:28.3880710Z Prepare all required actions
+align-and-validate	Set up job	2025-11-11T02:12:28.3920046Z Getting action download info
+align-and-validate	Set up job	2025-11-11T02:12:28.8596694Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+align-and-validate	Set up job	2025-11-11T02:12:29.0030348Z Download action repository 'supabase/setup***cli@v1' (SHA:b60b5899c73b63a2d2d651b1e90db8d4c9392f51)
+align-and-validate	Set up job	2025-11-11T02:12:29.8365034Z Download action repository 'actions/upload***artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+align-and-validate	Set up job	2025-11-11T02:12:30.1813702Z Complete job name: align***and***validate
+align-and-validate	Run actions/checkout@v4	∩╗┐2025-11-11T02:12:30.3662800Z ##[group]Run actions/checkout@v4
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3664249Z with:
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3664999Z   repository: OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3666213Z   token: ***
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3666907Z   ssh***strict: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3667642Z   ssh***user: git
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3668379Z   persist***credentials: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3669199Z   clean: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3669952Z   sparse***checkout***cone***mode: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3670897Z   fetch***depth: 1
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3671615Z   fetch***tags: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3672381Z   show***progress: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3673108Z   lfs: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3674103Z   submodules: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3674948Z   set***safe***directory: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3676090Z env:
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3676783Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3677962Z   SUPABASE_URL: ***
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.3678662Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.5587093Z Syncing repository: OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.5590004Z ##[group]Getting Git version info
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.5591193Z Working directory is 'D:\a\grookai_vault\grookai_vault'
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:30.6754583Z [command]"C:\Program Files\Git\bin\git.exe" version
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.2217462Z git version 2.51.2.windows.1
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.2280440Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.2302754Z Temporarily overriding HOME='D:\a\_temp\7f29186a***6915***472b***982e***e14138edacde' before making global git config changes
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.2303911Z Adding repository directory to the temporary git global config as a safe directory
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.2315704Z [command]"C:\Program Files\Git\bin\git.exe" config ***global ***add safe.directory D:\a\grookai_vault\grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.3035061Z Deleting the contents of 'D:\a\grookai_vault\grookai_vault'
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.3041276Z ##[group]Initializing the repository
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.3050872Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\grookai_vault\grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.4647552Z Initialized empty Git repository in D:/a/grookai_vault/grookai_vault/.git/
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.4703280Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6121673Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6122272Z ##[group]Disabling automatic garbage collection
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6132592Z [command]"C:\Program Files\Git\bin\git.exe" config ***local gc.auto 0
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6428321Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6428879Z ##[group]Setting up auth
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6444730Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp core\.sshCommand
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:31.6760105Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'core\.sshCommand' && git config ***local ***unset***all 'core.sshCommand' || :\""
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.1563723Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp http\.https\:\/\/github\.com\/\.extraheader
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.1896656Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config ***local ***unset***all 'http.https://github.com/.extraheader' || :\""
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.6849447Z [command]"C:\Program Files\Git\bin\git.exe" config ***local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.7149943Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.7150867Z ##[group]Fetching the repository
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:34.7164438Z [command]"C:\Program Files\Git\bin\git.exe" ***c protocol.version=2 fetch ***no***tags ***prune ***no***recurse***submodules ***depth=1 origin +5ad257778ae3c1502c4b2248409548d8ba490478:refs/remotes/origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2379372Z From https://github.com/OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2379957Z  * [new ref]         5ad257778ae3c1502c4b2248409548d8ba490478 ***> origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2735384Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2736303Z ##[group]Determining the checkout info
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2738621Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.2753792Z [command]"C:\Program Files\Git\bin\git.exe" sparse***checkout disable
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.3325730Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***unset***all extensions.worktreeConfig
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.3603864Z ##[group]Checking out the ref
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.3618161Z [command]"C:\Program Files\Git\bin\git.exe" checkout ***progress ***force ***B main refs/remotes/origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.5099351Z branch 'main' set up to track 'origin/main'.
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.5107466Z Switched to a new branch 'main'
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.5142648Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.5770329Z [command]"C:\Program Files\Git\bin\git.exe" log ***1 ***format=%H
+align-and-validate	Run actions/checkout@v4	2025-11-11T02:12:36.6022117Z 5ad257778ae3c1502c4b2248409548d8ba490478
+align-and-validate	Guard required secrets	∩╗┐2025-11-11T02:12:36.6403754Z ##[group]Run if (***not "***") { throw "Missing SUPABASE_ACCESS_TOKEN" }
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.6404390Z [36;1mif (***not "***") { throw "Missing SUPABASE_ACCESS_TOKEN" }[0m
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.6404913Z [36;1mif (***not "***") { throw "Missing PROD_PUBLISHABLE_KEY" }[0m
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.6405256Z [36;1mif (***not "***") { throw "Missing BRIDGE_IMPORT_TOKEN" }[0m
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.9232084Z shell: C:\Program Files\PowerShell\7\pwsh.EXE ***command ". '{0}'"
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.9232475Z env:
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.9232672Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.9233022Z   SUPABASE_URL: ***
+align-and-validate	Guard required secrets	2025-11-11T02:12:36.9233208Z ##[endgroup]
+align-and-validate	Install Supabase CLI	∩╗┐2025-11-11T02:12:45.8562681Z ##[group]Run supabase/setup***cli@v1
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8563047Z with:
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8563214Z   version: 2.20.3
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8563389Z env:
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8563556Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8563900Z   SUPABASE_URL: ***
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:45.8564082Z ##[endgroup]
+align-and-validate	Install Supabase CLI	2025-11-11T02:12:47.0324675Z [command]C:\Windows\system32\tar.exe xz ***C D:\a\_temp\275e94c9***2de2***4d57***ba0d***43c4f939aeba ***f D:\a\_temp\8f456dac***11f4***4b80***bc42***95bac7fd2c68
+align-and-validate	Ensure verify_jwt=false (idempotent)	∩╗┐2025-11-11T02:12:47.6974274Z ##[group]Run $p = "supabase/functions/import***prices/config.toml"
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6974824Z [36;1m$p = "supabase/functions/import***prices/config.toml"[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6975709Z [36;1mif (***not (Test***Path $p)) { New***Item ***ItemType Directory ***Force ***Path (Split***Path $p) | Out***Null; Set***Content $p "verify_jwt = false" ***NoNewline; git add $p; git commit ***m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true }[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6976478Z [36;1melse {[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6976685Z [36;1m  $txt = Get***Content $p ***Raw[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6977012Z [36;1m  if ($txt ***notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6977440Z [36;1m    ($txt ***replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set***Content $p[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6977959Z [36;1m    git add $p; git commit ***m "ci(auto): enforce verify_jwt=false" || $true; git push || $true[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6978318Z [36;1m  }[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.6978502Z [36;1m}[0m
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7039389Z shell: C:\Program Files\PowerShell\7\pwsh.EXE ***command ". '{0}'"
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7039719Z env:
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7039901Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7040226Z   SUPABASE_URL: ***
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7040443Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+align-and-validate	Ensure verify_jwt=false (idempotent)	2025-11-11T02:12:47.7040687Z ##[endgroup]
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	∩╗┐2025-11-11T02:12:48.3343543Z ##[group]Run Set***StrictMode ***Version Latest
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344004Z [36;1mSet***StrictMode ***Version Latest[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344293Z [36;1m$ErrorActionPreference = "Stop"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3344550Z [36;1mfor ($i=1; $i ***le 3; $i++) {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3345024Z [36;1m  supabase secrets set BRIDGE_IMPORT_TOKEN="${env:BRIDGE_IMPORT_TOKEN}" ***project***ref "${env:PROJECT_REF}"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3345632Z [36;1m  supabase functions deploy import***prices ***project***ref "${env:PROJECT_REF}"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346051Z [36;1m  # tiny wait to avoid race between deploy and gateway[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346345Z [36;1m  Start***Sleep ***Seconds 2[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346582Z [36;1m  # validate[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3346840Z [36;1m  $Url = "$env:SUPABASE_URL/functions/v1/import***prices"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347403Z [36;1m  $H = @{ apikey="***"; 'x***bridge***token'="***"; 'Content***Type'='application/json' }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347743Z [36;1m  $B = '{"ping":"ci***auto"}'[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3347994Z [36;1m  try {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3348368Z [36;1m    $r = Invoke***WebRequest ***Method POST ***Uri $Url ***Headers $H ***Body $B ***UseBasicParsing ***TimeoutSec 20[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3348793Z [36;1m    $code = [int]$r.StatusCode[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349030Z [36;1m    $body = [string]$r.Content[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349250Z [36;1m  } catch {[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349552Z [36;1m    $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { ***1 }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3349888Z [36;1m    $body = ''[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350071Z [36;1m  }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350228Z [36;1m  $six = @([0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350396Z [36;1m    "URL: $Url",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350596Z [36;1m    "Method: POST",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3350804Z [36;1m    "Status: $code",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3351024Z [36;1m    "GatewayAuth: apikey_only",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3351624Z [36;1m    "BridgeTokenHash8: $((([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes('***'))|% ToString x2) ***join '').Substring(0,8))",[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352287Z [36;1m    "Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length)))[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352587Z [36;1m  ) ***join "`n"[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3352851Z [36;1m  $six | Out***File ***FilePath sixline.txt ***Encoding utf8[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353342Z [36;1m  Write***Host $six[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353641Z [36;1m  if ($code ***ge 200 ***and $code ***lt 300) { echo "PASS"; break }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3353978Z [36;1m  if ($i ***lt 3) { Start***Sleep ***Seconds 4 }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3354228Z [36;1m}[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3354679Z [36;1mif ($code ***lt 200 ***or $code ***ge 300) { Write***Error "Auto***align failed after 3 attempts (last Status=$code)" }[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413070Z shell: C:\Program Files\PowerShell\7\pwsh.EXE ***command ". '{0}'"
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413392Z env:
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413595Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3413918Z   SUPABASE_URL: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414117Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414382Z   SUPABASE_ACCESS_TOKEN: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414601Z   BRIDGE_IMPORT_TOKEN: ***
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.3414800Z ##[endgroup]
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.7696896Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.7697793Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.8518697Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:48.8519442Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0517662Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0517981Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518147Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518311Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518518Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0518712Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:53.0520996Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.1370548Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.1371134Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.2094177Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:12:57.2095158Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4512854Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513345Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513618Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4513897Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514229Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514526Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:00.4514696Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.5496961Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.5500979Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.6488002Z Invalid access token format. Must be like `sbp_0102...1920`.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:04.6493256Z Try rerunning the command with ***debug to troubleshoot the error.
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8193308Z URL: ***/functions/v1/import***prices
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8193797Z Method: POST
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194073Z Status: 401
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194353Z GatewayAuth: apikey_only
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8194713Z BridgeTokenHash8: 3973e022
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8195075Z Body[0..300]: 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:06.8195256Z 
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:12.7275965Z [31;1mWrite***Error: [31;1mAuto***align failed after 3 attempts (last Status=401)[0m
+align-and-validate	Align function env (project***level) + redeploy (up to 3 tries)	2025-11-11T02:13:12.7509773Z ##[error]Process completed with exit code 1.
+align-and-validate	Post Run actions/checkout@v4	∩╗┐2025-11-11T02:13:12.7724605Z Post job cleanup.
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.0567319Z [command]"C:\Program Files\Git\bin\git.exe" version
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.0965471Z git version 2.51.2.windows.1
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1069364Z Temporarily overriding HOME='D:\a\_temp\8b03b82d***efd2***460d***9fc8***775a7ebd447d' before making global git config changes
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1070675Z Adding repository directory to the temporary git global config as a safe directory
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1086394Z [command]"C:\Program Files\Git\bin\git.exe" config ***global ***add safe.directory D:\a\grookai_vault\grookai_vault
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1521277Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp core\.sshCommand
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.1865140Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'core\.sshCommand' && git config ***local ***unset***all 'core.sshCommand' || :\""
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8148313Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp http\.https\:\/\/github\.com\/\.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8480891Z http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8552125Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***unset***all http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T02:13:13.8973197Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config ***local ***unset***all 'http.https://github.com/.extraheader' || :\""
+align-and-validate	Complete job	∩╗┐2025-11-11T02:13:14.4817261Z Cleaning up orphan processes

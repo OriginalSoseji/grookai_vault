@@ -54,6 +54,8 @@ supabase/.env
 supabase/.dev*
 # ---------- Bridge / Local scripts ----------
 reports/
+!reports/
+!reports/**
 CON
 # Ignore ad-hoc codex helper scripts, but keep the dispatcher
 .codex/*.ps1

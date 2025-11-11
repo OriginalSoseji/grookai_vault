@@ -1,0 +1,22 @@
+name: Kick Auto-Align (import-prices)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  kick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump file to trigger auto-align workflow via push
+        run: |
+          echo "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .github/auto_align_import_prices.bump
+          git config user.name  "grookai-ci"
+          git config user.email "grookai-ci@users.noreply.github.com"
+          git add .github/auto_align_import_prices.bump
+          git commit -m "ci(kick): trigger auto-align-import-prices via push"
+          git push
+
+

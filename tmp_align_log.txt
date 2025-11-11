@@ -1,0 +1,118 @@
+align-and-validate	Set up job	∩╗┐2025-11-11T01:00:41.3509493Z Current runner version: '2.329.0'
+align-and-validate	Set up job	2025-11-11T01:00:41.3602488Z ##[group]Runner Image Provisioner
+align-and-validate	Set up job	2025-11-11T01:00:41.3603640Z Hosted Compute Agent
+align-and-validate	Set up job	2025-11-11T01:00:41.3604408Z Version: 20251016.436
+align-and-validate	Set up job	2025-11-11T01:00:41.3605338Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+align-and-validate	Set up job	2025-11-11T01:00:41.3606468Z Build Date: 2025***10***15T20:44:12Z
+align-and-validate	Set up job	2025-11-11T01:00:41.3607303Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T01:00:41.3608033Z ##[group]Operating System
+align-and-validate	Set up job	2025-11-11T01:00:41.3608862Z Microsoft Windows Server 2025
+align-and-validate	Set up job	2025-11-11T01:00:41.3609660Z 10.0.26100
+align-and-validate	Set up job	2025-11-11T01:00:41.3610304Z Datacenter
+align-and-validate	Set up job	2025-11-11T01:00:41.3610987Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T01:00:41.3611621Z ##[group]Runner Image
+align-and-validate	Set up job	2025-11-11T01:00:41.3612448Z Image: windows***2025
+align-and-validate	Set up job	2025-11-11T01:00:41.3613202Z Version: 20251102.77.1
+align-and-validate	Set up job	2025-11-11T01:00:41.3614809Z Included Software: https://github.com/actions/runner***images/blob/win25/20251102.77/images/windows/Windows2025***Readme.md
+align-and-validate	Set up job	2025-11-11T01:00:41.3617017Z Image Release: https://github.com/actions/runner***images/releases/tag/win25%2F20251102.77
+align-and-validate	Set up job	2025-11-11T01:00:41.3619266Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T01:00:41.3620696Z ##[group]GITHUB_TOKEN Permissions
+align-and-validate	Set up job	2025-11-11T01:00:41.3623005Z Contents: read
+align-and-validate	Set up job	2025-11-11T01:00:41.3623797Z Metadata: read
+align-and-validate	Set up job	2025-11-11T01:00:41.3624548Z ##[endgroup]
+align-and-validate	Set up job	2025-11-11T01:00:41.3627322Z Secret source: Actions
+align-and-validate	Set up job	2025-11-11T01:00:41.3628314Z Prepare workflow directory
+align-and-validate	Set up job	2025-11-11T01:00:41.4189817Z Prepare all required actions
+align-and-validate	Set up job	2025-11-11T01:00:41.4238843Z Getting action download info
+align-and-validate	Set up job	2025-11-11T01:00:41.6986752Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+align-and-validate	Set up job	2025-11-11T01:00:41.8404441Z Download action repository 'supabase/setup***cli@v1' (SHA:b60b5899c73b63a2d2d651b1e90db8d4c9392f51)
+align-and-validate	Set up job	2025-11-11T01:00:42.3726115Z Download action repository 'actions/upload***artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+align-and-validate	Set up job	2025-11-11T01:00:42.7533412Z Complete job name: align***and***validate
+align-and-validate	Run actions/checkout@v4	∩╗┐2025-11-11T01:00:43.0606473Z ##[group]Run actions/checkout@v4
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0609215Z with:
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0610064Z   repository: OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0611490Z   token: ***
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0612182Z   ssh***strict: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0612944Z   ssh***user: git
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0613686Z   persist***credentials: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0614496Z   clean: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0615255Z   sparse***checkout***cone***mode: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0616224Z   fetch***depth: 1
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0616906Z   fetch***tags: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0617685Z   show***progress: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0618388Z   lfs: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0619155Z   submodules: false
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0619949Z   set***safe***directory: true
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0621178Z env:
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0621831Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0623235Z   SUPABASE_URL: ***
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.0624087Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.2453462Z Syncing repository: OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.2455991Z ##[group]Getting Git version info
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.2456951Z Working directory is 'D:\a\grookai_vault\grookai_vault'
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:43.3157673Z [command]"C:\Program Files\Git\bin\git.exe" version
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.4070400Z git version 2.51.2.windows.1
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.4123072Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.4145925Z Temporarily overriding HOME='D:\a\_temp\bdc153e4***56e5***4ee2***8679***5b98fe1a2a04' before making global git config changes
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.4148048Z Adding repository directory to the temporary git global config as a safe directory
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.4157084Z [command]"C:\Program Files\Git\bin\git.exe" config ***global ***add safe.directory D:\a\grookai_vault\grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.5586298Z Deleting the contents of 'D:\a\grookai_vault\grookai_vault'
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.5702442Z ##[group]Initializing the repository
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.5705578Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\grookai_vault\grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.7295191Z Initialized empty Git repository in D:/a/grookai_vault/grookai_vault/.git/
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.7349782Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8571421Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8572644Z ##[group]Disabling automatic garbage collection
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8581799Z [command]"C:\Program Files\Git\bin\git.exe" config ***local gc.auto 0
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8876074Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8877378Z ##[group]Setting up auth
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.8890194Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp core\.sshCommand
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:44.9191724Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'core\.sshCommand' && git config ***local ***unset***all 'core.sshCommand' || :\""
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.3459095Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp http\.https\:\/\/github\.com\/\.extraheader
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.3782808Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config ***local ***unset***all 'http.https://github.com/.extraheader' || :\""
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.9098761Z [command]"C:\Program Files\Git\bin\git.exe" config ***local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.9415105Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.9415676Z ##[group]Fetching the repository
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:48.9428523Z [command]"C:\Program Files\Git\bin\git.exe" ***c protocol.version=2 fetch ***no***tags ***prune ***no***recurse***submodules ***depth=1 origin +5ad257778ae3c1502c4b2248409548d8ba490478:refs/remotes/origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0115448Z From https://github.com/OriginalSoseji/grookai_vault
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0116000Z  * [new ref]         5ad257778ae3c1502c4b2248409548d8ba490478 ***> origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0789503Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0790102Z ##[group]Determining the checkout info
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0792658Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.0808429Z [command]"C:\Program Files\Git\bin\git.exe" sparse***checkout disable
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.1713621Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***unset***all extensions.worktreeConfig
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.2000677Z ##[group]Checking out the ref
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.2012603Z [command]"C:\Program Files\Git\bin\git.exe" checkout ***progress ***force ***B main refs/remotes/origin/main
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.3573612Z branch 'main' set up to track 'origin/main'.
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.3581267Z Switched to a new branch 'main'
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.3620496Z ##[endgroup]
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.4303098Z [command]"C:\Program Files\Git\bin\git.exe" log ***1 ***format=%H
+align-and-validate	Run actions/checkout@v4	2025-11-11T01:00:51.4567307Z 5ad257778ae3c1502c4b2248409548d8ba490478
+align-and-validate	Guard required secrets	∩╗┐2025-11-11T01:00:51.4964981Z ##[group]Run if (***not "") { throw "Missing SUPABASE_ACCESS_TOKEN" }
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.4965617Z [36;1mif (***not "") { throw "Missing SUPABASE_ACCESS_TOKEN" }[0m
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.4966117Z [36;1mif (***not "***") { throw "Missing PROD_PUBLISHABLE_KEY" }[0m
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.4966457Z [36;1mif (***not "***") { throw "Missing BRIDGE_IMPORT_TOKEN" }[0m
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.5400984Z shell: C:\Program Files\PowerShell\7\pwsh.EXE ***command ". '{0}'"
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.5401324Z env:
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.5401508Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.5401826Z   SUPABASE_URL: ***
+align-and-validate	Guard required secrets	2025-11-11T01:00:51.5402004Z ##[endgroup]
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.1248818Z [31;1mException: [0mD:\a\_temp\0c7fe624***5431***4915***87f6***9b3e34dd1f12.ps1:2[0m
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.1249829Z [31;1m[0m[36;1mLine |[0m
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.1250625Z [31;1m[0m[36;1m[36;1m   2 | [0m if (***not "") { [36;1mthrow "Missing SUPABASE_ACCESS_TOKEN"[0m }[0m
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.1251561Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.1254124Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing SUPABASE_ACCESS_TOKEN[0m
+align-and-validate	Guard required secrets	2025-11-11T01:01:06.2097529Z ##[error]Process completed with exit code 1.
+align-and-validate	Post Run actions/checkout@v4	∩╗┐2025-11-11T01:01:06.2316860Z Post job cleanup.
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.4449870Z [command]"C:\Program Files\Git\bin\git.exe" version
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.4720500Z git version 2.51.2.windows.1
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.4791935Z Temporarily overriding HOME='D:\a\_temp\4eb577ff***de2f***467e***abc4***b96919014f78' before making global git config changes
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.4793108Z Adding repository directory to the temporary git global config as a safe directory
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.4803092Z [command]"C:\Program Files\Git\bin\git.exe" config ***global ***add safe.directory D:\a\grookai_vault\grookai_vault
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.5118770Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp core\.sshCommand
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:06.5441925Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'core\.sshCommand' && git config ***local ***unset***all 'core.sshCommand' || :\""
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:07.0855690Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***name***only ***get***regexp http\.https\:\/\/github\.com\/\.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:07.1145562Z http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:07.1203779Z [command]"C:\Program Files\Git\bin\git.exe" config ***local ***unset***all http.https://github.com/.extraheader
+align-and-validate	Post Run actions/checkout@v4	2025-11-11T01:01:07.1558062Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach ***recursive "sh ***c \"git config ***local ***name***only ***get***regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config ***local ***unset***all 'http.https://github.com/.extraheader' || :\""
+align-and-validate	Complete job	∩╗┐2025-11-11T01:01:07.7172619Z Cleaning up orphan processes

@@ -32,6 +32,13 @@ Flutter + Supabase app for TCG collection management.
 
 [![Auto-Align Import-Prices](https://img.shields.io/badge/CI-Auto--Align%20Import--Prices-blue)](../../actions/workflows/auto-align-import-prices.yml)
 
+## Auto-Align Import-Prices (proofs loop)
+- One-click: Terminal → Run Task → "GV: Align until proofs (LOOP)"
+- Or manual: `pwsh -NoProfile -File scripts/ci/align_until_proofs.ps1`
+- The loop ends when both files exist:
+  - reports/ci_logs/latest/sixline.txt
+  - reports/ci_logs/latest/attempts.txt
+
 ## Environment Variables
 
 Use only these keys in this repo:
