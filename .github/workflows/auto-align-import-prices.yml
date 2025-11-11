@@ -64,7 +64,7 @@ jobs:
           function Try-Post([string]$Url,[hashtable]$H){
             $B = '{"ping":"ci-auto"}'
             try {
-              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 25
+              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 40
               return @([int]$r.StatusCode,[string]$r.Content)
             } catch {
               $c = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
@@ -83,18 +83,25 @@ jobs:
           $Hauth = $Hpub.Clone(); $Hauth['Authorization'] = "Bearer $($env:PROD_PUBLISHABLE_KEY)"
 
           $finalCode=-1; $finalBody=""; $finalUrl=$FN
+          $attemptLines = New-Object System.Collections.Generic.List[string]
+
+          function Record-Attempt([int]$iter,[string]$variant,[string]$url,[int]$code){
+            $attemptLines.Add(("# Iteration=" + $iter + ", Variant=" + $variant + ", URL=" + $url + ", Status=" + $code))
+          }
 
           for ($i=1; $i -le 3; $i++) {
             supabase functions deploy import-prices --project-ref $proj --env-file $envPat
             Start-Sleep -Seconds 3
 
-            foreach ($combo in @(@($FN,$Hpub), @($PRJ,$Hpub), @($PRJ,$Hauth))) {
-              $pair = Try-Post $combo[0] $combo[1]
-              $code = $pair[0]; $body = $pair[1]
-              if ($code -ge 200 -and $code -lt 300) {
-                $finalCode=$code; $finalBody=$body; $finalUrl=$combo[0]; break
-              }
-            }
+            # Flipped order: try project URL first (apikey), then functions host (apikey), then project+auth
+            $pair = Try-Post $PRJ $Hpub; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'PRJ_apikey' -url $PRJ -code $code
+            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ; break }
+
+            $pair = Try-Post $FN $Hpub; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'FN_apikey' -url $FN -code $code
+            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$FN; break }
+
+            $pair = Try-Post $PRJ $Hauth; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'PRJ_apikey+auth' -url $PRJ -code $code
+            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ; break }
             if ($finalCode -ge 200 -and $finalCode -lt 300) { break }
             if ($i -lt 3) { Start-Sleep -Seconds 6 }
           }
@@ -112,6 +119,13 @@ jobs:
           $six | Out-File -FilePath sixline.txt -Encoding utf8
           Write-Host $six
 
+          # Write attempts log artifact as well
+          if ($attemptLines.Count -gt 0) {
+            $attemptLines | Set-Content -Encoding utf8 attempts.txt
+          } else {
+            Set-Content -Encoding utf8 attempts.txt "<no-attempts-recorded>"
+          }
+
           if ($finalCode -lt 200 -or $finalCode -ge 300) {
             Write-Error "Auto-align failed after 3 attempts (last Status=$finalCode @ $finalUrl)"
           }
@@ -121,5 +135,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: import-prices-auto-validate
-          path: sixline.txt
+          path: |
+          sixline.txt
+          attempts.txt
           if-no-files-found: warn
+
