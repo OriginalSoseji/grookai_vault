@@ -200,14 +200,12 @@ function Download-Logs([string]$runId){
   $dest = Join-Path 'reports/ci_logs' ("run_$runId")
   if(-not (Test-Path $dest)){ New-Item -ItemType Directory -Path $dest | Out-Null }
   Write-Info "Downloading logs to $dest"
-  gh run download $runId --log --dir $dest | Out-Null
-  # Concatenate all logs to ALL.txt
   $all = Join-Path $dest 'ALL.txt'
-  Remove-Item -Force -ErrorAction SilentlyContinue $all
-  Get-ChildItem -Recurse -File $dest | Where-Object { $_.Name -like '*.txt' -or $_.Name -like '*.log' } | ForEach-Object {
-    Add-Content -Path $all -Value ("=== FILE: " + $_.FullName)
-    Get-Content $_.FullName | Add-Content -Path $all
-    Add-Content -Path $all -Value ""
+  try {
+    gh run view $runId --log | Set-Content -Path $all -Encoding UTF8
+  } catch {
+    Write-Warn "Failed gh run view --log: $($_.Exception.Message)"
+    "<logs_unavailable>" | Set-Content -Path $all -Encoding UTF8
   }
   return $all
 }
