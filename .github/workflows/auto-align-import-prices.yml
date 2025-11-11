@@ -30,7 +30,10 @@ jobs:
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout (allow pushes)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Guard required secrets
         shell: pwsh
@@ -53,7 +56,6 @@ jobs:
           New-Item -ItemType Directory -Force -Path $ProofDir | Out-Null
           $six = Join-Path $ProofDir "sixline.txt"
           $att = Join-Path $ProofDir "attempts.txt"
-
           @'
 ProjectRef: ycdxbpibncqcchqiihfz
 Function: import-prices
@@ -62,7 +64,6 @@ FinalCode: (pending)
 FinalURL: (pending)
 Timestamp: (pending)
 '@ | Set-Content $six -Encoding UTF8
-
           'Attempts:' | Set-Content $att -Encoding UTF8
 
       - name: Ensure verify_jwt=false (idempotent)
@@ -102,7 +103,7 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
 "@ -Encoding UTF8
 
           supabase secrets set --project-ref $env:PROJECT_REF BRIDGE_IMPORT_TOKEN=$env:BRIDGE
-          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --no-verify-jwt --env-file "supabase/functions/import-prices/.env"
+          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --env-file "supabase/functions/import-prices/.env"
 
           $fnUrl  = "https://$($env:PROJECT_REF).functions.supabase.co/import-prices"
           $prjUrl = "$env:PRJ/functions/v1/import-prices"
@@ -133,7 +134,6 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
             )
             $lastTries = $tries
 
-            # Append all tries to the single Attempts line
             $line = Get-Content $att -Raw
             $suffix = ($tries | ForEach-Object { "$($_.name):$($_.code)" }) -join ", "
             if ($line.TrimEnd() -eq "Attempts:") {
@@ -146,14 +146,14 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
             if ($hit) { $final = $hit; break }
           }
 
-          # Update sixline with result
-          $sixC = Get-Content $six -Raw
           function Replace-Line($c,[string]$k,[string]$v) {
             return ($c -split "`n" | ForEach-Object { if ($_ -like "$k:*") { "$k: $v" } else { $_ } }) -join "`n"
           }
-          $gw = if ($final) { $final.name } else { "(none)" }
+
+          $sixC = Get-Content $six -Raw
+          $gw   = if ($final) { $final.name } else { "(none)" }
           $code = if ($final) { "$($final.code)" } else { ($lastTries[-1].code) }
-          $url = if ($final) { $final.url } else { $lastTries[-1].url }
+          $url  = if ($final) { $final.url } else { $lastTries[-1].url }
           $stamp = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
 
           $sixC = Replace-Line $sixC "GatewayAuth" $gw
