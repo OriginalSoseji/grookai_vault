@@ -30,6 +30,7 @@ Flutter + Supabase app for TCG collection management.
 
 ![Bridge Status](https://img.shields.io/badge/bridge-clean-brightgreen)
 
+[![Auto-Align Import-Prices](https://img.shields.io/badge/CI-Auto--Align%20Import--Prices-blue)](../../actions/workflows/auto-align-import-prices.yml)
 
 ## Environment Variables
 
