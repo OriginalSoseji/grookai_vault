@@ -397,6 +397,16 @@ for($iter=1; $iter -le $max; $iter++){
     exit 0
   }
   elseif($res.Final -eq '401'){
+    $haveHashes = ($res.Header8 -ne '<none>' -and $res.Env8 -ne '<none>')
+    if(-not $haveHashes){
+      Write-Warn "401 without gate hashes — minting new canonical token and aligning both secrets"
+      $canonical = Get-Base64UrlToken 32
+      Write-Info ("Minted new bridge token (hash8=" + (Hash8 $canonical) + ")")
+      Ensure-Repo-Secret -name 'BRIDGE_IMPORT_TOKEN' -value $canonical
+      Ensure-Function-Secret -func 'import-prices' -name 'BRIDGE_IMPORT_TOKEN' -value $canonical
+      Deploy-Function 'import-prices'
+      continue
+    }
     if($res.Header8 -ne $res.Env8){
       Write-Warn "401 with mismatched header8/env8 — resync function secret then retry"
       if($canonical){ Ensure-Function-Secret -func 'import-prices' -name 'BRIDGE_IMPORT_TOKEN' -value $canonical }
