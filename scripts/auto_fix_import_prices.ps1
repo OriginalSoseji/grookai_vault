@@ -202,7 +202,9 @@ function Download-Logs([string]$runId){
   Write-Info "Downloading logs to $dest"
   $all = Join-Path $dest 'ALL.txt'
   try {
-    gh run view $runId --log | Set-Content -Path $all -Encoding UTF8
+    $jobsJson = gh run view $runId --json jobs | ConvertFrom-Json
+    $jobId = $jobsJson.jobs[0].databaseId
+    gh run view $runId --job $jobId --log | Set-Content -Path $all -Encoding UTF8
   } catch {
     Write-Warn "Failed gh run view --log: $($_.Exception.Message)"
     "<logs_unavailable>" | Set-Content -Path $all -Encoding UTF8
