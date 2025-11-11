@@ -110,7 +110,7 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
 
           function Try-Call {
             param([string]$Name,[string]$Url,[bool]$WithAuth)
-            $h = @{ "apikey" = $pub }
+            $h = @{ "apikey" = $pub; "x-bridge-token" = $env:BRIDGE }
             if ($WithAuth) { $h["Authorization"] = "Bearer $pub" }
             try {
               $resp = Invoke-WebRequest -Method POST -Uri $Url -Headers $h -Body (@{health=1} | ConvertTo-Json) -ContentType 'application/json' -UseBasicParsing -TimeoutSec 20
@@ -183,5 +183,5 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
           git config user.name  "github-actions"
           git config user.email "actions@users.noreply.github.com"
           git add reports/ci_logs/latest/sixline.txt reports/ci_logs/latest/attempts.txt
-          git commit -m "ci(auto): persist auto-align proofs (import-prices)" 2>$null
+          git commit -m "ci(auto): proofs" 2>$null
           git push
