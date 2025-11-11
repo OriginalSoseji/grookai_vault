@@ -1,20 +1,11 @@
-name: Prod Import-Prices Validate (DISABLED)
+name: Prod Import-Prices Validate (LEGACY DISABLED)
 
 on:
   workflow_dispatch:
 
 jobs:
   disabled:
-    runs-on: windows-latest
-    steps:
-      - name: Disabled Notice
-        shell: pwsh
-        run: |
-          Write-Output 'GV_CI_DISABLED: superseded by prod-import-prices-validate-edge.yml'
-name: DISABLED (legacy)
-on: workflow_dispatch
-jobs:
-  disabled:
+    if: false # GV_CI_DISABLED
     runs-on: ubuntu-latest
     steps:
-      - run: echo "disabled"
+      - run: echo "GV_CI_DISABLED: superseded by prod-import-prices-validate-edge.yml"
