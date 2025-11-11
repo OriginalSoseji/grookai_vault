@@ -23,7 +23,8 @@ function Assert-Preflight {
 
   # git repo and status
   if (-not (git rev-parse --is-inside-work-tree 2>$null)) { throw 'Not inside a git repository.' }
-  $dirty = (git status --porcelain).Trim().Length -gt 0
+  $gstat = (git status --porcelain)
+  $dirty = if ($null -ne $gstat) { ("" + ($gstat -join "")).Trim().Length -gt 0 } else { $false }
   if ($dirty) { Write-Host 'Note: working tree dirty; will autostash during pulls.' -ForegroundColor Yellow }
 
   # workflow exists
@@ -156,4 +157,3 @@ while ($true) {
 if ($script:__align_stashed) {
   try { git stash pop | Out-Null } catch { Write-Host 'Note: kept stash due to conflicts.' -ForegroundColor Yellow }
 }
-
