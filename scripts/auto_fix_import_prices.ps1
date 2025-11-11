@@ -185,9 +185,9 @@ function Dispatch-Validator {
   }
   Write-Info "Dispatching edge validator workflow"
   gh workflow run 'prod-import-prices-validate-edge.yml' | Out-Null
-  Start-Sleep -Seconds 3
+  Start-Sleep -Seconds 5
   # Find the latest run for this workflow
-  $run = gh run list --workflow 'prod-import-prices-validate-edge.yml' --json databaseId,headBranch,headSha,status,conclusion,durationMS,createdAt -L 1 | ConvertFrom-Json
+  $run = gh run list --workflow 'prod-import-prices-validate-edge.yml' --json databaseId,status,conclusion,createdAt -L 1 | ConvertFrom-Json
   if(-not $run){ throw "Failed to locate workflow run" }
   $runId = $run[0].databaseId
   Write-Info "Run ID: $runId — waiting for completion"
