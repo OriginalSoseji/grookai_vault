@@ -41,7 +41,7 @@ jobs:
             }
           }
 
-      - name: Align (project + function .env) + redeploy + validate (dual endpoints, 3 tries)
+      - name: Align (project + function .env) + redeploy + dual-endpoint validate (5 tries)
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           BRIDGE_IMPORT_TOKEN:   ${{ secrets.BRIDGE_IMPORT_TOKEN }}
@@ -50,85 +50,71 @@ jobs:
         shell: pwsh
         run: |
           Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          $ProgressPreference = "SilentlyContinue"
-
-          $proj   = "ycdxbpibncqcchqiihfz"
-          $fnDir  = "supabase/functions/import-prices"
-          $envPat = Join-Path $fnDir ".env"
+          $ErrorActionPreference="Stop"
+          $proj="${{ env.PROJECT_REF }}"
+          $fnDir="supabase/functions/import-prices"
+          $envPat=Join-Path $fnDir ".env"
           New-Item -ItemType Directory -Force -Path $fnDir | Out-Null
           @("BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN") | Set-Content -Encoding UTF8 $envPat
           supabase secrets set BRIDGE_IMPORT_TOKEN="$env:BRIDGE_IMPORT_TOKEN" --project-ref $proj
 
           function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
-          function Try-Post([string]$Url,[hashtable]$H){
-            $B = '{"ping":"ci-auto"}'
-            try {
-              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 40
-              return @([int]$r.StatusCode,[string]$r.Content)
-            } catch {
-              $c = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
-              return @($c,"")
+          function TryPost([string]$Url,[hashtable]$Hdr,[string]$Tag){
+            $B='{"ping":"ci-auto"}'
+            try{
+              $r=Invoke-WebRequest -Method POST -Uri $Url -Headers $Hdr -Body $B -UseBasicParsing -TimeoutSec 25
+              return @($Tag,[int]$r.StatusCode,[string]$r.Content)
+            }catch{
+              $c=try{ [int]$_.Exception.Response.StatusCode.value__ }catch{ -1 }
+              return @($Tag,$c,"")
             }
           }
 
           $FN  = "https://$proj.functions.supabase.co/import-prices"
-          $PRJ = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+          $PRJ = "$("${{ env.SUPABASE_URL }}".TrimEnd('/'))/functions/v1/import-prices"
 
-          $Hpub = @{
-            apikey           = $env:PROD_PUBLISHABLE_KEY
-            'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
-            'Content-Type'   = 'application/json'
+          $Hpub=@{
+            apikey=$env:PROD_PUBLISHABLE_KEY
+            'x-bridge-token'=$env:BRIDGE_IMPORT_TOKEN
+            'Content-Type'='application/json'
           }
-          $Hauth = $Hpub.Clone(); $Hauth['Authorization'] = "Bearer $($env:PROD_PUBLISHABLE_KEY)"
+          $Hauth=$Hpub.Clone(); $Hauth['Authorization']="Bearer $($env:PROD_PUBLISHABLE_KEY)"
 
-          $finalCode=-1; $finalBody=""; $finalUrl=$FN
-          $attemptLines = New-Object System.Collections.Generic.List[string]
+          $finalCode=-1; $finalBody=""; $finalUrl=$FN; $finalAuth="apikey_only"; $finalTag=""; $attempts=@()
 
-          function Record-Attempt([int]$iter,[string]$variant,[string]$url,[int]$code){
-            $attemptLines.Add(("# Iteration=" + $iter + ", Variant=" + $variant + ", URL=" + $url + ", Status=" + $code))
-          }
-
-          for ($i=1; $i -le 3; $i++) {
+          for($i=1;$i -le 5;$i++){
             supabase functions deploy import-prices --project-ref $proj --env-file $envPat
-            Start-Sleep -Seconds 3
+            Start-Sleep -Seconds 5
 
-            # Flipped order: try project URL first (apikey), then functions host (apikey), then project+auth
-            $pair = Try-Post $PRJ $Hpub; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'PRJ_apikey' -url $PRJ -code $code
-            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ; break }
-
-            $pair = Try-Post $FN $Hpub; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'FN_apikey' -url $FN -code $code
-            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$FN; break }
-
-            $pair = Try-Post $PRJ $Hauth; $code=$pair[0]; $body=$pair[1]; Record-Attempt -iter $i -variant 'PRJ_apikey+auth' -url $PRJ -code $code
-            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ; break }
-            if ($finalCode -ge 200 -and $finalCode -lt 300) { break }
-            if ($i -lt 3) { Start-Sleep -Seconds 6 }
+            foreach($v in @(
+              @{url=$FN;  hdr=$Hpub;  tag='FN/apikey_only';  auth='apikey_only'},
+              @{url=$PRJ; hdr=$Hpub;  tag='PRJ/apikey_only'; auth='apikey_only'},
+              @{url=$PRJ; hdr=$Hauth; tag='PRJ/apikey+auth'; auth='apikey+auth'}
+            )){
+              $res = TryPost $v.url $v.hdr $v.tag
+              $attempts += ('{0}:{1}' -f $res[0], $res[1])
+              if ($res[1] -ge 200 -and $res[1] -lt 300){
+                $finalCode=$res[1]; $finalBody=$res[2]; $finalUrl=$v.url; $finalAuth=$v.auth; $finalTag=$res[0]; break
+              } else { $finalCode=$res[1]; $finalBody=$res[2]; $finalUrl=$v.url; $finalAuth=$v.auth; $finalTag=$res[0] }
+            }
+            if ($finalCode -ge 200 -and $finalCode -lt 300){ break }
+            if ($i -lt 5){ Start-Sleep -Seconds 8 }
           }
 
           $h8 = H8 $env:BRIDGE_IMPORT_TOKEN
-          $b300 = if ($finalBody.Length -gt 300) { $finalBody.Substring(0,300) } else { $finalBody }
-          $six = @(
+          $b300= if($finalBody.Length -gt 300){ $finalBody.Substring(0,300) } else { $finalBody }
+          $six=@(
             "URL: $finalUrl",
             "Method: POST",
             "Status: $finalCode",
-            "GatewayAuth: " + ($(if ($finalUrl -eq $PRJ -and $Hauth.ContainsKey('Authorization')) {'apikey+auth'} else {'apikey_only'})),
+            "GatewayAuth: $finalAuth",
             "BridgeTokenHash8: $h8",
             "Body[0..300]: $b300"
           ) -join "`n"
-          $six | Out-File -FilePath sixline.txt -Encoding utf8
+          $six | Out-File sixline.txt -Encoding utf8
+          ('Attempts: ' + ($attempts -join ', ')) | Out-File attempts.txt -Encoding utf8
           Write-Host $six
-
-          # Write attempts log artifact as well
-          if ($attemptLines.Count -gt 0) {
-            $attemptLines | Set-Content -Encoding utf8 attempts.txt
-          } else {
-            Set-Content -Encoding utf8 attempts.txt "<no-attempts-recorded>"
-          }
-
-          if ($finalCode -lt 200 -or $finalCode -ge 300) {
-            Write-Error "Auto-align failed after 3 attempts (last Status=$finalCode @ $finalUrl)"
-          }
+          if($finalCode -lt 200 -or $finalCode -ge 300){ Write-Error "Auto-align failed (Status=$finalCode @ $finalTag -> $finalUrl)" }
 
       - name: Upload validation summary
         if: ${{ always() }}
@@ -136,8 +122,8 @@ jobs:
         with:
           name: import-prices-auto-validate
           path: |
-          sixline.txt
-          attempts.txt
+            sixline.txt
+            attempts.txt
           if-no-files-found: warn
 
 
