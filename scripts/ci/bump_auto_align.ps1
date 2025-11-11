@@ -1,0 +1,15 @@
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+Set-Location C:\grookai_vault
+
+$path = ".github\auto_align_import_prices.bump"
+$ts = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss K")
+
+"auto-align import-prices bump $ts" | Set-Content $path -Encoding UTF8
+
+git add $path
+git commit -m "chore(ci): bump auto-align import-prices $ts"
+git push
+Write-Host "Pushed bump to trigger auto-align via push-path."
+
