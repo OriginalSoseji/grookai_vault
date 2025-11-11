@@ -1,4 +1,4 @@
-name: Prod Import-Prices Validate (EDGE — bridge-only)
+name: Prod Import-Prices Validate (EDGE - bridge-only)
 
 on:
   workflow_dispatch:
@@ -7,7 +7,6 @@ permissions:
   contents: read
 
 env:
-  GV_ENV: prod
   PROJECT_REF: ycdxbpibncqcchqiihfz
   FUNCS_BASE: https://ycdxbpibncqcchqiihfz.functions.supabase.co
 
@@ -15,136 +14,36 @@ jobs:
   validate:
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-            - name: Emit diagnostics (apikey-only)
-        shell: pwsh
-        run: |
-          $Url = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"
-          $H = @{
-            apikey           = "${{ secrets.PROD_PUBLISHABLE_KEY }}"
-            'x-bridge-token' = "${{ secrets.BRIDGE_IMPORT_TOKEN }}"
-          }
-          $B = @{ ping = 'ci-emit' } | ConvertTo-Json
-          try {
-            $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -ContentType 'application/json' -UseBasicParsing
-            $status = [string]$r.StatusCode
-            $content = [string]$r.Content
-          } catch {
-            $status = [string]$_.Exception.Response.StatusCode.value__
-            $content = ''
-          }
-
-          function Hash8([string]$s) {
-            if (-not $s) { return '<none>' }
-            $bytes = [Text.Encoding]::UTF8.GetBytes($s)
-            $sha = [System.Security.Cryptography.SHA256]::Create().ComputeHash($bytes)
-            ($sha | ForEach-Object ToString x2) -join '' | ForEach-Object { $_.Substring(0,8) }
-          }
-
-          $body300 = if ($content.Length -gt 300) { $content.Substring(0,300) } else { $content }
-          Write-Output "URL: $Url"
-          Write-Output "Method: POST"
-          Write-Output "Status: $status"
-          Write-Output "GatewayAuth: apikey_only"
-          Write-Output "BridgeTokenHash8: $(Hash8 '${{ secrets.BRIDGE_IMPORT_TOKEN }}')"
-          Write-Output "Body[0..300]: $body300"
-name: Prod Import-Prices Validate (EDGE — apikey-only)
-
-on:
-  workflow_dispatch:
-
-permissions:
-  contents: read
-
-jobs:
-  validate:
-    runs-on: windows-latest
-    steps:
       - uses: actions/checkout@v4
-      - name: Emit diagnostics (apikey-only)
-        shell: pwsh
-        run: |
-          $Url = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"
-          $H = @{
-            apikey           = "${{ secrets.PROD_PUBLISHABLE_KEY }}"
-            'x-bridge-token' = "${{ secrets.BRIDGE_IMPORT_TOKEN }}"
-          }
-          $B = @{ ping = 'ci-emit' } | ConvertTo-Json
-          try {
-            $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -ContentType 'application/json' -UseBasicParsing
-            $status = [string]$r.StatusCode
-            $content = [string]$r.Content
-          } catch {
-            $status = [string]$_.Exception.Response.StatusCode.value__
-            $content = ''
-          }
-
-          function Hash8([string]$s) {
-            if (-not $s) { return '<none>' }
-            $bytes = [Text.Encoding]::UTF8.GetBytes($s)
-            $sha = [System.Security.Cryptography.SHA256]::Create().ComputeHash($bytes)
-            ($sha | ForEach-Object ToString x2) -join '' | ForEach-Object { $_.Substring(0,8) }
-          }
-
-          $body300 = if ($content.Length -gt 300) { $content.Substring(0,300) } else { $content }
-          Write-Output "URL: $Url"
-          Write-Output "Method: POST"
-          Write-Output "Status: $status"
-          Write-Output "GatewayAuth: apikey_only"
-          Write-Output "BridgeTokenHash8: $(Hash8 '${{ secrets.BRIDGE_IMPORT_TOKEN }}')"
-          Write-Output "Body[0..300]: $body300"
-name: Prod Import-Prices Validate (apikey-only)
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-    paths:
-      - "supabase/functions/import-prices/**"
-  schedule:
-    - cron: "*/30 * * * *"
-
-permissions:
-  contents: read
-
-env:
-  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-
-jobs:
-  validate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Emit six-line probe (apikey-only + bridge)
+      - name: Bridge-only probe
         shell: pwsh
         env:
-          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
           BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
         run: |
           Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          $u = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+          $ErrorActionPreference = 'Stop'
+          function Hash8([string]$s){ if(-not $s){return '<missing>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+
+          $u = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"
           $H = @{
-            apikey           = $env:SUPABASE_PUBLISHABLE_KEY
             'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
-            'Content-Type'   = 'application/json'
+            'content-type' = 'application/json'
           }
           $B = '{"ping":"ci-emit"}'
           try {
-            $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 20
+            $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 30
             $status = [string]$r.StatusCode
             $content = [string]$r.Content
           } catch {
             $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
             $content = ''
           }
-          function Hash8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
-          $body300 = if ($content.Length -gt 300) { $content.Substring(0,300) } else { $content }
-          Write-Output "URL: $u"
-          Write-Output "Method: POST"
-          Write-Output "Status: $status"
-          Write-Output "GatewayAuth: apikey_only"
-          Write-Output ("BridgeTokenHash8: " + (Hash8 $env:BRIDGE_IMPORT_TOKEN))
-          Write-Output "Body[0..300]: $body300"
+
+          # Emit six-line summary markers consumed by orchestrator
+          Write-Output "DIAG: B/A"
+          Write-Output "VARIANT: EDGE-bridge-only"
+          Write-Output "FINAL: $status"
+          Write-Output "PUBLISHABLE_HASH8: <missing>"
+          Write-Output "BRIDGE_HASH8: <hidden>"
+          $body100 = if($content.Length -gt 100){ $content.Substring(0,100) } else { $content }
+          Write-Output "BODY100: $body100"
