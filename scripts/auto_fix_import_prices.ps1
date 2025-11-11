@@ -297,7 +297,6 @@ function Write-Report([string]$kind,[string]$final,[string]$variant,[string]$hea
 function Commit-Changes {
   git add .github/workflows/prod-import-prices-validate-edge.yml 2>$null
   git add .github/workflows/prod-import-prices-validate-pub.yml 2>$null
-  git add scripts/auto_fix_import_prices.ps1 2>$null
   $status = git status --porcelain
   if($status){
     git commit -m "ci: validator (EDGE, bridge-only) — disable legacy; add robust log fetch" | Out-Null
@@ -310,12 +309,23 @@ function Commit-Scripts {
   if($status){ git commit -m "scripts: auto-fix loop for import-prices" | Out-Null }
 }
 
+function Push-Changes {
+  try {
+    git push origin HEAD | Out-Null
+    Write-Info "Pushed commits to origin"
+  } catch {
+    Write-Warn "Failed to push commits: $($_.Exception.Message)"
+  }
+}
+
 # Entry
 Ensure-Directories
 Ensure-VerifyJwt-False
 Write-Edge-Validator-Workflow
 Disable-Legacy-Pub-Validator
 Commit-Changes
+Commit-Scripts
+Push-Changes
 
 # Canonical token selection
 $canonical = $null
