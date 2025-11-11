@@ -1,12 +1,12 @@
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
-
-Set-Location C:\grookai_vault
-
 param(
   [ValidateSet('dispatch','bump')]
   [string]$TriggerMode = 'dispatch'
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+Set-Location C:\grookai_vault
 
 $script:__align_stashed = $false
 
