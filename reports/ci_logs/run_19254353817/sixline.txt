@@ -1,0 +1,7 @@
+URL: https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices
+Method: POST
+Status: -1
+GatewayAuth: 
+apikey_only
+BridgeTokenHash8: 3973E022
+Body[0..300]: 

@@ -30,21 +30,4 @@ Flutter + Supabase app for TCG collection management.
 
 ![Bridge Status](https://img.shields.io/badge/bridge-clean-brightgreen)
 
-[![Auto-Align Import-Prices](https://img.shields.io/badge/CI-Auto--Align%20Import--Prices-blue)](../../actions/workflows/auto-align-import-prices.yml)
 
-## Auto-Align Import-Prices (proofs loop)
-- One-click: Terminal → Run Task → "GV: Align until proofs (LOOP)"
-- Or manual: `pwsh -NoProfile -File scripts/ci/align_until_proofs.ps1`
-- The loop ends when both files exist:
-  - reports/ci_logs/latest/sixline.txt
-  - reports/ci_logs/latest/attempts.txt
-
-## Environment Variables
-
-Use only these keys in this repo:
-
-- `SUPABASE_PUBLISHABLE_KEY` — sb_publishable_… (safe for client and Edge calls)
-- `SUPABASE_SECRET_KEY` — sb_secret_… (server-only; never sent to Edge functions)
-- `BRIDGE_IMPORT_TOKEN` — shared token for protected Edge Function routes
-
-Do not use legacy anon or service-role key env names. Edge Functions are invoked with `apikey` and `x-bridge-token` headers only — no `Authorization: Bearer`.

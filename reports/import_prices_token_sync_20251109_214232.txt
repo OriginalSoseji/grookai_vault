@@ -1,0 +1,2 @@
+NAME, METHOD, AUTH, CODE, OK, VARIANT
+import-prices, POST, publishable, -1, False, Missing required env

@@ -1,0 +1,6 @@
+DIAG: B/A
+VARIANT: EDGE-bridge-only
+FINAL: 401
+PUBLISHABLE_HASH8: <missing>
+BRIDGE_HASH8: <hidden>
+BODY100: 

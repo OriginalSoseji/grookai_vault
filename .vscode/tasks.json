@@ -6,6 +6,13 @@
       "type": "shell",
       "command": "pwsh -File scripts/session_sync_bridge_and_validate.ps1",
       "problemMatcher": []
+    },
+    {
+      "label": "GV: Align until proofs (LOOP)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-File", "scripts/ci/align_until_proofs.ps1"],
+      "problemMatcher": []
     }
   ]
 }

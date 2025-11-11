@@ -1,0 +1,133 @@
+name: Auto-Align Import-Prices (bridge-only)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_REF: ycdxbpibncqcchqiihfz
+  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+
+jobs:
+  align-and-validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard required secrets
+        shell: pwsh
+        run: |
+          if (-not "${{ secrets.SUPABASE_ACCESS_TOKEN }}") { throw "Missing SUPABASE_ACCESS_TOKEN" }
+          if (-not "${{ secrets.PROD_PUBLISHABLE_KEY }}") { throw "Missing PROD_PUBLISHABLE_KEY" }
+          if (-not "${{ secrets.BRIDGE_IMPORT_TOKEN }}") { throw "Missing BRIDGE_IMPORT_TOKEN" }
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+
+      - name: Ensure verify_jwt=false (idempotent)
+        shell: pwsh
+        run: |
+          $p = "supabase/functions/import-prices/config.toml"
+          if (-not (Test-Path $p)) { New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null; Set-Content $p "verify_jwt = false" -NoNewline; git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true }
+          else {
+            $txt = Get-Content $p -Raw
+            if ($txt -notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {
+              ($txt -replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set-Content $p
+              git add $p; git commit -m "ci(auto): enforce verify_jwt=false" || $true; git push || $true
+            }
+          }
+
+      - name: Align (project + function .env) + redeploy + validate (dual endpoints, 3 tries)
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          BRIDGE_IMPORT_TOKEN:   ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+          PROD_PUBLISHABLE_KEY:  ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          SUPABASE_URL:          ${{ secrets.PROD_SUPABASE_URL }}
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Stop"
+          $ProgressPreference    = "SilentlyContinue"
+
+          $proj   = "ycdxbpibncqcchqiihfz"
+          $fnDir  = "supabase/functions/import-prices"
+          $envPat = Join-Path $fnDir ".env"
+          New-Item -ItemType Directory -Force -Path $fnDir | Out-Null
+
+          # 1) Project-level secret (authoritative)
+          supabase secrets set BRIDGE_IMPORT_TOKEN="$env:BRIDGE_IMPORT_TOKEN" --project-ref $proj
+
+          # 2) Function-scoped .env (guaranteed at deploy-time)
+          @("BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN") | Set-Content -Encoding UTF8 $envPat
+
+          # Helpers
+          function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+          function Try-Post([string]$Url){
+            $H = @{
+              apikey           = $env:PROD_PUBLISHABLE_KEY
+              'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
+              'Content-Type'   = 'application/json'
+            }
+            $B = '{"ping":"ci-auto"}'
+            try {
+              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 25
+              return @([int]$r.StatusCode, [string]$r.Content)
+            } catch {
+              $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
+              return @($code, "")
+            }
+          }
+
+          $FN  = "https://$proj.functions.supabase.co/import-prices"
+          $PRJ = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
+
+          $finalCode = -1; $finalBody = ""; $finalUrl = $FN
+
+          for ($i=1; $i -le 3; $i++) {
+            # Deploy with function-level env file
+            supabase functions deploy import-prices --project-ref $proj --env-file $envPat
+            Start-Sleep -Seconds 4
+
+            # Prefer the functions host
+            $pair = Try-Post $FN
+            $code = $pair[0]; $body = $pair[1]
+            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$FN; break }
+
+            # Fallback: project URL
+            $pair = Try-Post $PRJ
+            $code = $pair[0]; $body = $pair[1]
+            if ($code -ge 200 -and $code -lt 300) { $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ; break }
+
+            if ($i -lt 3) { Start-Sleep -Seconds 6 }
+            $finalCode=$code; $finalBody=$body; $finalUrl=$PRJ
+          }
+
+          $h8 = H8 $env:BRIDGE_IMPORT_TOKEN
+          $b300 = if ($finalBody.Length -gt 300) { $finalBody.Substring(0,300) } else { $finalBody }
+          $six = @(
+            "URL: $finalUrl",
+            "Method: POST",
+            "Status: $finalCode",
+            "GatewayAuth: apikey_only",
+            "BridgeTokenHash8: $h8",
+            "Body[0..300]: $b300"
+          ) -join "`n"
+          $six | Out-File -FilePath sixline.txt -Encoding utf8
+          Write-Host $six
+
+          if ($finalCode -lt 200 -or $finalCode -ge 300) {
+            Write-Error "Auto-align failed after 3 attempts (last Status=$finalCode @ $finalUrl)"
+          }
+
+      - name: Upload validation summary
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: import-prices-auto-validate
+          path: sixline.txt
+          if-no-files-found: warn
+

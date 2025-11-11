@@ -1,0 +1,286 @@
+﻿2025-11-10T17:08:55.2189375Z Current runner version: '2.329.0'
+2025-11-10T17:08:55.2229102Z ##[group]Runner Image Provisioner
+2025-11-10T17:08:55.2230437Z Hosted Compute Agent
+2025-11-10T17:08:55.2231266Z Version: 20251016.436
+2025-11-10T17:08:55.2232218Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-10T17:08:55.2233307Z Build Date: 2025-10-15T20:44:12Z
+2025-11-10T17:08:55.2234219Z ##[endgroup]
+2025-11-10T17:08:55.2235526Z ##[group]Operating System
+2025-11-10T17:08:55.2236434Z Microsoft Windows Server 2025
+2025-11-10T17:08:55.2237318Z 10.0.26100
+2025-11-10T17:08:55.2238065Z Datacenter
+2025-11-10T17:08:55.2238774Z ##[endgroup]
+2025-11-10T17:08:55.2239493Z ##[group]Runner Image
+2025-11-10T17:08:55.2240408Z Image: windows-2025
+2025-11-10T17:08:55.2241209Z Version: 20251102.77.1
+2025-11-10T17:08:55.2242946Z Included Software: https://github.com/actions/runner-images/blob/win25/20251102.77/images/windows/Windows2025-Readme.md
+2025-11-10T17:08:55.2246014Z Image Release: https://github.com/actions/runner-images/releases/tag/win25%2F20251102.77
+2025-11-10T17:08:55.2247747Z ##[endgroup]
+2025-11-10T17:08:55.2249348Z ##[group]GITHUB_TOKEN Permissions
+2025-11-10T17:08:55.2251825Z Contents: read
+2025-11-10T17:08:55.2252625Z Metadata: read
+2025-11-10T17:08:55.2253337Z ##[endgroup]
+2025-11-10T17:08:55.2256736Z Secret source: Actions
+2025-11-10T17:08:55.2257802Z Prepare workflow directory
+2025-11-10T17:08:55.2887875Z Prepare all required actions
+2025-11-10T17:08:55.2927138Z Getting action download info
+2025-11-10T17:08:55.5878300Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-11-10T17:08:55.7916942Z Complete job name: validate
+2025-11-10T17:08:55.9304419Z ##[group]Run actions/checkout@v4
+2025-11-10T17:08:55.9306185Z with:
+2025-11-10T17:08:55.9306637Z   repository: OriginalSoseji/grookai_vault
+2025-11-10T17:08:55.9307417Z   token: ***
+2025-11-10T17:08:55.9307782Z   ssh-strict: true
+2025-11-10T17:08:55.9308163Z   ssh-user: git
+2025-11-10T17:08:55.9308554Z   persist-credentials: true
+2025-11-10T17:08:55.9309018Z   clean: true
+2025-11-10T17:08:55.9309394Z   sparse-checkout-cone-mode: true
+2025-11-10T17:08:55.9309860Z   fetch-depth: 1
+2025-11-10T17:08:55.9310225Z   fetch-tags: false
+2025-11-10T17:08:55.9310608Z   show-progress: true
+2025-11-10T17:08:55.9310988Z   lfs: false
+2025-11-10T17:08:55.9311335Z   submodules: false
+2025-11-10T17:08:55.9311715Z   set-safe-directory: true
+2025-11-10T17:08:55.9312394Z env:
+2025-11-10T17:08:55.9312883Z   SUPABASE_URL: ***
+2025-11-10T17:08:55.9313491Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:08:55.9314102Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:08:55.9314513Z ##[endgroup]
+2025-11-10T17:08:56.1022520Z Syncing repository: OriginalSoseji/grookai_vault
+2025-11-10T17:08:56.1024402Z ##[group]Getting Git version info
+2025-11-10T17:08:56.1025041Z Working directory is 'D:\a\grookai_vault\grookai_vault'
+2025-11-10T17:08:56.2073289Z [command]"C:\Program Files\Git\bin\git.exe" version
+2025-11-10T17:08:56.5710478Z git version 2.51.2.windows.1
+2025-11-10T17:08:56.5766813Z ##[endgroup]
+2025-11-10T17:08:56.5787989Z Temporarily overriding HOME='D:\a\_temp\054a8d00-822a-4c18-9f23-0c6e6dbcd490' before making global git config changes
+2025-11-10T17:08:56.5789445Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-10T17:08:56.5799925Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\grookai_vault\grookai_vault
+2025-11-10T17:08:56.6341225Z Deleting the contents of 'D:\a\grookai_vault\grookai_vault'
+2025-11-10T17:08:56.6347732Z ##[group]Initializing the repository
+2025-11-10T17:08:56.6358453Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\grookai_vault\grookai_vault
+2025-11-10T17:08:56.7112069Z Initialized empty Git repository in D:/a/grookai_vault/grookai_vault/.git/
+2025-11-10T17:08:56.7163706Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/OriginalSoseji/grookai_vault
+2025-11-10T17:08:56.7731515Z ##[endgroup]
+2025-11-10T17:08:56.7735279Z ##[group]Disabling automatic garbage collection
+2025-11-10T17:08:56.7746775Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2025-11-10T17:08:56.8112293Z ##[endgroup]
+2025-11-10T17:08:56.8113537Z ##[group]Setting up auth
+2025-11-10T17:08:56.8128084Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2025-11-10T17:08:56.8454422Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2025-11-10T17:08:58.2297832Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-10T17:08:58.2654797Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2025-11-10T17:08:58.8427517Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2025-11-10T17:08:58.8766875Z ##[endgroup]
+2025-11-10T17:08:58.8767465Z ##[group]Fetching the repository
+2025-11-10T17:08:58.8788706Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +53228bf40497d4de439cad402092e5dbe9601427:refs/remotes/origin/main
+2025-11-10T17:08:59.9150412Z From https://github.com/OriginalSoseji/grookai_vault
+2025-11-10T17:08:59.9155921Z  * [new ref]         53228bf40497d4de439cad402092e5dbe9601427 -> origin/main
+2025-11-10T17:08:59.9516462Z ##[endgroup]
+2025-11-10T17:08:59.9516982Z ##[group]Determining the checkout info
+2025-11-10T17:08:59.9519453Z ##[endgroup]
+2025-11-10T17:08:59.9536614Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2025-11-10T17:09:00.0010422Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2025-11-10T17:09:00.0371714Z ##[group]Checking out the ref
+2025-11-10T17:09:00.0382598Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2025-11-10T17:09:00.1464369Z branch 'main' set up to track 'origin/main'.
+2025-11-10T17:09:00.1474634Z Switched to a new branch 'main'
+2025-11-10T17:09:00.1513193Z ##[endgroup]
+2025-11-10T17:09:00.1952579Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2025-11-10T17:09:00.2235343Z 53228bf40497d4de439cad402092e5dbe9601427
+2025-11-10T17:09:00.2650230Z ##[group]Run $PSVersionTable.PSVersion.ToString()
+2025-11-10T17:09:00.2650950Z [36;1m$PSVersionTable.PSVersion.ToString()[0m
+2025-11-10T17:09:00.3304932Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:00.3305547Z env:
+2025-11-10T17:09:00.3306553Z   SUPABASE_URL: ***
+2025-11-10T17:09:00.3306962Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:00.3307437Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:00.3308084Z ##[endgroup]
+2025-11-10T17:09:04.5820004Z 7.4.13
+2025-11-10T17:09:05.1879332Z ##[group]Run Set-StrictMode -Version Latest
+2025-11-10T17:09:05.1879826Z [36;1mSet-StrictMode -Version Latest[0m
+2025-11-10T17:09:05.1880107Z [36;1m$ErrorActionPreference = "Stop"[0m
+2025-11-10T17:09:05.1880433Z [36;1m$url  = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/diag-echo"[0m
+2025-11-10T17:09:05.1880758Z [36;1m$body = '{"ping":"ok"}'[0m
+2025-11-10T17:09:05.1880987Z [36;1mfunction Try($h,$v){[0m
+2025-11-10T17:09:05.1881185Z [36;1m  try {[0m
+2025-11-10T17:09:05.1881569Z [36;1m    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $h -Body $body -UseBasicParsing -TimeoutSec 20[0m
+2025-11-10T17:09:05.1882107Z [36;1m    Write-Host ("$v -> CODE=" + [int]$r.StatusCode + ' BODY=' + [string]$r.Content)[0m
+2025-11-10T17:09:05.1882451Z [36;1m    return [int]$r.StatusCode[0m
+2025-11-10T17:09:05.1883450Z [36;1m  } catch {[0m
+2025-11-10T17:09:05.1883745Z [36;1m    $c = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }[0m
+2025-11-10T17:09:05.1884179Z [36;1m    Write-Host ("$v -> ERROR: " + $_.Exception.Message)[0m
+2025-11-10T17:09:05.1884535Z [36;1m    if ($c -ne -1) { Write-Host ("$v -> CODE=" + $c) }[0m
+2025-11-10T17:09:05.1884791Z [36;1m    return $c[0m
+2025-11-10T17:09:05.1884971Z [36;1m  }[0m
+2025-11-10T17:09:05.1885120Z [36;1m}[0m
+2025-11-10T17:09:05.1885738Z [36;1m$hB = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json'; Authorization = ("Bearer " + $env:SUPABASE_PUBLISHABLE_KEY) }[0m
+2025-11-10T17:09:05.1886384Z [36;1m$cB = Try $hB 'B'[0m
+2025-11-10T17:09:05.1886827Z [36;1m$hA = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }[0m
+2025-11-10T17:09:05.1887296Z [36;1m$cA = Try $hA 'A'[0m
+2025-11-10T17:09:05.1887578Z [36;1mif (($cB -ge 200 -and $cB -lt 300) -or ($cA -ge 200 -and $cA -lt 300)) {[0m
+2025-11-10T17:09:05.1887973Z [36;1m  Write-Host 'Diag echo reachable with publishable key.'[0m
+2025-11-10T17:09:05.1888358Z [36;1m} else { Write-Error ("Diag echo failed (B=" + $cB + ', A=' + $cA + ').') }[0m
+2025-11-10T17:09:05.1954760Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:05.1955117Z env:
+2025-11-10T17:09:05.1955573Z   SUPABASE_URL: ***
+2025-11-10T17:09:05.1955887Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:05.1956276Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:05.1956503Z ##[endgroup]
+2025-11-10T17:09:05.8090569Z [31;1mParserError: [0mD:\a\_temp\cf2d4de6-2e17-40c9-b47c-4c59df09312c.ps1:19[0m
+2025-11-10T17:09:05.8093275Z [31;1m[0m[36;1mLine |[0m
+2025-11-10T17:09:05.8094275Z [31;1m[0m[36;1m[36;1m  19 | [0m $cB = Try[36;1m [0m$hB 'B'[0m
+2025-11-10T17:09:05.8094859Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m          ~[0m
+2025-11-10T17:09:05.8095665Z [31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mThe Try statement is missing its statement block.[0m
+2025-11-10T17:09:05.8590242Z ##[error]Process completed with exit code 1.
+2025-11-10T17:09:05.8764140Z ##[group]Run Set-StrictMode -Version Latest
+2025-11-10T17:09:05.8764554Z [36;1mSet-StrictMode -Version Latest[0m
+2025-11-10T17:09:05.8764838Z [36;1m$ErrorActionPreference = "Continue"[0m
+2025-11-10T17:09:05.8765093Z [36;1m[0m
+2025-11-10T17:09:05.8765843Z [36;1mfunction Hash8([string]$s){ if([string]::IsNullOrWhiteSpace($s)){return "<missing>"} ($d=[Security.Cryptography.SHA256]::Create()).ComputeHash([Text.Encoding]::UTF8.GetBytes($s))|%{$_.ToString('x2')} -join '' | % { $_.Substring(0,8) } }[0m
+2025-11-10T17:09:05.8766920Z [36;1mfunction Export([string]$k,[string]$v){ "$($k)=$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }[0m
+2025-11-10T17:09:05.8767365Z [36;1m[0m
+2025-11-10T17:09:05.8767842Z [36;1m# B: GET root (publishable headers)[0m
+2025-11-10T17:09:05.8768169Z [36;1m$diagB = "<unknown>"[0m
+2025-11-10T17:09:05.8768364Z [36;1mtry {[0m
+2025-11-10T17:09:05.8769062Z [36;1m  $h = @{ Authorization = "***"; apikey = $env:SUPABASE_PUBLISHABLE }[0m
+2025-11-10T17:09:05.8769635Z [36;1m  $resp = Invoke-WebRequest -Method GET -Uri "$($env:SUPABASE_URL)" -Headers $h -UseBasicParsing -TimeoutSec 15[0m
+2025-11-10T17:09:05.8770137Z [36;1m  $diagB = $resp.StatusCode[0m
+2025-11-10T17:09:05.8770360Z [36;1m} catch {[0m
+2025-11-10T17:09:05.8770829Z [36;1m  if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $diagB = $_.Exception.Response.StatusCode.value__ }[0m
+2025-11-10T17:09:05.8771324Z [36;1m}[0m
+2025-11-10T17:09:05.8771487Z [36;1mExport "DIAG_B_CODE" "$diagB"[0m
+2025-11-10T17:09:05.8771700Z [36;1m[0m
+2025-11-10T17:09:05.8771927Z [36;1m# A: import-prices ping (verify_jwt=false)[0m
+2025-11-10T17:09:05.8772190Z [36;1m$diagA = "<unknown>"[0m
+2025-11-10T17:09:05.8772634Z [36;1mtry {[0m
+2025-11-10T17:09:05.8772865Z [36;1m  $eh = @{ "x-bridge-token" = "$env:BRIDGE_IMPORT_TOKEN" }[0m
+2025-11-10T17:09:05.8773253Z [36;1m  $eurl = "$($env:SUPABASE_URL.TrimEnd('/'))/functions/v1/import-prices"[0m
+2025-11-10T17:09:05.8773624Z [36;1m  $ebody = @{ ping = "diag" } | ConvertTo-Json[0m
+2025-11-10T17:09:05.8774212Z [36;1m  $eresp = Invoke-WebRequest -Method POST -Uri $eurl -Headers $eh -Body $ebody -ContentType 'application/json' -UseBasicParsing -TimeoutSec 20[0m
+2025-11-10T17:09:05.8774775Z [36;1m  $diagA = $eresp.StatusCode[0m
+2025-11-10T17:09:05.8774997Z [36;1m} catch {[0m
+2025-11-10T17:09:05.8775458Z [36;1m  if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $diagA = $_.Exception.Response.StatusCode.value__ }[0m
+2025-11-10T17:09:05.8775959Z [36;1m}[0m
+2025-11-10T17:09:05.8776128Z [36;1mExport "DIAG_A_CODE" "$diagA"[0m
+2025-11-10T17:09:05.8776362Z [36;1mExport "FINAL_CODE"    "$diagA"[0m
+2025-11-10T17:09:05.8776633Z [36;1mExport "IMPORT_PRICES_VARIANT" "publishable"[0m
+2025-11-10T17:09:05.8839107Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:05.8839504Z env:
+2025-11-10T17:09:05.8839952Z   SUPABASE_URL: ***
+2025-11-10T17:09:05.8840288Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:05.8840601Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:05.8840931Z   SUPABASE_PUBLISHABLE: ***
+2025-11-10T17:09:05.8841125Z ##[endgroup]
+2025-11-10T17:09:07.3580597Z ##[group]Run Set-StrictMode -Version Latest
+2025-11-10T17:09:07.3581024Z [36;1mSet-StrictMode -Version Latest[0m
+2025-11-10T17:09:07.3581312Z [36;1m$ErrorActionPreference = "Continue"[0m
+2025-11-10T17:09:07.3581774Z [36;1mfunction Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }[0m
+2025-11-10T17:09:07.3582337Z [36;1m$FUNCS = $env:SUPABASE_URL -replace '\.supabase\.co$','.functions.supabase.co'[0m
+2025-11-10T17:09:07.3582708Z [36;1m$url   = "$FUNCS/import-prices"[0m
+2025-11-10T17:09:07.3582999Z [36;1m$body  = @{ ping = "diag" } | ConvertTo-Json[0m
+2025-11-10T17:09:07.3583644Z [36;1m$H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"[0m
+2025-11-10T17:09:07.3584154Z [36;1m$H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN[0m
+2025-11-10T17:09:07.3584554Z [36;1m$H["X-Bridge-Token"] = $env:BRIDGE_IMPORT_TOKEN[0m
+2025-11-10T17:09:07.3585204Z [36;1m$H["Authorization"]  = "***"[0m
+2025-11-10T17:09:07.3585492Z [36;1m$H["apikey"]         = $env:SUPABASE_PUBLISHABLE_KEY[0m
+2025-11-10T17:09:07.3585759Z [36;1mtry {[0m
+2025-11-10T17:09:07.3586237Z [36;1m  $r = Invoke-WebRequest -Method POST -Uri $url -Headers $H -Body $body -ContentType 'application/json' -UseBasicParsing -TimeoutSec 30[0m
+2025-11-10T17:09:07.3586767Z [36;1m  $code = $r.StatusCode[0m
+2025-11-10T17:09:07.3586969Z [36;1m} catch {[0m
+2025-11-10T17:09:07.3587493Z [36;1m  $code = if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }[0m
+2025-11-10T17:09:07.3588047Z [36;1m}[0m
+2025-11-10T17:09:07.3588216Z [36;1mExport "DIAG_A_CODE" "$code"[0m
+2025-11-10T17:09:07.3588440Z [36;1mExport "FINAL_CODE"  "$code"[0m
+2025-11-10T17:09:07.3588722Z [36;1mExport "IMPORT_PRICES_VARIANT" "publishable-edge"[0m
+2025-11-10T17:09:07.3654499Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:07.3654843Z env:
+2025-11-10T17:09:07.3655261Z   SUPABASE_URL: ***
+2025-11-10T17:09:07.3655564Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:07.3655927Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:07.3656118Z   DIAG_B_CODE: 404
+2025-11-10T17:09:07.3656293Z   DIAG_A_CODE: 401
+2025-11-10T17:09:07.3656456Z   FINAL_CODE: 401
+2025-11-10T17:09:07.3656639Z   IMPORT_PRICES_VARIANT: publishable
+2025-11-10T17:09:07.3656860Z ##[endgroup]
+2025-11-10T17:09:08.1745425Z ##[group]Run Set-StrictMode -Version Latest
+2025-11-10T17:09:08.1745821Z [36;1mSet-StrictMode -Version Latest[0m
+2025-11-10T17:09:08.1746324Z [36;1m$ErrorActionPreference = "Continue"[0m
+2025-11-10T17:09:08.1746785Z [36;1mfunction Export([string]$k,[string]$v){ "`$($k)=`$($v)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append }[0m
+2025-11-10T17:09:08.1747360Z [36;1m$FUNCS = $env:SUPABASE_URL -replace '\.supabase\.co$','.functions.supabase.co'[0m
+2025-11-10T17:09:08.1747732Z [36;1m$url   = "$FUNCS/diag-echo"[0m
+2025-11-10T17:09:08.1747946Z [36;1mtry {[0m
+2025-11-10T17:09:08.1748256Z [36;1m  $r = Invoke-WebRequest -Method GET -Uri $url -UseBasicParsing -TimeoutSec 15[0m
+2025-11-10T17:09:08.1748624Z [36;1m  $code = $r.StatusCode[0m
+2025-11-10T17:09:08.1749078Z [36;1m} catch {[0m
+2025-11-10T17:09:08.1749651Z [36;1m  $code = if ($_.Exception.Response -and $_.Exception.Response.StatusCode.value__) { $_.Exception.Response.StatusCode.value__ } else { "<unknown>" }[0m
+2025-11-10T17:09:08.1750201Z [36;1m}[0m
+2025-11-10T17:09:08.1750364Z [36;1mExport "DIAG_B_CODE" "$code"[0m
+2025-11-10T17:09:08.1810041Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:08.1810360Z env:
+2025-11-10T17:09:08.1810829Z   SUPABASE_URL: ***
+2025-11-10T17:09:08.1811140Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:08.1811447Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:08.1811630Z   DIAG_B_CODE: 404
+2025-11-10T17:09:08.1811786Z   DIAG_A_CODE: 401
+2025-11-10T17:09:08.1811944Z   FINAL_CODE: 401
+2025-11-10T17:09:08.1812124Z   IMPORT_PRICES_VARIANT: publishable
+2025-11-10T17:09:08.1812341Z   $(DIAG_A_CODE): $(401)
+2025-11-10T17:09:08.1812521Z   $(FINAL_CODE): $(401)
+2025-11-10T17:09:08.1812729Z   $(IMPORT_PRICES_VARIANT): $(publishable-edge)
+2025-11-10T17:09:08.1812974Z ##[endgroup]
+2025-11-10T17:09:08.9172495Z ##[group]Run $ErrorActionPreference = "Continue"
+2025-11-10T17:09:08.9173157Z [36;1m$ErrorActionPreference = "Continue"[0m
+2025-11-10T17:09:08.9173430Z [36;1mfunction Hash8([string]$s) {[0m
+2025-11-10T17:09:08.9173774Z [36;1m  if ([string]::IsNullOrWhiteSpace($s)) { return "<missing>" }[0m
+2025-11-10T17:09:08.9174160Z [36;1m  $b = [Text.Encoding]::UTF8.GetBytes($s)[0m
+2025-11-10T17:09:08.9174514Z [36;1m  $h = [Security.Cryptography.SHA256]::Create().ComputeHash($b)[0m
+2025-11-10T17:09:08.9174928Z [36;1m  (-join ($h | ForEach-Object { $_.ToString("x2") })).Substring(0,8)[0m
+2025-11-10T17:09:08.9175231Z [36;1m}[0m
+2025-11-10T17:09:08.9175470Z [36;1m$diagB = $env:DIAG_B_CODE; if (-not $diagB) { $diagB = "<unknown>" }[0m
+2025-11-10T17:09:08.9175942Z [36;1m$diagA = $env:DIAG_A_CODE; if (-not $diagA) { $diagA = "<unknown>" }[0m
+2025-11-10T17:09:08.9176625Z [36;1m$variant = $env:IMPORT_PRICES_VARIANT; if (-not $variant) { $variant = "<unknown>" }[0m
+2025-11-10T17:09:08.9177372Z [36;1m$final = $env:FINAL_CODE; if (-not $final) { $final = "<unknown>" }[0m
+2025-11-10T17:09:08.9177908Z [36;1m$pubH = Hash8 $env:SUPABASE_PUBLISHABLE_KEY[0m
+2025-11-10T17:09:08.9178827Z [36;1mif ($pubH -eq "<missing>") { $pubH = Hash8 $env:PROD_PUBLISHABLE_KEY }[0m
+2025-11-10T17:09:08.9179533Z [36;1mif ($pubH -eq "<missing>") { $pubH = Hash8 $env:SUPABASE_ANON_KEY }[0m
+2025-11-10T17:09:08.9180064Z [36;1m$brH = Hash8 $env:BRIDGE_IMPORT_TOKEN[0m
+2025-11-10T17:09:08.9180554Z [36;1mif ($brH -eq "<missing>") { $brH = Hash8 $env:IMPORT_PRICES_BRIDGE_TOKEN }[0m
+2025-11-10T17:09:08.9181062Z [36;1mWrite-Host "Diag echo B code: $diagB"[0m
+2025-11-10T17:09:08.9181440Z [36;1mWrite-Host "Diag echo A code: $diagA"[0m
+2025-11-10T17:09:08.9181882Z [36;1mWrite-Host "import-prices Variant: $variant"[0m
+2025-11-10T17:09:08.9182387Z [36;1mWrite-Host "import-prices Final code: $final"[0m
+2025-11-10T17:09:08.9182898Z [36;1mWrite-Host "Publishable hash8: $pubH"[0m
+2025-11-10T17:09:08.9183357Z [36;1mWrite-Host "Bridge hash8: $brH"[0m
+2025-11-10T17:09:08.9248644Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-11-10T17:09:08.9248960Z env:
+2025-11-10T17:09:08.9249395Z   SUPABASE_URL: ***
+2025-11-10T17:09:08.9249702Z   SUPABASE_PUBLISHABLE_KEY: ***
+2025-11-10T17:09:08.9250954Z   BRIDGE_IMPORT_TOKEN: ***
+2025-11-10T17:09:08.9251146Z   DIAG_B_CODE: 404
+2025-11-10T17:09:08.9251308Z   DIAG_A_CODE: 401
+2025-11-10T17:09:08.9251466Z   FINAL_CODE: 401
+2025-11-10T17:09:08.9251648Z   IMPORT_PRICES_VARIANT: publishable
+2025-11-10T17:09:08.9251865Z   $(DIAG_A_CODE): $(401)
+2025-11-10T17:09:08.9252047Z   $(FINAL_CODE): $(401)
+2025-11-10T17:09:08.9252260Z   $(IMPORT_PRICES_VARIANT): $(publishable-edge)
+2025-11-10T17:09:08.9252511Z   $(DIAG_B_CODE): $(401)
+2025-11-10T17:09:08.9252686Z ##[endgroup]
+2025-11-10T17:09:09.3613170Z Diag echo B code: 404
+2025-11-10T17:09:09.3621235Z Diag echo A code: 401
+2025-11-10T17:09:09.3628822Z import-prices Variant: publishable
+2025-11-10T17:09:09.3635551Z import-prices Final code: 401
+2025-11-10T17:09:09.3641927Z Publishable hash8: 6786e4cf
+2025-11-10T17:09:09.3648914Z Bridge hash8: c1b76458
+2025-11-10T17:09:09.4607241Z Post job cleanup.
+2025-11-10T17:09:09.7011519Z [command]"C:\Program Files\Git\bin\git.exe" version
+2025-11-10T17:09:09.7331547Z git version 2.51.2.windows.1
+2025-11-10T17:09:09.7428670Z Temporarily overriding HOME='D:\a\_temp\3c517333-0ace-4241-ab23-9cdf0b06d1ac' before making global git config changes
+2025-11-10T17:09:09.7429573Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-10T17:09:09.7443960Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\grookai_vault\grookai_vault
+2025-11-10T17:09:09.7794882Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2025-11-10T17:09:09.8130853Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2025-11-10T17:09:10.4164341Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-10T17:09:10.4446774Z http.https://github.com/.extraheader
+2025-11-10T17:09:10.4500938Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2025-11-10T17:09:10.4845629Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2025-11-10T17:09:11.0949028Z Cleaning up orphan processes

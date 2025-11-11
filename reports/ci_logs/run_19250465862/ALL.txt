@@ -1,0 +1,141 @@
+validate	Set up job	∩╗┐2025-11-11T00:17:42.4758879Z Current runner version: '2.329.0'
+validate	Set up job	2025-11-11T00:17:42.4801797Z ##[group]Runner Image Provisioner
+validate	Set up job	2025-11-11T00:17:42.4803100Z Hosted Compute Agent
+validate	Set up job	2025-11-11T00:17:42.4803609Z Version: 20251016.436
+validate	Set up job	2025-11-11T00:17:42.4804121Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+validate	Set up job	2025-11-11T00:17:42.4804776Z Build Date: 2025-10-15T20:44:12Z
+validate	Set up job	2025-11-11T00:17:42.4805314Z ##[endgroup]
+validate	Set up job	2025-11-11T00:17:42.4805765Z ##[group]Operating System
+validate	Set up job	2025-11-11T00:17:42.4806276Z Microsoft Windows Server 2025
+validate	Set up job	2025-11-11T00:17:42.4806704Z 10.0.26100
+validate	Set up job	2025-11-11T00:17:42.4807132Z Datacenter
+validate	Set up job	2025-11-11T00:17:42.4807538Z ##[endgroup]
+validate	Set up job	2025-11-11T00:17:42.4807912Z ##[group]Runner Image
+validate	Set up job	2025-11-11T00:17:42.4808449Z Image: windows-2025
+validate	Set up job	2025-11-11T00:17:42.4808941Z Version: 20251102.77.1
+validate	Set up job	2025-11-11T00:17:42.4809832Z Included Software: https://github.com/actions/runner-images/blob/win25/20251102.77/images/windows/Windows2025-Readme.md
+validate	Set up job	2025-11-11T00:17:42.4811088Z Image Release: https://github.com/actions/runner-images/releases/tag/win25%2F20251102.77
+validate	Set up job	2025-11-11T00:17:42.4812380Z ##[endgroup]
+validate	Set up job	2025-11-11T00:17:42.4813295Z ##[group]GITHUB_TOKEN Permissions
+validate	Set up job	2025-11-11T00:17:42.4815174Z Contents: read
+validate	Set up job	2025-11-11T00:17:42.4815631Z Metadata: read
+validate	Set up job	2025-11-11T00:17:42.4816057Z ##[endgroup]
+validate	Set up job	2025-11-11T00:17:42.4818134Z Secret source: Actions
+validate	Set up job	2025-11-11T00:17:42.4818761Z Prepare workflow directory
+validate	Set up job	2025-11-11T00:17:42.5231086Z Prepare all required actions
+validate	Set up job	2025-11-11T00:17:42.5281011Z Getting action download info
+validate	Set up job	2025-11-11T00:17:42.8672543Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+validate	Set up job	2025-11-11T00:17:43.0879629Z Complete job name: validate
+validate	Run actions/checkout@v4	∩╗┐2025-11-11T00:17:43.2272688Z ##[group]Run actions/checkout@v4
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2275077Z with:
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2276017Z   repository: OriginalSoseji/grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2276891Z   token: ***
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2277259Z   ssh-strict: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2277675Z   ssh-user: git
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2278124Z   persist-credentials: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2278588Z   clean: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2278987Z   sparse-checkout-cone-mode: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2279513Z   fetch-depth: 1
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2279880Z   fetch-tags: false
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2280291Z   show-progress: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2280694Z   lfs: false
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2281092Z   submodules: false
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2281502Z   set-safe-directory: true
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2282338Z env:
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2282769Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2283388Z   FUNCS_BASE: https://ycdxbpibncqcchqiihfz.functions.supabase.co
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.2284143Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.4045077Z Syncing repository: OriginalSoseji/grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.4047392Z ##[group]Getting Git version info
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.4048058Z Working directory is 'D:\a\grookai_vault\grookai_vault'
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.4973207Z [command]"C:\Program Files\Git\bin\git.exe" version
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.8917790Z git version 2.51.2.windows.1
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.8974999Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.8997625Z Temporarily overriding HOME='D:\a\_temp\44118f6d-be26-4f4a-a902-066b93fa326d' before making global git config changes
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.8998886Z Adding repository directory to the temporary git global config as a safe directory
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.9008885Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\grookai_vault\grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.9563130Z Deleting the contents of 'D:\a\grookai_vault\grookai_vault'
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.9575438Z ##[group]Initializing the repository
+validate	Run actions/checkout@v4	2025-11-11T00:17:43.9588692Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\grookai_vault\grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.0532634Z Initialized empty Git repository in D:/a/grookai_vault/grookai_vault/.git/
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.0598861Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/OriginalSoseji/grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1191112Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1197956Z ##[group]Disabling automatic garbage collection
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1204231Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1554991Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1556422Z ##[group]Setting up auth
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1557924Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+validate	Run actions/checkout@v4	2025-11-11T00:17:44.1886409Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+validate	Run actions/checkout@v4	2025-11-11T00:17:45.5941712Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Run actions/checkout@v4	2025-11-11T00:17:45.6261755Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+validate	Run actions/checkout@v4	2025-11-11T00:17:46.2281633Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+validate	Run actions/checkout@v4	2025-11-11T00:17:46.2670846Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:46.2671767Z ##[group]Fetching the repository
+validate	Run actions/checkout@v4	2025-11-11T00:17:46.2685559Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +201b0b53505d26df597fb74c2cce047e4a67a17f:refs/remotes/origin/main
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5042907Z From https://github.com/OriginalSoseji/grookai_vault
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5044415Z  * [new ref]         201b0b53505d26df597fb74c2cce047e4a67a17f -> origin/main
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5404430Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5405363Z ##[group]Determining the checkout info
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5406229Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5419476Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.5958766Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.6320746Z ##[group]Checking out the ref
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.6332087Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.7473708Z branch 'main' set up to track 'origin/main'.
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.7487962Z Switched to a new branch 'main'
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.7544907Z ##[endgroup]
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.8057702Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+validate	Run actions/checkout@v4	2025-11-11T00:17:47.8377036Z 201b0b53505d26df597fb74c2cce047e4a67a17f
+validate	Bridge-only probe	∩╗┐2025-11-11T00:17:47.8854222Z ##[group]Run Set-StrictMode -Version Latest
+validate	Bridge-only probe	2025-11-11T00:17:47.8855160Z [36;1mSet-StrictMode -Version Latest[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8855533Z [36;1m$ErrorActionPreference = 'Stop'[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8856374Z [36;1mfunction Hash8([string]$s){ if(-not $s){return '<missing>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8857456Z [36;1m[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8857957Z [36;1m$u = "https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8858395Z [36;1m$H = @{[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8858691Z [36;1m  'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8859061Z [36;1m  'content-type' = 'application/json'[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8859380Z [36;1m}[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8859627Z [36;1m$B = '{"ping":"ci-emit"}'[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8859937Z [36;1mtry {[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8860347Z [36;1m  $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 30[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8860946Z [36;1m  $status = [string]$r.StatusCode[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8861278Z [36;1m  $content = [string]$r.Content[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8861542Z [36;1m} catch {[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8861978Z [36;1m  $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8863654Z [36;1m  $content = ''[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8863898Z [36;1m}[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8864167Z [36;1m[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8864464Z [36;1m# Emit six-line summary markers consumed by orchestrator[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8864850Z [36;1mWrite-Output "DIAG: B/A"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8865217Z [36;1mWrite-Output "VARIANT: EDGE-bridge-only"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8865550Z [36;1mWrite-Output "FINAL: $status"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8865895Z [36;1mWrite-Output "PUBLISHABLE_HASH8: <missing>"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8866279Z [36;1mWrite-Output "BRIDGE_HASH8: <hidden>"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8866706Z [36;1m$body100 = if($content.Length -gt 100){ $content.Substring(0,100) } else { $content }[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.8867686Z [36;1mWrite-Output "BODY100: $body100"[0m
+validate	Bridge-only probe	2025-11-11T00:17:47.9669575Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+validate	Bridge-only probe	2025-11-11T00:17:47.9670232Z env:
+validate	Bridge-only probe	2025-11-11T00:17:47.9670648Z   PROJECT_REF: ycdxbpibncqcchqiihfz
+validate	Bridge-only probe	2025-11-11T00:17:47.9672514Z   FUNCS_BASE: https://ycdxbpibncqcchqiihfz.functions.supabase.co
+validate	Bridge-only probe	2025-11-11T00:17:47.9673996Z   BRIDGE_IMPORT_TOKEN: ***
+validate	Bridge-only probe	2025-11-11T00:17:47.9674358Z ##[endgroup]
+validate	Bridge-only probe	2025-11-11T00:17:54.2939040Z DIAG: B/A
+validate	Bridge-only probe	2025-11-11T00:17:54.2947664Z VARIANT: EDGE-bridge-only
+validate	Bridge-only probe	2025-11-11T00:17:54.2964592Z FINAL: 401
+validate	Bridge-only probe	2025-11-11T00:17:54.2968060Z PUBLISHABLE_HASH8: <missing>
+validate	Bridge-only probe	2025-11-11T00:17:54.2970421Z BRIDGE_HASH8: <hidden>
+validate	Bridge-only probe	2025-11-11T00:17:54.3020821Z BODY100: 
+validate	Post Run actions/checkout@v4	∩╗┐2025-11-11T00:17:54.5373423Z Post job cleanup.
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.7818974Z [command]"C:\Program Files\Git\bin\git.exe" version
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.8180040Z git version 2.51.2.windows.1
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.8281785Z Temporarily overriding HOME='D:\a\_temp\d380a917-b4c7-4bdc-93ca-c9a870ff47e9' before making global git config changes
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.8282958Z Adding repository directory to the temporary git global config as a safe directory
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.8296365Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\grookai_vault\grookai_vault
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.8693075Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:54.9078132Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:55.5239072Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:55.5547677Z http.https://github.com/.extraheader
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:55.5610137Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+validate	Post Run actions/checkout@v4	2025-11-11T00:17:55.5970075Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+validate	Complete job	∩╗┐2025-11-11T00:17:56.2106353Z Cleaning up orphan processes
