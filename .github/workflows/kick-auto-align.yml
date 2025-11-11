@@ -11,32 +11,50 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Dispatch auto-align and wait, then print proofs
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dispatch auto-align and wait
+        shell: pwsh
         run: |
-          set -euo pipefail
-          echo "Dispatching auto-align workflow..."
-          gh workflow run .github/workflows/auto-align-import-prices.yml || true
-          echo "Polling for latest auto-align run..."
-          # get latest run id (most recent)
-          RUN_ID=""
-          for i in {1..60}; do
-            RUN_ID=$(gh api repos/:owner/:repo/actions/workflows/auto-align-import-prices.yml/runs --jq '.workflow_runs[0].id' || echo "")
-            if [[ -n "$RUN_ID" ]]; then break; fi
-            sleep 5
-          done
-          if [[ -z "$RUN_ID" ]]; then echo "No run found"; exit 1; fi
-          echo "Run ID: $RUN_ID — waiting for completion"
-          for i in {1..60}; do
-            STATUS=$(gh api repos/:owner/:repo/actions/runs/$RUN_ID --jq '.status')
-            [[ "$STATUS" == "completed" ]] && break
-            sleep 10
-          done
-          echo "Pulling proofs from repo..."
-          git pull --rebase
-          echo "=== Auto-Align Proofs ==="
-          echo "GatewayAuth: $(grep -m1 '^GatewayAuth:' reports/ci_logs/latest/sixline.txt || true)"
-          echo "FinalCode:  $(grep -m1 '^FinalCode:'  reports/ci_logs/latest/sixline.txt || true)"
-          echo "$(grep -m1 '^Attempts:' reports/ci_logs/latest/attempts.txt || true)"
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference="Stop"
+
+          gh workflow run .github/workflows/auto-align-import-prices.yml | Out-Null
+
+          $wf = ".github/workflows/auto-align-import-prices.yml"
+          for($i=0;$i -lt 60;$i++){
+            $rid = (gh api repos/:owner/:repo/actions/workflows/$wf/runs --jq ".workflow_runs[0].id" 2>$null).Trim()
+            if($rid){ break }
+            Start-Sleep 5
+          }
+          if(-not $rid){ throw "No run found for $wf" }
+
+          do{
+            $o = gh api repos/:owner/:repo/actions/runs/$rid --jq "{status:.status, conclusion:.conclusion}" | ConvertFrom-Json
+            if($o.status -eq "completed"){ break }
+            Start-Sleep 10
+          }while($true)
+
+      - name: Pull proofs and print summary
+        shell: pwsh
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference="Stop"
+
+          git pull --rebase | Out-Null
+          $six = "reports/ci_logs/latest/sixline.txt"
+          $att = "reports/ci_logs/latest/attempts.txt"
+          if(!(Test-Path $six) -or !(Test-Path $att)){
+            throw "Proofs missing. Verify repo Settings → Actions → Workflow permissions = Read & write; YAML permissions; and always() commit."
+          }
+          $sixC = Get-Content $six -Raw
+          $attC = Get-Content $att -Raw
+          $gw = ($sixC -split "`n" | Where-Object { $_ -like "GatewayAuth:*" })[0]
+          $fc = ($sixC -split "`n" | Where-Object { $_ -like "FinalCode:*" })[0]
+          $al = ($attC -split "`n" | Where-Object { $_ -like "Attempts:*" })[0]
+          $code = $fc -replace "[^\d]",""
+          $result = if($code -eq "200"){"PASS"} else {"FAIL"}
+
+          Write-Host "`n=== Auto-Align Proofs ==="
+          Write-Host $gw
+          Write-Host $fc
+          Write-Host $al
+          Write-Host ("Result: " + $result + " (last code = " + $code + ")")
