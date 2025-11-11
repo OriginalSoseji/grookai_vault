@@ -256,6 +256,8 @@ function Parse-Result([string]$allLogPath,[string]$fnLogPath){
   foreach($l in $lines){
     if($l -match '^FINAL:\s*(\S+)'){ $final = $Matches[1] }
     if($l -match '^VARIANT:\s*(.+)$'){ $variant = $Matches[1].Trim() }
+    if(($header8 -eq '<none>') -and ($l -match 'BODY100: .*header8\"?[:=]\"?([0-9a-f<>-]+)')){ $header8 = $Matches[1] }
+    if(($env8 -eq '<none>') -and ($l -match 'BODY100: .*env8\"?[:=]\"?([0-9a-f<>-]+)')){ $env8 = $Matches[1] }
   }
   # From function logs: look for latest token.check line
   $fnlines = Get-Content $fnLogPath -ErrorAction SilentlyContinue
