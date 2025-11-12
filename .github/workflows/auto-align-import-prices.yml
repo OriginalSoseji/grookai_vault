@@ -188,3 +188,5 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
           git add -A -f reports/ci_logs/latest
           git commit --allow-empty -m "ci(auto): proofs"
           git push
+
+# re-register
