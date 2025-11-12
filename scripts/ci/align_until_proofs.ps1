@@ -11,7 +11,7 @@ Set-Location C:\grookai_vault
 $script:__align_stashed = $false
 
 # Paths
-$WF_PATH = '.github/workflows/auto-align-import-prices-bridge.yml'
+$WF_PATH = '.github/workflows/kick-auto-align.yml'
 $PROOF_SIX = 'reports/ci_logs/latest/sixline.txt'
 $PROOF_ATT = 'reports/ci_logs/latest/attempts.txt'
 
