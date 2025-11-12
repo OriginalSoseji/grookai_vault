@@ -137,3 +137,146 @@ jobs:
           Write-Host $fc
           Write-Host $al
           Write-Host ("Result: " + $result + " (last code = " + $code + ")")
+
+  bridge-align-and-validate:
+    name: Bridge Align + Validate (inline)
+    runs-on: windows-latest
+    permissions:
+      contents: write
+      actions: read
+    env:
+      PROJECT_REF: ycdxbpibncqcchqiihfz
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard required secrets
+        shell: pwsh
+        run: |
+          if (-not "${{ secrets.SUPABASE_ACCESS_TOKEN }}") { throw "Missing SUPABASE_ACCESS_TOKEN" }
+          if (-not "${{ secrets.PROD_PUBLISHABLE_KEY }}") { throw "Missing PROD_PUBLISHABLE_KEY" }
+          if (-not "${{ secrets.BRIDGE_IMPORT_TOKEN }}") { throw "Missing BRIDGE_IMPORT_TOKEN" }
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Initialize proofs
+        shell: pwsh
+        run: |
+          $dir = "reports/ci_logs/latest"
+          New-Item -ItemType Directory -Force -Path $dir | Out-Null
+          @'
+ProjectRef: ycdxbpibncqcchqiihfz
+Function: import-prices
+GatewayAuth: (pending)
+FinalCode: (pending)
+FinalURL: (pending)
+Timestamp: (pending)
+'@ | Set-Content "$dir/sixline.txt" -Encoding UTF8
+          'Attempts:' | Set-Content "$dir/attempts.txt" -Encoding UTF8
+
+      - name: Ensure verify_jwt=false (idempotent)
+        shell: pwsh
+        run: |
+          $p = "supabase/functions/import-prices/config.toml"
+          if (-not (Test-Path $p)) {
+            New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null
+            Set-Content $p "verify_jwt = false" -NoNewline
+            git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true
+          } else {
+            $txt = Get-Content $p -Raw
+            if ($txt -notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {
+              ($txt -replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set-Content $p
+              git add $p; git commit -m "ci(auto): enforce verify_jwt=false" || $true; git push || $true
+            }
+          }
+
+      - name: Align (env) + deploy + 4-variant validate (5 tries)
+        shell: pwsh
+        env:
+          PUB: ${{ env.SUPABASE_PUBLISHABLE_KEY }}
+          PRJ: ${{ env.SUPABASE_URL }}
+          BRIDGE: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
+        run: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = "Stop"
+          $ProgressPreference = "SilentlyContinue"
+          $dir = "reports/ci_logs/latest"
+          $six = Join-Path $dir "sixline.txt"
+          $att = Join-Path $dir "attempts.txt"
+
+          # Write function env + project secret + deploy
+          Set-Content -Path "supabase/functions/import-prices/.env" -Value @"
+BRIDGE_IMPORT_TOKEN=$env:BRIDGE
+"@ -Encoding UTF8
+
+          supabase secrets set --project-ref $env:PROJECT_REF BRIDGE_IMPORT_TOKEN=$env:BRIDGE
+          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --env-file "supabase/functions/import-prices/.env"
+
+          $fnUrl  = "https://$($env:PROJECT_REF).functions.supabase.co/import-prices"
+          $prjUrl = "$env:PRJ/functions/v1/import-prices"
+          $pub    = "$env:PUB"
+
+          function Try-Call {
+            param([string]$Name,[string]$Url,[bool]$WithAuth)
+            $h = @{ "apikey" = $pub; "x-bridge-token" = $env:BRIDGE }
+            if ($WithAuth) { $h["Authorization"] = "Bearer $pub" }
+            try {
+              $resp = Invoke-WebRequest -Method POST -Uri $Url -Headers $h -Body (@{health=1} | ConvertTo-Json) -ContentType 'application/json' -UseBasicParsing -TimeoutSec 20
+              return [pscustomobject]@{ name=$Name; code=$resp.StatusCode; url=$Url }
+            } catch {
+              $code = if ($_.Exception.Response) { [int]$_.Exception.Response.StatusCode } else { -1 }
+              return [pscustomobject]@{ name=$Name; code=$code; url=$Url }
+            }
+          }
+
+          $final = $null; $lastTries = $null
+          for ($i=1; $i -le 5; $i++) {
+            $tries = @(
+              Try-Call "FN/apikey_only"  $fnUrl  $false
+              Try-Call "FN/apikey+auth"  $fnUrl  $true
+              Try-Call "PRJ/apikey_only" $prjUrl $false
+              Try-Call "PRJ/apikey+auth" $prjUrl $true
+            )
+            $lastTries = $tries
+            $line = Get-Content $att -Raw
+            $suffix = ($tries | ForEach-Object { "$($_.name):$($_.code)" }) -join ", "
+            if ($line.TrimEnd() -eq "Attempts:") {
+              Set-Content $att "Attempts: $suffix" -Encoding UTF8
+            } else {
+              Set-Content $att ($line.TrimEnd() + ", " + $suffix) -Encoding UTF8
+            }
+            $hit = $tries | Where-Object { $_.code -eq 200 } | Select-Object -First 1
+            if ($hit) { $final = $hit; break }
+          }
+
+          function Replace-Line($c,[string]$k,[string]$v) {
+            return ($c -split "`n" | ForEach-Object { if ($_ -like "$k:*") { "$k: $v" } else { $_ } }) -join "`n"
+          }
+          $sixC = Get-Content $six -Raw
+          $gw   = if ($final) { $final.name } else { "(none)" }
+          $code = if ($final) { "$($final.code)" } else { ($lastTries[-1].code) }
+          $url  = if ($final) { $final.url } else { $lastTries[-1].url }
+          $stamp = (Get-Date).ToString("yyyy-MM-ddTHH:mm:ssK")
+          $sixC = Replace-Line $sixC "GatewayAuth" $gw
+          $sixC = Replace-Line $sixC "FinalCode"   $code
+          $sixC = Replace-Line $sixC "FinalURL"    $url
+          $sixC = Replace-Line $sixC "Timestamp"   $stamp
+          $sixC | Set-Content $six -Encoding UTF8
+          if ($code -ne "200") { exit 1 } else { exit 0 }
+
+      - name: Upload artifacts (proofs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: import-prices-auto-validate
+          path: |
+            reports/ci_logs/latest/sixline.txt
+            reports/ci_logs/latest/attempts.txt

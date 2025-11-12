@@ -136,6 +136,19 @@ function Invoke-AlignCycle {
       return $true
     }
 
+    # Fallback: download artifact from this run if proofs not committed
+    try {
+      Write-Host 'Proofs not in git; attempting artifact download...' -ForegroundColor Yellow
+      New-Item -ItemType Directory -Force -Path (Split-Path $PROOF_SIX) | Out-Null
+      gh run download $rid -n import-prices-auto-validate -D (Split-Path $PROOF_SIX) 2>$null | Out-Null
+    } catch { Write-Host 'Artifact download attempt failed.' -ForegroundColor Yellow }
+
+    if (Have-Proofs) {
+      Write-Host "`n=== Proofs found via artifact ===" -ForegroundColor Green
+      Print-Proofs
+      return $true
+    }
+
     Write-Host "`nProofs missing — retrying in 60 seconds..." -ForegroundColor Yellow
     Start-Sleep -Seconds 60
     return $false
