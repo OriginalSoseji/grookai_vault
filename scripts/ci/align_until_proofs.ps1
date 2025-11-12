@@ -60,7 +60,12 @@ function Get-LatestRunId {
 }
 
 function Trigger-Dispatch {
-  gh workflow run $WF_PATH | Out-Null
+  # Run and treat any non-zero exit or 422 message as failure
+  $out = & gh workflow run $WF_PATH 2>&1
+  $rc = $LASTEXITCODE
+  if ($rc -ne 0 -or ($out -match 'HTTP 422' -or $out -match "does not have 'workflow_dispatch'")) {
+    throw "dispatch_failed(rc=$rc): $out"
+  }
 }
 
 function Trigger-Bump {
@@ -95,7 +100,8 @@ function Invoke-AlignCycle {
       else { Trigger-Bump }
     } catch {
       $msg = $_.Exception.Message
-      if ($Mode -eq 'dispatch' -and ($msg -match '404' -or $msg -match 'Unauthorized' -or $msg -match 'Not Found')) {
+      if ($Mode -eq 'dispatch' -and (
+            $msg -match '404' -or $msg -match 'Unauthorized' -or $msg -match 'Not Found' -or $msg -match '422' -or $msg -match 'dispatch_failed')) {
         Write-Host 'Dispatch failed; falling back to bump trigger.' -ForegroundColor Yellow
         $usedMode = 'bump'
         Trigger-Bump
