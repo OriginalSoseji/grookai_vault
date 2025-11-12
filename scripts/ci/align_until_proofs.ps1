@@ -11,7 +11,7 @@ Set-Location C:\grookai_vault
 $script:__align_stashed = $false
 
 # Paths
-$WF_PATH = '.github/workflows/kick-auto-align.yml'
+$WF_PATH = '.github/workflows/kick-auto-align-bridge.yml'
 $PROOF_SIX = 'reports/ci_logs/latest/sixline.txt'
 $PROOF_ATT = 'reports/ci_logs/latest/attempts.txt'
 
@@ -181,5 +181,6 @@ while ($true) {
 if ($script:__align_stashed) {
   try { git stash pop | Out-Null } catch { Write-Host 'Note: kept stash due to conflicts.' -ForegroundColor Yellow }
 }
+
 
 
