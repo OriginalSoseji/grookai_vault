@@ -182,3 +182,4 @@ if ($script:__align_stashed) {
   try { git stash pop | Out-Null } catch { Write-Host 'Note: kept stash due to conflicts.' -ForegroundColor Yellow }
 }
 
+
