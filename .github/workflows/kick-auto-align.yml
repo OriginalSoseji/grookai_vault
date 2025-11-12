@@ -1,6 +1,8 @@
 name: Kick Auto-Align (import-prices)
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 permissions:
   contents: write
@@ -80,6 +82,8 @@ jobs:
 name: Kick Auto-Align (import-prices)
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 permissions:
   contents: write
