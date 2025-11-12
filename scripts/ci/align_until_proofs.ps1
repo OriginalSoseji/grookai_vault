@@ -145,8 +145,13 @@ function Invoke-AlignCycle {
     # Fallback: download artifact from this run if proofs not committed
     try {
       Write-Host 'Proofs not in git; attempting artifact download...' -ForegroundColor Yellow
-      New-Item -ItemType Directory -Force -Path (Split-Path $PROOF_SIX) | Out-Null
-      gh run download $rid -n import-prices-auto-validate -D (Split-Path $PROOF_SIX) 2>$null | Out-Null
+      $proofDir = (Split-Path $PROOF_SIX)
+      New-Item -ItemType Directory -Force -Path $proofDir | Out-Null
+      gh run download $rid -n import-prices-auto-validate -D $proofDir 2>$null | Out-Null
+      $sixAlt = Get-ChildItem -Path $proofDir -Recurse -Filter 'sixline.txt' -File -ErrorAction SilentlyContinue | Select-Object -First 1
+      $attAlt = Get-ChildItem -Path $proofDir -Recurse -Filter 'attempts.txt' -File -ErrorAction SilentlyContinue | Select-Object -First 1
+      if ($sixAlt -and -not (Test-Path $PROOF_SIX)) { Copy-Item $sixAlt.FullName $PROOF_SIX -Force }
+      if ($attAlt -and -not (Test-Path $PROOF_ATT)) { Copy-Item $attAlt.FullName $PROOF_ATT -Force }
     } catch { Write-Host 'Artifact download attempt failed.' -ForegroundColor Yellow }
 
     if (Have-Proofs) {
