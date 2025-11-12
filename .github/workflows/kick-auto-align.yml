@@ -284,3 +284,5 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
           path: |
             reports/ci_logs/latest/sixline.txt
             reports/ci_logs/latest/attempts.txt
+
+# re-register
