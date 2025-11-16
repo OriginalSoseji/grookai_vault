@@ -190,7 +190,7 @@ CREATE INDEX IF NOT EXISTS ingestion_jobs_created_at_idx
 CREATE TABLE IF NOT EXISTS public.ai_decision_logs (
   id             bigserial PRIMARY KEY,
   raw_import_id  bigint REFERENCES public.raw_imports(id) ON DELETE SET NULL,
-  card_print_id  bigint REFERENCES public.card_prints(id) ON DELETE SET NULL,
+  card_print_id  uuid REFERENCES public.card_prints(id) ON DELETE SET NULL,
   model          text,
   input          jsonb,
   output         jsonb,
@@ -221,7 +221,7 @@ CREATE INDEX IF NOT EXISTS ai_decision_logs_created_at_idx
 -- 8) card_embeddings: store numeric embeddings per card_print for AI search/matching
 
 CREATE TABLE IF NOT EXISTS public.card_embeddings (
-  card_print_id  bigint PRIMARY KEY REFERENCES public.card_prints(id) ON DELETE CASCADE,
+  card_print_id  uuid PRIMARY KEY REFERENCES public.card_prints(id) ON DELETE CASCADE,
   embedding      double precision[],
   model          text,
   created_at     timestamptz NOT NULL DEFAULT now()
@@ -236,3 +236,4 @@ COMMENT ON COLUMN public.card_embeddings.model IS
 
 CREATE INDEX IF NOT EXISTS card_embeddings_model_idx
   ON public.card_embeddings (model);
+
