@@ -179,8 +179,18 @@ END $$;
 
 -- 2.3 Mark cards as legacy
 -- 7) Mark cards as legacy for documentation purposes
-COMMENT ON TABLE public.cards IS
-  'LEGACY TABLE: superseded by card_prints. Do not build new features on this.';
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'cards'
+  ) THEN
+    COMMENT ON TABLE public.cards IS
+      'LEGACY TABLE: superseded by card_prints. Do not build new features on this.';
+  END IF;
+END $$;
 
 -- 2.4 Add indexes that match how you’ll use card_prints
 -- 8) Indexes to support lookups and joins
