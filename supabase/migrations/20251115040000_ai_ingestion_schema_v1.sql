@@ -5,70 +5,125 @@
 
 DO $$
 BEGIN
-  IF NOT EXISTS (
-    SELECT 1 FROM information_schema.columns
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
     WHERE table_schema = 'public'
-      AND table_name   = 'card_prints'
-      AND column_name  = 'print_identity_key'
+      AND table_name = 'card_prints'
   ) THEN
-    ALTER TABLE public.card_prints
-      ADD COLUMN print_identity_key text;
-  END IF;
+    IF NOT EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name   = 'card_prints'
+        AND column_name  = 'print_identity_key'
+    ) THEN
+      ALTER TABLE public.card_prints
+        ADD COLUMN print_identity_key text;
+    END IF;
 
-  IF NOT EXISTS (
-    SELECT 1 FROM information_schema.columns
-    WHERE table_schema = 'public'
-      AND table_name   = 'card_prints'
-      AND column_name  = 'ai_metadata'
-  ) THEN
-    ALTER TABLE public.card_prints
-      ADD COLUMN ai_metadata jsonb;
-  END IF;
+    IF NOT EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name   = 'card_prints'
+        AND column_name  = 'ai_metadata'
+    ) THEN
+      ALTER TABLE public.card_prints
+        ADD COLUMN ai_metadata jsonb;
+    END IF;
 
-  IF NOT EXISTS (
-    SELECT 1 FROM information_schema.columns
-    WHERE table_schema = 'public'
-      AND table_name   = 'card_prints'
-      AND column_name  = 'image_hash'
-  ) THEN
-    ALTER TABLE public.card_prints
-      ADD COLUMN image_hash text;
-  END IF;
+    IF NOT EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name   = 'card_prints'
+        AND column_name  = 'image_hash'
+    ) THEN
+      ALTER TABLE public.card_prints
+        ADD COLUMN image_hash text;
+    END IF;
 
-  IF NOT EXISTS (
-    SELECT 1 FROM information_schema.columns
-    WHERE table_schema = 'public'
-      AND table_name   = 'card_prints'
-      AND column_name  = 'data_quality_flags'
-  ) THEN
-    ALTER TABLE public.card_prints
-      ADD COLUMN data_quality_flags jsonb;
+    IF NOT EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name   = 'card_prints'
+        AND column_name  = 'data_quality_flags'
+    ) THEN
+      ALTER TABLE public.card_prints
+        ADD COLUMN data_quality_flags jsonb;
+    END IF;
   END IF;
 END $$;
 
 -- 2) Unique index on print_identity_key (if we set it in the future)
 DO $$
 BEGIN
-  IF NOT EXISTS (
+  IF EXISTS (
     SELECT 1
-    FROM pg_class
-    WHERE relname = 'card_prints_print_identity_key_uq'
-      AND relkind = 'i'
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
   ) THEN
-    CREATE UNIQUE INDEX card_prints_print_identity_key_uq
-      ON public.card_prints (print_identity_key)
-      WHERE print_identity_key IS NOT NULL;
+    IF NOT EXISTS (
+      SELECT 1
+      FROM pg_class
+      WHERE relname = 'card_prints_print_identity_key_uq'
+        AND relkind = 'i'
+    ) THEN
+      CREATE UNIQUE INDEX card_prints_print_identity_key_uq
+        ON public.card_prints (print_identity_key)
+        WHERE print_identity_key IS NOT NULL;
+    END IF;
   END IF;
 END $$;
 
-COMMENT ON COLUMN public.card_prints.print_identity_key IS
-  'Stable identity string for a print (e.g. set_code-number_plain-variant). Ideal for AI models to target.';
-COMMENT ON COLUMN public.card_prints.ai_metadata IS
-  'JSON metadata for AI classification, OCR output, model hints, etc.';
-COMMENT ON COLUMN public.card_prints.image_hash IS
-  'Optional perceptual hash for card image (duplicate detection, visual matching).';
-COMMENT ON COLUMN public.card_prints.data_quality_flags IS
-  'JSON object with data quality flags (missing_image, suspect_mapping, ai_low_confidence, needs_review, etc.).';
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
+  ) THEN
+    IF EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'card_prints'
+        AND column_name = 'print_identity_key'
+    ) THEN
+      COMMENT ON COLUMN public.card_prints.print_identity_key IS
+        'Stable identity string for a print (e.g. set_code-number_plain-variant). Ideal for AI models to target.';
+    END IF;
+
+    IF EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'card_prints'
+        AND column_name = 'ai_metadata'
+    ) THEN
+      COMMENT ON COLUMN public.card_prints.ai_metadata IS
+        'JSON metadata for AI classification, OCR output, model hints, etc.';
+    END IF;
+
+    IF EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'card_prints'
+        AND column_name = 'image_hash'
+    ) THEN
+      COMMENT ON COLUMN public.card_prints.image_hash IS
+        'Optional perceptual hash for card image (duplicate detection, visual matching).';
+    END IF;
+
+    IF EXISTS (
+      SELECT 1 FROM information_schema.columns
+      WHERE table_schema = 'public'
+        AND table_name = 'card_prints'
+        AND column_name = 'data_quality_flags'
+    ) THEN
+      COMMENT ON COLUMN public.card_prints.data_quality_flags IS
+        'JSON object with data quality flags (missing_image, suspect_mapping, ai_low_confidence, needs_review, etc.).';
+    END IF;
+  END IF;
+END $$;
 
 -- 2.2 Create raw_imports table (raw payloads)
 -- 3) raw_imports: store raw external/AI payloads before processing
