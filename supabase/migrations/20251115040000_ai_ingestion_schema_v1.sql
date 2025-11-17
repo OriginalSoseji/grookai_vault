@@ -177,7 +177,7 @@ COMMENT ON COLUMN public.mapping_conflicts.requires_human IS
 
 CREATE TABLE IF NOT EXISTS public.external_mappings (
   id             bigserial PRIMARY KEY,
-  card_print_id  uuid NOT NULL REFERENCES public.card_prints(id) ON DELETE CASCADE,
+  card_print_id  uuid NOT NULL,
   source         text   NOT NULL, -- 'tcgplayer', 'justtcg', 'ebay', 'manual', etc.
   external_id    text   NOT NULL,
   meta           jsonb,
@@ -210,6 +210,33 @@ CREATE INDEX IF NOT EXISTS external_mappings_source_external_id_idx
 CREATE INDEX IF NOT EXISTS external_mappings_card_print_id_idx
   ON public.external_mappings (card_print_id);
 
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
+  ) THEN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM information_schema.table_constraints tc
+      JOIN information_schema.key_column_usage kcu
+        ON tc.constraint_name = kcu.constraint_name
+       AND tc.constraint_schema = kcu.constraint_schema
+      WHERE tc.constraint_type = 'FOREIGN KEY'
+        AND tc.table_schema = 'public'
+        AND tc.table_name = 'external_mappings'
+        AND kcu.column_name = 'card_print_id'
+    ) THEN
+      ALTER TABLE public.external_mappings
+        ADD CONSTRAINT external_mappings_card_print_id_fkey
+        FOREIGN KEY (card_print_id)
+        REFERENCES public.card_prints(id)
+        ON DELETE CASCADE;
+    END IF;
+  END IF;
+END $$;
 -- 2.5 Create ingestion_jobs table (generic job queue)
 -- 6) ingestion_jobs: generic job queue for imports / backfills
 
@@ -245,7 +272,7 @@ CREATE INDEX IF NOT EXISTS ingestion_jobs_created_at_idx
 CREATE TABLE IF NOT EXISTS public.ai_decision_logs (
   id             bigserial PRIMARY KEY,
   raw_import_id  bigint REFERENCES public.raw_imports(id) ON DELETE SET NULL,
-  card_print_id  uuid REFERENCES public.card_prints(id) ON DELETE SET NULL,
+  card_print_id  uuid,
   model          text,
   input          jsonb,
   output         jsonb,
@@ -272,11 +299,38 @@ CREATE INDEX IF NOT EXISTS ai_decision_logs_raw_import_id_idx
 CREATE INDEX IF NOT EXISTS ai_decision_logs_created_at_idx
   ON public.ai_decision_logs (created_at);
 
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
+  ) THEN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM information_schema.table_constraints tc
+      JOIN information_schema.key_column_usage kcu
+        ON tc.constraint_name = kcu.constraint_name
+       AND tc.constraint_schema = kcu.constraint_schema
+      WHERE tc.constraint_type = 'FOREIGN KEY'
+        AND tc.table_schema = 'public'
+        AND tc.table_name = 'ai_decision_logs'
+        AND kcu.column_name = 'card_print_id'
+    ) THEN
+      ALTER TABLE public.ai_decision_logs
+        ADD CONSTRAINT ai_decision_logs_card_print_id_fkey
+        FOREIGN KEY (card_print_id)
+        REFERENCES public.card_prints(id)
+        ON DELETE SET NULL;
+    END IF;
+  END IF;
+END $$;
 -- 2.7 Create card_embeddings table (per-print embeddings)
 -- 8) card_embeddings: store numeric embeddings per card_print for AI search/matching
 
 CREATE TABLE IF NOT EXISTS public.card_embeddings (
-  card_print_id  uuid PRIMARY KEY REFERENCES public.card_prints(id) ON DELETE CASCADE,
+  card_print_id  uuid PRIMARY KEY,
   embedding      double precision[],
   model          text,
   created_at     timestamptz NOT NULL DEFAULT now()
@@ -291,4 +345,32 @@ COMMENT ON COLUMN public.card_embeddings.model IS
 
 CREATE INDEX IF NOT EXISTS card_embeddings_model_idx
   ON public.card_embeddings (model);
+
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
+  ) THEN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM information_schema.table_constraints tc
+      JOIN information_schema.key_column_usage kcu
+        ON tc.constraint_name = kcu.constraint_name
+       AND tc.constraint_schema = kcu.constraint_schema
+      WHERE tc.constraint_type = 'FOREIGN KEY'
+        AND tc.table_schema = 'public'
+        AND tc.table_name = 'card_embeddings'
+        AND kcu.column_name = 'card_print_id'
+    ) THEN
+      ALTER TABLE public.card_embeddings
+        ADD CONSTRAINT card_embeddings_card_print_id_fkey
+        FOREIGN KEY (card_print_id)
+        REFERENCES public.card_prints(id)
+        ON DELETE CASCADE;
+    END IF;
+  END IF;
+END $$;
 
