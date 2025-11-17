@@ -9,7 +9,7 @@
 
 CREATE TABLE IF NOT EXISTS public.card_print_traits (
   id            bigserial PRIMARY KEY,
-  card_print_id uuid NOT NULL REFERENCES public.card_prints(id) ON DELETE CASCADE,
+  card_print_id uuid NOT NULL,
   trait_type    text   NOT NULL, -- 'stamp', 'holo_pattern', 'foil', 'promo_tag', 'language', 'border', etc.
   trait_value   text   NOT NULL, -- 'pre-release', 'staff', 'reverse-holo', 'cosmos', 'full-art', 'english', etc.
   source        text   NOT NULL DEFAULT 'manual', -- 'manual', 'ai', 'import'
@@ -34,3 +34,31 @@ CREATE INDEX IF NOT EXISTS card_print_traits_card_print_id_idx
 
 CREATE INDEX IF NOT EXISTS card_print_traits_trait_type_value_idx
   ON public.card_print_traits (trait_type, trait_value);
+
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_schema = 'public'
+      AND table_name = 'card_prints'
+  ) THEN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM information_schema.table_constraints tc
+      JOIN information_schema.key_column_usage kcu
+        ON tc.constraint_name = kcu.constraint_name
+       AND tc.constraint_schema = kcu.constraint_schema
+      WHERE tc.constraint_type = 'FOREIGN KEY'
+        AND tc.table_schema = 'public'
+        AND tc.table_name = 'card_print_traits'
+        AND kcu.column_name = 'card_print_id'
+    ) THEN
+      ALTER TABLE public.card_print_traits
+        ADD CONSTRAINT card_print_traits_card_print_id_fkey
+        FOREIGN KEY (card_print_id)
+        REFERENCES public.card_prints(id)
+        ON DELETE CASCADE;
+    END IF;
+  END IF;
+END $$;
