@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.81.1"
+  },
+  "scripts": {
+    "worker:import-prices": "node backend/pricing/import_prices_worker.mjs",
+    "worker:system-health": "node backend/infra/system_health_worker.mjs",
+    "worker:import-sets": "node backend/sets/import_sets_worker.mjs",
+    "worker:sets-health": "node backend/sets/sets_health_report.mjs",
+    "worker:backfill-identity": "node backend/infra/backfill_print_identity_worker.mjs",
+    "pokemonapi:import:sets": "node backend/sets/import_sets_worker.mjs",
+    "pokemonapi:import:cards": "node backend/pokemon/pokemonapi_import_cards_worker.mjs",
+    "pokemonapi:normalize": "node backend/pokemon/pokemonapi_normalize_worker.mjs",
+    "tcgdex:import-sets": "node backend/sets/tcgdex_import_sets_worker.mjs --mode=full",
+    "tcgdex:import-cards": "node backend/pokemon/tcgdex_import_cards_worker.mjs --mode=full",
+    "tcgdex:normalize": "node backend/pokemon/tcgdex_normalize_worker.mjs --mode=backfill",
+    "pokemon:enrich": "node backend/pokemon/pokemon_enrichment_worker.mjs --mode=backfill",
+    "pokemon:backfill-mappings": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs",
+    "pokemon:backfill-mappings:dry": "node backend/pokemon/pokemonapi_backfill_mappings_worker.mjs --dry-run --limit=200"
+  }
+}
