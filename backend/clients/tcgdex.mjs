@@ -1,5 +1,18 @@
 // backend/clients/tcgdex.mjs
 //
+// === TCGdex API Reference ===
+// According to official TCGdex documentation (https://tcgdex.dev):
+// - Base URL: https://api.tcgdex.net/v2
+// - HTTPS required (HTTP is redirected to HTTPS)
+// - All REST requests MUST be GET requests
+// - No API key is required for basic usage (“Every bit of information … freely available and open source!”)
+//
+// If TCGdex adds authentication or rate limits in the future, populate TCGDEX_API_KEY
+// in your environment files. For now, empty/undefined is correct.
+//
+// NOTE: Keep TODO markers where endpoints/pagination must be confirmed.
+// Do not guess endpoint shapes until verified against live TCGdex docs.
+//
 // Shared TCGdex client modeled after backend/clients/pokemonapi.mjs.
 // Reads env vars:
 //   - TCGDEX_BASE_URL (required; no default to avoid guessing)
