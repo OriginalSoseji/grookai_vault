@@ -1,1581 +1,688 @@
-# Codex Queue
+TASK: Upgrade `backend/pokemon/pokemonapi_normalize_worker.mjs` so it loops over all pending pokemonapi rows (in batches) until none remain.
 
-Paste tasks below using this exact format. The dispatcher will grab the **last** block:
+Scope guard:
+- Only modify: `backend/pokemon/pokemonapi_normalize_worker.mjs`.
+- Do NOT touch any other files.
+- Keep the logic for processing a single batch (sets + cards) exactly the same.
 
-### TASK: Probe workflow sanity (demo)
-You are in Windows PowerShell at C:\grookai_vault.
-- Open `.github/workflows/prod-edge-probe.yml`
-- Confirm steps: Install Supabase CLI, List functions (runner view), Diagnose wall_feed (anon).
-- Ensure the List step uses SUPABASE_ACCESS_TOKEN from repo secrets.
-- Keep the GET headers for anon: `apikey: <anon>`, `Authorization: Bearer <anon>`.
-- Do not modify unrelated steps.
----
+Goals:
+1) Instead of processing a single batch of up to 50 pending rows and exiting, the worker should:
+   - Fetch up to 50 pending rows (source='pokemonapi').
+   - Normalize them (using the existing logic).
+   - Commit status updates.
+   - Then fetch the next batch of pending rows.
+   - Repeat until there are no pending rows left OR no progress is made.
 
-### TASK: Clean baseline for the probe workflow (drop-in)
+2) The worker should still:
+   - Maintain per-run summary counts:
+     sets: { normalized, conflicts, errors, processed }
+     cards: { normalized, conflicts, errors, processed }
+   - But now those totals should be **across all batches**, not just the first 50 rows.
 
-### TASK: Fresh proofs + bridge token realignment (Windows, no bash)
-You are on Windows PowerShell at C:\\grookai_vault.
+Implementation details (high level):
+- Introduce an outer `while (true)` loop around the existing “fetch pending rows + process batch” logic.
+- At the top of each loop:
+  - Query `raw_imports` for up to 50 rows where:
+    - source = 'pokemonapi'
+    - status = 'pending'
+  - If the result set is empty, `break` the loop (no more pending rows).
+- Keep using the existing per-batch processing functions for sets/cards; do not change how individual rows are handled.
+- Track cumulative totals across batches:
+  - e.g. `totalSetsNormalized += batchSetsNormalized`, etc.
+- If in any iteration the worker finds pending rows but, after running the batch logic, **no rows are normalized/conflicted/errored** (i.e., processed = 0), log a warning and `break` the loop to avoid an infinite loop.
+- At the end, log a **single summary** using the cumulative totals.
 
-Scope: only import-prices for project ycdxbpibncqcchqiihfz.
+Do NOT:
+- Change how conflicts vs errors are classified.
+- Change how notes/status are written per row.
+- Change how many rows are fetched per batch (keep LIMIT 50).
+- Change any behavior for non-pokemonapi sources.
 
-Steps:
-- Prompt once for the actual BRIDGE_IMPORT_TOKEN value (not the digest).
-- Write the same value in both places:
-  - Function env file: `supabase/functions/import-prices/.env` → `BRIDGE_IMPORT_TOKEN=<value>`
-  - Project secret: `supabase secrets set --project-ref ycdxbpibncqcchqiihfz BRIDGE_IMPORT_TOKEN <value>`
-- Redeploy the function with the env file:
-  - `supabase functions deploy import-prices --project-ref ycdxbpibncqcchqiihfz --no-verify-jwt --env-file supabase/functions/import-prices/.env`
-- Ensure `.github/workflows/auto-align-import-prices.yml` sends the header `x-bridge-token: ${{ secrets.BRIDGE_IMPORT_TOKEN }}` and has:
-  - permissions:
-    - contents: write
-    - actions: read
-  - plus an explicit `git add reports/ci_logs/latest/sixline.txt reports/ci_logs/latest/attempts.txt && git commit -m "ci(auto): proofs" && git push` when persisting proofs.
-- Delete local proofs folder `reports/ci_logs/latest`.
-- Run the loop: `pwsh -NoProfile -File scripts/ci/align_until_proofs.ps1` and let it stop when both proof files exist.
-- Print the contents of both final files to console.
-
-Implementation notes:
-- You may call the helper: `scripts/ci/realign_bridge_and_redeploy.ps1` to handle the prompt + env write + secret set + deploy.
-- Proof files expected:
-  - `reports/ci_logs/latest/sixline.txt`
-  - `reports/ci_logs/latest/attempts.txt`
----
-
-> You are in Windows PowerShell at `C:\grookai_vault`. Replace `.github/workflows/prod-edge-probe.yml` with this minimal, valid baseline; commit and push.
->
-> ```yaml
-> name: Prod Edge Probe (read-only)
->
-> on:
->   workflow_dispatch:
->   schedule:
->     - cron: '0 * * * *'
->   push:
->     branches: [ main ]
->     paths:
->       - 'supabase/functions/**'
->       - '.codex/test_edges_prod.ps1'
->       - '.github/workflows/prod-edge-probe.yml'
->
-> permissions:
->   contents: read
->
-> jobs:
->   probe:
->     runs-on: windows-latest
->     defaults:
->       run:
->         shell: pwsh
->     env:
->       SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
->       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
->       GV_ENV: prod
->     steps:
->       - name: Checkout
->         uses: actions/checkout@v4
->         with:
->           fetch-depth: 0
->
->       - name: Preflight — check SUPABASE_ACCESS_TOKEN
->         run: echo "SUPABASE_ACCESS_TOKEN present? ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}"
->         continue-on-error: true
->
->       - name: Install Supabase CLI
->         if: ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}
->         uses: supabase/setup-cli@v1
->
->       - name: List functions (runner view)
->         if: ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}
->         env:
->           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
->         run: |
->           supabase functions list --project-ref ycdxbpibncqcchqiihfz
->
->       - name: Diagnose wall_feed (anon)
->         continue-on-error: true
->         run: |
->           $url = "$env:SUPABASE_URL/functions/v1/wall_feed"
->           $h = @{ apikey=$env:SUPABASE_PUBLISHABLE_KEY; Authorization="Bearer $($env:SUPABASE_PUBLISHABLE_KEY)" }
->           try {
->             $r = Invoke-WebRequest -Uri $url -Headers $h -Method GET -UseBasicParsing -TimeoutSec 30
->             $status = $r.StatusCode; $body = $r.Content
->           } catch {
->             if ($_.Exception.Response) {
->               $status = [int]$_.Exception.Response.StatusCode.Value__
->               $sr = New-Object IO.StreamReader ($_.Exception.Response.GetResponseStream())
->               $body = $sr.ReadToEnd()
->             } else { $status = "ERR"; $body = $_.Exception.Message }
->           }
->           $snippet = if ($body) { $body.Substring(0,[Math]::Min(300,$body.Length)) } else { "" }
->           "URL: $url"              | Out-File -Encoding UTF8 SUMMARY.md
->           "STATUS: $status"        | Out-File -Append -Encoding UTF8 SUMMARY.md
->           "BODY[0..300]: $snippet" | Out-File -Append -Encoding UTF8 SUMMARY.md
->
->       - name: Upload probe summary
->         if: ${{ always() }}
->         uses: actions/upload-artifact@v4
->         with:
->           name: prod-edge-probe
->           path: SUMMARY.md
->           if-no-files-found: warn
-> ```
->
-> ```powershell
-> git add .github/workflows/prod-edge-probe.yml
-> git commit -m "CI: reset probe to clean baseline"
-> git push
-> ```
----
+Return:
+- A short summary of the edits you made.
+- Confirmation that a single `npm run pokemonapi:normalize` call will now keep looping batches until no pending pokemonapi rows remain (or no progress is possible).
 
 ---
 
-### TASK: Make import-prices SRK-free via SECURITY DEFINER RPC + publishable key CONFIRM: YES
+TASK: Seller eBay Sync v1 foundations
 
-Context: Windows PowerShell at `C:\grookai_vault`; project is linked (`ycdxbpibncqcchqiihfz`). Goal: remove SRK usage, call a definer RPC from Edge using only publishable key + shared token, redeploy, probe, and log.
+You are connected to the Grookai Vault repo at C:\grookai_vault.
 
-1) Add SQL RPC (security definer)
+GOAL
+Implement the backend foundations for **Seller eBay Sync v1**:
 
-Create `supabase/migrations/now_import_prices_definer.sql` with:
+- A table to store each seller’s eBay OAuth tokens and marketplace metadata.
+- A Supabase Edge Function to handle the OAuth callback and persist tokens.
+- A backend worker to iterate over all connected sellers and ingest their sold orders into `price_observations` (mapping-aware, dry-run first).
+- Documentation so we know how the flow works end-to-end.
 
-```
-create schema if not exists admin;
-create or replace function admin.import_prices_do(_payload jsonb, _bridge_token text)
-returns jsonb
-language plpgsql
-security definer
-set search_path = public, extensions
-as $$
-begin
-  if _bridge_token is distinct from current_setting('app.bridge_token', true) then
-    raise exception 'unauthorized';
-  end if;
-  -- TODO: perform the real inserts/updates using _payload
-  return jsonb_build_object('ok', true, 'received', _payload);
-end;
-$$;
-revoke all on function admin.import_prices_do(jsonb, text) from public;
-grant execute on function admin.import_prices_do(jsonb, text) to anon;
-```
+We will NOT build Flutter UI in this task.
+We will NOT expose this via public APIs yet; this is backend + Edge function only.
 
-Apply migration (psql or your normal migration runner).
+Follow all existing contracts:
+- Migration Maintenance Contract (no destructive changes, IF NOT EXISTS, safe replay).
+- card_prints is canonical identity.
+- price_observations is the canonical raw pricing table.
+- price_index_v1 is the canonical index (already implemented).
+- Existing eBay client + ebay_self worker patterns should be reused where possible.
 
-2) Set function secrets (no SRK)
+------------------------------------------------------------
+0) QUICK AUDIT (READ-ONLY)
+------------------------------------------------------------
+Before making changes, quickly scan for existing seller/account structures to avoid duplication:
 
-Ensure (or set):
+- Search for:
+  - "seller", "sellers", "accounts", "marketplace_accounts"
+  - "ebay_accounts"
+  - "oauth"
+  - "refresh_token"
+- Scan:
+  - supabase/migrations/**
+  - supabase/functions/**
+  - backend/**
 
-```
-supabase secrets set "SUPABASE_URL=https://ycdxbpibncqcchqiihfz.supabase.co"
-supabase secrets set "SUPABASE_PUBLISHABLE_KEY=$env:SUPABASE_PUBLISHABLE_KEY"
-```
+If you find an existing table or pattern for external marketplace accounts, reuse it instead of creating a new one.
+Otherwise, proceed with the design below.
 
-Generate a private bridge token once (GUID) and set:
+Do NOT modify or remove any existing tables in this step. This is read-only.
 
-```
-if (-not $env:BRIDGE_IMPORT_TOKEN) { $env:BRIDGE_IMPORT_TOKEN=[guid]::NewGuid().ToString() }
-supabase secrets set "BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN"
-```
+------------------------------------------------------------
+1) SCHEMA: ebay_accounts (per-seller token storage)
+------------------------------------------------------------
+If no suitable existing table exists, create a new table for storing per-seller eBay tokens and metadata.
 
-3) Patch Edge Function (`supabase/functions/import-prices/index.ts`) to SRK-free
+Create a guarded migration:
 
-Replace auth + write logic with:
+  supabase/migrations/20251123090000_ebay_accounts_v1.sql
 
-```ts
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-const url   = Deno.env.get("SUPABASE_URL")!;
-const pub   = Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!;
-const token = Deno.env.get("BRIDGE_IMPORT_TOKEN")!;
+In this migration, create:
 
-export default async (req: Request) => {
-  if (req.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
-  const body = await req.json().catch(() => ({}));
-  if (req.headers.get("x-bridge-token") !== token) return new Response("Unauthorized", { status: 401 });
+  public.ebay_accounts
 
-  const supabase = createClient(url, pub);
-  // Optionally set GUC so the RPC can read it via current_setting
-  await supabase.rpc('set_config', { parameter: 'app.bridge_token', value: token, is_local: true });
+Columns (use IF NOT EXISTS pattern where applicable):
 
-  const { data, error } = await supabase.rpc('admin.import_prices_do', {
-    _payload: body,
-    _bridge_token: token, // or null if you rely solely on set_config above
-  });
+- id uuid PRIMARY KEY DEFAULT gen_random_uuid()
+- user_id uuid NOT NULL
+  - FK to the appropriate auth/users table used by this project
+  - Use the same pattern as any existing tables that reference the authenticated user (check other migrations for how user_id FKs are defined).
+- ebay_username text NULL
+  - seller’s eBay account username, if known
+- marketplace_id text NOT NULL DEFAULT 'EBAY_US'
+  - e.g., 'EBAY_US', 'EBAY_GB', etc.
+- access_token text NOT NULL
+- refresh_token text NULL
+- access_token_expires_at timestamptz NULL
+- scopes text[] NULL
+  - store granted scopes as an array of strings (optional but useful)
+- is_active boolean NOT NULL DEFAULT true
+- last_sync_at timestamptz NULL
+- created_at timestamptz NOT NULL DEFAULT now()
+- updated_at timestamptz NOT NULL DEFAULT now()
 
-  if (error) return new Response(JSON.stringify({ ok:false, error }), { status: 500 });
-  return new Response(JSON.stringify({ ok:true, data }), { status: 200, headers: { "content-type": "application/json" }});
-};
-```
+Add:
 
-Stage/commit if changed:
-
-```
-git add supabase/functions/import-prices/index.ts supabase/migrations/*.sql
-git commit -m "feat(import-prices): SRK-free via SECURITY DEFINER RPC + publishable key"
-git push
-```
-
-4) Update Bridge probe to use publishable key + token
-
-Edit `scripts/bridge_task_import_prices.ps1` headers to:
-
-```
-$headers = @{
-  "Authorization" = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"
-  "apikey"        = $env:SUPABASE_PUBLISHABLE_KEY
-  "x-bridge-token"= $env:BRIDGE_IMPORT_TOKEN
-}
+- An index on (user_id):
+  ```sql
+  CREATE INDEX IF NOT EXISTS ebay_accounts_user_id_idx
+  ON public.ebay_accounts (user_id);
 ```
 
-5) Redeploy + probe + log
-```
-supabase functions deploy import-prices
-./scripts/bridge_task_import_prices.ps1
-```
+* An index on (is_active, last_sync_at):
 
-Write `reports/import_prices_srk_free_<timestamp>.txt` with the single probe result line.
-
-✅ Acceptance
-
-- No SRK or SUPABASE_SECRET_KEY used anywhere in the function.
-- Secrets set: SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, BRIDGE_IMPORT_TOKEN.
-- Probe prints: [Bridge] import-prices → Code=200 Ok=True.
-- SQL function exists and is SECURITY DEFINER with anon execute.
-
-Notes
-
-Keep BRIDGE_IMPORT_TOKEN private; it’s not a user-facing secret.
-
-If you later expand, you can reuse this pattern for other write flows (one RPC per capability).
-
----
-
-> ### TASK: Modernize `import-prices` Edge Function auth and redeploy (Supabase → SECRET_KEY) CONFIRM: YES
->
-> **Context:** Windows PowerShell @ `C:\\grookai_vault`
-> Goal: Update `supabase/functions/import-prices/index.ts` to use the new `SECRET_KEY` convention instead of `SECRET_KEY`, redeploy, and verify the function returns `200 OK` in the Bridge probe.
->
-> ---
->
-> #### **Steps to perform**
->
-> 1. **Locate file:**
->    `C:\\grookai_vault\\supabase\\functions\\import-prices\\index.ts`
->
-> 2. **Replace the legacy key block**
->
->    * **Find**:
->
->      ```ts
->      const SECRET_KEY = Deno.env.get("SUPABASE_SECRET_KEY") || Deno.env.get("SECRET_KEY") || Deno.env.get("SB_SERVICE_ROLE_KEY") || "";
->      if (!SUPABASE_URL || !SECRET_KEY) {
->        throw new Error("Missing env: SECRET_KEY and/or PROJECT_URL.");
->      }
->      function srHeaders() {
->        return {
->          apikey: SECRET_KEY,
->          Authorization: `Bearer ${SECRET_KEY}`,
->          "Content-Type": "application/json",
->          Prefer: "count=exact"
->        };
->      }
->      ```
->
->    * **Replace with:**
->
->      ```ts
->      const SECRET_KEY =
->        Deno.env.get("SUPABASE_SECRET_KEY") ||
->        Deno.env.get("SECRET_KEY") ||
->        Deno.env.get("SB_SECRET_KEY") ||
->        "";
->
->      if (!SUPABASE_URL || !SECRET_KEY) {
->        throw new Error("Missing env: SECRET_KEY and/or PROJECT_URL.");
->      }
->
->      function srHeaders() {
->        return {
->          apikey: SECRET_KEY,
->          Authorization: `Bearer ${SECRET_KEY}`,
->          "Content-Type": "application/json",
->          Prefer: "count=exact"
->        };
->      }
->      ```
->
-> 3. **Save and redeploy**
->
->    ```powershell
->    supabase functions deploy import-prices
->    ```
->
-> 4. **Run Bridge probe to verify**
->
->    ```powershell
->    ./scripts/bridge_task_import_prices.ps1
->    ```
->
-> 5. **If output shows**
->
->    ```
->    [Bridge] import-prices → Code=200 Ok=True
->    ```
->
->    then commit and push:
->
->    ```powershell
->    git add supabase/functions/import-prices/index.ts
->    git commit -m "fix(import-prices): align auth with SUPABASE_SECRET_KEY"
->    git push
->    ```
->
-> ---
->
-> #### ✅ **Validation**
->
-> * `import-prices` redeploys successfully to project `ycdxbpibncqcchqiihfz`.
-> * Bridge probe output returns `Code=200 Ok=True`.
-> * Nightly CI comment shows `import-prices ✅` in summary.
->
-> ---
->
-> **Goal:** Fully modernize the `import-prices` function to match new environment variable standards and confirm successful operation through Bridge automation.
-
----
-
-### TASK: CI probe for `import-prices` (publishable only) + one-click token mint (Windows/PowerShell) CONFIRM: YES
-
-**Repo:** `C:\grookai_vault` — **Shell:** `pwsh` — **Project ref:** `ycdxbpibncqcchqiihfz`
-**Keys rule:** never use legacy names. Only `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY` (server), `BRIDGE_IMPORT_TOKEN` (function-scoped).
-
----
-
-#### 1) Add GitHub Actions workflow: `.github/workflows/prod-import-prices-validate.yml`
-
-Create the file with:
-
-```yaml
-name: Prod Import-Prices Validate
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/30 * * * *"   # every 30 min
-  push:
-    branches: [ main ]
-    paths:
-      - "supabase/functions/import-prices/**"
-
-permissions:
-  contents: read
-
-env:
-  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
-  BRIDGE_IMPORT_TOKEN: ${{ secrets.PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES }}
-
-jobs:
-  validate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: pwsh version
-        shell: pwsh
-        run: '$PSVersionTable.PSVersion.ToString()'
-
-      - name: Direct A→B→curl validator (no legacy)
-        shell: pwsh
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          $ProgressPreference = "SilentlyContinue"
-          $url  = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
-          $body = '{"ping":"ok"}'
-          function Try-Post($headers, $variant) {
-            try {
-              $resp = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 10
-              Write-Host "$variant -> CODE=$($resp.StatusCode)"
-              return [int]$resp.StatusCode
-            } catch {
-              $c = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
-              Write-Host "$variant -> ERROR: $($_.Exception.Message)"
-              if ($c -ne -1) { Write-Host "$variant -> CODE=$c" }
-              return $c
-            }
-          }
-          $hA = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }
-          $codeA = Try-Post $hA 'A'
-          if ($codeA -ge 200 -and $codeA -lt 300) { exit 0 }
-          $hB = $hA.Clone(); $hB['Authorization'] = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"
-          $codeB = Try-Post $hB 'B'
-          if ($codeB -ge 200 -and $codeB -lt 300) { exit 0 }
-          if (Get-Command curl.exe -ErrorAction SilentlyContinue) {
-            $out = & curl -sS -i -X POST `
-              -H "apikey: $env:SUPABASE_PUBLISHABLE_KEY" `
-              -H "x-bridge-token: $env:BRIDGE_IMPORT_TOKEN" `
-              -H "Content-Type: application/json" `
-              --max-time 10 `
-              --data $body `
-              $url
-            $first = ($out -split "`n")[0]
-            if ($first -match 'HTTP/\S+\s+(\d{3})') {
-              $codeC = [int]$Matches[1]
-              Write-Host "C (curl) -> CODE=$codeC"
-              if ($codeC -ge 200 -and $codeC -lt 300) { exit 0 }
-            } else {
-              Write-Host "C (curl) -> no status parsed"
-            }
-          }
-          Write-Error "Import-prices validation failed (A=$codeA, B=$codeB). Check dashboard toggle and headers."
-```
-
-**Repo secrets required (set in GitHub → Settings → Secrets and variables → Actions):**
-
-* `PROD_SUPABASE_URL` = `https://ycdxbpibncqcchqiihfz.supabase.co`
-* `PROD_PUBLISHABLE_KEY` = your `sb_publishable_…`
-* `PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES` = function-scoped token you minted for `import-prices`
-
----
-
-#### 2) Add one-click token mint script (local): `scripts/mint_import_token.ps1`
-
-```powershell
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$ProgressPreference = "SilentlyContinue"
-Set-Location (Split-Path $PSCommandPath -Parent | Split-Path -Parent)  # repo root
-
-$proj = "ycdxbpibncqcchqiihfz"
-try { supabase link --project-ref $proj | Out-Null } catch {}
-
-# Generate secure 64-hex token (no openssl required)
-$token = [Guid]::NewGuid().ToString("N") + [Guid]::NewGuid().ToString("N")
-$envFile = "supabase/functions/import-prices/.env"
-if (-not (Test-Path (Split-Path $envFile -Parent))) { New-Item -ItemType Directory -Path (Split-Path $envFile -Parent) | Out-Null }
-Set-Content -Path $envFile -Value ("BRIDGE_IMPORT_TOKEN="+$token) -Encoding UTF8
-
-supabase secrets set BRIDGE_IMPORT_TOKEN=$token --project-ref $proj --env-file $envFile
-supabase functions deploy import-prices --project-ref $proj
-
-Write-Host "`nNew BRIDGE_IMPORT_TOKEN (store securely):`n$token" -ForegroundColor Cyan
-```
-
-Add a VS Code task:
-
-```json
-{
-  "label": "Bridge: Mint Import Token",
-  "type": "shell",
-  "command": "pwsh",
-  "args": ["-NoProfile","-Command","Set-Location C:\\grookai_vault; ./scripts/mint_import_token.ps1"],
-  "options": { "cwd": "C:\\grookai_vault" },
-  "problemMatcher": []
-}
-```
-
----
-
-#### 3) Docs: add a short runbook `docs/IMPORT_PRICES_PROBE.md`
-
-```markdown
-# import-prices — probe & tokens (publishable only)
-- Dashboard → Edge Functions → **import-prices** → **Verify JWT (legacy) = OFF**, then **Deploy** (from dashboard).
-- Headers when JWT off:
-  - A: `apikey: $SUPABASE_PUBLISHABLE_KEY`, `x-bridge-token: $BRIDGE_IMPORT_TOKEN`
-  - B: same + `Authorization: Bearer $SUPABASE_PUBLISHABLE_KEY`
-- Mint token locally: **Tasks → Bridge: Mint Import Token** (prints the token once).
-- Local validate: **Tasks → Validate: import-prices (publishable, A→B→curl)**.
-- CI validate: **Actions → Prod Import-Prices Validate** (uses repo secrets).
-```
-
----
-
-#### 4) Commit
-
-```
-git add .github/workflows/prod-import-prices-validate.yml scripts/mint_import_token.ps1 docs/IMPORT_PRICES_PROBE.md .vscode/tasks.json
-git commit -m "ci(import-prices): add prod validator (publishable only) + one-click token mint (pwsh)"
-```
-
-**Done when:**
-
-* Local validator: `PASS ✅` (A or B or curl C).
-* GitHub Action run: **green** on main and on manual dispatch.
-* Runbook present; no legacy key names anywhere.
----
-
-
----
-
-### TASK: Fix CI validator — try **B→A→curl**, verify publishable belongs to this project, add safe debug + step summary CONFIRM: YES
-
-**Repo:** `C:\grookai_vault` **Shell:** `pwsh` **Project:** `ycdxbpibncqcchqiihfz`
-**Secrets used in CI:** `PROD_SUPABASE_URL`, `PROD_PUBLISHABLE_KEY`, `PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES`
-**Never print secrets.** Only print masked/hashes.
-
----
-
-#### 1) Patch `.github/workflows/prod-import-prices-validate.yml`
-
-* In the only job’s “Direct A→B→curl validator (no legacy)” step, replace the whole script block with:
-
-  ```powershell
-  Set-StrictMode -Version Latest
-  $ErrorActionPreference = "Stop"
-  $ProgressPreference = "SilentlyContinue"
-
-  function Mask($s) { if (-not $s) { return "(empty)" } if ($s.Length -le 6) { return "***" } return ($s.Substring(0,3) + "…" + $s.Substring($s.Length-3)) }
-  function Hash8($s) { if (-not $s) { return "NA" } try { ($s | ConvertTo-SecureString -AsPlainText -Force | ConvertFrom-SecureString) | Out-Null } catch {}; $sha = [System.Security.Cryptography.SHA256]::Create(); $b=[Text.Encoding]::UTF8.GetBytes($s); $h=$sha.ComputeHash($b); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
-
-  # Guard secrets early
-  if (-not $env:SUPABASE_URL) { Write-Error "Missing SUPABASE_URL"; }
-  if (-not $env:SUPABASE_PUBLISHABLE_KEY) { Write-Error "Missing publishable key (PROD_PUBLISHABLE_KEY)"; }
-  if (-not $env:BRIDGE_IMPORT_TOKEN) { Write-Error "Missing bridge token (PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES)"; }
-
-  # Print safe diagnostics (no secrets)
-  Write-Host "SUPABASE_URL host  : " ([uri]$env:SUPABASE_URL).Host
-  Write-Host "Project ref expect : ycdxbpibncqcchqiihfz"
-  Write-Host "PUB masked/hash8   : " (Mask $env:SUPABASE_PUBLISHABLE_KEY) " / " (Hash8 $env:SUPABASE_PUBLISHABLE_KEY)
-  Write-Host "BRIDGE masked/hash8: " (Mask $env:BRIDGE_IMPORT_TOKEN) " / " (Hash8 $env:BRIDGE_IMPORT_TOKEN)
-
-  $url  = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
-  $body = '{"ping":"ok"}'
-
-  function Try-Post($headers, $variant) {
-    try {
-      $resp = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 20
-      Write-Host "$variant -> CODE=$($resp.StatusCode)"
-      return [int]$resp.StatusCode
-    } catch {
-      $c = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
-      $msg = $_.Exception.Message
-      Write-Host "$variant -> ERROR: $msg"
-      if ($c -ne -1) { Write-Host "$variant -> CODE=$c" }
-      return $c
-    }
-  }
-
-  # Variant B FIRST: apikey + Authorization mirroring publishable
-  $hB = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json'; Authorization = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)" }
-  $codeB = Try-Post $hB 'B'
-  if ($codeB -ge 200 -and $codeB -lt 300) { $final='B'; $finalCode=$codeB; goto :done }
-
-  # Variant A: apikey only
-  $hA = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }
-  $codeA = Try-Post $hA 'A'
-  if ($codeA -ge 200 -and $codeA -lt 300) { $final='A'; $finalCode=$codeA; goto :done }
-
-  # Variant C: curl fallback
-  $final='C'; $finalCode=-1
-  if (Get-Command curl.exe -ErrorAction SilentlyContinue) {
-    $out = & curl -sS -i -X POST `
-      -H "apikey: $env:SUPABASE_PUBLISHABLE_KEY" `
-      -H "x-bridge-token: $env:BRIDGE_IMPORT_TOKEN" `
-      -H "Content-Type: application/json" `
-      --max-time 20 `
-      --data $body `
-      $url
-    $first = ($out -split "`n")[0]
-   if ($first -match 'HTTP/\S+\s+(\d{3})') { $finalCode = [int]$Matches[1]; Write-Host "C (curl) -> CODE=$finalCode" } else { Write-Host "C (curl) -> no status parsed" }
-  } else {
-    Write-Host "C (curl) -> curl.exe not available"
-  }
-
-  :done
-  # Step summary
-  $sum = @()
-  $sum += "| Field | Value |"
-  $sum += "|---|---|"
-  $sum += "| URL host | $(([uri]$env:SUPABASE_URL).Host) |"
-  $sum += "| Project ref (expected) | ycdxbpibncqcchqiihfz |"
-  $sum += "| Publishable hash8 | $(Hash8 $env:SUPABASE_PUBLISHABLE_KEY) |"
-  $sum += "| Bridge hash8 | $(Hash8 $env:BRIDGE_IMPORT_TOKEN) |"
-  $sum += "| Variant used | $final |"
-  $sum += "| Final code | $finalCode |"
-  $sumText = $sum -join "`n"
-  $sumText | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
-
-  if ($finalCode -ge 200 -and $finalCode -lt 300) { exit 0 }
-
-  if ($finalCode -eq 401) {
-    Write-Error "401 from gateway. Ensure dashboard: Verify JWT (legacy)=OFF and you deployed from dashboard; confirm bridge token belongs to function and publishable key belongs to this project."
-  } else {
-    Write-Error "Validation failed (Variant=$final Code=$finalCode). Check network/timeouts, secrets, and headers."
-  }
+  ```sql
+  CREATE INDEX IF NOT EXISTS ebay_accounts_active_last_sync_idx
+  ON public.ebay_accounts (is_active, last_sync_at);
   ```
 
-* Remove any prior guards that error on missing BRIDGE token if you added them elsewhere (the new script already does).
+Add inline comments:
+
+* Table-level: this stores per-user eBay OAuth tokens for seller sync.
+* Column-level commentary for user_id, marketplace_id, tokens, last_sync_at.
+
+Ensure:
+
+* No destructive ops.
+* FK to user_id reuses your existing user identity pattern (auth.users or your own users table).
 
 ---
 
-#### 2) Add a local **publishable key hash check** (to compare with CI)
-
-* File: `scripts/hash_publishable.ps1`
-
-  ```powershell
-  Set-StrictMode -Version Latest
-  $ErrorActionPreference = "Stop"
-  if (-not $env:SUPABASE_PUBLISHABLE_KEY) { throw "Set SUPABASE_PUBLISHABLE_KEY in this session first." }
-  $sha = [System.Security.Cryptography.SHA256]::Create()
-  $h = $sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($env:SUPABASE_PUBLISHABLE_KEY))
-  $hex = ([BitConverter]::ToString($h)).Replace('-','')
-  Write-Host ("Local publishable hash8: {0}" -f $hex.Substring(0,8))
-  ```
-* VS Code task (append to `.vscode/tasks.json`):
-
-  ```json
-  {
-    "label": "Debug: Hash publishable (local)",
-    "type": "shell",
-    "command": "pwsh",
-    "args": ["-NoProfile","-Command","Set-Location C:\\grookai_vault; ./scripts/hash_publishable.ps1"],
-    "options": { "cwd": "C:\\grookai_vault" },
-    "problemMatcher": []
-  }
-  ```
+2. EDGE FUNCTION: eBay OAuth callback handler
 
 ---
 
-#### 3) Commit
+Add a Supabase Edge Function to handle the OAuth redirect from eBay.
 
-```
-git add .github/workflows/prod-import-prices-validate.yml scripts/hash_publishable.ps1 .vscode/tasks.json
-git commit -m "ci(import-prices): B→A→curl; safe debug; hash8 comparers; timeouts 20s"
-```
+Create:
 
----
+supabase/functions/ebay_oauth_callback/index.ts
 
-#### 4) Run
+Responsibilities:
 
-* Locally, set env and print your hash:
+* Accept GET/POST callback from eBay with:
 
-  ```powershell
-  $env:SUPABASE_PUBLISHABLE_KEY = "<your sb_publishable_…>"
-  task: Debug: Hash publishable (local)
-  ```
+  * code
+  * state
 
-  Compare the **hash8** printed locally with the one in the Action’s **Step Summary** after next run — they should match.
-* Dispatch CI again:
+* Validate the `state` parameter against a CSRF token or a signed Supabase auth token if you already have a pattern for that. If no pattern exists, include TODO comments and at minimum log a warning when state is missing or invalid.
 
-  ```powershell
-  $wf = ".github/workflows/prod-import-prices-validate.yml"
-  gh workflow run $wf
-  gh run list --workflow $wf --limit 1
-  gh run watch <runId>
-  ```
+* Exchange the `code` for access_token + refresh_token by calling eBay’s OAuth token endpoint using:
 
-**Done when:** CI **Step Summary** shows your expected host, project ref, matching publishable **hash8**, and **Final code 200** with Variant **B** or **A**. If still failing, use the printed Variant/Code + hashes to pinpoint secret mismatch vs gateway rules.
----
+  * EBAY_CLIENT_ID
+  * EBAY_CLIENT_SECRET
+  * EBAY_REDIRECT_URI
 
+  (Use the existing env vars already set up in `.env.example`; do NOT hard-code these values.)
 
----
+* Identify the authenticated Supabase user:
 
-### TASK: Update CI secrets with correct values (publishable + bridge), then re-run validator CONFIRM: YES
+  * Use whatever existing pattern you have in other Edge functions for reading the Supabase auth JWT (e.g. from Authorization header or cookies).
+  * If no pattern exists yet, add TODO comments and assume a simple Bearer token for now, but do NOT leave this unauthenticated.
 
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-Set-Location C:\grookai_vault
-$repo = git config --get remote.origin.url
+* Once user_id is known and tokens are obtained:
 
-function ReadPlain($label){
-  $s = Read-Host -AsSecureString $label
-  $p = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)
-  try { [Runtime.InteropServices.Marshal]::PtrToStringUni($p) } finally { if($p -ne [IntPtr]::Zero){ [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p) } }
-}
+  * Upsert into `public.ebay_accounts`:
 
-$pub = ReadPlain "Paste CORRECT SUPABASE_PUBLISHABLE_KEY (sb_publishable_…)"
-$brg = ReadPlain "Paste CORRECT BRIDGE_IMPORT_TOKEN (function-scoped for import-prices)"
+    * user_id
+    * ebay_username (if available in the token response or via a follow-up identity call; otherwise leave null with TODO)
+    * marketplace_id (default from env or from token; start with 'EBAY_US' if nothing else is available)
+    * access_token
+    * refresh_token
+    * access_token_expires_at (if expiry is given in the token response)
+    * scopes (if provided)
+    * is_active = true
+    * updated_at = now()
 
-$pub | gh secret set PROD_PUBLISHABLE_KEY --repo $repo
-$brg | gh secret set PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES --repo $repo
-Write-Host "Secrets updated." -ForegroundColor Green
+  Use Supabase client with service role / appropriate RLS bypass (if this table is protected) following your existing Edge function patterns.
 
-$wf = ".github/workflows/prod-import-prices-validate.yml"
-gh workflow run $wf
-Start-Sleep 4
-$run = gh run list --workflow $wf --limit 1 --json databaseId,status,conclusion,url | ConvertFrom-Json
-$runId = $run[0].databaseId
-gh run watch $runId
----
+* Respond with a simple HTML or JSON page indicating success, with a TODO noting that the frontend will eventually handle redirect back into the app cleanly.
 
+Add comments at the top:
+
+// ebay_oauth_callback:
+// Handles eBay OAuth redirect, exchanges code for tokens, and stores them in public.ebay_accounts.
+// This function assumes the caller is an authenticated Grookai Vault user and will be invoked after eBay login.
+
+Update any function manifest/config (e.g., supabase/functions/ebay_oauth_callback/deno.json or function.json) as required by your repo to make the Edge Function deployable.
 
 ---
 
-### TASK: Surface CI validator debug (print summary to console), re-run, parse, and compare with local hash8 CONFIRM: YES
-
-**Repo:** `C:\grookai_vault` **Shell:** `pwsh` **Project:** `ycdxbpibncqcchqiihfz`
-
-1. Patch `.github/workflows/prod-import-prices-validate.yml` so the validator step prints its summary to the console as well (not just `$GITHUB_STEP_SUMMARY`):
-
-```powershell
-$wf = ".github/workflows/prod-import-prices-validate.yml"
-$text = Get-Content $wf -Raw
-# Duplicate the summary block to also Write-Host each line.
-$text = $text -replace '(?s)\$sumText \| Out-File -FilePath \$env:GITHUB_STEP_SUMMARY -Append -Encoding utf8\s*',
-'
-  $sumText | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
-  $sum | ForEach-Object { Write-Host $_ }
-'
-Set-Content $wf $text -Encoding UTF8
-
-git add $wf
-git commit -m "ci(import-prices): echo validator summary to console for log scraping"
-```
-
-2. Re-run the workflow and watch:
-
-```powershell
-$wf = ".github/workflows/prod-import-prices-validate.yml"
-gh workflow run $wf
-Start-Sleep 5
-$r = gh run list --workflow $wf --limit 1 --json databaseId,status,conclusion,url | ConvertFrom-Json
-$runId = $r[0].databaseId
-gh run watch $runId
-$logs = gh run view $runId --log
-$logs | Out-File -FilePath reports\ci_import_prices_latest.log -Encoding utf8
-Write-Host "Saved full logs to reports\ci_import_prices_latest.log"
-```
-
-3. Parse Variant/Code + hash8 from the logs:
-
-```powershell
-$lines = Get-Content reports\ci_import_prices_latest.log
-$urlHost   = ($lines | Select-String -Pattern "URL host").Line
-$projRef   = ($lines | Select-String -Pattern "Project ref").Line
-$pubHash   = ($lines | Select-String -Pattern "Publishable hash8").Line
-$brgHash   = ($lines | Select-String -Pattern "Bridge hash8").Line
-$variantLn = ($lines | Select-String -Pattern "Variant used").Line
-$codeLn    = ($lines | Select-String -Pattern "Final code").Line
-
-Write-Host $urlHost
-Write-Host $projRef
-Write-Host $pubHash
-Write-Host $brgHash
-Write-Host $variantLn
-Write-Host $codeLn
-```
-
-4. Compare with your local hash8s (prompt & compute now):
-
-```powershell
-function Hash8([string]$s){$sha=[Security.Cryptography.SHA256]::Create();$h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s));([BitConverter]::ToString($h)).Replace("-","").Substring(0,8)}
-$pubSec = Read-Host -AsSecureString "Paste LOCAL SUPABASE_PUBLISHABLE_KEY (sb_publishable_…)"
-$brgSec = Read-Host -AsSecureString "Paste LOCAL BRIDGE_IMPORT_TOKEN (import-prices)"
-$p=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($pubSec); $PUB=[Runtime.InteropServices.Marshal]::PtrToStringUni($p); [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p)
-$q=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($brgSec); $BRG=[Runtime.InteropServices.Marshal]::PtrToStringUni($q); [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($q)
-"Local publishable hash8: $(Hash8 $PUB)"
-"Local bridge hash8     : $(Hash8 $BRG)"
-```
-
-5. Decision logic (print exact fix):
-
-```powershell
-$ciPub = ($pubHash -split '\|')[-1].Trim()
-$ciBrg = ($brgHash -split '\|')[-1].Trim()
-$ciVar = ($variantLn -split '\|')[-1].Trim()
-$ciCode= ($codeLn -split '\|')[-1].Trim()
-
-$locPub = (Hash8 $PUB)
-$locBrg = (Hash8 $BRG)
-
-Write-Host "`n=== Comparison ==="
-Write-Host "CI publishable hash8: $ciPub"
-Write-Host "Local publishable   : $locPub"
-Write-Host "CI bridge hash8     : $ciBrg"
-Write-Host "Local bridge        : $locBrg"
-Write-Host "Variant/Code        : $ciVar / $ciCode"
-
-if ($ciPub -ne $locPub) {
-  Write-Warning "Mismatch: CI publishable key is not the same as your local. Update PROD_PUBLISHABLE_KEY secret to the CORRECT sb_publishable_… and re-run."
-} elseif ($ciBrg -ne $locBrg) {
-  Write-Warning "Mismatch: CI bridge token differs. Update PROD_BRIDGE_IMPORT_TOKEN_IMPORT_PRICES to the NEW token minted for import-prices and re-run."
-} elseif ([int]$ciCode -eq 401) {
-  Write-Warning "401 from gateway with B→A→curl. Double-check dashboard toggle is OFF (already) and redeploy from dashboard; then re-run. If still 401, the project may require mirrored Authorization — which we already do in Variant B — or the token header name differs."
-} elseif ([int]$ciCode -eq -1 -or [int]$ciCode -eq 408) {
-  Write-Warning "Timeout/connection closed on runner. Re-run; if it persists, bump timeouts to 30s and keep curl fallback."
-} elseif ([int]$ciCode -ge 200 -and [int]$ciCode -lt 300) {
-  Write-Host "PASS: Runner is green (unexpected branch)."
-} else {
-  Write-Warning "Non-200 ($ciCode). Inspect logs in reports\\ci_import_prices_latest.log."
-}
-```
----
-
+3. BACKEND: shared token helper for eBay sellers
 
 ---
 
-### TASK: Run Import-Prices Validation Workflow (PowerShell, full cycle) CONFIRM: YES
+Create a helper for retrieving and refreshing seller tokens.
 
-You’re at `C:\grookai_vault` using **Windows PowerShell**.
-Objective: trigger the `prod-import-prices-validate-pub.yml` workflow **by file path**, watch until completion, save the logs, and print the 6-line diagnostic summary.
+New file:
 
----
+backend/ebay/ebay_tokens.mjs
 
-```powershell
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$ProgressPreference = "SilentlyContinue"
-Set-Location C:\grookai_vault
+Responsibilities:
 
-$Owner   = "OriginalSoseji"
-$Repo    = "grookai_vault"
-$WfPath  = ".github/workflows/prod-import-prices-validate-pub.yml"
-$Ref     = "main"
-$ReportDir = "reports"
-$LogPath = Join-Path $ReportDir "ci_import_prices_latest.log"
-mkdir -Force $ReportDir | Out-Null
+* Export a function:
 
-# 1️⃣ Verify workflow exists and has workflow_dispatch
-gh api repos/$Owner/$Repo/contents/$WfPath -f ref=$Ref | Out-Null
-$wfText = gh api repos/$Owner/$Repo/contents/$WfPath -f ref=$Ref --jq ".content" |
-    Out-String | %{ [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($_.Trim())) }
-if ($wfText -notmatch "(?ms)^\s*on\s*:\s*(?:.*\n)*\s*workflow_dispatch\s*:") {
-    throw "workflow_dispatch is missing in $WfPath on $Ref"
-}
+  * `async getSellerEbayAuth(supabase, { ebayAccountId })`
+  * Arguments:
 
-# 2️⃣ Trigger by file path (avoids 404 delay)
-gh workflow run $WfPath --ref $Ref
-Start-Sleep -Seconds 3
+    * supabase: backend client (createBackendClient)
+    * ebayAccountId: uuid of the row in public.ebay_accounts (or later, user_id)
 
-# 3️⃣ Locate latest run
-$json = gh run list --workflow $WfPath --json databaseId,headBranch,createdAt --limit 5 | ConvertFrom-Json
-$run = $json | Where-Object { $_.headBranch -eq $Ref } | Sort-Object createdAt -Descending | Select-Object -First 1
-if (-not $run) { throw "No run found for $WfPath on $Ref." }
-$runId = $run.databaseId
+Behavior:
 
-# 4️⃣ Watch until finished
-gh run watch $runId
+* Query `public.ebay_accounts` by id.
+* If not found or not active, throw a descriptive error.
+* Check if `access_token_expires_at` is in the past or about to expire.
 
-# 5️⃣ Download logs
-gh run view $runId --log > $LogPath
-Write-Host "Logs saved to $LogPath" -ForegroundColor Green
+  * If **no refresh_token** exists:
 
-# 6️⃣ Parse six-line summary
-$log = Get-Content $LogPath -Raw
-function Grab($patterns) {
-  foreach ($p in $patterns) {
-    $m = [regex]::Match($log, $p, 'IgnoreCase,Multiline')
-    if ($m.Success) { return $m.Groups[1].Value.Trim() }
-  }; return "<not found>"
-}
-$diagB = Grab @("(?m)Diag\s+echo\s+B\s+code\s*[:=]\s*(\d{3})")
-$diagA = Grab @("(?m)Diag\s+echo\s+A\s+code\s*[:=]\s*(\d{3})")
-$variant = Grab @("(?m)import-prices\s+Variant\s*[:=]\s*([^\r\n]+)")
-$final = Grab @("(?m)import-prices\s+Final\s+code\s*[:=]\s*(\d{3})")
-$pubHash = Grab @("(?m)Publishable\s+hash8\s*[:=]\s*([a-f0-9]{8})")
-$bridgeHash = Grab @("(?m)Bridge\s+hash8\s*[:=]\s*([a-f0-9]{8})")
+    * Log a warning that manual re-auth is required.
+    * Return the existing access_token (for now) or throw if policy requires valid tokens.
+  * If refresh_token exists and token is near expiry:
 
-"`n--- Six-Line Summary ---"
-"Diag echo B code: $diagB"
-"Diag echo A code: $diagA"
-"import-prices Variant: $variant"
-"import-prices Final code: $final"
-"Publishable hash8: $pubHash"
-"Bridge hash8: $bridgeHash"
-"--------------------------`n"
-```
+    * Call eBay OAuth token endpoint to refresh using refresh_token, EBAY_CLIENT_ID/SECRET, EBAY_REDIRECT_URI as needed.
+    * Update `ebay_accounts.access_token`, `access_token_expires_at`, `updated_at`.
+* Return:
+
+  * accessToken
+  * marketplaceId
+  * ebayUsername (if set)
+
+Include detailed TODO comments where:
+
+* CSRF/state validation should be hardened.
+* Per-seller error handling should be improved.
+* Rate limit handling may be required.
+
+This module must NOT log secrets; log only high-level status.
 
 ---
 
-🧠 **Outcome:**
-
-* Triggers workflow even if REST dispatch returns 404.
-* Waits for run completion and saves logs to `reports\ci_import_prices_latest.log`.
-* Prints the 6 required diagnostic lines for import-prices validation.
----
-
+4. BACKEND: multi-seller ingestion worker (ebay_sellers_sync_worker)
 
 ---
 
-### TASK: Run Import-Prices Validation Workflow (Codex handles everything) CONFIRM: YES
+Create a new worker to ingest sold orders for all connected sellers.
 
-You’re at `C:\grookai_vault` on Windows.
-Goal: Codex triggers the `prod-import-prices-validate-pub.yml` GitHub workflow by file path, waits until completion, downloads the logs, saves them to `reports\ci_import_prices_latest.log`, and prints the six-line diagnostic summary.
+File:
 
-```powershell
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$ProgressPreference = "SilentlyContinue"
-Set-Location C:\grookai_vault
+backend/ebay/ebay_sellers_sync_worker.mjs
 
-$Owner   = "OriginalSoseji"
-$Repo    = "grookai_vault"
-$WfPath  = ".github/workflows/prod-import-prices-validate-pub.yml"
-$Ref     = "main"
-$ReportDir = "reports"
-$LogPath = Join-Path $ReportDir "ci_import_prices_latest.log"
-mkdir -Force $ReportDir | Out-Null
+Pattern: follow existing worker style (parseArgs, main, createBackendClient) like:
 
-# 1️⃣ Verify workflow exists and includes workflow_dispatch
-gh api repos/$Owner/$Repo/contents/$WfPath -f ref=$Ref | Out-Null
-$wfText = gh api repos/$Owner/$Repo/contents/$WfPath -f ref=$Ref --jq ".content" |
-    Out-String | %{ [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($_.Trim())) }
-if ($wfText -notmatch "(?ms)^\s*on\s*:\s*(?:.*\n)*\s*workflow_dispatch\s*:") {
-    throw "workflow_dispatch missing in $WfPath on $Ref"
-}
+* backend/pokemon/pokemonapi_import_cards_worker.mjs
+* backend/ebay/ebay_self_orders_worker.mjs
 
-# 2️⃣ Trigger by file path (avoids 404)
-gh workflow run $WfPath --ref $Ref
-Start-Sleep -Seconds 3
+Behavior:
 
-# 3️⃣ Locate latest run
-$json = gh run list --workflow $WfPath --json databaseId,headBranch,createdAt --limit 5 | ConvertFrom-Json
-$run = $json | Where-Object { $_.headBranch -eq $Ref } | Sort-Object createdAt -Descending | Select-Object -First 1
-if (-not $run) { throw "No run found for $WfPath on $Ref" }
-$runId = $run.databaseId
+1. parseArgs():
 
-# 4️⃣ Watch until finished
-gh run watch $runId
+   * `--limit` (max orders per seller to ingest, optional)
+   * `--seller-limit` (max sellers to process in one run, optional)
+   * `--since` (ISO date string; if provided, only pull orders from this date forward)
+   * `--dry-run` (flag; true = log would-be inserts only)
 
-# 5️⃣ Download logs
-gh run view $runId --log > $LogPath
-Write-Host "Logs saved to $LogPath" -ForegroundColor Green
+2. main():
 
-# 6️⃣ Parse six-line summary
-$log = Get-Content $LogPath -Raw
-function Grab($patterns) {
-  foreach ($p in $patterns) {
-    $m = [regex]::Match($log, $p, 'IgnoreCase,Multiline')
-    if ($m.Success) { return $m.Groups[1].Value.Trim() }
-  }; return "<not found>"
-}
-$diagB = Grab @("(?m)Diag\s+echo\s+B\s+code\s*[:=]\s*(\d{3})")
-$diagA = Grab @("(?m)Diag\s+echo\s+A\s+code\s*[:=]\s*(\d{3})")
-$variant = Grab @("(?m)import-prices\s+Variant\s*[:=]\s*([^\r\n]+)")
-$final = Grab @("(?m)import-prices\s+Final\s+code\s*[:=]\s*(\d{3})")
-$pubHash = Grab @("(?m)Publishable\s+hash8\s*[:=]\s*([a-f0-9]{8})")
-$bridgeHash = Grab @("(?m)Bridge\s+hash8\s*[:=]\s*([a-f0-9]{8})")
+   * Create Supabase backend client via existing helper (e.g., createBackendClient).
+   * Query `public.ebay_accounts` for active sellers, ordered by `last_sync_at NULLS FIRST`, limited by `--seller-limit` (or a sensible default like 10).
+   * For each seller:
 
-"`n--- Six-Line Summary ---"
-"Diag echo B code: $diagB"
-"Diag echo A code: $diagA"
-"import-prices Variant: $variant"
-"import-prices Final code: $final"
-"Publishable hash8: $pubHash"
-"Bridge hash8: $bridgeHash"
-"--------------------------`n"
-```
----
+     * Get tokens via `getSellerEbayAuth` from `ebay_tokens.mjs`.
+     * Create an `EbayClient` instance using backend/clients/ebay_client.mjs:
 
-### TASK: Purge legacy queue items + enforce **apikey-only + bridge** validator (single-pass)
+       * baseUrl from EBAY_ENV / marketplace
+       * accessToken from helper
+       * marketplaceId from ebay_accounts row.
+     * Call the same Fulfillment Orders endpoint as ebay_self worker:
 
-You are in Windows PowerShell at `C:\grookai_vault`. **Replace the entire contents** of `.codex/queue.md` with this task and execute it. The task will:
+       * `/sell/fulfillment/v1/order`
+       * Use `--limit` and `--since` to narrow results.
+     * For each lineItem:
 
-* Remove/disable any tasks and workflow files that still reference **legacy** keys or `Authorization: Bearer ...` for Supabase **Functions**
-* Keep only the **apikey-only + x-bridge-token** model
-* Add/normalize a single validator workflow and a one-click local validator script
-* Leave a short success note in the commit message
+       * (Phase 1) Build a normalized object for `price_observations`:
+
+         * card_print_id: null (for now – we will wire mapping in a separate task)
+         * source: 'ebay_self' or a new source if you prefer more specific naming (e.g., 'ebay_seller')
+         * marketplace_id: from ebay_accounts.marketplace_id
+         * order_id, order_line_item_id
+         * observed_at: use order creation or paid date (document your choice with comments)
+         * price_amount, currency
+         * listing_type
+         * raw_payload: full line-item JSON
+       * If `--dry-run`:
+
+         * Log a line showing seller, order_id, external ids, and whether card_print_id is currently null.
+       * Else:
+
+         * Insert into `price_observations` via Supabase.
+         * For now, allow null card_print_id but log a warning. (We’ll tighten this in a future mapping task.)
+     * After processing, update `ebay_accounts.last_sync_at = now()` for that seller.
+
+3. Add an npm script in package.json:
+
+   * `"pricing:ebay:sellers:sync": "node backend/ebay/ebay_sellers_sync_worker.mjs"`
+
+Ensure robust logging:
+
+* At start: log seller count, options.
+* Per seller: log ID, username, how many orders processed.
+* On errors: log error summaries but not secrets.
 
 ---
 
-**Edits to perform (exact):**
+5. DOCS: Seller Sync flow
 
-1. **Delete these legacy/conflicting tasks from `.codex/queue.md` (if present):**
+---
 
-* “TASK: Probe workflow sanity (demo)”
-* “TASK: Clean baseline for the probe workflow (drop-in)”
-* “TASK: Modernize import-prices … (Supabase → SECRET_KEY)”
-* Any task that uses `Authorization: Bearer` to call `functions/v1/*`
-  Keep none of them. Replace the queue with this task only.
+Create or update documentation to describe the seller sync architecture.
 
-2. **Remove/disable legacy probe workflows** if they still exist:
+File:
 
-* Delete `.github/workflows/prod-edge-probe.yml`
-* Delete `.github/workflows/prod-import-prices-validate-pub.yml`
-* If you prefer not to delete, replace their content with:
+docs/EBAY_SELLER_SYNC_V1.md
 
-  ```
-  name: DISABLED (legacy)
-  on: workflow_dispatch
-  jobs: { disabled: { runs-on: ubuntu-latest, steps: [ { run: 'echo "disabled"' } ] } }
-  ```
+Include:
 
-3. **Create/replace** `.github/workflows/prod-import-prices-validate-edge.yml` with an **apikey-only** validator:
+1. Overview:
 
-```yaml
-name: Prod Import-Prices Validate (apikey-only)
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-    paths:
-      - "supabase/functions/import-prices/**"
-  schedule:
-    - cron: "*/30 * * * *"
+   * Sellers connect their eBay account via OAuth.
+   * Tokens are stored in `public.ebay_accounts`.
+   * `ebay_sellers_sync_worker` periodically pulls sold orders and writes to `price_observations`.
+   * Grookai Pricing Index v1 (price_aggregates_v1 + price_index_v1) eventually picks these up.
 
-permissions:
-  contents: read
+2. Tables:
 
-env:
-  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+   * ebay_accounts: structure and purpose.
+   * price_observations: how a seller’s sale is represented (source, marketplace_id, observed_at, card_print_id, etc.).
 
-jobs:
-  validate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+3. Flow:
 
-      - name: Emit six-line probe (apikey-only + bridge)
-        shell: pwsh
-        env:
-          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
-          BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          $u = "$(($env:SUPABASE_URL.TrimEnd('/')))/functions/v1/import-prices"
-          $H = @{
-            apikey           = $env:SUPABASE_PUBLISHABLE_KEY
-            'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
-            'Content-Type'   = 'application/json'
-          }
-          $B = '{"ping":"ci-emit"}'
-          try {
-            $r = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing -TimeoutSec 20
-            $status = [string]$r.StatusCode
-            $content = [string]$r.Content
-          } catch {
-            $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
-            $content = ''
-          }
-          function Hash8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
-          $body300 = if ($content.Length -gt 300) { $content.Substring(0,300) } else { $content }
-          Write-Output "URL: $u"
-          Write-Output "Method: POST"
-          Write-Output "Status: $status"
-          Write-Output "GatewayAuth: apikey_only"
-          Write-Output ("BridgeTokenHash8: " + (Hash8 $env:BRIDGE_IMPORT_TOKEN))
-          Write-Output "Body[0..300]: $body300"
-```
+   * User taps "Connect eBay" in the app (future).
+   * App opens eBay OAuth authorize URL with state.
+   * eBay redirects to `supabase/functions/ebay_oauth_callback`.
+   * Edge Function exchanges code → tokens and writes to ebay_accounts.
+   * Sync worker runs:
 
-4. **Ensure function config is set**:
+     * loops over active ebay_accounts
+     * pulls orders
+     * inserts into price_observations
+     * later, mapping layer will resolve card_print_id.
 
-* File: `supabase/functions/import-prices/config.toml`
+4. Future work notes (with TODO bullet list):
 
-```
-verify_jwt = false
-```
+   * Harden state/CSRF checking in the callback.
+   * Enforce non-null card_print_id before Index inclusion.
+   * Integrate mapping helpers so line items resolve to prints using external_mappings.
+   * Add a scheduled job (GitHub Actions or other) to run `pricing:ebay:sellers:sync` on a cadence.
+   * Connect Pricing Index v1 to the frontend (Edge function + Flutter).
 
-5. **Create/replace** `scripts/session_sync_bridge_and_validate.ps1` with **apikey-only** headers and short log retries:
+Keep this doc focused and high-level, with pointers to:
 
-```powershell
-Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
-$ProgressPreference = "SilentlyContinue"
+* docs/PRICING_INDEX_V1_CONTRACT.md
+* docs/AUDIT_EBAY_MAPPING_L2.md
+* docs/AUDIT_PRICING_ENGINE_L2.md
 
-function ReadSecret($label){ $s=Read-Host $label -AsSecureString; (New-Object System.Net.NetworkCredential('', $s)).Password }
-if (-not $env:SUPABASE_PUBLISHABLE_KEY) { $env:SUPABASE_PUBLISHABLE_KEY = ReadSecret 'SUPABASE_PUBLISHABLE_KEY (sb_publishable_...)' }
-if (-not $env:BRIDGE_IMPORT_TOKEN)      { $env:BRIDGE_IMPORT_TOKEN      = ReadSecret 'BRIDGE_IMPORT_TOKEN' }
+---
 
-$u = 'https://ycdxbpibncqcchqiihfz.functions.supabase.co/import-prices'
-$H = @{ apikey = $env:SUPABASE_PUBLISHABLE_KEY; 'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN; 'Content-Type'='application/json' }
-$B = @{ ping='diag' } | ConvertTo-Json
+Task: Pricing Engine V3.1 + V3.2 - Persist full V3 condition curve into DB + expose a Get Live Price API/worker
 
-# Direct POST (for status & body)
-try {
-  $resp = Invoke-WebRequest -Method POST -Uri $u -Headers $H -Body $B -UseBasicParsing
-  $status = [string]$resp.StatusCode
-  $body   = [string]$resp.Content
-} catch {
-  $status = try { [string]$_.Exception.Response.StatusCode.value__ } catch { '<unknown>' }
-  $body   = ''
-}
+Context:
+- Root: C:\grookai_vault
+- Engine V3 now produces a complete pricing summary (NM/LP/MP/HP/DMG medians + floors + sample counts + confidence).
+- Currently, these results are only printed in dry-run and not saved anywhere.
+- Goal: 
+  (2) Add database schema support to store these V3 condition curves.  
+  (3) Add a new API/worker for "Get Live Price" that returns the last snapshot OR triggers a fresh pricing run.
 
-function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
+Constraints:
+- MUST follow the Grookai Vault Migration Maintenance Contract.
+- MUST follow the Audit Rule (schema + workers + API).
+- Pricing logic stays in the pricing worker.
+- No breaking changes to existing NM/LP snapshot system until fully replaced.
+- V3 snapshot writes MUST be additive and safe.
 
-Write-Output "URL: $u"
-Write-Output "Method: POST"
-Write-Output "Status: $status"
-Write-Output "GatewayAuth: apikey_only"
-Write-Output ("BridgeTokenHash8: " + (H8 $env:BRIDGE_IMPORT_TOKEN))
-Write-Output ("Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length))))
+────────────────────────────────────
+(2) Add DB Persistence (Pricing Engine V3.1)
+────────────────────────────────────
 
-# Gate snapshot (best-effort: fetch logs a few times)
-$gate = '<none>'
-for ($i=0; $i -lt 5; $i++) {
-  try {
-    $log = supabase functions logs -f import-prices --project-ref ycdxbpibncqcchqiihfz 2>$null
-    $line = ($log -split "`n") | Where-Object { $_ -match '\[IMPORT-PRICES\]\s+token\.check' } | Select-Object -First 1
-    if ($line) { $gate = $line; break }
-  } catch {}
-  Start-Sleep -Seconds 2
-}
-Write-Output "`n--- Function Gate Snapshot ---"
-Write-Output ($gate)
-```
+Add a new migration under:
+  supabase/migrations/<timestamp>_pricing_v3_snapshots.sql
 
-6. **Repo guard** (if not already present): `scripts/guard_no_legacy_keys.ps1`
+Migration requirements:
 
-* Fail on any of these **anywhere**: `SUPABASE_ANON_KEY`, `PROD_ANON_KEY`, `STAGING_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SERVICE_ROLE_KEY`, `PROD_SERVICE_ROLE_KEY`, `STAGING_SERVICE_ROLE_KEY`, or `Authorization:\s*Bearer` when targeting Supabase **functions**.
+1. Create a new table: `public.card_print_price_curves`
 
-7. **Commit message:**
+Columns:
+- id: uuid (PK, default uuid_generate_v4())
+- card_print_id: uuid (FK to public.card_prints.id, required)
+- created_at: timestamptz default now()
+- nm_median numeric
+- nm_floor numeric
+- nm_samples integer
+- lp_median numeric
+- lp_floor numeric
+- lp_samples integer
+- mp_median numeric
+- mp_floor numeric   -- OPTIONAL: compute floor the same way as LP if desired
+- mp_samples integer
+- hp_median numeric
+- hp_floor numeric    -- OPTIONAL
+- hp_samples integer
+- dmg_median numeric
+- dmg_floor numeric   -- OPTIONAL
+- dmg_samples integer
+- confidence numeric   -- V3 confidence score
+- listing_count integer
+- raw_json jsonb       -- full raw V3 output blob for debugging
 
-```
-chore(ci/auth): purge legacy queue + enforce apikey-only validator and session probe
-```
+Constraints:
+- card_print_id NOT NULL
+- FOREIGN KEY (card_print_id) REFERENCES public.card_prints(id) ON DELETE CASCADE
+- Index on (card_print_id, created_at)
 
-**End of task.**
+2. Create a view to get the latest snapshot per card:
+  `public.card_print_latest_price_curve`
 
+SELECT DISTINCT ON (card_print_id)
+  *
+FROM public.card_print_price_curves
+ORDER BY card_print_id, created_at DESC;
 
-### TASK: CONFIRM: YES — Add Auto-Align + Validate CI for `import-prices` (no manual tests)
+3. Follow Migration Maintenance Contract:
+- Wrap ALTERs & CREATEs with IF NOT EXISTS / IF EXISTS
+- Safe to replay on a fresh DB
 
-````md
-### TASK: Add **Auto-Align + Validate** CI for `import-prices` (no manual tests)
+────────────────────────────────────
+Worker writes (V3 snapshot write)
+────────────────────────────────────
 
-Goal: A single GitHub Actions workflow that (1) aligns the function’s env with the repo secret `BRIDGE_IMPORT_TOKEN`, (2) redeploys `import-prices`, and (3) validates using **apikey-only + x-bridge-token**. It should retry alignment+deploy up to 3 times until `Status: 200`, and upload a summary artifact. No local/manual steps required.
+In:
+  backend/pricing/ebay_browse_prices_worker.mjs
 
-Edits:
+After computing the final V3 JSON summary, add a write step:
 
-1) Create `.github/workflows/auto-align-import-prices.yml`:
-```yaml
-name: Auto-Align Import-Prices (bridge-only)
+```js
+// new function at bottom of file or near other write helpers
+async function writeV3SnapshotToDB(summary) {
+  const { 
+    card_print_id, nm_median, nm_floor, raw_sample_count_nm,
+    lp_median, lp_floor, raw_sample_count_lp,
+    mp_median, raw_sample_count_mp,
+    hp_median, raw_sample_count_hp,
+    dmg_median, raw_sample_count_dmg,
+    confidence, listing_count
+  } = summary;
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/30 * * * *"
+  const payload = {
+    card_print_id,
+    nm_median, nm_floor, nm_samples: raw_sample_count_nm,
+    lp_median, lp_floor, lp_samples: raw_sample_count_lp,
+    mp_median, mp_samples: raw_sample_count_mp,
+    hp_median, hp_samples: raw_sample_count_hp,
+    dmg_median, dmg_samples: raw_sample_count_dmg,
+    confidence,
+    listing_count,
+    raw_json: summary,
+  };
 
-permissions:
-  contents: read
+  const { data, error } = await supabase
+    .from('card_print_price_curves')
+    .insert(payload)
+    .select();
 
-env:
-  PROJECT_REF: ycdxbpibncqcchqiihfz
-  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-
-jobs:
-  align-and-validate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Guard required secrets
-        shell: pwsh
-        run: |
-          if (-not "${{ secrets.SUPABASE_ACCESS_TOKEN }}") { throw "Missing SUPABASE_ACCESS_TOKEN" }
-          if (-not "${{ secrets.PROD_PUBLISHABLE_KEY }}") { throw "Missing PROD_PUBLISHABLE_KEY" }
-          if (-not "${{ secrets.BRIDGE_IMPORT_TOKEN }}") { throw "Missing BRIDGE_IMPORT_TOKEN" }
-
-      - name: Install Supabase CLI
-        uses: supabase/setup-cli@v1
-
-      - name: Ensure verify_jwt=false (idempotent)
-        shell: pwsh
-        run: |
-          $p = "supabase/functions/import-prices/config.toml"
-          if (-not (Test-Path $p)) { New-Item -ItemType Directory -Force -Path (Split-Path $p) | Out-Null; Set-Content $p "verify_jwt = false" -NoNewline; git add $p; git commit -m "ci(auto): add config.toml verify_jwt=false" || $true; git push || $true }
-          else {
-            $txt = Get-Content $p -Raw
-            if ($txt -notmatch '(?m)^\s*verify_jwt\s*=\s*false\s*$') {
-              ($txt -replace '(?m)^\s*verify_jwt\s*=\s*\w+\s*$', 'verify_jwt = false') | Set-Content $p
-              git add $p; git commit -m "ci(auto): enforce verify_jwt=false" || $true; git push || $true
-            }
-          }
-
-      - name: Align function env (project-level) + redeploy (up to 3 tries)
-        env:
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-          BRIDGE_IMPORT_TOKEN:   ${{ secrets.BRIDGE_IMPORT_TOKEN }}
-        shell: pwsh
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = "Stop"
-          for ($i=1; $i -le 3; $i++) {
-            supabase secrets set BRIDGE_IMPORT_TOKEN="${env:BRIDGE_IMPORT_TOKEN}" --project-ref "${env:PROJECT_REF}"
-            supabase functions deploy import-prices --project-ref "${env:PROJECT_REF}"
-            # tiny wait to avoid race between deploy and gateway
-            Start-Sleep -Seconds 2
-            # validate
-            $Url = "$env:SUPABASE_URL/functions/v1/import-prices"
-            $H = @{ apikey="${{ secrets.PROD_PUBLISHABLE_KEY }}"; 'x-bridge-token'="${{ secrets.BRIDGE_IMPORT_TOKEN }}"; 'Content-Type'='application/json' }
-            $B = '{"ping":"ci-auto"}'
-            try {
-              $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 20
-              $code = [int]$r.StatusCode
-              $body = [string]$r.Content
-            } catch {
-              $code = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
-              $body = ''
-            }
-            $six = @(
-              "URL: $Url",
-              "Method: POST",
-              "Status: $code",
-              "GatewayAuth: apikey_only",
-              "BridgeTokenHash8: $((([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes('${{ secrets.BRIDGE_IMPORT_TOKEN }}'))|% ToString x2) -join '').Substring(0,8))",
-              "Body[0..300]: " + ($body.Substring(0,[Math]::Min(300,$body.Length)))
-            ) -join "`n"
-            $six | Out-File -FilePath sixline.txt -Encoding utf8
-            Write-Host $six
-            if ($code -ge 200 -and $code -lt 300) { echo "PASS"; break }
-            if ($i -lt 3) { Start-Sleep -Seconds 4 }
-          }
-          if ($code -lt 200 -or $code -ge 300) { Write-Error "Auto-align failed after 3 attempts (last Status=$code)" }
-
-      - name: Upload validation summary
-        uses: actions/upload-artifact@v4
-        with:
-          name: import-prices-auto-validate
-          path: sixline.txt
-```
-
-2. Keep `.github/workflows/prod-import-prices-validate-edge.yml` as your simple apikey-only validator (no changes), and ensure any legacy validators are disabled with a clear “DISABLED (legacy)” header.
-
-3. Add a convenience badge to `README.md`:
-
-```md
-[![Auto-Align Import-Prices](https://img.shields.io/badge/CI-Auto--Align%20Import--Prices-blue)](../../actions/workflows/auto-align-import-prices.yml)
-```
-
-Commit message:
-
-```
-ci(auto): add Auto-Align + Validate (bridge-only) — sets project-level secret, redeploys, verifies 200
-```
-
-````
-
-### Submit it, then run it (two commands)
-
-```powershell
-# 1) Have Codex apply the changes
-pwsh -NoProfile -File .\.codex\dispatch_last_task.ps1
-
-# 2) Kick the fully-automated CI run (no manual probes)
-gh workflow run .github/workflows/auto-align-import-prices.yml
-```
-
-The Action will:
-
-* set `BRIDGE_IMPORT_TOKEN` at **project level** using your repo secret,
-* redeploy `import-prices`,
-* validate with **apikey + x-bridge-token**, retry up to 3x,
-* upload `sixline.txt` as an artifact (your six-line proof).
-
-If you want it to stay self-healing, just leave the schedule (`*/30`) on; it’ll keep the function’s env aligned automatically.
-### TASK: Add Variant B fallback (Authorization = Bearer <publishable>) to dual-endpoint validator
-
-**Goal:** update `.github/workflows/auto-align-import-prices.yml` so the validation logic:
-1. Hits `functions.supabase.co` (apikey-only)  
-2. If 401, hits `supabase.co/functions/v1` (apikey-only)  
-3. If still 401, retries that project URL again **with Authorization = Bearer <publishable>** (Variant B).  
-Uploads the resulting six-line summary as usual.
-
-**Edit inside** the step `Align (project + function .env) + redeploy + validate (dual endpoints, 3 tries)`  
-Replace the whole PowerShell block under `run:` with:
-
-```yaml
-run: |
-  Set-StrictMode -Version Latest
-  $ErrorActionPreference = "Stop"
-  $ProgressPreference = "SilentlyContinue"
-
-  $proj   = "ycdxbpibncqcchqiihfz"
-  $fnDir  = "supabase/functions/import-prices"
-  $envPat = Join-Path $fnDir ".env"
-  New-Item -ItemType Directory -Force -Path $fnDir | Out-Null
-  @("BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN") | Set-Content -Encoding UTF8 $envPat
-  supabase secrets set BRIDGE_IMPORT_TOKEN="$env:BRIDGE_IMPORT_TOKEN" --project-ref $proj
-
-  function H8([string]$s){ if(-not $s){return '<none>'}; $sha=[Security.Cryptography.SHA256]::Create(); $h=$sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($s)); ([BitConverter]::ToString($h)).Replace('-','').Substring(0,8) }
-  function Try-Post([string]$Url,[hashtable]$H){
-    $B = '{"ping":"ci-auto"}'
-    try {
-      $r = Invoke-WebRequest -Method POST -Uri $Url -Headers $H -Body $B -UseBasicParsing -TimeoutSec 25
-      return @([int]$r.StatusCode,[string]$r.Content)
-    } catch {
-      $c = try { [int]$_.Exception.Response.StatusCode.value__ } catch { -1 }
-      return @($c,"")
-    }
+  if (error) {
+    console.error('[pricing][v3_snapshot_write] ERROR:', error);
+    throw error;
   }
 
-  $FN  = "https://$proj.functions.supabase.co/import-prices"
-  $PRJ = "$($env:SUPABASE_URL.TrimEnd('/'))/functions/v1/import-prices"
+  console.log('[pricing][v3_snapshot_write] OK:', data[0].id);
+}
+```
 
-  $Hpub = @{
-    apikey           = $env:PROD_PUBLISHABLE_KEY
-    'x-bridge-token' = $env:BRIDGE_IMPORT_TOKEN
-    'Content-Type'   = 'application/json'
+Call it at the end of the worker (outside dry-run):
+
+```js
+if (!options.dryRun) {
+  await writeV3SnapshotToDB(summary);
+}
+```
+
+────────────────────────────────────
+(3) Add "Get Live Price" API/Worker (Pricing Engine V3.2)
+────────────────────────────────────
+
+Add a new API/worker at:
+
+backend/pricing/get_live_price_worker.mjs
+
+Behavior:
+
+1. Accepts args:
+
+* card_print_id (uuid)
+* force_refresh (boolean; default false)
+
+2. If force_refresh = true:
+
+   * Call the existing V3 pricing computation (shared helper)
+   * Write a fresh snapshot using writeV3SnapshotToDB
+   * Return the computed summary
+
+3. If force_refresh = false:
+
+   * Query `public.card_print_latest_price_curve` for card_print_id
+   * If exists, return it
+   * Else: compute fresh V3 pricing and write snapshot
+
+Example:
+
+```js
+export async function getLivePrice(card_print_id, { force_refresh = false } = {}) {
+  if (force_refresh) {
+    return await computeAndStoreV3Price(card_print_id);
   }
-  $Hauth = $Hpub.Clone(); $Hauth['Authorization'] = "Bearer $($env:PROD_PUBLISHABLE_KEY)"
 
-  $finalCode=-1; $finalBody=""; $finalUrl=$FN
+  const { data, error } = await supabase
+    .from('card_print_latest_price_curve')
+    .select('*')
+    .eq('card_print_id', card_print_id)
+    .maybeSingle();
 
-  for ($i=1; $i -le 3; $i++) {
-    supabase functions deploy import-prices --project-ref $proj --env-file $envPat
-    Start-Sleep -Seconds 3
-
-    foreach ($combo in @(@($FN,$Hpub), @($PRJ,$Hpub), @($PRJ,$Hauth))) {
-      $pair = Try-Post $combo[0] $combo[1]
-      $code = $pair[0]; $body = $pair[1]
-      if ($code -ge 200 -and $code -lt 300) {
-        $finalCode=$code; $finalBody=$body; $finalUrl=$combo[0]; break
-      }
-    }
-    if ($finalCode -ge 200 -and $finalCode -lt 300) { break }
-    if ($i -lt 3) { Start-Sleep -Seconds 6 }
+  if (error) {
+    console.error('[getLivePrice] ERROR reading snapshot:', error);
   }
 
-  $h8 = H8 $env:BRIDGE_IMPORT_TOKEN
-  $b300 = if ($finalBody.Length -gt 300) { $finalBody.Substring(0,300) } else { $finalBody }
-  $six = @(
-    "URL: $finalUrl",
-    "Method: POST",
-    "Status: $finalCode",
-    "GatewayAuth: " + ($(if ($finalUrl -eq $PRJ -and $Hauth.ContainsKey('Authorization')) {'apikey+auth'} else {'apikey_only'})),
-    "BridgeTokenHash8: $h8",
-    "Body[0..300]: $b300"
-  ) -join "`n"
-  $six | Out-File -FilePath sixline.txt -Encoding utf8
-  Write-Host $six
-
-  if ($finalCode -lt 200 -or $finalCode -ge 300) {
-    Write-Error "Auto-align failed after 3 attempts (last Status=$finalCode @ $finalUrl)"
+  if (data) {
+    return data;
   }
-### TASK: Unstick auto-align job start (ensure job runs, checkout present, proofs commit) — scoped to import-prices
 
-**Scope guard (edit ONLY these)**
-- `.github/workflows/auto-align-import-prices.yml`
-- `.github/workflows/kick-auto-align.yml` (read-only unless quoting fix is missing)
+  // fallback: compute new
+  return await computeAndStoreV3Price(card_print_id);
+}
+```
 
-**Goals**
-1) Ensure the auto-align workflow has a real job that always runs:
-   - `runs-on: windows-latest`
-   - `actions/checkout@v4` as the first step
-   - NO job-level `if:` that blocks execution
-2) Ensure triggers are correct:
-   - `workflow_dispatch:`
-   - `schedule:` (keep as-is)
-   - `push.paths:` MUST include all of:
-     - `.github/workflows/auto-align-import-prices.yml`
-     - `supabase/functions/import-prices/**`
-     - `.github/auto_align_import_prices.bump`
-3) Keep permissions:
-   ```yaml
-   permissions:
-     contents: write
-     actions: read
-### TASK: Hotfix auto-align proofs — ensure attempts.txt exists before commit + debug listing (scoped)
+4. Add a tiny CLI entry in the worker folder:
 
-**Scope (only edit this file)**
-- `.github/workflows/auto-align-import-prices.yml`
+backend/pricing/get_live_price_cli.mjs
 
-**Changes**
+```js
+import { getLivePrice } from './get_live_price_worker.mjs';
 
-1) **Before** the final commit step, insert a debug step to list the proofs dir (always):
-```yaml
-      - name: Debug — list proofs dir
-        if: always()
-        shell: pwsh
-        run: |
-          Write-Host "Listing reports/ci_logs/latest on runner:"
-          if (Test-Path 'reports/ci_logs/latest') {
-            Get-ChildItem -Force 'reports/ci_logs/latest' | Format-Table Name, Length, LastWriteTime
-          } else {
-            Write-Host "Directory missing."
-          }
+const card_print_id = process.argv[2];
+const force = process.argv.includes('--force');
 
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
+const result = await getLivePrice(card_print_id, { force_refresh: force });
+console.log(JSON.stringify(result, null, 2));
+```
 
-$yaml = @"
-name: Auto-Align Import-Prices (bridge-only)
+────────────────────────────────────
+Testing
+────────────────────────────────────
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-    paths:
-      - .github/workflows/auto-align-import-prices.yml
-      - .github/auto_align_import_prices.bump
-      - supabase/functions/import-prices/**
-  schedule:
-    - cron: "*/30 * * * *"
+After migration + worker edits:
 
-concurrency:
-  group: auto-align-import-prices
-  cancel-in-progress: false
+```powershell
+cd C:\grookai_vault
 
-permissions:
-  contents: write
-  actions: read
+# Run a force refresh
+node backend/pricing/get_live_price_cli.mjs daaa53ec-35d7-414b-a27c-f55748936699 --force
 
-env:
-  PROJECT_REF: ycdxbpibncqcchqiihfz
-  SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
-  SUPABASE_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
-  SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+# Then run cached result
+node backend/pricing/get_live_price_cli.mjs daaa53ec-35d7-414b-a27c-f55748936699
+```
 
-jobs:
-  align-and-validate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+Expected:
 
-      - name: Guard required secrets
-        shell: pwsh
-        run: |
-          if (-not '${{ secrets.SUPABASE_ACCESS_TOKEN }}') { throw 'Missing SUPABASE_ACCESS_TOKEN' }
-          if (-not '${{ secrets.PROD_PUBLISHABLE_KEY }}') { throw 'Missing PROD_PUBLISHABLE_KEY' }
-          if (-not '${{ secrets.BRIDGE_IMPORT_TOKEN }}') { throw 'Missing BRIDGE_IMPORT_TOKEN' }
+* First call → computes V3 summary + writes snapshot
+* Second call → instantly returns latest snapshot from DB
 
-      - name: Install Supabase CLI
-        uses: supabase/setup-cli@v1
-        with:
-          version: latest
+End of task.
 
-      - name: Initialize proofs (force overwrite)
-        shell: pwsh
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = 'Stop'
-          $ProofDir = 'reports/ci_logs/latest'
-          New-Item -ItemType Directory -Force -Path $ProofDir | Out-Null
-          $six = Join-Path $ProofDir 'sixline.txt'
-          $att = Join-Path $ProofDir 'attempts.txt'
-@'
-ProjectRef: ycdxbpibncqcchqiihfz
-Function: import-prices
-GatewayAuth: (pending)
-FinalCode: (pending)
-FinalURL: (pending)
-Timestamp: (pending)
-'@ | Set-Content $six -Encoding UTF8
-          'Attempts:' | Set-Content $att -Encoding UTF8
+---
 
-      - name: Align (env) + deploy + 4-variant validate (5 tries)
-        shell: pwsh
-        env:
-          PUB: ${{ env.SUPABASE_PUBLISHABLE_KEY }}
-          PRJ: ${{ env.SUPABASE_URL }}
-          BRIDGE: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = 'Stop'
-          $ProgressPreference = 'SilentlyContinue'
+6. FINAL CHECKS
 
-          $ProofDir = 'reports/ci_logs/latest'
-          $six = Join-Path $ProofDir 'sixline.txt'
-          $att = Join-Path $ProofDir 'attempts.txt'
+---
 
-          # (Safety #1) ensure attempts exists before any appends
-          if (-not (Test-Path $att)) { 'Attempts:' | Set-Content $att -Encoding UTF8 }
+Before finishing:
 
-          # 1) Function .env + project secret + deploy
-          Set-Content -Path 'supabase/functions/import-prices/.env' -Value @"
-BRIDGE_IMPORT_TOKEN=$env:BRIDGE
-"@ -Encoding UTF8
+* Ensure migrations:
 
-          supabase secrets set --project-ref $env:PROJECT_REF BRIDGE_IMPORT_TOKEN=$env:BRIDGE
-          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --no-verify-jwt --env-file 'supabase/functions/import-prices/.env'
+  * Are syntactically valid.
+  * Use IF NOT EXISTS where appropriate.
+  * Do not break existing schema.
 
-          $fnUrl  = "https://$($env:PROJECT_REF).functions.supabase.co/import-prices"
-          $prjUrl = "$env:PRJ/functions/v1/import-prices"
-          $pub    = "$env:PUB"
+* Ensure:
 
-          function Try-Call {
-            param([string]$Name,[string]$Url,[bool]$WithAuth)
-            $h = @{ 'apikey' = $pub }
-            if ($WithAuth) { $h['Authorization'] = "Bearer $pub" }
-            try {
-              $resp = Invoke-WebRequest -Method POST -Uri $Url -Headers $h -Body (@{health=1} | ConvertTo-Json) -ContentType 'application/json' -UseBasicParsing -TimeoutSec 20
-              return [pscustomobject]@{ name=$Name; code=$resp.StatusCode; url=$Url }
-            } catch {
-              $code = if ($_.Exception.Response) { [int]$_.Exception.Response.StatusCode } else { -1 }
-              return [pscustomobject]@{ name=$Name; code=$code; url=$Url }
-            }
-          }
+  * supabase/functions/ebay_oauth_callback/index.ts compiles (no TS/JS syntax errors).
+  * backend/ebay/ebay_tokens.mjs and backend/ebay/ebay_sellers_sync_worker.mjs pass `node --check` or equivalent syntax check used in this repo.
+  * package.json scripts are valid.
 
-          $final = $null
-          $lastTries = $null
+* Do NOT:
 
-          for ($i=1; $i -le 5; $i++) {
-            $tries = @(
-              Try-Call 'FN/apikey_only'  $fnUrl  $false
-              Try-Call 'FN/apikey+auth'  $fnUrl  $true
-              Try-Call 'PRJ/apikey_only' $prjUrl $false
-              Try-Call 'PRJ/apikey+auth' $prjUrl $true
-            )
-            $lastTries = $tries
+  * Attempt to hit real eBay endpoints in automated tests.
+  * Log any real tokens or secrets.
 
-            # Append all tries to the single Attempts line
-            $line = Get-Content $att -Raw
-            $suffix = ($tries | ForEach-Object { "$($_.name):$($_.code)" }) -join ', '
-            if ($line.TrimEnd() -eq 'Attempts:') {
-              Set-Content $att "Attempts: $suffix" -Encoding UTF8
-            } else {
-              Set-Content $att ($line.TrimEnd() + ', ' + $suffix) -Encoding UTF8
-            }
+In your summary, list:
 
-            $hit = $tries | Where-Object { $_.code -eq 200 } | Select-Object -First 1
-            if ($hit) { $final = $hit; break }
-          }
+* New tables or columns created (ebay_accounts).
+* New Edge Function(s) created.
+* New backend helpers/workers created.
+* npm script(s) added.
+* Any TODOs left open (mapping integration, non-null card_print_id enforcement, scheduling).
 
-          # Update sixline with result
-          $sixC = Get-Content $six -Raw
-          function Replace-Line($c,[string]$k,[string]$v) {
-            return ($c -split "`n" | ForEach-Object { if ($_ -like "$k:*") { "$k: $v" } else { $_ } }) -join "`n"
-          }
-          $gw = if ($final) { $final.name } else { '(none)' }
-          $code = if ($final) { "$($final.code)" } else { ($lastTries[-1].code) }
-          $url = if ($final) { $final.url } else { $lastTries[-1].url }
-          $stamp = (Get-Date).ToString('yyyy-MM-ddTHH:mm:ssK')
+---
 
-          $sixC = Replace-Line $sixC 'GatewayAuth' $gw
-          $sixC = Replace-Line $sixC 'FinalCode'   $code
-          $sixC = Replace-Line $sixC 'FinalURL'    $url
-          $sixC = Replace-Line $sixC 'Timestamp'   $stamp
-          $sixC | Set-Content $six -Encoding UTF8
+# CODEX TASK — Add Migration Drift Guardrail to Repo
 
-          if ($code -ne '200') { exit 1 } else { exit 0 }
+Goal:
+Codify our “no migration drift” rule in the repo so future work can’t ignore it. This should extend the existing Migration Maintenance Contract (if present) and add a clear, practical checklist.
 
-      - name: Upload artifacts (proofs)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: import-prices-auto-validate
-          path: |
-            reports/ci_logs/latest/sixline.txt
-            reports/ci_logs/latest/attempts.txt
+Context (DO NOT CHANGE THE RULE, JUST ENCODE IT):
+- Schema changes must ONLY occur through versioned migrations in git under supabase/migrations/.
+- Before running `supabase db push` (to any remote), we MUST run `supabase migration list`.
+- We must confirm there are NO remote-only migrations (rows where Remote has a value and Local is blank).
+- If any remote-only migrations exist, we STOP and repair or pull before pushing.
+- Local-only migrations are OK — they are exactly what `db push` is supposed to apply to remote.
+- No direct schema edits in Supabase Studio or via ad-hoc SQL for structural changes.
 
-      - name: Debug — list proofs dir
-        if: always()
-        shell: pwsh
-        run: |
-          Write-Host 'Listing reports/ci_logs/latest on runner:'
-          if (Test-Path 'reports/ci_logs/latest') {
-            Get-ChildItem -Force 'reports/ci_logs/latest' | Format-Table Name, Length, LastWriteTime
-          } else {
-            Write-Host 'Directory missing.'
-          }
+Files:
+- Prefer to update (or create) a contract doc:
+  - If it exists: `docs/MIGRATION_MAINTENANCE_CONTRACT.md`
+  - Otherwise: create `docs/MIGRATION_DRIFT_GUARDRAIL.md`
 
-      - name: Commit proofs to repo (always)
-        if: always()
-        shell: pwsh
-        run: |
-          Set-StrictMode -Version Latest
-          $ErrorActionPreference = 'Stop'
-          $ProofDir = 'reports/ci_logs/latest'
-          New-Item -ItemType Directory -Force -Path $ProofDir | Out-Null
-          $six = Join-Path $ProofDir 'sixline.txt'
-          $att = Join-Path $ProofDir 'attempts.txt'
-          # (Safety #2) ensure attempts exists before commit
-          if (-not (Test-Path $att)) { 'Attempts:' | Set-Content $att -Encoding UTF8 }
-          if (-not (Test-Path $six)) {
-@'
-ProjectRef: ycdxbpibncqcchqiihfz
-Function: import-prices
-GatewayAuth: (pending)
-FinalCode: (pending)
-FinalURL: (pending)
-Timestamp: (pending)
-'@ | Set-Content $six -Encoding UTF8
-          }
-          git config --global --add safe.directory "$PWD"
-          git config user.name  'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add $six $att
-          git commit -m 'ci(auto): persist auto-align proofs (import-prices)' 2>$null
-          git push
-"@
+Tasks:
 
-Set-Content -Path ".github/workflows/auto-align-import-prices.yml" -Value $yaml -Encoding UTF8
-git add .github/workflows/auto-align-import-prices.yml
-git commit -m "ci(auto): triple-safety attempts.txt + debug listing (Windows)"
-git push
+1. If `docs/MIGRATION_MAINTENANCE_CONTRACT.md` exists:
+   - Open it and add a new section near the top called:
+     `## Migration Drift Guardrail (No-Drift Rule)`
+   - If it does NOT exist, create a new file `docs/MIGRATION_DRIFT_GUARDRAIL.md` with a short intro and the content below.
+
+2. In that section, add a concise description of the rule in my own voice (founder/contract style), something like:
+
+   - “The only source of truth for schema is `supabase/migrations` in git.”
+   - “Schema changes never happen directly in Studio or via ad-hoc SQL; they only happen via migrations.”
+   - “Before any `supabase db push`, we must run `supabase migration list` and confirm there are no remote-only migrations.”
+
+3. Add a short, copy-pasteable checklist like:
+
+   ### No-Drift Checklist (Run Before Any `supabase db push`)
+
+   1. `supabase migration list`
+   2. Confirm:
+      - No rows where **Remote has a version and Local is blank** (remote-only drift).
+      - Local-only rows are exactly the new migrations you intend to push.
+   3. If remote-only drift exists:
+      - STOP.
+      - Use `supabase migration repair` or `supabase db pull` deliberately before proceeding.
+   4. Only then run: `supabase db push`.
+
+4. Add a short “Forbidden moves” bullet list:
+
+   - ❌ No schema edits directly in Supabase Studio.
+   - ❌ No `ALTER TABLE` / `CREATE TABLE` in random SQL tabs without a migration file.
+   - ❌ No `db push` without first checking `migration list`.
+
+5. Keep formatting clean (Markdown), and preserve any existing content / sections in the contract. Do not remove or rewrite other rules; just append/extend.
+
+6. When done, show me the final contents of the modified/created doc so I can review it.
+
+Do not run commands yourself; only edit files.

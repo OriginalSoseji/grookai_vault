@@ -1,4 +1,8 @@
 # Flutter/Dart/Pub
+# Local env files (never commit real secrets)
+.env.local
+.env.*
+!.env.example
 
 
 .dart_tool/

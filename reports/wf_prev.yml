@@ -203,7 +203,7 @@ jobs:
           $final = $env:FINAL_CODE; if (-not $final) { $final = "<unknown>" }
           $pubH = Hash8 $env:SUPABASE_PUBLISHABLE_KEY
           if ($pubH -eq "<missing>") { $pubH = Hash8 $env:PROD_PUBLISHABLE_KEY }
-          if ($pubH -eq "<missing>") { $pubH = Hash8 $env:SUPABASE_ANON_KEY }
+          if ($pubH -eq "<missing>") { $pubH = Hash8 $env:SUPABASE_PUBLISHABLE_KEY }
           $brH = Hash8 $env:BRIDGE_IMPORT_TOKEN
           if ($brH -eq "<missing>") { $brH = Hash8 $env:IMPORT_PRICES_BRIDGE_TOKEN }
           Write-Host "Diag echo B code: $diagB"

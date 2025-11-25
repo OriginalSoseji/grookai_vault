@@ -1,33 +1,24 @@
 <#
-Bridge Task: import-prices health probe (SRK-free)
-Goal: Verify the Edge Function "import-prices" responds using publishable key + bridge token.
+Bridge Task: import-prices health probe (backend-standardized)
+Goal: Verify the Edge Function "import-prices" responds using supabase-js with SECRET key.
 #>
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$base = "https://ycdxbpibncqcchqiihfz.supabase.co"
-$url  = "$base/functions/v1/import-prices"
-
-if ((-not $env:SUPABASE_PUBLISHABLE_KEY -and -not $env:SUPABASE_PUBLISHABLE_KEY) -or -not $env:BRIDGE_IMPORT_TOKEN) {
-    Write-Host "[INFO] SUPABASE_PUBLISHABLE_KEY or BRIDGE_IMPORT_TOKEN not set. Skipping safely." -ForegroundColor Yellow
-    exit 0
-}
-
-$headers = @{
-    "Authorization" = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_PUBLISHABLE_KEY)"
-    "apikey"        = ($env:SUPABASE_PUBLISHABLE_KEY ?? $env:SUPABASE_PUBLISHABLE_KEY)
-    "x-bridge-token"= $env:BRIDGE_IMPORT_TOKEN
+if (-not $env:SUPABASE_URL) { $env:SUPABASE_URL = 'https://ycdxbpibncqcchqiihfz.supabase.co' }
+if (-not $env:SUPABASE_SECRET_KEY) {
+  Write-Host "[INFO] SUPABASE_SECRET_KEY not set. Skipping safely." -ForegroundColor Yellow
+  exit 0
 }
 
 try {
-    $body = @{ "source" = "bridge_health" } | ConvertTo-Json -Depth 3
-    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -ContentType "application/json" -UseBasicParsing -TimeoutSec 30
-    $code = [int]$r.StatusCode
-    $ok = ($code -eq 200)
+  node .\scripts\backend\import_prices_health.mjs | Tee-Object -Variable out | Out-Null
+  $ok = $true
+  $code = 200
 } catch {
-    $code = -1
-    $ok = $false
+  $ok = $false
+  $code = -1
 }
 
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"

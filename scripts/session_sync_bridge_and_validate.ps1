@@ -51,7 +51,7 @@ $GatewayAuth = 'apikey_only'
 # 2) Sync token to GitHub + Supabase, redeploy import-prices
 gh secret set BRIDGE_IMPORT_TOKEN --repo "$Owner/$Repo" --body "$BRI" | Out-Null
 try { supabase secrets set BRIDGE_IMPORT_TOKEN="$BRI" --project-ref $ProjRef | Out-Null } catch { supabase secrets set BRIDGE_IMPORT_TOKEN="$BRI" | Out-Null }
-try { supabase functions deploy import-prices --project-ref $ProjRef | Out-Null } catch { supabase functions deploy import-prices | Out-Null }
+try { supabase functions deploy import-prices --project-ref $ProjRef --no-verify-jwt | Out-Null } catch { supabase functions deploy import-prices --no-verify-jwt | Out-Null }
 
 # 3) Dispatch edge validator, watch, store logs
 try { gh workflow run $WfPath -r $Ref | Out-Null } catch {}

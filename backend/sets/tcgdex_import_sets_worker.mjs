@@ -3,6 +3,9 @@
 // Imports TCGdex sets into raw_imports (enrichment + identity support).
 // Mirrors pokemonapi import pattern while supporting --dry-run, --mode, --limit, --page flags.
 
+// Load environment variables
+import '../env.mjs';
+
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { createTcgdexClient } from '../clients/tcgdex.mjs';
 
@@ -128,25 +131,18 @@ async function importSets(supabase, tcgdexClient, options) {
     mode: options.mode,
   };
 
-  let page = options.page ?? 1;
-  let remaining = options.limit ?? null;
-
   console.log('[tcgdex][sets] start import', options);
 
-  while (true) {
-    if (remaining !== null && remaining <= 0) break;
-    const pageSize =
-      remaining !== null ? Math.min(DEFAULT_PAGE_SIZE, remaining) : DEFAULT_PAGE_SIZE;
-    const { data, totalCount } = await tcgdexClient.fetchTcgdexSets({
-      page,
-      pageSize,
-    });
-    if (!Array.isArray(data) || data.length === 0) break;
-
-    for (const set of data) {
+  const sets = await tcgdexClient.fetchTcgdexSets();
+  if (!Array.isArray(sets) || sets.length === 0) {
+    console.warn('[tcgdex][sets] No sets returned from API.');
+  } else {
+    console.log(`[tcgdex][sets] fetched ${sets.length} sets from API`);
+    for (const set of sets) {
       const externalId = extractExternalId(set);
       if (!externalId) {
         stats.skippedMissingId += 1;
+        console.warn('[tcgdex][sets] skipping set with missing external id', set);
         continue;
       }
       const payload = {
@@ -162,15 +158,7 @@ async function importSets(supabase, tcgdexClient, options) {
       if (result?.created) stats.created += 1;
       else stats.updated += 1;
       stats.fetched += 1;
-      if (remaining !== null) remaining -= 1;
-      if (remaining !== null && remaining <= 0) break;
     }
-
-    console.log(
-      `[tcgdex][sets] processed page=${page} count=${data.length} total=${totalCount ?? 'unknown'}`,
-    );
-    page += 1;
-    if (remaining !== null && remaining <= 0) break;
   }
 
   console.log(

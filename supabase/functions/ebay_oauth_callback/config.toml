@@ -1,0 +1,2 @@
+# Require explicit auth handling inside the function.
+verify_jwt = false

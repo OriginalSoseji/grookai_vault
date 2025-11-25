@@ -1,0 +1,862 @@
+{
+  "generated_at": "2025-11-13T16:26:07",
+  "functions": [
+    {
+      "slug": "diag-echo",
+      "entry_file": "supabase/functions/diag-echo/index.ts",
+      "config_verify_jwt": false,
+      "config_raw": "verify_jwt = false",
+      "auth_pattern": "unknown/mixed",
+      "has_health_mode": false,
+      "has_command_mode": false,
+      "has_worker_mode": false,
+      "uses_bridge_token": false,
+      "legacy_envs_used": null,
+      "manual_jwt_signing": false,
+      "callers": [
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/prod-import-prices-validate.yml",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/session_probe_functions.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/verify_repair_and_validate.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "node-script",
+          "file": "supabase/functions/diag-echo/index.ts",
+          "url_pattern": null,
+          "headers": null
+        }
+      ]
+    },
+    {
+      "slug": "import-prices",
+      "entry_file": "supabase/functions/import-prices/index.ts",
+      "config_verify_jwt": false,
+      "config_raw": "# JWT disabled for this function; auth handled via apikey + internal bridge gate.\nverify_jwt = false\n",
+      "auth_pattern": "bridge-protected",
+      "has_health_mode": true,
+      "has_command_mode": false,
+      "has_worker_mode": false,
+      "uses_bridge_token": true,
+      "legacy_envs_used": null,
+      "manual_jwt_signing": false,
+      "callers": [
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/auto-align-import-prices-bridge.yml",
+          "url_pattern": "functions.supabase.co/import-prices",
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/kick-auto-align-bridge.yml",
+          "url_pattern": "functions.supabase.co/import-prices",
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/prod-import-prices-validate-edge.yml",
+          "url_pattern": "functions.supabase.co/import-prices",
+          "headers": "x-bridge-token"
+        },
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/prod-import-prices-validate-pub.yml",
+          "url_pattern": null,
+          "headers": null
+        },
+        {
+          "category": "ci-workflow",
+          "file": ".github/workflows/prod-import-prices-validate.yml",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/auto_fix_import_prices.ps1",
+          "url_pattern": "functions.supabase.co/import-prices",
+          "headers": "x-bridge-token"
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/bridge_status.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/bridge_task_import_prices.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/bridge_token_doctor.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/mint_import_token.ps1",
+          "url_pattern": null,
+          "headers": null
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/session_probe_functions.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/session_sync_bridge_and_validate.ps1",
+          "url_pattern": "functions.supabase.co/import-prices",
+          "headers": [
+            "apikey",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/test_import_prices_health.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/test_import_prices.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/validate_import_prices_now.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/verify_repair_and_validate.ps1",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "Authorization",
+            "x-bridge-token"
+          ]
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/ci/align_until_proofs.ps1",
+          "url_pattern": null,
+          "headers": null
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/ci/bump_auto_align.ps1",
+          "url_pattern": null,
+          "headers": null
+        },
+        {
+          "category": "powershell-script",
+          "file": "scripts/ci/realign_bridge_and_redeploy.ps1",
+          "url_pattern": null,
+          "headers": null
+        },
+        {
+          "category": "node-script",
+          "file": "supabase/functions/import-prices/index.ts",
+          "url_pattern": null,
+          "headers": [
+            "apikey",
+            "x-bridge-token"
+          ]
+        }
+      ]
+    }
+  ],
+  "global_legacy_env_hits": [
+    {
+      "file": "CON",
+      "line": 38,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 41,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 201,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 1106,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 29,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 57,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 117,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 232,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 41,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 103,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 49,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 155,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\guard_no_legacy_keys.ps1",
+      "line": 4,
+      "match": "SUPABASE_ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 1,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 38,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 41,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 201,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 242,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 1106,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 15,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 29,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 57,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 117,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 118,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 232,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 41,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 103,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 49,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 155,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\guard_no_legacy_keys.ps1",
+      "line": 4,
+      "match": "ANON_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 39,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 1106,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 29,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 58,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 119,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 41,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 103,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 49,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 155,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\guard_no_legacy_keys.ps1",
+      "line": 5,
+      "match": "SUPABASE_SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "CON",
+      "line": 39,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 267,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 1106,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 15,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 29,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 58,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 119,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 120,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 190,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 41,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 103,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 49,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 155,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\guard_no_legacy_keys.ps1",
+      "line": 5,
+      "match": "SERVICE_ROLE_KEY",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 132,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 134,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 162,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 178,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 211,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 233,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "tmp_queue_view.txt",
+      "line": 237,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 15,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 29,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 58,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 121,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 190,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".vscode\\tasks.json.bak",
+      "line": 297,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": ".vscode\\tasks.json.bak",
+      "line": 298,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "docs\\IMPORT_PRICES_PIPELINE.md",
+      "line": 39,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\bridge_task_import_prices.ps1",
+      "line": 2,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 41,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 103,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 49,
+      "match": "SRK",
+      "note": "legacy env name"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 155,
+      "match": "SRK",
+      "note": "legacy env name"
+    }
+  ],
+  "global_manual_jwt_hits": [
+    {
+      "file": ".codex\\queue.md",
+      "line": 60,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 124,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 134,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 240,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "build\\flutter_assets\\NOTICES",
+      "line": 4374,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 46,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 104,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 55,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 171,
+      "match": "jose",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 60,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 125,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 46,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 104,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 55,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 171,
+      "match": "jsonwebtoken",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 60,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 61,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 126,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 46,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 104,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 55,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 171,
+      "match": "SignJWT",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 61,
+      "match": "jwt\\.sign",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 127,
+      "match": "jwt\\.sign",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "jwk.json",
+      "line": 4,
+      "match": "ES256",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 61,
+      "match": "ES256",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": ".codex\\queue.md",
+      "line": 128,
+      "match": "ES256",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit_run.ps1",
+      "line": 104,
+      "match": "ES256",
+      "note": "manual JWT usage"
+    },
+    {
+      "file": "scripts\\edge_functions_audit.ps1",
+      "line": 171,
+      "match": "ES256",
+      "note": "manual JWT usage"
+    }
+  ]
+}

@@ -24,10 +24,8 @@ jobs:
           FUNCS_BASE: ${{ env.FUNCS_BASE }}
           BRIDGE_IMPORT_TOKEN: ${{ secrets.BRIDGE_IMPORT_TOKEN }}
           EDGE_BEARER_FOR_GATEWAY: ${{ secrets.EDGE_BEARER_FOR_GATEWAY }}
-          PROD_ANON_KEY: ${{ secrets.PROD_ANON_KEY }}
-          PROD_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
-          PROD_SERVICE_ROLE_KEY: ${{ secrets.PROD_SERVICE_ROLE_KEY }}
           PROD_PUBLISHABLE_KEY: ${{ secrets.PROD_PUBLISHABLE_KEY }}
+          PROD_SECRET_KEY: ${{ secrets.PROD_SECRET_KEY }}
         run: |
           Set-StrictMode -Version Latest
           $ErrorActionPreference = "Continue"
@@ -38,7 +36,7 @@ jobs:
           $body = @{ ping = "diag" } | ConvertTo-Json
           $H = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
           $H["x-bridge-token"] = $env:BRIDGE_IMPORT_TOKEN
-          $bearer = @($env:EDGE_BEARER_FOR_GATEWAY,$env:PROD_ANON_KEY,$env:PROD_SECRET_KEY,$env:PROD_SERVICE_ROLE_KEY) | Where-Object { $_ } | Select-Object -First 1
+          $bearer = @($env:EDGE_BEARER_FOR_GATEWAY,$env:PROD_PUBLISHABLE_KEY,$env:PROD_SECRET_KEY) | Where-Object { $_ } | Select-Object -First 1
           if ($bearer) { $H["Authorization"] = "Bearer $bearer" }
           if ($env:PROD_PUBLISHABLE_KEY) { $H["apikey"] = $env:PROD_PUBLISHABLE_KEY }
 

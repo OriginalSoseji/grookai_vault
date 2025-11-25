@@ -103,7 +103,7 @@ BRIDGE_IMPORT_TOKEN=$env:BRIDGE
 "@ -Encoding UTF8
 
           supabase secrets set --project-ref $env:PROJECT_REF BRIDGE_IMPORT_TOKEN=$env:BRIDGE
-          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --env-file "supabase/functions/import-prices/.env"
+          supabase functions deploy import-prices --project-ref $env:PROJECT_REF --no-verify-jwt --env-file "supabase/functions/import-prices/.env"
 
           $fnUrl  = "https://$($env:PROJECT_REF).functions.supabase.co/import-prices"
           $prjUrl = "$env:PRJ/functions/v1/import-prices"

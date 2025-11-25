@@ -1,4 +1,2 @@
-[functions.import-prices]
-verify_jwt = false
-
+# JWT disabled for this function; auth handled via apikey + internal bridge gate.
 verify_jwt = false
