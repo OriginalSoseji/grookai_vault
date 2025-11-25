@@ -3,13 +3,14 @@
 // Imports TCGdex cards into raw_imports (source = 'tcgdex', _kind = 'card').
 // Supports per-set imports (--set) or full backfills, mirroring pokemonapi importer patterns.
 
+// Load environment variables
+import '../env.mjs';
+
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { createTcgdexClient } from '../clients/tcgdex.mjs';
 
 const SOURCE = 'tcgdex';
 const KIND = 'card';
-const PAGE_SIZE = 200;
-const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 750;
 
 function sleep(ms) {
@@ -129,38 +130,16 @@ async function logRun(supabase, stats) {
   }
 }
 
-async function fetchWithRetry(label, fn) {
-  let lastError = null;
-  for (let attempt = 1; attempt <= MAX_RETRIES; attempt += 1) {
-    try {
-      return await fn();
-    } catch (err) {
-      lastError = err;
-      console.warn(
-        `[tcgdex][cards] ${label} attempt ${attempt}/${MAX_RETRIES} failed:`,
-        err?.message ?? err,
-      );
-      if (attempt < MAX_RETRIES) {
-        await sleep(RETRY_DELAY_MS * attempt);
-      }
-    }
-  }
-  throw lastError;
-}
-
 let cachedSets = null;
 let cachedSetIds = null;
 
 async function fetchAllTcgdexSets(tcgdexClient) {
   if (cachedSets) return cachedSets;
-  const sets = [];
-  let page = 1;
-  while (true) {
-    const { data } = await tcgdexClient.fetchTcgdexSets({ page, pageSize: 250 });
-    if (!Array.isArray(data) || data.length === 0) break;
-    sets.push(...data);
-    if (data.length < 250) break;
-    page += 1;
+  const sets = await tcgdexClient.fetchTcgdexSets();
+  if (!Array.isArray(sets)) {
+    console.warn('[tcgdex][cards] fetchAllTcgdexSets received unexpected response; defaulting to empty list.');
+    cachedSets = [];
+    return cachedSets;
   }
   cachedSets = sets;
   return sets;
@@ -179,52 +158,43 @@ async function listAllSetIds(tcgdexClient) {
 }
 
 async function importSetCards(supabase, tcgdexClient, setId, context) {
-  let page = 1;
-  let totalCount = null;
   let created = 0;
   let updated = 0;
   let skippedMissingId = 0;
 
-  while (true) {
+  if (context.remaining !== null && context.remaining <= 0) {
+    return { created, updated, skippedMissingId };
+  }
+
+  const cards = await tcgdexClient.fetchTcgdexCardsBySetId(setId);
+  if (!Array.isArray(cards) || cards.length === 0) {
+    console.warn(`[tcgdex][cards] No cards returned from API for set=${setId}`);
+    return { created, updated, skippedMissingId };
+  }
+
+  console.log(`[tcgdex][cards] fetched ${cards.length} cards for set=${setId}`);
+
+  for (const card of cards) {
     if (context.remaining !== null && context.remaining <= 0) break;
-    const pageSize =
-      context.remaining !== null ? Math.min(PAGE_SIZE, context.remaining) : PAGE_SIZE;
-    const label = `set=${setId} page=${page}`;
-    const { data, totalCount: apiTotal } = await fetchWithRetry(label, () =>
-      tcgdexClient.fetchTcgdexCardsBySetId(setId, { page, pageSize }),
-    );
-
-    if (totalCount === null) totalCount = apiTotal ?? null;
-    if (!Array.isArray(data) || data.length === 0) break;
-
-    for (const card of data) {
-      if (context.remaining !== null && context.remaining <= 0) break;
-      const externalId = extractCardExternalId(card);
-      if (!externalId) {
-        skippedMissingId += 1;
-        continue;
-      }
-      const payload = {
-        _kind: KIND,
-        _external_id: externalId,
-        _source: SOURCE,
-        set_external_id: setId,
-        _set_external_id: setId,
-        fetched_at: new Date().toISOString(),
-        card,
-      };
-      const result = await upsertRawImport(supabase, payload, context);
-      if (result?.skipped) continue;
-      if (result?.created) created += 1;
-      else updated += 1;
-      if (context.remaining !== null) context.remaining -= 1;
+    const externalId = extractCardExternalId(card);
+    if (!externalId) {
+      skippedMissingId += 1;
+      continue;
     }
-
-    console.log(
-      `[tcgdex][cards] set=${setId} page=${page} fetched=${data.length} total=${totalCount ?? 'unknown'}`,
-    );
-    if (data.length < pageSize) break;
-    page += 1;
+    const payload = {
+      _kind: KIND,
+      _external_id: externalId,
+      _source: SOURCE,
+      set_external_id: setId,
+      _set_external_id: setId,
+      fetched_at: new Date().toISOString(),
+      card,
+    };
+    const result = await upsertRawImport(supabase, payload, context);
+    if (result?.skipped) continue;
+    if (result?.created) created += 1;
+    else updated += 1;
+    if (context.remaining !== null) context.remaining -= 1;
   }
 
   return { created, updated, skippedMissingId };

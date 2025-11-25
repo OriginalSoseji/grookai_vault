@@ -1,0 +1,3 @@
+# JWT disabled for this function; backend auth handled via SECRET key + internal bridge gate.
+verify_jwt = false
+

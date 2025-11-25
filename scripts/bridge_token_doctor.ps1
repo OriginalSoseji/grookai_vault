@@ -32,7 +32,7 @@ if ([string]::IsNullOrWhiteSpace($env:BRIDGE_IMPORT_TOKEN)) {
 
 # Set project secret + redeploy
 supabase secrets set "BRIDGE_IMPORT_TOKEN=$env:BRIDGE_IMPORT_TOKEN"
-supabase functions deploy import-prices
+supabase functions deploy import-prices --no-verify-jwt
 
 # Reprobe
 $res2 = Invoke-Probe -Key $env:SUPABASE_PUBLISHABLE_KEY -Tok $env:BRIDGE_IMPORT_TOKEN
@@ -47,4 +47,3 @@ if (-not (Test-Path reports)) { New-Item -ItemType Directory reports | Out-Null 
 $ts = Get-Date -Format "yyyyMMdd_HHmmss"
 "before: code=$($res.code) why=$($res.why)`nafter:  code=$($res2.code) why=$($res2.why)" |
   Out-File "reports/import_prices_token_doctor_$ts.txt" -Encoding utf8
-

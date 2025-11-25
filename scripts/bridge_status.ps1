@@ -79,15 +79,7 @@ function Invoke-GVImportPricesProbe {
     }
   }
 
-  # Variant B: apikey + Authorization mirroring apikey (back-compat)
-  $headers["Authorization"] = "Bearer $($env:SUPABASE_PUBLISHABLE_KEY)"  # MUST match apikey
-  try {
-    $r = Invoke-WebRequest -Method POST -Uri $url -Headers $headers -Body $body -UseBasicParsing -TimeoutSec 8
-    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$r.StatusCode; Ok=($r.StatusCode -ge 200 -and $r.StatusCode -lt 300); Note='B' }
-  } catch {
-    $code = try { $_.Exception.Response.StatusCode.value__ } catch { -1 }
-    return [pscustomobject]@{ Name='import-prices'; Method='POST'; Auth='publishable'; Code=[int]$code; Ok=$false; Note='B' }
-  }
+  # Variant B removed: functions are JWT-free; use apikey + bridge only
 }
 
 $probe = Invoke-GVImportPricesProbe

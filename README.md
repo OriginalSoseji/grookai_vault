@@ -6,6 +6,11 @@
 
 Flutter + Supabase app for TCG collection management.
 
+## Start Here: Engineering Rules
+Before making any backend, schema, ingestion, pricing, or Supabase changes, read:
+- docs/GROOKAI_RULEBOOK.md
+This is the master rulebook for Grookai Vault engineering.
+
 ## Quick start
 1. Copy \lib/main.dart\ and set your Supabase URL/Publishable key.
 2. Run:

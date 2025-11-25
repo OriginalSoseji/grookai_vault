@@ -6,8 +6,9 @@ The TCGdex ingestion workers mirror the PokemonAPI flow but are namespaced under
 
 Set the following environment variables (see `.env.example` for placeholders):
 
-- `TCGDEX_BASE_URL` — Required base URL for the TCGdex REST API (no default).
-- `TCGDEX_API_KEY` — Optional API key/header if the instance enforces auth.
+- `TCGDEX_BASE_URL` - Required base URL for the TCGdex REST API (no default).
+- `TCGDEX_LANG` - Active language slug for the API (default `en`). TCGdex supports `en`, `fr`, `es`, `es-mx`, `it`, `pt`, `pt-br`, `pt-pt`, `de`, `n`. Grookai Vault currently ingests one language per run; use `en` unless you have a reason to switch.
+- `TCGDEX_API_KEY` - Optional API key/header if the instance enforces auth.
 - Standard Supabase backend secrets: `SUPABASE_URL`, `SUPABASE_SECRET_KEY`.
 
 Each worker supports `--dry-run`, `--limit`, and `--mode` flags in line with existing contracts. Missing env vars cause an early exit with a descriptive error.

@@ -3,6 +3,9 @@
 // Normalizes TCGdex raw_imports into canonical sets + card_prints + traits.
 // Mirrors pokemonapi_normalize_worker behavior while keeping writes namespaced under source='tcgdex'.
 
+// Load environment variables
+import '../env.mjs';
+
 import { createBackendClient } from '../supabase_backend_client.mjs';
 
 const SOURCE = 'tcgdex';
@@ -392,7 +395,7 @@ async function ensureTcgdexMapping(supabase, cardPrintId, externalId, metadata, 
         source: SOURCE,
         external_id: externalId,
         card_print_id: cardPrintId,
-        metadata: metadata || null,
+        meta: metadata || null,
       },
       { onConflict: 'source,external_id' },
     );

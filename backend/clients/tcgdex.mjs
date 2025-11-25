@@ -3,6 +3,8 @@
 // === TCGdex API Reference ===
 // According to official TCGdex documentation (https://tcgdex.dev):
 // - Base URL: https://api.tcgdex.net/v2
+// - Language prefix: https://api.tcgdex.net/v2/{lang}/..., default lang = "en" via TCGDEX_LANG
+// - Supported languages (per TCGdex docs): en, fr, es, es-mx, it, pt, pt-br, pt-pt, de, n
 // - HTTPS required (HTTP is redirected to HTTPS)
 // - All REST requests MUST be GET requests
 // - No API key is required for basic usage (“Every bit of information … freely available and open source!”)
@@ -19,6 +21,7 @@
 //   - TCGDEX_API_KEY (optional; sent as X-Api-Key style header)
 
 const SOURCE = 'tcgdex';
+const SUPPORTED_LANGS = ['en', 'fr', 'es', 'es-mx', 'it', 'pt', 'pt-br', 'pt-pt', 'de', 'n'];
 
 function normalizeBaseUrl(raw) {
   if (!raw || typeof raw !== 'string') {
@@ -64,7 +67,17 @@ function ensureFetch() {
 }
 
 export function createTcgdexClient() {
-  const baseUrl = normalizeBaseUrl(process.env.TCGDEX_BASE_URL);
+  const rawBase = process.env.TCGDEX_BASE_URL;
+  const rawLang = process.env.TCGDEX_LANG || 'en';
+  const baseRoot = normalizeBaseUrl(rawBase);
+  if (!SUPPORTED_LANGS.includes(rawLang)) {
+    console.warn(
+      `[tcgdex-client] Warning: TCGDEX_LANG="${rawLang}" is not in the known language list (${SUPPORTED_LANGS.join(
+        ', ',
+      )}). Proceeding anyway.`,
+    );
+  }
+  const baseUrl = `${baseRoot}${rawLang}/`;
   const apiKey = process.env.TCGDEX_API_KEY || null;
 
   async function fetchTcgdexJson(path, searchParams = {}) {
@@ -79,34 +92,57 @@ export function createTcgdexClient() {
     return parseJsonResponse(res);
   }
 
-  async function fetchTcgdexSets({ page = 1, pageSize = 250 } = {}) {
+  async function fetchTcgdexSets({ page = null, pageSize = null } = {}) {
+    if (page != null || pageSize != null) {
+      console.warn('[tcgdex-client] fetchTcgdexSets: page/pageSize are ignored; /sets endpoint is not paginated.');
+    }
     // TODO: Confirm TCGdex sets endpoint path and supported pagination params.
     // NOTE: Endpoints and query params must be confirmed against official TCGdex docs
     // before enabling this in production; do not guess them here.
-    const path = '/v2/sets';
-    const body = await fetchTcgdexJson(path, { page, pageSize });
-    return {
-      data: body?.data ?? body?.results ?? [],
-      page: body?.page ?? page,
-      pageSize: body?.pageSize ?? body?.limit ?? pageSize,
-      totalCount: body?.totalCount ?? body?.total ?? null,
-    };
+    const path = 'sets';
+    const body = await fetchTcgdexJson(path);
+    let items = [];
+    if (Array.isArray(body)) {
+      items = body;
+    } else if (Array.isArray(body?.items)) {
+      items = body.items;
+    } else if (Array.isArray(body?.data)) {
+      items = body.data;
+    } else if (body && Array.isArray(body?.results)) {
+      items = body.results;
+    } else {
+      const keys = body && typeof body === 'object' ? Object.keys(body) : [];
+      throw new Error(
+        `[tcgdex-client] Unexpected JSON shape for sets: ${keys.length > 0 ? keys.join(',') : 'non-object response'}`,
+      );
+    }
+    return items;
   }
 
-  async function fetchTcgdexCardsBySetId(setId, { page = 1, pageSize = 250 } = {}) {
+  async function fetchTcgdexCardsBySetId(setId) {
     if (!setId) {
       throw new Error('[tcgdex-client] fetchTcgdexCardsBySetId requires a setId.');
     }
     // TODO: Confirm TCGdex cards-by-set endpoint structure.
     // NOTE: Verify this route & params against official TCGdex docs prior to usage.
-    const path = `/v2/sets/${encodeURIComponent(setId)}/cards`;
-    const body = await fetchTcgdexJson(path, { page, pageSize });
-    return {
-      data: body?.data ?? body?.results ?? [],
-      page: body?.page ?? page,
-      pageSize: body?.pageSize ?? body?.limit ?? pageSize,
-      totalCount: body?.totalCount ?? body?.total ?? null,
-    };
+    const path = 'cards';
+    const body = await fetchTcgdexJson(path, { set: setId });
+    let items = [];
+    if (Array.isArray(body)) {
+      items = body;
+    } else if (Array.isArray(body?.items)) {
+      items = body.items;
+    } else if (Array.isArray(body?.data)) {
+      items = body.data;
+    } else if (body && Array.isArray(body?.results)) {
+      items = body.results;
+    } else {
+      const keys = body && typeof body === 'object' ? Object.keys(body) : [];
+      throw new Error(
+        `[tcgdex-client] Unexpected JSON shape for cards: ${keys.length > 0 ? keys.join(',') : 'non-object response'}`,
+      );
+    }
+    return items;
   }
 
   return {

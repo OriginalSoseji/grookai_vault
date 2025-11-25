@@ -22,6 +22,6 @@ try {
   supabase secrets set BRIDGE_IMPORT_TOKEN=$token --project-ref $proj
 }
 
-supabase functions deploy import-prices --project-ref $proj
+supabase functions deploy import-prices --project-ref $proj --no-verify-jwt
 
 Write-Host "`nNEW BRIDGE_IMPORT_TOKEN (copy & store securely):`n$token" -ForegroundColor Cyan

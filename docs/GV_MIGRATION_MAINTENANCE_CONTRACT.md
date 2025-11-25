@@ -4,6 +4,29 @@ _November 2025_
 This document defines how schema changes must be made and validated for Grookai Vault.
 The goal is to **never** repeat the migration drift and shadow DB errors we just fixed.
 
+## Migration Drift Guardrail (No-Drift Rule)
+
+- The only source of truth for schema is `supabase/migrations` in git.
+- Schema changes never happen directly in Studio or via ad-hoc SQL; they only happen via migrations.
+- Before any `supabase db push`, we must run `supabase migration list` and confirm there are no remote-only migrations.
+
+### No-Drift Checklist (Run Before Any `supabase db push`)
+
+1. `supabase migration list`
+2. Confirm:
+   - No rows where **Remote has a version and Local is blank** (remote-only drift).
+   - Local-only rows are exactly the new migrations you intend to push.
+3. If remote-only drift exists:
+   - STOP.
+   - Use `supabase migration repair` or `supabase db pull` deliberately before proceeding.
+4. Only then run: `supabase db push`.
+
+### Forbidden moves
+
+- ❌ No schema edits directly in Supabase Studio.
+- ❌ No `ALTER TABLE` / `CREATE TABLE` in random SQL tabs without a migration file.
+- ❌ No `db push` without first checking `migration list`.
+
 ## 1. Principles
 
 1. The **live database** (Supabase project) is the current state of the world.

@@ -68,7 +68,7 @@ if ($imp -eq 401) {
   Write-Warning "import-prices 401 — syncing bridge token to GH+Supabase and redeploying function."
   gh secret set BRIDGE_IMPORT_TOKEN --repo $Owner/$Repo --body "$BRI" | Out-Null
   try { supabase functions secrets set import-prices BRIDGE_IMPORT_TOKEN="$BRI" --project-ref $ProjRef | Out-Null } catch { supabase secrets set BRIDGE_IMPORT_TOKEN="$BRI" --project-ref $ProjRef | Out-Null }
-  supabase functions deploy import-prices --project-ref $ProjRef | Out-Null
+  supabase functions deploy import-prices --project-ref $ProjRef --no-verify-jwt | Out-Null
   Start-Sleep -Seconds 3
   $imp = Probe "POST" "$FUNCS/import-prices" $Hedge $body
   Write-Host ("Functions import-prices (after sync) -> " + $imp)
