@@ -291,6 +291,7 @@ function parseArgs(argv) {
   const result = {
     dryRun: false,
     cardPrintId: null,
+    debug: false,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -300,6 +301,8 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg === '--dry-run') {
       result.dryRun = true;
+    } else if (arg === '--debug') {
+      result.debug = true;
     }
   }
 
@@ -309,6 +312,7 @@ function parseArgs(argv) {
 function printUsage() {
   console.log('Usage:');
   console.log('  node backend/pricing/ebay_browse_prices_worker.mjs --card-print-id <uuid> [--dry-run]');
+  console.log('  add --debug for verbose listing diagnostics');
 }
 
 function isAuctionOnly(buyingOptions = []) {
@@ -324,7 +328,7 @@ function isBaseSetPrint(print) {
   return name.includes('base set') || code.includes('base1');
 }
 
-function categorizeListing(listing, { dryRun = false, print = null } = {}) {
+function categorizeListing(listing, { dryRun = false, debug = false, print = null } = {}) {
   if (!listing || typeof listing.price !== 'number') {
     return null;
   }
@@ -340,9 +344,22 @@ function categorizeListing(listing, { dryRun = false, print = null } = {}) {
   const descriptor = condText ? ` ${condText} ` : '';
   const paddedTitle = ` ${normTitle} `;
 
+  const logDecision = (keep, reason, bucket = null) => {
+    if (debug) {
+      console.log('[debug] listing', {
+        title: listing.title,
+        price: listing.price,
+        ebayCondition: listing.condition,
+        bucket,
+        keep,
+        reason,
+      });
+    }
+  };
+
   const logSkip = (tag) => {
-    if (dryRun) {
-      console.log(`[skip][${tag}] ${listing.title}`);
+    if (dryRun || debug) {
+      logDecision(false, tag, null);
     }
   };
 
@@ -419,6 +436,7 @@ function categorizeListing(listing, { dryRun = false, print = null } = {}) {
     if (dryRun) {
       console.log(`[use][${label}] ${listing.title}`);
     }
+    logDecision(true, label, bucket);
     return { bucket, priceTotal };
   };
 
@@ -460,6 +478,7 @@ function categorizeListing(listing, { dryRun = false, print = null } = {}) {
   }
 
   logSkip('no_condition_match');
+  logDecision(false, 'no_condition_match', null);
   return null;
 }
 
@@ -600,7 +619,7 @@ function buildSummary(cardPrintId, nmStats, lpStats, confidence, extra = {}) {
   };
 }
 
-export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun = false }) {
+export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun = false, debug = false }) {
   if (!supabase) {
     throw new Error('[pricing] Supabase client is required.');
   }
@@ -649,6 +668,9 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
   );
 
   const listings = await searchActiveListings({ query, limit: 50 });
+  if (debug) {
+    console.log(`[debug] raw listings count: ${listings.length}`);
+  }
   const marketplaceId = 'EBAY_US';
   for (const listing of listings) {
     const itemId = listing.itemId || listing?.raw?.itemId || null;
@@ -673,7 +695,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
   const dmgPrices = [];
 
   listings.forEach((listing) => {
-    const bucketed = categorizeListing(listing, { dryRun, print: cardPrint });
+    const bucketed = categorizeListing(listing, { dryRun, debug, print: cardPrint });
     if (!bucketed) {
       return;
     }
@@ -703,6 +725,17 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
   const mpStats = computeStats(mpPrices);
   const hpStats = computeStats(hpPrices);
   const dmgStats = computeStats(dmgPrices);
+  if (debug) {
+    console.log('[debug] bucket summary', {
+      nmCount: nmPrices.length,
+      lpCount: lpPrices.length,
+      mpCount: mpPrices.length,
+      hpCount: hpPrices.length,
+      dmgCount: dmgPrices.length,
+      totalKept: nmPrices.length + lpPrices.length + mpPrices.length + hpPrices.length + dmgPrices.length,
+      totalSkipped: listings.length - (nmPrices.length + lpPrices.length + mpPrices.length + hpPrices.length + dmgPrices.length),
+    });
+  }
   if (lpPrices.length) {
     const naiveLpFloor = lpStats.floor;
     lpStats.floor = computeFloorWithGuardrail(lpPrices, lpStats.median, 0.2);
@@ -772,6 +805,9 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
   }
 
   await writeV3SnapshotToDB(supabase, summary);
+  if (debug) {
+    console.log('[debug] final snapshot payload', summary);
+  }
 
   console.log(
     `[pricing] updated card_print ${cardPrintId} nm=${summary.nm_median} lp=${summary.lp_median} listings=${summary.listing_count} confidence=${summary.confidence}`,
@@ -793,6 +829,7 @@ async function main() {
       supabase,
       cardPrintId: args.cardPrintId,
       dryRun: args.dryRun,
+      debug: args.debug,
     });
   } catch (err) {
     console.error('[pricing] Worker failed:', err);

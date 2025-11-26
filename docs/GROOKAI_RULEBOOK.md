@@ -2,10 +2,37 @@
 
 This rulebook consolidates all engineering contracts, guardrails, and workflows across Grookai Vault. It is the single reference for migrations, backend architecture, ingestion, pricing, environments, secrets, and developer conduct. Link here before starting any new work.
 
+# Zero-Assumption Rule (Mandatory)
+- Never assume environment, project_ref, DB contents, data presence, or ingestion success.
+- Any conclusion about data/state must be backed by either direct SQL results, explicit file/env inspection, or explicit user confirmation.
+- A query returning `0` rows is not proof of data loss; first run the Env / DB Sanity Check and confirm the active environment.
+
+## Canonical Environment (Production/Staging) Invariants
+- Canonical Supabase project_ref: `ycdxbpibncqcchqiihfz`.
+- Required minimum counts (blockers if below):
+  - `card_prints >= 40,000`
+  - `sets >= 150`
+  - `card_print_traits >= 5,000`
+- `price_observations` and `card_print_price_curves` may be 0 if pricing has not run yet.
+- If the above invariants fail, all implementation/audit work is **BLOCKED** with warning: “Environment mismatch — fix before proceeding.”
+
+## Env / DB Sanity Check (Required for Supabase-backed work)
+Before any L2/L3 audit or implementation:
+1) Confirm the active project_ref by comparing `SUPABASE_URL` with `project_ref` in `supabase/config.toml`.
+2) Run:
+   ```sql
+   select count(*) from card_prints;
+   select count(*) from sets;
+   select count(*) from card_print_traits;
+   ```
+3) Compare against the Canonical Environment Invariants.
+4) If invariants fail, declare the task BLOCKED until environment routing is fixed.
+
 ## 1. Migration Maintenance Contract
 - Idempotent, replay-safe migrations only; no destructive ops. Follow guards for fresh DBs.
-- Replay trifecta before declaring schema “done”: `supabase db push`, `supabase db reset` + `supabase db push --local`, `supabase db pull`.
+- Replay trifecta before declaring schema "done": `supabase db push`, `supabase db reset` + `supabase db push --local`, `supabase db pull`.
 - No direct DB edits outside migrations. Card-print UUID/FK rules are sacred.
+- Before applying any new migration or doing schema work: run `supabase migration list` and confirm all local migrations are applied remotely, no entries are in "error" or "pending", and there are no remote-only migrations; if anything is off, perform a Migration Healthcheck first.
 - Source: `docs/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
 
 ## 2. Migration Drift Guardrail
@@ -66,6 +93,17 @@ This rulebook consolidates all engineering contracts, guardrails, and workflows 
 - Use Codex tasks for changes; follow Audit Rule levels (L1/L2/L3).
 - Run `supabase migration list` before pushes; no Studio schema edits.
 - CI uses highway (workers) with injected secrets, not public endpoints.
+
+### Env / DB Sanity (Mandatory for any Supabase-backed feature)
+- Applies to all Audit Rules (L1/L2/L3) that touch Supabase data (UI, pricing, ingestion, vault, auth).
+- Steps:
+  1) Confirm Flutter and Supabase CLI point to the same project by comparing `SUPABASE_URL` in the active env file with `project_ref` in `supabase/config.toml`.
+  2) On that project, run:
+     ```
+     select count(*) from card_prints;
+     select count(*) from v_vault_items;
+     ```
+  3) If `card_prints = 0` or clearly wrong, the audit result must be: “❌ BLOCKED: Env/DB mismatch. Fix routing before implementation.”
 
 ## 12. Forbidden Moves
 - Never modify schema in Supabase Studio or ad-hoc SQL tabs.
