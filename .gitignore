@@ -67,6 +67,24 @@ CON
 # Keep queue + scripts tracked
 # (scripts/ folder itself is added below)
 
+# Local logs for scheduled tasks
+logs/
+
 # Track VS Code Token Doctor task
 !.vscode/tasks.json
 !.vscode/
+# Local artifacts
+artifacts/
+tmp/
+
+# Node
+**/node_modules/
+**/package-lock.json
+
+# Flutter generated / local
+.flutter-plugins-dependencies
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugins.cmake
+macos/Flutter/GeneratedPluginRegistrant.swift
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
