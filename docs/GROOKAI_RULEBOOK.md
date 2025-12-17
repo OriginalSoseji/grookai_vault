@@ -127,7 +127,10 @@ Before any L2/L3 audit or implementation:
 
 ## Preflight Gate V1
 - Mechanical preflight gate for destructive workers. See `docs/PREFLIGHT_GATE_V1.md`.
-- Example: `.\scripts\preflight_gate.ps1 -Command "node backend/some_worker.mjs --dry-run" -Destructive`
+- Example:
+  - `$env:GROOKAI_PREFLIGHT_ACK="1"`
+  - `.\scripts\preflight_gate.ps1 -Command "node backend/some_worker.mjs --apply" -Destructive`
+  - `Remove-Item Env:\GROOKAI_PREFLIGHT_ACK`
 
 ---
 

@@ -73,3 +73,5 @@ This is an incremental adoption pattern. Not all workers must be updated in this
 This gate is part of the Guardrails and is enforceable.
 
 Any bypass is treated as a defect.
+
+---
