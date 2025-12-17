@@ -113,6 +113,18 @@ Before any L2/L3 audit or implementation:
 - Never store secrets in Flutter or expose service-role keys.
 - Never point dev/staging builds at prod Supabase.
 
+## 13. Special Set Reconstruction (Frozen)
+- Special/split sets (`sv08.5`, `sv10.5b`, `sv10.5w`) follow the frozen runbook and contract:
+  - `docs/SPECIAL_SET_IDENTITY_RECONSTRUCTION_V1.md`
+  - `docs/SPECIAL_SET_RECONSTRUCTION_CONTRACT_V1.md`
+- Printed Identity Pass V1 must not be run on these sets.
+
+## 14. Guardrails (Authoritative)
+- `docs/GROOKAI_GUARDRAILS.md`: Authoritative stop-rules and audit triggers for Grookai Vault.
+
+## 15. Contract Index
+- `docs/CONTRACT_INDEX.md`: Authoritative index of all Grookai Vault contracts and their status.
+
 ---
 
 This rulebook is a living document. Future Codex tasks and onboarding should reference this file first, then the linked contracts for detail. Keep it updated as rules evolve.***
