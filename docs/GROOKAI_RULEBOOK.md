@@ -125,6 +125,10 @@ Before any L2/L3 audit or implementation:
 ## 15. Contract Index
 - `docs/CONTRACT_INDEX.md`: Authoritative index of all Grookai Vault contracts and their status.
 
+## Preflight Gate V1
+- Mechanical preflight gate for destructive workers. See `docs/PREFLIGHT_GATE_V1.md`.
+- Example: `.\scripts\preflight_gate.ps1 -Command "node backend/some_worker.mjs --dry-run" -Destructive`
+
 ---
 
 This rulebook is a living document. Future Codex tasks and onboarding should reference this file first, then the linked contracts for detail. Keep it updated as rules evolve.***
