@@ -1,0 +1,6 @@
+-- LEGACY STUB (RECEIPT ONLY) - DO NOT EDIT
+-- Purpose: De-duplicate condition-scans bucket/policies migration.
+-- Canonical migration: 20251229215511_condition_scans_bucket_and_policies.sql
+-- This file intentionally contains no SQL.
+-- Governed by: Migration Maintenance Contract (legacy stub policy).
+-- Version: 20251229221101

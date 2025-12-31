@@ -88,3 +88,14 @@ linux/flutter/generated_plugins.cmake
 macos/Flutter/GeneratedPluginRegistrant.swift
 windows/flutter/generated_plugin_registrant.cc
 windows/flutter/generated_plugins.cmake
+
+apps/web/.next/
+apps/web/.next/cache/
+apps/web/.next/cache/**/*
+apps/web/out/
+**/.next/
+**/.next/**
+**/*.tsbuildinfo
+**/node_modules/
+tmp_schema_local.sql
+
