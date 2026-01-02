@@ -4,7 +4,7 @@
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "🔍 Running migration preflight..."
+Write-Host "???? Running migration preflight..."
 
 $bad = @()
 
@@ -64,9 +64,9 @@ Get-ChildItem .\supabase\migrations -File -Filter "*.sql" | ForEach-Object {
 }
 
 if ($bad.Count -gt 0) {
-    Write-Host "❌ Migration preflight failed:"
+    Write-Host "??? Migration preflight failed:"
     $bad | ForEach-Object { Write-Host " - $_" }
     exit 1
 }
 
-Write-Host "✅ Migration preflight passed"
+Write-Host "Migration preflight passed"
