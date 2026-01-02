@@ -1,0 +1,4 @@
+-- LEGACY REMOTE STUB (receipt only)
+-- Purpose: Mirror malformed remote migration ID 20251223 exactly.
+-- NOTE: This migration ID is invalid by modern standards but MUST exist locally.
+-- Added: 2025-12-30

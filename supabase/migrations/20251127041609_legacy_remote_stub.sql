@@ -1,0 +1,4 @@
+-- LEGACY REMOTE STUB (receipt only)
+-- Purpose: Align local migration ledger with remote-applied migration 20251127041609.
+-- Rule: This file must contain NO schema-changing SQL.
+-- Added: 2025-12-30
