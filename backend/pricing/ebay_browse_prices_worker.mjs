@@ -833,6 +833,14 @@ async function main() {
     });
   } catch (err) {
     console.error('[pricing] Worker failed:', err);
+    // Deterministic exit codes so parent runner can classify failures.
+    // 42 = retryable eBay rate limit (HTTP 429)
+    const status = err?.status ?? err?.cause?.status ?? null;
+    if (status === 429) {
+      process.exitCode = 42;
+      return;
+    }
+
     process.exitCode = 1;
   }
 }

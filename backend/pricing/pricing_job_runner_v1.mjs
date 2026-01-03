@@ -118,8 +118,8 @@ function runPricingWorker(cardPrintId) {
 
     child.on('error', reject);
     child.on('close', (code) => {
-      if (code === 0) return resolve();
-      reject(new Error(`pricing worker exited with code ${code}`));
+      const exitCode = typeof code === 'number' ? code : 1;
+      resolve(exitCode);
     });
   });
 }
@@ -133,6 +133,18 @@ async function markStatus(supabase, jobId, status, errorMsg = null) {
 
   const { error } = await supabase.from('pricing_jobs').update(payload).eq('id', jobId);
   if (error) throw new Error(`update status failed: ${error.message}`);
+}
+
+async function markRetryable(supabase, jobId, errorMsg = null) {
+  const payload = {
+    status: 'pending',
+    started_at: null,
+    completed_at: null,
+    error: errorMsg ? errorMsg.slice(0, 500) : 'retryable_error',
+  };
+
+  const { error } = await supabase.from('pricing_jobs').update(payload).eq('id', jobId);
+  if (error) throw new Error(`update retryable status failed: ${error.message}`);
 }
 
 async function main() {
@@ -193,10 +205,27 @@ async function main() {
 
     const started = Date.now();
     try {
-      await runPricingWorker(cardPrintId);
-      await markStatus(supabase, job.id, 'done', null);
-      const ms = Date.now() - started;
-      log('job_ok', { jobId: job.id, cardPrintId, ms });
+      const exitCode = await runPricingWorker(cardPrintId);
+
+      if (exitCode === 0) {
+        await markStatus(supabase, job.id, 'done', null);
+        const ms = Date.now() - started;
+        log('job_ok', { jobId: job.id, cardPrintId, ms });
+      } else if (exitCode === 42) {
+        await markRetryable(
+          supabase,
+          job.id,
+          `retryable_429: rate_limited (exit=${exitCode})`,
+        );
+        log('job_retryable', { jobId: job.id, cardPrintId, exitCode });
+
+        // Strong backoff to reduce repeated 429s.
+        backoffMs = 60_000;
+      } else {
+        await markStatus(supabase, job.id, 'failed', `pricing worker exited with code ${exitCode}`);
+        log('job_error', { jobId: job.id, cardPrintId, error: `exit_${exitCode}` });
+        backoffMs = 1000;
+      }
     } catch (err) {
       await markStatus(supabase, job.id, 'failed', err.message);
       log('job_error', { jobId: job.id, cardPrintId, error: err.message });
