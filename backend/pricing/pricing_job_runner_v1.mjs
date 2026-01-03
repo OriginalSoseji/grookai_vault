@@ -5,9 +5,6 @@ import '../env.mjs';
 import { spawn } from 'node:child_process';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 
-const JOB_TYPE = 'pricing_jobs';
-const LOCKED_BY = 'pricing_job_runner_v1';
-
 function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
   console.log(JSON.stringify(entry));
@@ -93,8 +90,6 @@ async function claimJob(supabase, lockTtlMs) {
       status: 'running',
       started_at: nowIso,
       attempts: nextAttempts,
-      locked_by: LOCKED_BY,
-      locked_at: nowIso,
     })
     .eq('id', candidate.id)
     .in('status', ['pending', 'running'])
@@ -134,8 +129,6 @@ async function markStatus(supabase, jobId, status, errorMsg = null) {
     status,
     completed_at: status === 'done' || status === 'failed' ? new Date().toISOString() : null,
     error: errorMsg ? errorMsg.slice(0, 500) : null,
-    locked_by: null,
-    locked_at: null,
   };
 
   const { error } = await supabase.from('pricing_jobs').update(payload).eq('id', jobId);
