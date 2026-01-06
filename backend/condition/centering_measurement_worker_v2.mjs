@@ -307,6 +307,12 @@ function approxEqual(a, b, epsilon) {
   return Math.abs(a - b) <= epsilon;
 }
 
+const CARD_ASPECT = 0.716; // portrait W/H
+const HARD_ASPECT_MIN = 0.35;
+const HARD_ASPECT_MAX = 1.05;
+const SOFT_ASPECT_MIN = 0.55;
+const SOFT_ASPECT_MAX = 0.9;
+
 function evaluateQuality(faceResult) {
   const flags = [];
   const outer = faceResult?.evidence?.outer_bbox;
@@ -323,6 +329,17 @@ function evaluateQuality(faceResult) {
   if (validity.inner_margin_derived) {
     flags.push('inner_margin_derived');
     degenerate = true;
+  }
+
+   // soft warn flags propagate into quality
+  if (validity.collector_soft_warn) {
+    flags.push('collector_soft_warn');
+  }
+  if (validity.touches_edge) {
+    flags.push('touches_edge');
+  }
+  if (validity.excessive_perspective) {
+    flags.push('excessive_perspective');
   }
 
   if (validity.isValid === false) {
@@ -469,6 +486,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   const { data, info } = resized;
   const width = info.width;
   const height = info.height;
+  const edgeMarginPx = Math.max(8, Math.floor(Math.min(width, height) * 0.01));
 
   let outer = null;
   let edgeStats = null;
@@ -480,6 +498,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   let tooSmall = false;
   let excessivePerspective = false;
   let failureReason = null;
+  let softWarn = false;
   const validity = {};
   let quadSource = 'auto';
 
@@ -503,16 +522,21 @@ async function processFace(buffer, faceLabel, userQuad = null) {
       outerNorm = normalizeBox(outer, width, height);
       areaNorm = parsed.areaNorm;
       touchesEdge =
-        outer.x <= 2 || outer.y <= 2 || outer.x + outer.w >= width - 2 || outer.y + outer.h >= height - 2;
+        outer.x <= edgeMarginPx ||
+        outer.y <= edgeMarginPx ||
+        outer.x + outer.w >= width - edgeMarginPx ||
+        outer.y + outer.h >= height - edgeMarginPx;
       fullFrame = outerNorm.w >= 0.98 && outerNorm.h >= 0.98;
       tooSmall = areaNorm < 0.2;
       const aspect = outer.h > 0 ? outer.w / outer.h : 0;
-      excessivePerspective = aspect < 0.45 || aspect > 0.95;
+      excessivePerspective = aspect < HARD_ASPECT_MIN || aspect > HARD_ASPECT_MAX;
       validity.user_quad = true;
       validity.area_norm = areaNorm;
       validity.outer_bbox_norm = outerNorm;
       validity.touches_edge = touchesEdge;
       validity.excessive_perspective = excessivePerspective;
+      validity.edge_margin_px = edgeMarginPx;
+      validity.aspect = aspect;
       if (DEBUG) {
         dbg(`quad_source_${faceLabel}`, { source: quadSource, first_point: points[0], updated_at: userQuad.updated_at ?? null });
       }
@@ -556,25 +580,40 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   if (areaNorm === null) areaNorm = (outer.w * outer.h) / (width * height);
   if (touchesEdge === false) {
     touchesEdge =
-      outer.x <= 2 || outer.y <= 2 || outer.x + outer.w >= width - 2 || outer.y + outer.h >= height - 2;
+      outer.x <= edgeMarginPx ||
+      outer.y <= edgeMarginPx ||
+      outer.x + outer.w >= width - edgeMarginPx ||
+      outer.y + outer.h >= height - edgeMarginPx;
   }
   fullFrame = fullFrame || (outerNorm.w >= 0.98 && outerNorm.h >= 0.98);
   tooSmall = tooSmall || areaNorm < 0.2;
   const aspect = outer.h > 0 ? outer.w / outer.h : 0;
-  excessivePerspective = excessivePerspective || aspect < 0.45 || aspect > 0.95;
+  const hardAspectBad = excessivePerspective || aspect < HARD_ASPECT_MIN || aspect > HARD_ASPECT_MAX;
+  const softAspectBad = aspect < SOFT_ASPECT_MIN || aspect > SOFT_ASPECT_MAX;
+  const hardEdgeClip = touchesEdge && outerNorm.w < 0.9 && outerNorm.h < 0.9;
+  excessivePerspective = hardAspectBad;
 
   if (fullFrame) failureReason = 'border_not_detected';
   else if (tooSmall) failureReason = 'quad_too_small';
-  else if (touchesEdge) failureReason = 'quad_out_of_frame';
-  else if (excessivePerspective) failureReason = 'excessive_perspective';
+  else if (hardAspectBad) failureReason = 'excessive_perspective';
+  else if (hardEdgeClip) failureReason = 'quad_out_of_frame';
+
+  if (!failureReason) {
+    if (softAspectBad) softWarn = true;
+    if (touchesEdge && !hardEdgeClip) softWarn = true;
+  }
 
   validity.isValid = !failureReason;
+  validity.collector_soft_warn = softWarn;
+  validity.collector_usable = validity.isValid || softWarn;
   validity.failureReason = failureReason;
   validity.area_norm = areaNorm;
   validity.touches_edge = touchesEdge;
   validity.outer_bbox_norm = outerNorm;
-  validity.excessive_perspective = excessivePerspective;
+  validity.excessive_perspective = hardAspectBad || softAspectBad;
   validity.quad_source = quadSource;
+  validity.edge_margin_px = edgeMarginPx;
+  validity.aspect = aspect;
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
@@ -586,6 +625,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
       area_norm: areaNorm,
       touches_edge: touchesEdge,
       excessivePerspective,
+      edge_margin_px: edgeMarginPx,
+      aspect,
     });
     return {
       status: 'failed',
@@ -641,6 +682,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     area_norm: areaNorm,
     touches_edge: touchesEdge,
     excessivePerspective,
+    edge_margin_px: edgeMarginPx,
+    aspect,
   });
 
   dbg(`${faceLabel}_inner_box`, {
@@ -674,6 +717,9 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   if (touchesEdge) confidence -= 0.15;
   if (innerMarginDerived) confidence -= 0.1;
   confidence = Math.max(0.05, Math.min(1, confidence));
+  if (softWarn && !failureReason) {
+    confidence = Math.min(confidence, 0.35);
+  }
 
   dbg(`${faceLabel}_confidence`, { confidence, min_dim: minDim, area_norm: areaNorm, touches_edge: touchesEdge, inner_margin_derived: innerMarginDerived });
 
@@ -844,9 +890,15 @@ async function main() {
 
   const frontIsValid = frontResult.validity?.isValid ?? frontResult.status === 'ok';
   const backIsValid = backResult.validity?.isValid ?? backResult.status === 'ok';
+  const frontSoftWarn = frontResult.validity?.collector_soft_warn ?? false;
+  const backSoftWarn = backResult.validity?.collector_soft_warn ?? false;
   const frontInvalidReason = !frontIsValid ? (frontResult.validity?.failureReason || frontResult.failure_reason || null) : null;
   const backInvalidReason = !backIsValid ? (backResult.validity?.failureReason || backResult.failure_reason || null) : null;
   const overallValid = frontIsValid && backIsValid;
+  const overallCollectorUsable =
+    (frontResult.validity?.collector_usable ?? frontIsValid) &&
+    (backResult.validity?.collector_usable ?? backIsValid);
+  const overallSoftWarn = frontSoftWarn || backSoftWarn;
 
   const successes = [frontResult, backResult].filter((r) => r.status === 'ok').length;
   let analysisStatus = overallValid ? 'ok' : 'failed';
@@ -892,6 +944,7 @@ async function main() {
       confidence_0_1: quality.gated_confidence_0_1,
       is_valid: isValid,
       invalid_reasons: isValid ? [] : [invalidReason].filter(Boolean),
+      collector_usable: result.validity?.collector_usable ?? isValid,
     };
   };
 
@@ -948,6 +1001,8 @@ async function main() {
     back: backV3,
     overall: {
       is_valid: overallValid,
+      collector_usable: overallCollectorUsable,
+      collector_soft_warn: overallSoftWarn,
       tag_tier: overallTag,
       bgs_report_bucket: bgs,
       front_worst: Number.isFinite(frontV3.face_worst) ? frontV3.face_worst : null,
@@ -984,6 +1039,10 @@ async function main() {
     overall_is_valid: overallValid,
     failure_reason: failureReason,
     confidence_final: confidence,
+    soft_warn_front: frontSoftWarn,
+    soft_warn_back: backSoftWarn,
+    hard_failure_front: frontInvalidReason,
+    hard_failure_back: backInvalidReason,
   });
 
   dbg('centering_v3_summary', {
@@ -998,12 +1057,15 @@ async function main() {
     final_confidence: confidence,
   });
 
+  const scanNotes = ['centering-only'];
+  if (overallSoftWarn) scanNotes.push('collector-soft-warn');
+
   const scanQuality = {
     version: 1,
     ok: analysisStatus === 'ok' || analysisStatus === 'partial',
     analysis_status: analysisStatus,
     failure_reason: failureReason,
-    notes: ['centering-only'],
+    notes: scanNotes,
   };
 
   // HARD GUARANTEE: centering_v3 must exist in payload
