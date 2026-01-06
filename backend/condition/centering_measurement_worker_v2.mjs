@@ -910,54 +910,58 @@ async function main() {
   }
   const worstFace = frontWorst >= backWorst ? 'front' : 'back';
 
-  const measurements = {
+  const centeringV2 = {
+    front_lr_ratio: frontResult.lrRatio ?? null,
+    front_tb_ratio: frontResult.tbRatio ?? null,
+    back_lr_ratio: backResult.lrRatio ?? null,
+    back_tb_ratio: backResult.tbRatio ?? null,
+    unit: 'ratio',
+    raw: {
+      front_left_px: frontResult.raw?.left ?? null,
+      front_right_px: frontResult.raw?.right ?? null,
+      front_top_px: frontResult.raw?.top ?? null,
+      front_bottom_px: frontResult.raw?.bottom ?? null,
+      back_left_px: backResult.raw?.left ?? null,
+      back_right_px: backResult.raw?.right ?? null,
+      back_top_px: backResult.raw?.top ?? null,
+      back_bottom_px: backResult.raw?.bottom ?? null,
+      normalized_size: {
+        width_px: frontResult.raw?.width_px ?? backResult.raw?.width_px ?? null,
+        height_px: frontResult.raw?.height_px ?? backResult.raw?.height_px ?? null,
+      },
+    },
+    evidence: {
+      front_outer_bbox: frontResult.evidence?.outer_bbox ?? null,
+      front_inner_bbox: frontResult.evidence?.inner_bbox ?? null,
+      back_outer_bbox: backResult.evidence?.outer_bbox ?? null,
+      back_inner_bbox: backResult.evidence?.inner_bbox ?? null,
+      method: frontResult.evidence?.method || backResult.evidence?.method || 'centering_v3_quad',
+      notes: [],
+    },
+    analysis_status: analysisStatus,
+    failure_reason: failureReason,
+  };
+
+  const centeringV3 = {
+    version: 3,
+    front: frontV3,
+    back: backV3,
+    overall: {
+      is_valid: overallValid,
+      tag_tier: overallTag,
+      bgs_report_bucket: bgs,
+      front_worst: Number.isFinite(frontV3.face_worst) ? frontV3.face_worst : null,
+      back_worst: Number.isFinite(backV3.face_worst) ? backV3.face_worst : null,
+      worst_face: Number.isFinite(frontV3.face_worst) || Number.isFinite(backV3.face_worst) ? worstFace : null,
+      confidence_0_1: confidence,
+      invalid_reasons: overallValid ? [] : Array.from(new Set(overallInvalidReasons)),
+    },
+  };
+
+  let measurements = {
     version: 2,
-    centering: {
-      front_lr_ratio: frontResult.lrRatio ?? null,
-      front_tb_ratio: frontResult.tbRatio ?? null,
-      back_lr_ratio: backResult.lrRatio ?? null,
-      back_tb_ratio: backResult.tbRatio ?? null,
-      unit: 'ratio',
-      raw: {
-        front_left_px: frontResult.raw?.left ?? null,
-        front_right_px: frontResult.raw?.right ?? null,
-        front_top_px: frontResult.raw?.top ?? null,
-        front_bottom_px: frontResult.raw?.bottom ?? null,
-        back_left_px: backResult.raw?.left ?? null,
-        back_right_px: backResult.raw?.right ?? null,
-        back_top_px: backResult.raw?.top ?? null,
-        back_bottom_px: backResult.raw?.bottom ?? null,
-        normalized_size: {
-          width_px: frontResult.raw?.width_px ?? backResult.raw?.width_px ?? null,
-          height_px: frontResult.raw?.height_px ?? backResult.raw?.height_px ?? null,
-        },
-      },
-      evidence: {
-        front_outer_bbox: frontResult.evidence?.outer_bbox ?? null,
-        front_inner_bbox: frontResult.evidence?.inner_bbox ?? null,
-        back_outer_bbox: backResult.evidence?.outer_bbox ?? null,
-        back_inner_bbox: backResult.evidence?.inner_bbox ?? null,
-        method: frontResult.evidence?.method || backResult.evidence?.method || 'centering_v3_quad',
-        notes: [],
-      },
-      analysis_status: analysisStatus,
-      failure_reason: failureReason,
-    },
-    centering_v3: {
-      version: 3,
-      front: frontV3,
-      back: backV3,
-      overall: {
-        is_valid: overallValid,
-        tag_tier: overallTag,
-        bgs_report_bucket: bgs,
-        front_worst: Number.isFinite(frontV3.face_worst) ? frontV3.face_worst : null,
-        back_worst: Number.isFinite(backV3.face_worst) ? backV3.face_worst : null,
-        worst_face: Number.isFinite(frontV3.face_worst) || Number.isFinite(backV3.face_worst) ? worstFace : null,
-        confidence_0_1: confidence,
-        invalid_reasons: overallValid ? [] : Array.from(new Set(overallInvalidReasons)),
-      },
-    },
+    centering: centeringV2,
+    centering_v3: centeringV3,
   };
 
   dbg('v3_validity_front', {
@@ -1002,6 +1006,15 @@ async function main() {
     notes: ['centering-only'],
   };
 
+  // HARD GUARANTEE: centering_v3 must exist in payload
+  if (!measurements || typeof measurements !== 'object') measurements = { version: 2 };
+  if (!('centering_v3' in measurements)) {
+    measurements.centering_v3 = centeringV3;
+  }
+  if (!('centering' in measurements)) {
+    measurements.centering = centeringV2;
+  }
+
   const payload = {
     snapshot_id: snapshotId,
     analysis_version: analysisVersion,
@@ -1024,6 +1037,13 @@ async function main() {
     base_confidence: baseConfidence,
     final_confidence: confidence,
     will_call_rpc: !dryRun,
+  });
+  dbg('payload_keys', {
+    has_centering: !!measurements?.centering,
+    has_centering_v3: !!measurements?.centering_v3,
+    method: frontResult.evidence?.method || backResult.evidence?.method || null,
+    status: analysisStatus,
+    confidence,
   });
 
   if (dryRun) {
