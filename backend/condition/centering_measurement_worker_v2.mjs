@@ -308,10 +308,10 @@ function approxEqual(a, b, epsilon) {
 }
 
 const CARD_ASPECT = 0.716; // portrait W/H
-const HARD_ASPECT_MIN = 0.35;
-const HARD_ASPECT_MAX = 1.05;
+const HARD_ASPECT_MIN = 0.4;
+const HARD_ASPECT_MAX = 0.9;
 const SOFT_ASPECT_MIN = 0.55;
-const SOFT_ASPECT_MAX = 0.9;
+const SOFT_ASPECT_MAX = 0.85;
 
 function evaluateQuality(faceResult) {
   const flags = [];
@@ -331,7 +331,7 @@ function evaluateQuality(faceResult) {
     degenerate = true;
   }
 
-   // soft warn flags propagate into quality
+  // soft warn flags propagate into quality
   if (validity.collector_soft_warn) {
     flags.push('collector_soft_warn');
   }
@@ -406,9 +406,10 @@ function evaluateQuality(faceResult) {
   }
 
   gated = Math.max(0.05, Math.min(1, gated));
+  const flagsDeduped = [...new Set(flags)];
 
   return {
-    quality_flags: flags,
+    quality_flags: flagsDeduped,
     quality_score_0_1: baseConfidence,
     gated_confidence_0_1: gated,
     degenerate,
@@ -528,15 +529,17 @@ async function processFace(buffer, faceLabel, userQuad = null) {
         outer.y + outer.h >= height - edgeMarginPx;
       fullFrame = outerNorm.w >= 0.98 && outerNorm.h >= 0.98;
       tooSmall = areaNorm < 0.2;
-      const aspect = outer.h > 0 ? outer.w / outer.h : 0;
-      excessivePerspective = aspect < HARD_ASPECT_MIN || aspect > HARD_ASPECT_MAX;
+      const aspectRaw = outer.h > 0 ? outer.w / outer.h : 0;
+      const aspectNorm = aspectRaw >= 1 ? 1 / aspectRaw : aspectRaw;
+      excessivePerspective = aspectNorm < HARD_ASPECT_MIN || aspectNorm > HARD_ASPECT_MAX;
       validity.user_quad = true;
       validity.area_norm = areaNorm;
       validity.outer_bbox_norm = outerNorm;
       validity.touches_edge = touchesEdge;
       validity.excessive_perspective = excessivePerspective;
       validity.edge_margin_px = edgeMarginPx;
-      validity.aspect = aspect;
+      validity.aspect_raw = aspectRaw;
+      validity.aspect_norm = aspectNorm;
       if (DEBUG) {
         dbg(`quad_source_${faceLabel}`, { source: quadSource, first_point: points[0], updated_at: userQuad.updated_at ?? null });
       }
@@ -587,10 +590,11 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   }
   fullFrame = fullFrame || (outerNorm.w >= 0.98 && outerNorm.h >= 0.98);
   tooSmall = tooSmall || areaNorm < 0.2;
-  const aspect = outer.h > 0 ? outer.w / outer.h : 0;
-  const hardAspectBad = excessivePerspective || aspect < HARD_ASPECT_MIN || aspect > HARD_ASPECT_MAX;
-  const softAspectBad = aspect < SOFT_ASPECT_MIN || aspect > SOFT_ASPECT_MAX;
-  const hardEdgeClip = touchesEdge && outerNorm.w < 0.9 && outerNorm.h < 0.9;
+  const aspectRaw = outer.h > 0 ? outer.w / outer.h : 0;
+  const aspectNorm = aspectRaw >= 1 ? 1 / aspectRaw : aspectRaw;
+  const hardAspectBad = aspectNorm < HARD_ASPECT_MIN || aspectNorm > HARD_ASPECT_MAX;
+  const softAspectBad = aspectNorm < SOFT_ASPECT_MIN || aspectNorm > SOFT_ASPECT_MAX;
+  const hardEdgeClip = touchesEdge && (outerNorm.w < 0.85 || outerNorm.h < 0.85);
   excessivePerspective = hardAspectBad;
 
   if (fullFrame) failureReason = 'border_not_detected';
@@ -599,7 +603,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   else if (hardEdgeClip) failureReason = 'quad_out_of_frame';
 
   if (!failureReason) {
-    if (softAspectBad) softWarn = true;
+    if (softAspectBad && !hardAspectBad) softWarn = true;
     if (touchesEdge && !hardEdgeClip) softWarn = true;
   }
 
@@ -613,7 +617,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   validity.excessive_perspective = hardAspectBad || softAspectBad;
   validity.quad_source = quadSource;
   validity.edge_margin_px = edgeMarginPx;
-  validity.aspect = aspect;
+  validity.aspect_raw = aspectRaw;
+  validity.aspect_norm = aspectNorm;
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
@@ -626,7 +631,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
       touches_edge: touchesEdge,
       excessivePerspective,
       edge_margin_px: edgeMarginPx,
-      aspect,
+      aspect_raw: aspectRaw,
+      aspect_norm: aspectNorm,
     });
     return {
       status: 'failed',
@@ -945,6 +951,10 @@ async function main() {
       is_valid: isValid,
       invalid_reasons: isValid ? [] : [invalidReason].filter(Boolean),
       collector_usable: result.validity?.collector_usable ?? isValid,
+      aspect_raw: result.validity?.aspect_raw ?? null,
+      aspect_norm: result.validity?.aspect_norm ?? null,
+      edge_margin_px: result.validity?.edge_margin_px ?? null,
+      touches_edge: result.validity?.touches_edge ?? null,
     };
   };
 
@@ -1067,6 +1077,13 @@ async function main() {
     failure_reason: failureReason,
     notes: scanNotes,
   };
+
+  dbg('centering_v3_soft_context', {
+    edge_margin_px: edgeMarginPx,
+    front_soft_warn: frontSoftWarn,
+    back_soft_warn: backSoftWarn,
+    overall_soft_warn: overallSoftWarn,
+  });
 
   // HARD GUARANTEE: centering_v3 must exist in payload
   if (!measurements || typeof measurements !== 'object') measurements = { version: 2 };
