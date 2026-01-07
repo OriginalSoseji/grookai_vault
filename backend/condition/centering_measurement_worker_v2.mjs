@@ -724,7 +724,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   if (touchesEdge) confidence -= 0.15;
   if (innerMarginDerived) confidence -= 0.1;
   confidence = Math.max(0.05, Math.min(1, confidence));
-  if (softWarn && !failureReason) {
+  if (softWarn && !hardFailureReason) {
     confidence = Math.min(confidence, 0.35);
   }
 
