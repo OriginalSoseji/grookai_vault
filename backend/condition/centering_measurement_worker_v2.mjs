@@ -689,7 +689,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     touches_edge: touchesEdge,
     excessivePerspective,
     edge_margin_px: edgeMarginPx,
-    aspect,
+    aspect_raw: aspectRaw,
+    aspect_norm: aspectNorm,
   });
 
   dbg(`${faceLabel}_inner_box`, {
