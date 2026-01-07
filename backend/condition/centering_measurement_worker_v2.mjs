@@ -1073,11 +1073,23 @@ async function main() {
 
   const scanQuality = {
     version: 1,
-    ok: analysisStatus === 'ok' || analysisStatus === 'partial',
-    analysis_status: analysisStatus,
-    failure_reason: failureReason,
-    notes: scanNotes,
   };
+
+  if (failureReason) {
+    scanQuality.ok = analysisStatus === 'ok' || analysisStatus === 'partial';
+    scanQuality.analysis_status = analysisStatus;
+    scanQuality.failure_reason = failureReason;
+  } else if (overallSoftWarn) {
+    scanQuality.ok = true;
+    scanQuality.analysis_status = 'ok';
+    scanQuality.failure_reason = null;
+  } else {
+    scanQuality.ok = analysisStatus === 'ok' || analysisStatus === 'partial';
+    scanQuality.analysis_status = analysisStatus;
+    scanQuality.failure_reason = null;
+  }
+
+  scanQuality.notes = scanNotes;
 
   dbg('centering_v3_soft_context', {
     edge_margin_front: frontResult.validity?.edge_margin_px ?? null,
