@@ -73,7 +73,6 @@ async function runWorkerCLI(snapshotId, useV2, debug) {
 }
 
 async function runWorkerModule(snapshotId, useV2, debug) {
-  // Will be wired in Commit 2 when worker exports a programmatic API.
   try {
     const mod = await import(pathToFileURL(path.join(__dirname, '..', 'condition', 'centering_measurement_worker_v2.mjs')));
     if (typeof mod.runCenteringOnSnapshot !== 'function') {
@@ -93,15 +92,16 @@ async function runWorkerModule(snapshotId, useV2, debug) {
 }
 
 function parseStatusFromLogs(stdout) {
-  // Best-effort parser for logStatus JSON lines.
+  // Best-effort parser for logStatus JSON lines (fallback when module result is unavailable).
   const lines = stdout.split('\n').map((l) => l.trim()).filter(Boolean);
   let analysisStatus = null;
   let failureReason = null;
   for (const line of lines) {
     try {
       const obj = JSON.parse(line);
-      if (obj.event === 'done' || obj.event === 'dry_run') {
+      if (obj.event === 'done' || obj.event === 'dry_run' || obj.event === 'ok') {
         analysisStatus = obj.analysis_status || obj.analysisStatus || analysisStatus;
+        if (obj.failure_reason !== undefined) failureReason = obj.failure_reason;
       }
       if (obj.event === 'error' && obj.reason) {
         failureReason = obj.reason;
@@ -113,11 +113,33 @@ function parseStatusFromLogs(stdout) {
   return { analysisStatus, failureReason };
 }
 
+function extractStatusFromResult(result) {
+  // Worker dry-run prints a JSON preview; prefer explicit fields when present.
+  if (!result) return { status: null, reason: null };
+  const scan = result.scan_quality || result.scanQuality || result.scan_quality || null;
+  const status =
+    scan?.analysis_status ??
+    scan?.analysisStatus ??
+    result.analysis_status ??
+    result.analysisStatus ??
+    result.outcome?.status ??
+    null;
+  const reason =
+    scan?.failure_reason ??
+    scan?.failureReason ??
+    result.failure_reason ??
+    result.failureReason ??
+    result.outcome?.reason ??
+    null;
+  return { status, reason };
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const manifestPath = path.resolve(args.dataset);
   const manifest = await loadManifest(manifestPath);
   const rows = [];
+  const verbose = process.env.HARNESS_DEBUG === 'true';
 
   for (const entry of manifest) {
     const snapshotId = entry.snapshot_id;
@@ -130,8 +152,21 @@ async function main() {
 
     const modBaseline = await runWorkerModule(snapshotId, false, args.debug);
     if (modBaseline.supported && modBaseline.result) {
-      baselineStatus = modBaseline.result.analysis_status || null;
-      baselineReason = modBaseline.result.failure_reason || null;
+      const parsed = extractStatusFromResult(modBaseline.result);
+      baselineStatus = parsed.status;
+      baselineReason = parsed.reason;
+      if (!baselineStatus) {
+        // Fallback to log parse only if status is still null
+        const run = await runWorkerCLI(snapshotId, false, args.debug);
+        const parsedLogs = parseStatusFromLogs(run.stdout);
+        baselineStatus = parsedLogs.analysisStatus;
+        baselineReason = baselineReason ?? parsedLogs.failureReason;
+      }
+      if (verbose) {
+        console.log(
+          `[harness] baseline keys=${Object.keys(modBaseline.result || {}).join(',')} status=${baselineStatus} reason=${baselineReason}`,
+        );
+      }
     } else {
       const run = await runWorkerCLI(snapshotId, false, args.debug);
       const parsed = parseStatusFromLogs(run.stdout);
@@ -141,8 +176,20 @@ async function main() {
 
     const modV2 = await runWorkerModule(snapshotId, true, args.debug);
     if (modV2.supported && modV2.result) {
-      v2Status = modV2.result.analysis_status || null;
-      v2Reason = modV2.result.failure_reason || null;
+      const parsed = extractStatusFromResult(modV2.result);
+      v2Status = parsed.status;
+      v2Reason = parsed.reason;
+      if (!v2Status) {
+        const run = await runWorkerCLI(snapshotId, true, args.debug);
+        const parsedLogs = parseStatusFromLogs(run.stdout);
+        v2Status = parsedLogs.analysisStatus;
+        v2Reason = v2Reason ?? parsedLogs.failureReason;
+      }
+      if (verbose) {
+        console.log(
+          `[harness] v2 keys=${Object.keys(modV2.result || {}).join(',')} status=${v2Status} reason=${v2Reason}`,
+        );
+      }
     } else {
       const run = await runWorkerCLI(snapshotId, true, args.debug);
       const parsed = parseStatusFromLogs(run.stdout);
