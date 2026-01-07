@@ -498,7 +498,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   let fullFrame = false;
   let tooSmall = false;
   let excessivePerspective = false;
-  let failureReason = null;
+  let hardFailureReason = null;
   let softWarn = false;
   const validity = {};
   let quadSource = 'auto';
@@ -544,13 +544,13 @@ async function processFace(buffer, faceLabel, userQuad = null) {
         dbg(`quad_source_${faceLabel}`, { source: quadSource, first_point: points[0], updated_at: userQuad.updated_at ?? null });
       }
     } else {
-      failureReason = parsed.reason || 'quad_not_found';
+      hardFailureReason = parsed.reason || 'quad_not_found';
       validity.user_quad_invalid = true;
-      validity.failureReason = failureReason;
+      validity.failureReason = hardFailureReason;
     }
   }
 
-  if (!outer && !failureReason) {
+  if (!outer && !hardFailureReason) {
     const edgeMap = buildEdgeMap(data, width, height);
     edgeStats = stats(edgeMap);
     edgeThreshold = Math.max(0, edgeStats.mean + edgeStats.std * 0.6);
@@ -563,19 +563,19 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     quadSource = 'auto';
   }
 
-  if (!outer || failureReason) {
+  if (!outer || hardFailureReason) {
     dbg(`${faceLabel}_fail_outer`, {
-      reason: failureReason || 'quad_not_found',
+      reason: hardFailureReason || 'quad_not_found',
       edge_threshold: edgeThreshold,
       edge_stats: edgeStats ? { mean: edgeStats.mean, std: edgeStats.std } : null,
       flags: validity,
     });
     return {
       status: 'failed',
-      failure_reason: failureReason || 'quad_not_found',
+      failure_reason: hardFailureReason || 'quad_not_found',
       confidence: 0.1,
       evidence: {},
-      validity: { isValid: false, failureReason: failureReason || 'quad_not_found', ...validity },
+      validity: { isValid: false, failureReason: hardFailureReason || 'quad_not_found', ...validity },
     };
   }
 
@@ -597,20 +597,20 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   const hardEdgeClip = touchesEdge && (outerNorm.w < 0.85 || outerNorm.h < 0.85);
   excessivePerspective = hardAspectBad;
 
-  if (fullFrame) failureReason = 'border_not_detected';
-  else if (tooSmall) failureReason = 'quad_too_small';
-  else if (hardAspectBad) failureReason = 'excessive_perspective';
-  else if (hardEdgeClip) failureReason = 'quad_out_of_frame';
+  if (fullFrame) hardFailureReason = 'border_not_detected';
+  else if (tooSmall) hardFailureReason = 'quad_too_small';
+  else if (hardAspectBad) hardFailureReason = 'excessive_perspective';
+  else if (hardEdgeClip) hardFailureReason = 'quad_out_of_frame';
 
-  if (!failureReason) {
+  if (!hardFailureReason) {
     if (softAspectBad && !hardAspectBad) softWarn = true;
     if (touchesEdge && !hardEdgeClip) softWarn = true;
   }
 
-  validity.isValid = !failureReason;
+  validity.isValid = !hardFailureReason;
   validity.collector_soft_warn = softWarn;
   validity.collector_usable = validity.isValid || softWarn;
-  validity.failureReason = failureReason;
+  validity.failureReason = hardFailureReason;
   validity.area_norm = areaNorm;
   validity.touches_edge = touchesEdge;
   validity.outer_bbox_norm = outerNorm;
@@ -622,9 +622,9 @@ async function processFace(buffer, faceLabel, userQuad = null) {
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
-  if (failureReason) {
+  if (hardFailureReason) {
     dbg(`${faceLabel}_outer_invalid`, {
-      failureReason,
+      failureReason: hardFailureReason,
       outer_bbox_px: outer,
       outer_bbox_norm: outerNorm,
       area_norm: areaNorm,
@@ -636,7 +636,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     });
     return {
       status: 'failed',
-      failure_reason: failureReason,
+      failure_reason: hardFailureReason,
       confidence: 0.1,
       evidence: { outer_bbox: outerNorm },
       validity,
@@ -906,15 +906,14 @@ async function main() {
     (frontResult.validity?.collector_usable ?? frontIsValid) &&
     (backResult.validity?.collector_usable ?? backIsValid);
   const overallSoftWarn = frontSoftWarn || backSoftWarn;
+  const overallHardFailureReason =
+    frontInvalidReason || backInvalidReason || frontResult.failure_reason || backResult.failure_reason || null;
 
   const successes = [frontResult, backResult].filter((r) => r.status === 'ok').length;
   let analysisStatus = overallValid ? 'ok' : 'failed';
   if (analysisStatus === 'ok' && successes === 1) analysisStatus = 'partial';
 
-  const failureReason =
-    analysisStatus === 'ok'
-      ? null
-      : (frontInvalidReason || backInvalidReason || frontResult.failure_reason || backResult.failure_reason || 'unknown');
+  const failureReason = analysisStatus === 'ok' ? null : (overallHardFailureReason || 'unknown');
 
   const frontQuality = evaluateQuality(frontResult);
   const backQuality = evaluateQuality(backResult);
