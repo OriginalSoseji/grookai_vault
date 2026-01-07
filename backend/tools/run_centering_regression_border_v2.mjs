@@ -46,6 +46,8 @@ async function runWorkerCLI(snapshotId, useV2, debug) {
         '--dry-run',
         'true',
         ...(debug ? ['--debug', 'true'] : []),
+      '--emit-result-json',
+      'true',
       ],
       {
         cwd: path.join(__dirname, '..'),
@@ -99,6 +101,10 @@ function parseStatusFromLogs(stdout) {
   for (const line of lines) {
     try {
       const obj = JSON.parse(line);
+      if (obj.event === 'harness_result') {
+        analysisStatus = obj.analysis_status ?? analysisStatus;
+        if (obj.failure_reason !== undefined) failureReason = obj.failure_reason;
+      }
       if (obj.event === 'done' || obj.event === 'dry_run' || obj.event === 'ok') {
         analysisStatus = obj.analysis_status || obj.analysisStatus || analysisStatus;
         if (obj.failure_reason !== undefined) failureReason = obj.failure_reason;

@@ -25,7 +25,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 function parseArgs(argv) {
-  const out = { snapshotId: null, analysisVersion: 'v2_centering', dryRun: true, debug: false, borderV2: false };
+  const out = { snapshotId: null, analysisVersion: 'v2_centering', dryRun: true, debug: false, borderV2: false, emitResultJson: false };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--snapshot-id') {
@@ -46,13 +46,17 @@ function parseArgs(argv) {
       const val = (argv[i + 1] || 'false').toLowerCase();
       out.borderV2 = val === 'true';
       i += 1;
+    } else if (arg === '--emit-result-json') {
+      const val = (argv[i + 1] || 'false').toLowerCase();
+      out.emitResultJson = val === 'true';
+      i += 1;
     }
   }
   return out;
 }
 
 function printUsage() {
-  console.log('Usage: node backend/condition/centering_measurement_worker_v2.mjs --snapshot-id <uuid> [--analysis-version v2_centering] [--dry-run true|false] [--border-v2 true|false] [--debug true|false]');
+  console.log('Usage: node backend/condition/centering_measurement_worker_v2.mjs --snapshot-id <uuid> [--analysis-version v2_centering] [--dry-run true|false] [--border-v2 true|false] [--emit-result-json true|false] [--debug true|false]');
 }
 
 function logStatus(event, payload = {}) {
@@ -1008,6 +1012,7 @@ async function main() {
   const snapshotId = args.snapshotId.trim();
   const analysisVersion = (args.analysisVersion || 'v2_centering').trim();
   const dryRun = !!args.dryRun;
+  const emitResultJson = !!args.emitResultJson;
   DEBUG = !!args.debug;
   const useBorderV2 = args.borderV2 === true || ENV_BORDER_V2 === true;
 
@@ -1495,6 +1500,9 @@ async function main() {
       dry_run: true,
     };
     console.log(JSON.stringify(preview, null, 2));
+    if (emitResultJson) {
+      console.log(JSON.stringify({ event: 'harness_result', analysis_status: analysisStatus, failure_reason: failureReason ?? null }));
+    }
     process.exit(0);
   }
 
