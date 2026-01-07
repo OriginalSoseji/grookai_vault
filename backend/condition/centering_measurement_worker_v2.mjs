@@ -160,6 +160,26 @@ async function uploadBufferToStorage(supabase, bucket, storagePath, buf, content
   }
 }
 
+async function padForBorderDetection(buffer, width, height) {
+  const padPx = Math.max(24, Math.min(96, Math.round(Math.min(width, height) * 0.05)));
+  const extended = await sharp(buffer, { raw: { width, height, channels: 1 } })
+    .extend({
+      top: padPx,
+      bottom: padPx,
+      left: padPx,
+      right: padPx,
+      background: { r: 0, g: 0, b: 0, alpha: 1 },
+    })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  return {
+    paddedBuffer: extended.data,
+    padPx,
+    paddedW: extended.info.width,
+    paddedH: extended.info.height,
+  };
+}
+
 async function renderOverlay(baseBuffer, overlayInfo, faceLabel) {
   if (!baseBuffer || !overlayInfo) return null;
   const meta = await sharp(baseBuffer).metadata();
@@ -581,6 +601,41 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   const height = info.height;
   const edgeMarginPx = Math.max(8, Math.floor(Math.min(width, height) * 0.01));
 
+  let detectData = data;
+  let detectWidth = width;
+  let detectHeight = height;
+  let usedPadding = false;
+  let padPx = 0;
+  const shouldPadForEdges = edgeMarginPx <= 12 || opts.forcePadding === true;
+  if (shouldPadForEdges) {
+    try {
+      const padded = await padForBorderDetection(data, width, height);
+      detectData = padded.paddedBuffer;
+      detectWidth = padded.paddedW;
+      detectHeight = padded.paddedH;
+      padPx = padded.padPx;
+      usedPadding = padPx > 0;
+      if (usedPadding) {
+        console.log('[border] using padding', { snapshot_id: opts.snapshotId ?? null, face: faceLabel, padPx });
+      }
+    } catch (e) {
+      dbg('pad_failed', { face: faceLabel, error: e.message });
+    }
+  }
+
+  function adjustForPadding(box) {
+    if (!usedPadding || !box) return box;
+    const shifted = {
+      x: Math.max(0, box.x - padPx),
+      y: Math.max(0, box.y - padPx),
+      w: box.w,
+      h: box.h,
+    };
+    shifted.w = Math.max(1, Math.min(width - shifted.x, shifted.w));
+    shifted.h = Math.max(1, Math.min(height - shifted.y, shifted.h));
+    return shifted;
+  }
+
   let outer = null;
   let edgeStats = null;
   let edgeThreshold = null;
@@ -633,6 +688,8 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
       validity.edge_margin_px = edgeMarginPx;
       validity.aspect_raw = aspectRaw;
       validity.aspect_norm = aspectNorm;
+      usedPadding = false;
+      padPx = 0;
       if (DEBUG) {
         dbg(`quad_source_${faceLabel}`, { source: quadSource, first_point: points[0], updated_at: userQuad.updated_at ?? null });
       }
@@ -645,7 +702,7 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
 
   // BASELINE PATH
   if (!outer && !hardFailureReason && !useBorderV2) {
-    const edgeMap = buildEdgeMap(data, width, height);
+    const edgeMap = buildEdgeMap(detectData, detectWidth, detectHeight);
     edgeStats = stats(edgeMap);
     edgeThreshold = Math.max(0, edgeStats.mean + edgeStats.std * 0.6);
     const edgeMask = new Uint8Array(edgeMap.length);
@@ -653,13 +710,13 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
       if (edgeMap[i] > edgeThreshold) edgeMask[i] = 1;
     }
 
-    outer = findBoundingBoxFromMask(edgeMask, width, height, 0.02);
+    outer = findBoundingBoxFromMask(edgeMask, detectWidth, detectHeight, 0.02);
     quadSource = 'auto';
   }
 
   // V2 PATH
   if (!outer && !hardFailureReason && useBorderV2) {
-    const edgeMap = buildEdgeMap(data, width, height);
+    const edgeMap = buildEdgeMap(detectData, detectWidth, detectHeight);
     edgeStats = stats(edgeMap);
     edgeThreshold = Math.max(0, edgeStats.mean + edgeStats.std * 0.6);
     const edgeMask = new Uint8Array(edgeMap.length);
@@ -671,15 +728,15 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
 
     function pushCandidate(box, source, confExtra = {}) {
       if (!box) return;
-      const norm = normalizeBox(box, width, height);
-      const area = (box.w * box.h) / (width * height);
+      const norm = normalizeBox(box, detectWidth, detectHeight);
+      const area = (box.w * box.h) / (detectWidth * detectHeight);
       const aspectCandidate = box.h > 0 ? box.w / box.h : 0;
       const aspectNormCandidate = aspectCandidate >= 1 ? 1 / aspectCandidate : aspectCandidate;
       const touchesCandidate =
         box.x <= edgeMarginPx ||
         box.y <= edgeMarginPx ||
-        box.x + box.w >= width - edgeMarginPx ||
-        box.y + box.h >= height - edgeMarginPx;
+        box.x + box.w >= detectWidth - edgeMarginPx ||
+        box.y + box.h >= detectHeight - edgeMarginPx;
       const convexScore = 1;
       const aspectScore = Math.max(0, 1 - Math.abs(aspectNormCandidate - CARD_ASPECT) / 0.3);
       const areaScore = Math.max(0, Math.min(1, area / 0.5));
@@ -699,7 +756,7 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     }
 
     // Detector A: baseline mask bbox
-    const baseBox = findBoundingBoxFromMask(edgeMask, width, height, 0.02);
+    const baseBox = findBoundingBoxFromMask(edgeMask, detectWidth, detectHeight, 0.02);
     pushCandidate(baseBox, 'mask_base');
 
     // Detector A2: slightly tighter threshold
@@ -708,7 +765,7 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     for (let i = 0; i < edgeMap.length; i += 1) {
       if (edgeMap[i] > edgeThresholdHi) edgeMaskHi[i] = 1;
     }
-    const boxHi = findBoundingBoxFromMask(edgeMaskHi, width, height, 0.01);
+    const boxHi = findBoundingBoxFromMask(edgeMaskHi, detectWidth, detectHeight, 0.01);
     pushCandidate(boxHi, 'mask_hi');
 
     // Detector C: extrema fallback
@@ -716,8 +773,8 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     const nonZeroYs = [];
     for (let idx = 0; idx < edgeMask.length; idx += 1) {
       if (edgeMask[idx]) {
-        const y = Math.floor(idx / width);
-        const x = idx - y * width;
+        const y = Math.floor(idx / detectWidth);
+        const x = idx - y * detectWidth;
         nonZeroXs.push(x);
         nonZeroYs.push(y);
       }
@@ -742,26 +799,52 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
     const chosen = sorted[0] || null;
+    let chosenBox = chosen?.box || null;
+    let chosenNorm = chosen?.norm || null;
+    let overlayCandidates = sorted;
+
+    if (usedPadding) {
+      overlayCandidates = sorted.map((c) => {
+        const adjustedBox = adjustForPadding(c.box);
+        const adjustedNorm = adjustedBox ? normalizeBox(adjustedBox, width, height) : c.norm;
+        return { ...c, box: adjustedBox, norm: adjustedNorm };
+      });
+      if (chosenBox) {
+        const adjustedChosen = adjustForPadding(chosenBox);
+        chosenBox = adjustedChosen;
+        chosenNorm = adjustedChosen ? normalizeBox(adjustedChosen, width, height) : chosenNorm;
+      }
+    }
 
     if (chosen) {
-      outer = chosen.box;
-      outerNorm = chosen.norm;
-      areaNorm = chosen.area;
+      outer = chosenBox || chosen.box;
+      outerNorm = chosenNorm || chosen.norm;
+      areaNorm = ((outer?.w ?? 0) * (outer?.h ?? 0)) / (width * height);
       quadSource = chosen.source;
-      touchesEdge = chosen.touches_edge;
+      touchesEdge =
+        outer.x <= edgeMarginPx ||
+        outer.y <= edgeMarginPx ||
+        outer.x + outer.w >= width - edgeMarginPx ||
+        outer.y + outer.h >= height - edgeMarginPx;
       // Keep edgeStats/edgeThreshold from base for logging
     }
 
     overlayInfo = {
-      candidates: sorted.map((c, idx) => ({
+      candidates: overlayCandidates.map((c, idx) => ({
         rank: idx + 1,
         norm: c.norm,
         source: c.source,
         score: c.score,
       })),
-      chosen: chosen ? { norm: chosen.norm, source: chosen.source, score: chosen.score } : null,
+      chosen: chosen ? { norm: chosenNorm || chosen.norm, source: chosen.source, score: chosen.score } : null,
       edge_margin_px: edgeMarginPx,
+      pad_px: usedPadding ? padPx : 0,
+      used_padding: usedPadding,
     };
+  }
+
+  if (outer && usedPadding) {
+    outer = adjustForPadding(outer);
   }
 
   if (!outer || hardFailureReason) {
@@ -821,10 +904,14 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   validity.aspect_raw = aspectRaw;
   validity.aspect_norm = aspectNorm;
   validity.hard_edge_clip = hardEdgeClip;
+  validity.used_padding = usedPadding;
+  validity.pad_px = usedPadding ? padPx : 0;
   if (overlayInfo) {
     overlayInfo.failure_reason = hardFailureReason;
     overlayInfo.aspect_norm = aspectNorm;
     overlayInfo.touches_edge = touchesEdge;
+    overlayInfo.pad_px = usedPadding ? padPx : 0;
+    overlayInfo.used_padding = usedPadding;
   }
 
   dbg(`quad_source_${faceLabel}`, quadSource);
@@ -1151,10 +1238,12 @@ async function main() {
   const frontResult = await processFace(frontDl.data, 'front', userQuadFront, {
     useBorderV2,
     wantOverlay: ENV_DEBUG_OVERLAY || useBorderV2,
+    snapshotId,
   });
   const backResult = await processFace(backDl.data, 'back', userQuadBack, {
     useBorderV2,
     wantOverlay: ENV_DEBUG_OVERLAY || useBorderV2,
+    snapshotId,
   });
 
   const wantFrontOverlay =
@@ -1278,6 +1367,8 @@ async function main() {
       aspect_raw: result.validity?.aspect_raw ?? null,
       aspect_norm: result.validity?.aspect_norm ?? null,
       collector_soft_warn: result.validity?.collector_soft_warn ?? null,
+      used_padding: result.validity?.used_padding ?? null,
+      pad_px: result.validity?.pad_px ?? null,
     };
 
     return {
