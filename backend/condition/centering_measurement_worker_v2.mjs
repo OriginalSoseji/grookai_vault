@@ -1080,7 +1080,8 @@ async function main() {
   };
 
   dbg('centering_v3_soft_context', {
-    edge_margin_px: edgeMarginPx,
+    edge_margin_front: frontResult.validity?.edge_margin_px ?? null,
+    edge_margin_back: backResult.validity?.edge_margin_px ?? null,
     front_soft_warn: frontSoftWarn,
     back_soft_warn: backSoftWarn,
     overall_soft_warn: overallSoftWarn,
