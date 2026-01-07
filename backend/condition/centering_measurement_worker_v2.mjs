@@ -594,7 +594,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   const aspectNorm = aspectRaw >= 1 ? 1 / aspectRaw : aspectRaw;
   const hardAspectBad = aspectNorm < HARD_ASPECT_MIN || aspectNorm > HARD_ASPECT_MAX;
   const softAspectBad = aspectNorm < SOFT_ASPECT_MIN || aspectNorm > SOFT_ASPECT_MAX;
-  const hardEdgeClip = touchesEdge && (outerNorm.w < 0.85 || outerNorm.h < 0.85);
+  const hardEdgeClip = touchesEdge && (outerNorm.w < 0.75 || outerNorm.h < 0.75);
   excessivePerspective = hardAspectBad;
 
   if (fullFrame) hardFailureReason = 'border_not_detected';
