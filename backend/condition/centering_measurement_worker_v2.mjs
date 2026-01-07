@@ -4,6 +4,9 @@
 
 import '../env.mjs';
 import crypto from 'node:crypto';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
 import sharp from 'sharp';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 
@@ -16,9 +19,13 @@ if (process.env.SUPABASE_SECRET_KEY_LOCAL) {
 }
 
 let DEBUG = false;
+const ENV_BORDER_V2 = process.env.CENTERING_BORDER_V2 === 'true';
+const ENV_DEBUG_OVERLAY = process.env.DEBUG_OVERLAY === 'true';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function parseArgs(argv) {
-  const out = { snapshotId: null, analysisVersion: 'v2_centering', dryRun: true, debug: false };
+  const out = { snapshotId: null, analysisVersion: 'v2_centering', dryRun: true, debug: false, borderV2: false };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--snapshot-id') {
@@ -35,13 +42,17 @@ function parseArgs(argv) {
       const val = (argv[i + 1] || 'false').toLowerCase();
       out.debug = val === 'true';
       i += 1;
+    } else if (arg === '--border-v2') {
+      const val = (argv[i + 1] || 'false').toLowerCase();
+      out.borderV2 = val === 'true';
+      i += 1;
     }
   }
   return out;
 }
 
 function printUsage() {
-  console.log('Usage: node backend/condition/centering_measurement_worker_v2.mjs --snapshot-id <uuid> [--analysis-version v2_centering] [--dry-run true|false]');
+  console.log('Usage: node backend/condition/centering_measurement_worker_v2.mjs --snapshot-id <uuid> [--analysis-version v2_centering] [--dry-run true|false] [--border-v2 true|false] [--debug true|false]');
 }
 
 function logStatus(event, payload = {}) {
@@ -125,6 +136,81 @@ function stats(values) {
   const mean = sum / values.length;
   const variance = Math.max(0, sumSq / values.length - mean * mean);
   return { mean, std: Math.sqrt(variance) };
+}
+
+async function uploadBufferToStorage(supabase, bucket, storagePath, buf, contentType = 'image/jpeg') {
+  try {
+    const { error } = await supabase.storage.from(bucket).upload(storagePath, buf, {
+      contentType,
+      cacheControl: '3600',
+      upsert: true,
+    });
+    if (error) {
+      logStatus('debug_overlay_upload_failed', { path: storagePath, error: error.message });
+      return { error };
+    }
+    return { ok: true };
+  } catch (e) {
+    logStatus('debug_overlay_upload_failed', { path: storagePath, error: e.message });
+    return { error: e };
+  }
+}
+
+async function renderOverlay(baseBuffer, overlayInfo, faceLabel) {
+  if (!baseBuffer || !overlayInfo) return null;
+  const meta = await sharp(baseBuffer).metadata();
+  const w = meta.width || 900;
+  const h = meta.height || 1200;
+
+  function boxToPoints(norm) {
+    return [
+      [norm.x * w, norm.y * h],
+      [(norm.x + norm.w) * w, norm.y * h],
+      [(norm.x + norm.w) * w, (norm.y + norm.h) * h],
+      [norm.x * w, (norm.y + norm.h) * h],
+    ];
+  }
+
+  const candidates = overlayInfo.candidates || [];
+  const chosen = overlayInfo.chosen || null;
+  const texts = [
+    `face=${faceLabel}`,
+    `failure=${overlayInfo.failure_reason ?? 'none'}`,
+    `edge_margin_px=${overlayInfo.edge_margin_px ?? 'n/a'}`,
+    `aspect_norm=${overlayInfo.aspect_norm ?? 'n/a'}`,
+  ];
+
+  const svgParts = [];
+  const colors = ['#ff9800', '#03a9f4', '#9c27b0'];
+  candidates.forEach((c, idx) => {
+    if (!c.norm) return;
+    const pts = boxToPoints(c.norm)
+      .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+      .join(' ');
+    svgParts.push(
+      `<polygon points="${pts}" fill="none" stroke="${colors[idx % colors.length]}" stroke-width="2" opacity="0.9"/>`,
+      `<text x="${pts.split(' ')[0].split(',')[0]}" y="${pts.split(' ')[0].split(',')[1] - 4}" fill="${colors[idx % colors.length]}" font-size="16" font-weight="700">#${c.rank}</text>`,
+    );
+  });
+
+  if (chosen?.norm) {
+    const pts = boxToPoints(chosen.norm)
+      .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+      .join(' ');
+    svgParts.push(`<polygon points="${pts}" fill="none" stroke="#00e676" stroke-width="3" opacity="0.9"/>`);
+  }
+
+  texts.forEach((t, i) => {
+    svgParts.push(`<text x="20" y="${30 + i * 20}" fill="#ffffff" font-size="16" font-weight="700" opacity="0.9" stroke="#000" stroke-width="0.5">${t}</text>`);
+  });
+
+  const svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">${svgParts.join('')}</svg>`;
+
+  const overlayBuf = await sharp(baseBuffer)
+    .composite([{ input: Buffer.from(svg), blend: 'over' }])
+    .jpeg({ quality: 82 })
+    .toBuffer();
+  return overlayBuf;
 }
 
 function buildEdgeMap(data, width, height) {
@@ -447,7 +533,9 @@ function bgsBucket(frontWorst, backWorst) {
   return 'below';
 }
 
-async function processFace(buffer, faceLabel, userQuad = null) {
+async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
+  const useBorderV2 = !!opts.useBorderV2;
+  const wantOverlay = !!opts.wantOverlay;
   dbg(`${faceLabel}_init`, { buffer_len: buffer.length });
 
   let meta;
@@ -502,6 +590,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   let softWarn = false;
   const validity = {};
   let quadSource = 'auto';
+  let overlayInfo = null;
 
   if (userQuad) {
     const parsed = parseUserQuad(userQuad);
@@ -550,7 +639,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     }
   }
 
-  if (!outer && !hardFailureReason) {
+  // BASELINE PATH
+  if (!outer && !hardFailureReason && !useBorderV2) {
     const edgeMap = buildEdgeMap(data, width, height);
     edgeStats = stats(edgeMap);
     edgeThreshold = Math.max(0, edgeStats.mean + edgeStats.std * 0.6);
@@ -561,6 +651,113 @@ async function processFace(buffer, faceLabel, userQuad = null) {
 
     outer = findBoundingBoxFromMask(edgeMask, width, height, 0.02);
     quadSource = 'auto';
+  }
+
+  // V2 PATH
+  if (!outer && !hardFailureReason && useBorderV2) {
+    const edgeMap = buildEdgeMap(data, width, height);
+    edgeStats = stats(edgeMap);
+    edgeThreshold = Math.max(0, edgeStats.mean + edgeStats.std * 0.6);
+    const edgeMask = new Uint8Array(edgeMap.length);
+    for (let i = 0; i < edgeMap.length; i += 1) {
+      if (edgeMap[i] > edgeThreshold) edgeMask[i] = 1;
+    }
+
+    const candidates = [];
+
+    function pushCandidate(box, source, confExtra = {}) {
+      if (!box) return;
+      const norm = normalizeBox(box, width, height);
+      const area = (box.w * box.h) / (width * height);
+      const aspectCandidate = box.h > 0 ? box.w / box.h : 0;
+      const aspectNormCandidate = aspectCandidate >= 1 ? 1 / aspectCandidate : aspectCandidate;
+      const touchesCandidate =
+        box.x <= edgeMarginPx ||
+        box.y <= edgeMarginPx ||
+        box.x + box.w >= width - edgeMarginPx ||
+        box.y + box.h >= height - edgeMarginPx;
+      const convexScore = 1;
+      const aspectScore = Math.max(0, 1 - Math.abs(aspectNormCandidate - CARD_ASPECT) / 0.3);
+      const areaScore = Math.max(0, Math.min(1, area / 0.5));
+      const edgePenalty = touchesCandidate ? Math.max(0, 0.2 * (1 - Math.min(norm.w, norm.h))) : 0;
+      const score = aspectScore * 0.4 + areaScore * 0.3 + convexScore * 0.3 - edgePenalty;
+      candidates.push({
+        box,
+        norm,
+        area,
+        aspect_raw: aspectCandidate,
+        aspect_norm: aspectNormCandidate,
+        touches_edge: touchesCandidate,
+        score,
+        source,
+        ...confExtra,
+      });
+    }
+
+    // Detector A: baseline mask bbox
+    const baseBox = findBoundingBoxFromMask(edgeMask, width, height, 0.02);
+    pushCandidate(baseBox, 'mask_base');
+
+    // Detector A2: slightly tighter threshold
+    const edgeThresholdHi = Math.max(0, edgeStats.mean + edgeStats.std * 0.9);
+    const edgeMaskHi = new Uint8Array(edgeMap.length);
+    for (let i = 0; i < edgeMap.length; i += 1) {
+      if (edgeMap[i] > edgeThresholdHi) edgeMaskHi[i] = 1;
+    }
+    const boxHi = findBoundingBoxFromMask(edgeMaskHi, width, height, 0.01);
+    pushCandidate(boxHi, 'mask_hi');
+
+    // Detector C: extrema fallback
+    const nonZeroXs = [];
+    const nonZeroYs = [];
+    for (let idx = 0; idx < edgeMask.length; idx += 1) {
+      if (edgeMask[idx]) {
+        const y = Math.floor(idx / width);
+        const x = idx - y * width;
+        nonZeroXs.push(x);
+        nonZeroYs.push(y);
+      }
+    }
+    if (nonZeroXs.length > 0 && nonZeroYs.length > 0) {
+      const minX = Math.min(...nonZeroXs);
+      const maxX = Math.max(...nonZeroXs);
+      const minY = Math.min(...nonZeroYs);
+      const maxY = Math.max(...nonZeroYs);
+      const hullBox = {
+        x: Math.max(0, minX),
+        y: Math.max(0, minY),
+        w: Math.max(1, maxX - minX + 1),
+        h: Math.max(1, maxY - minY + 1),
+      };
+      pushCandidate(hullBox, 'extrema');
+    }
+
+    // Choose best
+    const sorted = candidates
+      .filter((c) => Number.isFinite(c.score) && c.area > 0.05)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
+    const chosen = sorted[0] || null;
+
+    if (chosen) {
+      outer = chosen.box;
+      outerNorm = chosen.norm;
+      areaNorm = chosen.area;
+      quadSource = chosen.source;
+      touchesEdge = chosen.touches_edge;
+      // Keep edgeStats/edgeThreshold from base for logging
+    }
+
+    overlayInfo = {
+      candidates: sorted.map((c, idx) => ({
+        rank: idx + 1,
+        norm: c.norm,
+        source: c.source,
+        score: c.score,
+      })),
+      chosen: chosen ? { norm: chosen.norm, source: chosen.source, score: chosen.score } : null,
+      edge_margin_px: edgeMarginPx,
+    };
   }
 
   if (!outer || hardFailureReason) {
@@ -620,6 +817,11 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   validity.aspect_raw = aspectRaw;
   validity.aspect_norm = aspectNorm;
   validity.hard_edge_clip = hardEdgeClip;
+  if (overlayInfo) {
+    overlayInfo.failure_reason = hardFailureReason;
+    overlayInfo.aspect_norm = aspectNorm;
+    overlayInfo.touches_edge = touchesEdge;
+  }
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
@@ -792,6 +994,8 @@ async function processFace(buffer, faceLabel, userQuad = null) {
       notes: quadSource === 'user' ? ['user_quad_v1'] : [],
     },
     validity,
+    overlay_info: overlayInfo,
+    overlay_base: wantOverlay ? await sharp(buffer).resize({ width: 900, withoutEnlargement: true }).jpeg({ quality: 82 }).toBuffer() : null,
   };
 }
 
@@ -805,6 +1009,7 @@ async function main() {
   const analysisVersion = (args.analysisVersion || 'v2_centering').trim();
   const dryRun = !!args.dryRun;
   DEBUG = !!args.debug;
+  const useBorderV2 = args.borderV2 === true || ENV_BORDER_V2 === true;
 
   const supabase = createBackendClient();
   const started = Date.now();
@@ -938,8 +1143,53 @@ async function main() {
 
   dbg('user_quad_row_found', { found: !!userQuadRow });
 
-  const frontResult = await processFace(frontDl.data, 'front', userQuadFront);
-  const backResult = await processFace(backDl.data, 'back', userQuadBack);
+  const frontResult = await processFace(frontDl.data, 'front', userQuadFront, {
+    useBorderV2,
+    wantOverlay: ENV_DEBUG_OVERLAY || useBorderV2,
+  });
+  const backResult = await processFace(backDl.data, 'back', userQuadBack, {
+    useBorderV2,
+    wantOverlay: ENV_DEBUG_OVERLAY || useBorderV2,
+  });
+
+  const wantFrontOverlay =
+    ENV_DEBUG_OVERLAY || frontResult.validity?.failureReason === 'border_not_detected' || frontResult.status === 'failed';
+  const wantBackOverlay =
+    ENV_DEBUG_OVERLAY || backResult.validity?.failureReason === 'border_not_detected' || backResult.status === 'failed';
+
+  if (wantFrontOverlay && frontResult.overlay_base && frontResult.overlay_info) {
+    try {
+      const overlayBuf = await renderOverlay(frontResult.overlay_base, frontResult.overlay_info, 'front');
+      if (overlayBuf) {
+        await uploadBufferToStorage(
+          supabase,
+          bucket,
+          `${snapshotId}/debug/centering_front_overlay.jpg`,
+          overlayBuf,
+          'image/jpeg',
+        );
+      }
+    } catch (e) {
+      logStatus('debug_overlay_render_failed', { face: 'front', error: e.message });
+    }
+  }
+
+  if (wantBackOverlay && backResult.overlay_base && backResult.overlay_info) {
+    try {
+      const overlayBuf = await renderOverlay(backResult.overlay_base, backResult.overlay_info, 'back');
+      if (overlayBuf) {
+        await uploadBufferToStorage(
+          supabase,
+          bucket,
+          `${snapshotId}/debug/centering_back_overlay.jpg`,
+          overlayBuf,
+          'image/jpeg',
+        );
+      }
+    } catch (e) {
+      logStatus('debug_overlay_render_failed', { face: 'back', error: e.message });
+    }
+  }
 
   const frontIsValid = frontResult.validity?.isValid ?? frontResult.status === 'ok';
   const backIsValid = backResult.validity?.isValid ?? backResult.status === 'ok';
@@ -1284,7 +1534,40 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((err) => {
-  console.error('[fatal]', err);
-  process.exit(1);
-});
+export async function runCenteringOnSnapshot(options) {
+  const args = [];
+  if (options.snapshotId) {
+    args.push('--snapshot-id', options.snapshotId);
+  }
+  args.push('--analysis-version', options.analysisVersion || 'v2_centering');
+  args.push('--dry-run', options.dryRun === false ? 'false' : 'true');
+  args.push('--debug', options.debug ? 'true' : 'false');
+  args.push('--border-v2', options.useBorderV2 ? 'true' : 'false');
+
+  return new Promise((resolve, reject) => {
+    const child = spawn('node', [__filename, ...args], {
+      cwd: path.join(__dirname),
+      env: { ...process.env },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (d) => {
+      stdout += d.toString();
+    });
+    child.stderr.on('data', (d) => {
+      stderr += d.toString();
+    });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      resolve({ code, stdout, stderr });
+    });
+  });
+}
+
+if (process.argv[1] && process.argv[1].includes('centering_measurement_worker_v2.mjs')) {
+  main().catch((err) => {
+    console.error('[fatal]', err);
+    process.exit(1);
+  });
+}
