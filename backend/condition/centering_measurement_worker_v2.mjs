@@ -619,6 +619,7 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   validity.edge_margin_px = edgeMarginPx;
   validity.aspect_raw = aspectRaw;
   validity.aspect_norm = aspectNorm;
+  validity.hard_edge_clip = hardEdgeClip;
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
@@ -708,13 +709,33 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   const top = inner.y - outer.y;
   const bottom = outer.y + outer.h - (inner.y + inner.h);
 
-  const lrRatio = left + right > 0 ? left / (left + right) : null;
-  const tbRatio = top + bottom > 0 ? top / (top + bottom) : null;
+  const lrSum = left + right;
+  const tbSum = top + bottom;
+  const lrRatioRaw = lrSum > 0 ? left / lrSum : null;
+  const tbRatioRaw = tbSum > 0 ? top / tbSum : null;
+  let lrNullReason = null;
+  let tbNullReason = null;
+  let lrRatio = lrRatioRaw;
+  let tbRatio = tbRatioRaw;
+  if (lrSum === 0) {
+    lrRatio = null;
+    lrNullReason = 'lr_sum_zero';
+  } else if (!Number.isFinite(lrRatioRaw)) {
+    lrRatio = null;
+    lrNullReason = 'lr_ratio_not_finite';
+  }
+  if (tbSum === 0) {
+    tbRatio = null;
+    tbNullReason = 'tb_sum_zero';
+  } else if (!Number.isFinite(tbRatioRaw)) {
+    tbRatio = null;
+    tbNullReason = 'tb_ratio_not_finite';
+  }
 
   dbg(`${faceLabel}_ratios`, {
     lr_ratio: lrRatio,
     tb_ratio: tbRatio,
-    raw: { left, right, top, bottom },
+    raw: { left, right, top, bottom, lr_sum_px: lrSum, tb_sum_px: tbSum, lr_ratio_raw: lrRatioRaw, tb_ratio_raw: tbRatioRaw, lr_null_reason: lrNullReason, tb_null_reason: tbNullReason },
   });
 
   let confidence = 0.9;
@@ -729,6 +750,19 @@ async function processFace(buffer, faceLabel, userQuad = null) {
   }
 
   dbg(`${faceLabel}_confidence`, { confidence, min_dim: minDim, area_norm: areaNorm, touches_edge: touchesEdge, inner_margin_derived: innerMarginDerived });
+  dbg('centering_ratio_math', {
+    face: faceLabel,
+    left_px: left,
+    right_px: right,
+    top_px: top,
+    bottom_px: bottom,
+    lr_sum_px: lrSum,
+    tb_sum_px: tbSum,
+    lr_ratio_raw: lrRatioRaw,
+    tb_ratio_raw: tbRatioRaw,
+    lr_null_reason: lrNullReason,
+    tb_null_reason: tbNullReason,
+  });
 
   const methodName = quadSource === 'user' ? 'centering_v3_quad_user' : 'centering_v3_quad';
 
@@ -738,6 +772,18 @@ async function processFace(buffer, faceLabel, userQuad = null) {
     confidence,
     lrRatio,
     tbRatio,
+    ratioDebug: {
+      left_px: left,
+      right_px: right,
+      top_px: top,
+      bottom_px: bottom,
+      lr_sum_px: lrSum,
+      tb_sum_px: tbSum,
+      lr_ratio_raw: lrRatioRaw,
+      tb_ratio_raw: tbRatioRaw,
+      lr_null_reason: lrNullReason,
+      tb_null_reason: tbNullReason,
+    },
     raw: { left, right, top, bottom, width_px: width, height_px: height },
     evidence: {
       outer_bbox: outerNorm,
@@ -927,8 +973,20 @@ async function main() {
 
   const lrValid = (v) => typeof v === 'number' && Number.isFinite(v);
   const makeFaceMetrics = (label, result, quality) => {
+    const ratioDebug = result.ratioDebug || {};
+    let lrNullReason = ratioDebug.lr_null_reason ?? null;
+    let tbNullReason = ratioDebug.tb_null_reason ?? null;
+
     const lr = lrValid(result.lrRatio) ? result.lrRatio : null;
     const tb = lrValid(result.tbRatio) ? result.tbRatio : null;
+
+    if (result.lrRatio !== null && !lrValid(result.lrRatio) && !lrNullReason) {
+      lrNullReason = 'lr_ratio_not_finite';
+    }
+    if (result.tbRatio !== null && !lrValid(result.tbRatio) && !tbNullReason) {
+      tbNullReason = 'tb_ratio_not_finite';
+    }
+
     const lrPct = lr === null ? { left: null, right: null } : { left: round1(lr * 100), right: round1((1 - lr) * 100) };
     const tbPct = tb === null ? { top: null, bottom: null } : { top: round1(tb * 100), bottom: round1((1 - tb) * 100) };
     const faceWorstLR = lr === null ? null : Math.max(lrPct.left, lrPct.right);
@@ -939,6 +997,34 @@ async function main() {
     const invalidReason = !isValid ? (result.validity?.failureReason || result.failure_reason || null) : null;
     const tagTierBase = tagTierForFace(label, faceWorst ?? NaN);
     const tagTier = isValid ? tagTierBase : 'below_gem';
+
+    const ratioMath = {
+      left_px: ratioDebug.left_px ?? result.raw?.left ?? null,
+      right_px: ratioDebug.right_px ?? result.raw?.right ?? null,
+      top_px: ratioDebug.top_px ?? result.raw?.top ?? null,
+      bottom_px: ratioDebug.bottom_px ?? result.raw?.bottom ?? null,
+      lr_sum_px: ratioDebug.lr_sum_px ?? (ratioDebug.left_px != null && ratioDebug.right_px != null ? ratioDebug.left_px + ratioDebug.right_px : null),
+      tb_sum_px: ratioDebug.tb_sum_px ?? (ratioDebug.top_px != null && ratioDebug.bottom_px != null ? ratioDebug.top_px + ratioDebug.bottom_px : null),
+      lr_ratio_raw: ratioDebug.lr_ratio_raw ?? null,
+      tb_ratio_raw: ratioDebug.tb_ratio_raw ?? null,
+    };
+
+    const ratioNullReason = {
+      lr: lrNullReason,
+      tb: tbNullReason,
+    };
+
+    const quadGates = {
+      status: result.status ?? (isValid ? 'ok' : 'failed'),
+      hard_failure_reason: result.validity?.failureReason || result.failure_reason || null,
+      hard_edge_clip: result.validity?.hard_edge_clip ?? null,
+      touches_edge: result.validity?.touches_edge ?? null,
+      edge_margin_px: result.validity?.edge_margin_px ?? null,
+      aspect_raw: result.validity?.aspect_raw ?? null,
+      aspect_norm: result.validity?.aspect_norm ?? null,
+      collector_soft_warn: result.validity?.collector_soft_warn ?? null,
+    };
+
     return {
       lr_pct: lrPct,
       tb_pct: tbPct,
@@ -955,6 +1041,11 @@ async function main() {
       aspect_norm: result.validity?.aspect_norm ?? null,
       edge_margin_px: result.validity?.edge_margin_px ?? null,
       touches_edge: result.validity?.touches_edge ?? null,
+      face_debug: {
+        ratio_math: ratioMath,
+        ratio_null_reason: ratioNullReason,
+        quad_gates: quadGates,
+      },
     };
   };
 
