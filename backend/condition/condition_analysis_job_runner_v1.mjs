@@ -139,6 +139,80 @@ function runCenteringWorker(snapshotId) {
   });
 }
 
+function runScratchesWorker(snapshotId) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(
+      'node',
+      [
+        'condition/scratches_surface_worker_v1.mjs',
+        '--snapshot-id',
+        snapshotId,
+        '--analysis-version',
+        'v1_scratches',
+        '--dry-run',
+        'false',
+      ],
+      { stdio: ['ignore', 'inherit', 'inherit'], cwd: process.cwd() },
+    );
+
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) return resolve();
+      reject(new Error(`scratches worker exited with code ${code}`));
+    });
+  });
+}
+
+function runEdgesCornersWorker(snapshotId) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(
+      'node',
+      [
+        'condition/edges_corners_worker_v1.mjs',
+        '--snapshot-id',
+        snapshotId,
+        '--analysis-version',
+        'v1_edges_corners',
+        '--dry-run',
+        'false',
+      ],
+      { stdio: ['ignore', 'inherit', 'inherit'], cwd: process.cwd() },
+    );
+
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) return resolve();
+      reject(new Error(`edges/corners worker exited with code ${code}`));
+    });
+  });
+}
+
+function normalizeAnalysisKeys(payload) {
+  const keys = payload?.analysis_keys;
+  if (Array.isArray(keys) && keys.length > 0) {
+    return keys.filter((k) => typeof k === 'string' && k.trim().length > 0);
+  }
+  return ['v2_centering'];
+}
+
+async function runAnalysisKey(snapshotId, jobId, analysisKey) {
+  const started = Date.now();
+  log('analysis_start', { jobId, snapshotId, analysisKey });
+
+  if (analysisKey === 'v2_centering') {
+    await runCenteringWorker(snapshotId);
+  } else if (analysisKey === 'v1_scratches') {
+    await runScratchesWorker(snapshotId);
+  } else if (analysisKey === 'v1_edges_corners') {
+    await runEdgesCornersWorker(snapshotId);
+  } else {
+    throw new Error(`unknown analysis_key: ${analysisKey}`);
+  }
+
+  const ms = Date.now() - started;
+  log('analysis_ok', { jobId, snapshotId, analysisKey, ms });
+}
+
 async function markStatus(supabase, jobId, status, extra = {}) {
   const { error } = await supabase
     .from('ingestion_jobs')
@@ -216,13 +290,23 @@ async function main() {
 
     const started = Date.now();
     try {
-      await runCenteringWorker(snapshotId);
+      const analysisKeys = normalizeAnalysisKeys(job.payload);
+      log('analysis_plan', { jobId: job.id, snapshotId, analysisKeys });
+
+      for (const analysisKey of analysisKeys) {
+        await runAnalysisKey(snapshotId, job.id, analysisKey);
+      }
+
       await markStatus(supabase, job.id, 'completed');
       const ms = Date.now() - started;
-      log('job_ok', { jobId: job.id, snapshotId, ms });
+      log('job_ok', { jobId: job.id, snapshotId, ms, analysisKeys });
     } catch (err) {
       await markStatus(supabase, job.id, 'failed');
-      log('job_error', { jobId: job.id, snapshotId, error: err.message });
+      log('analysis_failed', {
+        jobId: job.id,
+        snapshotId,
+        error: err.message,
+      });
       backoffMs = 1000;
     }
 
