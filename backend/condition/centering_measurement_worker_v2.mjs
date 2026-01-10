@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import sharp from 'sharp';
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import { detectOuterBorderAI } from './ai_border_detector_client.mjs';
 
 // Allow local overrides without editing .env.local
 if (process.env.SUPABASE_URL_LOCAL) {
@@ -21,6 +22,8 @@ if (process.env.SUPABASE_SECRET_KEY_LOCAL) {
 let DEBUG = false;
 const ENV_BORDER_V2 = process.env.CENTERING_BORDER_V2 === 'true';
 const ENV_DEBUG_OVERLAY = process.env.DEBUG_OVERLAY === 'true';
+const ENV_AI_BORDER_ENABLE = process.env.GV_AI_BORDER_ENABLE === '1';
+const ENV_AI_BORDER_URL = process.env.GV_AI_BORDER_URL || null;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -197,12 +200,18 @@ async function renderOverlay(baseBuffer, overlayInfo, faceLabel) {
 
   const candidates = overlayInfo.candidates || [];
   const chosen = overlayInfo.chosen || null;
+  const proofOuter = overlayInfo?.proof?.outer_box_norm || overlayInfo.outer_box_norm || null;
+  const proofInner = overlayInfo?.proof?.inner_box_norm || overlayInfo.inner_box_norm || null;
+  const proofSource = overlayInfo?.proof?.source_label || overlayInfo.source_label || overlayInfo.quad_source || null;
+  const proofInnerSource = overlayInfo?.proof?.inner_source || overlayInfo.inner_source || null;
   const texts = [
     `face=${faceLabel}`,
     `failure=${overlayInfo.failure_reason ?? 'none'}`,
     `edge_margin_px=${overlayInfo.edge_margin_px ?? 'n/a'}`,
     `aspect_norm=${overlayInfo.aspect_norm ?? 'n/a'}`,
   ];
+  if (proofSource) texts.push(`source=${proofSource}`);
+  if (proofInnerSource) texts.push(`inner=${proofInnerSource}`);
 
   const svgParts = [];
   const colors = ['#ff9800', '#03a9f4', '#9c27b0'];
@@ -222,6 +231,20 @@ async function renderOverlay(baseBuffer, overlayInfo, faceLabel) {
       .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
       .join(' ');
     svgParts.push(`<polygon points="${pts}" fill="none" stroke="#00e676" stroke-width="3" opacity="0.9"/>`);
+  }
+
+  if (proofOuter) {
+    const pts = boxToPoints(proofOuter)
+      .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+      .join(' ');
+    svgParts.push(`<polygon points="${pts}" fill="none" stroke="#00e676" stroke-width="3" opacity="0.9"/>`);
+  }
+
+  if (proofInner) {
+    const pts = boxToPoints(proofInner)
+      .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+      .join(' ');
+    svgParts.push(`<polygon points="${pts}" fill="none" stroke="#ffeb3b" stroke-width="3" opacity="0.9"/>`);
   }
 
   texts.forEach((t, i) => {
@@ -415,6 +438,13 @@ function round1(value) {
 
 function approxEqual(a, b, epsilon) {
   return Math.abs(a - b) <= epsilon;
+}
+
+function outerSourceFromQuad(quadSource, useBorderV2) {
+  if (quadSource === 'user' || quadSource === 'override') return 'user_quad';
+  if (quadSource === 'ai_border') return 'ai_border';
+  if (useBorderV2) return 'v2_heuristic';
+  return 'derived';
 }
 
 const CARD_ASPECT = 0.716; // portrait W/H
@@ -650,6 +680,10 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   const validity = {};
   let quadSource = 'auto';
   let overlayInfo = null;
+  let innerMarginDerived = false;
+  let innerNorm = null;
+  let aiResult = null;
+  const evidenceNotes = [];
 
   if (userQuad) {
     const parsed = parseUserQuad(userQuad);
@@ -697,6 +731,52 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
       hardFailureReason = parsed.reason || 'quad_not_found';
       validity.user_quad_invalid = true;
       validity.failureReason = hardFailureReason;
+    }
+  }
+
+  const aiBorderEnabled = (opts.aiBorderEnabled ?? ENV_AI_BORDER_ENABLE) && !!ENV_AI_BORDER_URL;
+  if (!hardFailureReason && aiBorderEnabled) {
+    let aiImageBuffer = buffer;
+    try {
+      aiImageBuffer = await sharp(buffer).resize({ width: 900, withoutEnlargement: true }).jpeg({ quality: 88 }).toBuffer();
+    } catch (e) {
+      dbg('ai_border_prepare_failed', { face: faceLabel, error: e.message });
+    }
+    try {
+      aiResult = await detectOuterBorderAI({
+        imageBuffer: aiImageBuffer,
+        timeoutMs: opts.aiTimeoutMs ?? 2000,
+      });
+    } catch (e) {
+      aiResult = { ok: false, confidence: 0, notes: [e.message], error: 'ai_exception' };
+    }
+    validity.ai_confidence = clamp01(aiResult?.confidence ?? 0);
+    if (aiResult?.notes?.length) validity.ai_notes = aiResult.notes;
+    if (aiResult?.ok && aiResult.polygon_norm && quadSource !== 'user') {
+      const pts = aiResult.polygon_norm.map((p) => [clamp01(p[0]) * width, clamp01(p[1]) * height]);
+      const xs = pts.map((p) => p[0]);
+      const ys = pts.map((p) => p[1]);
+      const minX = Math.max(0, Math.min(...xs));
+      const maxX = Math.max(0, Math.max(...xs));
+      const minY = Math.max(0, Math.min(...ys));
+      const maxY = Math.max(0, Math.max(...ys));
+      outer = {
+        x: Math.max(0, Math.floor(minX)),
+        y: Math.max(0, Math.floor(minY)),
+        w: Math.max(1, Math.floor(maxX - minX)),
+        h: Math.max(1, Math.floor(maxY - minY)),
+      };
+      outerNorm = normalizeBox(outer, width, height);
+      areaNorm = Math.abs(polygonArea(aiResult.polygon_norm));
+      quadSource = 'ai_border';
+      evidenceNotes.push('ai_border');
+      if (aiResult.mask_png_b64) {
+        validity.ai_mask_preview = true;
+      }
+    } else if (aiResult) {
+      const aiError = aiResult.error || 'ai_border_failed';
+      validity.ai_error = aiError;
+      evidenceNotes.push(`ai_border:${aiError}`);
     }
   }
 
@@ -780,10 +860,20 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
       }
     }
     if (nonZeroXs.length > 0 && nonZeroYs.length > 0) {
-      const minX = Math.min(...nonZeroXs);
-      const maxX = Math.max(...nonZeroXs);
-      const minY = Math.min(...nonZeroYs);
-      const maxY = Math.max(...nonZeroYs);
+      let minX = Infinity;
+      let maxX = -Infinity;
+      let minY = Infinity;
+      let maxY = -Infinity;
+
+      for (let i = 0; i < nonZeroXs.length; i += 1) {
+        const x = nonZeroXs[i];
+        const y = nonZeroYs[i];
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+
       const hullBox = {
         x: Math.max(0, minX),
         y: Math.max(0, minY),
@@ -891,6 +981,10 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     if (touchesEdge && !hardEdgeClip) softWarn = true;
   }
 
+  const outerSource = outerSourceFromQuad(quadSource, useBorderV2);
+  validity.outer_source = outerSource;
+  validity.inner_source = innerMarginDerived ? 'derived' : 'detected';
+  validity.ai_confidence = clamp01(validity.ai_confidence ?? 0);
   validity.isValid = !hardFailureReason;
   validity.collector_soft_warn = softWarn;
   validity.collector_usable = validity.isValid || softWarn;
@@ -906,13 +1000,28 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   validity.hard_edge_clip = hardEdgeClip;
   validity.used_padding = usedPadding;
   validity.pad_px = usedPadding ? padPx : 0;
+  const overlaySourceLabel = outerSource === 'user_quad' ? 'user' : outerSource === 'ai_border' ? 'ai_border' : 'heuristic';
+  const proofOverlayNeeded = wantOverlay || quadSource === 'ai_border' || innerMarginDerived || outerSource === 'derived' || ratiosPerfect;
+  if (!overlayInfo && proofOverlayNeeded) overlayInfo = {};
   if (overlayInfo) {
     overlayInfo.failure_reason = hardFailureReason;
     overlayInfo.aspect_norm = aspectNorm;
+    overlayInfo.edge_margin_px = overlayInfo.edge_margin_px ?? edgeMarginPx;
     overlayInfo.touches_edge = touchesEdge;
     overlayInfo.pad_px = usedPadding ? padPx : 0;
     overlayInfo.used_padding = usedPadding;
+    overlayInfo.outer_box_norm = outerNorm;
+    overlayInfo.inner_box_norm = innerNorm;
+    overlayInfo.source_label = overlaySourceLabel;
+    overlayInfo.inner_source = validity.inner_source;
+    overlayInfo.quad_source = overlayInfo.quad_source || outerSource;
   }
+
+  dbg(`centering_audit_${faceLabel}`, {
+    outer_source: outerSource,
+    inner_source: validity.inner_source,
+    ai_confidence: validity.ai_confidence,
+  });
 
   dbg(`quad_source_${faceLabel}`, quadSource);
 
@@ -953,7 +1062,6 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   const innerStats = stats(crop.data);
   const thresholdInner = Math.max(0, innerStats.mean - innerStats.std * 0.25);
   let innerBoxLocal = findBox(crop.data, crop.info.width, crop.info.height, thresholdInner, 0.05);
-  let innerMarginDerived = false;
 
   if (!innerBoxLocal) {
     innerMarginDerived = true;
@@ -972,6 +1080,7 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     h: innerBoxLocal.h,
   };
 
+  innerNorm = normalizeBox(inner, width, height);
   validity.inner_margin_derived = innerMarginDerived;
 
   dbg(`${faceLabel}_outer_box`, {
@@ -990,7 +1099,7 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   dbg(`${faceLabel}_inner_box`, {
     thresholdInner,
     inner_bbox_px: inner,
-    inner_bbox_norm: normalizeBox(inner, width, height),
+    inner_bbox_norm: innerNorm,
     margins_px: { marginX, marginY },
     margin_pct: 0.08,
     inner_stats: { mean: innerStats.mean, std: innerStats.std },
@@ -1025,6 +1134,13 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     tbNullReason = 'tb_ratio_not_finite';
   }
 
+  const ratiosPerfect =
+    lrRatio !== null &&
+    tbRatio !== null &&
+    approxEqual(lrRatio, 0.5, 0.001) &&
+    approxEqual(tbRatio, 0.5, 0.001);
+  validity.ratios_perfect_50_50 = ratiosPerfect;
+
   dbg(`${faceLabel}_ratios`, {
     lr_ratio: lrRatio,
     tb_ratio: tbRatio,
@@ -1058,6 +1174,13 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
   });
 
   const methodName = quadSource === 'user' ? 'centering_v3_quad_user' : 'centering_v3_quad';
+  const evidenceNotesOut = Array.from(
+    new Set([
+      ...evidenceNotes,
+      ...(quadSource === 'user' ? ['user_quad_v1'] : []),
+    ]),
+  );
+  const shouldRenderOverlay = proofOverlayNeeded;
 
   return {
     status: 'ok',
@@ -1080,13 +1203,13 @@ async function processFace(buffer, faceLabel, userQuad = null, opts = {}) {
     raw: { left, right, top, bottom, width_px: width, height_px: height },
     evidence: {
       outer_bbox: outerNorm,
-      inner_bbox: normalizeBox(inner, width, height),
+      inner_bbox: innerNorm,
       method: methodName,
-      notes: quadSource === 'user' ? ['user_quad_v1'] : [],
+      notes: evidenceNotesOut,
     },
     validity,
     overlay_info: overlayInfo,
-    overlay_base: wantOverlay ? await sharp(buffer).resize({ width: 900, withoutEnlargement: true }).jpeg({ quality: 82 }).toBuffer() : null,
+    overlay_base: shouldRenderOverlay ? await sharp(buffer).resize({ width: 900, withoutEnlargement: true }).jpeg({ quality: 82 }).toBuffer() : null,
   };
 }
 
@@ -1246,22 +1369,50 @@ async function main() {
     snapshotId,
   });
 
+  const outerSources = [
+    frontResult.validity?.outer_source ?? null,
+    backResult.validity?.outer_source ?? null,
+  ];
+  const innerMarginDerivedAny = !!(frontResult.validity?.inner_margin_derived || backResult.validity?.inner_margin_derived);
+  const ratiosPerfectAny = !!(frontResult.validity?.ratios_perfect_50_50 || backResult.validity?.ratios_perfect_50_50);
+  const derivedOuterAny = outerSources.includes('derived');
+  const aiLowConfidence =
+    (outerSources[0] === 'ai_border' && (frontResult.validity?.ai_confidence ?? 0) < 0.5) ||
+    (outerSources[1] === 'ai_border' && (backResult.validity?.ai_confidence ?? 0) < 0.5);
+  const centeringUnverified = innerMarginDerivedAny || ratiosPerfectAny || derivedOuterAny || aiLowConfidence;
+  const frontUsesAI = outerSources[0] === 'ai_border';
+  const backUsesAI = outerSources[1] === 'ai_border';
+
   const wantFrontOverlay =
-    ENV_DEBUG_OVERLAY || frontResult.validity?.failureReason === 'border_not_detected' || frontResult.status === 'failed';
+    ENV_DEBUG_OVERLAY ||
+    frontResult.validity?.failureReason === 'border_not_detected' ||
+    frontResult.status === 'failed' ||
+    centeringUnverified ||
+    frontUsesAI;
   const wantBackOverlay =
-    ENV_DEBUG_OVERLAY || backResult.validity?.failureReason === 'border_not_detected' || backResult.status === 'failed';
+    ENV_DEBUG_OVERLAY ||
+    backResult.validity?.failureReason === 'border_not_detected' ||
+    backResult.status === 'failed' ||
+    centeringUnverified ||
+    backUsesAI;
 
   if (wantFrontOverlay && frontResult.overlay_base && frontResult.overlay_info) {
     try {
       const overlayBuf = await renderOverlay(frontResult.overlay_base, frontResult.overlay_info, 'front');
       if (overlayBuf) {
-        await uploadBufferToStorage(
-          supabase,
-          bucket,
-          `${snapshotId}/debug/centering_front_overlay.jpg`,
-          overlayBuf,
-          'image/jpeg',
-        );
+        const overlayTargets = [`${snapshotId}/debug/centering_front_overlay.jpg`];
+        if (centeringUnverified || frontUsesAI) {
+          overlayTargets.push(`${snapshotId}/debug/centering/front_overlay.jpg`);
+        }
+        for (const target of overlayTargets) {
+          await uploadBufferToStorage(
+            supabase,
+            bucket,
+            target,
+            overlayBuf,
+            'image/jpeg',
+          );
+        }
       }
     } catch (e) {
       logStatus('debug_overlay_render_failed', { face: 'front', error: e.message });
@@ -1272,13 +1423,19 @@ async function main() {
     try {
       const overlayBuf = await renderOverlay(backResult.overlay_base, backResult.overlay_info, 'back');
       if (overlayBuf) {
-        await uploadBufferToStorage(
-          supabase,
-          bucket,
-          `${snapshotId}/debug/centering_back_overlay.jpg`,
-          overlayBuf,
-          'image/jpeg',
-        );
+        const overlayTargets = [`${snapshotId}/debug/centering_back_overlay.jpg`];
+        if (centeringUnverified || backUsesAI) {
+          overlayTargets.push(`${snapshotId}/debug/centering/back_overlay.jpg`);
+        }
+        for (const target of overlayTargets) {
+          await uploadBufferToStorage(
+            supabase,
+            bucket,
+            target,
+            overlayBuf,
+            'image/jpeg',
+          );
+        }
       }
     } catch (e) {
       logStatus('debug_overlay_render_failed', { face: 'back', error: e.message });
@@ -1398,6 +1555,29 @@ async function main() {
   const frontV3 = makeFaceMetrics('front', frontResult, frontQuality);
   const backV3 = makeFaceMetrics('back', backResult, backQuality);
 
+  function combineOverallLR(frontPct, backPct) {
+    if (frontPct && backPct) {
+      return {
+        left: round1((frontPct.left + backPct.left) / 2),
+        right: round1((frontPct.right + backPct.right) / 2),
+      };
+    }
+    return frontPct || backPct || null;
+  }
+
+  function combineOverallTB(frontPct, backPct) {
+    if (frontPct && backPct) {
+      return {
+        top: round1((frontPct.top + backPct.top) / 2),
+        bottom: round1((frontPct.bottom + backPct.bottom) / 2),
+      };
+    }
+    return frontPct || backPct || null;
+  }
+
+  const overall_lr_pct = combineOverallLR(frontV3.lr_pct, backV3.lr_pct);
+  const overall_tb_pct = combineOverallTB(frontV3.tb_pct, backV3.tb_pct);
+
   const frontWorst = Number.isFinite(frontV3.face_worst) ? frontV3.face_worst : Number.POSITIVE_INFINITY;
   const backWorst = Number.isFinite(backV3.face_worst) ? backV3.face_worst : Number.POSITIVE_INFINITY;
 
@@ -1408,7 +1588,13 @@ async function main() {
     overallTag = 'below_gem';
     bgs = 'below';
   }
+  if (centeringUnverified) {
+    overallTag = 'unverified';
+    bgs = 'unverified';
+    overallInvalidReasons.push('centering_unverified');
+  }
   const worstFace = frontWorst >= backWorst ? 'front' : 'back';
+  const overallInvalidReasonsDeduped = Array.from(new Set(overallInvalidReasons));
 
   const centeringV2 = {
     front_lr_ratio: frontResult.lrRatio ?? null,
@@ -1452,11 +1638,16 @@ async function main() {
       collector_soft_warn: overallSoftWarn,
       tag_tier: overallTag,
       bgs_report_bucket: bgs,
+      unverified: centeringUnverified,
       front_worst: Number.isFinite(frontV3.face_worst) ? frontV3.face_worst : null,
       back_worst: Number.isFinite(backV3.face_worst) ? backV3.face_worst : null,
       worst_face: Number.isFinite(frontV3.face_worst) || Number.isFinite(backV3.face_worst) ? worstFace : null,
       confidence_0_1: confidence,
-      invalid_reasons: overallValid ? [] : Array.from(new Set(overallInvalidReasons)),
+      invalid_reasons: centeringUnverified
+        ? overallInvalidReasonsDeduped
+        : (overallValid ? [] : overallInvalidReasonsDeduped),
+      lr_pct: overall_lr_pct,
+      tb_pct: overall_tb_pct,
     },
   };
 
@@ -1497,6 +1688,8 @@ async function main() {
     back_worst: backV3.face_worst,
     tag_tiers: { front: frontV3.tag_tier, back: backV3.tag_tier, overall: overallTag },
     bgs_bucket: bgs,
+    outer_sources: outerSources,
+    centering_unverified: centeringUnverified,
     quality_flags: { front: frontQuality.quality_flags, back: backQuality.quality_flags },
     base_confidence: baseConfidence,
     front_gated_confidence: frontQuality.gated_confidence_0_1,
@@ -1505,6 +1698,7 @@ async function main() {
   });
 
   const scanNotes = ['centering-only'];
+  if (centeringUnverified) scanNotes.push('centering-unverified');
   if (overallSoftWarn) scanNotes.push('collector-soft-warn');
 
   const scanQuality = {
@@ -1534,6 +1728,18 @@ async function main() {
     back_soft_warn: backSoftWarn,
     overall_soft_warn: overallSoftWarn,
   });
+
+  if (
+    analysisStatus === 'ok' &&
+    (
+      !centeringV3?.overall?.lr_pct ||
+      !centeringV3?.overall?.tb_pct
+    )
+  ) {
+    analysisStatus = 'partial';
+    failureReason = 'centering_overall_missing';
+    confidence = Math.min(confidence, 0.3);
+  }
 
   // HARD GUARANTEE: centering_v3 must exist in payload
   if (!measurements || typeof measurements !== 'object') measurements = { version: 2 };
