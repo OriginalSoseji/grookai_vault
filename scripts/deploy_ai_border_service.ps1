@@ -30,8 +30,8 @@ Exec "scp backend/ai_border_service/systemd/grookai-ai-border.service $User@${Re
 
 # 2) Remote install + restart (PowerShell-driven; no embedded bash heredoc)
 Write-Host "== Remote install + restart =="
-Exec "ssh $User@$RemoteHost \"bash -lc 'set -e; cd $RemoteDir; test -d venv; source venv/bin/activate; pip install -r requirements.txt'\""
-Exec "ssh $User@$RemoteHost \"bash -lc 'set -e; sudo mv /tmp/grookai-ai-border.service /etc/systemd/system/$ServiceName; sudo systemctl daemon-reload; sudo systemctl enable $ServiceName >/dev/null 2>&1 || true; sudo systemctl restart $ServiceName'\""
+Exec "ssh $User@$RemoteHost `"bash -lc 'set -e; cd $RemoteDir; test -d venv; source venv/bin/activate; pip install -r requirements.txt'`""
+Exec "ssh $User@$RemoteHost `"bash -lc 'set -e; sudo mv /tmp/grookai-ai-border.service /etc/systemd/system/$ServiceName; sudo systemctl daemon-reload; sudo systemctl enable $ServiceName >/dev/null 2>&1 || true; sudo systemctl restart $ServiceName'`""
 
 Write-Host "== wait for port =="
 $listening = $false
