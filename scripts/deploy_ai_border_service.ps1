@@ -37,7 +37,7 @@ Write-Host "== wait for port =="
 
 $ok = $false
 for ($i = 0; $i -lt 20; $i++) {
-  & ssh "$User@$RemoteHost" "bash -lc 'ss -lntp | grep -q \":$Port\"'"
+  & ssh "$User@$RemoteHost" "ss -lntp | grep -q :$Port"
   if ($LASTEXITCODE -eq 0) {
     Write-Host "Port is listening: $Port"
     $ok = $true
@@ -48,8 +48,8 @@ for ($i = 0; $i -lt 20; $i++) {
 
 if (-not $ok) {
   Write-Host "ERROR: port $Port is not listening"
-  & ssh "$User@$RemoteHost" "bash -lc 'sudo systemctl status $ServiceName --no-pager || true'" | Out-Host
-  & ssh "$User@$RemoteHost" "bash -lc 'sudo journalctl -u $ServiceName -n 80 --no-pager || true'" | Out-Host
+  & ssh "$User@$RemoteHost" "sudo systemctl status $ServiceName" | Out-Host
+  & ssh "$User@$RemoteHost" "sudo journalctl -u $ServiceName" | Out-Host
   exit 1
 }
 
@@ -59,8 +59,8 @@ try {
   Write-Host "HTTP OK /docs => $($resp.StatusCode)"
 } catch {
   Write-Host "ERROR: /docs check failed"
-  & ssh "$User@$RemoteHost" "bash -lc 'sudo systemctl status $ServiceName --no-pager || true'" | Out-Host
-  & ssh "$User@$RemoteHost" "bash -lc 'sudo journalctl -u $ServiceName -n 80 --no-pager || true'" | Out-Host
+  & ssh "$User@$RemoteHost" "sudo systemctl status $ServiceName" | Out-Host
+  & ssh "$User@$RemoteHost" "sudo journalctl -u $ServiceName" | Out-Host
   throw
 }
 
