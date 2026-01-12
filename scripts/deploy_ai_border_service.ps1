@@ -34,24 +34,22 @@ Exec "ssh $User@$RemoteHost `"bash -lc 'set -e; cd $RemoteDir; test -d venv; sou
 Exec "ssh $User@$RemoteHost `"bash -lc 'set -e; sudo mv /tmp/grookai-ai-border.service /etc/systemd/system/$ServiceName; sudo systemctl daemon-reload; sudo systemctl enable $ServiceName >/dev/null 2>&1 || true; sudo systemctl restart $ServiceName'`""
 
 Write-Host "== wait for port =="
-$listening = $false
+
+$ok = $false
 for ($i = 0; $i -lt 20; $i++) {
-  try {
-    & ssh $User@$RemoteHost "bash -lc 'ss -lntp | grep -q \":$Port\"'"
-    if ($LASTEXITCODE -eq 0) {
-      Write-Host "Port is listening: $Port"
-      $listening = $true
-      break
-    }
-  } catch {
+  & ssh "$User@$RemoteHost" "bash -lc 'ss -lntp | grep -q \":$Port\"'"
+  if ($LASTEXITCODE -eq 0) {
+    Write-Host "Port is listening: $Port"
+    $ok = $true
+    break
   }
   Start-Sleep -Milliseconds 500
 }
 
-if (-not $listening) {
+if (-not $ok) {
   Write-Host "ERROR: port $Port is not listening"
-  & ssh $User@$RemoteHost "bash -lc 'sudo systemctl status $ServiceName --no-pager || true'"
-  & ssh $User@$RemoteHost "bash -lc 'sudo journalctl -u $ServiceName -n 80 --no-pager || true'"
+  & ssh "$User@$RemoteHost" "bash -lc 'sudo systemctl status $ServiceName --no-pager || true'" | Out-Host
+  & ssh "$User@$RemoteHost" "bash -lc 'sudo journalctl -u $ServiceName -n 80 --no-pager || true'" | Out-Host
   exit 1
 }
 
@@ -61,6 +59,8 @@ try {
   Write-Host "HTTP OK /docs => $($resp.StatusCode)"
 } catch {
   Write-Host "ERROR: /docs check failed"
+  & ssh "$User@$RemoteHost" "bash -lc 'sudo systemctl status $ServiceName --no-pager || true'" | Out-Host
+  & ssh "$User@$RemoteHost" "bash -lc 'sudo journalctl -u $ServiceName -n 80 --no-pager || true'" | Out-Host
   throw
 }
 
