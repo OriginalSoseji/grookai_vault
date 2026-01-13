@@ -10,6 +10,7 @@ import { detectOuterBorderAI } from './ai_border_detector_client.mjs';
 import { warpCardAI } from './ai_warp_client.mjs';
 import { computeDHash64, computePHash64, hamming64 } from './fingerprint_hashes_v1.mjs';
 import { scoreMatch, decisionFromScore } from './fingerprint_match_v1.mjs';
+import { deriveFingerprintKeyV1 } from './fingerprint_key_v1.mjs';
 
 const AI_BORDER_TIMEOUT_MS = 6000;
 
@@ -262,11 +263,11 @@ async function main() {
   const supabase = createBackendClient();
   const started = Date.now();
 
-  const { data: snap, error: snapErr } = await supabase
-    .from('condition_snapshots')
-    .select('id, user_id, images')
-    .eq('id', snapshotId)
-    .maybeSingle();
+    const { data: snap, error: snapErr } = await supabase
+      .from('condition_snapshots')
+      .select('id, user_id, vault_item_id, images')
+      .eq('id', snapshotId)
+      .maybeSingle();
 
   if (snapErr || !snap) {
     const reason = snapErr ? 'SNAPSHOT_READ_ERROR' : 'SNAPSHOT_NOT_FOUND';
@@ -528,6 +529,60 @@ async function main() {
 
   measurements.fingerprint.match = matchResult;
 
+  const fingerprintKey = deriveFingerprintKeyV1(measurements);
+  if (DEBUG) {
+    console.log(`[fingerprint][key] fingerprint_key=${fingerprintKey || 'null'}`);
+  }
+
+  let existingBinding = null;
+  if (fingerprintKey) {
+    try {
+      const { data: bindRow } = await supabase
+        .from('fingerprint_bindings')
+        .select('vault_item_id, snapshot_id, analysis_key, last_seen_at')
+        .eq('user_id', snap.user_id)
+        .eq('fingerprint_key', fingerprintKey)
+        .maybeSingle();
+      if (bindRow) existingBinding = bindRow;
+    } catch (_) {
+      existingBinding = null;
+    }
+  }
+
+  const seenBefore = {
+    is_seen_before: false,
+    vault_item_id: null,
+    reason: 'no_hashes',
+    best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id || null,
+    score: null,
+  };
+
+  const bestScore = typeof matchResult.debug?.score === 'number' ? matchResult.debug.score : null;
+  if (!fingerprintKey) {
+    seenBefore.reason = 'no_hashes';
+  } else if (matchResult.debug?.reason === 'no_candidates') {
+    seenBefore.reason = 'no_candidates';
+    seenBefore.score = bestScore;
+  } else if (matchResult.decision === 'same') {
+    seenBefore.score = bestScore;
+    if (existingBinding?.vault_item_id) {
+      seenBefore.is_seen_before = true;
+      seenBefore.vault_item_id = existingBinding.vault_item_id;
+      seenBefore.reason = 'same_match_bound';
+    } else {
+      seenBefore.is_seen_before = false;
+      seenBefore.reason = 'same_match_unbound';
+    }
+  } else if (matchResult.decision === 'different') {
+    seenBefore.reason = 'different';
+    seenBefore.score = bestScore;
+  } else {
+    seenBefore.reason = 'uncertain';
+    seenBefore.score = bestScore;
+  }
+
+  measurements.fingerprint.seen_before = seenBefore;
+
   const scanQuality = {
     version: 1,
     ok: analysisStatus === 'ok',
@@ -557,9 +612,9 @@ async function main() {
     return;
   }
 
-  try {
-    const { error: insertErr, data: inserted } = await supabase.rpc(
-      'admin_condition_assist_insert_analysis_v1',
+    try {
+      const { error: insertErr, data: inserted } = await supabase.rpc(
+        'admin_condition_assist_insert_analysis_v1',
       {
         p_snapshot_id: snapshotId,
         p_analysis_version: analysisVersion,
@@ -584,14 +639,79 @@ async function main() {
       return;
     }
 
-    if (!inserted) {
-      logStatus('noop', { snapshotId, analysisVersion, analysisKey, reason: 'duplicate' });
-      return;
-    }
+      if (!inserted) {
+        logStatus('noop', { snapshotId, analysisVersion, analysisKey, reason: 'duplicate' });
+        return;
+      }
 
-    const elapsedMs = Date.now() - started;
-    logStatus('ok', { snapshotId, analysisVersion, analysisKey, ms: elapsedMs, analysis_status: analysisStatus });
-  } catch (e) {
+      if (fingerprintKey) {
+        if (!existingBinding) {
+          await supabase.rpc('admin_fingerprint_event_insert_v1', {
+            p_user_id: snap.user_id,
+            p_analysis_key: analysisKey,
+            p_event_type: 'fingerprint_created',
+            p_snapshot_id: snapshotId,
+            p_fingerprint_key: fingerprintKey,
+            p_vault_item_id: snap.vault_item_id,
+            p_event_metadata: { best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id, score: matchResult.debug?.score ?? null },
+          });
+        }
+
+        await supabase.rpc('admin_fingerprint_bind_v1', {
+          p_user_id: snap.user_id,
+          p_fingerprint_key: fingerprintKey,
+          p_vault_item_id: snap.vault_item_id,
+          p_snapshot_id: snapshotId,
+          p_analysis_key: analysisKey,
+        });
+
+        await supabase.rpc('admin_fingerprint_event_insert_v1', {
+          p_user_id: snap.user_id,
+          p_analysis_key: analysisKey,
+          p_event_type: 'fingerprint_bound_to_vault_item',
+          p_snapshot_id: snapshotId,
+          p_fingerprint_key: fingerprintKey,
+          p_vault_item_id: snap.vault_item_id,
+          p_event_metadata: { best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id, score: matchResult.debug?.score ?? null },
+        });
+
+        if (matchResult.decision === 'same') {
+          await supabase.rpc('admin_fingerprint_event_insert_v1', {
+            p_user_id: snap.user_id,
+            p_analysis_key: analysisKey,
+            p_event_type: 'fingerprint_matched',
+            p_snapshot_id: snapshotId,
+            p_fingerprint_key: fingerprintKey,
+            p_vault_item_id: snap.vault_item_id,
+            p_event_metadata: { best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id, score: matchResult.debug?.score ?? null },
+          });
+          if (seenBefore.is_seen_before) {
+            await supabase.rpc('admin_fingerprint_event_insert_v1', {
+              p_user_id: snap.user_id,
+              p_analysis_key: analysisKey,
+              p_event_type: 'fingerprint_rescan',
+              p_snapshot_id: snapshotId,
+              p_fingerprint_key: fingerprintKey,
+              p_vault_item_id: seenBefore.vault_item_id,
+              p_event_metadata: { best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id, score: matchResult.debug?.score ?? null },
+            });
+          } else {
+            await supabase.rpc('admin_fingerprint_event_insert_v1', {
+              p_user_id: snap.user_id,
+              p_analysis_key: analysisKey,
+              p_event_type: 'fingerprint_match_unbound',
+              p_snapshot_id: snapshotId,
+              p_fingerprint_key: fingerprintKey,
+              p_vault_item_id: snap.vault_item_id,
+              p_event_metadata: { best_candidate_snapshot_id: matchResult.best_candidate_snapshot_id, score: matchResult.debug?.score ?? null },
+            });
+          }
+        }
+      }
+
+      const elapsedMs = Date.now() - started;
+      logStatus('ok', { snapshotId, analysisVersion, analysisKey, ms: elapsedMs, analysis_status: analysisStatus });
+    } catch (e) {
     logStatus('error', { snapshotId, analysisVersion, analysisKey, reason: 'exception', detail: e?.message || e });
   }
 }
