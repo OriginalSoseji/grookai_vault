@@ -10,9 +10,9 @@ grant execute on function public.admin_condition_assist_insert_analysis_v1(
 ) to service_role;
 
 revoke all on function public.admin_condition_assist_insert_failure_v1(
-  uuid, uuid, text, text, text, text
+  uuid, text, text, text, text
 ) from public, anon, authenticated;
 
 grant execute on function public.admin_condition_assist_insert_failure_v1(
-  uuid, uuid, text, text, text, text
+  uuid, text, text, text, text
 ) to service_role;
