@@ -1,11 +1,6 @@
 // backend/supabase_backend_client.mjs
-import dotenv from 'dotenv';
+import './env.mjs';
 import { createClient } from '@supabase/supabase-js';
-
-dotenv.config({
-  path: '.env.local',
-  override: true,
-});
 
 let hasLoggedSupabaseUrl = false;
 
