@@ -132,3 +132,85 @@ export async function detectOuterBorderAI({ imageBuffer, timeoutMs = 2000 }) {
     notes,
   };
 }
+
+export async function warpCardQuadAI({ imageBuffer, quadNorm, outW, outH, timeoutMs = 4000 }) {
+  const notes = [];
+  const enabled = process.env.GV_AI_BORDER_ENABLE === '1';
+  const baseUrl = process.env.GV_AI_BORDER_URL || '';
+
+  if (!enabled || !baseUrl) {
+    return { ok: false, imageBuffer: null, notes, error: 'ai_disabled' };
+  }
+
+  if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_input' };
+  }
+
+  if (!Array.isArray(quadNorm) || quadNorm.length !== 4) {
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_quad' };
+  }
+
+  if (!Number.isInteger(outW) || !Number.isInteger(outH) || outW <= 0 || outH <= 0) {
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_size' };
+  }
+
+  if (typeof fetch !== 'function') {
+    return { ok: false, imageBuffer: null, notes: [...notes, 'fetch_unavailable'], error: 'ai_unavailable' };
+  }
+
+  const endpoint = `${baseUrl.replace(/\/$/, '')}/warp-card-quad`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), Math.max(500, timeoutMs));
+
+  let response;
+  try {
+    response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        image_b64: imageBuffer.toString('base64'),
+        quad_norm: quadNorm,
+        out_w: outW,
+        out_h: outH,
+      }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    clearTimeout(timer);
+    const reason = err.name === 'AbortError' ? 'ai_warp_timeout' : 'ai_warp_network_error';
+    notes.push(err.message);
+    return { ok: false, imageBuffer: null, notes, error: reason };
+  }
+  clearTimeout(timer);
+
+  if (!response.ok) {
+    notes.push(`http_${response.status}`);
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_http_error' };
+  }
+
+  let payload;
+  try {
+    payload = await response.json();
+  } catch (err) {
+    notes.push('invalid_json');
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_json' };
+  }
+  if (!payload || typeof payload !== 'object') {
+    notes.push('invalid_payload');
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_payload' };
+  }
+
+  const warpedB64 = payload?.warped_jpg_b64 || payload?.warped_b64;
+  if (typeof warpedB64 !== 'string' || warpedB64.length < 16) {
+    notes.push('missing_warped_payload');
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_payload' };
+  }
+
+  try {
+    const imageBufferOut = Buffer.from(warpedB64, 'base64');
+    return { ok: true, imageBuffer: imageBufferOut, notes, error: null };
+  } catch (err) {
+    notes.push('buffer_from_failed');
+    return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_payload' };
+  }
+}

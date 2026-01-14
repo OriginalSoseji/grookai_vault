@@ -6,7 +6,7 @@ import '../env.mjs';
 import crypto from 'node:crypto';
 import sharp from 'sharp';
 import { createBackendClient } from '../supabase_backend_client.mjs';
-import { detectOuterBorderAI } from './ai_border_detector_client.mjs';
+import { detectOuterBorderAI, warpCardQuadAI } from './ai_border_detector_client.mjs';
 import { computeDHash64, computePHash64, hamming64 } from './fingerprint_hashes_v1.mjs';
 import { scoreMatch, decisionFromScore } from './fingerprint_match_v1.mjs';
 import { deriveFingerprintKeyV1 } from './fingerprint_key_v1.mjs';
@@ -153,9 +153,31 @@ function validateQuad(quadAbs, imgW, imgH, { aiNotes = [] } = {}) {
   }
   const xs = quadAbs.map((p) => p.x);
   const ys = quadAbs.map((p) => p.y);
-  const wNorm = (Math.max(...xs) - Math.min(...xs)) / imgW;
-  const hNorm = (Math.max(...ys) - Math.min(...ys)) / imgH;
-  const aspect = wNorm > 0 && hNorm > 0 ? wNorm / hNorm : 0;
+  const wPx = Math.max(...xs) - Math.min(...xs);
+  const hPx = Math.max(...ys) - Math.min(...ys);
+  const wNorm = wPx / imgW;
+  const hNorm = hPx / imgH;
+  const aspect = wPx > 0 && hPx > 0 ? wPx / hPx : 0;
+  if (process.env.GV_DEBUG === '1' || globalThis.FP_DEBUG) {
+    console.log(
+      JSON.stringify({
+        ts: new Date().toISOString(),
+        event: 'validate_quad_debug',
+        imgW,
+        imgH,
+        xs_min: Math.min(...xs),
+        xs_max: Math.max(...xs),
+        ys_min: Math.min(...ys),
+        ys_max: Math.max(...ys),
+        wPx,
+        hPx,
+        wNorm,
+        hNorm,
+        aspect,
+        quadAbs,
+      }),
+    );
+  }
   const bounds = { min: 0.4, max: 0.9 };
   let aspectDecision = 'ok';
   let aspectFlipped = null;
@@ -177,10 +199,10 @@ function validateQuad(quadAbs, imgW, imgH, { aiNotes = [] } = {}) {
   return { ok: true, flags, areaNorm, aspect, aspect_flipped: aspectFlipped, aspect_bounds: bounds, aspect_decision: aspectDecision, ai_notes: aiNotes.slice(0, 5) };
 }
 
-function normToAbs(norm, w, h) {
+function normToAbs(norm, imageW, imageH) {
   return norm.map(([x, y]) => ({
-    x: (Number(x) || 0) * w,
-    y: (Number(y) || 0) * h,
+    x: (Number(x) || 0) * imageW,
+    y: (Number(y) || 0) * imageH,
   }));
 }
 
@@ -210,6 +232,17 @@ async function processFace({ buffer, faceLabel }) {
 
   const quadAbs = normToAbs(ai.polygon_norm, width, height);
   const validation = validateQuad(quadAbs, width, height, { aiNotes: ai.notes || [] });
+  const aspectDiag =
+    validation.flags && validation.flags.includes('quad_aspect_out_of_range')
+      ? {
+          face: faceLabel,
+          image_w: width,
+          image_h: height,
+          quad_points: ai.polygon_norm || [],
+          ai_confidence: ai?.confidence ?? null,
+          ai_notes: ai?.notes || [],
+        }
+      : null;
   if (!validation.ok) {
     return {
       status: 'failed',
@@ -223,10 +256,11 @@ async function processFace({ buffer, faceLabel }) {
         aspect_decision: validation.aspect_decision ?? null,
         ai_notes: validation.ai_notes ?? null,
       },
+      aspectDiag,
     };
   }
 
-  const warpRes = await detectOuterBorderAI({
+  const warpRes = await warpCardQuadAI({
     imageBuffer: buffer,
     quadNorm: ai.polygon_norm,
     outW: 1024,
@@ -250,6 +284,15 @@ async function processFace({ buffer, faceLabel }) {
       },
       normalized: null,
     };
+  }
+
+  if (globalThis.FP_DEBUG) {
+    logStatus('ai_warp_debug', {
+      face: faceLabel,
+      ok: warpRes.ok,
+      error: warpRes.error || null,
+      notes_count: Array.isArray(warpRes.notes) ? warpRes.notes.length : 0,
+    });
   }
 
   return {
@@ -281,6 +324,9 @@ async function main() {
   const dryRun = !!args.dryRun;
   const emitResultJson = !!args.emitResultJson;
   const DEBUG = !!args.debug;
+  if (globalThis.FP_DEBUG) {
+    globalThis.FP_DEBUG = true;
+  }
 
   const supabase = createBackendClient();
   const started = Date.now();
@@ -363,13 +409,13 @@ async function main() {
       const phash = await computePHash64(face.normalized);
       const dhash = await computeDHash64(face.normalized);
       fpFeatures[label] = { phash, dhash };
-      if (DEBUG) {
+      if (globalThis.FP_DEBUG) {
         console.log(`[fingerprint][hash] face=${label} phash=${phash} dhash=${dhash}`);
       }
     } catch (e) {
       const token = (e?.message || 'hash_failed').slice(0, 80);
       fpFlags[label].push('hash_failed', `hash_error:${token}`);
-      if (DEBUG) {
+      if (globalThis.FP_DEBUG) {
         console.log(`[fingerprint][hash] face=${label} failed: ${token}`);
       }
     }
@@ -432,16 +478,35 @@ async function main() {
   } else if (frontOk || backOk) {
     analysisStatus = 'partial';
     failureReason = 'one_face_failed';
-  } else if (anyQuadValid) {
-    analysisStatus = 'failed';
-    failureReason = 'warp_failed';
-  }
+    } else if (anyQuadValid) {
+      analysisStatus = 'failed';
+      failureReason = 'warp_failed';
+    }
 
-  // Matching (same-user only) using hashes
-  const curFeatures = measurements.fingerprint.features;
-  const cur = {
-    front: curFeatures?.front || null,
-    back: curFeatures?.back || null,
+    const shouldLogQuadDebug = DEBUG || failureReason === 'fingerprint_no_quads';
+    if (shouldLogQuadDebug) {
+      [
+        { label: 'front', face: front },
+        { label: 'back', face: back },
+      ].forEach(({ label, face }) => {
+        if (face?.aspectDiag) {
+          logStatus('ai_quad_debug', {
+            face: label,
+            image_w: face.aspectDiag.image_w,
+            image_h: face.aspectDiag.image_h,
+            quad_points: face.aspectDiag.quad_points,
+            ai_confidence: face.aspectDiag.ai_confidence ?? null,
+            ai_notes: face.aspectDiag.ai_notes || [],
+          });
+        }
+      });
+    }
+
+    // Matching (same-user only) using hashes
+    const curFeatures = measurements.fingerprint.features;
+    const cur = {
+      front: curFeatures?.front || null,
+      back: curFeatures?.back || null,
   };
 
   const matchResult = {
@@ -473,7 +538,7 @@ async function main() {
       candidates = [];
     }
 
-    if (DEBUG) {
+    if (globalThis.FP_DEBUG) {
       console.log(`[fingerprint][match] fetched candidates=${candidates.length}`);
     }
 
@@ -526,13 +591,13 @@ async function main() {
       matchResult.decision = 'uncertain';
       matchResult.confidence_0_1 = 0.0;
       matchResult.best_candidate_snapshot_id = null;
-      if (DEBUG) console.log('[fingerprint][match] no candidates => decision=uncertain');
+      if (globalThis.FP_DEBUG) console.log('[fingerprint][match] no candidates => decision=uncertain');
     } else if (shortlist.length === 0) {
       matchResult.debug.reason = 'no_candidates';
       matchResult.decision = 'uncertain';
       matchResult.confidence_0_1 = 0.0;
       matchResult.best_candidate_snapshot_id = null;
-      if (DEBUG) console.log('[fingerprint][match] shortlist empty => decision=uncertain');
+      if (globalThis.FP_DEBUG) console.log('[fingerprint][match] shortlist empty => decision=uncertain');
     } else {
       for (const cand of shortlist) {
         try {
@@ -554,12 +619,12 @@ async function main() {
         matchResult.decision = 'uncertain';
         matchResult.confidence_0_1 = 0.0;
         matchResult.best_candidate_snapshot_id = null;
-        if (DEBUG) console.log('[fingerprint][match] no_face_overlap or zero score => decision=uncertain');
+        if (globalThis.FP_DEBUG) console.log('[fingerprint][match] no_face_overlap or zero score => decision=uncertain');
       } else {
         const decision = decisionFromScore(bestScore);
         matchResult.decision = decision;
         matchResult.confidence_0_1 = decision === 'uncertain' ? 0.0 : bestScore;
-        if (DEBUG) {
+        if (globalThis.FP_DEBUG) {
           console.log(`[fingerprint][match] shortlisted=${shortlist.length} bestScore=${bestScore.toFixed(3)} decision=${decision} bestSnap=${bestSnap}`);
         }
       }
@@ -569,7 +634,7 @@ async function main() {
   measurements.fingerprint.match = matchResult;
 
   const fingerprintKey = deriveFingerprintKeyV1(measurements);
-  if (DEBUG) {
+  if (globalThis.FP_DEBUG) {
     console.log(`[fingerprint][key] fingerprint_key=${fingerprintKey || 'null'}`);
   }
 
