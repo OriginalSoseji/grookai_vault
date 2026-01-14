@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+dotenv.config({
+  path: process.env.DOTENV_CONFIG_PATH || '.env.local',
+});
 dotenv.config();
 
 export {};
