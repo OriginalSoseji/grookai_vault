@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "condition:run-jobner-v1": "node condition/condition_analysis_job_runner_v1.mjs",
+    "condition:worker": "node condition/condition_analysis_job_runner_v1.mjs",
+    "condition:worker:once": "node condition/condition_analysis_job_runner_v1.mjs --once --max-jobs 1",
+    "pricing:worker": "node pricing/pricing_job_runner_v1.mjs",
+    "pricing:worker:once": "node pricing/pricing_job_runner_v1.mjs --once --max-jobs 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.89.0",
+    "dotenv": "^17.2.3",
+    "sharp": "^0.33.2"
+  }
+}

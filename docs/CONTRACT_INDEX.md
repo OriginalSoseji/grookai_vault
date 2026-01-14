@@ -18,6 +18,7 @@ If a contract is missing from this index, it is not authoritative.
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
+| CODEX_GUARDRAILS_CONTRACT_V1 | Active | docs/contracts/CODEX_GUARDRAILS_CONTRACT_V1.md | Governance / Foundations | 2025-12-31 | Hard-stop safety gates for Codex (migrations, staging, scope, target, secrets) |
 
 ---
 
@@ -42,6 +43,16 @@ If a contract is missing from this index, it is not authoritative.
 | IMAGE_BACKFILL_CONTRACT_V1 | Active | Controlled, tiered image backfill rules |
 | IDENTITY_IMAGE_SYSTEM_V1_5 | Active | Canonical identity image generation and ownership |
 | USER_PHOTO_NORMALIZATION_PIPELINE_V1 | Planned | Backend normalization of user-uploaded images |
+
+---
+
+## 🧪 SCANNER & CONDITION CONTRACTS
+
+| Contract | Status | Lane | File | Date | Description |
+|--------|--------|------|------|------|-------------|
+| GROOKAI_FINGERPRINT_CONDITION_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/GROOKAI_FINGERPRINT_CONDITION_CONTRACT_V1.md | — | Option B: legacy `public.scans` quarantined; new append-only `condition_snapshots` (design-first, schema later) |
+| NO_DRIFT_SCANNER_CONDITION_PHASE0_PLAN | Planned | Scanner & Condition | docs/checkpoints/NO_DRIFT_SCANNER_CONDITION_PHASE0_PLAN.md | — | Phase 0 checkpoint: define snapshot schema before scan UI; enforce no stored grades/bands and immutable inserts |
+| CONDITION_ASSIST_ANALYSIS_WORKER_V1 | Active | Backend Highway | docs/contracts/CONDITION_ASSIST_ANALYSIS_WORKER_V1.md | 2025-12-30 | Append-only analysis worker writes to `condition_snapshot_analyses`; never updates/deletes snapshots; no grades/bands stored |
 
 ---
 

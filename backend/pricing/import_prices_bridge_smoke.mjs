@@ -3,11 +3,7 @@
 // Behavior: calls Edge with { mode: 'run', dryRun: true, limit: 5 }
 // and logs the status + JSON.
 
-import dotenv from 'dotenv';
-
-dotenv.config({
-  path: process.env.DOTENV_CONFIG_PATH || '.env.local',
-});
+import '../env.mjs';
 
 const EDGE_URL =
   'https://ycdxbpibncqcchqiihfz.supabase.co/functions/v1/import-prices-bridge';

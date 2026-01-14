@@ -1,0 +1,2 @@
+-- LEGACY STUB (receipt only) - DO NOT EDIT
+-- Purpose: Align migration ledger only. This file must contain NO schema-changing SQL.

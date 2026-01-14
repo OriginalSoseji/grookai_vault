@@ -1,11 +1,6 @@
 // backend/supabase_backend_client.mjs
-import dotenv from 'dotenv';
+import './env.mjs';
 import { createClient } from '@supabase/supabase-js';
-
-dotenv.config({
-  path: '.env.local',
-  override: true,
-});
 
 let hasLoggedSupabaseUrl = false;
 
@@ -20,6 +15,7 @@ let hasLoggedSupabaseUrl = false;
 export function createBackendClient() {
   const url = process.env.SUPABASE_URL;
   const secret = process.env.SUPABASE_SECRET_KEY;
+  const userToken = process.env.GV_USER_ACCESS_TOKEN;
 
   if (!hasLoggedSupabaseUrl) {
     console.log('[supabase-backend] using url=', url);
@@ -33,11 +29,27 @@ export function createBackendClient() {
     throw new Error('[backend-client] SUPABASE_SECRET_KEY is not set.');
   }
 
+  const options = userToken
+    ? {
+        global: {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        },
+      }
+    : {};
+
   const client = createClient(url, secret, {
     auth: {
       persistSession: false,
     },
+    ...options,
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    const mode = userToken ? 'user' : 'system';
+    console.log(`[supabase-backend] auth_mode=${mode}`);
+  }
 
   return client;
 }
