@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import sharp from 'sharp';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { detectOuterBorderAI } from './ai_border_detector_client.mjs';
-import { warpCardAI } from './ai_warp_client.mjs';
+import { detectAndWarpCard } from './ai_border_detector_client.mjs';
 import { computeDHash64, computePHash64, hamming64 } from './fingerprint_hashes_v1.mjs';
 import { scoreMatch, decisionFromScore } from './fingerprint_match_v1.mjs';
 import { deriveFingerprintKeyV1 } from './fingerprint_key_v1.mjs';
@@ -204,7 +204,7 @@ async function processFace({ buffer, faceLabel }) {
     };
   }
 
-  const warpRes = await warpCardAI({
+  const warpRes = await detectAndWarpCard({
     imageBuffer: buffer,
     quadNorm: ai.polygon_norm,
     outW: 1024,
