@@ -204,7 +204,7 @@ async function processFace({ buffer, faceLabel }) {
     };
   }
 
-  const warpRes = await detectAndWarpCard({
+  const warpRes = await detectOuterBorderAI({
     imageBuffer: buffer,
     quadNorm: ai.polygon_norm,
     outW: 1024,
