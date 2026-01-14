@@ -10,6 +10,12 @@ import { detectOuterBorderAI } from './ai_border_detector_client.mjs';
 import { computeDHash64, computePHash64, hamming64 } from './fingerprint_hashes_v1.mjs';
 import { scoreMatch, decisionFromScore } from './fingerprint_match_v1.mjs';
 import { deriveFingerprintKeyV1 } from './fingerprint_key_v1.mjs';
+import pg from 'pg';
+
+const { Pool } = pg;
+const pgPool = new Pool({
+  connectionString: process.env.SUPABASE_DB_URL,
+});
 
 const AI_BORDER_TIMEOUT_MS = 6000;
 
@@ -60,10 +66,27 @@ function sha256Hex(input) {
 }
 
 async function downloadImage(supabase, bucket, path) {
-  const { data, error } = await supabase.storage.from(bucket).download(path);
-  if (error) return { error };
-  if (!data) return { error: new Error('empty_download') };
-  const buf = Buffer.from(await data.arrayBuffer());
+  const targetBucket = typeof path === 'object' && path !== null && path.bucket ? path.bucket : bucket;
+  const targetPath = typeof path === 'object' && path !== null && path.path ? path.path : path;
+
+  const { data: signedUrlData, error: signErr } = await supabase.storage
+    .from(targetBucket)
+    .createSignedUrl(targetPath, 60);
+  if (signErr || !signedUrlData?.signedUrl) {
+    return { error: new Error(`signed_url_failed:${signErr?.message || 'unknown'}`) };
+  }
+
+  logStatus('image_download', {
+    image_download_source: 'signed_url',
+    bucket: targetBucket,
+    path: targetPath,
+  });
+
+  const res = await fetch(signedUrlData.signedUrl);
+  if (!res.ok) {
+    return { error: new Error(`signed_url_fetch_failed:${res.status}`) };
+  }
+  const buf = Buffer.from(await res.arrayBuffer());
   return { data: buf };
 }
 
@@ -262,28 +285,45 @@ async function main() {
   const supabase = createBackendClient();
   const started = Date.now();
 
-    const { data: snap, error: snapErr } = await supabase
-      .from('condition_snapshots')
-      .select('id, user_id, vault_item_id, images')
-      .eq('id', snapshotId)
-      .maybeSingle();
-
-  if (snapErr || !snap) {
-    const reason = snapErr ? 'SNAPSHOT_READ_ERROR' : 'SNAPSHOT_NOT_FOUND';
-    const detail = snapErr?.message ?? 'Snapshot not found';
-    logStatus('error', { snapshotId, analysisVersion, reason, detail });
-    if (!dryRun) {
-      await supabase.rpc('admin_condition_assist_insert_failure_v1', {
-        p_snapshot_id: snap ? snap.id : null,
-        p_attempted_snapshot_id: snapshotId,
-        p_analysis_version: analysisVersion,
-        p_analysis_key: null,
-        p_error_code: reason,
-        p_error_detail: detail,
-      });
+    if (!process.env.SUPABASE_DB_URL) {
+      throw new Error('SNAPSHOT_READ_FAILED (admin_condition_snapshots_read_v1_db): missing SUPABASE_DB_URL');
     }
-    process.exit(1);
-  }
+
+    let snap = null;
+    try {
+      const res = await pgPool.query(
+        'select * from public.admin_condition_snapshots_read_v1($1)',
+        [snapshotId],
+      );
+      snap = res.rows[0] ?? null;
+    } catch (err) {
+      throw new Error(`SNAPSHOT_READ_FAILED (admin_condition_snapshots_read_v1_db): ${err.message}`);
+    }
+
+    if (!snap) {
+      const e = new Error('Snapshot not found');
+      e.code = 'SNAPSHOT_NOT_FOUND';
+      throw e;
+    }
+
+    logStatus('snapshot_read', { snapshotId, snapshot_read_source: 'admin_condition_snapshots_read_v1_db', vault_item_id: snap.vault_item_id });
+
+    if (!snap) {
+      const reason = 'SNAPSHOT_NOT_FOUND';
+      const detail = 'Snapshot not found';
+      logStatus('error', { snapshotId, analysisVersion, reason, detail });
+      if (!dryRun) {
+        await supabase.rpc('admin_condition_assist_insert_failure_v1', {
+          p_snapshot_id: null,
+          p_attempted_snapshot_id: snapshotId,
+          p_analysis_version: analysisVersion,
+          p_analysis_key: null,
+          p_error_code: reason,
+          p_error_detail: detail,
+        });
+      }
+      process.exit(1);
+    }
 
   const bucket = snap.images?.bucket ?? 'condition-scans';
   const frontPath = snap.images?.paths?.front ?? snap.images?.front?.path ?? snap.images?.front;
