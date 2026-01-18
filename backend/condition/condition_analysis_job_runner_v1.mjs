@@ -187,6 +187,30 @@ function runEdgesCornersWorker(snapshotId) {
   });
 }
 
+function runFingerprintWorker(snapshotId) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(
+      'node',
+      [
+        'condition/fingerprint_worker_v1.mjs',
+        '--snapshot-id',
+        snapshotId,
+        '--analysis-version',
+        'v1_fingerprint',
+        '--dry-run',
+        'false',
+      ],
+      { stdio: ['ignore', 'inherit', 'inherit'], cwd: process.cwd() },
+    );
+
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) return resolve();
+      reject(new Error(`fingerprint worker exited with code ${code}`));
+    });
+  });
+}
+
 function normalizeAnalysisKeys(payload) {
   const keys = payload?.analysis_keys;
   if (Array.isArray(keys) && keys.length > 0) {
@@ -205,6 +229,8 @@ async function runAnalysisKey(snapshotId, jobId, analysisKey) {
     await runScratchesWorker(snapshotId);
   } else if (analysisKey === 'v1_edges_corners') {
     await runEdgesCornersWorker(snapshotId);
+  } else if (analysisKey === 'v1_fingerprint') {
+    await runFingerprintWorker(snapshotId);
   } else {
     throw new Error(`unknown analysis_key: ${analysisKey}`);
   }
