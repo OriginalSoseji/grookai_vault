@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'secrets.dart';
+import 'screens/scanner/scan_capture_screen.dart';
 
 ThemeData _buildGrookaiTheme(Brightness brightness) {
   const seed = Color(0xFF4A90E2);
@@ -346,6 +347,7 @@ class _VaultItemTile extends StatelessWidget {
   final VoidCallback? onDecrement;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
+  final VoidCallback? onScan;
 
   const _VaultItemTile({
     required this.row,
@@ -353,6 +355,7 @@ class _VaultItemTile extends StatelessWidget {
     this.onDecrement,
     this.onDelete,
     this.onTap,
+    this.onScan,
     super.key,
   });
 
@@ -511,6 +514,11 @@ class _VaultItemTile extends StatelessWidget {
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      IconButton(
+                        icon: const Icon(Icons.camera_alt, size: 20),
+                        onPressed: onScan,
+                        tooltip: 'Scan (Condition + Fingerprint)',
+                      ),
                       IconButton(
                         icon: const Icon(Icons.add, size: 20),
                         onPressed: onIncrement,
@@ -1473,6 +1481,16 @@ class VaultPageState extends State<VaultPage> {
 
                         return _VaultItemTile(
                           row: row,
+                          onScan: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => ScanCaptureScreen(
+                                  vaultItemId: id,
+                                  cardName: name,
+                                ),
+                              ),
+                            );
+                          },
                           onIncrement: () => _incQty(id, 1),
                           onDecrement: () => _incQty(id, -1),
                           onDelete: () async {
