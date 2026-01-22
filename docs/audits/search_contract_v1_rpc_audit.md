@@ -8,13 +8,7 @@
   public | v_card_search | view | postgres | permanent   | 0 bytes | Stable app-facing search view. Guarantees image_best, image_url, thumb_url, number(+variants), and latest prices when available.
   ```
 
-- Function `public.search_cards` missing (psql `\df+ public.search_cards` -> no rows; direct call fails):
-  ```
-  ERROR:  function search_cards(unknown) does not exist
-  LINE 1: select count(*) from search_cards('pikachu');
-                               ^
-  HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-  ```
+- Function `public.search_cards` missing (psql `\df+ public.search_cards` -> no rows; pg_proc lookup empty).
 
 - Table `public.card_prints` contains required columns:
   ```
@@ -26,6 +20,35 @@
   number         | text                     |
   ... (see \d+ public.card_prints)
   ```
+
+## Step 3 — Verification (search_card_prints_v1)
+- Data note: `card_prints` currently empty locally, so queries return 0 rows but exercise normalization/order paths.
+- Number normalization tests:
+  ```
+  select id, set_code, number from public.search_card_prints_v1(null, 'sv01', '043', 10, 0);
+   id | set_code | number
+  ----+----------+--------
+  (0 rows)
+
+  select id, set_code, number from public.search_card_prints_v1(null, 'sv01', '43', 10, 0);
+   id | set_code | number
+  ----+----------+--------
+  (0 rows)
+
+  select id, set_code, number from public.search_card_prints_v1(null, 'sv01', '043/198', 10, 0);
+   id | set_code | number
+  ----+----------+--------
+  (0 rows)
+  ```
+- Ordering stability (run twice):
+  ```
+  select id from public.search_card_prints_v1('charizard', null, null, 5, 0);
+   id
+  ----
+  (0 rows)
+  ```
+  repeated run returned identical empty result.
+- Legacy search note: `public.search_cards` missing; legacy unaffected but unavailable for comparison.
 
 ## Step 3 — Verification runs (post-creation of search_card_prints_v1)
 **Note:** `public.card_prints` is currently empty (`count(*) = 0`), so queries return zero rows but ordering/normalization paths still exercised.
