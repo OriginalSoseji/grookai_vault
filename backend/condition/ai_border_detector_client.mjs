@@ -214,3 +214,60 @@ export async function warpCardQuadAI({ imageBuffer, quadNorm, outW, outH, timeou
     return { ok: false, imageBuffer: null, notes, error: 'ai_warp_invalid_payload' };
   }
 }
+
+export async function ocrCardSignalsAI({ imageBuffer, timeoutMs = 4000 }) {
+  const notes = [];
+  const enabled = process.env.GV_AI_BORDER_ENABLE === '1';
+  const baseUrl = process.env.GV_AI_BORDER_URL || '';
+
+  if (!enabled || !baseUrl) {
+    return { ok: false, notes: ['ai_disabled'], error: 'ai_disabled', result: null };
+  }
+
+  if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
+    return { ok: false, notes: ['invalid_input'], error: 'ocr_invalid_input', result: null };
+  }
+
+  if (typeof fetch !== 'function') {
+    return { ok: false, notes: ['fetch_unavailable'], error: 'ai_unavailable', result: null };
+  }
+
+  const endpoint = `${baseUrl.replace(/\/$/, '')}/ocr-card-signals`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), Math.max(500, timeoutMs));
+
+  let response;
+  try {
+    response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ image_b64: imageBuffer.toString('base64') }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    clearTimeout(timer);
+    const reason = err.name === 'AbortError' ? 'ai_timeout' : 'ai_network_error';
+    notes.push(err.message);
+    return { ok: false, notes, error: reason, result: null };
+  }
+  clearTimeout(timer);
+
+  if (!response.ok) {
+    notes.push(`http_${response.status}`);
+    return { ok: false, notes, error: 'ai_http_error', result: null };
+  }
+
+  let payload;
+  try {
+    payload = await response.json();
+  } catch (err) {
+    notes.push('invalid_json');
+    return { ok: false, notes, error: 'ai_invalid_json', result: null };
+  }
+  if (!payload || typeof payload !== 'object') {
+    notes.push('invalid_payload');
+    return { ok: false, notes, error: 'ai_invalid_json', result: null };
+  }
+
+  return { ok: true, notes, error: null, result: payload };
+}

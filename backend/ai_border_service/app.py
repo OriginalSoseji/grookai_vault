@@ -5,12 +5,26 @@ import cv2
 import numpy as np
 from PIL import Image
 import io
+import traceback
+
+try:
+    import pytesseract
+    _OCR_AVAILABLE = True
+except Exception:
+    _OCR_AVAILABLE = False
 
 app = FastAPI()
 
 class DetectRequest(BaseModel):
     image_b64: str
     mode: str = "polygon"
+
+class OCRResponse(BaseModel):
+    name: dict | None = None
+    number_raw: dict | None = None
+    printed_total: dict | None = None
+    printed_set_abbrev_raw: dict | None = None
+    debug: dict | None = None
 
 def _norm(points, W, H):
     return [[float(x)/W, float(y)/H] for (x,y) in points]
@@ -160,3 +174,61 @@ async def detect_card_border(request: Request):
 
     except Exception as e:
         return {"ok": False, "confidence": 0.0, "error": str(e), "notes": ["exception"]}
+
+
+@app.post("/ocr-card-signals")
+async def ocr_card_signals(request: Request):
+    try:
+        body = await request.body()
+        img_bytes = None
+        if body[:1] in (b"{", b"["):
+            try:
+                payload = await request.json()
+                image_b64 = payload.get("image_b64")
+                if isinstance(image_b64, str) and image_b64:
+                    img_bytes = base64.b64decode(image_b64)
+            except Exception:
+                img_bytes = None
+        if img_bytes is None:
+            img_bytes = body
+
+        pil = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+        img_np = np.array(pil)
+
+        if not _OCR_AVAILABLE:
+          return {
+            "name": None,
+            "number_raw": None,
+            "printed_total": None,
+            "printed_set_abbrev_raw": None,
+            "debug": {"engine": "pytesseract_missing"}
+          }
+
+        # Basic OCR using pytesseract; keeping minimal and deterministic.
+        config = "--psm 6"
+        text = pytesseract.image_to_string(img_np, config=config)
+        text_norm = text.strip()
+
+        name_text = text_norm.splitlines()[0] if text_norm else ""
+        number_text = None
+        total_val = None
+        abbrev_text = None
+
+        for token in text_norm.split():
+            if "/" in token and any(ch.isdigit() for ch in token):
+                number_text = token
+                parts = token.split("/")
+                if len(parts) == 2 and parts[1].isdigit():
+                    total_val = int(parts[1])
+            elif len(token) <= 5 and token.isalnum() and any(c.isalpha() for c in token) and any(c.isdigit() for c in token):
+                abbrev_text = token.upper()
+
+        return {
+            "name": {"text": name_text or None, "confidence": 0.5 if name_text else 0.0},
+            "number_raw": {"text": number_text or None, "confidence": 0.5 if number_text else 0.0},
+            "printed_total": {"value": total_val, "confidence": 0.4 if total_val is not None else 0.0},
+            "printed_set_abbrev_raw": {"text": abbrev_text or None, "confidence": 0.4 if abbrev_text else 0.0},
+            "debug": {"engine": "pytesseract" if _OCR_AVAILABLE else "none", "text_raw": text_norm},
+        }
+    except Exception as e:
+        return {"error": str(e), "trace": traceback.format_exc(), "name": None, "number_raw": None, "printed_total": None, "printed_set_abbrev_raw": None, "debug": {"engine": "exception"}}

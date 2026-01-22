@@ -6,7 +6,7 @@
 import '../env.mjs';
 import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
-import { detectOuterBorderAI, warpCardQuadAI } from '../condition/ai_border_detector_client.mjs';
+import { detectOuterBorderAI, warpCardQuadAI, ocrCardSignalsAI } from '../condition/ai_border_detector_client.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'identity_scan_v1';
@@ -232,14 +232,41 @@ async function processEvent(supabase, eventId) {
     return { status: 'failed', error: warp?.error || 'warp_failed' };
   }
 
-  // OCR not implemented in repo; record failure but capture border/warp metadata.
+  const ocr = await ocrCardSignalsAI({ imageBuffer: warp.imageBuffer, timeoutMs: 6000 });
   const signals = {
     polygon_norm: detect.polygon_norm,
     border_notes: detect.notes || [],
     warp: { ok: true, size: { w: AI_WARP_W, h: AI_WARP_H } },
+    ocr_notes: ocr.notes || [],
+    ocr_engine: ocr?.result?.debug?.engine || null,
+    name_ocr: ocr?.result?.name?.text || null,
+    name_conf: ocr?.result?.name?.confidence ?? null,
+    number_raw: ocr?.result?.number_raw?.text || null,
+    number_conf: ocr?.result?.number_raw?.confidence ?? null,
+    number_digits: (ocr?.result?.number_raw?.text || '').replace(/[^0-9]/g, '') || null,
+    printed_total: ocr?.result?.printed_total?.value ?? null,
+    total_conf: ocr?.result?.printed_total?.confidence ?? null,
+    printed_set_abbrev_raw: ocr?.result?.printed_set_abbrev_raw?.text || null,
+    set_abbrev_conf: ocr?.result?.printed_set_abbrev_raw?.confidence ?? null,
   };
-  await insertResult(supabase, eventId, userId, 'failed', signals, [], 'ocr_not_implemented');
-  return { status: 'failed', error: 'ocr_not_implemented' };
+
+  const hasName = !!signals.name_ocr;
+  const hasNumber = !!signals.number_raw;
+  if (!ocr.ok || (!hasName && !hasNumber)) {
+    await insertResult(
+      supabase,
+      eventId,
+      userId,
+      'failed',
+      signals,
+      [],
+      ocr.error || 'ocr_no_signal',
+    );
+    return { status: 'failed', error: ocr.error || 'ocr_no_signal' };
+  }
+
+  await insertResult(supabase, eventId, userId, 'complete', signals, [], null);
+  return { status: 'complete', error: null };
 }
 
 async function main() {
