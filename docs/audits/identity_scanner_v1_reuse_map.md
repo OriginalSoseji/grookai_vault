@@ -10,4 +10,4 @@
 
 ## 3.2 Blockers
 - No `SEARCH_CONTRACT_V1` RPC: only `public.search_cards` (ILIKE-based) and client-side `CardPrintRepository.searchCardPrints` queries (`lib/models/card_print.dart:93`) exist, which conflicts with the contract requirement to resolve candidates via a deterministic SEARCH_CONTRACT_V1 RPC only. Minimal fix: add a deterministic SEARCH_CONTRACT_V1 RPC (stable input/ordering) and route workers/clients through it.
-- Warp endpoint gap: workers call `/warp-card-quad` via `warpCardQuadAI` (`backend/condition/ai_border_detector_client.mjs:161`), but the local border service `backend/ai_border_service/app.py` only implements `/detect-card-border`. Minimal fix: implement/point to a warp endpoint matching the client contract or configure an external warp service.
+- Warp endpoint verified live: `/warp-card-quad` exists at `GV_AI_BORDER_URL` (responds; not 404). Dependency confirmed; **no blocker**. Note: prior “app.py only exposes /detect-card-border” was stale/partial service-surface info and is superseded by live route verification.
