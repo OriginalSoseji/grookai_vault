@@ -1,0 +1,13 @@
+# Identity Scanner V1 Reuse Map
+
+## 3.1 Reuse Map
+- Border detect: `backend/ai_border_service/app.py` exposes `/detect-card-border` (quad ordering + mask fallback); `backend/condition/ai_border_detector_client.mjs` calls `detectOuterBorderAI` for workers.
+- Warp: `backend/condition/ai_border_detector_client.mjs` provides `warpCardQuadAI` (POST `/warp-card-quad` with `quad_norm` + `out_w/out_h`); consumed in `backend/condition/fingerprint_worker_v1.mjs` during normalization (lines with `warpRes`).
+- Snapshot image fetch: Upload plan issued by `supabase/functions/scan-upload-plan/index.ts` (bucket `condition-scans`, key format `${userId}/${vaultItemId}/${snapshotId}/{slot}.jpg`); client builds payload in `lib/services/scanner/condition_scan_service.dart` (`buildImagesPayload` using `front/back` paths), and worker fetches via signed URL in `backend/condition/fingerprint_worker_v1.mjs` (`downloadImage` using snapshot `images` JSON).
+- Job enqueue: `lib/services/scanner/condition_scan_service.dart` `enqueueConditionAnalysis` inserts into `ingestion_jobs` with `job_type='condition_analysis_v1'` and `payload.snapshot_id`.
+- Job runner: `backend/condition/condition_analysis_job_runner_v1.mjs` polls `ingestion_jobs` (statuses pending/processing), locks rows, and spawns per-snapshot workers (`centering_measurement_worker_v2.mjs`, `scratches_surface_worker_v1.mjs`, `edges_corners_worker_v1.mjs`, `fingerprint_worker_v1.mjs`); queue/table defined in `supabase/migrations/20251213153625_baseline_init.sql` and introspected via `public.ingestion_jobs`.
+- Deterministic search RPC: Current search authority is `public.search_cards(q text, limit int, offset int)` over `v_card_search` (`supabase/_migration_quarantine/20251127041609_remote_schema.sql:1057`, view in `supabase/migrations/20251213153627_baseline_views.sql`). Client search uses `lib/models/card_print.dart:93` (`CardPrintRepository.searchCardPrints`) with enforced token/number logic but not an RPC.
+
+## 3.2 Blockers
+- No `SEARCH_CONTRACT_V1` RPC: only `public.search_cards` (ILIKE-based) and client-side `CardPrintRepository.searchCardPrints` queries (`lib/models/card_print.dart:93`) exist, which conflicts with the contract requirement to resolve candidates via a deterministic SEARCH_CONTRACT_V1 RPC only. Minimal fix: add a deterministic SEARCH_CONTRACT_V1 RPC (stable input/ordering) and route workers/clients through it.
+- Warp endpoint gap: workers call `/warp-card-quad` via `warpCardQuadAI` (`backend/condition/ai_border_detector_client.mjs:161`), but the local border service `backend/ai_border_service/app.py` only implements `/detect-card-border`. Minimal fix: implement/point to a warp endpoint matching the client contract or configure an external warp service.
