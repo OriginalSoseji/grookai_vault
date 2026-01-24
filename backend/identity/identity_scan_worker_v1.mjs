@@ -169,6 +169,7 @@ async function insertResult(supabase, eventId, userId, status, signals, candidat
 }
 
 async function processEvent(supabase, eventId) {
+  // Phase 1C.2: candidates + evidence — uses public.search_card_prints_v1
   const { data: eventRow, error: eventErr } = await supabase
     .from('identity_scan_events')
     .select('id,user_id,snapshot_id,analysis_version,created_at,snapshot:condition_snapshots(id,user_id,images)')
@@ -265,8 +266,109 @@ async function processEvent(supabase, eventId) {
     return { status: 'failed', error: ocr.error || 'ocr_no_signal' };
   }
 
-  await insertResult(supabase, eventId, userId, 'complete', signals, [], null);
-  return { status: 'complete', error: null };
+  // Build search inputs
+  const name = (signals.name_ocr || '').trim();
+  const numberRaw = (signals.number_raw || '').trim();
+  const numberDigits = (signals.number_digits || '').trim();
+  const numberInput = numberRaw || numberDigits || null;
+  const setCodeIn = null;
+  const q = name.length > 0 ? name : null;
+
+  if (!q && !numberInput) {
+    await insertResult(
+      supabase,
+      eventId,
+      userId,
+      'failed',
+      signals,
+      [],
+      'no_search_inputs',
+    );
+    return { status: 'failed', error: 'no_search_inputs' };
+  }
+
+  let candidates = [];
+  let searchError = null;
+  try {
+    const resp = await supabase.rpc('search_card_prints_v1', {
+      q,
+      set_code_in: setCodeIn,
+      number_in: numberInput,
+      limit_in: 10,
+      offset_in: 0,
+    });
+    if (Array.isArray(resp)) {
+      candidates = resp;
+    } else if (resp?.data && Array.isArray(resp.data)) {
+      candidates = resp.data;
+    } else {
+      candidates = [];
+    }
+  } catch (err) {
+    searchError = err?.message || 'search_rpc_failed';
+  }
+
+  if (searchError) {
+    await insertResult(supabase, eventId, userId, 'failed', signals, [], 'search_rpc_failed');
+    return { status: 'failed', error: 'search_rpc_failed' };
+  }
+
+  // Evidence chips
+  const evidenceSummary = [];
+  if (name) evidenceSummary.push('signals:name');
+  if (numberInput) evidenceSummary.push('signals:number');
+  if (signals.printed_total !== null && signals.printed_total !== undefined) evidenceSummary.push('signals:total');
+  if (signals.printed_set_abbrev_raw) evidenceSummary.push('signals:set_abbrev');
+  evidenceSummary.push('search:rpc');
+
+  const pad3 = numberDigits ? numberDigits.padStart(3, '0') : null;
+
+  const mapped = candidates.map((c) => {
+    const ev = [];
+    const cName = (c?.name || '').toString();
+    const cSet = (c?.set_code || '').toString();
+    const cNumber = (c?.number || '').toString();
+    const cImage = (c?.image_best || c?.image_url || c?.thumb_url || null) || null;
+    const cNumberDigits = cNumber.replace(/[^0-9]/g, '');
+    const cNumberSlashedMatch =
+      pad3 && c?.number_slashed ? c.number_slashed.startsWith(`${pad3}/`) : false;
+
+    if (name && cName.toLowerCase().includes(name.toLowerCase())) ev.push('name_match');
+    if (numberDigits && cNumberDigits === numberDigits) ev.push('number_match');
+    else if (numberInput && cNumberSlashedMatch) ev.push('number_slash_match');
+    if (signals.printed_total && c?.number_slashed && c.number_slashed.endsWith(`/${signals.printed_total}`)) {
+      ev.push('printed_total_match');
+    }
+    if (signals.printed_set_abbrev_raw) {
+      ev.push('set_abbrev_present');
+    }
+
+    return {
+      card_print_id: c?.id || null,
+      name: cName,
+      set_code: cSet,
+      number: cNumber,
+      image_url: cImage,
+      evidence: ev,
+    };
+  });
+
+  if (mapped.length === 0) {
+    evidenceSummary.push('search:no_candidates');
+  }
+
+  signals.evidence_summary = evidenceSummary;
+
+  await insertResult(
+    supabase,
+    eventId,
+    userId,
+    'complete',
+    signals,
+    mapped,
+    mapped.length === 0 ? 'no_candidates' : null,
+  );
+  return { status: 'complete', error: mapped.length === 0 ? 'no_candidates' : null };
 }
 
 async function main() {
