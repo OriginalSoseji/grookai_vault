@@ -1,44 +1,10 @@
 // Pattern copied from: supabase/functions/scan-upload-plan/index.ts
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
+import { json, requireUser } from "../_shared/auth.ts";
 
 type EnqueueBody = {
   snapshot_id?: string;
 };
-
-function json(status: number, body: unknown) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-      "cache-control": "no-store",
-    },
-  });
-}
-
-function extractBearerToken(req: Request): string | null {
-  // Accept Authorization: Bearer <jwt> but also tolerate quotes/whitespace and raw JWTs.
-  let h =
-    req.headers.get("authorization") ??
-    req.headers.get("Authorization") ??
-    req.headers.get("x-gv-bearer");
-  if (!h) return null;
-
-  h = String(h).trim();
-
-  // Strip wrapping quotes if present: "Bearer xxx" or 'Bearer xxx'
-  if ((h.startsWith('"') && h.endsWith('"')) || (h.startsWith("'") && h.endsWith("'"))) {
-    h = h.slice(1, -1).trim();
-  }
-
-  const m = h.match(/^Bearer\s+(.+)$/i);
-  if (m) return m[1].trim();
-
-  // Fallback: accept raw JWT (three dot-separated segments) if provided directly
-  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(h)) return h;
-
-  return null;
-}
 
 function isUuid(v: string | undefined | null): boolean {
   if (!v) return false;
@@ -54,28 +20,21 @@ serve(async (req) => {
       return json(405, { error: "method_not_allowed" });
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    if (!supabaseUrl || !serviceRoleKey) {
-      return json(500, { error: "server_misconfigured" });
+    let sb, userId;
+    try {
+      const auth = await requireUser(req);
+      sb = auth.sb;
+      userId = auth.userId;
+    } catch (err) {
+      if (err?.code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
+      if (err?.code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
+      if (err?.code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
+      throw err;
     }
-
-    const token = extractBearerToken(req);
-    if (!token) return json(401, { error: "missing_bearer_token" });
 
     const body = (await req.json()) as EnqueueBody;
     const snapshotId = (body.snapshot_id ?? "").trim();
     if (!isUuid(snapshotId)) return json(400, { error: "invalid_snapshot_id" });
-
-    const sb = createClient(supabaseUrl, serviceRoleKey, {
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-
-    const { data: userData, error: userErr } = await sb.auth.getUser(token);
-    if (userErr || !userData?.user) {
-      return json(401, { error: "invalid_jwt" });
-    }
-    const userId = userData.user.id;
 
     // Verify snapshot ownership + front image presence
     const { data: snap, error: snapErr } = await sb

@@ -1,34 +1,6 @@
 // Pattern copied from: supabase/functions/scan-read/index.ts
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
-
-function json(status: number, body: unknown) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-      "cache-control": "no-store",
-    },
-  });
-}
-
-function extractBearerToken(req: Request): string | null {
-  let raw = req.headers.get("authorization") ?? req.headers.get("Authorization");
-  if (!raw) return null;
-
-  raw = String(raw).trim();
-  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
-    raw = raw.slice(1, -1).trim();
-  }
-
-  const m = raw.match(/^Bearer\s+(.+)$/i);
-  if (m) return m[1].trim();
-
-  // Accept raw JWT (three segments) to tolerate missing "Bearer " prefix
-  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(raw)) return raw;
-
-  return null;
-}
+import { json, requireUser } from "../_shared/auth.ts";
 
 function isUuid(v: string | null): boolean {
   if (!v) return false;
@@ -45,12 +17,17 @@ serve(async (req) => {
     if (req.method === "OPTIONS") return new Response("ok", { status: 200 });
     if (req.method !== "GET") return json(405, { error: "method_not_allowed" });
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    if (!supabaseUrl || !serviceRoleKey) return json(500, { error: "server_misconfigured" });
-
-    const token = extractBearerToken(req);
-    if (!token) return json(401, { error: "missing_bearer_token" });
+    let sb, userId;
+    try {
+      const auth = await requireUser(req);
+      sb = auth.sb;
+      userId = auth.userId;
+    } catch (err) {
+      if (err?.code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
+      if (err?.code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
+      if (err?.code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
+      throw err;
+    }
 
     const url = new URL(req.url);
     const eventIdParam = url.searchParams.get("event_id");
@@ -59,14 +36,6 @@ serve(async (req) => {
     const eventId = isUuid(eventIdParam) ? eventIdParam : null;
     const limit = clampInt(Number(limitParam ?? 50), 1, 200);
     const offset = Math.max(0, Math.trunc(Number(offsetParam ?? 0) || 0));
-
-    const sb = createClient(supabaseUrl, serviceRoleKey, {
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-
-    const { data: userData, error: userErr } = await sb.auth.getUser(token);
-    if (userErr || !userData?.user) return json(401, { error: "invalid_jwt" });
-    const userId = userData.user.id;
 
     if (eventId) {
       const { data, error } = await sb
