@@ -17,10 +17,16 @@ function json(status: number, body: unknown) {
 }
 
 function extractBearerToken(req: Request): string | null {
-  const h = req.headers.get("authorization") ?? req.headers.get("Authorization");
-  if (!h) return null;
-  const m = h.match(/^Bearer\s+(.+)$/i);
-  return m ? m[1].trim() : null;
+  let raw = req.headers.get("authorization") ?? req.headers.get("Authorization");
+  if (!raw) return null;
+  raw = String(raw).trim();
+  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
+    raw = raw.slice(1, -1).trim();
+  }
+  const m = raw.match(/^Bearer\s+(.+)$/i);
+  if (m) return m[1].trim();
+  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(raw)) return raw;
+  return null;
 }
 
 function isUuid(v: string | undefined | null): boolean {

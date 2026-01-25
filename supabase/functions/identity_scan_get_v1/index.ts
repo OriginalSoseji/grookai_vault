@@ -13,13 +13,24 @@ function json(status: number, body: unknown) {
 }
 
 function extractBearerToken(req: Request): string | null {
-  const h = req.headers.get("authorization") ?? req.headers.get("Authorization");
-  if (!h) return null;
-  const m = h.match(/^Bearer\s+(.+)$/i);
-  return m ? m[1].trim() : null;
+  let raw = req.headers.get("authorization") ?? req.headers.get("Authorization");
+  if (!raw) return null;
+
+  raw = String(raw).trim();
+  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
+    raw = raw.slice(1, -1).trim();
+  }
+
+  const m = raw.match(/^Bearer\s+(.+)$/i);
+  if (m) return m[1].trim();
+
+  // Accept raw JWT (three segments) to tolerate missing "Bearer " prefix
+  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(raw)) return raw;
+
+  return null;
 }
 
-function isUuid(v: string | undefined | null): boolean {
+function isUuid(v: string | null): boolean {
   if (!v) return false;
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
 }
@@ -31,27 +42,34 @@ function clampInt(val: number, min: number, max: number): number {
 
 serve(async (req) => {
   try {
-    if (req.method === "OPTIONS") {
-      return new Response("ok", { status: 200 });
-    }
-    if (req.method !== "GET") {
-      return json(405, { error: "method_not_allowed" });
-    }
+    if (req.method === "OPTIONS") return new Response("ok", { status: 200 });
+    if (req.method !== "GET") return json(405, { error: "method_not_allowed" });
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    if (!supabaseUrl || !serviceRoleKey) {
-      return json(500, { error: "server_misconfigured" });
+    if (!supabaseUrl || !serviceRoleKey) return json(500, { error: "server_misconfigured" });
+
+    const url = new URL(req.url);
+    if (url.searchParams.get("diag_token") === "1") {
+      const raw = req.headers.get("authorization") ?? req.headers.get("Authorization") ?? "";
+      const val = String(raw);
+      const trimmed = val.trim();
+      return json(200, {
+        has_header: Boolean(raw),
+        length: val.length,
+        starts_with_bearer: /^Bearer\s+/i.test(trimmed),
+        has_three_segments: trimmed.split(".").length === 3,
+        trimmed_length: trimmed.length,
+      });
     }
 
     const token = extractBearerToken(req);
     if (!token) return json(401, { error: "missing_bearer_token" });
 
-    const url = new URL(req.url);
     const eventIdParam = url.searchParams.get("event_id");
     const limitParam = url.searchParams.get("limit");
     const offsetParam = url.searchParams.get("offset");
-    const eventId = eventIdParam && isUuid(eventIdParam) ? eventIdParam : null;
+    const eventId = isUuid(eventIdParam) ? eventIdParam : null;
     const limit = clampInt(Number(limitParam ?? 50), 1, 200);
     const offset = Math.max(0, Math.trunc(Number(offsetParam ?? 0) || 0));
 
@@ -60,9 +78,7 @@ serve(async (req) => {
     });
 
     const { data: userData, error: userErr } = await sb.auth.getUser(token);
-    if (userErr || !userData?.user) {
-      return json(401, { error: "invalid_jwt" });
-    }
+    if (userErr || !userData?.user) return json(401, { error: "invalid_jwt" });
     const userId = userData.user.id;
 
     if (eventId) {
