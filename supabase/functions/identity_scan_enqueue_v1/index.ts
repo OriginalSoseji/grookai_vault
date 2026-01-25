@@ -17,15 +17,26 @@ function json(status: number, body: unknown) {
 }
 
 function extractBearerToken(req: Request): string | null {
-  let raw = req.headers.get("authorization") ?? req.headers.get("Authorization");
-  if (!raw) return null;
-  raw = String(raw).trim();
-  if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
-    raw = raw.slice(1, -1).trim();
+  // Accept Authorization: Bearer <jwt> but also tolerate quotes/whitespace and raw JWTs.
+  let h =
+    req.headers.get("authorization") ??
+    req.headers.get("Authorization") ??
+    req.headers.get("x-gv-bearer");
+  if (!h) return null;
+
+  h = String(h).trim();
+
+  // Strip wrapping quotes if present: "Bearer xxx" or 'Bearer xxx'
+  if ((h.startsWith('"') && h.endsWith('"')) || (h.startsWith("'") && h.endsWith("'"))) {
+    h = h.slice(1, -1).trim();
   }
-  const m = raw.match(/^Bearer\s+(.+)$/i);
+
+  const m = h.match(/^Bearer\s+(.+)$/i);
   if (m) return m[1].trim();
-  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(raw)) return raw;
+
+  // Fallback: accept raw JWT (three dot-separated segments) if provided directly
+  if (/^[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+$/.test(h)) return h;
+
   return null;
 }
 

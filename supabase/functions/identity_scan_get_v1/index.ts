@@ -49,23 +49,10 @@ serve(async (req) => {
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     if (!supabaseUrl || !serviceRoleKey) return json(500, { error: "server_misconfigured" });
 
-    const url = new URL(req.url);
-    if (url.searchParams.get("diag_token") === "1") {
-      const raw = req.headers.get("authorization") ?? req.headers.get("Authorization") ?? "";
-      const val = String(raw);
-      const trimmed = val.trim();
-      return json(200, {
-        has_header: Boolean(raw),
-        length: val.length,
-        starts_with_bearer: /^Bearer\s+/i.test(trimmed),
-        has_three_segments: trimmed.split(".").length === 3,
-        trimmed_length: trimmed.length,
-      });
-    }
-
     const token = extractBearerToken(req);
     if (!token) return json(401, { error: "missing_bearer_token" });
 
+    const url = new URL(req.url);
     const eventIdParam = url.searchParams.get("event_id");
     const limitParam = url.searchParams.get("limit");
     const offsetParam = url.searchParams.get("offset");
