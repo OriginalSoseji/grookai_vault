@@ -218,7 +218,7 @@ async function processEvent(supabase, eventId) {
     quadNorm: detect.polygon_norm,
     outW: AI_WARP_W,
     outH: AI_WARP_H,
-    timeoutMs: 8000,
+    timeoutMs: 15000,
   });
   if (!warp?.ok || !warp.imageBuffer) {
     await insertResult(
