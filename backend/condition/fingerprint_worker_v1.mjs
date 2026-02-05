@@ -716,6 +716,35 @@ async function main() {
     return;
   }
 
+    const aiHintMetadata = {
+      run_id: null,
+      warp_sha256: null,
+      model_version: null,
+      ai_card_print_id: null,
+      ai_score: null,
+      analysis_key: analysisKey,
+    }; // TODO: AI hint fields currently null until upstream wiring is added
+
+    try {
+      const { error: aiHintErr } = await supabase.rpc('admin_fingerprint_event_insert_v1', {
+        p_user_id: snap.user_id,
+        p_analysis_key: analysisKey,
+        p_event_type: 'fingerprint_ai_hint',
+        p_snapshot_id: snapshotId,
+        p_fingerprint_key: fingerprintKey,
+        p_vault_item_id: snap.vault_item_id,
+        p_event_metadata: aiHintMetadata,
+      });
+      if (aiHintErr && !String(aiHintErr.message || '').toLowerCase().includes('unique constraint')) {
+        console.warn(`[fingerprint][ai_hint] insert_failed analysis_key=${analysisKey} detail=${aiHintErr.message}`);
+      }
+    } catch (err) {
+      const msg = err?.message || String(err);
+      if (!msg.toLowerCase().includes('duplicate key') && !msg.toLowerCase().includes('unique constraint')) {
+        console.warn(`[fingerprint][ai_hint] exception analysis_key=${analysisKey} detail=${msg}`);
+      }
+    }
+
     try {
       const { error: insertErr, data: inserted } = await supabase.rpc(
         'admin_condition_assist_insert_analysis_v1',
