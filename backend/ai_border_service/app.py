@@ -7,6 +7,19 @@ from PIL import Image
 import io
 import traceback
 import re
+import os
+import hashlib
+import json
+import requests
+from collections import OrderedDict
+from datetime import datetime
+
+# Env required (names only):
+# - OPENAI_API_KEY
+# - GV_AI_ENDPOINT_TOKEN
+# Optional:
+# - GV_AI_MODEL
+# - GV_AI_LONG_EDGE
 
 try:
     import pytesseract
@@ -27,6 +40,45 @@ class OCRResponse(BaseModel):
     printed_set_abbrev_raw: dict | None = None
     debug: dict | None = None
 
+class AIIdentifyRequest(BaseModel):
+    image_b64: str
+    force_refresh: bool = False
+    trace_id: str | None = None
+
+def _run_id():
+    return datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+
+def _debug_dir():
+    d = os.environ.get("GV_DEBUG_DIR") or "/tmp"
+    try:
+        os.makedirs(d, exist_ok=True)
+    except Exception:
+        pass
+    return d
+
+_AI_CACHE_MAX = 2000
+_ai_cache = OrderedDict()  # sha256 -> {"result":..., "cached_at": ...}
+
+def _cache_get(k):
+    v = _ai_cache.get(k)
+    if v is not None:
+        _ai_cache.move_to_end(k)
+    return v
+
+def _cache_put(k, v):
+    _ai_cache[k] = v
+    _ai_cache.move_to_end(k)
+    while len(_ai_cache) > _AI_CACHE_MAX:
+        _ai_cache.popitem(last=False)
+
+def _downscale_rgb_np(img_rgb, long_edge=1024):
+    h, w = img_rgb.shape[:2]
+    m = max(h, w)
+    if m <= long_edge:
+        return img_rgb
+    scale = long_edge / float(m)
+    nh, nw = int(round(h * scale)), int(round(w * scale))
+    return cv2.resize(img_rgb, (nw, nh), interpolation=cv2.INTER_AREA)
 def _norm(points, W, H):
     return [[float(x) / W, float(y) / H] for (x, y) in points]
 
@@ -91,6 +143,151 @@ def _center_seed_mask_bbox(img_bgr):
 
     area_frac = (w * h) / float(W * H)
     return (x, y, w, h, area_frac)
+
+def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, trace_id=None):
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY not set")
+
+    long_edge = int(os.environ.get("GV_AI_LONG_EDGE", "1024") or "1024")
+    if long_edge <= 0:
+        long_edge = 1024
+    model_name = os.environ.get("GV_AI_MODEL", "gpt-4o-mini")
+
+    pil = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    img_rgb = np.array(pil)
+    img_rgb = _downscale_rgb_np(img_rgb, long_edge=long_edge)
+
+    ok, enc = cv2.imencode(
+        ".jpg",
+        cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR),
+        [int(cv2.IMWRITE_JPEG_QUALITY), 85],
+    )
+    if not ok:
+        raise RuntimeError("jpeg_encode_failed")
+
+    b64 = base64.b64encode(enc.tobytes()).decode("utf-8")
+    data_url = f"data:image/jpeg;base64,{b64}"
+
+    prompt = (
+        "Read this single Pokémon card image (already warped/card-only).\n"
+        "Return ONLY valid JSON with keys:\n"
+        "{\n"
+        '  \"name\": string|null,\n'
+        '  \"number\": string|null,          // like \"27/159\"\n'
+        '  \"printed_total\": integer|null,  // like 159\n'
+        '  \"hp\": integer|null,             // like 140\n'
+        '  \"confidence\": number            // 0.0-1.0\n'
+        "}\n"
+        "Rules:\n"
+        "- If unsure, use nulls and confidence < 0.6\n"
+        "- Normalize number: remove leading zeros (027/159 -> 27/159)\n"
+        "- printed_total should match denominator when present\n"
+        "Return JSON only. No prose.\n"
+    )
+
+    payload = {
+        "model": model_name,
+        "input": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "input_text", "text": prompt},
+                    {"type": "input_image", "image_url": data_url},
+                ],
+            }
+        ],
+        "temperature": 0,
+        "max_output_tokens": 250,
+        "store": False,
+    }
+
+    r = requests.post(
+        "https://api.openai.com/v1/responses",
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"openai_http_{r.status_code}")
+
+    resp = r.json()
+
+    out_text = ""
+    for item in resp.get("output", []):
+        if item.get("type") == "message":
+            for c in item.get("content", []):
+                if c.get("type") == "output_text":
+                    out_text += c.get("text", "")
+    out_text = (out_text or "").strip()
+
+    try:
+        with open(os.path.join(dbg_dir, f"ai_identify_raw_{run_id}.txt"), "w", encoding="utf-8") as f:
+            f.write(f"model={model_name}\nsha256={sha256_hex}\nlong_edge={long_edge}\ncache_hit={cache_hit}\ntrace_id={trace_id}\n")
+            f.write(out_text)
+    except Exception:
+        pass
+
+    if out_text.lower().startswith("json"):
+        parts = out_text.splitlines()
+        if len(parts) > 1:
+            out_text = "\n".join(parts[1:]).strip()
+
+    if out_text.startswith("```"):
+        out_text = out_text.strip("`").strip()
+        if out_text.lower().startswith("json"):
+            out_text = out_text[4:].strip()
+
+    m = re.search(r"\{.*\}", out_text, flags=re.DOTALL)
+    if m:
+        out_json = m.group(0).strip()
+    else:
+        out_json = out_text
+
+    try:
+        data = json.loads(out_json)
+    except Exception:
+        raise RuntimeError("openai_non_json")
+
+    name = data.get("name")
+    number = data.get("number")
+    printed_total = data.get("printed_total")
+    hp = data.get("hp")
+    conf = data.get("confidence")
+
+    if isinstance(number, str) and "/" in number:
+        a, b = number.split("/", 1)
+        try:
+            a_i = int(a)
+            b_i = int(b)
+            number = f"{a_i}/{b_i}"
+            if printed_total is None:
+                printed_total = b_i
+        except Exception:
+            pass
+
+    try:
+        conf = float(conf)
+    except Exception:
+        conf = 0.0
+    conf = max(0.0, min(1.0, conf))
+
+    return {
+        "name": name if isinstance(name, str) and name.strip() else None,
+        "number": number if isinstance(number, str) and number.strip() else None,
+        "printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
+        "hp": int(hp) if isinstance(hp, (int, float)) else None,
+        "confidence": conf,
+        "model": model_name,
+    }
+
+def _require_gv_token(request: Request):
+    expected = os.environ.get("GV_AI_ENDPOINT_TOKEN")
+    if not expected:
+        raise RuntimeError("GV_AI_ENDPOINT_TOKEN not set")
+    got = request.headers.get("x-gv-token")
+    if not got or got != expected:
+        raise RuntimeError("unauthorized")
 
 @app.post("/detect-card-border")
 async def detect_card_border(request: Request):
@@ -502,4 +699,115 @@ async def ocr_card_signals(request: Request):
             "printed_total": None,
             "printed_set_abbrev_raw": None,
             "debug": {"engine": "exception"},
+        }
+
+@app.post("/ai-identify-warp")
+async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
+    try:
+        _require_gv_token(request)
+
+        run_id = _run_id()
+        dbg_dir = _debug_dir()
+
+        if len(req.image_b64) > 8_000_000:
+            return {
+                "ok": False,
+                "cache_hit": False,
+                "run_id": run_id,
+                "trace_id": req.trace_id,
+                "sha256": None,
+                "cached_at": None,
+                "result": None,
+                "error": "image_too_large",
+            }
+
+        try:
+            img_bytes = base64.b64decode(req.image_b64)
+        except Exception:
+            return {
+                "ok": False,
+                "cache_hit": False,
+                "run_id": run_id,
+                "trace_id": req.trace_id,
+                "sha256": None,
+                "cached_at": None,
+                "result": None,
+                "error": "decode_failed",
+            }
+
+        if len(img_bytes) > 6_000_000:
+            return {
+                "ok": False,
+                "cache_hit": False,
+                "run_id": run_id,
+                "trace_id": req.trace_id,
+                "sha256": None,
+                "cached_at": None,
+                "result": None,
+                "error": "image_too_large",
+            }
+
+        sha = hashlib.sha256(img_bytes).hexdigest()
+
+        if not req.force_refresh:
+            cached = _cache_get(sha)
+            if cached is not None:
+                try:
+                    with open(os.path.join(dbg_dir, f"ai_identify_raw_{run_id}.txt"), "w", encoding="utf-8") as f:
+                        f.write(
+                            f"model={cached['result'].get('model')}\n"
+                            f"sha256={sha}\n"
+                            f"long_edge={os.environ.get('GV_AI_LONG_EDGE','1024')}\n"
+                            f"cache_hit=True\n"
+                            f"trace_id={req.trace_id}\n"
+                        )
+                except Exception:
+                    pass
+                return {
+                    "ok": True,
+                    "cache_hit": True,
+                    "run_id": run_id,
+                    "trace_id": req.trace_id,
+                    "sha256": sha,
+                    "cached_at": cached.get("cached_at"),
+                    "result": cached["result"],
+                    "error": None,
+                }
+
+        result = _openai_identify(img_bytes, run_id, dbg_dir, sha, cache_hit=False, trace_id=req.trace_id)
+        cached_entry = {"result": result, "cached_at": datetime.utcnow().isoformat() + "Z"}
+        _cache_put(sha, cached_entry)
+
+        return {
+            "ok": True,
+            "cache_hit": False,
+            "run_id": run_id,
+            "trace_id": req.trace_id,
+            "sha256": sha,
+            "cached_at": cached_entry["cached_at"],
+            "result": result,
+            "error": None,
+        }
+    except Exception as e:
+        err = str(e)
+        if err == "unauthorized":
+            return {
+                "ok": False,
+                "cache_hit": False,
+                "run_id": _run_id(),
+                "trace_id": None,
+                "sha256": None,
+                "cached_at": None,
+                "result": None,
+                "error": "unauthorized",
+            }
+        return {
+            "ok": False,
+            "cache_hit": False,
+            "run_id": _run_id(),
+            "trace_id": None,
+            "sha256": None,
+            "cached_at": None,
+            "result": None,
+            "error": err,
         }
