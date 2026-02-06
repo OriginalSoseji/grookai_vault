@@ -10,6 +10,7 @@ import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'secrets.dart';
 import 'screens/scanner/scan_capture_screen.dart';
+import 'screens/identity_scan/identity_scan_screen.dart';
 
 ThemeData _buildGrookaiTheme(Brightness brightness) {
   const seed = Color(0xFF4A90E2);
@@ -817,9 +818,10 @@ class _AppShellState extends State<AppShell> {
         ],
       ),
       floatingActionButton: _index == 1
-          ? FloatingActionButton(
-              onPressed: () => _vaultKey.currentState?.showAddOrEditDialog(),
-              child: const Icon(Icons.add),
+          ? FloatingActionButton.extended(
+              icon: const Icon(Icons.camera_alt),
+              label: const Text('Scan'),
+              onPressed: () => _vaultKey.currentState?.startIdentityScanFlow(),
             )
           : null,
     );
@@ -1356,6 +1358,14 @@ class VaultPageState extends State<VaultPage> {
   Future<void> _delete(String id) async {
     await supabase.from('vault_items').delete().eq('id', id);
     await reload();
+  }
+
+  void startIdentityScanFlow() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const IdentityScanScreen(),
+      ),
+    );
   }
 
   /// NEW: Add uses the internal catalog picker
