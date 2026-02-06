@@ -18,6 +18,7 @@ If a contract is missing from this index, it is not authoritative.
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
+| PRODUCTION_READINESS_GATE_V1 | Active | docs/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
 | CODEX_GUARDRAILS_CONTRACT_V1 | Active | docs/contracts/CODEX_GUARDRAILS_CONTRACT_V1.md | Governance / Foundations | 2025-12-31 | Hard-stop safety gates for Codex (migrations, staging, scope, target, secrets) |
 
 ---

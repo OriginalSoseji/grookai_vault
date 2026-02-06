@@ -94,6 +94,9 @@ Before any L2/L3 audit or implementation:
 - Run `supabase migration list` before pushes; no Studio schema edits.
 - CI uses highway (workers) with injected secrets, not public endpoints.
 
+## 12. Production Readiness Rule V1
+- Production-Ready DONE Gate is mandatory across all domains (workers, Edge, DB, client features that affect data). See `docs/PRODUCTION_READINESS_GATE_V1.md` for the locked requirements (determinism, failure persistence, observability, trust boundaries, replayable verification, checkpoint discipline).
+
 ### Env / DB Sanity (Mandatory for any Supabase-backed feature)
 - Applies to all Audit Rules (L1/L2/L3) that touch Supabase data (UI, pricing, ingestion, vault, auth).
 - Steps:

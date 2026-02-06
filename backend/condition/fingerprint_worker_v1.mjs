@@ -65,6 +65,65 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input).digest('hex');
 }
 
+function pickWarpToken(face) {
+  const sanitize = (val) => (val || '').toLowerCase().replace(/\s+/g, '_').slice(0, 64) || 'warp_failed';
+  const flags = Array.isArray(face?.flags) ? face.flags : [];
+  const tokens = flags.filter((f) => typeof f === 'string').map((f) => sanitize(f.trim()));
+  const httpToken = tokens.find((t) => /^ai_warp_http_\d{3}$/.test(t));
+  if (httpToken) return httpToken;
+  const aiWarp = tokens.find((t) => t.startsWith('ai_warp_') && t !== 'ai_warp_http_error');
+  if (aiWarp) return aiWarp;
+  if (tokens.includes('ai_warp_http_error')) return 'ai_warp_http_error';
+  const warpSpecific = tokens.find((t) => t.startsWith('warp_') && t !== 'warp_failed' && t !== 'warp_ok');
+  if (warpSpecific) return warpSpecific;
+  if (tokens.includes('warp_unknown')) return 'warp_unknown';
+  return 'warp_failed';
+}
+
+async function recordFailure({
+  supabase,
+  snap,
+  snapshotId,
+  analysisVersion,
+  analysisKey,
+  error_code,
+  error_detail,
+  attempted_snapshot_id = null,
+}) {
+  if (!supabase || !snapshotId || !analysisVersion || !analysisKey) return;
+  try {
+    const { data: existing, error: selectErr } = await supabase
+      .from('condition_analysis_failures')
+      .select('id')
+      .eq('snapshot_id', snapshotId)
+      .eq('analysis_version', analysisVersion)
+      .eq('analysis_key', analysisKey)
+      .limit(1)
+      .maybeSingle();
+    if (selectErr) {
+      console.warn(`[fingerprint][failure] select_failed analysis_key=${analysisKey} detail=${selectErr.message}`);
+      return;
+    }
+    if (existing) return;
+    const payload = {
+      snapshot_id: snapshotId,
+      user_id: snap?.user_id ?? null,
+      analysis_version: analysisVersion,
+      analysis_key: analysisKey,
+      error_code,
+      error_detail,
+      attempted_snapshot_id: attempted_snapshot_id || null,
+    };
+    const { error: insertErr } = await supabase.from('condition_analysis_failures').insert(payload);
+    if (insertErr && !String(insertErr.message || '').toLowerCase().includes('duplicate key')) {
+      console.warn(`[fingerprint][failure] insert_failed analysis_key=${analysisKey} detail=${insertErr.message}`);
+    }
+  } catch (err) {
+    const msg = err?.message || String(err);
+    console.warn(`[fingerprint][failure] exception analysis_key=${analysisKey} detail=${msg}`);
+  }
+}
+
 async function downloadImage(supabase, bucket, path) {
   const targetBucket = typeof path === 'object' && path !== null && path.bucket ? path.bucket : bucket;
   const targetPath = typeof path === 'object' && path !== null && path.path ? path.path : path;
@@ -268,9 +327,17 @@ async function processFace({ buffer, faceLabel }) {
     timeoutMs: AI_BORDER_TIMEOUT_MS + 2000,
   });
   if (!warpRes.ok || !warpRes.imageBuffer) {
+    const httpNote = Array.isArray(warpRes.notes)
+      ? warpRes.notes.find((n) => typeof n === 'string' && /^http_\d{3}$/i.test(n))
+      : null;
     return {
       status: 'failed',
-      flags: [...flags, 'warp_failed', warpRes.error || 'warp_unknown'],
+      flags: [
+        ...flags,
+        'warp_failed',
+        warpRes.error || 'warp_unknown',
+        ...(httpNote ? [`ai_warp_${httpNote.toLowerCase()}`] : []),
+      ],
       quadValid: true,
       quadSource: 'ai_border',
       areaNorm: validation.areaNorm,
@@ -328,14 +395,16 @@ async function main() {
     globalThis.FP_DEBUG = true;
   }
 
+  const analysisKey = sha256Hex(`${snapshotId}::${analysisVersion}::fingerprint_v1`);
   const supabase = createBackendClient();
   const started = Date.now();
+  let snap = null;
 
+  try {
     if (!process.env.SUPABASE_DB_URL) {
       throw new Error('SNAPSHOT_READ_FAILED (admin_condition_snapshots_read_v1_db): missing SUPABASE_DB_URL');
     }
 
-    let snap = null;
     try {
       const res = await pgPool.query(
         'select * from public.admin_condition_snapshots_read_v1($1)',
@@ -377,19 +446,47 @@ async function main() {
 
   if (typeof frontPath !== 'string' || typeof backPath !== 'string') {
     logStatus('invalid_images', { snapshotId, analysisVersion, reason: 'front/back missing' });
+    await recordFailure({
+      supabase,
+      snap,
+      snapshotId,
+      analysisVersion,
+      analysisKey,
+      error_code: 'invalid_images',
+      error_detail: 'invalid_images: front/back missing',
+      attempted_snapshot_id: snapshotId,
+    });
     process.exit(1);
   }
-
-  const analysisKey = sha256Hex(`${snapshotId}::${analysisVersion}::fingerprint_v1`);
 
   const frontDl = await downloadImage(supabase, bucket, frontPath);
   if (frontDl.error) {
     logStatus('download_failed', { snapshotId, path: frontPath, detail: frontDl.error.message });
+    await recordFailure({
+      supabase,
+      snap,
+      snapshotId,
+      analysisVersion,
+      analysisKey,
+      error_code: 'image_download_failed',
+      error_detail: `image_download_failed: ${frontDl.error.message}`,
+      attempted_snapshot_id: snapshotId,
+    });
     process.exit(1);
   }
   const backDl = await downloadImage(supabase, bucket, backPath);
   if (backDl.error) {
     logStatus('download_failed', { snapshotId, path: backPath, detail: backDl.error.message });
+    await recordFailure({
+      supabase,
+      snap,
+      snapshotId,
+      analysisVersion,
+      analysisKey,
+      error_code: 'image_download_failed',
+      error_detail: `image_download_failed: ${backDl.error.message}`,
+      attempted_snapshot_id: snapshotId,
+    });
     process.exit(1);
   }
 
@@ -480,7 +577,19 @@ async function main() {
     failureReason = 'one_face_failed';
     } else if (anyQuadValid) {
       analysisStatus = 'failed';
-      failureReason = 'warp_failed';
+      const frontFailed = front?.quadValid && front?.status !== 'ok';
+      const backFailed = back?.quadValid && back?.status !== 'ok';
+      const frontToken = pickWarpToken(front);
+      const backToken = pickWarpToken(back);
+      if (frontFailed && backFailed) {
+        failureReason = `warp_failed:front:${frontToken}|back:${backToken}`;
+      } else if (frontFailed) {
+        failureReason = `warp_failed:front:${frontToken}`;
+      } else if (backFailed) {
+        failureReason = `warp_failed:back:${backToken}`;
+      } else {
+        failureReason = 'warp_failed';
+      }
     }
 
     const shouldLogQuadDebug = DEBUG || failureReason === 'fingerprint_no_quads';
@@ -523,11 +632,11 @@ async function main() {
     matchResult.debug.primary_face = primaryFace;
     let candidates = [];
     try {
-      const { data: rows, error } = await supabase
-        .from('condition_snapshot_analyses')
-        .select('snapshot_id, measurements, user_id')
-        .eq('user_id', snap.user_id)
-        .eq('analysis_version', analysisVersion)
+    const { data: rows, error } = await supabase
+      .from('condition_snapshot_analyses')
+      .select('snapshot_id, measurements, user_id')
+      .eq('user_id', snap.user_id)
+      .eq('analysis_version', analysisVersion)
         .neq('snapshot_id', snapshotId)
         .order('created_at', { ascending: false })
         .limit(50);
@@ -716,6 +825,19 @@ async function main() {
     return;
   }
 
+    if (analysisStatus === 'failed') {
+      await recordFailure({
+        supabase,
+        snap,
+        snapshotId,
+        analysisVersion,
+        analysisKey,
+        error_code: 'fingerprint_failed',
+        error_detail: failureReason || 'unknown_stage',
+        attempted_snapshot_id: snapshotId,
+      });
+    }
+
     const aiHintMetadata = {
       run_id: null,
       warp_sha256: null,
@@ -745,22 +867,31 @@ async function main() {
       }
     }
 
-    try {
-      const { error: insertErr, data: inserted } = await supabase.rpc(
-        'admin_condition_assist_insert_analysis_v1',
-      {
-        p_snapshot_id: snapshotId,
-        p_analysis_version: analysisVersion,
-        p_analysis_key: analysisKey,
-        p_scan_quality: scanQuality,
-        p_measurements: measurements,
-        p_defects: { version: 1, items: [] },
-        p_confidence: 0.0,
-      },
-    );
+    const { error: insertErr, data: inserted } = await supabase.rpc(
+      'admin_condition_assist_insert_analysis_v1',
+    {
+      p_snapshot_id: snapshotId,
+      p_analysis_version: analysisVersion,
+      p_analysis_key: analysisKey,
+      p_scan_quality: scanQuality,
+      p_measurements: measurements,
+      p_defects: { version: 1, items: [] },
+      p_confidence: 0.0,
+    },
+  );
 
     if (insertErr) {
       logStatus('error', { snapshotId, analysisVersion, analysisKey, reason: 'insert_failed', detail: insertErr.message });
+      await recordFailure({
+        supabase,
+        snap,
+        snapshotId,
+        analysisVersion,
+        analysisKey,
+        error_code: 'analysis_insert_failed',
+        error_detail: insertErr.message,
+        attempted_snapshot_id: snapshotId,
+      });
       await supabase.rpc('admin_condition_assist_insert_failure_v1', {
         p_snapshot_id: snapshotId,
         p_attempted_snapshot_id: snapshotId,
@@ -846,6 +977,17 @@ async function main() {
       logStatus('ok', { snapshotId, analysisVersion, analysisKey, ms: elapsedMs, analysis_status: analysisStatus });
     } catch (e) {
     logStatus('error', { snapshotId, analysisVersion, analysisKey, reason: 'exception', detail: e?.message || e });
+    await recordFailure({
+      supabase,
+      snap,
+      snapshotId,
+      analysisVersion,
+      analysisKey,
+      error_code: e?.code || 'exception',
+      error_detail: e?.message || 'unknown_stage',
+      attempted_snapshot_id: snapshotId,
+    });
+    process.exit(1);
   }
 }
 
