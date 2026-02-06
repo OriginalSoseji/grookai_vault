@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/scanner/condition_scan_service.dart';
 import 'condition_camera_screen.dart';
@@ -45,6 +46,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
   bool _historyLoading = false;
   List<Map<String, dynamic>> _history = [];
   bool _showAdjustCorners = false;
+  bool _fingerprintReviewSubmitting = false;
+  String? _fingerprintUserDecision;
 
   @override
   void initState() {
@@ -165,6 +168,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
   Future<void> _pollForAnalysis(String snapshotId) async {
     _pollingCancelled = false;
     _analysisRow = null;
+    _fingerprintUserDecision = null;
+    _fingerprintReviewSubmitting = false;
     const maxAttempts = 30;
     for (var attempt = 0; attempt < maxAttempts; attempt += 1) {
       if (!mounted || _pollingCancelled) return;
@@ -205,6 +210,20 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
             setState(() {
               _analysisRow = row.cast<String, dynamic>();
               _analysisState = _AnalysisState.failed;
+            });
+            return;
+          }
+          final measurements = row['measurements'];
+          final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+          final match = fingerprint is Map ? fingerprint['match'] : null;
+          final decision =
+              match is Map ? (match['decision']?.toString() ?? '') : '';
+          if (decision == 'uncertain') {
+            if (!mounted) return;
+            setState(() {
+              _analysisRow = row.cast<String, dynamic>();
+              _analysisState = _AnalysisState.complete;
+              _rerunRequested = false;
             });
             return;
           }
@@ -454,6 +473,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 if (_analysisState == _AnalysisState.complete &&
                     _analysisRow != null)
                   _buildAnalysisSummary(theme),
+                if (_analysisRow != null) _buildFingerprintMatchReview(theme),
                 if (_analysisState == _AnalysisState.failed && _analysisRow != null)
                   _buildFailureActions(theme),
                 if (_analysisState == _AnalysisState.failed)
@@ -560,6 +580,117 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     );
   }
 
+  Widget _buildFingerprintMatchReview(ThemeData theme) {
+    final measurements = _analysisRow?['measurements'];
+    final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+    final match = fingerprint is Map ? fingerprint['match'] : null;
+    if (match is! Map) return const SizedBox.shrink();
+    final decision = match['decision']?.toString() ?? '';
+    if (decision != 'uncertain') return const SizedBox.shrink();
+    final debug = match['debug'] as Map?;
+    final score = (debug?['score'] as num?)?.toDouble() ?? 0.0;
+    final scorePct = (score * 100).round();
+    final bestCandidateSnapshotId =
+        match['best_candidate_snapshot_id']?.toString() ?? '';
+    final statusText = _fingerprintUserDecision == null
+        ? null
+        : (_fingerprintUserDecision == 'same'
+            ? 'User confirmed same'
+            : 'User confirmed different');
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.fingerprint, color: theme.colorScheme.primary),
+                const SizedBox(width: 8),
+                Text(
+                  'Likely same card',
+                  style: theme.textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w700),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              '$scorePct% confidence',
+              style: theme.textTheme.bodyMedium,
+            ),
+            if (bestCandidateSnapshotId.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  'Best candidate snapshot: $bestCandidateSnapshotId',
+                  style: theme.textTheme.bodySmall,
+                ),
+              ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton(
+                    onPressed: _fingerprintReviewSubmitting
+                        ? null
+                        : () => _submitFingerprintMatchReview(
+                              isSame: true,
+                              score: score,
+                              bestCandidateSnapshotId: bestCandidateSnapshotId,
+                            ),
+                    child: const Text('Confirm same'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: _fingerprintReviewSubmitting
+                        ? null
+                        : () => _submitFingerprintMatchReview(
+                              isSame: false,
+                              score: score,
+                              bestCandidateSnapshotId: bestCandidateSnapshotId,
+                            ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: theme.colorScheme.error,
+                    ),
+                    child: const Text('Not the same'),
+                  ),
+                ),
+              ],
+            ),
+            if (_fingerprintReviewSubmitting)
+              const Padding(
+                padding: EdgeInsets.only(top: 8),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    SizedBox(width: 8),
+                    Text('Saving...'),
+                  ],
+                ),
+              ),
+            if (statusText != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  statusText,
+                  style: theme.textTheme.bodyMedium
+                      ?.copyWith(color: theme.colorScheme.primary),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildFailureActions(ThemeData theme) {
     final scanQuality = _analysisRow?['scan_quality'] as Map?;
     final failureReason =
@@ -601,6 +732,63 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _submitFingerprintMatchReview({
+    required bool isSame,
+    required double score,
+    required String bestCandidateSnapshotId,
+  }) async {
+    final supabase = Supabase.instance.client;
+    final user = supabase.auth.currentUser;
+    if (user == null) {
+      _snack('Please sign in');
+      return;
+    }
+    final analysisKey = (_analysisRow?['analysis_key'] ?? '').toString();
+    final analysisVersion = (_analysisRow?['analysis_version'] ?? '').toString();
+    final snapshotId = (_analysisRow?['snapshot_id'] ?? _snapshotId ?? '').toString();
+    if (analysisKey.isEmpty || analysisVersion.isEmpty || snapshotId.isEmpty) {
+      _snack('Missing analysis data');
+      return;
+    }
+
+    setState(() {
+      _fingerprintReviewSubmitting = true;
+    });
+    try {
+      await supabase.rpc('admin_fingerprint_event_insert_v1', params: {
+        'p_user_id': user.id,
+        'p_analysis_key': analysisKey,
+        'p_event_type': isSame
+            ? 'fingerprint_match_user_confirmed_same'
+            : 'fingerprint_match_user_confirmed_different',
+        'p_snapshot_id': snapshotId,
+        'p_fingerprint_key': null,
+        'p_vault_item_id': null,
+        'p_event_metadata': {
+          'decision': isSame ? 'confirm_same' : 'confirm_different',
+          'score_0_1': score,
+          'score_pct': (score * 100).round(),
+          'analysis_version': analysisVersion,
+          'analysis_key': analysisKey,
+          'best_candidate_snapshot_id': bestCandidateSnapshotId,
+          'source': 'ui_review',
+        },
+      });
+      if (!mounted) return;
+      setState(() {
+        _fingerprintUserDecision = isSame ? 'same' : 'different';
+      });
+      _snack('Saved');
+    } catch (e) {
+      _snack('Save failed: $e');
+    } finally {
+      if (!mounted) return;
+      setState(() {
+        _fingerprintReviewSubmitting = false;
+      });
+    }
   }
 
   Future<void> _openAdjustCorners() async {
