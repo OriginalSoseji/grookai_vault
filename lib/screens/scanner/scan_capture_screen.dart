@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../card_detail_screen.dart';
 import '../../services/scanner/condition_scan_service.dart';
 import 'condition_camera_screen.dart';
 import 'quad_adjust_screen.dart';
@@ -48,6 +49,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
   bool _showAdjustCorners = false;
   bool _fingerprintReviewSubmitting = false;
   String? _fingerprintUserDecision;
+  Map<String, dynamic>? _matchCardRow;
+  bool _matchCardLoading = false;
 
   @override
   void initState() {
@@ -170,6 +173,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     _analysisRow = null;
     _fingerprintUserDecision = null;
     _fingerprintReviewSubmitting = false;
+    _matchCardRow = null;
+    _matchCardLoading = false;
     const maxAttempts = 30;
     for (var attempt = 0; attempt < maxAttempts; attempt += 1) {
       if (!mounted || _pollingCancelled) return;
@@ -203,6 +208,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               _analysisState = _AnalysisState.complete;
               _rerunRequested = false;
             });
+            unawaited(_loadMatchedCard(snapshotId));
             return;
           }
           if (analysisVersion == 'v2_centering' && analysisStatus == 'failed') {
@@ -225,6 +231,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               _analysisState = _AnalysisState.complete;
               _rerunRequested = false;
             });
+            unawaited(_loadMatchedCard(snapshotId));
             return;
           }
         }
@@ -237,6 +244,33 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
     if (!mounted || _pollingCancelled) return;
     setState(() => _analysisState = _AnalysisState.timeout);
+  }
+
+  Future<void> _loadMatchedCard(String snapshotId) async {
+    setState(() {
+      _matchCardLoading = true;
+      _matchCardRow = null;
+    });
+    try {
+      final row = await _service.fetchMatchCardForSnapshot(snapshotId);
+      if (!mounted) return;
+      setState(() {
+        _matchCardRow = row;
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('[DEBUG] loadMatchedCard failed: $e');
+      }
+      if (!mounted) return;
+      setState(() {
+        _matchCardRow = null;
+      });
+    } finally {
+      if (!mounted) return;
+      setState(() {
+        _matchCardLoading = false;
+      });
+    }
   }
 
   Future<void> _loadHistory() async {
@@ -266,6 +300,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
       _snapshotId = snapshotId;
       _analysisState = _AnalysisState.analyzing;
       _analysisRow = null;
+      _matchCardRow = null;
+      _matchCardLoading = false;
     });
     await _pollForAnalysis(snapshotId);
   }
@@ -474,6 +510,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                     _analysisRow != null)
                   _buildAnalysisSummary(theme),
                 if (_analysisRow != null) _buildFingerprintMatchReview(theme),
+                if (_analysisRow != null) _buildMatchedCardTile(theme),
                 if (_analysisState == _AnalysisState.failed && _analysisRow != null)
                   _buildFailureActions(theme),
                 if (_analysisState == _AnalysisState.failed)
@@ -687,6 +724,107 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMatchedCardTile(ThemeData theme) {
+    final measurements = _analysisRow?['measurements'];
+    final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+    final match = fingerprint is Map ? fingerprint['match'] : null;
+    final decision =
+        (match is Map ? match['decision']?.toString() : null) ??
+            _matchCardRow?['decision']?.toString() ??
+            '';
+    if (decision != 'uncertain') return const SizedBox.shrink();
+
+    final analysisKey = (_analysisRow?['analysis_key'] ?? '').toString();
+    final cardPrintId =
+        _matchCardRow?['best_candidate_card_print_id']?.toString() ?? '';
+    final cardName = _matchCardRow?['best_candidate_name']?.toString() ?? '';
+    final setCode =
+        _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
+    final number =
+        _matchCardRow?['best_candidate_number']?.toString() ?? '';
+    final imageUrl =
+        _matchCardRow?['best_candidate_image_best']?.toString() ?? '';
+
+    if (_matchCardLoading) {
+      return const Card(
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+              SizedBox(width: 8),
+              Text('Loading match…'),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (cardPrintId.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Match found but card unavailable',
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              if (analysisKey.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    'Analysis: $analysisKey',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Card(
+      child: ListTile(
+        leading: imageUrl.isNotEmpty
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.network(
+                  imageUrl,
+                  width: 48,
+                  height: 64,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => const Icon(Icons.image),
+                ),
+              )
+            : const Icon(Icons.image),
+        title: Text(cardName.isNotEmpty ? cardName : 'Matched card'),
+        subtitle: Text(
+          [setCode, number].where((p) => p.isNotEmpty).join(' • '),
+        ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => CardDetailScreen(
+                cardPrintId: cardPrintId,
+                name: cardName.isNotEmpty ? cardName : null,
+                number: number.isNotEmpty ? number : null,
+                imageUrl: imageUrl.isNotEmpty ? imageUrl : null,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

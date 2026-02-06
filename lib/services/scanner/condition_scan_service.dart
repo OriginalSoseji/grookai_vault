@@ -275,6 +275,23 @@ class ConditionScanService {
     throw Exception('snapshot fetch bad shape: ${data.runtimeType}');
   }
 
+  Future<Map<String, dynamic>?> fetchMatchCardForSnapshot(
+      String snapshotId) async {
+    final row = await _client
+        .from('v_condition_snapshot_analyses_match_card_v1')
+        .select(
+            'analysis_snapshot_id, analysis_key, analysis_version, decision, best_candidate_card_print_id, best_candidate_name, best_candidate_set_code, best_candidate_number, best_candidate_image_best')
+        .eq('analysis_snapshot_id', snapshotId)
+        .order('analysis_created_at', ascending: false)
+        .limit(1)
+        .maybeSingle();
+
+    if (row == null) return null;
+    if (row is Map<String, dynamic>) return row;
+    if (row is Map) return Map<String, dynamic>.from(row);
+    throw Exception('match card fetch bad shape: ${row.runtimeType}');
+  }
+
   Future<void> saveQuadOverride({
     required String snapshotId,
     required Map<String, List<List<double>>> quads,

@@ -1068,7 +1068,7 @@ class HomePageState extends State<HomePage> {
     try {
       final rows = await CardPrintRepository.searchCardPrints(
         client: supabase,
-        query: query,
+        options: CardSearchOptions(query: query),
       );
       setState(() => _results = rows);
     } finally {
@@ -1605,7 +1605,7 @@ class _CatalogPickerState extends State<_CatalogPicker> {
     try {
       final rows = await CardPrintRepository.searchCardPrints(
         client: supabase,
-        query: query,
+        options: CardSearchOptions(query: query),
       );
       setState(() => _rows = rows);
     } finally {
