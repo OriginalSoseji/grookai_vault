@@ -468,7 +468,7 @@ async function processEvent(supabase, eventId) {
   const hasName = !!(name && name.trim());
   const hasCollector = !!(readCollectorNumber && readCollectorNumber.trim());
   const hasTotal = typeof readPrintedTotal === 'number';
-  if (hasName && (hasCollector || hasTotal)) {
+  if ((hasCollector && hasTotal) || hasName) {
     log('ai_identify_ok', { eventId, run_id: aiPayload.run_id || null });
     await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, [], null);
     return { status: 'ai_hint_ready', error: null };
