@@ -10,10 +10,13 @@ import '../../card_detail_screen.dart';
 import '../../services/identity/identity_scan_service.dart';
 import '../scanner/condition_camera_screen.dart';
 
-enum _IdentityScanStep { capture, processing, results, error }
+enum _IdentityScanStep { capture, processing, hintReady, results, error }
 
 class IdentityScanScreen extends StatefulWidget {
-  const IdentityScanScreen({super.key});
+  final bool autoStart;
+  final XFile? initialFrontFile;
+
+  const IdentityScanScreen({super.key, this.autoStart = false, this.initialFrontFile});
 
   @override
   State<IdentityScanScreen> createState() => _IdentityScanScreenState();
@@ -31,12 +34,42 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   String? _snapshotId;
   List<dynamic> _candidates = const [];
   int _selectedIndex = 0;
+  Map<String, dynamic>? _signals;
+  String _aiName = '';
+  String _aiCollectorNumber = '';
+  String _aiPrintedTotal = '';
+  String _aiHp = '';
+  String _aiConfidence = '';
+
+  bool get _hasRealEventId {
+    final id = _eventId;
+    return id != null && id.isNotEmpty && id != '(not created)';
+  }
 
   void _snack(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 
-  Future<void> _capture() async {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialFrontFile != null) {
+      _front = widget.initialFrontFile;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && !_submitting) {
+          _startScan();
+        }
+      });
+    } else if (widget.autoStart) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && !_submitting) {
+          _captureAndIdentify();
+        }
+      });
+    }
+  }
+
+  Future<void> _captureAndIdentify() async {
     final file = await Navigator.of(context).push<XFile?>(
       MaterialPageRoute(
         builder: (_) => const ConditionCameraScreen(
@@ -50,6 +83,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _front = file;
         _error = null;
       });
+      await _startScan();
     }
   }
 
@@ -63,6 +97,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _front = file;
         _error = null;
       });
+      await _startScan();
     }
   }
 
@@ -85,6 +120,12 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       _snapshotId = null;
       _candidates = const [];
       _selectedIndex = 0;
+      _signals = null;
+      _aiName = '';
+      _aiCollectorNumber = '';
+      _aiPrintedTotal = '';
+      _aiHp = '';
+      _aiConfidence = '';
     });
 
     try {
@@ -93,9 +134,14 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       _snapshotId = start.snapshotId;
       await _pollUntilDone(start.eventId);
     } catch (e) {
+      final message = e.toString();
+      final missingEventId = message.contains('enqueue_missing_event_id') || message.contains('enqueue_bad_shape');
       setState(() {
-        _error = e.toString();
+        _error = message;
         _step = _IdentityScanStep.error;
+        if (missingEventId) {
+          _eventId = '(not created)';
+        }
       });
     } finally {
       if (mounted) {
@@ -112,13 +158,34 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       if (!mounted) return;
       try {
         final res = await _service.pollOnce(eventId);
-        final status = res.status;
-        if (status != 'pending') {
+        final resultStatus = res.status;
+        if (resultStatus == 'ai_hint_ready') {
+          final ai = res.signals?['ai'];
+          final aiMap = ai is Map ? ai : null;
+          final name = (aiMap?['name'] ?? '').toString();
+          final collectorNumber = (aiMap?['collector_number'] ?? '').toString();
+          final printedTotal = aiMap?['printed_total'];
+          final hp = aiMap?['hp'];
+          final conf = aiMap?['confidence'];
           setState(() {
-            _step = _IdentityScanStep.results;
+            _step = _IdentityScanStep.hintReady;
             _candidates = res.candidates;
             _selectedIndex = 0;
             _error = res.error;
+            _signals = res.signals;
+            _aiName = name;
+            _aiCollectorNumber = collectorNumber;
+            _aiPrintedTotal = printedTotal == null ? '' : printedTotal.toString();
+            _aiHp = hp == null ? '' : hp.toString();
+            _aiConfidence = conf is num ? (conf * 100).toStringAsFixed(1) : (conf?.toString() ?? '');
+          });
+          return;
+        }
+        if (resultStatus == 'failed') {
+          setState(() {
+            _step = _IdentityScanStep.error;
+            _error = res.error;
+            _signals = res.signals;
           });
           return;
         }
@@ -213,7 +280,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             Row(
               children: [
                 FilledButton.icon(
-                  onPressed: _submitting ? null : _capture,
+                  onPressed: _submitting ? null : _captureAndIdentify,
                   icon: const Icon(Icons.camera_alt),
                   label: const Text('Open Camera'),
                 ),
@@ -224,11 +291,6 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                   label: const Text('Gallery'),
                 ),
               ],
-            ),
-            const SizedBox(height: 12),
-            FilledButton(
-              onPressed: _submitting ? null : _startScan,
-              child: const Text('Identify Card'),
             ),
           ],
         ),
@@ -248,7 +310,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
             SizedBox(width: 12),
-            Text('Identifying card…'),
+            Text('Processing…'),
           ],
         ),
       ),
@@ -256,6 +318,10 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   }
 
   Widget _buildResults(ThemeData theme) {
+    if (_step == _IdentityScanStep.hintReady) {
+      return _buildAiHintBanner(theme);
+    }
+
     if (_candidates.isEmpty) {
       return Card(
         child: Padding(
@@ -264,10 +330,10 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'No match found',
+                'Hint ready — awaiting resolver',
                 style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
-              if (_eventId != null)
+              if (_hasRealEventId)
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text('Event: $_eventId'),
@@ -334,11 +400,68 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             ),
           ),
         ),
-        if (_eventId != null || _snapshotId != null)
+        if (_hasRealEventId || (_snapshotId != null && _snapshotId!.isNotEmpty))
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              'Event: ${_eventId ?? '—'} • Snapshot: ${_snapshotId ?? '—'}',
+              [
+                if (_hasRealEventId) 'Event: $_eventId',
+                if (_snapshotId != null && _snapshotId!.isNotEmpty) 'Snapshot: $_snapshotId',
+              ].join(' • '),
+              style: theme.textTheme.bodySmall,
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildAiHintBanner(ThemeData theme) {
+    final parts = <String>[];
+    if (_aiName.isNotEmpty) parts.add(_aiName);
+    if (_aiCollectorNumber.isNotEmpty) parts.add(_aiCollectorNumber);
+    if (_aiHp.isNotEmpty) parts.add('HP $_aiHp');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Grookai Vision thinks this is…',
+                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(parts.isEmpty ? 'Unknown name' : parts.join(' — ')),
+                if (_aiPrintedTotal.isNotEmpty || _aiConfidence.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      [
+                        if (_aiPrintedTotal.isNotEmpty) 'Total $_aiPrintedTotal',
+                        if (_aiConfidence.isNotEmpty) 'Confidence $_aiConfidence%',
+                      ].join(' • '),
+                    ),
+                  ),
+                const SizedBox(height: 8),
+                FilledButton(
+                  onPressed: null,
+                  child: const Text('Confirm'),
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (_hasRealEventId || (_snapshotId != null && _snapshotId!.isNotEmpty))
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              [
+                if (_hasRealEventId) 'Event: $_eventId',
+                if (_snapshotId != null && _snapshotId!.isNotEmpty) 'Snapshot: $_snapshotId',
+              ].join(' • '),
               style: theme.textTheme.bodySmall,
             ),
           ),
@@ -370,7 +493,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
               ),
             if (_step == _IdentityScanStep.capture) _buildCaptureCard(theme),
             if (_step == _IdentityScanStep.processing) _buildProcessingCard(),
-            if (_step == _IdentityScanStep.results) _buildResults(theme),
+            if (_step == _IdentityScanStep.results || _step == _IdentityScanStep.hintReady) _buildResults(theme),
             if (_step == _IdentityScanStep.error && _step != _IdentityScanStep.results)
               Card(
                 child: Padding(
@@ -384,7 +507,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                       ),
                       const SizedBox(height: 6),
                       Text(_error ?? 'Unknown error'),
-                      if (_eventId != null)
+                      if (_eventId != null && (_hasRealEventId || _eventId == '(not created)'))
                         Padding(
                           padding: const EdgeInsets.only(top: 4),
                           child: Text('Event: $_eventId'),
