@@ -6,7 +6,7 @@
 import '../env.mjs';
 import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
-import { detectOuterBorderAI, warpCardQuadAI, ocrCardSignalsAI } from '../condition/ai_border_detector_client.mjs';
+import { detectOuterBorderAI, warpCardQuadAI } from '../condition/ai_border_detector_client.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'identity_scan_v1';
@@ -148,6 +148,132 @@ async function downloadImage(supabase, bucket, path) {
   return { data: buf };
 }
 
+async function aiIdentifyWarp(imageBuffer, traceId) {
+  const baseUrl = process.env.GV_AI_BORDER_URL || '';
+  if (!baseUrl) {
+    return { error: new Error('ai_identify_disabled') };
+  }
+  const token = process.env.GV_AI_ENDPOINT_TOKEN || '';
+  const endpoint = `${baseUrl.replace(/\/$/, '')}/ai-identify-warp`;
+  const payload = {
+    image_b64: imageBuffer.toString('base64'),
+    force_refresh: false,
+    trace_id: traceId,
+  };
+  const headers = { 'content-type': 'application/json' };
+  if (token) headers['x-gv-token'] = token;
+
+  let response;
+  try {
+    response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    return { error: new Error(`ai_identify_network_error:${err.message}`) };
+  }
+
+  if (!response.ok) {
+    return { error: new Error(`ai_identify_http_${response.status}`) };
+  }
+
+  let data;
+  try {
+    data = await response.json();
+  } catch (err) {
+    return { error: new Error('ai_identify_invalid_json') };
+  }
+
+  if (!data || typeof data !== 'object') {
+    return { error: new Error('ai_identify_invalid_payload') };
+  }
+
+  if (data.ok === false) {
+    return { error: new Error(data.error || 'ai_identify_failed'), data };
+  }
+
+  return { data };
+}
+
+async function aiReadNumber({ baseUrl, imageBuffer, traceId, timeoutMs = 20000 }) {
+  if (!baseUrl) {
+    return { ok: false, error: 'ai_read_number_disabled' };
+  }
+  const token = process.env.GV_AI_ENDPOINT_TOKEN || '';
+  const endpoint = `${baseUrl.replace(/\/$/, '')}/ai-read-number`;
+  const payload = {
+    image_b64: imageBuffer.toString('base64'),
+    force_refresh: false,
+    trace_id: traceId,
+  };
+  const headers = { 'content-type': 'application/json' };
+  if (token) headers['x-gv-token'] = token;
+
+  let response;
+  try {
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload),
+      signal: controller?.signal,
+    });
+    if (timer) clearTimeout(timer);
+  } catch (err) {
+    return { ok: false, error: `ai_read_number_network_error:${err.message}` };
+  }
+
+  if (!response.ok) {
+    return { ok: false, error: `ai_read_number_http_${response.status}` };
+  }
+
+  let data;
+  try {
+    data = await response.json();
+  } catch (err) {
+    return { ok: false, error: 'ai_read_number_invalid_json' };
+  }
+
+  if (!data || typeof data !== 'object') {
+    return { ok: false, error: 'ai_read_number_invalid_payload' };
+  }
+
+  if (data.ok === false) {
+    return { ok: false, error: data.error || 'ai_read_number_failed', notes: data.notes ?? null };
+  }
+
+  const result = typeof data.result === 'object' && data.result ? data.result : data;
+  return { ok: true, result, notes: data.notes ?? null };
+}
+
+function extractIdentitySnapshotFrontRef(images) {
+  if (!images || typeof images !== 'object') {
+    return { ok: false, error: 'identity_snapshot_images_missing', debug: { reason: 'images_null', keys: [] } };
+  }
+  const bucket = images.bucket;
+  const frontPath = images?.paths?.front ?? images?.front?.path;
+  const keys = Object.keys(images || {});
+  if (!bucket || typeof bucket !== 'string' || bucket.length === 0) {
+    return { ok: false, error: 'identity_snapshot_images_missing', debug: { reason: 'bucket_missing', keys } };
+  }
+  if (!frontPath || typeof frontPath !== 'string' || frontPath.length === 0) {
+    return { ok: false, error: 'identity_snapshot_images_missing', debug: { reason: 'front_path_missing', keys } };
+  }
+  return { ok: true, bucket, path: frontPath };
+}
+
+function normalizeCollectorNumber(raw) {
+  if (!raw || typeof raw !== 'string') return null;
+  const trimmed = raw.trim();
+  const m = trimmed.match(/^(\d{1,3})\s*\/\s*(\d{1,3})$/);
+  if (!m) return null;
+  const num = m[1].padStart(3, '0');
+  const total = m[2].padStart(3, '0');
+  return `${num}/${total}`;
+}
+
 async function insertResult(supabase, eventId, userId, status, signals, candidates, error) {
   const { data, error: insErr } = await supabase
     .from('identity_scan_event_results')
@@ -172,28 +298,53 @@ async function processEvent(supabase, eventId) {
   // Phase 1C.2: candidates + evidence — uses public.search_card_prints_v1
   const { data: eventRow, error: eventErr } = await supabase
     .from('identity_scan_events')
-    .select('id,user_id,snapshot_id,analysis_version,created_at,snapshot:condition_snapshots(id,user_id,images)')
+    .select(
+      'id,user_id,snapshot_id,identity_snapshot_id,source_table,analysis_version,created_at,snapshot:condition_snapshots(id,user_id,images),identity_snapshot:identity_snapshots(id,user_id,images)',
+    )
     .eq('id', eventId)
     .maybeSingle();
   if (eventErr) throw new Error(`event_fetch_failed:${eventErr.message}`);
   if (!eventRow) throw new Error('event_not_found');
 
   const userId = eventRow.user_id;
-  const snapshot = eventRow.snapshot;
+  const snapshot = eventRow.snapshot ?? eventRow.identity_snapshot ?? null;
+  const snapshotLane = eventRow.snapshot ? 'condition_snapshots' : eventRow.identity_snapshot ? 'identity_snapshots' : null;
   if (!snapshot?.id) throw new Error('snapshot_not_found');
+  log('snapshot_resolved', { eventId, snapshotId: snapshot.id, lane: snapshotLane });
 
   const images = snapshot.images || {};
-  const bucket = images.bucket || 'condition-scans';
-  const frontPath =
-    images.paths?.front ||
-    images.front?.path ||
-    (typeof images.front === 'string' ? images.front : null);
-  if (!frontPath || typeof frontPath !== 'string' || frontPath.length === 0) {
-    await insertResult(supabase, eventId, userId, 'failed', { reason: 'missing_front_image' }, [], 'missing_front_image');
-    return { status: 'failed', error: 'missing_front_image' };
+  const bucket = images?.bucket;
+  const frontPath = images?.paths?.front ?? images?.front?.path;
+  if (
+    !bucket ||
+    typeof bucket !== 'string' ||
+    bucket.length === 0 ||
+    !frontPath ||
+    typeof frontPath !== 'string' ||
+    frontPath.length === 0
+  ) {
+    await insertResult(
+      supabase,
+      eventId,
+      userId,
+      'failed',
+      { reason: 'snapshot_images_missing' },
+      [],
+      'snapshot_images_missing',
+    );
+    return { status: 'failed', error: 'snapshot_images_missing' };
   }
 
-  const frontDl = await downloadImage(supabase, bucket, frontPath);
+  let objectPath = frontPath;
+  if (objectPath.startsWith('/')) {
+    objectPath = objectPath.slice(1);
+  }
+  const bucketPrefix = `${bucket}/`;
+  if (objectPath.startsWith(bucketPrefix)) {
+    objectPath = objectPath.slice(bucketPrefix.length);
+  }
+
+  const frontDl = await downloadImage(supabase, bucket, objectPath);
   if (frontDl.error) {
     await insertResult(supabase, eventId, userId, 'failed', { reason: 'download_failed' }, [], frontDl.error.message);
     return { status: 'failed', error: frontDl.error.message };
@@ -233,142 +384,99 @@ async function processEvent(supabase, eventId) {
     return { status: 'failed', error: warp?.error || 'warp_failed' };
   }
 
-  const ocr = await ocrCardSignalsAI({ imageBuffer: warp.imageBuffer, timeoutMs: 6000 });
   const signals = {
     polygon_norm: detect.polygon_norm,
     border_notes: detect.notes || [],
     warp: { ok: true, size: { w: AI_WARP_W, h: AI_WARP_H } },
-    ocr_notes: ocr.notes || [],
-    ocr_engine: ocr?.result?.debug?.engine || null,
-    name_ocr: ocr?.result?.name?.text || null,
-    name_conf: ocr?.result?.name?.confidence ?? null,
-    number_raw: ocr?.result?.number_raw?.text || null,
-    number_conf: ocr?.result?.number_raw?.confidence ?? null,
-    number_digits: (ocr?.result?.number_raw?.text || '').replace(/[^0-9]/g, '') || null,
-    printed_total: ocr?.result?.printed_total?.value ?? null,
-    total_conf: ocr?.result?.printed_total?.confidence ?? null,
-    printed_set_abbrev_raw: ocr?.result?.printed_set_abbrev_raw?.text || null,
-    set_abbrev_conf: ocr?.result?.printed_set_abbrev_raw?.confidence ?? null,
+    ai_notes: [],
   };
 
-  const hasName = !!signals.name_ocr;
-  const hasNumber = !!signals.number_raw;
-  if (!ocr.ok || (!hasName && !hasNumber)) {
-    await insertResult(
-      supabase,
-      eventId,
-      userId,
-      'failed',
-      signals,
-      [],
-      ocr.error || 'ocr_no_signal',
-    );
-    return { status: 'failed', error: ocr.error || 'ocr_no_signal' };
+  const aiResp = await aiIdentifyWarp(warp.imageBuffer, eventId);
+  if (aiResp.error) {
+    log('ai_identify_failed', { eventId, error: aiResp.error.message });
+    signals.ai_notes.push(`ai_identify_failed:${aiResp.error.message}`);
+    signals.ai = { error: aiResp.error.message, trace_id: eventId };
+    await insertResult(supabase, eventId, userId, 'failed', signals, [], 'ai_identify_failed');
+    return { status: 'failed', error: 'ai_identify_failed' };
   }
 
-  // Build search inputs
-  const name = (signals.name_ocr || '').trim();
-  const numberRaw = (signals.number_raw || '').trim();
-  const numberDigits = (signals.number_digits || '').trim();
-  const numberInput = numberRaw || numberDigits || null;
-  const setCodeIn = null;
-  const q = name.length > 0 ? name : null;
+  const aiPayload = aiResp.data || {};
+  const aiResult = aiPayload.result || {};
+  const name =
+    typeof aiResult?.name === 'string'
+      ? aiResult.name
+      : typeof aiResult?.name?.text === 'string'
+        ? aiResult.name.text
+        : null;
+  const identifyCollectorNumber =
+    typeof aiResult?.collector_number === 'string'
+      ? aiResult.collector_number
+      : null;
+  const identifyPrintedTotal =
+    typeof aiResult?.printed_total === 'number'
+      ? aiResult.printed_total
+      : typeof aiResult?.collector_printed_total === 'number'
+        ? aiResult.collector_printed_total
+        : null;
+  const hp = typeof aiResult?.hp === 'number' ? aiResult.hp : null;
+  const confidence =
+    typeof aiResult?.confidence === 'number'
+      ? aiResult.confidence
+      : typeof aiResult?.confidence_0_1 === 'number'
+        ? aiResult.confidence_0_1
+        : null;
 
-  if (!q && !numberInput) {
-    await insertResult(
-      supabase,
-      eventId,
-      userId,
-      'failed',
-      signals,
-      [],
-      'no_search_inputs',
-    );
-    return { status: 'failed', error: 'no_search_inputs' };
-  }
-
-  let candidates = [];
-  let searchError = null;
-  try {
-    const resp = await supabase.rpc('search_card_prints_v1', {
-      q,
-      set_code_in: setCodeIn,
-      number_in: numberInput,
-      limit_in: 10,
-      offset_in: 0,
-    });
-    if (Array.isArray(resp)) {
-      candidates = resp;
-    } else if (resp?.data && Array.isArray(resp.data)) {
-      candidates = resp.data;
-    } else {
-      candidates = [];
-    }
-  } catch (err) {
-    searchError = err?.message || 'search_rpc_failed';
-  }
-
-  if (searchError) {
-    await insertResult(supabase, eventId, userId, 'failed', signals, [], 'search_rpc_failed');
-    return { status: 'failed', error: 'search_rpc_failed' };
-  }
-
-  // Evidence chips
-  const evidenceSummary = [];
-  if (name) evidenceSummary.push('signals:name');
-  if (numberInput) evidenceSummary.push('signals:number');
-  if (signals.printed_total !== null && signals.printed_total !== undefined) evidenceSummary.push('signals:total');
-  if (signals.printed_set_abbrev_raw) evidenceSummary.push('signals:set_abbrev');
-  evidenceSummary.push('search:rpc');
-
-  const pad3 = numberDigits ? numberDigits.padStart(3, '0') : null;
-
-  const mapped = candidates.map((c) => {
-    const ev = [];
-    const cName = (c?.name || '').toString();
-    const cSet = (c?.set_code || '').toString();
-    const cNumber = (c?.number || '').toString();
-    const cImage = (c?.image_best || c?.image_url || c?.thumb_url || null) || null;
-    const cNumberDigits = cNumber.replace(/[^0-9]/g, '');
-    const cNumberSlashedMatch =
-      pad3 && c?.number_slashed ? c.number_slashed.startsWith(`${pad3}/`) : false;
-
-    if (name && cName.toLowerCase().includes(name.toLowerCase())) ev.push('name_match');
-    if (numberDigits && cNumberDigits === numberDigits) ev.push('number_match');
-    else if (numberInput && cNumberSlashedMatch) ev.push('number_slash_match');
-    if (signals.printed_total && c?.number_slashed && c.number_slashed.endsWith(`/${signals.printed_total}`)) {
-      ev.push('printed_total_match');
-    }
-    if (signals.printed_set_abbrev_raw) {
-      ev.push('set_abbrev_present');
-    }
-
-    return {
-      card_print_id: c?.id || null,
-      name: cName,
-      set_code: cSet,
-      number: cNumber,
-      image_url: cImage,
-      evidence: ev,
-    };
+  const baseUrl = process.env.GV_AI_BORDER_URL || '';
+  const readNumber = await aiReadNumber({
+    baseUrl,
+    imageBuffer: warp.imageBuffer,
+    traceId: eventId,
+    timeoutMs: 20000,
   });
+  if (!readNumber?.ok) {
+    const readErr = readNumber?.error || 'unknown';
+    signals.ai_notes.push(`ai_read_number_failed:${readErr}`);
+  }
+  const rnData = readNumber?.result || {};
+  const readCollectorNumberRaw =
+    typeof rnData?.collector_number === 'string' ? rnData.collector_number : null;
+  const readCollectorNumber = readCollectorNumberRaw
+    ? normalizeCollectorNumber(readCollectorNumberRaw)
+    : null;
+  const readPrintedTotal = typeof rnData?.printed_total === 'number' ? rnData.printed_total : null;
+  const readNumberConfidence =
+    typeof rnData?.number_confidence_0_1 === 'number' ? rnData.number_confidence_0_1 : null;
 
-  if (mapped.length === 0) {
-    evidenceSummary.push('search:no_candidates');
+  const gvEvidence = {
+    name,
+    collector_number: readCollectorNumber ?? null,
+    printed_total: readPrintedTotal ?? null,
+    hp,
+    confidence,
+    number_confidence_0_1: readNumberConfidence ?? null,
+    run_id: aiPayload.run_id ?? null,
+    trace_id: aiPayload.trace_id ?? eventId,
+    notes: aiPayload.notes ?? aiResult?.notes ?? null,
+    number_source: readNumber?.ok ? 'ai_read_number' : 'missing',
+    identify_debug: {
+      collector_number: identifyCollectorNumber,
+      printed_total: identifyPrintedTotal,
+    },
+  };
+  signals.ai = gvEvidence;
+
+  const hasName = !!(name && name.trim());
+  const hasCollector = !!(readCollectorNumber && readCollectorNumber.trim());
+  const hasTotal = typeof readPrintedTotal === 'number';
+  if (hasName && (hasCollector || hasTotal)) {
+    log('ai_identify_ok', { eventId, run_id: aiPayload.run_id || null });
+    await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, [], null);
+    return { status: 'ai_hint_ready', error: null };
   }
 
-  signals.evidence_summary = evidenceSummary;
-
-  await insertResult(
-    supabase,
-    eventId,
-    userId,
-    'complete',
-    signals,
-    mapped,
-    mapped.length === 0 ? 'no_candidates' : null,
-  );
-  return { status: 'complete', error: mapped.length === 0 ? 'no_candidates' : null };
+  log('ai_identify_failed', { eventId, reason: 'missing_required_fields' });
+  await insertResult(supabase, eventId, userId, 'failed', signals, [], 'ai_identify_failed');
+  return { status: 'failed', error: 'ai_identify_failed' };
 }
 
 async function main() {
