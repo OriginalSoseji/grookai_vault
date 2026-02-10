@@ -53,7 +53,7 @@ class IdentityScanService {
     var path = _newPath(user.id);
 
     // Upload front image to condition-scans bucket
-    final upload = await _client.storage.from('condition-scans').uploadBinary(
+    final upload = await _client.storage.from('identity-scans').uploadBinary(
           path,
           bytes,
           fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: false),
@@ -62,7 +62,7 @@ class IdentityScanService {
     // If conflict, retry once with a different path
     if (upload.error != null) {
       path = _newPath(user.id);
-      final retry = await _client.storage.from('condition-scans').uploadBinary(
+      final retry = await _client.storage.from('identity-scans').uploadBinary(
             path,
             bytes,
             fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
@@ -73,7 +73,7 @@ class IdentityScanService {
     }
 
     final images = {
-      'bucket': 'condition-scans',
+      'bucket': 'identity-scans',
       'paths': {'front': path},
       'front': {'path': path},
     };
