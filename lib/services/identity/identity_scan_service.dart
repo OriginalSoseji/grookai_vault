@@ -53,24 +53,37 @@ class IdentityScanService {
     var path = _newPath(user.id);
 
     // Upload front image to condition-scans bucket
-    final upload = await _client.storage.from('identity-scans').uploadBinary(
-          path,
-          bytes,
-          fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: false),
-        );
-
-    // If conflict, retry once with a different path
-    if (upload.error != null) {
-      path = _newPath(user.id);
-      final retry = await _client.storage.from('identity-scans').uploadBinary(
+    String uploadedPath;
+    try {
+      uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
             path,
             bytes,
-            fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
+            fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: false),
           );
-      if (retry.error != null) {
-        throw Exception('upload_failed:${retry.error!.message}');
+    } on StorageException catch (e) {
+      path = _newPath(user.id);
+      try {
+        uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
+              path,
+              bytes,
+              fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
+            );
+      } on StorageException catch (retryErr) {
+        throw Exception('upload_failed:${retryErr.message}');
+      }
+    } catch (e) {
+      path = _newPath(user.id);
+      try {
+        uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
+              path,
+              bytes,
+              fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
+            );
+      } catch (retryErr) {
+        throw Exception('upload_failed:$retryErr');
       }
     }
+    path = uploadedPath;
 
     final images = {
       'bucket': 'identity-scans',
@@ -105,9 +118,8 @@ class IdentityScanService {
 
   Future<IdentityScanPollResult> pollOnce(String eventId) async {
     final resp = await _client.functions.invoke(
-      'identity_scan_get_v1',
+      'identity_scan_get_v1?event_id=$eventId',
       method: HttpMethod.get,
-      queryParams: {'event_id': eventId},
     );
 
     Map<String, dynamic>? event;
@@ -130,11 +142,12 @@ class IdentityScanService {
         .limit(1)
         .maybeSingle();
 
-    if (resultRow is Map) {
-      status = (resultRow['status'] ?? status).toString();
-      error = resultRow['error']?.toString() ?? error;
-      candidates = resultRow['candidates'] is List ? List.from(resultRow['candidates'] as List) : candidates;
-      signals = resultRow['signals'] is Map ? Map<String, dynamic>.from(resultRow['signals'] as Map) : null;
+    if (resultRow != null && resultRow is Map) {
+      final rr = Map<String, dynamic>.from(resultRow as Map);
+      status = (rr['status'] ?? status).toString();
+      error = rr['error']?.toString() ?? error;
+      candidates = rr['candidates'] is List ? List.from(rr['candidates'] as List) : candidates;
+      signals = rr['signals'] is Map ? Map<String, dynamic>.from(rr['signals'] as Map) : null;
     }
 
     return IdentityScanPollResult(
