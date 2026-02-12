@@ -14,6 +14,7 @@ const LOCKED_BY = 'identity_scan_worker_v1';
 const MAX_ENQUEUE = 50;
 const AI_WARP_W = 1024;
 const AI_WARP_H = 1428;
+const ENABLE_AI_READ_NUMBER = false;
 
 function log(event, payload = {}) {
   console.log(JSON.stringify({ ts: new Date().toISOString(), event, ...payload }));
@@ -426,49 +427,59 @@ async function processEvent(supabase, eventId) {
         ? aiResult.confidence_0_1
         : null;
 
-  const baseUrl = process.env.GV_AI_BORDER_URL || '';
-  const readNumber = await aiReadNumber({
-    baseUrl,
-    imageBuffer: warp.imageBuffer,
-    traceId: eventId,
-    timeoutMs: 20000,
-  });
-  if (!readNumber?.ok) {
-    const readErr = readNumber?.error || 'unknown';
-    signals.ai_notes.push(`ai_read_number_failed:${readErr}`);
+  let readCollectorNumber = identifyCollectorNumber ?? null;
+  let readPrintedTotal = identifyPrintedTotal ?? null;
+  let readNumberConfidence = null;
+  let readNumberOk = false;
+
+  if (ENABLE_AI_READ_NUMBER) {
+    const baseUrl = process.env.GV_AI_BORDER_URL || '';
+    const readNumber = await aiReadNumber({
+      baseUrl,
+      imageBuffer: warp.imageBuffer,
+      traceId: eventId,
+      timeoutMs: 20000,
+    });
+    readNumberOk = !!readNumber?.ok;
+    if (!readNumber?.ok) {
+      const readErr = readNumber?.error || 'unknown';
+      signals.ai_notes.push(`ai_read_number_failed:${readErr}`);
+    }
+    const rnData = readNumber?.result || {};
+    const readCollectorNumberRaw =
+      typeof rnData?.collector_number === 'string' ? rnData.collector_number : null;
+    readCollectorNumber = readCollectorNumberRaw
+      ? normalizeCollectorNumber(readCollectorNumberRaw)
+      : null;
+    readPrintedTotal = typeof rnData?.printed_total === 'number' ? rnData.printed_total : null;
+    readNumberConfidence =
+      typeof rnData?.number_confidence_0_1 === 'number' ? rnData.number_confidence_0_1 : null;
   }
-  const rnData = readNumber?.result || {};
-  const readCollectorNumberRaw =
-    typeof rnData?.collector_number === 'string' ? rnData.collector_number : null;
-  const readCollectorNumber = readCollectorNumberRaw
-    ? normalizeCollectorNumber(readCollectorNumberRaw)
-    : null;
-  const readPrintedTotal = typeof rnData?.printed_total === 'number' ? rnData.printed_total : null;
-  const readNumberConfidence =
-    typeof rnData?.number_confidence_0_1 === 'number' ? rnData.number_confidence_0_1 : null;
 
   const gvEvidence = {
     name,
-    collector_number: readCollectorNumber ?? null,
-    printed_total: readPrintedTotal ?? null,
     hp,
     confidence,
-    number_confidence_0_1: readNumberConfidence ?? null,
     run_id: aiPayload.run_id ?? null,
     trace_id: aiPayload.trace_id ?? eventId,
     notes: aiPayload.notes ?? aiResult?.notes ?? null,
-    number_source: readNumber?.ok ? 'ai_read_number' : 'missing',
     identify_debug: {
       collector_number: identifyCollectorNumber,
       printed_total: identifyPrintedTotal,
     },
   };
+  gvEvidence.collector_number = readCollectorNumber ?? null;
+  gvEvidence.printed_total = readPrintedTotal ?? null;
+  if (ENABLE_AI_READ_NUMBER) {
+    gvEvidence.number_confidence_0_1 = readNumberConfidence ?? null;
+    gvEvidence.number_source = readNumberOk ? 'ai_read_number' : 'missing';
+  }
   signals.ai = gvEvidence;
 
   const hasName = !!(name && name.trim());
   const hasCollector = !!(readCollectorNumber && readCollectorNumber.trim());
   const hasTotal = typeof readPrintedTotal === 'number';
-  if ((hasCollector && hasTotal) || hasName) {
+  if (hasName) {
     log('ai_identify_ok', { eventId, run_id: aiPayload.run_id || null });
     await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, [], null);
     return { status: 'ai_hint_ready', error: null };
