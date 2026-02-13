@@ -176,7 +176,17 @@ async function aiIdentifyWarp(imageBuffer, traceId) {
   }
 
   if (!response.ok) {
-    return { error: new Error(`ai_identify_http_${response.status}`) };
+    let detail = '';
+    try {
+      const errJson = await response.json();
+      if (errJson && typeof errJson === 'object') {
+        const msg = errJson.error || errJson.message || errJson.detail || null;
+        if (msg) detail = `:${msg}`;
+      }
+    } catch (_) {
+      // ignore parse errors for non-JSON bodies
+    }
+    return { error: new Error(`ai_identify_http_${response.status}${detail}`) };
   }
 
   let data;
@@ -191,7 +201,8 @@ async function aiIdentifyWarp(imageBuffer, traceId) {
   }
 
   if (data.ok === false) {
-    return { error: new Error(data.error || 'ai_identify_failed'), data };
+    const msg = data.error || data.message || data.detail || null;
+    return { error: new Error(msg ? `ai_identify_failed:${msg}` : 'ai_identify_failed'), data };
   }
 
   return { data };
@@ -394,15 +405,19 @@ async function processEvent(supabase, eventId) {
 
   const aiResp = await aiIdentifyWarp(warp.imageBuffer, eventId);
   if (aiResp.error) {
-    log('ai_identify_failed', { eventId, error: aiResp.error.message });
-    signals.ai_notes.push(`ai_identify_failed:${aiResp.error.message}`);
-    signals.ai = { error: aiResp.error.message, trace_id: eventId };
+    const aiErr = aiResp.error.message;
+    log('ai_identify_failed', { eventId, error: aiErr });
+    signals.ai_notes.push(aiErr);
+    signals.ai = { error: aiErr, trace_id: eventId };
     await insertResult(supabase, eventId, userId, 'failed', signals, [], 'ai_identify_failed');
     return { status: 'failed', error: 'ai_identify_failed' };
   }
 
   const aiPayload = aiResp.data || {};
-  const aiResult = aiPayload.result || {};
+  const aiResult =
+    typeof aiPayload.result === 'object' && aiPayload.result
+      ? aiPayload.result
+      : aiPayload;
   const name =
     typeof aiResult?.name === 'string'
       ? aiResult.name
