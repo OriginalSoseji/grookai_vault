@@ -495,8 +495,34 @@ async function processEvent(supabase, eventId) {
   const hasCollector = !!(readCollectorNumber && readCollectorNumber.trim());
   const hasTotal = typeof readPrintedTotal === 'number';
   if (hasName) {
+    const collector = readCollectorNumber ?? identifyCollectorNumber ?? null;
+    const q = [name, collector].filter(Boolean).join(' ').trim();
+    let candidates = [];
+    if (q) {
+      const { data: resolverRows, error: resolverErr } = await supabase.rpc(
+        'search_card_prints_v1',
+        { q, limit_n: 10 },
+      );
+      if (!resolverErr && Array.isArray(resolverRows)) {
+        candidates = resolverRows.map((row) => ({
+          card_print_id: row.card_print_id,
+          name: row.name,
+          set_code: row.set_code,
+          number: row.number,
+          image_url: row.image_url,
+          lane: row.lane,
+          number_plain: row.number_plain,
+          printed_set_abbrev: row.printed_set_abbrev,
+          printed_total: row.printed_total,
+          variant_key: row.variant_key,
+          print_identity_key: row.print_identity_key,
+          source: 'search_card_prints_v1_q_limit',
+        }));
+      }
+    }
+    log('resolver_candidates', { eventId, q, count: candidates.length });
     log('ai_identify_ok', { eventId, run_id: aiPayload.run_id || null });
-    await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, [], null);
+    await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, candidates, null);
     return { status: 'ai_hint_ready', error: null };
   }
 
