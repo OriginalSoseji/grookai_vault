@@ -59,6 +59,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       back,
       ResolutionPreset.high,
       enableAudio: false,
+      imageFormatGroup: ImageFormatGroup.yuv420,
     );
     _controller = controller;
     _initFuture = controller.initialize();
