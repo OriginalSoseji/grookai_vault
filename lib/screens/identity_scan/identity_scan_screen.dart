@@ -318,7 +318,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   }
 
   Widget _buildResults(ThemeData theme) {
-    if (_step == _IdentityScanStep.hintReady) {
+    if (_step == _IdentityScanStep.hintReady && _candidates.isEmpty) {
       return _buildAiHintBanner(theme);
     }
 
