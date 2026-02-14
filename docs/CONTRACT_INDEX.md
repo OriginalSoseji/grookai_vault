@@ -54,6 +54,7 @@ If a contract is missing from this index, it is not authoritative.
 | GROOKAI_FINGERPRINT_CONDITION_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/GROOKAI_FINGERPRINT_CONDITION_CONTRACT_V1.md | — | Option B: legacy `public.scans` quarantined; new append-only `condition_snapshots` (design-first, schema later) |
 | NO_DRIFT_SCANNER_CONDITION_PHASE0_PLAN | Planned | Scanner & Condition | docs/checkpoints/NO_DRIFT_SCANNER_CONDITION_PHASE0_PLAN.md | — | Phase 0 checkpoint: define snapshot schema before scan UI; enforce no stored grades/bands and immutable inserts |
 | CONDITION_ASSIST_ANALYSIS_WORKER_V1 | Active | Backend Highway | docs/contracts/CONDITION_ASSIST_ANALYSIS_WORKER_V1.md | 2025-12-30 | Append-only analysis worker writes to `condition_snapshot_analyses`; never updates/deletes snapshots; no grades/bands stored |
+| SCANNER_SHUTTER_GATE_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_SHUTTER_GATE_CONTRACT_V1.md | 2026-02-14 | Single-source shutter gate: derive `_canShoot` from `OverlayMode.ready` and `_takingPicture`; no independent readiness flag |
 
 ---
 

@@ -1,16 +1,20 @@
-ï»¿// lib/main.dart
+// lib/main.dart
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'secrets.dart';
 import 'screens/scanner/scan_capture_screen.dart';
+import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
+
+const bool kDebugTouchLog = false;
 
 ThemeData _buildGrookaiTheme(Brightness brightness) {
   const seed = Color(0xFF4A90E2);
@@ -377,7 +381,7 @@ class _VaultItemTile extends StatelessWidget {
     final subtitleParts = <String>[];
     if (set.isNotEmpty) subtitleParts.add(set);
     if (number.isNotEmpty) subtitleParts.add('#$number');
-    final subtitle = subtitleParts.join(' â€¢ ');
+    final subtitle = subtitleParts.join(' • ');
 
     Color condColor;
     switch (cond) {
@@ -724,6 +728,7 @@ Future<void> main() async {
         'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Update your .env.local file.');
   }
 
+  print('[gv] supabase_url=$url');
   await Supabase.initialize(url: url, anonKey: key);
   runApp(const MyApp());
 }
@@ -746,7 +751,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final supabase = Supabase.instance.client;
-    return MaterialApp(
+    final app = MaterialApp(
       title: 'Grookai Vault',
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
@@ -763,6 +768,16 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
+    if (!kDebugTouchLog) return app;
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: (e) {
+        debugPrint(
+          '[TOUCH] down x=${e.position.dx.toStringAsFixed(1)} y=${e.position.dy.toStringAsFixed(1)}',
+        );
+      },
+      child: app,
+    );
   }
 }
 
@@ -775,24 +790,29 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   final supabase = Supabase.instance.client;
-  int _index = 0;
+  int _index = 0; // 0 = Catalog, 2 = Vault; 1 reserved for Scan action
   final GlobalKey<HomePageState> _homeKey = GlobalKey();
   final GlobalKey<VaultPageState> _vaultKey = GlobalKey();
 
   Future<void> _signOut() async => supabase.auth.signOut();
 
   void _refreshCurrent() {
-    if (_index == 0) _homeKey.currentState?.reload();
-    else _vaultKey.currentState?.reload();
+    if (_index == 0) {
+      _homeKey.currentState?.reload();
+    } else {
+      _vaultKey.currentState?.reload();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final titles = ['Catalog', 'Grookai Vault'];
+    final bodyIndex = _index == 0 ? 0 : 1;
+    final currentTitle = _index == 0 ? titles[0] : titles[1];
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          titles[_index],
+          currentTitle,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
@@ -801,23 +821,49 @@ class _AppShellState extends State<AppShell> {
           IconButton(icon: const Icon(Icons.refresh), onPressed: _refreshCurrent),
           IconButton(icon: const Icon(Icons.logout), onPressed: _signOut),
         ],
-      ),
-      body: IndexedStack(
-        index: _index,
-        children: [
-          HomePage(key: _homeKey),
-          VaultPage(key: _vaultKey),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (i) => setState(() => _index = i),
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.search), selectedIcon: Icon(Icons.search), label: 'Catalog'),
-          NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Vault'),
-        ],
-      ),
-      floatingActionButton: _index == 1
+        ),
+        body: IndexedStack(
+          index: bodyIndex,
+          children: [
+            HomePage(key: _homeKey),
+            VaultPage(key: _vaultKey),
+          ],
+        ),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _index,
+          onDestinationSelected: (i) {
+            if (i == 1) {
+              Navigator.of(context)
+                  .push<XFile?>(
+                MaterialPageRoute<XFile?>(
+                  builder: (_) => const ConditionCameraScreen(
+                    title: 'Scan Card',
+                    hintText: 'Align card inside the frame',
+                  ),
+                ),
+              )
+                  .then((XFile? file) {
+                if (file != null) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => IdentityScanScreen(
+                        initialFrontFile: file,
+                      ),
+                    ),
+                  );
+                }
+              });
+            } else {
+              setState(() => _index = i);
+            }
+          },
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.search), selectedIcon: Icon(Icons.search), label: 'Catalog'),
+            NavigationDestination(icon: Icon(Icons.camera_alt_outlined), selectedIcon: Icon(Icons.camera_alt), label: 'Scan'),
+            NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Vault'),
+          ],
+        ),
+      floatingActionButton: _index == 2
           ? FloatingActionButton.extended(
               icon: const Icon(Icons.camera_alt),
               label: const Text('Scan'),
@@ -1336,7 +1382,7 @@ class VaultPageState extends State<VaultPage> {
       final ascending = _sortBy != _SortBy.newest;
 
       final data = await supabase
-          .from('v_vault_items') // <â€” read the view
+          .from('v_vault_items') // <— read the view
           .select()
           .eq('user_id', _uid!)
           .order(orderCol, ascending: ascending);
@@ -1464,8 +1510,8 @@ class VaultPageState extends State<VaultPage> {
                 onSelected: (v) { setState(() => _sortBy = v); reload(); },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
-                  PopupMenuItem(value: _SortBy.name,   child: Text('Name (Aâ€“Z)')),
-                  PopupMenuItem(value: _SortBy.qty,    child: Text('Qty (lowâ†’high)')),
+                  PopupMenuItem(value: _SortBy.name,   child: Text('Name (A–Z)')),
+                  PopupMenuItem(value: _SortBy.qty,    child: Text('Qty (low?high)')),
                 ],
               ),
             ],

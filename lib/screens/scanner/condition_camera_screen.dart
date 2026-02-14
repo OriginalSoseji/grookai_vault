@@ -31,12 +31,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   double _tiltMagnitude = 0;
   OverlayMode _overlayMode = OverlayMode.neutral;
   String _liveStatus = 'Align card inside frame';
-  DateTime _lastUpdate = DateTime.fromMillisecondsSinceEpoch(0);
+  DateTime _lastQuadUpdate = DateTime.fromMillisecondsSinceEpoch(0);
+  DateTime _lastAccelUpdate = DateTime.fromMillisecondsSinceEpoch(0);
   final NativeQuadDetector _quadDetector = NativeQuadDetector();
   List<Offset>? _quadPoints;
-  bool _shutterReady = false;
-  DateTime _readySince = DateTime.fromMillisecondsSinceEpoch(0);
   bool _streaming = false;
+  bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
 
   @override
   void initState() {
@@ -74,77 +74,42 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     _streaming = true;
     _controller!.startImageStream((image) async {
       final now = DateTime.now();
-      if (now.difference(_lastUpdate).inMilliseconds < 200) return;
-      _lastUpdate = now;
+      if (now.difference(_lastQuadUpdate).inMilliseconds < 200) return;
+      _lastQuadUpdate = now;
       final rotation = _controller?.description.sensorOrientation ?? 0;
       final quad = await _quadDetector.detect(image, rotation);
+      List<Offset>? points;
       if (quad != null) {
-        final points = (quad['points_norm'] as List)
-            .map((p) => Offset(
-                  (p as List)[0].toDouble(),
-                  (p as List)[1].toDouble(),
-                ))
-            .toList();
-        final area = (quad['area_norm'] as num?)?.toDouble() ?? 0.0;
-        final touches = quad['touches_edge'] == true;
-        final skew = (quad['skew'] as num?)?.toDouble() ?? 0.0;
-        final conf = (quad['confidence'] as num?)?.toDouble() ?? 0.0;
-
-        String status = 'Align card inside frame';
-        OverlayMode mode = OverlayMode.neutral;
-        bool ready = false;
-        if (area < 0.20) {
-          status = 'Move closer';
-          mode = OverlayMode.warn;
-        } else if (touches) {
-          status = 'Keep full border visible';
-          mode = OverlayMode.warn;
-        } else if (skew > 0.10) {
-          status = 'Straighten / reduce tilt';
-          mode = OverlayMode.warn;
-        } else if (conf < 0.6) {
-          status = 'Hold steady';
-          mode = OverlayMode.warn;
-        } else {
-          status = 'Ready';
-          mode = OverlayMode.ready;
-          ready = true;
+        final rawPoints = quad['points_norm'];
+        if (rawPoints is List && rawPoints.length == 4) {
+          points = rawPoints
+              .map((p) => Offset(
+                    (p as List)[0].toDouble(),
+                    (p as List)[1].toDouble(),
+                  ))
+              .toList();
         }
+      }
 
-        final changed = status != _liveStatus || mode != _overlayMode;
-        final readyChanged = ready != _shutterReady;
-        if (ready) {
-          if (_readySince.millisecondsSinceEpoch == 0) {
-            _readySince = DateTime.now();
-          } else if (DateTime.now().difference(_readySince).inMilliseconds >= 300) {
-            _shutterReady = true;
-          }
-        } else {
-          _readySince = DateTime.fromMillisecondsSinceEpoch(0);
-          _shutterReady = false;
-        }
-
-        if (mounted && (changed || readyChanged || _quadPoints != points)) {
+      if (points != null) {
+        if (mounted && (_quadPoints != points || _overlayMode != OverlayMode.ready)) {
           setState(() {
-            _liveStatus = status;
-            _overlayMode = mode;
             _quadPoints = points;
+            _overlayMode = OverlayMode.ready;
+            _liveStatus = 'Ready';
           });
-          if (kDebugMode) {
-            debugPrint(
-                '[quad] area=${area.toStringAsFixed(3)} skew=${skew.toStringAsFixed(3)} touches=$touches conf=${conf.toStringAsFixed(2)} ready=$_shutterReady');
-          }
         }
       } else {
-        _readySince = DateTime.fromMillisecondsSinceEpoch(0);
-        if (_shutterReady || _quadPoints != null || _overlayMode != OverlayMode.neutral) {
+        if (_quadPoints != null || _overlayMode != OverlayMode.neutral) {
           setState(() {
-            _shutterReady = false;
             _quadPoints = null;
             _overlayMode = OverlayMode.neutral;
             _liveStatus = 'Align card inside frame';
           });
         }
+      }
+      if (kDebugMode) {
+        debugPrint('[quad] detected=${points != null} overlayMode=$_overlayMode canShoot=$_canShoot');
       }
     });
   }
@@ -160,8 +125,18 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   Future<void> _takePicture() async {
-    if (_controller == null) return;
-    if (!_controller!.value.isInitialized || _takingPicture) return;
+    if (_controller == null) {
+      debugPrint('[SHUTTER] takePicture blocked: controller=null');
+      return;
+    }
+    if (!_controller!.value.isInitialized) {
+      debugPrint('[SHUTTER] takePicture blocked: controller not initialized');
+      return;
+    }
+    if (_takingPicture) {
+      debugPrint('[SHUTTER] takePicture blocked: already taking');
+      return;
+    }
     setState(() {
       _takingPicture = true;
     });
@@ -169,18 +144,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       final file = await _controller!.takePicture();
       if (!mounted) return;
       Navigator.of(context).pop(file);
-    } catch (_) {
+    } catch (e, st) {
+      debugPrint('[SHUTTER] takePicture ERROR: $e');
+      debugPrint('$st');
       setState(() {
         _takingPicture = false;
       });
+      rethrow;
     }
   }
 
   void _startSensors() {
     _accelSub = accelerometerEvents.listen((event) {
       final now = DateTime.now();
-      if (now.difference(_lastUpdate).inMilliseconds < 100) return;
-      _lastUpdate = now;
+      if (now.difference(_lastAccelUpdate).inMilliseconds < 100) return;
+      _lastAccelUpdate = now;
       final mag = math.sqrt(event.x * event.x + event.y * event.y);
       _tiltMagnitude = mag;
       OverlayMode nextMode = OverlayMode.neutral;
@@ -207,6 +185,10 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    assert(
+      _overlayMode != OverlayMode.ready || (_canShoot || _takingPicture),
+      'Invariant violated: overlayMode=ready but shutter cannot shoot. Do not reintroduce split readiness.',
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -253,12 +235,15 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                             borderRadius: BorderRadius.circular(12),
                             child: CameraPreview(_controller!),
                           ),
-                          ConditionCaptureOverlay(
-                            guideRect: guideRect,
-                            statusText: _liveStatus,
-                            isReady: _overlayMode == OverlayMode.ready,
-                            mode: _overlayMode,
-                            quadPointsNorm: _quadPoints,
+                          IgnorePointer(
+                            ignoring: true,
+                            child: ConditionCaptureOverlay(
+                              guideRect: guideRect,
+                              statusText: _liveStatus,
+                              isReady: _overlayMode == OverlayMode.ready,
+                              mode: _overlayMode,
+                              quadPointsNorm: _quadPoints,
+                            ),
                           ),
                         ],
                       );
@@ -270,7 +255,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: GestureDetector(
-                onTap: _takingPicture || !_shutterReady ? null : _takePicture,
+                onTap: _canShoot
+                    ? () async {
+                        debugPrint('[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}');
+                        await _takePicture();
+                      }
+                    : null,
                 child: Container(
                   width: 72,
                   height: 72,
@@ -278,7 +268,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                     shape: BoxShape.circle,
                     color: _takingPicture
                         ? theme.colorScheme.primary.withOpacity(0.3)
-                        : _shutterReady
+                        : _canShoot
                             ? theme.colorScheme.primary
                             : theme.colorScheme.primary.withOpacity(0.4),
                     boxShadow: [

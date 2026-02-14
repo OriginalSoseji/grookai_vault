@@ -21,55 +21,63 @@ class ConditionCaptureOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: CustomPaint(
-            painter: _OverlayPainter(
-              guideRect: guideRect,
-              colorScheme: theme.colorScheme,
-              isReady: isReady,
-              mode: mode,
-              quadPointsNorm: quadPointsNorm,
+    return IgnorePointer(
+      ignoring: true,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: CustomPaint(
+              painter: _OverlayPainter(
+                guideRect: guideRect,
+                colorScheme: theme.colorScheme,
+                isReady: isReady,
+                mode: mode,
+                quadPointsNorm: quadPointsNorm,
+              ),
             ),
           ),
-        ),
         Positioned(
           left: 0,
           right: 0,
-          bottom: 24,
+          top: MediaQuery.of(context).padding.top + 12,
           child: Center(
             child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 180),
-              transitionBuilder: (child, animation) =>
-                  ScaleTransition(scale: animation, child: FadeTransition(opacity: animation, child: child)),
-              child: Container(
-                key: ValueKey(statusText),
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surface.withOpacity(0.72),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(color: theme.colorScheme.onSurface.withOpacity(0.15)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: theme.colorScheme.shadow.withOpacity(0.08),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
+                duration: const Duration(milliseconds: 180),
+                transitionBuilder: (child, animation) => ScaleTransition(
+                  scale: animation,
+                  child: FadeTransition(opacity: animation, child: child),
                 ),
-                child: Text(
-                  statusText,
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.onSurface,
-                    fontWeight: FontWeight.w600,
+                child: Container(
+                  key: ValueKey(statusText),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface.withOpacity(0.72),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(
+                      color: theme.colorScheme.onSurface.withOpacity(0.15),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: theme.colorScheme.shadow.withOpacity(0.08),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    statusText,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
