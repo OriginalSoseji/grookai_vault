@@ -8,6 +8,7 @@ class ConditionCaptureOverlay extends StatelessWidget {
   final bool isReady;
   final OverlayMode mode;
   final List<Offset>? quadPointsNorm;
+  final Offset? focusTapNorm;
 
   const ConditionCaptureOverlay({
     super.key,
@@ -16,6 +17,7 @@ class ConditionCaptureOverlay extends StatelessWidget {
     this.isReady = false,
     this.mode = OverlayMode.neutral,
     this.quadPointsNorm,
+    this.focusTapNorm,
   });
 
   @override
@@ -33,6 +35,7 @@ class ConditionCaptureOverlay extends StatelessWidget {
                 isReady: isReady,
                 mode: mode,
                 quadPointsNorm: quadPointsNorm,
+                focusTapNorm: focusTapNorm,
               ),
             ),
           ),
@@ -90,6 +93,7 @@ class _OverlayPainter extends CustomPainter {
   final bool isReady;
   final OverlayMode mode;
   final List<Offset>? quadPointsNorm;
+  final Offset? focusTapNorm;
 
   _OverlayPainter({
     required this.guideRect,
@@ -97,6 +101,7 @@ class _OverlayPainter extends CustomPainter {
     required this.isReady,
     required this.mode,
     required this.quadPointsNorm,
+    required this.focusTapNorm,
   });
 
   @override
@@ -174,6 +179,54 @@ class _OverlayPainter extends CustomPainter {
       path.close();
       canvas.drawPath(path, quadPaint);
     }
+
+    if (focusTapNorm != null) {
+      final tapPoint = Offset(
+        focusTapNorm!.dx.clamp(0.0, 1.0).toDouble() * size.width,
+        focusTapNorm!.dy.clamp(0.0, 1.0).toDouble() * size.height,
+      );
+
+      final ringPaint = Paint()
+        ..color = Colors.white.withOpacity(0.85)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.8;
+      final dotPaint = Paint()
+        ..color = Colors.white.withOpacity(0.9)
+        ..style = PaintingStyle.fill;
+      final tickPaint = Paint()
+        ..color = Colors.white.withOpacity(0.85)
+        ..strokeWidth = 1.8
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round;
+
+      const ringRadius = 18.0;
+      const innerRadius = 3.0;
+      const tickInner = 20.0;
+      const tickOuter = 28.0;
+
+      canvas.drawCircle(tapPoint, ringRadius, ringPaint);
+      canvas.drawCircle(tapPoint, innerRadius, dotPaint);
+      canvas.drawLine(
+        Offset(tapPoint.dx, tapPoint.dy - tickOuter),
+        Offset(tapPoint.dx, tapPoint.dy - tickInner),
+        tickPaint,
+      );
+      canvas.drawLine(
+        Offset(tapPoint.dx + tickInner, tapPoint.dy),
+        Offset(tapPoint.dx + tickOuter, tapPoint.dy),
+        tickPaint,
+      );
+      canvas.drawLine(
+        Offset(tapPoint.dx, tapPoint.dy + tickInner),
+        Offset(tapPoint.dx, tapPoint.dy + tickOuter),
+        tickPaint,
+      );
+      canvas.drawLine(
+        Offset(tapPoint.dx - tickOuter, tapPoint.dy),
+        Offset(tapPoint.dx - tickInner, tapPoint.dy),
+        tickPaint,
+      );
+    }
   }
 
   @override
@@ -182,6 +235,7 @@ class _OverlayPainter extends CustomPainter {
         oldDelegate.colorScheme != colorScheme ||
         oldDelegate.isReady != isReady ||
         oldDelegate.mode != mode ||
-        oldDelegate.quadPointsNorm != quadPointsNorm;
+        oldDelegate.quadPointsNorm != quadPointsNorm ||
+        oldDelegate.focusTapNorm != focusTapNorm;
   }
 }

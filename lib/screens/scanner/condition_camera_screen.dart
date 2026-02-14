@@ -24,6 +24,7 @@ class ConditionCameraScreen extends StatefulWidget {
 }
 
 class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
+  final GlobalKey _previewAreaKey = GlobalKey();
   CameraController? _controller;
   Future<void>? _initFuture;
   bool _takingPicture = false;
@@ -35,6 +36,13 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   DateTime _lastAccelUpdate = DateTime.fromMillisecondsSinceEpoch(0);
   final NativeQuadDetector _quadDetector = NativeQuadDetector();
   List<Offset>? _quadPoints;
+  Offset? _lastFocusTapNorm;
+  DateTime _lastFocusTapAt = DateTime.fromMillisecondsSinceEpoch(0);
+  bool _focusApisReady = false;
+  bool _didLogInitFocusModeError = false;
+  bool _didLogInitExposureModeError = false;
+  bool _didLogTapFocusError = false;
+  bool _didLogTapExposureError = false;
   bool _streaming = false;
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
 
@@ -62,12 +70,84 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       imageFormatGroup: ImageFormatGroup.yuv420,
     );
     _controller = controller;
-    _initFuture = controller.initialize();
+    _initFuture = controller.initialize().then((_) async {
+      try {
+        await controller.setFocusMode(FocusMode.auto);
+      } catch (e) {
+        if (kDebugMode && !_didLogInitFocusModeError) {
+          debugPrint('[FOCUS] setFocusMode(auto) skipped: $e');
+          _didLogInitFocusModeError = true;
+        }
+      }
+      try {
+        await controller.setExposureMode(ExposureMode.auto);
+      } catch (e) {
+        if (kDebugMode && !_didLogInitExposureModeError) {
+          debugPrint('[FOCUS] setExposureMode(auto) skipped: $e');
+          _didLogInitExposureModeError = true;
+        }
+      }
+      _focusApisReady = true;
+    });
     if (mounted) {
       setState(() {});
     }
     _startSensors();
     _startStream();
+  }
+
+  Future<void> _handlePreviewTap(TapDownDetails details) async {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) return;
+
+    final context = _previewAreaKey.currentContext;
+    final renderObject = context?.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) return;
+    final size = renderObject.size;
+    if (size.width <= 0 || size.height <= 0) return;
+
+    final local = renderObject.globalToLocal(details.globalPosition);
+    final nx = (local.dx / size.width).clamp(0.0, 1.0).toDouble();
+    final ny = (local.dy / size.height).clamp(0.0, 1.0).toDouble();
+    final norm = Offset(nx, ny);
+
+    final tapAt = DateTime.now();
+    if (mounted) {
+      setState(() {
+        _lastFocusTapNorm = norm;
+        _lastFocusTapAt = tapAt;
+      });
+    }
+    Future.delayed(const Duration(milliseconds: 650), () {
+      if (!mounted) return;
+      if (_lastFocusTapAt == tapAt) {
+        setState(() {
+          _lastFocusTapNorm = null;
+        });
+      }
+    });
+
+    if (controller.value.focusPointSupported) {
+      try {
+        await controller.setFocusPoint(norm);
+      } catch (e) {
+        if (kDebugMode && !_didLogTapFocusError && _focusApisReady) {
+          debugPrint('[FOCUS] setFocusPoint skipped: $e');
+          _didLogTapFocusError = true;
+        }
+      }
+    }
+
+    if (controller.value.exposurePointSupported) {
+      try {
+        await controller.setExposurePoint(norm);
+      } catch (e) {
+        if (kDebugMode && !_didLogTapExposureError && _focusApisReady) {
+          debugPrint('[FOCUS] setExposurePoint skipped: $e');
+          _didLogTapExposureError = true;
+        }
+      }
+    }
   }
 
   void _startStream() {
@@ -229,24 +309,32 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                       final top = (available.height - finalGuideHeight) / 2;
                       final guideRect =
                           Rect.fromLTWH(left, top, finalGuideWidth, finalGuideHeight);
-                      return Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: CameraPreview(_controller!),
-                          ),
-                          IgnorePointer(
-                            ignoring: true,
-                            child: ConditionCaptureOverlay(
-                              guideRect: guideRect,
-                              statusText: _liveStatus,
-                              isReady: _overlayMode == OverlayMode.ready,
-                              mode: _overlayMode,
-                              quadPointsNorm: _quadPoints,
+                      return GestureDetector(
+                        key: _previewAreaKey,
+                        behavior: HitTestBehavior.translucent,
+                        onTapDown: (details) {
+                          unawaited(_handlePreviewTap(details));
+                        },
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: CameraPreview(_controller!),
                             ),
-                          ),
-                        ],
+                            IgnorePointer(
+                              ignoring: true,
+                              child: ConditionCaptureOverlay(
+                                guideRect: guideRect,
+                                statusText: _liveStatus,
+                                isReady: _overlayMode == OverlayMode.ready,
+                                mode: _overlayMode,
+                                quadPointsNorm: _quadPoints,
+                                focusTapNorm: _lastFocusTapNorm,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
