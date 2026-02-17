@@ -29,6 +29,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   XFile? _front;
   _IdentityScanStep _step = _IdentityScanStep.capture;
   bool _submitting = false;
+  bool _addingToVault = false;
   String? _error;
   String? _eventId;
   String? _snapshotId;
@@ -210,31 +211,34 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   }
 
   Future<void> _addToVault() async {
-    final cand = _selectedCandidate;
-    if (cand == null) {
-      _snack('No card selected.');
-      return;
-    }
-    final cardId = (cand['card_print_id'] ?? '').toString();
-    if (cardId.isEmpty) {
-      _snack('Selected card is missing card_print_id.');
-      return;
-    }
-    final userId = Supabase.instance.client.auth.currentUser?.id;
-    if (userId == null) {
-      _snack('Please sign in.');
-      return;
-    }
+    if (_addingToVault) return;
+    setState(() => _addingToVault = true);
     try {
-      await Supabase.instance.client.from('vault_items').insert({
-        'user_id': userId,
-        'card_id': cardId,
-        'name': (cand['name'] ?? '').toString(),
-        'set_name': (cand['set_code'] ?? '').toString(),
-        'photo_url': (cand['image_url'] ?? '').toString(),
-        'qty': 1,
-        'condition_label': 'NM',
-      });
+      final cand = _selectedCandidate;
+      if (cand == null) {
+        _snack('No card selected.');
+        return;
+      }
+      final cardId = (cand['card_print_id'] ?? '').toString();
+      if (cardId.isEmpty) {
+        _snack('Selected card is missing card_print_id.');
+        return;
+      }
+      final userId = Supabase.instance.client.auth.currentUser?.id;
+      if (userId == null) {
+        _snack('Please sign in.');
+        return;
+      }
+      final rpcResp = await Supabase.instance.client.rpc(
+        'vault_add_or_increment',
+        params: {
+          'p_card_id': cardId,
+          'p_delta_qty': 1,
+          'p_name': (cand['name'] ?? '').toString(),
+          'p_condition_label': 'NM',
+          'p_notes': null,
+        },
+      );
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -249,6 +253,10 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       );
     } catch (e) {
       _snack('Add to Vault failed: $e');
+    } finally {
+      if (mounted) {
+        setState(() => _addingToVault = false);
+      }
     }
   }
 
@@ -392,7 +400,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                 ),
                 const SizedBox(height: 12),
                 FilledButton.icon(
-                  onPressed: _addToVault,
+                  onPressed: _addingToVault ? null : _addToVault,
                   icon: const Icon(Icons.inventory_2),
                   label: const Text('Add to Vault'),
                 ),

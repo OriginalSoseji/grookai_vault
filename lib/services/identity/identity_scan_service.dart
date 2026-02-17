@@ -91,10 +91,20 @@ class IdentityScanService {
       'front': {'path': path},
     };
 
-    final snapshotId = await _client.rpc(
-      'condition_snapshots_insert_identity_v1',
-      params: {'p_images': images},
-    ) as String;
+    final resp = await _client
+        .from('identity_snapshots')
+        .insert({
+          'images': images,
+          'scan_quality': {
+            'ok': false,
+            'pending': true,
+            'source': 'identity_scan_v1',
+          },
+        })
+        .select('id')
+        .single();
+
+    final snapshotId = resp['id'] as String;
 
     final enqueueResp = await _client.functions.invoke(
       'identity_scan_enqueue_v1',
