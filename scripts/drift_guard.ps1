@@ -100,12 +100,12 @@ Write-Section "Grookai Vault — DriftGuard (Read-only)"
 Require-Command "supabase"
 
 # Run both lists
-Write-Section "1) Read Local Migration List"
+Write-Section '1) Read Local Migration List'
 $localOut = Run-SupabaseMigrationList -mode "local"
 $localLines = $localOut -split "`r?`n"
 $local = Parse-MigrationList -lines $localLines
 
-Write-Section "2) Read Linked (Remote) Migration List"
+Write-Section '2) Read Linked (Remote) Migration List'
 $linkedOut = Run-SupabaseMigrationList -mode "linked"
 $linkedLines = $linkedOut -split "`r?`n"
 $linked = Parse-MigrationList -lines $linkedLines
@@ -168,5 +168,5 @@ if ($violations.Count -gt 0) {
 }
 
 Write-Section "✅ DRIFT GUARD PASSED"
-Write-Host "Local and linked migration histories appear consistent. No pending/error detected."
+Write-Host 'Local and linked migration histories appear consistent. No pending/error detected.'
 exit 0
