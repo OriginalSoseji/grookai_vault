@@ -55,6 +55,7 @@ supabase/.temp/
 supabase/.branches/
 supabase/docker/
 supabase/.env
+supabase/functions/import-prices/.env
 supabase/.dev*
 # ---------- Bridge / Local scripts ----------
 reports/
