@@ -145,7 +145,7 @@ export default function ExplorePage() {
               </Link>
               {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
                 <p className="text-sm text-slate-600">
-                  {[row.set_name, row.number, row.rarity].filter(Boolean).join(" • ")}
+                  {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
                 </p>
               )}
               <p className="text-xs text-slate-500">{row.gv_id}</p>
