@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 type VaultRow = {
   id: string;
-  card_name?: string | null;
+  name?: string | null;
   set_code?: string | null;
   number?: string | null;
   image_url?: string | null;
@@ -31,7 +31,7 @@ export default function VaultPage() {
       setError(null);
       const { data, error: selectError } = await supabase
         .from("v_vault_items_ext")
-        .select("id,card_name,set_code,number,image_url,condition_label")
+        .select("id,name,set_code,number,image_url,condition_label")
         .limit(50);
       if (selectError) {
         setError(
@@ -56,12 +56,12 @@ export default function VaultPage() {
         {rows.map((row) => (
           <li key={row.id} className="flex items-center gap-3 px-4 py-3">
             {row.image_url ? (
-              <img src={row.image_url} alt={row.card_name ?? "card"} className="h-12 w-9 rounded border object-contain" />
+              <img src={row.image_url} alt={row.name ?? "card"} className="h-12 w-9 rounded border object-contain" />
             ) : (
               <div className="h-12 w-9 rounded border bg-slate-100" />
             )}
             <div className="flex flex-1 flex-col">
-              <div className="font-medium">{row.card_name ?? "Unknown"}</div>
+              <div className="font-medium">{row.name ?? "Unknown"}</div>
               <p className="text-sm text-slate-600">
                 {row.set_code ?? "?"} · {row.number ?? "?"} · {row.condition_label ?? "—"}
               </p>

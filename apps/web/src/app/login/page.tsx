@@ -24,7 +24,7 @@ export default function LoginPage() {
         const { error: signUpError } = await supabase.auth.signUp({ email, password });
         if (signUpError) throw signUpError;
       }
-      router.replace("/catalog");
+      router.replace("/explore");
     } catch (err: any) {
       setError(err?.message ?? "Auth failed");
     } finally {

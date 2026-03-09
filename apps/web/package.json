@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
     "lint": "next lint",
     "rls:probe": "node scripts/rls_probe.mjs"
   },
