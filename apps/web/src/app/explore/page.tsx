@@ -24,6 +24,8 @@ type GvLookupRow = {
   sets?: { name: string | null } | { name: string | null }[] | null;
 };
 
+type ViewMode = "list" | "grid";
+
 function ExplorePageContent() {
   const router = useRouter();
   const pathname = usePathname();
@@ -32,6 +34,7 @@ function ExplorePageContent() {
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   const runSearch = async (query: string) => {
     const normalizedQuery = query.trim();
@@ -244,33 +247,99 @@ function ExplorePageContent() {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <ul className="divide-y rounded border border-slate-200 bg-white">
-        {rows.map((row) => (
-          <li key={row.id} className="flex items-center gap-3 px-4 py-3">
-            {row.image_url ? (
-              <img
-                src={row.image_url}
-                alt={row.name}
-                className="h-14 w-10 rounded border border-slate-200 object-contain"
-              />
-            ) : (
-              <div className="h-14 w-10 rounded border border-slate-200 bg-slate-100" />
-            )}
-            <div className="flex flex-1 flex-col">
-              <Link href={`/card/${row.gv_id}`} className="font-medium hover:underline">
-                {row.name}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm text-slate-600">
+            {rows.length > 0 ? `${rows.length} result${rows.length === 1 ? "" : "s"}` : "Results"}
+          </p>
+          <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                viewMode === "list" ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              }`}
+              onClick={() => setViewMode("list")}
+            >
+              List
+            </button>
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                viewMode === "grid" ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+              }`}
+              onClick={() => setViewMode("grid")}
+            >
+              Grid
+            </button>
+          </div>
+        </div>
+
+        {viewMode === "list" ? (
+          <ul className="divide-y rounded border border-slate-200 bg-white">
+            {rows.map((row) => (
+              <li key={row.id} className="flex items-start gap-4 px-4 py-4">
+                {row.image_url ? (
+                  <img
+                    src={row.image_url}
+                    alt={row.name}
+                    className="h-24 w-16 rounded-lg border border-slate-200 object-contain"
+                  />
+                ) : (
+                  <div className="h-24 w-16 rounded-lg border border-slate-200 bg-slate-100" />
+                )}
+                <div className="flex flex-1 flex-col gap-1 pt-1">
+                  <Link href={`/card/${row.gv_id}`} className="text-base font-medium text-slate-950 hover:underline">
+                    {row.name}
+                  </Link>
+                  {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
+                    <p className="text-sm text-slate-600">
+                      {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
+                    </p>
+                  )}
+                  <p className="text-xs text-slate-500">{row.gv_id}</p>
+                </div>
+              </li>
+            ))}
+            {rows.length === 0 && !loading && <li className="px-4 py-3 text-sm text-slate-600">No results yet.</li>}
+          </ul>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {rows.map((row) => (
+              <Link
+                key={row.id}
+                href={`/card/${row.gv_id}`}
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                {row.image_url ? (
+                  <img
+                    src={row.image_url}
+                    alt={row.name}
+                    className="aspect-[3/4] w-full bg-slate-50 object-contain p-5"
+                  />
+                ) : (
+                  <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 text-sm text-slate-500">
+                    No image
+                  </div>
+                )}
+                <div className="space-y-2 border-t border-slate-200 px-4 py-4">
+                  <p className="line-clamp-2 text-base font-medium text-slate-950">{row.name}</p>
+                  {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
+                    <p className="text-sm text-slate-600">
+                      {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
+                    </p>
+                  )}
+                  <p className="text-xs text-slate-500">{row.gv_id}</p>
+                </div>
               </Link>
-              {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                <p className="text-sm text-slate-600">
-                  {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
-                </p>
-              )}
-              <p className="text-xs text-slate-500">{row.gv_id}</p>
-            </div>
-          </li>
-        ))}
-        {rows.length === 0 && !loading && <li className="px-4 py-3 text-sm text-slate-600">No results yet.</li>}
-      </ul>
+            ))}
+            {rows.length === 0 && !loading && (
+              <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 sm:col-span-2 xl:col-span-3">
+                No results yet.
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
