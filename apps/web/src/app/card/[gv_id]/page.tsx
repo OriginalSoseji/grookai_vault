@@ -94,7 +94,6 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
 
         <div className="space-y-6 rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">Canonical Card</p>
             <div className="space-y-2">
               <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
               <div className="flex flex-wrap items-center gap-3">

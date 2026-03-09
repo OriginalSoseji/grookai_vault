@@ -2,10 +2,20 @@ import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import type { CardSummary } from "@/types/cards";
 
+const FEATURED_CARD_COUNT = 3;
+const FEATURED_CANDIDATE_WINDOW = 48;
+
+export const dynamic = "force-dynamic";
+
 type HomeCardRow = {
   gv_id: string | null;
   name: string | null;
   image_url: string | null;
+  external_ids: { tcgdex?: string | null } | null;
+};
+
+type PokemonTypeRow = {
+  tcgdex_card_id: string | null;
 };
 
 function createServerSupabase() {
@@ -19,18 +29,82 @@ function createServerSupabase() {
   return createClient(url, anon);
 }
 
-export default async function HomePage() {
-  const supabase = createServerSupabase();
-  const { data } = await supabase.from("card_prints").select("gv_id,name,image_url").limit(6);
+function getRotationOffset(totalRows: number) {
+  const maxOffset = Math.max(totalRows - FEATURED_CANDIDATE_WINDOW, 0);
 
-  const cards: CardSummary[] = ((data ?? []) as HomeCardRow[])
-    .filter((row): row is { gv_id: string; name: string | null; image_url: string | null } => Boolean(row.gv_id))
+  if (maxOffset === 0) {
+    return 0;
+  }
+
+  return Date.now() % (maxOffset + 1);
+}
+
+async function getPokemonCardsFromWindow(
+  supabase: ReturnType<typeof createServerSupabase>,
+  offset: number,
+) {
+  const { data } = await supabase
+    .from("card_prints")
+    .select("gv_id,name,image_url,external_ids")
+    .order("gv_id")
+    .range(offset, offset + FEATURED_CANDIDATE_WINDOW - 1);
+
+  const candidates = ((data ?? []) as HomeCardRow[]).filter(
+    (row): row is HomeCardRow & { gv_id: string } => Boolean(row.gv_id),
+  );
+  const tcgdexIds = Array.from(
+    new Set(
+      candidates
+        .map((row) => row.external_ids?.tcgdex)
+        .filter((value): value is string => typeof value === "string" && value.length > 0),
+    ),
+  );
+
+  if (tcgdexIds.length === 0) {
+    return [] as CardSummary[];
+  }
+
+  const { data: pokemonTypeData } = await supabase
+    .from("tcgdex_cards")
+    .select("tcgdex_card_id")
+    .eq("lang", "en")
+    .eq("supertype", "Pokemon")
+    .in("tcgdex_card_id", tcgdexIds);
+
+  const pokemonIds = new Set(
+    ((pokemonTypeData ?? []) as PokemonTypeRow[])
+      .map((row) => row.tcgdex_card_id)
+      .filter((value): value is string => typeof value === "string" && value.length > 0),
+  );
+
+  return candidates
+    .filter((row) => {
+      const tcgdexId = row.external_ids?.tcgdex;
+      return Boolean(tcgdexId && pokemonIds.has(tcgdexId));
+    })
+    .slice(0, FEATURED_CARD_COUNT)
     .map((row) => ({
       gv_id: row.gv_id,
       name: row.name ?? "Unknown",
       number: "",
       image_url: row.image_url ?? undefined,
     }));
+}
+
+export default async function HomePage() {
+  const supabase = createServerSupabase();
+  const { count } = await supabase.from("card_prints").select("*", { count: "exact", head: true });
+  const featuredOffset = getRotationOffset(count ?? 0);
+  const cards = await getPokemonCardsFromWindow(supabase, featuredOffset);
+  const fallbackCards =
+    cards.length < FEATURED_CARD_COUNT && featuredOffset !== 0 ? await getPokemonCardsFromWindow(supabase, 0) : [];
+  const mergedCards = [...cards];
+
+  for (const card of fallbackCards) {
+    if (mergedCards.some((existing) => existing.gv_id === card.gv_id)) continue;
+    mergedCards.push(card);
+    if (mergedCards.length === FEATURED_CARD_COUNT) break;
+  }
 
   return (
     <div className="space-y-16 py-8">
@@ -43,6 +117,22 @@ export default async function HomePage() {
               A collector-first card catalog anchored by stable Grookai Vault IDs.
             </p>
           </div>
+          <form action="/explore" method="get" className="max-w-2xl">
+            <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/50">
+              <input
+                type="search"
+                name="q"
+                placeholder="Search by card name or printed number"
+                className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
+              />
+              <button
+                type="submit"
+                className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
+              >
+                Search
+              </button>
+            </div>
+          </form>
           <div className="flex flex-wrap gap-3">
             <Link href="/explore" className="rounded bg-slate-950 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800">
               Explore cards
@@ -54,7 +144,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-4 sm:grid-cols-3">
-          {cards.map((card) => (
+          {mergedCards.map((card) => (
             <Link
               key={card.gv_id}
               href={`/card/${card.gv_id}`}
@@ -73,6 +163,11 @@ export default async function HomePage() {
               </div>
             </Link>
           ))}
+          {mergedCards.length === 0 && (
+            <div className="col-span-full flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 text-sm text-slate-500">
+              Featured Pokemon cards will appear here.
+            </div>
+          )}
         </div>
       </section>
 
