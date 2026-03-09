@@ -6,6 +6,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardSummary } from "@/types/cards";
 
+const SEARCH_LIMIT = 80;
+
 type ExploreRow = CardSummary & {
   id: string;
 };
@@ -21,104 +23,193 @@ type SearchRpcRow = {
 type GvLookupRow = {
   id: string;
   gv_id: string | null;
+  name?: string | null;
+  number?: string | null;
+  rarity?: string | null;
+  image_url?: string | null;
   sets?: { name: string | null } | { name: string | null }[] | null;
 };
 
 type ViewMode = "list" | "grid";
+
+function normalizeFreeTextQuery(value: string) {
+  return value.trim().replace(/\s+/g, " ");
+}
+
+function normalizeTextForMatch(value?: string) {
+  return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function normalizeGvIdInput(value: string) {
+  const tokens = value.trim().toUpperCase().match(/[A-Z0-9]+/g);
+  if (!tokens || tokens.length < 3) return null;
+
+  const expandedTokens = tokens[0] === "GVPK" ? ["GV", "PK", ...tokens.slice(1)] : tokens;
+  if (expandedTokens[0] !== "GV" || expandedTokens[1] !== "PK" || expandedTokens.length < 4) {
+    return null;
+  }
+
+  return `GV-PK-${expandedTokens.slice(2).join("-")}`;
+}
+
+function toSetName(sets: GvLookupRow["sets"]) {
+  const setRecord = Array.isArray(sets) ? sets[0] : sets;
+  return setRecord?.name ?? undefined;
+}
+
+function buildExploreRows(searchRows: SearchRpcRow[], lookupRows: GvLookupRow[]) {
+  const lookupById = new Map(lookupRows.map((row) => [row.id, row]));
+  const normalizedRows: ExploreRow[] = [];
+
+  for (const row of searchRows) {
+    const lookupRow = lookupById.get(row.id);
+    if (!lookupRow?.gv_id) continue;
+
+    normalizedRows.push({
+      id: row.id,
+      gv_id: lookupRow.gv_id,
+      name: row.name ?? lookupRow.name ?? "Unknown",
+      number: row.number ?? lookupRow.number ?? "",
+      set_name: toSetName(lookupRow.sets),
+      rarity: row.rarity ?? lookupRow.rarity ?? undefined,
+      image_url: row.image_url ?? lookupRow.image_url ?? undefined,
+    });
+  }
+
+  return normalizedRows;
+}
+
+function rankRows(rows: ExploreRow[], query: string, directGvId: string | null) {
+  const normalizedQuery = normalizeTextForMatch(query);
+  const queryTokens = normalizedQuery.split(" ").filter(Boolean);
+
+  return [...rows].sort((a, b) => {
+    const scoreFor = (row: ExploreRow) => {
+      const name = normalizeTextForMatch(row.name);
+      const setName = normalizeTextForMatch(row.set_name);
+      const gvId = row.gv_id.toUpperCase();
+      const number = normalizeTextForMatch(row.number);
+      let score = 0;
+
+      if (directGvId && gvId === directGvId) score += 1000;
+      if (normalizedQuery && name === normalizedQuery) score += 400;
+      else if (normalizedQuery && name.startsWith(normalizedQuery)) score += 300;
+      else if (normalizedQuery && name.includes(normalizedQuery)) score += 200;
+
+      if (normalizedQuery && setName.includes(normalizedQuery)) score += 120;
+      if (normalizedQuery && gvId === normalizedQuery.toUpperCase()) score += 900;
+      if (normalizedQuery && gvId.includes(normalizedQuery.toUpperCase())) score += 150;
+      if (normalizedQuery && number === normalizedQuery) score += 150;
+
+      for (const token of queryTokens) {
+        if (name.includes(token)) score += 35;
+        if (setName.includes(token)) score += 20;
+        if (gvId.includes(token.toUpperCase())) score += 20;
+        if (number === token) score += 20;
+      }
+
+      return score;
+    };
+
+    const scoreA = scoreFor(a);
+    const scoreB = scoreFor(b);
+    if (scoreA !== scoreB) return scoreB - scoreA;
+
+    const nameCompare = a.name.localeCompare(b.name);
+    if (nameCompare !== 0) return nameCompare;
+
+    const setCompare = (a.set_name ?? "").localeCompare(b.set_name ?? "");
+    if (setCompare !== 0) return setCompare;
+
+    const numberCompare = a.number.localeCompare(b.number, undefined, { numeric: true });
+    if (numberCompare !== 0) return numberCompare;
+
+    return a.gv_id.localeCompare(b.gv_id);
+  });
+}
+
+async function fetchExploreRows(query: string): Promise<ExploreRow[]> {
+  const normalizedQuery = normalizeFreeTextQuery(query);
+
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const directGvId = normalizeGvIdInput(normalizedQuery);
+
+  const [{ data: rpcData, error: rpcError }, directLookupResult] = await Promise.all([
+    supabase.rpc("search_card_prints_v1", {
+      q: normalizedQuery,
+      limit_in: SEARCH_LIMIT,
+    }),
+    directGvId
+      ? supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url").eq("gv_id", directGvId).limit(1)
+      : Promise.resolve({ data: null, error: null }),
+  ]);
+
+  if (rpcError) {
+    throw new Error(rpcError.message);
+  }
+
+  const searchRows = (rpcData ?? []) as SearchRpcRow[];
+  const ids = searchRows.map((row) => row.id);
+  const directLookupRows = ((directLookupResult.data ?? []) as GvLookupRow[]).filter((row) => Boolean(row.id && row.gv_id));
+  const lookupIds = Array.from(new Set([...ids, ...directLookupRows.map((row) => row.id)]));
+
+  if (lookupIds.length === 0) {
+    return [];
+  }
+
+  const { data: lookupDataWithSet, error: lookupErrorWithSet } = await supabase
+    .from("card_prints")
+    .select("id,gv_id,name,number,rarity,image_url,sets(name)")
+    .in("id", lookupIds);
+  const { data: lookupData, error: lookupError } = lookupErrorWithSet
+    ? await supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url").in("id", lookupIds)
+    : { data: lookupDataWithSet, error: null };
+
+  if (lookupError) {
+    throw new Error(lookupError.message);
+  }
+
+  const mergedSearchRows: SearchRpcRow[] = [...searchRows];
+  for (const row of directLookupRows) {
+    if (mergedSearchRows.some((existing) => existing.id === row.id)) continue;
+    mergedSearchRows.unshift({
+      id: row.id,
+      name: row.name ?? "Unknown",
+      number: row.number ?? "",
+      rarity: row.rarity ?? null,
+      image_url: row.image_url ?? null,
+    });
+  }
+
+  const rows = buildExploreRows(mergedSearchRows, (lookupData ?? []) as GvLookupRow[]);
+  return rankRows(rows, normalizedQuery, directGvId);
+}
 
 function ExplorePageContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const q = searchParams.get("q") ?? "";
+  const [draftQuery, setDraftQuery] = useState(q);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
 
-  const runSearch = async (query: string) => {
-    const normalizedQuery = query.trim();
-
-    if (!normalizedQuery) {
-      setRows([]);
-      setError(null);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    const { data, error: rpcError } = await supabase.rpc("search_card_prints_v1", {
-      q: normalizedQuery,
-      limit_in: 30,
-    });
-
-    if (rpcError) {
-      setError(rpcError.message);
-      setRows([]);
-      setLoading(false);
-      return;
-    }
-
-    const searchRows = (data ?? []) as SearchRpcRow[];
-    if (searchRows.length === 0) {
-      setRows([]);
-      setLoading(false);
-      return;
-    }
-
-    const ids = searchRows.map((row) => row.id);
-    const { data: lookupDataWithSet, error: lookupErrorWithSet } = await supabase
-      .from("card_prints")
-      .select("id,gv_id,sets(name)")
-      .in("id", ids);
-    const { data: lookupData, error: lookupError } = lookupErrorWithSet
-      ? await supabase.from("card_prints").select("id,gv_id").in("id", ids)
-      : { data: lookupDataWithSet, error: null };
-
-    if (lookupError) {
-      setError(lookupError.message);
-      setRows([]);
-      setLoading(false);
-      return;
-    }
-
-    const gvIdById = new Map(
-      ((lookupData ?? []) as GvLookupRow[]).flatMap((row) => (row.gv_id ? [[row.id, row.gv_id] as const] : [])),
-    );
-    const setNameById = new Map(
-      ((lookupData ?? []) as GvLookupRow[]).flatMap((row) => {
-        const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-        return setRecord?.name ? [[row.id, setRecord.name] as const] : [];
-      }),
-    );
-
-    const normalizedRows: ExploreRow[] = [];
-    for (const row of searchRows) {
-      const gv_id = gvIdById.get(row.id);
-      if (!gv_id) continue;
-
-      normalizedRows.push({
-        id: row.id,
-        gv_id,
-        name: row.name ?? "Unknown",
-        number: row.number ?? "",
-        set_name: setNameById.get(row.id),
-        rarity: row.rarity ?? undefined,
-        image_url: row.image_url ?? undefined,
-      });
-    }
-
-    setRows(normalizedRows);
-    setLoading(false);
-  };
+  useEffect(() => {
+    setDraftQuery(q);
+  }, [q]);
 
   useEffect(() => {
     let cancelled = false;
 
     const load = async () => {
-      if (!q.trim()) {
+      const normalizedQuery = normalizeFreeTextQuery(q);
+
+      if (!normalizedQuery) {
         setRows([]);
         setError(null);
         setLoading(false);
@@ -128,73 +219,19 @@ function ExplorePageContent() {
       setLoading(true);
       setError(null);
 
-      const { data, error: rpcError } = await supabase.rpc("search_card_prints_v1", {
-        q: q.trim(),
-        limit_in: 30,
-      });
-
-      if (cancelled) return;
-
-      if (rpcError) {
-        setError(rpcError.message);
+      try {
+        const nextRows = await fetchExploreRows(normalizedQuery);
+        if (cancelled) return;
+        setRows(nextRows);
+      } catch (searchError) {
+        if (cancelled) return;
+        setError(searchError instanceof Error ? searchError.message : "Search failed.");
         setRows([]);
-        setLoading(false);
-        return;
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
-
-      const searchRows = (data ?? []) as SearchRpcRow[];
-      if (searchRows.length === 0) {
-        setRows([]);
-        setLoading(false);
-        return;
-      }
-
-      const ids = searchRows.map((row) => row.id);
-      const { data: lookupDataWithSet, error: lookupErrorWithSet } = await supabase
-        .from("card_prints")
-        .select("id,gv_id,sets(name)")
-        .in("id", ids);
-      const { data: lookupData, error: lookupError } = lookupErrorWithSet
-        ? await supabase.from("card_prints").select("id,gv_id").in("id", ids)
-        : { data: lookupDataWithSet, error: null };
-
-      if (cancelled) return;
-
-      if (lookupError) {
-        setError(lookupError.message);
-        setRows([]);
-        setLoading(false);
-        return;
-      }
-
-      const gvIdById = new Map(
-        ((lookupData ?? []) as GvLookupRow[]).flatMap((row) => (row.gv_id ? [[row.id, row.gv_id] as const] : [])),
-      );
-      const setNameById = new Map(
-        ((lookupData ?? []) as GvLookupRow[]).flatMap((row) => {
-          const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-          return setRecord?.name ? [[row.id, setRecord.name] as const] : [];
-        }),
-      );
-
-      const normalizedRows: ExploreRow[] = [];
-      for (const row of searchRows) {
-        const gv_id = gvIdById.get(row.id);
-        if (!gv_id) continue;
-
-        normalizedRows.push({
-          id: row.id,
-          gv_id,
-          name: row.name ?? "Unknown",
-          number: row.number ?? "",
-          set_name: setNameById.get(row.id),
-          rarity: row.rarity ?? undefined,
-          image_url: row.image_url ?? undefined,
-        });
-      }
-
-      setRows(normalizedRows);
-      setLoading(false);
     };
 
     load();
@@ -204,9 +241,9 @@ function ExplorePageContent() {
     };
   }, [q]);
 
-  const updateQuery = (nextQuery: string) => {
+  const commitQuery = (nextQuery: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    const normalizedQuery = nextQuery.trim();
+    const normalizedQuery = normalizeFreeTextQuery(nextQuery);
 
     if (normalizedQuery) {
       params.set("q", normalizedQuery);
@@ -232,13 +269,18 @@ function ExplorePageContent() {
         <input
           className="flex-1 rounded border border-slate-300 bg-white px-3 py-2"
           placeholder="Search by name or number"
-          value={q}
-          onChange={(e) => updateQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && runSearch(q)}
+          value={draftQuery}
+          onChange={(e) => setDraftQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              commitQuery(draftQuery);
+            }
+          }}
         />
         <button
           className="rounded bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-60"
-          onClick={() => runSearch(q)}
+          onClick={() => commitQuery(draftQuery)}
           disabled={loading}
         >
           {loading ? "Searching..." : "Search"}
