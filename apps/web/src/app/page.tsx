@@ -242,17 +242,22 @@ export default async function HomePage() {
         <div className="rounded-3xl border border-slate-200 bg-white p-6">
           <h2 className="text-2xl font-semibold text-slate-950">What is Grookai Vault</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Grookai Vault gives collectors a clean way to explore card prints through a stable public ID. Each card
-            page is built around the card itself first, with a Grookai Vault ID that stays consistent across the wider
-            product.
+            Grookai Vault gives collectors a clean way to explore Pokemon cards through a stable card identity.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Each card page represents a single card print, anchored by a Grookai ID that stays consistent across the
+            entire platform.
           </p>
         </div>
 
         <div className="rounded-3xl border border-slate-200 bg-white p-6">
           <h2 className="text-2xl font-semibold text-slate-950">Future vision</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            This is the first public layer of a broader collector experience: card discovery, collection context, and
-            future product surfaces that all resolve to the same canonical card record.
+            This explorer is the first public layer of Grookai Vault.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Over time it will grow into a full collector platform connecting discovery, collections, and future tools
+            around the same canonical card identity.
           </p>
         </div>
       </section>

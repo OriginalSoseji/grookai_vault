@@ -67,6 +67,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
+        <footer className="border-t border-slate-200 bg-white">
+          <div className="mx-auto max-w-5xl px-4 py-4 text-center text-sm text-slate-600">
+            <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
+              Legal
+            </Link>
+          </div>
+        </footer>
         <Analytics />
       </body>
     </html>
