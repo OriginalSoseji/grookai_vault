@@ -71,12 +71,13 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
     notFound();
   }
 
+  const setName = typeof card.set_name === "string" ? card.set_name.trim() : "";
   const summaryParts = [
     card.number ? `#${card.number}` : undefined,
     card.rarity,
   ].filter((value): value is string => Boolean(value));
   const metadata: MetadataItem[] = [
-    card.set_name ? { label: "Set", value: card.set_name } : null,
+    setName.length > 0 ? { label: "Set", value: setName } : null,
     card.number ? { label: "Card number", value: card.number } : null,
     card.rarity ? { label: "Rarity", value: card.rarity } : null,
     card.artist ? { label: "Illustrator", value: card.artist } : null,
@@ -95,16 +96,18 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
         </div>
 
         <div className="space-y-6 rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">
-          <div className="space-y-3">
-            <div className="space-y-2">
-              <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
-              <div className="flex flex-wrap items-center gap-3">
-                <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
-                <CopyButton text={card.gv_id} />
-              </div>
-              {card.set_name && <p className="text-sm text-slate-600">Pokemon • {card.set_name}</p>}
-              {summaryParts.length > 0 && <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>}
+          <div className="space-y-2">
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
+              <CopyButton text={card.gv_id} />
             </div>
+            {setName.length > 0 ? (
+              <p className="text-sm font-medium text-slate-600">Pokemon • {setName}</p>
+            ) : null}
+            {summaryParts.length > 0 ? (
+              <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>
+            ) : null}
           </div>
 
           {metadata.length > 0 && (
