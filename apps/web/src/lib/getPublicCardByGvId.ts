@@ -1,4 +1,4 @@
-import { cache } from "react";
+
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { CardDetail } from "@/types/cards";
