@@ -11,6 +11,7 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 type MetadataItem = {
   label: string;
   value: string;
+  href?: string;
 };
 
 function formatPrintedTotal(number: string, printedTotal?: number) {
@@ -81,18 +82,27 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
   }
 
   const setName = typeof card.set_name === "string" ? card.set_name.trim() : "";
-  const browseSetHref = setName ? `/explore?q=${encodeURIComponent(setName)}` : null;
+  const browseSetHref = setName && card.set_code ? `/explore?set=${encodeURIComponent(card.set_code)}` : null;
+  const browseYearHref =
+    typeof card.release_year === "number" ? `/explore?year=${encodeURIComponent(String(card.release_year))}` : null;
+  const illustratorName = typeof card.artist === "string" ? card.artist.trim() : "";
+  const browseIllustratorHref =
+    illustratorName.length > 0 ? `/explore?illustrator=${encodeURIComponent(illustratorName)}` : null;
   const printedTotal = formatPrintedTotal(card.number, card.printed_total);
   const summaryParts = [
     card.number ? `#${card.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
     card.rarity,
   ].filter((value): value is string => Boolean(value));
   const metadata: MetadataItem[] = [
-    setName.length > 0 ? { label: "Set", value: setName } : null,
+    setName.length > 0 ? { label: "Set", value: setName, href: browseSetHref ?? undefined } : null,
     card.number ? { label: "Card number", value: card.number } : null,
     card.rarity ? { label: "Rarity", value: card.rarity } : null,
-    typeof card.release_year === "number" ? { label: "Release year", value: String(card.release_year) } : null,
-    card.artist ? { label: "Illustrator", value: card.artist } : null,
+    typeof card.release_year === "number"
+      ? { label: "Release year", value: String(card.release_year), href: browseYearHref ?? undefined }
+      : null,
+    illustratorName.length > 0
+      ? { label: "Illustrator", value: illustratorName, href: browseIllustratorHref ?? undefined }
+      : null,
   ].filter((item): item is MetadataItem => item !== null);
 
   return (
@@ -115,17 +125,16 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
               <CopyButton text={card.gv_id} />
             </div>
             {setName.length > 0 ? (
-              <div className="space-y-1">
-                <p className="text-sm font-medium text-slate-600">Pokemon • {setName}</p>
+              <p className="text-sm font-medium text-slate-600">
+                Pokemon •{" "}
                 {browseSetHref ? (
-                  <Link
-                    href={browseSetHref}
-                    className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
-                  >
-                    Browse this set
+                  <Link href={browseSetHref} className="underline-offset-4 hover:text-slate-950 hover:underline">
+                    {setName}
                   </Link>
-                ) : null}
-              </div>
+                ) : (
+                  setName
+                )}
+              </p>
             ) : null}
             {summaryParts.length > 0 ? (
               <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>
@@ -139,7 +148,15 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
                 {metadata.map((item) => (
                   <div key={item.label} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                     <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
-                    <dd className="mt-2 text-sm text-slate-800">{item.value}</dd>
+                    <dd className="mt-2 text-sm text-slate-800">
+                      {item.href ? (
+                        <Link href={item.href} className="underline-offset-4 hover:text-slate-950 hover:underline">
+                          {item.value}
+                        </Link>
+                      ) : (
+                        item.value
+                      )}
+                    </dd>
                   </div>
                 ))}
               </dl>

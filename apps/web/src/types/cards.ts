@@ -12,4 +12,5 @@ export interface CardSummary {
 export interface CardDetail extends CardSummary {
   artist?: string;
   printed_total?: number;
+  set_code?: string;
 }

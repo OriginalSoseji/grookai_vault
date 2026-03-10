@@ -115,6 +115,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     name: row.name ?? "Unknown",
     number: row.number ?? "",
     set_name: setName,
+    set_code: row.set_code ?? undefined,
     rarity: row.rarity ?? undefined,
     image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     artist: row.artist ?? undefined,

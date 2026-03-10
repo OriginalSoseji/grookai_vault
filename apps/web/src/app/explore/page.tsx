@@ -17,6 +17,7 @@ const GENERIC_TOKENS = new Set(["set", "card", "pokemon", "pokmon", "the", "and"
 
 type ExploreRow = CardSummary & {
   id: string;
+  artist?: string;
   set_code?: string;
   printed_set_abbrev?: string;
   tcgdex_set_id?: string;
@@ -32,6 +33,7 @@ type CardPrintLookupRow = {
   name: string | null;
   number: string | null;
   rarity: string | null;
+  artist?: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   set_code?: string | null;
@@ -84,6 +86,25 @@ function parseSortMode(value: string | null): SortMode {
   }
 
   return "relevance";
+}
+
+function normalizeSetCode(value?: string | null) {
+  const normalized = (value ?? "").trim().toLowerCase();
+  return normalized || "";
+}
+
+function normalizeIllustrator(value?: string | null) {
+  return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function parseReleaseYear(value?: string | null) {
+  const normalized = (value ?? "").trim();
+  if (!/^\d{4}$/.test(normalized)) {
+    return undefined;
+  }
+
+  const parsedYear = Number(normalized);
+  return Number.isFinite(parsedYear) ? parsedYear : undefined;
 }
 
 function uniqueValues(values: string[]) {
@@ -281,6 +302,7 @@ function buildExploreRows(
         number: row.number ?? "",
         set_name: setMetadata?.set_name ?? (tcgdexSetId ? setNameById.get(tcgdexSetId) : undefined),
         rarity: row.rarity ?? undefined,
+        artist: row.artist ?? undefined,
         image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
@@ -569,7 +591,7 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
 
 async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], directGvId: string | null) {
   const selectClause =
-    "id,gv_id,name,number,rarity,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
 
   const [lookupById, lookupByTcgdex, directLookup] = await Promise.all([
     ids.length > 0
@@ -598,6 +620,79 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
   }
 
   return [...deduped.values()];
+}
+
+async function fetchCardRowsBySetCode(setCode: string) {
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
+    .eq("set_code", setCode)
+    .limit(250);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as CardPrintLookupRow[];
+}
+
+async function fetchCardRowsByIllustrator(illustrator: string) {
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
+    .eq("artist", illustrator)
+    .limit(250);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as CardPrintLookupRow[];
+}
+
+async function fetchSetCodesByReleaseYear(year: number) {
+  const start = `${year}-01-01`;
+  const end = `${year + 1}-01-01`;
+  const { data, error } = await supabase
+    .from("sets")
+    .select("code")
+    .gte("release_date", start)
+    .lt("release_date", end);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return uniqueValues(
+    ((data ?? []) as Array<{ code?: string | null }>)
+      .map((row) => row.code ?? "")
+      .filter(Boolean),
+  );
+}
+
+async function fetchCardRowsByReleaseYear(year: number) {
+  const setCodes = await fetchSetCodesByReleaseYear(year);
+  if (setCodes.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
+    .in("set_code", setCodes)
+    .limit(250);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as CardPrintLookupRow[];
 }
 
 async function fetchPublicSetMetadata(setCodes: string[]) {
@@ -656,23 +751,57 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 }
 
-async function fetchExploreRows(rawQuery: string, sortMode: SortMode): Promise<ExploreRow[]> {
+async function fetchExploreRows(
+  rawQuery: string,
+  sortMode: SortMode,
+  exactSetCode: string,
+  exactReleaseYear?: number,
+  exactIllustrator?: string,
+): Promise<ExploreRow[]> {
   const query = buildResolverQuery(rawQuery);
-  if (!query.normalized) {
+  if (!query.normalized && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
     return [];
   }
 
-  const [rpcIds, setAwareResults] = await Promise.all([
-    fetchRpcIds(query),
-    fetchSetAwareTcgdexCardIds(query),
-  ]);
+  let exactRows: CardPrintLookupRow[] = [];
+  let setAwareResults = { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
 
-  const exactRows = await fetchExactCardRows(rpcIds, setAwareResults.tcgdexCardIds, query.directGvId);
+  if (query.normalized) {
+    const [rpcIds, resolvedSetAwareResults] = await Promise.all([
+      fetchRpcIds(query),
+      fetchSetAwareTcgdexCardIds(query),
+    ]);
+
+    setAwareResults = resolvedSetAwareResults;
+    exactRows = await fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId);
+  }
+
+  if (!query.normalized) {
+    if (exactSetCode) {
+      exactRows = await fetchCardRowsBySetCode(exactSetCode);
+    } else if (exactIllustrator) {
+      exactRows = await fetchCardRowsByIllustrator(exactIllustrator);
+    } else if (exactReleaseYear) {
+      exactRows = await fetchCardRowsByReleaseYear(exactReleaseYear);
+    }
+  }
+
+  if (exactSetCode) {
+    exactRows = exactRows.filter((row) => normalizeSetCode(row.set_code) === exactSetCode);
+  }
+
+  if (exactIllustrator) {
+    exactRows = exactRows.filter((row) => normalizeIllustrator(row.artist) === normalizeIllustrator(exactIllustrator));
+  }
+
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
   const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode);
-  return sortRows(rows, query, sortMode);
+  const filteredRows = typeof exactReleaseYear === "number"
+    ? rows.filter((row) => row.release_year === exactReleaseYear)
+    : rows;
+  return sortRows(filteredRows, query, sortMode);
 }
 
 function ExplorePageContent() {
@@ -680,6 +809,9 @@ function ExplorePageContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const q = searchParams.get("q") ?? "";
+  const exactSetCode = normalizeSetCode(searchParams.get("set"));
+  const exactReleaseYear = parseReleaseYear(searchParams.get("year"));
+  const exactIllustrator = (searchParams.get("illustrator") ?? "").trim() || "";
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
   const [draftQuery, setDraftQuery] = useState(q);
@@ -697,7 +829,7 @@ function ExplorePageContent() {
     const load = async () => {
       const normalizedQuery = normalizeFreeTextQuery(q);
 
-      if (!normalizedQuery) {
+      if (!normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
         setRows([]);
         setError(null);
         setLoading(false);
@@ -708,7 +840,13 @@ function ExplorePageContent() {
       setError(null);
 
       try {
-        const nextRows = await fetchExploreRows(normalizedQuery, sortMode);
+        const nextRows = await fetchExploreRows(
+          normalizedQuery,
+          sortMode,
+          exactSetCode,
+          exactReleaseYear,
+          exactIllustrator || undefined,
+        );
         if (cancelled) return;
         setRows(nextRows);
       } catch (searchError) {
@@ -727,7 +865,7 @@ function ExplorePageContent() {
     return () => {
       cancelled = true;
     };
-  }, [q, sortMode]);
+  }, [q, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
 
   const commitQuery = (nextQuery: string) => {
     const params = new URLSearchParams(searchParams.toString());
