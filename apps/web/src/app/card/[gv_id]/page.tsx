@@ -105,6 +105,7 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
                 <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
                 <CopyButton text={card.gv_id} />
               </div>
+              {card.set_name && <div className="text-sm text-slate-600">Pokemon • {card.set_name}</div>}
               {summaryParts.length > 0 && <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>}
             </div>
           </div>
