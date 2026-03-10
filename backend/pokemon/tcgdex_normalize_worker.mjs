@@ -331,6 +331,29 @@ function shouldUpgradeImage(currentSource) {
   return !currentSource || currentSource.trim() === '' || currentSource === SOURCE;
 }
 
+function normalizeTcgdexAssetImageUrl(url, printedNumber) {
+  if (!url || !printedNumber) return url ?? null;
+
+  const normalizedNumber = String(printedNumber).trim();
+  if (!normalizedNumber || /^RC/i.test(normalizedNumber)) {
+    return url;
+  }
+
+  const match = String(url).match(
+    /^(https:\/\/assets\.tcgdex\.net\/[^/]+\/[^/]+\/[^/]+\/)([^/]+)(\/(?:high|low)\.webp)?$/i,
+  );
+  if (!match) {
+    return url;
+  }
+
+  const [, prefix, assetNumber, suffix = ''] = match;
+  if (!/^RC/i.test(assetNumber)) {
+    return url;
+  }
+
+  return `${prefix}${normalizedNumber}${suffix}`;
+}
+
 async function resolveCardPrintMatch(supabase, setId, cardId, numberFull, numberPlainValue) {
   if (!setId) return { match: null, multiple: false };
   if (!cardId) cardId = null;
@@ -590,8 +613,8 @@ async function upsertCardPrint(supabase, raw, cardPayload, setId, options) {
     cardData?.imageSmall ??
     primaryImage ??
     null;
-  const imageUrl = primaryImage || secondaryImage || null;
-  const imageAlt = secondaryImage || primaryImage || null;
+  const imageUrl = normalizeTcgdexAssetImageUrl(primaryImage || secondaryImage || null, numberFull);
+  const imageAlt = normalizeTcgdexAssetImageUrl(secondaryImage || primaryImage || null, numberFull);
   const sharedFields = {
     rarity: cardData?.rarity ?? null,
     regulation_mark: cardData?.regulationMark ?? cardData?.regulation_mark ?? null,
