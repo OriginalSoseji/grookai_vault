@@ -1,0 +1,14 @@
+{
+  "total_db_rows": 22483,
+  "total_bulbapedia_rows": 35098,
+  "matched": 704,
+  "missing_in_db": 3202,
+  "extra_in_db": 1834,
+  "name_mismatch": 28974,
+  "number_mismatch": 432,
+  "variant_mismatch": 555,
+  "set_membership_mismatch": 609,
+  "ambiguous_manual_review": 0,
+  "domain_not_comparable": 1825,
+  "not_listed_on_bulbapedia_index": 450
+}
