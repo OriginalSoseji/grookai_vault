@@ -30,6 +30,8 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   _IdentityScanStep _step = _IdentityScanStep.capture;
   bool _submitting = false;
   bool _addingToVault = false;
+  bool _submittingCatalog = false;
+  bool _submittedCatalog = false;
   String? _error;
   String? _eventId;
   String? _snapshotId;
@@ -260,6 +262,64 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
     }
   }
 
+  Future<void> _submitToCatalog() async {
+    // Prevent double submission.
+    if (_submittingCatalog || _submittedCatalog) return;
+
+    // Guard missing event ID.
+    if (!_hasRealEventId) {
+      _snack('Missing event ID.');
+      return;
+    }
+
+    // Guard missing authenticated user.
+    final user = Supabase.instance.client.auth.currentUser;
+    if (user == null) {
+      _snack('Please sign in to submit.');
+      return;
+    }
+
+    // Capture local copies for safety.
+    final eventId = _eventId;
+    final identitySnapshotId = _snapshotId;
+    final signals = _signals;
+
+    if (eventId == null || eventId.isEmpty) {
+      _snack('Invalid event ID.');
+      return;
+    }
+
+    setState(() => _submittingCatalog = true);
+
+    try {
+      final payload = <String, dynamic>{
+        'identity_scan_event_id': eventId,
+        'signals': signals ?? {},
+      };
+
+      // Only include identity_snapshot_id if non-null and non-empty.
+      if (identitySnapshotId != null && identitySnapshotId.isNotEmpty) {
+        payload['identity_snapshot_id'] = identitySnapshotId;
+      }
+
+      await Supabase.instance.client
+          .from('catalog_submissions_v1')
+          .insert(payload);
+
+      if (!mounted) return;
+
+      setState(() => _submittedCatalog = true);
+
+      _snack('Submitted to catalog review.');
+    } catch (e) {
+      _snack('Submission failed: $e');
+    } finally {
+      if (mounted) {
+        setState(() => _submittingCatalog = false);
+      }
+    }
+  }
+
   Widget _buildCaptureCard(ThemeData theme) {
     return Card(
       child: Padding(
@@ -458,6 +518,21 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                   onPressed: null,
                   child: const Text('Confirm'),
                 ),
+                if (_step == _IdentityScanStep.hintReady && _candidates.isEmpty) ...[
+                  const SizedBox(height: 8),
+                  if (!_submittedCatalog)
+                    FilledButton(
+                      onPressed: _submittingCatalog ? null : _submitToCatalog,
+                      child: _submittingCatalog
+                          ? const Text('Submitting...')
+                          : const Text('Submit to Catalog'),
+                    )
+                  else
+                    const FilledButton(
+                      onPressed: null,
+                      child: Text('Submitted'),
+                    ),
+                ],
               ],
             ),
           ),

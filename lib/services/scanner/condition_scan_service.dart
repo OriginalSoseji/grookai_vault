@@ -394,11 +394,18 @@ class ConditionScanService {
 
   Future<bool> enqueueConditionAnalysis(String snapshotId) async {
     try {
-      await _client.from('ingestion_jobs').insert({
-        'job_type': 'condition_analysis_v1',
-        'status': 'pending',
-        'payload': {'snapshot_id': snapshotId},
-      });
+      final response = await _client.functions.invoke(
+        'ingestion-enqueue-v1',
+        body: {
+          'job_type': 'condition_analysis_v1',
+          'payload': {'snapshot_id': snapshotId},
+        },
+      );
+      if (response.status < 200 || response.status >= 300) {
+        throw Exception(
+          'ingestion-enqueue-v1 failed: status=${response.status}, data=${response.data}',
+        );
+      }
       if (kDebugMode) {
         debugPrint('[DEBUG] enqueue centering rerun ok=true err=null');
       }

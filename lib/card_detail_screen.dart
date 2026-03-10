@@ -36,6 +36,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   bool _requestingLivePrice = false;
   String? _livePriceRequestMessage;
 
+  int _ttlMinutesForListings(int listingCount) {
+    if (listingCount >= 40) return 30;
+    if (listingCount >= 15) return 120;
+    if (listingCount >= 5) return 360;
+    return 1440;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +58,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     try {
       final response = await supabase
           .from('card_print_active_prices')
-          .select()
+          .select('*, updated_at, last_snapshot_at')
           .eq('card_print_id', widget.cardPrintId)
           .maybeSingle();
 
@@ -85,11 +92,53 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
-      await supabase.from('pricing_jobs').insert({
-        'card_print_id': widget.cardPrintId,
-        'priority': 'user',
-        'reason': 'live_price_request',
-      });
+      final data = _priceData;
+      if (data != null) {
+        String formatAgeMinutes(int totalMinutes) {
+          if (totalMinutes < 60) return '${totalMinutes}m';
+          if (totalMinutes < 1440) return '${(totalMinutes / 60).floor()}h';
+          return '${(totalMinutes / 1440).floor()}d';
+        }
+
+        final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
+        final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
+        final updatedAtRaw = data['updated_at'] as String?;
+        final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
+        final freshnessTs =
+            freshnessRaw != null ? DateTime.tryParse(freshnessRaw) : null;
+
+        if (listingCount > 0 && freshnessTs != null) {
+          final rawAgeMinutes =
+              DateTime.now().toUtc().difference(freshnessTs.toUtc()).inMinutes;
+          final ageMinutes = rawAgeMinutes < 0 ? 0 : rawAgeMinutes;
+          final ttlMinutes = _ttlMinutesForListings(listingCount);
+          if (ageMinutes < ttlMinutes) {
+            final remainingMinutes = ttlMinutes - ageMinutes;
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Live price is fresh (Updated ${formatAgeMinutes(ageMinutes)} ago). Next refresh in ~${formatAgeMinutes(remainingMinutes)}.',
+                  ),
+                ),
+              );
+            }
+            return;
+          }
+        }
+      }
+
+      final response = await supabase.functions.invoke(
+        'pricing-live-request',
+        body: {
+          'card_print_id': widget.cardPrintId,
+        },
+      );
+      if (response.status < 200 || response.status >= 300) {
+        throw Exception(
+          'pricing-live-request failed: status=${response.status}, data=${response.data}',
+        );
+      }
 
       setState(() {
         _livePriceRequestMessage =
@@ -386,12 +435,35 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final nmFloor = (data['nm_floor'] ?? 0).toDouble();
     final lpMedian =
         data['lp_median'] != null ? (data['lp_median'] as num).toDouble() : null;
-    final listingCount = (data['listing_count'] ?? 0) as int;
+    final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
     final confidence = data['confidence'] as num?;
+    final updatedAtRaw = data['updated_at'] as String?;
+    final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
+    final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
+    final freshnessTs = freshnessRaw != null ? DateTime.tryParse(freshnessRaw) : null;
+    final showListings = listingCount > 0;
+    final showUpdated = freshnessTs != null;
     const currency = 'USD';
 
     String formatMoney(double v) {
       return '\$${v.toStringAsFixed(2)} $currency';
+    }
+
+    String _formatAge(DateTime ts) {
+      final age = DateTime.now().toUtc().difference(ts.toUtc());
+      if (age.isNegative || age.inMinutes < 1) {
+        return '0m ago';
+      }
+      if (age.inMinutes < 60) {
+        return '${age.inMinutes}m ago';
+      }
+      if (age.inHours < 24) {
+        return '${age.inHours}h ago';
+      }
+      if (age.inHours < 48) {
+        return '1d ago';
+      }
+      return '${age.inDays}d ago';
     }
 
     return Card(
@@ -461,15 +533,26 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 ),
               ),
             ],
-            const SizedBox(height: 8),
-            Text(
-              '$listingCount active listings used',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withOpacity(0.7),
+            if (showListings) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Listings: $listingCount',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.7),
+                ),
               ),
-            ),
-            if (confidence != null) ...[
+            ],
+            if (showUpdated) ...[
               const SizedBox(height: 2),
+              Text(
+                'Updated: ${_formatAge(freshnessTs!)}',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.7),
+                ),
+              ),
+            ],
+            if (confidence != null) ...[
+              SizedBox(height: (showListings || showUpdated) ? 2 : 8),
               Text(
                 'Confidence: ${(confidence * 100).toStringAsFixed(0)}%',
                 style: theme.textTheme.bodySmall?.copyWith(
