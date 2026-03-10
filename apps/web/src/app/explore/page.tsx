@@ -585,24 +585,28 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
     return new Map<string, PublicSetMetadata>();
   }
 
-  const response = await fetch("/api/public-set-metadata", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ setCodes }),
-  });
+  try {
+    const response = await fetch("/api/public-set-metadata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ setCodes }),
+    });
 
-  if (!response.ok) {
-    throw new Error("Set metadata lookup failed.");
+    if (!response.ok) {
+      return new Map<string, PublicSetMetadata>();
+    }
+
+    const payload = (await response.json()) as { items?: PublicSetMetadata[] };
+    return new Map(
+      (payload.items ?? [])
+        .filter((item): item is PublicSetMetadata & { set_code: string } => Boolean(item?.set_code))
+        .map((item) => [item.set_code, item]),
+    );
+  } catch {
+    return new Map<string, PublicSetMetadata>();
   }
-
-  const payload = (await response.json()) as { items?: PublicSetMetadata[] };
-  return new Map(
-    (payload.items ?? [])
-      .filter((item): item is PublicSetMetadata & { set_code: string } => Boolean(item?.set_code))
-      .map((item) => [item.set_code, item]),
-  );
 }
 
 async function fetchExploreRows(rawQuery: string, sortMode: SortMode): Promise<ExploreRow[]> {
