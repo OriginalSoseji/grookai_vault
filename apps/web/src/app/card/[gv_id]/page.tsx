@@ -13,6 +13,15 @@ type MetadataItem = {
   value: string;
 };
 
+function formatPrintedTotal(number: string, printedTotal?: number) {
+  if (!number || typeof printedTotal !== "number") {
+    return undefined;
+  }
+
+  const prefix = number.match(/^[A-Za-z]+/)?.[0] ?? "";
+  return `${prefix}${printedTotal}`;
+}
+
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -72,14 +81,16 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
   }
 
   const setName = typeof card.set_name === "string" ? card.set_name.trim() : "";
+  const printedTotal = formatPrintedTotal(card.number, card.printed_total);
   const summaryParts = [
-    card.number ? `#${card.number}` : undefined,
+    card.number ? `#${card.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
     card.rarity,
   ].filter((value): value is string => Boolean(value));
   const metadata: MetadataItem[] = [
     setName.length > 0 ? { label: "Set", value: setName } : null,
     card.number ? { label: "Card number", value: card.number } : null,
     card.rarity ? { label: "Rarity", value: card.rarity } : null,
+    typeof card.release_year === "number" ? { label: "Release year", value: String(card.release_year) } : null,
     card.artist ? { label: "Illustrator", value: card.artist } : null,
   ].filter((item): item is MetadataItem => item !== null);
 

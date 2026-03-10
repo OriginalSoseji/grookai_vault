@@ -49,6 +49,14 @@ type TcgdexCardRow = {
 };
 
 type ViewMode = "list" | "grid";
+type SortMode = "relevance" | "newest" | "oldest";
+
+type PublicSetMetadata = {
+  set_code: string;
+  set_name?: string;
+  release_date?: string;
+  release_year?: number;
+};
 
 type ResolverQuery = {
   raw: string;
@@ -62,6 +70,14 @@ type ResolverQuery = {
 
 function parseViewMode(value: string | null): ViewMode {
   return value === "grid" ? "grid" : "list";
+}
+
+function parseSortMode(value: string | null): SortMode {
+  if (value === "newest" || value === "oldest") {
+    return value;
+  }
+
+  return "relevance";
 }
 
 function uniqueValues(values: string[]) {
@@ -226,21 +242,28 @@ function rankSetCandidates(setRows: TcgdexSetRow[], query: ResolverQuery) {
     .slice(0, MAX_SET_CANDIDATES);
 }
 
-function buildExploreRows(lookupRows: CardPrintLookupRow[], setNameById: Map<string, string>) {
+function buildExploreRows(
+  lookupRows: CardPrintLookupRow[],
+  setNameById: Map<string, string>,
+  setMetadataByCode: Map<string, PublicSetMetadata>,
+) {
   return lookupRows
     .filter((row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id))
     .map((row) => {
       const tcgdexCardId = extractTcgdexCardId(row.external_ids);
       const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
+      const setMetadata = row.set_code ? setMetadataByCode.get(row.set_code) : undefined;
 
       return {
         id: row.id,
         gv_id: row.gv_id,
         name: row.name ?? "Unknown",
         number: row.number ?? "",
-        set_name: tcgdexSetId ? setNameById.get(tcgdexSetId) : undefined,
+        set_name: setMetadata?.set_name ?? (tcgdexSetId ? setNameById.get(tcgdexSetId) : undefined),
         rarity: row.rarity ?? undefined,
         image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+        release_date: setMetadata?.release_date,
+        release_year: setMetadata?.release_year,
         set_code: row.set_code ?? undefined,
         printed_set_abbrev: row.printed_set_abbrev ?? undefined,
         tcgdex_set_id: tcgdexSetId,
@@ -354,6 +377,45 @@ function rankRows(rows: ExploreRow[], query: ResolverQuery) {
     if (numberCompare !== 0) return numberCompare;
 
     return a.gv_id.localeCompare(b.gv_id);
+  });
+}
+
+function compareRowsByRelevance(a: ExploreRow, b: ExploreRow, query: ResolverQuery) {
+  const scoreA = scoreRow(a, query);
+  const scoreB = scoreRow(b, query);
+  if (scoreA !== scoreB) return scoreB - scoreA;
+
+  const nameCompare = a.name.localeCompare(b.name);
+  if (nameCompare !== 0) return nameCompare;
+
+  const setCompare = (a.set_name ?? "").localeCompare(b.set_name ?? "");
+  if (setCompare !== 0) return setCompare;
+
+  const numberCompare = a.number.localeCompare(b.number, undefined, { numeric: true });
+  if (numberCompare !== 0) return numberCompare;
+
+  return a.gv_id.localeCompare(b.gv_id);
+}
+
+function sortRows(rows: ExploreRow[], query: ResolverQuery, sortMode: SortMode) {
+  if (sortMode === "relevance") {
+    return rankRows(rows, query);
+  }
+
+  return [...rows].sort((a, b) => {
+    const leftDate = a.release_date ? Date.parse(a.release_date) : Number.NaN;
+    const rightDate = b.release_date ? Date.parse(b.release_date) : Number.NaN;
+    const leftHasDate = Number.isFinite(leftDate);
+    const rightHasDate = Number.isFinite(rightDate);
+
+    if (leftHasDate && !rightHasDate) return -1;
+    if (!leftHasDate && rightHasDate) return 1;
+
+    if (leftHasDate && rightHasDate && leftDate !== rightDate) {
+      return sortMode === "newest" ? rightDate - leftDate : leftDate - rightDate;
+    }
+
+    return compareRowsByRelevance(a, b, query);
   });
 }
 
@@ -518,7 +580,32 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
   return [...deduped.values()];
 }
 
-async function fetchExploreRows(rawQuery: string): Promise<ExploreRow[]> {
+async function fetchPublicSetMetadata(setCodes: string[]) {
+  if (setCodes.length === 0) {
+    return new Map<string, PublicSetMetadata>();
+  }
+
+  const response = await fetch("/api/public-set-metadata", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ setCodes }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Set metadata lookup failed.");
+  }
+
+  const payload = (await response.json()) as { items?: PublicSetMetadata[] };
+  return new Map(
+    (payload.items ?? [])
+      .filter((item): item is PublicSetMetadata & { set_code: string } => Boolean(item?.set_code))
+      .map((item) => [item.set_code, item]),
+  );
+}
+
+async function fetchExploreRows(rawQuery: string, sortMode: SortMode): Promise<ExploreRow[]> {
   const query = buildResolverQuery(rawQuery);
   if (!query.normalized) {
     return [];
@@ -530,8 +617,11 @@ async function fetchExploreRows(rawQuery: string): Promise<ExploreRow[]> {
   ]);
 
   const exactRows = await fetchExactCardRows(rpcIds, setAwareResults.tcgdexCardIds, query.directGvId);
-  const rows = buildExploreRows(exactRows, setAwareResults.setNameById);
-  return rankRows(rows, query);
+  const setMetadataByCode = await fetchPublicSetMetadata(
+    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  );
+  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode);
+  return sortRows(rows, query, sortMode);
 }
 
 function ExplorePageContent() {
@@ -540,6 +630,7 @@ function ExplorePageContent() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") ?? "";
   const viewMode = parseViewMode(searchParams.get("view"));
+  const sortMode = parseSortMode(searchParams.get("sort"));
   const [draftQuery, setDraftQuery] = useState(q);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
@@ -566,7 +657,7 @@ function ExplorePageContent() {
       setError(null);
 
       try {
-        const nextRows = await fetchExploreRows(normalizedQuery);
+        const nextRows = await fetchExploreRows(normalizedQuery, sortMode);
         if (cancelled) return;
         setRows(nextRows);
       } catch (searchError) {
@@ -585,7 +676,7 @@ function ExplorePageContent() {
     return () => {
       cancelled = true;
     };
-  }, [q]);
+  }, [q, sortMode]);
 
   const commitQuery = (nextQuery: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -604,6 +695,19 @@ function ExplorePageContent() {
   const commitViewMode = (nextViewMode: ViewMode) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("view", nextViewMode);
+    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
+  const commitSortMode = (nextSortMode: SortMode) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextSortMode === "relevance") {
+      params.delete("sort");
+    } else {
+      params.set("sort", nextSortMode);
+    }
+
     const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
     router.replace(nextUrl, { scroll: false });
   };
@@ -645,25 +749,39 @@ function ExplorePageContent() {
           <p className="text-sm text-slate-600">
             {rows.length > 0 ? `${rows.length} result${rows.length === 1 ? "" : "s"}` : "Results"}
           </p>
-          <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
-            <button
-              type="button"
-              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                viewMode === "list" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-              }`}
-              onClick={() => commitViewMode("list")}
-            >
-              List
-            </button>
-            <button
-              type="button"
-              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                viewMode === "grid" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-              }`}
-              onClick={() => commitViewMode("grid")}
-            >
-              Grid
-            </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <label className="flex items-center gap-2 text-sm text-slate-600">
+              <span>Sort</span>
+              <select
+                value={sortMode}
+                onChange={(event) => commitSortMode(event.target.value as SortMode)}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+              >
+                <option value="relevance">Relevance</option>
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </label>
+            <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
+              <button
+                type="button"
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                  viewMode === "list" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
+                }`}
+                onClick={() => commitViewMode("list")}
+              >
+                List
+              </button>
+              <button
+                type="button"
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                  viewMode === "grid" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
+                }`}
+                onClick={() => commitViewMode("grid")}
+              >
+                Grid
+              </button>
+            </div>
           </div>
         </div>
 
