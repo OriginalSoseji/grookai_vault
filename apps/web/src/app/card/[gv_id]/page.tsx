@@ -81,6 +81,7 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
   }
 
   const setName = typeof card.set_name === "string" ? card.set_name.trim() : "";
+  const browseSetHref = setName ? `/explore?q=${encodeURIComponent(setName)}` : null;
   const printedTotal = formatPrintedTotal(card.number, card.printed_total);
   const summaryParts = [
     card.number ? `#${card.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
@@ -114,7 +115,17 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
               <CopyButton text={card.gv_id} />
             </div>
             {setName.length > 0 ? (
-              <p className="text-sm font-medium text-slate-600">Pokemon • {setName}</p>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-slate-600">Pokemon • {setName}</p>
+                {browseSetHref ? (
+                  <Link
+                    href={browseSetHref}
+                    className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                  >
+                    Browse this set
+                  </Link>
+                ) : null}
+              </div>
             ) : null}
             {summaryParts.length > 0 ? (
               <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>
