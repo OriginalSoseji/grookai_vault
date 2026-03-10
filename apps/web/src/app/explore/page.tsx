@@ -48,6 +48,12 @@ type TcgdexCardRow = {
   tcgdex_card_id: string | null;
 };
 
+type SetMetadataLookupRow = {
+  code: string | null;
+  name: string | null;
+  release_date: string | null;
+};
+
 type ViewMode = "list" | "grid";
 type SortMode = "relevance" | "newest" | "oldest";
 
@@ -82,6 +88,20 @@ function parseSortMode(value: string | null): SortMode {
 
 function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function getReleaseYear(releaseDate?: string | null) {
+  if (!releaseDate) {
+    return undefined;
+  }
+
+  const match = releaseDate.match(/^(\d{4})/);
+  if (!match) {
+    return undefined;
+  }
+
+  const parsedYear = Number(match[1]);
+  return Number.isFinite(parsedYear) ? parsedYear : undefined;
 }
 
 function normalizeFreeTextQuery(value: string) {
@@ -595,14 +615,41 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
     });
 
     if (!response.ok) {
-      return new Map<string, PublicSetMetadata>();
+      throw new Error("Set metadata API lookup failed.");
     }
 
     const payload = (await response.json()) as { items?: PublicSetMetadata[] };
-    return new Map(
+    const metadataFromApi = new Map(
       (payload.items ?? [])
         .filter((item): item is PublicSetMetadata & { set_code: string } => Boolean(item?.set_code))
         .map((item) => [item.set_code, item]),
+    );
+
+    if (metadataFromApi.size > 0) {
+      return metadataFromApi;
+    }
+  } catch {
+    // Fall through to direct public read.
+  }
+
+  try {
+    const { data, error } = await supabase.from("sets").select("code,name,release_date").in("code", setCodes);
+    if (error) {
+      return new Map<string, PublicSetMetadata>();
+    }
+
+    return new Map(
+      ((data ?? []) as SetMetadataLookupRow[])
+        .filter((row): row is SetMetadataLookupRow & { code: string } => Boolean(row.code))
+        .map((row) => [
+          row.code,
+          {
+            set_code: row.code,
+            set_name: row.name ?? undefined,
+            release_date: row.release_date ?? undefined,
+            release_year: getReleaseYear(row.release_date),
+          },
+        ]),
     );
   } catch {
     return new Map<string, PublicSetMetadata>();
