@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import Link from "next/link";
+import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { getPublicCardByGvId, getStaticCardParams } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
@@ -62,7 +64,10 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
 }
 
 export default async function CardPage({ params }: { params: { gv_id: string } }) {
-  const card = await getPublicCardByGvId(params.gv_id);
+  const [card, adjacentCards] = await Promise.all([
+    getPublicCardByGvId(params.gv_id),
+    getAdjacentPublicCardsByGvId(params.gv_id),
+  ]);
 
   if (!card) {
     notFound();
@@ -115,6 +120,55 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
                   </div>
                 ))}
               </dl>
+            </section>
+          )}
+
+          {(adjacentCards.previous || adjacentCards.next) && (
+            <section className="space-y-4">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">In This Set</h2>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {adjacentCards.previous ? (
+                  <Link
+                    href={`/card/${adjacentCards.previous.gv_id}`}
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                  >
+                    <PublicCardImage
+                      src={adjacentCards.previous.image_url}
+                      alt={adjacentCards.previous.name}
+                      imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+                      fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                    />
+                    <div className="min-w-0 space-y-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">← Previous</p>
+                      <p className="truncate text-sm font-medium text-slate-900">{adjacentCards.previous.name}</p>
+                      <p className="text-xs text-slate-600">#{adjacentCards.previous.number}</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="hidden sm:block" />
+                )}
+
+                {adjacentCards.next ? (
+                  <Link
+                    href={`/card/${adjacentCards.next.gv_id}`}
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                  >
+                    <PublicCardImage
+                      src={adjacentCards.next.image_url}
+                      alt={adjacentCards.next.name}
+                      imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+                      fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                    />
+                    <div className="min-w-0 space-y-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Next →</p>
+                      <p className="truncate text-sm font-medium text-slate-900">{adjacentCards.next.name}</p>
+                      <p className="text-xs text-slate-600">#{adjacentCards.next.number}</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="hidden sm:block" />
+                )}
+              </div>
             </section>
           )}
         </div>
