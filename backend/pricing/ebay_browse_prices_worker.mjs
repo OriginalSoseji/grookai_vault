@@ -249,6 +249,46 @@ function buildNumberDescriptor(print) {
   return numberStr;
 }
 
+function extractTitleCollectorNumberPlain(title) {
+  if (!title) {
+    return null;
+  }
+  const text = String(title);
+  const match = /(\d+)\s*\/\s*\d+|#\s*(\d+)/i.exec(text);
+  const trailingMatch = /\b(\d{1,3})\b\s*$/i.exec(text);
+  const raw = match ? (match[1] ?? match[2] ?? null) : (trailingMatch ? trailingMatch[1] : null);
+  if (!raw) {
+    return null;
+  }
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+  return String(parsed);
+}
+
+function buildRarityHints(print) {
+  const rarity = (print?.rarity || '').toLowerCase();
+  if (rarity.includes('secret')) {
+    return ['Secret Rare', 'Secret'];
+  }
+
+  const numberRaw = print?.number_plain ?? null;
+  const totalRaw = print?.total_cards ?? null;
+  const numberValue = Number(numberRaw);
+  const totalValue = Number(totalRaw);
+  if (
+    Number.isFinite(numberValue) &&
+    Number.isFinite(totalValue) &&
+    totalValue > 0 &&
+    numberValue > totalValue
+  ) {
+    return ['Secret Rare', 'Secret'];
+  }
+
+  return [];
+}
+
 function buildSearchQueryForPrint(print) {
   const parts = ['Pokemon TCG'];
 
@@ -262,12 +302,36 @@ function buildSearchQueryForPrint(print) {
     parts.push(print.set_code);
   }
 
+  if (print?.set_code) {
+    parts.push(String(print.set_code).toUpperCase());
+  }
+
   const numberDescriptor = buildNumberDescriptor(print);
   if (numberDescriptor) {
     parts.push(numberDescriptor);
   }
 
-  return parts.join(' ').trim();
+  const rarityHints = buildRarityHints(print);
+  if (rarityHints.length) {
+    parts.push(...rarityHints);
+  }
+
+  const seen = new Set();
+  const dedupedParts = [];
+  for (const part of parts) {
+    const token = `${part || ''}`.trim();
+    if (!token) {
+      continue;
+    }
+    const key = token.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    dedupedParts.push(token);
+  }
+
+  return dedupedParts.join(' ').trim();
 }
 
 function buildPrintLabel(print) {
@@ -344,7 +408,7 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
   const descriptor = condText ? ` ${condText} ` : '';
   const paddedTitle = ` ${normTitle} `;
 
-  const logDecision = (keep, reason, bucket = null) => {
+  const logDecision = (keep, reason, bucket = null, extra = {}) => {
     if (debug) {
       console.log('[debug] listing', {
         title: listing.title,
@@ -353,6 +417,7 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
         bucket,
         keep,
         reason,
+        ...extra,
       });
     }
   };
@@ -429,6 +494,23 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
   const skipReasonV3 = getListingSkipReasonV3(listing);
   if (skipReasonV3) {
     logSkip(skipReasonV3);
+    return null;
+  }
+
+  const expectedNumberValue = Number.parseInt(print?.number_plain ?? '', 10);
+  const expectedNumberPlain = Number.isFinite(expectedNumberValue)
+    ? String(expectedNumberValue)
+    : null;
+  const foundNumberPlain = extractTitleCollectorNumberPlain(listing.title);
+  if (
+    expectedNumberPlain !== null &&
+    foundNumberPlain !== null &&
+    foundNumberPlain !== expectedNumberPlain
+  ) {
+    logDecision(false, 'collector_number_mismatch', null, {
+      expectedNumberPlain,
+      foundNumberPlain,
+    });
     return null;
   }
 
@@ -619,6 +701,53 @@ function buildSummary(cardPrintId, nmStats, lpStats, confidence, extra = {}) {
   };
 }
 
+function enforceMonotonicCurve(summary) {
+  const s = { ...summary };
+
+  const before = {
+    lp_gt_nm: s.lp_median !== null && s.nm_median !== null && s.lp_median > s.nm_median,
+    mp_gt_lp: s.mp_median !== null && s.lp_median !== null && s.mp_median > s.lp_median,
+    hp_gt_mp: s.hp_median !== null && s.mp_median !== null && s.hp_median > s.mp_median,
+    dmg_gt_hp: s.dmg_median !== null && s.hp_median !== null && s.dmg_median > s.hp_median,
+  };
+
+  if (s.nm_median !== null && s.lp_median !== null && s.lp_median > s.nm_median) s.lp_median = s.nm_median;
+  if (s.lp_median !== null && s.mp_median !== null && s.mp_median > s.lp_median) s.mp_median = s.lp_median;
+  if (s.mp_median !== null && s.hp_median !== null && s.hp_median > s.mp_median) s.hp_median = s.mp_median;
+  if (s.hp_median !== null && s.dmg_median !== null && s.dmg_median > s.hp_median) s.dmg_median = s.hp_median;
+
+  if (s.nm_floor !== null && s.lp_floor !== null && s.lp_floor > s.nm_floor) s.lp_floor = s.nm_floor;
+  if (s.lp_floor !== null && s.mp_floor !== null && s.mp_floor > s.lp_floor) s.mp_floor = s.lp_floor;
+  if (s.mp_floor !== null && s.hp_floor !== null && s.hp_floor > s.mp_floor) s.hp_floor = s.mp_floor;
+  if (s.hp_floor !== null && s.dmg_floor !== null && s.dmg_floor > s.hp_floor) s.dmg_floor = s.hp_floor;
+
+  const fixFloor = (floorKey, medianKey) => {
+    const f = s[floorKey];
+    const m = s[medianKey];
+    if (f !== null && m !== null && f > m) s[floorKey] = m;
+  };
+  fixFloor('nm_floor', 'nm_median');
+  fixFloor('lp_floor', 'lp_median');
+  fixFloor('mp_floor', 'mp_median');
+  fixFloor('hp_floor', 'hp_median');
+  fixFloor('dmg_floor', 'dmg_median');
+
+  const after = {
+    lp_gt_nm: s.lp_median !== null && s.nm_median !== null && s.lp_median > s.nm_median,
+    mp_gt_lp: s.mp_median !== null && s.lp_median !== null && s.mp_median > s.lp_median,
+    hp_gt_mp: s.hp_median !== null && s.mp_median !== null && s.hp_median > s.mp_median,
+    dmg_gt_hp: s.dmg_median !== null && s.hp_median !== null && s.dmg_median > s.hp_median,
+  };
+
+  s.monotonic = {
+    applied: true,
+    violations_before: before,
+    violations_after: after,
+  };
+
+  return s;
+}
+
 export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun = false, debug = false }) {
   if (!supabase) {
     throw new Error('[pricing] Supabase client is required.');
@@ -632,6 +761,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     .select(`
       id,
       name,
+      rarity,
       number_plain,
       set_id,
       set:sets (*)
@@ -662,6 +792,12 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
   };
 
   const query = buildSearchQueryForPrint(cardPrint);
+  if (debug) {
+    console.log('[debug] search query', {
+      query,
+      rarity: cardPrint?.rarity ?? null,
+    });
+  }
   const label = buildPrintLabel(cardPrint) || cardPrint.name || 'card_print';
   console.log(
     `[pricing] Fetching active listings for "${query}" [${label}] (${cardPrintId})`,
@@ -746,7 +882,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     }
   }
   const confidence = computeConfidence(nmStats.rawCount + lpStats.rawCount);
-  const summary = buildSummary(cardPrintId, nmStats, lpStats, confidence, {
+  const rawSummary = buildSummary(cardPrintId, nmStats, lpStats, confidence, {
     mp_median: mpStats.median,
     mp_floor: mpStats.floor,
     raw_sample_count_mp: mpStats.rawCount,
@@ -757,6 +893,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     dmg_floor: dmgStats.floor,
     raw_sample_count_dmg: dmgStats.rawCount,
   });
+  const summary = enforceMonotonicCurve(rawSummary);
 
   if (dryRun) {
     console.log(JSON.stringify(summary, null, 2));

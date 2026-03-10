@@ -12,6 +12,7 @@ import { createTcgdexClient } from '../clients/tcgdex.mjs';
 const SOURCE = 'tcgdex';
 const KIND = 'card';
 const RETRY_DELAY_MS = 750;
+const DETAIL_CONCURRENCY_DEFAULT = 4;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -24,6 +25,7 @@ function parseArgs() {
     limit: null,
     mode: 'full',
     dryRun: false,
+    detail: false,
   };
 
   for (let i = 0; i < args.length; i += 1) {
@@ -44,6 +46,8 @@ function parseArgs() {
       }
     } else if (token === '--dry-run') {
       options.dryRun = true;
+    } else if (token === '--detail') {
+      options.detail = true;
     }
   }
 
@@ -166,13 +170,26 @@ async function importSetCards(supabase, tcgdexClient, setId, context) {
     return { created, updated, skippedMissingId };
   }
 
-  const cards = await tcgdexClient.fetchTcgdexCardsBySetId(setId);
+  const detailMode = context.detail === true;
+  const cards = detailMode
+    ? await tcgdexClient.fetchTcgdexCardsBySetId(setId, {
+        detail: true,
+        concurrency: DETAIL_CONCURRENCY_DEFAULT,
+      })
+    : await tcgdexClient.fetchTcgdexCardsBySetId(setId);
+
+  const fetchedCount = Array.isArray(cards) ? cards.length : 0;
+  const wouldUpsert = Array.isArray(cards)
+    ? cards.reduce((count, card) => (extractCardExternalId(card) ? count + 1 : count), 0)
+    : 0;
+  console.log(
+    `[tcgdex][cards] set=${setId} detail=${detailMode} fetched=${fetchedCount} wouldUpsert=${wouldUpsert}`,
+  );
+
   if (!Array.isArray(cards) || cards.length === 0) {
     console.warn(`[tcgdex][cards] No cards returned from API for set=${setId}`);
     return { created, updated, skippedMissingId };
   }
-
-  console.log(`[tcgdex][cards] fetched ${cards.length} cards for set=${setId}`);
 
   for (const card of cards) {
     if (context.remaining !== null && context.remaining <= 0) break;
@@ -204,6 +221,7 @@ async function importCards(supabase, tcgdexClient, options) {
   const context = {
     dryRun: options.dryRun,
     remaining: options.limit ?? null,
+    detail: options.detail === true,
   };
 
   const setIds =
@@ -233,6 +251,9 @@ async function importCards(supabase, tcgdexClient, options) {
     } catch (err) {
       console.error(`[tcgdex][cards] ERROR importing set=${setId}:`, err?.message ?? err);
       failedSetIds.push(setId);
+      if (options.detail) {
+        throw err;
+      }
       await sleep(RETRY_DELAY_MS);
     }
   }

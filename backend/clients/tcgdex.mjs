@@ -22,6 +22,7 @@
 
 const SOURCE = 'tcgdex';
 const SUPPORTED_LANGS = ['en', 'fr', 'es', 'es-mx', 'it', 'pt', 'pt-br', 'pt-pt', 'de', 'n'];
+const DETAIL_RETRY_DELAYS_MS = [250, 750, 1750];
 
 function normalizeBaseUrl(raw) {
   if (!raw || typeof raw !== 'string') {
@@ -44,13 +45,28 @@ function buildUrl(baseUrl, path, query = {}) {
   return url.toString();
 }
 
+function encodePathSegmentPreserveEscapes(s) {
+  // encodeURIComponent encodes '%' to '%25' — revert existing percent-escapes back to '%XX'
+  return encodeURIComponent(s).replace(/%25([0-9A-Fa-f]{2})/g, '%$1');
+}
+
+function decodePercentOnce(s) {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s;
+  }
+}
+
 async function parseJsonResponse(res) {
   const text = await res.text();
   if (!res.ok) {
     const snippet = text ? text.slice(0, 300) : '';
-    throw new Error(
+    const error = new Error(
       `[tcgdex-client] request failed: ${res.status} ${res.statusText} :: ${snippet}`,
     );
+    error.status = res.status;
+    throw error;
   }
 
   try {
@@ -64,6 +80,38 @@ function ensureFetch() {
   if (typeof fetch !== 'function') {
     throw new Error('[tcgdex-client] Global fetch is unavailable; use Node 18+ or install a fetch polyfill.');
   }
+}
+
+function clampConcurrency(value) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) {
+    return 4;
+  }
+  return Math.max(1, Math.min(6, Math.trunc(numeric)));
+}
+
+async function mapWithConcurrency(items, concurrency, mapper) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return [];
+  }
+
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  const worker = async () => {
+    while (true) {
+      const current = nextIndex;
+      if (current >= items.length) {
+        return;
+      }
+      nextIndex += 1;
+      results[current] = await mapper(items[current], current);
+    }
+  };
+
+  const workerCount = Math.min(clampConcurrency(concurrency), items.length);
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+  return results;
 }
 
 export function createTcgdexClient() {
@@ -90,6 +138,44 @@ export function createTcgdexClient() {
     }
     const res = await fetch(url, { headers });
     return parseJsonResponse(res);
+  }
+
+  async function fetchTcgdexSetById(setId) {
+    if (!setId) {
+      throw new Error('[tcgdex-client] fetchTcgdexSetById requires a setId.');
+    }
+    const body = await fetchTcgdexJson(`sets/${encodePathSegmentPreserveEscapes(setId)}`);
+    const hasCards = Array.isArray(body?.cards);
+    if (!body || typeof body !== 'object' || (!body.id && !hasCards)) {
+      throw new Error('[tcgdex-client] Unexpected JSON shape for set detail.');
+    }
+    return body;
+  }
+
+  async function fetchTcgdexCardById(cardId) {
+    if (!cardId) {
+      throw new Error('[tcgdex-client] fetchTcgdexCardById requires a cardId.');
+    }
+
+    let retryIndex = 0;
+    while (true) {
+      try {
+        const body = await fetchTcgdexJson(`cards/${encodePathSegmentPreserveEscapes(cardId)}`);
+        if (!body || typeof body !== 'object' || !body.id) {
+          throw new Error('[tcgdex-client] Unexpected JSON shape for card detail.');
+        }
+        return body;
+      } catch (err) {
+        const status = err?.status ?? null;
+        if (status === 429 && retryIndex < DETAIL_RETRY_DELAYS_MS.length) {
+          const delayMs = DETAIL_RETRY_DELAYS_MS[retryIndex];
+          retryIndex += 1;
+          await new Promise((resolve) => setTimeout(resolve, delayMs));
+          continue;
+        }
+        throw err;
+      }
+    }
   }
 
   async function fetchTcgdexSets({ page = null, pageSize = null } = {}) {
@@ -119,30 +205,73 @@ export function createTcgdexClient() {
     return items;
   }
 
-  async function fetchTcgdexCardsBySetId(setId) {
+  async function fetchTcgdexCardsBySetId(setId, opts = {}) {
     if (!setId) {
       throw new Error('[tcgdex-client] fetchTcgdexCardsBySetId requires a setId.');
     }
-    // TODO: Confirm TCGdex cards-by-set endpoint structure.
-    // NOTE: Verify this route & params against official TCGdex docs prior to usage.
-    const path = 'cards';
-    const body = await fetchTcgdexJson(path, { set: setId });
-    let items = [];
-    if (Array.isArray(body)) {
-      items = body;
-    } else if (Array.isArray(body?.items)) {
-      items = body.items;
-    } else if (Array.isArray(body?.data)) {
-      items = body.data;
-    } else if (body && Array.isArray(body?.results)) {
-      items = body.results;
-    } else {
-      const keys = body && typeof body === 'object' ? Object.keys(body) : [];
-      throw new Error(
-        `[tcgdex-client] Unexpected JSON shape for cards: ${keys.length > 0 ? keys.join(',') : 'non-object response'}`,
-      );
+
+    const setObj = await fetchTcgdexSetById(setId);
+    if (!Array.isArray(setObj.cards)) {
+      throw new Error(`[tcgdex-client] Set ${setId} has no cards array.`);
     }
-    return items;
+
+    const stubs = setObj.cards;
+    const cardIds = stubs.map((stub, idx) => {
+      const id = stub?.id;
+      if (typeof id !== 'string' || id.trim().length === 0) {
+        throw new Error(`[tcgdex-client] Set ${setId} card stub at index ${idx} is missing id.`);
+      }
+      return id;
+    });
+
+    if (opts?.detail !== true) {
+      return stubs;
+    }
+
+    const concurrency = clampConcurrency(opts?.concurrency ?? 4);
+
+    if (setId === 'exu') {
+      const exuPrefix = 'exu-';
+      const hydrated = await mapWithConcurrency(cardIds, concurrency, async (requestedId) => {
+        if (!requestedId.startsWith(exuPrefix)) {
+          throw new Error(`[tcgdex-client] Unexpected exu card id format: ${requestedId}`);
+        }
+        const rawLocal = requestedId.substring(exuPrefix.length);
+        const local = decodePercentOnce(rawLocal);
+        const path = `sets/exu/${encodeURIComponent(local)}`;
+
+        let detail;
+        try {
+          detail = await fetchTcgdexJson(path);
+        } catch (err) {
+          const status = err?.status ?? null;
+          if (status === 400 && local === '?') {
+            return null;
+          }
+          throw err;
+        }
+
+        const detailId = String(detail?.id ?? '');
+        if (!detailId || !detailId.startsWith('exu-')) {
+          throw new Error(
+            `[tcgdex-client] Unexpected exu card detail shape for ${requestedId}: id=${detailId || '(missing)'}`,
+          );
+        }
+        return detail;
+      });
+      return hydrated.filter((card) => card !== null);
+    }
+
+    return mapWithConcurrency(cardIds, concurrency, async (requestedId) => {
+      const detail = await fetchTcgdexCardById(requestedId);
+      const detailId = String(detail?.id ?? '');
+      if (detailId !== String(requestedId)) {
+        throw new Error(
+          `[tcgdex-client] Card detail id mismatch for ${requestedId}: received ${detailId || '(missing)'}`,
+        );
+      }
+      return detail;
+    });
   }
 
   return {
@@ -151,6 +280,8 @@ export function createTcgdexClient() {
     apiKey,
     fetchTcgdexJson,
     fetchTcgdexSets,
+    fetchTcgdexSetById,
+    fetchTcgdexCardById,
     fetchTcgdexCardsBySetId,
   };
 }
