@@ -100,3 +100,8 @@ apps/web/out/
 **/node_modules/
 tmp_schema_local.sql
 
+echo .tmp/ >> .gitignore
+echo *.xlsx >> .gitignore
+echo *.webp >> .gitignore
+echo *_report.md >> .gitignore
+echo apps/web/src/app/api/ >> .gitignore
