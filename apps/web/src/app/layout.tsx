@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
@@ -21,8 +23,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <header className="border-b border-slate-200 bg-white">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-            <Link href="/" className="text-lg font-semibold">
-              Grookai Vault
+            <Link href="/" className="flex items-center gap-3 text-lg font-semibold text-slate-950">
+              <Image
+                src="/grookai-emblem-square.svg"
+                alt="Grookai Vault logo"
+                width={36}
+                height={36}
+                className="rounded-md"
+              />
+              <span>Grookai Vault</span>
             </Link>
             <nav className="flex items-center gap-4 text-sm">
               <Link href="/" className="hover:underline">
@@ -52,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
+        <Analytics />
       </body>
     </html>
   );

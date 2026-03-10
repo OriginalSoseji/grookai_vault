@@ -13,6 +13,7 @@
   "dependencies": {
     "@next/eslint-plugin-next": "^14.2.35",
     "@supabase/supabase-js": "^2.45.0",
+    "@vercel/analytics": "^1.6.1",
     "dotenv": "^16.4.5",
     "next": "^14.2.35",
     "react": "18.2.0",

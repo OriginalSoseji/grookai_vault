@@ -32,6 +32,10 @@ type GvLookupRow = {
 
 type ViewMode = "list" | "grid";
 
+function parseViewMode(value: string | null): ViewMode {
+  return value === "grid" ? "grid" : "list";
+}
+
 function normalizeFreeTextQuery(value: string) {
   return value.trim().replace(/\s+/g, " ");
 }
@@ -193,11 +197,11 @@ function ExplorePageContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const q = searchParams.get("q") ?? "";
+  const viewMode = parseViewMode(searchParams.get("view"));
   const [draftQuery, setDraftQuery] = useState(q);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   useEffect(() => {
     setDraftQuery(q);
@@ -255,6 +259,13 @@ function ExplorePageContent() {
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitViewMode = (nextViewMode: ViewMode) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("view", nextViewMode);
+    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
   return (
     <div className="space-y-6">
       <div className="space-y-2">
@@ -267,7 +278,7 @@ function ExplorePageContent() {
 
       <div className="flex gap-2">
         <input
-          className="flex-1 rounded border border-slate-300 bg-white px-3 py-2"
+          className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
           placeholder="Search by name or number"
           value={draftQuery}
           onChange={(e) => setDraftQuery(e.target.value)}
@@ -279,7 +290,7 @@ function ExplorePageContent() {
           }}
         />
         <button
-          className="rounded bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-60"
+          className="rounded-xl bg-slate-900 px-5 py-3 text-white shadow-sm hover:bg-slate-700 disabled:opacity-60"
           onClick={() => commitQuery(draftQuery)}
           disabled={loading}
         >
@@ -290,7 +301,7 @@ function ExplorePageContent() {
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="space-y-4">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
           <p className="text-sm text-slate-600">
             {rows.length > 0 ? `${rows.length} result${rows.length === 1 ? "" : "s"}` : "Results"}
           </p>
@@ -298,18 +309,22 @@ function ExplorePageContent() {
             <button
               type="button"
               className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                viewMode === "list" ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+                viewMode === "list"
+                  ? "bg-slate-900 text-white shadow-sm"
+                  : "text-slate-600 hover:bg-slate-100"
               }`}
-              onClick={() => setViewMode("list")}
+              onClick={() => commitViewMode("list")}
             >
               List
             </button>
             <button
               type="button"
               className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                viewMode === "grid" ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"
+                viewMode === "grid"
+                  ? "bg-slate-900 text-white shadow-sm"
+                  : "text-slate-600 hover:bg-slate-100"
               }`}
-              onClick={() => setViewMode("grid")}
+              onClick={() => commitViewMode("grid")}
             >
               Grid
             </button>
@@ -317,46 +332,55 @@ function ExplorePageContent() {
         </div>
 
         {viewMode === "list" ? (
-          <ul className="divide-y rounded border border-slate-200 bg-white">
+          <ul className="space-y-3">
             {rows.map((row) => (
-              <li key={row.id} className="flex items-start gap-4 px-4 py-4">
+              <li
+                key={row.id}
+                className="rounded-3xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+              >
+                <div className="flex items-start gap-4">
                 {row.image_url ? (
                   <img
                     src={row.image_url}
                     alt={row.name}
-                    className="h-24 w-16 rounded-lg border border-slate-200 object-contain"
+                    className="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
                   />
                 ) : (
-                  <div className="h-24 w-16 rounded-lg border border-slate-200 bg-slate-100" />
+                  <div className="h-28 w-20 rounded-xl border border-slate-200 bg-slate-100" />
                 )}
-                <div className="flex flex-1 flex-col gap-1 pt-1">
-                  <Link href={`/card/${row.gv_id}`} className="text-base font-medium text-slate-950 hover:underline">
-                    {row.name}
-                  </Link>
-                  {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                    <p className="text-sm text-slate-600">
-                      {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
-                    </p>
-                  )}
-                  <p className="text-xs text-slate-500">{row.gv_id}</p>
+                  <div className="flex flex-1 flex-col gap-2 pt-1">
+                    <Link href={`/card/${row.gv_id}`} className="text-lg font-medium text-slate-950 hover:underline">
+                      {row.name}
+                    </Link>
+                    {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
+                      <p className="text-sm text-slate-600">
+                        {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
+                      </p>
+                    )}
+                    <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
+                  </div>
                 </div>
               </li>
             ))}
-            {rows.length === 0 && !loading && <li className="px-4 py-3 text-sm text-slate-600">No results yet.</li>}
+            {rows.length === 0 && !loading && (
+              <li className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
+                No results yet.
+              </li>
+            )}
           </ul>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {rows.map((row) => (
               <Link
                 key={row.id}
                 href={`/card/${row.gv_id}`}
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
                 {row.image_url ? (
                   <img
                     src={row.image_url}
                     alt={row.name}
-                    className="aspect-[3/4] w-full bg-slate-50 object-contain p-5"
+                    className="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
                   />
                 ) : (
                   <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 text-sm text-slate-500">
@@ -364,13 +388,13 @@ function ExplorePageContent() {
                   </div>
                 )}
                 <div className="space-y-2 border-t border-slate-200 px-4 py-4">
-                  <p className="line-clamp-2 text-base font-medium text-slate-950">{row.name}</p>
+                  <p className="line-clamp-2 text-lg font-medium text-slate-950">{row.name}</p>
                   {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                    <p className="text-sm text-slate-600">
+                    <p className="min-h-10 text-sm text-slate-600">
                       {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
                     </p>
                   )}
-                  <p className="text-xs text-slate-500">{row.gv_id}</p>
+                  <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
                 </div>
               </Link>
             ))}

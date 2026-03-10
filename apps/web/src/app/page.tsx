@@ -3,13 +3,14 @@ import { createClient } from "@supabase/supabase-js";
 import type { CardSummary } from "@/types/cards";
 
 const FEATURED_CARD_COUNT = 3;
-const FEATURED_CANDIDATE_WINDOW = 48;
+const FEATURED_CANDIDATE_WINDOW = 120;
 
 export const dynamic = "force-dynamic";
 
 type HomeCardRow = {
   gv_id: string | null;
   name: string | null;
+  number: string | null;
   image_url: string | null;
   external_ids: { tcgdex?: string | null } | null;
 };
@@ -39,13 +40,29 @@ function getRotationOffset(totalRows: number) {
   return Date.now() % (maxOffset + 1);
 }
 
+function getNumericCardNumber(value: string | null) {
+  const match = value?.match(/\d+/);
+  return match ? Number(match[0]) : null;
+}
+
+function isLikelyPokemonCard(row: HomeCardRow & { gv_id: string }) {
+  const name = row.name ?? "";
+  const numericNumber = getNumericCardNumber(row.number);
+
+  if (!name || /\benergy\b/i.test(name) || /\btrainer'?s?\b/i.test(name)) {
+    return false;
+  }
+
+  return numericNumber !== null && numericNumber <= 60;
+}
+
 async function getPokemonCardsFromWindow(
   supabase: ReturnType<typeof createServerSupabase>,
   offset: number,
 ) {
   const { data } = await supabase
     .from("card_prints")
-    .select("gv_id,name,image_url,external_ids")
+    .select("gv_id,name,number,image_url,external_ids")
     .order("gv_id")
     .range(offset, offset + FEATURED_CANDIDATE_WINDOW - 1);
 
@@ -77,10 +94,23 @@ async function getPokemonCardsFromWindow(
       .filter((value): value is string => typeof value === "string" && value.length > 0),
   );
 
-  return candidates
+  const tcgdexBackedCandidates = candidates.filter((row) => {
+    const tcgdexId = row.external_ids?.tcgdex;
+    return Boolean(tcgdexId && pokemonIds.has(tcgdexId));
+  });
+  const heuristicCandidates = candidates.filter(
+    (row) => !tcgdexBackedCandidates.some((candidate) => candidate.gv_id === row.gv_id) && isLikelyPokemonCard(row),
+  );
+
+  return [...tcgdexBackedCandidates, ...heuristicCandidates]
+    .sort((a, b) => {
+      const numberCompare = (getNumericCardNumber(a.number) ?? 9999) - (getNumericCardNumber(b.number) ?? 9999);
+      if (numberCompare !== 0) return numberCompare;
+      return a.gv_id.localeCompare(b.gv_id);
+    })
     .filter((row) => {
-      const tcgdexId = row.external_ids?.tcgdex;
-      return Boolean(tcgdexId && pokemonIds.has(tcgdexId));
+      const name = row.name ?? "";
+      return !/\benergy\b/i.test(name) && !/\btrainer'?s?\b/i.test(name);
     })
     .slice(0, FEATURED_CARD_COUNT)
     .map((row) => ({
@@ -110,7 +140,6 @@ export default async function HomePage() {
     <div className="space-y-16 py-8">
       <section className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-center">
         <div className="space-y-6">
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-slate-500">Canonical Identity</p>
           <div className="space-y-4">
             <h1 className="text-5xl font-semibold tracking-tight text-slate-950">Grookai Vault</h1>
             <p className="max-w-2xl text-lg text-slate-600">
@@ -148,10 +177,10 @@ export default async function HomePage() {
             <Link
               key={card.gv_id}
               href={`/card/${card.gv_id}`}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 transition hover:-translate-y-0.5 hover:bg-white"
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
             >
               {card.image_url ? (
-                <img src={card.image_url} alt={card.name} className="aspect-[3/4] w-full object-contain p-3" />
+                <img src={card.image_url} alt={card.name} className="aspect-[3/4] w-full object-contain p-4" />
               ) : (
                 <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 text-sm text-slate-500">
                   No image
@@ -165,7 +194,7 @@ export default async function HomePage() {
           ))}
           {mergedCards.length === 0 && (
             <div className="col-span-full flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 text-sm text-slate-500">
-              Featured Pokemon cards will appear here.
+              Featured cards are temporarily unavailable.
             </div>
           )}
         </div>
