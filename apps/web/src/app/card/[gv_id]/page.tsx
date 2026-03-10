@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import PublicCardImageLightbox from "@/components/PublicCardImageLightbox";
 import Link from "next/link";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
-import { getPublicCardByGvId, getStaticCardParams } from "@/lib/getPublicCardByGvId";
+import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
 type MetadataItem = {
@@ -12,12 +13,9 @@ type MetadataItem = {
   value: string;
 };
 
-export const revalidate = 86400;
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  return getStaticCardParams(100);
-}
 
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
   const card = await getPublicCardByGvId(params.gv_id);
@@ -74,7 +72,6 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
   }
 
   const summaryParts = [
-    card.set_name,
     card.number ? `#${card.number}` : undefined,
     card.rarity,
   ].filter((value): value is string => Boolean(value));
@@ -89,7 +86,7 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
     <div className="space-y-8 py-4">
       <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
         <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
-          <PublicCardImage
+          <PublicCardImageLightbox
             src={card.image_url}
             alt={card.name}
             imageClassName="w-full rounded-2xl object-contain"
@@ -105,7 +102,7 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
                 <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
                 <CopyButton text={card.gv_id} />
               </div>
-              {card.set_name && <div className="text-sm text-slate-600">Pokemon • {card.set_name}</div>}
+              {card.set_name && <p className="text-sm text-slate-600">Pokemon • {card.set_name}</p>}
               {summaryParts.length > 0 && <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>}
             </div>
           </div>
