@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 
 const CODE_VERIFIER_SUFFIX = "-code-verifier";
+const AUTH_NEXT_COOKIE = "grookai-auth-next";
 
 function getSafeNextPath(nextParam?: string | null) {
   return nextParam && nextParam.startsWith("/") ? nextParam : "/vault";
@@ -62,7 +63,8 @@ function createServerSupabase() {
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const nextPath = getSafeNextPath(requestUrl.searchParams.get("next"));
+  const cookieStore = cookies();
+  const nextPath = getSafeNextPath(cookieStore.get(AUTH_NEXT_COOKIE)?.value ?? requestUrl.searchParams.get("next"));
 
   if (!code) {
     return NextResponse.redirect(new URL("/login?error=oauth_callback_failed", requestUrl.origin));
@@ -82,5 +84,12 @@ export async function GET(request: Request) {
     next: nextPath,
   }).toString();
 
-  return NextResponse.redirect(completeUrl);
+  const response = NextResponse.redirect(completeUrl);
+  response.cookies.set(AUTH_NEXT_COOKIE, "", {
+    path: "/",
+    maxAge: 0,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+  });
+  return response;
 }
