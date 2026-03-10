@@ -1,4 +1,4 @@
-
+import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { CardDetail } from "@/types/cards";
@@ -47,7 +47,7 @@ const getSetNameByCode = cache(async (setCode?: string | null) => {
   }
 
   return (data as SetRow).name ?? undefined;
-}
+});
 
 export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
