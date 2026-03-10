@@ -47,7 +47,7 @@ const getSetNameByCode = cache(async (setCode?: string | null) => {
   }
 
   return (data as SetRow).name ?? undefined;
-});
+}
 
 export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
@@ -86,7 +86,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     artist: row.artist ?? undefined,
   };
-});
+}
 
 export async function getStaticCardParams(limit = 100): Promise<Array<{ gv_id: string }>> {
   const supabase = createServerSupabase();
