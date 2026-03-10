@@ -53,3 +53,6 @@ Use only these keys in this repo:
 - `BRIDGE_IMPORT_TOKEN` — shared token for protected Edge Function routes
 
 Do not use legacy anon or service-role key env names. Edge Functions are invoked with `apikey` and `x-bridge-token` headers only — no `Authorization: Bearer`.
+
+## Recent Engineering Milestones
+- 2026-02-18 — Pricing Surfaces Unified (Raw-only V1): Grookai Value V1 is live; vault pricing surfaces now read from unified GV pricing; ghost-row source/ts honesty enforced; vault backfill verified to 15/15 priced.

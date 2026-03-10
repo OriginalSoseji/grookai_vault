@@ -1,6 +1,6 @@
-# ======================================================================
+﻿# ======================================================================
 # scripts/drift_guard.ps1
-# Grookai Vault — DriftGuard (No-Drift Chat Rule enforcement)
+# Grookai Vault â€" DriftGuard (No-Drift Chat Rule enforcement)
 #
 # Purpose:
 #   Deterministically fail fast if local migration history differs from the
@@ -44,8 +44,7 @@ function Run-SupabaseMigrationList([string]$mode) {
   Write-Host "Running: supabase $($args -join ' ')"
   $out = & supabase @args 2>&1
   if ($LASTEXITCODE -ne 0) {
-    throw "Supabase CLI returned non-zero exit code ($LASTEXITCODE) while running migration list --$mode.`n$out"
-  }
+    throw "Supabase CLI returned non-zero exit code ($LASTEXITCODE) while running migration list --$mode.`n$out"  }
   return $out
 }
 
@@ -95,7 +94,7 @@ function Diff-Ids($aSet, $bSet) {
   return $diff | Sort-Object
 }
 
-Write-Section "Grookai Vault — DriftGuard (Read-only)"
+Write-Section "Grookai Vault - DriftGuard (Read-only)"
 
 Require-Command "supabase"
 
@@ -128,7 +127,7 @@ if ((@($remoteOnly)).Count -gt 0) { $violations += "REMOTE-ONLY migrations detec
 if ((@($localOnly)).Count -gt 0)  { $violations += "LOCAL-ONLY migrations detected" }
 
 if ($violations.Count -gt 0) {
-  Write-Section "🚨 DRIFT GUARD FAILED"
+  Write-Section "DRIFT GUARD FAILED"
   Write-Host "Violations:"
   foreach ($v in $violations) { Write-Host " - $v" }
 
@@ -167,6 +166,8 @@ if ($violations.Count -gt 0) {
   exit 1
 }
 
-Write-Section "✅ DRIFT GUARD PASSED"
+Write-Section "DRIFT GUARD PASSED"
 Write-Host 'Local and linked migration histories appear consistent. No pending/error detected.'
 exit 0
+
+
