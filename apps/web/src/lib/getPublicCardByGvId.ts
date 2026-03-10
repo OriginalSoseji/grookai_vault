@@ -49,7 +49,7 @@ const getSetNameByCode = cache(async (setCode?: string | null) => {
   return (data as SetRow).name ?? undefined;
 });
 
-export const getPublicCardByGvId = cache(async (gv_id: string): Promise<CardDetail | null> => {
+export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> => {
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
