@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { CardDetail } from "@/types/cards";
 
 type PublicCardRow = {
@@ -8,6 +9,7 @@ type PublicCardRow = {
   number: string | null;
   rarity: string | null;
   image_url: string | null;
+  image_alt_url: string | null;
   artist: string | null;
   sets?: { name: string | null } | { name: string | null }[] | null;
 };
@@ -38,6 +40,7 @@ export const getPublicCardByGvId = cache(async (gv_id: string): Promise<CardDeta
         number,
         rarity,
         image_url,
+        image_alt_url,
         artist,
         sets(name)
       `,
@@ -58,7 +61,7 @@ export const getPublicCardByGvId = cache(async (gv_id: string): Promise<CardDeta
     number: row.number ?? "",
     set_name: setRecord?.name ?? undefined,
     rarity: row.rarity ?? undefined,
-    image_url: row.image_url ?? undefined,
+    image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     artist: row.artist ?? undefined,
   };
 });

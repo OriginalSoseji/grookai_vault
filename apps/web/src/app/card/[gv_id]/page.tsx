@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
+import PublicCardImage from "@/components/PublicCardImage";
 import { getPublicCardByGvId, getStaticCardParams } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
@@ -83,13 +84,12 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
     <div className="space-y-8 py-4">
       <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
         <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
-          {card.image_url ? (
-            <img src={card.image_url} alt={card.name} className="w-full rounded-2xl object-contain" />
-          ) : (
-            <div className="flex aspect-[3/4] items-center justify-center rounded-2xl bg-slate-100 text-sm text-slate-500">
-              No image
-            </div>
-          )}
+          <PublicCardImage
+            src={card.image_url}
+            alt={card.name}
+            imageClassName="w-full rounded-2xl object-contain"
+            fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-2xl bg-slate-100 px-4 text-center text-sm text-slate-500"
+          />
         </div>
 
         <div className="space-y-6 rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">

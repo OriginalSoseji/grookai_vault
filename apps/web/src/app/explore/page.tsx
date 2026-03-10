@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import PublicCardImage from "@/components/PublicCardImage";
+import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardSummary } from "@/types/cards";
 
@@ -27,6 +29,7 @@ type GvLookupRow = {
   number?: string | null;
   rarity?: string | null;
   image_url?: string | null;
+  image_alt_url?: string | null;
   sets?: { name: string | null } | { name: string | null }[] | null;
 };
 
@@ -76,7 +79,7 @@ function buildExploreRows(searchRows: SearchRpcRow[], lookupRows: GvLookupRow[])
       number: row.number ?? lookupRow.number ?? "",
       set_name: toSetName(lookupRow.sets),
       rarity: row.rarity ?? lookupRow.rarity ?? undefined,
-      image_url: row.image_url ?? lookupRow.image_url ?? undefined,
+      image_url: getBestPublicCardImageUrl(lookupRow.image_url, lookupRow.image_alt_url),
     });
   }
 
@@ -147,7 +150,7 @@ async function fetchExploreRows(query: string): Promise<ExploreRow[]> {
       limit_in: SEARCH_LIMIT,
     }),
     directGvId
-      ? supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url").eq("gv_id", directGvId).limit(1)
+      ? supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url,image_alt_url").eq("gv_id", directGvId).limit(1)
       : Promise.resolve({ data: null, error: null }),
   ]);
 
@@ -166,10 +169,10 @@ async function fetchExploreRows(query: string): Promise<ExploreRow[]> {
 
   const { data: lookupDataWithSet, error: lookupErrorWithSet } = await supabase
     .from("card_prints")
-    .select("id,gv_id,name,number,rarity,image_url,sets(name)")
+    .select("id,gv_id,name,number,rarity,image_url,image_alt_url,sets(name)")
     .in("id", lookupIds);
   const { data: lookupData, error: lookupError } = lookupErrorWithSet
-    ? await supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url").in("id", lookupIds)
+    ? await supabase.from("card_prints").select("id,gv_id,name,number,rarity,image_url,image_alt_url").in("id", lookupIds)
     : { data: lookupDataWithSet, error: null };
 
   if (lookupError) {
@@ -339,15 +342,12 @@ function ExplorePageContent() {
                 className="rounded-3xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
               >
                 <div className="flex items-start gap-4">
-                {row.image_url ? (
-                  <img
+                  <PublicCardImage
                     src={row.image_url}
                     alt={row.name}
-                    className="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
+                    imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
+                    fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
                   />
-                ) : (
-                  <div className="h-28 w-20 rounded-xl border border-slate-200 bg-slate-100" />
-                )}
                   <div className="flex flex-1 flex-col gap-2 pt-1">
                     <Link href={`/card/${row.gv_id}`} className="text-lg font-medium text-slate-950 hover:underline">
                       {row.name}
@@ -376,17 +376,12 @@ function ExplorePageContent() {
                 href={`/card/${row.gv_id}`}
                 className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
-                {row.image_url ? (
-                  <img
-                    src={row.image_url}
-                    alt={row.name}
-                    className="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
-                  />
-                ) : (
-                  <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 text-sm text-slate-500">
-                    No image
-                  </div>
-                )}
+                <PublicCardImage
+                  src={row.image_url}
+                  alt={row.name}
+                  imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
+                  fallbackClassName="flex aspect-[3/4] items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
+                />
                 <div className="space-y-2 border-t border-slate-200 px-4 py-4">
                   <p className="line-clamp-2 text-lg font-medium text-slate-950">{row.name}</p>
                   {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (

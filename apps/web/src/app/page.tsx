@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
+import FeaturedCardTile from "@/components/FeaturedCardTile";
+import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { CardSummary } from "@/types/cards";
 
 const FEATURED_CARD_COUNT = 3;
 const FEATURED_CANDIDATE_WINDOW = 120;
+const MAX_FEATURED_WINDOWS = 6;
 
 export const dynamic = "force-dynamic";
 
@@ -12,11 +15,16 @@ type HomeCardRow = {
   name: string | null;
   number: string | null;
   image_url: string | null;
+  image_alt_url: string | null;
   external_ids: { tcgdex?: string | null } | null;
 };
 
 type PokemonTypeRow = {
   tcgdex_card_id: string | null;
+};
+
+type FeaturedCard = CardSummary & {
+  image_url: string;
 };
 
 function createServerSupabase() {
@@ -40,6 +48,10 @@ function getRotationOffset(totalRows: number) {
   return Date.now() % (maxOffset + 1);
 }
 
+function getBestImageUrl(row: Pick<HomeCardRow, "image_url" | "image_alt_url">) {
+  return getBestPublicCardImageUrl(row.image_url, row.image_alt_url);
+}
+
 function getNumericCardNumber(value: string | null) {
   const match = value?.match(/\d+/);
   return match ? Number(match[0]) : null;
@@ -56,18 +68,42 @@ function isLikelyPokemonCard(row: HomeCardRow & { gv_id: string }) {
   return numericNumber !== null && numericNumber <= 60;
 }
 
+function getCandidateOffsets(totalRows: number, startOffset: number) {
+  const maxOffset = Math.max(totalRows - FEATURED_CANDIDATE_WINDOW, 0);
+  const offsets: number[] = [];
+
+  if (maxOffset === 0) {
+    return [0];
+  }
+
+  let currentOffset = Math.min(Math.max(startOffset, 0), maxOffset);
+  while (offsets.length < MAX_FEATURED_WINDOWS && !offsets.includes(currentOffset)) {
+    offsets.push(currentOffset);
+    currentOffset = currentOffset + FEATURED_CANDIDATE_WINDOW;
+    if (currentOffset > maxOffset) {
+      currentOffset = currentOffset % (maxOffset + 1);
+    }
+  }
+
+  if (!offsets.includes(0) && offsets.length < MAX_FEATURED_WINDOWS) {
+    offsets.push(0);
+  }
+
+  return offsets;
+}
+
 async function getPokemonCardsFromWindow(
   supabase: ReturnType<typeof createServerSupabase>,
   offset: number,
-) {
+) : Promise<FeaturedCard[]> {
   const { data } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,image_url,external_ids")
+    .select("gv_id,name,number,image_url,image_alt_url,external_ids")
     .order("gv_id")
     .range(offset, offset + FEATURED_CANDIDATE_WINDOW - 1);
 
   const candidates = ((data ?? []) as HomeCardRow[]).filter(
-    (row): row is HomeCardRow & { gv_id: string } => Boolean(row.gv_id),
+    (row): row is HomeCardRow & { gv_id: string } => Boolean(row.gv_id) && Boolean(getBestImageUrl(row)),
   );
   const tcgdexIds = Array.from(
     new Set(
@@ -77,22 +113,19 @@ async function getPokemonCardsFromWindow(
     ),
   );
 
-  if (tcgdexIds.length === 0) {
-    return [] as CardSummary[];
-  }
-
-  const { data: pokemonTypeData } = await supabase
-    .from("tcgdex_cards")
-    .select("tcgdex_card_id")
-    .eq("lang", "en")
-    .eq("supertype", "Pokemon")
-    .in("tcgdex_card_id", tcgdexIds);
-
-  const pokemonIds = new Set(
-    ((pokemonTypeData ?? []) as PokemonTypeRow[])
-      .map((row) => row.tcgdex_card_id)
-      .filter((value): value is string => typeof value === "string" && value.length > 0),
-  );
+  const pokemonIds =
+    tcgdexIds.length > 0
+      ? new Set(
+          (((await supabase
+            .from("tcgdex_cards")
+            .select("tcgdex_card_id")
+            .eq("lang", "en")
+            .eq("supertype", "Pokemon")
+            .in("tcgdex_card_id", tcgdexIds)).data ?? []) as PokemonTypeRow[])
+            .map((row) => row.tcgdex_card_id)
+            .filter((value): value is string => typeof value === "string" && value.length > 0),
+        )
+      : new Set<string>();
 
   const tcgdexBackedCandidates = candidates.filter((row) => {
     const tcgdexId = row.external_ids?.tcgdex;
@@ -117,24 +150,36 @@ async function getPokemonCardsFromWindow(
       gv_id: row.gv_id,
       name: row.name ?? "Unknown",
       number: "",
-      image_url: row.image_url ?? undefined,
+      image_url: getBestImageUrl(row)!,
     }));
+}
+
+async function getFeaturedCards(
+  supabase: ReturnType<typeof createServerSupabase>,
+  totalRows: number,
+  startOffset: number,
+) {
+  const cards: FeaturedCard[] = [];
+
+  for (const offset of getCandidateOffsets(totalRows, startOffset)) {
+    const windowCards = await getPokemonCardsFromWindow(supabase, offset);
+    for (const card of windowCards) {
+      if (cards.some((existing) => existing.gv_id === card.gv_id)) continue;
+      cards.push(card);
+      if (cards.length === FEATURED_CARD_COUNT) {
+        return cards;
+      }
+    }
+  }
+
+  return cards;
 }
 
 export default async function HomePage() {
   const supabase = createServerSupabase();
   const { count } = await supabase.from("card_prints").select("*", { count: "exact", head: true });
   const featuredOffset = getRotationOffset(count ?? 0);
-  const cards = await getPokemonCardsFromWindow(supabase, featuredOffset);
-  const fallbackCards =
-    cards.length < FEATURED_CARD_COUNT && featuredOffset !== 0 ? await getPokemonCardsFromWindow(supabase, 0) : [];
-  const mergedCards = [...cards];
-
-  for (const card of fallbackCards) {
-    if (mergedCards.some((existing) => existing.gv_id === card.gv_id)) continue;
-    mergedCards.push(card);
-    if (mergedCards.length === FEATURED_CARD_COUNT) break;
-  }
+  const featuredCards = await getFeaturedCards(supabase, count ?? 0, featuredOffset);
 
   return (
     <div className="space-y-16 py-8">
@@ -173,30 +218,23 @@ export default async function HomePage() {
         </div>
 
         <div className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-4 sm:grid-cols-3">
-          {mergedCards.map((card) => (
-            <Link
-              key={card.gv_id}
-              href={`/card/${card.gv_id}`}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
-            >
-              {card.image_url ? (
-                <img src={card.image_url} alt={card.name} className="aspect-[3/4] w-full object-contain p-4" />
-              ) : (
-                <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 text-sm text-slate-500">
-                  No image
-                </div>
-              )}
-              <div className="space-y-1 border-t border-slate-200 px-3 py-3">
-                <p className="line-clamp-2 text-sm font-medium text-slate-900">{card.name}</p>
-                <p className="text-xs text-slate-500">{card.gv_id}</p>
-              </div>
-            </Link>
+          {featuredCards.map((card) => (
+            <FeaturedCardTile key={card.gv_id} gv_id={card.gv_id} name={card.name} image_url={card.image_url} />
           ))}
-          {mergedCards.length === 0 && (
-            <div className="col-span-full flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 text-sm text-slate-500">
-              Featured cards are temporarily unavailable.
+          {Array.from({ length: Math.max(FEATURED_CARD_COUNT - featuredCards.length, 0) }).map((_, index) => (
+            <div
+              key={`placeholder-${index}`}
+              className="overflow-hidden rounded-2xl border border-dashed border-slate-200 bg-slate-50"
+            >
+              <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500">
+                Image unavailable
+              </div>
+              <div className="space-y-1 border-t border-slate-200 px-3 py-3">
+                <p className="line-clamp-2 text-sm font-medium text-slate-700">Featured card</p>
+                <p className="text-xs text-slate-500">Loading stable art</p>
+              </div>
             </div>
-          )}
+          ))}
         </div>
       </section>
 
