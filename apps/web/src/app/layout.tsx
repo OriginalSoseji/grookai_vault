@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ReactNode, Suspense, useEffect, useState } from "react";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
 import { supabase } from "@/lib/supabaseClient";
@@ -9,7 +10,9 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
+  const showTopSearch = pathname === "/explore" || pathname.startsWith("/search");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
@@ -23,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <header className="border-b border-slate-200 bg-white">
-          <div className="mx-auto max-w-5xl space-y-3 px-4 py-3">
+          <div className={showTopSearch ? "mx-auto max-w-5xl space-y-3 px-4 py-3" : "mx-auto max-w-5xl px-4 py-3"}>
             <div className="flex items-center justify-between gap-4">
               <Link href="/" className="flex items-center gap-3 text-lg font-semibold text-slate-950">
                 <Image
@@ -61,9 +64,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 )}
               </nav>
             </div>
-            <Suspense fallback={<PersistentSearchBarFallback />}>
-              <PersistentSearchBar />
-            </Suspense>
+            {showTopSearch ? (
+              <Suspense fallback={<PersistentSearchBarFallback />}>
+                <PersistentSearchBar />
+              </Suspense>
+            ) : null}
           </div>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
