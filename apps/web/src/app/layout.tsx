@@ -3,24 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, Suspense, useEffect, useState } from "react";
+import { ReactNode, Suspense } from "react";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
-import { supabase } from "@/lib/supabaseClient";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [signedIn, setSignedIn] = useState<boolean | null>(null);
-  const showTopSearch = pathname === "/explore" || pathname.startsWith("/search");
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSignedIn(!!session);
-    });
-    return () => listener?.subscription.unsubscribe();
-  }, []);
+  const showTopSearch =
+    pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
 
   return (
     <html lang="en">
@@ -42,26 +33,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Link href="/" className="hover:underline">
                   Home
                 </Link>
-                <Link href="/explore" className="hover:underline">
-                  Explore
+                <Link href="/vault" className="hover:underline">
+                  Vault
                 </Link>
-                {signedIn ? (
-                  <>
-                    <Link href="/vault" className="hover:underline">
-                      Vault
-                    </Link>
-                    <button
-                      className="rounded bg-slate-900 px-3 py-1 text-white hover:bg-slate-700"
-                      onClick={() => supabase.auth.signOut()}
-                    >
-                      Sign out
-                    </button>
-                  </>
-                ) : (
-                  <Link href="/login" className="rounded border px-3 py-1 hover:bg-slate-100">
-                    Login
-                  </Link>
-                )}
+                <Link href="/login" className="rounded border px-3 py-1 hover:bg-slate-100">
+                  Login
+                </Link>
               </nav>
             </div>
             {showTopSearch ? (

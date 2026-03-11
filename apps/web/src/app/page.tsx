@@ -1,30 +1,23 @@
+import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
-import FeaturedCardTile from "@/components/FeaturedCardTile";
-import HomeHeroActions from "@/components/HomeHeroActions";
+import PublicCardImage from "@/components/PublicCardImage";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
-import type { CardSummary } from "@/types/cards";
 
-const FEATURED_CARD_COUNT = 3;
-const FEATURED_CANDIDATE_WINDOW = 120;
-const MAX_FEATURED_WINDOWS = 6;
+const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
 
 export const dynamic = "force-dynamic";
 
-type HomeCardRow = {
+type FeaturedCardRow = {
   gv_id: string | null;
   name: string | null;
-  number: string | null;
   image_url: string | null;
   image_alt_url: string | null;
-  external_ids: { tcgdex?: string | null } | null;
 };
 
-type PokemonTypeRow = {
-  tcgdex_card_id: string | null;
-};
-
-type FeaturedCard = CardSummary & {
-  image_url: string;
+type FeaturedCard = {
+  gv_id: string;
+  name: string;
+  image_url?: string;
 };
 
 function createServerSupabase() {
@@ -38,219 +31,139 @@ function createServerSupabase() {
   return createClient(url, anon);
 }
 
-function getRotationOffset(totalRows: number) {
-  const maxOffset = Math.max(totalRows - FEATURED_CANDIDATE_WINDOW, 0);
-
-  if (maxOffset === 0) {
-    return 0;
-  }
-
-  return Date.now() % (maxOffset + 1);
-}
-
-function getBestImageUrl(row: Pick<HomeCardRow, "image_url" | "image_alt_url">) {
-  return getBestPublicCardImageUrl(row.image_url, row.image_alt_url);
-}
-
-function getNumericCardNumber(value: string | null) {
-  const match = value?.match(/\d+/);
-  return match ? Number(match[0]) : null;
-}
-
-function isLikelyPokemonCard(row: HomeCardRow & { gv_id: string }) {
-  const name = row.name ?? "";
-  const numericNumber = getNumericCardNumber(row.number);
-
-  if (!name || /\benergy\b/i.test(name) || /\btrainer'?s?\b/i.test(name)) {
-    return false;
-  }
-
-  return numericNumber !== null && numericNumber <= 60;
-}
-
-function getCandidateOffsets(totalRows: number, startOffset: number) {
-  const maxOffset = Math.max(totalRows - FEATURED_CANDIDATE_WINDOW, 0);
-  const offsets: number[] = [];
-
-  if (maxOffset === 0) {
-    return [0];
-  }
-
-  let currentOffset = Math.min(Math.max(startOffset, 0), maxOffset);
-  while (offsets.length < MAX_FEATURED_WINDOWS && !offsets.includes(currentOffset)) {
-    offsets.push(currentOffset);
-    currentOffset = currentOffset + FEATURED_CANDIDATE_WINDOW;
-    if (currentOffset > maxOffset) {
-      currentOffset = currentOffset % (maxOffset + 1);
-    }
-  }
-
-  if (!offsets.includes(0) && offsets.length < MAX_FEATURED_WINDOWS) {
-    offsets.push(0);
-  }
-
-  return offsets;
-}
-
-async function getPokemonCardsFromWindow(
+async function getFeaturedCardByName(
   supabase: ReturnType<typeof createServerSupabase>,
-  offset: number,
-) : Promise<FeaturedCard[]> {
+  name: (typeof FEATURED_CARD_NAMES)[number],
+): Promise<FeaturedCard> {
   const { data } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,image_url,image_alt_url,external_ids")
+    .select("gv_id,name,image_url,image_alt_url")
+    .eq("name", name)
     .order("gv_id")
-    .range(offset, offset + FEATURED_CANDIDATE_WINDOW - 1);
+    .limit(12);
 
-  const candidates = ((data ?? []) as HomeCardRow[]).filter(
-    (row): row is HomeCardRow & { gv_id: string } => Boolean(row.gv_id) && Boolean(getBestImageUrl(row)),
-  );
-  const tcgdexIds = Array.from(
-    new Set(
-      candidates
-        .map((row) => row.external_ids?.tcgdex)
-        .filter((value): value is string => typeof value === "string" && value.length > 0),
-    ),
+  const bestRow = ((data ?? []) as FeaturedCardRow[]).find(
+    (row) => typeof row.gv_id === "string" && Boolean(getBestPublicCardImageUrl(row.image_url, row.image_alt_url)),
   );
 
-  const pokemonIds =
-    tcgdexIds.length > 0
-      ? new Set(
-          (((await supabase
-            .from("tcgdex_cards")
-            .select("tcgdex_card_id")
-            .eq("lang", "en")
-            .eq("supertype", "Pokemon")
-            .in("tcgdex_card_id", tcgdexIds)).data ?? []) as PokemonTypeRow[])
-            .map((row) => row.tcgdex_card_id)
-            .filter((value): value is string => typeof value === "string" && value.length > 0),
-        )
-      : new Set<string>();
-
-  const tcgdexBackedCandidates = candidates.filter((row) => {
-    const tcgdexId = row.external_ids?.tcgdex;
-    return Boolean(tcgdexId && pokemonIds.has(tcgdexId));
-  });
-  const heuristicCandidates = candidates.filter(
-    (row) => !tcgdexBackedCandidates.some((candidate) => candidate.gv_id === row.gv_id) && isLikelyPokemonCard(row),
-  );
-
-  return [...tcgdexBackedCandidates, ...heuristicCandidates]
-    .sort((a, b) => {
-      const numberCompare = (getNumericCardNumber(a.number) ?? 9999) - (getNumericCardNumber(b.number) ?? 9999);
-      if (numberCompare !== 0) return numberCompare;
-      return a.gv_id.localeCompare(b.gv_id);
-    })
-    .filter((row) => {
-      const name = row.name ?? "";
-      return !/\benergy\b/i.test(name) && !/\btrainer'?s?\b/i.test(name);
-    })
-    .slice(0, FEATURED_CARD_COUNT)
-    .map((row) => ({
-      gv_id: row.gv_id,
-      name: row.name ?? "Unknown",
-      number: "",
-      image_url: getBestImageUrl(row)!,
-    }));
+  return {
+    gv_id: bestRow?.gv_id ?? `featured-${name.toLowerCase()}`,
+    name,
+    image_url: bestRow ? getBestPublicCardImageUrl(bestRow.image_url, bestRow.image_alt_url) ?? undefined : undefined,
+  };
 }
 
-async function getFeaturedCards(
-  supabase: ReturnType<typeof createServerSupabase>,
-  totalRows: number,
-  startOffset: number,
-) {
-  const cards: FeaturedCard[] = [];
-
-  for (const offset of getCandidateOffsets(totalRows, startOffset)) {
-    const windowCards = await getPokemonCardsFromWindow(supabase, offset);
-    for (const card of windowCards) {
-      if (cards.some((existing) => existing.gv_id === card.gv_id)) continue;
-      cards.push(card);
-      if (cards.length === FEATURED_CARD_COUNT) {
-        return cards;
-      }
-    }
-  }
-
-  return cards;
+async function getFeaturedCards() {
+  const supabase = createServerSupabase();
+  return Promise.all(FEATURED_CARD_NAMES.map((name) => getFeaturedCardByName(supabase, name)));
 }
 
 export default async function HomePage() {
-  const supabase = createServerSupabase();
-  const { count } = await supabase.from("card_prints").select("*", { count: "exact", head: true });
-  const featuredOffset = getRotationOffset(count ?? 0);
-  const featuredCards = await getFeaturedCards(supabase, count ?? 0, featuredOffset);
+  const [leftCard, centerCard, rightCard] = await getFeaturedCards();
 
   return (
-    <div className="space-y-16 py-8">
-      <section className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-center">
-        <div className="space-y-6">
-          <div className="space-y-4">
-            <h1 className="text-5xl font-semibold tracking-tight text-slate-950">Grookai Vault</h1>
-            <p className="max-w-2xl text-lg text-slate-600">
-              A collector-first card catalog anchored by stable Grookai Vault IDs.
-            </p>
-          </div>
-          <form action="/explore" method="get" className="max-w-2xl">
-            <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/50">
-              <input
-                type="search"
-                name="q"
-                placeholder="Search by card name or printed number"
-                className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
-              >
-                Search
-              </button>
+    <div className="space-y-20 py-10 md:py-14">
+      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-10 shadow-sm shadow-slate-200/70 md:px-10 md:py-14">
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-amber-100/50 via-sky-50/40 to-transparent" />
+        <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+                The canonical Pokémon card catalog.
+              </h1>
+              <p className="max-w-2xl text-lg text-slate-600">
+                Every card print is anchored to a permanent Grookai ID.
+              </p>
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
+                A growing catalog covering the entire Pokémon TCG history
+              </p>
             </div>
-          </form>
-          <HomeHeroActions />
-        </div>
 
-        <div className="grid gap-3 rounded-3xl border border-slate-200 bg-white p-4 sm:grid-cols-3">
-          {featuredCards.map((card) => (
-            <FeaturedCardTile key={card.gv_id} gv_id={card.gv_id} name={card.name} image_url={card.image_url} />
-          ))}
-          {Array.from({ length: Math.max(FEATURED_CARD_COUNT - featuredCards.length, 0) }).map((_, index) => (
-            <div
-              key={`placeholder-${index}`}
-              className="overflow-hidden rounded-2xl border border-dashed border-slate-200 bg-slate-50"
+            <form action="/explore" method="get" className="max-w-2xl">
+              <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
+                <input
+                  type="search"
+                  name="q"
+                  placeholder="Search Pokémon cards, sets, or Grookai IDs"
+                  className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
+                />
+                <button
+                  type="submit"
+                  className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="mx-auto flex w-full max-w-[420px] items-end justify-center gap-3 sm:gap-4">
+            <Link
+              href={leftCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${leftCard.gv_id}`}
+              className="block w-[30%] translate-y-4 -rotate-6 transition hover:-translate-y-0.5"
             >
-              <div className="flex aspect-[3/4] items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500">
-                Image unavailable
+              <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
+                <PublicCardImage
+                  src={leftCard.image_url}
+                  alt={leftCard.name}
+                  imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                  fallbackLabel={leftCard.name}
+                />
               </div>
-              <div className="space-y-1 border-t border-slate-200 px-3 py-3">
-                <p className="line-clamp-2 text-sm font-medium text-slate-700">Featured card</p>
-                <p className="text-xs text-slate-500">Loading stable art</p>
+            </Link>
+
+            <Link
+              href={centerCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${centerCard.gv_id}`}
+              className="block w-[38%] -translate-y-4 transition hover:-translate-y-5"
+            >
+              <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-3 shadow-xl shadow-slate-300/60">
+                <PublicCardImage
+                  src={centerCard.image_url}
+                  alt={centerCard.name}
+                  imageClassName="aspect-[3/4] w-full rounded-[1.1rem] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1.1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                  fallbackLabel={centerCard.name}
+                />
               </div>
-            </div>
-          ))}
+            </Link>
+
+            <Link
+              href={rightCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${rightCard.gv_id}`}
+              className="block w-[30%] translate-y-5 rotate-6 transition hover:translate-y-1"
+            >
+              <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
+                <PublicCardImage
+                  src={rightCard.image_url}
+                  alt={rightCard.name}
+                  imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
+                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                  fallbackLabel={rightCard.name}
+                />
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6">
+      <section className="grid gap-10 md:grid-cols-2">
+        <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-slate-950">What is Grookai Vault</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            Grookai Vault gives collectors a clean way to explore Pokemon cards through a stable card identity.
+          <p className="max-w-xl text-sm leading-7 text-slate-600">
+            Grookai Vault is a collector-first reference for Pokémon cards.
           </p>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            Each card page represents a single card print, anchored by a Grookai ID that stays consistent across the
-            entire platform.
+          <p className="max-w-xl text-sm leading-7 text-slate-600">
+            Every card print is anchored to a permanent Grookai ID so collectors, sellers, and buyers are always
+            referencing the same card.
           </p>
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-6">
+        <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-slate-950">Future vision</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            This explorer is the first public layer of Grookai Vault.
-          </p>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            Over time it will grow into a full collector platform connecting discovery, collections, and future tools
-            around the same canonical card identity.
+          <p className="max-w-xl text-sm leading-7 text-slate-600">The catalog is the foundation of Grookai Vault.</p>
+          <p className="max-w-xl text-sm leading-7 text-slate-600">
+            Collection tools, provenance tracking, and trading utilities will build on the same canonical identity
+            system.
           </p>
         </div>
       </section>

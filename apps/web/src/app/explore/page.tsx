@@ -814,14 +814,9 @@ function ExplorePageContent() {
   const exactIllustrator = (searchParams.get("illustrator") ?? "").trim() || "";
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
-  const [draftQuery, setDraftQuery] = useState(q);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setDraftQuery(q);
-  }, [q]);
 
   useEffect(() => {
     let cancelled = false;
@@ -867,20 +862,6 @@ function ExplorePageContent() {
     };
   }, [q, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
 
-  const commitQuery = (nextQuery: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    const normalizedQuery = normalizeFreeTextQuery(nextQuery);
-
-    if (normalizedQuery) {
-      params.set("q", normalizedQuery);
-    } else {
-      params.delete("q");
-    }
-
-    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
-    router.replace(nextUrl, { scroll: false });
-  };
-
   const commitViewMode = (nextViewMode: ViewMode) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("view", nextViewMode);
@@ -907,28 +888,6 @@ function ExplorePageContent() {
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
         <h1 className="text-3xl font-semibold text-slate-950">Explore cards</h1>
         <p className="max-w-2xl text-sm text-slate-600">Search by name, set, number, or Grookai ID.</p>
-      </div>
-
-      <div className="flex gap-2">
-        <input
-          className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-          placeholder="Search by name, set, number, or Grookai ID"
-          value={draftQuery}
-          onChange={(event) => setDraftQuery(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              commitQuery(draftQuery);
-            }
-          }}
-        />
-        <button
-          className="rounded-xl bg-slate-900 px-5 py-3 text-white shadow-sm hover:bg-slate-700 disabled:opacity-60"
-          onClick={() => commitQuery(draftQuery)}
-          disabled={loading}
-        >
-          {loading ? "Searching..." : "Search"}
-        </button>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
