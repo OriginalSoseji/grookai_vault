@@ -8,6 +8,7 @@ type PublicCardImageProps = {
   imageClassName: string;
   fallbackClassName: string;
   fallbackLabel?: string;
+  loading?: "eager" | "lazy";
 };
 
 export default function PublicCardImage({
@@ -16,6 +17,7 @@ export default function PublicCardImage({
   imageClassName,
   fallbackClassName,
   fallbackLabel = "Image unavailable",
+  loading,
 }: PublicCardImageProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
@@ -27,5 +29,13 @@ export default function PublicCardImage({
     return <div className={fallbackClassName}>{fallbackLabel}</div>;
   }
 
-  return <img src={src} alt={alt} className={imageClassName} onError={() => setImageFailed(true)} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading={loading}
+      className={imageClassName}
+      onError={() => setImageFailed(true)}
+    />
+  );
 }

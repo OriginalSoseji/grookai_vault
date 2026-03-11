@@ -49,7 +49,6 @@ type PublicSetCardRow = {
   gv_id: string | null;
   name: string | null;
   number: string | null;
-  number_plain: string | null;
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
@@ -136,46 +135,6 @@ function scoreSetCandidate(
   score += Math.min(cardCount, 500);
 
   return score;
-}
-
-function splitPrintedNumber(value: string, numberPlain?: string | null) {
-  const normalized = value.trim().toUpperCase();
-  const digits = numberPlain?.trim() || normalized.replace(/\D/g, "");
-  const prefixMatch = normalized.match(/^\D+/);
-  const suffixMatch = normalized.match(/\d([A-Z]+)$/);
-
-  return {
-    hasDigits: digits.length > 0,
-    digits: digits.length > 0 ? Number(digits) : Number.POSITIVE_INFINITY,
-    prefix: prefixMatch?.[0] ?? "",
-    suffix: suffixMatch?.[1] ?? "",
-    raw: normalized,
-  };
-}
-
-function comparePrintedNumbers(left: PublicSetCardRow, right: PublicSetCardRow) {
-  const leftParts = splitPrintedNumber(left.number ?? "", left.number_plain);
-  const rightParts = splitPrintedNumber(right.number ?? "", right.number_plain);
-
-  if (leftParts.hasDigits !== rightParts.hasDigits) {
-    return leftParts.hasDigits ? -1 : 1;
-  }
-
-  if (leftParts.prefix !== rightParts.prefix) {
-    return leftParts.prefix.localeCompare(rightParts.prefix);
-  }
-
-  if (leftParts.digits !== rightParts.digits) {
-    return leftParts.digits - rightParts.digits;
-  }
-
-  if (leftParts.suffix !== rightParts.suffix) {
-    if (!leftParts.suffix) return -1;
-    if (!rightParts.suffix) return 1;
-    return leftParts.suffix.localeCompare(rightParts.suffix);
-  }
-
-  return leftParts.raw.localeCompare(rightParts.raw);
 }
 
 function chooseCanonicalSetRow(
@@ -299,30 +258,28 @@ export async function getPublicSetByCode(setCode: string): Promise<PublicSetSumm
   return sets.find((setInfo) => setInfo.code === normalizedCode) ?? null;
 }
 
-export async function getPublicSetDetail(setCode: string): Promise<PublicSetDetail | null> {
-  const setInfo = await getPublicSetByCode(setCode);
-  if (!setInfo) {
-    return null;
+export async function getPublicSetCards(setCode: string, offset = 0, limit = 36): Promise<PublicSetCard[]> {
+  const normalizedCode = setCode.trim().toLowerCase();
+  if (!normalizedCode || limit <= 0) {
+    return [];
   }
 
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,number_plain,rarity,image_url,image_alt_url")
-    .eq("set_code", setInfo.code)
-    .not("gv_id", "is", null);
+    .select("gv_id,name,number,rarity,image_url,image_alt_url")
+    .eq("set_code", normalizedCode)
+    .not("gv_id", "is", null)
+    .order("number_plain", { ascending: true, nullsFirst: false })
+    .order("number", { ascending: true })
+    .range(offset, offset + limit - 1);
 
   if (error) {
     throw new Error(error.message);
   }
 
-  const cards = ((data ?? []) as PublicSetCardRow[])
+  return ((data ?? []) as PublicSetCardRow[])
     .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id))
-    .sort((left, right) => {
-      const numberCompare = comparePrintedNumbers(left, right);
-      if (numberCompare !== 0) return numberCompare;
-      return left.gv_id.localeCompare(right.gv_id);
-    })
     .map((row) => ({
       gv_id: row.gv_id,
       name: row.name ?? "Unknown",
@@ -330,10 +287,17 @@ export async function getPublicSetDetail(setCode: string): Promise<PublicSetDeta
       rarity: row.rarity ?? undefined,
       image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     }));
+}
+
+export async function getPublicSetDetail(setCode: string): Promise<PublicSetDetail | null> {
+  const setInfo = await getPublicSetByCode(setCode);
+  if (!setInfo) {
+    return null;
+  }
 
   return {
     ...setInfo,
-    cards,
+    cards: await getPublicSetCards(setInfo.code, 0, setInfo.card_count),
   };
 }
 
