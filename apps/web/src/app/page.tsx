@@ -79,7 +79,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <form action="/explore" method="get" className="max-w-2xl">
+            <form action="/search" method="get" className="max-w-2xl">
               <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
                 <input
                   type="search"

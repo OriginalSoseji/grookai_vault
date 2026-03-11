@@ -38,7 +38,7 @@ export default function PersistentSearchBar() {
       nextParams.set("sort", currentSort);
     }
 
-    router.push(nextParams.toString() ? `/explore?${nextParams.toString()}` : "/explore");
+    router.push(nextParams.toString() ? `/search?${nextParams.toString()}` : "/search");
   };
 
   return (
@@ -63,7 +63,7 @@ export default function PersistentSearchBar() {
 
 export function PersistentSearchBarFallback() {
   return (
-    <form action="/explore" className="flex items-center gap-2">
+    <form action="/search" className="flex items-center gap-2">
       <input
         type="search"
         name="q"
