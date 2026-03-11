@@ -3,28 +3,42 @@ import GoogleSignInButton from "@/components/GoogleSignInButton";
 export default function VaultPage() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center py-10">
-      <section className="w-full max-w-2xl space-y-8 text-center">
-        <div className="space-y-4">
+      <section className="w-full max-w-2xl space-y-10 text-center">
+        <div className="space-y-5">
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Vault is coming.</h1>
           <p className="text-base leading-7 text-slate-600">
-            Track your collection, organize cards by permanent Grookai IDs, and prepare for public showcases and
+            Track your collection, organize cards with permanent Grookai IDs, and prepare for public showcases and
             trading.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-950">What Vault will unlock</h2>
-          <ul className="space-y-3 text-sm leading-6 text-slate-600">
-            <li>Track your personal card collection</li>
-            <li>Organize cards using permanent Grookai IDs</li>
-            <li>Share collections publicly</li>
-            <li>Prepare for future vendor and trading tools</li>
+        <div className="space-y-5">
+          <h2 className="text-lg font-semibold tracking-tight text-slate-950">What Vault will enable</h2>
+          <ul className="mx-auto max-w-md space-y-3 text-left text-sm leading-6 text-slate-700">
+            <li className="flex items-start gap-3">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-900" aria-hidden="true" />
+              <span>Track your personal card collection</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-900" aria-hidden="true" />
+              <span>Organize cards using permanent Grookai IDs</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-900" aria-hidden="true" />
+              <span>Share collections publicly</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-900" aria-hidden="true" />
+              <span>Prepare for vendor and trading tools</span>
+            </li>
           </ul>
         </div>
 
-        <div className="space-y-3">
-          <p className="text-sm font-medium text-slate-700">The catalog you see today is the foundation.</p>
-          <p className="text-sm text-slate-600">Vault tools are coming soon.</p>
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-slate-900">The catalog you see today is the foundation.</p>
+            <p className="text-sm text-slate-600">Vault tools are coming soon.</p>
+          </div>
           <div className="flex justify-center">
             <GoogleSignInButton
               label="Sign in with Google"
