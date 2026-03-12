@@ -20,6 +20,19 @@ const CONDITION_MAP: Record<string, ImportCondition> = {
   damaged: "DMG",
 };
 
+const SET_ALIAS_MAP: Record<string, string> = {
+  "base set (unlimited)": "base set",
+  "base set (1st edition & shadowless)": "base set",
+  "black and white": "black & white",
+};
+
+const REMOVABLE_NAME_DECORATIONS = new Set([
+  "red cheeks",
+  "yellow cheeks",
+  "secret",
+  "full art",
+]);
+
 function normalizeText(value: string) {
   return value.trim().replace(/\s+/g, " ");
 }
@@ -30,6 +43,40 @@ function normalizeMatchText(value: string) {
 
 function normalizeCardNumber(value: string) {
   return normalizeText(value).replace(/^#/, "");
+}
+
+function stripLeadingZeros(value: string) {
+  const stripped = value.replace(/^0+(\d+)$/, "$1");
+  return stripped.length > 0 ? stripped : "0";
+}
+
+export function normalizeImportSetForCompare(value: string) {
+  const normalized = normalizeMatchText(value);
+  return SET_ALIAS_MAP[normalized] ?? normalized;
+}
+
+export function normalizeImportNameForCompare(value: string) {
+  let normalized = normalizeMatchText(value);
+
+  normalized = normalized.replace(/\s*\(([^)]*)\)/g, (match, decoration: string) => {
+    return REMOVABLE_NAME_DECORATIONS.has(normalizeMatchText(decoration)) ? "" : match;
+  });
+
+  return normalizeText(normalized).toLowerCase();
+}
+
+export function normalizeImportNumberForCompare(value: string) {
+  const normalized = normalizeCardNumber(value);
+  if (!normalized) {
+    return "";
+  }
+
+  const leftSide = normalized.split("/")[0]?.trim() ?? normalized;
+  if (/^\d+$/.test(leftSide)) {
+    return stripLeadingZeros(leftSide);
+  }
+
+  return leftSide;
 }
 
 function parseQuantity(value: string) {
@@ -84,15 +131,21 @@ export function normalizeRow(row: ParsedRow): NormalizedRow {
   const displayName = normalizeText(row.rawName ?? "");
   const displaySet = normalizeText(row.rawSet ?? "");
   const displayNumber = normalizeCardNumber(row.rawNumber ?? "");
+  const normalizedName = normalizeMatchText(row.rawName ?? "");
+  const normalizedSet = normalizeMatchText(row.rawSet ?? "");
+  const normalizedNumber = normalizeCardNumber(row.rawNumber ?? "");
 
   return {
     sourceRow: row.sourceRow,
     displayName: displayName || "Unknown card",
     displaySet: displaySet || "Unknown set",
     displayNumber: displayNumber || "—",
-    name: normalizeMatchText(row.rawName ?? ""),
-    set: normalizeMatchText(row.rawSet ?? ""),
-    number: normalizeCardNumber(row.rawNumber ?? ""),
+    name: normalizedName,
+    set: normalizedSet,
+    number: normalizedNumber,
+    compareName: normalizeImportNameForCompare(row.rawName ?? ""),
+    compareSet: normalizeImportSetForCompare(row.rawSet ?? ""),
+    compareNumber: normalizeImportNumberForCompare(row.rawNumber ?? ""),
     quantity: parseQuantity(row.rawQuantity ?? ""),
     condition: normalizeCondition(row.rawCondition ?? ""),
     cost: parseCurrency(row.rawCost ?? "") ?? undefined,

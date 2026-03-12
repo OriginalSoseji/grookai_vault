@@ -1,6 +1,11 @@
 "use server";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
+import {
+  normalizeImportNameForCompare,
+  normalizeImportNumberForCompare,
+  normalizeImportSetForCompare,
+} from "@/lib/import/normalizeRow";
 import type { CardMatch, MatchCardPrintsResult, MatchResult, NormalizedRow } from "@/types/import";
 
 type SetRow = {
@@ -30,8 +35,8 @@ function normalizeKeyPart(value: string | null | undefined) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-function buildMatchKey(name: string, setName: string, number: string) {
-  return `${normalizeKeyPart(name)}||${normalizeKeyPart(setName)}||${(number ?? "").trim()}`;
+function buildMatchKey(setName: string, number: string, name: string) {
+  return `${normalizeKeyPart(setName)}||${(number ?? "").trim()}||${normalizeKeyPart(name)}`;
 }
 
 function chunkArray<T>(items: T[], size: number) {
@@ -71,7 +76,7 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
 
   const setNameMap = new Map<string, SetRow[]>();
   for (const setRow of (setRows ?? []) as SetRow[]) {
-    const normalizedName = normalizeKeyPart(setRow.name);
+    const normalizedName = normalizeImportSetForCompare(setRow.name ?? "");
     if (!normalizedName) {
       continue;
     }
@@ -83,12 +88,12 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
   const candidateSetIds = Array.from(
     new Set(
       rows.flatMap((row) => {
-        const matchedSets = setNameMap.get(row.set) ?? [];
+        const matchedSets = setNameMap.get(row.compareSet) ?? [];
         return matchedSets.map((setRow) => setRow.id);
       }),
     ),
   );
-  const candidateNumbers = Array.from(new Set(rows.map((row) => row.number.trim()).filter(Boolean)));
+  const candidateNumbers = Array.from(new Set(rows.map((row) => row.compareNumber.trim()).filter(Boolean)));
 
   const candidateRows: CardPrintRow[] = [];
 
@@ -116,21 +121,25 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
   const matchMap = new Map<string, CardPrintRow[]>();
   for (const candidate of candidateRows) {
     const setRecord = Array.isArray(candidate.sets) ? candidate.sets[0] : candidate.sets;
-    const key = buildMatchKey(candidate.name ?? "", setRecord?.name ?? "", candidate.number ?? "");
+    const key = buildMatchKey(
+      normalizeImportSetForCompare(setRecord?.name ?? ""),
+      normalizeImportNumberForCompare(candidate.number ?? ""),
+      normalizeImportNameForCompare(candidate.name ?? ""),
+    );
     const current = matchMap.get(key) ?? [];
     current.push(candidate);
     matchMap.set(key, current);
   }
 
   const previewRows = rows.map<MatchResult>((row) => {
-    if (!row.name || !row.set || !row.number) {
+    if (!row.compareName || !row.compareSet || !row.compareNumber) {
       return {
         row,
         status: "missing",
       };
     }
 
-    const candidates = matchMap.get(buildMatchKey(row.name, row.set, row.number)) ?? [];
+    const candidates = matchMap.get(buildMatchKey(row.compareSet, row.compareNumber, row.compareName)) ?? [];
 
     if (candidates.length === 1) {
       const match = candidates[0];

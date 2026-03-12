@@ -9,17 +9,31 @@ import { matchCardPrints } from "@/lib/import/matchCardPrints";
 import { importVaultItems } from "@/lib/import/importVaultItems";
 import type { ImportVaultItemsResult, MatchCardPrintsResult, MatchResult } from "@/types/import";
 
+type PreviewFilterKey = "all" | "matched" | "needs-review";
+
 function SummaryPill({
   label,
   value,
+  active,
+  onClick,
 }: {
   label: string;
   value: number;
+  active: boolean;
+  onClick: () => void;
 }) {
   return (
-    <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600">
+    <button
+      type="button"
+      onClick={onClick}
+      className={`rounded-full border px-4 py-2 text-sm transition ${
+        active
+          ? "border-slate-300 bg-white text-slate-950 shadow-sm"
+          : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
+      }`}
+    >
       <span className="font-medium text-slate-950">{value}</span> {label}
-    </div>
+    </button>
   );
 }
 
@@ -41,6 +55,7 @@ export function ImportClient() {
   const [preview, setPreview] = useState<MatchCardPrintsResult | null>(null);
   const [parseError, setParseError] = useState<string | null>(null);
   const [importResult, setImportResult] = useState<ImportVaultItemsResult | null>(null);
+  const [activeFilter, setActiveFilter] = useState<PreviewFilterKey>("all");
   const [isMatching, startMatchTransition] = useTransition();
   const [isImporting, startImportTransition] = useTransition();
 
@@ -48,12 +63,32 @@ export function ImportClient() {
     () => preview?.rows.filter((row) => row.status === "matched") ?? [],
     [preview],
   );
+  const needsReviewRows = useMemo(
+    () => preview?.rows.filter((row) => row.status === "missing" || row.status === "multiple") ?? [],
+    [preview],
+  );
+  const filteredRows = useMemo(() => {
+    if (!preview) {
+      return [];
+    }
+
+    if (activeFilter === "matched") {
+      return matchedRows;
+    }
+
+    if (activeFilter === "needs-review") {
+      return needsReviewRows;
+    }
+
+    return preview.rows;
+  }, [activeFilter, matchedRows, needsReviewRows, preview]);
 
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     setPreview(null);
     setImportResult(null);
     setParseError(null);
+    setActiveFilter("all");
 
     if (!file) {
       setFileName(null);
@@ -149,9 +184,24 @@ export function ImportClient() {
               <p className="text-sm text-slate-600">Review the matched rows before anything is written to your vault.</p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <SummaryPill label="rows" value={preview.summary.totalRows} />
-              <SummaryPill label="matched" value={preview.summary.matchedRows} />
-              <SummaryPill label="need review" value={preview.summary.multipleRows + preview.summary.unmatchedRows} />
+              <SummaryPill
+                label="All"
+                value={preview.summary.totalRows}
+                active={activeFilter === "all"}
+                onClick={() => setActiveFilter("all")}
+              />
+              <SummaryPill
+                label="Matched"
+                value={preview.summary.matchedRows}
+                active={activeFilter === "matched"}
+                onClick={() => setActiveFilter("matched")}
+              />
+              <SummaryPill
+                label="Need Review"
+                value={preview.summary.multipleRows + preview.summary.unmatchedRows}
+                active={activeFilter === "needs-review"}
+                onClick={() => setActiveFilter("needs-review")}
+              />
             </div>
           </div>
 
@@ -167,7 +217,7 @@ export function ImportClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 bg-white text-sm text-slate-700">
-                {preview.rows.map((row) => (
+                {filteredRows.map((row) => (
                   <tr key={`${row.row.sourceRow}-${row.row.displayName}-${row.row.displayNumber}`}>
                     <td className="px-4 py-3">
                       <div className="space-y-1">

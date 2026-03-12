@@ -11,6 +11,18 @@ type ColumnMap = {
   notes?: string;
 };
 
+const EXCLUDED_NAME_HEADERS = new Set([
+  "portfolio name",
+  "collection name",
+  "folder name",
+  "list name",
+]);
+
+const SAFE_PRODUCT_NAME_HEADERS = [
+  "product name",
+  "card name",
+];
+
 function parseCsvTable(csvText: string): string[][] {
   const rows: string[][] = [];
   let currentRow: string[] = [];
@@ -73,8 +85,36 @@ function findHeader(headers: string[], matchers: string[]) {
   });
 }
 
+function findProductNameHeader(headers: string[]) {
+  const normalizedHeaders = headers.map((header) => ({
+    original: header,
+    normalized: normalizeHeader(header),
+  }));
+
+  const exactMatch = normalizedHeaders.find((header) => header.normalized === "product name");
+  if (exactMatch) {
+    return exactMatch.original;
+  }
+
+  const safeMatches = normalizedHeaders.filter(
+    (header) =>
+      SAFE_PRODUCT_NAME_HEADERS.includes(header.normalized) &&
+      !EXCLUDED_NAME_HEADERS.has(header.normalized),
+  );
+
+  if (safeMatches.length === 1) {
+    return safeMatches[0].original;
+  }
+
+  if (safeMatches.length > 1) {
+    throw new Error("This CSV contains multiple possible product-name columns. Keep the original Collectr Product Name column and remove ambiguity.");
+  }
+
+  throw new Error("This CSV is missing the required Product Name column.");
+}
+
 function buildColumnMap(headers: string[]): ColumnMap {
-  const productName = findHeader(headers, ["product name", "card name", "name"]);
+  const productName = findProductNameHeader(headers);
   const set = findHeader(headers, ["set", "series"]);
   const number = findHeader(headers, ["card number", "number"]);
 

@@ -18,6 +18,9 @@ export type NormalizedRow = {
   name: string;
   set: string;
   number: string;
+  compareName: string;
+  compareSet: string;
+  compareNumber: string;
   quantity: number;
   condition: string;
   cost?: number;
