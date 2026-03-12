@@ -172,10 +172,13 @@ export default async function VaultPage() {
     supabase
       .from("v_vault_items_web")
       .select("id,gv_id,name,set_code,number,condition_label,quantity,effective_price,image_url,created_at")
+      .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
     supabase
       .from("v_recently_added")
       .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
       .limit(10),
   ]);
 

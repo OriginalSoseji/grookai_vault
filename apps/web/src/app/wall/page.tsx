@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -74,9 +75,18 @@ function normalizeFeed(rows: WallFeedRow[] | null | undefined): WallCard[] {
 
 export default async function WallPage() {
   const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login?next=%2Fwall");
+  }
+
   const { data, error } = await supabase
     .from("v_recently_added")
     .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
+    .eq("user_id", user.id)
     .limit(50)
     .order("created_at", { ascending: false });
 
@@ -87,11 +97,11 @@ export default async function WallPage() {
       <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Public Wall</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Global vault activity on the GV-ID lane.</h1>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Your Wall</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your recent vault activity on the GV-ID lane.</h1>
             <p className="max-w-3xl text-base leading-7 text-slate-600">
-              This feed reads from <code>v_recently_added</code> and links every activity card to its canonical card
-              page by Grookai ID.
+              This private feed reads your rows from <code>v_recently_added</code> and links every activity card to
+              its canonical card page by Grookai ID.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
@@ -108,7 +118,7 @@ export default async function WallPage() {
         </section>
       ) : feed.length === 0 ? (
         <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">
-          No vault activity is available yet.
+          No recent vault activity is available yet.
         </section>
       ) : (
         <section className="space-y-4">
