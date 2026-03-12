@@ -1,11 +1,9 @@
 import "server-only";
 
-import { cookies } from "next/headers";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { createServerClient } from "@supabase/ssr";
+import type { NextRequest, NextResponse } from "next/server";
 
-const CODE_VERIFIER_SUFFIX = "-code-verifier";
-
-export function createClient() {
+export function createClient(request: NextRequest, response: NextResponse) {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -15,27 +13,15 @@ export function createClient() {
     );
   }
 
-  const cookieStore = cookies();
-
-  return createSupabaseClient(url, key, {
-    auth: {
-      flowType: "pkce",
-      detectSessionInUrl: false,
-      persistSession: false,
-      storage: {
-        getItem(keyName: string) {
-          if (!keyName.endsWith(CODE_VERIFIER_SUFFIX)) {
-            return null;
-          }
-
-          return cookieStore.get(keyName)?.value ?? null;
-        },
-        setItem() {
-          // The browser client already persists the PKCE verifier before redirect.
-        },
-        removeItem() {
-          // Cleanup is handled by response cookies in the callback route.
-        },
+  return createServerClient(url, key, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookiesToSet) {
+        for (const { name, value, options } of cookiesToSet) {
+          response.cookies.set(name, value, options);
+        }
       },
     },
   });
