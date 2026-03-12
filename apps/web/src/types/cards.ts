@@ -1,4 +1,5 @@
 export interface CardSummary {
+  id: string;
   gv_id: string;
   name: string;
   number: string;

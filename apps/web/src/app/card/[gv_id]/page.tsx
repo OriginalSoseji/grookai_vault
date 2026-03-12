@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
+import VaultSubmitButton from "@/components/VaultSubmitButton";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicCardImageLightbox from "@/components/PublicCardImageLightbox";
@@ -7,6 +8,8 @@ import Link from "next/link";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { createServerComponentClient } from "@/lib/supabase/server";
+import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
 
 type MetadataItem = {
   label: string;
@@ -21,6 +24,60 @@ function formatPrintedTotal(number: string, printedTotal?: number) {
 
   const prefix = number.match(/^[A-Za-z]+/)?.[0] ?? "";
   return `${prefix}${printedTotal}`;
+}
+
+type VaultStatus = "added" | "incremented" | "exists" | "signin" | "not-found" | "error";
+
+function buildCardHref(gvId: string, vaultStatus?: VaultStatus) {
+  if (!vaultStatus) {
+    return `/card/${encodeURIComponent(gvId)}`;
+  }
+
+  const params = new URLSearchParams({ vault: vaultStatus });
+  return `/card/${encodeURIComponent(gvId)}?${params.toString()}`;
+}
+
+function getVaultMessage(status?: string) {
+  switch (status) {
+    case "added":
+      return {
+        tone: "success" as const,
+        title: "Added to Vault",
+        body: "This card is now in your vault.",
+      };
+    case "incremented":
+      return {
+        tone: "success" as const,
+        title: "Vault quantity updated",
+        body: "This card was already in your vault, so quantity was increased by 1.",
+      };
+    case "exists":
+      return {
+        tone: "success" as const,
+        title: "Already in Vault",
+        body: "This card is already on your vault lane.",
+      };
+    case "signin":
+      return {
+        tone: "error" as const,
+        title: "Sign in required",
+        body: "Sign in to add this card to your vault.",
+      };
+    case "not-found":
+      return {
+        tone: "error" as const,
+        title: "Card unavailable",
+        body: "The canonical card row could not be resolved for vault add.",
+      };
+    case "error":
+      return {
+        tone: "error" as const,
+        title: "Vault add failed",
+        body: "An unexpected error occurred while adding this card to your vault.",
+      };
+    default:
+      return null;
+  }
 }
 
 export const revalidate = 0;
@@ -71,8 +128,16 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   };
 }
 
-export default async function CardPage({ params }: { params: { gv_id: string } }) {
-  const [card, adjacentCards] = await Promise.all([
+export default async function CardPage({
+  params,
+  searchParams,
+}: {
+  params: { gv_id: string };
+  searchParams?: { vault?: string };
+}) {
+  const supabase = createServerComponentClient();
+  const [{ data: authData }, card, adjacentCards] = await Promise.all([
+    supabase.auth.getUser(),
     getPublicCardByGvId(params.gv_id),
     getAdjacentPublicCardsByGvId(params.gv_id),
   ]);
@@ -80,25 +145,71 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
   if (!card) {
     notFound();
   }
+  const resolvedCard = card;
 
-  const setName = typeof card.set_name === "string" ? card.set_name.trim() : "";
-  const browseSetHref = setName && card.set_code ? `/explore?set=${encodeURIComponent(card.set_code)}` : null;
+  async function addToVaultAction() {
+    "use server";
+
+    const actionClient = createServerComponentClient();
+    const {
+      data: { user },
+    } = await actionClient.auth.getUser();
+
+    if (!user) {
+      redirect(`/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`);
+    }
+
+    if (!resolvedCard.id || !resolvedCard.gv_id) {
+      redirect(buildCardHref(params.gv_id, "not-found"));
+    }
+
+    let result: AddCardToVaultResult;
+    try {
+      result = await addCardToVault({
+        client: actionClient,
+        userId: user.id,
+        cardId: resolvedCard.id,
+        gvId: resolvedCard.gv_id,
+        name: resolvedCard.name,
+        setName: resolvedCard.set_name,
+        imageUrl: resolvedCard.image_url,
+      });
+    } catch (error) {
+      console.error("[vault:add] addToVaultAction failed", error);
+      redirect(buildCardHref(resolvedCard.gv_id, "error"));
+    }
+
+    redirect(buildCardHref(resolvedCard.gv_id, result));
+  }
+
+  const user = authData.user;
+  const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`;
+  const vaultMessage = getVaultMessage(searchParams?.vault);
+  const vaultMessageToneClasses =
+    vaultMessage?.tone === "success"
+      ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+      : "border-rose-200 bg-rose-50 text-rose-800";
+
+  const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
+  const browseSetHref = setName && resolvedCard.set_code ? `/explore?set=${encodeURIComponent(resolvedCard.set_code)}` : null;
   const browseYearHref =
-    typeof card.release_year === "number" ? `/explore?year=${encodeURIComponent(String(card.release_year))}` : null;
-  const illustratorName = typeof card.artist === "string" ? card.artist.trim() : "";
+    typeof resolvedCard.release_year === "number"
+      ? `/explore?year=${encodeURIComponent(String(resolvedCard.release_year))}`
+      : null;
+  const illustratorName = typeof resolvedCard.artist === "string" ? resolvedCard.artist.trim() : "";
   const browseIllustratorHref =
     illustratorName.length > 0 ? `/explore?illustrator=${encodeURIComponent(illustratorName)}` : null;
-  const printedTotal = formatPrintedTotal(card.number, card.printed_total);
+  const printedTotal = formatPrintedTotal(resolvedCard.number, resolvedCard.printed_total);
   const summaryParts = [
-    card.number ? `#${card.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
-    card.rarity,
+    resolvedCard.number ? `#${resolvedCard.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
+    resolvedCard.rarity,
   ].filter((value): value is string => Boolean(value));
   const metadata: MetadataItem[] = [
     setName.length > 0 ? { label: "Set", value: setName, href: browseSetHref ?? undefined } : null,
-    card.number ? { label: "Card number", value: card.number } : null,
-    card.rarity ? { label: "Rarity", value: card.rarity } : null,
-    typeof card.release_year === "number"
-      ? { label: "Release year", value: String(card.release_year), href: browseYearHref ?? undefined }
+    resolvedCard.number ? { label: "Card number", value: resolvedCard.number } : null,
+    resolvedCard.rarity ? { label: "Rarity", value: resolvedCard.rarity } : null,
+    typeof resolvedCard.release_year === "number"
+      ? { label: "Release year", value: String(resolvedCard.release_year), href: browseYearHref ?? undefined }
       : null,
     illustratorName.length > 0
       ? { label: "Illustrator", value: illustratorName, href: browseIllustratorHref ?? undefined }
@@ -140,6 +251,44 @@ export default async function CardPage({ params }: { params: { gv_id: string } }
               <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>
             ) : null}
           </div>
+
+          <section className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Vault</h2>
+                <p className="text-sm text-slate-700">Add this canonical card to your vault using its GV-ID ownership lane.</p>
+              </div>
+              {user ? (
+                <form action={addToVaultAction}>
+                  <VaultSubmitButton label="Add to Vault" />
+                </form>
+              ) : (
+                <Link
+                  href={loginHref}
+                  className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                >
+                  Sign in to add
+                </Link>
+              )}
+            </div>
+
+            {vaultMessage ? (
+              <div className={`rounded-2xl border px-4 py-3 ${vaultMessageToneClasses}`}>
+                <p className="text-sm font-semibold">{vaultMessage.title}</p>
+                <p className="mt-1 text-sm">{vaultMessage.body}</p>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <Link href="/vault" className="text-sm font-medium underline underline-offset-4">
+                    View Vault
+                  </Link>
+                  {!user ? (
+                    <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">
+                      Sign in
+                    </Link>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
+          </section>
 
           {metadata.length > 0 && (
             <section className="space-y-4">

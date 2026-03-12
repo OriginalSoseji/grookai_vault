@@ -4,6 +4,7 @@ import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { CardDetail } from "@/types/cards";
 
 type PublicCardRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
@@ -84,6 +85,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     .from("card_prints")
     .select(
       `
+        id,
         gv_id,
         name,
         number,
@@ -111,6 +113,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
 
   return {
+    id: row.id ?? "",
     gv_id: row.gv_id ?? gv_id,
     name: row.name ?? "Unknown",
     number: row.number ?? "",
