@@ -453,10 +453,20 @@ export function VaultCollectionView({
   return (
     <div className="space-y-10 py-7">
       <section className="space-y-8 rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/60 md:px-8">
-        <div className="max-w-2xl space-y-2.5">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Web Vault</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-[2.8rem]">Your vault. At a glance.</h1>
-          <p className="max-w-xl text-base leading-7 text-slate-600">A clear view of the cards you own, organized and ready.</p>
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-2xl space-y-2.5">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Web Vault</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-[2.8rem]">Your vault. At a glance.</h1>
+            <p className="max-w-xl text-base leading-7 text-slate-600">A clear view of the cards you own, organized and ready.</p>
+          </div>
+          <div className="flex shrink-0 items-start">
+            <Link
+              href="/vault/import"
+              className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Import Collection
+            </Link>
+          </div>
         </div>
 
         <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-3.5 sm:p-4">
@@ -478,7 +488,13 @@ export function VaultCollectionView({
           <div className="mx-auto max-w-xl space-y-4">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Your vault is empty.</h2>
             <p className="text-sm leading-7 text-slate-600">Start building your collection one card at a time.</p>
-            <div className="flex justify-center pt-2">
+            <div className="flex flex-wrap justify-center gap-3 pt-2">
+              <Link
+                href="/vault/import"
+                className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+              >
+                Import Collection
+              </Link>
               <Link
                 href="/explore"
                 className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"

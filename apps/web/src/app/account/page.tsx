@@ -53,6 +53,24 @@ export default async function AccountPage() {
           </div>
         </div>
       </section>
+
+      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
+            <p className="text-sm leading-7 text-slate-600">Bring your collection into Grookai from a supported export.</p>
+          </div>
+
+          <div>
+            <Link
+              href="/vault/import"
+              className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Import Collection
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
