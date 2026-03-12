@@ -90,7 +90,7 @@ export function VaultCardTile({ item, isPending, error, onQuantityChange, onCond
               <div className="inline-flex items-center self-start rounded-full border border-slate-200 bg-slate-50/90 p-1">
                 <button
                   type="button"
-                  onClick={() => onQuantityChange(item.id, "decrement")}
+                  onClick={() => onQuantityChange(item.vault_item_id, "decrement")}
                   disabled={isPending}
                   className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
                   aria-label={`Decrease quantity for ${item.name}`}
@@ -100,7 +100,7 @@ export function VaultCardTile({ item, isPending, error, onQuantityChange, onCond
                 <span className="min-w-[2.1rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.quantity}</span>
                 <button
                   type="button"
-                  onClick={() => onQuantityChange(item.id, "increment")}
+                  onClick={() => onQuantityChange(item.vault_item_id, "increment")}
                   disabled={isPending}
                   className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
                   aria-label={`Increase quantity for ${item.name}`}

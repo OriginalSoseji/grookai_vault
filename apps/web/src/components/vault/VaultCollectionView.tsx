@@ -169,8 +169,8 @@ function renderVaultGrid(
         <VaultCardTile
           key={item.id}
           item={item}
-          isPending={pendingItemId === item.id}
-          error={itemErrors[item.id]}
+          isPending={pendingItemId === item.vault_item_id}
+          error={itemErrors[item.vault_item_id]}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
         />
@@ -185,7 +185,7 @@ function applyOptimisticQuantityChange(
   type: VaultQuantityMutationInput["type"],
 ) {
   return items.flatMap((item) => {
-    if (item.id !== itemId) {
+    if (item.vault_item_id !== itemId) {
       return [item];
     }
 
@@ -210,7 +210,7 @@ function reconcileQuantityResult(
   }
 
   return items.map((item) =>
-    item.id === itemId
+    item.vault_item_id === itemId
       ? {
           ...item,
           quantity: result.quantity,
@@ -340,7 +340,7 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
-    const targetItem = currentItems.find((item) => item.id === itemId);
+    const targetItem = currentItems.find((item) => item.vault_item_id === itemId);
     if (!targetItem) {
       return;
     }
@@ -355,6 +355,7 @@ export function VaultCollectionView({
 
     startTransition(async () => {
       try {
+        // The canonical vault quantity RPC deletes the owned row when a decrement hits zero.
         const result = await changeVaultItemQuantityAction({ itemId, type });
         setItems((current) => reconcileQuantityResult(current, itemId, result));
         router.refresh();
@@ -378,10 +379,10 @@ export function VaultCollectionView({
     const currentItems = items;
     setItemErrors((current) => {
       const next = { ...current };
-      delete next[item.id];
+      delete next[item.vault_item_id];
       return next;
     });
-    setPendingItemId(item.id);
+    setPendingItemId(item.vault_item_id);
     setItems(applyOptimisticConditionChange(currentItems, item.id, newCondition));
 
     startTransition(async () => {
@@ -403,7 +404,7 @@ export function VaultCollectionView({
         setItems(currentItems);
         setItemErrors((current) => ({
           ...current,
-          [item.id]:
+          [item.vault_item_id]:
             error instanceof Error && error.message === "Condition edits are currently disabled"
               ? "Condition edits are currently disabled."
               : "Couldn’t update condition.",
