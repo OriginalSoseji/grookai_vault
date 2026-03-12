@@ -10,6 +10,7 @@ import {
   type VaultQuantityMutationInput,
 } from "@/lib/vault/changeVaultItemQuantityAction";
 import type { ReactNode } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export type RecentCardData = {
   id: string;
@@ -160,6 +161,7 @@ function renderVaultGrid(
   pendingItemId: string | null,
   itemErrors: Record<string, string>,
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
+  onConditionChange: (item: VaultCardData, condition: string) => void,
 ) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -170,6 +172,7 @@ function renderVaultGrid(
           isPending={pendingItemId === item.id}
           error={itemErrors[item.id]}
           onQuantityChange={onQuantityChange}
+          onConditionChange={(condition) => onConditionChange(item, condition)}
         />
       ))}
     </div>
@@ -211,6 +214,17 @@ function reconcileQuantityResult(
       ? {
           ...item,
           quantity: result.quantity,
+        }
+      : item,
+  );
+}
+
+function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, condition: string) {
+  return items.map((item) =>
+    item.id === itemId
+      ? {
+          ...item,
+          condition_label: condition,
         }
       : item,
   );
@@ -340,19 +354,63 @@ export function VaultCollectionView({
     });
   }
 
+  function changeCondition(item: VaultCardData, newCondition: string) {
+    if (pendingItemId || item.condition_label === newCondition) {
+      return;
+    }
+
+    const currentItems = items;
+    setItemErrors((current) => {
+      const next = { ...current };
+      delete next[item.id];
+      return next;
+    });
+    setPendingItemId(item.id);
+    setItems(applyOptimisticConditionChange(currentItems, item.id, newCondition));
+
+    startTransition(async () => {
+      try {
+        const { error } = await supabase.rpc("rpc_set_item_condition", {
+          p_vault_item_id: item.vault_item_id,
+          p_condition_label: newCondition,
+          p_card_id: item.card_id,
+          p_market_price: null,
+        });
+
+        if (error) {
+          throw error;
+        }
+
+        router.refresh();
+      } catch (error) {
+        console.error("Condition update failed:", error);
+        setItems(currentItems);
+        setItemErrors((current) => ({
+          ...current,
+          [item.id]:
+            error instanceof Error && error.message === "Condition edits are currently disabled"
+              ? "Condition edits are currently disabled."
+              : "Couldn’t update condition.",
+        }));
+      } finally {
+        setPendingItemId(null);
+      }
+    });
+  }
+
   let vaultContent: ReactNode;
 
   if (activeView === "duplicates") {
     vaultContent =
       duplicateItems.length > 0
-        ? renderVaultGrid(duplicateItems, pendingItemId, itemErrors, handleQuantityChange)
+        ? renderVaultGrid(duplicateItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
         : (
             <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />
           );
   } else if (activeView === "recent") {
     vaultContent =
       recentItems.length > 0
-        ? renderVaultGrid(recentItems, pendingItemId, itemErrors, handleQuantityChange)
+        ? renderVaultGrid(recentItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
         : (
             <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
           );
@@ -372,7 +430,7 @@ export function VaultCollectionView({
                 </div>
               </div>
               <div className="pt-1">
-                {renderVaultGrid(group.items, pendingItemId, itemErrors, handleQuantityChange)}
+                {renderVaultGrid(group.items, pendingItemId, itemErrors, handleQuantityChange, changeCondition)}
               </div>
             </section>
           ))}
@@ -389,7 +447,7 @@ export function VaultCollectionView({
       />
     );
   } else {
-    vaultContent = renderVaultGrid(items, pendingItemId, itemErrors, handleQuantityChange);
+    vaultContent = renderVaultGrid(items, pendingItemId, itemErrors, handleQuantityChange, changeCondition);
   }
 
   return (

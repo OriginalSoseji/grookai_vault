@@ -13,6 +13,8 @@ export const revalidate = 0;
 
 type VaultItemRow = {
   id: string;
+  vault_item_id: string | null;
+  card_id: string | null;
   gv_id: string | null;
   name: string | null;
   set_code: string | null;
@@ -42,6 +44,8 @@ function normalizeVaultItems(rows: VaultItemRow[] | null | undefined): VaultCard
     .filter((row): row is VaultItemRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
     .map((row) => ({
       id: row.id,
+      vault_item_id: row.vault_item_id ?? row.id,
+      card_id: row.card_id ?? "",
       gv_id: row.gv_id,
       name: row.name?.trim() || "Unknown card",
       set_code: row.set_code?.trim() || "Unknown set",
@@ -105,7 +109,7 @@ export default async function VaultPage() {
   const [{ data: itemsData, error: itemsError }, { data: recentData, error: recentError }] = await Promise.all([
     supabase
       .from("v_vault_items_web")
-      .select("id,gv_id,name,set_code,number,condition_label,quantity,effective_price,image_url,created_at")
+      .select("id,vault_item_id,card_id,gv_id,name,set_code,number,condition_label,quantity,effective_price,image_url,created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
     supabase
