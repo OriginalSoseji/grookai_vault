@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../services/vault/vault_card_service.dart';
+
 class ScanIdentifyScreen extends StatefulWidget {
   const ScanIdentifyScreen({super.key});
 
@@ -52,9 +54,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
     try {
       final resp = await supabase.functions.invoke(
         'card-identify',
-        body: {
-          'note': 'placeholder v1',
-        },
+        body: {'note': 'placeholder v1'},
       );
       final data = resp.data;
       List<Map<String, dynamic>> candidates = const [];
@@ -93,23 +93,29 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
       if (cardPrintId.isEmpty) {
         throw Exception('Missing card_print_id');
       }
-      final name = cand['name']?.toString() ?? 'Card';
-      final setName = cand['set']?.toString() ?? '';
+      final identity = await VaultCardService.resolveCanonicalCard(
+        client: supabase,
+        cardId: cardPrintId,
+      );
+      final name = cand['name']?.toString() ?? identity.name;
+      final setName = cand['set']?.toString() ?? identity.setName;
 
-      await supabase.from('vault_items').insert({
-        'user_id': uid,
-        'card_id': cardPrintId,
-        'name': name,
-        'set_name': setName,
-        'photo_url': cand['image_url'],
-        'qty': 1,
-        'condition_label': 'NM',
-      });
+      await VaultCardService.addOrIncrementVaultItem(
+        client: supabase,
+        userId: uid,
+        cardId: cardPrintId,
+        deltaQty: 1,
+        conditionLabel: 'NM',
+        fallbackName: name,
+        fallbackSetName: setName,
+        fallbackImageUrl: cand['image_url']?.toString(),
+      );
 
       _snack('Added to vault.');
       if (!mounted) return;
       Navigator.of(context).pop({
         'card_print_id': cardPrintId,
+        'gv_id': identity.gvId,
         'name': name,
         'set': setName,
         'image_url': cand['image_url'],
@@ -130,9 +136,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Card ID Scanner'),
-      ),
+      appBar: AppBar(title: const Text('Card ID Scanner')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -189,10 +193,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
                   ? const Icon(Icons.photo_camera, size: 32)
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.file(
-                        File(_front!.path),
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.file(File(_front!.path), fit: BoxFit.cover),
                     ),
             ),
             const SizedBox(width: 12),
@@ -215,10 +216,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
   Widget _buildCandidates(ThemeData theme) {
     if (_candidates.isEmpty) {
       return Center(
-        child: Text(
-          'No candidates yet.',
-          style: theme.textTheme.bodySmall,
-        ),
+        child: Text('No candidates yet.', style: theme.textTheme.bodySmall),
       );
     }
 
@@ -253,7 +251,9 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
                   ),
             title: Text(name),
             subtitle: Text(
-              setName.isEmpty ? 'Confidence: $confidence' : '$setName • $confidence',
+              setName.isEmpty
+                  ? 'Confidence: $confidence'
+                  : '$setName • $confidence',
             ),
             trailing: selected
                 ? const Icon(Icons.check_circle, color: Colors.green)

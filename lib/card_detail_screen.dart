@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'models/card_print_price_curve.dart';
-
 class CardDetailScreen extends StatefulWidget {
   final String cardPrintId;
+  final String? gvId;
   final String? name;
   final String? setName;
   final String? number;
@@ -15,6 +14,7 @@ class CardDetailScreen extends StatefulWidget {
   const CardDetailScreen({
     super.key,
     required this.cardPrintId,
+    this.gvId,
     this.name,
     this.setName,
     this.number,
@@ -66,7 +66,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _priceData = response;
       });
       // ignore: avoid_print
-      print('[pricing] _loadPricing data for ${widget.cardPrintId}: $_priceData');
+      print(
+        '[pricing] _loadPricing data for ${widget.cardPrintId}: $_priceData',
+      );
     } catch (e, st) {
       // Log the full error so we can diagnose it
       // ignore: avoid_print
@@ -104,12 +106,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
         final updatedAtRaw = data['updated_at'] as String?;
         final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
-        final freshnessTs =
-            freshnessRaw != null ? DateTime.tryParse(freshnessRaw) : null;
+        final freshnessTs = freshnessRaw != null
+            ? DateTime.tryParse(freshnessRaw)
+            : null;
 
         if (listingCount > 0 && freshnessTs != null) {
-          final rawAgeMinutes =
-              DateTime.now().toUtc().difference(freshnessTs.toUtc()).inMinutes;
+          final rawAgeMinutes = DateTime.now()
+              .toUtc()
+              .difference(freshnessTs.toUtc())
+              .inMinutes;
           final ageMinutes = rawAgeMinutes < 0 ? 0 : rawAgeMinutes;
           final ttlMinutes = _ttlMinutesForListings(listingCount);
           if (ageMinutes < ttlMinutes) {
@@ -130,9 +135,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
       final response = await supabase.functions.invoke(
         'pricing-live-request',
-        body: {
-          'card_print_id': widget.cardPrintId,
-        },
+        body: {'card_print_id': widget.cardPrintId},
       );
       if (response.status < 200 || response.status >= 300) {
         throw Exception(
@@ -167,11 +170,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          name,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
+        title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -276,55 +275,64 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final condition = widget.condition;
 
     if (setName.isNotEmpty) {
-      chips.add(_buildChip(
-        label: setName,
-        icon: Icons.layers,
-        color: colorScheme.primary,
-        theme: theme,
-      ));
+      chips.add(
+        _buildChip(
+          label: setName,
+          icon: Icons.layers,
+          color: colorScheme.primary,
+          theme: theme,
+        ),
+      );
     }
 
     if (num.isNotEmpty) {
-      chips.add(_buildChip(
-        label: '#$num',
-        icon: Icons.tag,
-        color: colorScheme.secondary,
-        theme: theme,
-      ));
+      chips.add(
+        _buildChip(
+          label: '#$num',
+          icon: Icons.tag,
+          color: colorScheme.secondary,
+          theme: theme,
+        ),
+      );
     }
 
     if (condition != null && condition.isNotEmpty) {
-      chips.add(_buildChip(
-        label: 'Condition: $condition',
-        icon: Icons.grade,
-        color: Colors.teal,
-        theme: theme,
-      ));
+      chips.add(
+        _buildChip(
+          label: 'Condition: $condition',
+          icon: Icons.grade,
+          color: Colors.teal,
+          theme: theme,
+        ),
+      );
     }
 
     if (qty != null) {
-      chips.add(_buildChip(
-        label: 'Qty: $qty',
-        icon: Icons.inventory_2,
-        color: Colors.orange,
-        theme: theme,
-      ));
+      chips.add(
+        _buildChip(
+          label: 'Qty: $qty',
+          icon: Icons.inventory_2,
+          color: Colors.orange,
+          theme: theme,
+        ),
+      );
     }
 
-    chips.add(_buildChip(
-      label: 'ID: ${widget.cardPrintId}',
-      icon: Icons.fingerprint,
-      color: colorScheme.onSurface.withOpacity(0.6),
-      theme: theme,
-    ));
+    final outwardId = (widget.gvId ?? '').trim();
+    chips.add(
+      _buildChip(
+        label: outwardId.isNotEmpty
+            ? 'GV: $outwardId'
+            : 'Card ID: ${widget.cardPrintId}',
+        icon: Icons.fingerprint,
+        color: colorScheme.onSurface.withOpacity(0.6),
+        theme: theme,
+      ),
+    );
 
     if (chips.isEmpty) return const SizedBox.shrink();
 
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: chips,
-    );
+    return Wrap(spacing: 8, runSpacing: 8, children: chips);
   }
 
   Widget _buildChip({
@@ -392,10 +400,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 child: CircularProgressIndicator(strokeWidth: 2),
               ),
               const SizedBox(width: 12),
-              Text(
-                'Loading Grookai Value…',
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text('Loading Grookai Value…', style: theme.textTheme.bodyMedium),
             ],
           ),
         ),
@@ -433,14 +438,17 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final data = _priceData!;
     final nmMedian = (data['nm_median'] ?? 0).toDouble();
     final nmFloor = (data['nm_floor'] ?? 0).toDouble();
-    final lpMedian =
-        data['lp_median'] != null ? (data['lp_median'] as num).toDouble() : null;
+    final lpMedian = data['lp_median'] != null
+        ? (data['lp_median'] as num).toDouble()
+        : null;
     final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
     final confidence = data['confidence'] as num?;
     final updatedAtRaw = data['updated_at'] as String?;
     final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
     final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
-    final freshnessTs = freshnessRaw != null ? DateTime.tryParse(freshnessRaw) : null;
+    final freshnessTs = freshnessRaw != null
+        ? DateTime.tryParse(freshnessRaw)
+        : null;
     final showListings = listingCount > 0;
     final showUpdated = freshnessTs != null;
     const currency = 'USD';
@@ -609,7 +617,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Widget _buildActions(
-      BuildContext context, ThemeData theme, ColorScheme colorScheme) {
+    BuildContext context,
+    ThemeData theme,
+    ColorScheme colorScheme,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

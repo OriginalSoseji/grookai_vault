@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/identity_scan_service.dart';
+import '../../services/vault/vault_card_service.dart';
 import '../scanner/condition_camera_screen.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
@@ -16,7 +17,11 @@ class IdentityScanScreen extends StatefulWidget {
   final bool autoStart;
   final XFile? initialFrontFile;
 
-  const IdentityScanScreen({super.key, this.autoStart = false, this.initialFrontFile});
+  const IdentityScanScreen({
+    super.key,
+    this.autoStart = false,
+    this.initialFrontFile,
+  });
 
   @override
   State<IdentityScanScreen> createState() => _IdentityScanScreenState();
@@ -138,7 +143,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       await _pollUntilDone(start.eventId);
     } catch (e) {
       final message = e.toString();
-      final missingEventId = message.contains('enqueue_missing_event_id') || message.contains('enqueue_bad_shape');
+      final missingEventId =
+          message.contains('enqueue_missing_event_id') ||
+          message.contains('enqueue_bad_shape');
       setState(() {
         _error = message;
         _step = _IdentityScanStep.error;
@@ -178,9 +185,13 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             _signals = res.signals;
             _aiName = name;
             _aiCollectorNumber = collectorNumber;
-            _aiPrintedTotal = printedTotal == null ? '' : printedTotal.toString();
+            _aiPrintedTotal = printedTotal == null
+                ? ''
+                : printedTotal.toString();
             _aiHp = hp == null ? '' : hp.toString();
-            _aiConfidence = conf is num ? (conf * 100).toStringAsFixed(1) : (conf?.toString() ?? '');
+            _aiConfidence = conf is num
+                ? (conf * 100).toStringAsFixed(1)
+                : (conf?.toString() ?? '');
           });
           return;
         }
@@ -207,7 +218,8 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
 
   Map<String, dynamic>? get _selectedCandidate {
     if (_candidates.isEmpty) return null;
-    if (_selectedIndex < 0 || _selectedIndex >= _candidates.length) return _candidates.first as Map<String, dynamic>?;
+    if (_selectedIndex < 0 || _selectedIndex >= _candidates.length)
+      return _candidates.first as Map<String, dynamic>?;
     final c = _candidates[_selectedIndex];
     return c is Map<String, dynamic> ? c : null;
   }
@@ -231,25 +243,36 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _snack('Please sign in.');
         return;
       }
-      final rpcResp = await Supabase.instance.client.rpc(
-        'vault_add_or_increment',
-        params: {
-          'p_card_id': cardId,
-          'p_delta_qty': 1,
-          'p_name': (cand['name'] ?? '').toString(),
-          'p_condition_label': 'NM',
-          'p_notes': null,
-        },
+      final identity = await VaultCardService.resolveCanonicalCard(
+        client: Supabase.instance.client,
+        cardId: cardId,
+      );
+      await VaultCardService.addOrIncrementVaultItem(
+        client: Supabase.instance.client,
+        userId: userId,
+        cardId: cardId,
+        deltaQty: 1,
+        conditionLabel: 'NM',
+        fallbackName: (cand['name'] ?? '').toString(),
+        fallbackSetName: (cand['set_code'] ?? '').toString(),
+        fallbackImageUrl: (cand['image_url'] ?? '').toString(),
       );
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => CardDetailScreen(
-            cardPrintId: cardId,
-            name: (cand['name'] ?? '').toString().isEmpty ? null : (cand['name'] ?? '').toString(),
-            setName: (cand['set_code'] ?? '').toString(),
-            number: (cand['number'] ?? '').toString(),
-            imageUrl: (cand['image_url'] ?? '').toString(),
+            cardPrintId: identity.cardId,
+            gvId: identity.gvId,
+            name: identity.name.isEmpty
+                ? (cand['name'] ?? '').toString()
+                : identity.name,
+            setName: identity.setName.isEmpty
+                ? (cand['set_code'] ?? '').toString()
+                : identity.setName,
+            number: (identity.number ?? '').isEmpty
+                ? (cand['number'] ?? '').toString()
+                : identity.number,
+            imageUrl: identity.imageUrl ?? (cand['image_url'] ?? '').toString(),
           ),
         ),
       );
@@ -329,7 +352,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
           children: [
             Text(
               'Scan Card',
-              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 6),
             Text('Align the card and capture the front.'),
@@ -399,7 +424,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             children: [
               Text(
                 'Hint ready — awaiting resolver',
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               if (_hasRealEventId)
                 Padding(
@@ -423,7 +450,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
               children: [
                 Text(
                   'Matched Card',
-                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 ListView.separated(
@@ -447,13 +476,21 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                                 width: 44,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => const Icon(Icons.style),
+                                errorBuilder: (_, __, ___) =>
+                                    const Icon(Icons.style),
                               ),
                             )
                           : const Icon(Icons.style),
                       title: Text(name.isEmpty ? 'Candidate' : name),
-                      subtitle: Text([setCode, number].where((p) => p.isNotEmpty).join(' • ')),
-                      trailing: selected ? const Icon(Icons.radio_button_checked) : const Icon(Icons.radio_button_off),
+                      subtitle: Text(
+                        [
+                          setCode,
+                          number,
+                        ].where((p) => p.isNotEmpty).join(' • '),
+                      ),
+                      trailing: selected
+                          ? const Icon(Icons.radio_button_checked)
+                          : const Icon(Icons.radio_button_off),
                       onTap: () => setState(() => _selectedIndex = index),
                     );
                   },
@@ -474,7 +511,8 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             child: Text(
               [
                 if (_hasRealEventId) 'Event: $_eventId',
-                if (_snapshotId != null && _snapshotId!.isNotEmpty) 'Snapshot: $_snapshotId',
+                if (_snapshotId != null && _snapshotId!.isNotEmpty)
+                  'Snapshot: $_snapshotId',
               ].join(' • '),
               style: theme.textTheme.bodySmall,
             ),
@@ -499,7 +537,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
               children: [
                 Text(
                   'Grookai Vision thinks this is…',
-                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(parts.isEmpty ? 'Unknown name' : parts.join(' — ')),
@@ -508,17 +548,17 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
                       [
-                        if (_aiPrintedTotal.isNotEmpty) 'Total $_aiPrintedTotal',
-                        if (_aiConfidence.isNotEmpty) 'Confidence $_aiConfidence%',
+                        if (_aiPrintedTotal.isNotEmpty)
+                          'Total $_aiPrintedTotal',
+                        if (_aiConfidence.isNotEmpty)
+                          'Confidence $_aiConfidence%',
                       ].join(' • '),
                     ),
                   ),
                 const SizedBox(height: 8),
-                FilledButton(
-                  onPressed: null,
-                  child: const Text('Confirm'),
-                ),
-                if (_step == _IdentityScanStep.hintReady && _candidates.isEmpty) ...[
+                FilledButton(onPressed: null, child: const Text('Confirm')),
+                if (_step == _IdentityScanStep.hintReady &&
+                    _candidates.isEmpty) ...[
                   const SizedBox(height: 8),
                   if (!_submittedCatalog)
                     FilledButton(
@@ -543,7 +583,8 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
             child: Text(
               [
                 if (_hasRealEventId) 'Event: $_eventId',
-                if (_snapshotId != null && _snapshotId!.isNotEmpty) 'Snapshot: $_snapshotId',
+                if (_snapshotId != null && _snapshotId!.isNotEmpty)
+                  'Snapshot: $_snapshotId',
               ].join(' • '),
               style: theme.textTheme.bodySmall,
             ),
@@ -556,9 +597,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Identity Scan'),
-      ),
+      appBar: AppBar(title: const Text('Identity Scan')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -570,14 +609,19 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Text(
                     _error!,
-                    style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.error),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.error,
+                    ),
                   ),
                 ),
               ),
             if (_step == _IdentityScanStep.capture) _buildCaptureCard(theme),
             if (_step == _IdentityScanStep.processing) _buildProcessingCard(),
-            if (_step == _IdentityScanStep.results || _step == _IdentityScanStep.hintReady) _buildResults(theme),
-            if (_step == _IdentityScanStep.error && _step != _IdentityScanStep.results)
+            if (_step == _IdentityScanStep.results ||
+                _step == _IdentityScanStep.hintReady)
+              _buildResults(theme),
+            if (_step == _IdentityScanStep.error &&
+                _step != _IdentityScanStep.results)
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(12),
@@ -586,11 +630,14 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                     children: [
                       Text(
                         'Scan error',
-                        style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(_error ?? 'Unknown error'),
-                      if (_eventId != null && (_hasRealEventId || _eventId == '(not created)'))
+                      if (_eventId != null &&
+                          (_hasRealEventId || _eventId == '(not created)'))
                         Padding(
                           padding: const EdgeInsets.only(top: 4),
                           child: Text('Event: $_eventId'),

@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'secrets.dart';
+import 'services/vault/vault_card_service.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
@@ -57,17 +58,13 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
             color: colorScheme.primary,
           );
         }
-        return style?.copyWith(
-          color: colorScheme.onSurface.withOpacity(0.7),
-        );
+        return style?.copyWith(color: colorScheme.onSurface.withOpacity(0.7));
       }),
     ),
     cardTheme: CardThemeData(
       color: colorScheme.surfaceVariant.withOpacity(0.8),
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       margin: EdgeInsets.zero,
     ),
     inputDecorationTheme: base.inputDecorationTheme.copyWith(
@@ -88,10 +85,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: colorScheme.primary,
-          width: 1.4,
-        ),
+        borderSide: BorderSide(color: colorScheme.primary, width: 1.4),
       ),
     ),
     textTheme: base.textTheme.copyWith(
@@ -112,9 +106,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
     ),
     snackBarTheme: base.snackBarTheme.copyWith(
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
   );
 }
@@ -268,8 +260,9 @@ class _RarityIconBadge extends StatelessWidget {
     } else {
       bg = colorScheme.secondary.withOpacity(0.14);
       border = colorScheme.secondary.withOpacity(0.7);
-      label =
-          raw.length > 3 ? raw.substring(0, 3).toUpperCase() : raw.toUpperCase();
+      label = raw.length > 3
+          ? raw.substring(0, 3).toUpperCase()
+          : raw.toUpperCase();
     }
 
     return Container(
@@ -374,6 +367,7 @@ class _VaultItemTile extends StatelessWidget {
     final set = (row['set_name'] ?? '').toString();
     final qty = (row['qty'] ?? 0) as int;
     final cond = (row['condition_label'] ?? 'NM').toString();
+    final gvId = (row['gv_id'] ?? '').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
     final number = (row['number'] ?? '').toString();
     final imgUrl = (row['photo_url'] ?? row['image_url']).toString();
@@ -381,7 +375,7 @@ class _VaultItemTile extends StatelessWidget {
     final subtitleParts = <String>[];
     if (set.isNotEmpty) subtitleParts.add(set);
     if (number.isNotEmpty) subtitleParts.add('#$number');
-    final subtitle = subtitleParts.join(' • ');
+    final subtitle = subtitleParts.join(' - ');
 
     Color condColor;
     switch (cond) {
@@ -407,10 +401,7 @@ class _VaultItemTile extends StatelessWidget {
     Widget _thumb() {
       final u = imgUrl.toString();
       if (u.isEmpty) {
-        return const CircleAvatar(
-          radius: 22,
-          child: Icon(Icons.style),
-        );
+        return const CircleAvatar(radius: 22, child: Icon(Icons.style));
       }
       return ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -471,8 +462,7 @@ class _VaultItemTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
             onTap: cardPrintId.isEmpty ? null : onTap,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
                 children: [
                   _thumb(),
@@ -495,6 +485,17 @@ class _VaultItemTile extends StatelessWidget {
                             subtitle,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colorScheme.onSurface.withOpacity(0.7),
+                            ),
+                          ),
+                        ],
+                        if (gvId.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                            gvId,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.3,
                             ),
                           ),
                         ],
@@ -545,6 +546,7 @@ class _VaultItemTile extends StatelessWidget {
     );
   }
 }
+
 class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
@@ -613,11 +615,7 @@ class _CatalogCardTile extends StatelessWidget {
   final CardPrint card;
   final VoidCallback? onTap;
 
-  const _CatalogCardTile({
-    required this.card,
-    this.onTap,
-    super.key,
-  });
+  const _CatalogCardTile({required this.card, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -682,7 +680,7 @@ class _CatalogCardTile extends StatelessWidget {
                             _RarityIconBadge(rarity: card.rarity),
                           ],
                         ),
-                      ]
+                      ],
                     ],
                   ),
                 ),
@@ -698,10 +696,7 @@ class _CatalogCardTile extends StatelessWidget {
   Widget _thumb(String? url) {
     final u = (url ?? '').toString();
     if (u.isEmpty) {
-      return const CircleAvatar(
-        radius: 22,
-        child: Icon(Icons.style),
-      );
+      return const CircleAvatar(radius: 22, child: Icon(Icons.style));
     }
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -725,7 +720,8 @@ Future<void> main() async {
   final key = supabasePublishableKey;
   if (url.isEmpty || key.isEmpty) {
     throw Exception(
-        'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Update your .env.local file.');
+      'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Update your .env.local file.',
+    );
   }
 
   print('[gv] supabase_url=$url');
@@ -813,56 +809,70 @@ class _AppShellState extends State<AppShell> {
       appBar: AppBar(
         title: Text(
           currentTitle,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.refresh), onPressed: _refreshCurrent),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _refreshCurrent,
+          ),
           IconButton(icon: const Icon(Icons.logout), onPressed: _signOut),
         ],
-        ),
-        body: IndexedStack(
-          index: bodyIndex,
-          children: [
-            HomePage(key: _homeKey),
-            VaultPage(key: _vaultKey),
-          ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _index,
-          onDestinationSelected: (i) {
-            if (i == 1) {
-              Navigator.of(context)
-                  .push<XFile?>(
-                MaterialPageRoute<XFile?>(
-                  builder: (_) => const ConditionCameraScreen(
-                    title: 'Scan Card',
-                    hintText: 'Align card inside the frame',
-                  ),
-                ),
-              )
-                  .then((XFile? file) {
-                if (file != null) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => IdentityScanScreen(
-                        initialFrontFile: file,
-                      ),
+      ),
+      body: IndexedStack(
+        index: bodyIndex,
+        children: [
+          HomePage(key: _homeKey),
+          VaultPage(key: _vaultKey),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _index,
+        onDestinationSelected: (i) {
+          if (i == 1) {
+            Navigator.of(context)
+                .push<XFile?>(
+                  MaterialPageRoute<XFile?>(
+                    builder: (_) => const ConditionCameraScreen(
+                      title: 'Scan Card',
+                      hintText: 'Align card inside the frame',
                     ),
-                  );
-                }
-              });
-            } else {
-              setState(() => _index = i);
-            }
-          },
-          destinations: const [
-            NavigationDestination(icon: Icon(Icons.search), selectedIcon: Icon(Icons.search), label: 'Catalog'),
-            NavigationDestination(icon: Icon(Icons.camera_alt_outlined), selectedIcon: Icon(Icons.camera_alt), label: 'Scan'),
-            NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Vault'),
-          ],
-        ),
+                  ),
+                )
+                .then((XFile? file) {
+                  if (file != null) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            IdentityScanScreen(initialFrontFile: file),
+                      ),
+                    );
+                  }
+                });
+          } else {
+            setState(() => _index = i);
+          }
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.search),
+            selectedIcon: Icon(Icons.search),
+            label: 'Catalog',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.camera_alt_outlined),
+            selectedIcon: Icon(Icons.camera_alt),
+            label: 'Scan',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.inventory_2_outlined),
+            selectedIcon: Icon(Icons.inventory_2),
+            label: 'Vault',
+          ),
+        ],
+      ),
       floatingActionButton: _index == 2
           ? FloatingActionButton.extended(
               icon: const Icon(Icons.camera_alt),
@@ -923,9 +933,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign in'),
-      ),
+      appBar: AppBar(title: const Text('Sign in')),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 420),
@@ -943,11 +951,10 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Sign in to manage your collection, track prices, and build your vault.',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.7),
-                      ),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withOpacity(0.7),
+                  ),
                 ),
                 const SizedBox(height: 20),
                 TextField(
@@ -971,7 +978,11 @@ class _LoginPageState extends State<LoginPage> {
                 FilledButton(
                   onPressed: _loading ? null : _signIn,
                   child: _loading
-                      ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
                       : const Text('Sign in'),
                 ),
                 const SizedBox(height: 8),
@@ -1108,7 +1119,9 @@ class HomePageState extends State<HomePage> {
       }
     }
 
-    return cards.where((card) => matchesRarity(card.rarity, _rarityFilter)).toList();
+    return cards
+        .where((card) => matchesRarity(card.rarity, _rarityFilter))
+        .toList();
   }
 
   Future<void> _runSearch(String query) async {
@@ -1134,7 +1147,8 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final trimmed = _searchCtrl.text.trim();
-    final showingTrending = trimmed.isEmpty && _trending.isNotEmpty && _results.isEmpty;
+    final showingTrending =
+        trimmed.isEmpty && _trending.isNotEmpty && _results.isEmpty;
     final cards = _applyRarityFilter(showingTrending ? _trending : _results);
     final showEmpty = !_loading && cards.isEmpty;
     final rows = _buildRows(cards);
@@ -1291,9 +1305,8 @@ class HomePageState extends State<HomePage> {
                                 (card.displayImage ?? '').toString(),
                                 fit: BoxFit.cover,
                                 width: double.infinity,
-                                errorBuilder: (_, __, ___) => const Center(
-                                  child: Icon(Icons.style),
-                                ),
+                                errorBuilder: (_, __, ___) =>
+                                    const Center(child: Icon(Icons.style)),
                               ),
                             ),
                           ),
@@ -1312,7 +1325,9 @@ class HomePageState extends State<HomePage> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.7),
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.7,
+                              ),
                             ),
                           ),
                         ],
@@ -1382,8 +1397,10 @@ class VaultPageState extends State<VaultPage> {
       final ascending = _sortBy != _SortBy.newest;
 
       final data = await supabase
-          .from('v_vault_items') // <— read the view
-          .select()
+          .from('v_vault_items')
+          .select(
+            'id,user_id,card_id,gv_id,qty,condition_label,created_at,name,set_name,number,photo_url,image_url',
+          )
           .eq('user_id', _uid!)
           .order(orderCol, ascending: ascending);
 
@@ -1407,11 +1424,9 @@ class VaultPageState extends State<VaultPage> {
   }
 
   void startIdentityScanFlow() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => const IdentityScanScreen(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const IdentityScanScreen()));
   }
 
   /// NEW: Add uses the internal catalog picker
@@ -1435,7 +1450,8 @@ class VaultPageState extends State<VaultPage> {
     final qtyCtrl = TextEditingController(text: '1');
     final subtitleParts = <String>[];
     if (picked.displaySet.isNotEmpty) subtitleParts.add(picked.displaySet);
-    if (picked.displayNumber.isNotEmpty) subtitleParts.add('#${picked.displayNumber}');
+    if (picked.displayNumber.isNotEmpty)
+      subtitleParts.add('#${picked.displayNumber}');
     final subtitle = subtitleParts.join(' - ');
 
     final ok = await showDialog<bool>(
@@ -1458,8 +1474,14 @@ class VaultPageState extends State<VaultPage> {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Add'),
+          ),
         ],
       ),
     );
@@ -1467,15 +1489,16 @@ class VaultPageState extends State<VaultPage> {
 
     final qty = int.tryParse(qtyCtrl.text) ?? 1;
 
-    await supabase.from('vault_items').insert({
-      'user_id': _uid,
-      'card_id': picked.id,
-      'name': picked.name,
-      'set_name': picked.displaySet,
-      'photo_url': picked.displayImage,
-      'qty': qty,
-      'condition_label': 'NM',
-    });
+    await VaultCardService.addOrIncrementVaultItem(
+      client: supabase,
+      userId: _uid!,
+      cardId: picked.id,
+      deltaQty: qty,
+      conditionLabel: 'NM',
+      fallbackName: picked.name,
+      fallbackSetName: picked.displaySet,
+      fallbackImageUrl: picked.displayImage,
+    );
 
     await reload();
   }
@@ -1484,7 +1507,7 @@ class VaultPageState extends State<VaultPage> {
   Widget build(BuildContext context) {
     final filtered = _items.where((row) {
       final name = (row['name'] ?? '').toString().toLowerCase();
-      final set  = (row['set_name'] ?? '').toString().toLowerCase();
+      final set = (row['set_name'] ?? '').toString().toLowerCase();
       final q = _search.toLowerCase();
       return name.contains(q) || set.contains(q);
     }).toList();
@@ -1507,11 +1530,17 @@ class VaultPageState extends State<VaultPage> {
               const SizedBox(width: 8),
               PopupMenuButton<_SortBy>(
                 icon: const Icon(Icons.sort),
-                onSelected: (v) { setState(() => _sortBy = v); reload(); },
+                onSelected: (v) {
+                  setState(() => _sortBy = v);
+                  reload();
+                },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
-                  PopupMenuItem(value: _SortBy.name,   child: Text('Name (A–Z)')),
-                  PopupMenuItem(value: _SortBy.qty,    child: Text('Qty (low?high)')),
+                  PopupMenuItem(value: _SortBy.name, child: Text('Name (A-Z)')),
+                  PopupMenuItem(
+                    value: _SortBy.qty,
+                    child: Text('Qty (low-high)'),
+                  ),
                 ],
               ),
             ],
@@ -1521,58 +1550,62 @@ class VaultPageState extends State<VaultPage> {
           child: _loading
               ? const Center(child: CircularProgressIndicator())
               : filtered.isEmpty
-                  ? const Center(child: Text('No items found.'))
-                  : ListView.separated(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: filtered.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final row = filtered[index];
-                        final id = (row['id'] ?? '').toString();
-                        final name = (row['name'] ?? 'Item').toString();
-                        final set  = (row['set_name'] ?? '').toString();
-                        final qty  = (row['qty'] ?? 0) as int;
-                        final cond = (row['condition_label'] ?? 'NM').toString();
-                        final cardPrintId = (row['card_id'] ?? '').toString();
+              ? const Center(child: Text('No items found.'))
+              : ListView.separated(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: filtered.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  itemBuilder: (context, index) {
+                    final row = filtered[index];
+                    final id = (row['id'] ?? '').toString();
+                    final name = (row['name'] ?? 'Item').toString();
+                    final set = (row['set_name'] ?? '').toString();
+                    final qty = (row['qty'] ?? 0) as int;
+                    final cond = (row['condition_label'] ?? 'NM').toString();
+                    final gvId = (row['gv_id'] ?? '').toString();
+                    final cardPrintId = (row['card_id'] ?? '').toString();
 
-                        return _VaultItemTile(
-                          row: row,
-                          onScan: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => ScanCaptureScreen(
-                                  vaultItemId: id,
-                                  cardName: name,
-                                ),
-                              ),
-                            );
-                          },
-                          onIncrement: () => _incQty(id, 1),
-                          onDecrement: () => _incQty(id, -1),
-                          onDelete: () async {
-                            final ok = await _confirmDelete(id);
-                            if (ok) await reload();
-                          },
-                          onTap: cardPrintId.isEmpty
-                              ? null
-                              : () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) => CardDetailScreen(
-                                        cardPrintId: cardPrintId,
-                                        name: name,
-                                        setName: set,
-                                        number: (row['number'] ?? '').toString(),
-                                        imageUrl: (row['photo_url'] ?? row['image_url']).toString(),
-                                        quantity: qty,
-                                        condition: cond,
-                                      ),
-                                    ),
-                                  );
-                                },
+                    return _VaultItemTile(
+                      row: row,
+                      onScan: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ScanCaptureScreen(
+                              vaultItemId: id,
+                              cardName: name,
+                            ),
+                          ),
                         );
                       },
-                    ),
+                      onIncrement: () => _incQty(id, 1),
+                      onDecrement: () => _incQty(id, -1),
+                      onDelete: () async {
+                        final ok = await _confirmDelete(id);
+                        if (ok) await reload();
+                      },
+                      onTap: cardPrintId.isEmpty
+                          ? null
+                          : () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => CardDetailScreen(
+                                    cardPrintId: cardPrintId,
+                                    gvId: gvId.isEmpty ? null : gvId,
+                                    name: name,
+                                    setName: set,
+                                    number: (row['number'] ?? '').toString(),
+                                    imageUrl:
+                                        (row['photo_url'] ?? row['image_url'])
+                                            .toString(),
+                                    quantity: qty,
+                                    condition: cond,
+                                  ),
+                                ),
+                              );
+                            },
+                    );
+                  },
+                ),
         ),
       ],
     );
@@ -1585,8 +1618,14 @@ class VaultPageState extends State<VaultPage> {
         title: const Text('Delete item?'),
         content: const Text('This cannot be undone.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Delete')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Delete'),
+          ),
         ],
       ),
     );
@@ -1697,7 +1736,14 @@ class _CatalogPickerState extends State<_CatalogPicker> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 8),
-            Container(height: 4, width: 36, decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(3))),
+            Container(
+              height: 4,
+              width: 36,
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),

@@ -43,6 +43,7 @@ class CardPrint {
   CardPrint({
     required this.id,
     required this.name,
+    this.gvId,
     required this.setCode,
     this.setName,
     this.number,
@@ -53,6 +54,7 @@ class CardPrint {
 
   final String id;
   final String name;
+  final String? gvId;
   final String setCode;
   final String? setName;
   final String? number;
@@ -70,6 +72,7 @@ class CardPrint {
     return CardPrint(
       id: (json['id'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
+      gvId: json['gv_id']?.toString(),
       setCode: (json['set_code'] ?? '').toString(),
       setName: set != null ? (set['name'] ?? '').toString() : null,
       number: json['number']?.toString(),
@@ -81,7 +84,7 @@ class CardPrint {
 }
 
 const _cardPrintSelect =
-    'id,name,number,number_plain,rarity,set_code,image_url,set:sets(name,code)';
+    'id,gv_id,name,number,number_plain,rarity,set_code,image_url,image_alt_url,set:sets(name,code)';
 
 class CardPrintRepository {
   static Future<List<CardPrint>> searchCardPrints({
@@ -120,12 +123,16 @@ class CardPrintRepository {
     );
     final setIndex = _extractSetIndex(tokens);
     final maybeSet = setIndex != null ? tokens.lowerTokens[setIndex] : '';
-    final nameTokens =
-        _extractNameTokens(tokens, numberIndex: numberInfo.index, setIndex: setIndex);
+    final nameTokens = _extractNameTokens(
+      tokens,
+      numberIndex: numberInfo.index,
+      setIndex: setIndex,
+    );
 
     final hasSetToken = setIndex != null;
     final isSetPlusNumber = hasSetToken && numberInfo.hasNumber;
-    final isSetOnly = hasSetToken && !numberInfo.hasNumber && tokens.rawTokens.length == 1;
+    final isSetOnly =
+        hasSetToken && !numberInfo.hasNumber && tokens.rawTokens.length == 1;
 
     List<dynamic> data;
     String mode;
@@ -133,7 +140,8 @@ class CardPrintRepository {
     final resolvedSet = await _resolveSetByName(
       client,
       tokens.rawTokens,
-      shouldAttempt: !isSetPlusNumber &&
+      shouldAttempt:
+          !isSetPlusNumber &&
           !isSetOnly &&
           !numberInfo.hasNumber &&
           tokens.rawTokens.length >= 2 &&
@@ -152,8 +160,10 @@ class CardPrintRepository {
           pad3: numberInfo.pad3,
           sort: options.sort,
         );
-        final limited =
-            _applyRarity(qb, options.rarity).limit((options.limit.clamp(1, 25) as int));
+        final limited = _applyRarity(
+          qb,
+          options.rarity,
+        ).limit((options.limit.clamp(1, 25) as int));
         data = await limited;
       } else if (isSetOnly) {
         mode = 'set';
@@ -162,8 +172,10 @@ class CardPrintRepository {
           setCode: maybeSet,
           sort: options.sort,
         );
-        final limited =
-            _applyRarity(qb, options.rarity).limit((options.limit.clamp(1, searchLimit) as int));
+        final limited = _applyRarity(
+          qb,
+          options.rarity,
+        ).limit((options.limit.clamp(1, searchLimit) as int));
         data = await limited;
       } else if (numberInfo.hasNumber) {
         final numPart = numberInfo.norm!;
@@ -174,8 +186,10 @@ class CardPrintRepository {
             normNum: numPart,
             pad3: numberInfo.pad3,
           );
-          final limited = _applyRarity(qb, options.rarity)
-              .limit((options.limit.clamp(1, isNumberWithTotal ? 25 : 50) as int));
+          final limited = _applyRarity(
+            qb,
+            options.rarity,
+          ).limit((options.limit.clamp(1, isNumberWithTotal ? 25 : 50) as int));
           data = await limited;
           return data
               .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
@@ -191,8 +205,10 @@ class CardPrintRepository {
             pad3: numberInfo.pad3,
             namePattern: pattern,
           );
-          final limited =
-              _applyRarity(qb, options.rarity).limit((options.limit.clamp(1, 50) as int));
+          final limited = _applyRarity(
+            qb,
+            options.rarity,
+          ).limit((options.limit.clamp(1, 50) as int));
           data = await limited;
           return data
               .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
@@ -208,15 +224,19 @@ class CardPrintRepository {
         }
 
         if (mode == 'set+name') {
-          final pattern = nameRemainder.isNotEmpty ? '%$nameRemainder%' : '%$trimmed%';
+          final pattern = nameRemainder.isNotEmpty
+              ? '%$nameRemainder%'
+              : '%$trimmed%';
           final qb = _buildSetNameQuery(
             client: client,
             setCode: setCode,
             namePattern: pattern,
             sort: options.sort,
           );
-          final limited =
-              _applyRarity(qb, options.rarity).limit((options.limit.clamp(1, 100) as int));
+          final limited = _applyRarity(
+            qb,
+            options.rarity,
+          ).limit((options.limit.clamp(1, 100) as int));
           data = await limited;
         } else {
           final qb = _buildNameOnlyQuery(
@@ -224,8 +244,10 @@ class CardPrintRepository {
             namePattern: '%$trimmed%',
             sort: options.sort,
           );
-          final limited =
-              _applyRarity(qb, options.rarity).limit(options.limit.clamp(1, searchLimit));
+          final limited = _applyRarity(
+            qb,
+            options.rarity,
+          ).limit(options.limit.clamp(1, searchLimit));
           data = await limited;
         }
       } else {
@@ -235,8 +257,10 @@ class CardPrintRepository {
           namePattern: '%$trimmed%',
           sort: options.sort,
         );
-        final limited =
-            _applyRarity(qb, options.rarity).limit(options.limit.clamp(1, searchLimit));
+        final limited = _applyRarity(
+          qb,
+          options.rarity,
+        ).limit(options.limit.clamp(1, searchLimit));
         data = await limited;
       }
 
@@ -297,10 +321,14 @@ class CardPrintRepository {
 
   static _TokenizedQuery _tokenize(String raw) {
     final lower = raw.toLowerCase();
-    List<String> rawTokens =
-        raw.split(RegExp(r'\s+|-')).where((p) => p.isNotEmpty).toList();
-    List<String> lowerTokens =
-        lower.split(RegExp(r'\s+|-')).where((p) => p.isNotEmpty).toList();
+    List<String> rawTokens = raw
+        .split(RegExp(r'\s+|-'))
+        .where((p) => p.isNotEmpty)
+        .toList();
+    List<String> lowerTokens = lower
+        .split(RegExp(r'\s+|-'))
+        .where((p) => p.isNotEmpty)
+        .toList();
 
     final gluedMatch = RegExp(r'^(\d+)(?:/\d+)?([A-Za-z].+)$').firstMatch(raw);
     if (gluedMatch != null) {
@@ -345,19 +373,35 @@ class CardPrintRepository {
       if (norm.isNotEmpty) {
         final pad3 = norm.padLeft(3, '0');
         final rawDigits = _rawNumberDigits(tokens.rawTokens[i]);
-        return _NumberCandidateInfo(index: i, norm: norm, pad3: pad3, rawDigits: rawDigits);
+        return _NumberCandidateInfo(
+          index: i,
+          norm: norm,
+          pad3: pad3,
+          rawDigits: rawDigits,
+        );
       }
     }
     if (isNumberWithTotal) {
       final norm = _normalizeCardNumber(rawQuery);
       final pad3 = norm.isNotEmpty ? norm.padLeft(3, '0') : '';
       final rawDigits = _rawNumberDigits(rawQuery);
-      return _NumberCandidateInfo(index: null, norm: norm, pad3: pad3, rawDigits: rawDigits);
+      return _NumberCandidateInfo(
+        index: null,
+        norm: norm,
+        pad3: pad3,
+        rawDigits: rawDigits,
+      );
     }
-    return const _NumberCandidateInfo(index: null, norm: null, pad3: '', rawDigits: '');
+    return const _NumberCandidateInfo(
+      index: null,
+      norm: null,
+      pad3: '',
+      rawDigits: '',
+    );
   }
 
-  static bool _looksLikeCode(String s) => RegExp(r'^[a-z]{2,4}\d*$').hasMatch(s);
+  static bool _looksLikeCode(String s) =>
+      RegExp(r'^[a-z]{2,4}\d*$').hasMatch(s);
 
   static int? _extractSetIndex(_TokenizedQuery tokens) {
     if (tokens.lowerTokens.isEmpty) return null;
@@ -439,7 +483,9 @@ class CardPrintRepository {
         .from('card_prints')
         .select(_cardPrintSelect)
         .eq('set_code', setCode)
-        .or('number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3')
+        .or(
+          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+        )
         .order(sort, ascending: true);
   }
 
@@ -463,7 +509,9 @@ class CardPrintRepository {
     return client
         .from('card_prints')
         .select(_cardPrintSelect)
-        .or('number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3')
+        .or(
+          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+        )
         .order('set_code', ascending: true)
         .order('number_plain', ascending: true);
   }
@@ -478,7 +526,9 @@ class CardPrintRepository {
         .from('card_prints')
         .select(_cardPrintSelect)
         .ilike('name', namePattern)
-        .or('number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3')
+        .or(
+          'number_plain.eq.$normNum,number_plain.eq.$pad3,number.eq.$normNum,number.eq.$pad3',
+        )
         .order('name', ascending: true);
   }
 
@@ -529,7 +579,11 @@ class CardPrintRepository {
       );
       final setIndex = _extractSetIndex(tokenized);
       final setToken = setIndex != null ? tokenized.rawTokens[setIndex] : '';
-      final names = _extractNameTokens(tokenized, numberIndex: numInfo.index, setIndex: setIndex);
+      final names = _extractNameTokens(
+        tokenized,
+        numberIndex: numInfo.index,
+        setIndex: setIndex,
+      );
       debugPrint(
         '[search-parse] "$sample" -> number=${numInfo.norm ?? ''}/${numInfo.pad3} '
         'set=$setToken names=${names.join(' ')} tokens=${tokenized.rawTokens.join('|')}',
@@ -580,7 +634,12 @@ class _TokenizedQuery {
 }
 
 class _NumberCandidateInfo {
-  const _NumberCandidateInfo({this.index, this.norm, this.pad3 = '', this.rawDigits = ''});
+  const _NumberCandidateInfo({
+    this.index,
+    this.norm,
+    this.pad3 = '',
+    this.rawDigits = '',
+  });
   final int? index;
   final String? norm;
   final String pad3;
