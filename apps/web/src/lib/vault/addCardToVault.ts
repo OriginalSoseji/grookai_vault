@@ -1,6 +1,6 @@
 import "server-only";
 
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 
 type AddCardToVaultParams = {
   client: SupabaseClient;
@@ -13,6 +13,18 @@ type AddCardToVaultParams = {
 };
 
 export type AddCardToVaultResult = "added" | "incremented" | "exists";
+
+function formatVaultWriteError(step: string, error: PostgrestError) {
+  const parts = [
+    `[${step}]`,
+    error.message,
+    error.code ? `code=${error.code}` : null,
+    error.details ? `details=${error.details}` : null,
+    error.hint ? `hint=${error.hint}` : null,
+  ].filter((value): value is string => Boolean(value));
+
+  return parts.join(" | ");
+}
 
 export async function addCardToVault({
   client,
@@ -31,7 +43,7 @@ export async function addCardToVault({
     .maybeSingle();
 
   if (existingError) {
-    throw existingError;
+    throw new Error(formatVaultWriteError("vault_items.select-existing", existingError));
   }
 
   if (existing) {
@@ -46,7 +58,7 @@ export async function addCardToVault({
       .eq("id", existing.id);
 
     if (updateError) {
-      throw updateError;
+      throw new Error(formatVaultWriteError("vault_items.update-existing", updateError));
     }
 
     return "incremented";
@@ -69,7 +81,7 @@ export async function addCardToVault({
       return "exists";
     }
 
-    throw insertError;
+    throw new Error(formatVaultWriteError("vault_items.insert", insertError));
   }
 
   return "added";

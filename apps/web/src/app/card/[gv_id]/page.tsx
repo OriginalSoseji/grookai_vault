@@ -28,16 +28,19 @@ function formatPrintedTotal(number: string, printedTotal?: number) {
 
 type VaultStatus = "added" | "incremented" | "exists" | "signin" | "not-found" | "error";
 
-function buildCardHref(gvId: string, vaultStatus?: VaultStatus) {
+function buildCardHref(gvId: string, vaultStatus?: VaultStatus, vaultDetail?: string) {
   if (!vaultStatus) {
     return `/card/${encodeURIComponent(gvId)}`;
   }
 
   const params = new URLSearchParams({ vault: vaultStatus });
+  if (vaultDetail) {
+    params.set("vault_detail", vaultDetail.slice(0, 500));
+  }
   return `/card/${encodeURIComponent(gvId)}?${params.toString()}`;
 }
 
-function getVaultMessage(status?: string) {
+function getVaultMessage(status?: string, detail?: string) {
   switch (status) {
     case "added":
       return {
@@ -73,7 +76,7 @@ function getVaultMessage(status?: string) {
       return {
         tone: "error" as const,
         title: "Vault add failed",
-        body: "An unexpected error occurred while adding this card to your vault.",
+        body: detail?.trim() || "An unexpected error occurred while adding this card to your vault.",
       };
     default:
       return null;
@@ -133,7 +136,7 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { vault?: string };
+  searchParams?: { vault?: string; vault_detail?: string };
 }) {
   const supabase = createServerComponentClient();
   const [{ data: authData }, card, adjacentCards] = await Promise.all([
@@ -175,8 +178,20 @@ export default async function CardPage({
         imageUrl: resolvedCard.image_url,
       });
     } catch (error) {
-      console.error("[vault:add] addToVaultAction failed", error);
-      redirect(buildCardHref(resolvedCard.gv_id, "error"));
+      const detail =
+        error instanceof Error
+          ? error.message
+          : typeof error === "object" && error !== null && "message" in error
+            ? String(error.message)
+            : "Unknown vault add error";
+      console.error("[vault:add] addToVaultAction failed", {
+        userId: user.id,
+        gvId: resolvedCard.gv_id,
+        cardId: resolvedCard.id,
+        detail,
+        error,
+      });
+      redirect(buildCardHref(resolvedCard.gv_id, "error", detail));
     }
 
     redirect(buildCardHref(resolvedCard.gv_id, result));
@@ -184,7 +199,7 @@ export default async function CardPage({
 
   const user = authData.user;
   const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`;
-  const vaultMessage = getVaultMessage(searchParams?.vault);
+  const vaultMessage = getVaultMessage(searchParams?.vault, searchParams?.vault_detail);
   const vaultMessageToneClasses =
     vaultMessage?.tone === "success"
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
