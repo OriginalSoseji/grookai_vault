@@ -245,6 +245,7 @@ export function VaultCollectionView({
 }: VaultCollectionViewProps) {
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
+  const [searchQuery, setSearchQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [itemErrors, setItemErrors] = useState<Record<string, string>>({});
   const [activeView, setActiveView] = useState<SmartViewKey>("all");
@@ -317,6 +318,21 @@ export function VaultCollectionView({
     { key: "by-set", label: "By Set" },
     { key: "pokemon", label: "Pokémon" },
   ];
+
+  function applySearch(sourceItems: VaultCardData[]) {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) {
+      return sourceItems;
+    }
+
+    return sourceItems.filter((item) => {
+      const name = item.name?.toLowerCase() ?? "";
+      const set = item.set_code?.toLowerCase() ?? "";
+      const number = item.number?.toLowerCase() ?? "";
+
+      return name.includes(query) || set.includes(query) || number.includes(query);
+    });
+  }
 
   function handleQuantityChange(itemId: string, type: VaultQuantityMutationInput["type"]) {
     if (pendingItemId) {
@@ -401,24 +417,37 @@ export function VaultCollectionView({
   let vaultContent: ReactNode;
 
   if (activeView === "duplicates") {
+    const filteredDuplicateItems = applySearch(duplicateItems);
     vaultContent =
-      duplicateItems.length > 0
-        ? renderVaultGrid(duplicateItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+      filteredDuplicateItems.length > 0
+        ? renderVaultGrid(filteredDuplicateItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />
           );
   } else if (activeView === "recent") {
+    const filteredRecentItems = applySearch(recentItems);
     vaultContent =
-      recentItems.length > 0
-        ? renderVaultGrid(recentItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+      filteredRecentItems.length > 0
+        ? renderVaultGrid(filteredRecentItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
           );
   } else if (activeView === "by-set") {
+    const filteredBySetGroups = bySetGroups
+      .map((group) => ({
+        ...group,
+        items: applySearch(group.items),
+      }))
+      .filter((group) => group.items.length > 0);
+
     vaultContent =
-      bySetGroups.length > 0 ? (
+      filteredBySetGroups.length > 0 ? (
         <div className="space-y-8">
-          {bySetGroups.map((group) => (
+          {filteredBySetGroups.map((group) => (
             <section key={group.setCode} className="space-y-4">
               <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/55 px-5 py-4">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
@@ -435,6 +464,8 @@ export function VaultCollectionView({
             </section>
           ))}
         </div>
+      ) : searchQuery.trim().length > 0 ? (
+        <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
       ) : (
         <ViewEmptyState title="No cards found for this view." body="Set groups will appear as your collection grows." />
       );
@@ -447,7 +478,13 @@ export function VaultCollectionView({
       />
     );
   } else {
-    vaultContent = renderVaultGrid(items, pendingItemId, itemErrors, handleQuantityChange, changeCondition);
+    const filteredItems = applySearch(items);
+    vaultContent =
+      filteredItems.length > 0 ? (
+        renderVaultGrid(filteredItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+      ) : (
+        <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+      );
   }
 
   return (
@@ -509,6 +546,25 @@ export function VaultCollectionView({
           <div className="space-y-1.5">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Vault Cards</h2>
             <p className="text-sm text-slate-600">Cards currently in your collection.</p>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <input
+              type="text"
+              placeholder="Search your vault..."
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300 sm:max-w-md"
+            />
+            {searchQuery.trim().length > 0 ? (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+              >
+                Clear search
+              </button>
+            ) : null}
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-2">
