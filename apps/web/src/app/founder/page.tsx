@@ -6,6 +6,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+const FOUNDER_EMAIL = "ccabrl@gmail.com";
 
 type VaultAnalyticsRow = {
   id: string;
@@ -259,6 +260,10 @@ export default async function FounderPage() {
 
   if (!user) {
     redirect(`/login?next=${encodeURIComponent("/founder")}`);
+  }
+
+  if (!user.email || user.email.toLowerCase() !== FOUNDER_EMAIL.toLowerCase()) {
+    redirect("/");
   }
 
   const [vaultResponse, recentResponse, conditionLookupResponse] = await Promise.all([
