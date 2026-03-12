@@ -9,6 +9,7 @@ import {
   changeVaultItemQuantityAction,
   type VaultQuantityMutationInput,
 } from "@/lib/vault/changeVaultItemQuantityAction";
+import type { ReactNode } from "react";
 
 export type RecentCardData = {
   id: string;
@@ -19,6 +20,13 @@ export type RecentCardData = {
   number: string;
   created_at: string | null;
   image_url?: string;
+};
+
+type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon";
+
+type SetGroup = {
+  setCode: string;
+  items: VaultCardData[];
 };
 
 function formatTimeAgo(value: string | null) {
@@ -103,6 +111,71 @@ function MetricBlock({
   );
 }
 
+function SmartViewButton({
+  label,
+  count,
+  selected,
+  onClick,
+}: {
+  label: string;
+  count?: number;
+  selected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+        selected
+          ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
+          : "border border-transparent text-slate-500 hover:border-slate-200 hover:bg-white/70 hover:text-slate-900"
+      }`}
+    >
+      <span>{label}</span>
+      {typeof count === "number" ? <span className="ml-1.5 text-slate-400">{count}</span> : null}
+    </button>
+  );
+}
+
+function ViewEmptyState({
+  title,
+  body,
+}: {
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className="rounded-[2rem] border border-slate-200 bg-white px-6 py-10 text-center shadow-sm">
+      <div className="mx-auto max-w-xl space-y-3">
+        <h3 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h3>
+        <p className="text-sm leading-7 text-slate-600">{body}</p>
+      </div>
+    </div>
+  );
+}
+
+function renderVaultGrid(
+  items: VaultCardData[],
+  pendingItemId: string | null,
+  itemErrors: Record<string, string>,
+  onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
+) {
+  return (
+    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {items.map((item) => (
+        <VaultCardTile
+          key={item.id}
+          item={item}
+          isPending={pendingItemId === item.id}
+          error={itemErrors[item.id]}
+          onQuantityChange={onQuantityChange}
+        />
+      ))}
+    </div>
+  );
+}
+
 function applyOptimisticQuantityChange(
   items: VaultCardData[],
   itemId: string,
@@ -160,6 +233,7 @@ export function VaultCollectionView({
   const [items, setItems] = useState(initialItems);
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [itemErrors, setItemErrors] = useState<Record<string, string>>({});
+  const [activeView, setActiveView] = useState<SmartViewKey>("all");
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -191,6 +265,44 @@ export function VaultCollectionView({
       lastAdded: formatLastAdded(latestTimestamp),
     };
   }, [items]);
+
+  const recentItems = useMemo(
+    () =>
+      [...items].sort((left, right) => {
+        const leftTime = left.created_at ? new Date(left.created_at).getTime() : 0;
+        const rightTime = right.created_at ? new Date(right.created_at).getTime() : 0;
+        return rightTime - leftTime;
+      }),
+    [items],
+  );
+
+  const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
+
+  const bySetGroups = useMemo<SetGroup[]>(() => {
+    const groups = new Map<string, VaultCardData[]>();
+
+    for (const item of recentItems) {
+      const key = item.set_code.trim() || "Unknown set";
+      const current = groups.get(key) ?? [];
+      current.push(item);
+      groups.set(key, current);
+    }
+
+    return Array.from(groups.entries())
+      .map(([setCode, groupedItems]) => ({
+        setCode,
+        items: groupedItems,
+      }))
+      .sort((left, right) => left.setCode.localeCompare(right.setCode));
+  }, [recentItems]);
+
+  const smartViews: Array<{ key: SmartViewKey; label: string; count?: number }> = [
+    { key: "all", label: "All Cards", count: items.length },
+    { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
+    { key: "recent", label: "Recently Added", count: recentItems.length },
+    { key: "by-set", label: "By Set" },
+    { key: "pokemon", label: "Pokémon" },
+  ];
 
   function handleQuantityChange(itemId: string, type: VaultQuantityMutationInput["type"]) {
     if (pendingItemId) {
@@ -226,6 +338,58 @@ export function VaultCollectionView({
         setPendingItemId(null);
       }
     });
+  }
+
+  let vaultContent: ReactNode;
+
+  if (activeView === "duplicates") {
+    vaultContent =
+      duplicateItems.length > 0
+        ? renderVaultGrid(duplicateItems, pendingItemId, itemErrors, handleQuantityChange)
+        : (
+            <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />
+          );
+  } else if (activeView === "recent") {
+    vaultContent =
+      recentItems.length > 0
+        ? renderVaultGrid(recentItems, pendingItemId, itemErrors, handleQuantityChange)
+        : (
+            <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
+          );
+  } else if (activeView === "by-set") {
+    vaultContent =
+      bySetGroups.length > 0 ? (
+        <div className="space-y-8">
+          {bySetGroups.map((group) => (
+            <section key={group.setCode} className="space-y-4">
+              <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/55 px-5 py-4">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
+                <div className="flex items-end justify-between gap-4">
+                  <h3 className="text-lg font-semibold tracking-tight text-slate-950">{group.setCode}</h3>
+                  <p className="text-sm text-slate-500">
+                    {group.items.length} {group.items.length === 1 ? "card" : "cards"}
+                  </p>
+                </div>
+              </div>
+              <div className="pt-1">
+                {renderVaultGrid(group.items, pendingItemId, itemErrors, handleQuantityChange)}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <ViewEmptyState title="No cards found for this view." body="Set groups will appear as your collection grows." />
+      );
+  } else if (activeView === "pokemon") {
+    // TODO: Enable real Pokemon-centric smart views once the vault payload includes card type/species classification.
+    vaultContent = (
+      <ViewEmptyState
+        title="Pokémon views are on the way."
+        body="This view will appear once card-type metadata is available for vault items."
+      />
+    );
+  } else {
+    vaultContent = renderVaultGrid(items, pendingItemId, itemErrors, handleQuantityChange);
   }
 
   return (
@@ -273,17 +437,21 @@ export function VaultCollectionView({
             <p className="text-sm text-slate-600">Cards currently in your collection.</p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {items.map((item) => (
-              <VaultCardTile
-                key={item.id}
-                item={item}
-                isPending={pendingItemId === item.id}
-                error={itemErrors[item.id]}
-                onQuantityChange={handleQuantityChange}
-              />
-            ))}
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-2">
+            <div className="flex flex-wrap gap-1.5">
+              {smartViews.map((view) => (
+                <SmartViewButton
+                  key={view.key}
+                  label={view.label}
+                  count={view.count}
+                  selected={activeView === view.key}
+                  onClick={() => setActiveView(view.key)}
+                />
+              ))}
+            </div>
           </div>
+
+          {vaultContent}
         </section>
       )}
 
