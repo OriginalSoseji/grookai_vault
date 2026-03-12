@@ -1,6 +1,25 @@
 import GoogleSignInButton from "@/components/GoogleSignInButton";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
-export default function VaultPage() {
+export default async function VaultPage() {
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return (
+      <div className="flex min-h-[70vh] items-center justify-center py-10">
+        <section className="w-full max-w-2xl space-y-4 text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Vault (Authenticated)</h1>
+          <p className="text-base leading-7 text-slate-600">Your account is connected.</p>
+          <p className="text-sm text-slate-600">Vault tools are still under construction.</p>
+          <p className="text-sm text-slate-600">This confirms authentication is working.</p>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-[70vh] items-center justify-center py-10">
       <section className="w-full max-w-2xl space-y-10 text-center">
