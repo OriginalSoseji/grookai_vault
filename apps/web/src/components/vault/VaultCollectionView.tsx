@@ -383,6 +383,27 @@ export function VaultCollectionView({
   );
 
   const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
+  const pokemonSuggestionNames = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          items
+            .map((item) => item.name.trim())
+            .filter((name) => name.length > 0),
+        ),
+      ).sort((left, right) => left.localeCompare(right)),
+    [items],
+  );
+  const pokemonSuggestions = useMemo(() => {
+    const query = pokemonQuery.trim().toLowerCase();
+    if (!query) {
+      return [];
+    }
+
+    return pokemonSuggestionNames
+      .filter((name) => name.toLowerCase().includes(query))
+      .slice(0, 10);
+  }, [pokemonQuery, pokemonSuggestionNames]);
 
   const bySetGroups = useMemo<SetGroup[]>(() => {
     const groups = new Map<string, VaultCardData[]>();
@@ -634,6 +655,23 @@ export function VaultCollectionView({
             onChange={(event) => setPokemonQuery(event.target.value)}
             className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
           />
+
+          {pokemonSuggestions.length > 0 ? (
+            <div className="mt-3 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-sm">
+              <div className="divide-y divide-slate-100">
+                {pokemonSuggestions.map((name) => (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => setPokemonQuery(name)}
+                    className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-slate-700 transition hover:bg-slate-50 hover:text-slate-950"
+                  >
+                    <span className="truncate">{name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
 
         {filteredPokemonItems.length > 0 ? (
