@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
+import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
+import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const siteOrigin = getSiteOrigin();
   const title = `${profile.display_name} | Grookai Vault`;
-  const description = `${profile.display_name} collector profile on Grookai Vault.`;
+  const description = `${profile.display_name}'s public collection on Grookai Vault.`;
 
   return {
     title,
@@ -47,35 +51,50 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
     notFound();
   }
 
+  const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
+  const stats: PublicCollectorStat[] =
+    profile.vault_sharing_enabled && sharedCards.length > 0
+      ? [
+          { value: `${sharedCards.length}`, label: sharedCards.length === 1 ? "card in collection" : "cards in collection" },
+          { value: `${setCount}`, label: setCount === 1 ? "set represented" : "sets represented" },
+        ]
+      : [];
+
+  const description = profile.vault_sharing_enabled
+    ? "A collector profile and public collection showcase on Grookai Vault."
+    : "A collector profile on Grookai Vault. Collection sharing is not enabled yet.";
+
   return (
     <div className="space-y-8 py-8">
-      <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
-        <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Collector profile</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{profile.display_name}</h1>
-          <p className="text-sm font-medium tracking-[0.08em] text-slate-500">/u/{profile.slug}</p>
-          <p className="max-w-2xl text-base leading-7 text-slate-600">
-            This is the public collector identity surface for Grookai Vault.
-          </p>
-        </div>
-      </section>
+      <PublicCollectorHeader
+        displayName={profile.display_name}
+        slug={profile.slug}
+        description={description}
+        stats={stats}
+        activeView="collection"
+      />
 
-      <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="space-y-2">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Public profile</h2>
-            <p className="text-sm leading-7 text-slate-600">
-              This profile is publicly enabled and can be resolved by its collector slug.
-            </p>
+      <section className="space-y-4">
+        <div className="flex items-end justify-between gap-4">
+          <div className="space-y-1">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collection</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Public collection</h2>
           </div>
         </div>
-
-        <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Sharing</p>
-          <p className="mt-3 text-sm leading-7 text-slate-700">
-            {profile.vault_sharing_enabled ? "Shared collection is enabled." : "Shared collection is not enabled yet."}
-          </p>
-        </div>
+        {!profile.vault_sharing_enabled ? (
+          <PublicCollectionEmptyState
+            title="Collection not shared yet"
+            body="This collector has not enabled public collection sharing."
+          />
+        ) : sharedCards.length === 0 ? (
+          <PublicCollectionEmptyState
+            title="No cards shared yet"
+            body="This collector has not added any cards to their public collection yet."
+          />
+        ) : (
+          <PublicCollectionGrid cards={sharedCards} />
+        )}
       </section>
     </div>
   );
