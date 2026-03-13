@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
+import type { PublicProfileSettingsValues } from "@/lib/publicProfileSettings";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+type PublicProfileRow = {
+  slug: string | null;
+  display_name: string | null;
+  public_profile_enabled: boolean | null;
+  vault_sharing_enabled: boolean | null;
+};
 
 export default async function AccountPage() {
   const supabase = createServerComponentClient();
@@ -15,6 +24,20 @@ export default async function AccountPage() {
     redirect("/login?next=/account");
   }
 
+  const { data: profile, error: profileError } = await supabase
+    .from("public_profiles")
+    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  const profileRow = (profile ?? null) as PublicProfileRow | null;
+  const initialProfileValues: PublicProfileSettingsValues = {
+    slug: profileRow?.slug ?? "",
+    displayName: profileRow?.display_name ?? "",
+    publicProfileEnabled: Boolean(profileRow?.public_profile_enabled),
+    vaultSharingEnabled: Boolean(profileRow?.vault_sharing_enabled),
+  };
+
   return (
     <div className="space-y-8 py-8">
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -22,8 +45,8 @@ export default async function AccountPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Grookai Account</p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your account surface</h1>
           <p className="max-w-2xl text-base leading-7 text-slate-600">
-            This is the current account placeholder for authenticated navigation. It keeps account access distinct from
-            Vault while the broader account/settings surface is expanded.
+            Manage owner-only account settings here while Grookai&apos;s broader profile and sharing surfaces are being
+            built out.
           </p>
         </div>
       </section>
@@ -53,6 +76,12 @@ export default async function AccountPage() {
           </div>
         </div>
       </section>
+
+      <PublicProfileSettingsForm
+        initialValues={initialProfileValues}
+        hasExistingProfile={Boolean(profileRow)}
+        loadError={profileError?.message ?? null}
+      />
 
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-4">

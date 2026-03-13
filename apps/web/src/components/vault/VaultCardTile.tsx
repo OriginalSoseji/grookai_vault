@@ -17,6 +17,12 @@ export type VaultCardData = {
   effective_price: number | null;
   image_url?: string;
   created_at: string | null;
+  is_shared: boolean;
+  public_note: string | null;
+  show_personal_front: boolean;
+  show_personal_back: boolean;
+  has_front_photo: boolean;
+  has_back_photo: boolean;
 };
 
 const CONDITION_OPTIONS = ["NM", "LP", "MP", "HP", "DMG"];
@@ -38,12 +44,34 @@ function formatCurrency(value: number | null) {
 type VaultCardTileProps = {
   item: VaultCardData;
   isPending: boolean;
+  isSharePending: boolean;
+  isPublicFrontImagePending: boolean;
+  isPublicBackImagePending: boolean;
   error?: string;
+  shareError?: string;
+  publicCollectionHref?: string | null;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (condition: string) => void;
+  onShareToggle: (item: VaultCardData) => void;
+  onPublicNoteEdit: (item: VaultCardData) => void;
+  onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
 
-export function VaultCardTile({ item, isPending, error, onQuantityChange, onConditionChange }: VaultCardTileProps) {
+export function VaultCardTile({
+  item,
+  isPending,
+  isSharePending,
+  isPublicFrontImagePending,
+  isPublicBackImagePending,
+  error,
+  shareError,
+  publicCollectionHref,
+  onQuantityChange,
+  onConditionChange,
+  onShareToggle,
+  onPublicNoteEdit,
+  onPublicImageToggle,
+}: VaultCardTileProps) {
   return (
     <article className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(15,23,42,0.055)]">
       <Link href={`/card/${item.gv_id}`} className="block">
@@ -58,11 +86,22 @@ export function VaultCardTile({ item, isPending, error, onQuantityChange, onCond
 
       <div className="space-y-4 border-t border-slate-200 p-5">
         <div className="space-y-2">
-          <Link href={`/card/${item.gv_id}`} className="block">
-            <p className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
-              {item.name}
-            </p>
-          </Link>
+          <div className="flex items-start justify-between gap-3">
+            <Link href={`/card/${item.gv_id}`} className="block min-w-0 flex-1">
+              <p className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
+                {item.name}
+              </p>
+            </Link>
+            <span
+              className={`inline-flex shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${
+                item.is_shared
+                  ? "border border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border border-slate-200 bg-slate-100 text-slate-500"
+              }`}
+            >
+              {item.is_shared ? "Shared" : "Not shared"}
+            </span>
+          </div>
           <p className="text-sm text-slate-500">
             {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
               .filter(Boolean)
@@ -119,6 +158,84 @@ export function VaultCardTile({ item, isPending, error, onQuantityChange, onCond
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Value</p>
           <p className="mt-2 text-sm font-medium text-slate-900">{formatCurrency(item.effective_price)}</p>
+        </div>
+
+        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="space-y-1">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Share</p>
+              <p className="text-sm text-slate-600">{item.is_shared ? "Visible in your shared collection." : "Not shared publicly."}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => onShareToggle(item)}
+              disabled={isSharePending}
+              className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition ${
+                item.is_shared
+                  ? "border border-slate-300 bg-slate-950 text-white hover:bg-slate-800"
+                  : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
+              } disabled:cursor-not-allowed disabled:opacity-60`}
+            >
+              {isSharePending ? "Saving..." : item.is_shared ? "Shared" : "Share"}
+            </button>
+          </div>
+          {item.is_shared && publicCollectionHref ? (
+            <div className="mt-2">
+              <Link
+                href={publicCollectionHref}
+                className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+              >
+                View Public
+              </Link>
+            </div>
+          ) : null}
+          {item.is_shared ? (
+            <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
+              <div>
+                <button
+                  type="button"
+                  onClick={() => onPublicNoteEdit(item)}
+                  className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                >
+                  {item.public_note ? "Edit public note" : "Add public note"}
+                </button>
+                <p className="mt-1 text-xs text-slate-500">This note appears on your public shared card.</p>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Images</p>
+
+                <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_front_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
+                  <input
+                    type="checkbox"
+                    checked={item.show_personal_front}
+                    disabled={!item.has_front_photo || isPublicFrontImagePending}
+                    onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-medium text-slate-800">Show front photo</span>
+                    {!item.has_front_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
+                  </span>
+                </label>
+
+                <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_back_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
+                  <input
+                    type="checkbox"
+                    checked={item.show_personal_back}
+                    disabled={!item.has_back_photo || isPublicBackImagePending}
+                    onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-medium text-slate-800">Show back photo</span>
+                    {!item.has_back_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
+                  </span>
+                </label>
+              </div>
+            </div>
+          ) : null}
+          {shareError ? <p className="mt-2 text-xs text-slate-500">{shareError}</p> : null}
         </div>
 
         <div className="border-t border-slate-200 pt-3">

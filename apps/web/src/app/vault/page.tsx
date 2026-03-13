@@ -27,6 +27,26 @@ type VaultItemRow = {
   created_at: string | null;
 };
 
+type SharedCardRow = {
+  card_id: string | null;
+  gv_id: string | null;
+  is_shared: boolean | null;
+  public_note: string | null;
+  show_personal_front: boolean | null;
+  show_personal_back: boolean | null;
+};
+
+type UserCardImageRow = {
+  vault_item_id: string | null;
+  side: string | null;
+};
+
+type PublicProfileRow = {
+  slug: string | null;
+  public_profile_enabled: boolean | null;
+  vault_sharing_enabled: boolean | null;
+};
+
 type RecentItemRow = {
   id: string;
   gv_id: string | null;
@@ -40,24 +60,54 @@ type RecentItemRow = {
   image_alt_url: string | null;
 };
 
-function normalizeVaultItems(rows: VaultItemRow[] | null | undefined): VaultCardData[] {
+function normalizeVaultItems(
+  rows: VaultItemRow[] | null | undefined,
+  sharedCardIds: Set<string>,
+  sharedGvIds: Set<string>,
+  sharedNotesByCardId: Map<string, string | null>,
+  sharedNotesByGvId: Map<string, string | null>,
+  sharedFrontImageCardIds: Set<string>,
+  sharedFrontImageGvIds: Set<string>,
+  sharedBackImageCardIds: Set<string>,
+  sharedBackImageGvIds: Set<string>,
+  vaultFrontPhotoIds: Set<string>,
+  vaultBackPhotoIds: Set<string>,
+): VaultCardData[] {
   return (rows ?? [])
     .filter((row): row is VaultItemRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
-    .map((row) => ({
-      id: row.id,
-      vault_item_id: row.vault_item_id ?? row.id,
-      card_id: row.card_id ?? "",
-      gv_id: row.gv_id,
-      name: row.name?.trim() || "Unknown card",
-      set_code: row.set_code?.trim() || "Unknown set",
-      set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
-      number: row.number?.trim() || "—",
-      condition_label: row.condition_label?.trim() || "Unknown",
-      quantity: typeof row.quantity === "number" ? row.quantity : 0,
-      effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
-      image_url: getBestPublicCardImageUrl(row.image_url),
-      created_at: row.created_at,
-    }));
+    .map((row) => {
+      const noteFromCardId =
+        typeof row.card_id === "string" && row.card_id.length > 0 ? (sharedNotesByCardId.get(row.card_id) ?? null) : null;
+      const vaultItemId = row.vault_item_id ?? row.id;
+
+      return {
+        id: row.id,
+        vault_item_id: vaultItemId,
+        card_id: row.card_id ?? "",
+        gv_id: row.gv_id,
+        name: row.name?.trim() || "Unknown card",
+        set_code: row.set_code?.trim() || "Unknown set",
+        set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
+        number: row.number?.trim() || "—",
+        condition_label: row.condition_label?.trim() || "Unknown",
+        quantity: typeof row.quantity === "number" ? row.quantity : 0,
+        effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
+        image_url: getBestPublicCardImageUrl(row.image_url),
+        created_at: row.created_at,
+        is_shared:
+          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedCardIds.has(row.card_id)) ||
+          sharedGvIds.has(row.gv_id),
+        public_note: noteFromCardId ?? sharedNotesByGvId.get(row.gv_id) ?? null,
+        show_personal_front:
+          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedFrontImageCardIds.has(row.card_id)) ||
+          sharedFrontImageGvIds.has(row.gv_id),
+        show_personal_back:
+          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedBackImageCardIds.has(row.card_id)) ||
+          sharedBackImageGvIds.has(row.gv_id),
+        has_front_photo: vaultFrontPhotoIds.has(vaultItemId),
+        has_back_photo: vaultBackPhotoIds.has(vaultItemId),
+      };
+    });
 }
 
 function normalizeRecentItems(rows: RecentItemRow[] | null | undefined): RecentCardData[] {
@@ -108,7 +158,13 @@ export default async function VaultPage() {
     );
   }
 
-  const [{ data: itemsData, error: itemsError }, { data: recentData, error: recentError }] = await Promise.all([
+  const [
+    { data: itemsData, error: itemsError },
+    { data: recentData, error: recentError },
+    { data: sharedData, error: sharedError },
+    { data: profileData, error: profileError },
+    { data: imageData, error: imageError },
+  ] = await Promise.all([
     supabase
       .from("v_vault_items_web")
       .select("id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,quantity,effective_price,image_url,created_at")
@@ -120,10 +176,102 @@ export default async function VaultPage() {
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(10),
+    supabase
+      .from("shared_cards")
+      .select("card_id,gv_id,is_shared,public_note,show_personal_front,show_personal_back")
+      .eq("user_id", user.id),
+    supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", user.id).maybeSingle(),
+    supabase.from("user_card_images").select("vault_item_id,side").eq("user_id", user.id),
   ]);
 
-  const items = normalizeVaultItems((itemsData ?? null) as VaultItemRow[] | null);
-  const recent = normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null);
+  const sharedRows = (sharedData ?? []) as SharedCardRow[];
+  const sharedCardIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => row.card_id ?? "")
+      .filter(Boolean),
+  );
+  const sharedGvIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => row.gv_id ?? "")
+      .filter(Boolean),
+  );
+  const sharedNotesByCardId = new Map(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => [row.card_id ?? "", row.public_note ?? null] as const)
+      .filter(([cardId]) => Boolean(cardId)),
+  );
+  const sharedNotesByGvId = new Map(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => [row.gv_id ?? "", row.public_note ?? null] as const)
+      .filter(([gvId]) => Boolean(gvId)),
+  );
+  const sharedFrontImageCardIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false && row.show_personal_front === true)
+      .map((row) => row.card_id ?? "")
+      .filter(Boolean),
+  );
+  const sharedFrontImageGvIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false && row.show_personal_front === true)
+      .map((row) => row.gv_id ?? "")
+      .filter(Boolean),
+  );
+  const sharedBackImageCardIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false && row.show_personal_back === true)
+      .map((row) => row.card_id ?? "")
+      .filter(Boolean),
+  );
+  const sharedBackImageGvIds = new Set(
+    sharedRows
+      .filter((row) => row.is_shared !== false && row.show_personal_back === true)
+      .map((row) => row.gv_id ?? "")
+      .filter(Boolean),
+  );
+  const userCardImageRows = (imageData ?? []) as UserCardImageRow[];
+  const vaultFrontPhotoIds = new Set(
+    userCardImageRows
+      .filter((row) => row.side === "front")
+      .map((row) => row.vault_item_id ?? "")
+      .filter(Boolean),
+  );
+  const vaultBackPhotoIds = new Set(
+    userCardImageRows
+      .filter((row) => row.side === "back")
+      .map((row) => row.vault_item_id ?? "")
+      .filter(Boolean),
+  );
 
-  return <VaultCollectionView initialItems={items} recent={recent} itemsError={itemsError?.message} recentError={recentError?.message} />;
+  const items = normalizeVaultItems(
+    (itemsData ?? null) as VaultItemRow[] | null,
+    sharedCardIds,
+    sharedGvIds,
+    sharedNotesByCardId,
+    sharedNotesByGvId,
+    sharedFrontImageCardIds,
+    sharedFrontImageGvIds,
+    sharedBackImageCardIds,
+    sharedBackImageGvIds,
+    vaultFrontPhotoIds,
+    vaultBackPhotoIds,
+  );
+  const recent = normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null);
+  const profile = (profileData ?? null) as PublicProfileRow | null;
+  const publicCollectionHref =
+    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
+
+  return (
+    <VaultCollectionView
+      initialItems={items}
+      recent={recent}
+      itemsError={itemsError?.message ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
+      recentError={recentError?.message}
+      publicCollectionHref={publicCollectionHref}
+    />
+  );
 }

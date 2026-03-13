@@ -9,6 +9,9 @@ import {
   changeVaultItemQuantityAction,
   type VaultQuantityMutationInput,
 } from "@/lib/vault/changeVaultItemQuantityAction";
+import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleSharedCardPublicImageAction";
+import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
+import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
 import type { ReactNode } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -23,7 +26,7 @@ export type RecentCardData = {
   image_url?: string;
 };
 
-type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon";
+type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon" | "shared";
 
 type SetGroup = {
   setCode: string;
@@ -243,12 +246,120 @@ function ConfirmRemovalModal({
   );
 }
 
+function PublicNoteModal({
+  isOpen,
+  isPending,
+  noteValue,
+  error,
+  onNoteChange,
+  onCancel,
+  onSave,
+}: {
+  isOpen: boolean;
+  isPending: boolean;
+  noteValue: string;
+  error?: string | null;
+  onNoteChange: (value: string) => void;
+  onCancel: () => void;
+  onSave: () => void;
+}) {
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !isPending) {
+        onCancel();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, isPending, onCancel]);
+
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="vault-public-note-title"
+      onClick={() => {
+        if (!isPending) {
+          onCancel();
+        }
+      }}
+    >
+      <div
+        className="w-full max-w-lg rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl sm:p-7"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="space-y-3">
+          <h3 id="vault-public-note-title" className="text-2xl font-semibold tracking-tight text-slate-950">
+            Public note
+          </h3>
+          <p className="text-sm leading-7 text-slate-600">This note appears on your public shared card.</p>
+        </div>
+
+        <div className="mt-5 space-y-3">
+          <textarea
+            value={noteValue}
+            onChange={(event) => onNoteChange(event.target.value)}
+            rows={5}
+            disabled={isPending}
+            placeholder="Add a note collectors can see on your shared card."
+            className="w-full rounded-[1.25rem] border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          />
+          {error ? <p className="text-sm text-rose-700">{error}</p> : null}
+        </div>
+
+        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            onClick={onCancel}
+            disabled={isPending}
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={isPending}
+            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+          >
+            {isPending ? "Saving..." : "Save note"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function renderVaultGrid(
   items: VaultCardData[],
   pendingItemId: string | null,
+  pendingShareItemId: string | null,
+  pendingPublicImageKey: string | null,
   itemErrors: Record<string, string>,
+  shareErrors: Record<string, string>,
+  publicCollectionHref: string | null,
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
   onConditionChange: (item: VaultCardData, condition: string) => void,
+  onShareToggle: (item: VaultCardData) => void,
+  onPublicNoteEdit: (item: VaultCardData) => void,
+  onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
 ) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -257,9 +368,17 @@ function renderVaultGrid(
           key={item.id}
           item={item}
           isPending={pendingItemId === item.vault_item_id}
+          isSharePending={pendingShareItemId === item.vault_item_id}
+          isPublicFrontImagePending={pendingPublicImageKey === `${item.vault_item_id}:front`}
+          isPublicBackImagePending={pendingPublicImageKey === `${item.vault_item_id}:back`}
           error={itemErrors[item.vault_item_id]}
+          shareError={shareErrors[item.vault_item_id]}
+          publicCollectionHref={item.is_shared ? publicCollectionHref : null}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
+          onShareToggle={onShareToggle}
+          onPublicNoteEdit={onPublicNoteEdit}
+          onPublicImageToggle={onPublicImageToggle}
         />
       ))}
     </div>
@@ -317,11 +436,54 @@ function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, 
   );
 }
 
+function applyOptimisticShareChange(items: VaultCardData[], itemId: string, nextShared: boolean) {
+  return items.map((item) =>
+    item.vault_item_id === itemId
+      ? {
+          ...item,
+          is_shared: nextShared,
+          public_note: nextShared ? item.public_note : null,
+          show_personal_front: nextShared ? item.show_personal_front : false,
+          show_personal_back: nextShared ? item.show_personal_back : false,
+        }
+      : item,
+  );
+}
+
+function applyOptimisticPublicNoteChange(items: VaultCardData[], itemId: string, publicNote: string | null) {
+  return items.map((item) =>
+    item.vault_item_id === itemId
+      ? {
+          ...item,
+          public_note: publicNote,
+        }
+      : item,
+  );
+}
+
+function applyOptimisticPublicImageChange(
+  items: VaultCardData[],
+  itemId: string,
+  side: "front" | "back",
+  enabled: boolean,
+) {
+  return items.map((item) =>
+    item.vault_item_id === itemId
+      ? {
+          ...item,
+          show_personal_front: side === "front" ? enabled : item.show_personal_front,
+          show_personal_back: side === "back" ? enabled : item.show_personal_back,
+        }
+      : item,
+  );
+}
+
 type VaultCollectionViewProps = {
   initialItems: VaultCardData[];
   recent: RecentCardData[];
   itemsError?: string | null;
   recentError?: string | null;
+  publicCollectionHref?: string | null;
 };
 
 export function VaultCollectionView({
@@ -329,14 +491,22 @@ export function VaultCollectionView({
   recent,
   itemsError,
   recentError,
+  publicCollectionHref = null,
 }: VaultCollectionViewProps) {
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
+  const [pendingShareItemId, setPendingShareItemId] = useState<string | null>(null);
+  const [pendingPublicImageKey, setPendingPublicImageKey] = useState<string | null>(null);
+  const [pendingPublicNoteItemId, setPendingPublicNoteItemId] = useState<string | null>(null);
   const [confirmRemovalItemId, setConfirmRemovalItemId] = useState<string | null>(null);
+  const [publicNoteItemId, setPublicNoteItemId] = useState<string | null>(null);
+  const [publicNoteDraft, setPublicNoteDraft] = useState("");
+  const [publicNoteError, setPublicNoteError] = useState<string | null>(null);
   const [itemErrors, setItemErrors] = useState<Record<string, string>>({});
+  const [shareErrors, setShareErrors] = useState<Record<string, string>>({});
   const [activeView, setActiveView] = useState<SmartViewKey>("all");
   const [, startTransition] = useTransition();
 
@@ -344,8 +514,15 @@ export function VaultCollectionView({
     setItems(initialItems);
     setPokemonQuery("");
     setPendingItemId(null);
+    setPendingShareItemId(null);
+    setPendingPublicImageKey(null);
+    setPendingPublicNoteItemId(null);
     setConfirmRemovalItemId(null);
+    setPublicNoteItemId(null);
+    setPublicNoteDraft("");
+    setPublicNoteError(null);
     setItemErrors({});
+    setShareErrors({});
   }, [initialItems]);
 
   const summary = useMemo(() => {
@@ -383,6 +560,7 @@ export function VaultCollectionView({
   );
 
   const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
+  const sharedItems = useMemo(() => items.filter((item) => item.is_shared), [items]);
   const pokemonSuggestionNames = useMemo(
     () =>
       Array.from(
@@ -426,6 +604,7 @@ export function VaultCollectionView({
 
   const smartViews: Array<{ key: SmartViewKey; label: string; count?: number }> = [
     { key: "all", label: "All Cards", count: items.length },
+    { key: "shared", label: "Shared", count: sharedItems.length },
     { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
     { key: "recent", label: "Recently Added", count: recentItems.length },
     { key: "by-set", label: "By Set" },
@@ -578,13 +757,186 @@ export function VaultCollectionView({
     });
   }
 
+  function handleShareToggle(item: VaultCardData) {
+    if (pendingShareItemId || pendingItemId || pendingPublicImageKey) {
+      return;
+    }
+
+    const currentItems = items;
+    const nextShared = !item.is_shared;
+
+    setShareErrors((current) => {
+      const next = { ...current };
+      delete next[item.vault_item_id];
+      return next;
+    });
+    setPendingShareItemId(item.vault_item_id);
+    setItems(applyOptimisticShareChange(currentItems, item.vault_item_id, nextShared));
+
+    startTransition(async () => {
+      try {
+        const result = await toggleSharedCardAction({
+          itemId: item.vault_item_id,
+          nextShared,
+        });
+
+        if (!result.ok) {
+          setItems(currentItems);
+          setShareErrors((current) => ({
+            ...current,
+            [item.vault_item_id]: result.message,
+          }));
+          return;
+        }
+
+        setItems((current) => applyOptimisticShareChange(current, item.vault_item_id, result.status === "shared"));
+        router.refresh();
+      } catch (error) {
+        setItems(currentItems);
+        setShareErrors((current) => ({
+          ...current,
+          [item.vault_item_id]: "Couldn’t update shared state.",
+        }));
+      } finally {
+        setPendingShareItemId(null);
+      }
+    });
+  }
+
+  function handlePublicImageToggle(item: VaultCardData, side: "front" | "back", enabled: boolean) {
+    if (!item.is_shared || pendingPublicImageKey || pendingShareItemId || pendingItemId) {
+      return;
+    }
+
+    const hasPhoto = side === "front" ? item.has_front_photo : item.has_back_photo;
+    if (enabled && !hasPhoto) {
+      setShareErrors((current) => ({
+        ...current,
+        [item.vault_item_id]: "Upload a card photo in your vault to enable this.",
+      }));
+      return;
+    }
+
+    const currentItems = items;
+    const pendingKey = `${item.vault_item_id}:${side}`;
+
+    setShareErrors((current) => {
+      const next = { ...current };
+      delete next[item.vault_item_id];
+      return next;
+    });
+    setPendingPublicImageKey(pendingKey);
+    setItems(applyOptimisticPublicImageChange(currentItems, item.vault_item_id, side, enabled));
+
+    startTransition(async () => {
+      try {
+        const result = await toggleSharedCardPublicImageAction({
+          cardId: item.card_id,
+          side,
+          enabled,
+        });
+
+        if (!result.ok) {
+          setItems(currentItems);
+          setShareErrors((current) => ({
+            ...current,
+            [item.vault_item_id]: result.message,
+          }));
+          return;
+        }
+
+        setItems((current) => applyOptimisticPublicImageChange(current, item.vault_item_id, side, result.enabled));
+        router.refresh();
+      } catch (error) {
+        setItems(currentItems);
+        setShareErrors((current) => ({
+          ...current,
+          [item.vault_item_id]: "Couldn’t update public image settings.",
+        }));
+      } finally {
+        setPendingPublicImageKey(null);
+      }
+    });
+  }
+
+  function handleOpenPublicNote(item: VaultCardData) {
+    if (!item.is_shared || pendingPublicNoteItemId || pendingShareItemId || pendingPublicImageKey) {
+      return;
+    }
+
+    setPublicNoteItemId(item.vault_item_id);
+    setPublicNoteDraft(item.public_note ?? "");
+    setPublicNoteError(null);
+  }
+
+  function handleCancelPublicNote() {
+    if (pendingPublicNoteItemId) {
+      return;
+    }
+
+    setPublicNoteItemId(null);
+    setPublicNoteDraft("");
+    setPublicNoteError(null);
+  }
+
+  function handleSavePublicNote() {
+    if (!publicNoteItemId || pendingPublicNoteItemId) {
+      return;
+    }
+
+    const currentItems = items;
+    const nextPublicNote = publicNoteDraft.trim().length > 0 ? publicNoteDraft.trim() : null;
+
+    setPendingPublicNoteItemId(publicNoteItemId);
+    setPublicNoteError(null);
+    setItems(applyOptimisticPublicNoteChange(currentItems, publicNoteItemId, nextPublicNote));
+
+    startTransition(async () => {
+      try {
+        const result = await saveSharedCardPublicNoteAction({
+          itemId: publicNoteItemId,
+          note: publicNoteDraft,
+        });
+
+        if (!result.ok) {
+          setItems(currentItems);
+          setPublicNoteError(result.message);
+          return;
+        }
+
+        setItems((current) => applyOptimisticPublicNoteChange(current, publicNoteItemId, result.publicNote));
+        setPublicNoteItemId(null);
+        setPublicNoteDraft("");
+        router.refresh();
+      } catch (error) {
+        setItems(currentItems);
+        setPublicNoteError("Couldn’t save public note.");
+      } finally {
+        setPendingPublicNoteItemId(null);
+      }
+    });
+  }
+
   let vaultContent: ReactNode;
 
   if (activeView === "duplicates") {
     const filteredDuplicateItems = applySearch(duplicateItems);
     vaultContent =
       filteredDuplicateItems.length > 0
-        ? renderVaultGrid(filteredDuplicateItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        ? renderVaultGrid(
+            filteredDuplicateItems,
+            pendingItemId,
+            pendingShareItemId,
+            pendingPublicImageKey,
+            itemErrors,
+            shareErrors,
+            publicCollectionHref,
+            handleQuantityChange,
+            changeCondition,
+            handleShareToggle,
+            handleOpenPublicNote,
+            handlePublicImageToggle,
+          )
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
@@ -594,11 +946,47 @@ export function VaultCollectionView({
     const filteredRecentItems = applySearch(recentItems);
     vaultContent =
       filteredRecentItems.length > 0
-        ? renderVaultGrid(filteredRecentItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        ? renderVaultGrid(
+            filteredRecentItems,
+            pendingItemId,
+            pendingShareItemId,
+            pendingPublicImageKey,
+            itemErrors,
+            shareErrors,
+            publicCollectionHref,
+            handleQuantityChange,
+            changeCondition,
+            handleShareToggle,
+            handleOpenPublicNote,
+            handlePublicImageToggle,
+          )
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
+          );
+  } else if (activeView === "shared") {
+    const filteredSharedItems = applySearch(sharedItems);
+    vaultContent =
+      filteredSharedItems.length > 0
+        ? renderVaultGrid(
+            filteredSharedItems,
+            pendingItemId,
+            pendingShareItemId,
+            pendingPublicImageKey,
+            itemErrors,
+            shareErrors,
+            publicCollectionHref,
+            handleQuantityChange,
+            changeCondition,
+            handleShareToggle,
+            handleOpenPublicNote,
+            handlePublicImageToggle,
+          )
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+        : (
+            <ViewEmptyState title="No shared cards yet" body="Cards you share from your vault will appear here." />
           );
   } else if (activeView === "by-set") {
     const filteredBySetGroups = bySetGroups
@@ -626,7 +1014,20 @@ export function VaultCollectionView({
                 </div>
               </div>
               <div className="pt-1">
-                {renderVaultGrid(group.items, pendingItemId, itemErrors, handleQuantityChange, changeCondition)}
+                {renderVaultGrid(
+                  group.items,
+                  pendingItemId,
+                  pendingShareItemId,
+                  pendingPublicImageKey,
+                  itemErrors,
+                  shareErrors,
+                  publicCollectionHref,
+                  handleQuantityChange,
+                  changeCondition,
+                  handleShareToggle,
+                  handleOpenPublicNote,
+                  handlePublicImageToggle,
+                )}
               </div>
             </section>
           ))}
@@ -675,7 +1076,20 @@ export function VaultCollectionView({
         </div>
 
         {filteredPokemonItems.length > 0 ? (
-          renderVaultGrid(filteredPokemonItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+          renderVaultGrid(
+            filteredPokemonItems,
+            pendingItemId,
+            pendingShareItemId,
+            pendingPublicImageKey,
+            itemErrors,
+            shareErrors,
+            publicCollectionHref,
+            handleQuantityChange,
+            changeCondition,
+            handleShareToggle,
+            handleOpenPublicNote,
+            handlePublicImageToggle,
+          )
         ) : (
           <ViewEmptyState title="No matching cards" body="Try a different Pokémon name." />
         )}
@@ -685,7 +1099,20 @@ export function VaultCollectionView({
     const filteredItems = applySearch(items);
     vaultContent =
       filteredItems.length > 0 ? (
-        renderVaultGrid(filteredItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        renderVaultGrid(
+          filteredItems,
+          pendingItemId,
+          pendingShareItemId,
+          pendingPublicImageKey,
+          itemErrors,
+          shareErrors,
+          publicCollectionHref,
+          handleQuantityChange,
+          changeCondition,
+          handleShareToggle,
+          handleOpenPublicNote,
+          handlePublicImageToggle,
+        )
       ) : (
         <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
       );
@@ -698,6 +1125,15 @@ export function VaultCollectionView({
         isPending={pendingItemId !== null}
         onCancel={handleCancelRemoval}
         onConfirm={handleConfirmRemoval}
+      />
+      <PublicNoteModal
+        isOpen={publicNoteItemId !== null}
+        isPending={pendingPublicNoteItemId !== null}
+        noteValue={publicNoteDraft}
+        error={publicNoteError}
+        onNoteChange={setPublicNoteDraft}
+        onCancel={handleCancelPublicNote}
+        onSave={handleSavePublicNote}
       />
 
       <div className="space-y-10 py-7">
