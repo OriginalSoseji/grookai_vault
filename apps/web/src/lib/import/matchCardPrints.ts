@@ -1,11 +1,15 @@
 "use server";
 
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { collapseRows } from "@/lib/import/collapseRows";
+import { createImportReport, type ImportReport } from "@/lib/import/importReport";
 import {
   normalizeImportNameForCompare,
   normalizeImportNumberForCompare,
   normalizeImportSetForCompare,
 } from "@/lib/import/normalizeRow";
+import { reconcileVaultQuantities } from "@/lib/import/reconcileVaultQuantities";
+import { validateRows } from "@/lib/import/validateRows";
+import { createServerComponentClient } from "@/lib/supabase/server";
 import type { CardMatch, MatchCardPrintsResult, MatchResult, NormalizedRow } from "@/types/import";
 
 type SetRow = {
@@ -31,12 +35,35 @@ type CardPrintRow = {
     | null;
 };
 
+type ExistingVaultRow = {
+  gv_id: string | null;
+  qty: number | null;
+};
+
+type MatchImportMeta = {
+  compareKey: string;
+  desiredQuantity: number;
+  importQuantity: number;
+};
+
+type MatchResultWithImportMeta = MatchResult & {
+  importMeta?: MatchImportMeta;
+};
+
+export type MatchCardPrintsPreviewResult = MatchCardPrintsResult & {
+  report: ImportReport;
+};
+
 function normalizeKeyPart(value: string | null | undefined) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
 function buildMatchKey(setName: string, number: string, name: string) {
   return `${normalizeKeyPart(setName)}||${(number ?? "").trim()}||${normalizeKeyPart(name)}`;
+}
+
+function buildRowKey(row: NormalizedRow) {
+  return `${row.compareSet}|${row.compareNumber}|${row.compareName}`;
 }
 
 function chunkArray<T>(items: T[], size: number) {
@@ -47,7 +74,114 @@ function chunkArray<T>(items: T[], size: number) {
   return chunks;
 }
 
-export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardPrintsResult> {
+async function fetchCandidateCardPrintRows(
+  rows: NormalizedRow[],
+  setNameMap: Map<string, SetRow[]>,
+): Promise<CardPrintRow[]> {
+  if (rows.length === 0) {
+    return [];
+  }
+
+  const client = createServerComponentClient();
+  const candidateSetIds = Array.from(
+    new Set(
+      rows.flatMap((row) => {
+        const matchedSets = setNameMap.get(row.compareSet) ?? [];
+        return matchedSets.map((setRow) => setRow.id);
+      }),
+    ),
+  );
+  const candidateNumbers = Array.from(new Set(rows.map((row) => row.compareNumber.trim()).filter(Boolean)));
+  const candidateRows: CardPrintRow[] = [];
+
+  if (candidateSetIds.length === 0 || candidateNumbers.length === 0) {
+    return candidateRows;
+  }
+
+  const setIdChunks = chunkArray(candidateSetIds, 100);
+  const numberChunks = chunkArray(candidateNumbers, 100);
+
+  for (const setIdChunk of setIdChunks) {
+    for (const numberChunk of numberChunks) {
+      const { data, error } = await client
+        .from("card_prints")
+        .select("id,gv_id,name,number,set_id,set_code,sets(name)")
+        .in("set_id", setIdChunk)
+        .in("number", numberChunk);
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      candidateRows.push(...((data ?? []) as CardPrintRow[]));
+    }
+  }
+
+  return candidateRows;
+}
+
+async function fetchExistingVaultQuantities(
+  userId: string,
+  candidateRows: CardPrintRow[],
+): Promise<Record<string, number>> {
+  if (candidateRows.length === 0) {
+    return {};
+  }
+
+  const client = createServerComponentClient();
+  const candidateGvIds = Array.from(
+    new Set(candidateRows.map((row) => row.gv_id?.trim() ?? "").filter(Boolean)),
+  );
+  const existingByGvId = new Map<string, number>();
+
+  for (const gvIdChunk of chunkArray(candidateGvIds, 100)) {
+    const { data, error } = await client
+      .from("vault_items")
+      .select("gv_id,qty")
+      .eq("user_id", userId)
+      .in("gv_id", gvIdChunk);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    for (const row of (data ?? []) as ExistingVaultRow[]) {
+      const gvId = row.gv_id?.trim() ?? "";
+      if (!gvId) {
+        continue;
+      }
+
+      existingByGvId.set(gvId, typeof row.qty === "number" ? row.qty : 0);
+    }
+  }
+
+  const quantities: Record<string, number> = {};
+
+  for (const candidate of candidateRows) {
+    const gvId = candidate.gv_id?.trim() ?? "";
+    if (!gvId) {
+      continue;
+    }
+
+    const existingQty = existingByGvId.get(gvId) ?? 0;
+    if (existingQty <= 0) {
+      continue;
+    }
+
+    const setRecord = Array.isArray(candidate.sets) ? candidate.sets[0] : candidate.sets;
+    const key = buildMatchKey(
+      normalizeImportSetForCompare(setRecord?.name ?? ""),
+      normalizeImportNumberForCompare(candidate.number ?? ""),
+      normalizeImportNameForCompare(candidate.name ?? ""),
+    );
+
+    quantities[key] = (quantities[key] ?? 0) + existingQty;
+  }
+
+  return quantities;
+}
+
+export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardPrintsPreviewResult> {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -66,6 +200,29 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
         multipleRows: 0,
         unmatchedRows: 0,
       },
+      report: createImportReport(),
+    };
+  }
+
+  const collapsedRows = collapseRows(rows);
+  const { valid, invalid } = validateRows(collapsedRows);
+  const reportBase = {
+    rowsRead: rows.length,
+    rowsCollapsed: collapsedRows.length,
+    rowsValid: valid.length,
+    rowsInvalid: invalid.length,
+  };
+
+  if (valid.length === 0) {
+    return {
+      rows: [],
+      summary: {
+        totalRows: 0,
+        matchedRows: 0,
+        multipleRows: 0,
+        unmatchedRows: 0,
+      },
+      report: createImportReport(reportBase),
     };
   }
 
@@ -80,42 +237,30 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
     if (!normalizedName) {
       continue;
     }
+
     const current = setNameMap.get(normalizedName) ?? [];
     current.push(setRow);
     setNameMap.set(normalizedName, current);
   }
 
-  const candidateSetIds = Array.from(
-    new Set(
-      rows.flatMap((row) => {
-        const matchedSets = setNameMap.get(row.compareSet) ?? [];
-        return matchedSets.map((setRow) => setRow.id);
-      }),
-    ),
-  );
-  const candidateNumbers = Array.from(new Set(rows.map((row) => row.compareNumber.trim()).filter(Boolean)));
+  const candidateRows = await fetchCandidateCardPrintRows(valid, setNameMap);
+  const existingVault = await fetchExistingVaultQuantities(user.id, candidateRows);
+  const desiredQuantityByKey = new Map(valid.map((row) => [buildRowKey(row), row.quantity]));
+  const rowsToMatch = reconcileVaultQuantities(valid, existingVault);
 
-  const candidateRows: CardPrintRow[] = [];
-
-  if (candidateSetIds.length > 0 && candidateNumbers.length > 0) {
-    const setIdChunks = chunkArray(candidateSetIds, 100);
-    const numberChunks = chunkArray(candidateNumbers, 100);
-
-    for (const setIdChunk of setIdChunks) {
-      for (const numberChunk of numberChunks) {
-        const { data, error } = await client
-          .from("card_prints")
-          .select("id,gv_id,name,number,set_id,set_code,sets(name)")
-          .in("set_id", setIdChunk)
-          .in("number", numberChunk);
-
-        if (error) {
-          throw new Error(error.message);
-        }
-
-        candidateRows.push(...((data ?? []) as CardPrintRow[]));
-      }
-    }
+  if (rowsToMatch.length === 0) {
+    const report = createImportReport(reportBase);
+    console.info("[import:match]", report);
+    return {
+      rows: [],
+      summary: {
+        totalRows: 0,
+        matchedRows: 0,
+        multipleRows: 0,
+        unmatchedRows: 0,
+      },
+      report,
+    };
   }
 
   const matchMap = new Map<string, CardPrintRow[]>();
@@ -131,9 +276,17 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
     matchMap.set(key, current);
   }
 
-  const previewRows = rows.map<MatchResult>((row) => {
+  const previewRows = rowsToMatch.map<MatchResultWithImportMeta>((row) => {
+    const compareKey = buildRowKey(row);
+    const importMeta: MatchImportMeta = {
+      compareKey,
+      desiredQuantity: desiredQuantityByKey.get(compareKey) ?? row.quantity,
+      importQuantity: row.quantity,
+    };
+
     if (!row.compareName || !row.compareSet || !row.compareNumber) {
       return {
+        importMeta,
         row,
         status: "missing",
       };
@@ -153,6 +306,7 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
         number: match.number?.trim() || row.displayNumber,
       };
       return {
+        importMeta,
         row,
         match: cardMatch,
         status: "matched",
@@ -172,6 +326,7 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
         };
       });
       return {
+        importMeta,
         row,
         matches,
         status: "multiple",
@@ -179,10 +334,19 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
     }
 
     return {
+      importMeta,
       row,
       status: "missing",
     };
   });
+
+  const report = createImportReport({
+    ...reportBase,
+    rowsMatched: previewRows.filter((row) => row.status === "matched").length,
+    rowsMissing: previewRows.filter((row) => row.status === "missing").length,
+  });
+
+  console.info("[import:match]", report);
 
   return {
     rows: previewRows,
@@ -192,5 +356,6 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
       multipleRows: previewRows.filter((row) => row.status === "multiple").length,
       unmatchedRows: previewRows.filter((row) => row.status === "missing").length,
     },
+    report,
   };
 }
