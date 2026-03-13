@@ -17,7 +17,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
   const showTopSearch =
     pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
   const accountHref = isAuthenticated ? "/account" : "/login";
-  const accountLabel = isAuthenticated ? "Grookai Account" : "Login";
+  const accountLabel = isAuthenticated ? "Account" : "Login";
 
   return (
     <header className="border-b border-slate-200 bg-white">

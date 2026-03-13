@@ -32,7 +32,7 @@ export async function generateMetadata({
 
   const siteOrigin = getSiteOrigin();
   const title = `${profile.display_name}'s ${pokemonLabel} Collection | Grookai Vault`;
-  const description = `${profile.display_name}'s ${pokemonLabel} collection on Grookai Vault.`;
+  const description = `${profile.display_name}'s ${pokemonLabel} collection on Grookai.`;
 
   return {
     title,
@@ -75,13 +75,13 @@ export default async function PublicPokemonCollectionPage({
   const stats: PublicCollectorStat[] =
     profile.vault_sharing_enabled && matchingCards.length > 0
       ? [
-          { value: `${matchingCards.length}`, label: matchingCards.length === 1 ? "card in collection" : "cards in collection" },
-          { value: `${matchingSetCount}`, label: matchingSetCount === 1 ? "set represented" : "sets represented" },
+          { value: `${matchingCards.length}`, label: matchingCards.length === 1 ? "card" : "cards" },
+          { value: `${matchingSetCount}`, label: matchingSetCount === 1 ? "set" : "sets" },
         ]
       : [];
   const description = profile.vault_sharing_enabled
-    ? `${pokemonLabel} cards from this collector's public collection.`
-    : "A collector profile on Grookai Vault. Collection sharing is not enabled yet.";
+    ? `${pokemonLabel} in ${profile.display_name}'s collection on Grookai.`
+    : "A collection on Grookai.";
 
   return (
     <div className="space-y-8 py-8">
@@ -97,7 +97,7 @@ export default async function PublicPokemonCollectionPage({
       <section className="space-y-4">
         <div className="flex items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokemon</p>
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon</p>
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">{pokemonLabel} Collection</h2>
           </div>
           <div className="flex flex-wrap items-center gap-4">
@@ -105,17 +105,14 @@ export default async function PublicPokemonCollectionPage({
               View profile
             </Link>
             <Link href={`/u/${profile.slug}/collection`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
-              Collection route
+              Collection
             </Link>
           </div>
         </div>
         {!profile.vault_sharing_enabled ? (
-          <PublicCollectionEmptyState
-            title="Collection not shared yet"
-            body="This collector has not enabled public collection sharing."
-          />
+          <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
         ) : matchingCards.length === 0 ? (
-          <PublicCollectionEmptyState title="No matching cards" body="No shared cards matched this Pokemon." />
+          <PublicCollectionEmptyState title="No cards found" body={`No cards match ${pokemonLabel}.`} />
         ) : (
           <PublicCollectionGrid cards={matchingCards} />
         )}

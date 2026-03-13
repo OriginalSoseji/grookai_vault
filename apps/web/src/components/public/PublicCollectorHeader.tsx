@@ -43,7 +43,7 @@ export function PublicCollectorHeader({
           </div>
           <div className="min-w-0 flex-1 space-y-3">
             <div className="space-y-2">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Collector</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
               <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{displayName}</h1>
               <p className="text-sm font-medium tracking-[0.08em] text-slate-500">/u/{slug}</p>
               <p className="max-w-2xl text-base leading-7 text-slate-600">{description}</p>
@@ -81,7 +81,7 @@ export function PublicCollectorHeader({
                   : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
               }`}
             >
-              Pokemon
+              Pokémon
             </a>
           </div>
           <PublicPokemonJumpForm slug={slug} defaultValue={defaultPokemonValue} />

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const siteOrigin = getSiteOrigin();
   const title = `${profile.display_name} Collection | Grookai Vault`;
-  const description = `${profile.display_name}'s public collection on Grookai Vault.`;
+  const description = `${profile.display_name}'s collection on Grookai.`;
 
   return {
     title,
@@ -57,13 +57,13 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
   const stats: PublicCollectorStat[] =
     profile.vault_sharing_enabled && sharedCards.length > 0
       ? [
-          { value: `${sharedCards.length}`, label: sharedCards.length === 1 ? "card in collection" : "cards in collection" },
-          { value: `${sharedSetCount}`, label: sharedSetCount === 1 ? "set represented" : "sets represented" },
+          { value: `${sharedCards.length}`, label: sharedCards.length === 1 ? "card" : "cards" },
+          { value: `${sharedSetCount}`, label: sharedSetCount === 1 ? "set" : "sets" },
         ]
       : [];
   const description = profile.vault_sharing_enabled
-    ? "A collector profile and public collection showcase on Grookai Vault."
-    : "A collector profile on Grookai Vault. Collection sharing is not enabled yet.";
+    ? `${profile.display_name}'s collection on Grookai.`
+    : "A collection on Grookai.";
 
   return (
     <div className="space-y-8 py-8">
@@ -79,22 +79,16 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
         <div className="flex items-end justify-between gap-4">
           <div className="space-y-1">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collection</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Public collection</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Collection</h2>
           </div>
           <Link href={`/u/${profile.slug}`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
             View profile
           </Link>
         </div>
         {!profile.vault_sharing_enabled ? (
-          <PublicCollectionEmptyState
-            title="Collection not shared yet"
-            body="This collector has not enabled public collection sharing."
-          />
+          <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
         ) : sharedCards.length === 0 ? (
-          <PublicCollectionEmptyState
-            title="No cards shared yet"
-            body="This collector has not added any cards to their public collection yet."
-          />
+          <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
         ) : (
           <PublicCollectionGrid cards={sharedCards} />
         )}

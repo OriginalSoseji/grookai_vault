@@ -43,7 +43,7 @@ export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
                   />
                 </div>
               ) : null}
-              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">GV-ID: {card.gv_id}</p>
             </div>
           </Link>
         ))}
