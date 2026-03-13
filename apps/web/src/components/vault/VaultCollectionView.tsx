@@ -497,13 +497,9 @@ export function VaultCollectionView({
   recentError,
   publicCollectionHref = null,
 }: VaultCollectionViewProps) {
-  const initialExpandedSharedItemIds = useMemo(
-    () => new Set(initialItems.filter((item) => item.is_shared).map((item) => item.vault_item_id)),
-    [initialItems],
-  );
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
-  const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(initialExpandedSharedItemIds);
+  const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(() => new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
