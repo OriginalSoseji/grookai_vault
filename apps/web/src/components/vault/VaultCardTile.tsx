@@ -76,6 +76,8 @@ export function VaultCardTile({
   onPublicNoteEdit,
   onPublicImageToggle,
 }: VaultCardTileProps) {
+  const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
+
   return (
     <article className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(15,23,42,0.055)]">
       <Link href={`/card/${item.gv_id}`} className="block">
@@ -193,15 +195,19 @@ export function VaultCardTile({
               </Link>
             </div>
           ) : null}
-          {item.is_shared ? (
+          {shouldRenderSharedControls ? (
             <div className="mt-3 border-t border-slate-200 pt-3">
-              <button
-                type="button"
-                onClick={() => onSharedControlsToggle(item)}
-                className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
-              >
-                {isSharedControlsExpanded ? "Hide shared controls" : "Manage shared card"}
-              </button>
+              {item.is_shared ? (
+                <button
+                  type="button"
+                  onClick={() => onSharedControlsToggle(item)}
+                  className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                >
+                  {isSharedControlsExpanded ? "Hide shared controls" : "Manage shared card"}
+                </button>
+              ) : (
+                <p className="text-xs font-medium text-slate-500">Sharing this card...</p>
+              )}
 
               {isSharedControlsExpanded ? (
                 <div className="mt-3 space-y-3">
@@ -209,6 +215,7 @@ export function VaultCardTile({
                     <button
                       type="button"
                       onClick={() => onPublicNoteEdit(item)}
+                      disabled={!item.is_shared}
                       className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
                     >
                       {item.public_note ? "Edit public note" : "Add public note"}
@@ -223,7 +230,7 @@ export function VaultCardTile({
                       <input
                         type="checkbox"
                         checked={item.show_personal_front}
-                        disabled={!item.has_front_photo || isPublicFrontImagePending}
+                        disabled={!item.is_shared || !item.has_front_photo || isPublicFrontImagePending}
                         onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
                         className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
                       />
@@ -237,7 +244,7 @@ export function VaultCardTile({
                       <input
                         type="checkbox"
                         checked={item.show_personal_back}
-                        disabled={!item.has_back_photo || isPublicBackImagePending}
+                        disabled={!item.is_shared || !item.has_back_photo || isPublicBackImagePending}
                         onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
                         className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
                       />

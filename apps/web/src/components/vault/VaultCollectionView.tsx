@@ -535,11 +535,11 @@ export function VaultCollectionView({
   }, [initialItems]);
 
   useEffect(() => {
-    const nextSharedIds = new Set(initialItems.filter((item) => item.is_shared).map((item) => item.vault_item_id));
+    const nextItemIds = new Set(initialItems.map((item) => item.vault_item_id));
     setExpandedSharedItemIds((current) => {
       const next = new Set<string>();
       for (const id of current) {
-        if (nextSharedIds.has(id)) {
+        if (nextItemIds.has(id)) {
           next.add(id);
         }
       }
