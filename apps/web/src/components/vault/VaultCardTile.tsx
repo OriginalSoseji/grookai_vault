@@ -47,12 +47,14 @@ type VaultCardTileProps = {
   isSharePending: boolean;
   isPublicFrontImagePending: boolean;
   isPublicBackImagePending: boolean;
+  isSharedControlsExpanded: boolean;
   error?: string;
   shareError?: string;
   publicCollectionHref?: string | null;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (condition: string) => void;
   onShareToggle: (item: VaultCardData) => void;
+  onSharedControlsToggle: (item: VaultCardData) => void;
   onPublicNoteEdit: (item: VaultCardData) => void;
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
@@ -63,12 +65,14 @@ export function VaultCardTile({
   isSharePending,
   isPublicFrontImagePending,
   isPublicBackImagePending,
+  isSharedControlsExpanded,
   error,
   shareError,
   publicCollectionHref,
   onQuantityChange,
   onConditionChange,
   onShareToggle,
+  onSharedControlsToggle,
   onPublicNoteEdit,
   onPublicImageToggle,
 }: VaultCardTileProps) {
@@ -190,49 +194,61 @@ export function VaultCardTile({
             </div>
           ) : null}
           {item.is_shared ? (
-            <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
-              <div>
-                <button
-                  type="button"
-                  onClick={() => onPublicNoteEdit(item)}
-                  className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
-                >
-                  {item.public_note ? "Edit public note" : "Add public note"}
-                </button>
-                <p className="mt-1 text-xs text-slate-500">This note appears on your public shared card.</p>
-              </div>
+            <div className="mt-3 border-t border-slate-200 pt-3">
+              <button
+                type="button"
+                onClick={() => onSharedControlsToggle(item)}
+                className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+              >
+                {isSharedControlsExpanded ? "Hide shared controls" : "Manage shared card"}
+              </button>
 
-              <div className="space-y-2">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Images</p>
+              {isSharedControlsExpanded ? (
+                <div className="mt-3 space-y-3">
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => onPublicNoteEdit(item)}
+                      className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                    >
+                      {item.public_note ? "Edit public note" : "Add public note"}
+                    </button>
+                    <p className="mt-1 text-xs text-slate-500">This note appears on your public shared card.</p>
+                  </div>
 
-                <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_front_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
-                  <input
-                    type="checkbox"
-                    checked={item.show_personal_front}
-                    disabled={!item.has_front_photo || isPublicFrontImagePending}
-                    onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <span className="min-w-0">
-                    <span className="block font-medium text-slate-800">Show front photo</span>
-                    {!item.has_front_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
-                  </span>
-                </label>
+                  <div className="space-y-2">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Images</p>
 
-                <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_back_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
-                  <input
-                    type="checkbox"
-                    checked={item.show_personal_back}
-                    disabled={!item.has_back_photo || isPublicBackImagePending}
-                    onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <span className="min-w-0">
-                    <span className="block font-medium text-slate-800">Show back photo</span>
-                    {!item.has_back_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
-                  </span>
-                </label>
-              </div>
+                    <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_front_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
+                      <input
+                        type="checkbox"
+                        checked={item.show_personal_front}
+                        disabled={!item.has_front_photo || isPublicFrontImagePending}
+                        onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
+                        className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
+                      <span className="min-w-0">
+                        <span className="block font-medium text-slate-800">Show front photo</span>
+                        {!item.has_front_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
+                      </span>
+                    </label>
+
+                    <label className={`flex items-start gap-3 rounded-[1rem] border px-3 py-2.5 text-sm ${item.has_back_photo ? "border-slate-200 bg-white" : "border-slate-200 bg-slate-100/80"}`}>
+                      <input
+                        type="checkbox"
+                        checked={item.show_personal_back}
+                        disabled={!item.has_back_photo || isPublicBackImagePending}
+                        onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
+                        className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
+                      <span className="min-w-0">
+                        <span className="block font-medium text-slate-800">Show back photo</span>
+                        {!item.has_back_photo ? <span className="mt-1 block text-xs text-slate-500">Upload a card photo in your vault to enable this.</span> : null}
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              ) : null}
             </div>
           ) : null}
           {shareError ? <p className="mt-2 text-xs text-slate-500">{shareError}</p> : null}

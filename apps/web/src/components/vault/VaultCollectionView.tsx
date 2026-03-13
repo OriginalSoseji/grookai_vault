@@ -352,12 +352,14 @@ function renderVaultGrid(
   pendingItemId: string | null,
   pendingShareItemId: string | null,
   pendingPublicImageKey: string | null,
+  expandedSharedItemIds: Set<string>,
   itemErrors: Record<string, string>,
   shareErrors: Record<string, string>,
   publicCollectionHref: string | null,
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
   onConditionChange: (item: VaultCardData, condition: string) => void,
   onShareToggle: (item: VaultCardData) => void,
+  onSharedControlsToggle: (item: VaultCardData) => void,
   onPublicNoteEdit: (item: VaultCardData) => void,
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
 ) {
@@ -371,12 +373,14 @@ function renderVaultGrid(
           isSharePending={pendingShareItemId === item.vault_item_id}
           isPublicFrontImagePending={pendingPublicImageKey === `${item.vault_item_id}:front`}
           isPublicBackImagePending={pendingPublicImageKey === `${item.vault_item_id}:back`}
+          isSharedControlsExpanded={expandedSharedItemIds.has(item.vault_item_id)}
           error={itemErrors[item.vault_item_id]}
           shareError={shareErrors[item.vault_item_id]}
           publicCollectionHref={item.is_shared ? publicCollectionHref : null}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
           onShareToggle={onShareToggle}
+          onSharedControlsToggle={onSharedControlsToggle}
           onPublicNoteEdit={onPublicNoteEdit}
           onPublicImageToggle={onPublicImageToggle}
         />
@@ -493,8 +497,13 @@ export function VaultCollectionView({
   recentError,
   publicCollectionHref = null,
 }: VaultCollectionViewProps) {
+  const initialExpandedSharedItemIds = useMemo(
+    () => new Set(initialItems.filter((item) => item.is_shared).map((item) => item.vault_item_id)),
+    [initialItems],
+  );
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
+  const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(initialExpandedSharedItemIds);
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
@@ -523,6 +532,19 @@ export function VaultCollectionView({
     setPublicNoteError(null);
     setItemErrors({});
     setShareErrors({});
+  }, [initialItems]);
+
+  useEffect(() => {
+    const nextSharedIds = new Set(initialItems.filter((item) => item.is_shared).map((item) => item.vault_item_id));
+    setExpandedSharedItemIds((current) => {
+      const next = new Set<string>();
+      for (const id of current) {
+        if (nextSharedIds.has(id)) {
+          next.add(id);
+        }
+      }
+      return next;
+    });
   }, [initialItems]);
 
   const summary = useMemo(() => {
@@ -764,6 +786,7 @@ export function VaultCollectionView({
 
     const currentItems = items;
     const nextShared = !item.is_shared;
+    const wasExpanded = expandedSharedItemIds.has(item.vault_item_id);
 
     setShareErrors((current) => {
       const next = { ...current };
@@ -771,6 +794,15 @@ export function VaultCollectionView({
       return next;
     });
     setPendingShareItemId(item.vault_item_id);
+    setExpandedSharedItemIds((current) => {
+      const next = new Set(current);
+      if (nextShared) {
+        next.add(item.vault_item_id);
+      } else {
+        next.delete(item.vault_item_id);
+      }
+      return next;
+    });
     setItems(applyOptimisticShareChange(currentItems, item.vault_item_id, nextShared));
 
     startTransition(async () => {
@@ -782,6 +814,15 @@ export function VaultCollectionView({
 
         if (!result.ok) {
           setItems(currentItems);
+          setExpandedSharedItemIds((current) => {
+            const next = new Set(current);
+            if (wasExpanded) {
+              next.add(item.vault_item_id);
+            } else {
+              next.delete(item.vault_item_id);
+            }
+            return next;
+          });
           setShareErrors((current) => ({
             ...current,
             [item.vault_item_id]: result.message,
@@ -790,9 +831,27 @@ export function VaultCollectionView({
         }
 
         setItems((current) => applyOptimisticShareChange(current, item.vault_item_id, result.status === "shared"));
+        setExpandedSharedItemIds((current) => {
+          const next = new Set(current);
+          if (result.status === "shared") {
+            next.add(item.vault_item_id);
+          } else {
+            next.delete(item.vault_item_id);
+          }
+          return next;
+        });
         router.refresh();
       } catch (error) {
         setItems(currentItems);
+        setExpandedSharedItemIds((current) => {
+          const next = new Set(current);
+          if (wasExpanded) {
+            next.add(item.vault_item_id);
+          } else {
+            next.delete(item.vault_item_id);
+          }
+          return next;
+        });
         setShareErrors((current) => ({
           ...current,
           [item.vault_item_id]: "Couldn’t update shared state.",
@@ -800,6 +859,22 @@ export function VaultCollectionView({
       } finally {
         setPendingShareItemId(null);
       }
+    });
+  }
+
+  function handleSharedControlsToggle(item: VaultCardData) {
+    if (!item.is_shared) {
+      return;
+    }
+
+    setExpandedSharedItemIds((current) => {
+      const next = new Set(current);
+      if (next.has(item.vault_item_id)) {
+        next.delete(item.vault_item_id);
+      } else {
+        next.add(item.vault_item_id);
+      }
+      return next;
     });
   }
 
@@ -928,12 +1003,14 @@ export function VaultCollectionView({
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
+            expandedSharedItemIds,
             itemErrors,
             shareErrors,
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
           )
@@ -951,12 +1028,14 @@ export function VaultCollectionView({
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
+            expandedSharedItemIds,
             itemErrors,
             shareErrors,
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
           )
@@ -974,12 +1053,14 @@ export function VaultCollectionView({
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
+            expandedSharedItemIds,
             itemErrors,
             shareErrors,
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
           )
@@ -1019,12 +1100,14 @@ export function VaultCollectionView({
                   pendingItemId,
                   pendingShareItemId,
                   pendingPublicImageKey,
+                  expandedSharedItemIds,
                   itemErrors,
                   shareErrors,
                   publicCollectionHref,
                   handleQuantityChange,
                   changeCondition,
                   handleShareToggle,
+                  handleSharedControlsToggle,
                   handleOpenPublicNote,
                   handlePublicImageToggle,
                 )}
@@ -1081,12 +1164,14 @@ export function VaultCollectionView({
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
+            expandedSharedItemIds,
             itemErrors,
             shareErrors,
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
           )
@@ -1104,12 +1189,14 @@ export function VaultCollectionView({
           pendingItemId,
           pendingShareItemId,
           pendingPublicImageKey,
+          expandedSharedItemIds,
           itemErrors,
           shareErrors,
           publicCollectionHref,
           handleQuantityChange,
           changeCondition,
           handleShareToggle,
+          handleSharedControlsToggle,
           handleOpenPublicNote,
           handlePublicImageToggle,
         )
