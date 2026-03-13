@@ -10,6 +10,7 @@ export type VaultCardData = {
   gv_id: string;
   name: string;
   set_code: string;
+  set_name: string;
   number: string;
   condition_label: string;
   quantity: number;
@@ -63,7 +64,9 @@ export function VaultCardTile({ item, isPending, error, onQuantityChange, onCond
             </p>
           </Link>
           <p className="text-sm text-slate-500">
-            {item.set_code} {item.number !== "—" ? item.number : ""}
+            {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
+              .filter(Boolean)
+              .join(" • ")}
           </p>
         </div>
 

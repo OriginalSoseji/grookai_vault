@@ -27,6 +27,7 @@ type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon";
 
 type SetGroup = {
   setCode: string;
+  setName: string;
   items: VaultCardData[];
 };
 
@@ -206,7 +207,7 @@ function reconcileQuantityResult(
     | { status: "removed"; itemId: string },
 ) {
   if (result.status === "removed") {
-    return items.filter((item) => item.id !== itemId);
+    return items.filter((item) => item.vault_item_id !== itemId);
   }
 
   return items.map((item) =>
@@ -306,6 +307,7 @@ export function VaultCollectionView({
     return Array.from(groups.entries())
       .map(([setCode, groupedItems]) => ({
         setCode,
+        setName: groupedItems[0]?.set_name || setCode,
         items: groupedItems,
       }))
       .sort((left, right) => left.setCode.localeCompare(right.setCode));
@@ -327,10 +329,11 @@ export function VaultCollectionView({
 
     return sourceItems.filter((item) => {
       const name = item.name?.toLowerCase() ?? "";
+      const setName = item.set_name?.toLowerCase() ?? "";
       const set = item.set_code?.toLowerCase() ?? "";
       const number = item.number?.toLowerCase() ?? "";
 
-      return name.includes(query) || set.includes(query) || number.includes(query);
+      return name.includes(query) || setName.includes(query) || set.includes(query) || number.includes(query);
     });
   }
 
@@ -355,7 +358,7 @@ export function VaultCollectionView({
 
     startTransition(async () => {
       try {
-        // The canonical vault quantity RPC deletes the owned row when a decrement hits zero.
+        // The canonical vault quantity mutation deletes the owned row when a decrement hits zero.
         const result = await changeVaultItemQuantityAction({ itemId, type });
         setItems((current) => reconcileQuantityResult(current, itemId, result));
         router.refresh();
@@ -453,7 +456,10 @@ export function VaultCollectionView({
               <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/55 px-5 py-4">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
                 <div className="flex items-end justify-between gap-4">
-                  <h3 className="text-lg font-semibold tracking-tight text-slate-950">{group.setCode}</h3>
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold tracking-tight text-slate-950">{group.setName}</h3>
+                    <p className="text-sm text-slate-500">{group.setCode}</p>
+                  </div>
                   <p className="text-sm text-slate-500">
                     {group.items.length} {group.items.length === 1 ? "card" : "cards"}
                   </p>
@@ -623,7 +629,7 @@ export function VaultCollectionView({
                 <div className="space-y-2.5 border-t border-slate-200 px-4 py-4">
                   <p className="line-clamp-2 text-base font-medium text-slate-950">{item.name}</p>
                   <p className="text-sm text-slate-600">
-                    {[item.set_code || item.set_name, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
+                    {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
                   </p>
                   <div className="space-y-1">
                     <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{item.gv_id}</p>
