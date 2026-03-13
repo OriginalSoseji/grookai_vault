@@ -23,10 +23,6 @@ type VaultItemRow = {
   condition_label: string | null;
   quantity: number | null;
   effective_price: number | null;
-  supertype: string | null;
-  types: string[] | null;
-  card_category: string | null;
-  national_dex: number | null;
   image_url: string | null;
   created_at: string | null;
 };
@@ -59,10 +55,6 @@ function normalizeVaultItems(rows: VaultItemRow[] | null | undefined): VaultCard
       condition_label: row.condition_label?.trim() || "Unknown",
       quantity: typeof row.quantity === "number" ? row.quantity : 0,
       effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
-      supertype: row.supertype?.trim() || undefined,
-      types: Array.isArray(row.types) ? row.types.filter((value): value is string => typeof value === "string") : null,
-      card_category: row.card_category?.trim() || undefined,
-      national_dex: typeof row.national_dex === "number" ? row.national_dex : null,
       image_url: getBestPublicCardImageUrl(row.image_url),
       created_at: row.created_at,
     }));
@@ -119,9 +111,7 @@ export default async function VaultPage() {
   const [{ data: itemsData, error: itemsError }, { data: recentData, error: recentError }] = await Promise.all([
     supabase
       .from("v_vault_items_web")
-      .select(
-        "id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,quantity,effective_price,supertype,types,card_category,national_dex,image_url,created_at",
-      )
+      .select("id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,quantity,effective_price,image_url,created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
     supabase

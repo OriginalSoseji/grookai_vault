@@ -15,10 +15,6 @@ export type VaultCardData = {
   condition_label: string;
   quantity: number;
   effective_price: number | null;
-  supertype?: string;
-  types?: string[] | null;
-  card_category?: string;
-  national_dex?: number | null;
   image_url?: string;
   created_at: string | null;
 };

@@ -333,6 +333,7 @@ export function VaultCollectionView({
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
   const [searchQuery, setSearchQuery] = useState("");
+  const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [confirmRemovalItemId, setConfirmRemovalItemId] = useState<string | null>(null);
   const [itemErrors, setItemErrors] = useState<Record<string, string>>({});
@@ -341,6 +342,7 @@ export function VaultCollectionView({
 
   useEffect(() => {
     setItems(initialItems);
+    setPokemonQuery("");
     setPendingItemId(null);
     setConfirmRemovalItemId(null);
     setItemErrors({});
@@ -381,7 +383,6 @@ export function VaultCollectionView({
   );
 
   const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
-  const pokemonItems = useMemo(() => items.filter((item) => item.supertype === "Pokemon"), [items]);
 
   const bySetGroups = useMemo<SetGroup[]>(() => {
     const groups = new Map<string, VaultCardData[]>();
@@ -407,7 +408,7 @@ export function VaultCollectionView({
     { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
     { key: "recent", label: "Recently Added", count: recentItems.length },
     { key: "by-set", label: "By Set" },
-    { key: "pokemon", label: "Pokémon", count: pokemonItems.length },
+    { key: "pokemon", label: "Pokémon", count: items.length },
   ];
 
   function applySearch(sourceItems: VaultCardData[]) {
@@ -423,6 +424,18 @@ export function VaultCollectionView({
       const number = item.number?.toLowerCase() ?? "";
 
       return name.includes(query) || setName.includes(query) || set.includes(query) || number.includes(query);
+    });
+  }
+
+  function applyPokemonNameFilter(sourceItems: VaultCardData[]) {
+    const query = pokemonQuery.trim().toLowerCase();
+    if (!query) {
+      return sourceItems;
+    }
+
+    return sourceItems.filter((item) => {
+      const name = item.name?.toLowerCase() ?? "";
+      return name.includes(query);
     });
   }
 
@@ -603,15 +616,33 @@ export function VaultCollectionView({
         <ViewEmptyState title="No cards found for this view." body="Set groups will appear as your collection grows." />
       );
   } else if (activeView === "pokemon") {
-    const filteredPokemonItems = applySearch(pokemonItems);
-    vaultContent =
-      filteredPokemonItems.length > 0
-        ? renderVaultGrid(filteredPokemonItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
-        : searchQuery.trim().length > 0
-          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-          : (
-              <ViewEmptyState title="No Pokémon cards yet" body="Pokémon cards in your vault will appear here." />
-            );
+    const filteredPokemonItems = applyPokemonNameFilter(items);
+    vaultContent = (
+      <div className="space-y-4">
+        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-4">
+          <label
+            htmlFor="pokemon-name-filter"
+            className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400"
+          >
+            Pokémon Name
+          </label>
+          <input
+            id="pokemon-name-filter"
+            type="text"
+            placeholder="Search Pokémon name..."
+            value={pokemonQuery}
+            onChange={(event) => setPokemonQuery(event.target.value)}
+            className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
+          />
+        </div>
+
+        {filteredPokemonItems.length > 0 ? (
+          renderVaultGrid(filteredPokemonItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        ) : (
+          <ViewEmptyState title="No matching cards" body="Try a different Pokémon name." />
+        )}
+      </div>
+    );
   } else {
     const filteredItems = applySearch(items);
     vaultContent =
