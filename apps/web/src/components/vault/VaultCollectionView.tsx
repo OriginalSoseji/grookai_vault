@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
@@ -518,6 +518,7 @@ export function VaultCollectionView({
   const [shareErrors, setShareErrors] = useState<Record<string, string>>({});
   const [activeView, setActiveView] = useState<SmartViewKey>("all");
   const [, startTransition] = useTransition();
+  const refreshPinnedSharedItemIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     setItems(initialItems);
@@ -536,27 +537,19 @@ export function VaultCollectionView({
 
   useEffect(() => {
     const nextItemIds = new Set(initialItems.map((item) => item.vault_item_id));
+    const pinnedItemId = refreshPinnedSharedItemIdRef.current;
     setExpandedSharedItemIds((current) => {
-      const preservedIds: string[] = [];
-      const removedIds: string[] = [];
       const next = new Set<string>();
       for (const id of current) {
-        if (nextItemIds.has(id)) {
+        if (nextItemIds.has(id) || id === pinnedItemId) {
           next.add(id);
-          preservedIds.push(id);
-        } else {
-          removedIds.push(id);
         }
       }
-      console.log("[share-debug] initialItems refresh prune", {
-        incomingItemIds: Array.from(nextItemIds),
-        expandedBefore: Array.from(current),
-        preservedIds,
-        removedIds,
-        expandedAfter: Array.from(next),
-      });
       return next;
     });
+    if (pinnedItemId && nextItemIds.has(pinnedItemId)) {
+      refreshPinnedSharedItemIdRef.current = null;
+    }
   }, [initialItems]);
 
   const summary = useMemo(() => {
@@ -799,25 +792,6 @@ export function VaultCollectionView({
     const currentItems = items;
     const nextShared = !item.is_shared;
     const wasExpanded = expandedSharedItemIds.has(item.vault_item_id);
-    const expandedBefore = Array.from(expandedSharedItemIds);
-    const expandedAfter = (() => {
-      const next = new Set(expandedSharedItemIds);
-      if (nextShared) {
-        next.add(item.vault_item_id);
-      } else {
-        next.delete(item.vault_item_id);
-      }
-      return Array.from(next);
-    })();
-
-    console.log("[share-debug] handleShareToggle start", {
-      vaultItemId: item.vault_item_id,
-      currentShared: item.is_shared,
-      nextShared,
-      wasExpanded,
-      expandedBefore,
-      expandedAfter,
-    });
 
     setShareErrors((current) => {
       const next = { ...current };
@@ -825,6 +799,7 @@ export function VaultCollectionView({
       return next;
     });
     setPendingShareItemId(item.vault_item_id);
+    refreshPinnedSharedItemIdRef.current = nextShared ? item.vault_item_id : null;
     setExpandedSharedItemIds((current) => {
       const next = new Set(current);
       if (nextShared) {
@@ -844,6 +819,7 @@ export function VaultCollectionView({
         });
 
         if (!result.ok) {
+          refreshPinnedSharedItemIdRef.current = null;
           setItems(currentItems);
           setExpandedSharedItemIds((current) => {
             const next = new Set(current);
@@ -871,8 +847,12 @@ export function VaultCollectionView({
           }
           return next;
         });
+        if (result.status !== "shared") {
+          refreshPinnedSharedItemIdRef.current = null;
+        }
         router.refresh();
       } catch (error) {
+        refreshPinnedSharedItemIdRef.current = null;
         setItems(currentItems);
         setExpandedSharedItemIds((current) => {
           const next = new Set(current);
@@ -902,6 +882,9 @@ export function VaultCollectionView({
       const next = new Set(current);
       if (next.has(item.vault_item_id)) {
         next.delete(item.vault_item_id);
+        if (refreshPinnedSharedItemIdRef.current === item.vault_item_id) {
+          refreshPinnedSharedItemIdRef.current = null;
+        }
       } else {
         next.add(item.vault_item_id);
       }

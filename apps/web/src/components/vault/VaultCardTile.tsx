@@ -78,13 +78,6 @@ export function VaultCardTile({
 }: VaultCardTileProps) {
   const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
 
-  console.log("[share-debug] VaultCardTile render", {
-    vaultItemId: item.vault_item_id,
-    isShared: item.is_shared,
-    isSharedControlsExpanded,
-    shouldRenderSharedControls,
-  });
-
   return (
     <article className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(15,23,42,0.055)]">
       <Link href={`/card/${item.gv_id}`} className="block">
