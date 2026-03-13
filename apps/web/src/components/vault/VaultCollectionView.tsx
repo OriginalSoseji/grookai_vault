@@ -537,12 +537,24 @@ export function VaultCollectionView({
   useEffect(() => {
     const nextItemIds = new Set(initialItems.map((item) => item.vault_item_id));
     setExpandedSharedItemIds((current) => {
+      const preservedIds: string[] = [];
+      const removedIds: string[] = [];
       const next = new Set<string>();
       for (const id of current) {
         if (nextItemIds.has(id)) {
           next.add(id);
+          preservedIds.push(id);
+        } else {
+          removedIds.push(id);
         }
       }
+      console.log("[share-debug] initialItems refresh prune", {
+        incomingItemIds: Array.from(nextItemIds),
+        expandedBefore: Array.from(current),
+        preservedIds,
+        removedIds,
+        expandedAfter: Array.from(next),
+      });
       return next;
     });
   }, [initialItems]);
@@ -787,6 +799,25 @@ export function VaultCollectionView({
     const currentItems = items;
     const nextShared = !item.is_shared;
     const wasExpanded = expandedSharedItemIds.has(item.vault_item_id);
+    const expandedBefore = Array.from(expandedSharedItemIds);
+    const expandedAfter = (() => {
+      const next = new Set(expandedSharedItemIds);
+      if (nextShared) {
+        next.add(item.vault_item_id);
+      } else {
+        next.delete(item.vault_item_id);
+      }
+      return Array.from(next);
+    })();
+
+    console.log("[share-debug] handleShareToggle start", {
+      vaultItemId: item.vault_item_id,
+      currentShared: item.is_shared,
+      nextShared,
+      wasExpanded,
+      expandedBefore,
+      expandedAfter,
+    });
 
     setShareErrors((current) => {
       const next = { ...current };
