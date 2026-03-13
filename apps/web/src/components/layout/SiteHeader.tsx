@@ -9,9 +9,10 @@ import { PageContainer } from "@/components/layout/PageContainer";
 
 type SiteHeaderProps = {
   isAuthenticated: boolean;
+  profileHref: string | null;
 };
 
-export function SiteHeader({ isAuthenticated }: SiteHeaderProps) {
+export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
   const pathname = usePathname();
   const showTopSearch =
     pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
@@ -39,6 +40,11 @@ export function SiteHeader({ isAuthenticated }: SiteHeaderProps) {
             <Link href="/vault" className="hover:underline">
               Vault
             </Link>
+            {isAuthenticated && profileHref ? (
+              <Link href={profileHref} className="hover:underline">
+                Profile
+              </Link>
+            ) : null}
             <Link href={accountHref} className="rounded border px-3 py-1 hover:bg-slate-100">
               {accountLabel}
             </Link>

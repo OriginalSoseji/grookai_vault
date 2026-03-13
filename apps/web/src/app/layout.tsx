@@ -11,11 +11,15 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const profileRow = user
+    ? await supabase.from("public_profiles").select("slug").eq("user_id", user.id).maybeSingle()
+    : null;
+  const profileHref = user ? (profileRow?.data?.slug ? `/u/${profileRow.data.slug}` : "/account") : null;
 
   return (
     <html lang="en">
       <body>
-        <SiteHeader isAuthenticated={!!user} />
+        <SiteHeader isAuthenticated={!!user} profileHref={profileHref} />
         <main className="w-full py-12">
           <PageContainer>{children}</PageContainer>
         </main>
