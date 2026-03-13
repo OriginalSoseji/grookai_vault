@@ -22,6 +22,10 @@ SELECT
   vvie.number,
   vvie.set_code,
   s.name AS set_name,
+  traits.supertype,
+  traits.types,
+  traits.card_category,
+  traits.national_dex,
   vvie.variant,
   vvie.tcgplayer_id,
   vvie.game,
@@ -54,6 +58,31 @@ SELECT
   vvie.gv_id
 FROM public.v_vault_items_ext vvie
 LEFT JOIN public.sets s
-  ON s.code = vvie.set_code;
+  ON s.code = vvie.set_code
+LEFT JOIN LATERAL (
+  SELECT
+    cpt.supertype,
+    cpt.types,
+    cpt.card_category,
+    cpt.national_dex
+  FROM public.card_print_traits cpt
+  WHERE cpt.card_print_id = vvie.card_id
+    AND (
+      cpt.supertype IS NOT NULL
+      OR cpt.types IS NOT NULL
+      OR cpt.card_category IS NOT NULL
+      OR cpt.national_dex IS NOT NULL
+    )
+  ORDER BY
+    CASE cpt.source
+      WHEN 'manual' THEN 0
+      WHEN 'import' THEN 1
+      WHEN 'ai' THEN 2
+      ELSE 3
+    END,
+    cpt.id DESC
+  LIMIT 1
+) traits
+  ON TRUE;
 
 COMMIT;

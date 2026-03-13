@@ -381,6 +381,7 @@ export function VaultCollectionView({
   );
 
   const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
+  const pokemonItems = useMemo(() => items.filter((item) => item.supertype === "Pokemon"), [items]);
 
   const bySetGroups = useMemo<SetGroup[]>(() => {
     const groups = new Map<string, VaultCardData[]>();
@@ -406,7 +407,7 @@ export function VaultCollectionView({
     { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
     { key: "recent", label: "Recently Added", count: recentItems.length },
     { key: "by-set", label: "By Set" },
-    { key: "pokemon", label: "Pokémon" },
+    { key: "pokemon", label: "Pokémon", count: pokemonItems.length },
   ];
 
   function applySearch(sourceItems: VaultCardData[]) {
@@ -602,13 +603,15 @@ export function VaultCollectionView({
         <ViewEmptyState title="No cards found for this view." body="Set groups will appear as your collection grows." />
       );
   } else if (activeView === "pokemon") {
-    // TODO: Enable real Pokemon-centric smart views once the vault payload includes card type/species classification.
-    vaultContent = (
-      <ViewEmptyState
-        title="Pokémon views are on the way."
-        body="This view will appear once card-type metadata is available for vault items."
-      />
-    );
+    const filteredPokemonItems = applySearch(pokemonItems);
+    vaultContent =
+      filteredPokemonItems.length > 0
+        ? renderVaultGrid(filteredPokemonItems, pendingItemId, itemErrors, handleQuantityChange, changeCondition)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : (
+              <ViewEmptyState title="No Pokémon cards yet" body="Pokémon cards in your vault will appear here." />
+            );
   } else {
     const filteredItems = applySearch(items);
     vaultContent =
