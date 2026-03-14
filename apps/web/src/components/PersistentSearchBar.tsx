@@ -1,64 +1,9 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-function normalizeSearchQuery(value: string) {
-  return value.trim().replace(/\s+/g, " ");
-}
+import PublicSearchForm from "@/components/PublicSearchForm";
 
 export default function PersistentSearchBar() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentQuery = searchParams.get("q") ?? "";
-  const currentView = searchParams.get("view");
-  const currentSort = searchParams.get("sort");
-  const [query, setQuery] = useState(currentQuery);
-
-  useEffect(() => {
-    setQuery(currentQuery);
-  }, [currentQuery, pathname]);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const normalized = normalizeSearchQuery(query);
-    const nextParams = new URLSearchParams();
-
-    if (normalized) {
-      nextParams.set("q", normalized);
-    }
-
-    if (pathname === "/explore" && currentView) {
-      nextParams.set("view", currentView);
-    }
-
-    if (pathname === "/explore" && currentSort) {
-      nextParams.set("sort", currentSort);
-    }
-
-    router.push(nextParams.toString() ? `/search?${nextParams.toString()}` : "/search");
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
-      <input
-        type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search cards, sets, numbers, or Grookai ID"
-        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200 sm:max-w-[420px]"
-        aria-label="Search cards"
-      />
-      <button
-        type="submit"
-        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-100 hover:bg-slate-700"
-      >
-        Search
-      </button>
-    </form>
-  );
+  return <PublicSearchForm variant="header" />;
 }
 
 export function PersistentSearchBarFallback() {
