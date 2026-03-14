@@ -8,10 +8,13 @@ export interface CardSummary {
   image_url?: string;
   release_date?: string;
   release_year?: number;
+  latest_price?: number;
 }
 
 export interface CardDetail extends CardSummary {
   artist?: string;
   printed_total?: number;
   set_code?: string;
+  variant_key?: string;
+  variants?: import("@/lib/cards/variantPresentation").VariantFlags;
 }

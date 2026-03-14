@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
 import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
 
 type PublicSearchFormProps = {
@@ -16,6 +17,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const currentQuery = searchParams.get("q") ?? "";
   const currentView = searchParams.get("view");
   const currentSort = searchParams.get("sort");
+  const normalizedCurrentView = pathname === "/explore" && currentView ? normalizeExploreViewMode(currentView) : null;
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
@@ -38,8 +40,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       nextParams.set("cards", compareCardsParam);
     }
 
-    if (pathname === "/explore" && currentView) {
-      nextParams.set("view", currentView);
+    if (normalizedCurrentView) {
+      nextParams.set("view", normalizedCurrentView);
     }
 
     if (pathname === "/explore" && currentSort) {
@@ -57,6 +59,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     return (
       <form action="/search" method="get" onSubmit={handleSubmit} className="max-w-2xl">
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
+        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
         <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
           <input
             type="search"
@@ -86,6 +90,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       className="flex w-full flex-col gap-3 sm:flex-row sm:items-center"
     >
       {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+      {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
+      {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
       <input
         type="search"
         name="q"

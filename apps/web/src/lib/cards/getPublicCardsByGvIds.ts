@@ -3,8 +3,10 @@ import "server-only";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
+import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
 export type ComparePublicCard = {
+  id: string;
   gv_id: string;
   name: string;
   set_name?: string;
@@ -14,9 +16,13 @@ export type ComparePublicCard = {
   release_year?: number;
   artist?: string;
   image_url?: string;
+  latest_price?: number;
+  variant_key?: string;
+  variants?: VariantFlags;
 };
 
 type PublicCompareCardRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   set_code: string | null;
@@ -25,6 +31,8 @@ type PublicCompareCardRow = {
   artist: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  variant_key: string | null;
+  variants: VariantFlags;
   sets:
     | {
         name: string | null;
@@ -35,6 +43,11 @@ type PublicCompareCardRow = {
         release_date: string | null;
       }[]
     | null;
+};
+
+type PublicComparePriceRow = {
+  id: string | null;
+  latest_price: number | null;
 };
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -68,8 +81,11 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
         number,
         rarity,
         artist,
+        variant_key,
+        variants,
         image_url,
         image_alt_url,
+        id,
         sets(name,release_date)
       `,
     )
@@ -80,10 +96,24 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
   }
 
   const rows = (data ?? []) as PublicCompareCardRow[];
+  const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
+  const { data: priceData, error: priceError } = cardIds.length > 0
+    ? await supabase.from("v_card_search").select("id,latest_price").in("id", cardIds)
+    : { data: [], error: null };
+
+  if (priceError) {
+    throw priceError;
+  }
+
   const rowsByGvId = new Map(
     rows
       .filter((row): row is PublicCompareCardRow & { gv_id: string } => Boolean(row.gv_id))
       .map((row) => [row.gv_id, row]),
+  );
+  const pricesByCardId = new Map(
+    ((priceData ?? []) as PublicComparePriceRow[])
+      .filter((row): row is PublicComparePriceRow & { id: string } => Boolean(row.id))
+      .map((row) => [row.id, row.latest_price]),
   );
 
   const cards: ComparePublicCard[] = [];
@@ -97,6 +127,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
 
     cards.push({
+      id: row.id ?? row.gv_id,
       gv_id: row.gv_id,
       name: row.name?.trim() || "Unknown",
       set_name: setRecord?.name?.trim() || undefined,
@@ -106,6 +137,9 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       release_year: getReleaseYear(setRecord?.release_date),
       artist: row.artist?.trim() || undefined,
       image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      latest_price: row.id ? pricesByCardId.get(row.id) ?? undefined : undefined,
+      variant_key: row.variant_key?.trim() || undefined,
+      variants: row.variants ?? undefined,
     });
   }
 

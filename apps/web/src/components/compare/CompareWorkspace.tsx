@@ -2,15 +2,22 @@
 
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
+import VariantBadge from "@/components/cards/VariantBadge";
+import LockedPrice from "@/components/pricing/LockedPrice";
+import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
+import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { buildCompareHref, buildPathWithCompareCards } from "@/lib/compareCards";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 
 type CompareWorkspaceProps = {
   cards: ComparePublicCard[];
+  canViewPricing: boolean;
+  pricingSignInHref?: string;
 };
 
-type AttributeKey = "set_name" | "number" | "rarity" | "artist" | "release_year";
+type AttributeKey = "set_name" | "number" | "rarity" | "variant" | "latest_price" | "artist" | "release_year";
 
 type AttributeRow = {
   key: AttributeKey;
@@ -29,6 +36,8 @@ const ATTRIBUTE_SECTIONS: AttributeSection[] = [
       { key: "set_name", label: "Set" },
       { key: "number", label: "Number" },
       { key: "rarity", label: "Rarity" },
+      { key: "variant", label: "Variant" },
+      { key: "latest_price", label: "Grookai Value" },
     ],
   },
   {
@@ -49,6 +58,15 @@ const GRID_CLASS_BY_COUNT: Record<number, string> = {
 };
 
 function formatAttributeValue(card: ComparePublicCard, key: AttributeKey) {
+  if (key === "variant") {
+    const labels = getVariantLabels(card, 3);
+    return labels.length > 0 ? labels.join(" • ") : "—";
+  }
+
+  if (key === "latest_price") {
+    return formatUsdPrice(card.latest_price);
+  }
+
   const value = card[key];
   if (typeof value === "number") {
     return String(value);
@@ -61,7 +79,41 @@ function valuesMatch(left: ComparePublicCard, right: ComparePublicCard, key: Att
   return formatAttributeValue(left, key) === formatAttributeValue(right, key);
 }
 
-export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
+function renderAttributeContent(
+  card: ComparePublicCard,
+  key: AttributeKey,
+  canViewPricing: boolean,
+  pricingSignInHref?: string,
+) {
+  if (key === "latest_price") {
+    return canViewPricing
+      ? <VisiblePrice value={card.latest_price} size="dense" />
+      : <LockedPrice href={pricingSignInHref} size="dense" />;
+  }
+
+  if (key === "variant") {
+    const labels = getVariantLabels(card, 3);
+    if (labels.length === 0) {
+      return "—";
+    }
+
+    return (
+      <div className="flex flex-wrap gap-1.5">
+        {labels.map((label) => (
+          <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
+        ))}
+      </div>
+    );
+  }
+
+  return formatAttributeValue(card, key);
+}
+
+export default function CompareWorkspace({
+  cards,
+  canViewPricing,
+  pricingSignInHref,
+}: CompareWorkspaceProps) {
   const [referenceGvId, setReferenceGvId] = useState(cards[0]?.gv_id ?? "");
   const [showDiffOnly, setShowDiffOnly] = useState(false);
   const [gridCols, setGridCols] = useState(cards.length);
@@ -97,6 +149,9 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
           <p className="max-w-2xl text-sm text-slate-600">
             Compare cards side by side, pin a reference, and focus only on what changes.
           </p>
+          {canViewPricing ? (
+            <p className="text-sm text-slate-500">Beta market estimate. Derived from active listings and market data.</p>
+          ) : null}
         </div>
 
         <div className="flex flex-col gap-4 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
@@ -154,6 +209,7 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
       <section className={`grid gap-6 ${gridClassName}`}>
         {cards.map((card) => {
           const isReference = card.gv_id === referenceCard.gv_id;
+          const variantLabels = getVariantLabels(card, 3);
           const remainingCards = cards.filter((candidate) => candidate.gv_id !== card.gv_id).map((candidate) => candidate.gv_id);
           const removeHref = buildCompareHref(remainingCards);
 
@@ -174,6 +230,18 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
                     ) : null}
                     <p className="truncate text-lg font-semibold text-slate-950">{card.name}</p>
                     <p className="text-sm text-slate-600">{card.set_name ?? "Unknown set"}</p>
+                    {canViewPricing ? (
+                      <VisiblePrice value={card.latest_price} size="list" />
+                    ) : (
+                      <LockedPrice href={pricingSignInHref} size="list" />
+                    )}
+                    {variantLabels.length > 0 ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {variantLabels.map((label) => (
+                          <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
+                        ))}
+                      </div>
+                    ) : null}
                     <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
                   </div>
                   <div className="flex flex-wrap items-center justify-end gap-2">
@@ -269,7 +337,7 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
                                 differsFromReference ? "border-l-4 border-amber-400 bg-amber-50" : ""
                               }`}
                             >
-                              {formatAttributeValue(card, row.key)}
+                              {renderAttributeContent(card, row.key, canViewPricing, pricingSignInHref)}
                             </td>
                           );
                         })}

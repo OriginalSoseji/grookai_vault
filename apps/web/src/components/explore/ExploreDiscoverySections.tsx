@@ -3,6 +3,7 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
+import type { ExploreViewMode } from "@/lib/exploreViewModes";
 import type { PublicSetSummary } from "@/lib/publicSets";
 
 const POPULAR_POKEMON = [
@@ -20,10 +21,14 @@ type ExploreDiscoverySectionsProps = {
   compareCards: string[];
   featuredCards: FeaturedExploreCard[];
   notableSets: PublicSetSummary[];
+  currentView?: ExploreViewMode;
 };
 
-function buildExploreQueryHref(query: string, compareCards: string[]) {
+function buildExploreQueryHref(query: string, compareCards: string[], currentView?: ExploreViewMode) {
   const params = new URLSearchParams({ q: query });
+  if (currentView) {
+    params.set("view", currentView);
+  }
   return buildPathWithCompareCards("/explore", params.toString(), compareCards);
 }
 
@@ -31,6 +36,7 @@ export default function ExploreDiscoverySections({
   compareCards,
   featuredCards,
   notableSets,
+  currentView,
 }: ExploreDiscoverySectionsProps) {
   return (
     <div className="space-y-10 md:space-y-12">
@@ -104,7 +110,7 @@ export default function ExploreDiscoverySections({
           {POPULAR_POKEMON.map((pokemon) => (
             <Link
               key={pokemon}
-              href={buildExploreQueryHref(pokemon, compareCards)}
+              href={buildExploreQueryHref(pokemon, compareCards, currentView)}
               className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               {pokemon}

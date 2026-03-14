@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { CardDetail } from "@/types/cards";
 
 type PublicCardRow = {
@@ -13,10 +14,16 @@ type PublicCardRow = {
   image_alt_url: string | null;
   artist: string | null;
   set_code: string | null;
+  variant_key: string | null;
+  variants: VariantFlags;
   sets?:
     | { name: string | null; printed_total: number | null; release_date: string | null }
     | { name: string | null; printed_total: number | null; release_date: string | null }[]
     | null;
+};
+
+type PublicCardPriceRow = {
+  latest_price: number | null;
 };
 
 type StaticParamRow = {
@@ -94,6 +101,8 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         image_alt_url,
         artist,
         set_code,
+        variant_key,
+        variants,
         sets(name,printed_total,release_date)
       `,
     )
@@ -107,6 +116,10 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const fallbackSet = await getSetDetailsByCode(row.set_code);
+  const { data: priceData } = row.id
+    ? await supabase.from("v_card_search").select("latest_price").eq("id", row.id).maybeSingle()
+    : { data: null };
+  const priceRow = priceData as PublicCardPriceRow | null;
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
@@ -125,6 +138,9 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,
     release_year: getReleaseYear(releaseDate),
+    latest_price: typeof priceRow?.latest_price === "number" ? priceRow.latest_price : undefined,
+    variant_key: row.variant_key?.trim() || undefined,
+    variants: row.variants ?? undefined,
   };
 }
 

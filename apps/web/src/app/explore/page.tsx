@@ -4,7 +4,9 @@ import ExplorePageClient from "@/components/explore/ExplorePageClient";
 import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton";
 import { getFeaturedExploreCards } from "@/lib/cards/getFeaturedExploreCards";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
+import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
 import { getPublicSets, type PublicSetSummary } from "@/lib/publicSets";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -66,8 +68,12 @@ function getNotableExploreSets(sets: PublicSetSummary[]) {
 export default async function ExplorePage({
   searchParams,
 }: {
-  searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string };
+  searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string };
 }) {
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const isDiscoveryMode =
     !normalizeFreeTextQuery(searchParams?.q) &&
@@ -88,13 +94,14 @@ export default async function ExplorePage({
         compareCards={compareCards}
         featuredCards={featuredCards}
         notableSets={getNotableExploreSets(allSets)}
+        currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
       />
     );
   }
 
   return (
     <Suspense fallback={<LoadingCardGridSkeleton />}>
-      <ExplorePageClient discoveryContent={discoveryContent} />
+      <ExplorePageClient discoveryContent={discoveryContent} canViewPricing={Boolean(user)} />
     </Suspense>
   );
 }

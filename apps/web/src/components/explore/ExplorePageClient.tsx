@@ -1,16 +1,19 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
-import PublicCardImage from "@/components/PublicCardImage";
+import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
+import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
+import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
+import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
+import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { normalizeExploreViewMode, type ExploreViewMode } from "@/lib/exploreViewModes";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { supabase } from "@/lib/supabaseClient";
-import type { CardSummary } from "@/types/cards";
 
 const SEARCH_LIMIT = 80;
 const TOKEN_SEARCH_LIMIT = 40;
@@ -19,13 +22,7 @@ const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set(["set", "card", "pokemon", "pokmon", "the", "and"]);
 
-type ExploreRow = CardSummary & {
-  id: string;
-  artist?: string;
-  set_code?: string;
-  printed_set_abbrev?: string;
-  tcgdex_set_id?: string;
-};
+type ExploreRow = ExploreResultCard;
 
 type SearchRpcRow = {
   id: string;
@@ -43,6 +40,8 @@ type CardPrintLookupRow = {
   set_code?: string | null;
   printed_set_abbrev?: string | null;
   external_ids?: { tcgdex?: string | null } | null;
+  variant_key?: string | null;
+  variants?: VariantFlags;
 };
 
 type TcgdexSetRow = {
@@ -60,7 +59,6 @@ type SetMetadataLookupRow = {
   release_date: string | null;
 };
 
-type ViewMode = "list" | "grid";
 type SortMode = "relevance" | "newest" | "oldest";
 
 type PublicSetMetadata = {
@@ -80,8 +78,8 @@ type ResolverQuery = {
   directGvId: string | null;
 };
 
-function parseViewMode(value: string | null): ViewMode {
-  return value === "grid" ? "grid" : "list";
+function parseViewMode(value: string | null): ExploreViewMode {
+  return normalizeExploreViewMode(value);
 }
 
 function parseSortMode(value: string | null): SortMode {
@@ -291,6 +289,7 @@ function buildExploreRows(
   lookupRows: CardPrintLookupRow[],
   setNameById: Map<string, string>,
   setMetadataByCode: Map<string, PublicSetMetadata>,
+  latestPricesByCardId: Map<string, number>,
 ) {
   return lookupRows
     .filter((row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id))
@@ -313,6 +312,9 @@ function buildExploreRows(
         set_code: row.set_code ?? undefined,
         printed_set_abbrev: row.printed_set_abbrev ?? undefined,
         tcgdex_set_id: tcgdexSetId,
+        latest_price: latestPricesByCardId.get(row.id),
+        variant_key: row.variant_key?.trim() || undefined,
+        variants: row.variants ?? undefined,
       };
     });
 }
@@ -595,7 +597,7 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
 
 async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], directGvId: string | null) {
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
 
   const [lookupById, lookupByTcgdex, directLookup] = await Promise.all([
     ids.length > 0
@@ -628,7 +630,7 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
 
 async function fetchCardRowsBySetCode(setCode: string) {
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -644,7 +646,7 @@ async function fetchCardRowsBySetCode(setCode: string) {
 
 async function fetchCardRowsByIllustrator(illustrator: string) {
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -685,7 +687,7 @@ async function fetchCardRowsByReleaseYear(year: number) {
   }
 
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -755,6 +757,24 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 }
 
+async function fetchLatestPricesByCardId(cardIds: string[]) {
+  if (cardIds.length === 0) {
+    return new Map<string, number>();
+  }
+
+  const { data, error } = await supabase.from("v_card_search").select("id,latest_price").in("id", cardIds);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return new Map(
+    ((data ?? []) as Array<{ id?: string | null; latest_price?: number | null }>)
+      .filter((row): row is { id: string; latest_price: number } => Boolean(row.id) && typeof row.latest_price === "number")
+      .map((row) => [row.id, row.latest_price]),
+  );
+}
+
 async function fetchExploreRows(
   rawQuery: string,
   sortMode: SortMode,
@@ -801,7 +821,8 @@ async function fetchExploreRows(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode);
+  const latestPricesByCardId = await fetchLatestPricesByCardId(exactRows.map((row) => row.id));
+  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode, latestPricesByCardId);
   const filteredRows = typeof exactReleaseYear === "number"
     ? rows.filter((row) => row.release_year === exactReleaseYear)
     : rows;
@@ -810,9 +831,10 @@ async function fetchExploreRows(
 
 type ExplorePageClientProps = {
   discoveryContent?: ReactNode;
+  canViewPricing: boolean;
 };
 
-export default function ExplorePageClient({ discoveryContent = null }: ExplorePageClientProps) {
+export default function ExplorePageClient({ discoveryContent = null, canViewPricing }: ExplorePageClientProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -871,7 +893,7 @@ export default function ExplorePageClient({ discoveryContent = null }: ExplorePa
     };
   }, [q, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
 
-  const commitViewMode = (nextViewMode: ViewMode) => {
+  const commitViewMode = (nextViewMode: ExploreViewMode) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("view", nextViewMode);
     const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
@@ -892,6 +914,13 @@ export default function ExplorePageClient({ discoveryContent = null }: ExplorePa
   };
 
   const buildCardHref = (gvId: string) => buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+  const currentPath = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
+  const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
+  const emptyState = (
+    <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
+      No results yet.
+    </div>
+  );
 
   return (
     <div className={`space-y-6 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
@@ -932,101 +961,117 @@ export default function ExplorePageClient({ discoveryContent = null }: ExplorePa
                   <option value="oldest">Oldest first</option>
                 </select>
               </label>
-              <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
-                <button
-                  type="button"
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                    viewMode === "list" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-                  }`}
-                  onClick={() => commitViewMode("list")}
-                >
-                  List
-                </button>
-                <button
-                  type="button"
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                    viewMode === "grid" ? "bg-slate-900 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-                  }`}
-                  onClick={() => commitViewMode("grid")}
-                >
-                  Grid
-                </button>
-              </div>
+              <ExploreViewModeToggle value={viewMode} onChange={commitViewMode} />
             </div>
           </div>
 
           {viewMode === "list" ? (
             <ul className="space-y-3">
               {rows.map((row) => (
-                <li
+                <ExploreCardListItem
                   key={row.id}
-                  className="rounded-[16px] border border-slate-200 bg-white px-4 py-4 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <Link href={buildCardHref(row.gv_id)} className="flex min-w-0 flex-1 items-start gap-4">
-                      <PublicCardImage
-                        src={row.image_url}
-                        alt={row.name}
-                        imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
-                        fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
-                      />
-                      <div className="flex flex-1 flex-col gap-2 pt-1">
-                        <span className="text-lg font-medium text-slate-950 hover:underline">{row.name}</span>
-                        {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                          <p className="text-sm text-slate-600">
-                            {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
-                          </p>
-                        )}
-                        <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
-                      </div>
-                    </Link>
-                    <CompareCardButton gvId={row.gv_id} variant="compact" />
-                  </div>
-                </li>
+                  card={row}
+                  href={buildCardHref(row.gv_id)}
+                  canViewPricing={canViewPricing}
+                  signInHref={pricingSignInHref}
+                />
               ))}
-              {rows.length === 0 && !loading && (
-                <li className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
-                  No results yet.
-                </li>
-              )}
+              {rows.length === 0 && !loading && <li>{emptyState}</li>}
             </ul>
+          ) : viewMode === "details" ? (
+            <div className="space-y-3">
+              <div className="md:hidden">
+                <ul className="space-y-3">
+                  {rows.map((row) => (
+                    <ExploreCardListItem
+                      key={row.id}
+                      card={row}
+                      href={buildCardHref(row.gv_id)}
+                      canViewPricing={canViewPricing}
+                      signInHref={pricingSignInHref}
+                    />
+                  ))}
+                  {rows.length === 0 && !loading && <li>{emptyState}</li>}
+                </ul>
+              </div>
+              <div className="hidden overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-sm md:block">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full border-separate border-spacing-0">
+                    <thead className="sticky top-0 z-10">
+                      <tr className="bg-slate-50">
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Card</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Set</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Number</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Rarity</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Variant</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Grookai Value</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Compare</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows.map((row) => (
+                        <ExploreCardDetailsRow
+                          key={row.id}
+                          card={row}
+                          href={buildCardHref(row.gv_id)}
+                          canViewPricing={canViewPricing}
+                          signInHref={pricingSignInHref}
+                        />
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {rows.length === 0 && !loading ? <div className="p-4">{emptyState}</div> : null}
+              </div>
+            </div>
+          ) : viewMode === "thumb-lg" ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {rows.map((row) => (
+                <ExploreCardGridItem
+                  key={row.id}
+                  card={row}
+                  href={buildCardHref(row.gv_id)}
+                  mode="thumb-lg"
+                  canViewPricing={canViewPricing}
+                />
+              ))}
+              {rows.length === 0 && !loading ? <div className="sm:col-span-2 xl:col-span-3">{emptyState}</div> : null}
+            </div>
           ) : (
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {rows.map((row) => (
-                <div
+                <ExploreCardGridItem
                   key={row.id}
-                  className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
-                >
-                  <div className="mb-3 flex items-center justify-end">
-                    <CompareCardButton gvId={row.gv_id} variant="compact" />
-                  </div>
-                  <Link href={buildCardHref(row.gv_id)} className="block">
-                    <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
-                      <PublicCardImage
-                        src={row.image_url}
-                        alt={row.name}
-                        imageClassName="aspect-[3/4] w-full rounded-[10px] object-contain transition duration-150 group-hover:scale-[1.02]"
-                        fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                      />
-                    </div>
-                    <div className="mt-3 space-y-1">
-                      <p className="truncate text-[15px] font-medium text-slate-900">{row.name}</p>
-                      <p className="truncate text-sm text-slate-500">{row.set_name ?? "Unknown set"}</p>
-                      <p className="text-xs text-slate-400">{row.number ? `#${row.number}` : "—"}</p>
-                      <p className="text-[11px] text-slate-400">GV-ID: {row.gv_id}</p>
-                    </div>
-                  </Link>
-                </div>
+                  card={row}
+                  href={buildCardHref(row.gv_id)}
+                  mode="thumb"
+                  canViewPricing={canViewPricing}
+                />
               ))}
-              {rows.length === 0 && !loading && (
-                <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 sm:col-span-2 xl:col-span-3">
-                  No results yet.
-                </div>
-              )}
+              {rows.length === 0 && !loading ? <div className="sm:col-span-2 xl:col-span-4">{emptyState}</div> : null}
             </div>
           )}
         </div>
       )}
+
+      {!isDiscoveryMode && rows.length > 0 && canViewPricing && viewMode === "details" ? (
+        <div className="text-xs text-slate-500 md:hidden">
+          Beta market estimate.
+        </div>
+      ) : null}
+
+      {!isDiscoveryMode && rows.length > 0 && canViewPricing && (viewMode === "thumb" || viewMode === "thumb-lg" || viewMode === "list") ? (
+        <div className="hidden text-xs text-slate-500 sm:block">
+          Beta market estimate. Derived from active listings and market data.
+        </div>
+      ) : null}
+
+      {!isDiscoveryMode ? (
+        <CompareTray
+          cards={compareCards}
+          addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
+        />
+      ) : null}
     </div>
   );
 }

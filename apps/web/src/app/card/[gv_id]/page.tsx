@@ -3,10 +3,14 @@ import { redirect, notFound } from "next/navigation";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
+import VariantBadge from "@/components/cards/VariantBadge";
+import LockedPrice from "@/components/pricing/LockedPrice";
+import VisiblePrice from "@/components/pricing/VisiblePrice";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import Link from "next/link";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
@@ -222,6 +226,7 @@ export default async function CardPage({
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`;
+  const canViewPricing = Boolean(user);
   const vaultMessage = getVaultMessage(searchParams?.vault, searchParams?.vault_detail);
   const vaultMessageToneClasses =
     vaultMessage?.tone === "success"
@@ -242,6 +247,7 @@ export default async function CardPage({
     ? buildExploreFilterHref([["illustrator", illustratorName]])
     : null;
   const printedTotal = formatPrintedTotal(resolvedCard.number, resolvedCard.printed_total);
+  const variantLabels = getVariantLabels(resolvedCard, 3);
   const summaryParts = [
     resolvedCard.number ? `#${resolvedCard.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
     resolvedCard.rarity,
@@ -250,6 +256,7 @@ export default async function CardPage({
     setName.length > 0 ? { label: "Set", value: setName, href: browseSetHref ?? undefined } : null,
     resolvedCard.number ? { label: "Card number", value: resolvedCard.number } : null,
     resolvedCard.rarity ? { label: "Rarity", value: resolvedCard.rarity } : null,
+    variantLabels.length > 0 ? { label: "Variant", value: variantLabels.join(" • ") } : null,
     typeof resolvedCard.release_year === "number"
       ? { label: "Release year", value: String(resolvedCard.release_year), href: browseYearHref ?? undefined }
       : null,
@@ -292,6 +299,25 @@ export default async function CardPage({
             {summaryParts.length > 0 ? (
               <p className="text-sm font-medium text-slate-500">{summaryParts.join(" • ")}</p>
             ) : null}
+            <div className="grid gap-4 rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+              {canViewPricing ? (
+                <VisiblePrice value={resolvedCard.latest_price} size="detail" note="full" />
+              ) : (
+                <LockedPrice href={loginHref} size="detail" />
+              )}
+              <div className="space-y-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Variant</p>
+                {variantLabels.length > 0 ? (
+                  <div className="flex flex-wrap gap-1.5">
+                    {variantLabels.map((label) => (
+                      <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-slate-400">—</p>
+                )}
+              </div>
+            </div>
           </div>
 
           <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
