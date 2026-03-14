@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { filterPublicSets, getPublicSets, normalizeSetQuery } from "@/lib/publicSets";
 
 export const dynamic = "force-dynamic";
@@ -6,9 +7,10 @@ export const dynamic = "force-dynamic";
 export default async function SetsPage({
   searchParams,
 }: {
-  searchParams?: { q?: string };
+  searchParams?: { q?: string; cards?: string };
 }) {
   const rawQuery = searchParams?.q ?? "";
+  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const sets = await getPublicSets();
   const filteredSets = filterPublicSets(sets, rawQuery);
   const normalizedQuery = normalizeSetQuery(rawQuery);
@@ -37,7 +39,7 @@ export default async function SetsPage({
             {filteredSets.map((setInfo) => (
               <Link
                 key={setInfo.code}
-                href={`/sets/${setInfo.code}`}
+                href={buildPathWithCompareCards(`/sets/${setInfo.code}`, "", compareCards)}
                 className="rounded-3xl border border-slate-200 bg-white px-5 py-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
                 <div className="space-y-3">

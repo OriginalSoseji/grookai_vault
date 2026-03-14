@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 
 type SiteHeaderProps = {
   isAuthenticated: boolean;
@@ -14,14 +15,17 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
+  const compareCount = compareCards.length;
   const showTopSearch =
     pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
   const accountHref = isAuthenticated ? "/account" : "/login";
   const accountLabel = isAuthenticated ? "Account" : "Login";
   const primaryNav = [
-    { href: "/explore", label: "Explore" },
-    { href: "/sets", label: "Sets" },
-    { href: "/compare", label: "Compare" },
+    { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Explore", matchHref: "/explore" },
+    { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
+    { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
     { href: "/vault", label: "Vault" },
   ];
 
@@ -43,14 +47,18 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
           <div className="flex flex-col gap-4 lg:items-end">
             <nav className="flex flex-wrap items-center gap-2 text-sm">
               {primaryNav.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                const matchHref = "matchHref" in item ? item.matchHref : item.href;
+                const isActive = pathname === matchHref || pathname.startsWith(`${matchHref}/`);
+                const isCompareItem = matchHref === "/compare";
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={`rounded-full px-3 py-2 transition-all duration-100 ${
                       isActive
-                        ? "bg-slate-900 text-white shadow-sm"
+                        ? isCompareItem && compareCount > 0
+                          ? "bg-amber-100 text-amber-950 shadow-sm ring-1 ring-amber-200"
+                          : "bg-slate-900 text-white shadow-sm"
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
                     }`}
                   >
@@ -59,20 +67,23 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
                 );
               })}
               {showTopSearch ? (
-                <Link href="/explore" className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950">
+                <Link
+                  href={buildPathWithCompareCards("/explore", "", compareCards)}
+                  className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950"
+                >
                   Search
                 </Link>
               ) : null}
-            {isAuthenticated && profileHref ? (
-              <Link href={profileHref} className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950">
-                Profile
-              </Link>
-            ) : null}
+              {isAuthenticated && profileHref ? (
+                <Link href={profileHref} className="rounded-full px-3 py-2 text-slate-600 transition-all duration-100 hover:bg-slate-100 hover:text-slate-950">
+                  Profile
+                </Link>
+              ) : null}
               <Link
                 href={accountHref}
                 className="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 transition-all duration-100 hover:border-slate-300 hover:bg-slate-50"
               >
-              {accountLabel}
+                {accountLabel}
               </Link>
             </nav>
           </div>

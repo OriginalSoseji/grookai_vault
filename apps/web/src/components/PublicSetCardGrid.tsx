@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
-import { buildPathWithCompareCards, normalizeCompareCardsParam, toggleCompareCard } from "@/lib/compareCards";
+import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets";
 
 type PublicSetCardGridProps = {
@@ -22,21 +23,13 @@ export default function PublicSetCardGrid({
   totalCount,
   chunkSize = 36,
 }: PublicSetCardGridProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [cards, setCards] = useState(initialCards);
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
-
   const canLoadMore = cards.length < totalCount;
-
-  function commitCompareCards(nextCards: string[]) {
-    router.replace(buildPathWithCompareCards(pathname, searchParams.toString(), nextCards), {
-      scroll: false,
-    });
-  }
 
   function buildCardHref(gvId: string) {
     return buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
@@ -84,7 +77,7 @@ export default function PublicSetCardGrid({
   }
 
   return (
-    <div className="space-y-4">
+    <div className={`space-y-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
         <p className="text-sm text-slate-600">
           Showing {cards.length} of {totalCount} card{totalCount === 1 ? "" : "s"}
@@ -98,16 +91,7 @@ export default function PublicSetCardGrid({
             className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
           >
             <div className="mb-3 flex items-center justify-end">
-              <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                <input
-                  type="checkbox"
-                  checked={compareCards.includes(card.gv_id)}
-                  onChange={() => commitCompareCards(toggleCompareCard(compareCards, card.gv_id))}
-                  disabled={!compareCards.includes(card.gv_id) && compareCards.length >= 4}
-                  className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
-                />
-                Compare
-              </label>
+              <CompareCardButton gvId={card.gv_id} variant="compact" />
             </div>
             <Link href={buildCardHref(card.gv_id)} className="block">
               <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
@@ -153,7 +137,6 @@ export default function PublicSetCardGrid({
       <CompareTray
         cards={compareCards}
         addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
-        onRemoveCard={(gvId) => commitCompareCards(compareCards.filter((value) => value !== gvId))}
       />
     </div>
   );

@@ -3,7 +3,7 @@
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
-import { buildCompareHref } from "@/lib/compareCards";
+import { buildCompareHref, buildPathWithCompareCards } from "@/lib/compareCards";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 
 type CompareWorkspaceProps = {
@@ -66,6 +66,8 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
   const [showDiffOnly, setShowDiffOnly] = useState(false);
   const [gridCols, setGridCols] = useState(cards.length);
   const [copied, setCopied] = useState(false);
+  const selectedGvIds = cards.map((card) => card.gv_id);
+  const addMoreHref = buildPathWithCompareCards("/explore", "", selectedGvIds);
 
   const referenceCard = useMemo(
     () => cards.find((card) => card.gv_id === referenceGvId) ?? cards[0],
@@ -132,6 +134,12 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href={addMoreHref}
+              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
+            >
+              Add more cards
+            </Link>
             <button
               type="button"
               onClick={handleCopyShareUrl}
@@ -147,7 +155,7 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
         {cards.map((card) => {
           const isReference = card.gv_id === referenceCard.gv_id;
           const remainingCards = cards.filter((candidate) => candidate.gv_id !== card.gv_id).map((candidate) => candidate.gv_id);
-          const removeHref = remainingCards.length >= 2 ? buildCompareHref(remainingCards) : `/card/${card.gv_id}`;
+          const removeHref = buildCompareHref(remainingCards);
 
           return (
             <article

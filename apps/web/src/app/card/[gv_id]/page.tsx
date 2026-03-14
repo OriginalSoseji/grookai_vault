@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import CompareTray from "@/components/compare/CompareTray";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import Link from "next/link";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
-import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -30,12 +31,19 @@ function formatPrintedTotal(number: string, printedTotal?: number) {
 
 type VaultStatus = "added" | "incremented" | "exists" | "signin" | "not-found" | "error";
 
-function buildCardHref(gvId: string, vaultStatus?: VaultStatus, vaultDetail?: string) {
-  if (!vaultStatus) {
-    return `/card/${encodeURIComponent(gvId)}`;
+function buildCardHref(gvId: string, compareCardsParam?: string, vaultStatus?: VaultStatus, vaultDetail?: string) {
+  const params = new URLSearchParams();
+
+  if (compareCardsParam) {
+    params.set("cards", compareCardsParam);
   }
 
-  const params = new URLSearchParams({ vault: vaultStatus });
+  if (!vaultStatus) {
+    const query = params.toString();
+    return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
+  }
+
+  params.set("vault", vaultStatus);
   if (vaultDetail) {
     params.set("vault_detail", vaultDetail.slice(0, 500));
   }
@@ -161,11 +169,11 @@ export default async function CardPage({
     } = await actionClient.auth.getUser();
 
     if (!user) {
-      redirect(`/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`);
+      redirect(`/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`);
     }
 
     if (!resolvedCard.id || !resolvedCard.gv_id) {
-      redirect(buildCardHref(params.gv_id, "not-found"));
+      redirect(buildCardHref(params.gv_id, compareCardsParam, "not-found"));
     }
 
     let result: AddCardToVaultResult;
@@ -193,10 +201,10 @@ export default async function CardPage({
         detail,
         error,
       });
-      redirect(buildCardHref(resolvedCard.gv_id, "error", detail));
+      redirect(buildCardHref(resolvedCard.gv_id, compareCardsParam, "error", detail));
     }
 
-    redirect(buildCardHref(resolvedCard.gv_id, result));
+    redirect(buildCardHref(resolvedCard.gv_id, compareCardsParam, result));
   }
 
   const user = authData.user;
@@ -213,8 +221,7 @@ export default async function CardPage({
   const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
-  const compareQuerySuffix = compareCardsParam ? `?cards=${encodeURIComponent(compareCardsParam)}` : "";
-  const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`;
+  const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`;
   const vaultMessage = getVaultMessage(searchParams?.vault, searchParams?.vault_detail);
   const vaultMessageToneClasses =
     vaultMessage?.tone === "success"
@@ -222,14 +229,18 @@ export default async function CardPage({
       : "border-rose-200 bg-rose-50 text-rose-800";
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
-  const browseSetHref = setName && resolvedCard.set_code ? `/explore?set=${encodeURIComponent(resolvedCard.set_code)}` : null;
-  const browseYearHref =
-    typeof resolvedCard.release_year === "number"
-      ? `/explore?year=${encodeURIComponent(String(resolvedCard.release_year))}`
-      : null;
+  const buildExploreFilterHref = (entries: Array<[string, string]>) => {
+    const params = new URLSearchParams(entries);
+    return buildPathWithCompareCards("/explore", params.toString(), compareCards);
+  };
+  const browseSetHref = setName && resolvedCard.set_code ? buildExploreFilterHref([["set", resolvedCard.set_code]]) : null;
+  const browseYearHref = typeof resolvedCard.release_year === "number"
+    ? buildExploreFilterHref([["year", String(resolvedCard.release_year)]])
+    : null;
   const illustratorName = typeof resolvedCard.artist === "string" ? resolvedCard.artist.trim() : "";
-  const browseIllustratorHref =
-    illustratorName.length > 0 ? `/explore?illustrator=${encodeURIComponent(illustratorName)}` : null;
+  const browseIllustratorHref = illustratorName.length > 0
+    ? buildExploreFilterHref([["illustrator", illustratorName]])
+    : null;
   const printedTotal = formatPrintedTotal(resolvedCard.number, resolvedCard.printed_total);
   const summaryParts = [
     resolvedCard.number ? `#${resolvedCard.number}${printedTotal ? ` / ${printedTotal}` : ""}` : undefined,
@@ -248,7 +259,7 @@ export default async function CardPage({
   ].filter((item): item is MetadataItem => item !== null);
 
   return (
-    <div className="space-y-10 py-4">
+    <div className={`space-y-10 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <div className="grid gap-10 md:grid-cols-[40%_60%] md:items-start">
         <div className="rounded-[20px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 shadow-sm">
           <CardZoomModal
@@ -308,7 +319,7 @@ export default async function CardPage({
                     Sign in to add
                   </Link>
                 )}
-                <CompareCardButton gvId={resolvedCard.gv_id} addHref="/explore" />
+                <CompareCardButton gvId={resolvedCard.gv_id} />
               </div>
             </div>
 
@@ -358,7 +369,7 @@ export default async function CardPage({
               <div className="grid gap-3 sm:grid-cols-2">
                 {adjacentCards.previous ? (
                   <Link
-                    href={`/card/${adjacentCards.previous.gv_id}${compareQuerySuffix}`}
+                    href={buildPathWithCompareCards(`/card/${adjacentCards.previous.gv_id}`, "", compareCards)}
                     className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                   >
                     <PublicCardImage
@@ -379,7 +390,7 @@ export default async function CardPage({
 
                 {adjacentCards.next ? (
                   <Link
-                    href={`/card/${adjacentCards.next.gv_id}${compareQuerySuffix}`}
+                    href={buildPathWithCompareCards(`/card/${adjacentCards.next.gv_id}`, "", compareCards)}
                     className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                   >
                     <PublicCardImage
@@ -402,6 +413,8 @@ export default async function CardPage({
           )}
         </div>
       </div>
+
+      <CompareTray cards={compareCards} addHref={buildPathWithCompareCards("/explore", "", compareCards)} />
     </div>
   );
 }

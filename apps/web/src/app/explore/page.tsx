@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
 import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton";
-import { buildPathWithCompareCards, normalizeCompareCardsParam, toggleCompareCard } from "@/lib/compareCards";
+import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardSummary } from "@/types/cards";
@@ -886,20 +887,10 @@ function ExplorePageContent() {
     router.replace(nextUrl, { scroll: false });
   };
 
-  const commitCompareCards = (nextCards: string[]) => {
-    router.replace(buildPathWithCompareCards(pathname, searchParams.toString(), nextCards), {
-      scroll: false,
-    });
-  };
-
-  const toggleCompare = (gvId: string) => {
-    commitCompareCards(toggleCompareCard(compareCards, gvId));
-  };
-
   const buildCardHref = (gvId: string) => buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <div className="space-y-2">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
@@ -974,16 +965,7 @@ function ExplorePageContent() {
                       <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
                     </div>
                   </Link>
-                  <label className="flex shrink-0 items-center gap-2 rounded-full border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600">
-                    <input
-                      type="checkbox"
-                      checked={compareCards.includes(row.gv_id)}
-                      onChange={() => toggleCompare(row.gv_id)}
-                      disabled={!compareCards.includes(row.gv_id) && compareCards.length >= 4}
-                      className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
-                    />
-                    Compare
-                  </label>
+                  <CompareCardButton gvId={row.gv_id} variant="compact" />
                 </div>
               </li>
             ))}
@@ -1001,16 +983,7 @@ function ExplorePageContent() {
                 className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
               >
                 <div className="mb-3 flex items-center justify-end">
-                  <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                    <input
-                      type="checkbox"
-                      checked={compareCards.includes(row.gv_id)}
-                      onChange={() => toggleCompare(row.gv_id)}
-                      disabled={!compareCards.includes(row.gv_id) && compareCards.length >= 4}
-                      className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
-                    />
-                    Compare
-                  </label>
+                  <CompareCardButton gvId={row.gv_id} variant="compact" />
                 </div>
                 <Link href={buildCardHref(row.gv_id)} className="block">
                   <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
@@ -1042,7 +1015,6 @@ function ExplorePageContent() {
       <CompareTray
         cards={compareCards}
         addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
-        onRemoveCard={(gvId) => commitCompareCards(compareCards.filter((value) => value !== gvId))}
       />
     </div>
   );

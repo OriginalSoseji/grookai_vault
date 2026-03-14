@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
 
 type PublicSearchFormProps = {
@@ -15,6 +16,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const currentQuery = searchParams.get("q") ?? "";
   const currentView = searchParams.get("view");
   const currentSort = searchParams.get("sort");
+  const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
+  const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
 
   useEffect(() => {
@@ -29,6 +32,10 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
     if (destination.q) {
       nextParams.set("q", destination.q);
+    }
+
+    if (compareCardsParam) {
+      nextParams.set("cards", compareCardsParam);
     }
 
     if (pathname === "/explore" && currentView) {
@@ -49,6 +56,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   if (variant === "hero") {
     return (
       <form action="/search" method="get" onSubmit={handleSubmit} className="max-w-2xl">
+        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
           <input
             type="search"
@@ -77,6 +85,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       onSubmit={handleSubmit}
       className="flex w-full flex-col gap-3 sm:flex-row sm:items-center"
     >
+      {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
       <input
         type="search"
         name="q"

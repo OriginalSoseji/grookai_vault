@@ -1,8 +1,11 @@
 export const MAX_COMPARE_CARDS = 4;
 export const MIN_COMPARE_CARDS = 2;
 
+const COMPARE_CARD_ID_PATTERN = /^GV-[A-Z0-9]+(?:-[A-Z0-9.]+)+$/;
+
 function normalizeCompareCardId(value: string) {
-  return value.trim().toUpperCase();
+  const normalized = value.trim().toUpperCase();
+  return COMPARE_CARD_ID_PATTERN.test(normalized) ? normalized : "";
 }
 
 export function normalizeCompareCardsParam(raw?: string | string[] | null) {
@@ -33,21 +36,23 @@ export function buildCompareCardsParam(cards: string[]) {
 }
 
 export function buildCompareHref(cards: string[]) {
-  const normalized = normalizeCompareCardsParam(cards);
   const params = new URLSearchParams();
-  if (normalized.length > 0) {
-    params.set("cards", normalized.join(","));
+  const compareCardsParam = buildCompareCardsParam(cards);
+
+  if (compareCardsParam) {
+    params.set("cards", compareCardsParam);
   }
+
   const query = params.toString();
   return query ? `/compare?${query}` : "/compare";
 }
 
-export function buildPathWithCompareCards(pathname: string, existingSearch: string, cards: string[]) {
+export function buildPathWithCompareCards(pathname: string, existingSearch = "", cards: string[] = []) {
   const params = new URLSearchParams(existingSearch);
-  const normalized = normalizeCompareCardsParam(cards);
+  const compareCardsParam = buildCompareCardsParam(cards);
 
-  if (normalized.length > 0) {
-    params.set("cards", normalized.join(","));
+  if (compareCardsParam) {
+    params.set("cards", compareCardsParam);
   } else {
     params.delete("cards");
   }

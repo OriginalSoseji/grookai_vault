@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { resolvePublicSearch } from "@/lib/publicSearchResolver";
+
+function applyCompareCardsParam(request: NextRequest, nextUrl: URL) {
+  const compareCards = normalizeCompareCardsParam(request.nextUrl.searchParams.get("cards"));
+  const compareCardsParam = buildCompareCardsParam(compareCards);
+
+  if (compareCardsParam) {
+    nextUrl.searchParams.set("cards", compareCardsParam);
+  }
+}
 
 function buildExploreUrl(request: NextRequest, query: string) {
   const nextUrl = new URL("/explore", request.url);
@@ -19,6 +29,7 @@ function buildExploreUrl(request: NextRequest, query: string) {
     nextUrl.searchParams.set("sort", sort);
   }
 
+  applyCompareCardsParam(request, nextUrl);
   return nextUrl;
 }
 
@@ -29,6 +40,7 @@ function buildSetsUrl(request: NextRequest, query: string) {
     nextUrl.searchParams.set("q", query);
   }
 
+  applyCompareCardsParam(request, nextUrl);
   return nextUrl;
 }
 
@@ -38,11 +50,15 @@ export async function GET(request: NextRequest) {
     const result = await resolvePublicSearch(rawQuery);
 
     if (result.kind === "card") {
-      return NextResponse.redirect(new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url));
+      const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
+      applyCompareCardsParam(request, nextUrl);
+      return NextResponse.redirect(nextUrl);
     }
 
     if (result.kind === "set") {
-      return NextResponse.redirect(new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url));
+      const nextUrl = new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url);
+      applyCompareCardsParam(request, nextUrl);
+      return NextResponse.redirect(nextUrl);
     }
 
     if (result.kind === "sets") {
