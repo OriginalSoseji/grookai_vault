@@ -53,6 +53,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     .select("id,card_id,gv_id")
     .eq("id", input.itemId)
     .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
   if (vaultError || !vaultRow) {

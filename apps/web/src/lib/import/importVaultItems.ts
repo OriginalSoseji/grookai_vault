@@ -96,6 +96,7 @@ async function fetchExistingVaultRows(client: ReturnType<typeof createServerComp
       .from("vault_items")
       .select("id,gv_id,qty")
       .eq("user_id", userId)
+      .is("archived_at", null)
       .in("gv_id", gvIdChunk);
 
     if (error) {
@@ -108,6 +109,51 @@ async function fetchExistingVaultRows(client: ReturnType<typeof createServerComp
   }
 
   return existingByGvId;
+}
+
+async function insertActiveOwnershipEpisode(
+  client: ReturnType<typeof createServerComponentClient>,
+  userId: string,
+  row: AggregatedImportRow,
+) {
+  const { data, error } = await client
+    .from("vault_items")
+    .insert({
+      user_id: userId,
+      card_id: row.cardId,
+      gv_id: row.gvId,
+      qty: row.quantityToImport,
+      condition_label: row.condition,
+      acquisition_cost: row.acquisitionCost,
+      created_at: row.createdAt,
+      notes: row.notes,
+      name: row.name,
+      set_name: row.setName,
+    })
+    .select("id,gv_id,qty")
+    .maybeSingle();
+
+  if (!error) {
+    return data as ExistingVaultRow | null;
+  }
+
+  if (error.code !== "23505") {
+    throw new Error(error.message);
+  }
+
+  const { data: existing, error: existingError } = await client
+    .from("vault_items")
+    .select("id,gv_id,qty")
+    .eq("user_id", userId)
+    .eq("gv_id", row.gvId)
+    .is("archived_at", null)
+    .maybeSingle();
+
+  if (existingError) {
+    throw new Error(existingError.message);
+  }
+
+  return (existing ?? null) as ExistingVaultRow | null;
 }
 
 function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByGvId: Map<string, ExistingVaultRow>) {
@@ -190,66 +236,25 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
     }
   }
 
-  if (rowsToInsert.length > 0) {
-    const insertPayload = rowsToInsert.map((row) => ({
-      user_id: user.id,
-      card_id: row.cardId,
-      gv_id: row.gvId,
-      qty: row.quantityToImport,
-      condition_label: row.condition,
-      acquisition_cost: row.acquisitionCost,
-      created_at: row.createdAt,
-      notes: row.notes,
-      name: row.name,
-      set_name: row.setName,
-    }));
-
-    const { data: insertedRows, error: insertError } = await client
-      .from("vault_items")
-      .upsert(insertPayload, {
-        onConflict: "user_id,gv_id",
-        ignoreDuplicates: true,
-      })
-      .select("gv_id");
-
-    if (insertError) {
-      throw new Error(insertError.message);
+  for (const row of rowsToInsert) {
+    const insertedOrExisting = await insertActiveOwnershipEpisode(client, user.id, row);
+    if (!insertedOrExisting?.id) {
+      continue;
     }
 
-    const insertedGvIds = new Set(
-      ((insertedRows ?? []) as Array<{ gv_id: string | null }>)
-        .map((row) => row.gv_id ?? "")
-        .filter(Boolean),
-    );
-    const conflictedRows = rowsToInsert.filter((row) => !insertedGvIds.has(row.gvId));
+    const existingQty = insertedOrExisting.qty ?? 0;
+    const remainingQuantity = row.desiredQuantity - existingQty;
+    if (remainingQuantity <= 0) {
+      continue;
+    }
 
-    if (conflictedRows.length > 0) {
-      const refreshedExistingByGvId = await fetchExistingVaultRows(
-        client,
-        user.id,
-        conflictedRows.map((row) => row.gvId),
-      );
+    const { error } = await client.rpc("vault_inc_qty", {
+      item_id: insertedOrExisting.id,
+      inc: remainingQuantity,
+    });
 
-      for (const row of conflictedRows) {
-        const existing = refreshedExistingByGvId.get(row.gvId);
-        if (!existing?.id) {
-          continue;
-        }
-
-        const remainingQuantity = row.desiredQuantity - (existing.qty ?? 0);
-        if (remainingQuantity <= 0) {
-          continue;
-        }
-
-        const { error } = await client.rpc("vault_inc_qty", {
-          item_id: existing.id,
-          inc: remainingQuantity,
-        });
-
-        if (error) {
-          throw new Error(error.message);
-        }
-      }
+    if (error) {
+      throw new Error(error.message);
     }
   }
 

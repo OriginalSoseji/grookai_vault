@@ -139,6 +139,7 @@ async function fetchExistingVaultQuantities(
       .from("vault_items")
       .select("gv_id,qty")
       .eq("user_id", userId)
+      .is("archived_at", null)
       .in("gv_id", gvIdChunk);
 
     if (error) {

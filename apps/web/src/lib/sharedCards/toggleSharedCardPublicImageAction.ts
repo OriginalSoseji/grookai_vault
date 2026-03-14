@@ -65,6 +65,7 @@ export async function toggleSharedCardPublicImageAction(
     .select("id,gv_id")
     .eq("card_id", input.cardId)
     .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
   if (vaultError || !vaultRow) {

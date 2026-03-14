@@ -39,15 +39,49 @@ function formatVaultQuantityError(step: string, error: PostgrestError) {
   return parts.join(" | ");
 }
 
+async function archiveVaultItem(
+  change: VaultQuantityChange,
+  currentRow: { card_id: string | null; gv_id: string | null },
+): Promise<UpdateVaultItemQuantityResult> {
+  const { error: archiveError } = await change.client
+    .from("vault_items")
+    .update({
+      qty: 0,
+      archived_at: new Date().toISOString(),
+    })
+    .eq("id", change.itemId)
+    .eq("user_id", change.userId)
+    .is("archived_at", null);
+
+  if (archiveError) {
+    throw new Error(formatVaultQuantityError("vault_items.archive", archiveError));
+  }
+
+  console.info("[vault:qty]", {
+    user_id: change.userId,
+    item_id: change.itemId,
+    card_id: currentRow.card_id,
+    gv_id: currentRow.gv_id,
+    action: "archive",
+    quantity: 0,
+  });
+
+  return {
+    status: "removed",
+    itemId: change.itemId,
+  };
+}
+
 export async function updateVaultItemQuantity(change: VaultQuantityChange): Promise<UpdateVaultItemQuantityResult> {
   const actionLabel = change.type === "increment" ? "increment" : "decrement";
   const delta = change.type === "increment" ? 1 : -1;
 
   const { data: row, error: readError } = await change.client
     .from("vault_items")
-    .select("id,gv_id,qty")
+    .select("id,card_id,gv_id,qty")
     .eq("id", change.itemId)
     .eq("user_id", change.userId)
+    .is("archived_at", null)
     .maybeSingle();
 
   if (readError) {
@@ -69,62 +103,21 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
 
   const currentQty = typeof row.qty === "number" ? row.qty : 0;
   if (currentQty <= 0) {
-    const { error: deleteError } = await change.client
-      .from("vault_items")
-      .delete()
-      .eq("id", change.itemId)
-      .eq("user_id", change.userId);
-
-    if (deleteError) {
-      throw new Error(formatVaultQuantityError("vault_items.delete-corrupt-nonpositive", deleteError));
-    }
-
-    console.info("[vault:qty]", {
-      user_id: change.userId,
-      item_id: change.itemId,
-      gv_id: row.gv_id,
-      action: "remove-corrupt",
-      quantity: 0,
-    });
-
-    return {
-      status: "removed",
-      itemId: change.itemId,
-    };
+    return archiveVaultItem(change, row);
   }
 
   const newQty = Math.max(0, currentQty + delta);
 
   if (newQty === 0) {
-    const { error: deleteError } = await change.client
-      .from("vault_items")
-      .delete()
-      .eq("id", change.itemId)
-      .eq("user_id", change.userId);
-
-    if (deleteError) {
-      throw new Error(formatVaultQuantityError("vault_items.delete-on-zero", deleteError));
-    }
-
-    console.info("[vault:qty]", {
-      user_id: change.userId,
-      item_id: change.itemId,
-      gv_id: row.gv_id,
-      action: "remove",
-      quantity: 0,
-    });
-
-    return {
-      status: "removed",
-      itemId: change.itemId,
-    };
+    return archiveVaultItem(change, row);
   }
 
   const { error: updateError } = await change.client
     .from("vault_items")
     .update({ qty: newQty })
     .eq("id", change.itemId)
-    .eq("user_id", change.userId);
+    .eq("user_id", change.userId)
+    .is("archived_at", null);
 
   if (updateError) {
     throw new Error(formatVaultQuantityError("vault_items.update-quantity", updateError));
