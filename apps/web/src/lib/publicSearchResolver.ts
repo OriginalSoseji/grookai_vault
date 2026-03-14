@@ -362,6 +362,12 @@ function exactAliasSetMatches(normalizedInput: string) {
 function findSetIntentMatches(normalizedInput: string, sets: PublicSetSummary[]) {
   const queryTokens = tokenizeWords(normalizedInput);
 
+  // Single-token queries are too ambiguous for fuzzy set routing.
+  // Exact aliases, exact codes, and exact set names are handled earlier.
+  if (queryTokens.length < 2) {
+    return [];
+  }
+
   return uniqueValues(
     sets
       .filter((setInfo) => {
