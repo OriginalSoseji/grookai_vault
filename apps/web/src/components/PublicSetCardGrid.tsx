@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
+import { buildPathWithCompareCards, normalizeCompareCardsParam, toggleCompareCard } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets";
 
 type PublicSetCardGridProps = {
@@ -18,11 +21,25 @@ export default function PublicSetCardGrid({
   totalCount,
   chunkSize = 36,
 }: PublicSetCardGridProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [cards, setCards] = useState(initialCards);
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
 
   const canLoadMore = cards.length < totalCount;
+
+  function commitCompareCards(nextCards: string[]) {
+    router.replace(buildPathWithCompareCards(pathname, searchParams.toString(), nextCards), {
+      scroll: false,
+    });
+  }
+
+  function buildCardHref(gvId: string) {
+    return buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+  }
 
   async function handleLoadMore() {
     if (isLoading || !canLoadMore) {
@@ -67,7 +84,7 @@ export default function PublicSetCardGrid({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
         <p className="text-sm text-slate-600">
           Showing {cards.length} of {totalCount} card{totalCount === 1 ? "" : "s"}
         </p>
@@ -75,26 +92,39 @@ export default function PublicSetCardGrid({
 
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {cards.map((card, index) => (
-          <Link
+          <div
             key={card.gv_id}
-            href={`/card/${card.gv_id}`}
-            className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+            className="rounded-[16px] border border-slate-200 bg-white p-3 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
           >
-            <PublicCardImage
-              src={card.image_url}
-              alt={card.name}
-              loading={index < 12 ? "eager" : "lazy"}
-              imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
-              fallbackClassName="flex aspect-[3/4] items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-            />
-            <div className="space-y-2 border-t border-slate-200 px-4 py-4">
-              <p className="line-clamp-2 text-lg font-medium text-slate-950">{card.name}</p>
-              <p className="text-sm text-slate-600">
-                {[card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
-              </p>
-              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+            <div className="mb-3 flex items-center justify-end">
+              <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                <input
+                  type="checkbox"
+                  checked={compareCards.includes(card.gv_id)}
+                  onChange={() => commitCompareCards(toggleCompareCard(compareCards, card.gv_id))}
+                  disabled={!compareCards.includes(card.gv_id) && compareCards.length >= 4}
+                  className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
+                />
+                Compare
+              </label>
             </div>
-          </Link>
+            <Link href={buildCardHref(card.gv_id)} className="block">
+              <div className="rounded-[12px] border border-slate-100 bg-white p-2">
+                <PublicCardImage
+                  src={card.image_url}
+                  alt={card.name}
+                  loading={index < 12 ? "eager" : "lazy"}
+                  imageClassName="aspect-[3/4] w-full rounded-[10px] bg-slate-50 object-contain p-5"
+                  fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                />
+              </div>
+              <div className="mt-3 space-y-1">
+                <p className="truncate text-sm font-semibold text-slate-900">{card.name}</p>
+                <p className="truncate text-xs text-slate-500">{setCode.toUpperCase()}</p>
+                <p className="text-xs text-slate-400">{card.number ? `#${card.number}` : "—"}</p>
+              </div>
+            </Link>
+          </div>
         ))}
       </div>
 
@@ -112,6 +142,12 @@ export default function PublicSetCardGrid({
           </button>
         </div>
       ) : null}
+
+      <CompareTray
+        cards={compareCards}
+        addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
+        onRemoveCard={(gvId) => commitCompareCards(compareCards.filter((value) => value !== gvId))}
+      />
     </div>
   );
 }

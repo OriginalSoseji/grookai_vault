@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
+import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton";
+import { buildPathWithCompareCards, normalizeCompareCardsParam, toggleCompareCard } from "@/lib/compareCards";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardSummary } from "@/types/cards";
@@ -814,6 +817,7 @@ function ExplorePageContent() {
   const exactIllustrator = (searchParams.get("illustrator") ?? "").trim() || "";
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
+  const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -882,18 +886,30 @@ function ExplorePageContent() {
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitCompareCards = (nextCards: string[]) => {
+    router.replace(buildPathWithCompareCards(pathname, searchParams.toString(), nextCards), {
+      scroll: false,
+    });
+  };
+
+  const toggleCompare = (gvId: string) => {
+    commitCompareCards(toggleCompareCard(compareCards, gvId));
+  };
+
+  const buildCardHref = (gvId: string) => buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+
   return (
     <div className="space-y-6">
       <div className="space-y-2">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
-        <h1 className="text-3xl font-semibold text-slate-950">Explore cards</h1>
-        <p className="max-w-2xl text-sm text-slate-600">Search by name, set, number, or Grookai ID.</p>
+        <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
+        <p className="max-w-2xl text-sm leading-7 text-slate-600">Search by name, set, number, or Grookai ID.</p>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
           <p className="text-sm text-slate-600">
             {rows.length > 0 ? `${rows.length} result${rows.length === 1 ? "" : "s"}` : "Results"}
           </p>
@@ -938,26 +954,36 @@ function ExplorePageContent() {
             {rows.map((row) => (
               <li
                 key={row.id}
-                className="rounded-3xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+                className="rounded-[16px] border border-slate-200 bg-white px-4 py-4 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
               >
-                <div className="flex items-start gap-4">
-                  <PublicCardImage
-                    src={row.image_url}
-                    alt={row.name}
-                    imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
-                    fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
-                  />
-                  <div className="flex flex-1 flex-col gap-2 pt-1">
-                    <Link href={`/card/${row.gv_id}`} className="text-lg font-medium text-slate-950 hover:underline">
-                      {row.name}
-                    </Link>
-                    {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                      <p className="text-sm text-slate-600">
-                        {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
-                      </p>
-                    )}
-                    <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
-                  </div>
+                <div className="flex items-start justify-between gap-4">
+                  <Link href={buildCardHref(row.gv_id)} className="flex min-w-0 flex-1 items-start gap-4">
+                    <PublicCardImage
+                      src={row.image_url}
+                      alt={row.name}
+                      imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
+                      fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
+                    />
+                    <div className="flex flex-1 flex-col gap-2 pt-1">
+                      <span className="text-lg font-medium text-slate-950 hover:underline">{row.name}</span>
+                      {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
+                        <p className="text-sm text-slate-600">
+                          {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
+                        </p>
+                      )}
+                      <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
+                    </div>
+                  </Link>
+                  <label className="flex shrink-0 items-center gap-2 rounded-full border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600">
+                    <input
+                      type="checkbox"
+                      checked={compareCards.includes(row.gv_id)}
+                      onChange={() => toggleCompare(row.gv_id)}
+                      disabled={!compareCards.includes(row.gv_id) && compareCards.length >= 4}
+                      className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
+                    />
+                    Compare
+                  </label>
                 </div>
               </li>
             ))}
@@ -970,27 +996,38 @@ function ExplorePageContent() {
         ) : (
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {rows.map((row) => (
-              <Link
+              <div
                 key={row.id}
-                href={`/card/${row.gv_id}`}
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                className="rounded-[16px] border border-slate-200 bg-white p-3 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
               >
-                <PublicCardImage
-                  src={row.image_url}
-                  alt={row.name}
-                  imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
-                  fallbackClassName="flex aspect-[3/4] items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-                />
-                <div className="space-y-2 border-t border-slate-200 px-4 py-4">
-                  <p className="line-clamp-2 text-lg font-medium text-slate-950">{row.name}</p>
-                  {([row.set_name, row.number, row.rarity].filter(Boolean).length > 0) && (
-                    <p className="min-h-10 text-sm text-slate-600">
-                      {[row.set_name, row.number ? `#${row.number}` : undefined, row.rarity].filter(Boolean).join(" • ")}
-                    </p>
-                  )}
-                  <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{row.gv_id}</p>
+                <div className="mb-3 flex items-center justify-end">
+                  <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                    <input
+                      type="checkbox"
+                      checked={compareCards.includes(row.gv_id)}
+                      onChange={() => toggleCompare(row.gv_id)}
+                      disabled={!compareCards.includes(row.gv_id) && compareCards.length >= 4}
+                      className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
+                    />
+                    Compare
+                  </label>
                 </div>
-              </Link>
+                <Link href={buildCardHref(row.gv_id)} className="block">
+                  <div className="rounded-[12px] border border-slate-100 bg-white p-2">
+                    <PublicCardImage
+                      src={row.image_url}
+                      alt={row.name}
+                      imageClassName="aspect-[3/4] w-full rounded-[10px] bg-slate-50 object-contain p-6"
+                      fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                    />
+                  </div>
+                  <div className="mt-3 space-y-1">
+                    <p className="truncate text-sm font-semibold text-slate-900">{row.name}</p>
+                    <p className="truncate text-xs text-slate-500">{row.set_name ?? "Unknown set"}</p>
+                    <p className="text-xs text-slate-400">{row.number ? `#${row.number}` : "—"}</p>
+                  </div>
+                </Link>
+              </div>
             ))}
             {rows.length === 0 && !loading && (
               <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 sm:col-span-2 xl:col-span-3">
@@ -1000,13 +1037,19 @@ function ExplorePageContent() {
           </div>
         )}
       </div>
+
+      <CompareTray
+        cards={compareCards}
+        addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
+        onRemoveCard={(gvId) => commitCompareCards(compareCards.filter((value) => value !== gvId))}
+      />
     </div>
   );
 }
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={<div className="py-8 text-sm text-slate-600">Loading explorer...</div>}>
+    <Suspense fallback={<LoadingCardGridSkeleton />}>
       <ExplorePageContent />
     </Suspense>
   );

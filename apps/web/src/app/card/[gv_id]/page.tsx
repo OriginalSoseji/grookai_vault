@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
+import CompareCardButton from "@/components/compare/CompareCardButton";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicCardImageLightbox from "@/components/PublicCardImageLightbox";
 import Link from "next/link";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
+import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -136,7 +138,7 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { vault?: string; vault_detail?: string };
+  searchParams?: { vault?: string; vault_detail?: string; cards?: string };
 }) {
   const supabase = createServerComponentClient();
   const [{ data: authData }, card, adjacentCards] = await Promise.all([
@@ -198,6 +200,9 @@ export default async function CardPage({
   }
 
   const user = authData.user;
+  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
+  const compareCardsParam = buildCompareCardsParam(compareCards);
+  const compareQuerySuffix = compareCardsParam ? `?cards=${encodeURIComponent(compareCardsParam)}` : "";
   const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id))}`;
   const vaultMessage = getVaultMessage(searchParams?.vault, searchParams?.vault_detail);
   const vaultMessageToneClasses =
@@ -232,20 +237,20 @@ export default async function CardPage({
   ].filter((item): item is MetadataItem => item !== null);
 
   return (
-    <div className="space-y-8 py-4">
-      <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
-        <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="space-y-10 py-4">
+      <div className="grid gap-10 md:grid-cols-[40%_60%] md:items-start">
+        <div className="rounded-[16px] border border-slate-200 bg-white p-4 shadow-sm">
           <PublicCardImageLightbox
             src={card.image_url}
             alt={card.name}
-            imageClassName="w-full rounded-2xl object-contain"
-            fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-2xl bg-slate-100 px-4 text-center text-sm text-slate-500"
+            imageClassName="w-full rounded-[12px] object-contain"
+            fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
           />
         </div>
 
-        <div className="space-y-6 rounded-[28px] border border-slate-200 bg-white p-7 shadow-sm">
-          <div className="space-y-2">
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
+        <div className="space-y-6">
+          <div className="space-y-3 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
             <div className="flex flex-wrap items-center gap-3">
               <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
               <CopyButton text={card.gv_id} />
@@ -263,32 +268,35 @@ export default async function CardPage({
               </p>
             ) : null}
             {summaryParts.length > 0 ? (
-              <p className="text-base font-medium text-slate-700">{summaryParts.join(" • ")}</p>
+              <p className="text-sm font-medium text-slate-500">{summaryParts.join(" • ")}</p>
             ) : null}
           </div>
 
-          <section className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+            <div className="flex flex-col gap-4">
               <div className="space-y-1">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Vault</h2>
                 <p className="text-sm text-slate-700">Add this canonical card to your vault using its GV-ID ownership lane.</p>
               </div>
-              {user ? (
-                <form action={addToVaultAction}>
-                  <VaultSubmitButton label="Add to Vault" />
-                </form>
-              ) : (
-                <Link
-                  href={loginHref}
-                  className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                >
-                  Sign in to add
-                </Link>
-              )}
+              <div className="flex flex-wrap items-center gap-3">
+                <CompareCardButton gvId={resolvedCard.gv_id} addHref="/explore" />
+                {user ? (
+                  <form action={addToVaultAction}>
+                    <VaultSubmitButton label="Add to Vault" />
+                  </form>
+                ) : (
+                  <Link
+                    href={loginHref}
+                    className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                  >
+                    Sign in to add
+                  </Link>
+                )}
+              </div>
             </div>
 
             {vaultMessage ? (
-              <div className={`rounded-2xl border px-4 py-3 ${vaultMessageToneClasses}`}>
+              <div className={`rounded-[12px] border px-4 py-3 ${vaultMessageToneClasses}`}>
                 <p className="text-sm font-semibold">{vaultMessage.title}</p>
                 <p className="mt-1 text-sm">{vaultMessage.body}</p>
                 <div className="mt-3 flex flex-wrap gap-3">
@@ -306,13 +314,13 @@ export default async function CardPage({
           </section>
 
           {metadata.length > 0 && (
-            <section className="space-y-4">
+            <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector details</h2>
-              <dl className="grid gap-4 sm:grid-cols-2">
+              <dl className="grid gap-y-3 md:grid-cols-[160px_auto]">
                 {metadata.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
-                    <dd className="mt-2 text-sm text-slate-800">
+                  <div key={item.label} className="contents">
+                    <dt className="text-sm text-slate-500">{item.label}</dt>
+                    <dd className="text-sm font-medium text-slate-800">
                       {item.href ? (
                         <Link href={item.href} className="underline-offset-4 hover:text-slate-950 hover:underline">
                           {item.value}
@@ -328,13 +336,13 @@ export default async function CardPage({
           )}
 
           {(adjacentCards.previous || adjacentCards.next) && (
-            <section className="space-y-4">
+            <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">In This Set</h2>
               <div className="grid gap-3 sm:grid-cols-2">
                 {adjacentCards.previous ? (
                   <Link
-                    href={`/card/${adjacentCards.previous.gv_id}`}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                    href={`/card/${adjacentCards.previous.gv_id}${compareQuerySuffix}`}
+                    className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                   >
                     <PublicCardImage
                       src={adjacentCards.previous.image_url}
@@ -354,8 +362,8 @@ export default async function CardPage({
 
                 {adjacentCards.next ? (
                   <Link
-                    href={`/card/${adjacentCards.next.gv_id}`}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-slate-300 hover:bg-white"
+                    href={`/card/${adjacentCards.next.gv_id}${compareQuerySuffix}`}
+                    className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                   >
                     <PublicCardImage
                       src={adjacentCards.next.image_url}

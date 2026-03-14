@@ -21,10 +21,10 @@ export default async function SetPage({
 
   return (
     <div className="space-y-8 py-6">
-      <section className="space-y-3">
+      <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Set</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{setDetail.name}</h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm leading-7 text-slate-600">
           {[
             setDetail.code,
             typeof setDetail.release_year === "number" ? String(setDetail.release_year) : undefined,

@@ -42,18 +42,18 @@ export default function PersistentSearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2">
+    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
       <input
         type="search"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search cards, sets, numbers, or Grookai ID"
-        className="h-11 flex-1 rounded-full border border-slate-300 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-500 focus:bg-white focus:ring-2 focus:ring-slate-200"
+        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200 sm:max-w-[420px]"
         aria-label="Search cards"
       />
       <button
         type="submit"
-        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700"
+        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-100 hover:bg-slate-700"
       >
         Search
       </button>
@@ -63,17 +63,17 @@ export default function PersistentSearchBar() {
 
 export function PersistentSearchBarFallback() {
   return (
-    <form action="/search" className="flex items-center gap-2">
+    <form action="/search" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
       <input
         type="search"
         name="q"
         placeholder="Search cards, sets, numbers, or Grookai ID"
-        className="h-11 flex-1 rounded-full border border-slate-300 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400"
+        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 sm:max-w-[420px]"
         aria-label="Search cards"
       />
       <button
         type="submit"
-        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700"
+        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-100 hover:bg-slate-700"
       >
         Search
       </button>
