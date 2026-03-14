@@ -994,11 +994,11 @@ function ExplorePageContent() {
             )}
           </ul>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {rows.map((row) => (
               <div
                 key={row.id}
-                className="rounded-[16px] border border-slate-200 bg-white p-3 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
+                className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
               >
                 <div className="mb-3 flex items-center justify-end">
                   <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
@@ -1013,18 +1013,19 @@ function ExplorePageContent() {
                   </label>
                 </div>
                 <Link href={buildCardHref(row.gv_id)} className="block">
-                  <div className="rounded-[12px] border border-slate-100 bg-white p-2">
+                  <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
                     <PublicCardImage
                       src={row.image_url}
                       alt={row.name}
-                      imageClassName="aspect-[3/4] w-full rounded-[10px] bg-slate-50 object-contain p-6"
+                      imageClassName="aspect-[3/4] w-full rounded-[10px] object-contain transition duration-150 group-hover:scale-[1.02]"
                       fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                     />
                   </div>
                   <div className="mt-3 space-y-1">
-                    <p className="truncate text-sm font-semibold text-slate-900">{row.name}</p>
-                    <p className="truncate text-xs text-slate-500">{row.set_name ?? "Unknown set"}</p>
+                    <p className="truncate text-[15px] font-medium text-slate-900">{row.name}</p>
+                    <p className="truncate text-sm text-slate-500">{row.set_name ?? "Unknown set"}</p>
                     <p className="text-xs text-slate-400">{row.number ? `#${row.number}` : "—"}</p>
+                    <p className="text-[11px] text-slate-400">GV-ID: {row.gv_id}</p>
                   </div>
                 </Link>
               </div>

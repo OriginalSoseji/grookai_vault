@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
+import ShareCardButton from "@/components/ShareCardButton";
 import { buildPathWithCompareCards, normalizeCompareCardsParam, toggleCompareCard } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets";
 
@@ -90,11 +91,11 @@ export default function PublicSetCardGrid({
         </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cards.map((card, index) => (
           <div
             key={card.gv_id}
-            className="rounded-[16px] border border-slate-200 bg-white p-3 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md"
+            className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
           >
             <div className="mb-3 flex items-center justify-end">
               <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
@@ -109,21 +110,27 @@ export default function PublicSetCardGrid({
               </label>
             </div>
             <Link href={buildCardHref(card.gv_id)} className="block">
-              <div className="rounded-[12px] border border-slate-100 bg-white p-2">
+              <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
                 <PublicCardImage
                   src={card.image_url}
                   alt={card.name}
                   loading={index < 12 ? "eager" : "lazy"}
-                  imageClassName="aspect-[3/4] w-full rounded-[10px] bg-slate-50 object-contain p-5"
+                  imageClassName="aspect-[3/4] w-full rounded-[10px] object-contain transition duration-150 group-hover:scale-[1.02]"
                   fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                 />
               </div>
-              <div className="mt-3 space-y-1">
-                <p className="truncate text-sm font-semibold text-slate-900">{card.name}</p>
-                <p className="truncate text-xs text-slate-500">{setCode.toUpperCase()}</p>
-                <p className="text-xs text-slate-400">{card.number ? `#${card.number}` : "—"}</p>
-              </div>
             </Link>
+            <div className="mt-3 space-y-1">
+              <Link href={buildCardHref(card.gv_id)} className="block">
+                <p className="truncate text-[15px] font-medium text-slate-900">{card.name}</p>
+                <p className="truncate text-sm text-slate-500">{setCode.toUpperCase()}</p>
+              </Link>
+              <div className="mt-2 flex items-center justify-between gap-3">
+                <p className="text-xs text-slate-400">{card.number ? `#${card.number}` : "—"}</p>
+                <ShareCardButton gvId={card.gv_id} />
+              </div>
+              <p className="text-[11px] text-slate-400">GV-ID: {card.gv_id}</p>
+            </div>
           </div>
         ))}
       </div>

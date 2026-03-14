@@ -22,3 +22,5 @@ export function PageContainer({ children, className }: PageContainerProps) {
     </div>
   );
 }
+
+export default PageContainer;

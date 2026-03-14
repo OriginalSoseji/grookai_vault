@@ -31,7 +31,12 @@ export default function CardZoomModal({ src, alt, imageClassName, fallbackClassN
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="block w-full cursor-zoom-in text-left">
-        <PublicCardImage src={src} alt={alt} imageClassName={imageClassName} fallbackClassName={fallbackClassName} />
+        <PublicCardImage
+          src={src}
+          alt={alt}
+          imageClassName={`${imageClassName} transition duration-150 hover:scale-[1.02]`}
+          fallbackClassName={fallbackClassName}
+        />
       </button>
 
       {open ? (

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
+import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
-import PublicCardImageLightbox from "@/components/PublicCardImageLightbox";
 import Link from "next/link";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -200,6 +200,17 @@ export default async function CardPage({
   }
 
   const user = authData.user;
+  const { data: activeVaultRow } =
+    user && resolvedCard.id
+      ? await supabase
+          .from("vault_items")
+          .select("qty")
+          .eq("user_id", user.id)
+          .eq("card_id", resolvedCard.id)
+          .is("archived_at", null)
+          .maybeSingle()
+      : { data: null };
+  const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const compareQuerySuffix = compareCardsParam ? `?cards=${encodeURIComponent(compareCardsParam)}` : "";
@@ -239,11 +250,11 @@ export default async function CardPage({
   return (
     <div className="space-y-10 py-4">
       <div className="grid gap-10 md:grid-cols-[40%_60%] md:items-start">
-        <div className="rounded-[16px] border border-slate-200 bg-white p-4 shadow-sm">
-          <PublicCardImageLightbox
+        <div className="rounded-[20px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 shadow-sm">
+          <CardZoomModal
             src={card.image_url}
             alt={card.name}
-            imageClassName="w-full rounded-[12px] object-contain"
+            imageClassName="w-full cursor-zoom-in object-contain"
             fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
           />
         </div>
@@ -276,10 +287,15 @@ export default async function CardPage({
             <div className="flex flex-col gap-4">
               <div className="space-y-1">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Vault</h2>
-                <p className="text-sm text-slate-700">Add this canonical card to your vault using its GV-ID ownership lane.</p>
+                {vaultCount > 0 ? (
+                  <p className="text-sm text-slate-600">
+                    You own <span className="font-semibold text-slate-900">{vaultCount}</span> {vaultCount === 1 ? "copy" : "copies"}
+                  </p>
+                ) : (
+                  <p className="text-sm text-slate-500">You do not own this card</p>
+                )}
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <CompareCardButton gvId={resolvedCard.gv_id} addHref="/explore" />
                 {user ? (
                   <form action={addToVaultAction}>
                     <VaultSubmitButton label="Add to Vault" />
@@ -292,6 +308,7 @@ export default async function CardPage({
                     Sign in to add
                   </Link>
                 )}
+                <CompareCardButton gvId={resolvedCard.gv_id} addHref="/explore" />
               </div>
             </div>
 

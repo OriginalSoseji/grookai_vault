@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
+import ShareCardButton from "@/components/ShareCardButton";
 
 export type VaultCardData = {
   id: string;
@@ -79,18 +80,20 @@ export function VaultCardTile({
   const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
 
   return (
-    <article className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(15,23,42,0.055)]">
+    <article className="card-hover overflow-hidden rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm">
       <Link href={`/card/${item.gv_id}`} className="block">
-        <PublicCardImage
-          src={item.image_url}
-          alt={item.name}
-          imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-6"
-          fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-          fallbackLabel={item.name}
-        />
+        <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
+          <PublicCardImage
+            src={item.image_url}
+            alt={item.name}
+            imageClassName="aspect-[3/4] w-full object-contain transition duration-150 hover:scale-[1.02]"
+            fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+            fallbackLabel={item.name}
+          />
+        </div>
       </Link>
 
-      <div className="space-y-4 border-t border-slate-200 p-5">
+      <div className="mt-4 space-y-4">
         <div className="space-y-2">
           <div className="flex items-start justify-between gap-3">
             <Link href={`/card/${item.gv_id}`} className="block min-w-0 flex-1">
@@ -113,6 +116,10 @@ export function VaultCardTile({
               .filter(Boolean)
               .join(" • ")}
           </p>
+          <div className="mt-2 flex items-center justify-between gap-3">
+            <span className="text-xs text-slate-400">Qty {item.quantity}</span>
+            <ShareCardButton gvId={item.gv_id} />
+          </div>
         </div>
 
         <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">

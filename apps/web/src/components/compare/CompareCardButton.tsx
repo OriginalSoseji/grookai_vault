@@ -31,7 +31,7 @@ export default function CompareCardButton({ gvId, addHref = "/explore" }: Compar
       <button
         type="button"
         onClick={handleToggle}
-        className={`inline-flex rounded-full px-5 py-2.5 text-sm font-medium transition ${
+        className={`inline-flex rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-100 ${
           isSelected
             ? "border border-slate-300 bg-white text-slate-900 hover:border-slate-400"
             : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50"

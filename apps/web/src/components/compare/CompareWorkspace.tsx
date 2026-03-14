@@ -152,7 +152,7 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
           return (
             <article
               key={card.gv_id}
-              className={`overflow-hidden rounded-[16px] border bg-white shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:shadow-md ${
+              className={`card-hover overflow-hidden rounded-[16px] border bg-white shadow-sm ${
                 isReference ? "border-amber-400 bg-amber-50" : "border-slate-200"
               }`}
             >
@@ -189,12 +189,14 @@ export default function CompareWorkspace({ cards }: CompareWorkspaceProps) {
                   </div>
                 </div>
 
-                <CardZoomModal
-                  src={card.image_url}
-                  alt={card.name}
-                  imageClassName="aspect-[3/4] w-full rounded-[12px] border border-slate-200 bg-slate-50 object-contain p-6"
-                  fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] border border-slate-200 bg-slate-100 px-4 text-center text-sm text-slate-500"
-                />
+                <div className="rounded-[12px] bg-slate-50 p-4">
+                  <CardZoomModal
+                    src={card.image_url}
+                    alt={card.name}
+                    imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain"
+                    fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                  />
+                </div>
               </div>
             </article>
           );
