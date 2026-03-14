@@ -44,7 +44,7 @@ export async function addCardToVault({
     .from("vault_items")
     .select("id")
     .eq("user_id", userId)
-    .eq("gv_id", gvId)
+    .eq("card_id", cardId)
     .is("archived_at", null)
     .maybeSingle();
 
@@ -109,7 +109,7 @@ export async function addCardToVault({
     .from("vault_items")
     .select("id")
     .eq("user_id", userId)
-    .eq("gv_id", gvId)
+    .eq("card_id", cardId)
     .is("archived_at", null)
     .maybeSingle();
 
@@ -118,7 +118,7 @@ export async function addCardToVault({
   }
 
   if (!existing?.id) {
-    throw new Error("[vault_items.select-after-active-conflict] Active GV-ID row could not be resolved after conflict.");
+    throw new Error("[vault_items.select-after-active-conflict] Active card row could not be resolved after conflict.");
   }
 
   const incrementResult = await updateVaultItemQuantity({
