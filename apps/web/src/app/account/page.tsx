@@ -86,6 +86,41 @@ export default async function AccountPage() {
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-4">
           <div className="space-y-1">
+            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
+            <p className="max-w-2xl text-sm leading-7 text-slate-600">
+              Join the Grookai collector community. Discuss cards, report data issues, and help shape Grookai.
+            </p>
+          </div>
+
+          <div>
+            <a
+              href="https://discord.gg/Cqax8URsM3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              <span>Join Grookai Discord</span>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 4h6v6" />
+                <path d="M10.5 5.5 4.5 11.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="space-y-4">
+          <div className="space-y-1">
             <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
             <p className="text-sm leading-7 text-slate-600">Bring your collection into Grookai from a supported export.</p>
           </div>
