@@ -5,7 +5,9 @@ import { createBackendClient } from '../supabase_backend_client.mjs';
 
 const DEFAULT_LIMIT = 100;
 const FETCH_PAGE_SIZE = 1000;
-const CARD_ID_CHUNK_SIZE = 400;
+// Supabase REST `.in(...)` filters can fail with oversized URL/query payloads.
+// Keep batched card_print_id lookups conservative for VPS stability.
+const CARD_ID_CHUNK_SIZE = 50;
 const SLEEP_MS = 15 * 60 * 1000;
 const COOLDOWN_MS = 2 * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
@@ -47,6 +49,12 @@ function chunkArray(items, chunkSize) {
     chunks.push(items.slice(i, i + chunkSize));
   }
   return chunks;
+}
+
+function logChunkQuery(helperName, chunkIndex, totalChunks, ids) {
+  console.log(
+    `[pricing_scheduler_v1] helper=${helperName} chunk=${chunkIndex + 1}/${totalChunks} chunk_size=${ids.length} sample_ids=${ids.slice(0, 3).join(',') || 'none'}`,
+  );
 }
 
 function parseTimestamp(value) {
@@ -122,14 +130,27 @@ async function fetchActivePricedCardIds(supabase) {
 
 async function fetchGrookaiValueMap(supabase, cardPrintIds) {
   const out = new Map();
-  for (const ids of chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('v_grookai_value_v1')
-      .select('card_print_id,grookai_value_nm')
-      .in('card_print_id', ids);
+  const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
+  for (const [chunkIndex, ids] of chunks.entries()) {
+    logChunkQuery('fetchGrookaiValueMap', chunkIndex, chunks.length, ids);
+
+    let data;
+    let error;
+    try {
+      ({ data, error } = await supabase
+        .from('v_grookai_value_v1')
+        .select('card_print_id,grookai_value_nm')
+        .in('card_print_id', ids));
+    } catch (err) {
+      throw new Error(
+        `fetchGrookaiValueMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
 
     if (error) {
-      throw new Error(`grookai value query failed: ${error.message}`);
+      throw new Error(
+        `fetchGrookaiValueMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`,
+      );
     }
 
     for (const row of data ?? []) {
@@ -144,14 +165,27 @@ async function fetchGrookaiValueMap(supabase, cardPrintIds) {
 
 async function fetchListingCountMap(supabase, cardPrintIds) {
   const out = new Map();
-  for (const ids of chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('ebay_active_prices_latest')
-      .select('card_print_id,listing_count')
-      .in('card_print_id', ids);
+  const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
+  for (const [chunkIndex, ids] of chunks.entries()) {
+    logChunkQuery('fetchListingCountMap', chunkIndex, chunks.length, ids);
+
+    let data;
+    let error;
+    try {
+      ({ data, error } = await supabase
+        .from('ebay_active_prices_latest')
+        .select('card_print_id,listing_count')
+        .in('card_print_id', ids));
+    } catch (err) {
+      throw new Error(
+        `fetchListingCountMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
 
     if (error) {
-      throw new Error(`listing count query failed: ${error.message}`);
+      throw new Error(
+        `fetchListingCountMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`,
+      );
     }
 
     for (const row of data ?? []) {
@@ -267,15 +301,28 @@ function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountB
 
 async function fetchOpenJobSet(supabase, cardPrintIds) {
   const out = new Set();
-  for (const ids of chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('pricing_jobs')
-      .select('card_print_id')
-      .in('status', ['pending', 'running'])
-      .in('card_print_id', ids);
+  const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
+  for (const [chunkIndex, ids] of chunks.entries()) {
+    logChunkQuery('fetchOpenJobSet', chunkIndex, chunks.length, ids);
+
+    let data;
+    let error;
+    try {
+      ({ data, error } = await supabase
+        .from('pricing_jobs')
+        .select('card_print_id')
+        .in('status', ['pending', 'running'])
+        .in('card_print_id', ids));
+    } catch (err) {
+      throw new Error(
+        `fetchOpenJobSet chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
 
     if (error) {
-      throw new Error(`open job query failed: ${error.message}`);
+      throw new Error(
+        `fetchOpenJobSet chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`,
+      );
     }
 
     for (const row of data ?? []) {
@@ -290,15 +337,28 @@ async function fetchOpenJobSet(supabase, cardPrintIds) {
 
 async function fetchLatestRequestMap(supabase, cardPrintIds) {
   const out = new Map();
-  for (const ids of chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('pricing_jobs')
-      .select('card_print_id,requested_at')
-      .in('card_print_id', ids)
-      .order('requested_at', { ascending: false });
+  const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
+  for (const [chunkIndex, ids] of chunks.entries()) {
+    logChunkQuery('fetchLatestRequestMap', chunkIndex, chunks.length, ids);
+
+    let data;
+    let error;
+    try {
+      ({ data, error } = await supabase
+        .from('pricing_jobs')
+        .select('card_print_id,requested_at')
+        .in('card_print_id', ids)
+        .order('requested_at', { ascending: false }));
+    } catch (err) {
+      throw new Error(
+        `fetchLatestRequestMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
 
     if (error) {
-      throw new Error(`latest request query failed: ${error.message}`);
+      throw new Error(
+        `fetchLatestRequestMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`,
+      );
     }
 
     for (const row of data ?? []) {
