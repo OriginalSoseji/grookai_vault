@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
 import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
+import { sendTelemetryEvent } from "@/lib/telemetry/client";
 
 type PublicSearchFormProps = {
   variant: "header" | "hero";
@@ -51,6 +52,14 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     const nextUrl = nextParams.toString()
       ? `${destination.pathname}?${nextParams.toString()}`
       : destination.pathname;
+
+    if (destination.q && destination.pathname === "/explore") {
+      sendTelemetryEvent({
+        eventName: "search_performed",
+        path: destination.pathname,
+        searchQuery: destination.q,
+      });
+    }
 
     router.push(nextUrl);
   };

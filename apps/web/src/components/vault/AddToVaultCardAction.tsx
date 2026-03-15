@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
+import { sendTelemetryEvent } from "@/lib/telemetry/client";
 
 export type AddToVaultActionResult =
   | {
@@ -28,6 +29,8 @@ type AddToVaultCardActionProps = {
   action: AddToVaultCardServerAction;
   isAuthenticated: boolean;
   loginHref: string;
+  currentPath: string;
+  gvId: string;
 };
 
 function getStatusMessage(result: AddToVaultActionResult | null) {
@@ -81,6 +84,8 @@ export default function AddToVaultCardAction({
   action,
   isAuthenticated,
   loginHref,
+  currentPath,
+  gvId,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const [state, formAction] = useFormState(action, null);
@@ -117,7 +122,16 @@ export default function AddToVaultCardAction({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         {isAuthenticated ? (
-          <form action={formAction}>
+          <form
+            action={formAction}
+            onSubmit={() => {
+              sendTelemetryEvent({
+                eventName: "vault_add_click",
+                path: currentPath,
+                gvId,
+              });
+            }}
+          >
             <VaultSubmitButton
               label="Add to Vault"
               successActive={successPulse !== null}

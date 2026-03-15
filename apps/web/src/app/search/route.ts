@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { resolvePublicSearch } from "@/lib/publicSearchResolver";
+import { createRouteHandlerClient } from "@/lib/supabase/server";
+import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 
 function applyCompareCardsParam(request: NextRequest, nextUrl: URL) {
   const compareCards = normalizeCompareCardsParam(request.nextUrl.searchParams.get("cards"));
@@ -46,6 +48,24 @@ function buildSetsUrl(request: NextRequest, query: string) {
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
+  const normalizedQuery = rawQuery.trim().replace(/\s+/g, " ");
+
+  if (normalizedQuery) {
+    const authResponse = NextResponse.next();
+    const authClient = createRouteHandlerClient(request, authResponse);
+    const {
+      data: { user },
+    } = await authClient.auth.getUser();
+
+    await trackServerEvent({
+      eventName: "search_performed",
+      path: "/search",
+      searchQuery: normalizedQuery,
+      userId: user?.id ?? null,
+      anonymousId: request.cookies.get("grookai-anonymous-id")?.value ?? null,
+    });
+  }
+
   try {
     const result = await resolvePublicSearch(rawQuery);
 

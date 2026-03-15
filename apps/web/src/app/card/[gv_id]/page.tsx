@@ -4,6 +4,7 @@ import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PrintingSelector from "@/components/cards/PrintingSelector";
+import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
@@ -17,6 +18,7 @@ import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCard
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
 
 type MetadataItem = {
@@ -113,6 +115,7 @@ export default async function CardPage({
   const resolvedCard = card;
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
+  const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -175,6 +178,17 @@ export default async function CardPage({
       };
     }
 
+    await trackServerEvent({
+      eventName: "vault_add_success",
+      userId: user.id,
+      path: currentCardPath,
+      gvId: resolvedCard.gv_id,
+      metadata: {
+        result,
+        quantity_delta: 1,
+      },
+    });
+
     return {
       ok: true,
       status: result,
@@ -194,7 +208,7 @@ export default async function CardPage({
           .maybeSingle()
       : { data: null };
   const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
-  const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`;
+  const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
@@ -231,6 +245,7 @@ export default async function CardPage({
 
   return (
     <div className={`space-y-10 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+      <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
       <div className="grid gap-10 md:grid-cols-[40%_60%] md:items-start">
         <div className="rounded-[20px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 shadow-sm">
           <CardZoomModal
@@ -303,6 +318,8 @@ export default async function CardPage({
                   action={addToVaultAction}
                   isAuthenticated={Boolean(user)}
                   loginHref={loginHref}
+                  currentPath={currentCardPath}
+                  gvId={resolvedCard.gv_id}
                 />
                 <CompareCardButton gvId={resolvedCard.gv_id} />
               </div>

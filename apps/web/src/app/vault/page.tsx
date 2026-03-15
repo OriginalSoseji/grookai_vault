@@ -1,5 +1,6 @@
 import Link from "next/link";
 import GoogleSignInButton from "@/components/GoogleSignInButton";
+import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import {
   VaultCollectionView,
   type RecentCardData,
@@ -266,12 +267,15 @@ export default async function VaultPage() {
     profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
 
   return (
-    <VaultCollectionView
-      initialItems={items}
-      recent={recent}
-      itemsError={itemsError?.message ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
-      recentError={recentError?.message}
-      publicCollectionHref={publicCollectionHref}
-    />
+    <>
+      <TrackPageEvent eventName="vault_opened" path="/vault" />
+      <VaultCollectionView
+        initialItems={items}
+        recent={recent}
+        itemsError={itemsError?.message ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
+        recentError={recentError?.message}
+        publicCollectionHref={publicCollectionHref}
+      />
+    </>
   );
 }

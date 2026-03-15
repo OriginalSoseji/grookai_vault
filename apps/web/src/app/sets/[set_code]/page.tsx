@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
 
@@ -21,6 +22,7 @@ export default async function SetPage({
 
   return (
     <div className="space-y-8 py-6">
+      <TrackPageEvent eventName="page_view_set" path={`/sets/${setDetail.code}`} setCode={setDetail.code} />
       <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Set</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{setDetail.name}</h1>

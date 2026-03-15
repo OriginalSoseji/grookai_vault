@@ -1,6 +1,7 @@
 "use client";
 
 import GoogleSignInButton from "@/components/GoogleSignInButton";
+import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useState } from "react";
@@ -31,8 +32,18 @@ function LoginPageContent() {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
         if (signInError) throw signInError;
       } else {
-        const { error: signUpError } = await supabase.auth.signUp({ email, password });
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({ email, password });
         if (signUpError) throw signUpError;
+        if (signUpData.user?.id) {
+          sendTelemetryEvent({
+            eventName: "account_created",
+            path: nextPath,
+            userId: signUpData.user.id,
+            metadata: {
+              auth_method: "email_password",
+            },
+          });
+        }
       }
       router.replace(nextPath);
     } catch (err: any) {

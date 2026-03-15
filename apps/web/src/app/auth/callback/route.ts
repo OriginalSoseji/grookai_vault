@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 
 const AUTH_NEXT_COOKIE = "grookai-auth-next";
 const TEMP_LOG_PREFIX = "[TEMP OAuth callback]";
@@ -51,6 +52,21 @@ export async function GET(request: NextRequest) {
     const failureResponse = NextResponse.redirect(new URL("/login?error=oauth_callback_failed", requestUrl.origin));
     clearNextCookie(failureResponse);
     return failureResponse;
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user?.id) {
+    await trackServerEvent({
+      eventName: "account_created",
+      userId: user.id,
+      path: nextPath,
+      metadata: {
+        auth_method: "google_oauth",
+      },
+    });
   }
 
   clearNextCookie(successResponse);
