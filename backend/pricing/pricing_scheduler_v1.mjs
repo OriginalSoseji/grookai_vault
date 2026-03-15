@@ -4,12 +4,14 @@ import { pathToFileURL } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 
 const DEFAULT_LIMIT = 100;
+const DEFAULT_RAW_POOL_SIZE = 500;
 const FETCH_PAGE_SIZE = 1000;
 // Supabase REST `.in(...)` filters can fail with oversized URL/query payloads.
 // Keep batched card_print_id lookups conservative for VPS stability.
 const CARD_ID_CHUNK_SIZE = 50;
 const SLEEP_MS = 15 * 60 * 1000;
 const COOLDOWN_MS = 2 * 60 * 60 * 1000;
+const COARSE_STALE_FLOOR_MS = 6 * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
 const HOT_LISTING_THRESHOLD = 10;
@@ -22,6 +24,7 @@ const NORMAL_VAULT_THRESHOLD = 3;
 function parseArgs(argv) {
   let once = false;
   let limit = DEFAULT_LIMIT;
+  let rawPoolSize = DEFAULT_RAW_POOL_SIZE;
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -33,10 +36,16 @@ function parseArgs(argv) {
         limit = next;
       }
       i += 1;
+    } else if (arg === '--raw-pool') {
+      const next = Number.parseInt(argv[i + 1], 10);
+      if (Number.isFinite(next) && next > 0) {
+        rawPoolSize = next;
+      }
+      i += 1;
     }
   }
 
-  return { once, limit };
+  return { once, limit, rawPoolSize };
 }
 
 function sleep(ms) {
@@ -90,42 +99,24 @@ function determineFreshnessTier({ listingCount, vaultQty, grookaiValueNm }) {
   return { tier: 'cold_catalog', ttlMs: 7 * DAY_MS };
 }
 
-async function fetchActivePricedCardIds(supabase) {
-  const out = [];
-  let from = 0;
+async function fetchCoarseStaleCandidates(supabase, rawPoolSize) {
+  const staleCutoffIso = new Date(Date.now() - COARSE_STALE_FLOOR_MS).toISOString();
+  const { data, error } = await supabase
+    .from('card_print_active_prices')
+    .select('card_print_id,updated_at')
+    .not('card_print_id', 'is', null)
+    .or(`updated_at.is.null,updated_at.lt.${staleCutoffIso}`)
+    .order('updated_at', { ascending: true, nullsFirst: true })
+    .limit(rawPoolSize);
 
-  while (true) {
-    const to = from + FETCH_PAGE_SIZE - 1;
-    const { data, error } = await supabase
-      .from('card_print_active_prices')
-      .select('card_print_id,updated_at')
-      .not('card_print_id', 'is', null)
-      .order('card_print_id', { ascending: true })
-      .range(from, to);
-
-    if (error) {
-      throw new Error(`active pricing query failed: ${error.message}`);
-    }
-
-    if (!data || data.length === 0) {
-      break;
-    }
-
-    for (const row of data) {
-      out.push({
-        cardPrintId: row.card_print_id,
-        updatedAt: row.updated_at ?? null,
-      });
-    }
-
-    if (data.length < FETCH_PAGE_SIZE) {
-      break;
-    }
-
-    from += FETCH_PAGE_SIZE;
+  if (error) {
+    throw new Error(`coarse stale candidate query failed: ${error.message}`);
   }
 
-  return out;
+  return (data ?? []).map((row) => ({
+    cardPrintId: row.card_print_id,
+    updatedAt: row.updated_at ?? null,
+  }));
 }
 
 async function fetchGrookaiValueMap(supabase, cardPrintIds) {
@@ -198,40 +189,37 @@ async function fetchListingCountMap(supabase, cardPrintIds) {
   return out;
 }
 
-async function fetchVaultQtyMap(supabase) {
+async function fetchVaultQtyMap(supabase, cardPrintIds) {
   const out = new Map();
-  let from = 0;
+  const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
+  for (const [chunkIndex, ids] of chunks.entries()) {
+    logChunkQuery('fetchVaultQtyMap', chunkIndex, chunks.length, ids);
 
-  while (true) {
-    const to = from + FETCH_PAGE_SIZE - 1;
-    const { data, error } = await supabase
-      .from('vault_items')
-      .select('card_id,qty')
-      .is('archived_at', null)
-      .order('id', { ascending: true })
-      .range(from, to);
+    let data;
+    let error;
+    try {
+      ({ data, error } = await supabase
+        .from('vault_items')
+        .select('card_id,qty')
+        .is('archived_at', null)
+        .in('card_id', ids));
+    } catch (err) {
+      throw new Error(
+        `fetchVaultQtyMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
 
     if (error) {
-      throw new Error(`vault quantity query failed: ${error.message}`);
+      throw new Error(`fetchVaultQtyMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`);
     }
 
-    if (!data || data.length === 0) {
-      break;
-    }
-
-    for (const row of data) {
+    for (const row of data ?? []) {
       if (!row.card_id) {
         continue;
       }
       const current = out.get(row.card_id) ?? 0;
       out.set(row.card_id, current + (Number(row.qty) || 0));
     }
-
-    if (data.length < FETCH_PAGE_SIZE) {
-      break;
-    }
-
-    from += FETCH_PAGE_SIZE;
   }
 
   return out;
@@ -371,13 +359,7 @@ async function fetchLatestRequestMap(supabase, cardPrintIds) {
   return out;
 }
 
-async function enqueueScheduledJobs(supabase, eligibleCandidates, limit) {
-  const limitedIds = eligibleCandidates.map((candidate) => candidate.cardPrintId);
-  const [openJobs, latestRequestedAtByCardId] = await Promise.all([
-    fetchOpenJobSet(supabase, limitedIds),
-    fetchLatestRequestMap(supabase, limitedIds),
-  ]);
-
+async function enqueueScheduledJobs(supabase, eligibleCandidates, limit, openJobs, latestRequestedAtByCardId) {
   const now = Date.now();
   const queuedIds = [];
   let skippedOpenJob = 0;
@@ -421,17 +403,21 @@ async function enqueueScheduledJobs(supabase, eligibleCandidates, limit) {
   };
 }
 
-async function runSchedulerCycle({ supabase, limit }) {
-  const activeRows = await fetchActivePricedCardIds(supabase);
-  const activeCardIds = activeRows.map((row) => row.cardPrintId);
-  const [grookaiValueByCardId, listingCountByCardId, vaultQtyByCardId] = await Promise.all([
-    fetchGrookaiValueMap(supabase, activeCardIds),
-    fetchListingCountMap(supabase, activeCardIds),
-    fetchVaultQtyMap(supabase),
+async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
+  const coarseCandidates = await fetchCoarseStaleCandidates(supabase, rawPoolSize);
+  const coarseCandidateIds = coarseCandidates
+    .map((row) => row.cardPrintId)
+    .filter(Boolean);
+  const [grookaiValueByCardId, listingCountByCardId, vaultQtyByCardId, openJobs, latestRequestedAtByCardId] = await Promise.all([
+    fetchGrookaiValueMap(supabase, coarseCandidateIds),
+    fetchListingCountMap(supabase, coarseCandidateIds),
+    fetchVaultQtyMap(supabase, coarseCandidateIds),
+    fetchOpenJobSet(supabase, coarseCandidateIds),
+    fetchLatestRequestMap(supabase, coarseCandidateIds),
   ]);
 
   const eligibleCandidates = buildEligibleCandidates(
-    activeRows,
+    coarseCandidates,
     grookaiValueByCardId,
     listingCountByCardId,
     vaultQtyByCardId,
@@ -440,15 +426,18 @@ async function runSchedulerCycle({ supabase, limit }) {
     supabase,
     eligibleCandidates,
     limit,
+    openJobs,
+    latestRequestedAtByCardId,
   );
 
   const cycleTs = new Date().toISOString();
-  console.log(`[pricing_scheduler_v1] cycle=${cycleTs} scanned=${activeRows.length} eligible=${eligibleCandidates.length} queued=${queuedIds.length} open_job_skip=${skippedOpenJob} cooldown_skip=${skippedCooldown}`);
+  console.log(`[pricing_scheduler_v1] cycle=${cycleTs} coarse_candidates=${coarseCandidates.length} enriched_candidates=${coarseCandidateIds.length} eligible_after_tiering=${eligibleCandidates.length} queued=${queuedIds.length} open_job_skip=${skippedOpenJob} cooldown_skip=${skippedCooldown}`);
   console.log(`[pricing_scheduler_v1] queued_first5=${queuedIds.slice(0, 5).join(',') || 'none'}`);
 
   return {
     cycleTs,
-    scannedCount: activeRows.length,
+    coarseCandidates: coarseCandidates.length,
+    enrichedCandidates: coarseCandidateIds.length,
     eligibleCount: eligibleCandidates.length,
     queuedCount: queuedIds.length,
     skippedOpenJob,
@@ -458,11 +447,11 @@ async function runSchedulerCycle({ supabase, limit }) {
 }
 
 async function main() {
-  const { once, limit } = parseArgs(process.argv.slice(2));
+  const { once, limit, rawPoolSize } = parseArgs(process.argv.slice(2));
   const supabase = createBackendClient();
 
   do {
-    await runSchedulerCycle({ supabase, limit });
+    await runSchedulerCycle({ supabase, limit, rawPoolSize });
     if (!once) {
       await sleep(SLEEP_MS);
     }
