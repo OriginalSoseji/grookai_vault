@@ -1,3 +1,10 @@
+export type CardPrinting = {
+  id: string;
+  finish_key?: string;
+  finish_name?: string;
+  finish_sort_order?: number;
+};
+
 export interface CardSummary {
   id: string;
   gv_id: string;
@@ -17,4 +24,5 @@ export interface CardDetail extends CardSummary {
   set_code?: string;
   variant_key?: string;
   variants?: import("@/lib/cards/variantPresentation").VariantFlags;
+  printings?: CardPrinting[];
 }

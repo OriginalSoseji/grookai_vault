@@ -2,7 +2,7 @@ import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
-import type { CardDetail } from "@/types/cards";
+import type { CardDetail, CardPrinting } from "@/types/cards";
 
 type PublicCardRow = {
   id: string | null;
@@ -16,6 +16,16 @@ type PublicCardRow = {
   set_code: string | null;
   variant_key: string | null;
   variants: VariantFlags;
+  card_printings?:
+    | {
+        id: string | null;
+        finish_key: string | null;
+        finish_keys:
+          | { label: string | null; sort_order: number | null }
+          | { label: string | null; sort_order: number | null }[]
+          | null;
+      }[]
+    | null;
   sets?:
     | { name: string | null; printed_total: number | null; release_date: string | null }
     | { name: string | null; printed_total: number | null; release_date: string | null }[]
@@ -48,6 +58,38 @@ function getReleaseYear(releaseDate?: string | null) {
 
   const parsedYear = Number(match[1]);
   return Number.isFinite(parsedYear) ? parsedYear : undefined;
+}
+
+function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[] | undefined {
+  const mapped = (rows ?? [])
+    .map((printing) => {
+      const finishRecord = Array.isArray(printing.finish_keys) ? printing.finish_keys[0] : printing.finish_keys;
+
+      return {
+        id: printing.id ?? "",
+        finish_key: printing.finish_key?.trim() || undefined,
+        finish_name: finishRecord?.label?.trim() || printing.finish_key?.trim() || undefined,
+        finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : undefined,
+      } satisfies CardPrinting;
+    })
+    .filter((printing) => Boolean(printing.id) && Boolean(printing.finish_name));
+
+  if (mapped.length === 0) {
+    return undefined;
+  }
+
+  mapped.sort((left, right) => {
+    const leftSort = left.finish_sort_order ?? Number.MAX_SAFE_INTEGER;
+    const rightSort = right.finish_sort_order ?? Number.MAX_SAFE_INTEGER;
+
+    if (leftSort !== rightSort) {
+      return leftSort - rightSort;
+    }
+
+    return (left.finish_name ?? "").localeCompare(right.finish_name ?? "");
+  });
+
+  return mapped;
 }
 
 function createServerSupabase() {
@@ -103,6 +145,11 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         set_code,
         variant_key,
         variants,
+        card_printings(
+          id,
+          finish_key,
+          finish_keys(label,sort_order)
+        ),
         sets(name,printed_total,release_date)
       `,
     )
@@ -141,6 +188,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     latest_price: typeof priceRow?.latest_price === "number" ? priceRow.latest_price : undefined,
     variant_key: row.variant_key?.trim() || undefined,
     variants: row.variants ?? undefined,
+    printings: mapCardPrintings(row.card_printings),
   };
 }
 

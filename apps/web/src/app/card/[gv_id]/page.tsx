@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
+import PrintingSelector from "@/components/cards/PrintingSelector";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
@@ -282,6 +283,8 @@ export default async function CardPage({
               </div>
             </div>
           </div>
+
+          <PrintingSelector printings={resolvedCard.printings} />
 
           <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
             <div className="flex flex-col gap-4">
