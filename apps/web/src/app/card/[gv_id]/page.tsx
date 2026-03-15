@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { redirect, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
-import VaultSubmitButton from "@/components/VaultSubmitButton";
+import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import Link from "next/link";
@@ -33,68 +33,15 @@ function formatPrintedTotal(number: string, printedTotal?: number) {
   return `${prefix}${printedTotal}`;
 }
 
-type VaultStatus = "added" | "incremented" | "exists" | "signin" | "not-found" | "error";
-
-function buildCardHref(gvId: string, compareCardsParam?: string, vaultStatus?: VaultStatus, vaultDetail?: string) {
+function buildCardHref(gvId: string, compareCardsParam?: string) {
   const params = new URLSearchParams();
 
   if (compareCardsParam) {
     params.set("cards", compareCardsParam);
   }
 
-  if (!vaultStatus) {
-    const query = params.toString();
-    return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
-  }
-
-  params.set("vault", vaultStatus);
-  if (vaultDetail) {
-    params.set("vault_detail", vaultDetail.slice(0, 500));
-  }
-  return `/card/${encodeURIComponent(gvId)}?${params.toString()}`;
-}
-
-function getVaultMessage(status?: string, detail?: string) {
-  switch (status) {
-    case "added":
-      return {
-        tone: "success" as const,
-        title: "Added to Vault",
-        body: "This card is now in your vault.",
-      };
-    case "incremented":
-      return {
-        tone: "success" as const,
-        title: "Vault quantity updated",
-        body: "This card was already in your vault, so quantity was increased by 1.",
-      };
-    case "exists":
-      return {
-        tone: "success" as const,
-        title: "Already in Vault",
-        body: "This card is already on your vault lane.",
-      };
-    case "signin":
-      return {
-        tone: "error" as const,
-        title: "Sign in required",
-        body: "Sign in to add this card to your vault.",
-      };
-    case "not-found":
-      return {
-        tone: "error" as const,
-        title: "Card unavailable",
-        body: "The canonical card row could not be resolved for vault add.",
-      };
-    case "error":
-      return {
-        tone: "error" as const,
-        title: "Vault add failed",
-        body: detail?.trim() || "An unexpected error occurred while adding this card to your vault.",
-      };
-    default:
-      return null;
-  }
+  const query = params.toString();
+  return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
 
 export const revalidate = 0;
@@ -150,7 +97,7 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { vault?: string; vault_detail?: string; cards?: string };
+  searchParams?: { cards?: string };
 }) {
   const supabase = createServerComponentClient();
   const [{ data: authData }, card, adjacentCards] = await Promise.all([
@@ -163,21 +110,35 @@ export default async function CardPage({
     notFound();
   }
   const resolvedCard = card;
+  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
+  const compareCardsParam = buildCompareCardsParam(compareCards);
 
-  async function addToVaultAction() {
+  async function addToVaultAction(
+    _previousState: AddToVaultActionResult | null,
+    _formData: FormData,
+  ): Promise<AddToVaultActionResult> {
     "use server";
 
     const actionClient = createServerComponentClient();
     const {
       data: { user },
     } = await actionClient.auth.getUser();
+    const submissionKey = Date.now();
 
     if (!user) {
-      redirect(`/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`);
+      return {
+        ok: false,
+        status: "login-required",
+        submissionKey,
+      };
     }
 
     if (!resolvedCard.id || !resolvedCard.gv_id) {
-      redirect(buildCardHref(params.gv_id, compareCardsParam, "not-found"));
+      return {
+        ok: false,
+        status: "not-found",
+        submissionKey,
+      };
     }
 
     let result: AddCardToVaultResult;
@@ -205,10 +166,19 @@ export default async function CardPage({
         detail,
         error,
       });
-      redirect(buildCardHref(resolvedCard.gv_id, compareCardsParam, "error", detail));
+      return {
+        ok: false,
+        status: "error",
+        message: "Something went wrong while adding this card to your vault.",
+        submissionKey,
+      };
     }
 
-    redirect(buildCardHref(resolvedCard.gv_id, compareCardsParam, result));
+    return {
+      ok: true,
+      status: result,
+      submissionKey,
+    };
   }
 
   const user = authData.user;
@@ -223,15 +193,8 @@ export default async function CardPage({
           .maybeSingle()
       : { data: null };
   const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
-  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
-  const compareCardsParam = buildCompareCardsParam(compareCards);
   const loginHref = `/login?next=${encodeURIComponent(buildCardHref(resolvedCard.gv_id, compareCardsParam))}`;
   const canViewPricing = Boolean(user);
-  const vaultMessage = getVaultMessage(searchParams?.vault, searchParams?.vault_detail);
-  const vaultMessageToneClasses =
-    vaultMessage?.tone === "success"
-      ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-      : "border-rose-200 bg-rose-50 text-rose-800";
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const buildExploreFilterHref = (entries: Array<[string, string]>) => {
@@ -333,38 +296,14 @@ export default async function CardPage({
                 )}
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                {user ? (
-                  <form action={addToVaultAction}>
-                    <VaultSubmitButton label="Add to Vault" />
-                  </form>
-                ) : (
-                  <Link
-                    href={loginHref}
-                    className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                  >
-                    Sign in to add
-                  </Link>
-                )}
+                <AddToVaultCardAction
+                  action={addToVaultAction}
+                  isAuthenticated={Boolean(user)}
+                  loginHref={loginHref}
+                />
                 <CompareCardButton gvId={resolvedCard.gv_id} />
               </div>
             </div>
-
-            {vaultMessage ? (
-              <div className={`rounded-[12px] border px-4 py-3 ${vaultMessageToneClasses}`}>
-                <p className="text-sm font-semibold">{vaultMessage.title}</p>
-                <p className="mt-1 text-sm">{vaultMessage.body}</p>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  <Link href="/vault" className="text-sm font-medium underline underline-offset-4">
-                    View Vault
-                  </Link>
-                  {!user ? (
-                    <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">
-                      Sign in
-                    </Link>
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
           </section>
 
           {metadata.length > 0 && (
