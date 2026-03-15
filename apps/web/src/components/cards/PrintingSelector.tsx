@@ -11,31 +11,53 @@ type PrintingSelectorProps = {
 const MAX_COLLAPSED_PRINTINGS = 5;
 
 export default function PrintingSelector({ printings = [] }: PrintingSelectorProps) {
-  const validPrintings = useMemo(
-    () => printings.filter((printing) => Boolean(printing.id) && Boolean(printing.finish_name)),
-    [printings],
-  );
-  const [selectedPrintingId, setSelectedPrintingId] = useState(validPrintings[0]?.id ?? "");
+  const displayablePrintings = useMemo(() => {
+    const byLabel = new Map<string, CardPrinting>();
+
+    for (const printing of printings) {
+      if (!printing.id || !printing.finish_name) {
+        continue;
+      }
+
+      const label = printing.finish_name.trim();
+      if (!label || byLabel.has(label)) {
+        continue;
+      }
+
+      byLabel.set(label, {
+        ...printing,
+        finish_name: label,
+      });
+    }
+
+    return Array.from(byLabel.values()).sort(
+      (a, b) => (a.finish_sort_order ?? 999) - (b.finish_sort_order ?? 999),
+    );
+  }, [printings]);
+  const [selectedPrintingId, setSelectedPrintingId] = useState(displayablePrintings[0]?.id ?? "");
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    if (validPrintings.length <= 1) {
+    if (displayablePrintings.length <= 1) {
       return;
     }
 
-    const selectedStillExists = validPrintings.some((printing) => printing.id === selectedPrintingId);
+    const selectedStillExists = displayablePrintings.some((printing) => printing.id === selectedPrintingId);
     if (!selectedStillExists) {
-      setSelectedPrintingId(validPrintings[0]?.id ?? "");
+      setSelectedPrintingId(displayablePrintings[0]?.id ?? "");
     }
-  }, [selectedPrintingId, validPrintings]);
+  }, [displayablePrintings, selectedPrintingId]);
 
-  if (validPrintings.length <= 1) {
+  if (displayablePrintings.length <= 1) {
     return null;
   }
 
-  const selectedPrinting = validPrintings.find((printing) => printing.id === selectedPrintingId) ?? validPrintings[0];
-  const hiddenCount = Math.max(0, validPrintings.length - MAX_COLLAPSED_PRINTINGS);
-  const visiblePrintings = expanded ? validPrintings : validPrintings.slice(0, MAX_COLLAPSED_PRINTINGS);
+  const selectedPrinting =
+    displayablePrintings.find((printing) => printing.id === selectedPrintingId) ?? displayablePrintings[0];
+  const hiddenCount = Math.max(0, displayablePrintings.length - MAX_COLLAPSED_PRINTINGS);
+  const visiblePrintings = expanded
+    ? displayablePrintings
+    : displayablePrintings.slice(0, MAX_COLLAPSED_PRINTINGS);
 
   return (
     <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">

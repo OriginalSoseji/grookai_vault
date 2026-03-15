@@ -44,6 +44,14 @@ type CardPrintLookupRow = {
   variants?: VariantFlags;
 };
 
+type GrookaiValueRow = {
+  card_print_id?: string | null;
+  grookai_value_nm?: number | null;
+  confidence?: number | null;
+  listing_count?: number | null;
+  updated_at?: string | null;
+};
+
 type TcgdexSetRow = {
   tcgdex_set_id: string | null;
   name: string | null;
@@ -289,7 +297,7 @@ function buildExploreRows(
   lookupRows: CardPrintLookupRow[],
   setNameById: Map<string, string>,
   setMetadataByCode: Map<string, PublicSetMetadata>,
-  latestPricesByCardId: Map<string, number>,
+  pricingByCardId: Map<string, GrookaiValueRow>,
 ) {
   return lookupRows
     .filter((row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id))
@@ -312,7 +320,11 @@ function buildExploreRows(
         set_code: row.set_code ?? undefined,
         printed_set_abbrev: row.printed_set_abbrev ?? undefined,
         tcgdex_set_id: tcgdexSetId,
-        latest_price: latestPricesByCardId.get(row.id),
+        latest_price: pricingByCardId.get(row.id)?.grookai_value_nm ?? undefined,
+        confidence: pricingByCardId.get(row.id)?.confidence ?? undefined,
+        listing_count: pricingByCardId.get(row.id)?.listing_count ?? undefined,
+        price_source: typeof pricingByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1" : undefined,
+        updated_at: pricingByCardId.get(row.id)?.updated_at ?? undefined,
         variant_key: row.variant_key?.trim() || undefined,
         variants: row.variants ?? undefined,
       };
@@ -757,21 +769,40 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 }
 
-async function fetchLatestPricesByCardId(cardIds: string[]) {
+async function fetchGrookaiValuesByCardId(cardIds: string[]) {
   if (cardIds.length === 0) {
-    return new Map<string, number>();
+    return new Map<string, GrookaiValueRow>();
   }
 
-  const { data, error } = await supabase.from("v_card_search").select("id,latest_price").in("id", cardIds);
+  const [{ data, error }, { data: metadataData, error: metadataError }] = await Promise.all([
+    supabase
+      .from("v_grookai_value_v1")
+      .select("card_print_id,grookai_value_nm,confidence,listing_count")
+      .in("card_print_id", cardIds),
+    supabase
+      .from("card_print_active_prices")
+      .select("card_print_id,updated_at")
+      .in("card_print_id", cardIds),
+  ]);
 
   if (error) {
     throw new Error(error.message);
   }
 
+  if (metadataError) {
+    throw new Error(metadataError.message);
+  }
+
+  const updatedAtByCardId = new Map(
+    ((metadataData ?? []) as Array<{ card_print_id?: string | null; updated_at?: string | null }>)
+      .filter((row): row is { card_print_id: string; updated_at?: string | null } => Boolean(row.card_print_id))
+      .map((row) => [row.card_print_id, row.updated_at ?? undefined]),
+  );
+
   return new Map(
-    ((data ?? []) as Array<{ id?: string | null; latest_price?: number | null }>)
-      .filter((row): row is { id: string; latest_price: number } => Boolean(row.id) && typeof row.latest_price === "number")
-      .map((row) => [row.id, row.latest_price]),
+    ((data ?? []) as GrookaiValueRow[])
+      .filter((row): row is GrookaiValueRow & { card_print_id: string } => Boolean(row.card_print_id))
+      .map((row) => [row.card_print_id, { ...row, updated_at: updatedAtByCardId.get(row.card_print_id) }]),
   );
 }
 
@@ -821,8 +852,8 @@ async function fetchExploreRows(
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
-  const latestPricesByCardId = await fetchLatestPricesByCardId(exactRows.map((row) => row.id));
-  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode, latestPricesByCardId);
+  const pricingByCardId = await fetchGrookaiValuesByCardId(exactRows.map((row) => row.id));
+  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode, pricingByCardId);
   const filteredRows = typeof exactReleaseYear === "number"
     ? rows.filter((row) => row.release_year === exactReleaseYear)
     : rows;

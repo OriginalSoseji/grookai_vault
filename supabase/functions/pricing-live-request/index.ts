@@ -15,6 +15,76 @@ function isUuid(v: string): boolean {
   return UUID_RE.test(v);
 }
 
+const COOL_DOWN_MS = 2 * 60 * 60 * 1000;
+const HOUR_MS = 60 * 60 * 1000;
+const DAY_MS = 24 * HOUR_MS;
+const HOT_VALUE_THRESHOLD = 100;
+const HOT_VAULT_COUNT_THRESHOLD = 10;
+const HOT_LISTING_THRESHOLD = 10;
+const NORMAL_VALUE_THRESHOLD = 25;
+const NORMAL_VAULT_COUNT_THRESHOLD = 3;
+const NORMAL_LISTING_THRESHOLD = 25;
+
+type ActivePriceRow = {
+  card_print_id: string | null;
+  listing_count: number | null;
+  updated_at: string | null;
+  last_snapshot_at: string | null;
+};
+
+type GrookaiValueRow = {
+  card_print_id: string | null;
+  grookai_value_nm: number | null;
+};
+
+type VaultQtyRow = {
+  qty: number | null;
+};
+
+type PricingJobRow = {
+  id: string | null;
+  requested_at: string | null;
+};
+
+type FreshnessTier = "hot" | "normal" | "long_tail" | "cold_catalog";
+
+function parseTimestamp(value?: string | null): number | null {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function determineFreshnessTier(input: {
+  listingCount: number;
+  vaultCount: number;
+  grookaiValue: number | null;
+}): { tier: FreshnessTier; ttlMs: number } {
+  if (
+    (input.listingCount > 0 && input.listingCount <= HOT_LISTING_THRESHOLD) ||
+    input.vaultCount >= HOT_VAULT_COUNT_THRESHOLD ||
+    (input.grookaiValue !== null && input.grookaiValue >= HOT_VALUE_THRESHOLD)
+  ) {
+    return { tier: "hot", ttlMs: 6 * HOUR_MS };
+  }
+
+  if (
+    (input.listingCount > HOT_LISTING_THRESHOLD && input.listingCount <= NORMAL_LISTING_THRESHOLD) ||
+    input.vaultCount >= NORMAL_VAULT_COUNT_THRESHOLD ||
+    (input.grookaiValue !== null && input.grookaiValue >= NORMAL_VALUE_THRESHOLD)
+  ) {
+    return { tier: "normal", ttlMs: 24 * HOUR_MS };
+  }
+
+  if (input.listingCount > NORMAL_LISTING_THRESHOLD || input.vaultCount > 0 || input.grookaiValue !== null) {
+    return { tier: "long_tail", ttlMs: 72 * HOUR_MS };
+  }
+
+  return { tier: "cold_catalog", ttlMs: 7 * DAY_MS };
+}
+
 const handler = async (req: Request): Promise<Response> => {
   const requestId = crypto.randomUUID();
 
@@ -104,6 +174,188 @@ const handler = async (req: Request): Promise<Response> => {
 
   const client = createClient(supabaseUrl, serviceRole);
 
+  const [activePriceResult, grookaiValueResult, vaultItemsResult] = await Promise.all([
+    client
+      .from("ebay_active_prices_latest")
+      .select("card_print_id,listing_count,updated_at,last_snapshot_at")
+      .eq("card_print_id", cardPrintId)
+      .maybeSingle(),
+    client
+      .from("v_grookai_value_v1")
+      .select("card_print_id,grookai_value_nm")
+      .eq("card_print_id", cardPrintId)
+      .maybeSingle(),
+    client
+      .from("vault_items")
+      .select("qty")
+      .eq("card_id", cardPrintId)
+      .is("archived_at", null),
+  ]);
+
+  if (activePriceResult.error) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "freshness_lookup_failed",
+        detail: activePriceResult.error.message,
+      }),
+    );
+    return json(500, { error: "freshness_lookup_failed", detail: "Failed to read active pricing state" });
+  }
+
+  if (grookaiValueResult.error) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "value_lookup_failed",
+        detail: grookaiValueResult.error.message,
+      }),
+    );
+    return json(500, { error: "value_lookup_failed", detail: "Failed to read Grookai Value state" });
+  }
+
+  if (vaultItemsResult.error) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "vault_lookup_failed",
+        detail: vaultItemsResult.error.message,
+      }),
+    );
+    return json(500, { error: "vault_lookup_failed", detail: "Failed to read vault activity state" });
+  }
+
+  const activePrice = activePriceResult.data as ActivePriceRow | null;
+  const grookaiValue = grookaiValueResult.data as GrookaiValueRow | null;
+  const vaultQtyRows = (vaultItemsResult.data ?? []) as VaultQtyRow[];
+  const vaultCount = vaultQtyRows.reduce((total, row) => total + (typeof row.qty === "number" ? row.qty : 0), 0);
+  const listingCount = typeof activePrice?.listing_count === "number" ? activePrice.listing_count : 0;
+  const grookaiValueNm = typeof grookaiValue?.grookai_value_nm === "number" ? grookaiValue.grookai_value_nm : null;
+  const freshnessTs =
+    parseTimestamp(activePrice?.updated_at) ??
+    parseTimestamp(activePrice?.last_snapshot_at);
+  const freshnessTier = determineFreshnessTier({
+    listingCount,
+    vaultCount,
+    grookaiValue: grookaiValueNm,
+  });
+  const now = Date.now();
+  const ageMs = freshnessTs === null ? null : Math.max(0, now - freshnessTs);
+
+  if (freshnessTs !== null && ageMs !== null && ageMs < freshnessTier.ttlMs) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "fresh",
+        freshness_tier: freshnessTier.tier,
+        age_ms: ageMs,
+        ttl_ms: freshnessTier.ttlMs,
+      }),
+    );
+    return json(200, {
+      status: "fresh",
+      card_print_id: cardPrintId,
+      freshness_tier: freshnessTier.tier,
+      ttl_hours: Math.round(freshnessTier.ttlMs / HOUR_MS),
+      age_minutes: Math.floor(ageMs / (60 * 1000)),
+    });
+  }
+
+  const { data: openJob, error: openJobError } = await client
+    .from("pricing_jobs")
+    .select("id,requested_at")
+    .eq("card_print_id", cardPrintId)
+    .in("status", ["pending", "running"])
+    .order("requested_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (openJobError) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "open_job_lookup_failed",
+        detail: openJobError.message,
+      }),
+    );
+    return json(500, { error: "open_job_lookup_failed", detail: "Failed to inspect pricing queue state" });
+  }
+
+  if (openJob?.id) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "already_queued",
+        pricing_job_id: openJob.id,
+      }),
+    );
+    return json(200, {
+      status: "already_queued",
+      request_id: openJob.id,
+      card_print_id: cardPrintId,
+    });
+  }
+
+  const { data: recentJob, error: recentJobError } = await client
+    .from("pricing_jobs")
+    .select("id,requested_at")
+    .eq("card_print_id", cardPrintId)
+    .order("requested_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (recentJobError) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "cooldown_lookup_failed",
+        detail: recentJobError.message,
+      }),
+    );
+    return json(500, { error: "cooldown_lookup_failed", detail: "Failed to inspect recent pricing requests" });
+  }
+
+  const recentJobRequestedAt = parseTimestamp((recentJob as PricingJobRow | null)?.requested_at);
+  if (recentJobRequestedAt !== null && now - recentJobRequestedAt < COOL_DOWN_MS) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "cooldown",
+        recent_job_id: (recentJob as PricingJobRow | null)?.id ?? null,
+      }),
+    );
+    return json(200, {
+      status: "cooldown",
+      request_id: (recentJob as PricingJobRow | null)?.id ?? null,
+      card_print_id: cardPrintId,
+      cooldown_hours: Math.round(COOL_DOWN_MS / HOUR_MS),
+    });
+  }
+
   const { data, error } = await client
     .from("pricing_jobs")
     .insert({
@@ -145,6 +397,7 @@ const handler = async (req: Request): Promise<Response> => {
     status: "queued",
     request_id: data?.id,
     card_print_id: data?.card_print_id,
+    freshness_tier: freshnessTier.tier,
   });
 };
 

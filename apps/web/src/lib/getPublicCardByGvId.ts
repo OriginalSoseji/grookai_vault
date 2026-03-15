@@ -33,7 +33,15 @@ type PublicCardRow = {
 };
 
 type PublicCardPriceRow = {
-  latest_price: number | null;
+  card_print_id: string | null;
+  grookai_value_nm: number | null;
+  confidence: number | null;
+  listing_count: number | null;
+};
+
+type ActivePriceMetadataRow = {
+  card_print_id: string | null;
+  updated_at: string | null;
 };
 
 type StaticParamRow = {
@@ -163,10 +171,22 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const fallbackSet = await getSetDetailsByCode(row.set_code);
-  const { data: priceData } = row.id
-    ? await supabase.from("v_card_search").select("latest_price").eq("id", row.id).maybeSingle()
-    : { data: null };
-  const priceRow = priceData as PublicCardPriceRow | null;
+  const [priceResult, activePriceMetadataResult] = row.id
+    ? await Promise.all([
+        supabase
+          .from("v_grookai_value_v1")
+          .select("card_print_id,grookai_value_nm,confidence,listing_count")
+          .eq("card_print_id", row.id)
+          .maybeSingle(),
+        supabase
+          .from("card_print_active_prices")
+          .select("card_print_id,updated_at")
+          .eq("card_print_id", row.id)
+          .maybeSingle(),
+      ])
+    : [{ data: null }, { data: null }];
+  const priceRow = priceResult.data as PublicCardPriceRow | null;
+  const activePriceMetadata = activePriceMetadataResult.data as ActivePriceMetadataRow | null;
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
@@ -185,7 +205,11 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,
     release_year: getReleaseYear(releaseDate),
-    latest_price: typeof priceRow?.latest_price === "number" ? priceRow.latest_price : undefined,
+    latest_price: typeof priceRow?.grookai_value_nm === "number" ? priceRow.grookai_value_nm : undefined,
+    confidence: typeof priceRow?.confidence === "number" ? priceRow.confidence : undefined,
+    listing_count: typeof priceRow?.listing_count === "number" ? priceRow.listing_count : undefined,
+    price_source: typeof priceRow?.grookai_value_nm === "number" ? "grookai.value.v1" : undefined,
+    updated_at: activePriceMetadata?.updated_at ?? undefined,
     variant_key: row.variant_key?.trim() || undefined,
     variants: row.variants ?? undefined,
     printings: mapCardPrintings(row.card_printings),

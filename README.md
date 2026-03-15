@@ -56,3 +56,8 @@ Do not use legacy anon or service-role key env names. Edge Functions are invoked
 
 ## Recent Engineering Milestones
 - 2026-02-18 — Pricing Surfaces Unified (Raw-only V1): Grookai Value V1 is live; vault pricing surfaces now read from unified GV pricing; ghost-row source/ts honesty enforced; vault backfill verified to 15/15 priced.
+
+## Pricing System
+- Pricing surface contract: `docs/contracts/PRICING_SURFACE_CONTRACT_V1.md`
+- Pricing freshness contract: `docs/contracts/PRICING_FRESHNESS_CONTRACT_V1.md`
+- Pricing scheduler contract: `docs/contracts/PRICING_SCHEDULER_CONTRACT_V1.md`

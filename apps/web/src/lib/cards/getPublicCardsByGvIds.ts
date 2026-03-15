@@ -17,6 +17,10 @@ export type ComparePublicCard = {
   artist?: string;
   image_url?: string;
   latest_price?: number;
+  confidence?: number;
+  listing_count?: number;
+  price_source?: string;
+  updated_at?: string;
   variant_key?: string;
   variants?: VariantFlags;
 };
@@ -46,8 +50,15 @@ type PublicCompareCardRow = {
 };
 
 type PublicComparePriceRow = {
-  id: string | null;
-  latest_price: number | null;
+  card_print_id: string | null;
+  grookai_value_nm: number | null;
+  confidence: number | null;
+  listing_count: number | null;
+};
+
+type ActivePriceMetadataRow = {
+  card_print_id: string | null;
+  updated_at: string | null;
 };
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -97,12 +108,27 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
 
   const rows = (data ?? []) as PublicCompareCardRow[];
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
-  const { data: priceData, error: priceError } = cardIds.length > 0
-    ? await supabase.from("v_card_search").select("id,latest_price").in("id", cardIds)
-    : { data: [], error: null };
+  const [priceResult, activePriceMetadataResult] = cardIds.length > 0
+    ? await Promise.all([
+        supabase
+          .from("v_grookai_value_v1")
+          .select("card_print_id,grookai_value_nm,confidence,listing_count")
+          .in("card_print_id", cardIds),
+        supabase
+          .from("card_print_active_prices")
+          .select("card_print_id,updated_at")
+          .in("card_print_id", cardIds),
+      ])
+    : [{ data: [], error: null }, { data: [], error: null }];
+
+  const { data: priceData, error: priceError } = priceResult;
 
   if (priceError) {
     throw priceError;
+  }
+
+  if (activePriceMetadataResult.error) {
+    throw activePriceMetadataResult.error;
   }
 
   const rowsByGvId = new Map(
@@ -112,8 +138,13 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
   );
   const pricesByCardId = new Map(
     ((priceData ?? []) as PublicComparePriceRow[])
-      .filter((row): row is PublicComparePriceRow & { id: string } => Boolean(row.id))
-      .map((row) => [row.id, row.latest_price]),
+      .filter((row): row is PublicComparePriceRow & { card_print_id: string } => Boolean(row.card_print_id))
+      .map((row) => [row.card_print_id, row]),
+  );
+  const updatedAtByCardId = new Map(
+    ((activePriceMetadataResult.data ?? []) as ActivePriceMetadataRow[])
+      .filter((row): row is ActivePriceMetadataRow & { card_print_id: string } => Boolean(row.card_print_id))
+      .map((row) => [row.card_print_id, row.updated_at ?? undefined]),
   );
 
   const cards: ComparePublicCard[] = [];
@@ -137,7 +168,11 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       release_year: getReleaseYear(setRecord?.release_date),
       artist: row.artist?.trim() || undefined,
       image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
-      latest_price: row.id ? pricesByCardId.get(row.id) ?? undefined : undefined,
+      latest_price: row.id ? pricesByCardId.get(row.id)?.grookai_value_nm ?? undefined : undefined,
+      confidence: row.id ? pricesByCardId.get(row.id)?.confidence ?? undefined : undefined,
+      listing_count: row.id ? pricesByCardId.get(row.id)?.listing_count ?? undefined : undefined,
+      price_source: row.id && typeof pricesByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1" : undefined,
+      updated_at: row.id ? updatedAtByCardId.get(row.id) : undefined,
       variant_key: row.variant_key?.trim() || undefined,
       variants: row.variants ?? undefined,
     });

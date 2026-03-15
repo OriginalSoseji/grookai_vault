@@ -143,9 +143,20 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         );
       }
 
+      final payload = response.data;
+      final status = payload is Map<String, dynamic> ? payload['status'] as String? : null;
+
+      var requestMessage = 'Live price requested. Check back after processing.';
+      if (status == 'fresh') {
+        requestMessage = 'Current Grookai Value is still fresh.';
+      } else if (status == 'already_queued') {
+        requestMessage = 'A live price refresh is already queued.';
+      } else if (status == 'cooldown') {
+        requestMessage = 'Live price was requested recently. Try again later.';
+      }
+
       setState(() {
-        _livePriceRequestMessage =
-            'Live price requested. Check back after processing.';
+        _livePriceRequestMessage = requestMessage;
       });
     } catch (e) {
       // ignore: avoid_print

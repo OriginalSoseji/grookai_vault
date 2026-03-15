@@ -16,6 +16,10 @@ export interface CardSummary {
   release_date?: string;
   release_year?: number;
   latest_price?: number;
+  confidence?: number;
+  listing_count?: number;
+  price_source?: string;
+  updated_at?: string;
 }
 
 export interface CardDetail extends CardSummary {
