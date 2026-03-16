@@ -6,6 +6,14 @@ import { cache } from "react";
 
 const SET_LOGO_EXTENSION = ".png";
 const SET_LOGO_DIRECTORY = path.join(process.cwd(), "public", "set-logos");
+const MCD_SHARED_ASSET_CODE = "mcd11";
+const BLACK_STAR_PROMO_SHARED_ASSET_CODE = "swshp";
+const TRAINER_GALLERY_PARENT_SET_MAP = new Map<string, string>([
+  ["swsh9tg", "swsh9"],
+  ["swsh10tg", "swsh10"],
+  ["swsh11tg", "swsh11"],
+  ["swsh12tg", "swsh12"],
+]);
 
 const getAvailableSetLogoCodes = cache(async () => {
   try {
@@ -24,17 +32,46 @@ function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
 }
 
+function resolveFallbackSetCode(normalizedCode: string, availableCodes: Set<string>) {
+  if (!normalizedCode) {
+    return null;
+  }
+
+  if (normalizedCode.startsWith("mcd") && availableCodes.has(MCD_SHARED_ASSET_CODE)) {
+    return MCD_SHARED_ASSET_CODE;
+  }
+
+  if (normalizedCode === "svp" && availableCodes.has(BLACK_STAR_PROMO_SHARED_ASSET_CODE)) {
+    return BLACK_STAR_PROMO_SHARED_ASSET_CODE;
+  }
+
+  const trainerGalleryParentCode = TRAINER_GALLERY_PARENT_SET_MAP.get(normalizedCode);
+  if (trainerGalleryParentCode && availableCodes.has(trainerGalleryParentCode)) {
+    return trainerGalleryParentCode;
+  }
+
+  return null;
+}
+
 export async function getSetLogoAssetPathMap(setCodes: string[]) {
   const availableCodes = await getAvailableSetLogoCodes();
   const pathMap = new Map<string, string>();
 
   for (const setCode of setCodes) {
     const normalizedCode = normalizeSetCode(setCode);
-    if (!normalizedCode || !availableCodes.has(normalizedCode)) {
+    if (!normalizedCode) {
       continue;
     }
 
-    pathMap.set(normalizedCode, `/set-logos/${normalizedCode}${SET_LOGO_EXTENSION}`);
+    const resolvedCode = availableCodes.has(normalizedCode)
+      ? normalizedCode
+      : resolveFallbackSetCode(normalizedCode, availableCodes);
+
+    if (!resolvedCode) {
+      continue;
+    }
+
+    pathMap.set(normalizedCode, `/set-logos/${resolvedCode}${SET_LOGO_EXTENSION}`);
   }
 
   return pathMap;

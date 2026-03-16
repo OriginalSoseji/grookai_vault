@@ -10,6 +10,14 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_DIRECTORY = path.join(REPO_ROOT, "apps", "web", "public", "set-logos");
 const PAGE_SIZE = 1000;
 const REQUEST_TIMEOUT_MS = 5000;
+const MCD_SHARED_ASSET_CODE = "mcd11";
+const BLACK_STAR_PROMO_SHARED_ASSET_CODE = "swshp";
+const TRAINER_GALLERY_PARENT_SET_MAP = new Map([
+  ["swsh9tg", "swsh9"],
+  ["swsh10tg", "swsh10"],
+  ["swsh11tg", "swsh11"],
+  ["swsh12tg", "swsh12"],
+]);
 
 dotenv.config({ path: path.join(REPO_ROOT, ".env.local") });
 dotenv.config({ path: path.join(REPO_ROOT, ".env") });
@@ -232,6 +240,66 @@ async function downloadLogo(url, destinationPath) {
   await fs.writeFile(destinationPath, Buffer.from(arrayBuffer));
 }
 
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getFallbackCopyRule(setCode) {
+  if (!setCode) {
+    return null;
+  }
+
+  if (setCode.startsWith("mcd")) {
+    return {
+      sourceCode: MCD_SHARED_ASSET_CODE,
+      sourceType: "familyFallbackCopies",
+    };
+  }
+
+  if (setCode === "svp") {
+    return {
+      sourceCode: BLACK_STAR_PROMO_SHARED_ASSET_CODE,
+      sourceType: "sharedPromoFallbackCopies",
+    };
+  }
+
+  const trainerGalleryParentCode = TRAINER_GALLERY_PARENT_SET_MAP.get(setCode);
+  if (trainerGalleryParentCode) {
+    return {
+      sourceCode: trainerGalleryParentCode,
+      sourceType: "parentFallbackCopies",
+    };
+  }
+
+  return null;
+}
+
+async function applyDeterministicFallbackAsset(setInfo, summary) {
+  const fallbackRule = getFallbackCopyRule(setInfo.code);
+  if (!fallbackRule) {
+    return false;
+  }
+
+  const destinationPath = path.join(OUTPUT_DIRECTORY, `${setInfo.code}.png`);
+  if (await fileExists(destinationPath)) {
+    return false;
+  }
+
+  const sourcePath = path.join(OUTPUT_DIRECTORY, `${fallbackRule.sourceCode}.png`);
+  if (!(await fileExists(sourcePath))) {
+    return false;
+  }
+
+  await fs.copyFile(sourcePath, destinationPath);
+  summary[fallbackRule.sourceType] += 1;
+  return true;
+}
+
 async function main() {
   const supabase = createServerSupabase();
   const tcgdexClient = createTcgdexClient();
@@ -244,17 +312,18 @@ async function main() {
     logosDownloadedFromTcgdex: 0,
     logosDownloadedFromPokemonTcgApi: 0,
     logosAlreadyPresent: 0,
+    familyFallbackCopies: 0,
+    parentFallbackCopies: 0,
+    sharedPromoFallbackCopies: 0,
     stillMissing: 0,
     skippedNoDeterministicPokemonTcgApiId: [],
     skippedNoUsableUpstreamLogoAsset: [],
   };
 
   for (const setInfo of sets) {
-    const destinationPath = path.join(OUTPUT_DIRECTORY, `${setInfo.code}.png`);
-
     if (!force) {
       try {
-        await fs.access(destinationPath);
+        await fs.access(path.join(OUTPUT_DIRECTORY, `${setInfo.code}.png`));
         summary.logosAlreadyPresent += 1;
         continue;
       } catch {
@@ -264,27 +333,30 @@ async function main() {
 
     const logoResult = await resolveLogoUrl(setInfo, tcgdexClient);
     if (!logoResult.url || !logoResult.source) {
-      summary.stillMissing += 1;
+      const copiedFallback = await applyDeterministicFallbackAsset(setInfo, summary);
+      if (!copiedFallback) {
+        summary.stillMissing += 1;
 
-      const entry = {
-        code: setInfo.code,
-        name: setInfo.name,
-        tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
-        pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
-        reason: logoResult.reason ?? "no_usable_upstream_logo",
-      };
+        const entry = {
+          code: setInfo.code,
+          name: setInfo.name,
+          tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
+          pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
+          reason: logoResult.reason ?? "no_usable_upstream_logo",
+        };
 
-      if (logoResult.reason === "no_deterministic_pokemontcg_id") {
-        summary.skippedNoDeterministicPokemonTcgApiId.push(entry);
-      } else {
-        summary.skippedNoUsableUpstreamLogoAsset.push(entry);
+        if (logoResult.reason === "no_deterministic_pokemontcg_id") {
+          summary.skippedNoDeterministicPokemonTcgApiId.push(entry);
+        } else {
+          summary.skippedNoUsableUpstreamLogoAsset.push(entry);
+        }
       }
 
       continue;
     }
 
     try {
-      await downloadLogo(logoResult.url, destinationPath);
+      await downloadLogo(logoResult.url, path.join(OUTPUT_DIRECTORY, `${setInfo.code}.png`));
 
       if (logoResult.source === "pokemontcgapi") {
         summary.logosDownloadedFromPokemonTcgApi += 1;
@@ -292,14 +364,17 @@ async function main() {
         summary.logosDownloadedFromTcgdex += 1;
       }
     } catch (error) {
-      summary.stillMissing += 1;
-      summary.skippedNoUsableUpstreamLogoAsset.push({
-        code: setInfo.code,
-        name: setInfo.name,
-        tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
-        pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
-        error: error instanceof Error ? error.message : String(error),
-      });
+      const copiedFallback = await applyDeterministicFallbackAsset(setInfo, summary);
+      if (!copiedFallback) {
+        summary.stillMissing += 1;
+        summary.skippedNoUsableUpstreamLogoAsset.push({
+          code: setInfo.code,
+          name: setInfo.name,
+          tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
+          pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
     }
   }
 
