@@ -9,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_DIRECTORY = path.join(REPO_ROOT, "apps", "web", "public", "set-logos");
 const PAGE_SIZE = 1000;
+const REQUEST_TIMEOUT_MS = 5000;
 
 dotenv.config({ path: path.join(REPO_ROOT, ".env.local") });
 dotenv.config({ path: path.join(REPO_ROOT, ".env") });
@@ -63,6 +64,32 @@ function normalizeAssetUrl(url) {
   }
 
   return `${trimmed}.png`;
+}
+
+function getPokemonTcgApiSetId(setInfo) {
+  const rawId = setInfo.source?.pokemonapi?.id;
+  if (typeof rawId !== "string") {
+    return null;
+  }
+
+  const trimmed = rawId.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+async function fetchJsonWithTimeout(url, headers = {}) {
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      ...headers,
+    },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  });
+
+  if (!response.ok) {
+    throw new Error(`fetch failed: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
 }
 
 async function fetchAllCanonicalSetCodes(supabase) {
@@ -147,19 +174,45 @@ async function getCanonicalSets(supabase) {
 async function resolveLogoUrl(setInfo, tcgdexClient) {
   const storedLogoUrl = normalizeAssetUrl(setInfo.source?.tcgdex?.raw?.logo ?? setInfo.source?.tcgdex?.logo);
   if (storedLogoUrl) {
-    return storedLogoUrl;
+    return { url: storedLogoUrl, source: "tcgdex" };
   }
 
   const tcgdexSetId = typeof setInfo.source?.tcgdex?.id === "string" ? setInfo.source.tcgdex.id.trim() : "";
-  if (!tcgdexSetId) {
-    return null;
+  if (tcgdexSetId) {
+    try {
+      const setDetail = await fetchJsonWithTimeout(
+        `${tcgdexClient.baseUrl}sets/${encodeURIComponent(tcgdexSetId)}`,
+        tcgdexClient.apiKey ? { "X-Api-Key": tcgdexClient.apiKey } : {},
+      );
+      const logoUrl = normalizeAssetUrl(setDetail?.logo ?? setDetail?.images?.logo ?? null);
+      if (logoUrl) {
+        return { url: logoUrl, source: "tcgdex" };
+      }
+    } catch {
+      // Fall through to Pokemon TCG API fallback.
+    }
+  }
+
+  const pokemonTcgApiSetId = getPokemonTcgApiSetId(setInfo);
+  if (!pokemonTcgApiSetId) {
+    return { url: null, source: null, reason: "no_deterministic_pokemontcg_id" };
   }
 
   try {
-    const setDetail = await tcgdexClient.fetchTcgdexSetById(tcgdexSetId);
-    return normalizeAssetUrl(setDetail?.logo ?? setDetail?.images?.logo ?? null);
-  } catch {
-    return null;
+    const payload = await fetchJsonWithTimeout(`https://api.pokemontcg.io/v2/sets/${encodeURIComponent(pokemonTcgApiSetId)}`);
+    const logoUrl = normalizeAssetUrl(payload?.data?.images?.logo ?? null);
+
+    if (logoUrl) {
+      return { url: logoUrl, source: "pokemontcgapi" };
+    }
+
+    return { url: null, source: null, reason: "pokemontcgapi_missing_logo" };
+  } catch (error) {
+    return {
+      url: null,
+      source: null,
+      reason: error instanceof Error ? `pokemontcgapi_fetch_failed:${error.message}` : "pokemontcgapi_fetch_failed",
+    };
   }
 }
 
@@ -168,6 +221,7 @@ async function downloadLogo(url, destinationPath) {
     headers: {
       Accept: "image/png,image/*;q=0.8,*/*;q=0.5",
     },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
 
   if (!response.ok) {
@@ -187,10 +241,12 @@ async function main() {
 
   const summary = {
     totalSetsInspected: sets.length,
-    logosDownloaded: 0,
+    logosDownloadedFromTcgdex: 0,
+    logosDownloadedFromPokemonTcgApi: 0,
     logosAlreadyPresent: 0,
-    missingLogos: 0,
-    fallbackNeededSets: [],
+    stillMissing: 0,
+    skippedNoDeterministicPokemonTcgApiId: [],
+    skippedNoUsableUpstreamLogoAsset: [],
   };
 
   for (const setInfo of sets) {
@@ -206,26 +262,42 @@ async function main() {
       }
     }
 
-    const logoUrl = await resolveLogoUrl(setInfo, tcgdexClient);
-    if (!logoUrl) {
-      summary.missingLogos += 1;
-      summary.fallbackNeededSets.push({
+    const logoResult = await resolveLogoUrl(setInfo, tcgdexClient);
+    if (!logoResult.url || !logoResult.source) {
+      summary.stillMissing += 1;
+
+      const entry = {
         code: setInfo.code,
         name: setInfo.name,
         tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
-      });
+        pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
+        reason: logoResult.reason ?? "no_usable_upstream_logo",
+      };
+
+      if (logoResult.reason === "no_deterministic_pokemontcg_id") {
+        summary.skippedNoDeterministicPokemonTcgApiId.push(entry);
+      } else {
+        summary.skippedNoUsableUpstreamLogoAsset.push(entry);
+      }
+
       continue;
     }
 
     try {
-      await downloadLogo(logoUrl, destinationPath);
-      summary.logosDownloaded += 1;
+      await downloadLogo(logoResult.url, destinationPath);
+
+      if (logoResult.source === "pokemontcgapi") {
+        summary.logosDownloadedFromPokemonTcgApi += 1;
+      } else {
+        summary.logosDownloadedFromTcgdex += 1;
+      }
     } catch (error) {
-      summary.missingLogos += 1;
-      summary.fallbackNeededSets.push({
+      summary.stillMissing += 1;
+      summary.skippedNoUsableUpstreamLogoAsset.push({
         code: setInfo.code,
         name: setInfo.name,
         tcgdex_set_id: setInfo.source?.tcgdex?.id ?? null,
+        pokemontcgapi_set_id: getPokemonTcgApiSetId(setInfo),
         error: error instanceof Error ? error.message : String(error),
       });
     }

@@ -30,9 +30,15 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
             alt=""
             width={420}
             height={180}
-            className="h-auto w-[84%] scale-[1.08] object-contain opacity-[0.1] blur-[3px] transition-all duration-200 ease-out group-hover:scale-[1.1] group-hover:opacity-[0.14] group-hover:blur-[1.5px]"
+            className="h-auto w-[62%] scale-[1.14] object-contain opacity-[0.05] blur-[8px] transition-all duration-200 ease-out group-hover:scale-[1.16] group-hover:opacity-[0.08] group-hover:blur-[5px]"
           />
         </div>
+      ) : null}
+      {logoPath ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(255,255,255,0.94)_35%,rgba(255,255,255,0.9)_100%)]"
+        />
       ) : null}
 
       <div className="relative z-10 space-y-3">
