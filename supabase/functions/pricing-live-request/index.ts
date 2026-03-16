@@ -32,9 +32,11 @@ type ActivePriceRow = {
   last_snapshot_at: string | null;
 };
 
-type GrookaiValueRow = {
-  card_print_id: string | null;
-  grookai_value_nm: number | null;
+type CompatibilityPriceRow = {
+  card_id: string | null;
+  base_market: number | null;
+  base_source: string | null;
+  base_ts: string | null;
 };
 
 type VaultQtyRow = {
@@ -174,16 +176,16 @@ const handler = async (req: Request): Promise<Response> => {
 
   const client = createClient(supabaseUrl, serviceRole);
 
-  const [activePriceResult, grookaiValueResult, vaultItemsResult] = await Promise.all([
+  const [activePriceResult, compatibilityPriceResult, vaultItemsResult] = await Promise.all([
     client
       .from("ebay_active_prices_latest")
       .select("card_print_id,listing_count,updated_at,last_snapshot_at")
       .eq("card_print_id", cardPrintId)
       .maybeSingle(),
     client
-      .from("v_grookai_value_v1")
-      .select("card_print_id,grookai_value_nm")
-      .eq("card_print_id", cardPrintId)
+      .from("v_best_prices_all_gv_v1")
+      .select("card_id,base_market,base_source,base_ts")
+      .eq("card_id", cardPrintId)
       .maybeSingle(),
     client
       .from("vault_items")
@@ -206,18 +208,18 @@ const handler = async (req: Request): Promise<Response> => {
     return json(500, { error: "freshness_lookup_failed", detail: "Failed to read active pricing state" });
   }
 
-  if (grookaiValueResult.error) {
+  if (compatibilityPriceResult.error) {
     console.log(
       JSON.stringify({
         route: "pricing-live-request",
         request_id: requestId,
         user_id: userId,
         card_print_id: cardPrintId,
-        outcome: "value_lookup_failed",
-        detail: grookaiValueResult.error.message,
+        outcome: "compatibility_lookup_failed",
+        detail: compatibilityPriceResult.error.message,
       }),
     );
-    return json(500, { error: "value_lookup_failed", detail: "Failed to read Grookai Value state" });
+    return json(500, { error: "compatibility_lookup_failed", detail: "Failed to read pricing compatibility state" });
   }
 
   if (vaultItemsResult.error) {
@@ -235,12 +237,13 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   const activePrice = activePriceResult.data as ActivePriceRow | null;
-  const grookaiValue = grookaiValueResult.data as GrookaiValueRow | null;
+  const compatibilityPrice = compatibilityPriceResult.data as CompatibilityPriceRow | null;
   const vaultQtyRows = (vaultItemsResult.data ?? []) as VaultQtyRow[];
   const vaultCount = vaultQtyRows.reduce((total, row) => total + (typeof row.qty === "number" ? row.qty : 0), 0);
   const listingCount = typeof activePrice?.listing_count === "number" ? activePrice.listing_count : 0;
-  const grookaiValueNm = typeof grookaiValue?.grookai_value_nm === "number" ? grookaiValue.grookai_value_nm : null;
+  const grookaiValueNm = typeof compatibilityPrice?.base_market === "number" ? compatibilityPrice.base_market : null;
   const freshnessTs =
+    parseTimestamp(compatibilityPrice?.base_ts) ??
     parseTimestamp(activePrice?.updated_at) ??
     parseTimestamp(activePrice?.last_snapshot_at);
   const freshnessTier = determineFreshnessTier({

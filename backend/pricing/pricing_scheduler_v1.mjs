@@ -129,9 +129,9 @@ async function fetchGrookaiValueMap(supabase, cardPrintIds) {
     let error;
     try {
       ({ data, error } = await supabase
-        .from('v_grookai_value_v1')
-        .select('card_print_id,grookai_value_nm')
-        .in('card_print_id', ids));
+        .from('v_best_prices_all_gv_v1')
+        .select('card_id,base_market,base_source,base_ts')
+        .in('card_id', ids));
     } catch (err) {
       throw new Error(
         `fetchGrookaiValueMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
@@ -145,10 +145,14 @@ async function fetchGrookaiValueMap(supabase, cardPrintIds) {
     }
 
     for (const row of data ?? []) {
-      if (!row.card_print_id) {
+      if (!row.card_id) {
         continue;
       }
-      out.set(row.card_print_id, typeof row.grookai_value_nm === 'number' ? row.grookai_value_nm : null);
+      out.set(row.card_id, {
+        baseMarket: typeof row.base_market === 'number' ? row.base_market : null,
+        baseSource: typeof row.base_source === 'string' ? row.base_source : null,
+        baseTs: row.base_ts ?? null,
+      });
     }
   }
   return out;
@@ -232,11 +236,12 @@ function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountB
   for (const row of activeRows) {
     const cardPrintId = row.cardPrintId;
     const listingCount = listingCountByCardId.get(cardPrintId) ?? 0;
-    const grookaiValueNm = grookaiValueByCardId.has(cardPrintId)
-      ? grookaiValueByCardId.get(cardPrintId)
-      : null;
+    const compatibilityPrice = grookaiValueByCardId.get(cardPrintId) ?? null;
+    const grookaiValueNm = compatibilityPrice?.baseMarket ?? null;
     const vaultQty = vaultQtyByCardId.get(cardPrintId) ?? 0;
-    const updatedAtMs = parseTimestamp(row.updatedAt);
+    const updatedAtMs =
+      parseTimestamp(compatibilityPrice?.baseTs ?? null) ??
+      parseTimestamp(row.updatedAt);
     const freshness = determineFreshnessTier({
       listingCount,
       vaultQty,

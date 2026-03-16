@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { CardDetail, CardPrinting } from "@/types/cards";
 
@@ -30,18 +31,6 @@ type PublicCardRow = {
     | { name: string | null; printed_total: number | null; release_date: string | null }
     | { name: string | null; printed_total: number | null; release_date: string | null }[]
     | null;
-};
-
-type PublicCardPriceRow = {
-  card_print_id: string | null;
-  grookai_value_nm: number | null;
-  confidence: number | null;
-  listing_count: number | null;
-};
-
-type ActivePriceMetadataRow = {
-  card_print_id: string | null;
-  updated_at: string | null;
 };
 
 type StaticParamRow = {
@@ -171,22 +160,8 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const fallbackSet = await getSetDetailsByCode(row.set_code);
-  const [priceResult, activePriceMetadataResult] = row.id
-    ? await Promise.all([
-        supabase
-          .from("v_grookai_value_v1_1")
-          .select("card_print_id,grookai_value_nm,confidence,listing_count")
-          .eq("card_print_id", row.id)
-          .maybeSingle(),
-        supabase
-          .from("card_print_active_prices")
-          .select("card_print_id,updated_at")
-          .eq("card_print_id", row.id)
-          .maybeSingle(),
-      ])
-    : [{ data: null }, { data: null }];
-  const priceRow = priceResult.data as PublicCardPriceRow | null;
-  const activePriceMetadata = activePriceMetadataResult.data as ActivePriceMetadataRow | null;
+  const pricingByCardId = row.id ? await getPublicPricingByCardIds(supabase, [row.id]) : new Map();
+  const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
@@ -205,11 +180,11 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,
     release_year: getReleaseYear(releaseDate),
-    latest_price: typeof priceRow?.grookai_value_nm === "number" ? priceRow.grookai_value_nm : undefined,
-    confidence: typeof priceRow?.confidence === "number" ? priceRow.confidence : undefined,
-    listing_count: typeof priceRow?.listing_count === "number" ? priceRow.listing_count : undefined,
-    price_source: typeof priceRow?.grookai_value_nm === "number" ? "grookai.value.v1_1" : undefined,
-    updated_at: activePriceMetadata?.updated_at ?? undefined,
+    latest_price: priceRow?.latest_price,
+    confidence: priceRow?.confidence,
+    listing_count: priceRow?.listing_count,
+    price_source: priceRow?.price_source,
+    updated_at: priceRow?.updated_at,
     variant_key: row.variant_key?.trim() || undefined,
     variants: row.variants ?? undefined,
     printings: mapCardPrintings(row.card_printings),
