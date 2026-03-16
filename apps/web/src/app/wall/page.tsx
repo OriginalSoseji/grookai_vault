@@ -100,7 +100,7 @@ export default async function WallPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Your Wall</p>
             <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your recent vault activity.</h1>
             <p className="max-w-3xl text-base leading-7 text-slate-600">
-              See the latest cards you've added and jump back into your collection.
+              See the latest cards you have added and jump back into your collection.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
