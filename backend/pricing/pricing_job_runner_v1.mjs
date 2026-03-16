@@ -4,6 +4,13 @@
 import '../env.mjs';
 import { spawn } from 'node:child_process';
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import {
+  AUTHORITATIVE_PRICING_CLAIM_STRATEGY,
+  AUTHORITATIVE_PRICING_RUNNER,
+  PRICING_QUEUE_PRIORITY_ORDER,
+  isKnownPricingPriority,
+  normalizePricingPriority,
+} from './pricing_queue_priority_contract.mjs';
 
 function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
@@ -152,6 +159,9 @@ async function main() {
   const supabase = createBackendClient();
 
   log('daemon_start', {
+    runnerAuthority: AUTHORITATIVE_PRICING_RUNNER,
+    claimStrategy: AUTHORITATIVE_PRICING_CLAIM_STRATEGY,
+    supportedPriorities: Object.keys(PRICING_QUEUE_PRIORITY_ORDER),
     mode: opts.once ? 'once' : 'daemon',
     maxJobs: opts.maxJobs,
     sleepMs: opts.sleepMs,
@@ -189,12 +199,23 @@ async function main() {
 
     const { job, reclaimed } = claimed;
     const cardPrintId = job.card_print_id;
+    const normalizedPriority = normalizePricingPriority(job.priority);
     log('claim_ok', {
       jobId: job.id,
       cardPrintId,
       attempts: job.attempts,
+      priority: normalizedPriority,
       reclaimed: reclaimed || false,
     });
+
+    if (!isKnownPricingPriority(job.priority)) {
+      log('job_priority_unknown', {
+        jobId: job.id,
+        cardPrintId,
+        rawPriority: job.priority ?? null,
+        normalizedPriority,
+      });
+    }
 
     if (!cardPrintId) {
       await markStatus(supabase, job.id, 'failed', 'missing_card_print_id');

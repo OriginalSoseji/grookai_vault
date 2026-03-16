@@ -1,4 +1,5 @@
 // pricing_queue_worker.mjs
+// NON-AUTHORITATIVE. Do not use for production.
 // Usage:
 //   node backend/pricing/pricing_queue_worker.mjs --limit 10 --dry-run
 //   node backend/pricing/pricing_queue_worker.mjs --limit 10
@@ -9,14 +10,11 @@ import '../env.mjs';
 import { pathToFileURL } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { updatePricingForCardPrint } from './ebay_browse_prices_worker.mjs';
-
-const PRIORITY_ORDER = {
-  user: 0,
-  vault: 1,
-  rarity_auto: 2,
-  hot: 3,
-  normal: 4,
-};
+import {
+  AUTHORITATIVE_PRICING_CLAIM_STRATEGY,
+  AUTHORITATIVE_PRICING_RUNNER,
+  getPricingPriorityScore,
+} from './pricing_queue_priority_contract.mjs';
 
 function parseArgs(argv) {
   const result = {
@@ -47,8 +45,7 @@ function printUsage() {
 }
 
 function priorityScore(priority) {
-  const normalized = (priority || 'normal').toLowerCase();
-  return PRIORITY_ORDER.hasOwnProperty(normalized) ? PRIORITY_ORDER[normalized] : 99;
+  return getPricingPriorityScore(priority);
 }
 
 function sortJobs(jobs) {
@@ -174,6 +171,9 @@ async function processJobs({ supabase, limit, dryRun }) {
 }
 
 async function main() {
+  console.warn(
+    `[pricing_queue] WARNING: non-authoritative pricing runner; not for production use. Authoritative runner=${AUTHORITATIVE_PRICING_RUNNER} claim_strategy=${AUTHORITATIVE_PRICING_CLAIM_STRATEGY}`,
+  );
   const args = parseArgs(process.argv.slice(2));
   if (!args.limit || args.limit <= 0) {
     printUsage();

@@ -1,5 +1,19 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+/**
+ * DISABLED: eBay OAuth callback
+ *
+ * Reason:
+ * - eBay account-linking is not currently active
+ * - OAuth state validation / CSRF hardening is not yet implemented
+ *
+ * This callback is intentionally fail-closed until the full linking flow is ready.
+ *
+ * Important:
+ * - This does NOT affect Grookai pricing workers or pricing ingestion
+ * - This only disables future user eBay account-linking
+ */
+
 // ebay_oauth_callback:
 // Handles eBay OAuth redirect, exchanges code for tokens, and stores them in public.ebay_accounts.
 // This function assumes the caller is an authenticated Grookai Vault user and will be invoked after eBay login.
@@ -65,6 +79,16 @@ function computeExpiry(expiresIn?: number): string | null {
 }
 
 export default async function handler(req: Request): Promise<Response> {
+  return json(
+    {
+      ok: false,
+      error: "ebay_oauth_disabled",
+      message: "eBay account linking is temporarily disabled.",
+    },
+    503,
+  );
+
+  // Unreachable while callback is disabled; preserved for future re-enable work.
   if (req.method !== "GET" && req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
   }

@@ -2,6 +2,16 @@
 
 Purpose: always-on runner for `pricing_jobs`, reclaiming stale locks and dispatching the pricing worker (ebay_browse_prices_worker).
 
+## Authority
+- Authoritative production runner: `backend/pricing/pricing_job_runner_v1.mjs`
+- Authoritative production command:
+  `npm run pricing:worker --prefix backend`
+- Authoritative queue semantics source of truth:
+  `backend/pricing/pricing_job_runner_v1.mjs`
+- Claim model:
+  FIFO by `requested_at`, with stale `running` reclaim by lock TTL
+- `backend/pricing/pricing_queue_worker.mjs` is non-authoritative and not for production use.
+
 ## How to run locally
 - Daemon (default):  
   `npm run pricing:worker --prefix backend`
@@ -39,3 +49,6 @@ select * from public.card_print_latest_price_curve where card_print_id = '<card_
 - Lock TTL default 10 minutes; override with `--lock-ttl-ms`.
 - Max jobs per loop: default 5 (daemon), 1 in `--once`; override with `--max-jobs`.
 - Idle sleep: default 1500ms; override with `--sleep-ms`.
+- Split queue behavior is eliminated by treating `pricing_job_runner_v1` as the only production runner.
+- If the experimental runner is used locally, it must be invoked explicitly:
+  `npm run pricing:queue:experimental --prefix backend`
