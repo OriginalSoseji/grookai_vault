@@ -30,7 +30,7 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
             alt=""
             width={420}
             height={180}
-            className="h-auto w-[70%] scale-[1.15] object-contain opacity-[0.07] blur-[6px] transition-all duration-200 ease-out group-hover:scale-[1.18] group-hover:opacity-[0.1] group-hover:blur-[4px]"
+            className="h-auto w-[72%] scale-[1.15] object-contain opacity-[0.08] blur-[5px] transition-all duration-200 ease-out group-hover:scale-[1.19] group-hover:opacity-[0.11] group-hover:blur-[3px]"
           />
         </div>
       ) : null}
