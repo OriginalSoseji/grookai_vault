@@ -349,6 +349,7 @@ function PublicNoteModal({
 
 function renderVaultGrid(
   items: VaultCardData[],
+  setLogoPathByCode: Record<string, string>,
   pendingItemId: string | null,
   pendingShareItemId: string | null,
   pendingPublicImageKey: string | null,
@@ -369,6 +370,7 @@ function renderVaultGrid(
         <VaultCardTile
           key={item.id}
           item={item}
+          logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
           isPending={pendingItemId === item.vault_item_id}
           isSharePending={pendingShareItemId === item.vault_item_id}
           isPublicFrontImagePending={pendingPublicImageKey === `${item.vault_item_id}:front`}
@@ -488,6 +490,7 @@ type VaultCollectionViewProps = {
   itemsError?: string | null;
   recentError?: string | null;
   publicCollectionHref?: string | null;
+  setLogoPathByCode?: Record<string, string>;
 };
 
 export function VaultCollectionView({
@@ -496,6 +499,7 @@ export function VaultCollectionView({
   itemsError,
   recentError,
   publicCollectionHref = null,
+  setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
@@ -1010,6 +1014,7 @@ export function VaultCollectionView({
       filteredDuplicateItems.length > 0
         ? renderVaultGrid(
             filteredDuplicateItems,
+            setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
@@ -1035,6 +1040,7 @@ export function VaultCollectionView({
       filteredRecentItems.length > 0
         ? renderVaultGrid(
             filteredRecentItems,
+            setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
@@ -1060,6 +1066,7 @@ export function VaultCollectionView({
       filteredSharedItems.length > 0
         ? renderVaultGrid(
             filteredSharedItems,
+            setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
@@ -1107,6 +1114,7 @@ export function VaultCollectionView({
               <div className="pt-1">
                 {renderVaultGrid(
                   group.items,
+                  setLogoPathByCode,
                   pendingItemId,
                   pendingShareItemId,
                   pendingPublicImageKey,
@@ -1171,6 +1179,7 @@ export function VaultCollectionView({
         {filteredPokemonItems.length > 0 ? (
           renderVaultGrid(
             filteredPokemonItems,
+            setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
             pendingPublicImageKey,
@@ -1196,6 +1205,7 @@ export function VaultCollectionView({
       filteredItems.length > 0 ? (
         renderVaultGrid(
           filteredItems,
+          setLogoPathByCode,
           pendingItemId,
           pendingShareItemId,
           pendingPublicImageKey,

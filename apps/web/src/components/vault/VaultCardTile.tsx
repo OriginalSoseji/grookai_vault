@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
@@ -52,6 +53,7 @@ type VaultCardTileProps = {
   error?: string;
   shareError?: string;
   publicCollectionHref?: string | null;
+  logoPath?: string;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (condition: string) => void;
   onShareToggle: (item: VaultCardData) => void;
@@ -70,6 +72,7 @@ export function VaultCardTile({
   error,
   shareError,
   publicCollectionHref,
+  logoPath,
   onQuantityChange,
   onConditionChange,
   onShareToggle,
@@ -93,8 +96,20 @@ export function VaultCardTile({
         </div>
       </Link>
 
-      <div className="mt-4 space-y-4">
-        <div className="space-y-2">
+      <div className="relative mt-4 overflow-hidden rounded-[1.5rem]">
+        {logoPath ? (
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+            <Image
+              src={logoPath}
+              alt=""
+              width={360}
+              height={180}
+              className="h-auto w-[90%] scale-[1.58] object-contain opacity-[0.04] blur-[12px]"
+            />
+          </div>
+        ) : null}
+        <div className="relative z-10 space-y-4">
+          <div className="space-y-2">
           <div className="flex items-start justify-between gap-3">
             <Link href={`/card/${item.gv_id}`} className="block min-w-0 flex-1">
               <p className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
@@ -122,7 +137,7 @@ export function VaultCardTile({
           </div>
         </div>
 
-        <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
+          <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
           <div className="flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-2">
               <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Condition</span>
@@ -166,14 +181,14 @@ export function VaultCardTile({
             </div>
           </div>
           {error ? <p className="text-xs text-slate-500">{error}</p> : null}
-        </div>
+          </div>
 
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Value</p>
           <p className="mt-2 text-sm font-medium text-slate-900">{formatCurrency(item.effective_price)}</p>
-        </div>
+          </div>
 
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="space-y-1">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Share</p>
@@ -266,10 +281,11 @@ export function VaultCardTile({
             </div>
           ) : null}
           {shareError ? <p className="mt-2 text-xs text-slate-500">{shareError}</p> : null}
-        </div>
+          </div>
 
-        <div className="border-t border-slate-200 pt-3">
+          <div className="border-t border-slate-200 pt-3">
           <p className="text-[11px] font-medium tracking-[0.08em] text-slate-400">{item.gv_id}</p>
+          </div>
         </div>
       </div>
     </article>

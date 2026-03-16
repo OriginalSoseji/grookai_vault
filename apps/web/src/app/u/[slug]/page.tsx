@@ -6,6 +6,8 @@ import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/pu
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
+import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -52,6 +54,7 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
   }
 
   const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
     profile.vault_sharing_enabled && sharedCards.length > 0
@@ -73,6 +76,7 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         description={description}
         stats={stats}
         activeView="collection"
+        setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
       />
 
       <section className="space-y-4">

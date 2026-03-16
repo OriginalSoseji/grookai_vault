@@ -11,12 +11,14 @@ import VisiblePrice from "@/components/pricing/VisiblePrice";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import Image from "next/image";
 import Link from "next/link";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
@@ -211,6 +213,9 @@ export default async function CardPage({
   const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
+  const setLogoPath = resolvedCard.set_code
+    ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
+    : undefined;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const buildExploreFilterHref = (entries: Array<[string, string]>) => {
@@ -258,44 +263,57 @@ export default async function CardPage({
         </div>
 
         <div className="space-y-6">
-          <div className="space-y-3 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
-            <div className="flex flex-wrap items-center gap-3">
-              <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
-              <CopyButton text={card.gv_id} />
-            </div>
-            {setName.length > 0 ? (
-              <p className="text-sm font-medium text-slate-600">
-                Pokemon •{" "}
-                {browseSetHref ? (
-                  <Link href={browseSetHref} className="underline-offset-4 hover:text-slate-950 hover:underline">
-                    {setName}
-                  </Link>
-                ) : (
-                  setName
-                )}
-              </p>
+          <div className="relative isolate overflow-hidden rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
+            {setLogoPath ? (
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+                <Image
+                  src={setLogoPath}
+                  alt=""
+                  width={440}
+                  height={220}
+                  className="h-auto w-[92%] scale-[1.42] object-contain opacity-[0.06] blur-[10px]"
+                />
+              </div>
             ) : null}
-            {summaryParts.length > 0 ? (
-              <p className="text-sm font-medium text-slate-500">{summaryParts.join(" • ")}</p>
-            ) : null}
-            <div className="grid gap-4 rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-              {canViewPricing ? (
-                <VisiblePrice value={resolvedCard.latest_price} size="detail" note="full" />
-              ) : (
-                <LockedPrice href={loginHref} size="detail" />
-              )}
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Variant</p>
-                {variantLabels.length > 0 ? (
-                  <div className="flex flex-wrap gap-1.5">
-                    {variantLabels.map((label) => (
-                      <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
-                    ))}
-                  </div>
+            <div className="relative z-10 space-y-3">
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="text-sm font-medium text-slate-600">{card.gv_id}</p>
+                <CopyButton text={card.gv_id} />
+              </div>
+              {setName.length > 0 ? (
+                <p className="text-sm font-medium text-slate-600">
+                  Pokemon •{" "}
+                  {browseSetHref ? (
+                    <Link href={browseSetHref} className="underline-offset-4 hover:text-slate-950 hover:underline">
+                      {setName}
+                    </Link>
+                  ) : (
+                    setName
+                  )}
+                </p>
+              ) : null}
+              {summaryParts.length > 0 ? (
+                <p className="text-sm font-medium text-slate-500">{summaryParts.join(" • ")}</p>
+              ) : null}
+              <div className="grid gap-4 rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                {canViewPricing ? (
+                  <VisiblePrice value={resolvedCard.latest_price} size="detail" note="full" />
                 ) : (
-                  <p className="text-sm text-slate-400">—</p>
+                  <LockedPrice href={loginHref} size="detail" />
                 )}
+                <div className="space-y-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Variant</p>
+                  {variantLabels.length > 0 ? (
+                    <div className="flex flex-wrap gap-1.5">
+                      {variantLabels.map((label) => (
+                        <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-slate-400">—</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

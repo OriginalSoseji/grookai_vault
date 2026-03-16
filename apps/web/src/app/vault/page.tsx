@@ -7,6 +7,7 @@ import {
 } from "@/components/vault/VaultCollectionView";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -262,6 +263,9 @@ export default async function VaultPage() {
     vaultBackPhotoIds,
   );
   const recent = normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null);
+  const setLogoPathByCode = Object.fromEntries(
+    (await getSetLogoAssetPathMap(items.map((item) => item.set_code))).entries(),
+  );
   const profile = (profileData ?? null) as PublicProfileRow | null;
   const publicCollectionHref =
     profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
@@ -275,6 +279,7 @@ export default async function VaultPage() {
         itemsError={itemsError?.message ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
         recentError={recentError?.message}
         publicCollectionHref={publicCollectionHref}
+        setLogoPathByCode={setLogoPathByCode}
       />
     </>
   );

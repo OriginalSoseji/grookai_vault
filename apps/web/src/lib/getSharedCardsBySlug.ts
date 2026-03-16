@@ -18,6 +18,7 @@ type CardPrintRow = {
   id: string | null;
   gv_id: string | null;
   name: string | null;
+  set_code: string | null;
   number: string | null;
   rarity: string | null;
   image_url: string | null;
@@ -35,6 +36,7 @@ type CardPrintRow = {
 export type SharedCard = {
   gv_id: string;
   name: string;
+  set_code?: string;
   set_name?: string;
   number: string;
   rarity?: string;
@@ -156,7 +158,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
-    .select("id,gv_id,name,number,rarity,image_url,image_alt_url,sets(name)")
+    .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
     .in(
       "id",
       sharedRows.map((row) => row.card_id),
@@ -188,6 +190,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       return {
         gv_id: row.gv_id,
         name: cardPrint.name?.trim() || "Unknown card",
+        set_code: cardPrint.set_code?.trim() || undefined,
         set_name: setRecord?.name?.trim() || undefined,
         number: cardPrint.number?.trim() || "—",
         rarity: cardPrint.rarity?.trim() || undefined,

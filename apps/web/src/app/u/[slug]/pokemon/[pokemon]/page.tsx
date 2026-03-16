@@ -12,6 +12,8 @@ import {
   normalizePokemonSlug,
 } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
+import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -70,6 +72,7 @@ export default async function PublicPokemonCollectionPage({
   }
 
   const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const matchingCards = profile.vault_sharing_enabled ? filterSharedCardsByPokemonSlug(sharedCards, params.pokemon) : [];
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -92,6 +95,7 @@ export default async function PublicPokemonCollectionPage({
         stats={stats}
         activeView="pokemon"
         defaultPokemonValue={pokemonLabel}
+        setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
       />
 
       <section className="space-y-4">

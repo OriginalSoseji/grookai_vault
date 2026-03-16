@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 
@@ -13,6 +14,7 @@ type PublicCollectorHeaderProps = {
   stats?: PublicCollectorStat[];
   activeView: "collection" | "pokemon";
   defaultPokemonValue?: string;
+  setLogoPaths?: string[];
 };
 
 function getInitials(displayName: string) {
@@ -33,10 +35,34 @@ export function PublicCollectorHeader({
   stats = [],
   activeView,
   defaultPokemonValue,
+  setLogoPaths = [],
 }: PublicCollectorHeaderProps) {
   return (
-    <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
-      <div className="space-y-6">
+    <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
+      {setLogoPaths.length > 0 ? (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          {setLogoPaths.slice(0, 3).map((logoPath, index) => {
+            const placements = [
+              "left-[-8%] top-[-12%] rotate-[-10deg]",
+              "left-[28%] top-[2%] rotate-[8deg]",
+              "right-[-10%] bottom-[-12%] rotate-[12deg]",
+            ];
+
+            return (
+              <div key={`${logoPath}-${index}`} className={`absolute ${placements[index] ?? placements[0]}`}>
+                <Image
+                  src={logoPath}
+                  alt=""
+                  width={360}
+                  height={180}
+                  className="h-auto w-[280px] scale-[1.8] object-contain opacity-[0.03] blur-[16px]"
+                />
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+      <div className="relative z-10 space-y-6">
         <div className="flex flex-col gap-5 md:flex-row md:items-start">
           <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[1.75rem] bg-slate-950 text-2xl font-semibold tracking-[0.08em] text-white">
             {getInitials(displayName)}
