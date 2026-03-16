@@ -55,7 +55,7 @@ export function PublicCollectorHeader({
                   alt=""
                   width={360}
                   height={180}
-                  className="h-auto w-[280px] scale-[1.8] object-contain opacity-[0.03] blur-[16px]"
+                  className="h-auto w-[280px] scale-[1.9] object-contain opacity-[0.04] blur-[12px]"
                 />
               </div>
             );

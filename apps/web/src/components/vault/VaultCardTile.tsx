@@ -104,7 +104,7 @@ export function VaultCardTile({
               alt=""
               width={360}
               height={180}
-              className="h-auto w-[90%] scale-[1.58] object-contain opacity-[0.04] blur-[12px]"
+              className="h-auto w-[85%] scale-[1.5] object-contain opacity-[0.06] blur-[8px]"
             />
           </div>
         ) : null}

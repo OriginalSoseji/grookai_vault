@@ -271,7 +271,7 @@ export default async function CardPage({
                   alt=""
                   width={440}
                   height={220}
-                  className="h-auto w-[92%] scale-[1.42] object-contain opacity-[0.06] blur-[10px]"
+                  className="h-auto w-[90%] scale-[1.35] object-contain opacity-[0.07] blur-[6px]"
                 />
               </div>
             ) : null}
