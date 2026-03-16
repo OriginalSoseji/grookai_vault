@@ -154,7 +154,7 @@ export default async function CardPage({
       result = await addCardToVault({
         client: actionClient,
         userId: user.id,
-        cardId: resolvedCard.id,
+        cardPrintId: resolvedCard.id,
         gvId: resolvedCard.gv_id,
         name: resolvedCard.name,
         setName: resolvedCard.set_name,
@@ -188,14 +188,15 @@ export default async function CardPage({
       path: currentCardPath,
       gvId: resolvedCard.gv_id,
       metadata: {
-        result,
+        gv_vi_id: result.gvvi_id,
         quantity_delta: 1,
       },
     });
 
     return {
       ok: true,
-      status: result,
+      status: "added",
+      gvvi_id: result.gvvi_id,
       submissionKey,
     };
   }

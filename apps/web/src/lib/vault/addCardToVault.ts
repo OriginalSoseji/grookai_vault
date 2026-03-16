@@ -1,19 +1,31 @@
 import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
-import { updateVaultItemQuantity } from "@/lib/vault/updateVaultItemQuantity";
 
 type AddCardToVaultParams = {
   client: SupabaseClient;
   userId: string;
-  cardId: string;
+  cardPrintId: string;
   gvId: string;
   name: string;
   setName?: string;
   imageUrl?: string;
 };
 
-export type AddCardToVaultResult = "added" | "incremented" | "exists";
+type VaultInstanceCreateRow = {
+  id: string;
+  gv_vi_id: string | null;
+};
+
+type LegacyBucketRow = {
+  id: string;
+  qty: number | null;
+};
+
+export type AddCardToVaultResult = {
+  success: true;
+  gvvi_id: string | null;
+};
 
 function formatVaultWriteError(step: string, error: PostgrestError) {
   const parts = [
@@ -27,24 +39,28 @@ function formatVaultWriteError(step: string, error: PostgrestError) {
   return parts.join(" | ");
 }
 
-export async function addCardToVault({
+async function mirrorLegacyVaultBucket({
   client,
   userId,
-  cardId,
+  cardPrintId,
   gvId,
-  name,
-  setName,
-  imageUrl,
-}: AddCardToVaultParams): Promise<AddCardToVaultResult> {
-  const normalizedName = name.trim() || "Unknown card";
-  const normalizedSetName = setName?.trim() || "";
-  const normalizedImageUrl = imageUrl ?? null;
-
+  normalizedName,
+  normalizedSetName,
+  normalizedImageUrl,
+}: {
+  client: SupabaseClient;
+  userId: string;
+  cardPrintId: string;
+  gvId: string;
+  normalizedName: string;
+  normalizedSetName: string;
+  normalizedImageUrl: string | null;
+}) {
   const { data: activeExisting, error: activeExistingError } = await client
     .from("vault_items")
-    .select("id")
+    .select("id,qty")
     .eq("user_id", userId)
-    .eq("card_id", cardId)
+    .eq("card_id", cardPrintId)
     .is("archived_at", null)
     .maybeSingle();
 
@@ -52,26 +68,29 @@ export async function addCardToVault({
     throw new Error(formatVaultWriteError("vault_items.select-active-existing", activeExistingError));
   }
 
-  if (activeExisting?.id) {
-    const incrementResult = await updateVaultItemQuantity({
-      type: "increment",
-      client,
-      userId,
-      itemId: activeExisting.id,
-    });
+  const activeRow = activeExisting as LegacyBucketRow | null;
+  if (activeRow?.id) {
+    const { error: updateError } = await client
+      .from("vault_items")
+      .update({
+        qty: (typeof activeRow.qty === "number" ? activeRow.qty : 0) + 1,
+      })
+      .eq("id", activeRow.id)
+      .eq("user_id", userId)
+      .is("archived_at", null);
 
-    if (incrementResult.status !== "incremented") {
-      throw new Error("[vault_items.increment-existing-active] Active vault row was not incremented as expected.");
+    if (updateError) {
+      throw new Error(formatVaultWriteError("vault_items.increment-existing-active", updateError));
     }
 
-    console.info("[vault:add]", {
+    console.info("[vault:add:mirror]", {
       user_id: userId,
       gv_id: gvId,
-      card_id: cardId,
+      card_print_id: cardPrintId,
       action: "update",
     });
 
-    return "incremented";
+    return;
   }
 
   const { data: insertedRows, error: insertError } = await client
@@ -79,7 +98,7 @@ export async function addCardToVault({
     .insert({
       user_id: userId,
       gv_id: gvId,
-      card_id: cardId,
+      card_id: cardPrintId,
       name: normalizedName,
       set_name: normalizedSetName,
       photo_url: normalizedImageUrl,
@@ -91,13 +110,13 @@ export async function addCardToVault({
   if (!insertError) {
     const inserted = Array.isArray(insertedRows) ? insertedRows[0] : null;
     if (inserted?.id) {
-      console.info("[vault:add]", {
+      console.info("[vault:add:mirror]", {
         user_id: userId,
         gv_id: gvId,
-        card_id: cardId,
+        card_print_id: cardPrintId,
         action: "insert",
       });
-      return "added";
+      return;
     }
   }
 
@@ -107,9 +126,9 @@ export async function addCardToVault({
 
   const { data: existing, error: existingError } = await client
     .from("vault_items")
-    .select("id")
+    .select("id,qty")
     .eq("user_id", userId)
-    .eq("card_id", cardId)
+    .eq("card_id", cardPrintId)
     .is("archived_at", null)
     .maybeSingle();
 
@@ -117,27 +136,96 @@ export async function addCardToVault({
     throw new Error(formatVaultWriteError("vault_items.select-after-active-conflict", existingError));
   }
 
-  if (!existing?.id) {
+  const conflictRow = existing as LegacyBucketRow | null;
+  if (!conflictRow?.id) {
     throw new Error("[vault_items.select-after-active-conflict] Active card row could not be resolved after conflict.");
   }
 
-  const incrementResult = await updateVaultItemQuantity({
-    type: "increment",
-    client,
-    userId,
-    itemId: existing.id,
+  const { error: updateError } = await client
+    .from("vault_items")
+    .update({
+      qty: (typeof conflictRow.qty === "number" ? conflictRow.qty : 0) + 1,
+    })
+    .eq("id", conflictRow.id)
+    .eq("user_id", userId)
+    .is("archived_at", null);
+
+  if (updateError) {
+    throw new Error(formatVaultWriteError("vault_items.increment-existing-active", updateError));
+  }
+
+  console.info("[vault:add:mirror]", {
+    user_id: userId,
+    gv_id: gvId,
+    card_print_id: cardPrintId,
+    action: "update",
+  });
+}
+
+export async function addCardToVault({
+  client,
+  userId,
+  cardPrintId,
+  gvId,
+  name,
+  setName,
+  imageUrl,
+}: AddCardToVaultParams): Promise<AddCardToVaultResult> {
+  const normalizedName = name.trim() || "Unknown card";
+  const normalizedSetName = setName?.trim() || "";
+  const normalizedImageUrl = imageUrl ?? null;
+
+  const { data: instance, error: instanceError } = await client.rpc("admin_vault_instance_create_v1", {
+    p_user_id: userId,
+    p_card_print_id: cardPrintId,
+    p_condition_label: "NM",
+    p_name: normalizedName,
+    p_set_name: normalizedSetName || null,
+    p_photo_url: normalizedImageUrl,
   });
 
-  if (incrementResult.status !== "incremented") {
-    throw new Error("[vault_items.increment-existing-active] Active vault row was not incremented as expected.");
+  if (instanceError) {
+    throw new Error(`GVVI create failed: ${instanceError.message}`);
+  }
+
+  const createdInstance = Array.isArray(instance) ? instance[0] : instance;
+  const createdRow = (createdInstance ?? null) as VaultInstanceCreateRow | null;
+  if (!createdRow?.id) {
+    throw new Error("GVVI create failed: RPC returned no instance row.");
   }
 
   console.info("[vault:add]", {
     user_id: userId,
     gv_id: gvId,
-    card_id: cardId,
-    action: "update",
+    card_print_id: cardPrintId,
+    gv_vi_id: createdRow.gv_vi_id,
+    action: "instance_create",
   });
 
-  return "incremented";
+  try {
+    // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
+    await mirrorLegacyVaultBucket({
+      client,
+      userId,
+      cardPrintId,
+      gvId,
+      normalizedName,
+      normalizedSetName,
+      normalizedImageUrl,
+    });
+  } catch (error) {
+    console.error("[vault:add:mirror] compatibility mirror failed", {
+      user_id: userId,
+      gv_id: gvId,
+      card_print_id: cardPrintId,
+      gv_vi_id: createdRow.gv_vi_id,
+      detail: error instanceof Error ? error.message : String(error),
+      error,
+    });
+  }
+
+  return {
+    success: true,
+    gvvi_id: createdRow.gv_vi_id ?? null,
+  };
 }

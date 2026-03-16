@@ -11,6 +11,7 @@ export type AddToVaultActionResult =
   | {
       ok: true;
       status: "added" | "incremented" | "exists";
+      gvvi_id?: string | null;
       submissionKey: number;
     }
   | {
