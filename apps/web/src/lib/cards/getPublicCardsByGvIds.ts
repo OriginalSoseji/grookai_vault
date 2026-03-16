@@ -111,7 +111,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
   const [priceResult, activePriceMetadataResult] = cardIds.length > 0
     ? await Promise.all([
         supabase
-          .from("v_grookai_value_v1")
+          .from("v_grookai_value_v1_1")
           .select("card_print_id,grookai_value_nm,confidence,listing_count")
           .in("card_print_id", cardIds),
         supabase
@@ -171,7 +171,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       latest_price: row.id ? pricesByCardId.get(row.id)?.grookai_value_nm ?? undefined : undefined,
       confidence: row.id ? pricesByCardId.get(row.id)?.confidence ?? undefined : undefined,
       listing_count: row.id ? pricesByCardId.get(row.id)?.listing_count ?? undefined : undefined,
-      price_source: row.id && typeof pricesByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1" : undefined,
+      price_source: row.id && typeof pricesByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1_1" : undefined,
       updated_at: row.id ? updatedAtByCardId.get(row.id) : undefined,
       variant_key: row.variant_key?.trim() || undefined,
       variants: row.variants ?? undefined,

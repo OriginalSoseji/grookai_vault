@@ -323,7 +323,7 @@ function buildExploreRows(
         latest_price: pricingByCardId.get(row.id)?.grookai_value_nm ?? undefined,
         confidence: pricingByCardId.get(row.id)?.confidence ?? undefined,
         listing_count: pricingByCardId.get(row.id)?.listing_count ?? undefined,
-        price_source: typeof pricingByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1" : undefined,
+        price_source: typeof pricingByCardId.get(row.id)?.grookai_value_nm === "number" ? "grookai.value.v1_1" : undefined,
         updated_at: pricingByCardId.get(row.id)?.updated_at ?? undefined,
         variant_key: row.variant_key?.trim() || undefined,
         variants: row.variants ?? undefined,
@@ -776,7 +776,7 @@ async function fetchGrookaiValuesByCardId(cardIds: string[]) {
 
   const [{ data, error }, { data: metadataData, error: metadataError }] = await Promise.all([
     supabase
-      .from("v_grookai_value_v1")
+      .from("v_grookai_value_v1_1")
       .select("card_print_id,grookai_value_nm,confidence,listing_count")
       .in("card_print_id", cardIds),
     supabase
