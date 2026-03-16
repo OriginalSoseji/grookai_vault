@@ -56,6 +56,9 @@ function LoginPageContent() {
   return (
     <div className="mx-auto max-w-md rounded border bg-white p-6 shadow-sm">
       <h1 className="mb-4 text-xl font-semibold">Sign {mode === "signin" ? "in" : "up"}</h1>
+      <p className="mb-4 text-sm leading-6 text-slate-600">
+        Sign in to build your vault, track your cards, and share your collection.
+      </p>
       <div className="space-y-3">
         <GoogleSignInButton
           label="Sign in with Google"

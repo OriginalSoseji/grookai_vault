@@ -64,9 +64,10 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const titleParts = [card.name, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
   const title = `${titleParts.join(" • ")} | Grookai Vault`;
   const descriptionParts = [
-    `View ${card.name}`,
+    `View card details for ${card.name}`,
     card.set_name ? `from ${card.set_name}` : undefined,
-    card.number ? `card #${card.number}` : undefined,
+    card.number ? `#${card.number}` : undefined,
+    "including finishes and collection info",
     "on Grookai Vault.",
   ].filter((value): value is string => Boolean(value));
   const description = descriptionParts.join(" ");

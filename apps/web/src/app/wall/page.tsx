@@ -98,10 +98,9 @@ export default async function WallPage() {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Your Wall</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your recent vault activity on the GV-ID lane.</h1>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your recent vault activity.</h1>
             <p className="max-w-3xl text-base leading-7 text-slate-600">
-              This private feed reads your rows from <code>v_recently_added</code> and links every activity card to
-              its canonical card page by Grookai ID.
+              See the latest cards you've added and jump back into your collection.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
@@ -118,7 +117,7 @@ export default async function WallPage() {
         </section>
       ) : feed.length === 0 ? (
         <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">
-          No recent vault activity is available yet.
+          No recent vault activity yet.
         </section>
       ) : (
         <section className="space-y-4">

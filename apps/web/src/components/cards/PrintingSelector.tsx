@@ -63,7 +63,7 @@ export default function PrintingSelector({ printings = [] }: PrintingSelectorPro
     <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="space-y-1">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Printings</h2>
-        <p className="text-sm text-slate-600">Available finish variants for this canonical card.</p>
+        <p className="text-sm text-slate-600">Available finishes for this card.</p>
       </div>
 
       <div className="flex flex-wrap gap-2">

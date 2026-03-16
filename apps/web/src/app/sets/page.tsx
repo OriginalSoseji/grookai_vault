@@ -21,7 +21,7 @@ export default async function SetsPage({
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Sets</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Browse Pokemon sets</h1>
         <p className="max-w-2xl text-base leading-7 text-slate-600">
-          Explore the catalog by expansion, special set, and era.
+          Browse Pokemon sets collectors care about.
         </p>
       </section>
 

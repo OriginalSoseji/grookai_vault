@@ -959,7 +959,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
         <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
         <p className="max-w-2xl text-sm leading-7 text-slate-600">
-          Discover iconic cards, standout artwork, and notable Pokémon across the Grookai catalog.
+          Discover iconic cards, standout artwork, and notable sets collectors are chasing.
         </p>
       </div>
 

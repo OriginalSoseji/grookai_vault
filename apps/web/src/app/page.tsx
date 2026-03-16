@@ -70,13 +70,13 @@ export default async function HomePage() {
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                The canonical Pokémon card catalog.
+                The vault for trading card collectors.
               </h1>
               <p className="max-w-2xl text-lg text-slate-600">
-                Every card print is anchored to a permanent Grookai ID.
+                Catalog your cards. Verify exactly what you own. Share your collection.
               </p>
               <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
-                A growing catalog covering the entire Pokémon TCG history
+                Built on a trusted card identity system
               </p>
             </div>
 
@@ -136,21 +136,38 @@ export default async function HomePage() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-slate-950">What is Grookai Vault</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Grookai Vault is a collector-first reference for Pokémon cards.
+            Grookai Vault is a platform where collectors catalog, verify, and show their trading cards.
           </p>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Every card print is anchored to a permanent Grookai ID so collectors, sellers, and buyers are always
-            referencing the same card.
+            Every card on Grookai is anchored to a trusted identity so collectors always know exactly which card they
+            are referencing.
           </p>
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Future vision</h2>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">The catalog is the foundation of Grookai Vault.</p>
+          <h2 className="text-2xl font-semibold text-slate-950">Where Grookai is going</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Collection tools, provenance tracking, and trading utilities will build on the same canonical identity
-            system.
+            Grookai starts with trusted card identity, then expands into collection tools, provenance, and trading
+            utilities.
           </p>
+        </div>
+      </section>
+
+      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
+        <div className="max-w-3xl space-y-4">
+          <h2 className="text-2xl font-semibold text-slate-950">Create your profile</h2>
+          <p className="text-sm leading-7 text-slate-600">
+            Build your personal card vault. Track the cards you own, show your collection, and explore what other
+            collectors are discovering.
+          </p>
+          <div>
+            <Link
+              href="/login?next=%2Faccount"
+              className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+            >
+              Create your profile
+            </Link>
+          </div>
         </div>
       </section>
     </div>
