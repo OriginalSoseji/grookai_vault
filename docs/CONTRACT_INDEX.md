@@ -58,6 +58,14 @@ If a contract is missing from this index, it is not authoritative.
 
 ---
 
+## 🗃️ VAULT & OWNERSHIP CONTRACTS
+
+| Contract | Status | Description |
+|--------|--------|-------------|
+| GV_VAULT_INSTANCE_CONTRACT_V1 | Active | `GV-VI` is the universal ownership, trade, sale, and sharing anchor for every owned vault instance |
+
+---
+
 ## 💰 PRICING & MARKETPLACE CONTRACTS
 
 | Contract | Status | Description |
