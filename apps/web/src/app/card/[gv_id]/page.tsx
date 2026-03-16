@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { CSSProperties } from "react";
 import CardZoomModal from "@/components/compare/CardZoomModal";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
@@ -216,6 +217,14 @@ export default async function CardPage({
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
+  const identityWatermarkStyle = {
+    "--wm-opacity-desktop": "0.08",
+    "--wm-blur-desktop": "5px",
+    "--wm-scale-desktop": "1.35",
+    "--wm-opacity-mobile": "0.09",
+    "--wm-blur-mobile": "3px",
+    "--wm-scale-mobile": "1.38",
+  } as CSSProperties;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const buildExploreFilterHref = (entries: Array<[string, string]>) => {
@@ -271,7 +280,8 @@ export default async function CardPage({
                   alt=""
                   width={440}
                   height={220}
-                  className="h-auto w-[90%] scale-[1.35] object-contain opacity-[0.08] blur-[5px]"
+                  className="gv-ghost-watermark h-auto w-[90%] object-contain"
+                  style={identityWatermarkStyle}
                 />
               </div>
             ) : null}

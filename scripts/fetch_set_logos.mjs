@@ -10,6 +10,9 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const OUTPUT_DIRECTORY = path.join(REPO_ROOT, "apps", "web", "public", "set-logos");
 const PAGE_SIZE = 1000;
 const REQUEST_TIMEOUT_MS = 5000;
+const EXACT_ALIAS_ASSET_CODE_MAP = new Map([
+  ["bog", "bp"],
+]);
 const MCD_SHARED_ASSET_CODE = "mcd11";
 const BLACK_STAR_PROMO_SHARED_ASSET_CODE = "swshp";
 const TRAINER_GALLERY_PARENT_SET_MAP = new Map([
@@ -72,6 +75,17 @@ function normalizeAssetUrl(url) {
   }
 
   return `${trimmed}.png`;
+}
+
+function resolveStoredAssetUrl(...candidates) {
+  for (const candidate of candidates) {
+    const normalized = normalizeAssetUrl(candidate);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return null;
 }
 
 function getPokemonTcgApiSetId(setInfo) {
@@ -145,6 +159,7 @@ async function getCanonicalSets(supabase) {
     cardCountBySetCode.set(setCode, (cardCountBySetCode.get(setCode) ?? 0) + 1);
   }
 
+  const allSetsWithCards = [];
   const canonicalSetsByName = new Map();
 
   for (const row of setRows ?? []) {
@@ -163,6 +178,9 @@ async function getCanonicalSets(supabase) {
       symbol_url: row.symbol_url ?? undefined,
       source: row.source ?? {},
     };
+    if (candidate.card_count > 0) {
+      allSetsWithCards.push(candidate);
+    }
     const normalizedName = normalizeSetQuery(row.name);
     const existing = canonicalSetsByName.get(normalizedName);
 
@@ -174,15 +192,27 @@ async function getCanonicalSets(supabase) {
     canonicalSetsByName.set(normalizedName, chooseCanonicalSetRow(existing, candidate));
   }
 
-  return [...canonicalSetsByName.values()]
-    .filter((setInfo) => setInfo.card_count > 0)
-    .sort((left, right) => left.code.localeCompare(right.code));
+  return {
+    canonicalSets: [...canonicalSetsByName.values()]
+      .filter((setInfo) => setInfo.card_count > 0)
+      .sort((left, right) => left.code.localeCompare(right.code)),
+    allSetsWithCards: allSetsWithCards.sort((left, right) => left.code.localeCompare(right.code)),
+  };
 }
 
 async function resolveLogoUrl(setInfo, tcgdexClient) {
-  const storedLogoUrl = normalizeAssetUrl(setInfo.source?.tcgdex?.raw?.logo ?? setInfo.source?.tcgdex?.logo);
-  if (storedLogoUrl) {
-    return { url: storedLogoUrl, source: "tcgdex" };
+  const storedAssetUrl = resolveStoredAssetUrl(
+    setInfo.logo_url,
+    setInfo.symbol_url,
+    setInfo.source?.tcgdex?.raw?.logo,
+    setInfo.source?.tcgdex?.raw?.symbol,
+    setInfo.source?.tcgdex?.logo,
+    setInfo.source?.tcgdex?.symbol,
+    setInfo.source?.pokemonapi?.images?.logo,
+    setInfo.source?.pokemonapi?.images?.symbol,
+  );
+  if (storedAssetUrl) {
+    return { url: storedAssetUrl, source: "stored" };
   }
 
   const tcgdexSetId = typeof setInfo.source?.tcgdex?.id === "string" ? setInfo.source.tcgdex.id.trim() : "";
@@ -192,9 +222,14 @@ async function resolveLogoUrl(setInfo, tcgdexClient) {
         `${tcgdexClient.baseUrl}sets/${encodeURIComponent(tcgdexSetId)}`,
         tcgdexClient.apiKey ? { "X-Api-Key": tcgdexClient.apiKey } : {},
       );
-      const logoUrl = normalizeAssetUrl(setDetail?.logo ?? setDetail?.images?.logo ?? null);
-      if (logoUrl) {
-        return { url: logoUrl, source: "tcgdex" };
+      const tcgdexAssetUrl = resolveStoredAssetUrl(
+        setDetail?.logo,
+        setDetail?.symbol,
+        setDetail?.images?.logo,
+        setDetail?.images?.symbol,
+      );
+      if (tcgdexAssetUrl) {
+        return { url: tcgdexAssetUrl, source: "tcgdex" };
       }
     } catch {
       // Fall through to Pokemon TCG API fallback.
@@ -208,7 +243,7 @@ async function resolveLogoUrl(setInfo, tcgdexClient) {
 
   try {
     const payload = await fetchJsonWithTimeout(`https://api.pokemontcg.io/v2/sets/${encodeURIComponent(pokemonTcgApiSetId)}`);
-    const logoUrl = normalizeAssetUrl(payload?.data?.images?.logo ?? null);
+    const logoUrl = resolveStoredAssetUrl(payload?.data?.images?.logo, payload?.data?.images?.symbol);
 
     if (logoUrl) {
       return { url: logoUrl, source: "pokemontcgapi" };
@@ -300,10 +335,53 @@ async function applyDeterministicFallbackAsset(setInfo, summary) {
   return true;
 }
 
+async function applyExactAliasCopies(summary) {
+  for (const [destinationCode, sourceCode] of EXACT_ALIAS_ASSET_CODE_MAP.entries()) {
+    const destinationPath = path.join(OUTPUT_DIRECTORY, `${destinationCode}.png`);
+    if (await fileExists(destinationPath)) {
+      continue;
+    }
+
+    const sourcePath = path.join(OUTPUT_DIRECTORY, `${sourceCode}.png`);
+    if (!(await fileExists(sourcePath))) {
+      continue;
+    }
+
+    await fs.copyFile(sourcePath, destinationPath);
+    summary.exactAliasCopies += 1;
+  }
+}
+
+async function fillRemainingExactAssets(allSetsWithCards, tcgdexClient, summary) {
+  for (const setInfo of allSetsWithCards) {
+    const destinationPath = path.join(OUTPUT_DIRECTORY, `${setInfo.code}.png`);
+    if (await fileExists(destinationPath)) {
+      continue;
+    }
+
+    const logoResult = await resolveLogoUrl(setInfo, tcgdexClient);
+    if (!logoResult.url || !logoResult.source) {
+      continue;
+    }
+
+    try {
+      await downloadLogo(logoResult.url, destinationPath);
+
+      if (logoResult.source === "pokemontcgapi") {
+        summary.logosDownloadedFromPokemonTcgApi += 1;
+      } else {
+        summary.logosDownloadedFromTcgdex += 1;
+      }
+    } catch {
+      // Leave unresolved if the exact deterministic asset still cannot be fetched.
+    }
+  }
+}
+
 async function main() {
   const supabase = createServerSupabase();
   const tcgdexClient = createTcgdexClient();
-  const sets = await getCanonicalSets(supabase);
+  const { canonicalSets: sets, allSetsWithCards } = await getCanonicalSets(supabase);
 
   await fs.mkdir(OUTPUT_DIRECTORY, { recursive: true });
 
@@ -312,6 +390,7 @@ async function main() {
     logosDownloadedFromTcgdex: 0,
     logosDownloadedFromPokemonTcgApi: 0,
     logosAlreadyPresent: 0,
+    exactAliasCopies: 0,
     familyFallbackCopies: 0,
     parentFallbackCopies: 0,
     sharedPromoFallbackCopies: 0,
@@ -377,6 +456,9 @@ async function main() {
       }
     }
   }
+
+  await fillRemainingExactAssets(allSetsWithCards, tcgdexClient, summary);
+  await applyExactAliasCopies(summary);
 
   console.log(JSON.stringify(summary, null, 2));
 }

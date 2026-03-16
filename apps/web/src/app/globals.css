@@ -61,3 +61,25 @@ button {
 button:hover:not(:disabled) {
   transform: translateY(-1px);
 }
+
+.gv-ghost-watermark {
+  opacity: var(--wm-opacity-mobile, 0.1);
+  filter: blur(var(--wm-blur-mobile, 3px));
+  transform: scale(var(--wm-scale-mobile, 1.18));
+  transition: opacity 200ms ease-out, filter 200ms ease-out, transform 200ms ease-out;
+  will-change: opacity, filter, transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gv-ghost-watermark {
+    opacity: var(--wm-opacity-desktop, 0.08);
+    filter: blur(var(--wm-blur-desktop, 6px));
+    transform: scale(var(--wm-scale-desktop, 1.15));
+  }
+
+  .group:hover .gv-ghost-watermark {
+    opacity: var(--wm-opacity-hover, 0.11);
+    filter: blur(var(--wm-blur-hover, 3px));
+    transform: scale(var(--wm-scale-hover, 1.18));
+  }
+}

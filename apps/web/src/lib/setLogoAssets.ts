@@ -6,6 +6,9 @@ import { cache } from "react";
 
 const SET_LOGO_EXTENSION = ".png";
 const SET_LOGO_DIRECTORY = path.join(process.cwd(), "public", "set-logos");
+const EXACT_ALIAS_ASSET_CODE_MAP = new Map<string, string>([
+  ["bog", "bp"],
+]);
 const MCD_SHARED_ASSET_CODE = "mcd11";
 const BLACK_STAR_PROMO_SHARED_ASSET_CODE = "swshp";
 const TRAINER_GALLERY_PARENT_SET_MAP = new Map<string, string>([
@@ -35,6 +38,11 @@ function normalizeSetCode(value?: string | null) {
 function resolveFallbackSetCode(normalizedCode: string, availableCodes: Set<string>) {
   if (!normalizedCode) {
     return null;
+  }
+
+  const exactAliasCode = EXACT_ALIAS_ASSET_CODE_MAP.get(normalizedCode);
+  if (exactAliasCode && availableCodes.has(exactAliasCode)) {
+    return exactAliasCode;
   }
 
   if (normalizedCode.startsWith("mcd") && availableCodes.has(MCD_SHARED_ASSET_CODE)) {

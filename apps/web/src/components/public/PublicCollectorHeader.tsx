@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 
 export type PublicCollectorStat = {
@@ -37,6 +38,15 @@ export function PublicCollectorHeader({
   defaultPokemonValue,
   setLogoPaths = [],
 }: PublicCollectorHeaderProps) {
+  const collageWatermarkStyle = {
+    "--wm-opacity-desktop": "0.045",
+    "--wm-blur-desktop": "10px",
+    "--wm-scale-desktop": "1.9",
+    "--wm-opacity-mobile": "0.05",
+    "--wm-blur-mobile": "7px",
+    "--wm-scale-mobile": "1.95",
+  } as CSSProperties;
+
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
       {setLogoPaths.length > 0 ? (
@@ -55,7 +65,8 @@ export function PublicCollectorHeader({
                   alt=""
                   width={360}
                   height={180}
-                  className="h-auto w-[280px] scale-[1.9] object-contain opacity-[0.045] blur-[10px]"
+                  className="gv-ghost-watermark h-auto w-[280px] object-contain"
+                  style={collageWatermarkStyle}
                 />
               </div>
             );

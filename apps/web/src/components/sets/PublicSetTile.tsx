@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { PublicSetSummary } from "@/lib/publicSets";
 import { getSetAccentColor } from "@/lib/setAccentColors";
@@ -12,6 +13,17 @@ type PublicSetTileProps = {
 
 export default function PublicSetTile({ setInfo, compareCards, logoPath }: PublicSetTileProps) {
   const accentColor = getSetAccentColor(setInfo.code);
+  const watermarkStyle = {
+    "--wm-opacity-desktop": "0.08",
+    "--wm-blur-desktop": "5px",
+    "--wm-scale-desktop": "1.15",
+    "--wm-opacity-hover": "0.11",
+    "--wm-blur-hover": "3px",
+    "--wm-scale-hover": "1.19",
+    "--wm-opacity-mobile": "0.10",
+    "--wm-blur-mobile": "3px",
+    "--wm-scale-mobile": "1.18",
+  } as CSSProperties;
 
   return (
     <Link
@@ -30,7 +42,8 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath }: Publi
             alt=""
             width={420}
             height={180}
-            className="h-auto w-[72%] scale-[1.15] object-contain opacity-[0.08] blur-[5px] transition-all duration-200 ease-out group-hover:scale-[1.19] group-hover:opacity-[0.11] group-hover:blur-[3px]"
+            className="gv-ghost-watermark h-auto w-[72%] object-contain"
+            style={watermarkStyle}
           />
         </div>
       ) : null}

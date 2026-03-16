@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 
@@ -81,6 +82,14 @@ export function VaultCardTile({
   onPublicImageToggle,
 }: VaultCardTileProps) {
   const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
+  const watermarkStyle = {
+    "--wm-opacity-desktop": "0.07",
+    "--wm-blur-desktop": "6px",
+    "--wm-scale-desktop": "1.5",
+    "--wm-opacity-mobile": "0.08",
+    "--wm-blur-mobile": "4px",
+    "--wm-scale-mobile": "1.52",
+  } as CSSProperties;
 
   return (
     <article className="card-hover overflow-hidden rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm">
@@ -104,7 +113,8 @@ export function VaultCardTile({
               alt=""
               width={360}
               height={180}
-              className="h-auto w-[85%] scale-[1.5] object-contain opacity-[0.07] blur-[6px]"
+              className="gv-ghost-watermark h-auto w-[85%] object-contain"
+              style={watermarkStyle}
             />
           </div>
         ) : null}
