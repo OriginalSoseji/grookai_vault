@@ -20,7 +20,7 @@ returns text
 language sql
 volatile
 as $$
-  select upper(encode(gen_random_bytes(4), 'hex'));
+  select upper(substr(replace(gen_random_uuid()::text, '-', ''), 1, 8));
 $$;
 
 create or replace function public.ensure_vault_owner_v1(p_user_id uuid)
