@@ -83,12 +83,12 @@ export function VaultCardTile({
 }: VaultCardTileProps) {
   const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
   const watermarkStyle = {
-    "--wm-opacity-desktop": "0.07",
-    "--wm-blur-desktop": "6px",
-    "--wm-scale-desktop": "1.5",
-    "--wm-opacity-mobile": "0.08",
-    "--wm-blur-mobile": "4px",
-    "--wm-scale-mobile": "1.52",
+    "--wm-opacity-desktop": "0.04",
+    "--wm-blur-desktop": "10px",
+    "--wm-scale-desktop": "1.08",
+    "--wm-opacity-mobile": "0.05",
+    "--wm-blur-mobile": "8px",
+    "--wm-scale-mobile": "1.10",
   } as CSSProperties;
 
   return (
@@ -113,7 +113,7 @@ export function VaultCardTile({
               alt=""
               width={360}
               height={180}
-              className="gv-ghost-watermark h-auto w-[85%] object-contain"
+              className="gv-ghost-watermark h-auto w-[58%] object-contain sm:w-[60%]"
               style={watermarkStyle}
             />
           </div>

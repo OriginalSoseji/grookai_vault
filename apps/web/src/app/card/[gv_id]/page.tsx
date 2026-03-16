@@ -218,12 +218,12 @@ export default async function CardPage({
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
   const identityWatermarkStyle = {
-    "--wm-opacity-desktop": "0.08",
-    "--wm-blur-desktop": "5px",
-    "--wm-scale-desktop": "1.35",
-    "--wm-opacity-mobile": "0.09",
-    "--wm-blur-mobile": "3px",
-    "--wm-scale-mobile": "1.38",
+    "--wm-opacity-desktop": "0.05",
+    "--wm-blur-desktop": "8px",
+    "--wm-scale-desktop": "1.12",
+    "--wm-opacity-mobile": "0.06",
+    "--wm-blur-mobile": "6px",
+    "--wm-scale-mobile": "1.14",
   } as CSSProperties;
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
@@ -280,10 +280,16 @@ export default async function CardPage({
                   alt=""
                   width={440}
                   height={220}
-                  className="gv-ghost-watermark h-auto w-[90%] object-contain"
+                  className="gv-ghost-watermark h-auto w-[72%] object-contain"
                   style={identityWatermarkStyle}
                 />
               </div>
+            ) : null}
+            {setLogoPath ? (
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.93)_42%,rgba(255,255,255,0.97)_100%)]"
+              />
             ) : null}
             <div className="relative z-10 space-y-3">
               <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{card.name}</h1>

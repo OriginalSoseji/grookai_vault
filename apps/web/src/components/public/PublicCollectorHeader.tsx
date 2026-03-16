@@ -39,23 +39,22 @@ export function PublicCollectorHeader({
   setLogoPaths = [],
 }: PublicCollectorHeaderProps) {
   const collageWatermarkStyle = {
-    "--wm-opacity-desktop": "0.045",
-    "--wm-blur-desktop": "10px",
-    "--wm-scale-desktop": "1.9",
-    "--wm-opacity-mobile": "0.05",
-    "--wm-blur-mobile": "7px",
-    "--wm-scale-mobile": "1.95",
+    "--wm-opacity-desktop": "0.025",
+    "--wm-blur-desktop": "12px",
+    "--wm-scale-desktop": "1.35",
+    "--wm-opacity-mobile": "0.03",
+    "--wm-blur-mobile": "10px",
+    "--wm-scale-mobile": "1.4",
   } as CSSProperties;
 
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
       {setLogoPaths.length > 0 ? (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          {setLogoPaths.slice(0, 3).map((logoPath, index) => {
+          {setLogoPaths.slice(0, 2).map((logoPath, index) => {
             const placements = [
-              "left-[-8%] top-[-12%] rotate-[-10deg]",
-              "left-[28%] top-[2%] rotate-[8deg]",
-              "right-[-10%] bottom-[-12%] rotate-[12deg]",
+              "left-[-14%] top-[-18%] rotate-[-8deg]",
+              "right-[-16%] bottom-[-18%] rotate-[10deg]",
             ];
 
             return (
@@ -65,7 +64,7 @@ export function PublicCollectorHeader({
                   alt=""
                   width={360}
                   height={180}
-                  className="gv-ghost-watermark h-auto w-[280px] object-contain"
+                  className="gv-ghost-watermark h-auto w-[220px] object-contain md:w-[240px]"
                   style={collageWatermarkStyle}
                 />
               </div>
