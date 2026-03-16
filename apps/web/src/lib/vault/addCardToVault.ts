@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 
 type AddCardToVaultParams = {
   client: SupabaseClient;
@@ -171,20 +172,43 @@ export async function addCardToVault({
   setName,
   imageUrl,
 }: AddCardToVaultParams): Promise<AddCardToVaultResult> {
+  if (!userId?.trim()) {
+    throw new Error("GVVI create failed: missing authenticated user id.");
+  }
+
+  if (!cardPrintId?.trim()) {
+    throw new Error("GVVI create failed: missing cardPrintId.");
+  }
+
   const normalizedName = name.trim() || "Unknown card";
   const normalizedSetName = setName?.trim() || "";
   const normalizedImageUrl = imageUrl ?? null;
-
-  const { data: instance, error: instanceError } = await client.rpc("admin_vault_instance_create_v1", {
+  const adminClient = createServerAdminClient();
+  const rpcArgs = {
     p_user_id: userId,
     p_card_print_id: cardPrintId,
     p_condition_label: "NM",
     p_name: normalizedName,
     p_set_name: normalizedSetName || null,
     p_photo_url: normalizedImageUrl,
+  };
+
+  console.info("vault.addCardToVault.begin", {
+    userId,
+    cardPrintId,
+    canonicalClient: "server_admin_client",
+    mirrorClient: "authenticated_server_client",
+    rpcArgs,
   });
 
+  const { data: instance, error: instanceError } = await adminClient.rpc("admin_vault_instance_create_v1", rpcArgs);
+
   if (instanceError) {
+    console.error("vault.addCardToVault.instance_rpc_failed", {
+      userId,
+      cardPrintId,
+      error: instanceError,
+    });
     throw new Error(`GVVI create failed: ${instanceError.message}`);
   }
 
@@ -213,14 +237,12 @@ export async function addCardToVault({
       normalizedSetName,
       normalizedImageUrl,
     });
-  } catch (error) {
-    console.error("[vault:add:mirror] compatibility mirror failed", {
-      user_id: userId,
-      gv_id: gvId,
-      card_print_id: cardPrintId,
-      gv_vi_id: createdRow.gv_vi_id,
-      detail: error instanceof Error ? error.message : String(error),
-      error,
+  } catch (mirrorError) {
+    console.error("vault.addCardToVault.bucket_mirror_failed", {
+      userId,
+      cardPrintId,
+      gvvi_id: createdRow.gv_vi_id ?? null,
+      error: mirrorError,
     });
   }
 
