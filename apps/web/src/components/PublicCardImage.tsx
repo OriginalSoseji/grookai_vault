@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type PublicCardImageProps = {
@@ -30,11 +31,14 @@ export default function PublicCardImage({
   }
 
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
       loading={loading}
       className={imageClassName}
+      width={1200}
+      height={1600}
+      unoptimized
       onError={() => setImageFailed(true)}
     />
   );
