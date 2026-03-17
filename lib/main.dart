@@ -1389,59 +1389,38 @@ class VaultPageState extends State<VaultPage> {
     }
     setState(() => _loading = true);
     try {
-      final orderCol = switch (_sortBy) {
-        _SortBy.newest => 'created_at',
-        _SortBy.name => 'name',
-        _SortBy.qty => 'created_at',
-      };
-      final ascending = _sortBy == _SortBy.name;
+      final rows = await VaultCardService.getCanonicalCollectorRows(
+        client: supabase,
+      );
 
-      final data = await supabase
-          .from('v_vault_items')
-          .select(
-            'id,user_id,card_id,gv_id,condition_label,created_at,name,set_name,number,photo_url,image_url',
-          )
-          .eq('user_id', _uid!)
-          .order(orderCol, ascending: ascending);
-
-      final rows = List<Map<String, dynamic>>.from(data);
-      final cardPrintIds = rows
-          .map((row) => (row['card_id'] ?? '').toString().trim())
-          .where((id) => id.isNotEmpty)
-          .toList();
-
-      Map<String, int> ownedCounts = const <String, int>{};
-      if (cardPrintIds.isNotEmpty) {
-        try {
-          ownedCounts = await VaultCardService.getOwnedCountsByCardPrintIds(
-            client: supabase,
-            cardPrintIds: cardPrintIds,
-          );
-        } catch (error) {
-          debugPrint('vault.mobile.read_counts_failed: $error');
-        }
+      if (_sortBy == _SortBy.name) {
+        rows.sort(
+          (a, b) => (a['name'] ?? '').toString().compareTo(
+            (b['name'] ?? '').toString(),
+          ),
+        );
+      } else {
+        rows.sort((a, b) {
+          final aTs = DateTime.tryParse(
+            (a['created_at'] ?? '').toString(),
+          )?.millisecondsSinceEpoch;
+          final bTs = DateTime.tryParse(
+            (b['created_at'] ?? '').toString(),
+          )?.millisecondsSinceEpoch;
+          return (bTs ?? -1).compareTo(aTs ?? -1);
+        });
       }
 
-      final hydratedRows = rows.map((row) {
-        final cardPrintId = (row['card_id'] ?? '').toString().trim();
-        final ownedCount = ownedCounts[cardPrintId];
-
-        return <String, dynamic>{
-          ...row,
-          'owned_count': ownedCount,
-        };
-      }).toList();
-
-      setState(() => _items = hydratedRows);
+      setState(() => _items = rows);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
   }
 
   Future<void> _incQty(Map<String, dynamic> row, int delta) async {
-    final id = (row['id'] ?? '').toString();
+    final vaultItemId = _vaultItemIdForRow(row);
     final cardId = (row['card_id'] ?? '').toString();
-    if (_uid == null || id.isEmpty || cardId.isEmpty) return;
+    if (_uid == null || vaultItemId.isEmpty || cardId.isEmpty) return;
 
     if (delta > 0) {
       await VaultCardService.addOrIncrementVaultItem(
@@ -1458,7 +1437,7 @@ class VaultPageState extends State<VaultPage> {
       await VaultCardService.archiveOneVaultItem(
         client: supabase,
         userId: _uid!,
-        vaultItemId: id,
+        vaultItemId: vaultItemId,
         cardId: cardId,
       );
     }
@@ -1467,14 +1446,14 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Future<void> _delete(Map<String, dynamic> row) async {
-    final id = (row['id'] ?? '').toString();
+    final vaultItemId = _vaultItemIdForRow(row);
     final cardId = (row['card_id'] ?? '').toString();
-    if (_uid == null || id.isEmpty || cardId.isEmpty) return;
+    if (_uid == null || vaultItemId.isEmpty || cardId.isEmpty) return;
 
     await VaultCardService.archiveAllVaultItems(
       client: supabase,
       userId: _uid!,
-      vaultItemId: id,
+      vaultItemId: vaultItemId,
       cardId: cardId,
     );
 
@@ -1621,7 +1600,7 @@ class VaultPageState extends State<VaultPage> {
                   separatorBuilder: (_, __) => const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final row = filtered[index];
-                    final id = (row['id'] ?? '').toString();
+                    final vaultItemId = _vaultItemIdForRow(row);
                     final name = (row['name'] ?? 'Item').toString();
                     final set = (row['set_name'] ?? '').toString();
                     final ownedCount = _ownedCountForRow(row);
@@ -1635,7 +1614,7 @@ class VaultPageState extends State<VaultPage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => ScanCaptureScreen(
-                              vaultItemId: id,
+                              vaultItemId: vaultItemId,
                               cardName: name,
                             ),
                           ),
@@ -1736,6 +1715,15 @@ enum _SortBy { newest, name, qty }
 int _ownedCountForRow(Map<String, dynamic> row) {
   final ownedCount = _intValue(row['owned_count']);
   return ownedCount ?? 0;
+}
+
+String _vaultItemIdForRow(Map<String, dynamic> row) {
+  final vaultItemId = (row['vault_item_id'] ?? '').toString();
+  if (vaultItemId.isNotEmpty) {
+    return vaultItemId;
+  }
+
+  return (row['id'] ?? '').toString();
 }
 
 int? _intValue(dynamic value) {

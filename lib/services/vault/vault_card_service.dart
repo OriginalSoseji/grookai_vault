@@ -105,6 +105,21 @@ class VaultCardService {
     return counts;
   }
 
+  static Future<List<Map<String, dynamic>>> getCanonicalCollectorRows({
+    required SupabaseClient client,
+  }) async {
+    final response = await client.rpc('vault_mobile_collector_rows_v1');
+
+    if (response is! List) {
+      return const <Map<String, dynamic>>[];
+    }
+
+    return response
+        .whereType<Map<String, dynamic>>()
+        .map((row) => Map<String, dynamic>.from(row))
+        .toList();
+  }
+
   static Future<String> addOrIncrementVaultItem({
     required SupabaseClient client,
     required String userId,
