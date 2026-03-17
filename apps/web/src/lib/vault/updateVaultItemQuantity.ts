@@ -38,7 +38,6 @@ type LegacyVaultBucketRow = {
   id: string;
   card_id: string | null;
   gv_id: string | null;
-  qty: number | null;
   condition_label?: string | null;
   name?: string | null;
   set_name?: string | null;
@@ -48,6 +47,22 @@ type LegacyVaultBucketRow = {
 type VaultInstanceCreateRow = {
   id: string;
   gv_vi_id: string | null;
+};
+
+type ActiveInstanceCounts = {
+  totalCount: number;
+  rawCount: number;
+  slabCount: number;
+};
+
+type CountSourceInstanceRow = {
+  card_print_id: string | null;
+  slab_cert_id: string | null;
+};
+
+type SlabCertCardRow = {
+  id: string;
+  card_print_id: string | null;
 };
 
 function formatVaultQuantityError(step: string, error: PostgrestError) {
@@ -62,7 +77,7 @@ function formatVaultQuantityError(step: string, error: PostgrestError) {
   return parts.join(" | ");
 }
 
-async function selectActiveVaultInstanceForArchive({
+async function selectActiveRawVaultInstanceForArchive({
   userId,
   cardPrintId,
 }: {
@@ -75,6 +90,7 @@ async function selectActiveVaultInstanceForArchive({
     .select("id,gv_vi_id,card_print_id")
     .eq("user_id", userId)
     .eq("card_print_id", cardPrintId)
+    .is("slab_cert_id", null)
     .is("archived_at", null)
     .order("created_at", { ascending: true })
     .order("id", { ascending: true })
@@ -82,13 +98,13 @@ async function selectActiveVaultInstanceForArchive({
     .maybeSingle();
 
   if (error) {
-    throw new Error(formatVaultQuantityError("vault_item_instances.select-active-for-archive", error));
+    throw new Error(formatVaultQuantityError("vault_item_instances.select-active-raw-for-archive", error));
   }
 
   return (data ?? null) as ActiveVaultInstanceRow | null;
 }
 
-async function archiveVaultInstance(change: VaultQuantityChange, cardPrintId: string) {
+async function archiveRawVaultInstance(change: VaultQuantityChange, cardPrintId: string) {
   console.info("vault.archive.begin", {
     userId: change.userId,
     gvviId: null,
@@ -96,13 +112,13 @@ async function archiveVaultInstance(change: VaultQuantityChange, cardPrintId: st
     vaultItemId: change.itemId,
   });
 
-  const selectedInstance = await selectActiveVaultInstanceForArchive({
+  const selectedInstance = await selectActiveRawVaultInstanceForArchive({
     userId: change.userId,
     cardPrintId,
   });
 
   if (!selectedInstance?.id) {
-    const missingInstanceError = new Error("No active vault instance found for archive.");
+    const missingInstanceError = new Error("No active raw vault instance found for decrement.");
     console.error("vault.archive.instance_failed", {
       userId: change.userId,
       gvviId: null,
@@ -142,39 +158,6 @@ async function archiveVaultInstance(change: VaultQuantityChange, cardPrintId: st
   return selectedInstance;
 }
 
-async function mirrorArchiveVaultItem(
-  change: VaultQuantityChange,
-  currentRow: { card_id: string | null; gv_id: string | null },
-): Promise<UpdateVaultItemQuantityResult> {
-  const { error: archiveError } = await change.client
-    .from("vault_items")
-    .update({
-      qty: 0,
-      archived_at: new Date().toISOString(),
-    })
-    .eq("id", change.itemId)
-    .eq("user_id", change.userId)
-    .is("archived_at", null);
-
-  if (archiveError) {
-    throw new Error(formatVaultQuantityError("vault_items.archive", archiveError));
-  }
-
-  console.info("[vault:qty]", {
-    user_id: change.userId,
-    item_id: change.itemId,
-    card_id: currentRow.card_id,
-    gv_id: currentRow.gv_id,
-    action: "archive",
-    quantity: 0,
-  });
-
-  return {
-    status: "removed",
-    itemId: change.itemId,
-  };
-}
-
 async function createVaultInstanceForIncrement(
   change: VaultQuantityChange,
   row: LegacyVaultBucketRow,
@@ -188,6 +171,7 @@ async function createVaultInstanceForIncrement(
   const rpcArgs = {
     p_user_id: change.userId,
     p_card_print_id: cardPrintId,
+    p_legacy_vault_item_id: row.id,
     p_condition_label: row.condition_label?.trim() || null,
     p_name: row.name?.trim() || null,
     p_set_name: row.set_name?.trim() || null,
@@ -209,13 +193,79 @@ async function createVaultInstanceForIncrement(
   return createdRow;
 }
 
+async function countActiveInstancesForCard({
+  userId,
+  cardPrintId,
+}: {
+  userId: string;
+  cardPrintId: string;
+}): Promise<ActiveInstanceCounts> {
+  const adminClient = createServerAdminClient();
+  const { data, error } = await adminClient
+    .from("vault_item_instances")
+    .select("card_print_id,slab_cert_id")
+    .eq("user_id", userId)
+    .is("archived_at", null);
+
+  if (error) {
+    throw new Error(formatVaultQuantityError("vault_item_instances.count-active-by-card", error));
+  }
+
+  const rows = (data ?? []) as CountSourceInstanceRow[];
+  const slabCertIds = Array.from(
+    new Set(rows.map((row) => row.slab_cert_id?.trim() ?? "").filter((value) => value.length > 0)),
+  );
+  const slabCardByCertId = new Map<string, string>();
+
+  if (slabCertIds.length > 0) {
+    const { data: slabData, error: slabError } = await adminClient
+      .from("slab_certs")
+      .select("id,card_print_id")
+      .in("id", slabCertIds);
+
+    if (slabError) {
+      throw new Error(formatVaultQuantityError("slab_certs.count-active-by-card", slabError));
+    }
+
+    for (const row of (slabData ?? []) as SlabCertCardRow[]) {
+      const id = row.id?.trim() ?? "";
+      const resolvedCardPrintId = row.card_print_id?.trim() ?? "";
+      if (id && resolvedCardPrintId) {
+        slabCardByCertId.set(id, resolvedCardPrintId);
+      }
+    }
+  }
+
+  const matchingRows = rows.filter((row) => {
+    const directCardPrintId = row.card_print_id?.trim() ?? "";
+    if (directCardPrintId === cardPrintId) {
+      return true;
+    }
+
+    const slabCertId = row.slab_cert_id?.trim() ?? "";
+    if (!slabCertId) {
+      return false;
+    }
+
+    return slabCardByCertId.get(slabCertId) === cardPrintId;
+  });
+
+  const rawCount = matchingRows.filter((row) => row.slab_cert_id === null).length;
+  const slabCount = matchingRows.length - rawCount;
+
+  return {
+    totalCount: matchingRows.length,
+    rawCount,
+    slabCount,
+  };
+}
+
 export async function updateVaultItemQuantity(change: VaultQuantityChange): Promise<UpdateVaultItemQuantityResult> {
   const actionLabel = change.type === "increment" ? "increment" : "decrement";
-  const delta = change.type === "increment" ? 1 : -1;
 
   const { data: row, error: readError } = await change.client
     .from("vault_items")
-    .select("id,card_id,gv_id,qty,condition_label,name,set_name,photo_url")
+    .select("id,card_id,gv_id,condition_label,name,set_name,photo_url")
     .eq("id", change.itemId)
     .eq("user_id", change.userId)
     .is("archived_at", null)
@@ -246,49 +296,30 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
     };
   }
 
-  const currentQty = typeof currentRow.qty === "number" ? currentRow.qty : 0;
-  const newQty = Math.max(0, currentQty + delta);
+  const cardPrintId = currentRow.card_id?.trim() ?? "";
+  if (!cardPrintId) {
+    throw new Error("Instance mutation failed: missing cardPrintId on compatibility anchor.");
+  }
 
   if (change.type === "decrement") {
-    if (!currentRow.card_id) {
-      throw new Error("GVVI archive failed: missing cardPrintId on legacy vault bucket.");
-    }
+    const archivedInstance = await archiveRawVaultInstance(change, cardPrintId);
+    const counts = await countActiveInstancesForCard({
+      userId: change.userId,
+      cardPrintId,
+    });
 
-    await archiveVaultInstance(change, currentRow.card_id);
+    console.info("[vault:qty]", {
+      user_id: change.userId,
+      item_id: change.itemId,
+      gv_id: currentRow.gv_id,
+      action: actionLabel,
+      quantity: counts.totalCount,
+      raw_count: counts.rawCount,
+      slab_count: counts.slabCount,
+      gv_vi_id: archivedInstance.gv_vi_id ?? null,
+    });
 
-    try {
-      if (newQty <= 0) {
-        return await mirrorArchiveVaultItem(change, currentRow);
-      }
-
-      const { error: mirrorError } = await change.client
-        .from("vault_items")
-        .update({ qty: newQty })
-        .eq("id", change.itemId)
-        .eq("user_id", change.userId)
-        .is("archived_at", null);
-
-      if (mirrorError) {
-        throw mirrorError;
-      }
-
-      console.info("[vault:qty]", {
-        user_id: change.userId,
-        item_id: change.itemId,
-        gv_id: currentRow.gv_id,
-        action: actionLabel,
-        quantity: newQty,
-      });
-    } catch (mirrorError) {
-      console.error("vault.archive.bucket_mirror_failed", {
-        userId: change.userId,
-        gvviId: null,
-        cardPrintId: currentRow.card_id,
-        error: mirrorError,
-      });
-    }
-
-    if (newQty <= 0) {
+    if (counts.totalCount <= 0) {
       return {
         status: "removed",
         itemId: change.itemId,
@@ -298,44 +329,30 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
     return {
       status: "decremented",
       itemId: change.itemId,
-      quantity: newQty,
+      quantity: counts.totalCount,
     };
   }
 
   const createdInstance = await createVaultInstanceForIncrement(change, currentRow);
-
-  try {
-    const { error: updateError } = await change.client
-      .from("vault_items")
-      .update({ qty: newQty })
-      .eq("id", change.itemId)
-      .eq("user_id", change.userId)
-      .is("archived_at", null);
-
-    if (updateError) {
-      throw updateError;
-    }
-  } catch (mirrorError) {
-    console.error("vault.increment.bucket_mirror_failed", {
-      userId: change.userId,
-      gvviId: createdInstance.gv_vi_id ?? null,
-      cardPrintId: currentRow.card_id ?? null,
-      error: mirrorError,
-    });
-  }
+  const counts = await countActiveInstancesForCard({
+    userId: change.userId,
+    cardPrintId,
+  });
 
   console.info("[vault:qty]", {
     user_id: change.userId,
     item_id: change.itemId,
     gv_id: currentRow.gv_id,
     action: actionLabel,
-    quantity: newQty,
+    quantity: counts.totalCount,
+    raw_count: counts.rawCount,
+    slab_count: counts.slabCount,
     gv_vi_id: createdInstance.gv_vi_id ?? null,
   });
 
   return {
     status: change.type === "increment" ? "incremented" : "decremented",
     itemId: change.itemId,
-    quantity: newQty,
+    quantity: counts.totalCount,
   };
 }

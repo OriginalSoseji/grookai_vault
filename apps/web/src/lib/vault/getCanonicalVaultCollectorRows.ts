@@ -2,9 +2,19 @@ import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
+export type CanonicalVaultCollectorSlabItem = {
+  gv_vi_id: string | null;
+  slab_cert_id: string;
+  grader: string | null;
+  grade: string | null;
+  cert_number: string | null;
+  created_at: string | null;
+};
+
 export type CanonicalVaultCollectorRow = {
   id: string;
   vault_item_id: string;
+  representative_vault_item_id: string;
   gv_vi_id: string | null;
   card_id: string;
   gv_id: string;
@@ -14,6 +24,10 @@ export type CanonicalVaultCollectorRow = {
   number: string;
   condition_label: string;
   owned_count: number;
+  total_count: number;
+  raw_count: number;
+  slab_count: number;
+  slab_items: CanonicalVaultCollectorSlabItem[];
   effective_price: number | null;
   image_url: string | null;
   created_at: string | null;
@@ -80,21 +94,19 @@ type CardPrintMetadataRow = {
     | null;
 };
 
-type InstanceAggregate = {
-  key: string;
-  isSlab: boolean;
+type CardAggregate = {
   cardPrintId: string;
-  slabCertId: string | null;
-  ownedCount: number;
+  totalCount: number;
+  rawCount: number;
+  slabCount: number;
   latestCreatedAt: string | null;
   singleGvviId: string | null;
-  representativeLegacyVaultItemId: string | null;
   conditionLabel: string | null;
   photoUrl: string | null;
   imageUrl: string | null;
-  grader: string | null;
-  grade: string | null;
-  certNumber: string | null;
+  anchorInstanceCounts: Map<string, number>;
+  slabItems: CanonicalVaultCollectorSlabItem[];
+  primarySlab: CanonicalVaultCollectorSlabItem | null;
 };
 
 function chunkArray<T>(items: T[], size: number) {
@@ -107,6 +119,38 @@ function chunkArray<T>(items: T[], size: number) {
 
 function normalizeIds(values: string[]) {
   return Array.from(new Set(values.map((value) => value.trim()).filter((value) => value.length > 0)));
+}
+
+function normalizeOptionalText(value: string | null | undefined) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function normalizeGradeValue(value: number | string | null | undefined) {
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value.toString() : null;
+  }
+
+  return normalizeOptionalText(value);
+}
+
+function compareIsoDesc(left: string | null, right: string | null) {
+  const leftTs = left ? Date.parse(left) : Number.NEGATIVE_INFINITY;
+  const rightTs = right ? Date.parse(right) : Number.NEGATIVE_INFINITY;
+  return rightTs - leftTs;
+}
+
+function compareBuckets(left: BucketMetadataRow, right: BucketMetadataRow) {
+  const createdComparison = compareIsoDesc(left.created_at ?? null, right.created_at ?? null);
+  if (createdComparison !== 0) {
+    return createdComparison;
+  }
+
+  return left.id.localeCompare(right.id);
 }
 
 async function fetchActiveInstances(userId: string) {
@@ -128,23 +172,6 @@ async function fetchActiveInstances(userId: string) {
   }
 
   return (data ?? []) as ActiveInstanceRow[];
-}
-
-function normalizeOptionalText(value: string | null | undefined) {
-  if (typeof value !== "string") {
-    return null;
-  }
-
-  const normalized = value.trim();
-  return normalized.length > 0 ? normalized : null;
-}
-
-function normalizeGradeValue(value: number | string | null | undefined) {
-  if (typeof value === "number") {
-    return Number.isFinite(value) ? value.toString() : null;
-  }
-
-  return normalizeOptionalText(value);
 }
 
 async function fetchSlabCertMetadataById(slabCertIds: string[]) {
@@ -178,7 +205,7 @@ function aggregateInstances(
   rows: ActiveInstanceRow[],
   slabCertMetadataById: Map<string, SlabCertMetadataRow>,
 ) {
-  const aggregates = new Map<string, InstanceAggregate>();
+  const aggregates = new Map<string, CardAggregate>();
 
   for (const row of rows) {
     const slabCertId = normalizeOptionalText(row.slab_cert_id);
@@ -188,41 +215,31 @@ function aggregateInstances(
       continue;
     }
 
-    const key = slabCertId ? `slab:${slabCertId}` : `raw:${cardPrintId}`;
-    const current = aggregates.get(key) ?? {
-      key,
-      isSlab: Boolean(slabCertId),
+    const current = aggregates.get(cardPrintId) ?? {
       cardPrintId,
-      slabCertId,
-      ownedCount: 0,
+      totalCount: 0,
+      rawCount: 0,
+      slabCount: 0,
       latestCreatedAt: null,
       singleGvviId: null,
-      representativeLegacyVaultItemId: null,
       conditionLabel: null,
       photoUrl: null,
       imageUrl: null,
-      grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
-      grade:
-        normalizeGradeValue(slabCert?.grade) ??
-        normalizeOptionalText(row.grade_label) ??
-        normalizeOptionalText(row.grade_value),
-      certNumber: normalizeOptionalText(slabCert?.cert_number),
+      anchorInstanceCounts: new Map<string, number>(),
+      slabItems: [],
+      primarySlab: null,
     };
 
-    current.ownedCount += 1;
+    current.totalCount += 1;
 
     if (!current.latestCreatedAt && row.created_at) {
       current.latestCreatedAt = row.created_at;
     }
 
-    if (current.ownedCount === 1) {
+    if (current.totalCount === 1) {
       current.singleGvviId = normalizeOptionalText(row.gv_vi_id);
     } else {
       current.singleGvviId = null;
-    }
-
-    if (!current.representativeLegacyVaultItemId) {
-      current.representativeLegacyVaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
     }
 
     if (!current.conditionLabel) {
@@ -237,7 +254,38 @@ function aggregateInstances(
       current.imageUrl = normalizeOptionalText(row.image_url);
     }
 
-    aggregates.set(key, current);
+    const legacyVaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
+    if (legacyVaultItemId) {
+      current.anchorInstanceCounts.set(
+        legacyVaultItemId,
+        (current.anchorInstanceCounts.get(legacyVaultItemId) ?? 0) + 1,
+      );
+    }
+
+    if (slabCertId) {
+      current.slabCount += 1;
+
+      const slabItem: CanonicalVaultCollectorSlabItem = {
+        gv_vi_id: normalizeOptionalText(row.gv_vi_id),
+        slab_cert_id: slabCertId,
+        grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
+        grade:
+          normalizeGradeValue(slabCert?.grade) ??
+          normalizeOptionalText(row.grade_label) ??
+          normalizeOptionalText(row.grade_value),
+        cert_number: normalizeOptionalText(slabCert?.cert_number),
+        created_at: row.created_at ?? null,
+      };
+
+      current.slabItems.push(slabItem);
+      if (!current.primarySlab) {
+        current.primarySlab = slabItem;
+      }
+    } else {
+      current.rawCount += 1;
+    }
+
+    aggregates.set(cardPrintId, current);
   }
 
   return aggregates;
@@ -245,7 +293,7 @@ function aggregateInstances(
 
 async function fetchBucketMetadataByCardId(userId: string, cardPrintIds: string[]) {
   const adminClient = createServerAdminClient();
-  const rowsByCardId = new Map<string, BucketMetadataRow>();
+  const bucketsByCardId = new Map<string, BucketMetadataRow[]>();
 
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
@@ -253,7 +301,9 @@ async function fetchBucketMetadataByCardId(userId: string, cardPrintIds: string[
       .select("id,card_id,gv_id,condition_label,name,set_name,photo_url,created_at")
       .eq("user_id", userId)
       .is("archived_at", null)
-      .in("card_id", ids);
+      .in("card_id", ids)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false });
 
     if (error) {
       throw new Error(
@@ -262,14 +312,22 @@ async function fetchBucketMetadataByCardId(userId: string, cardPrintIds: string[
     }
 
     for (const row of (data ?? []) as BucketMetadataRow[]) {
-      const cardId = row.card_id?.trim() ?? "";
-      if (cardId) {
-        rowsByCardId.set(cardId, row);
+      const cardId = normalizeOptionalText(row.card_id);
+      if (!cardId) {
+        continue;
       }
+
+      const current = bucketsByCardId.get(cardId) ?? [];
+      current.push(row);
+      bucketsByCardId.set(cardId, current);
     }
   }
 
-  return rowsByCardId;
+  for (const [cardId, rows] of bucketsByCardId.entries()) {
+    bucketsByCardId.set(cardId, [...rows].sort(compareBuckets));
+  }
+
+  return bucketsByCardId;
 }
 
 async function fetchCardMetadataById(cardPrintIds: string[]) {
@@ -330,6 +388,36 @@ async function fetchPriceMetadataByCardId(userId: string, cardPrintIds: string[]
   return rowsByCardId;
 }
 
+function selectRepresentativeBucket(
+  buckets: BucketMetadataRow[],
+  anchorInstanceCounts: Map<string, number>,
+) {
+  if (buckets.length === 0) {
+    return null;
+  }
+
+  const linkedBuckets = buckets.filter((bucket) => (anchorInstanceCounts.get(bucket.id) ?? 0) > 0);
+  if (linkedBuckets.length > 0) {
+    const sortedLinkedBuckets = [...linkedBuckets].sort((left, right) => {
+      const leftScore = anchorInstanceCounts.get(left.id) ?? 0;
+      const rightScore = anchorInstanceCounts.get(right.id) ?? 0;
+      if (leftScore !== rightScore) {
+        return rightScore - leftScore;
+      }
+
+      return compareBuckets(left, right);
+    });
+
+    return sortedLinkedBuckets[0] ?? null;
+  }
+
+  if (buckets.length === 1) {
+    return buckets[0] ?? null;
+  }
+
+  return null;
+}
+
 export async function getCanonicalVaultCollectorRows(userId: string): Promise<CanonicalVaultCollectorRow[]> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
@@ -343,8 +431,8 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       .filter((value): value is string => Boolean(value)),
   );
   const slabCertMetadataById = await fetchSlabCertMetadataById(slabCertIds);
-  const aggregates = aggregateInstances(activeInstances, slabCertMetadataById);
-  const cardPrintIds = normalizeIds(Array.from(aggregates.values()).map((aggregate) => aggregate.cardPrintId));
+  const aggregatesByCardId = aggregateInstances(activeInstances, slabCertMetadataById);
+  const cardPrintIds = normalizeIds(Array.from(aggregatesByCardId.keys()));
 
   if (cardPrintIds.length === 0) {
     return [];
@@ -358,34 +446,39 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
 
   const rows: CanonicalVaultCollectorRow[] = [];
 
-  for (const aggregate of aggregates.values()) {
-    const cardPrintId = aggregate.cardPrintId;
-    const bucket = bucketMetadataByCardId.get(cardPrintId) ?? null;
+  for (const [cardPrintId, aggregate] of aggregatesByCardId.entries()) {
+    const buckets = bucketMetadataByCardId.get(cardPrintId) ?? [];
+    const representativeBucket = selectRepresentativeBucket(buckets, aggregate.anchorInstanceCounts);
+
+    if (!representativeBucket?.id) {
+      throw new Error(
+        `[vault:read-model] no safe representative_vault_item_id for card_print_id=${cardPrintId}; Phase 2 bridge is required before this row can be rendered safely.`,
+      );
+    }
+
     const card = cardMetadataById.get(cardPrintId) ?? null;
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const setRecord = Array.isArray(card?.sets) ? card?.sets[0] : card?.sets;
-
-    const compatibilityVaultItemId = bucket?.id?.trim() || aggregate.representativeLegacyVaultItemId || "";
-    if (!compatibilityVaultItemId) {
-      console.error("[vault:read-model] missing compatibility vault_item_id", {
-        userId: normalizedUserId,
-        cardPrintId,
-      });
-      continue;
-    }
+    const primarySlab = aggregate.primarySlab;
 
     rows.push({
-      id: aggregate.key,
-      vault_item_id: compatibilityVaultItemId,
-      gv_vi_id: aggregate.ownedCount === 1 ? aggregate.singleGvviId : null,
+      id: `card:${cardPrintId}`,
+      vault_item_id: representativeBucket.id,
+      representative_vault_item_id: representativeBucket.id,
+      gv_vi_id: aggregate.totalCount === 1 ? aggregate.singleGvviId : null,
       card_id: cardPrintId,
-      gv_id: card?.gv_id?.trim() || bucket?.gv_id?.trim() || "",
-      name: card?.name?.trim() || bucket?.name?.trim() || "Unknown card",
+      gv_id: card?.gv_id?.trim() || representativeBucket.gv_id?.trim() || "",
+      name: card?.name?.trim() || representativeBucket.name?.trim() || "Unknown card",
       set_code: card?.set_code?.trim() || "",
-      set_name: setRecord?.name?.trim() || bucket?.set_name?.trim() || card?.set_code?.trim() || "Unknown set",
+      set_name:
+        setRecord?.name?.trim() || representativeBucket.set_name?.trim() || card?.set_code?.trim() || "Unknown set",
       number: card?.number?.trim() || "—",
-      condition_label: aggregate.conditionLabel ?? bucket?.condition_label?.trim() ?? "Unknown",
-      owned_count: aggregate.ownedCount,
+      condition_label: aggregate.conditionLabel ?? representativeBucket.condition_label?.trim() ?? "Unknown",
+      owned_count: aggregate.totalCount,
+      total_count: aggregate.totalCount,
+      raw_count: aggregate.rawCount,
+      slab_count: aggregate.slabCount,
+      slab_items: aggregate.slabItems,
       effective_price: typeof price?.effective_price === "number" ? price.effective_price : null,
       image_url:
         aggregate.imageUrl ??
@@ -393,19 +486,18 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
         card?.image_url?.trim() ??
         card?.image_alt_url?.trim() ??
         price?.image_url?.trim() ??
-        bucket?.photo_url?.trim() ??
+        representativeBucket.photo_url?.trim() ??
         null,
-      created_at: aggregate.latestCreatedAt ?? bucket?.created_at ?? null,
-      is_slab: aggregate.isSlab,
-      grader: aggregate.grader,
-      grade: aggregate.grade,
-      cert_number: aggregate.certNumber,
+      created_at: aggregate.latestCreatedAt ?? representativeBucket.created_at ?? null,
+      is_slab: aggregate.slabCount > 0,
+      grader: primarySlab?.grader ?? null,
+      grade: primarySlab?.grade ?? null,
+      cert_number: aggregate.slabCount === 1 ? primarySlab?.cert_number ?? null : null,
     });
   }
 
   return rows.sort((left, right) => {
-    const leftTs = left.created_at ? Date.parse(left.created_at) : Number.NEGATIVE_INFINITY;
-    const rightTs = right.created_at ? Date.parse(right.created_at) : Number.NEGATIVE_INFINITY;
-    return rightTs - leftTs || left.name.localeCompare(right.name);
+    const createdComparison = compareIsoDesc(left.created_at, right.created_at);
+    return createdComparison !== 0 ? createdComparison : left.name.localeCompare(right.name);
   });
 }

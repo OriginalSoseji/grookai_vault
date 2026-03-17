@@ -6,6 +6,7 @@ import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapsh
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PrintingSelector from "@/components/cards/PrintingSelector";
+import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
@@ -25,10 +26,11 @@ import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapsh
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
+import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
-import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
+import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 
 type MetadataItem = {
   label: string;
@@ -207,18 +209,111 @@ export default async function CardPage({
     };
   }
 
+  async function createSlabAction(
+    _previousState: AddSlabActionResult | null,
+    formData: FormData,
+  ): Promise<AddSlabActionResult> {
+    "use server";
+
+    const actionClient = createServerComponentClient();
+    const {
+      data: { user: actionUser },
+    } = await actionClient.auth.getUser();
+    const submissionKey = Date.now();
+
+    if (!actionUser) {
+      return {
+        ok: false,
+        status: "login-required",
+        message: "Sign in required.",
+        submissionKey,
+      };
+    }
+
+    if (!resolvedCard.id || !resolvedCard.gv_id) {
+      return {
+        ok: false,
+        status: "error",
+        errorCode: "MISSING_CARD_CONTEXT",
+        message: "Card context could not be resolved.",
+        submissionKey,
+      };
+    }
+
+    const selectedGrade = typeof formData.get("grade") === "string" ? String(formData.get("grade")) : "";
+    const certNumber = typeof formData.get("cert_number") === "string" ? String(formData.get("cert_number")) : "";
+    const certNumberConfirm =
+      typeof formData.get("cert_number_confirm") === "string" ? String(formData.get("cert_number_confirm")) : "";
+    const ownershipConfirmed = formData.get("ownership_confirmed") === "true";
+
+    if (!ownershipConfirmed) {
+      return {
+        ok: false,
+        status: "validation-error",
+        errorCode: undefined,
+        message: "Confirm ownership before saving this slab.",
+        submissionKey,
+      };
+    }
+
+    const result = await createSlabInstance({
+      userId: actionUser.id,
+      cardPrintId: resolvedCard.id,
+      gvId: resolvedCard.gv_id,
+      cardName: resolvedCard.name,
+      setName: resolvedCard.set_name,
+      cardImageUrl: resolvedCard.image_url,
+      grader: "PSA",
+      selectedGrade,
+      certNumber,
+      certNumberConfirm,
+    });
+
+    if (!result.ok) {
+      return {
+        ok: false,
+        status:
+          result.errorCode === "CERT_MISMATCH" || result.errorCode === "GRADE_MISMATCH"
+            ? "validation-error"
+            : result.errorCode === "VERIFICATION_FAILED" || result.errorCode === "PSA_UNREACHABLE"
+              ? "verification-failed"
+              : "error",
+        errorCode: result.errorCode,
+        message: result.message,
+        submissionKey,
+      };
+    }
+
+    return {
+      ok: true,
+      status: "created",
+      message: `PSA ${result.grade} added to your vault.`,
+      submissionKey,
+      grade: result.grade,
+      certNumber: result.certNumber,
+      gvviId: result.gvviId,
+    };
+  }
+
   const user = authData.user;
   let vaultCount = 0;
+  let ownedObjectSummary: OwnedObjectSummary = {
+    totalCount: 0,
+    rawCount: 0,
+    slabCount: 0,
+    lines: [],
+  };
   let conditionSnapshots: ConditionSnapshotListItem[] = [];
   let assignmentCandidatesBySnapshotId: Record<string, AssignmentCandidate[]> = {};
 
   if (user && resolvedCard.id) {
     try {
-      const [ownedCounts, snapshots] = await Promise.all([
-        getOwnedCountsByCardPrintIds(user.id, [resolvedCard.id]),
+      const [ownershipSummary, snapshots] = await Promise.all([
+        getOwnedObjectSummaryForCard(user.id, resolvedCard.id),
         getConditionSnapshotsForCard(user.id, resolvedCard.id),
       ]);
-      vaultCount = ownedCounts.get(resolvedCard.id) ?? 0;
+      ownedObjectSummary = ownershipSummary;
+      vaultCount = ownershipSummary.totalCount;
       conditionSnapshots = snapshots;
 
       const unassignedSnapshots = snapshots.filter((snapshot) => snapshot.assignment_state === "unassigned");
@@ -239,6 +334,12 @@ export default async function CardPage({
         error,
       });
       vaultCount = 0;
+      ownedObjectSummary = {
+        totalCount: 0,
+        rawCount: 0,
+        slabCount: 0,
+        lines: [],
+      };
       conditionSnapshots = [];
       assignmentCandidatesBySnapshotId = {};
     }
@@ -372,9 +473,20 @@ export default async function CardPage({
               <div className="space-y-1">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Vault</h2>
                 {vaultCount > 0 ? (
-                  <p className="text-sm text-slate-600">
-                    You own <span className="font-semibold text-slate-900">{vaultCount}</span> {vaultCount === 1 ? "copy" : "copies"}
-                  </p>
+                  <div className="space-y-2">
+                    <p className="text-sm text-slate-600">
+                      You own <span className="font-semibold text-slate-900">{vaultCount}</span> {vaultCount === 1 ? "copy" : "copies"}
+                    </p>
+                    {ownedObjectSummary.lines.length > 0 ? (
+                      <ul className="space-y-1 text-sm text-slate-600">
+                        {ownedObjectSummary.lines.map((line) => (
+                          <li key={line.key}>
+                            <span className="font-semibold text-slate-900">{line.count}</span> {line.label}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
                 ) : (
                   <p className="text-sm text-slate-500">You do not own this card</p>
                 )}
@@ -387,6 +499,7 @@ export default async function CardPage({
                   currentPath={currentCardPath}
                   gvId={resolvedCard.gv_id}
                 />
+                {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedCard.name} /> : null}
                 <CompareCardButton gvId={resolvedCard.gv_id} />
               </div>
             </div>

@@ -1,5 +1,88 @@
 begin;
 
+create or replace function public.resolve_active_vault_anchor_v1(
+  p_user_id uuid,
+  p_card_print_id uuid,
+  p_gv_id text default null,
+  p_condition_label text default 'NM',
+  p_notes text default null,
+  p_name text default null,
+  p_set_name text default null,
+  p_photo_url text default null,
+  p_create_if_missing boolean default false
+) returns public.vault_items
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_anchor public.vault_items%rowtype;
+  v_anchor_ids uuid[];
+  v_primary_id uuid;
+  v_extra_ids uuid[];
+begin
+  select coalesce(array_agg(id order by created_at desc, id desc), array[]::uuid[])
+  into v_anchor_ids
+  from public.vault_items
+  where user_id = p_user_id
+    and card_id = p_card_print_id
+    and archived_at is null;
+
+  if coalesce(array_length(v_anchor_ids, 1), 0) = 0 then
+    if not p_create_if_missing then
+      return null;
+    end if;
+
+    insert into public.vault_items (
+      user_id,
+      card_id,
+      gv_id,
+      qty,
+      condition_label,
+      notes,
+      name,
+      set_name,
+      photo_url
+    )
+    values (
+      p_user_id,
+      p_card_print_id,
+      p_gv_id,
+      0,
+      p_condition_label,
+      nullif(p_notes, ''),
+      p_name,
+      nullif(p_set_name, ''),
+      nullif(p_photo_url, '')
+    )
+    returning *
+    into v_anchor;
+
+    return v_anchor;
+  end if;
+
+  v_primary_id := v_anchor_ids[1];
+
+  if coalesce(array_length(v_anchor_ids, 1), 0) > 1 then
+    v_extra_ids := v_anchor_ids[2:array_length(v_anchor_ids, 1)];
+
+    update public.vault_items
+    set
+      qty = 0,
+      archived_at = coalesce(archived_at, now())
+    where id = any(v_extra_ids)
+      and archived_at is null;
+  end if;
+
+  select *
+  into v_anchor
+  from public.vault_items
+  where id = v_primary_id;
+
+  return v_anchor;
+end;
+$$;
+
 create or replace function public.vault_add_card_instance_v1(
   p_card_print_id uuid,
   p_quantity integer default 1,
@@ -47,12 +130,27 @@ begin
     raise exception 'vault_card_print_missing_identity' using errcode = 'P0001';
   end if;
 
+  select *
+  into v_bucket
+  from public.resolve_active_vault_anchor_v1(
+    p_user_id => v_uid,
+    p_card_print_id => p_card_print_id,
+    p_gv_id => v_gv_id,
+    p_condition_label => p_condition_label,
+    p_notes => nullif(p_notes, ''),
+    p_name => v_name,
+    p_set_name => nullif(v_set_name, ''),
+    p_photo_url => nullif(p_photo_url, ''),
+    p_create_if_missing => true
+  );
+
   for i in 1..v_quantity loop
     select *
     into v_instance
     from public.admin_vault_instance_create_v1(
       p_user_id => v_uid,
       p_card_print_id => p_card_print_id,
+      p_legacy_vault_item_id => v_bucket.id,
       p_condition_label => p_condition_label,
       p_notes => nullif(p_notes, ''),
       p_name => v_name,
@@ -63,55 +161,14 @@ begin
 
   update public.vault_items
   set
-    qty = public.vault_items.qty + v_quantity,
+    qty = coalesce(public.vault_items.qty, 0) + v_quantity,
     condition_label = coalesce(p_condition_label, public.vault_items.condition_label),
     notes = coalesce(nullif(p_notes, ''), public.vault_items.notes)
-  where user_id = v_uid
-    and card_id = p_card_print_id
+  where id = v_bucket.id
+    and user_id = v_uid
     and archived_at is null
   returning *
   into v_bucket;
-
-  if not found then
-    begin
-      insert into public.vault_items (
-        user_id,
-        card_id,
-        gv_id,
-        qty,
-        condition_label,
-        notes,
-        name,
-        set_name,
-        photo_url
-      )
-      values (
-        v_uid,
-        p_card_print_id,
-        v_gv_id,
-        v_quantity,
-        p_condition_label,
-        nullif(p_notes, ''),
-        v_name,
-        nullif(v_set_name, ''),
-        nullif(p_photo_url, '')
-      )
-      returning *
-      into v_bucket;
-    exception
-      when unique_violation then
-        update public.vault_items
-        set
-          qty = public.vault_items.qty + v_quantity,
-          condition_label = coalesce(p_condition_label, public.vault_items.condition_label),
-          notes = coalesce(nullif(p_notes, ''), public.vault_items.notes)
-        where user_id = v_uid
-          and card_id = p_card_print_id
-          and archived_at is null
-        returning *
-        into v_bucket;
-    end;
-  end if;
 
   return jsonb_build_object(
     'gv_vi_id', v_instance.gv_vi_id,
@@ -196,14 +253,14 @@ begin
     null;
   end if;
 
-  if v_bucket.id is null then
+  if v_card_print_id is not null then
     select *
     into v_bucket
-    from public.vault_items
-    where user_id = v_uid
-      and card_id = v_card_print_id
-      and archived_at is null
-    for update;
+    from public.resolve_active_vault_anchor_v1(
+      p_user_id => v_uid,
+      p_card_print_id => v_card_print_id,
+      p_create_if_missing => false
+    );
   end if;
 
   if v_bucket.id is not null then
@@ -296,14 +353,14 @@ begin
     raise exception 'vault_instance_not_found_or_not_owned' using errcode = 'P0001';
   end if;
 
-  if v_bucket.id is null then
+  if v_card_print_id is not null then
     select *
     into v_bucket
-    from public.vault_items
-    where user_id = v_uid
-      and card_id = v_card_print_id
-      and archived_at is null
-    for update;
+    from public.resolve_active_vault_anchor_v1(
+      p_user_id => v_uid,
+      p_card_print_id => v_card_print_id,
+      p_create_if_missing => false
+    );
   end if;
 
   if v_bucket.id is not null then
@@ -332,6 +389,12 @@ revoke all on function public.vault_add_card_instance_v1(uuid, integer, text, te
 from public, anon;
 
 grant execute on function public.vault_add_card_instance_v1(uuid, integer, text, text, text, text, text)
+to authenticated, service_role;
+
+revoke all on function public.resolve_active_vault_anchor_v1(uuid, uuid, text, text, text, text, text, text, boolean)
+from public, anon;
+
+grant execute on function public.resolve_active_vault_anchor_v1(uuid, uuid, text, text, text, text, text, text, boolean)
 to authenticated, service_role;
 
 revoke all on function public.vault_archive_one_instance_v1(uuid, uuid)

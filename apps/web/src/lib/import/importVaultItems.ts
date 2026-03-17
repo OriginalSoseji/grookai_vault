@@ -6,6 +6,7 @@ import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/nor
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
+import { resolveActiveVaultAnchor, type ActiveVaultAnchor } from "@/lib/vault/resolveActiveVaultAnchor";
 import type { ImportVaultItemsResult, MatchResult } from "@/types/import";
 
 type MatchImportMeta = {
@@ -29,12 +30,6 @@ type AggregatedImportRow = {
   acquisitionCost: number | null;
   createdAt: string | null;
   notes: string | null;
-};
-
-type ExistingVaultRow = {
-  id: string;
-  gv_id: string;
-  qty: number | null;
 };
 
 type ImportVaultItemsExecutionParams = {
@@ -96,79 +91,22 @@ async function fetchExistingOwnedCounts(userId: string, cardIds: string[]) {
 
 async function mirrorLegacyBucketQuantity(
   client: SupabaseClient,
-  userId: string,
   row: AggregatedImportRow,
+  anchor: ActiveVaultAnchor,
+  insertedAnchorId: string | null,
 ) {
-  const { data: activeExisting, error: activeExistingError } = await client
-    .from("vault_items")
-    .select("id,gv_id,qty")
-    .eq("user_id", userId)
-    .eq("gv_id", row.gvId)
-    .is("archived_at", null)
-    .maybeSingle();
-
-  if (activeExistingError) {
-    throw new Error(activeExistingError.message);
-  }
-
-  const activeRow = (activeExisting ?? null) as ExistingVaultRow | null;
-  if (activeRow?.id) {
-    const { error: updateError } = await client.rpc("vault_inc_qty", {
-      item_id: activeRow.id,
-      inc: row.quantityToImport,
-    });
-
-    if (updateError) {
-      throw new Error(updateError.message);
-    }
-
+  if (insertedAnchorId === anchor.id) {
     return;
   }
 
-  const { error: insertError } = await client
+  const { error: updateError } = await client
     .from("vault_items")
-    .insert({
-      user_id: userId,
-      card_id: row.cardId,
-      gv_id: row.gvId,
-      qty: row.quantityToImport,
-      condition_label: row.condition,
-      acquisition_cost: row.acquisitionCost,
-      created_at: row.createdAt,
-      notes: row.notes,
-      name: row.name,
-      set_name: row.setName,
-    });
-
-  if (!insertError) {
-    return;
-  }
-
-  if (insertError.code !== "23505") {
-    throw new Error(insertError.message);
-  }
-
-  const { data: existing, error: existingError } = await client
-    .from("vault_items")
-    .select("id,gv_id,qty")
-    .eq("user_id", userId)
-    .eq("gv_id", row.gvId)
-    .is("archived_at", null)
-    .maybeSingle();
-
-  if (existingError) {
-    throw new Error(existingError.message);
-  }
-
-  const conflictRow = (existing ?? null) as ExistingVaultRow | null;
-  if (!conflictRow?.id) {
-    throw new Error("Legacy vault bucket could not be resolved after active conflict.");
-  }
-
-  const { error: updateError } = await client.rpc("vault_inc_qty", {
-    item_id: conflictRow.id,
-    inc: row.quantityToImport,
-  });
+    .update({
+      qty: (typeof anchor.qty === "number" ? anchor.qty : 0) + row.quantityToImport,
+    })
+    .eq("id", anchor.id)
+    .eq("user_id", anchor.user_id)
+    .is("archived_at", null);
 
   if (updateError) {
     throw new Error(updateError.message);
@@ -198,11 +136,13 @@ async function createCanonicalImportInstances(
   adminClient: SupabaseClient,
   userId: string,
   row: AggregatedImportRow,
+  legacyVaultItemId: string,
 ) {
   for (let copyIndex = 0; copyIndex < row.quantityToImport; copyIndex += 1) {
     const { error } = await adminClient.rpc("admin_vault_instance_create_v1", {
       p_user_id: userId,
       p_card_print_id: row.cardId,
+      p_legacy_vault_item_id: legacyVaultItemId,
       p_acquisition_cost: row.acquisitionCost,
       p_condition_label: row.condition,
       p_notes: row.notes,
@@ -268,10 +208,41 @@ export async function importVaultItemsForUser({
     });
 
     try {
+      const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
+        client,
+        userId,
+        cardId: row.cardId,
+        createData: {
+          gvId: row.gvId,
+          quantity,
+          conditionLabel: row.condition,
+          acquisitionCost: row.acquisitionCost,
+          createdAt: row.createdAt,
+          notes: row.notes,
+          name: row.name,
+          setName: row.setName,
+        },
+      });
+
       await createCanonicalImportInstances(adminClient, userId, {
         ...row,
         quantityToImport: quantity,
-      });
+      }, anchor.id);
+
+      try {
+        // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
+        await mirrorLegacyBucketQuantity(client, {
+          ...row,
+          quantityToImport: quantity,
+        }, anchor, insertedAnchorId);
+      } catch (error) {
+        console.error("vault.import.bucket_mirror_failed", {
+          userId,
+          cardPrintId: row.cardId,
+          quantity,
+          error,
+        });
+      }
     } catch (error) {
       console.error("vault.import.instance_create_failed", {
         userId,
@@ -280,21 +251,6 @@ export async function importVaultItemsForUser({
         error,
       });
       throw error instanceof Error ? error : new Error("Canonical import create failed.");
-    }
-
-    try {
-      // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
-      await mirrorLegacyBucketQuantity(client, userId, {
-        ...row,
-        quantityToImport: quantity,
-      });
-    } catch (error) {
-      console.error("vault.import.bucket_mirror_failed", {
-        userId,
-        cardPrintId: row.cardId,
-        quantity,
-        error,
-      });
     }
   }
 

@@ -366,18 +366,20 @@ function renderVaultGrid(
 ) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {items.map((item) => (
+      {items.map((item) => {
+        const rowKey = getVaultRowRuntimeKey(item);
+        return (
         <VaultCardTile
           key={item.id}
           item={item}
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
-          isPending={pendingItemId === item.vault_item_id}
-          isSharePending={pendingShareItemId === item.vault_item_id}
-          isPublicFrontImagePending={pendingPublicImageKey === `${item.vault_item_id}:front`}
-          isPublicBackImagePending={pendingPublicImageKey === `${item.vault_item_id}:back`}
-          isSharedControlsExpanded={expandedSharedItemIds.has(item.vault_item_id)}
-          error={itemErrors[item.vault_item_id]}
-          shareError={shareErrors[item.vault_item_id]}
+          isPending={pendingItemId === rowKey}
+          isSharePending={pendingShareItemId === rowKey}
+          isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
+          isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
+          isSharedControlsExpanded={expandedSharedItemIds.has(rowKey)}
+          error={itemErrors[rowKey]}
+          shareError={shareErrors[rowKey]}
           publicCollectionHref={item.is_shared ? publicCollectionHref : null}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
@@ -386,18 +388,23 @@ function renderVaultGrid(
           onPublicNoteEdit={onPublicNoteEdit}
           onPublicImageToggle={onPublicImageToggle}
         />
-      ))}
+        );
+      })}
     </div>
   );
 }
 
+function getVaultRowRuntimeKey(item: Pick<VaultCardData, "card_id">) {
+  return item.card_id;
+}
+
 function applyOptimisticQuantityChange(
   items: VaultCardData[],
-  itemId: string,
+  rowKey: string,
   type: VaultQuantityMutationInput["type"],
 ) {
   return items.flatMap((item) => {
-    if (item.vault_item_id !== itemId) {
+    if (getVaultRowRuntimeKey(item) !== rowKey) {
       return [item];
     }
 
@@ -412,17 +419,17 @@ function applyOptimisticQuantityChange(
 
 function reconcileQuantityResult(
   items: VaultCardData[],
-  itemId: string,
+  rowKey: string,
   result:
     | { status: "incremented" | "decremented"; itemId: string; quantity: number }
     | { status: "removed"; itemId: string },
 ) {
   if (result.status === "removed") {
-    return items.filter((item) => item.vault_item_id !== itemId);
+    return items.filter((item) => getVaultRowRuntimeKey(item) !== rowKey);
   }
 
   return items.map((item) =>
-    item.vault_item_id === itemId
+    getVaultRowRuntimeKey(item) === rowKey
       ? {
           ...item,
           owned_count: result.quantity,
@@ -442,9 +449,9 @@ function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, 
   );
 }
 
-function applyOptimisticShareChange(items: VaultCardData[], itemId: string, nextShared: boolean) {
+function applyOptimisticShareChange(items: VaultCardData[], rowKey: string, nextShared: boolean) {
   return items.map((item) =>
-    item.vault_item_id === itemId
+    getVaultRowRuntimeKey(item) === rowKey
       ? {
           ...item,
           is_shared: nextShared,
@@ -456,9 +463,9 @@ function applyOptimisticShareChange(items: VaultCardData[], itemId: string, next
   );
 }
 
-function applyOptimisticPublicNoteChange(items: VaultCardData[], itemId: string, publicNote: string | null) {
+function applyOptimisticPublicNoteChange(items: VaultCardData[], rowKey: string, publicNote: string | null) {
   return items.map((item) =>
-    getSharedCardIdentityKey(item) === itemId
+    getVaultRowRuntimeKey(item) === rowKey
       ? {
           ...item,
           public_note: publicNote,
@@ -467,22 +474,18 @@ function applyOptimisticPublicNoteChange(items: VaultCardData[], itemId: string,
   );
 }
 
-function getSharedCardIdentityKey(item: Pick<VaultCardData, "vault_item_id" | "gv_vi_id">) {
-  return item.gv_vi_id ?? item.vault_item_id;
-}
-
-function findItemBySharedCardIdentityKey(items: VaultCardData[], identityKey: string) {
-  return items.find((item) => getSharedCardIdentityKey(item) === identityKey || item.vault_item_id === identityKey);
+function findItemByRowRuntimeKey(items: VaultCardData[], rowKey: string) {
+  return items.find((item) => getVaultRowRuntimeKey(item) === rowKey);
 }
 
 function applyOptimisticPublicImageChange(
   items: VaultCardData[],
-  itemId: string,
+  rowKey: string,
   side: "front" | "back",
   enabled: boolean,
 ) {
   return items.map((item) =>
-    item.vault_item_id === itemId
+    getVaultRowRuntimeKey(item) === rowKey
       ? {
           ...item,
           show_personal_front: side === "front" ? enabled : item.show_personal_front,
@@ -544,7 +547,7 @@ export function VaultCollectionView({
   }, [initialItems]);
 
   useEffect(() => {
-    const nextItemIds = new Set(initialItems.map((item) => item.vault_item_id));
+    const nextItemIds = new Set(initialItems.map((item) => getVaultRowRuntimeKey(item)));
     const pinnedItemId = refreshPinnedSharedItemIdRef.current;
     setExpandedSharedItemIds((current) => {
       const next = new Set<string>();
@@ -675,29 +678,30 @@ export function VaultCollectionView({
   }
 
   function runQuantityChange(
+    rowKey: string,
     itemId: string,
     type: VaultQuantityMutationInput["type"],
     currentItems: VaultCardData[],
   ) {
     setItemErrors((current) => {
       const next = { ...current };
-      delete next[itemId];
+      delete next[rowKey];
       return next;
     });
-    setPendingItemId(itemId);
-    setItems(applyOptimisticQuantityChange(currentItems, itemId, type));
+    setPendingItemId(rowKey);
+    setItems(applyOptimisticQuantityChange(currentItems, rowKey, type));
 
     startTransition(async () => {
       try {
         // The canonical vault quantity mutation deletes the owned row when a decrement hits zero.
         const result = await changeVaultItemQuantityAction({ itemId, type });
-        setItems((current) => reconcileQuantityResult(current, itemId, result));
+        setItems((current) => reconcileQuantityResult(current, rowKey, result));
         router.refresh();
       } catch (error) {
         setItems(currentItems);
         setItemErrors((current) => ({
           ...current,
-          [itemId]: "Couldn’t update quantity.",
+          [rowKey]: "Couldn’t update quantity.",
         }));
       } finally {
         setPendingItemId(null);
@@ -715,13 +719,14 @@ export function VaultCollectionView({
     if (!targetItem) {
       return;
     }
+    const rowKey = getVaultRowRuntimeKey(targetItem);
 
     if (type === "decrement" && targetItem.owned_count === 1) {
-      setConfirmRemovalItemId(itemId);
+      setConfirmRemovalItemId(rowKey);
       return;
     }
 
-    runQuantityChange(itemId, type, currentItems);
+    runQuantityChange(rowKey, itemId, type, currentItems);
   }
 
   function handleCancelRemoval() {
@@ -738,14 +743,14 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
-    const targetItem = currentItems.find((item) => item.vault_item_id === confirmRemovalItemId);
+    const targetItem = findItemByRowRuntimeKey(currentItems, confirmRemovalItemId);
     if (!targetItem || targetItem.owned_count !== 1) {
       setConfirmRemovalItemId(null);
       return;
     }
 
     setConfirmRemovalItemId(null);
-    runQuantityChange(confirmRemovalItemId, "decrement", currentItems);
+    runQuantityChange(confirmRemovalItemId, targetItem.vault_item_id, "decrement", currentItems);
   }
 
   function changeCondition(item: VaultCardData, newCondition: string) {
@@ -754,12 +759,13 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
+    const rowKey = getVaultRowRuntimeKey(item);
     setItemErrors((current) => {
       const next = { ...current };
-      delete next[item.vault_item_id];
+      delete next[rowKey];
       return next;
     });
-    setPendingItemId(item.vault_item_id);
+    setPendingItemId(rowKey);
     setItems(applyOptimisticConditionChange(currentItems, item.id, newCondition));
 
     startTransition(async () => {
@@ -781,7 +787,7 @@ export function VaultCollectionView({
         setItems(currentItems);
         setItemErrors((current) => ({
           ...current,
-          [item.vault_item_id]:
+          [rowKey]:
             error instanceof Error && error.message === "Condition edits are currently disabled"
               ? "Condition edits are currently disabled."
               : "Couldn’t update condition.",
@@ -798,26 +804,27 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
+    const rowKey = getVaultRowRuntimeKey(item);
     const nextShared = !item.is_shared;
-    const wasExpanded = expandedSharedItemIds.has(item.vault_item_id);
+    const wasExpanded = expandedSharedItemIds.has(rowKey);
 
     setShareErrors((current) => {
       const next = { ...current };
-      delete next[item.vault_item_id];
+      delete next[rowKey];
       return next;
     });
-    setPendingShareItemId(item.vault_item_id);
-    refreshPinnedSharedItemIdRef.current = nextShared ? item.vault_item_id : null;
+    setPendingShareItemId(rowKey);
+    refreshPinnedSharedItemIdRef.current = nextShared ? rowKey : null;
     setExpandedSharedItemIds((current) => {
       const next = new Set(current);
       if (nextShared) {
-        next.add(item.vault_item_id);
+        next.add(rowKey);
       } else {
-        next.delete(item.vault_item_id);
+        next.delete(rowKey);
       }
       return next;
     });
-    setItems(applyOptimisticShareChange(currentItems, item.vault_item_id, nextShared));
+    setItems(applyOptimisticShareChange(currentItems, rowKey, nextShared));
 
     startTransition(async () => {
       try {
@@ -833,26 +840,26 @@ export function VaultCollectionView({
           setExpandedSharedItemIds((current) => {
             const next = new Set(current);
             if (wasExpanded) {
-              next.add(item.vault_item_id);
+              next.add(rowKey);
             } else {
-              next.delete(item.vault_item_id);
+              next.delete(rowKey);
             }
             return next;
           });
           setShareErrors((current) => ({
             ...current,
-            [item.vault_item_id]: result.message,
+            [rowKey]: result.message,
           }));
           return;
         }
 
-        setItems((current) => applyOptimisticShareChange(current, item.vault_item_id, result.status === "shared"));
+        setItems((current) => applyOptimisticShareChange(current, rowKey, result.status === "shared"));
         setExpandedSharedItemIds((current) => {
           const next = new Set(current);
           if (result.status === "shared") {
-            next.add(item.vault_item_id);
+            next.add(rowKey);
           } else {
-            next.delete(item.vault_item_id);
+            next.delete(rowKey);
           }
           return next;
         });
@@ -866,15 +873,15 @@ export function VaultCollectionView({
         setExpandedSharedItemIds((current) => {
           const next = new Set(current);
           if (wasExpanded) {
-            next.add(item.vault_item_id);
+            next.add(rowKey);
           } else {
-            next.delete(item.vault_item_id);
+            next.delete(rowKey);
           }
           return next;
         });
         setShareErrors((current) => ({
           ...current,
-          [item.vault_item_id]: "Couldn’t update shared state.",
+          [rowKey]: "Couldn’t update shared state.",
         }));
       } finally {
         setPendingShareItemId(null);
@@ -886,16 +893,17 @@ export function VaultCollectionView({
     if (!item.is_shared) {
       return;
     }
+    const rowKey = getVaultRowRuntimeKey(item);
 
     setExpandedSharedItemIds((current) => {
       const next = new Set(current);
-      if (next.has(item.vault_item_id)) {
-        next.delete(item.vault_item_id);
-        if (refreshPinnedSharedItemIdRef.current === item.vault_item_id) {
+      if (next.has(rowKey)) {
+        next.delete(rowKey);
+        if (refreshPinnedSharedItemIdRef.current === rowKey) {
           refreshPinnedSharedItemIdRef.current = null;
         }
       } else {
-        next.add(item.vault_item_id);
+        next.add(rowKey);
       }
       return next;
     });
@@ -907,24 +915,25 @@ export function VaultCollectionView({
     }
 
     const hasPhoto = side === "front" ? item.has_front_photo : item.has_back_photo;
+    const rowKey = getVaultRowRuntimeKey(item);
     if (enabled && !hasPhoto) {
       setShareErrors((current) => ({
         ...current,
-        [item.vault_item_id]: "Upload a card photo in your vault to enable this.",
+        [rowKey]: "Upload a card photo in your vault to enable this.",
       }));
       return;
     }
 
     const currentItems = items;
-    const pendingKey = `${item.vault_item_id}:${side}`;
+    const pendingKey = `${rowKey}:${side}`;
 
     setShareErrors((current) => {
       const next = { ...current };
-      delete next[item.vault_item_id];
+      delete next[rowKey];
       return next;
     });
     setPendingPublicImageKey(pendingKey);
-    setItems(applyOptimisticPublicImageChange(currentItems, item.vault_item_id, side, enabled));
+    setItems(applyOptimisticPublicImageChange(currentItems, rowKey, side, enabled));
 
     startTransition(async () => {
       try {
@@ -938,18 +947,18 @@ export function VaultCollectionView({
           setItems(currentItems);
           setShareErrors((current) => ({
             ...current,
-            [item.vault_item_id]: result.message,
+            [rowKey]: result.message,
           }));
           return;
         }
 
-        setItems((current) => applyOptimisticPublicImageChange(current, item.vault_item_id, side, result.enabled));
+        setItems((current) => applyOptimisticPublicImageChange(current, rowKey, side, result.enabled));
         router.refresh();
       } catch (error) {
         setItems(currentItems);
         setShareErrors((current) => ({
           ...current,
-          [item.vault_item_id]: "Couldn’t update public image settings.",
+          [rowKey]: "Couldn’t update public image settings.",
         }));
       } finally {
         setPendingPublicImageKey(null);
@@ -962,7 +971,7 @@ export function VaultCollectionView({
       return;
     }
 
-    setPublicNoteItemId(getSharedCardIdentityKey(item));
+    setPublicNoteItemId(getVaultRowRuntimeKey(item));
     setPublicNoteDraft(item.public_note ?? "");
     setPublicNoteError(null);
   }
@@ -983,7 +992,7 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
-    const targetItem = findItemBySharedCardIdentityKey(currentItems, publicNoteItemId);
+    const targetItem = findItemByRowRuntimeKey(currentItems, publicNoteItemId);
     const nextPublicNote = publicNoteDraft.trim().length > 0 ? publicNoteDraft.trim() : null;
 
     setPendingPublicNoteItemId(publicNoteItemId);
@@ -1004,7 +1013,7 @@ export function VaultCollectionView({
           return;
         }
 
-        setItems((current) => applyOptimisticPublicNoteChange(current, result.itemId, result.publicNote));
+        setItems((current) => applyOptimisticPublicNoteChange(current, publicNoteItemId, result.publicNote));
         setPublicNoteItemId(null);
         setPublicNoteDraft("");
         router.refresh();

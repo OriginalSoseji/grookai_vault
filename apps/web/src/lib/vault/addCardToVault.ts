@@ -2,6 +2,7 @@ import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { resolveActiveVaultAnchor, type ActiveVaultAnchor } from "@/lib/vault/resolveActiveVaultAnchor";
 
 type AddCardToVaultParams = {
   client: SupabaseClient;
@@ -16,11 +17,6 @@ type AddCardToVaultParams = {
 type VaultInstanceCreateRow = {
   id: string;
   gv_vi_id: string | null;
-};
-
-type LegacyBucketRow = {
-  id: string;
-  qty: number | null;
 };
 
 export type AddCardToVaultResult = {
@@ -42,113 +38,32 @@ function formatVaultWriteError(step: string, error: PostgrestError) {
 
 async function mirrorLegacyVaultBucket({
   client,
-  userId,
-  cardPrintId,
   gvId,
-  normalizedName,
-  normalizedSetName,
-  normalizedImageUrl,
+  anchor,
+  insertedAnchorId,
 }: {
   client: SupabaseClient;
-  userId: string;
-  cardPrintId: string;
   gvId: string;
-  normalizedName: string;
-  normalizedSetName: string;
-  normalizedImageUrl: string | null;
+  anchor: ActiveVaultAnchor;
+  insertedAnchorId: string | null;
 }) {
-  const { data: activeExisting, error: activeExistingError } = await client
-    .from("vault_items")
-    .select("id,qty")
-    .eq("user_id", userId)
-    .eq("card_id", cardPrintId)
-    .is("archived_at", null)
-    .maybeSingle();
-
-  if (activeExistingError) {
-    throw new Error(formatVaultWriteError("vault_items.select-active-existing", activeExistingError));
-  }
-
-  const activeRow = activeExisting as LegacyBucketRow | null;
-  if (activeRow?.id) {
-    const { error: updateError } = await client
-      .from("vault_items")
-      .update({
-        qty: (typeof activeRow.qty === "number" ? activeRow.qty : 0) + 1,
-      })
-      .eq("id", activeRow.id)
-      .eq("user_id", userId)
-      .is("archived_at", null);
-
-    if (updateError) {
-      throw new Error(formatVaultWriteError("vault_items.increment-existing-active", updateError));
-    }
-
+  if (insertedAnchorId === anchor.id) {
     console.info("[vault:add:mirror]", {
-      user_id: userId,
+      user_id: anchor.user_id,
       gv_id: gvId,
-      card_print_id: cardPrintId,
-      action: "update",
+      card_print_id: anchor.card_id,
+      action: "insert",
     });
-
     return;
-  }
-
-  const { data: insertedRows, error: insertError } = await client
-    .from("vault_items")
-    .insert({
-      user_id: userId,
-      gv_id: gvId,
-      card_id: cardPrintId,
-      name: normalizedName,
-      set_name: normalizedSetName,
-      photo_url: normalizedImageUrl,
-      condition_label: "NM",
-      qty: 1,
-    })
-    .select("id");
-
-  if (!insertError) {
-    const inserted = Array.isArray(insertedRows) ? insertedRows[0] : null;
-    if (inserted?.id) {
-      console.info("[vault:add:mirror]", {
-        user_id: userId,
-        gv_id: gvId,
-        card_print_id: cardPrintId,
-        action: "insert",
-      });
-      return;
-    }
-  }
-
-  if (insertError && insertError.code !== "23505") {
-    throw new Error(formatVaultWriteError("vault_items.insert-active-episode", insertError));
-  }
-
-  const { data: existing, error: existingError } = await client
-    .from("vault_items")
-    .select("id,qty")
-    .eq("user_id", userId)
-    .eq("card_id", cardPrintId)
-    .is("archived_at", null)
-    .maybeSingle();
-
-  if (existingError) {
-    throw new Error(formatVaultWriteError("vault_items.select-after-active-conflict", existingError));
-  }
-
-  const conflictRow = existing as LegacyBucketRow | null;
-  if (!conflictRow?.id) {
-    throw new Error("[vault_items.select-after-active-conflict] Active card row could not be resolved after conflict.");
   }
 
   const { error: updateError } = await client
     .from("vault_items")
     .update({
-      qty: (typeof conflictRow.qty === "number" ? conflictRow.qty : 0) + 1,
+      qty: (typeof anchor.qty === "number" ? anchor.qty : 0) + 1,
     })
-    .eq("id", conflictRow.id)
-    .eq("user_id", userId)
+    .eq("id", anchor.id)
+    .eq("user_id", anchor.user_id)
     .is("archived_at", null);
 
   if (updateError) {
@@ -156,9 +71,9 @@ async function mirrorLegacyVaultBucket({
   }
 
   console.info("[vault:add:mirror]", {
-    user_id: userId,
+    user_id: anchor.user_id,
     gv_id: gvId,
-    card_print_id: cardPrintId,
+    card_print_id: anchor.card_id,
     action: "update",
   });
 }
@@ -184,9 +99,23 @@ export async function addCardToVault({
   const normalizedSetName = setName?.trim() || "";
   const normalizedImageUrl = imageUrl ?? null;
   const adminClient = createServerAdminClient();
+  const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
+    client,
+    userId,
+    cardId: cardPrintId,
+    createData: {
+      gvId,
+      quantity: 1,
+      conditionLabel: "NM",
+      name: normalizedName,
+      setName: normalizedSetName,
+      photoUrl: normalizedImageUrl,
+    },
+  });
   const rpcArgs = {
     p_user_id: userId,
     p_card_print_id: cardPrintId,
+    p_legacy_vault_item_id: anchor.id,
     p_condition_label: "NM",
     p_name: normalizedName,
     p_set_name: normalizedSetName || null,
@@ -204,6 +133,15 @@ export async function addCardToVault({
   const { data: instance, error: instanceError } = await adminClient.rpc("admin_vault_instance_create_v1", rpcArgs);
 
   if (instanceError) {
+    if (insertedAnchorId === anchor.id) {
+      await client
+        .from("vault_items")
+        .update({ qty: 0, archived_at: new Date().toISOString() })
+        .eq("id", anchor.id)
+        .eq("user_id", userId)
+        .is("archived_at", null);
+    }
+
     console.error("vault.addCardToVault.instance_rpc_failed", {
       userId,
       cardPrintId,
@@ -230,12 +168,9 @@ export async function addCardToVault({
     // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
     await mirrorLegacyVaultBucket({
       client,
-      userId,
-      cardPrintId,
       gvId,
-      normalizedName,
-      normalizedSetName,
-      normalizedImageUrl,
+      anchor,
+      insertedAnchorId,
     });
   } catch (mirrorError) {
     console.error("vault.addCardToVault.bucket_mirror_failed", {
