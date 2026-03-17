@@ -182,6 +182,7 @@ export default function AddSlabCardAction({
     isVerifying ||
     !verificationResult?.verified ||
     !verificationResult.grade ||
+    !normalizedVerifiedGrade ||
     gradeMismatch ||
     !ownershipConfirmed;
 
@@ -340,7 +341,12 @@ export default function AddSlabCardAction({
                         </div>
                         <div>
                           <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Verified grade</dt>
-                          <dd className="mt-1">{verificationResult.grade ?? "—"}</dd>
+                          <dd className="mt-1">
+                            {verificationResult.grade ?? "—"}
+                            {verificationResult.grade && normalizedVerifiedGrade
+                              ? ` (${normalizedVerifiedGrade})`
+                              : ""}
+                          </dd>
                         </div>
                         <div className="sm:col-span-2">
                           <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Title</dt>
