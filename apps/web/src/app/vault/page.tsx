@@ -82,6 +82,8 @@ function normalizeVaultItems(
         condition_label: row.condition_label.trim() || "Unknown",
         quantity: row.owned_count,
         owned_count: row.owned_count,
+        raw_count: row.raw_count,
+        slab_count: row.slab_count,
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
         image_url: getBestPublicCardImageUrl(row.image_url),
         created_at: row.created_at,

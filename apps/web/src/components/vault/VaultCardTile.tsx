@@ -18,6 +18,8 @@ export type VaultCardData = {
   number: string;
   condition_label: string;
   owned_count: number;
+  raw_count: number;
+  slab_count: number;
   effective_price: number | null;
   image_url?: string;
   created_at: string | null;
@@ -51,6 +53,21 @@ function formatCurrency(value: number | null) {
 
 function formatSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {
   return [item.grader, item.grade].filter((value): value is string => typeof value === "string" && value.length > 0).join(" ");
+}
+
+function formatMixedOwnershipSummary(item: Pick<VaultCardData, "raw_count" | "slab_count" | "grader" | "grade">) {
+  if (!(item.raw_count > 0 && item.slab_count > 0)) {
+    return null;
+  }
+
+  const slabSummary = formatSlabSummary(item);
+  const rawLabel = `${item.raw_count} Raw`;
+
+  if (item.slab_count === 1 && slabSummary) {
+    return `${rawLabel} + 1 ${slabSummary}`;
+  }
+
+  return `${rawLabel} + ${item.slab_count} Slab`;
 }
 
 type VaultCardTileProps = {
@@ -92,6 +109,8 @@ export function VaultCardTile({
 }: VaultCardTileProps) {
   const shouldRenderSharedControls = item.is_shared || isSharedControlsExpanded;
   const slabSummary = formatSlabSummary(item);
+  const mixedOwnershipSummary = formatMixedOwnershipSummary(item);
+  const isMixedOwnership = mixedOwnershipSummary !== null;
   const watermarkStyle = {
     "--wm-opacity-desktop": "0.04",
     "--wm-blur-desktop": "10px",
@@ -164,7 +183,9 @@ export function VaultCardTile({
             </p>
           ) : null}
           <div className="mt-2 flex items-center justify-between gap-3">
-            <span className="text-xs text-slate-400">Qty {item.owned_count}</span>
+            <span className="text-xs text-slate-400">
+              {isMixedOwnership ? mixedOwnershipSummary : `Qty ${item.owned_count}`}
+            </span>
             <ShareCardButton gvId={item.gv_id} />
           </div>
         </div>
@@ -174,10 +195,18 @@ export function VaultCardTile({
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Slab</p>
-                  <p className="text-sm font-medium text-slate-900">{slabSummary || "Graded slab"}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+                    {isMixedOwnership ? "Owned" : "Slab"}
+                  </p>
+                  <p className="text-sm font-medium text-slate-900">
+                    {isMixedOwnership ? mixedOwnershipSummary : slabSummary || "Graded slab"}
+                  </p>
                 </div>
-                <p className="text-sm font-medium text-slate-900">Qty {item.owned_count}</p>
+                {isMixedOwnership ? (
+                  <p className="text-sm font-medium text-slate-500">{item.owned_count} total</p>
+                ) : (
+                  <p className="text-sm font-medium text-slate-900">Qty {item.owned_count}</p>
+                )}
               </div>
               <dl className="grid gap-2 sm:grid-cols-3">
                 <div className="rounded-[1rem] border border-slate-200 bg-white px-3 py-2">
