@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 
 type SharedCardRow = {
   card_id: string | null;
@@ -43,11 +44,28 @@ export type SharedCard = {
   image_url?: string;
   back_image_url?: string;
   public_note?: string;
+  is_slab?: boolean;
+  grader?: string;
+  grade?: string;
+  cert_number?: string;
 };
 
 type PublicProfileLookup = {
   user_id: string | null;
   vault_sharing_enabled: boolean | null;
+};
+
+type ActiveVaultInstanceRow = {
+  card_print_id: string | null;
+  slab_cert_id: string | null;
+};
+
+type SlabCertRow = {
+  id: string;
+  card_print_id: string | null;
+  grader: string | null;
+  cert_number: string | null;
+  grade: number | string | null;
 };
 
 function createServerSupabase() {
@@ -63,6 +81,23 @@ function createServerSupabase() {
 
 function normalizeSlug(value: string) {
   return value.trim().toLowerCase();
+}
+
+function normalizeOptionalText(value: string | null | undefined) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function normalizeGradeValue(value: number | string | null | undefined) {
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value.toString() : null;
+  }
+
+  return normalizeOptionalText(value);
 }
 
 function normalizePokemonMatchValue(value: string) {
@@ -99,6 +134,106 @@ export function filterSharedCardsByPokemonSlug(cards: SharedCard[], pokemonSlug:
   }
 
   return cards.filter((card) => normalizePokemonMatchValue(card.name).includes(normalizedPokemon));
+}
+
+async function fetchDeterministicSlabStateByCardId(userId: string, cardIds: string[]) {
+  const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
+  if (!userId || normalizedCardIds.length === 0) {
+    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+  }
+
+  const admin = createServerAdminClient();
+  const [rawInstancesResponse, slabCertsResponse] = await Promise.all([
+    admin
+      .from("vault_item_instances")
+      .select("card_print_id,slab_cert_id")
+      .eq("user_id", userId)
+      .is("archived_at", null)
+      .in("card_print_id", normalizedCardIds),
+    admin
+      .from("slab_certs")
+      .select("id,card_print_id,grader,cert_number,grade")
+      .in("card_print_id", normalizedCardIds),
+  ]);
+
+  if (rawInstancesResponse.error || slabCertsResponse.error) {
+    console.error("[public:shared-cards] slab compatibility lookup failed", {
+      userId,
+      rawInstancesError: rawInstancesResponse.error,
+      slabCertsError: slabCertsResponse.error,
+    });
+    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+  }
+
+  const slabCertRows = (slabCertsResponse.data ?? []) as SlabCertRow[];
+  const slabCertById = new Map(
+    slabCertRows
+      .map((row) => [normalizeOptionalText(row.id), row] as const)
+      .filter((entry): entry is [string, SlabCertRow] => Boolean(entry[0])),
+  );
+  const slabCertIds = Array.from(slabCertById.keys());
+
+  const slabInstancesResponse =
+    slabCertIds.length > 0
+      ? await admin
+          .from("vault_item_instances")
+          .select("card_print_id,slab_cert_id")
+          .eq("user_id", userId)
+          .is("archived_at", null)
+          .in("slab_cert_id", slabCertIds)
+      : { data: [], error: null };
+
+  if (slabInstancesResponse.error) {
+    console.error("[public:shared-cards] slab instance compatibility lookup failed", {
+      userId,
+      error: slabInstancesResponse.error,
+    });
+    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+  }
+
+  const byCardId = new Map<string, { totalCount: number; slab: SlabCertRow | null }>();
+
+  for (const row of (rawInstancesResponse.data ?? []) as ActiveVaultInstanceRow[]) {
+    const cardPrintId = normalizeOptionalText(row.card_print_id);
+    if (!cardPrintId) {
+      continue;
+    }
+
+    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, slab: null };
+    current.totalCount += 1;
+    byCardId.set(cardPrintId, current);
+  }
+
+  for (const row of (slabInstancesResponse.data ?? []) as ActiveVaultInstanceRow[]) {
+    const slabCertId = normalizeOptionalText(row.slab_cert_id);
+    const slabCert = slabCertId ? slabCertById.get(slabCertId) ?? null : null;
+    const cardPrintId = normalizeOptionalText(slabCert?.card_print_id);
+    if (!cardPrintId || !slabCert) {
+      continue;
+    }
+
+    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, slab: null };
+    current.totalCount += 1;
+    current.slab = slabCert;
+    byCardId.set(cardPrintId, current);
+  }
+
+  const out = new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+
+  for (const [cardId, entry] of byCardId.entries()) {
+    if (entry.totalCount !== 1 || !entry.slab) {
+      continue;
+    }
+
+    out.set(cardId, {
+      is_slab: true,
+      grader: normalizeOptionalText(entry.slab.grader) ?? undefined,
+      grade: normalizeGradeValue(entry.slab.grade) ?? undefined,
+      cert_number: normalizeOptionalText(entry.slab.cert_number) ?? undefined,
+    });
+  }
+
+  return out;
 }
 
 export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCard[]> => {
@@ -156,6 +291,11 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
     return [];
   }
 
+  const deterministicSlabStateByCardId = await fetchDeterministicSlabStateByCardId(
+    profileRow.user_id,
+    sharedRows.map((row) => row.card_id),
+  );
+
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
     .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
@@ -197,6 +337,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         image_url: personalFrontImageUrl ?? getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
         back_image_url: personalBackImageUrl,
         public_note: row.public_note?.trim() || undefined,
+        is_slab: deterministicSlabStateByCardId.get(row.card_id)?.is_slab,
+        grader: deterministicSlabStateByCardId.get(row.card_id)?.grader,
+        grade: deterministicSlabStateByCardId.get(row.card_id)?.grade,
+        cert_number: deterministicSlabStateByCardId.get(row.card_id)?.cert_number,
       };
     })
     .filter((row): row is NonNullable<typeof row> => row !== null);

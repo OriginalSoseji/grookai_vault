@@ -17,13 +17,24 @@ export type CanonicalVaultCollectorRow = {
   effective_price: number | null;
   image_url: string | null;
   created_at: string | null;
+  is_slab: boolean;
+  grader: string | null;
+  grade: string | null;
+  cert_number: string | null;
 };
 
 type ActiveInstanceRow = {
   card_print_id: string | null;
+  slab_cert_id: string | null;
   gv_vi_id: string | null;
   created_at: string | null;
   legacy_vault_item_id: string | null;
+  condition_label: string | null;
+  photo_url: string | null;
+  image_url: string | null;
+  grade_company: string | null;
+  grade_value: string | null;
+  grade_label: string | null;
 };
 
 type BucketMetadataRow = {
@@ -41,6 +52,14 @@ type PriceMetadataRow = {
   card_id: string | null;
   effective_price: number | null;
   image_url: string | null;
+};
+
+type SlabCertMetadataRow = {
+  id: string;
+  card_print_id: string | null;
+  grader: string | null;
+  cert_number: string | null;
+  grade: number | string | null;
 };
 
 type CardPrintMetadataRow = {
@@ -62,11 +81,20 @@ type CardPrintMetadataRow = {
 };
 
 type InstanceAggregate = {
+  key: string;
+  isSlab: boolean;
   cardPrintId: string;
+  slabCertId: string | null;
   ownedCount: number;
   latestCreatedAt: string | null;
   singleGvviId: string | null;
   representativeLegacyVaultItemId: string | null;
+  conditionLabel: string | null;
+  photoUrl: string | null;
+  imageUrl: string | null;
+  grader: string | null;
+  grade: string | null;
+  certNumber: string | null;
 };
 
 function chunkArray<T>(items: T[], size: number) {
@@ -85,10 +113,11 @@ async function fetchActiveInstances(userId: string) {
   const adminClient = createServerAdminClient();
   const { data, error } = await adminClient
     .from("vault_item_instances")
-    .select("card_print_id,gv_vi_id,created_at,legacy_vault_item_id")
+    .select(
+      "card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label",
+    )
     .eq("user_id", userId)
     .is("archived_at", null)
-    .not("card_print_id", "is", null)
     .order("created_at", { ascending: false })
     .order("id", { ascending: false });
 
@@ -101,21 +130,83 @@ async function fetchActiveInstances(userId: string) {
   return (data ?? []) as ActiveInstanceRow[];
 }
 
-function aggregateInstances(rows: ActiveInstanceRow[]) {
+function normalizeOptionalText(value: string | null | undefined) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function normalizeGradeValue(value: number | string | null | undefined) {
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value.toString() : null;
+  }
+
+  return normalizeOptionalText(value);
+}
+
+async function fetchSlabCertMetadataById(slabCertIds: string[]) {
+  const adminClient = createServerAdminClient();
+  const rowsById = new Map<string, SlabCertMetadataRow>();
+
+  for (const ids of chunkArray(slabCertIds, 200)) {
+    const { data, error } = await adminClient
+      .from("slab_certs")
+      .select("id,card_print_id,grader,cert_number,grade")
+      .in("id", ids);
+
+    if (error) {
+      throw new Error(
+        `[vault:read-model] slab cert metadata query failed: ${error.message}${error.code ? ` | code=${error.code}` : ""}`,
+      );
+    }
+
+    for (const row of (data ?? []) as SlabCertMetadataRow[]) {
+      const id = normalizeOptionalText(row.id);
+      if (id) {
+        rowsById.set(id, row);
+      }
+    }
+  }
+
+  return rowsById;
+}
+
+function aggregateInstances(
+  rows: ActiveInstanceRow[],
+  slabCertMetadataById: Map<string, SlabCertMetadataRow>,
+) {
   const aggregates = new Map<string, InstanceAggregate>();
 
   for (const row of rows) {
-    const cardPrintId = row.card_print_id?.trim() ?? "";
+    const slabCertId = normalizeOptionalText(row.slab_cert_id);
+    const slabCert = slabCertId ? slabCertMetadataById.get(slabCertId) ?? null : null;
+    const cardPrintId = normalizeOptionalText(row.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
     if (!cardPrintId) {
       continue;
     }
 
-    const current = aggregates.get(cardPrintId) ?? {
+    const key = slabCertId ? `slab:${slabCertId}` : `raw:${cardPrintId}`;
+    const current = aggregates.get(key) ?? {
+      key,
+      isSlab: Boolean(slabCertId),
       cardPrintId,
+      slabCertId,
       ownedCount: 0,
       latestCreatedAt: null,
       singleGvviId: null,
       representativeLegacyVaultItemId: null,
+      conditionLabel: null,
+      photoUrl: null,
+      imageUrl: null,
+      grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
+      grade:
+        normalizeGradeValue(slabCert?.grade) ??
+        normalizeOptionalText(row.grade_label) ??
+        normalizeOptionalText(row.grade_value),
+      certNumber: normalizeOptionalText(slabCert?.cert_number),
     };
 
     current.ownedCount += 1;
@@ -125,16 +216,28 @@ function aggregateInstances(rows: ActiveInstanceRow[]) {
     }
 
     if (current.ownedCount === 1) {
-      current.singleGvviId = row.gv_vi_id?.trim() ?? null;
+      current.singleGvviId = normalizeOptionalText(row.gv_vi_id);
     } else {
       current.singleGvviId = null;
     }
 
-    if (!current.representativeLegacyVaultItemId && row.legacy_vault_item_id) {
-      current.representativeLegacyVaultItemId = row.legacy_vault_item_id.trim();
+    if (!current.representativeLegacyVaultItemId) {
+      current.representativeLegacyVaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
     }
 
-    aggregates.set(cardPrintId, current);
+    if (!current.conditionLabel) {
+      current.conditionLabel = normalizeOptionalText(row.condition_label);
+    }
+
+    if (!current.photoUrl) {
+      current.photoUrl = normalizeOptionalText(row.photo_url);
+    }
+
+    if (!current.imageUrl) {
+      current.imageUrl = normalizeOptionalText(row.image_url);
+    }
+
+    aggregates.set(key, current);
   }
 
   return aggregates;
@@ -234,8 +337,14 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
   }
 
   const activeInstances = await fetchActiveInstances(normalizedUserId);
-  const aggregates = aggregateInstances(activeInstances);
-  const cardPrintIds = normalizeIds(Array.from(aggregates.keys()));
+  const slabCertIds = normalizeIds(
+    activeInstances
+      .map((row) => normalizeOptionalText(row.slab_cert_id))
+      .filter((value): value is string => Boolean(value)),
+  );
+  const slabCertMetadataById = await fetchSlabCertMetadataById(slabCertIds);
+  const aggregates = aggregateInstances(activeInstances, slabCertMetadataById);
+  const cardPrintIds = normalizeIds(Array.from(aggregates.values()).map((aggregate) => aggregate.cardPrintId));
 
   if (cardPrintIds.length === 0) {
     return [];
@@ -249,12 +358,8 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
 
   const rows: CanonicalVaultCollectorRow[] = [];
 
-  for (const cardPrintId of cardPrintIds) {
-    const aggregate = aggregates.get(cardPrintId);
-    if (!aggregate) {
-      continue;
-    }
-
+  for (const aggregate of aggregates.values()) {
+    const cardPrintId = aggregate.cardPrintId;
     const bucket = bucketMetadataByCardId.get(cardPrintId) ?? null;
     const card = cardMetadataById.get(cardPrintId) ?? null;
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
@@ -270,7 +375,7 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     }
 
     rows.push({
-      id: cardPrintId,
+      id: aggregate.key,
       vault_item_id: compatibilityVaultItemId,
       gv_vi_id: aggregate.ownedCount === 1 ? aggregate.singleGvviId : null,
       card_id: cardPrintId,
@@ -279,11 +384,22 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       set_code: card?.set_code?.trim() || "",
       set_name: setRecord?.name?.trim() || bucket?.set_name?.trim() || card?.set_code?.trim() || "Unknown set",
       number: card?.number?.trim() || "—",
-      condition_label: bucket?.condition_label?.trim() || "Unknown",
+      condition_label: aggregate.conditionLabel ?? bucket?.condition_label?.trim() ?? "Unknown",
       owned_count: aggregate.ownedCount,
       effective_price: typeof price?.effective_price === "number" ? price.effective_price : null,
-      image_url: card?.image_url?.trim() || card?.image_alt_url?.trim() || price?.image_url?.trim() || bucket?.photo_url?.trim() || null,
+      image_url:
+        aggregate.imageUrl ??
+        aggregate.photoUrl ??
+        card?.image_url?.trim() ??
+        card?.image_alt_url?.trim() ??
+        price?.image_url?.trim() ??
+        bucket?.photo_url?.trim() ??
+        null,
       created_at: aggregate.latestCreatedAt ?? bucket?.created_at ?? null,
+      is_slab: aggregate.isSlab,
+      grader: aggregate.grader,
+      grade: aggregate.grade,
+      cert_number: aggregate.certNumber,
     });
   }
 

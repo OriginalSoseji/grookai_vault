@@ -24,10 +24,25 @@ export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
               fallbackLabel={card.name}
             />
             <div className="space-y-2 border-t border-slate-200 px-5 py-5">
-              <p className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight text-slate-950">{card.name}</p>
+              <div className="flex items-start justify-between gap-3">
+                <p className="line-clamp-2 text-[1.35rem] font-semibold tracking-tight text-slate-950">{card.name}</p>
+                {card.is_slab ? (
+                  <span className="inline-flex shrink-0 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-700">
+                    Slab
+                  </span>
+                ) : null}
+              </div>
               <p className="text-sm text-slate-600">
                 {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
               </p>
+              {card.is_slab ? (
+                <div className="space-y-1 rounded-[1rem] border border-amber-100 bg-amber-50/70 px-3 py-2">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-amber-700">
+                    {[card.grader, card.grade].filter(Boolean).join(" ") || "Graded slab"}
+                  </p>
+                  {card.cert_number ? <p className="text-xs text-slate-600">Cert {card.cert_number}</p> : null}
+                </div>
+              ) : null}
               {card.public_note ? <p className="text-sm leading-7 text-slate-600">{card.public_note}</p> : null}
               {card.back_image_url ? (
                 <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50">
