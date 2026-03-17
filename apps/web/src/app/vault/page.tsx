@@ -103,6 +103,7 @@ function normalizeVaultItems(
         set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
         number: row.number?.trim() || "—",
         condition_label: row.condition_label?.trim() || "Unknown",
+        quantity: canonicalOwnedCount,
         owned_count: canonicalOwnedCount,
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
         image_url: getBestPublicCardImageUrl(row.image_url),

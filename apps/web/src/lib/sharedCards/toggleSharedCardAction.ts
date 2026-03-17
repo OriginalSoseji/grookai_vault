@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export type ToggleSharedCardInput = {
-  itemId: string;
+  itemId?: string;
+  gvViId?: string | null;
   nextShared: boolean;
 };
 
@@ -26,6 +27,16 @@ type VaultRow = {
   gv_id: string | null;
 };
 
+type VaultInstanceRow = {
+  gv_vi_id: string | null;
+  card_print_id: string | null;
+};
+
+type CardPrintRow = {
+  id: string;
+  gv_id: string | null;
+};
+
 type PublicProfileRow = {
   slug: string | null;
   public_profile_enabled: boolean | null;
@@ -43,32 +54,85 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   if (!user) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
       message: "Sign in required.",
     };
   }
 
-  const { data: vaultRow, error: vaultError } = await client
-    .from("vault_items")
-    .select("id,card_id,gv_id")
-    .eq("id", input.itemId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .maybeSingle();
+  let row: VaultRow | null = null;
+  if (input.gvViId) {
+    const { data: instanceRow, error: instanceError } = await client
+      .from("vault_item_instances")
+      .select("gv_vi_id,card_print_id")
+      .eq("gv_vi_id", input.gvViId)
+      .eq("user_id", user.id)
+      .is("archived_at", null)
+      .maybeSingle();
 
-  if (vaultError || !vaultRow) {
-    return {
-      ok: false,
-      itemId: input.itemId,
-      message: "Vault card could not be resolved.",
-    };
+    if (instanceError) {
+      return {
+        ok: false,
+        itemId: input.itemId ?? input.gvViId,
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    const instance = (instanceRow ?? null) as VaultInstanceRow | null;
+    if (instance?.card_print_id) {
+      const { data: cardPrintRow, error: cardPrintError } = await client
+        .from("card_prints")
+        .select("id,gv_id")
+        .eq("id", instance.card_print_id)
+        .maybeSingle();
+
+      if (cardPrintError || !cardPrintRow) {
+        return {
+          ok: false,
+          itemId: input.itemId ?? input.gvViId,
+          message: "Vault card is missing canonical card identity.",
+        };
+      }
+
+      row = {
+        id: input.itemId ?? input.gvViId,
+        card_id: (cardPrintRow as CardPrintRow).id,
+        gv_id: (cardPrintRow as CardPrintRow).gv_id,
+      };
+    }
   }
 
-  const row = vaultRow as VaultRow;
+  if (!row) {
+    if (!input.itemId) {
+      return {
+        ok: false,
+        itemId: input.gvViId ?? "",
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    const { data: vaultRow, error: vaultError } = await client
+      .from("vault_items")
+      .select("id,card_id,gv_id")
+      .eq("id", input.itemId)
+      .eq("user_id", user.id)
+      .is("archived_at", null)
+      .maybeSingle();
+
+    if (vaultError || !vaultRow) {
+      return {
+        ok: false,
+        itemId: input.itemId,
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    row = vaultRow as VaultRow;
+  }
+
   if (!row.card_id || !row.gv_id) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
       message: "Vault card is missing canonical card identity.",
     };
   }
@@ -83,7 +147,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     if (deleteError) {
       return {
         ok: false,
-        itemId: input.itemId,
+        itemId: input.itemId ?? input.gvViId ?? "",
         message: "Couldn’t update shared state.",
       };
     }
@@ -92,7 +156,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: true,
       status: "unshared",
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
     };
   }
 
@@ -105,7 +169,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   if (profileError || !profileRow) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
       message: SHARE_GUARD_MESSAGE,
     };
   }
@@ -114,7 +178,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   if (!profile.public_profile_enabled || !profile.vault_sharing_enabled) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
       message: SHARE_GUARD_MESSAGE,
     };
   }
@@ -137,7 +201,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   if (upsertError) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.itemId ?? input.gvViId ?? "",
       message: "Couldn’t update shared state.",
     };
   }
@@ -151,6 +215,6 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   return {
     ok: true,
     status: "shared",
-    itemId: input.itemId,
+    itemId: input.itemId ?? input.gvViId ?? "",
   };
 }

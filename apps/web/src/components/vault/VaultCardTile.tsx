@@ -9,6 +9,7 @@ import ShareCardButton from "@/components/ShareCardButton";
 export type VaultCardData = {
   id: string;
   vault_item_id: string;
+  gv_vi_id: string | null;
   card_id: string;
   gv_id: string;
   name: string;
@@ -16,7 +17,7 @@ export type VaultCardData = {
   set_name: string;
   number: string;
   condition_label: string;
-  quantity: number;
+  owned_count: number;
   effective_price: number | null;
   image_url?: string;
   created_at: string | null;
@@ -142,7 +143,7 @@ export function VaultCardTile({
               .join(" • ")}
           </p>
           <div className="mt-2 flex items-center justify-between gap-3">
-            <span className="text-xs text-slate-400">Qty {item.quantity}</span>
+            <span className="text-xs text-slate-400">Qty {item.owned_count}</span>
             <ShareCardButton gvId={item.gv_id} />
           </div>
         </div>
@@ -177,7 +178,7 @@ export function VaultCardTile({
                 >
                   −
                 </button>
-                <span className="min-w-[2.1rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.quantity}</span>
+                <span className="min-w-[2.1rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.owned_count}</span>
                 <button
                   type="button"
                   onClick={() => onQuantityChange(item.vault_item_id, "increment")}

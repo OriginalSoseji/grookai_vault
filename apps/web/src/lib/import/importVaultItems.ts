@@ -1,7 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/normalizeRow";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { ImportVaultItemsResult, MatchResult } from "@/types/import";
 
@@ -32,6 +34,13 @@ type ExistingVaultRow = {
   id: string;
   gv_id: string;
   qty: number | null;
+};
+
+type ImportVaultItemsExecutionParams = {
+  client: SupabaseClient;
+  adminClient: SupabaseClient;
+  userId: string;
+  rows: MatchResult[];
 };
 
 function chunkArray<T>(items: T[], size: number) {
@@ -88,7 +97,7 @@ function mergeImportRows(rows: MatchResult[]): AggregatedImportRow[] {
   return Array.from(merged.values()).sort((left, right) => left.gvId.localeCompare(right.gvId));
 }
 
-async function fetchExistingVaultRows(client: ReturnType<typeof createServerComponentClient>, userId: string, gvIds: string[]) {
+async function fetchExistingVaultRows(client: SupabaseClient, userId: string, gvIds: string[]) {
   const existingByGvId = new Map<string, ExistingVaultRow>();
 
   for (const gvIdChunk of chunkArray(gvIds, 100)) {
@@ -111,12 +120,38 @@ async function fetchExistingVaultRows(client: ReturnType<typeof createServerComp
   return existingByGvId;
 }
 
-async function insertActiveOwnershipEpisode(
-  client: ReturnType<typeof createServerComponentClient>,
+async function mirrorLegacyBucketQuantity(
+  client: SupabaseClient,
   userId: string,
   row: AggregatedImportRow,
 ) {
-  const { data, error } = await client
+  const { data: activeExisting, error: activeExistingError } = await client
+    .from("vault_items")
+    .select("id,gv_id,qty")
+    .eq("user_id", userId)
+    .eq("gv_id", row.gvId)
+    .is("archived_at", null)
+    .maybeSingle();
+
+  if (activeExistingError) {
+    throw new Error(activeExistingError.message);
+  }
+
+  const activeRow = (activeExisting ?? null) as ExistingVaultRow | null;
+  if (activeRow?.id) {
+    const { error: updateError } = await client.rpc("vault_inc_qty", {
+      item_id: activeRow.id,
+      inc: row.quantityToImport,
+    });
+
+    if (updateError) {
+      throw new Error(updateError.message);
+    }
+
+    return;
+  }
+
+  const { error: insertError } = await client
     .from("vault_items")
     .insert({
       user_id: userId,
@@ -129,16 +164,14 @@ async function insertActiveOwnershipEpisode(
       notes: row.notes,
       name: row.name,
       set_name: row.setName,
-    })
-    .select("id,gv_id,qty")
-    .maybeSingle();
+    });
 
-  if (!error) {
-    return data as ExistingVaultRow | null;
+  if (!insertError) {
+    return;
   }
 
-  if (error.code !== "23505") {
-    throw new Error(error.message);
+  if (insertError.code !== "23505") {
+    throw new Error(insertError.message);
   }
 
   const { data: existing, error: existingError } = await client
@@ -153,7 +186,19 @@ async function insertActiveOwnershipEpisode(
     throw new Error(existingError.message);
   }
 
-  return (existing ?? null) as ExistingVaultRow | null;
+  const conflictRow = (existing ?? null) as ExistingVaultRow | null;
+  if (!conflictRow?.id) {
+    throw new Error("Legacy vault bucket could not be resolved after active conflict.");
+  }
+
+  const { error: updateError } = await client.rpc("vault_inc_qty", {
+    item_id: conflictRow.id,
+    inc: row.quantityToImport,
+  });
+
+  if (updateError) {
+    throw new Error(updateError.message);
+  }
 }
 
 function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByGvId: Map<string, ExistingVaultRow>) {
@@ -175,21 +220,44 @@ function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByGvId: Ma
     .sort((left, right) => left.gvId.localeCompare(right.gvId));
 }
 
-export async function importVaultItems(rows: MatchResult[]): Promise<ImportVaultItemsResult> {
-  const client = createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
+async function createCanonicalImportInstances(
+  adminClient: SupabaseClient,
+  userId: string,
+  row: AggregatedImportRow,
+) {
+  for (let copyIndex = 0; copyIndex < row.quantityToImport; copyIndex += 1) {
+    const { error } = await adminClient.rpc("admin_vault_instance_create_v1", {
+      p_user_id: userId,
+      p_card_print_id: row.cardId,
+      p_acquisition_cost: row.acquisitionCost,
+      p_condition_label: row.condition,
+      p_notes: row.notes,
+      p_name: row.name,
+      p_set_name: row.setName,
+      p_created_at: row.createdAt,
+    });
 
-  if (!user) {
-    throw new Error("Sign in required.");
+    if (error) {
+      throw new Error(error.message);
+    }
   }
+}
+
+export async function importVaultItemsForUser({
+  client,
+  adminClient,
+  userId,
+  rows,
+}: ImportVaultItemsExecutionParams): Promise<ImportVaultItemsResult> {
+  console.info("vault.import.begin", {
+    userId,
+    itemCount: rows.length,
+  });
 
   const aggregatedRows = mergeImportRows(rows);
   const needsManualMatch = rows.filter((row) => row.status !== "matched").length;
 
   if (aggregatedRows.length === 0) {
-    revalidatePath("/vault");
     return {
       importedCards: 0,
       importedEntries: 0,
@@ -198,17 +266,10 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
     };
   }
 
-  const existingByGvId = await fetchExistingVaultRows(
-    client,
-    user.id,
-    aggregatedRows.map((row) => row.gvId),
-  );
+  const existingByGvId = await fetchExistingVaultRows(client, userId, aggregatedRows.map((row) => row.gvId));
   const reconciledRows = reconcileAggregatedRows(aggregatedRows, existingByGvId);
 
   if (reconciledRows.length === 0) {
-    revalidatePath("/vault");
-    revalidatePath("/wall");
-    revalidatePath("/founder");
     return {
       importedCards: 0,
       importedEntries: 0,
@@ -217,44 +278,46 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
     };
   }
 
-  const rowsToIncrement = reconciledRows.filter((row) => existingByGvId.has(row.gvId));
-  const rowsToInsert = reconciledRows.filter((row) => !existingByGvId.has(row.gvId));
-
-  for (const row of rowsToIncrement) {
-    const itemId = existingByGvId.get(row.gvId)?.id;
-    if (!itemId || row.quantityToImport <= 0) {
+  for (const row of reconciledRows) {
+    const quantity = Math.max(0, Math.trunc(row.quantityToImport));
+    if (quantity <= 0) {
       continue;
     }
 
-    const { error } = await client.rpc("vault_inc_qty", {
-      item_id: itemId,
-      inc: row.quantityToImport,
+    console.info("vault.import.item", {
+      userId,
+      cardPrintId: row.cardId,
+      quantity,
     });
 
-    if (error) {
-      throw new Error(error.message);
-    }
-  }
-
-  for (const row of rowsToInsert) {
-    const insertedOrExisting = await insertActiveOwnershipEpisode(client, user.id, row);
-    if (!insertedOrExisting?.id) {
-      continue;
-    }
-
-    const existingQty = insertedOrExisting.qty ?? 0;
-    const remainingQuantity = row.desiredQuantity - existingQty;
-    if (remainingQuantity <= 0) {
-      continue;
+    try {
+      await createCanonicalImportInstances(adminClient, userId, {
+        ...row,
+        quantityToImport: quantity,
+      });
+    } catch (error) {
+      console.error("vault.import.instance_create_failed", {
+        userId,
+        cardPrintId: row.cardId,
+        quantity,
+        error,
+      });
+      throw error instanceof Error ? error : new Error("Canonical import create failed.");
     }
 
-    const { error } = await client.rpc("vault_inc_qty", {
-      item_id: insertedOrExisting.id,
-      inc: remainingQuantity,
-    });
-
-    if (error) {
-      throw new Error(error.message);
+    try {
+      // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
+      await mirrorLegacyBucketQuantity(client, userId, {
+        ...row,
+        quantityToImport: quantity,
+      });
+    } catch (error) {
+      console.error("vault.import.bucket_mirror_failed", {
+        userId,
+        cardPrintId: row.cardId,
+        quantity,
+        error,
+      });
     }
   }
 
@@ -267,14 +330,34 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
     needsManualMatch,
   });
 
-  revalidatePath("/vault");
-  revalidatePath("/wall");
-  revalidatePath("/founder");
-
   return {
     importedCards,
     importedEntries,
     needsManualMatch,
     skippedRows: needsManualMatch,
   };
+}
+
+export async function importVaultItems(rows: MatchResult[]): Promise<ImportVaultItemsResult> {
+  const client = createServerComponentClient();
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+
+  if (!user) {
+    throw new Error("Sign in required.");
+  }
+
+  const result = await importVaultItemsForUser({
+    client,
+    adminClient: createServerAdminClient(),
+    userId: user.id,
+    rows,
+  });
+
+  revalidatePath("/vault");
+  revalidatePath("/wall");
+  revalidatePath("/founder");
+
+  return result;
 }

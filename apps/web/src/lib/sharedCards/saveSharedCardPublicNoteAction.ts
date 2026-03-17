@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export type SaveSharedCardPublicNoteInput = {
-  itemId: string;
+  itemId?: string;
+  gvViId?: string | null;
   note: string;
 };
 
@@ -21,7 +22,18 @@ export type SaveSharedCardPublicNoteResult =
     };
 
 type VaultRow = {
+  id: string;
   card_id: string | null;
+  gv_id: string | null;
+};
+
+type VaultInstanceRow = {
+  gv_vi_id: string | null;
+  card_print_id: string | null;
+};
+
+type CardPrintRow = {
+  id: string;
   gv_id: string | null;
 };
 
@@ -44,32 +56,85 @@ export async function saveSharedCardPublicNoteAction(
   if (!user) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.gvViId ?? input.itemId ?? "",
       message: "Sign in required.",
     };
   }
 
-  const { data: vaultRow, error: vaultError } = await client
-    .from("vault_items")
-    .select("card_id,gv_id")
-    .eq("id", input.itemId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .maybeSingle();
+  let row: VaultRow | null = null;
+  if (input.gvViId) {
+    const { data: instanceRow, error: instanceError } = await client
+      .from("vault_item_instances")
+      .select("gv_vi_id,card_print_id")
+      .eq("gv_vi_id", input.gvViId)
+      .eq("user_id", user.id)
+      .is("archived_at", null)
+      .maybeSingle();
 
-  if (vaultError || !vaultRow) {
-    return {
-      ok: false,
-      itemId: input.itemId,
-      message: "Vault card could not be resolved.",
-    };
+    if (instanceError) {
+      return {
+        ok: false,
+        itemId: input.gvViId ?? input.itemId ?? "",
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    const instance = (instanceRow ?? null) as VaultInstanceRow | null;
+    if (instance?.card_print_id) {
+      const { data: cardPrintRow, error: cardPrintError } = await client
+        .from("card_prints")
+        .select("id,gv_id")
+        .eq("id", instance.card_print_id)
+        .maybeSingle();
+
+      if (cardPrintError || !cardPrintRow) {
+        return {
+          ok: false,
+          itemId: input.gvViId ?? input.itemId ?? "",
+          message: "Vault card is missing canonical card identity.",
+        };
+      }
+
+      row = {
+        id: input.itemId ?? input.gvViId,
+        card_id: (cardPrintRow as CardPrintRow).id,
+        gv_id: (cardPrintRow as CardPrintRow).gv_id,
+      };
+    }
   }
 
-  const row = vaultRow as VaultRow;
+  if (!row) {
+    if (!input.itemId) {
+      return {
+        ok: false,
+        itemId: input.gvViId ?? "",
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    const { data: vaultRow, error: vaultError } = await client
+      .from("vault_items")
+      .select("id,card_id,gv_id")
+      .eq("id", input.itemId)
+      .eq("user_id", user.id)
+      .is("archived_at", null)
+      .maybeSingle();
+
+    if (vaultError || !vaultRow) {
+      return {
+        ok: false,
+        itemId: input.itemId,
+        message: "Vault card could not be resolved.",
+      };
+    }
+
+    row = vaultRow as VaultRow;
+  }
+
   if (!row.card_id || !row.gv_id) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.gvViId ?? input.itemId ?? "",
       message: "Vault card is missing canonical card identity.",
     };
   }
@@ -87,7 +152,7 @@ export async function saveSharedCardPublicNoteAction(
   if (existingSharedError || !existingSharedRow) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.gvViId ?? input.itemId ?? "",
       message: "Share this card before adding a public note.",
     };
   }
@@ -103,7 +168,7 @@ export async function saveSharedCardPublicNoteAction(
   if (updateError) {
     return {
       ok: false,
-      itemId: input.itemId,
+      itemId: input.gvViId ?? input.itemId ?? "",
       message: "Couldn’t save public note.",
     };
   }
@@ -119,7 +184,7 @@ export async function saveSharedCardPublicNoteAction(
 
   return {
     ok: true,
-    itemId: input.itemId,
+    itemId: input.gvViId ?? input.itemId ?? "",
     publicNote: nextPublicNote,
   };
 }

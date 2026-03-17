@@ -401,12 +401,12 @@ function applyOptimisticQuantityChange(
       return [item];
     }
 
-    const nextQuantity = type === "increment" ? item.quantity + 1 : item.quantity - 1;
-    if (nextQuantity <= 0) {
+    const nextOwnedCount = type === "increment" ? item.owned_count + 1 : item.owned_count - 1;
+    if (nextOwnedCount <= 0) {
       return [];
     }
 
-    return [{ ...item, quantity: nextQuantity }];
+    return [{ ...item, owned_count: nextOwnedCount }];
   });
 }
 
@@ -425,7 +425,7 @@ function reconcileQuantityResult(
     item.vault_item_id === itemId
       ? {
           ...item,
-          quantity: result.quantity,
+          owned_count: result.quantity,
         }
       : item,
   );
@@ -458,13 +458,21 @@ function applyOptimisticShareChange(items: VaultCardData[], itemId: string, next
 
 function applyOptimisticPublicNoteChange(items: VaultCardData[], itemId: string, publicNote: string | null) {
   return items.map((item) =>
-    item.vault_item_id === itemId
+    getSharedCardIdentityKey(item) === itemId
       ? {
           ...item,
           public_note: publicNote,
         }
       : item,
   );
+}
+
+function getSharedCardIdentityKey(item: Pick<VaultCardData, "vault_item_id" | "gv_vi_id">) {
+  return item.gv_vi_id ?? item.vault_item_id;
+}
+
+function findItemBySharedCardIdentityKey(items: VaultCardData[], identityKey: string) {
+  return items.find((item) => getSharedCardIdentityKey(item) === identityKey || item.vault_item_id === identityKey);
 }
 
 function applyOptimisticPublicImageChange(
@@ -553,7 +561,7 @@ export function VaultCollectionView({
   }, [initialItems]);
 
   const summary = useMemo(() => {
-    const cards = items.reduce((sum, item) => sum + item.quantity, 0);
+    const cards = items.reduce((sum, item) => sum + item.owned_count, 0);
     const uniqueCards = items.length;
     const sets = new Set(items.map((item) => item.set_code.trim() || "Unknown set")).size;
     const latestTimestamp = items.reduce<string | null>((latest, item) => {
@@ -586,7 +594,7 @@ export function VaultCollectionView({
     [items],
   );
 
-  const duplicateItems = useMemo(() => items.filter((item) => item.quantity > 1), [items]);
+  const duplicateItems = useMemo(() => items.filter((item) => item.owned_count > 1), [items]);
   const sharedItems = useMemo(() => items.filter((item) => item.is_shared), [items]);
   const pokemonSuggestionNames = useMemo(
     () =>
@@ -708,7 +716,7 @@ export function VaultCollectionView({
       return;
     }
 
-    if (type === "decrement" && targetItem.quantity === 1) {
+    if (type === "decrement" && targetItem.owned_count === 1) {
       setConfirmRemovalItemId(itemId);
       return;
     }
@@ -731,7 +739,7 @@ export function VaultCollectionView({
 
     const currentItems = items;
     const targetItem = currentItems.find((item) => item.vault_item_id === confirmRemovalItemId);
-    if (!targetItem || targetItem.quantity !== 1) {
+    if (!targetItem || targetItem.owned_count !== 1) {
       setConfirmRemovalItemId(null);
       return;
     }
@@ -815,6 +823,7 @@ export function VaultCollectionView({
       try {
         const result = await toggleSharedCardAction({
           itemId: item.vault_item_id,
+          gvViId: item.gv_vi_id,
           nextShared,
         });
 
@@ -953,7 +962,7 @@ export function VaultCollectionView({
       return;
     }
 
-    setPublicNoteItemId(item.vault_item_id);
+    setPublicNoteItemId(getSharedCardIdentityKey(item));
     setPublicNoteDraft(item.public_note ?? "");
     setPublicNoteError(null);
   }
@@ -974,6 +983,7 @@ export function VaultCollectionView({
     }
 
     const currentItems = items;
+    const targetItem = findItemBySharedCardIdentityKey(currentItems, publicNoteItemId);
     const nextPublicNote = publicNoteDraft.trim().length > 0 ? publicNoteDraft.trim() : null;
 
     setPendingPublicNoteItemId(publicNoteItemId);
@@ -983,7 +993,8 @@ export function VaultCollectionView({
     startTransition(async () => {
       try {
         const result = await saveSharedCardPublicNoteAction({
-          itemId: publicNoteItemId,
+          itemId: targetItem?.vault_item_id,
+          gvViId: targetItem?.gv_vi_id ?? null,
           note: publicNoteDraft,
         });
 
@@ -993,7 +1004,7 @@ export function VaultCollectionView({
           return;
         }
 
-        setItems((current) => applyOptimisticPublicNoteChange(current, publicNoteItemId, result.publicNote));
+        setItems((current) => applyOptimisticPublicNoteChange(current, result.itemId, result.publicNote));
         setPublicNoteItemId(null);
         setPublicNoteDraft("");
         router.refresh();
