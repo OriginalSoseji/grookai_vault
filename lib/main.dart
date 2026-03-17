@@ -365,7 +365,7 @@ class _VaultItemTile extends StatelessWidget {
     final id = (row['id'] ?? '').toString();
     final name = (row['name'] ?? 'Item').toString();
     final set = (row['set_name'] ?? '').toString();
-    final qty = (row['qty'] ?? 0) as int;
+    final ownedCount = _ownedCountForRow(row);
     final cond = (row['condition_label'] ?? 'NM').toString();
     final gvId = (row['gv_id'] ?? '').toString();
     final cardPrintId = (row['card_id'] ?? '').toString();
@@ -506,7 +506,7 @@ class _VaultItemTile extends StatelessWidget {
                           children: [
                             _condChip(),
                             Text(
-                              'Qty: $qty',
+                              'Qty: $ownedCount',
                               style: theme.textTheme.bodySmall?.copyWith(
                                 fontWeight: FontWeight.w600,
                               ),
@@ -1392,34 +1392,92 @@ class VaultPageState extends State<VaultPage> {
       final orderCol = switch (_sortBy) {
         _SortBy.newest => 'created_at',
         _SortBy.name => 'name',
-        _SortBy.qty => 'qty',
+        _SortBy.qty => 'created_at',
       };
-      final ascending = _sortBy != _SortBy.newest;
+      final ascending = _sortBy == _SortBy.name;
 
       final data = await supabase
           .from('v_vault_items')
           .select(
-            'id,user_id,card_id,gv_id,qty,condition_label,created_at,name,set_name,number,photo_url,image_url',
+            'id,user_id,card_id,gv_id,condition_label,created_at,name,set_name,number,photo_url,image_url',
           )
           .eq('user_id', _uid!)
           .order(orderCol, ascending: ascending);
 
-      setState(() => _items = List<Map<String, dynamic>>.from(data));
+      final rows = List<Map<String, dynamic>>.from(data);
+      final cardPrintIds = rows
+          .map((row) => (row['card_id'] ?? '').toString().trim())
+          .where((id) => id.isNotEmpty)
+          .toList();
+
+      Map<String, int> ownedCounts = const <String, int>{};
+      if (cardPrintIds.isNotEmpty) {
+        try {
+          ownedCounts = await VaultCardService.getOwnedCountsByCardPrintIds(
+            client: supabase,
+            cardPrintIds: cardPrintIds,
+          );
+        } catch (error) {
+          debugPrint('vault.mobile.read_counts_failed: $error');
+        }
+      }
+
+      final hydratedRows = rows.map((row) {
+        final cardPrintId = (row['card_id'] ?? '').toString().trim();
+        final ownedCount = ownedCounts[cardPrintId];
+
+        return <String, dynamic>{
+          ...row,
+          'owned_count': ownedCount,
+        };
+      }).toList();
+
+      setState(() => _items = hydratedRows);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
   }
 
-  Future<void> _incQty(String id, int delta) async {
-    final idx = _items.indexWhere((x) => (x['id'] ?? '').toString() == id);
-    final current = idx >= 0 ? (_items[idx]['qty'] ?? 0) as int : 0;
-    final next = (current + delta).clamp(0, 9999);
-    await supabase.from('vault_items').update({'qty': next}).eq('id', id);
+  Future<void> _incQty(Map<String, dynamic> row, int delta) async {
+    final id = (row['id'] ?? '').toString();
+    final cardId = (row['card_id'] ?? '').toString();
+    if (_uid == null || id.isEmpty || cardId.isEmpty) return;
+
+    if (delta > 0) {
+      await VaultCardService.addOrIncrementVaultItem(
+        client: supabase,
+        userId: _uid!,
+        cardId: cardId,
+        deltaQty: delta,
+        conditionLabel: (row['condition_label'] ?? 'NM').toString(),
+        fallbackName: (row['name'] ?? '').toString(),
+        fallbackSetName: (row['set_name'] ?? '').toString(),
+        fallbackImageUrl: (row['photo_url'] ?? row['image_url'])?.toString(),
+      );
+    } else {
+      await VaultCardService.archiveOneVaultItem(
+        client: supabase,
+        userId: _uid!,
+        vaultItemId: id,
+        cardId: cardId,
+      );
+    }
+
     await reload();
   }
 
-  Future<void> _delete(String id) async {
-    await supabase.from('vault_items').delete().eq('id', id);
+  Future<void> _delete(Map<String, dynamic> row) async {
+    final id = (row['id'] ?? '').toString();
+    final cardId = (row['card_id'] ?? '').toString();
+    if (_uid == null || id.isEmpty || cardId.isEmpty) return;
+
+    await VaultCardService.archiveAllVaultItems(
+      client: supabase,
+      userId: _uid!,
+      vaultItemId: id,
+      cardId: cardId,
+    );
+
     await reload();
   }
 
@@ -1512,6 +1570,12 @@ class VaultPageState extends State<VaultPage> {
       return name.contains(q) || set.contains(q);
     }).toList();
 
+    if (_sortBy == _SortBy.qty) {
+      filtered.sort(
+        (a, b) => _ownedCountForRow(a).compareTo(_ownedCountForRow(b)),
+      );
+    }
+
     return Column(
       children: [
         Padding(
@@ -1560,7 +1624,7 @@ class VaultPageState extends State<VaultPage> {
                     final id = (row['id'] ?? '').toString();
                     final name = (row['name'] ?? 'Item').toString();
                     final set = (row['set_name'] ?? '').toString();
-                    final qty = (row['qty'] ?? 0) as int;
+                    final ownedCount = _ownedCountForRow(row);
                     final cond = (row['condition_label'] ?? 'NM').toString();
                     final gvId = (row['gv_id'] ?? '').toString();
                     final cardPrintId = (row['card_id'] ?? '').toString();
@@ -1577,10 +1641,10 @@ class VaultPageState extends State<VaultPage> {
                           ),
                         );
                       },
-                      onIncrement: () => _incQty(id, 1),
-                      onDecrement: () => _incQty(id, -1),
+                      onIncrement: () => _incQty(row, 1),
+                      onDecrement: () => _incQty(row, -1),
                       onDelete: () async {
-                        final ok = await _confirmDelete(id);
+                        final ok = await _confirmDelete(row);
                         if (ok) await reload();
                       },
                       onTap: cardPrintId.isEmpty
@@ -1597,7 +1661,7 @@ class VaultPageState extends State<VaultPage> {
                                     imageUrl:
                                         (row['photo_url'] ?? row['image_url'])
                                             .toString(),
-                                    quantity: qty,
+                                    quantity: ownedCount,
                                     condition: cond,
                                   ),
                                 ),
@@ -1611,7 +1675,7 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
-  Future<bool> _confirmDelete(String id) async {
+  Future<bool> _confirmDelete(Map<String, dynamic> row) async {
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
@@ -1629,7 +1693,7 @@ class VaultPageState extends State<VaultPage> {
         ],
       ),
     );
-    if (ok == true) await _delete(id);
+    if (ok == true) await _delete(row);
     return ok ?? false;
   }
 
@@ -1668,6 +1732,27 @@ class VaultPageState extends State<VaultPage> {
 }
 
 enum _SortBy { newest, name, qty }
+
+int _ownedCountForRow(Map<String, dynamic> row) {
+  final ownedCount = _intValue(row['owned_count']);
+  return ownedCount ?? 0;
+}
+
+int? _intValue(dynamic value) {
+  if (value is int) {
+    return value;
+  }
+
+  if (value is num) {
+    return value.toInt();
+  }
+
+  if (value == null) {
+    return null;
+  }
+
+  return int.tryParse(value.toString());
+}
 
 /// ---------------------- Catalog Picker (bottom sheet) ----------------------
 class _CatalogPicker extends StatefulWidget {

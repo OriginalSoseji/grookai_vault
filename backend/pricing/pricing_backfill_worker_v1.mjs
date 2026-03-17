@@ -85,12 +85,14 @@ async function fetchEligibleCardPrints(supabase) {
 async function fetchVaultStatsAll(supabase) {
   const stats = new Map();
   let from = 0;
+  const slabStats = new Map();
 
   while (true) {
     const to = from + FETCH_PAGE_SIZE - 1;
     const { data, error } = await supabase
-      .from('vault_items')
-      .select('card_id,qty,created_at')
+      .from('vault_item_instances')
+      .select('card_print_id,slab_cert_id,created_at')
+      .is('archived_at', null)
       .order('id', { ascending: true })
       .range(from, to);
 
@@ -103,25 +105,35 @@ async function fetchVaultStatsAll(supabase) {
     }
 
     for (const row of data) {
-      const cardId = row.card_id;
-      if (!cardId) {
-        continue;
-      }
-
-      const qty = Number(row.qty) || 0;
       const createdMs = row.created_at ? Date.parse(row.created_at) : Number.NaN;
       const createdAtMs = Number.isFinite(createdMs) ? createdMs : null;
 
-      const current = stats.get(cardId) || { qtySum: 0, latestCreatedAtMs: null };
-      current.qtySum += qty;
+      if (row.card_print_id) {
+        const current = stats.get(row.card_print_id) || { activeInstanceCount: 0, latestCreatedAtMs: null };
+        current.activeInstanceCount += 1;
 
-      if (createdAtMs !== null) {
-        if (current.latestCreatedAtMs === null || createdAtMs > current.latestCreatedAtMs) {
-          current.latestCreatedAtMs = createdAtMs;
+        if (createdAtMs !== null) {
+          if (current.latestCreatedAtMs === null || createdAtMs > current.latestCreatedAtMs) {
+            current.latestCreatedAtMs = createdAtMs;
+          }
         }
+
+        stats.set(row.card_print_id, current);
+        continue;
       }
 
-      stats.set(cardId, current);
+      if (!row.slab_cert_id) {
+        continue;
+      }
+
+      const slabCurrent = slabStats.get(row.slab_cert_id) || { activeInstanceCount: 0, latestCreatedAtMs: null };
+      slabCurrent.activeInstanceCount += 1;
+      if (createdAtMs !== null) {
+        if (slabCurrent.latestCreatedAtMs === null || createdAtMs > slabCurrent.latestCreatedAtMs) {
+          slabCurrent.latestCreatedAtMs = createdAtMs;
+        }
+      }
+      slabStats.set(row.slab_cert_id, slabCurrent);
     }
 
     if (data.length < FETCH_PAGE_SIZE) {
@@ -131,23 +143,57 @@ async function fetchVaultStatsAll(supabase) {
     from += FETCH_PAGE_SIZE;
   }
 
+  const slabCertIds = Array.from(slabStats.keys());
+  const slabChunks = chunkArray(slabCertIds, CARD_ID_CHUNK_SIZE);
+  for (const ids of slabChunks) {
+    const { data, error } = await supabase
+      .from('slab_certs')
+      .select('id,card_print_id')
+      .in('id', ids);
+
+    if (error) {
+      throw new Error(`slab cert lookup failed: ${error.message}`);
+    }
+
+    for (const row of data ?? []) {
+      if (!row.id || !row.card_print_id) {
+        continue;
+      }
+
+      const slabCurrent = slabStats.get(row.id);
+      if (!slabCurrent) {
+        continue;
+      }
+
+      const cardCurrent = stats.get(row.card_print_id) || { activeInstanceCount: 0, latestCreatedAtMs: null };
+      cardCurrent.activeInstanceCount += slabCurrent.activeInstanceCount;
+      if (
+        slabCurrent.latestCreatedAtMs !== null &&
+        (cardCurrent.latestCreatedAtMs === null || slabCurrent.latestCreatedAtMs > cardCurrent.latestCreatedAtMs)
+      ) {
+        cardCurrent.latestCreatedAtMs = slabCurrent.latestCreatedAtMs;
+      }
+      stats.set(row.card_print_id, cardCurrent);
+    }
+  }
+
   return stats;
 }
 
 function rankCandidates(candidates, vaultStatsByCardId) {
   const ranked = candidates.map((row) => {
-    const stats = vaultStatsByCardId.get(row.id) || { qtySum: 0, latestCreatedAtMs: null };
+    const stats = vaultStatsByCardId.get(row.id) || { activeInstanceCount: 0, latestCreatedAtMs: null };
     return {
       id: row.id,
       name: row.name || '',
-      qtySum: stats.qtySum,
+      activeInstanceCount: stats.activeInstanceCount,
       latestCreatedAtMs: stats.latestCreatedAtMs,
     };
   });
 
   ranked.sort((a, b) => {
-    if (a.qtySum !== b.qtySum) {
-      return b.qtySum - a.qtySum;
+    if (a.activeInstanceCount !== b.activeInstanceCount) {
+      return b.activeInstanceCount - a.activeInstanceCount;
     }
 
     const aTs = a.latestCreatedAtMs;

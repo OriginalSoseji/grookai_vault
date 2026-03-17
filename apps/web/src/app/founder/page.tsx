@@ -12,48 +12,33 @@ const FOUNDER_EMAIL = "ccabrl@gmail.com";
 type VaultAnalyticsRow = {
   id: string;
   user_id: string | null;
-  gv_id: string | null;
-  name: string | null;
-  set_code: string | null;
-  number: string | null;
-  quantity: number | null;
+  card_print_id: string | null;
+  slab_cert_id: string | null;
   condition_label: string | null;
   image_url: string | null;
-};
-
-type RecentRow = {
-  id: string;
-  user_id: string | null;
-  gv_id: string | null;
-  name: string | null;
-  set_code: string | null;
-  number: string | null;
-  quantity: number | null;
   created_at: string | null;
-  image_url: string | null;
 };
 
-type ConditionLookupRow = {
+type SlabCertLookupRow = {
   id: string;
-  condition_label: string | null;
+  card_print_id: string | null;
+};
+
+type CardPrintMetadataRow = {
+  id: string;
+  gv_id: string | null;
+  name: string | null;
+  set_code: string | null;
+  number: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
 };
 
 type NormalizedVaultRow = {
   id: string;
   user_id: string;
   gv_id: string;
-  name: string;
-  set_code: string;
-  number: string;
-  quantity: number;
-  condition_label: string;
-  image_url?: string;
-};
-
-type NormalizedRecentRow = {
-  id: string;
-  user_id?: string;
-  gv_id: string;
+  card_print_id: string;
   name: string;
   set_code: string;
   number: string;
@@ -332,46 +317,138 @@ function mapTopViewedCards(
   return mapped;
 }
 
-function normalizeVaultRows(rows: VaultAnalyticsRow[] | null | undefined): NormalizedVaultRow[] {
-  return (rows ?? [])
-    .filter(
-      (row): row is VaultAnalyticsRow & { gv_id: string; user_id: string } =>
-        typeof row.gv_id === "string" &&
-        row.gv_id.length > 0 &&
-        typeof row.user_id === "string" &&
-        row.user_id.length > 0,
-    )
-    .map((row) => ({
-      id: row.id,
-      user_id: row.user_id,
-      gv_id: row.gv_id,
-      name: row.name?.trim() || "Unknown card",
-      set_code: row.set_code?.trim() || "Unknown set",
-      number: row.number?.trim() || "—",
-      quantity: typeof row.quantity === 'number' ? row.quantity : 0,
-      condition_label: row.condition_label?.trim() || "Unknown",
-      image_url: getBestPublicCardImageUrl(row.image_url),
-    }));
+function chunkArray<T>(items: T[], chunkSize: number): T[][] {
+  const chunks: T[][] = [];
+  for (let index = 0; index < items.length; index += chunkSize) {
+    chunks.push(items.slice(index, index + chunkSize));
+  }
+  return chunks;
 }
 
-function normalizeRecentRows(
-  rows: RecentRow[] | null | undefined,
-  conditionById: Map<string, string>,
-): NormalizedRecentRow[] {
-  return (rows ?? [])
-    .filter((row): row is RecentRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
-    .map((row) => ({
+async function fetchAllActiveVaultInstanceRows(admin: ReturnType<typeof createServerAdminClient>): Promise<VaultAnalyticsRow[]> {
+  const rows: VaultAnalyticsRow[] = [];
+  let from = 0;
+  const pageSize = 1000;
+
+  while (true) {
+    const to = from + pageSize - 1;
+    const { data, error } = await admin
+      .from("vault_item_instances")
+      .select("id,user_id,card_print_id,slab_cert_id,condition_label,image_url,created_at")
+      .is("archived_at", null)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(from, to);
+
+    if (error) {
+      throw new Error(`Founder vault instance query failed: ${error.message}`);
+    }
+
+    if (!data || data.length === 0) {
+      break;
+    }
+
+    rows.push(...(data as VaultAnalyticsRow[]));
+
+    if (data.length < pageSize) {
+      break;
+    }
+
+    from += pageSize;
+  }
+
+  return rows;
+}
+
+async function fetchSlabCardPrintMap(
+  admin: ReturnType<typeof createServerAdminClient>,
+  slabCertIds: string[],
+): Promise<Map<string, string>> {
+  const out = new Map<string, string>();
+
+  for (const ids of chunkArray(slabCertIds, 500)) {
+    const { data, error } = await admin
+      .from("slab_certs")
+      .select("id,card_print_id")
+      .in("id", ids);
+
+    if (error) {
+      throw new Error(`Founder slab cert lookup failed: ${error.message}`);
+    }
+
+    for (const row of (data ?? []) as SlabCertLookupRow[]) {
+      if (row.id && row.card_print_id) {
+        out.set(row.id, row.card_print_id);
+      }
+    }
+  }
+
+  return out;
+}
+
+async function fetchCardPrintMetadataMap(
+  admin: ReturnType<typeof createServerAdminClient>,
+  cardPrintIds: string[],
+): Promise<Map<string, CardPrintMetadataRow>> {
+  const out = new Map<string, CardPrintMetadataRow>();
+
+  for (const ids of chunkArray(cardPrintIds, 500)) {
+    const { data, error } = await admin
+      .from("card_prints")
+      .select("id,gv_id,name,set_code,number,image_url,image_alt_url")
+      .in("id", ids);
+
+    if (error) {
+      throw new Error(`Founder card metadata lookup failed: ${error.message}`);
+    }
+
+    for (const row of (data ?? []) as CardPrintMetadataRow[]) {
+      if (row.id) {
+        out.set(row.id, row);
+      }
+    }
+  }
+
+  return out;
+}
+
+function normalizeVaultRows(
+  rows: VaultAnalyticsRow[],
+  slabCardPrintIdBySlabCertId: Map<string, string>,
+  cardPrintMetadataById: Map<string, CardPrintMetadataRow>,
+): NormalizedVaultRow[] {
+  const normalized: NormalizedVaultRow[] = [];
+
+  for (const row of rows) {
+    const effectiveCardPrintId =
+      row.card_print_id ??
+      (row.slab_cert_id ? slabCardPrintIdBySlabCertId.get(row.slab_cert_id) : undefined);
+    if (!row.user_id || !effectiveCardPrintId) {
+      continue;
+    }
+
+    const metadata = cardPrintMetadataById.get(effectiveCardPrintId);
+    const gvId = metadata?.gv_id?.trim();
+    if (!gvId) {
+      continue;
+    }
+
+    normalized.push({
       id: row.id,
-      user_id: row.user_id ?? undefined,
-      gv_id: row.gv_id,
-      name: row.name?.trim() || "Unknown card",
-      set_code: row.set_code?.trim() || "Unknown set",
-      number: row.number?.trim() || "—",
-      quantity: typeof row.quantity === "number" ? row.quantity : 0,
-      condition_label: conditionById.get(row.id) ?? "Unknown",
+      user_id: row.user_id,
+      gv_id: gvId,
+      card_print_id: effectiveCardPrintId,
+      name: metadata?.name?.trim() || "Unknown card",
+      set_code: metadata?.set_code?.trim() || "Unknown set",
+      number: metadata?.number?.trim() || "—",
+      quantity: 1,
+      condition_label: row.condition_label?.trim() || "Unknown",
       created_at: row.created_at,
-      image_url: getBestPublicCardImageUrl(row.image_url),
-    }));
+      image_url: getBestPublicCardImageUrl(row.image_url ?? metadata?.image_url, metadata?.image_alt_url),
+    });
+  }
+
+  return normalized;
 }
 
 function formatTimeAgo(value: string | null) {
@@ -521,33 +598,53 @@ export default async function FounderPage() {
   }
 
   const sevenDaysAgoIso = daysAgoDate(7).toISOString();
-  const [vaultResponse, recentResponse, conditionLookupResponse, telemetryResponse] = await Promise.all([
-    supabase
-      .from("v_vault_items_web")
-      .select("id,user_id,gv_id,name,set_code,number,quantity,condition_label,image_url")
-      .order("created_at", { ascending: false }),
-    supabase
-      .from("v_recently_added")
-      .select("id,user_id,gv_id,name,set_code,number,quantity,created_at,image_url")
-      .limit(20)
-      .order("created_at", { ascending: false }),
-    supabase.from("v_vault_items_web").select("id,condition_label"),
-    admin
-      .from("web_events")
-      .select("id,created_at,event_name,user_id,anonymous_id,path,gv_id,set_code,search_query,metadata")
-      .gte("created_at", sevenDaysAgoIso)
-      .order("created_at", { ascending: false }),
-  ]);
+  let vaultRows: NormalizedVaultRow[] = [];
+  let vaultAnalyticsError: string | null = null;
 
-  const vaultRows = normalizeVaultRows((vaultResponse.data ?? null) as VaultAnalyticsRow[] | null);
-  const conditionById = new Map(
-    (((conditionLookupResponse.data ?? null) as ConditionLookupRow[] | null) ?? []).map((row) => [
-      row.id,
-      row.condition_label?.trim() || "Unknown",
-    ]),
-  );
-  const recentRows = normalizeRecentRows((recentResponse.data ?? null) as RecentRow[] | null, conditionById);
-  const telemetryRows = ((telemetryResponse.data ?? null) as WebEventRow[] | null) ?? [];
+  try {
+    const activeInstanceRows = await fetchAllActiveVaultInstanceRows(admin);
+    const slabCardPrintIdBySlabCertId = await fetchSlabCardPrintMap(
+      admin,
+      Array.from(
+        new Set(
+          activeInstanceRows
+            .map((row) => row.slab_cert_id)
+            .filter((value): value is string => typeof value === "string" && value.length > 0),
+        ),
+      ),
+    );
+    const cardPrintMetadataById = await fetchCardPrintMetadataMap(
+      admin,
+      Array.from(
+        new Set(
+          activeInstanceRows
+            .map((row) => row.card_print_id ?? (row.slab_cert_id ? slabCardPrintIdBySlabCertId.get(row.slab_cert_id) : null))
+            .filter((value): value is string => typeof value === "string" && value.length > 0),
+        ),
+      ),
+    );
+
+    vaultRows = normalizeVaultRows(activeInstanceRows, slabCardPrintIdBySlabCertId, cardPrintMetadataById);
+  } catch (error) {
+    vaultAnalyticsError = error instanceof Error ? error.message : "Unknown founder analytics error";
+  }
+
+  const { data: telemetryData, error: telemetryError } = await admin
+    .from("web_events")
+    .select("id,created_at,event_name,user_id,anonymous_id,path,gv_id,set_code,search_query,metadata")
+    .gte("created_at", sevenDaysAgoIso)
+    .order("created_at", { ascending: false });
+
+  const recentRows = [...vaultRows]
+    .sort((left, right) => {
+      const leftTs = left.created_at ? Date.parse(left.created_at) : Number.NaN;
+      const rightTs = right.created_at ? Date.parse(right.created_at) : Number.NaN;
+      const safeLeft = Number.isFinite(leftTs) ? leftTs : Number.NEGATIVE_INFINITY;
+      const safeRight = Number.isFinite(rightTs) ? rightTs : Number.NEGATIVE_INFINITY;
+      return safeRight - safeLeft;
+    })
+    .slice(0, 20);
+  const telemetryRows = ((telemetryData ?? null) as WebEventRow[] | null) ?? [];
 
   const distinctUsers = new Set(vaultRows.map((row) => row.user_id)).size;
   const distinctCards = new Set(vaultRows.map((row) => row.gv_id)).size;
@@ -594,8 +691,8 @@ export default async function FounderPage() {
         </div>
       </section>
 
-      {telemetryResponse.error ? (
-        <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryResponse.error.message}`} />
+      {telemetryError ? (
+        <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryError.message}`} />
       ) : null}
 
       <section className="space-y-4">
@@ -692,14 +789,14 @@ export default async function FounderPage() {
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Total Vault Rows" value={vaultRows.length} detail="Rows read from v_vault_items_web" />
+        <MetricCard label="Active Vault Instances" value={vaultRows.length} detail="Active owned objects read from vault_item_instances" />
         <MetricCard label="Distinct Vault Users" value={distinctUsers} detail="Collectors with vault activity" />
         <MetricCard label="Distinct GV-IDs" value={distinctCards} detail="Unique canonical cards in vault ownership" />
-        <MetricCard label="Total Quantity" value={totalQuantity} detail="Sum of quantity across all vault rows" />
+        <MetricCard label="Total Active Instances" value={totalQuantity} detail="Count of active owned objects across all canonical vault instances" />
       </section>
 
-      {vaultResponse.error ? (
-        <EmptyPanel message={`Vault analytics could not be loaded right now: ${vaultResponse.error.message}`} />
+      {vaultAnalyticsError ? (
+        <EmptyPanel message={`Vault analytics could not be loaded right now: ${vaultAnalyticsError}`} />
       ) : (
         <>
           {vaultRows.length === 0 ? (
@@ -713,13 +810,13 @@ export default async function FounderPage() {
           <section className="space-y-5">
             <div className="flex items-end justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Top Cards By Owned Quantity</h2>
-                <p className="text-sm text-slate-600">Aggregated by GV-ID using quantity and distinct owner count.</p>
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Top Cards By Active Instances</h2>
+                <p className="text-sm text-slate-600">Aggregated by GV-ID using canonical active instance count and distinct owner count.</p>
               </div>
             </div>
 
             {topCardsByQty.length === 0 ? (
-              <EmptyPanel message="No vault card quantity data is available yet." />
+              <EmptyPanel message="No canonical vault instance data is available yet." />
             ) : (
               <div className="space-y-4">
                 {topCardsByQty.map((item) => (
@@ -744,7 +841,7 @@ export default async function FounderPage() {
                     </div>
                     <dl className="grid grid-cols-2 gap-3 text-sm text-slate-700 sm:min-w-[240px]">
                       <div className="rounded-2xl bg-slate-50 px-3 py-2">
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Total Qty</dt>
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Instances</dt>
                         <dd className="mt-1 font-medium text-slate-900">{item.total_qty}</dd>
                       </div>
                       <div className="rounded-2xl bg-slate-50 px-3 py-2">
@@ -762,7 +859,7 @@ export default async function FounderPage() {
             <div className="space-y-5">
               <div>
                 <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Top Sets By Vault Presence</h2>
-                <p className="text-sm text-slate-600">Grouped by set code from the vault ownership view.</p>
+                <p className="text-sm text-slate-600">Grouped by set code from canonical active vault instances.</p>
               </div>
 
               {topSets.length === 0 ? (
@@ -789,7 +886,7 @@ export default async function FounderPage() {
                             <p className="mt-1 font-medium text-slate-900">{setRow.distinct_cards}</p>
                           </div>
                           <div className="rounded-2xl bg-slate-50 px-3 py-2">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Qty</p>
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Instances</p>
                             <p className="mt-1 font-medium text-slate-900">{setRow.total_qty}</p>
                           </div>
                         </div>
@@ -832,7 +929,7 @@ export default async function FounderPage() {
                       </div>
                       <div className="text-right text-sm text-slate-700">
                         <p className="font-medium text-slate-900">{item.distinct_owners} owners</p>
-                        <p className="text-slate-600">{item.total_qty} total qty</p>
+                        <p className="text-slate-600">{item.total_qty} active instances</p>
                       </div>
                     </Link>
                   ))}
@@ -844,12 +941,10 @@ export default async function FounderPage() {
           <section className="space-y-5">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Recent Vault Activity</h2>
-              <p className="text-sm text-slate-600">Latest additions from v_recently_added with condition resolved from the vault web view.</p>
+              <p className="text-sm text-slate-600">Latest active owned objects from canonical vault instances.</p>
             </div>
 
-            {recentResponse.error ? (
-              <EmptyPanel message={`Recent vault activity could not be loaded right now: ${recentResponse.error.message}`} />
-            ) : recentRows.length === 0 ? (
+            {recentRows.length === 0 ? (
               <EmptyPanel message="No recent vault activity yet. Founder analytics will populate as collectors add cards." />
             ) : (
               <div className="space-y-3">
@@ -879,7 +974,7 @@ export default async function FounderPage() {
                         <dd className="mt-1 font-medium text-slate-900">{formatTimeAgo(item.created_at)}</dd>
                       </div>
                       <div className="rounded-2xl bg-slate-50 px-3 py-2">
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Qty</dt>
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Instances</dt>
                         <dd className="mt-1 font-medium text-slate-900">{item.quantity}</dd>
                       </div>
                       <div className="col-span-2 rounded-2xl bg-slate-50 px-3 py-2">

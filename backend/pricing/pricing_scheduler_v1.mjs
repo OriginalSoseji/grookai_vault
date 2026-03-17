@@ -75,10 +75,10 @@ function parseTimestamp(value) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function determineFreshnessTier({ listingCount, vaultQty, grookaiValueNm }) {
+function determineFreshnessTier({ listingCount, activeInstanceCount, grookaiValueNm }) {
   if (
     (listingCount > 0 && listingCount <= HOT_LISTING_THRESHOLD) ||
-    vaultQty >= HOT_VAULT_THRESHOLD ||
+    activeInstanceCount >= HOT_VAULT_THRESHOLD ||
     (grookaiValueNm !== null && grookaiValueNm >= HOT_VALUE_THRESHOLD)
   ) {
     return { tier: 'hot', ttlMs: 6 * HOUR_MS };
@@ -86,13 +86,13 @@ function determineFreshnessTier({ listingCount, vaultQty, grookaiValueNm }) {
 
   if (
     (listingCount > HOT_LISTING_THRESHOLD && listingCount <= NORMAL_LISTING_THRESHOLD) ||
-    vaultQty >= NORMAL_VAULT_THRESHOLD ||
+    activeInstanceCount >= NORMAL_VAULT_THRESHOLD ||
     (grookaiValueNm !== null && grookaiValueNm >= NORMAL_VALUE_THRESHOLD)
   ) {
     return { tier: 'normal', ttlMs: 24 * HOUR_MS };
   }
 
-  if (listingCount > NORMAL_LISTING_THRESHOLD || vaultQty > 0 || grookaiValueNm !== null) {
+  if (listingCount > NORMAL_LISTING_THRESHOLD || activeInstanceCount > 0 || grookaiValueNm !== null) {
     return { tier: 'long_tail', ttlMs: 72 * HOUR_MS };
   }
 
@@ -193,43 +193,109 @@ async function fetchListingCountMap(supabase, cardPrintIds) {
   return out;
 }
 
-async function fetchVaultQtyMap(supabase, cardPrintIds) {
+async function fetchActiveInstanceCountMap(supabase, cardPrintIds) {
   const out = new Map();
   const chunks = chunkArray(cardPrintIds, CARD_ID_CHUNK_SIZE);
   for (const [chunkIndex, ids] of chunks.entries()) {
-    logChunkQuery('fetchVaultQtyMap', chunkIndex, chunks.length, ids);
+    logChunkQuery('fetchActiveInstanceCountMap', chunkIndex, chunks.length, ids);
 
-    let data;
-    let error;
+    let rawInstanceRows;
+    let rawInstanceError;
     try {
-      ({ data, error } = await supabase
-        .from('vault_items')
-        .select('card_id,qty')
+      ({ data: rawInstanceRows, error: rawInstanceError } = await supabase
+        .from('vault_item_instances')
+        .select('card_print_id')
         .is('archived_at', null)
-        .in('card_id', ids));
+        .in('card_print_id', ids));
     } catch (err) {
       throw new Error(
-        `fetchVaultQtyMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+        `fetchActiveInstanceCountMap raw chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
       );
     }
 
-    if (error) {
-      throw new Error(`fetchVaultQtyMap chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${error.message}`);
+    if (rawInstanceError) {
+      throw new Error(
+        `fetchActiveInstanceCountMap raw chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${rawInstanceError.message}`,
+      );
     }
 
-    for (const row of data ?? []) {
-      if (!row.card_id) {
+    for (const row of rawInstanceRows ?? []) {
+      if (!row.card_print_id) {
         continue;
       }
-      const current = out.get(row.card_id) ?? 0;
-      out.set(row.card_id, current + (Number(row.qty) || 0));
+      out.set(row.card_print_id, (out.get(row.card_print_id) ?? 0) + 1);
+    }
+
+    let slabCertRows;
+    let slabCertError;
+    try {
+      ({ data: slabCertRows, error: slabCertError } = await supabase
+        .from('slab_certs')
+        .select('id,card_print_id')
+        .in('card_print_id', ids));
+    } catch (err) {
+      throw new Error(
+        `fetchActiveInstanceCountMap slab-cert chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
+
+    if (slabCertError) {
+      throw new Error(
+        `fetchActiveInstanceCountMap slab-cert chunk ${chunkIndex + 1}/${chunks.length} failed (chunk_size=${ids.length}): ${slabCertError.message}`,
+      );
+    }
+
+    const slabCertIdToCardPrintId = new Map();
+    for (const row of slabCertRows ?? []) {
+      if (row.id && row.card_print_id) {
+        slabCertIdToCardPrintId.set(row.id, row.card_print_id);
+      }
+    }
+
+    const slabCertIds = Array.from(slabCertIdToCardPrintId.keys());
+    if (slabCertIds.length === 0) {
+      continue;
+    }
+
+    const slabChunks = chunkArray(slabCertIds, CARD_ID_CHUNK_SIZE);
+    for (const [slabChunkIndex, slabIds] of slabChunks.entries()) {
+      let slabInstanceRows;
+      let slabInstanceError;
+      try {
+        ({ data: slabInstanceRows, error: slabInstanceError } = await supabase
+          .from('vault_item_instances')
+          .select('slab_cert_id')
+          .is('archived_at', null)
+          .in('slab_cert_id', slabIds));
+      } catch (err) {
+        throw new Error(
+          `fetchActiveInstanceCountMap slab-instance chunk ${chunkIndex + 1}.${slabChunkIndex + 1} failed (chunk_size=${slabIds.length}): ${err instanceof Error ? err.message : String(err)}`,
+        );
+      }
+
+      if (slabInstanceError) {
+        throw new Error(
+          `fetchActiveInstanceCountMap slab-instance chunk ${chunkIndex + 1}.${slabChunkIndex + 1} failed (chunk_size=${slabIds.length}): ${slabInstanceError.message}`,
+        );
+      }
+
+      for (const row of slabInstanceRows ?? []) {
+        if (!row.slab_cert_id) {
+          continue;
+        }
+        const cardPrintId = slabCertIdToCardPrintId.get(row.slab_cert_id);
+        if (!cardPrintId) {
+          continue;
+        }
+        out.set(cardPrintId, (out.get(cardPrintId) ?? 0) + 1);
+      }
     }
   }
 
   return out;
 }
 
-function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountByCardId, vaultQtyByCardId) {
+function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountByCardId, activeInstanceCountByCardId) {
   const now = Date.now();
   const eligible = [];
 
@@ -238,13 +304,13 @@ function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountB
     const listingCount = listingCountByCardId.get(cardPrintId) ?? 0;
     const compatibilityPrice = grookaiValueByCardId.get(cardPrintId) ?? null;
     const grookaiValueNm = compatibilityPrice?.baseMarket ?? null;
-    const vaultQty = vaultQtyByCardId.get(cardPrintId) ?? 0;
+    const activeInstanceCount = activeInstanceCountByCardId.get(cardPrintId) ?? 0;
     const updatedAtMs =
       parseTimestamp(compatibilityPrice?.baseTs ?? null) ??
       parseTimestamp(row.updatedAt);
     const freshness = determineFreshnessTier({
       listingCount,
-      vaultQty,
+      activeInstanceCount,
       grookaiValueNm,
     });
     const ageMs = updatedAtMs === null ? Number.POSITIVE_INFINITY : Math.max(0, now - updatedAtMs);
@@ -255,7 +321,7 @@ function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountB
 
     eligible.push({
       cardPrintId,
-      vaultQty,
+      activeInstanceCount,
       grookaiValueNm,
       listingCount,
       updatedAt: row.updatedAt,
@@ -266,8 +332,8 @@ function buildEligibleCandidates(activeRows, grookaiValueByCardId, listingCountB
   }
 
   eligible.sort((a, b) => {
-    if (a.vaultQty !== b.vaultQty) {
-      return b.vaultQty - a.vaultQty;
+    if (a.activeInstanceCount !== b.activeInstanceCount) {
+      return b.activeInstanceCount - a.activeInstanceCount;
     }
 
     const aValue = a.grookaiValueNm ?? Number.NEGATIVE_INFINITY;
@@ -413,10 +479,10 @@ async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
   const coarseCandidateIds = coarseCandidates
     .map((row) => row.cardPrintId)
     .filter(Boolean);
-  const [grookaiValueByCardId, listingCountByCardId, vaultQtyByCardId, openJobs, latestRequestedAtByCardId] = await Promise.all([
+  const [grookaiValueByCardId, listingCountByCardId, activeInstanceCountByCardId, openJobs, latestRequestedAtByCardId] = await Promise.all([
     fetchGrookaiValueMap(supabase, coarseCandidateIds),
     fetchListingCountMap(supabase, coarseCandidateIds),
-    fetchVaultQtyMap(supabase, coarseCandidateIds),
+    fetchActiveInstanceCountMap(supabase, coarseCandidateIds),
     fetchOpenJobSet(supabase, coarseCandidateIds),
     fetchLatestRequestMap(supabase, coarseCandidateIds),
   ]);
@@ -425,7 +491,7 @@ async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
     coarseCandidates,
     grookaiValueByCardId,
     listingCountByCardId,
-    vaultQtyByCardId,
+    activeInstanceCountByCardId,
   );
   const { queuedIds, skippedOpenJob, skippedCooldown } = await enqueueScheduledJobs(
     supabase,

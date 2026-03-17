@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import CardZoomModal from "@/components/compare/CardZoomModal";
+import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PrintingSelector from "@/components/cards/PrintingSelector";
@@ -20,9 +21,14 @@ import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCard
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
+import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
+import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
+import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
+import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
+import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 
 type MetadataItem = {
   label: string;
@@ -202,17 +208,41 @@ export default async function CardPage({
   }
 
   const user = authData.user;
-  const { data: activeVaultRow } =
-    user && resolvedCard.id
-      ? await supabase
-          .from("vault_items")
-          .select("qty")
-          .eq("user_id", user.id)
-          .eq("card_id", resolvedCard.id)
-          .is("archived_at", null)
-          .maybeSingle()
-      : { data: null };
-  const vaultCount = typeof activeVaultRow?.qty === "number" ? activeVaultRow.qty : 0;
+  let vaultCount = 0;
+  let conditionSnapshots: ConditionSnapshotListItem[] = [];
+  let assignmentCandidatesBySnapshotId: Record<string, AssignmentCandidate[]> = {};
+
+  if (user && resolvedCard.id) {
+    try {
+      const [ownedCounts, snapshots] = await Promise.all([
+        getOwnedCountsByCardPrintIds(user.id, [resolvedCard.id]),
+        getConditionSnapshotsForCard(user.id, resolvedCard.id),
+      ]);
+      vaultCount = ownedCounts.get(resolvedCard.id) ?? 0;
+      conditionSnapshots = snapshots;
+
+      const unassignedSnapshots = snapshots.filter((snapshot) => snapshot.assignment_state === "unassigned");
+      if (unassignedSnapshots.length > 0) {
+        const candidateEntries = await Promise.all(
+          unassignedSnapshots.map(async (snapshot) => [
+            snapshot.id,
+            await getAssignmentCandidatesForSnapshot(user.id, snapshot.id, resolvedCard.id),
+          ] as const),
+        );
+
+        assignmentCandidatesBySnapshotId = Object.fromEntries(candidateEntries);
+      }
+    } catch (error) {
+      console.error("[vault:read] card-page ownership or condition read failed", {
+        userId: user.id,
+        cardPrintId: resolvedCard.id,
+        error,
+      });
+      vaultCount = 0;
+      conditionSnapshots = [];
+      assignmentCandidatesBySnapshotId = {};
+    }
+  }
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
   const setLogoPath = resolvedCard.set_code
@@ -361,6 +391,14 @@ export default async function CardPage({
               </div>
             </div>
           </section>
+
+          {user ? (
+            <ConditionSnapshotSection
+              snapshots={conditionSnapshots}
+              candidatesBySnapshotId={assignmentCandidatesBySnapshotId}
+              cardPrintId={resolvedCard.id}
+            />
+          ) : null}
 
           {metadata.length > 0 && (
             <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">

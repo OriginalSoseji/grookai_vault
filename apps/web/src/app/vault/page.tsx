@@ -9,6 +9,8 @@ import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
+import { getSingleActiveGvviByCardPrintIds } from "@/lib/vault/getSingleActiveGvviByCardPrintIds";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -23,7 +25,6 @@ type VaultItemRow = {
   set_name: string | null;
   number: string | null;
   condition_label: string | null;
-  quantity: number | null;
   effective_price: number | null;
   image_url: string | null;
   created_at: string | null;
@@ -64,6 +65,8 @@ type RecentItemRow = {
 
 function normalizeVaultItems(
   rows: VaultItemRow[] | null | undefined,
+  ownedCountsByCardId: Map<string, number>,
+  singleActiveGvviByCardId: Map<string, string>,
   sharedCardIds: Set<string>,
   sharedGvIds: Set<string>,
   sharedNotesByCardId: Map<string, string | null>,
@@ -81,10 +84,18 @@ function normalizeVaultItems(
       const noteFromCardId =
         typeof row.card_id === "string" && row.card_id.length > 0 ? (sharedNotesByCardId.get(row.card_id) ?? null) : null;
       const vaultItemId = row.vault_item_id ?? row.id;
+      const canonicalOwnedCount =
+        typeof row.card_id === "string" && row.card_id.length > 0
+          ? ownedCountsByCardId.get(row.card_id) ?? 0
+          : 0;
 
       return {
         id: row.id,
         vault_item_id: vaultItemId,
+        gv_vi_id:
+          typeof row.card_id === "string" && row.card_id.length > 0
+            ? singleActiveGvviByCardId.get(row.card_id) ?? null
+            : null,
         card_id: row.card_id ?? "",
         gv_id: row.gv_id,
         name: row.name?.trim() || "Unknown card",
@@ -92,7 +103,7 @@ function normalizeVaultItems(
         set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
         number: row.number?.trim() || "—",
         condition_label: row.condition_label?.trim() || "Unknown",
-        quantity: typeof row.quantity === "number" ? row.quantity : 0,
+        owned_count: canonicalOwnedCount,
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
         image_url: getBestPublicCardImageUrl(row.image_url),
         created_at: row.created_at,
@@ -169,7 +180,7 @@ export default async function VaultPage() {
   ] = await Promise.all([
     supabase
       .from("v_vault_items_web")
-      .select("id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,quantity,effective_price,image_url,created_at")
+      .select("id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,effective_price,image_url,created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false }),
     supabase
@@ -185,6 +196,28 @@ export default async function VaultPage() {
     supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", user.id).maybeSingle(),
     supabase.from("user_card_images").select("vault_item_id,side").eq("user_id", user.id),
   ]);
+
+  const itemRows = (itemsData ?? null) as VaultItemRow[] | null;
+  const cardPrintIds = (itemRows ?? [])
+    .map((row) => (typeof row.card_id === "string" ? row.card_id.trim() : ""))
+    .filter((cardId): cardId is string => cardId.length > 0);
+
+  let ownedCountsByCardId = new Map<string, number>();
+  let singleActiveGvviByCardId = new Map<string, string>();
+  if (cardPrintIds.length > 0) {
+    try {
+      [ownedCountsByCardId, singleActiveGvviByCardId] = await Promise.all([
+        getOwnedCountsByCardPrintIds(user.id, cardPrintIds),
+        getSingleActiveGvviByCardPrintIds(user.id, cardPrintIds),
+      ]);
+    } catch (error) {
+      console.error("[vault:read] vault-page canonical counts failed", {
+        userId: user.id,
+        cardPrintIds,
+        error,
+      });
+    }
+  }
 
   const sharedRows = (sharedData ?? []) as SharedCardRow[];
   const sharedCardIds = new Set(
@@ -250,7 +283,9 @@ export default async function VaultPage() {
   );
 
   const items = normalizeVaultItems(
-    (itemsData ?? null) as VaultItemRow[] | null,
+    itemRows,
+    ownedCountsByCardId,
+    singleActiveGvviByCardId,
     sharedCardIds,
     sharedGvIds,
     sharedNotesByCardId,

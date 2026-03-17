@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class VaultCardIdentity {
@@ -59,6 +60,51 @@ class VaultCardService {
     return identity;
   }
 
+  static Future<Map<String, int>> getOwnedCountsByCardPrintIds({
+    required SupabaseClient client,
+    required List<String> cardPrintIds,
+  }) async {
+    final normalizedIds = cardPrintIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList();
+
+    if (normalizedIds.isEmpty) {
+      return const <String, int>{};
+    }
+
+    final response = await client.rpc(
+      'vault_owned_counts_v1',
+      params: {'p_card_print_ids': normalizedIds},
+    );
+
+    final counts = <String, int>{};
+    if (response is! List) {
+      return counts;
+    }
+
+    for (final row in response) {
+      if (row is! Map<String, dynamic>) {
+        continue;
+      }
+
+      final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
+      final ownedCountRaw = row['owned_count'];
+      final ownedCount = ownedCountRaw is num
+          ? ownedCountRaw.toInt()
+          : int.tryParse(ownedCountRaw?.toString() ?? '');
+
+      if (cardPrintId.isEmpty || ownedCount == null) {
+        continue;
+      }
+
+      counts[cardPrintId] = ownedCount;
+    }
+
+    return counts;
+  }
+
   static Future<String> addOrIncrementVaultItem({
     required SupabaseClient client,
     required String userId,
@@ -70,52 +116,55 @@ class VaultCardService {
     String? fallbackSetName,
     String? fallbackImageUrl,
   }) async {
-    final identity = await resolveCanonicalCard(client: client, cardId: cardId);
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
+    debugPrint('vault.mobile.add.begin: $cardId');
 
-    final existing = await client
-        .from('vault_items')
-        .select('id,qty,condition_label')
-        .eq('user_id', userId)
-        .eq('gv_id', identity.gvId)
-        .maybeSingle();
+    final result = await client.rpc(
+      'vault_add_card_instance_v1',
+      params: {
+        'p_card_print_id': cardId,
+        'p_quantity': qtyDelta,
+        'p_condition_label': conditionLabel,
+        'p_notes': notes,
+        'p_name': fallbackName,
+        'p_set_name': fallbackSetName,
+        'p_photo_url': fallbackImageUrl,
+      },
+    );
 
-    if (existing != null) {
-      final row = Map<String, dynamic>.from(existing);
-      final currentQty = (row['qty'] as num?)?.toInt() ?? 0;
-      final payload = <String, dynamic>{
-        'qty': currentQty + qtyDelta,
-        'gv_id': identity.gvId,
-        'card_id': identity.cardId,
-      };
-      await client.from('vault_items').update(payload).eq('id', row['id']);
-      return (row['id'] ?? '').toString();
+    if (result is Map<String, dynamic>) {
+      final gvviId = (result['gv_vi_id'] ?? '').toString();
+      if (gvviId.isNotEmpty) {
+        return gvviId;
+      }
     }
 
-    final payload = <String, dynamic>{
-      'user_id': userId,
-      'gv_id': identity.gvId,
-      'card_id': identity.cardId,
-      'name': identity.name.isNotEmpty
-          ? identity.name
-          : (fallbackName ?? 'Card'),
-      'set_name': identity.setName.isNotEmpty
-          ? identity.setName
-          : (fallbackSetName ?? ''),
-      'photo_url': identity.imageUrl ?? fallbackImageUrl,
-      'qty': qtyDelta,
-      'condition_label': conditionLabel,
-    };
+    return '';
+  }
 
-    if (notes != null && notes.isNotEmpty) {
-      payload['notes'] = notes;
-    }
+  static Future<void> archiveOneVaultItem({
+    required SupabaseClient client,
+    required String userId,
+    required String vaultItemId,
+    required String cardId,
+  }) async {
+    debugPrint('vault.mobile.archive.begin: $cardId');
+    await client.rpc(
+      'vault_archive_one_instance_v1',
+      params: {'p_vault_item_id': vaultItemId, 'p_card_print_id': cardId},
+    );
+  }
 
-    final inserted = await client
-        .from('vault_items')
-        .insert(payload)
-        .select('id')
-        .single();
-    return (inserted['id'] ?? '').toString();
+  static Future<void> archiveAllVaultItems({
+    required SupabaseClient client,
+    required String userId,
+    required String vaultItemId,
+    required String cardId,
+  }) async {
+    debugPrint('vault.mobile.archive.begin: $cardId');
+    await client.rpc(
+      'vault_archive_all_instances_v1',
+      params: {'p_vault_item_id': vaultItemId, 'p_card_print_id': cardId},
+    );
   }
 }

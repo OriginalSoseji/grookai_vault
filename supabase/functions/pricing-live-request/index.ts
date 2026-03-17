@@ -39,13 +39,13 @@ type CompatibilityPriceRow = {
   base_ts: string | null;
 };
 
-type VaultQtyRow = {
-  qty: number | null;
-};
-
 type PricingJobRow = {
   id: string | null;
   requested_at: string | null;
+};
+
+type SlabCertRow = {
+  id: string | null;
 };
 
 type FreshnessTier = "hot" | "normal" | "long_tail" | "cold_catalog";
@@ -176,7 +176,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   const client = createClient(supabaseUrl, serviceRole);
 
-  const [activePriceResult, compatibilityPriceResult, vaultItemsResult] = await Promise.all([
+  const [activePriceResult, compatibilityPriceResult, rawInstanceCountResult, slabCertResult] = await Promise.all([
     client
       .from("ebay_active_prices_latest")
       .select("card_print_id,listing_count,updated_at,last_snapshot_at")
@@ -188,10 +188,14 @@ const handler = async (req: Request): Promise<Response> => {
       .eq("card_id", cardPrintId)
       .maybeSingle(),
     client
-      .from("vault_items")
-      .select("qty")
-      .eq("card_id", cardPrintId)
+      .from("vault_item_instances")
+      .select("id", { count: "exact", head: true })
+      .eq("card_print_id", cardPrintId)
       .is("archived_at", null),
+    client
+      .from("slab_certs")
+      .select("id")
+      .eq("card_print_id", cardPrintId),
   ]);
 
   if (activePriceResult.error) {
@@ -222,24 +226,62 @@ const handler = async (req: Request): Promise<Response> => {
     return json(500, { error: "compatibility_lookup_failed", detail: "Failed to read pricing compatibility state" });
   }
 
-  if (vaultItemsResult.error) {
+  if (rawInstanceCountResult.error) {
     console.log(
       JSON.stringify({
         route: "pricing-live-request",
         request_id: requestId,
         user_id: userId,
         card_print_id: cardPrintId,
-        outcome: "vault_lookup_failed",
-        detail: vaultItemsResult.error.message,
+        outcome: "instance_count_lookup_failed",
+        detail: rawInstanceCountResult.error.message,
       }),
     );
-    return json(500, { error: "vault_lookup_failed", detail: "Failed to read vault activity state" });
+    return json(500, { error: "instance_count_lookup_failed", detail: "Failed to read canonical ownership activity state" });
+  }
+
+  if (slabCertResult.error) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "slab_cert_lookup_failed",
+        detail: slabCertResult.error.message,
+      }),
+    );
+    return json(500, { error: "slab_cert_lookup_failed", detail: "Failed to read slab ownership compatibility state" });
+  }
+
+  const slabCertIds = ((slabCertResult.data ?? []) as SlabCertRow[])
+    .map((row) => row.id)
+    .filter((value): value is string => typeof value === "string" && value.length > 0);
+  const slabInstanceCountResult = slabCertIds.length > 0
+    ? await client
+        .from("vault_item_instances")
+        .select("id", { count: "exact", head: true })
+        .in("slab_cert_id", slabCertIds)
+        .is("archived_at", null)
+    : { count: 0, error: null };
+
+  if (slabInstanceCountResult.error) {
+    console.log(
+      JSON.stringify({
+        route: "pricing-live-request",
+        request_id: requestId,
+        user_id: userId,
+        card_print_id: cardPrintId,
+        outcome: "instance_count_lookup_failed",
+        detail: slabInstanceCountResult.error.message,
+      }),
+    );
+    return json(500, { error: "instance_count_lookup_failed", detail: "Failed to read canonical ownership activity state" });
   }
 
   const activePrice = activePriceResult.data as ActivePriceRow | null;
   const compatibilityPrice = compatibilityPriceResult.data as CompatibilityPriceRow | null;
-  const vaultQtyRows = (vaultItemsResult.data ?? []) as VaultQtyRow[];
-  const vaultCount = vaultQtyRows.reduce((total, row) => total + (typeof row.qty === "number" ? row.qty : 0), 0);
+  const vaultCount = (rawInstanceCountResult.count ?? 0) + (slabInstanceCountResult.count ?? 0);
   const listingCount = typeof activePrice?.listing_count === "number" ? activePrice.listing_count : 0;
   const grookaiValueNm = typeof compatibilityPrice?.base_market === "number" ? compatibilityPrice.base_market : null;
   const freshnessTs =
