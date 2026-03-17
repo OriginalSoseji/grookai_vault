@@ -34,6 +34,22 @@ type ActiveVaultInstanceRow = {
   card_print_id: string | null;
 };
 
+type LegacyVaultBucketRow = {
+  id: string;
+  card_id: string | null;
+  gv_id: string | null;
+  qty: number | null;
+  condition_label?: string | null;
+  name?: string | null;
+  set_name?: string | null;
+  photo_url?: string | null;
+};
+
+type VaultInstanceCreateRow = {
+  id: string;
+  gv_vi_id: string | null;
+};
+
 function formatVaultQuantityError(step: string, error: PostgrestError) {
   const parts = [
     `[${step}]`,
@@ -159,13 +175,47 @@ async function mirrorArchiveVaultItem(
   };
 }
 
+async function createVaultInstanceForIncrement(
+  change: VaultQuantityChange,
+  row: LegacyVaultBucketRow,
+): Promise<VaultInstanceCreateRow> {
+  const cardPrintId = row.card_id?.trim() ?? "";
+  if (!cardPrintId) {
+    throw new Error("GVVI create failed: missing cardPrintId on legacy vault bucket.");
+  }
+
+  const adminClient = createServerAdminClient();
+  const rpcArgs = {
+    p_user_id: change.userId,
+    p_card_print_id: cardPrintId,
+    p_condition_label: row.condition_label?.trim() || null,
+    p_name: row.name?.trim() || null,
+    p_set_name: row.set_name?.trim() || null,
+    p_photo_url: row.photo_url ?? null,
+  };
+
+  const { data, error } = await adminClient.rpc("admin_vault_instance_create_v1", rpcArgs);
+
+  if (error) {
+    throw new Error(formatVaultQuantityError("vault_item_instances.create-for-increment", error));
+  }
+
+  const createdInstance = Array.isArray(data) ? data[0] : data;
+  const createdRow = (createdInstance ?? null) as VaultInstanceCreateRow | null;
+  if (!createdRow?.id) {
+    throw new Error("GVVI create failed: increment RPC returned no instance row.");
+  }
+
+  return createdRow;
+}
+
 export async function updateVaultItemQuantity(change: VaultQuantityChange): Promise<UpdateVaultItemQuantityResult> {
   const actionLabel = change.type === "increment" ? "increment" : "decrement";
   const delta = change.type === "increment" ? 1 : -1;
 
   const { data: row, error: readError } = await change.client
     .from("vault_items")
-    .select("id,card_id,gv_id,qty")
+    .select("id,card_id,gv_id,qty,condition_label,name,set_name,photo_url")
     .eq("id", change.itemId)
     .eq("user_id", change.userId)
     .is("archived_at", null)
@@ -188,19 +238,27 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
     };
   }
 
-  const currentQty = typeof row.qty === "number" ? row.qty : 0;
+  const currentRow = (row ?? null) as LegacyVaultBucketRow | null;
+  if (!currentRow) {
+    return {
+      status: "removed",
+      itemId: change.itemId,
+    };
+  }
+
+  const currentQty = typeof currentRow.qty === "number" ? currentRow.qty : 0;
   const newQty = Math.max(0, currentQty + delta);
 
   if (change.type === "decrement") {
-    if (!row.card_id) {
+    if (!currentRow.card_id) {
       throw new Error("GVVI archive failed: missing cardPrintId on legacy vault bucket.");
     }
 
-    await archiveVaultInstance(change, row.card_id);
+    await archiveVaultInstance(change, currentRow.card_id);
 
     try {
       if (newQty <= 0) {
-        return await mirrorArchiveVaultItem(change, row);
+        return await mirrorArchiveVaultItem(change, currentRow);
       }
 
       const { error: mirrorError } = await change.client
@@ -217,7 +275,7 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
       console.info("[vault:qty]", {
         user_id: change.userId,
         item_id: change.itemId,
-        gv_id: row.gv_id,
+        gv_id: currentRow.gv_id,
         action: actionLabel,
         quantity: newQty,
       });
@@ -225,7 +283,7 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
       console.error("vault.archive.bucket_mirror_failed", {
         userId: change.userId,
         gvviId: null,
-        cardPrintId: row.card_id,
+        cardPrintId: currentRow.card_id,
         error: mirrorError,
       });
     }
@@ -244,23 +302,35 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
     };
   }
 
-  const { error: updateError } = await change.client
-    .from("vault_items")
-    .update({ qty: newQty })
-    .eq("id", change.itemId)
-    .eq("user_id", change.userId)
-    .is("archived_at", null);
+  const createdInstance = await createVaultInstanceForIncrement(change, currentRow);
 
-  if (updateError) {
-    throw new Error(formatVaultQuantityError("vault_items.update-quantity", updateError));
+  try {
+    const { error: updateError } = await change.client
+      .from("vault_items")
+      .update({ qty: newQty })
+      .eq("id", change.itemId)
+      .eq("user_id", change.userId)
+      .is("archived_at", null);
+
+    if (updateError) {
+      throw updateError;
+    }
+  } catch (mirrorError) {
+    console.error("vault.increment.bucket_mirror_failed", {
+      userId: change.userId,
+      gvviId: createdInstance.gv_vi_id ?? null,
+      cardPrintId: currentRow.card_id ?? null,
+      error: mirrorError,
+    });
   }
 
   console.info("[vault:qty]", {
     user_id: change.userId,
     item_id: change.itemId,
-    gv_id: row.gv_id,
+    gv_id: currentRow.gv_id,
     action: actionLabel,
     quantity: newQty,
+    gv_vi_id: createdInstance.gv_vi_id ?? null,
   });
 
   return {

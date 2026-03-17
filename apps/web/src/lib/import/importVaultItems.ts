@@ -5,6 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/normalizeRow";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import type { ImportVaultItemsResult, MatchResult } from "@/types/import";
 
 type MatchImportMeta = {
@@ -42,14 +43,6 @@ type ImportVaultItemsExecutionParams = {
   userId: string;
   rows: MatchResult[];
 };
-
-function chunkArray<T>(items: T[], size: number) {
-  const chunks: T[][] = [];
-  for (let index = 0; index < items.length; index += size) {
-    chunks.push(items.slice(index, index + size));
-  }
-  return chunks;
-}
 
 function coerceCondition(value: string): ImportCondition {
   return IMPORT_CONDITION_OPTIONS.includes(value as ImportCondition) ? (value as ImportCondition) : "NM";
@@ -97,27 +90,8 @@ function mergeImportRows(rows: MatchResult[]): AggregatedImportRow[] {
   return Array.from(merged.values()).sort((left, right) => left.gvId.localeCompare(right.gvId));
 }
 
-async function fetchExistingVaultRows(client: SupabaseClient, userId: string, gvIds: string[]) {
-  const existingByGvId = new Map<string, ExistingVaultRow>();
-
-  for (const gvIdChunk of chunkArray(gvIds, 100)) {
-    const { data, error } = await client
-      .from("vault_items")
-      .select("id,gv_id,qty")
-      .eq("user_id", userId)
-      .is("archived_at", null)
-      .in("gv_id", gvIdChunk);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    for (const row of (data ?? []) as ExistingVaultRow[]) {
-      existingByGvId.set(row.gv_id, row);
-    }
-  }
-
-  return existingByGvId;
+async function fetchExistingOwnedCounts(userId: string, cardIds: string[]) {
+  return getOwnedCountsByCardPrintIds(userId, cardIds);
 }
 
 async function mirrorLegacyBucketQuantity(
@@ -201,10 +175,10 @@ async function mirrorLegacyBucketQuantity(
   }
 }
 
-function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByGvId: Map<string, ExistingVaultRow>) {
+function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByCardId: Map<string, number>) {
   return rows
     .map((row) => {
-      const existingQty = existingByGvId.get(row.gvId)?.qty ?? 0;
+      const existingQty = existingByCardId.get(row.cardId) ?? 0;
       const delta = row.desiredQuantity - existingQty;
 
       if (delta <= 0) {
@@ -266,8 +240,11 @@ export async function importVaultItemsForUser({
     };
   }
 
-  const existingByGvId = await fetchExistingVaultRows(client, userId, aggregatedRows.map((row) => row.gvId));
-  const reconciledRows = reconcileAggregatedRows(aggregatedRows, existingByGvId);
+  const existingOwnedCounts = await fetchExistingOwnedCounts(
+    userId,
+    aggregatedRows.map((row) => row.cardId),
+  );
+  const reconciledRows = reconcileAggregatedRows(aggregatedRows, existingOwnedCounts);
 
   if (reconciledRows.length === 0) {
     return {

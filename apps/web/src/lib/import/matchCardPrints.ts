@@ -10,6 +10,7 @@ import {
 import { reconcileVaultQuantities } from "@/lib/import/reconcileVaultQuantities";
 import { validateRows } from "@/lib/import/validateRows";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import type { CardMatch, MatchCardPrintsResult, MatchResult, NormalizedRow } from "@/types/import";
 
 type SetRow = {
@@ -33,11 +34,6 @@ type CardPrintRow = {
         name: string | null;
       }[]
     | null;
-};
-
-type ExistingVaultRow = {
-  gv_id: string | null;
-  qty: number | null;
 };
 
 type MatchImportMeta = {
@@ -128,43 +124,20 @@ async function fetchExistingVaultQuantities(
     return {};
   }
 
-  const client = createServerComponentClient();
-  const candidateGvIds = Array.from(
-    new Set(candidateRows.map((row) => row.gv_id?.trim() ?? "").filter(Boolean)),
+  const existingByCardId = await getOwnedCountsByCardPrintIds(
+    userId,
+    Array.from(new Set(candidateRows.map((row) => row.id.trim()).filter(Boolean))),
   );
-  const existingByGvId = new Map<string, number>();
-
-  for (const gvIdChunk of chunkArray(candidateGvIds, 100)) {
-    const { data, error } = await client
-      .from("vault_items")
-      .select("gv_id,qty")
-      .eq("user_id", userId)
-      .is("archived_at", null)
-      .in("gv_id", gvIdChunk);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    for (const row of (data ?? []) as ExistingVaultRow[]) {
-      const gvId = row.gv_id?.trim() ?? "";
-      if (!gvId) {
-        continue;
-      }
-
-      existingByGvId.set(gvId, typeof row.qty === "number" ? row.qty : 0);
-    }
-  }
 
   const quantities: Record<string, number> = {};
 
   for (const candidate of candidateRows) {
-    const gvId = candidate.gv_id?.trim() ?? "";
-    if (!gvId) {
+    const cardId = candidate.id.trim();
+    if (!cardId) {
       continue;
     }
 
-    const existingQty = existingByGvId.get(gvId) ?? 0;
+    const existingQty = existingByCardId.get(cardId) ?? 0;
     if (existingQty <= 0) {
       continue;
     }

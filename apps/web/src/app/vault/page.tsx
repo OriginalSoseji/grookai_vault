@@ -9,26 +9,13 @@ import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
-import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
-import { getSingleActiveGvviByCardPrintIds } from "@/lib/vault/getSingleActiveGvviByCardPrintIds";
+import {
+  getCanonicalVaultCollectorRows,
+  type CanonicalVaultCollectorRow,
+} from "@/lib/vault/getCanonicalVaultCollectorRows";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-type VaultItemRow = {
-  id: string;
-  vault_item_id: string | null;
-  card_id: string | null;
-  gv_id: string | null;
-  name: string | null;
-  set_code: string | null;
-  set_name: string | null;
-  number: string | null;
-  condition_label: string | null;
-  effective_price: number | null;
-  image_url: string | null;
-  created_at: string | null;
-};
 
 type SharedCardRow = {
   card_id: string | null;
@@ -64,9 +51,7 @@ type RecentItemRow = {
 };
 
 function normalizeVaultItems(
-  rows: VaultItemRow[] | null | undefined,
-  ownedCountsByCardId: Map<string, number>,
-  singleActiveGvviByCardId: Map<string, string>,
+  rows: CanonicalVaultCollectorRow[] | null | undefined,
   sharedCardIds: Set<string>,
   sharedGvIds: Set<string>,
   sharedNotesByCardId: Map<string, string | null>,
@@ -79,45 +64,31 @@ function normalizeVaultItems(
   vaultBackPhotoIds: Set<string>,
 ): VaultCardData[] {
   return (rows ?? [])
-    .filter((row): row is VaultItemRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
+    .filter((row): row is CanonicalVaultCollectorRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
     .map((row) => {
-      const noteFromCardId =
-        typeof row.card_id === "string" && row.card_id.length > 0 ? (sharedNotesByCardId.get(row.card_id) ?? null) : null;
-      const vaultItemId = row.vault_item_id ?? row.id;
-      const canonicalOwnedCount =
-        typeof row.card_id === "string" && row.card_id.length > 0
-          ? ownedCountsByCardId.get(row.card_id) ?? 0
-          : 0;
+      const noteFromCardId = sharedNotesByCardId.get(row.card_id) ?? null;
+      const vaultItemId = row.vault_item_id;
 
       return {
         id: row.id,
         vault_item_id: vaultItemId,
-        gv_vi_id:
-          typeof row.card_id === "string" && row.card_id.length > 0
-            ? singleActiveGvviByCardId.get(row.card_id) ?? null
-            : null,
-        card_id: row.card_id ?? "",
+        gv_vi_id: row.gv_vi_id,
+        card_id: row.card_id,
         gv_id: row.gv_id,
-        name: row.name?.trim() || "Unknown card",
-        set_code: row.set_code?.trim() || "Unknown set",
-        set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
-        number: row.number?.trim() || "—",
-        condition_label: row.condition_label?.trim() || "Unknown",
-        quantity: canonicalOwnedCount,
-        owned_count: canonicalOwnedCount,
+        name: row.name.trim() || "Unknown card",
+        set_code: row.set_code.trim() || "Unknown set",
+        set_name: row.set_name.trim() || row.set_code.trim() || "Unknown set",
+        number: row.number.trim() || "—",
+        condition_label: row.condition_label.trim() || "Unknown",
+        quantity: row.owned_count,
+        owned_count: row.owned_count,
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
         image_url: getBestPublicCardImageUrl(row.image_url),
         created_at: row.created_at,
-        is_shared:
-          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedCardIds.has(row.card_id)) ||
-          sharedGvIds.has(row.gv_id),
+        is_shared: sharedCardIds.has(row.card_id) || sharedGvIds.has(row.gv_id),
         public_note: noteFromCardId ?? sharedNotesByGvId.get(row.gv_id) ?? null,
-        show_personal_front:
-          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedFrontImageCardIds.has(row.card_id)) ||
-          sharedFrontImageGvIds.has(row.gv_id),
-        show_personal_back:
-          (typeof row.card_id === "string" && row.card_id.length > 0 && sharedBackImageCardIds.has(row.card_id)) ||
-          sharedBackImageGvIds.has(row.gv_id),
+        show_personal_front: sharedFrontImageCardIds.has(row.card_id) || sharedFrontImageGvIds.has(row.gv_id),
+        show_personal_back: sharedBackImageCardIds.has(row.card_id) || sharedBackImageGvIds.has(row.gv_id),
         has_front_photo: vaultFrontPhotoIds.has(vaultItemId),
         has_back_photo: vaultBackPhotoIds.has(vaultItemId),
       };
@@ -172,18 +143,20 @@ export default async function VaultPage() {
     );
   }
 
+  let itemRows: CanonicalVaultCollectorRow[] = [];
+  let canonicalItemsError: string | null = null;
+  try {
+    itemRows = await getCanonicalVaultCollectorRows(user.id);
+  } catch (error) {
+    canonicalItemsError = error instanceof Error ? error.message : "Unknown canonical vault read error";
+  }
+
   const [
-    { data: itemsData, error: itemsError },
     { data: recentData, error: recentError },
     { data: sharedData, error: sharedError },
     { data: profileData, error: profileError },
     { data: imageData, error: imageError },
   ] = await Promise.all([
-    supabase
-      .from("v_vault_items_web")
-      .select("id,vault_item_id,card_id,gv_id,name,set_code,set_name,number,condition_label,effective_price,image_url,created_at")
-      .eq("user_id", user.id)
-      .order("created_at", { ascending: false }),
     supabase
       .from("v_recently_added")
       .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
@@ -197,28 +170,6 @@ export default async function VaultPage() {
     supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", user.id).maybeSingle(),
     supabase.from("user_card_images").select("vault_item_id,side").eq("user_id", user.id),
   ]);
-
-  const itemRows = (itemsData ?? null) as VaultItemRow[] | null;
-  const cardPrintIds = (itemRows ?? [])
-    .map((row) => (typeof row.card_id === "string" ? row.card_id.trim() : ""))
-    .filter((cardId): cardId is string => cardId.length > 0);
-
-  let ownedCountsByCardId = new Map<string, number>();
-  let singleActiveGvviByCardId = new Map<string, string>();
-  if (cardPrintIds.length > 0) {
-    try {
-      [ownedCountsByCardId, singleActiveGvviByCardId] = await Promise.all([
-        getOwnedCountsByCardPrintIds(user.id, cardPrintIds),
-        getSingleActiveGvviByCardPrintIds(user.id, cardPrintIds),
-      ]);
-    } catch (error) {
-      console.error("[vault:read] vault-page canonical counts failed", {
-        userId: user.id,
-        cardPrintIds,
-        error,
-      });
-    }
-  }
 
   const sharedRows = (sharedData ?? []) as SharedCardRow[];
   const sharedCardIds = new Set(
@@ -285,8 +236,6 @@ export default async function VaultPage() {
 
   const items = normalizeVaultItems(
     itemRows,
-    ownedCountsByCardId,
-    singleActiveGvviByCardId,
     sharedCardIds,
     sharedGvIds,
     sharedNotesByCardId,
@@ -312,7 +261,7 @@ export default async function VaultPage() {
       <VaultCollectionView
         initialItems={items}
         recent={recent}
-        itemsError={itemsError?.message ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
+        itemsError={canonicalItemsError ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
         recentError={recentError?.message}
         publicCollectionHref={publicCollectionHref}
         setLogoPathByCode={setLogoPathByCode}
