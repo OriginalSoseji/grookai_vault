@@ -128,10 +128,7 @@ function findFirstValue(
 }
 
 function sanitizeRawPayload(payload: PsaApiEnvelope) {
-  return {
-    IsValidRequest: readEnvelopeFlag(payload) ?? null,
-    ServerMessage: readEnvelopeMessage(payload) ?? null,
-  };
+  return payload;
 }
 
 function normalizePsaApiPayload(certNumber: string, payload: PsaApiEnvelope): SlabVerificationResult {
@@ -145,33 +142,33 @@ function normalizePsaApiPayload(certNumber: string, payload: PsaApiEnvelope): Sl
       verified: false,
       parser_status: "failed",
       error_code: "PSA_API_INVALID_RESPONSE",
+      raw_payload: sanitizeRawPayload(payload),
     };
   }
 
-  const messageLower = serverMessage.toLowerCase();
-  if (!isValidRequest && messageLower.includes("invalid cert")) {
+  if (isValidRequest === false) {
     return {
       grader: "PSA",
       cert_number: certNumber,
       verified: false,
       parser_status: "failed",
-      error_code: "INVALID_CERT_FORMAT",
+      error_code: "PSA_INVALID_CERT_REQUEST",
       raw_payload: sanitizeRawPayload(payload),
     };
   }
 
-  if (isValidRequest && messageLower.includes("no data found")) {
+  if (isValidRequest === true && serverMessage === "No data found") {
     return {
       grader: "PSA",
       cert_number: certNumber,
       verified: false,
       parser_status: "failed",
-      error_code: "CERT_NOT_FOUND",
+      error_code: "PSA_CERT_NOT_FOUND",
       raw_payload: sanitizeRawPayload(payload),
     };
   }
 
-  if (!isValidRequest || !messageLower.includes("request successful")) {
+  if (!(isValidRequest === true && serverMessage === "Request successful")) {
     return {
       grader: "PSA",
       cert_number: certNumber,
@@ -211,8 +208,8 @@ function normalizePsaApiPayload(certNumber: string, payload: PsaApiEnvelope): Sl
     grade,
     title,
     image_url: imageUrl,
-    parser_status: verified ? "verified" : title || imageUrl ? "partial" : "failed",
-    error_code: verified ? undefined : "PSA_API_INVALID_RESPONSE",
+    parser_status: verified ? "verified" : "partial",
+    error_code: verified ? undefined : "PSA_GRADE_MISSING",
     raw_payload: sanitizeRawPayload(payload),
   };
 }
