@@ -55,6 +55,28 @@ type CreatedInstanceRow = {
   gv_vi_id: string | null;
 };
 
+function formatDbError(error: unknown) {
+  if (!error || typeof error !== "object") {
+    return String(error);
+  }
+
+  const record = error as {
+    message?: string;
+    code?: string;
+    details?: string;
+    hint?: string;
+  };
+
+  return [
+    record.code ? `code=${record.code}` : null,
+    record.message ?? null,
+    record.details ? `details=${record.details}` : null,
+    record.hint ? `hint=${record.hint}` : null,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(" | ");
+}
+
 function normalizeOptionalText(value: string | null | undefined) {
   if (typeof value !== "string") {
     return null;
@@ -130,10 +152,11 @@ async function resolveOrCreateSlabCert({
     .maybeSingle();
 
   if (existingError) {
+    console.error("SLAB CREATE ERROR [slab_certs.lookup]", existingError);
     return {
       ok: false as const,
       errorCode: "CREATE_FAILED" as const,
-      message: "Existing slab cert lookup failed.",
+      message: `CREATE_FAILED [slab_certs.lookup]: ${formatDbError(existingError)}`,
     };
   }
 
@@ -186,10 +209,14 @@ async function resolveOrCreateSlabCert({
       .maybeSingle();
 
     if (refetchError || !refetchedRow) {
+      if (refetchError) {
+        console.error("SLAB CREATE ERROR [slab_certs.refetch]", refetchError);
+      }
+
       return {
         ok: false as const,
         errorCode: "CREATE_FAILED" as const,
-        message: "Slab cert could not be created.",
+        message: `CREATE_FAILED [slab_certs.insert]: ${formatDbError(insertError)}`,
       };
     }
 
@@ -316,10 +343,11 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     .maybeSingle();
 
   if (existingInstanceError) {
+    console.error("SLAB CREATE ERROR [vault_item_instances.existing_slab_lookup]", existingInstanceError);
     return {
       ok: false,
       errorCode: "CREATE_FAILED",
-      message: "Existing slab ownership could not be checked.",
+      message: `CREATE_FAILED [vault_item_instances.existing_slab_lookup]: ${formatDbError(existingInstanceError)}`,
     };
   }
 
@@ -354,10 +382,11 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     .single();
 
   if (anchorError) {
+    console.error("SLAB CREATE ERROR [vault_items.insert]", anchorError);
     return {
       ok: false,
       errorCode: "CREATE_FAILED",
-      message: "Slab ownership episode could not be created.",
+      message: `CREATE_FAILED [vault_items.insert]: ${formatDbError(anchorError)}`,
     };
   }
 
@@ -385,6 +414,7 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
   });
 
   if (instanceError) {
+    console.error("SLAB CREATE ERROR [admin_vault_instance_create_v1]", instanceError);
     await adminClient
       .from("vault_items")
       .update({
@@ -398,7 +428,7 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     return {
       ok: false,
       errorCode: "CREATE_FAILED",
-      message: "Slab instance could not be created.",
+      message: `CREATE_FAILED [admin_vault_instance_create_v1]: ${formatDbError(instanceError)}`,
     };
   }
 
