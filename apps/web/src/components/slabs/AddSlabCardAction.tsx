@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import PublicCardImage from "@/components/PublicCardImage";
 import { PSA_GRADE_OPTIONS } from "@/lib/slabs/gradeOptions";
+import { normalizePsaGradeValue } from "@/lib/slabs/normalizePsaGrade";
 import type { SlabVerificationResult } from "@/lib/slabs/psaVerificationAdapter";
 
 export type AddSlabActionResult =
@@ -75,8 +76,9 @@ export default function AddSlabCardAction({
   const [isVerifying, setIsVerifying] = useState(false);
   const [ownershipConfirmed, setOwnershipConfirmed] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  const normalizedVerifiedGrade = normalizePsaGradeValue(verificationResult?.grade);
   const gradeMismatch = Boolean(
-    verificationResult?.verified && verificationResult.grade && verificationResult.grade.trim() !== selectedGrade,
+    verificationResult?.verified && normalizedVerifiedGrade && normalizedVerifiedGrade !== selectedGrade,
   );
   const verificationMessage = useMemo(
     () => getVerificationMessage(verificationResult, gradeMismatch),

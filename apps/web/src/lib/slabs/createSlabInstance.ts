@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { normalizePsaGradeValue } from "@/lib/slabs/normalizePsaGrade";
 import { verifyPsaCert } from "@/lib/slabs/psaVerificationAdapter";
 
 export type CreateSlabInstanceInput = {
@@ -68,7 +69,7 @@ function normalizeCertNumber(value: string) {
 }
 
 function parseNumericGrade(value: string) {
-  const parsed = Number(value);
+  const parsed = Number(normalizePsaGradeValue(value) ?? value);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
@@ -147,7 +148,8 @@ async function resolveOrCreateSlabCert({
     }
 
     const existingGrade = normalizeGradeValue(existingCert.grade);
-    if (!existingGrade || existingGrade !== grade) {
+    const normalizedVerifiedGrade = normalizePsaGradeValue(grade);
+    if (!existingGrade || !normalizedVerifiedGrade || existingGrade !== normalizedVerifiedGrade) {
       return {
         ok: false as const,
         errorCode: "GRADE_MISMATCH" as const,
@@ -201,7 +203,8 @@ async function resolveOrCreateSlabCert({
     }
 
     const refetchedGrade = normalizeGradeValue(refetchedCert.grade);
-    if (!refetchedGrade || refetchedGrade !== grade) {
+    const normalizedVerifiedGrade = normalizePsaGradeValue(grade);
+    if (!refetchedGrade || !normalizedVerifiedGrade || refetchedGrade !== normalizedVerifiedGrade) {
       return {
         ok: false as const,
         errorCode: "GRADE_MISMATCH" as const,
@@ -275,7 +278,16 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     return mapVerificationFailure(verification.error_code);
   }
 
-  if (verification.grade.trim() !== selectedGrade) {
+  const normalizedVerifiedGrade = normalizePsaGradeValue(verification.grade);
+  if (!normalizedVerifiedGrade) {
+    return {
+      ok: false,
+      errorCode: "VERIFICATION_FAILED",
+      message: "PSA returned a grade that could not be normalized.",
+    };
+  }
+
+  if (normalizedVerifiedGrade !== selectedGrade) {
     return {
       ok: false,
       errorCode: "GRADE_MISMATCH",

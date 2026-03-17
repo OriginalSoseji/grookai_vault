@@ -17,6 +17,7 @@ type PsaApiEnvelope = {
   isValidRequest?: boolean;
   ServerMessage?: string;
   serverMessage?: string;
+  PSACert?: Record<string, unknown> | null;
   [key: string]: unknown;
 };
 
@@ -131,9 +132,42 @@ function sanitizeRawPayload(payload: PsaApiEnvelope) {
   return payload;
 }
 
+function readPsaCertObject(payload: PsaApiEnvelope) {
+  if (payload.PSACert && typeof payload.PSACert === "object" && !Array.isArray(payload.PSACert)) {
+    return payload.PSACert as Record<string, unknown>;
+  }
+
+  return null;
+}
+
 function normalizePsaApiPayload(certNumber: string, payload: PsaApiEnvelope): SlabVerificationResult {
   const isValidRequest = readEnvelopeFlag(payload);
   const serverMessage = readEnvelopeMessage(payload);
+  const psaCert = readPsaCertObject(payload);
+
+  if (psaCert) {
+    const grade = normalizeGradeValue(psaCert.CardGrade ?? psaCert.GradeDescription);
+    const subject = normalizeOptionalText(typeof psaCert.Subject === "string" ? psaCert.Subject : undefined);
+    const variety = normalizeOptionalText(typeof psaCert.Variety === "string" ? psaCert.Variety : undefined);
+    const title = [subject, variety].filter((value): value is string => Boolean(value)).join(" — ") || undefined;
+    const imageUrl = normalizeImageUrl(
+      typeof (psaCert.ImageURL ?? psaCert.ImageUrl ?? psaCert.imageUrl ?? psaCert.ImageUri ?? psaCert.imageUri) === "string"
+        ? String(psaCert.ImageURL ?? psaCert.ImageUrl ?? psaCert.imageUrl ?? psaCert.ImageUri ?? psaCert.imageUri)
+        : undefined,
+    );
+
+    return {
+      grader: "PSA",
+      cert_number: certNumber,
+      verified: Boolean(grade),
+      grade,
+      title,
+      image_url: imageUrl,
+      parser_status: grade ? "verified" : "partial",
+      error_code: grade ? undefined : "PSA_GRADE_MISSING",
+      raw_payload: sanitizeRawPayload(payload),
+    };
+  }
 
   if (typeof isValidRequest !== "boolean" || !serverMessage) {
     return {
@@ -180,7 +214,7 @@ function normalizePsaApiPayload(certNumber: string, payload: PsaApiEnvelope): Sl
   }
 
   const grade = normalizeGradeValue(
-    findFirstValue(payload, ["Grade", "grade", "ItemGrade", "itemGrade", "GradeValue", "gradeValue"]),
+    findFirstValue(payload, ["Grade", "grade", "ItemGrade", "itemGrade", "GradeValue", "gradeValue", "CardGrade", "GradeDescription"]),
   );
   const title = normalizeTitle(
     typeof findFirstValue(payload, ["Title", "title", "ItemDescription", "itemDescription", "Description", "description"]) ===
