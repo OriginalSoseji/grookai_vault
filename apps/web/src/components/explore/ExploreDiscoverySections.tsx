@@ -59,7 +59,7 @@ function MobileFeedSectionHeader({
       <div className="space-y-1">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">{eyebrow}</p>
         <h2 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h2>
-        {description ? <p className="max-w-[24rem] text-sm leading-6 text-slate-600">{description}</p> : null}
+        {description ? <p className="max-w-[24rem] text-sm leading-5 text-slate-600">{description}</p> : null}
       </div>
       {action}
     </div>
@@ -82,42 +82,26 @@ export default function ExploreDiscoverySections({
 
   return (
     <div className="space-y-8 md:space-y-12">
-      <div className="space-y-9 md:hidden">
+      <div className="space-y-8 md:hidden">
         {spotlightCard ? (
-          <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.22),_transparent_42%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-4 shadow-sm shadow-amber-100/30">
-            <div className="space-y-5">
-              <div className="space-y-3">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">Rotating Spotlight</p>
-                    <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Start with one standout card</h2>
-                  </div>
-                  <CompareCardButton gvId={spotlightCard.gv_id} variant="compact" />
-                </div>
-                <p className="max-w-[24rem] text-sm leading-6 text-slate-600">
-                  This spotlight rotates through standout cards from the Grookai catalog.
-                </p>
+          <section className="overflow-hidden rounded-[1.8rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.18),_transparent_42%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-4 py-4 shadow-sm shadow-amber-100/20">
+            <div className="space-y-4">
+              <div className="space-y-1.5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">Spotlight</p>
+                <h2 className="text-[1.7rem] font-semibold tracking-tight text-slate-950">One standout card</h2>
               </div>
-              <Link href={buildCardHref(spotlightCard.gv_id, compareCards)} className="block space-y-4">
-                <div className="overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white/90 shadow-sm">
+              <Link href={buildCardHref(spotlightCard.gv_id, compareCards)} className="block space-y-3.5">
+                <div className="overflow-hidden rounded-[1.55rem] border border-slate-200 bg-white/90 shadow-sm">
                   <PublicCardImage
                     src={spotlightCard.image_url}
                     alt={spotlightCard.name}
-                    imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-5"
+                    imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-4"
                     fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   />
                 </div>
-                <div className="space-y-3">
-                  <div className="space-y-1.5">
-                    <p className="text-[1.4rem] font-semibold tracking-tight text-slate-950">{spotlightCard.name}</p>
-                    <p className="text-sm leading-6 text-slate-600">{buildCardMetaLine(spotlightCard)}</p>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm">
-                      Open card
-                    </span>
-                    <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">GV {spotlightCard.gv_id}</span>
-                  </div>
+                <div className="space-y-1">
+                  <p className="text-[1.35rem] font-semibold tracking-tight text-slate-950">{spotlightCard.name}</p>
+                  <p className="text-sm leading-5 text-slate-600">{buildCardMetaLine(spotlightCard)}</p>
                 </div>
               </Link>
             </div>
@@ -125,11 +109,10 @@ export default function ExploreDiscoverySections({
         ) : null}
 
         {hasRailSection ? (
-          <section className="space-y-4">
+          <section className="space-y-3.5">
             <MobileFeedSectionHeader
-              eyebrow="Rotating Picks"
+              eyebrow="More to explore"
               title="Keep scrolling"
-              description="More cards from the current spotlight window."
               action={
                 <Link
                   href={buildPathWithCompareCards("/explore", "", compareCards)}
@@ -144,13 +127,10 @@ export default function ExploreDiscoverySections({
                 {railCards.map((card) => (
                   <article
                     key={card.gv_id}
-                    className="w-[198px] shrink-0 overflow-hidden rounded-[1.55rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
+                    className="w-[188px] shrink-0 overflow-hidden rounded-[1.45rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
                   >
-                    <div className="flex items-center justify-end px-3 pb-0 pt-3">
-                      <CompareCardButton gvId={card.gv_id} variant="compact" />
-                    </div>
-                    <Link href={buildCardHref(card.gv_id, compareCards)} className="block space-y-3 px-3 pb-3">
-                      <div className="rounded-[1.1rem] border border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3">
+                    <Link href={buildCardHref(card.gv_id, compareCards)} className="block space-y-2.5 p-3">
+                      <div className="rounded-[1rem] border border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3">
                         <PublicCardImage
                           src={card.image_url}
                           alt={card.name}
@@ -158,7 +138,7 @@ export default function ExploreDiscoverySections({
                           fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
                         />
                       </div>
-                      <div className="space-y-1.5">
+                      <div className="space-y-1">
                         <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.name}</p>
                         <p className="line-clamp-2 text-xs leading-5 text-slate-500">{buildCardMetaLine(card)}</p>
                       </div>
@@ -171,20 +151,19 @@ export default function ExploreDiscoverySections({
         ) : null}
 
         {hasGridSection ? (
-          <section className="space-y-4">
+          <section className="space-y-3.5">
             <MobileFeedSectionHeader
-              eyebrow="Discover More"
-              title="A few more cards worth a closer look"
-              description="A denser lane for quick browsing once something catches your eye."
+              eyebrow="More cards"
+              title="Worth a closer look"
             />
-            <div className="grid grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-2 gap-3">
               {gridCards.map((card) => (
                 <Link
                   key={card.gv_id}
                   href={buildCardHref(card.gv_id, compareCards)}
-                  className="overflow-hidden rounded-[1.55rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
+                  className="overflow-hidden rounded-[1.45rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
                 >
-                  <div className="rounded-t-[1.55rem] border-b border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3">
+                  <div className="rounded-t-[1.45rem] border-b border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3">
                     <PublicCardImage
                       src={card.image_url}
                       alt={card.name}
@@ -192,7 +171,7 @@ export default function ExploreDiscoverySections({
                       fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
                     />
                   </div>
-                  <div className="space-y-1.5 px-3 py-3">
+                  <div className="space-y-1 px-3 py-2.5">
                     <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.name}</p>
                     <p className="line-clamp-2 text-xs leading-5 text-slate-500">{buildCardMetaLine(card)}</p>
                   </div>
@@ -203,11 +182,10 @@ export default function ExploreDiscoverySections({
         ) : null}
 
         {hasSetsSection ? (
-          <section className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-4 shadow-sm">
+          <section className="space-y-3.5 rounded-[1.55rem] bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-4 py-4">
             <MobileFeedSectionHeader
-              eyebrow="Browse Sets"
-              title="Set discovery stays first-class"
-              description="Jump into collector-relevant sets without leaving the feed."
+              eyebrow="Sets"
+              title="Browse sets"
               action={
                 <Link
                   href={buildPathWithCompareCards("/sets", "", compareCards)}
@@ -222,9 +200,9 @@ export default function ExploreDiscoverySections({
                 <Link
                   key={setInfo.code}
                   href={buildPathWithCompareCards(`/sets/${setInfo.code}`, "", compareCards)}
-                  className="rounded-[1.3rem] border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-3.5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{setInfo.code}</p>
                     <h3 className="line-clamp-2 text-base font-semibold tracking-tight text-slate-950">{setInfo.name}</h3>
                     <p className="text-xs leading-5 text-slate-500">
@@ -242,11 +220,10 @@ export default function ExploreDiscoverySections({
           </section>
         ) : null}
 
-        <section className="space-y-4">
+        <section className="space-y-3.5">
           <MobileFeedSectionHeader
-            eyebrow="Browse by Pokémon"
-            title="Choose a Pokémon"
-            description="Use a familiar favorite as a quick way into the catalog."
+            eyebrow="Pokémon"
+            title="Start with a favorite"
           />
           <div className="flex flex-wrap gap-2.5">
             {POPULAR_POKEMON.map((pokemon) => (

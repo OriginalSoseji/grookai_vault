@@ -28,7 +28,6 @@ export function PublicCollectorProfileContent({
   slug,
   cards,
   collectionTitle = "Collection",
-  collectionEyebrow = "Collection",
   collectionDescription = "Browse the cards this collector has chosen to share.",
   defaultPokemonValue,
 }: PublicCollectorProfileContentProps) {
@@ -73,7 +72,6 @@ export function PublicCollectorProfileContent({
           <div className="flex flex-col gap-3 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:px-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="space-y-1">
-                <p className="text-[11px] font-medium text-slate-500">{collectionEyebrow}</p>
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950 sm:text-2xl">{collectionTitle}</h2>
                 <p className="max-w-2xl text-sm leading-5 text-slate-600">{collectionDescription}</p>
               </div>
@@ -86,7 +84,7 @@ export function PublicCollectorProfileContent({
                 <PublicPokemonJumpForm slug={slug} defaultValue={defaultPokemonValue} variant="compact" />
               </div>
               <div className="space-y-1 sm:min-w-fit">
-                <p className="text-[11px] font-medium text-slate-500">View</p>
+                <p className="text-[11px] font-medium text-slate-500">Display</p>
                 <ViewDensityToggle value={density} onChange={setDensity} />
               </div>
             </div>

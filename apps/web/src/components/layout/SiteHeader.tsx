@@ -61,12 +61,12 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
       <PageContainer className={showTopSearch ? "space-y-3 py-3 md:space-y-4 md:py-4" : "py-3 md:py-4"}>
         <div className="md:hidden">
           <div className="flex min-h-[52px] items-center justify-between gap-3">
-            <Link href="/" className="flex min-w-0 items-center gap-2.5 text-base font-semibold text-slate-950">
+            <Link href="/" className="flex min-w-0 items-center gap-2 text-[15px] font-semibold text-slate-950">
               <Image
                 src="/grookai-emblem-square.svg"
                 alt="Grookai Vault logo"
-                width={30}
-                height={30}
+                width={28}
+                height={28}
                 className="rounded-md"
               />
               <span className="truncate">Grookai Vault</span>
@@ -75,7 +75,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
             <div className="flex shrink-0 items-center gap-2">
               <Link
                 href={buildCompareHref(compareCards)}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
                   pathname === "/compare" || pathname.startsWith("/compare/")
                     ? "bg-amber-100 text-amber-950 ring-1 ring-amber-200"
                     : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
@@ -86,18 +86,18 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
               {!isAuthenticated ? (
                 <Link
                   href={accountHref}
-                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                  className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                 >
                   {accountLabel}
                 </Link>
               ) : null}
             </div>
           </div>
-          <div className="mt-2 flex items-center gap-3">
+          <div className="mt-1.5 flex items-center gap-3">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{mobileSectionLabel}</p>
           </div>
           {showMobileGlobalSearch ? (
-            <div className="mt-3">
+            <div className="mt-2.5">
               <MobileGlobalSearch />
             </div>
           ) : null}

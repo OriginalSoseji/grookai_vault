@@ -97,11 +97,11 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2.5 shadow-sm shadow-slate-200/40">
+        <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50/90 px-3 py-2 shadow-sm shadow-slate-200/20">
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className="h-4 w-4 shrink-0 text-slate-400"
+            className="h-3.5 w-3.5 shrink-0 text-slate-400"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.8"
@@ -117,15 +117,10 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search cards, sets, numbers, or Grookai ID"
+            enterKeyHint="search"
             className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
             aria-label="Search cards, sets, numbers, or Grookai ID"
           />
-          <button
-            type="submit"
-            className="rounded-full bg-slate-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-700"
-          >
-            Go
-          </button>
         </div>
       </form>
     );
