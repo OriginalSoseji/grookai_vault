@@ -104,4 +104,25 @@ echo .tmp/ >> .gitignore
 echo *.xlsx >> .gitignore
 echo *.webp >> .gitignore
 echo *_report.md >> .gitignore
-echo apps/web/src/app/api/ >> .gitignore
+echo apps/web/src/app/api/ >> .gitignore# ==============================
+# Grookai Local Artifacts Ignore
+# ==============================
+
+# temp / logs
+.tmp/
+*.log
+*.err.log
+
+# local dev
+apps/web/.tmp-*
+build_web.log
+
+# archives
+*.zip
+
+# checkpoints
+backend/vault/.checkpoints/
+
+# misc
+devtools_options.yaml
+supabase/snippets/
