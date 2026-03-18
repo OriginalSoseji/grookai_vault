@@ -43,7 +43,7 @@ type PublicProfileRow = {
   vault_sharing_enabled: boolean | null;
 };
 
-const SHARE_GUARD_MESSAGE = "Enable your public profile and vault sharing in /account before sharing cards.";
+const WALL_GUARD_MESSAGE = "Enable your public profile and vault sharing in /account before adding cards to your wall.";
 
 export async function toggleSharedCardAction(input: ToggleSharedCardInput): Promise<ToggleSharedCardResult> {
   const client = createServerComponentClient();
@@ -148,7 +148,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
       return {
         ok: false,
         itemId: input.itemId ?? input.gvViId ?? "",
-        message: "Couldn’t update shared state.",
+        message: "Couldn’t update wall state.",
       };
     }
 
@@ -170,7 +170,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-      message: SHARE_GUARD_MESSAGE,
+        message: WALL_GUARD_MESSAGE,
     };
   }
 
@@ -179,7 +179,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-      message: SHARE_GUARD_MESSAGE,
+        message: WALL_GUARD_MESSAGE,
     };
   }
 
@@ -202,7 +202,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-      message: "Couldn’t update shared state.",
+        message: "Couldn’t update wall state.",
     };
   }
 
@@ -210,6 +210,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
   if (profile.slug) {
     revalidatePath(`/u/${profile.slug}`);
     revalidatePath(`/u/${profile.slug}/collection`);
+    revalidatePath(`/u/${profile.slug}/pokemon`);
   }
 
   return {

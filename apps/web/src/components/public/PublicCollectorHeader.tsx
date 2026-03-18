@@ -12,6 +12,8 @@ type PublicCollectorHeaderProps = {
   displayName: string;
   slug: string;
   description: string;
+  avatarUrl?: string | null;
+  bannerUrl?: string | null;
   stats?: PublicCollectorStat[];
   activeView: "collection" | "pokemon";
   defaultPokemonValue?: string;
@@ -33,6 +35,8 @@ export function PublicCollectorHeader({
   displayName,
   slug,
   description,
+  avatarUrl = null,
+  bannerUrl = null,
   stats = [],
   activeView,
   defaultPokemonValue,
@@ -49,7 +53,12 @@ export function PublicCollectorHeader({
 
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
-      {setLogoPaths.length > 0 ? (
+      {bannerUrl ? (
+        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
+          <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/45 via-slate-950/15 to-white/92" />
+        </div>
+      ) : setLogoPaths.length > 0 ? (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
           {setLogoPaths.slice(0, 2).map((logoPath, index) => {
             const placements = [
@@ -74,22 +83,33 @@ export function PublicCollectorHeader({
       ) : null}
       <div className="relative z-10 space-y-6">
         <div className="flex flex-col gap-5 md:flex-row md:items-start">
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[1.75rem] bg-slate-950 text-2xl font-semibold tracking-[0.08em] text-white">
-            {getInitials(displayName)}
+          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/60 bg-slate-950 text-2xl font-semibold tracking-[0.08em] text-white shadow-sm">
+            {avatarUrl ? (
+              <Image src={avatarUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
+            ) : (
+              getInitials(displayName)
+            )}
           </div>
           <div className="min-w-0 flex-1 space-y-3">
             <div className="space-y-2">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
-              <h1 className="text-4xl font-semibold tracking-tight text-slate-950">{displayName}</h1>
-              <p className="text-sm font-medium tracking-[0.08em] text-slate-500">/u/{slug}</p>
-              <p className="max-w-2xl text-base leading-7 text-slate-600">{description}</p>
+              <p className={`text-sm font-semibold uppercase tracking-[0.18em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>Profile</p>
+              <h1 className={`text-4xl font-semibold tracking-tight ${bannerUrl ? "text-white" : "text-slate-950"}`}>{displayName}</h1>
+              <p className={`text-sm font-medium tracking-[0.08em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>/u/{slug}</p>
+              <p className={`max-w-2xl text-base leading-7 ${bannerUrl ? "text-white/90" : "text-slate-600"}`}>{description}</p>
             </div>
             {stats.length > 0 ? (
               <div className="flex flex-wrap gap-3 pt-1">
                 {stats.map((stat) => (
-                  <div key={`${stat.label}-${stat.value}`} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2">
-                    <p className="text-sm font-medium text-slate-900">{stat.value}</p>
-                    <p className="text-xs text-slate-500">{stat.label}</p>
+                  <div
+                    key={`${stat.label}-${stat.value}`}
+                    className={`rounded-full px-4 py-2 ${
+                      bannerUrl
+                        ? "border border-white/25 bg-white/12 backdrop-blur-sm"
+                        : "border border-slate-200 bg-slate-50"
+                    }`}
+                  >
+                    <p className={`text-sm font-medium ${bannerUrl ? "text-white" : "text-slate-900"}`}>{stat.value}</p>
+                    <p className={`text-xs ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>{stat.label}</p>
                   </div>
                 ))}
               </div>

@@ -7,6 +7,11 @@ import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import type { ViewDensity } from "@/hooks/useViewDensity";
+import {
+  getWallCategoryLabel,
+  WALL_CATEGORY_OPTIONS,
+  type WallCategory,
+} from "@/lib/sharedCards/wallCategories";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -39,6 +44,7 @@ export type VaultCardData = {
   grade: string | null;
   cert_number: string | null;
   is_shared: boolean;
+  wall_category: WallCategory | null;
   public_note: string | null;
   show_personal_front: boolean;
   show_personal_back: boolean;
@@ -90,6 +96,7 @@ type VaultCardTileProps = {
   density?: ViewDensity;
   isPending: boolean;
   isSharePending: boolean;
+  isWallCategoryPending: boolean;
   isPublicFrontImagePending: boolean;
   isPublicBackImagePending: boolean;
   isSharedControlsExpanded: boolean;
@@ -100,6 +107,7 @@ type VaultCardTileProps = {
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (condition: string) => void;
   onShareToggle: (item: VaultCardData) => void;
+  onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onSharedControlsToggle: (item: VaultCardData) => void;
   onPublicNoteEdit: (item: VaultCardData) => void;
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
@@ -110,6 +118,7 @@ export function VaultCardTile({
   density = "default",
   isPending,
   isSharePending,
+  isWallCategoryPending,
   isPublicFrontImagePending,
   isPublicBackImagePending,
   isSharedControlsExpanded,
@@ -120,6 +129,7 @@ export function VaultCardTile({
   onQuantityChange,
   onConditionChange,
   onShareToggle,
+  onWallCategoryChange,
   onSharedControlsToggle,
   onPublicNoteEdit,
   onPublicImageToggle,
@@ -129,6 +139,8 @@ export function VaultCardTile({
   const mixedOwnershipSummary = formatMixedOwnershipSummary(item);
   const isMixedOwnership = mixedOwnershipSummary !== null;
   const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
+  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
+  const canManagePublicImages = !item.is_slab;
   const paddingClassName =
     density === "compact" ? "p-3" : density === "large" ? "p-5" : "p-4";
   const watermarkStyle = {
@@ -188,8 +200,13 @@ export function VaultCardTile({
                     : "border border-slate-200 bg-slate-100 text-slate-500"
                 }`}
               >
-                {item.is_shared ? "Shared" : "Not shared"}
+                {item.is_shared ? "On Wall" : "Not On Wall"}
               </span>
+              {wallCategoryLabel ? (
+                <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700">
+                  {wallCategoryLabel}
+                </span>
+              ) : null}
             </div>
           </div>
           <p className="text-sm text-slate-500">
@@ -334,69 +351,93 @@ export function VaultCardTile({
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-3">
-          {item.is_slab ? (
-            <div className="space-y-1">
-              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Share</p>
-              <p className="text-sm text-slate-600">Slab rows are read-only in this phase.</p>
-            </div>
-          ) : (
-            <>
-              <div className="flex items-center justify-between gap-3">
-                <div className="space-y-1">
-                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Share</p>
-                  <p className="text-sm text-slate-600">{item.is_shared ? "Visible in your shared collection." : "Not shared publicly."}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onShareToggle(item)}
-                  disabled={isSharePending}
-                  className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition ${
-                    item.is_shared
-                      ? "border border-slate-300 bg-slate-950 text-white hover:bg-slate-800"
-                      : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
-                  } disabled:cursor-not-allowed disabled:opacity-60`}
-                >
-                  {isSharePending ? "Saving..." : item.is_shared ? "Shared" : "Share"}
-                </button>
+            <div className="flex items-center justify-between gap-3">
+              <div className="space-y-1">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Wall</p>
+                <p className="text-sm text-slate-600">
+                  {item.is_shared ? "Visible on your public wall." : "Not on your public wall."}
+                </p>
               </div>
-              {item.is_shared && publicCollectionHref ? (
-                <div className="mt-2">
-                  <Link
-                    href={publicCollectionHref}
+              <button
+                type="button"
+                onClick={() => onShareToggle(item)}
+                disabled={isSharePending}
+                className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition ${
+                  item.is_shared
+                    ? "border border-slate-300 bg-slate-950 text-white hover:bg-slate-800"
+                    : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
+                } disabled:cursor-not-allowed disabled:opacity-60`}
+              >
+                {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
+              </button>
+            </div>
+            {item.is_shared && publicCollectionHref ? (
+              <div className="mt-2">
+                <Link
+                  href={publicCollectionHref}
+                  className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                >
+                  View Wall
+                </Link>
+              </div>
+            ) : null}
+            {shouldRenderSharedControls ? (
+              <div className="mt-3 border-t border-slate-200 pt-3">
+                {item.is_shared ? (
+                  <button
+                    type="button"
+                    onClick={() => onSharedControlsToggle(item)}
                     className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
                   >
-                    View Public
-                  </Link>
-                </div>
-              ) : null}
-              {shouldRenderSharedControls ? (
-                <div className="mt-3 border-t border-slate-200 pt-3">
-                  {item.is_shared ? (
-                    <button
-                      type="button"
-                      onClick={() => onSharedControlsToggle(item)}
-                      className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
-                    >
-                      {isSharedControlsExpanded ? "Hide shared controls" : "Manage shared card"}
-                    </button>
-                  ) : (
-                    <p className="text-xs font-medium text-slate-500">Sharing this card...</p>
-                  )}
+                    {isSharedControlsExpanded ? "Hide wall controls" : "Manage wall item"}
+                  </button>
+                ) : (
+                  <p className="text-xs font-medium text-slate-500">Adding this card to your wall...</p>
+                )}
 
-                  {isSharedControlsExpanded ? (
-                    <div className="mt-3 space-y-3">
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => onPublicNoteEdit(item)}
-                          disabled={!item.is_shared}
-                          className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
-                        >
-                          {item.public_note ? "Edit public note" : "Add public note"}
-                        </button>
-                        <p className="mt-1 text-xs text-slate-500">This note appears on your public shared card.</p>
-                      </div>
+                {isSharedControlsExpanded ? (
+                  <div className="mt-3 space-y-3">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor={`wall-category-${item.card_id}`}
+                        className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400"
+                      >
+                        Category
+                      </label>
+                      <select
+                        id={`wall-category-${item.card_id}`}
+                        value={item.wall_category ?? ""}
+                        disabled={!item.is_shared || isWallCategoryPending}
+                        onChange={(event) =>
+                          onWallCategoryChange(item, event.target.value ? (event.target.value as WallCategory) : null)
+                        }
+                        className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        <option value="">No category</option>
+                        {WALL_CATEGORY_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                      {wallCategoryLabel ? (
+                        <p className="text-xs text-slate-500">Wall: {wallCategoryLabel}</p>
+                      ) : null}
+                    </div>
 
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => onPublicNoteEdit(item)}
+                        disabled={!item.is_shared}
+                        className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                      >
+                        {item.public_note ? "Edit wall note" : "Add wall note"}
+                      </button>
+                      <p className="mt-1 text-xs text-slate-500">This note appears on your public wall item.</p>
+                    </div>
+
+                    {canManagePublicImages ? (
                       <div className="space-y-2">
                         <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Public Images</p>
 
@@ -428,13 +469,12 @@ export function VaultCardTile({
                           </span>
                         </label>
                       </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-              {shareError ? <p className="mt-2 text-xs text-slate-500">{shareError}</p> : null}
-            </>
-          )}
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+            {shareError ? <p className="mt-2 text-xs text-slate-500">{shareError}</p> : null}
           </div>
 
           <div className="border-t border-slate-200 pt-3">

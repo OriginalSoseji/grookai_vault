@@ -3,11 +3,15 @@ export type PublicProfileSettingsValues = {
   displayName: string;
   publicProfileEnabled: boolean;
   vaultSharingEnabled: boolean;
+  avatarPath: string | null;
+  bannerPath: string | null;
 };
 
 export type PublicProfileSettingsErrors = Partial<{
   slug: string;
   displayName: string;
+  avatarPath: string;
+  bannerPath: string;
   form: string;
 }>;
 
@@ -59,5 +63,7 @@ export function normalizePublicProfileSettings(values: PublicProfileSettingsValu
     displayName: normalizePublicProfileDisplayName(values.displayName),
     publicProfileEnabled,
     vaultSharingEnabled: publicProfileEnabled ? Boolean(values.vaultSharingEnabled) : false,
+    avatarPath: typeof values.avatarPath === "string" && values.avatarPath.trim().length > 0 ? values.avatarPath.trim() : null,
+    bannerPath: typeof values.bannerPath === "string" && values.bannerPath.trim().length > 0 ? values.bannerPath.trim() : null,
   };
 }

@@ -3,6 +3,10 @@
 import { revalidatePath } from "next/cache";
 import type { PostgrestError } from "@supabase/supabase-js";
 import {
+  isOwnedProfileMediaPath,
+  normalizeProfileMediaPath,
+} from "@/lib/profileMedia";
+import {
   normalizePublicProfileSettings,
   type PublicProfileSettingsErrors,
   type PublicProfileSettingsValues,
@@ -51,6 +55,17 @@ export async function savePublicProfileSettings(
   }
 
   const fieldErrors = validatePublicProfileSettings(normalizedValues);
+  const normalizedAvatarPath = normalizeProfileMediaPath(normalizedValues.avatarPath);
+  const normalizedBannerPath = normalizeProfileMediaPath(normalizedValues.bannerPath);
+
+  if (normalizedAvatarPath && !isOwnedProfileMediaPath(user.id, "avatar", normalizedAvatarPath)) {
+    fieldErrors.avatarPath = "Profile photo path is invalid for this account.";
+  }
+
+  if (normalizedBannerPath && !isOwnedProfileMediaPath(user.id, "banner", normalizedBannerPath)) {
+    fieldErrors.bannerPath = "Banner image path is invalid for this account.";
+  }
+
   if (Object.keys(fieldErrors).length > 0) {
     return {
       ok: false,
@@ -66,6 +81,8 @@ export async function savePublicProfileSettings(
     display_name: normalizedValues.displayName,
     public_profile_enabled: normalizedValues.publicProfileEnabled,
     vault_sharing_enabled: normalizedValues.vaultSharingEnabled,
+    avatar_path: normalizedAvatarPath,
+    banner_path: normalizedBannerPath,
   };
 
   const { data, error } = await client
@@ -73,7 +90,7 @@ export async function savePublicProfileSettings(
     .upsert(payload, {
       onConflict: "user_id",
     })
-    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled")
+    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled,avatar_path,banner_path")
     .single();
 
   if (error) {
@@ -86,6 +103,11 @@ export async function savePublicProfileSettings(
   }
 
   revalidatePath("/account");
+  if (data.slug) {
+    revalidatePath(`/u/${data.slug}`);
+    revalidatePath(`/u/${data.slug}/collection`);
+    revalidatePath(`/u/${data.slug}/pokemon`);
+  }
 
   return {
     ok: true,
@@ -95,6 +117,8 @@ export async function savePublicProfileSettings(
       displayName: data.display_name ?? normalizedValues.displayName,
       publicProfileEnabled: Boolean(data.public_profile_enabled),
       vaultSharingEnabled: Boolean(data.vault_sharing_enabled),
+      avatarPath: normalizeProfileMediaPath(data.avatar_path) ?? normalizedAvatarPath,
+      bannerPath: normalizeProfileMediaPath(data.banner_path) ?? normalizedBannerPath,
     },
     fieldErrors: {},
   };

@@ -3,11 +3,16 @@ import "server-only";
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import {
+  normalizeWallCategory,
+  type WallCategory,
+} from "@/lib/sharedCards/wallCategories";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 type SharedCardRow = {
   card_id: string | null;
   gv_id: string | null;
+  wall_category: string | null;
   public_note: string | null;
   public_front_image_path: string | null;
   public_back_image_path: string | null;
@@ -44,6 +49,10 @@ export type SharedCard = {
   image_url?: string;
   back_image_url?: string;
   public_note?: string;
+  wall_category?: WallCategory;
+  owned_count?: number;
+  raw_count?: number;
+  slab_count?: number;
   is_slab?: boolean;
   grader?: string;
   grade?: string;
@@ -55,9 +64,8 @@ type PublicProfileLookup = {
   vault_sharing_enabled: boolean | null;
 };
 
-type ActiveVaultInstanceRow = {
+type ActiveRawInstanceRow = {
   card_print_id: string | null;
-  slab_cert_id: string | null;
 };
 
 type SlabCertRow = {
@@ -136,19 +144,30 @@ export function filterSharedCardsByPokemonSlug(cards: SharedCard[], pokemonSlug:
   return cards.filter((card) => normalizePokemonMatchValue(card.name).includes(normalizedPokemon));
 }
 
-async function fetchDeterministicSlabStateByCardId(userId: string, cardIds: string[]) {
+type SharedWallCardState = {
+  total_count: number;
+  raw_count: number;
+  slab_count: number;
+  is_slab: boolean;
+  grader?: string;
+  grade?: string;
+  cert_number?: string;
+};
+
+async function fetchSharedWallStateByCardId(userId: string, cardIds: string[]) {
   const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
   if (!userId || normalizedCardIds.length === 0) {
-    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+    return new Map<string, SharedWallCardState>();
   }
 
   const admin = createServerAdminClient();
   const [rawInstancesResponse, slabCertsResponse] = await Promise.all([
     admin
       .from("vault_item_instances")
-      .select("card_print_id,slab_cert_id")
+      .select("card_print_id")
       .eq("user_id", userId)
       .is("archived_at", null)
+      .is("slab_cert_id", null)
       .in("card_print_id", normalizedCardIds),
     admin
       .from("slab_certs")
@@ -162,7 +181,7 @@ async function fetchDeterministicSlabStateByCardId(userId: string, cardIds: stri
       rawInstancesError: rawInstancesResponse.error,
       slabCertsError: slabCertsResponse.error,
     });
-    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+    return new Map<string, SharedWallCardState>();
   }
 
   const slabCertRows = (slabCertsResponse.data ?? []) as SlabCertRow[];
@@ -188,23 +207,24 @@ async function fetchDeterministicSlabStateByCardId(userId: string, cardIds: stri
       userId,
       error: slabInstancesResponse.error,
     });
-    return new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+    return new Map<string, SharedWallCardState>();
   }
 
-  const byCardId = new Map<string, { totalCount: number; slab: SlabCertRow | null }>();
+  const byCardId = new Map<string, { totalCount: number; rawCount: number; slabCount: number; slab: SlabCertRow | null }>();
 
-  for (const row of (rawInstancesResponse.data ?? []) as ActiveVaultInstanceRow[]) {
+  for (const row of (rawInstancesResponse.data ?? []) as ActiveRawInstanceRow[]) {
     const cardPrintId = normalizeOptionalText(row.card_print_id);
     if (!cardPrintId) {
       continue;
     }
 
-    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, slab: null };
+    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, rawCount: 0, slabCount: 0, slab: null };
     current.totalCount += 1;
+    current.rawCount += 1;
     byCardId.set(cardPrintId, current);
   }
 
-  for (const row of (slabInstancesResponse.data ?? []) as ActiveVaultInstanceRow[]) {
+  for (const row of (slabInstancesResponse.data ?? []) as { slab_cert_id: string | null }[]) {
     const slabCertId = normalizeOptionalText(row.slab_cert_id);
     const slabCert = slabCertId ? slabCertById.get(slabCertId) ?? null : null;
     const cardPrintId = normalizeOptionalText(slabCert?.card_print_id);
@@ -212,24 +232,24 @@ async function fetchDeterministicSlabStateByCardId(userId: string, cardIds: stri
       continue;
     }
 
-    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, slab: null };
+    const current = byCardId.get(cardPrintId) ?? { totalCount: 0, rawCount: 0, slabCount: 0, slab: null };
     current.totalCount += 1;
+    current.slabCount += 1;
     current.slab = slabCert;
     byCardId.set(cardPrintId, current);
   }
 
-  const out = new Map<string, { is_slab: true; grader?: string; grade?: string; cert_number?: string }>();
+  const out = new Map<string, SharedWallCardState>();
 
   for (const [cardId, entry] of byCardId.entries()) {
-    if (entry.totalCount !== 1 || !entry.slab) {
-      continue;
-    }
-
     out.set(cardId, {
-      is_slab: true,
-      grader: normalizeOptionalText(entry.slab.grader) ?? undefined,
-      grade: normalizeGradeValue(entry.slab.grade) ?? undefined,
-      cert_number: normalizeOptionalText(entry.slab.cert_number) ?? undefined,
+      total_count: entry.totalCount,
+      raw_count: entry.rawCount,
+      slab_count: entry.slabCount,
+      is_slab: entry.slabCount > 0,
+      grader: normalizeOptionalText(entry.slab?.grader) ?? undefined,
+      grade: normalizeGradeValue(entry.slab?.grade) ?? undefined,
+      cert_number: entry.slabCount === 1 ? normalizeOptionalText(entry.slab?.cert_number) ?? undefined : undefined,
     });
   }
 
@@ -264,6 +284,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       `
         card_id,
         gv_id,
+        wall_category,
         public_note,
         public_front_image_path,
         public_back_image_path,
@@ -291,7 +312,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
     return [];
   }
 
-  const deterministicSlabStateByCardId = await fetchDeterministicSlabStateByCardId(
+  const wallStateByCardId = await fetchSharedWallStateByCardId(
     profileRow.user_id,
     sharedRows.map((row) => row.card_id),
   );
@@ -326,6 +347,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         row.show_personal_front === true ? getBestPublicCardImageUrl(row.public_front_image_path) ?? undefined : undefined;
       const personalBackImageUrl =
         row.show_personal_back === true ? getBestPublicCardImageUrl(row.public_back_image_path) ?? undefined : undefined;
+      const wallState = wallStateByCardId.get(row.card_id);
 
       return {
         gv_id: row.gv_id,
@@ -337,10 +359,14 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         image_url: personalFrontImageUrl ?? getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
         back_image_url: personalBackImageUrl,
         public_note: row.public_note?.trim() || undefined,
-        is_slab: deterministicSlabStateByCardId.get(row.card_id)?.is_slab,
-        grader: deterministicSlabStateByCardId.get(row.card_id)?.grader,
-        grade: deterministicSlabStateByCardId.get(row.card_id)?.grade,
-        cert_number: deterministicSlabStateByCardId.get(row.card_id)?.cert_number,
+        wall_category: normalizeWallCategory(row.wall_category) ?? undefined,
+        owned_count: wallState?.total_count,
+        raw_count: wallState?.raw_count,
+        slab_count: wallState?.slab_count,
+        is_slab: wallState?.is_slab,
+        grader: wallState?.grader,
+        grade: wallState?.grade,
+        cert_number: wallState?.cert_number,
       };
     })
     .filter((row): row is NonNullable<typeof row> => row !== null);

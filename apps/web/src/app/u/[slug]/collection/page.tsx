@@ -74,6 +74,8 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
         displayName={profile.display_name}
         slug={profile.slug}
         description={description}
+        avatarUrl={profile.avatar_url}
+        bannerUrl={profile.banner_url}
         stats={stats}
         activeView="collection"
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}

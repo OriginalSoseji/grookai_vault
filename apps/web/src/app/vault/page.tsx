@@ -7,6 +7,10 @@ import {
 } from "@/components/vault/VaultCollectionView";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import {
+  normalizeWallCategory,
+  type WallCategory,
+} from "@/lib/sharedCards/wallCategories";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
@@ -21,6 +25,7 @@ type SharedCardRow = {
   card_id: string | null;
   gv_id: string | null;
   is_shared: boolean | null;
+  wall_category: string | null;
   public_note: string | null;
   show_personal_front: boolean | null;
   show_personal_back: boolean | null;
@@ -54,6 +59,8 @@ function normalizeVaultItems(
   rows: CanonicalVaultCollectorRow[] | null | undefined,
   sharedCardIds: Set<string>,
   sharedGvIds: Set<string>,
+  sharedWallCategoryByCardId: Map<string, WallCategory | null>,
+  sharedWallCategoryByGvId: Map<string, WallCategory | null>,
   sharedNotesByCardId: Map<string, string | null>,
   sharedNotesByGvId: Map<string, string | null>,
   sharedFrontImageCardIds: Set<string>,
@@ -99,6 +106,9 @@ function normalizeVaultItems(
         grade: row.grade,
         cert_number: row.cert_number,
         is_shared: sharedCardIds.has(row.card_id) || sharedGvIds.has(row.gv_id),
+        wall_category:
+          normalizeWallCategory(sharedWallCategoryByCardId.get(row.card_id) ?? null) ??
+          normalizeWallCategory(sharedWallCategoryByGvId.get(row.gv_id) ?? null),
         public_note: noteFromCardId ?? sharedNotesByGvId.get(row.gv_id) ?? null,
         show_personal_front: sharedFrontImageCardIds.has(row.card_id) || sharedFrontImageGvIds.has(row.gv_id),
         show_personal_back: sharedBackImageCardIds.has(row.card_id) || sharedBackImageGvIds.has(row.gv_id),
@@ -178,7 +188,7 @@ export default async function VaultPage() {
       .limit(10),
     supabase
       .from("shared_cards")
-      .select("card_id,gv_id,is_shared,public_note,show_personal_front,show_personal_back")
+      .select("card_id,gv_id,is_shared,wall_category,public_note,show_personal_front,show_personal_back")
       .eq("user_id", user.id),
     supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", user.id).maybeSingle(),
     supabase.from("user_card_images").select("vault_item_id,side").eq("user_id", user.id),
@@ -233,6 +243,18 @@ export default async function VaultPage() {
       .map((row) => row.gv_id ?? "")
       .filter(Boolean),
   );
+  const sharedWallCategoryByCardId = new Map(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => [row.card_id ?? "", normalizeWallCategory(row.wall_category)] as const)
+      .filter(([cardId]) => Boolean(cardId)),
+  );
+  const sharedWallCategoryByGvId = new Map(
+    sharedRows
+      .filter((row) => row.is_shared !== false)
+      .map((row) => [row.gv_id ?? "", normalizeWallCategory(row.wall_category)] as const)
+      .filter(([gvId]) => Boolean(gvId)),
+  );
   const userCardImageRows = (imageData ?? []) as UserCardImageRow[];
   const vaultFrontPhotoIds = new Set(
     userCardImageRows
@@ -251,6 +273,8 @@ export default async function VaultPage() {
     itemRows,
     sharedCardIds,
     sharedGvIds,
+    sharedWallCategoryByCardId,
+    sharedWallCategoryByGvId,
     sharedNotesByCardId,
     sharedNotesByGvId,
     sharedFrontImageCardIds,

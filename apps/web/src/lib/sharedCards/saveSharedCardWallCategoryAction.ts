@@ -2,18 +2,22 @@
 
 import { revalidatePath } from "next/cache";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import {
+  normalizeWallCategory,
+  type WallCategory,
+} from "@/lib/sharedCards/wallCategories";
 
-export type SaveSharedCardPublicNoteInput = {
+export type SaveSharedCardWallCategoryInput = {
   itemId?: string;
   gvViId?: string | null;
-  note: string;
+  wallCategory?: string | null;
 };
 
-export type SaveSharedCardPublicNoteResult =
+export type SaveSharedCardWallCategoryResult =
   | {
       ok: true;
       itemId: string;
-      publicNote: string | null;
+      wallCategory: WallCategory | null;
     }
   | {
       ok: false;
@@ -37,17 +41,13 @@ type CardPrintRow = {
   gv_id: string | null;
 };
 
-type SharedCardRow = {
-  public_note: string | null;
-};
-
 type PublicProfileRow = {
   slug: string | null;
 };
 
-export async function saveSharedCardPublicNoteAction(
-  input: SaveSharedCardPublicNoteInput,
-): Promise<SaveSharedCardPublicNoteResult> {
+export async function saveSharedCardWallCategoryAction(
+  input: SaveSharedCardWallCategoryInput,
+): Promise<SaveSharedCardWallCategoryResult> {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -139,12 +139,19 @@ export async function saveSharedCardPublicNoteAction(
     };
   }
 
-  const trimmedNote = input.note.trim();
-  const nextPublicNote = trimmedNote.length > 0 ? trimmedNote : null;
+  const nextWallCategory = normalizeWallCategory(input.wallCategory);
+  const rawWallCategory = (input.wallCategory ?? "").trim();
+  if (rawWallCategory.length > 0 && !nextWallCategory) {
+    return {
+      ok: false,
+      itemId: input.gvViId ?? input.itemId ?? "",
+      message: "Invalid wall category.",
+    };
+  }
 
   const { data: existingSharedRow, error: existingSharedError } = await client
     .from("shared_cards")
-    .select("public_note")
+    .select("id")
     .eq("user_id", user.id)
     .eq("card_id", row.card_id)
     .maybeSingle();
@@ -153,14 +160,14 @@ export async function saveSharedCardPublicNoteAction(
     return {
       ok: false,
       itemId: input.gvViId ?? input.itemId ?? "",
-      message: "Add this card to your wall before adding a public note.",
+      message: "Add this card to your wall before assigning a category.",
     };
   }
 
   const { error: updateError } = await client
     .from("shared_cards")
     .update({
-      public_note: nextPublicNote,
+      wall_category: nextWallCategory,
     })
     .eq("user_id", user.id)
     .eq("card_id", row.card_id);
@@ -169,7 +176,7 @@ export async function saveSharedCardPublicNoteAction(
     return {
       ok: false,
       itemId: input.gvViId ?? input.itemId ?? "",
-      message: "Couldn’t save public note.",
+      message: "Couldn’t save wall category.",
     };
   }
 
@@ -186,6 +193,6 @@ export async function saveSharedCardPublicNoteAction(
   return {
     ok: true,
     itemId: input.gvViId ?? input.itemId ?? "",
-    publicNote: nextPublicNote,
+    wallCategory: nextWallCategory,
   };
 }

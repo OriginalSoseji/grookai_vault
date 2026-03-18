@@ -12,6 +12,8 @@ type PublicProfileRow = {
   display_name: string | null;
   public_profile_enabled: boolean | null;
   vault_sharing_enabled: boolean | null;
+  avatar_path: string | null;
+  banner_path: string | null;
 };
 
 export default async function AccountPage() {
@@ -26,7 +28,7 @@ export default async function AccountPage() {
 
   const { data: profile, error: profileError } = await supabase
     .from("public_profiles")
-    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled")
+    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled,avatar_path,banner_path")
     .eq("user_id", user.id)
     .maybeSingle();
 
@@ -36,6 +38,8 @@ export default async function AccountPage() {
     displayName: profileRow?.display_name ?? "",
     publicProfileEnabled: Boolean(profileRow?.public_profile_enabled),
     vaultSharingEnabled: Boolean(profileRow?.vault_sharing_enabled),
+    avatarPath: profileRow?.avatar_path ?? null,
+    bannerPath: profileRow?.banner_path ?? null,
   };
 
   return (
@@ -80,6 +84,7 @@ export default async function AccountPage() {
       <PublicProfileSettingsForm
         initialValues={initialProfileValues}
         hasExistingProfile={Boolean(profileRow)}
+        userId={user.id}
         loadError={profileError?.message ?? null}
       />
 

@@ -13,7 +13,9 @@ import {
 } from "@/lib/vault/changeVaultItemQuantityAction";
 import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleSharedCardPublicImageAction";
 import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
+import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
 import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
+import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { ReactNode } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -101,21 +103,6 @@ function formatLastAdded(value: string | null) {
     day: "numeric",
     year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
   });
-}
-
-function MetricBlock({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number;
-}) {
-  return (
-    <div className="rounded-[1.5rem] border border-slate-200/90 bg-white px-5 py-5">
-      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{label}</p>
-      <p className="mt-2.5 text-[2rem] font-semibold tracking-tight text-slate-950 sm:text-[2.2rem]">{value}</p>
-    </div>
-  );
 }
 
 function SmartViewButton({
@@ -309,9 +296,9 @@ function PublicNoteModal({
       >
         <div className="space-y-3">
           <h3 id="vault-public-note-title" className="text-2xl font-semibold tracking-tight text-slate-950">
-            Public note
+            Wall note
           </h3>
-          <p className="text-sm leading-7 text-slate-600">This note appears on your public shared card.</p>
+          <p className="text-sm leading-7 text-slate-600">This note appears on your public wall item.</p>
         </div>
 
         <div className="mt-5 space-y-3">
@@ -320,7 +307,7 @@ function PublicNoteModal({
             onChange={(event) => onNoteChange(event.target.value)}
             rows={5}
             disabled={isPending}
-            placeholder="Add a note collectors can see on your shared card."
+            placeholder="Add a note collectors can see on your wall."
             className="w-full rounded-[1.25rem] border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
           />
           {error ? <p className="text-sm text-rose-700">{error}</p> : null}
@@ -355,6 +342,7 @@ function renderVaultGrid(
   setLogoPathByCode: Record<string, string>,
   pendingItemId: string | null,
   pendingShareItemId: string | null,
+  pendingWallCategoryItemId: string | null,
   pendingPublicImageKey: string | null,
   expandedSharedItemIds: Set<string>,
   itemErrors: Record<string, string>,
@@ -363,6 +351,7 @@ function renderVaultGrid(
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
   onConditionChange: (item: VaultCardData, condition: string) => void,
   onShareToggle: (item: VaultCardData) => void,
+  onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void,
   onSharedControlsToggle: (item: VaultCardData) => void,
   onPublicNoteEdit: (item: VaultCardData) => void,
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
@@ -387,6 +376,7 @@ function renderVaultGrid(
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
           isPending={pendingItemId === rowKey}
           isSharePending={pendingShareItemId === rowKey}
+          isWallCategoryPending={pendingWallCategoryItemId === rowKey}
           isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
           isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
           isSharedControlsExpanded={expandedSharedItemIds.has(rowKey)}
@@ -396,6 +386,7 @@ function renderVaultGrid(
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
           onShareToggle={onShareToggle}
+          onWallCategoryChange={onWallCategoryChange}
           onSharedControlsToggle={onSharedControlsToggle}
           onPublicNoteEdit={onPublicNoteEdit}
           onPublicImageToggle={onPublicImageToggle}
@@ -467,6 +458,7 @@ function applyOptimisticShareChange(items: VaultCardData[], rowKey: string, next
       ? {
           ...item,
           is_shared: nextShared,
+          wall_category: nextShared ? item.wall_category : null,
           public_note: nextShared ? item.public_note : null,
           show_personal_front: nextShared ? item.show_personal_front : false,
           show_personal_back: nextShared ? item.show_personal_back : false,
@@ -481,6 +473,21 @@ function applyOptimisticPublicNoteChange(items: VaultCardData[], rowKey: string,
       ? {
           ...item,
           public_note: publicNote,
+        }
+      : item,
+  );
+}
+
+function applyOptimisticWallCategoryChange(
+  items: VaultCardData[],
+  rowKey: string,
+  wallCategory: WallCategory | null,
+) {
+  return items.map((item) =>
+    getVaultRowRuntimeKey(item) === rowKey
+      ? {
+          ...item,
+          wall_category: wallCategory,
         }
       : item,
   );
@@ -532,6 +539,7 @@ export function VaultCollectionView({
   const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [pendingShareItemId, setPendingShareItemId] = useState<string | null>(null);
+  const [pendingWallCategoryItemId, setPendingWallCategoryItemId] = useState<string | null>(null);
   const [pendingPublicImageKey, setPendingPublicImageKey] = useState<string | null>(null);
   const [pendingPublicNoteItemId, setPendingPublicNoteItemId] = useState<string | null>(null);
   const [confirmRemovalItemId, setConfirmRemovalItemId] = useState<string | null>(null);
@@ -549,6 +557,7 @@ export function VaultCollectionView({
     setPokemonQuery("");
     setPendingItemId(null);
     setPendingShareItemId(null);
+    setPendingWallCategoryItemId(null);
     setPendingPublicImageKey(null);
     setPendingPublicNoteItemId(null);
     setConfirmRemovalItemId(null);
@@ -655,7 +664,7 @@ export function VaultCollectionView({
 
   const smartViews: Array<{ key: SmartViewKey; label: string; count?: number }> = [
     { key: "all", label: "All Cards", count: items.length },
-    { key: "shared", label: "Shared", count: sharedItems.length },
+    { key: "shared", label: "On Wall", count: sharedItems.length },
     { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
     { key: "recent", label: "Recently Added", count: recentItems.length },
     { key: "by-set", label: "By Set" },
@@ -812,7 +821,7 @@ export function VaultCollectionView({
   }
 
   function handleShareToggle(item: VaultCardData) {
-    if (pendingShareItemId || pendingItemId || pendingPublicImageKey) {
+    if (pendingShareItemId || pendingWallCategoryItemId || pendingItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -894,10 +903,57 @@ export function VaultCollectionView({
         });
         setShareErrors((current) => ({
           ...current,
-          [rowKey]: "Couldn’t update shared state.",
+          [rowKey]: "Couldn’t update wall state.",
         }));
       } finally {
         setPendingShareItemId(null);
+      }
+    });
+  }
+
+  function handleWallCategoryChange(item: VaultCardData, wallCategory: WallCategory | null) {
+    if (!item.is_shared || pendingWallCategoryItemId || pendingShareItemId || pendingItemId || pendingPublicImageKey) {
+      return;
+    }
+
+    const rowKey = getVaultRowRuntimeKey(item);
+    const currentItems = items;
+
+    setShareErrors((current) => {
+      const next = { ...current };
+      delete next[rowKey];
+      return next;
+    });
+    setPendingWallCategoryItemId(rowKey);
+    setItems(applyOptimisticWallCategoryChange(currentItems, rowKey, wallCategory));
+
+    startTransition(async () => {
+      try {
+        const result = await saveSharedCardWallCategoryAction({
+          itemId: item.vault_item_id,
+          gvViId: item.gv_vi_id,
+          wallCategory,
+        });
+
+        if (!result.ok) {
+          setItems(currentItems);
+          setShareErrors((current) => ({
+            ...current,
+            [rowKey]: result.message,
+          }));
+          return;
+        }
+
+        setItems((current) => applyOptimisticWallCategoryChange(current, rowKey, result.wallCategory));
+        router.refresh();
+      } catch (error) {
+        setItems(currentItems);
+        setShareErrors((current) => ({
+          ...current,
+          [rowKey]: "Couldn’t save wall category.",
+        }));
+      } finally {
+        setPendingWallCategoryItemId(null);
       }
     });
   }
@@ -923,7 +979,7 @@ export function VaultCollectionView({
   }
 
   function handlePublicImageToggle(item: VaultCardData, side: "front" | "back", enabled: boolean) {
-    if (!item.is_shared || pendingPublicImageKey || pendingShareItemId || pendingItemId) {
+    if (!item.is_shared || pendingPublicImageKey || pendingWallCategoryItemId || pendingShareItemId || pendingItemId) {
       return;
     }
 
@@ -980,7 +1036,7 @@ export function VaultCollectionView({
   }
 
   function handleOpenPublicNote(item: VaultCardData) {
-    if (!item.is_shared || pendingPublicNoteItemId || pendingShareItemId || pendingPublicImageKey) {
+    if (!item.is_shared || pendingPublicNoteItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -1000,7 +1056,7 @@ export function VaultCollectionView({
   }
 
   function handleSavePublicNote() {
-    if (!publicNoteItemId || pendingPublicNoteItemId) {
+    if (!publicNoteItemId || pendingPublicNoteItemId || pendingWallCategoryItemId) {
       return;
     }
 
@@ -1051,6 +1107,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
             itemErrors,
@@ -1059,6 +1116,7 @@ export function VaultCollectionView({
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleWallCategoryChange,
             handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
@@ -1078,6 +1136,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
             itemErrors,
@@ -1086,6 +1145,7 @@ export function VaultCollectionView({
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleWallCategoryChange,
             handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
@@ -1105,6 +1165,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
             itemErrors,
@@ -1113,6 +1174,7 @@ export function VaultCollectionView({
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleWallCategoryChange,
             handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
@@ -1120,7 +1182,7 @@ export function VaultCollectionView({
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
-            <ViewEmptyState title="No shared cards yet" body="Cards you share from your vault will appear here." />
+            <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />
           );
   } else if (activeView === "by-set") {
     const filteredBySetGroups = bySetGroups
@@ -1154,6 +1216,7 @@ export function VaultCollectionView({
                   setLogoPathByCode,
                   pendingItemId,
                   pendingShareItemId,
+                  pendingWallCategoryItemId,
                   pendingPublicImageKey,
                   expandedSharedItemIds,
                   itemErrors,
@@ -1162,6 +1225,7 @@ export function VaultCollectionView({
                   handleQuantityChange,
                   changeCondition,
                   handleShareToggle,
+                  handleWallCategoryChange,
                   handleSharedControlsToggle,
                   handleOpenPublicNote,
                   handlePublicImageToggle,
@@ -1220,6 +1284,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
             itemErrors,
@@ -1228,6 +1293,7 @@ export function VaultCollectionView({
             handleQuantityChange,
             changeCondition,
             handleShareToggle,
+            handleWallCategoryChange,
             handleSharedControlsToggle,
             handleOpenPublicNote,
             handlePublicImageToggle,
@@ -1247,6 +1313,7 @@ export function VaultCollectionView({
           setLogoPathByCode,
           pendingItemId,
           pendingShareItemId,
+          pendingWallCategoryItemId,
           pendingPublicImageKey,
           expandedSharedItemIds,
           itemErrors,
@@ -1255,6 +1322,7 @@ export function VaultCollectionView({
           handleQuantityChange,
           changeCondition,
           handleShareToggle,
+          handleWallCategoryChange,
           handleSharedControlsToggle,
           handleOpenPublicNote,
           handlePublicImageToggle,
@@ -1283,29 +1351,36 @@ export function VaultCollectionView({
       />
 
       <div className="space-y-10 py-7">
-      <section className="space-y-8 rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/60 md:px-8">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-2xl space-y-2.5">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Web Vault</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-[2.8rem]">Your vault. At a glance.</h1>
-            <p className="max-w-xl text-base leading-7 text-slate-600">A clear view of the cards you own, organized and ready.</p>
+      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-200/60 md:px-7">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0 space-y-2">
+            <div className="space-y-1">
+              <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Vault</p>
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Your Vault</h1>
+              <p className="text-sm text-slate-600">A clear view of the cards you own.</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2.5 text-sm text-slate-600">
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-medium text-slate-800">
+                {summary.cards} {summary.cards === 1 ? "card" : "cards"}
+              </span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+                {summary.uniqueCards} unique
+              </span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+                {summary.sets} {summary.sets === 1 ? "set" : "sets"}
+              </span>
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+                Updated {summary.lastAdded}
+              </span>
+            </div>
           </div>
-          <div className="flex shrink-0 items-start">
+          <div className="flex shrink-0 items-start lg:justify-end">
             <Link
               href="/vault/import"
               className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
             >
               Import Collection
             </Link>
-          </div>
-        </div>
-
-        <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-3.5 sm:p-4">
-          <div className="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
-            <MetricBlock label="Cards" value={summary.cards} />
-            <MetricBlock label="Unique Cards" value={summary.uniqueCards} />
-            <MetricBlock label="Sets" value={summary.sets} />
-            <MetricBlock label="Last Added" value={summary.lastAdded} />
           </div>
         </div>
       </section>

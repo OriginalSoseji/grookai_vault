@@ -88,7 +88,7 @@ export async function toggleSharedCardPublicImageAction(
     return {
       ok: false,
       side: input.side,
-      message: "Share this card before enabling public images.",
+      message: "Add this card to your wall before enabling public images.",
     };
   }
 
@@ -121,7 +121,7 @@ export async function toggleSharedCardPublicImageAction(
       return {
         ok: false,
         side: input.side,
-        message: "This card photo is not ready for public sharing yet.",
+        message: "This card photo is not ready for your public wall yet.",
       };
     }
 
