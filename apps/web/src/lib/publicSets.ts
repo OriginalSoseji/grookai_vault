@@ -77,6 +77,23 @@ export type PublicSetDetail = PublicSetSummary & {
   cards: PublicSetCard[];
 };
 
+export type PublicSetFilter =
+  | "all"
+  | "modern"
+  | "special"
+  | "a-z"
+  | "newest"
+  | "oldest";
+
+export const PUBLIC_SET_FILTER_OPTIONS: Array<{ value: PublicSetFilter; label: string }> = [
+  { value: "all", label: "All Sets" },
+  { value: "modern", label: "Modern" },
+  { value: "special", label: "Special" },
+  { value: "a-z", label: "A-Z" },
+  { value: "newest", label: "Newest" },
+  { value: "oldest", label: "Oldest" },
+];
+
 function createServerSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -108,6 +125,23 @@ function tokenizeWords(value?: string | null) {
 
 function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+export function normalizePublicSetFilter(value?: string | null): PublicSetFilter {
+  switch ((value ?? "").trim().toLowerCase()) {
+    case "modern":
+      return "modern";
+    case "special":
+      return "special";
+    case "a-z":
+      return "a-z";
+    case "newest":
+      return "newest";
+    case "oldest":
+      return "oldest";
+    default:
+      return "all";
+  }
 }
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -325,4 +359,69 @@ export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
       return normalizeSetQuery(alias).includes(normalizedQuery) && codes.includes(setInfo.code);
     });
   });
+}
+
+function isSpecialSet(setInfo: PublicSetSummary) {
+  const code = normalizeSetCode(setInfo.code);
+  const name = normalizeSetQuery(setInfo.name);
+
+  if (code.includes("pt5") || code.includes(".5")) {
+    return true;
+  }
+
+  return [
+    "trainer gallery",
+    "radiant collection",
+    "shiny",
+    "fates",
+    "crown zenith",
+    "prismatic",
+  ].some((marker) => name.includes(marker));
+}
+
+function compareByName(left: PublicSetSummary, right: PublicSetSummary) {
+  return left.name.localeCompare(right.name);
+}
+
+function compareByReleaseYearDesc(left: PublicSetSummary, right: PublicSetSummary) {
+  const leftYear = typeof left.release_year === "number" ? left.release_year : Number.NEGATIVE_INFINITY;
+  const rightYear = typeof right.release_year === "number" ? right.release_year : Number.NEGATIVE_INFINITY;
+
+  if (leftYear !== rightYear) {
+    return rightYear - leftYear;
+  }
+
+  return compareByName(left, right);
+}
+
+function compareByReleaseYearAsc(left: PublicSetSummary, right: PublicSetSummary) {
+  const leftYear = typeof left.release_year === "number" ? left.release_year : Number.POSITIVE_INFINITY;
+  const rightYear = typeof right.release_year === "number" ? right.release_year : Number.POSITIVE_INFINITY;
+
+  if (leftYear !== rightYear) {
+    return leftYear - rightYear;
+  }
+
+  return compareByName(left, right);
+}
+
+export function applyPublicSetFilterAndSort(sets: PublicSetSummary[], rawFilter?: string | null) {
+  const filter = normalizePublicSetFilter(rawFilter);
+  const baseSets = [...sets];
+
+  switch (filter) {
+    case "modern":
+      return baseSets.filter((setInfo) => (setInfo.release_year ?? 0) >= 2020);
+    case "special":
+      return baseSets.filter(isSpecialSet);
+    case "a-z":
+      return baseSets.sort(compareByName);
+    case "newest":
+      return baseSets.sort(compareByReleaseYearDesc);
+    case "oldest":
+      return baseSets.sort(compareByReleaseYearAsc);
+    case "all":
+    default:
+      return baseSets;
+  }
 }

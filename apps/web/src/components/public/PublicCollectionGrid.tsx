@@ -1,20 +1,45 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
+import { ViewDensityToggle, type ViewDensity } from "@/components/collection/ViewDensityToggle";
 import type { SharedCard } from "@/lib/getSharedCardsBySlug";
 
 type PublicCollectionGridProps = {
   cards: SharedCard[];
 };
 
+const gridClassMap: Record<ViewDensity, string> = {
+  compact: "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8",
+  default: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
+  large: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+};
+
+const gapClassMap: Record<ViewDensity, string> = {
+  compact: "gap-2 sm:gap-3",
+  default: "gap-5",
+  large: "gap-6",
+};
+
 export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
+  const [density, setDensity] = useState<ViewDensity>("default");
+
   return (
     <section className="space-y-4">
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="flex flex-col gap-3 rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-1">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">View density</p>
+          <p className="text-sm text-slate-600">Switch between compact scanning and larger card inspection.</p>
+        </div>
+        <ViewDensityToggle value={density} onChange={setDensity} />
+      </div>
+      <div className={`grid ${gridClassMap[density]} ${gapClassMap[density]}`}>
         {cards.map((card) => (
           <Link
             key={card.gv_id}
             href={`/card/${card.gv_id}`}
-            className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+            className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:scale-[1.02] hover:border-slate-300 hover:shadow-md"
           >
             <PublicCardImage
               src={card.image_url}

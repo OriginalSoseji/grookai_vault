@@ -2,21 +2,7 @@ import "server-only";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
-
-const FEATURED_EXPLORE_CARD_IDS = [
-  "GV-PK-SSP-238",
-  "GV-PK-MEW-199",
-  "GV-PK-OBF-223",
-  "GV-PK-PAF-232",
-  "GV-PK-SVI-245",
-  "GV-PK-BRS-TG23",
-  "GV-PK-SIT-TG29",
-  "GV-PK-LOR-186",
-  "GV-PK-PAL-203",
-  "GV-PK-PAL-269",
-  "GV-PK-TWM-214",
-  "GV-PK-PRE-179",
-] as const;
+import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 
 type FeaturedExploreCardRow = {
   gv_id: string | null;
@@ -46,39 +32,94 @@ export type FeaturedExploreCard = {
   image_url?: string;
 };
 
-export async function getFeaturedExploreCards(limit = 10): Promise<FeaturedExploreCard[]> {
+const FEATURED_EXPLORE_CARD_COUNT = 10;
+const FEATURED_EXPLORE_CANDIDATE_WINDOW = 48;
+
+function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null | undefined): FeaturedExploreCard | null {
+  if (!row?.gv_id) {
+    return null;
+  }
+
+  const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+
+  return {
+    gv_id: row.gv_id,
+    name: row.name?.trim() || "Unknown",
+    number: row.number?.trim() || "",
+    rarity: row.rarity?.trim() || undefined,
+    set_code: row.set_code?.trim() || undefined,
+    set_name: setRecord?.name?.trim() || undefined,
+    image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
+  } satisfies FeaturedExploreCard;
+}
+
+async function fetchFeaturedExploreCardCount() {
   const supabase = createServerComponentClient();
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,set_code,image_url,image_alt_url,sets(name)")
-    .in("gv_id", [...FEATURED_EXPLORE_CARD_IDS]);
+    .select("gv_id", {
+      head: true,
+      count: "exact",
+    })
+    .ilike("rarity", "%Special Illustration Rare%");
 
   if (error) {
     throw error;
   }
 
-  const rows = (data ?? []) as FeaturedExploreCardRow[];
-  const rowsByGvId = new Map(
-    rows
-      .filter((row): row is FeaturedExploreCardRow & { gv_id: string } => Boolean(row.gv_id))
-      .map((row) => [row.gv_id, row]),
-  );
+  return count ?? 0;
+}
 
-  return FEATURED_EXPLORE_CARD_IDS
-    .map((gvId) => rowsByGvId.get(gvId))
-    .filter((row): row is FeaturedExploreCardRow & { gv_id: string } => Boolean(row?.gv_id))
-    .map((row) => {
-      const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: number) {
+  const supabase = createServerComponentClient();
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select("gv_id,name,number,rarity,set_code,image_url,image_alt_url,sets(name)")
+    .ilike("rarity", "%Special Illustration Rare%")
+    .order("gv_id", { ascending: true })
+    .range(offset, offset + windowSize - 1);
 
-      return {
-        gv_id: row.gv_id,
-        name: row.name?.trim() || "Unknown",
-        number: row.number?.trim() || "",
-        rarity: row.rarity?.trim() || undefined,
-        set_code: row.set_code?.trim() || undefined,
-        set_name: setRecord?.name?.trim() || undefined,
-        image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
-      };
-    })
-    .slice(0, limit);
+  if (error) {
+    throw error;
+  }
+
+  return ((data ?? []) as FeaturedExploreCardRow[])
+    .map(normalizeFeaturedExploreCard)
+    .filter((row): row is FeaturedExploreCard => Boolean(row?.gv_id));
+}
+
+function dedupeFeaturedExploreCards(cards: FeaturedExploreCard[]) {
+  const seen = new Set<string>();
+  const deduped: FeaturedExploreCard[] = [];
+
+  for (const card of cards) {
+    if (seen.has(card.gv_id)) {
+      continue;
+    }
+
+    seen.add(card.gv_id);
+    deduped.push(card);
+  }
+
+  return deduped;
+}
+
+export async function getFeaturedExploreCards(limit = FEATURED_EXPLORE_CARD_COUNT): Promise<FeaturedExploreCard[]> {
+  const targetCount = Math.max(1, limit);
+  const totalRows = await fetchFeaturedExploreCardCount();
+  if (totalRows <= 0) {
+    return [];
+  }
+
+  const windowSize = Math.max(targetCount, FEATURED_EXPLORE_CANDIDATE_WINDOW);
+  const offset = getRotationOffset(totalRows, windowSize);
+  const rotatedCards = await getFeaturedExploreCardsFromWindow(offset, windowSize);
+  const dedupedRotatedCards = dedupeFeaturedExploreCards(rotatedCards).slice(0, targetCount);
+
+  if (dedupedRotatedCards.length >= targetCount || offset === 0) {
+    return dedupedRotatedCards;
+  }
+
+  const fallbackCards = await getFeaturedExploreCardsFromWindow(0, windowSize);
+  return dedupeFeaturedExploreCards([...dedupedRotatedCards, ...fallbackCards]).slice(0, targetCount);
 }
