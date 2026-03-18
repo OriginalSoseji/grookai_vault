@@ -28,11 +28,63 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
     { href: "/vault", label: "Vault" },
   ];
+  const mobileSectionLabel =
+    pathname === "/vault" || pathname.startsWith("/vault/")
+      ? "Vault"
+      : pathname === "/account" || pathname.startsWith("/account/")
+        ? "Profile"
+        : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
+          ? "Wall"
+          : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
+            ? "Explore"
+            : "Grookai Vault";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <PageContainer className={showTopSearch ? "space-y-4 py-4" : "py-4"}>
-        <div className="flex min-h-[64px] flex-col justify-center gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <PageContainer className={showTopSearch ? "space-y-3 py-3 md:space-y-4 md:py-4" : "py-3 md:py-4"}>
+        <div className="md:hidden">
+          <div className="flex min-h-[52px] items-center justify-between gap-3">
+            <Link href="/" className="flex min-w-0 items-center gap-2.5 text-base font-semibold text-slate-950">
+              <Image
+                src="/grookai-emblem-square.svg"
+                alt="Grookai Vault logo"
+                width={30}
+                height={30}
+                className="rounded-md"
+              />
+              <span className="truncate">Grookai Vault</span>
+            </Link>
+
+            <div className="flex shrink-0 items-center gap-2">
+              <Link
+                href={buildCompareHref(compareCards)}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                  pathname === "/compare" || pathname.startsWith("/compare/")
+                    ? "bg-amber-100 text-amber-950 ring-1 ring-amber-200"
+                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+                }`}
+              >
+                {compareCount > 0 ? `Compare (${compareCount})` : "Compare"}
+              </Link>
+              <Link
+                href={accountHref}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+              >
+                {accountLabel}
+              </Link>
+            </div>
+          </div>
+          <div className="mt-2 flex items-center justify-between gap-3">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{mobileSectionLabel}</p>
+            {isAuthenticated && profileHref ? (
+              <Link href={profileHref} className="text-xs font-medium text-slate-600 underline-offset-4 hover:text-slate-950 hover:underline">
+                My profile
+              </Link>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="hidden min-h-[64px] flex-col justify-center gap-4 md:flex lg:flex-row lg:items-center lg:justify-between">
           <Link href="/" className="flex items-center gap-3 text-lg font-semibold text-slate-950">
             <Image
               src="/grookai-emblem-square.svg"

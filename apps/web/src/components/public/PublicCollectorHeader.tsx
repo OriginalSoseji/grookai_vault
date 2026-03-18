@@ -52,7 +52,7 @@ export function PublicCollectorHeader({
   } as CSSProperties;
 
   return (
-    <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
+    <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm shadow-slate-200/70 sm:px-6 sm:py-7 md:px-8 md:py-8">
       {bannerUrl ? (
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
           <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
@@ -81,24 +81,24 @@ export function PublicCollectorHeader({
           })}
         </div>
       ) : null}
-      <div className="relative z-10 space-y-6">
-        <div className="flex flex-col gap-5 md:flex-row md:items-start">
-          <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[1.75rem] border border-white/60 bg-slate-950 text-2xl font-semibold tracking-[0.08em] text-white shadow-sm">
+      <div className="relative z-10 space-y-5 sm:space-y-6">
+        <div className="flex flex-col gap-4 sm:gap-5 md:flex-row md:items-start">
+          <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-[1.4rem] border border-white/60 bg-slate-950 text-xl font-semibold tracking-[0.08em] text-white shadow-sm sm:h-20 sm:w-20 sm:rounded-[1.75rem] sm:text-2xl">
             {avatarUrl ? (
               <Image src={avatarUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
             ) : (
               getInitials(displayName)
             )}
           </div>
-          <div className="min-w-0 flex-1 space-y-3">
-            <div className="space-y-2">
-              <p className={`text-sm font-semibold uppercase tracking-[0.18em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>Profile</p>
-              <h1 className={`text-4xl font-semibold tracking-tight ${bannerUrl ? "text-white" : "text-slate-950"}`}>{displayName}</h1>
-              <p className={`text-sm font-medium tracking-[0.08em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>/u/{slug}</p>
-              <p className={`max-w-2xl text-base leading-7 ${bannerUrl ? "text-white/90" : "text-slate-600"}`}>{description}</p>
+          <div className="min-w-0 flex-1 space-y-2.5 sm:space-y-3">
+            <div className="space-y-1.5 sm:space-y-2">
+              <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>Profile</p>
+              <h1 className={`text-3xl font-semibold tracking-tight sm:text-4xl ${bannerUrl ? "text-white" : "text-slate-950"}`}>{displayName}</h1>
+              <p className={`text-xs font-medium tracking-[0.08em] sm:text-sm ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>/u/{slug}</p>
+              <p className={`max-w-2xl text-sm leading-6 sm:text-base sm:leading-7 ${bannerUrl ? "text-white/90" : "text-slate-600"}`}>{description}</p>
             </div>
             {stats.length > 0 ? (
-              <div className="flex flex-wrap gap-3 pt-1">
+              <div className="flex flex-wrap gap-2.5 pt-1 sm:gap-3">
                 {stats.map((stat) => (
                   <div
                     key={`${stat.label}-${stat.value}`}
@@ -117,7 +117,7 @@ export function PublicCollectorHeader({
           </div>
         </div>
 
-        <div className="space-y-4 border-t border-slate-200 pt-5">
+        <div className="space-y-3.5 border-t border-slate-200 pt-4 sm:space-y-4 sm:pt-5">
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href={`/u/${slug}`}
