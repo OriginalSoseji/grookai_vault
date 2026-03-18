@@ -8,7 +8,7 @@ import CompareTray from "@/components/compare/CompareTray";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
-import type { PublicSetCard } from "@/lib/publicSets";
+import type { PublicSetCard } from "@/lib/publicSets.shared";
 
 type PublicSetCardGridProps = {
   setCode: string;

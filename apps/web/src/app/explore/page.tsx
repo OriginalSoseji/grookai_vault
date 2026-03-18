@@ -5,7 +5,8 @@ import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton
 import { getFeaturedExploreCards } from "@/lib/cards/getFeaturedExploreCards";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
-import { getPublicSets, type PublicSetSummary } from "@/lib/publicSets";
+import { getPublicSets } from "@/lib/publicSets";
+import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";

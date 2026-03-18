@@ -1,13 +1,13 @@
 import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
+import { getPublicSets } from "@/lib/publicSets";
 import {
-  getPublicSets,
   normalizeSetQuery,
   SET_INTENT_ALIAS_MAP,
   STRUCTURED_CARD_SET_ALIAS_MAP,
   type PublicSetSummary,
-} from "@/lib/publicSets";
+} from "@/lib/publicSets.shared";
 
 const CARD_SELECT = "id,gv_id,name,number,set_code,printed_set_abbrev";
 const STRUCTURED_QUERY_LIMIT = 80;

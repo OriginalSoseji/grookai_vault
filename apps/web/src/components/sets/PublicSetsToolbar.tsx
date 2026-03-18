@@ -7,7 +7,7 @@ import {
   PUBLIC_SET_FILTER_OPTIONS,
   normalizePublicSetFilter,
   type PublicSetFilter,
-} from "@/lib/publicSets";
+} from "@/lib/publicSets.shared";
 
 export default function PublicSetsToolbar() {
   const pathname = usePathname();

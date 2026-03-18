@@ -1,14 +1,16 @@
 import PublicSetsToolbar from "@/components/sets/PublicSetsToolbar";
 import PublicSetTile from "@/components/sets/PublicSetTile";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
+import {
+  normalizePublicSetFilter,
+  normalizeSetQuery,
+  PUBLIC_SET_FILTER_OPTIONS,
+} from "@/lib/publicSets.shared";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import {
   applyPublicSetFilterAndSort,
   filterPublicSets,
   getPublicSets,
-  normalizePublicSetFilter,
-  normalizeSetQuery,
-  PUBLIC_SET_FILTER_OPTIONS,
 } from "@/lib/publicSets";
 
 export const dynamic = "force-dynamic";

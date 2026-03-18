@@ -4,7 +4,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
 import type { ExploreViewMode } from "@/lib/exploreViewModes";
-import type { PublicSetSummary } from "@/lib/publicSets";
+import type { PublicSetSummary } from "@/lib/publicSets.shared";
 
 const POPULAR_POKEMON = [
   "Pikachu",
