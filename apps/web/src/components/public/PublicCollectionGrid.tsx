@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
-import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type PublicCollectionGridProps = {
   cards: PublicWallCard[];
+  density?: ViewDensity;
 };
 
 const gridClassMap: Record<ViewDensity, string> = {
@@ -19,22 +19,19 @@ const gridClassMap: Record<ViewDensity, string> = {
 
 const gapClassMap: Record<ViewDensity, string> = {
   compact: "gap-2 sm:gap-3",
-  default: "gap-3 sm:gap-4",
-  large: "gap-4 sm:gap-5",
+  default: "gap-2.5 sm:gap-3.5",
+  large: "gap-3 sm:gap-4",
 };
 
-export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
-  const { density, setDensity } = useViewDensity();
+export function PublicCollectionGrid({
+  cards,
+  density: providedDensity,
+}: PublicCollectionGridProps) {
+  const storedDensity = useViewDensity();
+  const density = providedDensity ?? storedDensity.density;
 
   return (
     <section className="space-y-4">
-      <div className="flex flex-col gap-3 rounded-[1.4rem] border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="space-y-1">
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Collection view</p>
-          <p className="text-sm text-slate-600">Choose how tightly you want to browse this collector&apos;s cards.</p>
-        </div>
-        <ViewDensityToggle value={density} onChange={setDensity} />
-      </div>
       <div className={`grid ${gridClassMap[density]} ${gapClassMap[density]}`}>
         {cards.map((card) => (
           (() => {
@@ -56,13 +53,13 @@ export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
               <Link
                 key={card.gv_id}
                 href={`/card/${card.gv_id}`}
-                className="group overflow-hidden rounded-[1.6rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                className="group overflow-hidden rounded-[1.45rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
                 <div className="relative">
                   <PublicCardImage
                     src={card.image_url}
                     alt={card.name}
-                    imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-4 transition duration-200 group-hover:scale-[1.02] sm:p-5"
+                    imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-3.5 transition duration-200 group-hover:scale-[1.02] sm:p-4"
                     fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
                     fallbackLabel={card.name}
                   />
@@ -86,7 +83,7 @@ export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
                     ) : null}
                   </div>
                 </div>
-                <div className="space-y-1.5 border-t border-slate-200 px-4 py-3 sm:py-4">
+                <div className="space-y-1 border-t border-slate-200 px-3.5 py-2.5 sm:px-4 sm:py-3">
                   <p className="line-clamp-2 text-sm font-semibold tracking-tight text-slate-950 sm:text-base">{card.name}</p>
                   <p className="line-clamp-1 text-xs text-slate-500 sm:text-sm">
                     {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}

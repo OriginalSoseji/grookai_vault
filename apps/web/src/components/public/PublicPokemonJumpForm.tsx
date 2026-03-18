@@ -43,15 +43,13 @@ export function PublicPokemonJumpForm({
       onSubmit={handleSubmit}
       className={
         variant === "compact"
-          ? "rounded-[1.35rem] border border-slate-200 bg-white p-3"
+          ? "rounded-[1rem] bg-transparent p-0"
           : "rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-4"
       }
     >
       <div className={`flex flex-col gap-3 ${variant === "compact" ? "sm:flex-row sm:items-end" : "md:flex-row md:items-end"}`}>
         <div className="min-w-0 flex-1 space-y-1.5">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-            {variant === "compact" ? "Find a Pokemon" : "Pokémon"}
-          </p>
+          {variant === "compact" ? <p className="text-[11px] font-medium text-slate-500">Find a Pokemon</p> : <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon</p>}
           <label htmlFor="public-pokemon-route" className="sr-only">
             View a Pokémon collection
           </label>
@@ -61,7 +59,9 @@ export function PublicPokemonJumpForm({
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder={variant === "compact" ? "Search this collection" : "Search your Pokémon"}
-            className="w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
+            className={`w-full rounded-full border px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300 ${
+              variant === "compact" ? "border-slate-200 bg-slate-50 focus:bg-white" : "border-slate-200 bg-white"
+            }`}
           />
           <p className="text-xs text-slate-500">
             {variant === "compact" ? "Jump straight to a Pokémon in this collection." : "Jump to a Pokémon in this collection."}
@@ -69,9 +69,13 @@ export function PublicPokemonJumpForm({
         </div>
         <button
           type="submit"
-          className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+          className={`inline-flex h-11 items-center justify-center rounded-full px-4 text-sm font-medium transition ${
+            variant === "compact"
+              ? "border border-slate-200 bg-slate-50 text-slate-800 hover:border-slate-300 hover:bg-white"
+              : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
+          }`}
         >
-          View Pokémon
+          View
         </button>
       </div>
     </form>

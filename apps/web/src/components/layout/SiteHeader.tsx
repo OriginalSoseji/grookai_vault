@@ -83,21 +83,18 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
               >
                 {compareCount > 0 ? `Compare (${compareCount})` : "Compare"}
               </Link>
-              <Link
-                href={accountHref}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-              >
-                {accountLabel}
-              </Link>
+              {!isAuthenticated ? (
+                <Link
+                  href={accountHref}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                >
+                  {accountLabel}
+                </Link>
+              ) : null}
             </div>
           </div>
-          <div className="mt-2 flex items-center justify-between gap-3">
+          <div className="mt-2 flex items-center gap-3">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{mobileSectionLabel}</p>
-            {isAuthenticated && profileHref ? (
-              <Link href={profileHref} className="text-xs font-medium text-slate-600 underline-offset-4 hover:text-slate-950 hover:underline">
-                My profile
-              </Link>
-            ) : null}
           </div>
           {showMobileGlobalSearch ? (
             <div className="mt-3">

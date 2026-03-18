@@ -1,10 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { FeaturedWallSection } from "@/components/public/FeaturedWallSection";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
+import { useViewDensity } from "@/hooks/useViewDensity";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 
 type PublicCollectorProfileSegment = "collection" | "highlights";
@@ -31,6 +33,7 @@ export function PublicCollectorProfileContent({
   defaultPokemonValue,
 }: PublicCollectorProfileContentProps) {
   const [activeSegment, setActiveSegment] = useState<PublicCollectorProfileSegment>("collection");
+  const { density, setDensity } = useViewDensity();
 
   const highlightCards = useMemo(() => {
     return [...cards]
@@ -40,7 +43,7 @@ export function PublicCollectorProfileContent({
 
   return (
     <section className="space-y-4">
-      <div className="rounded-[1.6rem] border border-slate-200 bg-white p-2 shadow-sm shadow-slate-200/60">
+      <div className="rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
         <div className="grid grid-cols-2 gap-2">
           {(
             [
@@ -52,7 +55,7 @@ export function PublicCollectorProfileContent({
               key={segment.value}
               type="button"
               onClick={() => setActiveSegment(segment.value)}
-              className={`rounded-[1.1rem] px-4 py-3 text-sm font-medium transition ${
+              className={`rounded-[1rem] px-4 py-2.5 text-sm font-medium transition ${
                 activeSegment === segment.value
                   ? "bg-slate-950 text-white shadow-sm"
                   : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
@@ -67,21 +70,29 @@ export function PublicCollectorProfileContent({
 
       {activeSegment === "collection" ? (
         <div className="space-y-4">
-          <div className="flex flex-col gap-3 rounded-[1.6rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:px-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="space-y-1">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{collectionEyebrow}</p>
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">{collectionTitle}</h2>
-                <p className="max-w-2xl text-sm leading-6 text-slate-600">{collectionDescription}</p>
+                <p className="text-[11px] font-medium text-slate-500">{collectionEyebrow}</p>
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950 sm:text-2xl">{collectionTitle}</h2>
+                <p className="max-w-2xl text-sm leading-5 text-slate-600">{collectionDescription}</p>
               </div>
-              <p className="text-sm font-medium text-slate-500">
+              <p className="text-sm font-medium text-slate-500 sm:text-right">
                 {cards.length} {cards.length === 1 ? "card" : "cards"}
               </p>
             </div>
-            <PublicPokemonJumpForm slug={slug} defaultValue={defaultPokemonValue} variant="compact" />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div className="min-w-0 flex-1">
+                <PublicPokemonJumpForm slug={slug} defaultValue={defaultPokemonValue} variant="compact" />
+              </div>
+              <div className="space-y-1 sm:min-w-fit">
+                <p className="text-[11px] font-medium text-slate-500">View</p>
+                <ViewDensityToggle value={density} onChange={setDensity} />
+              </div>
+            </div>
           </div>
 
-          <PublicCollectionGrid cards={cards} />
+          <PublicCollectionGrid cards={cards} density={density} />
         </div>
       ) : highlightCards.length > 0 ? (
         <div className="space-y-4">
