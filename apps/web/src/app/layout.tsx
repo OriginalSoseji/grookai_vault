@@ -25,10 +25,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en">
       <body>
         <SiteHeader isAuthenticated={!!user} profileHref={profileHref} />
-        <main className="w-full py-8 pb-[calc(6rem+env(safe-area-inset-bottom))] md:py-12 md:pb-12">
+        <main className="w-full py-7 pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:py-12 md:pb-12">
           <PageContainer>{children}</PageContainer>
         </main>
-        <footer className="border-t border-slate-200 bg-white pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
+        <footer className="border-t border-slate-200 bg-white pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:pb-0">
           <PageContainer className="py-4 text-center text-sm text-slate-600">
             <Link href="/legal" className="underline-offset-4 hover:text-slate-900 hover:underline">
               Legal

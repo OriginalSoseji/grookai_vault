@@ -58,9 +58,9 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <PageContainer className={showTopSearch ? "space-y-3 py-3 md:space-y-4 md:py-4" : "py-3 md:py-4"}>
+      <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5 md:space-y-4 md:py-4" : "py-2.5 md:py-4"}>
         <div className="md:hidden">
-          <div className="flex min-h-[52px] items-center justify-between gap-3">
+          <div className="flex min-h-[46px] items-center justify-between gap-3">
             <Link href="/" className="flex min-w-0 items-center gap-2 text-[15px] font-semibold text-slate-950">
               <Image
                 src="/grookai-emblem-square.svg"
@@ -93,11 +93,11 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
               ) : null}
             </div>
           </div>
-          <div className="mt-1.5 flex items-center gap-3">
+          <div className="mt-1 flex items-center gap-3">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">{mobileSectionLabel}</p>
           </div>
           {showMobileGlobalSearch ? (
-            <div className="mt-2.5">
+            <div className="mt-2">
               <MobileGlobalSearch />
             </div>
           ) : null}

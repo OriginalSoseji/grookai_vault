@@ -142,22 +142,22 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
   );
 
   return (
-    <div className={`space-y-6 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
-      <div className="space-y-3">
-        <div className="space-y-2 md:hidden">
+    <div className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}>
+      <div className="space-y-2 md:space-y-2.5">
+        <div className="space-y-1 md:hidden">
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Feed</p>
-          <h1 className="text-[2rem] font-semibold tracking-tight text-slate-950">Discover cards</h1>
-          <p className="text-sm leading-6 text-slate-600">Browse standout cards and jump into sets fast.</p>
-          <div className="flex flex-wrap gap-2 pt-1">
+          <h1 className="text-[1.65rem] font-semibold tracking-tight text-slate-950">Discover cards</h1>
+          <p className="text-[13px] leading-5 text-slate-600">Browse standout cards and jump into sets fast.</p>
+          <div className="flex flex-wrap gap-2 pt-px">
             <Link
               href={buildPathWithCompareCards("/sets", "", compareCards)}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               Browse Sets
             </Link>
             <Link
               href={buildPathWithCompareCards("/explore", "q=Pikachu", compareCards)}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               Browse Pokémon
             </Link>
