@@ -5,7 +5,10 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
+import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
+import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
+import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import {
   changeVaultItemQuantityAction,
@@ -533,6 +536,7 @@ export function VaultCollectionView({
 }: VaultCollectionViewProps) {
   const router = useRouter();
   const { density, setDensity } = useViewDensity();
+  const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
   const [items, setItems] = useState(initialItems);
   const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(() => new Set());
   const [searchQuery, setSearchQuery] = useState("");
@@ -1095,7 +1099,58 @@ export function VaultCollectionView({
     });
   }
 
+  function renderMobileVaultItems(sourceItems: VaultCardData[]) {
+    return (
+      <VaultMobileViews
+        items={sourceItems}
+        mode={mobileViewMode}
+        pendingItemId={pendingItemId}
+        pendingShareItemId={pendingShareItemId}
+        pendingWallCategoryItemId={pendingWallCategoryItemId}
+        pendingPublicImageKey={pendingPublicImageKey}
+        expandedSharedItemIds={expandedSharedItemIds}
+        itemErrors={itemErrors}
+        shareErrors={shareErrors}
+        publicCollectionHref={publicCollectionHref}
+        onQuantityChange={handleQuantityChange}
+        onConditionChange={changeCondition}
+        onShareToggle={handleShareToggle}
+        onWallCategoryChange={handleWallCategoryChange}
+        onSharedControlsToggle={handleSharedControlsToggle}
+        onPublicNoteEdit={handleOpenPublicNote}
+        onPublicImageToggle={handlePublicImageToggle}
+      />
+    );
+  }
+
+  function renderMobileBySetGroups(sourceGroups: SetGroup[]) {
+    return (
+      <div className="space-y-5 md:hidden">
+        {sourceGroups.map((group) => (
+          <section key={group.setCode} className="space-y-3">
+            <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3">
+              <div className="space-y-1">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
+                <div className="flex items-end justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-base font-semibold tracking-tight text-slate-950">{group.setName}</h3>
+                    <p className="text-xs text-slate-500">{group.setCode}</p>
+                  </div>
+                  <p className="text-xs text-slate-500">
+                    {group.items.length} {group.items.length === 1 ? "card" : "cards"}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {renderMobileVaultItems(group.items)}
+          </section>
+        ))}
+      </div>
+    );
+  }
+
   let vaultContent: ReactNode;
+  let mobileVaultContent: ReactNode;
 
   if (activeView === "duplicates") {
     const filteredDuplicateItems = applySearch(duplicateItems);
@@ -1122,10 +1177,16 @@ export function VaultCollectionView({
             handlePublicImageToggle,
           )
         : searchQuery.trim().length > 0
-          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />
           );
+    mobileVaultContent =
+      filteredDuplicateItems.length > 0
+        ? renderMobileVaultItems(filteredDuplicateItems)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />;
   } else if (activeView === "recent") {
     const filteredRecentItems = applySearch(recentItems);
     vaultContent =
@@ -1151,10 +1212,16 @@ export function VaultCollectionView({
             handlePublicImageToggle,
           )
         : searchQuery.trim().length > 0
-          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
           );
+    mobileVaultContent =
+      filteredRecentItems.length > 0
+        ? renderMobileVaultItems(filteredRecentItems)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />;
   } else if (activeView === "shared") {
     const filteredSharedItems = applySearch(sharedItems);
     vaultContent =
@@ -1180,10 +1247,16 @@ export function VaultCollectionView({
             handlePublicImageToggle,
           )
         : searchQuery.trim().length > 0
-          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
         : (
             <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />
           );
+    mobileVaultContent =
+      filteredSharedItems.length > 0
+        ? renderMobileVaultItems(filteredSharedItems)
+        : searchQuery.trim().length > 0
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />;
   } else if (activeView === "by-set") {
     const filteredBySetGroups = bySetGroups
       .map((group) => ({
@@ -1234,6 +1307,14 @@ export function VaultCollectionView({
             </section>
           ))}
         </div>
+      ) : searchQuery.trim().length > 0 ? (
+        <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+      ) : (
+        <ViewEmptyState title="No cards found for this view." body="Set groups will appear as your collection grows." />
+      );
+    mobileVaultContent =
+      filteredBySetGroups.length > 0 ? (
+        renderMobileBySetGroups(filteredBySetGroups)
       ) : searchQuery.trim().length > 0 ? (
         <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
       ) : (
@@ -1303,6 +1384,49 @@ export function VaultCollectionView({
         )}
       </div>
     );
+    mobileVaultContent = (
+      <div className="space-y-4 md:hidden">
+        <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-4">
+          <label
+            htmlFor="pokemon-name-filter-mobile"
+            className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400"
+          >
+            Pokémon Name
+          </label>
+          <input
+            id="pokemon-name-filter-mobile"
+            type="text"
+            placeholder="Search Pokémon name..."
+            value={pokemonQuery}
+            onChange={(event) => setPokemonQuery(event.target.value)}
+            className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
+          />
+
+          {pokemonSuggestions.length > 0 ? (
+            <div className="mt-3 overflow-hidden rounded-[1rem] border border-slate-200 bg-white shadow-sm">
+              <div className="divide-y divide-slate-100">
+                {pokemonSuggestions.map((name) => (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => setPokemonQuery(name)}
+                    className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-slate-700 transition hover:bg-slate-50 hover:text-slate-950"
+                  >
+                    <span className="truncate">{name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        {filteredPokemonItems.length > 0 ? (
+          renderMobileVaultItems(filteredPokemonItems)
+        ) : (
+          <ViewEmptyState title="No matching cards" body="Try a different Pokémon name." />
+        )}
+      </div>
+    );
   } else {
     const filteredItems = applySearch(items);
     vaultContent =
@@ -1330,6 +1454,12 @@ export function VaultCollectionView({
       ) : (
         <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
       );
+    mobileVaultContent =
+      filteredItems.length > 0 ? (
+        renderMobileVaultItems(filteredItems)
+      ) : (
+        <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+      );
   }
 
   return (
@@ -1350,16 +1480,16 @@ export function VaultCollectionView({
         onSave={handleSavePublicNote}
       />
 
-      <div className="space-y-10 py-7">
-      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-200/60 md:px-7">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div className="space-y-8 py-6 md:space-y-10 md:py-7">
+      <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5 md:rounded-[2rem] md:px-7 md:py-5">
+        <div className="flex flex-col gap-3 md:gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0 space-y-2">
             <div className="space-y-1">
               <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Vault</p>
-              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Your Vault</h1>
-              <p className="text-sm text-slate-600">A clear view of the cards you own.</p>
+              <h1 className="text-[1.75rem] font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Your Vault</h1>
+              <p className="hidden text-sm text-slate-600 md:block">A clear view of the cards you own.</p>
             </div>
-            <div className="flex flex-wrap items-center gap-2.5 text-sm text-slate-600">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 sm:text-sm">
               <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-medium text-slate-800">
                 {summary.cards} {summary.cards === 1 ? "card" : "cards"}
               </span>
@@ -1377,7 +1507,7 @@ export function VaultCollectionView({
           <div className="flex shrink-0 items-start lg:justify-end">
             <Link
               href="/vault/import"
-              className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 md:px-5"
             >
               Import Collection
             </Link>
@@ -1417,7 +1547,7 @@ export function VaultCollectionView({
             <p className="text-sm text-slate-600">Cards currently in your collection.</p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:gap-3">
             <input
               type="text"
               placeholder="Search your vault..."
@@ -1436,12 +1566,20 @@ export function VaultCollectionView({
             ) : null}
           </div>
 
-          <div className="flex items-center justify-end">
+          <div className="hidden items-center justify-end md:flex">
             <ViewDensityToggle value={density} onChange={setDensity} />
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-2">
-            <div className="flex flex-wrap gap-1.5">
+          <VaultMobileToolbar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            onClearSearch={() => setSearchQuery("")}
+            mode={mobileViewMode}
+            onModeChange={setMobileViewMode}
+          />
+
+          <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/70 p-2 md:rounded-[1.5rem]">
+            <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
                   key={view.key}
@@ -1454,7 +1592,8 @@ export function VaultCollectionView({
             </div>
           </div>
 
-          {vaultContent}
+          <div className="md:hidden">{mobileVaultContent}</div>
+          <div className="hidden md:block">{vaultContent}</div>
         </section>
       )}
 
