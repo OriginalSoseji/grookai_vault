@@ -506,7 +506,7 @@ export default async function CardPage({
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Other Versions of This Card</h2>
             <p className="text-sm text-slate-600">Read-only links to other prints that share this card name.</p>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-1 md:grid md:grid-cols-2 md:overflow-visible xl:grid-cols-4">
+          <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {relatedPrints.map((relatedCard) => {
               const relatedVariantLabels = getVariantLabels(relatedCard, 2);
               const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
@@ -514,28 +514,30 @@ export default async function CardPage({
                 <Link
                   key={relatedCard.gv_id}
                   href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-                  className="group min-w-[220px] rounded-[20px] border border-slate-200 bg-slate-50 p-4 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
+                  className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                 >
-                  <div className="flex gap-4 md:flex-col">
+                  <div className="flex gap-3 md:flex-col md:items-start">
                     <PublicCardImage
                       src={relatedCard.image_url}
                       alt={relatedCard.name}
-                      imageClassName="h-28 w-20 rounded-[14px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-auto md:w-full md:aspect-[3/4]"
-                      fallbackClassName="flex h-28 w-20 items-center justify-center rounded-[14px] border border-slate-200 bg-white px-2 text-center text-[11px] text-slate-500 md:h-auto md:w-full md:aspect-[3/4]"
+                      imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
+                      fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
                     />
-                    <div className="min-w-0 space-y-2">
-                      <div className="flex flex-wrap items-center gap-2">
+                    <div className="min-w-0 space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-1.5">
                         {relatedSetCodeLabel ? (
-                          <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                          <span className="inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-600">
                             {relatedSetCodeLabel}
                           </span>
                         ) : null}
-                        {relatedCard.rarity ? <span className="text-xs text-slate-500">{relatedCard.rarity}</span> : null}
+                        {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
                       </div>
-                      <p className="line-clamp-2 text-sm font-semibold text-slate-900">{relatedCard.set_name ?? relatedCard.name}</p>
-                      {relatedCard.number ? <p className="text-sm text-slate-600">#{relatedCard.number}</p> : null}
+                      <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
+                        {relatedCard.set_name ?? relatedCard.name}
+                      </p>
+                      {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
                       {relatedVariantLabels.length > 0 ? (
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-1">
                           {relatedVariantLabels.map((label) => (
                             <VariantBadge key={`${relatedCard.gv_id}-${label}`} label={label} />
                           ))}
