@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   normalizeWallCategory,
   type WallCategory,
@@ -39,25 +40,7 @@ type CardPrintRow = {
     | null;
 };
 
-export type SharedCard = {
-  gv_id: string;
-  name: string;
-  set_code?: string;
-  set_name?: string;
-  number: string;
-  rarity?: string;
-  image_url?: string;
-  back_image_url?: string;
-  public_note?: string;
-  wall_category?: WallCategory;
-  owned_count?: number;
-  raw_count?: number;
-  slab_count?: number;
-  is_slab?: boolean;
-  grader?: string;
-  grade?: string;
-  cert_number?: string;
-};
+export type SharedCard = PublicWallCard;
 
 type PublicProfileLookup = {
   user_id: string | null;

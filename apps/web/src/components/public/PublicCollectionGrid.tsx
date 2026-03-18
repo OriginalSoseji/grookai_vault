@@ -4,11 +4,11 @@ import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
-import type { SharedCard } from "@/lib/getSharedCardsBySlug";
+import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type PublicCollectionGridProps = {
-  cards: SharedCard[];
+  cards: PublicWallCard[];
 };
 
 const gridClassMap: Record<ViewDensity, string> = {

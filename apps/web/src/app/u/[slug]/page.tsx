@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
+import { FeaturedWallSection } from "@/components/public/FeaturedWallSection";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -80,6 +81,8 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         activeView="collection"
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
       />
+
+      {profile.vault_sharing_enabled && sharedCards.length > 0 ? <FeaturedWallSection cards={sharedCards} /> : null}
 
       <section className="space-y-4">
         <div className="flex items-end justify-between gap-4">
