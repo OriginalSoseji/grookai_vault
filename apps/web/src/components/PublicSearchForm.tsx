@@ -8,7 +8,7 @@ import { buildPublicSearchDestination } from "@/lib/publicSearchRouting";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 
 type PublicSearchFormProps = {
-  variant: "header" | "hero";
+  variant: "header" | "hero" | "mobile-compact";
 };
 
 export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
@@ -85,6 +85,46 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
           >
             Search
+          </button>
+        </div>
+      </form>
+    );
+  }
+
+  if (variant === "mobile-compact") {
+    return (
+      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
+        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
+        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
+        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
+        <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2.5 shadow-sm shadow-slate-200/40">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            className="h-4 w-4 shrink-0 text-slate-400"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="8.5" cy="8.5" r="4.75" />
+            <path d="m12 12 4.25 4.25" />
+          </svg>
+          <input
+            type="search"
+            name="q"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search cards, sets, numbers, or Grookai ID"
+            className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+            aria-label="Search cards, sets, numbers, or Grookai ID"
+          />
+          <button
+            type="submit"
+            className="rounded-full bg-slate-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-700"
+          >
+            Go
           </button>
         </div>
       </form>

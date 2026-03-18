@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CompareTray from "@/components/compare/CompareTray";
 import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
@@ -142,12 +143,36 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
 
   return (
     <div className={`space-y-6 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
-      <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
-        <p className="max-w-2xl text-sm leading-7 text-slate-600">
-          Discover iconic cards, standout artwork, and notable sets collectors are chasing.
-        </p>
+      <div className="space-y-3">
+        <div className="space-y-2 md:hidden">
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Feed</p>
+          <h1 className="text-[2rem] font-semibold tracking-tight text-slate-950">Discover cards</h1>
+          <p className="text-sm leading-7 text-slate-600">
+            Browse standout cards, jump into sets, and follow what catches your eye.
+          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <Link
+              href={buildPathWithCompareCards("/sets", "", compareCards)}
+              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+            >
+              Browse Sets
+            </Link>
+            <Link
+              href={buildPathWithCompareCards("/explore", "q=Pikachu", compareCards)}
+              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+            >
+              Popular Pokémon
+            </Link>
+          </div>
+        </div>
+
+        <div className="hidden space-y-2 md:block">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
+          <p className="max-w-2xl text-sm leading-7 text-slate-600">
+            Discover iconic cards, standout artwork, and notable sets collectors are chasing.
+          </p>
+        </div>
       </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}

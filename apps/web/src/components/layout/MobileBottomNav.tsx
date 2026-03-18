@@ -132,7 +132,7 @@ export function MobileBottomNav({ wallHref }: MobileBottomNavProps) {
 
   const items: MobileNavItem[] = [
     { key: "vault", label: "Vault", href: "/vault" },
-    { key: "explore", label: "Explore", href: "/explore" },
+    { key: "explore", label: "Feed", href: "/explore" },
     { key: "wall", label: "Wall", href: currentWallHref },
     { key: "profile", label: "Profile", href: "/account" },
   ];

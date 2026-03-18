@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { MobileGlobalSearch } from "@/components/layout/MobileGlobalSearch";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -20,6 +21,22 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
   const compareCount = compareCards.length;
   const showTopSearch =
     pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
+  const showMobileGlobalSearch =
+    pathname === "/vault" ||
+    pathname.startsWith("/vault/") ||
+    pathname === "/explore" ||
+    pathname.startsWith("/explore/") ||
+    pathname === "/sets" ||
+    pathname.startsWith("/sets/") ||
+    pathname === "/card" ||
+    pathname.startsWith("/card/") ||
+    pathname === "/compare" ||
+    pathname.startsWith("/compare/") ||
+    pathname === "/account" ||
+    pathname.startsWith("/account/") ||
+    pathname === "/wall" ||
+    pathname.startsWith("/wall/") ||
+    pathname.startsWith("/u/");
   const accountHref = isAuthenticated ? "/account" : "/login";
   const accountLabel = isAuthenticated ? "Account" : "Login";
   const primaryNav = [
@@ -36,7 +53,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
         : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
           ? "Wall"
           : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
-            ? "Explore"
+            ? "Feed"
             : "Grookai Vault";
 
   return (
@@ -82,6 +99,11 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
               </Link>
             ) : null}
           </div>
+          {showMobileGlobalSearch ? (
+            <div className="mt-3">
+              <MobileGlobalSearch />
+            </div>
+          ) : null}
         </div>
 
         <div className="hidden min-h-[64px] flex-col justify-center gap-4 md:flex lg:flex-row lg:items-center lg:justify-between">
@@ -141,9 +163,11 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
           </div>
         </div>
         {showTopSearch ? (
-          <Suspense fallback={<PersistentSearchBarFallback />}>
-            <PersistentSearchBar />
-          </Suspense>
+          <div className="hidden md:block">
+            <Suspense fallback={<PersistentSearchBarFallback />}>
+              <PersistentSearchBar />
+            </Suspense>
+          </div>
         ) : null}
       </PageContainer>
     </header>
