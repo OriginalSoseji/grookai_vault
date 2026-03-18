@@ -145,9 +145,9 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
     <div className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}>
       <div className="space-y-2 md:space-y-2.5">
         <div className="space-y-1 md:hidden">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Feed</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Discover</p>
           <h1 className="text-[1.65rem] font-semibold tracking-tight text-slate-950">Discover cards</h1>
-          <p className="text-[13px] leading-5 text-slate-600">Browse standout cards and jump into sets fast.</p>
+          <p className="text-[13px] leading-5 text-slate-600">Track your cards. Discover more. Showcase your collection.</p>
           <div className="flex flex-wrap gap-2 pt-px">
             <Link
               href={buildPathWithCompareCards("/sets", "", compareCards)}

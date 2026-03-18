@@ -46,11 +46,10 @@ export default async function AccountPage() {
     <div className="space-y-8 py-8">
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Grookai Account</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your account surface</h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
           <p className="max-w-2xl text-base leading-7 text-slate-600">
-            Manage owner-only account settings here while Grookai&apos;s broader profile and sharing surfaces are being
-            built out.
+            Manage your Grookai identity, public page, and account settings here.
           </p>
         </div>
       </section>

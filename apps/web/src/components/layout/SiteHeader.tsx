@@ -51,9 +51,9 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
         : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
-          ? "Wall"
+          ? "Showcase"
           : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
-            ? "Feed"
+            ? "Discover"
             : "Grookai Vault";
 
   return (
