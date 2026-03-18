@@ -11,6 +11,15 @@
 - No worker changes.
 - No pricing logic changes.
 
+## Current Active Status
+
+As of the current stabilization phase:
+
+- Canonical ownership truth: `vault_item_instances`
+- Current web canonical vault read entry: `getCanonicalVaultCollectorRows`
+- `vault_items` remains present for archival/compatibility and historical continuity
+- Compatibility projections such as `v_vault_items_web` may remain app-facing during transition, but they are not canonical ownership authority
+
 ## Contract Tiering
 
 ### Tier 0 (UI-critical and core workflow surfaces)

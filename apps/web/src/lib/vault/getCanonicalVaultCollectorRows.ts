@@ -1,3 +1,19 @@
+/**
+ * STABILIZATION RULE:
+ *
+ * Current active vault authority:
+ * - Canonical ownership truth: vault_item_instances
+ * - Web canonical read entry: getCanonicalVaultCollectorRows
+ * - Compatibility projection: v_vault_items_web
+ *
+ * Any usage of v_vault_items_web, v_vault_items, v_vault_items_ext, or
+ * bucket-era vault surfaces is compatibility-only during stabilization.
+ *
+ * Do not introduce new ownership semantics derived from vault_items.
+ * Do not treat compatibility projections as canonical ownership truth.
+ *
+ * See: STABILIZATION_CONTRACT_V1.md
+ */
 import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";

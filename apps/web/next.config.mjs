@@ -15,6 +15,23 @@ dotenv.config({ path: rootEnv });
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnon = process.env.SUPABASE_PUBLISHABLE_KEY;
 
+// STABILIZATION RULE:
+//
+// Canonical env authority:
+// - SUPABASE_URL
+// - SUPABASE_PUBLISHABLE_KEY
+// - SUPABASE_SECRET_KEY
+// - BRIDGE_IMPORT_TOKEN
+//
+// Web compatibility alias:
+// - NEXT_PUBLIC_SUPABASE_ANON_KEY
+//
+// SUPABASE_PUBLISHABLE_KEY is canonical.
+// NEXT_PUBLIC_SUPABASE_ANON_KEY exists only as a web/framework compatibility alias.
+// Do not introduce new env-name variants for the same secret.
+//
+// See: STABILIZATION_CONTRACT_V1.md
+
 if (!supabaseUrl || !supabaseAnon) {
   throw new Error(
     "Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Ensure root .env.local (or .env) is present and populated.",

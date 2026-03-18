@@ -22,11 +22,25 @@ export interface CardSummary {
   updated_at?: string;
 }
 
-export interface CardDetail extends CardSummary {
-  artist?: string;
-  printed_total?: number;
+export interface RelatedCardPrint extends CardSummary {
+  number_plain?: string;
   set_code?: string;
   variant_key?: string;
   variants?: import("@/lib/cards/variantPresentation").VariantFlags;
+}
+
+export interface CardDetail extends CardSummary {
+  artist?: string;
+  number_plain?: string;
+  printed_total?: number;
+  set_code?: string;
+  hp?: number;
+  national_dex?: number;
+  types?: string[];
+  supertype?: string;
+  card_category?: string;
+  variant_key?: string;
+  variants?: import("@/lib/cards/variantPresentation").VariantFlags;
   printings?: CardPrinting[];
+  related_prints?: RelatedCardPrint[];
 }

@@ -1,3 +1,18 @@
+/**
+ * STABILIZATION RULE:
+ *
+ * Current active pricing authority:
+ * - Engine: v_grookai_value_v1_1
+ * - App-facing read surface: v_best_prices_all_gv_v1
+ *
+ * All product-facing reads must continue through v_best_prices_all_gv_v1.
+ *
+ * Do not bypass this surface to read lower-level pricing tables directly.
+ * Do not treat v_grookai_value_v1 or v_grookai_value_v2 as active pricing
+ * authority unless a later explicit cutover contract says so.
+ *
+ * See: STABILIZATION_CONTRACT_V1.md
+ */
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 type CompatibilityPriceRow = {

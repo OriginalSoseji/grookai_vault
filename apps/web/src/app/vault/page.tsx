@@ -169,6 +169,10 @@ export default async function VaultPage() {
   let itemRows: CanonicalVaultCollectorRow[] = [];
   let canonicalItemsError: string | null = null;
   try {
+    // Vault authority note:
+    // Canonical ownership truth = vault_item_instances
+    // Canonical web read entry = getCanonicalVaultCollectorRows
+    // Compatibility projections may still feed app-facing metadata during stabilization.
     itemRows = await getCanonicalVaultCollectorRows(user.id);
   } catch (error) {
     canonicalItemsError = error instanceof Error ? error.message : "Unknown canonical vault read error";

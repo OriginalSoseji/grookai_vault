@@ -56,7 +56,12 @@ Before any L2/L3 audit or implementation:
 
 ## 5. Secrets Contract
 - Follow `docs/GV_SECRETS_CONTRACT_v1.md`.
-- Use contract names (`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`/`SUPABASE_SECRET_KEY`), no legacy ANON/SERVICE_ROLE names.
+
+### Current Active Status
+- Canonical env names are `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, and `BRIDGE_IMPORT_TOKEN`.
+- Legacy names such as `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, and framework aliases such as `NEXT_PUBLIC_SUPABASE_ANON_KEY` may remain present for compatibility.
+- Compatibility aliases are not equal-authority contract names for new code.
+
 - Publishable key only in frontend/Edge; service-role only in backend/CI. Never embed secrets in Flutter.
 
 ## 6. Schema / Canonical Identity Contract

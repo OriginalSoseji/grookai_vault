@@ -1,3 +1,14 @@
+/**
+ * WARNING: DEPRECATED - NON-AUTHORITATIVE WORKER
+ *
+ * This worker is part of a legacy pricing pipeline and MUST NOT be used
+ * for production execution.
+ *
+ * Canonical pricing pipeline:
+ * ebay_active_prices_latest -> card_print_active_prices -> v_grookai_value_v1_1 -> v_best_prices_all_gv_v1
+ *
+ * See: STABILIZATION_CONTRACT_V1.md
+ */
 // pricing_queue_worker.mjs
 // NON-AUTHORITATIVE. Do not use for production.
 // Usage:

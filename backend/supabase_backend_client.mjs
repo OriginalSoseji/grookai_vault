@@ -4,6 +4,12 @@ import { createClient } from '@supabase/supabase-js';
 
 let hasLoggedSupabaseUrl = false;
 
+// Env authority note:
+// Canonical admin secret name = SUPABASE_SECRET_KEY
+// SUPABASE_SERVICE_ROLE_KEY may remain supported only as a compatibility alias
+// where older runtime surfaces still depend on it.
+// Do not introduce additional secret-name variants.
+
 /**
  * Creates a backend Supabase client using the SERVICE ROLE key.
  * This is the "highway" client for all backend workers.

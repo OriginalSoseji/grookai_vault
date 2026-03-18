@@ -3,13 +3,22 @@ import { createClient } from "@supabase/supabase-js";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
-import type { CardDetail, CardPrinting } from "@/types/cards";
+import type { CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
+
+type TraitRow = {
+  hp: number | null;
+  national_dex: number | null;
+  types: string[] | null;
+  supertype: string | null;
+  card_category: string | null;
+};
 
 type PublicCardRow = {
   id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
+  number_plain: string | null;
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
@@ -17,6 +26,7 @@ type PublicCardRow = {
   set_code: string | null;
   variant_key: string | null;
   variants: VariantFlags;
+  card_print_traits?: TraitRow | TraitRow[] | null;
   card_printings?:
     | {
         id: string | null;
@@ -30,6 +40,24 @@ type PublicCardRow = {
   sets?:
     | { name: string | null; printed_total: number | null; release_date: string | null }
     | { name: string | null; printed_total: number | null; release_date: string | null }[]
+    | null;
+};
+
+type RelatedCardRow = {
+  id: string | null;
+  gv_id: string | null;
+  name: string | null;
+  number: string | null;
+  number_plain: string | null;
+  rarity: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
+  set_code: string | null;
+  variant_key: string | null;
+  variants: VariantFlags;
+  sets?:
+    | { name: string | null; release_date: string | null }
+    | { name: string | null; release_date: string | null }[]
     | null;
 };
 
@@ -89,6 +117,58 @@ function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[
   return mapped;
 }
 
+function mapTraitRecord(record?: PublicCardRow["card_print_traits"]): TraitRow | undefined {
+  const traitRecord = Array.isArray(record) ? record[0] : record;
+
+  if (!traitRecord) {
+    return undefined;
+  }
+
+  return {
+    hp: typeof traitRecord.hp === "number" ? traitRecord.hp : null,
+    national_dex: typeof traitRecord.national_dex === "number" ? traitRecord.national_dex : null,
+    types: Array.isArray(traitRecord.types) ? traitRecord.types.filter((value): value is string => typeof value === "string") : null,
+    supertype: traitRecord.supertype?.trim() || null,
+    card_category: traitRecord.card_category?.trim() || null,
+  };
+}
+
+function mapRelatedPrints(rows: RelatedCardRow[]): RelatedCardPrint[] | undefined {
+  if (rows.length === 0) {
+    return undefined;
+  }
+
+  const mapped = new Map<string, RelatedCardPrint>();
+
+  for (const row of rows) {
+    const gvId = row.gv_id?.trim();
+    if (!gvId || mapped.has(gvId)) {
+      continue;
+    }
+
+    const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+
+    mapped.set(gvId, {
+      id: row.id ?? gvId,
+      gv_id: gvId,
+      name: row.name?.trim() || "Unknown",
+      number: row.number?.trim() || "",
+      number_plain: row.number_plain?.trim() || undefined,
+      set_name: setRecord?.name?.trim() || undefined,
+      set_code: row.set_code?.trim() || undefined,
+      rarity: row.rarity?.trim() || undefined,
+      image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      release_date: setRecord?.release_date ?? undefined,
+      release_year: getReleaseYear(setRecord?.release_date),
+      variant_key: row.variant_key?.trim() || undefined,
+      variants: row.variants ?? undefined,
+    });
+  }
+
+  const result = Array.from(mapped.values());
+  return result.length > 0 ? result : undefined;
+}
+
 function createServerSupabase() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SECRET_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -125,6 +205,51 @@ const getSetDetailsByCode = cache(async (setCode?: string | null) => {
   };
 });
 
+async function getRelatedPrintsByName(
+  supabase: ReturnType<typeof createServerSupabase>,
+  name?: string | null,
+  excludeId?: string | null,
+) {
+  const normalizedName = name?.trim();
+  if (!normalizedName) {
+    return undefined;
+  }
+
+  let query = supabase
+    .from("card_prints")
+    .select(
+      `
+        id,
+        gv_id,
+        name,
+        number,
+        number_plain,
+        rarity,
+        image_url,
+        image_alt_url,
+        set_code,
+        variant_key,
+        variants,
+        sets(name,release_date)
+      `,
+    )
+    .eq("name", normalizedName)
+    .limit(10)
+    .order("set_code", { ascending: true })
+    .order("number_plain", { ascending: true, nullsFirst: false });
+
+  if (excludeId) {
+    query = query.neq("id", excludeId);
+  }
+
+  const { data, error } = await query;
+  if (error || !data) {
+    return undefined;
+  }
+
+  return mapRelatedPrints((data as RelatedCardRow[]).filter((row) => row.id !== excludeId));
+}
+
 export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
   const { data, error } = await supabase
@@ -135,6 +260,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         gv_id,
         name,
         number,
+        number_plain,
         rarity,
         image_url,
         image_alt_url,
@@ -142,6 +268,13 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         set_code,
         variant_key,
         variants,
+        card_print_traits(
+          hp,
+          national_dex,
+          types,
+          supertype,
+          card_category
+        ),
         card_printings(
           id,
           finish_key,
@@ -159,9 +292,17 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
 
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const fallbackSet = await getSetDetailsByCode(row.set_code);
+  const [fallbackSet, relatedPrints] = await Promise.all([
+    getSetDetailsByCode(row.set_code),
+    getRelatedPrintsByName(supabase, row.name, row.id),
+  ]);
+  // Pricing authority note:
+  // Current active engine = v_grookai_value_v1_1
+  // App-facing read surface = v_best_prices_all_gv_v1
+  // Keep product reads on the compatibility surface during stabilization.
   const pricingByCardId = row.id ? await getPublicPricingByCardIds(supabase, [row.id]) : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
+  const traitRecord = mapTraitRecord(row.card_print_traits);
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
@@ -172,6 +313,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     gv_id: row.gv_id ?? gv_id,
     name: row.name ?? "Unknown",
     number: row.number ?? "",
+    number_plain: row.number_plain ?? undefined,
     set_name: setName,
     set_code: row.set_code ?? undefined,
     rarity: row.rarity ?? undefined,
@@ -185,9 +327,15 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     listing_count: priceRow?.listing_count,
     price_source: priceRow?.price_source,
     updated_at: priceRow?.updated_at,
+    hp: traitRecord?.hp ?? undefined,
+    national_dex: traitRecord?.national_dex ?? undefined,
+    types: traitRecord?.types ?? undefined,
+    supertype: traitRecord?.supertype ?? undefined,
+    card_category: traitRecord?.card_category ?? undefined,
     variant_key: row.variant_key?.trim() || undefined,
     variants: row.variants ?? undefined,
     printings: mapCardPrintings(row.card_printings),
+    related_prints: relatedPrints,
   };
 }
 

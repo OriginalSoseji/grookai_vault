@@ -52,6 +52,10 @@ export type VaultCardData = {
   has_back_photo: boolean;
 };
 
+// Compatibility note:
+// This surface may render fields shaped by legacy vault compatibility projections.
+// Do not treat those fields as canonical ownership truth.
+
 const CONDITION_OPTIONS = ["NM", "LP", "MP", "HP", "DMG"];
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {

@@ -1,3 +1,12 @@
+/**
+ * WARNING: DEPRECATED - HISTORICAL REFERENCE ONLY
+ *
+ * This function is not part of the active pricing pipeline.
+ *
+ * DO NOT USE.
+ *
+ * See: STABILIZATION_CONTRACT_V1.md
+ */
 // LEGACY NOTICE:
 // This Edge function is part of the deprecated pricing pipeline
 // (admin.import_prices_do) and remains only for historical reference.
