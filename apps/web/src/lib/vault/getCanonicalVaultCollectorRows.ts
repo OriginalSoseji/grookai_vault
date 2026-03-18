@@ -3,6 +3,7 @@ import "server-only";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 export type CanonicalVaultCollectorSlabItem = {
+  instance_id: string;
   gv_vi_id: string | null;
   slab_cert_id: string;
   grader: string | null;
@@ -27,6 +28,7 @@ export type CanonicalVaultCollectorRow = {
   total_count: number;
   raw_count: number;
   slab_count: number;
+  removable_raw_instance_id: string | null;
   slab_items: CanonicalVaultCollectorSlabItem[];
   effective_price: number | null;
   image_url: string | null;
@@ -38,6 +40,7 @@ export type CanonicalVaultCollectorRow = {
 };
 
 type ActiveInstanceRow = {
+  id: string;
   card_print_id: string | null;
   slab_cert_id: string | null;
   gv_vi_id: string | null;
@@ -99,6 +102,7 @@ type CardAggregate = {
   totalCount: number;
   rawCount: number;
   slabCount: number;
+  removableRawInstanceId: string | null;
   latestCreatedAt: string | null;
   singleGvviId: string | null;
   conditionLabel: string | null;
@@ -158,7 +162,7 @@ async function fetchActiveInstances(userId: string) {
   const { data, error } = await adminClient
     .from("vault_item_instances")
     .select(
-      "card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label",
+      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -220,6 +224,7 @@ function aggregateInstances(
       totalCount: 0,
       rawCount: 0,
       slabCount: 0,
+      removableRawInstanceId: null,
       latestCreatedAt: null,
       singleGvviId: null,
       conditionLabel: null,
@@ -266,6 +271,7 @@ function aggregateInstances(
       current.slabCount += 1;
 
       const slabItem: CanonicalVaultCollectorSlabItem = {
+        instance_id: row.id,
         gv_vi_id: normalizeOptionalText(row.gv_vi_id),
         slab_cert_id: slabCertId,
         grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
@@ -283,6 +289,7 @@ function aggregateInstances(
       }
     } else {
       current.rawCount += 1;
+      current.removableRawInstanceId = current.removableRawInstanceId ?? normalizeOptionalText(row.id);
     }
 
     aggregates.set(cardPrintId, current);
@@ -478,6 +485,7 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       total_count: aggregate.totalCount,
       raw_count: aggregate.rawCount,
       slab_count: aggregate.slabCount,
+      removable_raw_instance_id: aggregate.removableRawInstanceId,
       slab_items: aggregate.slabItems,
       effective_price: typeof price?.effective_price === "number" ? price.effective_price : null,
       image_url:

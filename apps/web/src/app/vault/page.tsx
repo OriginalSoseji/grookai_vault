@@ -84,6 +84,13 @@ function normalizeVaultItems(
         owned_count: row.owned_count,
         raw_count: row.raw_count,
         slab_count: row.slab_count,
+        removable_raw_instance_id: row.removable_raw_instance_id,
+        slab_items: row.slab_items.map((slabItem) => ({
+          instance_id: slabItem.instance_id,
+          grader: slabItem.grader,
+          grade: slabItem.grade,
+          cert_number: slabItem.cert_number,
+        })),
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
         image_url: getBestPublicCardImageUrl(row.image_url),
         created_at: row.created_at,

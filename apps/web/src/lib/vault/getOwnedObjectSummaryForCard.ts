@@ -11,25 +11,39 @@ export type OwnedObjectSummaryLine = {
   grade: string | null;
 };
 
+export type OwnedSlabObjectSummaryItem = {
+  instanceId: string;
+  slabCertId: string;
+  grader: string | null;
+  grade: string | null;
+  certNumber: string | null;
+};
+
 export type OwnedObjectSummary = {
   totalCount: number;
   rawCount: number;
   slabCount: number;
+  removableRawInstanceId: string | null;
+  slabItems: OwnedSlabObjectSummaryItem[];
   lines: OwnedObjectSummaryLine[];
 };
 
 type RawInstanceRow = {
   id: string;
+  created_at: string | null;
 };
 
 type SlabCertRow = {
   id: string;
   grader: string | null;
   grade: number | string | null;
+  cert_number: string | null;
 };
 
 type SlabInstanceRow = {
+  id: string;
   slab_cert_id: string | null;
+  created_at: string | null;
 };
 
 function normalizeOptionalText(value: string | null | undefined) {
@@ -58,6 +72,8 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
       totalCount: 0,
       rawCount: 0,
       slabCount: 0,
+      removableRawInstanceId: null,
+      slabItems: [],
       lines: [],
     };
   }
@@ -66,12 +82,14 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   const [{ data: rawRows, error: rawError }, { data: slabCertRows, error: slabCertError }] = await Promise.all([
     adminClient
       .from("vault_item_instances")
-      .select("id")
+      .select("id,created_at")
       .eq("user_id", normalizedUserId)
       .eq("card_print_id", normalizedCardPrintId)
       .is("slab_cert_id", null)
-      .is("archived_at", null),
-    adminClient.from("slab_certs").select("id,grader,grade").eq("card_print_id", normalizedCardPrintId),
+      .is("archived_at", null)
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true }),
+    adminClient.from("slab_certs").select("id,grader,grade,cert_number").eq("card_print_id", normalizedCardPrintId),
   ]);
 
   if (rawError) {
@@ -83,6 +101,7 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   }
 
   const rawCount = ((rawRows ?? []) as RawInstanceRow[]).length;
+  const removableRawInstanceId = ((rawRows ?? []) as RawInstanceRow[])[0]?.id ?? null;
   const slabCerts = (slabCertRows ?? []) as SlabCertRow[];
   const slabCertIds = slabCerts
     .map((row) => normalizeOptionalText(row.id))
@@ -92,10 +111,12 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   if (slabCertIds.length > 0) {
     const { data, error } = await adminClient
       .from("vault_item_instances")
-      .select("slab_cert_id")
+      .select("id,slab_cert_id,created_at")
       .eq("user_id", normalizedUserId)
       .is("archived_at", null)
-      .in("slab_cert_id", slabCertIds);
+      .in("slab_cert_id", slabCertIds)
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true });
 
     if (error) {
       throw new Error(`[card:ownership] slab instance summary query failed: ${error.message}`);
@@ -112,10 +133,11 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
     }
   }
 
-  const slabGroups = new Map<string, OwnedObjectSummaryLine>();
+  const slabItems: OwnedSlabObjectSummaryItem[] = [];
   for (const row of slabInstances) {
+    const instanceId = normalizeOptionalText(row.id);
     const certId = normalizeOptionalText(row.slab_cert_id);
-    if (!certId) {
+    if (!instanceId || !certId) {
       continue;
     }
 
@@ -124,8 +146,19 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
       continue;
     }
 
-    const grader = normalizeOptionalText(slabCert.grader);
-    const grade = normalizeGradeValue(slabCert.grade);
+    slabItems.push({
+      instanceId,
+      slabCertId: certId,
+      grader: normalizeOptionalText(slabCert.grader),
+      grade: normalizeGradeValue(slabCert.grade),
+      certNumber: normalizeOptionalText(slabCert.cert_number),
+    });
+  }
+
+  const slabGroups = new Map<string, OwnedObjectSummaryLine>();
+  for (const slabItem of slabItems) {
+    const grader = slabItem.grader;
+    const grade = slabItem.grade;
     const key = `${grader ?? "SLAB"}:${grade ?? "UNKNOWN"}`;
     const label = [grader, grade].filter((value): value is string => Boolean(value)).join(" ") || "Graded slab";
     const current = slabGroups.get(key) ?? {
@@ -158,9 +191,11 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   lines.push(...slabLines);
 
   return {
-    totalCount: rawCount + slabInstances.length,
+    totalCount: rawCount + slabItems.length,
     rawCount,
-    slabCount: slabInstances.length,
+    slabCount: slabItems.length,
+    removableRawInstanceId,
+    slabItems,
     lines,
   };
 }

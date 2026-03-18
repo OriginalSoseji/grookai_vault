@@ -12,6 +12,7 @@ import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
+import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import Image from "next/image";
@@ -301,6 +302,8 @@ export default async function CardPage({
     totalCount: 0,
     rawCount: 0,
     slabCount: 0,
+    removableRawInstanceId: null,
+    slabItems: [],
     lines: [],
   };
   let conditionSnapshots: ConditionSnapshotListItem[] = [];
@@ -338,6 +341,8 @@ export default async function CardPage({
         totalCount: 0,
         rawCount: 0,
         slabCount: 0,
+        removableRawInstanceId: null,
+        slabItems: [],
         lines: [],
       };
       conditionSnapshots = [];
@@ -477,11 +482,40 @@ export default async function CardPage({
                     <p className="text-sm text-slate-600">
                       You own <span className="font-semibold text-slate-900">{vaultCount}</span> {vaultCount === 1 ? "copy" : "copies"}
                     </p>
-                    {ownedObjectSummary.lines.length > 0 ? (
-                      <ul className="space-y-1 text-sm text-slate-600">
-                        {ownedObjectSummary.lines.map((line) => (
-                          <li key={line.key}>
-                            <span className="font-semibold text-slate-900">{line.count}</span> {line.label}
+                    {ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0 ? (
+                      <ul className="space-y-2 text-sm text-slate-600">
+                        {ownedObjectSummary.rawCount > 0 ? (
+                          <li className="flex flex-col gap-2 rounded-[12px] border border-slate-200 bg-slate-50 px-3 py-3 sm:flex-row sm:items-center sm:justify-between">
+                            <p>
+                              <span className="font-semibold text-slate-900">{ownedObjectSummary.rawCount}</span> Raw
+                            </p>
+                            {ownedObjectSummary.removableRawInstanceId ? (
+                              <OwnedObjectRemoveAction
+                                mode="raw"
+                                instanceId={ownedObjectSummary.removableRawInstanceId}
+                                label="Remove Raw"
+                              />
+                            ) : null}
+                          </li>
+                        ) : null}
+                        {ownedObjectSummary.slabItems.map((slabItem) => (
+                          <li
+                            key={slabItem.instanceId}
+                            className="flex flex-col gap-2 rounded-[12px] border border-slate-200 bg-slate-50 px-3 py-3 sm:flex-row sm:items-center sm:justify-between"
+                          >
+                            <div className="space-y-1">
+                              <p>
+                                <span className="font-semibold text-slate-900">1</span>{" "}
+                                {[slabItem.grader, slabItem.grade].filter((value): value is string => Boolean(value)).join(" ") ||
+                                  "Graded slab"}
+                              </p>
+                              {slabItem.certNumber ? <p className="text-xs text-slate-500">Cert {slabItem.certNumber}</p> : null}
+                            </div>
+                            <OwnedObjectRemoveAction
+                              mode="slab"
+                              instanceId={slabItem.instanceId}
+                              label="Remove Slab"
+                            />
                           </li>
                         ))}
                       </ul>

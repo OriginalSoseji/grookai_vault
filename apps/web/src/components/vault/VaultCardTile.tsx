@@ -5,6 +5,14 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
+import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
+
+type VaultCardSlabItemData = {
+  instance_id: string;
+  grader: string | null;
+  grade: string | null;
+  cert_number?: string | null;
+};
 
 export type VaultCardData = {
   id: string;
@@ -20,6 +28,8 @@ export type VaultCardData = {
   owned_count: number;
   raw_count: number;
   slab_count: number;
+  removable_raw_instance_id: string | null;
+  slab_items: VaultCardSlabItemData[];
   effective_price: number | null;
   image_url?: string;
   created_at: string | null;
@@ -52,6 +62,10 @@ function formatCurrency(value: number | null) {
 }
 
 function formatSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {
+  return [item.grader, item.grade].filter((value): value is string => typeof value === "string" && value.length > 0).join(" ");
+}
+
+function formatObjectLevelSlabSummary(item: Pick<VaultCardSlabItemData, "grader" | "grade">) {
   return [item.grader, item.grade].filter((value): value is string => typeof value === "string" && value.length > 0).join(" ");
 }
 
@@ -111,6 +125,7 @@ export function VaultCardTile({
   const slabSummary = formatSlabSummary(item);
   const mixedOwnershipSummary = formatMixedOwnershipSummary(item);
   const isMixedOwnership = mixedOwnershipSummary !== null;
+  const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
   const watermarkStyle = {
     "--wm-opacity-desktop": "0.04",
     "--wm-blur-desktop": "10px",
@@ -222,49 +237,87 @@ export function VaultCardTile({
                   <dd className="mt-1 break-all text-sm font-medium text-slate-900">{item.cert_number ?? "—"}</dd>
                 </div>
               </dl>
+              {(hasRemovableRaw || item.slab_items.length > 0) ? (
+                <div className="space-y-2 border-t border-slate-200 pt-3">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Remove owned objects</p>
+                  {hasRemovableRaw ? (
+                    <div className="flex flex-col gap-2 rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm text-slate-700">
+                        <span className="font-medium text-slate-900">{item.raw_count}</span> Raw
+                      </p>
+                      <OwnedObjectRemoveAction mode="raw" instanceId={item.removable_raw_instance_id!} label="Remove Raw" />
+                    </div>
+                  ) : null}
+                  {item.slab_items.map((slabItem) => (
+                    <div
+                      key={slabItem.instance_id}
+                      className="flex flex-col gap-2 rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 sm:flex-row sm:items-center sm:justify-between"
+                    >
+                      <div className="space-y-1">
+                        <p className="text-sm text-slate-700">
+                          <span className="font-medium text-slate-900">1</span>{" "}
+                          {formatObjectLevelSlabSummary(slabItem) || "Graded slab"}
+                        </p>
+                        {slabItem.cert_number ? <p className="text-xs text-slate-500">Cert {slabItem.cert_number}</p> : null}
+                      </div>
+                      <OwnedObjectRemoveAction mode="slab" instanceId={slabItem.instance_id} label="Remove Slab" />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           ) : (
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex min-w-0 items-center gap-2">
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Condition</span>
-                <select
-                  value={item.condition_label || "NM"}
-                  onChange={(e) => onConditionChange(e.target.value)}
-                  disabled={isPending}
-                  className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {CONDITION_OPTIONS.map((cond) => (
-                    <option key={cond} value={cond}>
-                      {cond}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Condition</span>
+                  <select
+                    value={item.condition_label || "NM"}
+                    onChange={(e) => onConditionChange(e.target.value)}
+                    disabled={isPending}
+                    className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {CONDITION_OPTIONS.map((cond) => (
+                      <option key={cond} value={cond}>
+                        {cond}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Qty</span>
-                <div className="inline-flex items-center self-start rounded-full border border-slate-200 bg-slate-50/90 p-1">
-                  <button
-                    type="button"
-                    onClick={() => onQuantityChange(item.vault_item_id, "decrement")}
-                    disabled={isPending}
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
-                    aria-label={`Decrease quantity for ${item.name}`}
-                  >
-                    −
-                  </button>
-                  <span className="min-w-[2.1rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.owned_count}</span>
-                  <button
-                    type="button"
-                    onClick={() => onQuantityChange(item.vault_item_id, "increment")}
-                    disabled={isPending}
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
-                    aria-label={`Increase quantity for ${item.name}`}
-                  >
-                    +
-                  </button>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Qty</span>
+                  <div className="inline-flex items-center self-start rounded-full border border-slate-200 bg-slate-50/90 p-1">
+                    <button
+                      type="button"
+                      onClick={() => onQuantityChange(item.vault_item_id, "decrement")}
+                      disabled={isPending}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
+                      aria-label={`Decrease quantity for ${item.name}`}
+                    >
+                      −
+                    </button>
+                    <span className="min-w-[2.1rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.owned_count}</span>
+                    <button
+                      type="button"
+                      onClick={() => onQuantityChange(item.vault_item_id, "increment")}
+                      disabled={isPending}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
+                      aria-label={`Increase quantity for ${item.name}`}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
+              {hasRemovableRaw ? (
+                <div className="flex flex-col gap-2 rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-sm text-slate-700">
+                    <span className="font-medium text-slate-900">{item.raw_count}</span> Raw
+                  </p>
+                  <OwnedObjectRemoveAction mode="raw" instanceId={item.removable_raw_instance_id!} label="Remove Raw" />
+                </div>
+              ) : null}
             </div>
           )}
           {error ? <p className="text-xs text-slate-500">{error}</p> : null}
