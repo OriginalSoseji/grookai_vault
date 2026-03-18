@@ -12,6 +12,7 @@ import {
 
 type FeaturedWallSectionProps = {
   cards: PublicWallCard[];
+  showHeader?: boolean;
 };
 
 type FeaturedWallFilter = "all" | WallCategory;
@@ -112,7 +113,7 @@ function FeaturedWallCard({ card }: { card: PublicWallCard }) {
   );
 }
 
-export function FeaturedWallSection({ cards }: FeaturedWallSectionProps) {
+export function FeaturedWallSection({ cards, showHeader = true }: FeaturedWallSectionProps) {
   const [activeFilter, setActiveFilter] = useState<FeaturedWallFilter>("all");
 
   const orderedCards = useMemo(() => {
@@ -137,20 +138,22 @@ export function FeaturedWallSection({ cards }: FeaturedWallSectionProps) {
 
   return (
     <section className="space-y-5 rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-200/60 sm:px-7">
-      <div className="space-y-2">
-        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Featured Wall</p>
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Featured Wall</h2>
-            <p className="max-w-2xl text-sm leading-7 text-slate-600">
-              The cards and slabs this collector wants front and center.
+      {showHeader ? (
+        <div className="space-y-2">
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Featured Wall</p>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Featured Wall</h2>
+              <p className="max-w-2xl text-sm leading-7 text-slate-600">
+                The cards and slabs this collector wants front and center.
+              </p>
+            </div>
+            <p className="text-sm font-medium text-slate-500">
+              {filteredCards.length} {filteredCards.length === 1 ? "wall item" : "wall items"}
             </p>
           </div>
-          <p className="text-sm font-medium text-slate-500">
-            {filteredCards.length} {filteredCards.length === 1 ? "wall item" : "wall items"}
-          </p>
         </div>
-      </div>
+      ) : null}
 
       <div className="flex flex-wrap gap-2.5">
         <button

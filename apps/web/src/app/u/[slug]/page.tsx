@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
-import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
-import { FeaturedWallSection } from "@/components/public/FeaturedWallSection";
+import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -78,27 +77,16 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         avatarUrl={profile.avatar_url}
         bannerUrl={profile.banner_url}
         stats={stats}
-        activeView="collection"
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
       />
 
-      {profile.vault_sharing_enabled && sharedCards.length > 0 ? <FeaturedWallSection cards={sharedCards} /> : null}
-
-      <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <div className="space-y-1">
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collection</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Collection</h2>
-          </div>
-        </div>
-        {!profile.vault_sharing_enabled ? (
-          <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
-        ) : sharedCards.length === 0 ? (
-          <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
-        ) : (
-          <PublicCollectionGrid cards={sharedCards} />
-        )}
-      </section>
+      {!profile.vault_sharing_enabled ? (
+        <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
+      ) : sharedCards.length === 0 ? (
+        <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
+      ) : (
+        <PublicCollectorProfileContent slug={profile.slug} cards={sharedCards} />
+      )}
     </div>
   );
 }

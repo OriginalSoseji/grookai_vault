@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { CSSProperties } from "react";
-import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 
 export type PublicCollectorStat = {
   value: string;
@@ -15,8 +13,6 @@ type PublicCollectorHeaderProps = {
   avatarUrl?: string | null;
   bannerUrl?: string | null;
   stats?: PublicCollectorStat[];
-  activeView: "collection" | "pokemon";
-  defaultPokemonValue?: string;
   setLogoPaths?: string[];
 };
 
@@ -38,8 +34,6 @@ export function PublicCollectorHeader({
   avatarUrl = null,
   bannerUrl = null,
   stats = [],
-  activeView,
-  defaultPokemonValue,
   setLogoPaths = [],
 }: PublicCollectorHeaderProps) {
   const collageWatermarkStyle = {
@@ -52,18 +46,18 @@ export function PublicCollectorHeader({
   } as CSSProperties;
 
   return (
-    <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-5 py-6 shadow-sm shadow-slate-200/70 sm:px-6 sm:py-7 md:px-8 md:py-8">
+    <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/70">
       {bannerUrl ? (
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
+        <div aria-hidden="true" className="relative h-28 overflow-hidden sm:h-32">
           <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/45 via-slate-950/15 to-white/92" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/20 to-slate-950/5" />
         </div>
       ) : setLogoPaths.length > 0 ? (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none relative h-28 overflow-hidden bg-[linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)] sm:h-32">
           {setLogoPaths.slice(0, 2).map((logoPath, index) => {
             const placements = [
-              "left-[-14%] top-[-18%] rotate-[-8deg]",
-              "right-[-16%] bottom-[-18%] rotate-[10deg]",
+              "left-[-14%] top-[-12%] rotate-[-8deg]",
+              "right-[-16%] bottom-[-12%] rotate-[10deg]",
             ];
 
             return (
@@ -80,67 +74,44 @@ export function PublicCollectorHeader({
             );
           })}
         </div>
-      ) : null}
-      <div className="relative z-10 space-y-5 sm:space-y-6">
-        <div className="flex flex-col gap-4 sm:gap-5 md:flex-row md:items-start">
-          <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-[1.4rem] border border-white/60 bg-slate-950 text-xl font-semibold tracking-[0.08em] text-white shadow-sm sm:h-20 sm:w-20 sm:rounded-[1.75rem] sm:text-2xl">
-            {avatarUrl ? (
-              <Image src={avatarUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
-            ) : (
-              getInitials(displayName)
-            )}
-          </div>
-          <div className="min-w-0 flex-1 space-y-2.5 sm:space-y-3">
-            <div className="space-y-1.5 sm:space-y-2">
-              <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>Profile</p>
-              <h1 className={`text-3xl font-semibold tracking-tight sm:text-4xl ${bannerUrl ? "text-white" : "text-slate-950"}`}>{displayName}</h1>
-              <p className={`text-xs font-medium tracking-[0.08em] sm:text-sm ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>/u/{slug}</p>
-              <p className={`max-w-2xl text-sm leading-6 sm:text-base sm:leading-7 ${bannerUrl ? "text-white/90" : "text-slate-600"}`}>{description}</p>
+      ) : (
+        <div
+          aria-hidden="true"
+          className="h-24 bg-[radial-gradient(circle_at_top_left,_rgba(226,232,240,0.9),_transparent_42%),linear-gradient(180deg,_#f8fafc_0%,_#ffffff_100%)] sm:h-28"
+        />
+      )}
+      <div className="relative z-10 px-5 pb-5 sm:px-6 sm:pb-6 md:px-8 md:pb-7">
+        <div className="-mt-8 flex flex-col gap-4 sm:-mt-10 sm:gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="flex min-w-0 items-end gap-4">
+            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-[1.4rem] border border-white/70 bg-slate-950 text-xl font-semibold tracking-[0.08em] text-white shadow-sm sm:h-20 sm:w-20 sm:rounded-[1.75rem] sm:text-2xl">
+              {avatarUrl ? (
+                <Image src={avatarUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
+              ) : (
+                getInitials(displayName)
+              )}
             </div>
-            {stats.length > 0 ? (
-              <div className="flex flex-wrap gap-2.5 pt-1 sm:gap-3">
-                {stats.map((stat) => (
-                  <div
-                    key={`${stat.label}-${stat.value}`}
-                    className={`rounded-full px-4 py-2 ${
-                      bannerUrl
-                        ? "border border-white/25 bg-white/12 backdrop-blur-sm"
-                        : "border border-slate-200 bg-slate-50"
-                    }`}
-                  >
-                    <p className={`text-sm font-medium ${bannerUrl ? "text-white" : "text-slate-900"}`}>{stat.value}</p>
-                    <p className={`text-xs ${bannerUrl ? "text-white/80" : "text-slate-500"}`}>{stat.label}</p>
-                  </div>
-                ))}
+            <div className="min-w-0 flex-1 space-y-1.5 pb-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Collector Profile</p>
+              <div className="space-y-1">
+                <h1 className="truncate text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">{displayName}</h1>
+                <p className="text-xs font-medium tracking-[0.08em] text-slate-500 sm:text-sm">/u/{slug}</p>
               </div>
-            ) : null}
+              <p className="max-w-2xl text-sm leading-6 text-slate-600">{description}</p>
+            </div>
           </div>
-        </div>
-
-        <div className="space-y-3.5 border-t border-slate-200 pt-4 sm:space-y-4 sm:pt-5">
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href={`/u/${slug}`}
-              className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition ${
-                activeView === "collection"
-                  ? "border border-slate-300 bg-slate-950 text-white"
-                  : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
-              }`}
-            >
-              Collection
-            </Link>
-            <a
-              href="#pokemon-browser"
-              className={`inline-flex rounded-full px-4 py-2 text-sm font-medium transition ${
-                activeView === "pokemon"
-                  ? "border border-slate-300 bg-slate-950 text-white"
-                  : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
-              }`}
-            >
-              Pokémon
-            </a>
-          </div>
-          <PublicPokemonJumpForm slug={slug} defaultValue={defaultPokemonValue} />
+          {stats.length > 0 ? (
+            <div className="flex flex-wrap gap-2.5 md:max-w-[26rem] md:justify-end">
+              {stats.map((stat) => (
+                <div
+                  key={`${stat.label}-${stat.value}`}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2"
+                >
+                  <p className="text-sm font-medium text-slate-900">{stat.value}</p>
+                  <p className="text-[11px] text-slate-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

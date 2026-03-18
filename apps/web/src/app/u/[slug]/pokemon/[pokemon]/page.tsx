@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
+import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import {
   filterSharedCardsByPokemonSlug,
@@ -95,25 +96,26 @@ export default async function PublicPokemonCollectionPage({
         avatarUrl={profile.avatar_url}
         bannerUrl={profile.banner_url}
         stats={stats}
-        activeView="pokemon"
-        defaultPokemonValue={pokemonLabel}
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
       />
 
       <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <div className="space-y-1">
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">{pokemonLabel} Collection</h2>
+        <div className="flex flex-col gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-1">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon</p>
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-950">{pokemonLabel} Collection</h2>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href={`/u/${profile.slug}`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
+                View profile
+              </Link>
+              <Link href={`/u/${profile.slug}/collection`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
+                Collection
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link href={`/u/${profile.slug}`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
-              View profile
-            </Link>
-            <Link href={`/u/${profile.slug}/collection`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
-              Collection
-            </Link>
-          </div>
+          <PublicPokemonJumpForm slug={profile.slug} defaultValue={pokemonLabel} variant="compact" />
         </div>
         {!profile.vault_sharing_enabled ? (
           <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
