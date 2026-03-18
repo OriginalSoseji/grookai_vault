@@ -289,6 +289,8 @@ export default async function VaultPage() {
     (await getSetLogoAssetPathMap(items.map((item) => item.set_code))).entries(),
   );
   const profile = (profileData ?? null) as PublicProfileRow | null;
+  const publicProfileHref =
+    profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}` : null;
   const publicCollectionHref =
     profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}/collection` : null;
 
@@ -300,6 +302,7 @@ export default async function VaultPage() {
         recent={recent}
         itemsError={canonicalItemsError ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
         recentError={recentError?.message}
+        publicProfileHref={publicProfileHref}
         publicCollectionHref={publicCollectionHref}
         setLogoPathByCode={setLogoPathByCode}
       />

@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
+import { CollectorPageActivationCard } from "@/components/vault/CollectorPageActivationCard";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
 import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
@@ -40,6 +41,8 @@ type SetGroup = {
   setName: string;
   items: VaultCardData[];
 };
+
+const COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS = 6;
 
 function formatTimeAgo(value: string | null) {
   if (!value) return "Recently";
@@ -522,6 +525,7 @@ type VaultCollectionViewProps = {
   recent: RecentCardData[];
   itemsError?: string | null;
   recentError?: string | null;
+  publicProfileHref?: string | null;
   publicCollectionHref?: string | null;
   setLogoPathByCode?: Record<string, string>;
 };
@@ -531,6 +535,7 @@ export function VaultCollectionView({
   recent,
   itemsError,
   recentError,
+  publicProfileHref = null,
   publicCollectionHref = null,
   setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
@@ -612,6 +617,14 @@ export function VaultCollectionView({
       lastAdded: formatLastAdded(latestTimestamp),
     };
   }, [items]);
+
+  const collectorPageActivationVariant =
+    summary.uniqueCards >= COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS
+      ? publicProfileHref
+        ? "live"
+        : "setup"
+      : null;
+  const collectorPageActivationHref = publicProfileHref ?? "/account";
 
   const recentItems = useMemo(
     () =>
@@ -1542,6 +1555,13 @@ export function VaultCollectionView({
         </section>
       ) : (
         <section className="space-y-4">
+          {collectorPageActivationVariant ? (
+            <CollectorPageActivationCard
+              variant={collectorPageActivationVariant}
+              href={collectorPageActivationHref}
+            />
+          ) : null}
+
           <div className="space-y-1.5">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Vault Cards</h2>
             <p className="text-sm text-slate-600">Cards currently in your collection.</p>
