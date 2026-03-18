@@ -1,6 +1,6 @@
 "use client";
 
-export type ViewDensity = "compact" | "default" | "large";
+import type { ViewDensity } from "@/hooks/useViewDensity";
 
 type ViewDensityToggleProps = {
   value: ViewDensity;
@@ -41,3 +41,5 @@ export function ViewDensityToggle({ value, onChange }: ViewDensityToggleProps) {
     </div>
   );
 }
+
+export default ViewDensityToggle;

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
-import { ViewDensityToggle, type ViewDensity } from "@/components/collection/ViewDensityToggle";
+import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
+import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { SharedCard } from "@/lib/getSharedCardsBySlug";
 
 type PublicCollectionGridProps = {
@@ -23,7 +23,7 @@ const gapClassMap: Record<ViewDensity, string> = {
 };
 
 export function PublicCollectionGrid({ cards }: PublicCollectionGridProps) {
-  const [density, setDensity] = useState<ViewDensity>("default");
+  const { density, setDensity } = useViewDensity();
 
   return (
     <section className="space-y-4">

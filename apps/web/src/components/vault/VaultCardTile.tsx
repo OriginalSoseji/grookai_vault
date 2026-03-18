@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
+import type { ViewDensity } from "@/hooks/useViewDensity";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -86,6 +87,7 @@ function formatMixedOwnershipSummary(item: Pick<VaultCardData, "raw_count" | "sl
 
 type VaultCardTileProps = {
   item: VaultCardData;
+  density?: ViewDensity;
   isPending: boolean;
   isSharePending: boolean;
   isPublicFrontImagePending: boolean;
@@ -105,6 +107,7 @@ type VaultCardTileProps = {
 
 export function VaultCardTile({
   item,
+  density = "default",
   isPending,
   isSharePending,
   isPublicFrontImagePending,
@@ -126,6 +129,8 @@ export function VaultCardTile({
   const mixedOwnershipSummary = formatMixedOwnershipSummary(item);
   const isMixedOwnership = mixedOwnershipSummary !== null;
   const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
+  const paddingClassName =
+    density === "compact" ? "p-3" : density === "large" ? "p-5" : "p-4";
   const watermarkStyle = {
     "--wm-opacity-desktop": "0.04",
     "--wm-blur-desktop": "10px",
@@ -136,7 +141,7 @@ export function VaultCardTile({
   } as CSSProperties;
 
   return (
-    <article className="card-hover overflow-hidden rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm">
+    <article className={`card-hover overflow-hidden rounded-[16px] border border-slate-100 bg-white shadow-sm ${paddingClassName}`}>
       <Link href={`/card/${item.gv_id}`} className="block">
         <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
           <PublicCardImage

@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
+import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
+import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import {
   changeVaultItemQuantityAction,
   type VaultQuantityMutationInput,
@@ -349,6 +351,7 @@ function PublicNoteModal({
 
 function renderVaultGrid(
   items: VaultCardData[],
+  density: ViewDensity,
   setLogoPathByCode: Record<string, string>,
   pendingItemId: string | null,
   pendingShareItemId: string | null,
@@ -364,14 +367,23 @@ function renderVaultGrid(
   onPublicNoteEdit: (item: VaultCardData) => void,
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
 ) {
+  const gridClassName =
+    density === "compact"
+      ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8"
+      : density === "large"
+        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
+  const gapClassName = density === "compact" ? "gap-2 sm:gap-3" : density === "large" ? "gap-6" : "gap-4";
+
   return (
-    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+    <div className={`grid ${gridClassName} ${gapClassName}`}>
       {items.map((item) => {
         const rowKey = getVaultRowRuntimeKey(item);
         return (
         <VaultCardTile
           key={item.id}
           item={item}
+          density={density}
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
           isPending={pendingItemId === rowKey}
           isSharePending={pendingShareItemId === rowKey}
@@ -513,6 +525,7 @@ export function VaultCollectionView({
   setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
   const router = useRouter();
+  const { density, setDensity } = useViewDensity();
   const [items, setItems] = useState(initialItems);
   const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(() => new Set());
   const [searchQuery, setSearchQuery] = useState("");
@@ -1034,6 +1047,7 @@ export function VaultCollectionView({
       filteredDuplicateItems.length > 0
         ? renderVaultGrid(
             filteredDuplicateItems,
+            density,
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
@@ -1060,6 +1074,7 @@ export function VaultCollectionView({
       filteredRecentItems.length > 0
         ? renderVaultGrid(
             filteredRecentItems,
+            density,
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
@@ -1086,6 +1101,7 @@ export function VaultCollectionView({
       filteredSharedItems.length > 0
         ? renderVaultGrid(
             filteredSharedItems,
+            density,
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
@@ -1134,6 +1150,7 @@ export function VaultCollectionView({
               <div className="pt-1">
                 {renderVaultGrid(
                   group.items,
+                  density,
                   setLogoPathByCode,
                   pendingItemId,
                   pendingShareItemId,
@@ -1199,6 +1216,7 @@ export function VaultCollectionView({
         {filteredPokemonItems.length > 0 ? (
           renderVaultGrid(
             filteredPokemonItems,
+            density,
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
@@ -1225,6 +1243,7 @@ export function VaultCollectionView({
       filteredItems.length > 0 ? (
         renderVaultGrid(
           filteredItems,
+          density,
           setLogoPathByCode,
           pendingItemId,
           pendingShareItemId,
@@ -1340,6 +1359,10 @@ export function VaultCollectionView({
                 Clear search
               </button>
             ) : null}
+          </div>
+
+          <div className="flex items-center justify-end">
+            <ViewDensityToggle value={density} onChange={setDensity} />
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 p-2">
