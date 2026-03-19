@@ -2,6 +2,7 @@
 
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds, type PublicPricingRecord } from "@/lib/pricing/getPublicPricingByCardIds";
+import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -12,6 +13,16 @@ const SET_CARD_SEARCH_LIMIT = 30;
 const MAX_SIGNIFICANT_TEXT_TOKENS = 4;
 const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set(["set", "card", "pokemon", "pokmon", "the", "and"]);
+const VARIANT_QUERY_CUE_TOKENS = new Set(["alt", "alternate", "art", "rainbow", "promo", "holo", "reverse", "full"]);
+const PROMO_SET_CODE_PATTERN = /^(?:swshp|svp|smp|basep|bwp|xyp|dpp|pr-[a-z0-9]+)$/i;
+
+type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo";
+
+type CollectorNumberExpectation = {
+  token: string;
+  digits?: string;
+  exact_only: boolean;
+};
 
 type ExploreRow = ExploreResultCard;
 
@@ -66,8 +77,114 @@ type ResolverQuery = {
   textTokens: string[];
   significantTextTokens: string[];
   numberTokens: string[];
+  numberDigitTokens: string[];
+  setTokens: string[];
+  expectedSetCodes: string[];
+  variantCues: VariantCue[];
+  hasStrongDisambiguator: boolean;
   directGvId: string | null;
 };
+
+type RemoteTimingSnapshot = {
+  remote_ms: number;
+  db_ms: number;
+  network_ms: number;
+  request_count: number;
+};
+
+type ExploreStageTiming = RemoteTimingSnapshot & {
+  total_ms: number;
+  app_ms: number;
+};
+
+export type ExploreRowsTiming = RemoteTimingSnapshot & {
+  total_ms: number;
+  app_ms: number;
+  normalize_ms: number;
+  postprocess_ms: number;
+  stages: {
+    build_query: ExploreStageTiming;
+    fetch_candidates: ExploreStageTiming;
+    fetch_exact_rows: ExploreStageTiming;
+    fallback_fetch: ExploreStageTiming;
+    exact_filters: ExploreStageTiming;
+    fetch_set_metadata: ExploreStageTiming;
+    fetch_pricing: ExploreStageTiming;
+    build_rows: ExploreStageTiming;
+    release_year_filter: ExploreStageTiming;
+    sort_rows: ExploreStageTiming;
+  };
+};
+
+type ResolverTimingCollector = {
+  snapshot: () => RemoteTimingSnapshot;
+};
+
+function roundTiming(value: number) {
+  return Math.round(value * 100) / 100;
+}
+
+function emptyRemoteTiming(): RemoteTimingSnapshot {
+  return {
+    remote_ms: 0,
+    db_ms: 0,
+    network_ms: 0,
+    request_count: 0,
+  };
+}
+
+function emptyStageTiming(): ExploreStageTiming {
+  return {
+    total_ms: 0,
+    app_ms: 0,
+    ...emptyRemoteTiming(),
+  };
+}
+
+function getTimingCollector() {
+  return (
+    (globalThis as typeof globalThis & { __grookaiResolverTiming?: ResolverTimingCollector }).__grookaiResolverTiming ??
+    null
+  );
+}
+
+function snapshotRemoteTiming(): RemoteTimingSnapshot {
+  return getTimingCollector()?.snapshot() ?? emptyRemoteTiming();
+}
+
+function diffRemoteTiming(start: RemoteTimingSnapshot, end: RemoteTimingSnapshot): RemoteTimingSnapshot {
+  return {
+    remote_ms: roundTiming(Math.max(0, end.remote_ms - start.remote_ms)),
+    db_ms: roundTiming(Math.max(0, end.db_ms - start.db_ms)),
+    network_ms: roundTiming(Math.max(0, end.network_ms - start.network_ms)),
+    request_count: Math.max(0, end.request_count - start.request_count),
+  };
+}
+
+function finalizeStageTiming(startMs: number, startRemote: RemoteTimingSnapshot): ExploreStageTiming {
+  const remote = diffRemoteTiming(startRemote, snapshotRemoteTiming());
+  const totalMs = roundTiming(performance.now() - startMs);
+
+  return {
+    total_ms: totalMs,
+    remote_ms: remote.remote_ms,
+    db_ms: remote.db_ms,
+    network_ms: remote.network_ms,
+    request_count: remote.request_count,
+    app_ms: roundTiming(Math.max(0, totalMs - remote.remote_ms)),
+  };
+}
+
+async function measureStage<T>(operation: () => Promise<T> | T): Promise<{ value: T; timing: ExploreStageTiming }> {
+  const startMs = performance.now();
+  const startRemote = snapshotRemoteTiming();
+  const value = await operation();
+
+  return {
+    value,
+    timing: finalizeStageTiming(startMs, startRemote),
+  };
+}
 
 function normalizeSetCode(value?: string | null) {
   const normalized = (value ?? "").trim().toLowerCase();
@@ -98,8 +215,21 @@ function normalizeTextForMatch(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+function normalizeCollectorToken(value: string) {
+  return value.trim().toUpperCase().replace(/\s+/g, "");
+}
+
+function normalizeDigits(value: string) {
+  const digits = value.replace(/\D/g, "").replace(/^0+/, "");
+  return digits || "0";
+}
+
 function tokenizeNormalizedQuery(value?: string | null) {
   return normalizeTextForMatch(value).match(/[a-z0-9]+/g) ?? [];
+}
+
+function tokenizeQuerySegments(value?: string | null) {
+  return normalizeTextForMatch(value).match(/[a-z0-9/]+/g) ?? [];
 }
 
 function normalizeGvIdInput(value: string) {
@@ -114,11 +244,132 @@ function normalizeGvIdInput(value: string) {
   return `GV-PK-${expandedTokens.slice(2).join("-")}`;
 }
 
+function detectSetExpectations(normalizedQuery: string) {
+  const normalized = normalizeSetQuery(normalizedQuery);
+  const expectedCodes: string[] = [];
+  const consumedTokens: string[] = [];
+
+  for (const [phrase, codes] of Object.entries(STRUCTURED_CARD_SET_ALIAS_MAP)) {
+    const normalizedPhrase = normalizeSetQuery(phrase);
+    if (!normalizedPhrase) continue;
+
+    if (` ${normalized} `.includes(` ${normalizedPhrase} `)) {
+      expectedCodes.push(...codes.map((code) => normalizeSetCode(code)));
+      consumedTokens.push(...tokenizeSetWords(normalizedPhrase));
+    }
+  }
+
+  return {
+    expectedCodes: uniqueValues(expectedCodes),
+    consumedTokens: uniqueValues(consumedTokens),
+  };
+}
+
+function detectVariantCues(normalizedQuery: string) {
+  const normalized = normalizeTextForMatch(normalizedQuery);
+  const cues = new Set<VariantCue>();
+  const consumedTokens = new Set<string>();
+  const phrases: Array<{ phrase: string; cue: VariantCue }> = [
+    { phrase: "alt art", cue: "alt_art" },
+    { phrase: "alternate art", cue: "alt_art" },
+    { phrase: "full art", cue: "full_art" },
+    { phrase: "black star promo", cue: "promo" },
+    { phrase: "black star", cue: "promo" },
+  ];
+
+  for (const { phrase, cue } of phrases) {
+    if (` ${normalized} `.includes(` ${phrase} `)) {
+      cues.add(cue);
+      for (const token of tokenizeNormalizedQuery(phrase)) {
+        consumedTokens.add(token);
+      }
+    }
+  }
+
+  if (` ${normalized} `.includes(" promo ")) {
+    cues.add("promo");
+    consumedTokens.add("promo");
+  }
+
+  if (` ${normalized} `.includes(" holo ")) {
+    cues.add("holo");
+    consumedTokens.add("holo");
+  }
+
+  if (` ${normalized} `.includes(" rainbow ")) {
+    cues.add("rainbow");
+    consumedTokens.add("rainbow");
+  }
+
+  if (` ${normalized} `.includes(" gold ")) {
+    cues.add("gold");
+  }
+
+  return {
+    cues: [...cues],
+    consumedTokens: [...consumedTokens],
+  };
+}
+
+function buildCollectorNumberExpectations(normalizedQuery: string) {
+  const expectations: CollectorNumberExpectation[] = [];
+
+  for (const segment of tokenizeQuerySegments(normalizedQuery)) {
+    const fractionMatch = segment.match(/^([a-z]*\d+)\/([a-z]*\d+)$/i);
+    if (fractionMatch) {
+      const printedNumber = normalizeCollectorToken(fractionMatch[1]);
+      expectations.push({
+        token: printedNumber,
+        digits: normalizeDigits(printedNumber),
+        exact_only: /[A-Z]/.test(printedNumber),
+      });
+      continue;
+    }
+
+    if (/^[a-z]+\d+$/i.test(segment)) {
+      expectations.push({
+        token: normalizeCollectorToken(segment),
+        exact_only: true,
+      });
+      continue;
+    }
+
+    if (/^\d+$/.test(segment)) {
+      const normalizedDigits = normalizeDigits(segment);
+      expectations.push({
+        token: normalizedDigits,
+        digits: normalizedDigits,
+        exact_only: false,
+      });
+    }
+  }
+
+  const deduped = new Map<string, CollectorNumberExpectation>();
+  for (const expectation of expectations) {
+    deduped.set(expectation.token, expectation);
+  }
+
+  return [...deduped.values()];
+}
+
 function buildResolverQuery(rawQuery: string): ResolverQuery {
   const normalized = normalizeFreeTextQuery(rawQuery);
+  const setExpectations = detectSetExpectations(normalized);
+  const variantExpectations = detectVariantCues(normalized);
+  const collectorExpectations = buildCollectorNumberExpectations(normalized);
   const tokens = tokenizeNormalizedQuery(normalized);
-  const numberTokens = uniqueValues(tokens.filter((token) => /^\d+$/.test(token)));
-  const textTokens = uniqueValues(tokens.filter((token) => !/^\d+$/.test(token)));
+  const consumedTokenSet = new Set([
+    ...setExpectations.consumedTokens,
+    ...variantExpectations.consumedTokens,
+  ]);
+  const textTokens = uniqueValues(
+    tokens.filter(
+      (token) =>
+        !collectorExpectations.some((expectation) => normalizeTextForMatch(expectation.token) === token) &&
+        !VARIANT_QUERY_CUE_TOKENS.has(token) &&
+        !consumedTokenSet.has(token),
+    ),
+  );
   const significantTextTokens = [...textTokens]
     .filter((token) => token.length >= 3 && !GENERIC_TOKENS.has(token))
     .sort((a, b) => b.length - a.length)
@@ -130,7 +381,20 @@ function buildResolverQuery(rawQuery: string): ResolverQuery {
     tokens,
     textTokens,
     significantTextTokens,
-    numberTokens,
+    numberTokens: collectorExpectations.map((expectation) => expectation.token),
+    numberDigitTokens: uniqueValues(
+      collectorExpectations
+        .map((expectation) => expectation.digits ?? "")
+        .filter(Boolean),
+    ),
+    setTokens: setExpectations.consumedTokens,
+    expectedSetCodes: setExpectations.expectedCodes,
+    variantCues: variantExpectations.cues,
+    hasStrongDisambiguator:
+      collectorExpectations.length > 0 ||
+      setExpectations.expectedCodes.length > 0 ||
+      setExpectations.consumedTokens.length > 0 ||
+      variantExpectations.cues.length > 0,
     directGvId: normalizeGvIdInput(normalized),
   };
 }
@@ -201,6 +465,8 @@ function bestTokenSimilarity(token: string, candidates: string[]) {
 }
 
 function rankSetCandidates(setRows: TcgdexSetRow[], query: ResolverQuery) {
+  const querySetTokens = query.setTokens.length > 0 ? query.setTokens : query.significantTextTokens;
+
   return setRows
     .map((row) => {
       const setName = row.name ?? "";
@@ -209,7 +475,7 @@ function rankSetCandidates(setRows: TcgdexSetRow[], query: ResolverQuery) {
       let score = 0;
       let matchedTokens = 0;
 
-      for (const token of query.significantTextTokens) {
+      for (const token of querySetTokens) {
         const similarity = bestTokenSimilarity(token, setTokens);
         if (similarity >= 1) {
           score += 140;
@@ -229,7 +495,7 @@ function rankSetCandidates(setRows: TcgdexSetRow[], query: ResolverQuery) {
         score += 180;
       }
 
-      if (matchedTokens === query.significantTextTokens.length && matchedTokens > 0) {
+      if (matchedTokens === querySetTokens.length && matchedTokens > 0) {
         score += 120;
       }
 
@@ -285,6 +551,83 @@ function buildExploreRows(
     });
 }
 
+function getRowVariantCueSet(row: ExploreRow) {
+  const combined = normalizeTextForMatch([row.rarity, row.variant_key].filter(Boolean).join(" "));
+  const cues = new Set<VariantCue>();
+
+  if (
+    row.variant_key?.toLowerCase().includes("alt") ||
+    combined.includes("alternate art") ||
+    combined.includes("special illustration")
+  ) {
+    cues.add("alt_art");
+  }
+
+  if (combined.includes("rainbow")) {
+    cues.add("rainbow");
+  }
+
+  if (combined.includes("gold")) {
+    cues.add("gold");
+  }
+
+  if (combined.includes("full art")) {
+    cues.add("full_art");
+  }
+
+  if (
+    row.variants?.holo ||
+    row.variants?.reverse ||
+    row.variants?.reverseHolo ||
+    combined.includes("holo")
+  ) {
+    cues.add("holo");
+  }
+
+  if (
+    PROMO_SET_CODE_PATTERN.test(row.set_code ?? "") ||
+    combined.includes("promo") ||
+    normalizeTextForMatch(row.set_name).includes("black star")
+  ) {
+    cues.add("promo");
+  }
+
+  return cues;
+}
+
+function getNumberMatchStrength(row: ExploreRow, query: ResolverQuery) {
+  const normalizedNumber = normalizeCollectorToken(row.number);
+  const numberDigits = normalizeDigits(row.number ?? "");
+  const normalizedGvId = row.gv_id.toUpperCase();
+  let bestStrength = 0;
+
+  for (const numberToken of query.numberTokens) {
+    const normalizedToken = normalizeCollectorToken(numberToken);
+    if (!normalizedToken) continue;
+
+    if (normalizedNumber === normalizedToken) {
+      bestStrength = Math.max(bestStrength, 1);
+      continue;
+    }
+
+    if (normalizedGvId.includes(`-${normalizedToken}`)) {
+      bestStrength = Math.max(bestStrength, 0.72);
+    }
+  }
+
+  for (const digitToken of query.numberDigitTokens) {
+    if (!digitToken) continue;
+    if (numberDigits === digitToken) {
+      bestStrength = Math.max(bestStrength, 0.86);
+    }
+  }
+
+  return bestStrength;
+}
+
+// Resolver Quality Pass V1:
+// Ranking must strongly respect explicit disambiguators already present in the user query
+// (number tokens, set tokens, and variant cues) instead of over-dominating on name-only matches.
 function scoreRow(row: ExploreRow, query: ResolverQuery) {
   const normalizedName = normalizeTextForMatch(row.name);
   const normalizedSetName = normalizeTextForMatch(row.set_name);
@@ -297,21 +640,22 @@ function scoreRow(row: ExploreRow, query: ResolverQuery) {
     ...tokenizeNormalizedQuery(row.tcgdex_set_id),
   ]);
   const gvTokens = uniqueValues(row.gv_id.toLowerCase().match(/[a-z0-9]+/g) ?? []);
-  const numberDigits = toNumberDigits(row.number);
+  const rowVariantCues = getRowVariantCueSet(row);
   let score = 0;
   let matchedTextTokens = 0;
   let exactNameMatches = 0;
+  let matchedSetTokens = 0;
 
   if (query.directGvId && row.gv_id.toUpperCase() === query.directGvId) {
     score += 6000;
   }
 
   if (query.normalized && normalizedName === query.normalized.toLowerCase()) {
-    score += 2200;
+    score += query.hasStrongDisambiguator ? 1500 : 2200;
   } else if (query.normalized && normalizedCombined === query.normalized.toLowerCase()) {
-    score += 1900;
+    score += query.hasStrongDisambiguator ? 1300 : 1900;
   } else if (query.normalized && normalizedName.startsWith(query.normalized.toLowerCase())) {
-    score += 1500;
+    score += query.hasStrongDisambiguator ? 950 : 1500;
   }
 
   for (const token of query.textTokens) {
@@ -321,20 +665,20 @@ function scoreRow(row: ExploreRow, query: ResolverQuery) {
     const bestSimilarity = Math.max(nameSimilarity, setSimilarity, gvSimilarity);
 
     if (bestSimilarity >= 1) {
-      score += nameSimilarity >= setSimilarity ? 280 : 210;
+      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 240 : 280) : 260;
       matchedTextTokens += 1;
       if (nameSimilarity >= 1) exactNameMatches += 1;
       continue;
     }
 
     if (bestSimilarity >= 0.96) {
-      score += nameSimilarity >= setSimilarity ? 220 : 170;
+      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 180 : 220) : 210;
       matchedTextTokens += 1;
       continue;
     }
 
     if (bestSimilarity >= 0.88) {
-      score += nameSimilarity >= setSimilarity ? 150 : 115;
+      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 120 : 150) : 150;
       matchedTextTokens += 1;
       continue;
     }
@@ -349,27 +693,82 @@ function scoreRow(row: ExploreRow, query: ResolverQuery) {
   }
 
   if (query.textTokens.length > 0 && exactNameMatches > 0) {
-    score += 140;
+    score += query.hasStrongDisambiguator ? 80 : 140;
   }
 
-  for (const numberToken of query.numberTokens) {
-    if (numberDigits && numberDigits === numberToken.replace(/^0+/, "")) {
+  for (const setToken of query.setTokens) {
+    const setSimilarity = bestTokenSimilarity(setToken, setTokens);
+    if (setSimilarity >= 1) {
       score += 260;
+      matchedSetTokens += 1;
       continue;
     }
 
-    if (normalizeTextForMatch(row.number) === numberToken) {
+    if (setSimilarity >= 0.96) {
       score += 220;
+      matchedSetTokens += 1;
       continue;
     }
 
-    if (row.gv_id.toLowerCase().includes(`-${numberToken.toLowerCase()}`)) {
-      score += 120;
+    if (setSimilarity >= 0.88) {
+      score += 150;
     }
   }
 
-  if (query.numberTokens.length > 0 && exactNameMatches > 0) {
-    score += 160;
+  const hasExpectedSetCode = query.expectedSetCodes.length > 0;
+  const matchesExpectedSetCode = hasExpectedSetCode && query.expectedSetCodes.includes(normalizeSetCode(row.set_code));
+  if (matchesExpectedSetCode) {
+    score += 880;
+  } else if (hasExpectedSetCode) {
+    score -= 360;
+  }
+
+  if (query.setTokens.length > 0 && matchedSetTokens === query.setTokens.length) {
+    score += 260;
+  } else if (query.setTokens.length > 0 && matchedSetTokens === 0) {
+    score -= 180;
+  }
+
+  const numberMatchStrength = getNumberMatchStrength(row, query);
+  if (numberMatchStrength >= 1) {
+    score += 1600;
+  } else if (numberMatchStrength >= 0.86) {
+    score += 1120;
+  } else if (numberMatchStrength >= 0.72) {
+    score += 760;
+  } else if (query.numberTokens.length > 0 || query.numberDigitTokens.length > 0) {
+    score -= 520;
+  }
+
+  let matchedVariantCues = 0;
+  for (const cue of query.variantCues) {
+    if (!rowVariantCues.has(cue)) continue;
+    matchedVariantCues += 1;
+
+    switch (cue) {
+      case "alt_art":
+        score += 720;
+        break;
+      case "rainbow":
+        score += 620;
+        break;
+      case "promo":
+        score += 520;
+        break;
+      case "gold":
+        score += 320;
+        break;
+      case "full_art":
+        score += 320;
+        break;
+      case "holo":
+        score += 220;
+        break;
+    }
+  }
+
+  if (query.variantCues.length > 0 && matchedVariantCues === 0) {
+    score -= 240;
   }
 
   return score;
@@ -700,6 +1099,175 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   );
 }
 
+export async function getExploreRowsWithTiming(
+  rawQuery: string,
+  sortMode: SortMode,
+  exactSetCode: string,
+  exactReleaseYear?: number,
+  exactIllustrator?: string,
+): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
+  const totalStartMs = performance.now();
+  const totalStartRemote = snapshotRemoteTiming();
+  const buildQueryStage = await measureStage(() => buildResolverQuery(rawQuery));
+  const query = buildQueryStage.value;
+
+  const fetchCandidatesStage = emptyStageTiming();
+  const fetchExactRowsStage = emptyStageTiming();
+  const fallbackFetchStage = emptyStageTiming();
+  const exactFiltersStage = emptyStageTiming();
+  const fetchSetMetadataStage = emptyStageTiming();
+  const fetchPricingStage = emptyStageTiming();
+  const buildRowsStage = emptyStageTiming();
+  const releaseYearFilterStage = emptyStageTiming();
+  const sortRowsStage = emptyStageTiming();
+
+  if (!query.normalized && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
+    const totalRemote = diffRemoteTiming(totalStartRemote, snapshotRemoteTiming());
+    const totalMs = roundTiming(performance.now() - totalStartMs);
+
+    return {
+      rows: [],
+      timing: {
+        total_ms: totalMs,
+        remote_ms: totalRemote.remote_ms,
+        db_ms: totalRemote.db_ms,
+        network_ms: totalRemote.network_ms,
+        request_count: totalRemote.request_count,
+        app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
+        normalize_ms: buildQueryStage.timing.total_ms,
+        postprocess_ms: roundTiming(Math.max(0, totalMs - buildQueryStage.timing.total_ms - totalRemote.remote_ms)),
+        stages: {
+          build_query: buildQueryStage.timing,
+          fetch_candidates: fetchCandidatesStage,
+          fetch_exact_rows: fetchExactRowsStage,
+          fallback_fetch: fallbackFetchStage,
+          exact_filters: exactFiltersStage,
+          fetch_set_metadata: fetchSetMetadataStage,
+          fetch_pricing: fetchPricingStage,
+          build_rows: buildRowsStage,
+          release_year_filter: releaseYearFilterStage,
+          sort_rows: sortRowsStage,
+        },
+      },
+    };
+  }
+
+  let exactRows: CardPrintLookupRow[] = [];
+  let setAwareResults = { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
+
+  if (query.normalized) {
+    const timedCandidates = await measureStage(async () =>
+      Promise.all([fetchRpcIds(query), fetchSetAwareTcgdexCardIds(query)]),
+    );
+    Object.assign(fetchCandidatesStage, timedCandidates.timing);
+
+    const [rpcIds, resolvedSetAwareResults] = timedCandidates.value;
+    setAwareResults = resolvedSetAwareResults;
+
+    const timedExactRows = await measureStage(() =>
+      fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId),
+    );
+    Object.assign(fetchExactRowsStage, timedExactRows.timing);
+    exactRows = timedExactRows.value;
+  }
+
+  if (!query.normalized) {
+    const timedFallbackRows = await measureStage(async () => {
+      if (exactSetCode) {
+        return fetchCardRowsBySetCode(exactSetCode);
+      }
+
+      if (exactIllustrator) {
+        return fetchCardRowsByIllustrator(exactIllustrator);
+      }
+
+      if (exactReleaseYear) {
+        return fetchCardRowsByReleaseYear(exactReleaseYear);
+      }
+
+      return [] as CardPrintLookupRow[];
+    });
+
+    Object.assign(fallbackFetchStage, timedFallbackRows.timing);
+    exactRows = timedFallbackRows.value;
+  }
+
+  const timedExactFilters = await measureStage(() => {
+    let filteredRows = exactRows;
+
+    if (exactSetCode) {
+      filteredRows = filteredRows.filter((row) => normalizeSetCode(row.set_code) === exactSetCode);
+    }
+
+    if (exactIllustrator) {
+      filteredRows = filteredRows.filter(
+        (row) => normalizeIllustrator(row.artist) === normalizeIllustrator(exactIllustrator),
+      );
+    }
+
+    return filteredRows;
+  });
+  Object.assign(exactFiltersStage, timedExactFilters.timing);
+  exactRows = timedExactFilters.value;
+
+  const timedSetMetadata = await measureStage(() =>
+    fetchPublicSetMetadata(uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean))),
+  );
+  Object.assign(fetchSetMetadataStage, timedSetMetadata.timing);
+  const setMetadataByCode = timedSetMetadata.value;
+
+  const supabase = createServerComponentClient();
+  const timedPricing = await measureStage(() => getPublicPricingByCardIds(supabase, exactRows.map((row) => row.id)));
+  Object.assign(fetchPricingStage, timedPricing.timing);
+  const pricingByCardId = timedPricing.value;
+
+  const timedBuildRows = await measureStage(() =>
+    buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode, pricingByCardId),
+  );
+  Object.assign(buildRowsStage, timedBuildRows.timing);
+  const rows = timedBuildRows.value;
+
+  const timedReleaseYearFilter = await measureStage(() =>
+    typeof exactReleaseYear === "number"
+      ? rows.filter((row) => row.release_year === exactReleaseYear)
+      : rows,
+  );
+  Object.assign(releaseYearFilterStage, timedReleaseYearFilter.timing);
+  const filteredRows = timedReleaseYearFilter.value;
+
+  const timedSortRows = await measureStage(() => sortRows(filteredRows, query, sortMode));
+  Object.assign(sortRowsStage, timedSortRows.timing);
+
+  const totalRemote = diffRemoteTiming(totalStartRemote, snapshotRemoteTiming());
+  const totalMs = roundTiming(performance.now() - totalStartMs);
+
+  return {
+    rows: timedSortRows.value,
+    timing: {
+      total_ms: totalMs,
+      remote_ms: totalRemote.remote_ms,
+      db_ms: totalRemote.db_ms,
+      network_ms: totalRemote.network_ms,
+      request_count: totalRemote.request_count,
+      app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
+      normalize_ms: buildQueryStage.timing.total_ms,
+      postprocess_ms: roundTiming(Math.max(0, totalMs - buildQueryStage.timing.total_ms - totalRemote.remote_ms)),
+      stages: {
+        build_query: buildQueryStage.timing,
+        fetch_candidates: fetchCandidatesStage,
+        fetch_exact_rows: fetchExactRowsStage,
+        fallback_fetch: fallbackFetchStage,
+        exact_filters: exactFiltersStage,
+        fetch_set_metadata: fetchSetMetadataStage,
+        fetch_pricing: fetchPricingStage,
+        build_rows: buildRowsStage,
+        release_year_filter: releaseYearFilterStage,
+        sort_rows: sortRowsStage,
+      },
+    },
+  };
+}
+
 export async function getExploreRows(
   rawQuery: string,
   sortMode: SortMode,
@@ -707,50 +1275,5 @@ export async function getExploreRows(
   exactReleaseYear?: number,
   exactIllustrator?: string,
 ): Promise<ExploreRow[]> {
-  const query = buildResolverQuery(rawQuery);
-  if (!query.normalized && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
-    return [];
-  }
-
-  let exactRows: CardPrintLookupRow[] = [];
-  let setAwareResults = { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
-
-  if (query.normalized) {
-    const [rpcIds, resolvedSetAwareResults] = await Promise.all([
-      fetchRpcIds(query),
-      fetchSetAwareTcgdexCardIds(query),
-    ]);
-
-    setAwareResults = resolvedSetAwareResults;
-    exactRows = await fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId);
-  }
-
-  if (!query.normalized) {
-    if (exactSetCode) {
-      exactRows = await fetchCardRowsBySetCode(exactSetCode);
-    } else if (exactIllustrator) {
-      exactRows = await fetchCardRowsByIllustrator(exactIllustrator);
-    } else if (exactReleaseYear) {
-      exactRows = await fetchCardRowsByReleaseYear(exactReleaseYear);
-    }
-  }
-
-  if (exactSetCode) {
-    exactRows = exactRows.filter((row) => normalizeSetCode(row.set_code) === exactSetCode);
-  }
-
-  if (exactIllustrator) {
-    exactRows = exactRows.filter((row) => normalizeIllustrator(row.artist) === normalizeIllustrator(exactIllustrator));
-  }
-
-  const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(exactRows.map((row) => row.set_code ?? "").filter(Boolean)),
-  );
-  const supabase = createServerComponentClient();
-  const pricingByCardId = await getPublicPricingByCardIds(supabase, exactRows.map((row) => row.id));
-  const rows = buildExploreRows(exactRows, setAwareResults.setNameById, setMetadataByCode, pricingByCardId);
-  const filteredRows = typeof exactReleaseYear === "number"
-    ? rows.filter((row) => row.release_year === exactReleaseYear)
-    : rows;
-  return sortRows(filteredRows, query, sortMode);
+  return (await getExploreRowsWithTiming(rawQuery, sortMode, exactSetCode, exactReleaseYear, exactIllustrator)).rows;
 }

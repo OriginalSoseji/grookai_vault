@@ -96,6 +96,14 @@ function hasSetPhrase(normalized: string) {
   return SET_PHRASES.some((phrase) => (` ${normalized} `).includes(` ${phrase} `));
 }
 
+function isPrefixedCollectorNumber(token?: string) {
+  if (!token) {
+    return false;
+  }
+
+  return /^[a-z]{1,5}\d{1,4}[a-z]?$/i.test(token);
+}
+
 export function normalizeSearchInput(raw: string) {
   return raw.trim().replace(/\s+/g, " ");
 }
@@ -136,16 +144,51 @@ export function isStructuredPublicSearchQuery(raw: string): boolean {
   return hasSetPhrase(normalized);
 }
 
+export function shouldUseResolverRoute(raw: string): boolean {
+  const normalized = normalizeForClassification(raw);
+  if (!normalized) {
+    return false;
+  }
+
+  const tokens = tokenizeForClassification(raw);
+  if (looksLikeGrookaiId(normalized)) {
+    return true;
+  }
+
+  if (looksLikeCollectorFraction(tokens)) {
+    return true;
+  }
+
+  if (tokens.length === 1 && (EXACT_SET_ALIASES.has(normalized) || isLikelySetCodeToken(tokens[0]))) {
+    return true;
+  }
+
+  const terminalToken = tokens[tokens.length - 1];
+  if (!isPrintedNumberToken(terminalToken)) {
+    return false;
+  }
+
+  const leadingTokens = tokens.slice(0, -1);
+
+  if (leadingTokens.some((token) => isLikelySetCodeToken(token)) || hasSetPhrase(normalized)) {
+    return true;
+  }
+
+  return isPrefixedCollectorNumber(terminalToken);
+}
+
 export function buildPublicSearchDestination(raw: string): { pathname: "/search" | "/explore"; q: string } {
   const q = normalizeSearchInput(raw);
 
-  // /search is reserved for high-intent resolver queries; /explore is the fast browse path.
+  // Resolver collapse rule:
+  // /explore is the single authoritative results surface for searches that are likely
+  // to end in ranked results. Reserve /search for direct-resolution candidates only.
   if (!q) {
     return { pathname: "/explore", q };
   }
 
   return {
-    pathname: isStructuredPublicSearchQuery(q) ? "/search" : "/explore",
+    pathname: shouldUseResolverRoute(q) ? "/search" : "/explore",
     q,
   };
 }

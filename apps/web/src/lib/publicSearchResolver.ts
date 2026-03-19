@@ -47,6 +47,103 @@ type SetContext = {
   consumedTokens: string[];
 };
 
+type RemoteTimingSnapshot = {
+  remote_ms: number;
+  db_ms: number;
+  network_ms: number;
+  request_count: number;
+};
+
+type ResolverStageTiming = RemoteTimingSnapshot & {
+  total_ms: number;
+  app_ms: number;
+};
+
+export type ResolvePublicSearchTiming = RemoteTimingSnapshot & {
+  total_ms: number;
+  app_ms: number;
+  normalize_ms: number;
+  postprocess_ms: number;
+  stages: {
+    normalize: ResolverStageTiming;
+    direct_gv_lookup: ResolverStageTiming;
+    structured_collector: ResolverStageTiming;
+    exact_name: ResolverStageTiming;
+    set_intent: ResolverStageTiming;
+    alias: ResolverStageTiming;
+  };
+};
+
+type ResolverTimingCollector = {
+  snapshot: () => RemoteTimingSnapshot;
+};
+
+function roundTiming(value: number) {
+  return Math.round(value * 100) / 100;
+}
+
+function emptyRemoteTiming(): RemoteTimingSnapshot {
+  return {
+    remote_ms: 0,
+    db_ms: 0,
+    network_ms: 0,
+    request_count: 0,
+  };
+}
+
+function emptyStageTiming(): ResolverStageTiming {
+  return {
+    total_ms: 0,
+    app_ms: 0,
+    ...emptyRemoteTiming(),
+  };
+}
+
+function getTimingCollector() {
+  return (
+    (globalThis as typeof globalThis & { __grookaiResolverTiming?: ResolverTimingCollector }).__grookaiResolverTiming ??
+    null
+  );
+}
+
+function snapshotRemoteTiming(): RemoteTimingSnapshot {
+  return getTimingCollector()?.snapshot() ?? emptyRemoteTiming();
+}
+
+function diffRemoteTiming(start: RemoteTimingSnapshot, end: RemoteTimingSnapshot): RemoteTimingSnapshot {
+  return {
+    remote_ms: roundTiming(Math.max(0, end.remote_ms - start.remote_ms)),
+    db_ms: roundTiming(Math.max(0, end.db_ms - start.db_ms)),
+    network_ms: roundTiming(Math.max(0, end.network_ms - start.network_ms)),
+    request_count: Math.max(0, end.request_count - start.request_count),
+  };
+}
+
+function finalizeStageTiming(startMs: number, startRemote: RemoteTimingSnapshot): ResolverStageTiming {
+  const remote = diffRemoteTiming(startRemote, snapshotRemoteTiming());
+  const totalMs = roundTiming(performance.now() - startMs);
+
+  return {
+    total_ms: totalMs,
+    remote_ms: remote.remote_ms,
+    db_ms: remote.db_ms,
+    network_ms: remote.network_ms,
+    request_count: remote.request_count,
+    app_ms: roundTiming(Math.max(0, totalMs - remote.remote_ms)),
+  };
+}
+
+async function measureStage<T>(operation: () => Promise<T> | T): Promise<{ value: T; timing: ResolverStageTiming }> {
+  const startMs = performance.now();
+  const startRemote = snapshotRemoteTiming();
+  const value = await operation();
+
+  return {
+    value,
+    timing: finalizeStageTiming(startMs, startRemote),
+  };
+}
+
 function createServerSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -454,51 +551,128 @@ async function resolveAliasOrNickname() {
   return null;
 }
 
-export async function resolvePublicSearch(rawQuery: string): Promise<ResolverResult> {
-  const parsedQuery = parseQuery(rawQuery);
+export async function resolvePublicSearchWithTiming(
+  rawQuery: string,
+): Promise<{ result: ResolverResult; timing: ResolvePublicSearchTiming }> {
+  const totalStartMs = performance.now();
+  const totalStartRemote = snapshotRemoteTiming();
+
+  const normalizeStage = await measureStage(() => parseQuery(rawQuery));
+  const parsedQuery = normalizeStage.value;
+  const directLookupStage = emptyStageTiming();
+  const structuredStage = emptyStageTiming();
+  const exactNameStage = emptyStageTiming();
+  const setIntentStage = emptyStageTiming();
+  const aliasStage = emptyStageTiming();
+
   if (!parsedQuery.normalizedInput) {
-    return { kind: "explore", query: parsedQuery.normalizedFallbackQuery };
+    const totalRemote = diffRemoteTiming(totalStartRemote, snapshotRemoteTiming());
+    const totalMs = roundTiming(performance.now() - totalStartMs);
+
+    return {
+      result: { kind: "explore", query: parsedQuery.normalizedFallbackQuery },
+      timing: {
+        total_ms: totalMs,
+        remote_ms: totalRemote.remote_ms,
+        db_ms: totalRemote.db_ms,
+        network_ms: totalRemote.network_ms,
+        request_count: totalRemote.request_count,
+        app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
+        normalize_ms: normalizeStage.timing.total_ms,
+        postprocess_ms: roundTiming(Math.max(0, totalMs - normalizeStage.timing.total_ms - totalRemote.remote_ms)),
+        stages: {
+          normalize: normalizeStage.timing,
+          direct_gv_lookup: directLookupStage,
+          structured_collector: structuredStage,
+          exact_name: exactNameStage,
+          set_intent: setIntentStage,
+          alias: aliasStage,
+        },
+      },
+    };
   }
 
   const supabase = createServerSupabase();
+  let result: ResolverResult = { kind: "explore", query: parsedQuery.normalizedFallbackQuery };
 
   if (parsedQuery.normalizedGvId) {
-    const { data, error } = await supabase
-      .from("card_prints")
-      .select("gv_id")
-      .eq("gv_id", parsedQuery.normalizedGvId)
-      .limit(1);
+    const directGvId = parsedQuery.normalizedGvId;
+    const timedLookup = await measureStage(async () => {
+      const { data, error } = await supabase
+        .from("card_prints")
+        .select("gv_id")
+        .eq("gv_id", directGvId)
+        .limit(1);
 
-    if (error) {
-      throw new Error(error.message);
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if ((data ?? []).length === 1) {
+        return { kind: "card", gv_id: directGvId } satisfies ResolverResult;
+      }
+
+      return { kind: "explore", query: parsedQuery.normalizedFallbackQuery } satisfies ResolverResult;
+    });
+
+    result = timedLookup.value;
+    Object.assign(directLookupStage, timedLookup.timing);
+  } else {
+    const timedStructured = await measureStage(() => resolveStructuredCollectorQuery(supabase, parsedQuery));
+    Object.assign(structuredStage, timedStructured.timing);
+
+    if (timedStructured.value) {
+      result = { kind: "card", gv_id: timedStructured.value };
+    } else {
+      const timedExactName = await measureStage(() => resolveExactCanonicalName(supabase, parsedQuery.normalizedInput));
+      Object.assign(exactNameStage, timedExactName.timing);
+
+      if (timedExactName.value) {
+        result = { kind: "card", gv_id: timedExactName.value };
+      } else {
+        const timedSetIntent = await measureStage(() => resolveSetIntent(parsedQuery));
+        Object.assign(setIntentStage, timedSetIntent.timing);
+
+        if (timedSetIntent.value) {
+          result = timedSetIntent.value;
+        } else {
+          const timedAlias = await measureStage(() => resolveAliasOrNickname());
+          Object.assign(aliasStage, timedAlias.timing);
+
+          if (timedAlias.value) {
+            result = { kind: "card", gv_id: timedAlias.value };
+          }
+        }
+      }
     }
-
-    if ((data ?? []).length === 1) {
-      return { kind: "card", gv_id: parsedQuery.normalizedGvId };
-    }
-
-    return { kind: "explore", query: parsedQuery.normalizedFallbackQuery };
   }
 
-  const structuredMatch = await resolveStructuredCollectorQuery(supabase, parsedQuery);
-  if (structuredMatch) {
-    return { kind: "card", gv_id: structuredMatch };
-  }
+  const totalRemote = diffRemoteTiming(totalStartRemote, snapshotRemoteTiming());
+  const totalMs = roundTiming(performance.now() - totalStartMs);
 
-  const exactNameMatch = await resolveExactCanonicalName(supabase, parsedQuery.normalizedInput);
-  if (exactNameMatch) {
-    return { kind: "card", gv_id: exactNameMatch };
-  }
+  return {
+    result,
+    timing: {
+      total_ms: totalMs,
+      remote_ms: totalRemote.remote_ms,
+      db_ms: totalRemote.db_ms,
+      network_ms: totalRemote.network_ms,
+      request_count: totalRemote.request_count,
+      app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
+      normalize_ms: normalizeStage.timing.total_ms,
+      postprocess_ms: roundTiming(Math.max(0, totalMs - normalizeStage.timing.total_ms - totalRemote.remote_ms)),
+      stages: {
+        normalize: normalizeStage.timing,
+        direct_gv_lookup: directLookupStage,
+        structured_collector: structuredStage,
+        exact_name: exactNameStage,
+        set_intent: setIntentStage,
+        alias: aliasStage,
+      },
+    },
+  };
+}
 
-  const setIntentMatch = await resolveSetIntent(parsedQuery);
-  if (setIntentMatch) {
-    return setIntentMatch;
-  }
-
-  const aliasMatch = await resolveAliasOrNickname();
-  if (aliasMatch) {
-    return { kind: "card", gv_id: aliasMatch };
-  }
-
-  return { kind: "explore", query: parsedQuery.normalizedFallbackQuery };
+export async function resolvePublicSearch(rawQuery: string): Promise<ResolverResult> {
+  return (await resolvePublicSearchWithTiming(rawQuery)).result;
 }
