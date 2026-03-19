@@ -504,6 +504,18 @@ function formatPct(value: number) {
   return `${Math.round(value * 100)}%`;
 }
 
+function formatHoursRemaining(value: number | null) {
+  if (value == null || !Number.isFinite(value)) {
+    return "—";
+  }
+
+  if (value >= 1) {
+    return `${value.toFixed(1)}h`;
+  }
+
+  return `${Math.max(value * 60, 1).toFixed(0)}m`;
+}
+
 function getAlertToneClasses(tone: "neutral" | "warning" | "danger" | "positive") {
   if (tone === "danger") {
     return "border-rose-200 bg-rose-50 text-rose-700";
@@ -1073,8 +1085,19 @@ export default async function FounderPage() {
 }
 
 function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummary }) {
-  const { budget, config, errors, queueHealth, retryRows, throughputBuckets } = pricingOps;
+  const { budget, budgetBurn, config, errorDistribution, errors, queueHealth, queueVelocity, retryRows, throughputBuckets } =
+    pricingOps;
   const budgetTone = !budget ? "neutral" : budget.exhausted ? "danger" : budget.pctUsed >= 0.8 ? "warning" : "positive";
+  const burnTone =
+    !budgetBurn || budgetBurn.insufficientData
+      ? "neutral"
+      : budget?.exhausted
+        ? "danger"
+        : budgetBurn.projectedHoursRemaining != null && budgetBurn.projectedHoursRemaining <= 2
+          ? "danger"
+          : budgetBurn.projectedHoursRemaining != null && budgetBurn.projectedHoursRemaining <= 6
+            ? "warning"
+            : "positive";
   const retryTone =
     queueHealth && (queueHealth.retryable429Count > 3 || retryRows.length >= 5)
       ? "warning"
@@ -1087,6 +1110,32 @@ function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummar
       : queueHealth && queueHealth.pendingCount > 0
         ? "neutral"
         : "positive";
+  const queueVelocityTone =
+    !queueVelocity
+      ? "neutral"
+      : queueVelocity.trend === "growing"
+        ? "warning"
+        : queueVelocity.trend === "shrinking"
+          ? "positive"
+          : "neutral";
+  const dominantErrorTone =
+    !errorDistribution || !errorDistribution.dominantBucket
+      ? "positive"
+      : errorDistribution.dominantBucket === "budget_exhausted" || errorDistribution.dominantBucket === "generic_failure"
+        ? "danger"
+        : errorDistribution.dominantBucket === "retryable_429"
+          ? "warning"
+          : "neutral";
+  const dominantErrorLabel =
+    !errorDistribution || !errorDistribution.dominantBucket
+      ? "No recent failures"
+      : errorDistribution.dominantBucket === "retryable_429"
+        ? "Retryable 429"
+        : errorDistribution.dominantBucket === "budget_exhausted"
+          ? "Budget exhausted"
+          : errorDistribution.dominantBucket === "generic_failure"
+            ? "Generic failure"
+            : "Other";
 
   return (
     <section className="space-y-5">
@@ -1116,6 +1165,11 @@ function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummar
             label={retryRows.length > 0 ? `${retryRows.length} recent retry rows` : "Retry pressure quiet"}
             tone={retryTone}
           />
+          <OpsPill
+            label={queueVelocity ? `Queue ${queueVelocity.trend}` : "Queue velocity unavailable"}
+            tone={queueVelocityTone}
+          />
+          <OpsPill label={dominantErrorLabel} tone={dominantErrorTone} />
         </div>
       </div>
 
@@ -1206,6 +1260,158 @@ function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummar
             </div>
           ) : (
             <EmptyPanel message="Queue health is unavailable right now." />
+          )}
+        </div>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-3">
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Burn Rate</h3>
+              <p className="text-sm text-slate-600">
+                Estimated Browse pressure over the last hour using recent job starts and the configured calls-per-job ceiling.
+              </p>
+            </div>
+            {budgetBurn ? (
+              <OpsPill label={budgetBurn.insufficientData ? "Insufficient data" : "Estimated"} tone={burnTone} />
+            ) : null}
+          </div>
+
+          {errors.budgetBurn ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.budgetBurn}
+            </div>
+          ) : budgetBurn ? (
+            <div className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <OpsMetric
+                  label="Calls Consumed (1h)"
+                  value={budgetBurn.callsConsumedLastHour.toLocaleString("en-US")}
+                />
+                <OpsMetric
+                  label="Burn Rate"
+                  value={
+                    budgetBurn.burnRatePerHour == null
+                      ? "—"
+                      : `${budgetBurn.burnRatePerHour.toLocaleString("en-US")}/h`
+                  }
+                />
+                <OpsMetric
+                  label="Estimated Hours Remaining"
+                  value={formatHoursRemaining(budgetBurn.projectedHoursRemaining)}
+                  detail={budgetBurn.insufficientData ? "Waiting for started jobs in the last hour." : undefined}
+                />
+                <OpsMetric
+                  label="Started Jobs (1h)"
+                  value={budgetBurn.recentStartedJobs.toLocaleString("en-US")}
+                  detail={`Estimated at up to ${budgetBurn.estimatedCallsPerStartedJob} Browse calls per started job`}
+                />
+              </div>
+              <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Estimate Basis</p>
+                <p className="mt-1 font-medium text-slate-900">{budgetBurn.estimateLabel}</p>
+              </div>
+            </div>
+          ) : (
+            <EmptyPanel message="Burn rate is unavailable right now." />
+          )}
+        </div>
+
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Queue Velocity</h3>
+              <p className="text-sm text-slate-600">Requested, started, and completed jobs over the last hour.</p>
+            </div>
+            {queueVelocity ? (
+              <OpsPill
+                label={queueVelocity.trend.charAt(0).toUpperCase() + queueVelocity.trend.slice(1)}
+                tone={queueVelocityTone}
+              />
+            ) : null}
+          </div>
+
+          {errors.queueVelocity ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.queueVelocity}
+            </div>
+          ) : queueVelocity ? (
+            <div className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <OpsMetric label="Requested (1h)" value={queueVelocity.requestedLastHourCount.toLocaleString("en-US")} />
+                <OpsMetric label="Started (1h)" value={queueVelocity.startedLastHourCount.toLocaleString("en-US")} />
+                <OpsMetric label="Completed (1h)" value={queueVelocity.completedLastHourCount.toLocaleString("en-US")} />
+                <OpsMetric
+                  label="Net Backlog Delta"
+                  value={
+                    queueVelocity.netBacklogDelta > 0
+                      ? `+${queueVelocity.netBacklogDelta.toLocaleString("en-US")}`
+                      : queueVelocity.netBacklogDelta.toLocaleString("en-US")
+                  }
+                  detail="Requested minus completed over the same 60-minute window"
+                />
+              </div>
+              <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Requested vs started</p>
+                <p className="mt-1 font-medium text-slate-900">
+                  {queueVelocity.requestedLastHourCount.toLocaleString("en-US")} requested /{" "}
+                  {queueVelocity.startedLastHourCount.toLocaleString("en-US")} started
+                </p>
+              </div>
+            </div>
+          ) : (
+            <EmptyPanel message="Queue velocity is unavailable right now." />
+          )}
+        </div>
+
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Error Distribution</h3>
+              <p className="text-sm text-slate-600">Recent pricing job errors normalized into operator-readable buckets.</p>
+            </div>
+            <OpsPill label={dominantErrorLabel} tone={dominantErrorTone} />
+          </div>
+
+          {errors.errorDistribution ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.errorDistribution}
+            </div>
+          ) : errorDistribution ? (
+            <div className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <OpsMetric
+                  label="Retryable 429"
+                  value={errorDistribution.retryable429Count.toLocaleString("en-US")}
+                  detail={errorDistribution.samples.retryable429}
+                />
+                <OpsMetric
+                  label="Budget Exhausted"
+                  value={errorDistribution.budgetExhaustedCount.toLocaleString("en-US")}
+                  detail={errorDistribution.samples.budgetExhausted}
+                />
+                <OpsMetric
+                  label="Generic Failure"
+                  value={errorDistribution.genericFailureCount.toLocaleString("en-US")}
+                  detail={errorDistribution.samples.genericFailure}
+                />
+                <OpsMetric
+                  label="Other"
+                  value={errorDistribution.otherCount.toLocaleString("en-US")}
+                  detail={errorDistribution.samples.other}
+                />
+              </div>
+              <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Dominant failure mode</p>
+                <p className="mt-1 font-medium text-slate-900">
+                  {dominantErrorLabel}
+                  {errorDistribution.totalCount > 0 ? ` (${errorDistribution.totalCount} total recent errors)` : ""}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <EmptyPanel message="No recent pricing job error data is available." />
           )}
         </div>
       </div>

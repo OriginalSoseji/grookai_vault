@@ -12,6 +12,7 @@ const RECENT_RETRY_WINDOW_HOURS = 24;
 const RECENT_ACTIVITY_WINDOW_HOURS = 1;
 const THROUGHPUT_BUCKET_MINUTES = 5;
 const RETRY_ERROR_FILTER = "error.ilike.*429*,error.ilike.*rate_limit*,error.ilike.*rate-limited*";
+const RECENT_ERROR_DISTRIBUTION_LIMIT = 200;
 
 type AdminClient = ReturnType<typeof createServerAdminClient>;
 
@@ -71,7 +72,44 @@ export type FounderPricingQueueHealth = {
   staleRunningCount: number;
   requestedLastHourCount: number;
   startedLastHourCount: number;
+  completedLastHourCount: number;
   backlogGrowing: boolean;
+};
+
+export type FounderPricingBudgetBurn = {
+  windowHours: number;
+  callsConsumedLastHour: number;
+  burnRatePerHour: number | null;
+  projectedHoursRemaining: number | null;
+  estimateLabel: string;
+  estimatedCallsPerStartedJob: number;
+  recentStartedJobs: number;
+  insufficientData: boolean;
+};
+
+export type FounderPricingQueueVelocity = {
+  windowHours: number;
+  requestedLastHourCount: number;
+  startedLastHourCount: number;
+  completedLastHourCount: number;
+  netBacklogDelta: number;
+  trend: "growing" | "flat" | "shrinking";
+};
+
+export type FounderPricingErrorDistribution = {
+  windowHours: number;
+  totalCount: number;
+  retryable429Count: number;
+  budgetExhaustedCount: number;
+  genericFailureCount: number;
+  otherCount: number;
+  dominantBucket: "retryable_429" | "budget_exhausted" | "generic_failure" | "other" | null;
+  samples: {
+    retryable429?: string;
+    budgetExhausted?: string;
+    genericFailure?: string;
+    other?: string;
+  };
 };
 
 export type FounderPricingThroughputBucket = {
@@ -96,13 +134,19 @@ export type FounderPricingRetryRow = {
 
 export type FounderPricingOpsSummary = {
   budget: FounderPricingBudgetCard | null;
+  budgetBurn: FounderPricingBudgetBurn | null;
   queueHealth: FounderPricingQueueHealth | null;
+  queueVelocity: FounderPricingQueueVelocity | null;
+  errorDistribution: FounderPricingErrorDistribution | null;
   throughputBuckets: FounderPricingThroughputBucket[];
   retryRows: FounderPricingRetryRow[];
   config: FounderPricingOpsConfig;
   errors: {
     budget?: string;
+    budgetBurn?: string;
     queueHealth?: string;
+    queueVelocity?: string;
+    errorDistribution?: string;
     throughput?: string;
     retryPressure?: string;
   };
@@ -220,6 +264,7 @@ async function fetchQueueHealth(admin: AdminClient): Promise<FounderPricingQueue
     staleRunningCount,
     requestedLastHourCount,
     startedLastHourCount,
+    completedLastHourCount,
   ] = await Promise.all([
     countRows(
       admin.from("pricing_jobs").select("*", { count: "exact", head: true }).eq("status", "pending"),
@@ -276,6 +321,14 @@ async function fetchQueueHealth(admin: AdminClient): Promise<FounderPricingQueue
         .gte("started_at", recentActivityIso),
       "Founder started pricing_jobs count failed",
     ),
+    countRows(
+      admin
+        .from("pricing_jobs")
+        .select("*", { count: "exact", head: true })
+        .not("completed_at", "is", null)
+        .gte("completed_at", recentActivityIso),
+      "Founder completed pricing_jobs count failed",
+    ),
   ]);
 
   return {
@@ -287,7 +340,160 @@ async function fetchQueueHealth(admin: AdminClient): Promise<FounderPricingQueue
     staleRunningCount,
     requestedLastHourCount,
     startedLastHourCount,
-    backlogGrowing: pendingCount > 0 && requestedLastHourCount > startedLastHourCount,
+    completedLastHourCount,
+    backlogGrowing: pendingCount > 0 && requestedLastHourCount > completedLastHourCount,
+  };
+}
+
+function deriveBudgetBurn(
+  budget: FounderPricingBudgetCard | null,
+  queueHealth: FounderPricingQueueHealth | null,
+  config: FounderPricingOpsConfig,
+): FounderPricingBudgetBurn | null {
+  if (!budget || !queueHealth) {
+    return null;
+  }
+
+  const estimatedCallsPerStartedJob = 1 + config.activeListingsLimit;
+  const callsConsumedLastHour = queueHealth.startedLastHourCount * estimatedCallsPerStartedJob;
+  const burnRatePerHour = callsConsumedLastHour > 0 ? callsConsumedLastHour : null;
+  const projectedHoursRemaining =
+    burnRatePerHour && burnRatePerHour > 0 ? budget.remainingCalls / burnRatePerHour : null;
+
+  return {
+    windowHours: RECENT_ACTIVITY_WINDOW_HOURS,
+    callsConsumedLastHour,
+    burnRatePerHour,
+    projectedHoursRemaining,
+    estimateLabel: "Estimated from recent job starts × configured calls/job ceiling.",
+    estimatedCallsPerStartedJob,
+    recentStartedJobs: queueHealth.startedLastHourCount,
+    insufficientData: burnRatePerHour === null,
+  };
+}
+
+function deriveQueueVelocity(queueHealth: FounderPricingQueueHealth | null): FounderPricingQueueVelocity | null {
+  if (!queueHealth) {
+    return null;
+  }
+
+  const netBacklogDelta = queueHealth.requestedLastHourCount - queueHealth.completedLastHourCount;
+  let trend: FounderPricingQueueVelocity["trend"] = "flat";
+  if (netBacklogDelta > 0) {
+    trend = "growing";
+  } else if (netBacklogDelta < 0) {
+    trend = "shrinking";
+  }
+
+  return {
+    windowHours: RECENT_ACTIVITY_WINDOW_HOURS,
+    requestedLastHourCount: queueHealth.requestedLastHourCount,
+    startedLastHourCount: queueHealth.startedLastHourCount,
+    completedLastHourCount: queueHealth.completedLastHourCount,
+    netBacklogDelta,
+    trend,
+  };
+}
+
+function classifyPricingErrorBucket(error: string | null) {
+  const normalized = error?.trim().toLowerCase() ?? "";
+  if (!normalized) {
+    return "other" as const;
+  }
+
+  if (
+    normalized.includes("retryable_429") ||
+    normalized.includes("429") ||
+    normalized.includes("rate_limit") ||
+    normalized.includes("rate-limited")
+  ) {
+    return "retryable_429" as const;
+  }
+
+  if (
+    normalized.includes("retryable_quota_exhausted") ||
+    normalized.includes("daily_browse_budget_exhausted") ||
+    normalized.includes("budget_exhausted")
+  ) {
+    return "budget_exhausted" as const;
+  }
+
+  if (
+    normalized.includes("pricing worker exited with code") ||
+    normalized.includes("exit_1") ||
+    normalized.includes("exit=1")
+  ) {
+    return "generic_failure" as const;
+  }
+
+  return "other" as const;
+}
+
+function isRecentJobTimestamp(row: PricingJobRetryRow, cutoffMs: number) {
+  const candidates = [row.completed_at, row.started_at, row.requested_at];
+  return candidates.some((value) => {
+    if (!value) {
+      return false;
+    }
+
+    const parsed = Date.parse(value);
+    return Number.isFinite(parsed) && parsed >= cutoffMs;
+  });
+}
+
+async function fetchErrorDistribution(admin: AdminClient): Promise<FounderPricingErrorDistribution> {
+  const recentActivityIso = getRecentIso(RECENT_ACTIVITY_WINDOW_HOURS);
+  const cutoffMs = Date.parse(recentActivityIso);
+  const { data, error } = await admin
+    .from("pricing_jobs")
+    .select("id,card_print_id,status,attempts,error,requested_at,started_at,completed_at")
+    .not("error", "is", null)
+    .order("requested_at", { ascending: false })
+    .limit(RECENT_ERROR_DISTRIBUTION_LIMIT);
+
+  if (error) {
+    throw new Error(`Founder pricing error distribution query failed: ${error.message}`);
+  }
+
+  const recentRows = (((data ?? []) as PricingJobRetryRow[]) ?? []).filter((row) => isRecentJobTimestamp(row, cutoffMs));
+  const buckets = {
+    retryable_429: 0,
+    budget_exhausted: 0,
+    generic_failure: 0,
+    other: 0,
+  };
+  const samples: FounderPricingErrorDistribution["samples"] = {};
+
+  for (const row of recentRows) {
+    const bucket = classifyPricingErrorBucket(row.error);
+    buckets[bucket] += 1;
+
+    if (bucket === "retryable_429" && !samples.retryable429 && row.error) {
+      samples.retryable429 = row.error;
+    } else if (bucket === "budget_exhausted" && !samples.budgetExhausted && row.error) {
+      samples.budgetExhausted = row.error;
+    } else if (bucket === "generic_failure" && !samples.genericFailure && row.error) {
+      samples.genericFailure = row.error;
+    } else if (bucket === "other" && !samples.other && row.error) {
+      samples.other = row.error;
+    }
+  }
+
+  const dominantEntry = Object.entries(buckets).sort((left, right) => right[1] - left[1])[0];
+  const dominantBucket =
+    dominantEntry && dominantEntry[1] > 0
+      ? (dominantEntry[0] as FounderPricingErrorDistribution["dominantBucket"])
+      : null;
+
+  return {
+    windowHours: RECENT_ACTIVITY_WINDOW_HOURS,
+    totalCount: recentRows.length,
+    retryable429Count: buckets.retryable_429,
+    budgetExhaustedCount: buckets.budget_exhausted,
+    genericFailureCount: buckets.generic_failure,
+    otherCount: buckets.other,
+    dominantBucket,
+    samples,
   };
 }
 
@@ -393,11 +599,12 @@ export async function getFounderPricingOpsSummary(
   const config = mapConfig();
   const errors: FounderPricingOpsSummary["errors"] = {};
 
-  const [budgetResult, queueHealthResult, throughputResult, retryRowsResult] = await Promise.allSettled([
+  const [budgetResult, queueHealthResult, throughputResult, retryRowsResult, errorDistributionResult] = await Promise.allSettled([
     fetchBudgetCard(admin, config),
     fetchQueueHealth(admin),
     fetchThroughputBuckets(admin),
     fetchRetryRows(admin),
+    fetchErrorDistribution(admin),
   ]);
 
   const budget = budgetResult.status === "fulfilled" ? budgetResult.value : null;
@@ -409,6 +616,18 @@ export async function getFounderPricingOpsSummary(
   if (queueHealthResult.status === "rejected") {
     errors.queueHealth =
       queueHealthResult.reason instanceof Error ? queueHealthResult.reason.message : "Unknown queue health error";
+  }
+
+  const budgetBurn = deriveBudgetBurn(budget, queueHealth, config);
+  if (!budget && !errors.budget) {
+    errors.budgetBurn = "Budget burn is unavailable because the live budget snapshot could not be read.";
+  } else if (!queueHealth && !errors.queueHealth) {
+    errors.budgetBurn = "Budget burn is unavailable because recent queue velocity signals could not be read.";
+  }
+
+  const queueVelocity = deriveQueueVelocity(queueHealth);
+  if (!queueHealth && !errors.queueHealth) {
+    errors.queueVelocity = "Queue velocity is unavailable because recent pricing job counts could not be read.";
   }
 
   const throughputBuckets = throughputResult.status === "fulfilled" ? throughputResult.value : [];
@@ -423,9 +642,20 @@ export async function getFounderPricingOpsSummary(
       retryRowsResult.reason instanceof Error ? retryRowsResult.reason.message : "Unknown retry pressure error";
   }
 
+  const errorDistribution = errorDistributionResult.status === "fulfilled" ? errorDistributionResult.value : null;
+  if (errorDistributionResult.status === "rejected") {
+    errors.errorDistribution =
+      errorDistributionResult.reason instanceof Error
+        ? errorDistributionResult.reason.message
+        : "Unknown error distribution error";
+  }
+
   return {
     budget,
+    budgetBurn,
     queueHealth,
+    queueVelocity,
+    errorDistribution,
     throughputBuckets,
     retryRows,
     config,
