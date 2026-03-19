@@ -9,9 +9,9 @@ Seller Sync lets Grookai sellers connect their eBay account via OAuth so that th
   - Created via migration `20251123090000_ebay_accounts_v1.sql`.  
   - RLS TBD; current Edge Function uses the service role to upsert rows.
 - **`public.price_observations`**  
-  - Canonical raw pricing table (see `docs/AUDIT_PRICING_ENGINE_L2.md`).  
+  - Canonical raw pricing table (see `docs/audits/AUDIT_PRICING_ENGINE_L2.md`).  
   - Each seller sale is recorded with `source='ebay_self'`, `marketplace_id`, `order_id`, `order_line_item_id`, `observed_at`, `price_usd`, and `raw_payload`.  
-  - `card_print_id` remains `null` until the mapping layer is wired (see `docs/AUDIT_EBAY_MAPPING_L2.md`).
+  - `card_print_id` remains `null` until the mapping layer is wired (see `docs/audits/AUDIT_EBAY_MAPPING_L2.md`).
 
 ## Flow
 1. **User initiates OAuth (future UI)**  
@@ -38,7 +38,7 @@ Seller Sync lets Grookai sellers connect their eBay account via OAuth so that th
    - Future TODO: integrate mapping helpers so `card_print_id` is populated before insert, then enforce non-null rows.
 5. **Pricing Index consumption**  
    - `price_observations` → `price_aggregates_v1` (MV) → `price_index_v1` (view).  
-   - See `docs/PRICING_INDEX_V1_CONTRACT.md` for aggregation and confidence rules.
+  - See `docs/contracts/PRICING_INDEX_V1_CONTRACT.md` for aggregation and confidence rules.
 
 ## Worker Safety & Modes
 - The `pricing:ebay:sellers:sync` worker is **safe by default**. If no mode is specified, it logs and defaults to `--dry-run`.

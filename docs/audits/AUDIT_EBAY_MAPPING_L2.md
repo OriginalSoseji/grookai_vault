@@ -13,7 +13,7 @@ The repo already contains a modern mapping contract for PokemonAPI/TCGdex (raw s
   - Purpose: log unresolved or ambiguous matches requiring review. **Note:** `candidate_print_ids` is `bigint[]` even though `card_prints.id` is `uuid`, which limits direct FK usage and should be corrected before eBay mapping relies on this table.
 - **`raw_imports`** (`supabase/migrations/20251115040000_ai_ingestion_schema_v1.sql`, `docs/ingestion/RAW_IMPORTS_AUDIT.md`)
   - Shared staging table keyed by `source`, `_kind` (inside `payload`), and `status` (`pending`, `normalized`, `conflict`, `error`). Downstream of imports and upstream of normalization/mapping.
-- **Identity tables** (`docs/GV_SCHEMA_CONTRACT_V1.md`, `supabase/migrations/20251115040000_ai_ingestion_schema_v1.sql`)
+- **Identity tables** (`docs/contracts/GV_SCHEMA_CONTRACT_V1.md`, `supabase/migrations/20251115040000_ai_ingestion_schema_v1.sql`)
   - `card_prints`: canonical identity uses `(set_id, number_plain, variant_key)` plus `print_identity_key` (unique when not null). Holds `external_ids` JSON storing per-source IDs, plus metadata fields (artist, image URLs, AI metadata).
   - `sets`: `UNIQUE (game, code)` and `source` JSON for external IDs. Normalization workers prefer matching by code or nested source IDs.
   - `card_print_traits`: metadata/performance traits keyed to `card_print_id`.

@@ -53,4 +53,4 @@ Repo search shows **no active eBay integration** in code, configs, or Supabase f
 4. **Document mapping strategy.** Extend `docs/ingestion` with how eBay EPIDs/Listing IDs tie to `external_mappings` so future audits can differentiate eBay vs. other marketplaces.
 5. **Security note.** Ensure any future `.env` additions never commit live eBay keys; adopt the same GV Secrets Contract used for Supabase tokens.
 
-_Prepared: `docs/AUDIT_EBAY_INTEGRATION_L2.md`_
+_Prepared: `docs/audits/AUDIT_EBAY_INTEGRATION_L2.md`_

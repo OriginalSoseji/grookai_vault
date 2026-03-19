@@ -871,7 +871,7 @@ Ranked by confidence.
 7. Legacy observation/index contract in docs is not present as DB objects in repo (High confidence)
 - `price_aggregates_v1` and `price_index_v1` are documented in contract but not defined in migrations.
 - Evidence:
-  - doc: `docs/PRICING_INDEX_V1_CONTRACT.md:10-17`
+  - doc: `docs/contracts/PRICING_INDEX_V1_CONTRACT.md:10-17`
   - repo search: no hits in `supabase/migrations` for object definitions.
 
 8. Raw-observation sold pipeline and active-listing pipeline are not currently unified (Medium-high confidence)

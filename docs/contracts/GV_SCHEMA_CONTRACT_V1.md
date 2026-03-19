@@ -106,7 +106,7 @@ UNIQUE (set_id, number_plain, coalesce(variant_key, ''))
 ### 2.5 ingestion tables  
 (raw_imports, mapping_conflicts, ingestion_jobs)
 
-- `mapping_conflicts.candidate_print_uuids uuid[]` is the canonical column for storing candidate `card_prints.id` values. The older `candidate_print_ids bigint[]` column remains for legacy reference only; see `docs/AUDIT_EBAY_MAPPING_L2.md` for context.
+- `mapping_conflicts.candidate_print_uuids uuid[]` is the canonical column for storing candidate `card_prints.id` values. The older `candidate_print_ids bigint[]` column remains for legacy reference only; see `docs/audits/AUDIT_EBAY_MAPPING_L2.md` for context.
 
 ---
 
@@ -141,4 +141,3 @@ Ensures:
 - Vault correctness  
 - Predictable migrations  
 - Zero schema drift  
-

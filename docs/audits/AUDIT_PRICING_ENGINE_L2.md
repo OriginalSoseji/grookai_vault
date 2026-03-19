@@ -23,7 +23,7 @@ Grookai Vault already has several pricing-oriented tables (`price_observations`,
   - `card_price_rollups`, `card_price_ticks`, `card_prices`, `prices`, `latest_card_prices_v`, `latest_card_prices_mv`, `v_card_prices_usd`, `price_rollup_config`, `card_price_ticks_id_seq`, etc. These tables/views assume `card_prices` rows from sources such as `tcgplayer`/`cardmarket`, with functions to refresh materialized views. No current backend worker writes to them.
   - `unmatched_price_rows` collects rejected rows from `admin.import_prices_do`.
 
-- **`card_prints` identity fields** (`docs/GV_SCHEMA_CONTRACT_V1.md`)
+- **`card_prints` identity fields** (`docs/contracts/GV_SCHEMA_CONTRACT_V1.md`)
   - Identity: `(set_id, number_plain, variant_key)` plus `print_identity_key`.
   - `external_ids` JSON stores per-source catalog IDs; `ai_metadata`, `card_print_traits`, and other metadata can assist future pricing intelligence (e.g., condition heuristics).
 

@@ -193,7 +193,7 @@ db05bc6 identity: harden signals (path normalization, ai-read-number authoritati
   - `scripts/drift_guard.ps1`
   - `scripts/migration_preflight.ps1`
   - `scripts/repair_remote_migration_history.ps1`
-  - `docs/GV_MIGRATION_MAINTENANCE_CONTRACT.md`
+  - `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md`
   - `docs/MIGRATION_HEALTHCHECK_20251125.md`
   - `docs/GROOKAI_RULEBOOK.md`
 

@@ -33,13 +33,13 @@ Before any L2/L3 audit or implementation:
 - Replay trifecta before declaring schema "done": `supabase db push`, `supabase db reset` + `supabase db push --local`, `supabase db pull`.
 - No direct DB edits outside migrations. Card-print UUID/FK rules are sacred.
 - Before applying any new migration or doing schema work: run `supabase migration list` and confirm all local migrations are applied remotely, no entries are in "error" or "pending", and there are no remote-only migrations; if anything is off, perform a Migration Healthcheck first.
-- Source: `docs/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
+- Source: `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
 
 ## 2. Migration Drift Guardrail
 - Always run `supabase migration list` before any `supabase db push`.
 - No remote-only migrations (Remote has version, Local blank). Fix drift first via `supabase migration repair` or `supabase db pull`.
 - Local-only migrations are the expected payload to push.
-- Pointer: Migration Drift Guardrail section in `docs/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
+- Pointer: Migration Drift Guardrail section in `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
 
 ## 3. Backend Architecture Contract
 - Highway vs Edge: heavy logic lives in backend workers (service role); Edge Functions stay thin/public.
@@ -55,7 +55,7 @@ Before any L2/L3 audit or implementation:
 - Make intent explicit when targeting remote vs local (`--local` flags, config).
 
 ## 5. Secrets Contract
-- Follow `docs/GV_SECRETS_CONTRACT_v1.md`.
+- Follow `docs/contracts/GV_SECRETS_CONTRACT_v1.md`.
 
 ### Current Active Status
 - Canonical env names are `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, and `BRIDGE_IMPORT_TOKEN`.
@@ -67,13 +67,13 @@ Before any L2/L3 audit or implementation:
 ## 6. Schema / Canonical Identity Contract
 - Card prints are canonical: UUID-only `card_prints.id`; identity = `(set_id, number_plain, variant_key)`.
 - All child tables reference `card_prints.id uuid`; no duplicates; set_id non-null in production.
-- Source: `docs/GV_SCHEMA_CONTRACT_V1.md`.
+- Source: `docs/contracts/GV_SCHEMA_CONTRACT_V1.md`.
 
 ## 7. Ingestion Pipeline Contract
 - All external data flows: `raw_imports → normalization → mapping_conflicts → external_mappings → card_prints`.
 - No direct writes to canonical tables; raw_imports is the only staging ingress.
 - Mapping resolves to card_prints before downstream use.
-- Sources: `docs/ingestion/RAW_IMPORTS_AUDIT.md`, `docs/AUDIT_EBAY_MAPPING_L2.md`, `docs/AUDIT_MAPPING_ENFORCEMENT_L2.md`.
+- Sources: `docs/ingestion/RAW_IMPORTS_AUDIT.md`, `docs/audits/AUDIT_EBAY_MAPPING_L2.md`, `docs/audits/AUDIT_MAPPING_ENFORCEMENT_L2.md`.
 
 ## 8. Enrichment Contract
 - Enrichment is non-destructive: traits/metadata JSONB fields only; never mutate canonical identity.
@@ -100,7 +100,7 @@ Before any L2/L3 audit or implementation:
 - CI uses highway (workers) with injected secrets, not public endpoints.
 
 ## 12. Production Readiness Rule V1
-- Production-Ready DONE Gate is mandatory across all domains (workers, Edge, DB, client features that affect data). See `docs/PRODUCTION_READINESS_GATE_V1.md` for the locked requirements (determinism, failure persistence, observability, trust boundaries, replayable verification, checkpoint discipline).
+- Production-Ready DONE Gate is mandatory across all domains (workers, Edge, DB, client features that affect data). See `docs/release/PRODUCTION_READINESS_GATE_V1.md` for the locked requirements (determinism, failure persistence, observability, trust boundaries, replayable verification, checkpoint discipline).
 
 ### Env / DB Sanity (Mandatory for any Supabase-backed feature)
 - Applies to all Audit Rules (L1/L2/L3) that touch Supabase data (UI, pricing, ingestion, vault, auth).

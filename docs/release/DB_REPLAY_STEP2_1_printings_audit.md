@@ -13,7 +13,7 @@ Scanned:
 - `docs/contracts/**`
 - `docs/CONTRACT_INDEX.md`
 - `docs/GROOKAI_RULEBOOK.md`
-- `docs/GV_SCHEMA_CONTRACT_V1.md`
+- `docs/contracts/GV_SCHEMA_CONTRACT_V1.md`
 
 Search terms:
 - `card_printings`
@@ -109,4 +109,3 @@ Minimum artifact needed:
    - canonical tables: `public.card_printings`, `public.external_printing_mappings`, `public.finish_keys`, or
    - explicit replacement names if different.
 2. A single forward-only migration plan aligned to that contract (separate step), not implemented in this audit step.
-

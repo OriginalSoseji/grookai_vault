@@ -32,7 +32,7 @@ Conclusion: only the two eBay workers write to `price_observations`, both curren
 ## 4. Mapping Layer Touchpoints
 - Pokemon/TCG pipelines (`pokemonapi_normalize_worker`, `tcgdex_normalize_worker`) resolve set/card IDs before writing to canonical tables; they rely on helper modules (`pokemonapi_mapping_helpers`, `ensureTcgdexMapping`) and use `mapping_conflicts` when ambiguous.
 - `backend/ebay/ebay_tokens.mjs` + `ebay_*` workers currently **do not** perform mapping; they just store the raw order payload.
-- `docs/AUDIT_EBAY_MAPPING_L2.md` already outlines the need for an eBay mapping helper (e.g., match listing IDs → `card_print_id`, log conflicts, stage unmatched data).
+- `docs/audits/AUDIT_EBAY_MAPPING_L2.md` already outlines the need for an eBay mapping helper (e.g., match listing IDs → `card_print_id`, log conflicts, stage unmatched data).
 - Pattern for pricing: resolve external ID to `card_print_id`. If ambiguous/missing, send to a staging queue (`unmatched_price_rows` or a future eBay-specific queue) until resolved.
 
 ## 5. Pricing Index Implications
@@ -82,4 +82,4 @@ Implication: we can allow staging rows with null `card_print_id` as long as the 
   - continue warning until mapping enforcement is fully rolled out.
 - **Clean existing null `card_print_id` rows** in `price_observations` once the staging path is available.
 - **Plan a phased DB constraint**: enforce at the application layer first; when the staging path + cleanup are done, add a NOT NULL constraint or a trigger to ensure canonical data stays mapped.
-- **Document the contract** (update `docs/AUDIT_PRICING_ENGINE_L2.md` / `EBAY_SELLER_SYNC_V1.md`) so future work aligns with the “mapping before pricing” rule of the Pricing Index.
+- **Document the contract** (update `docs/audits/AUDIT_PRICING_ENGINE_L2.md` / `EBAY_SELLER_SYNC_V1.md`) so future work aligns with the “mapping before pricing” rule of the Pricing Index.

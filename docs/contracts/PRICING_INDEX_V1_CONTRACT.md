@@ -33,6 +33,6 @@ The pricing engine now follows a three-layer architecture:
 - Frontend/API consumers should read from `price_index_v1` for canonical pricing metrics and may join back to `price_aggregates_v1` for multi-window detail.
 
 ## References
-- Schema contract: `docs/GV_SCHEMA_CONTRACT_V1.md` (card_print identity, price_observations definition).  
-- Pricing audit context: `docs/AUDIT_PRICING_ENGINE_L2.md`.  
+- Schema contract: `docs/contracts/GV_SCHEMA_CONTRACT_V1.md` (card_print identity, price_observations definition).  
+- Pricing audit context: `docs/audits/AUDIT_PRICING_ENGINE_L2.md`.  
 - Future tasks: mapping enforcement (non-null `card_print_id`), MV refresh workers, and API exposure.

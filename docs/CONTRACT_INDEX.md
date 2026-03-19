@@ -18,7 +18,8 @@ If a contract is missing from this index, it is not authoritative.
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
-| PRODUCTION_READINESS_GATE_V1 | Active | docs/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
+| PRODUCTION_READINESS_GATE_V1 | Active | docs/release/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
+| DOCUMENTATION_SYSTEM_V1 | Active | docs/contracts/DOCUMENTATION_SYSTEM_V1.md — Official documentation buckets, naming, and governance rules |
 | CODEX_GUARDRAILS_CONTRACT_V1 | Active | docs/contracts/CODEX_GUARDRAILS_CONTRACT_V1.md | Governance / Foundations | 2025-12-31 | Hard-stop safety gates for Codex (migrations, staging, scope, target, secrets) |
 | STABILIZATION_CONTRACT_V1 | Active | docs/contracts/STABILIZATION_CONTRACT_V1.md | Transition-phase authority: Vault truth = `vault_item_instances`; web vault canonical read entry = `getCanonicalVaultCollectorRows`; compatibility vault projection = `v_vault_items_web`; `vault_items` remains present but non-canonical; Pricing engine truth = `v_grookai_value_v1_1`; app-facing pricing surface = `v_best_prices_all_gv_v1`; canonical env names = `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `BRIDGE_IMPORT_TOKEN`; web alias = `NEXT_PUBLIC_SUPABASE_ANON_KEY`; legacy workers/functions/env aliases remain non-authoritative unless explicitly promoted |
 
