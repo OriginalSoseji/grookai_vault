@@ -24,12 +24,17 @@ Purpose: always-on runner for `pricing_jobs`, reclaiming stale locks and dispatc
 - SUPABASE_URL  
 - SUPABASE_SECRET_KEY (service role)  
 - Optional: SUPABASE_URL_LOCAL, SUPABASE_SECRET_KEY_LOCAL
+- Optional: EBAY_BROWSE_DAILY_BUDGET (default `4200`)
+- Optional: EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT (default `3`)
+- Optional: PRICING_JOB_MIN_START_DELAY_MS (default `45000`)
 
 ## Behavior
 - Claims pending pricing_jobs oldest-first; reclaims stale running jobs older than lock-ttl-ms (default 10m).
 - Increments attempts, sets running/started_at, clears locks on completion/failure.
 - Runs pricing via `pricing/ebay_browse_prices_worker.mjs --card-print-id <id>`.
 - Backoff 1s after failures; idle sleep default 1500ms.
+- Enforces a shared daily Browse API budget before outbound eBay Browse calls are made.
+- Requeues quota-blocked jobs as retryable/pending and pauses daemon job starts until the next UTC budget window.
 
 ## Verification queries
 Check job status:
@@ -49,6 +54,9 @@ select * from public.card_print_latest_price_curve where card_print_id = '<card_
 - Lock TTL default 10 minutes; override with `--lock-ttl-ms`.
 - Max jobs per loop: default 5 (daemon), 1 in `--once`; override with `--max-jobs`.
 - Idle sleep: default 1500ms; override with `--sleep-ms`.
+- Minimum daemon job-start delay: default 45000ms; override with `PRICING_JOB_MIN_START_DELAY_MS`.
+- Default Browse search listings limit: 3; override with `EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT`.
+- Default Browse daily budget: 4200 calls; override with `EBAY_BROWSE_DAILY_BUDGET`.
 - Split queue behavior is eliminated by treating `pricing_job_runner_v1` as the only production runner.
 - If the experimental runner is used locally, it must be invoked explicitly:
   `npm run pricing:queue:experimental --prefix backend`

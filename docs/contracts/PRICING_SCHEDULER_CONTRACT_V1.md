@@ -155,7 +155,13 @@ Budget allocation:
 - 30% scheduler refresh
 - 20% backfill
 
-Budget enforcement is not implemented in V1.
+Budget enforcement is active at the Browse client boundary and scheduler enqueue boundary.
+
+Current operational env defaults:
+
+- `EBAY_BROWSE_DAILY_BUDGET=4200`
+- `EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT=3`
+- `PRICING_JOB_MIN_START_DELAY_MS=45000`
 
 ## Failure Handling
 

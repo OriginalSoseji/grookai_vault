@@ -9,6 +9,11 @@ import '../env.mjs';
 import { pathToFileURL } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { searchActiveListings, fetchItemDetails } from '../clients/ebay_browse_client.mjs';
+import {
+  getEbayBrowseActiveListingsLimit,
+  isEbayBrowseBudgetExceededError,
+  logEbayBrowseBudgetConfig,
+} from '../clients/ebay_browse_budget_v1.mjs';
 
 function normalizeTitle(str) {
   return (str || '')
@@ -122,16 +127,6 @@ const DMG_CONDITION_PATTERNS = [
   ' peeled ',
   ' peeling ',
 ];
-
-const DEFAULT_ACTIVE_LISTINGS_LIMIT = 10;
-
-function getActiveListingsLimit() {
-  const raw = Number.parseInt(process.env.EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT ?? '', 10);
-  if (Number.isFinite(raw) && raw > 0) {
-    return raw;
-  }
-  return DEFAULT_ACTIVE_LISTINGS_LIMIT;
-}
 
 function extractDescription(details) {
   if (!details) {
@@ -813,7 +808,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     `[pricing] Fetching active listings for "${query}" [${label}] (${cardPrintId})`,
   );
 
-  const listings = await searchActiveListings({ query, limit: getActiveListingsLimit() });
+  const listings = await searchActiveListings({ query, limit: getEbayBrowseActiveListingsLimit() });
   if (debug) {
     console.log(`[debug] raw listings count: ${listings.length}`);
   }
@@ -829,6 +824,9 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
       const details = await fetchItemDetails(itemId, { marketplaceId });
       listing._details = details;
     } catch (err) {
+      if (isEbayBrowseBudgetExceededError(err)) {
+        throw err;
+      }
       console.warn('[ebay-browse] item details fetch failed, keeping summary-only:', itemId, err.message);
       listing._details = null;
     }
@@ -971,6 +969,7 @@ async function main() {
   }
 
   try {
+    logEbayBrowseBudgetConfig('ebay_browse_prices_worker');
     const supabase = createBackendClient();
     await updatePricingForCardPrint({
       supabase,
@@ -982,9 +981,15 @@ async function main() {
     console.error('[pricing] Worker failed:', err);
     // Deterministic exit codes so parent runner can classify failures.
     // 42 = retryable eBay rate limit (HTTP 429)
+    // 43 = retryable daily Browse budget exhaustion
     const status = err?.status ?? err?.cause?.status ?? null;
     if (status === 429) {
       process.exitCode = 42;
+      return;
+    }
+
+    if (isEbayBrowseBudgetExceededError(err)) {
+      process.exitCode = 43;
       return;
     }
 

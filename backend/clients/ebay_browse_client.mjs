@@ -4,6 +4,12 @@
 // Reads EBAY_BROWSE_BASE_URL from the environment, fetches/normalizes listings,
 // and handles Browse access tokens (manual token or client-credentials flow).
 
+import {
+  consumeEbayBrowseBudgetOrThrow,
+  isEbayBrowseBudgetExceededError,
+  logEbayBrowseBudgetConfig,
+} from './ebay_browse_budget_v1.mjs';
+
 // Cached application access token for Browse API
 let cachedToken = null;
 let cachedTokenExpiresAt = 0; // ms since epoch
@@ -132,6 +138,7 @@ export async function searchActiveListings({ query, limit = 50 }) {
     throw new Error('[ebay-browse] searchActiveListings requires a query string.');
   }
   ensureFetchAvailable();
+  logEbayBrowseBudgetConfig('ebay_browse_client');
   const baseUrl = getBrowseBaseUrl();
   const token = await getBrowseAccessToken();
   const trimmedLimit = Math.max(1, Math.min(Number(limit) || 50, 200));
@@ -140,6 +147,10 @@ export async function searchActiveListings({ query, limit = 50 }) {
 
   console.log(`[ebay-browse] searchActiveListings query="${query}" limit=${trimmedLimit}`);
   console.log('[ebay-browse] request URL =>', url);
+
+  await consumeEbayBrowseBudgetOrThrow({
+    operation: 'search_active_listings',
+  });
 
   const res = await fetch(url, {
     method: 'GET',
@@ -196,6 +207,7 @@ export async function fetchItemDetails(itemId, { marketplaceId = 'EBAY_US' } = {
   }
 
   ensureFetchAvailable();
+  logEbayBrowseBudgetConfig('ebay_browse_client');
   const baseUrl = process.env.EBAY_BROWSE_BASE_URL || 'https://api.ebay.com';
   const accessToken = await getBrowseAccessToken();
   const url = new URL(`/buy/browse/v1/item/${encodeURIComponent(itemId)}`, baseUrl);
@@ -208,11 +220,18 @@ export async function fetchItemDetails(itemId, { marketplaceId = 'EBAY_US' } = {
 
   let response;
   try {
+    await consumeEbayBrowseBudgetOrThrow({
+      operation: 'fetch_item_details',
+    });
+
     response = await fetch(url.toString(), {
       method: 'GET',
       headers,
     });
   } catch (err) {
+    if (isEbayBrowseBudgetExceededError(err)) {
+      throw err;
+    }
     console.error('[ebay-browse] item details network error:', err);
     throw new Error('[ebay-browse] item details request failed (network)');
   }

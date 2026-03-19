@@ -5,6 +5,12 @@ import '../env.mjs';
 import { spawn } from 'node:child_process';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import {
+  getEbayBrowseBudgetSnapshot,
+  getNextUtcDayStartMs,
+  getPricingJobMinStartDelayMs,
+  logEbayBrowseBudgetConfig,
+} from '../clients/ebay_browse_budget_v1.mjs';
+import {
   AUTHORITATIVE_PRICING_CLAIM_STRATEGY,
   AUTHORITATIVE_PRICING_RUNNER,
   PRICING_QUEUE_PRIORITY_ORDER,
@@ -12,19 +18,9 @@ import {
   normalizePricingPriority,
 } from './pricing_queue_priority_contract.mjs';
 
-const DEFAULT_MIN_JOB_START_DELAY_MS = 20_000;
-
 function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
   console.log(JSON.stringify(entry));
-}
-
-function getMinJobStartDelayMs() {
-  const raw = Number.parseInt(process.env.PRICING_JOB_MIN_START_DELAY_MS ?? '', 10);
-  if (Number.isFinite(raw) && raw >= 0) {
-    return raw;
-  }
-  return DEFAULT_MIN_JOB_START_DELAY_MS;
 }
 
 function parseArgs(argv) {
@@ -167,6 +163,7 @@ async function markRetryable(supabase, jobId, errorMsg = null) {
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const supabase = createBackendClient();
+  logEbayBrowseBudgetConfig('pricing_job_runner_v1');
 
   log('daemon_start', {
     runnerAuthority: AUTHORITATIVE_PRICING_RUNNER,
@@ -181,16 +178,57 @@ async function main() {
   let processed = 0;
   let backoffMs = 0;
   const maxJobs = opts.maxJobs ?? 1;
-  const minJobStartDelayMs = getMinJobStartDelayMs();
+  const minJobStartDelayMs = getPricingJobMinStartDelayMs();
   let lastJobStartedAt = 0;
+  let budgetPauseUntilMs = 0;
 
   while (true) {
     if (opts.once && processed >= maxJobs) break;
     if (!opts.once && processed >= maxJobs) processed = 0;
 
+    if (!opts.once && budgetPauseUntilMs > Date.now()) {
+      const waitMs = budgetPauseUntilMs - Date.now();
+      log('budget_pause_active', { waitMs });
+      await new Promise((r) => setTimeout(r, waitMs));
+      budgetPauseUntilMs = 0;
+      continue;
+    }
+
     if (backoffMs > 0) {
       await new Promise((r) => setTimeout(r, backoffMs));
       backoffMs = 0;
+    }
+
+    let budgetSnapshot = null;
+    try {
+      budgetSnapshot = await getEbayBrowseBudgetSnapshot({ supabase });
+      log('budget_snapshot', {
+        remainingCalls: budgetSnapshot.remaining_calls,
+        consumedCalls: budgetSnapshot.consumed_calls,
+        dailyBudget: budgetSnapshot.daily_budget,
+        usageDate: budgetSnapshot.usage_date,
+      });
+    } catch (err) {
+      log('job_error', { error: err.message, stage: 'budget_snapshot' });
+      await new Promise((r) => setTimeout(r, 1000));
+      continue;
+    }
+
+    if (budgetSnapshot.exhausted) {
+      const pauseUntilMs = getNextUtcDayStartMs();
+      const waitMs = Math.max(0, pauseUntilMs - Date.now());
+      log('budget_exhausted_pause', {
+        remainingCalls: budgetSnapshot.remaining_calls,
+        consumedCalls: budgetSnapshot.consumed_calls,
+        dailyBudget: budgetSnapshot.daily_budget,
+        usageDate: budgetSnapshot.usage_date,
+        waitMs,
+      });
+      if (opts.once) {
+        break;
+      }
+      budgetPauseUntilMs = pauseUntilMs;
+      continue;
     }
 
     let claimed = null;
@@ -236,6 +274,50 @@ async function main() {
       continue;
     }
 
+    try {
+      budgetSnapshot = await getEbayBrowseBudgetSnapshot({ supabase });
+      log('budget_before_job_start', {
+        jobId: job.id,
+        cardPrintId,
+        remainingCalls: budgetSnapshot.remaining_calls,
+        consumedCalls: budgetSnapshot.consumed_calls,
+        dailyBudget: budgetSnapshot.daily_budget,
+        usageDate: budgetSnapshot.usage_date,
+      });
+    } catch (err) {
+      await markRetryable(supabase, job.id, `retryable_budget_snapshot: ${err.message}`);
+      log('job_retryable', {
+        jobId: job.id,
+        cardPrintId,
+        error: err.message,
+        stage: 'budget_before_job_start',
+      });
+      backoffMs = 1000;
+      processed += 1;
+      continue;
+    }
+
+    if (budgetSnapshot.exhausted) {
+      await markRetryable(
+        supabase,
+        job.id,
+        'retryable_quota_exhausted: daily_browse_budget_exhausted_before_start',
+      );
+      const pauseUntilMs = getNextUtcDayStartMs();
+      budgetPauseUntilMs = pauseUntilMs;
+      log('job_retryable_budget_exhausted_before_start', {
+        jobId: job.id,
+        cardPrintId,
+        remainingCalls: budgetSnapshot.remaining_calls,
+        consumedCalls: budgetSnapshot.consumed_calls,
+        dailyBudget: budgetSnapshot.daily_budget,
+        usageDate: budgetSnapshot.usage_date,
+        waitMs: Math.max(0, pauseUntilMs - Date.now()),
+      });
+      processed += 1;
+      continue;
+    }
+
     if (!opts.once && minJobStartDelayMs > 0 && lastJobStartedAt > 0) {
       const elapsedMs = Date.now() - lastJobStartedAt;
       const waitMs = minJobStartDelayMs - elapsedMs;
@@ -265,6 +347,39 @@ async function main() {
 
         // Strong backoff to reduce repeated 429s.
         backoffMs = 60_000;
+      } else if (exitCode === 43) {
+        await markRetryable(
+          supabase,
+          job.id,
+          'retryable_quota_exhausted: daily_browse_budget_exhausted',
+        );
+        const pauseUntilMs = getNextUtcDayStartMs();
+        budgetPauseUntilMs = pauseUntilMs;
+        try {
+          budgetSnapshot = await getEbayBrowseBudgetSnapshot({ supabase });
+        } catch (snapshotErr) {
+          log('job_error', {
+            jobId: job.id,
+            cardPrintId,
+            error: snapshotErr.message,
+            stage: 'budget_exhausted_snapshot',
+          });
+          budgetSnapshot = {
+            remaining_calls: 0,
+            consumed_calls: null,
+            daily_budget: null,
+            usage_date: null,
+          };
+        }
+        log('job_retryable_budget_exhausted', {
+          jobId: job.id,
+          cardPrintId,
+          remainingCalls: budgetSnapshot.remaining_calls,
+          consumedCalls: budgetSnapshot.consumed_calls,
+          dailyBudget: budgetSnapshot.daily_budget,
+          usageDate: budgetSnapshot.usage_date,
+          waitMs: Math.max(0, pauseUntilMs - Date.now()),
+        });
       } else {
         await markStatus(supabase, job.id, 'failed', `pricing worker exited with code ${exitCode}`);
         log('job_error', { jobId: job.id, cardPrintId, error: `exit_${exitCode}` });

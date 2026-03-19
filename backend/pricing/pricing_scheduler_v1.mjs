@@ -2,6 +2,11 @@ import '../env.mjs';
 
 import { pathToFileURL } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import {
+  getEbayBrowseBudgetSnapshot,
+  getEstimatedBrowseCallsPerPricingJob,
+  logEbayBrowseBudgetConfig,
+} from '../clients/ebay_browse_budget_v1.mjs';
 
 const DEFAULT_LIMIT = 100;
 const DEFAULT_RAW_POOL_SIZE = 500;
@@ -475,6 +480,32 @@ async function enqueueScheduledJobs(supabase, eligibleCandidates, limit, openJob
 }
 
 async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
+  const budgetSnapshot = await getEbayBrowseBudgetSnapshot({ supabase });
+  const estimatedCallsPerJob = getEstimatedBrowseCallsPerPricingJob();
+  const budgetLimitedJobCapacity = Math.floor(budgetSnapshot.remaining_calls / estimatedCallsPerJob);
+
+  if (budgetLimitedJobCapacity <= 0) {
+    const cycleTs = new Date().toISOString();
+    console.log(`[pricing_scheduler_v1] cycle=${cycleTs} queued=0 skip_reason=browse_budget_exhausted remaining_calls=${budgetSnapshot.remaining_calls} daily_budget=${budgetSnapshot.daily_budget} estimated_calls_per_job=${estimatedCallsPerJob}`);
+    return {
+      cycleTs,
+      coarseCandidates: 0,
+      enrichedCandidates: 0,
+      eligibleCount: 0,
+      queuedCount: 0,
+      skippedOpenJob: 0,
+      skippedCooldown: 0,
+      queuedIds: [],
+      remainingCalls: budgetSnapshot.remaining_calls,
+      budgetLimitedJobCapacity,
+    };
+  }
+
+  const effectiveLimit = Math.min(limit, budgetLimitedJobCapacity);
+  if (effectiveLimit < limit) {
+    console.log(`[pricing_scheduler_v1] budget_cap requested_limit=${limit} effective_limit=${effectiveLimit} remaining_calls=${budgetSnapshot.remaining_calls} estimated_calls_per_job=${estimatedCallsPerJob}`);
+  }
+
   const coarseCandidates = await fetchCoarseStaleCandidates(supabase, rawPoolSize);
   const coarseCandidateIds = coarseCandidates
     .map((row) => row.cardPrintId)
@@ -496,13 +527,13 @@ async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
   const { queuedIds, skippedOpenJob, skippedCooldown } = await enqueueScheduledJobs(
     supabase,
     eligibleCandidates,
-    limit,
+    effectiveLimit,
     openJobs,
     latestRequestedAtByCardId,
   );
 
   const cycleTs = new Date().toISOString();
-  console.log(`[pricing_scheduler_v1] cycle=${cycleTs} coarse_candidates=${coarseCandidates.length} enriched_candidates=${coarseCandidateIds.length} eligible_after_tiering=${eligibleCandidates.length} queued=${queuedIds.length} open_job_skip=${skippedOpenJob} cooldown_skip=${skippedCooldown}`);
+  console.log(`[pricing_scheduler_v1] cycle=${cycleTs} coarse_candidates=${coarseCandidates.length} enriched_candidates=${coarseCandidateIds.length} eligible_after_tiering=${eligibleCandidates.length} queued=${queuedIds.length} open_job_skip=${skippedOpenJob} cooldown_skip=${skippedCooldown} remaining_calls=${budgetSnapshot.remaining_calls} effective_limit=${effectiveLimit}`);
   console.log(`[pricing_scheduler_v1] queued_first5=${queuedIds.slice(0, 5).join(',') || 'none'}`);
 
   return {
@@ -514,12 +545,15 @@ async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
     skippedOpenJob,
     skippedCooldown,
     queuedIds,
+    remainingCalls: budgetSnapshot.remaining_calls,
+    budgetLimitedJobCapacity,
   };
 }
 
 async function main() {
   const { once, limit, rawPoolSize } = parseArgs(process.argv.slice(2));
   const supabase = createBackendClient();
+  logEbayBrowseBudgetConfig('pricing_scheduler_v1');
 
   do {
     await runSchedulerCycle({ supabase, limit, rawPoolSize });
