@@ -123,6 +123,16 @@ const DMG_CONDITION_PATTERNS = [
   ' peeling ',
 ];
 
+const DEFAULT_ACTIVE_LISTINGS_LIMIT = 10;
+
+function getActiveListingsLimit() {
+  const raw = Number.parseInt(process.env.EBAY_BROWSE_ACTIVE_LISTINGS_LIMIT ?? '', 10);
+  if (Number.isFinite(raw) && raw > 0) {
+    return raw;
+  }
+  return DEFAULT_ACTIVE_LISTINGS_LIMIT;
+}
+
 function extractDescription(details) {
   if (!details) {
     return '';
@@ -803,7 +813,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     `[pricing] Fetching active listings for "${query}" [${label}] (${cardPrintId})`,
   );
 
-  const listings = await searchActiveListings({ query, limit: 50 });
+  const listings = await searchActiveListings({ query, limit: getActiveListingsLimit() });
   if (debug) {
     console.log(`[debug] raw listings count: ${listings.length}`);
   }
