@@ -126,3 +126,15 @@ backend/vault/.checkpoints/
 # misc
 devtools_options.yaml
 supabase/snippets/
+
+# Grookai local artifacts
+*.xlsx
+*.webp
+tmp_*.sql
+
+# Local asset folders
+grookai_logo_assets/
+
+# Local tools / scripts
+tools/
+
