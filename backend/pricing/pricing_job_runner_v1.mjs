@@ -12,9 +12,19 @@ import {
   normalizePricingPriority,
 } from './pricing_queue_priority_contract.mjs';
 
+const DEFAULT_MIN_JOB_START_DELAY_MS = 20_000;
+
 function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
   console.log(JSON.stringify(entry));
+}
+
+function getMinJobStartDelayMs() {
+  const raw = Number.parseInt(process.env.PRICING_JOB_MIN_START_DELAY_MS ?? '', 10);
+  if (Number.isFinite(raw) && raw >= 0) {
+    return raw;
+  }
+  return DEFAULT_MIN_JOB_START_DELAY_MS;
 }
 
 function parseArgs(argv) {
@@ -171,6 +181,8 @@ async function main() {
   let processed = 0;
   let backoffMs = 0;
   const maxJobs = opts.maxJobs ?? 1;
+  const minJobStartDelayMs = getMinJobStartDelayMs();
+  let lastJobStartedAt = 0;
 
   while (true) {
     if (opts.once && processed >= maxJobs) break;
@@ -224,7 +236,18 @@ async function main() {
       continue;
     }
 
+    if (!opts.once && minJobStartDelayMs > 0 && lastJobStartedAt > 0) {
+      const elapsedMs = Date.now() - lastJobStartedAt;
+      const waitMs = minJobStartDelayMs - elapsedMs;
+      if (waitMs > 0) {
+        await new Promise((r) => setTimeout(r, waitMs));
+      }
+    }
+
     const started = Date.now();
+    if (!opts.once) {
+      lastJobStartedAt = started;
+    }
     try {
       const exitCode = await runPricingWorker(cardPrintId);
 
