@@ -444,7 +444,7 @@ export default async function CardPage({
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Market Snapshot</p>
                 <div className="mt-2">
                   {canViewPricing ? (
-                    <VisiblePrice value={resolvedCard.latest_price} size="detail" note="compact" />
+                    <VisiblePrice value={resolvedCard.raw_price} size="detail" note="compact" />
                   ) : (
                     <LockedPrice href={loginHref} size="detail" />
                   )}

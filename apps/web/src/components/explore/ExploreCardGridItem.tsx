@@ -54,7 +54,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
                 {[card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—"}
               </p>
               {canViewPricing ? (
-                <VisiblePrice value={card.latest_price} size="grid" />
+                <VisiblePrice value={card.raw_price} size="grid" />
               ) : (
                 <LockedPrice size="grid" />
               )}

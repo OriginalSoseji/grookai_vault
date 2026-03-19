@@ -46,7 +46,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
             </div>
             <div className="hidden shrink-0 text-right md:block">
               {canViewPricing ? (
-                <VisiblePrice value={card.latest_price} size="list" />
+                <VisiblePrice value={card.raw_price} size="list" />
               ) : (
                 <LockedPrice href={signInHref} size="list" />
               )}
@@ -57,7 +57,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           <CompareCardButton gvId={card.gv_id} variant="compact" />
           <div className="md:hidden">
             {canViewPricing ? (
-              <VisiblePrice value={card.latest_price} size="dense" />
+              <VisiblePrice value={card.raw_price} size="dense" />
             ) : (
               <LockedPrice href={signInHref} size="dense" />
             )}

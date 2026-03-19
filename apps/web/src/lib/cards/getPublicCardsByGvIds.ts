@@ -17,11 +17,15 @@ export type ComparePublicCard = {
   release_year?: number;
   artist?: string;
   image_url?: string;
+  raw_price?: number;
+  raw_price_source?: string;
+  raw_price_ts?: string;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
   price_source?: string;
   updated_at?: string;
+  active_price_updated_at?: string;
   variant_key?: string;
   variants?: VariantFlags;
 };
@@ -126,11 +130,15 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       release_year: getReleaseYear(setRecord?.release_date),
       artist: row.artist?.trim() || undefined,
       image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      raw_price: row.id ? pricesByCardId.get(row.id)?.raw_price : undefined,
+      raw_price_source: row.id ? pricesByCardId.get(row.id)?.raw_price_source : undefined,
+      raw_price_ts: row.id ? pricesByCardId.get(row.id)?.raw_price_ts : undefined,
       latest_price: row.id ? pricesByCardId.get(row.id)?.latest_price : undefined,
       confidence: row.id ? pricesByCardId.get(row.id)?.confidence : undefined,
       listing_count: row.id ? pricesByCardId.get(row.id)?.listing_count : undefined,
       price_source: row.id ? pricesByCardId.get(row.id)?.price_source : undefined,
       updated_at: row.id ? pricesByCardId.get(row.id)?.updated_at : undefined,
+      active_price_updated_at: row.id ? pricesByCardId.get(row.id)?.active_price_updated_at : undefined,
       variant_key: row.variant_key?.trim() || undefined,
       variants: row.variants ?? undefined,
     });

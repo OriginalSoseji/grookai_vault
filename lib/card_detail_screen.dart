@@ -49,6 +49,61 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     _loadPricing();
   }
 
+  Future<Map<String, dynamic>?> _fetchCanonicalRawPricing() async {
+    // Phase 1 canonical raw read contract:
+    // - raw price value/source/timestamp come from v_best_prices_all_gv_v1
+    // - optional freshness metadata and active-listing stats come from card_print_active_prices
+    final results = await Future.wait<dynamic>([
+      supabase
+          .from('v_best_prices_all_gv_v1')
+          .select('card_id,base_market,base_source,base_ts')
+          .eq('card_id', widget.cardPrintId)
+          .maybeSingle(),
+      supabase
+          .from('card_print_active_prices')
+          .select(
+            'card_print_id,nm_median,nm_floor,lp_median,listing_count,confidence,updated_at,last_snapshot_at',
+          )
+          .eq('card_print_id', widget.cardPrintId)
+          .maybeSingle(),
+    ]);
+
+    final compatibilityRow = results[0] as Map<String, dynamic>?;
+    final activePriceRow = results[1] as Map<String, dynamic>?;
+
+    if (compatibilityRow == null && activePriceRow == null) {
+      return null;
+    }
+
+    final rawPrice = (compatibilityRow?['base_market'] as num?)?.toDouble();
+    final rawPriceSource = compatibilityRow?['base_source'] as String?;
+    final rawPriceTs = compatibilityRow?['base_ts'] as String?;
+    final activeUpdatedAt = activePriceRow?['updated_at'] as String?;
+    final lastSnapshotAt = activePriceRow?['last_snapshot_at'] as String?;
+
+    return {
+      'card_print_id': widget.cardPrintId,
+      'raw_price': rawPrice,
+      'raw_price_source': rawPrice != null ? rawPriceSource : null,
+      'raw_price_ts': rawPrice != null ? rawPriceTs : null,
+      'listing_count': activePriceRow?['listing_count'],
+      'confidence': activePriceRow?['confidence'],
+      'active_price_updated_at': activeUpdatedAt,
+      'last_snapshot_at': lastSnapshotAt,
+      // Compatibility aliases retained locally while the UI still uses Grookai
+      // Value copy and active-listing detail labels.
+      'latest_price': rawPrice,
+      'price_source': rawPrice != null ? rawPriceSource : null,
+      'updated_at': rawPrice != null ? rawPriceTs : null,
+      // Existing active-listing detail fields remain available so the current
+      // pricing card can keep its supporting context without changing the
+      // canonical raw-price seam.
+      'nm_median': activePriceRow?['nm_median'],
+      'nm_floor': activePriceRow?['nm_floor'],
+      'lp_median': activePriceRow?['lp_median'],
+    };
+  }
+
   Future<void> _loadPricing() async {
     setState(() {
       _priceLoading = true;
@@ -56,11 +111,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
-      final response = await supabase
-          .from('card_print_active_prices')
-          .select('*, updated_at, last_snapshot_at')
-          .eq('card_print_id', widget.cardPrintId)
-          .maybeSingle();
+      final response = await _fetchCanonicalRawPricing();
 
       setState(() {
         _priceData = response;
@@ -104,8 +155,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
         final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
         final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
-        final updatedAtRaw = data['updated_at'] as String?;
-        final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
+        final activeUpdatedAtRaw = data['active_price_updated_at'] as String?;
+        final rawPriceTs = data['raw_price_ts'] as String?;
+        final freshnessRaw = rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
         final freshnessTs = freshnessRaw != null
             ? DateTime.tryParse(freshnessRaw)
             : null;
@@ -447,6 +499,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     final data = _priceData!;
+    final rawPrice = (data['raw_price'] as num?)?.toDouble();
+    final rawPriceSource = data['raw_price_source'] as String?;
     final nmMedian = (data['nm_median'] ?? 0).toDouble();
     final nmFloor = (data['nm_floor'] ?? 0).toDouble();
     final lpMedian = data['lp_median'] != null
@@ -454,9 +508,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         : null;
     final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
     final confidence = data['confidence'] as num?;
-    final updatedAtRaw = data['updated_at'] as String?;
+    final rawPriceTs = data['raw_price_ts'] as String?;
+    final activeUpdatedAtRaw = data['active_price_updated_at'] as String?;
     final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
-    final freshnessRaw = updatedAtRaw ?? lastSnapshotAtRaw;
+    final freshnessRaw = rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
     final freshnessTs = freshnessRaw != null
         ? DateTime.tryParse(freshnessRaw)
         : null;
@@ -505,14 +560,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'NM median',
+                        'Grookai Value',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurface.withOpacity(0.7),
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        formatMoney(nmMedian),
+                        formatMoney(rawPrice ?? nmMedian),
                         style: theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -556,6 +611,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               const SizedBox(height: 8),
               Text(
                 'Listings: $listingCount',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.7),
+                ),
+              ),
+            ],
+            if (rawPriceSource != null && rawPriceSource.isNotEmpty) ...[
+              const SizedBox(height: 2),
+              Text(
+                'Source: $rawPriceSource',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurface.withOpacity(0.7),
                 ),

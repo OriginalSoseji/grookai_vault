@@ -51,7 +51,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       </td>
       <td className="px-4 py-3">
         {canViewPricing ? (
-          <VisiblePrice value={card.latest_price} size="dense" />
+          <VisiblePrice value={card.raw_price} size="dense" />
         ) : (
           <LockedPrice href={signInHref} size="dense" />
         )}

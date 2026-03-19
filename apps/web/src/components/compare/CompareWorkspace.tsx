@@ -17,7 +17,7 @@ type CompareWorkspaceProps = {
   pricingSignInHref?: string;
 };
 
-type AttributeKey = "set_name" | "number" | "rarity" | "variant" | "latest_price" | "artist" | "release_year";
+type AttributeKey = "set_name" | "number" | "rarity" | "variant" | "raw_price" | "artist" | "release_year";
 
 type AttributeRow = {
   key: AttributeKey;
@@ -37,7 +37,7 @@ const ATTRIBUTE_SECTIONS: AttributeSection[] = [
       { key: "number", label: "Number" },
       { key: "rarity", label: "Rarity" },
       { key: "variant", label: "Variant" },
-      { key: "latest_price", label: "Grookai Value" },
+      { key: "raw_price", label: "Grookai Value" },
     ],
   },
   {
@@ -63,8 +63,8 @@ function formatAttributeValue(card: ComparePublicCard, key: AttributeKey) {
     return labels.length > 0 ? labels.join(" • ") : "—";
   }
 
-  if (key === "latest_price") {
-    return formatUsdPrice(card.latest_price);
+  if (key === "raw_price") {
+    return formatUsdPrice(card.raw_price);
   }
 
   const value = card[key];
@@ -85,9 +85,9 @@ function renderAttributeContent(
   canViewPricing: boolean,
   pricingSignInHref?: string,
 ) {
-  if (key === "latest_price") {
+  if (key === "raw_price") {
     return canViewPricing
-      ? <VisiblePrice value={card.latest_price} size="dense" />
+      ? <VisiblePrice value={card.raw_price} size="dense" />
       : <LockedPrice href={pricingSignInHref} size="dense" />;
   }
 
@@ -231,7 +231,7 @@ export default function CompareWorkspace({
                     <p className="truncate text-lg font-semibold text-slate-950">{card.name}</p>
                     <p className="text-sm text-slate-600">{card.set_name ?? "Unknown set"}</p>
                     {canViewPricing ? (
-                      <VisiblePrice value={card.latest_price} size="list" />
+                      <VisiblePrice value={card.raw_price} size="list" />
                     ) : (
                       <LockedPrice href={pricingSignInHref} size="list" />
                     )}

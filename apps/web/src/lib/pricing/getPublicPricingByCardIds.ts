@@ -26,16 +26,25 @@ type ActivePriceMetadataRow = {
   card_print_id: string | null;
   confidence: number | null;
   listing_count: number | null;
+  updated_at: string | null;
+  last_snapshot_at: string | null;
 };
 
-export type PublicPricingRecord = {
+export type CanonicalRawPricingRecord = {
   card_print_id: string;
+  raw_price?: number;
+  raw_price_source?: string;
+  raw_price_ts?: string;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
   price_source?: string;
   updated_at?: string;
+  active_price_updated_at?: string;
+  last_snapshot_at?: string;
 };
+
+export type PublicPricingRecord = CanonicalRawPricingRecord;
 
 type PricingClient = SupabaseClient;
 
@@ -57,7 +66,7 @@ export async function getPublicPricingByCardIds(
       // Keep these metadata fields in one helper so public callers stay aligned to the compatibility lane.
       supabase
         .from("card_print_active_prices")
-        .select("card_print_id,confidence,listing_count")
+        .select("card_print_id,confidence,listing_count,updated_at,last_snapshot_at")
         .in("card_print_id", uniqueIds),
     ]);
 
@@ -80,17 +89,29 @@ export async function getPublicPricingByCardIds(
       .filter((row): row is CompatibilityPriceRow & { card_id: string } => Boolean(row.card_id))
       .map((row) => {
         const metadata = activePriceByCardId.get(row.card_id);
-        const latestPrice = typeof row.base_market === "number" ? row.base_market : undefined;
+        const rawPrice = typeof row.base_market === "number" ? row.base_market : undefined;
+        const rawPriceSource = rawPrice !== undefined ? row.base_source ?? undefined : undefined;
+        const rawPriceTs = rawPrice !== undefined ? row.base_ts ?? undefined : undefined;
 
         return [
           row.card_id,
           {
             card_print_id: row.card_id,
-            latest_price: latestPrice,
+            // Phase 1 canonical raw-price contract:
+            // - raw price value/source/timestamp come from v_best_prices_all_gv_v1
+            // - optional freshness metadata comes from card_print_active_prices
+            raw_price: rawPrice,
+            raw_price_source: rawPriceSource,
+            raw_price_ts: rawPriceTs,
+            // Compatibility aliases remain until downstream UI/internal callers finish
+            // converging on the raw_* contract.
+            latest_price: rawPrice,
             confidence: typeof metadata?.confidence === "number" ? metadata.confidence : undefined,
             listing_count: typeof metadata?.listing_count === "number" ? metadata.listing_count : undefined,
-            price_source: latestPrice !== undefined ? row.base_source ?? undefined : undefined,
-            updated_at: latestPrice !== undefined ? row.base_ts ?? undefined : undefined,
+            price_source: rawPriceSource,
+            updated_at: rawPriceTs,
+            active_price_updated_at: metadata?.updated_at ?? undefined,
+            last_snapshot_at: metadata?.last_snapshot_at ?? undefined,
           } satisfies PublicPricingRecord,
         ];
       }),

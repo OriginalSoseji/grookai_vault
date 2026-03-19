@@ -15,11 +15,16 @@ export interface CardSummary {
   image_url?: string;
   release_date?: string;
   release_year?: number;
+  raw_price?: number;
+  raw_price_source?: string;
+  raw_price_ts?: string;
   latest_price?: number;
   confidence?: number;
   listing_count?: number;
   price_source?: string;
   updated_at?: string;
+  active_price_updated_at?: string;
+  last_snapshot_at?: string;
 }
 
 export interface RelatedCardPrint extends CardSummary {

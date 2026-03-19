@@ -25,14 +25,15 @@ const NORMAL_VALUE_THRESHOLD = 25;
 const NORMAL_VAULT_COUNT_THRESHOLD = 3;
 const NORMAL_LISTING_THRESHOLD = 25;
 
-type ActivePriceRow = {
+type CanonicalRawPriceMetadataRow = {
   card_print_id: string | null;
   listing_count: number | null;
+  confidence: number | null;
   updated_at: string | null;
   last_snapshot_at: string | null;
 };
 
-type CompatibilityPriceRow = {
+type CanonicalRawPriceRow = {
   card_id: string | null;
   base_market: number | null;
   base_source: string | null;
@@ -176,10 +177,13 @@ const handler = async (req: Request): Promise<Response> => {
 
   const client = createClient(supabaseUrl, serviceRole);
 
+  // Phase 1 canonical raw read seam:
+  // - v_best_prices_all_gv_v1 provides raw price/source/timestamp
+  // - card_print_active_prices provides optional freshness metadata
   const [activePriceResult, compatibilityPriceResult, rawInstanceCountResult, slabCertResult] = await Promise.all([
     client
-      .from("ebay_active_prices_latest")
-      .select("card_print_id,listing_count,updated_at,last_snapshot_at")
+      .from("card_print_active_prices")
+      .select("card_print_id,listing_count,confidence,updated_at,last_snapshot_at")
       .eq("card_print_id", cardPrintId)
       .maybeSingle(),
     client
@@ -279,8 +283,8 @@ const handler = async (req: Request): Promise<Response> => {
     return json(500, { error: "instance_count_lookup_failed", detail: "Failed to read canonical ownership activity state" });
   }
 
-  const activePrice = activePriceResult.data as ActivePriceRow | null;
-  const compatibilityPrice = compatibilityPriceResult.data as CompatibilityPriceRow | null;
+  const activePrice = activePriceResult.data as CanonicalRawPriceMetadataRow | null;
+  const compatibilityPrice = compatibilityPriceResult.data as CanonicalRawPriceRow | null;
   const vaultCount = (rawInstanceCountResult.count ?? 0) + (slabInstanceCountResult.count ?? 0);
   const listingCount = typeof activePrice?.listing_count === "number" ? activePrice.listing_count : 0;
   const grookaiValueNm = typeof compatibilityPrice?.base_market === "number" ? compatibilityPrice.base_market : null;

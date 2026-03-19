@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
+import {
+  getFounderPricingOpsSummary,
+  type FounderPricingOpsSummary,
+} from "@/lib/founder/getPricingOpsSummary";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -478,6 +482,78 @@ function formatTimeAgo(value: string | null) {
   });
 }
 
+function formatTimestamp(value: string | null) {
+  if (!value) {
+    return "—";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "—";
+  }
+
+  return date.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function formatPct(value: number) {
+  return `${Math.round(value * 100)}%`;
+}
+
+function getAlertToneClasses(tone: "neutral" | "warning" | "danger" | "positive") {
+  if (tone === "danger") {
+    return "border-rose-200 bg-rose-50 text-rose-700";
+  }
+
+  if (tone === "warning") {
+    return "border-amber-200 bg-amber-50 text-amber-700";
+  }
+
+  if (tone === "positive") {
+    return "border-emerald-200 bg-emerald-50 text-emerald-700";
+  }
+
+  return "border-slate-200 bg-slate-50 text-slate-700";
+}
+
+function OpsPill({
+  label,
+  tone = "neutral",
+}: {
+  label: string;
+  tone?: "neutral" | "warning" | "danger" | "positive";
+}) {
+  return (
+    <span
+      className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${getAlertToneClasses(tone)}`}
+    >
+      {label}
+    </span>
+  );
+}
+
+function OpsMetric({
+  label,
+  value,
+  detail,
+}: {
+  label: string;
+  value: string | number;
+  detail?: string;
+}) {
+  return (
+    <div className="rounded-2xl bg-slate-50 px-4 py-3">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+      <p className="mt-1 text-xl font-semibold tracking-tight text-slate-950">{value}</p>
+      {detail ? <p className="mt-1 text-xs text-slate-600">{detail}</p> : null}
+    </div>
+  );
+}
+
 function aggregateCards(rows: NormalizedVaultRow[]): CardAggregate[] {
   const byCard = new Map<
     string,
@@ -597,6 +673,7 @@ export default async function FounderPage() {
     redirect("/");
   }
 
+  const pricingOps = await getFounderPricingOpsSummary(admin);
   const sevenDaysAgoIso = daysAgoDate(7).toISOString();
   let vaultRows: NormalizedVaultRow[] = [];
   let vaultAnalyticsError: string | null = null;
@@ -694,6 +771,8 @@ export default async function FounderPage() {
       {telemetryError ? (
         <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryError.message}`} />
       ) : null}
+
+      <PricingOpsSection pricingOps={pricingOps} />
 
       <section className="space-y-4">
         <div>
@@ -990,5 +1069,284 @@ export default async function FounderPage() {
         </>
       )}
     </div>
+  );
+}
+
+function PricingOpsSection({ pricingOps }: { pricingOps: FounderPricingOpsSummary }) {
+  const { budget, config, errors, queueHealth, retryRows, throughputBuckets } = pricingOps;
+  const budgetTone = !budget ? "neutral" : budget.exhausted ? "danger" : budget.pctUsed >= 0.8 ? "warning" : "positive";
+  const retryTone =
+    queueHealth && (queueHealth.retryable429Count > 3 || retryRows.length >= 5)
+      ? "warning"
+      : retryRows.length > 0
+        ? "neutral"
+        : "positive";
+  const backlogTone =
+    queueHealth && (queueHealth.backlogGrowing || queueHealth.pendingCount > 100)
+      ? "warning"
+      : queueHealth && queueHealth.pendingCount > 0
+        ? "neutral"
+        : "positive";
+
+  return (
+    <section className="space-y-5">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Pricing Ops</h2>
+          <p className="text-sm text-slate-600">
+            Live founder visibility into Browse quota, queue pressure, and retry behavior.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <OpsPill
+            label={budget ? `${formatPct(budget.pctUsed)} budget used` : "Budget unavailable"}
+            tone={budgetTone}
+          />
+          <OpsPill
+            label={
+              queueHealth?.backlogGrowing
+                ? "Backlog growing"
+                : queueHealth && queueHealth.pendingCount > 0
+                  ? "Backlog present"
+                  : "Backlog clear"
+            }
+            tone={backlogTone}
+          />
+          <OpsPill
+            label={retryRows.length > 0 ? `${retryRows.length} recent retry rows` : "Retry pressure quiet"}
+            tone={retryTone}
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Browse Budget</h3>
+              <p className="text-sm text-slate-600">Live snapshot from the budget RPC for today&apos;s UTC bucket.</p>
+            </div>
+            {budget ? <OpsPill label={budget.exhausted ? "Exhausted" : "Active"} tone={budgetTone} /> : null}
+          </div>
+
+          {errors.budget ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.budget}
+            </div>
+          ) : budget ? (
+            <div className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <OpsMetric label="Provider" value={budget.provider} />
+                <OpsMetric label="Usage Date" value={budget.usageDate ?? "—"} />
+                <OpsMetric label="Pct Used" value={formatPct(budget.pctUsed)} detail={budget.exhausted ? "Daily budget exhausted" : "Safe until quota is consumed"} />
+                <OpsMetric label="Consumed Calls" value={budget.consumedCalls.toLocaleString("en-US")} />
+                <OpsMetric label="Daily Budget" value={budget.dailyBudget.toLocaleString("en-US")} />
+                <OpsMetric label="Remaining Calls" value={budget.remainingCalls.toLocaleString("en-US")} />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-sm text-slate-600">
+                  <span>Quota progress</span>
+                  <span>{budget.consumedCalls.toLocaleString("en-US")} / {budget.dailyBudget.toLocaleString("en-US")}</span>
+                </div>
+                <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+                  <div
+                    className={`h-full rounded-full ${budget.exhausted ? "bg-rose-500" : budget.pctUsed >= 0.8 ? "bg-amber-500" : "bg-emerald-500"}`}
+                    style={{ width: `${Math.max(4, Math.min(budget.pctUsed * 100, 100))}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <EmptyPanel message="Pricing budget snapshot is unavailable right now." />
+          )}
+        </div>
+
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Queue Health</h3>
+              <p className="text-sm text-slate-600">Open pricing job backlog plus recent completion and retry signals.</p>
+            </div>
+            {queueHealth ? (
+              <OpsPill
+                label={queueHealth.backlogGrowing ? "Growing" : queueHealth.pendingCount > 0 ? "Open Queue" : "Idle"}
+                tone={backlogTone}
+              />
+            ) : null}
+          </div>
+
+          {errors.queueHealth ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.queueHealth}
+            </div>
+          ) : queueHealth ? (
+            <div className="mt-5 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <OpsMetric label="Pending" value={queueHealth.pendingCount.toLocaleString("en-US")} />
+                <OpsMetric label="Running" value={queueHealth.runningCount.toLocaleString("en-US")} />
+                <OpsMetric label="Done (24h)" value={queueHealth.done24hCount.toLocaleString("en-US")} />
+                <OpsMetric label="Failed (24h)" value={queueHealth.failed24hCount.toLocaleString("en-US")} />
+                <OpsMetric label="Retryable 429" value={queueHealth.retryable429Count.toLocaleString("en-US")} detail="Pending jobs currently marked retryable_429" />
+                <OpsMetric label="Stale Running" value={queueHealth.staleRunningCount.toLocaleString("en-US")} detail="Running past the 10-minute reclaim TTL" />
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Last Hour</p>
+                  <p className="mt-1 font-medium text-slate-900">
+                    {queueHealth.requestedLastHourCount.toLocaleString("en-US")} requested / {queueHealth.startedLastHourCount.toLocaleString("en-US")} started
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Backlog Signal</p>
+                  <p className="mt-1 font-medium text-slate-900">
+                    {queueHealth.backlogGrowing ? "Requested jobs outpacing starts" : "No current growth signal"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <EmptyPanel message="Queue health is unavailable right now." />
+          )}
+        </div>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-950">Throughput</h3>
+              <p className="text-sm text-slate-600">Jobs started over the last hour, grouped into 5-minute buckets.</p>
+            </div>
+            <OpsPill label={`${throughputBuckets.reduce((sum, bucket) => sum + bucket.startedCount, 0)} starts`} tone="neutral" />
+          </div>
+
+          {errors.throughput ? (
+            <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              {errors.throughput}
+            </div>
+          ) : throughputBuckets.length === 0 ? (
+            <div className="mt-4">
+              <EmptyPanel message="No pricing jobs have started in the last hour." />
+            </div>
+          ) : (
+            <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-slate-200">
+              <table className="min-w-full divide-y divide-slate-200 text-sm">
+                <thead className="bg-slate-50 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                  <tr>
+                    <th className="px-4 py-3">Bucket</th>
+                    <th className="px-4 py-3 text-right">Started</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 bg-white text-slate-700">
+                  {throughputBuckets.map((bucket) => (
+                    <tr key={bucket.bucketStartIso}>
+                      <td className="px-4 py-3">{formatTimestamp(bucket.bucketStartIso)}</td>
+                      <td className="px-4 py-3 text-right font-medium text-slate-900">{bucket.startedCount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div>
+            <h3 className="text-lg font-semibold text-slate-950">Live Config</h3>
+            <p className="text-sm text-slate-600">Current expected operating config used by the Founder dashboard logic.</p>
+          </div>
+          <div className="mt-5 space-y-3">
+            <div className="rounded-2xl bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Daily Budget</p>
+              <p className="mt-1 text-xl font-semibold text-slate-950">{config.dailyBudget.toLocaleString("en-US")}</p>
+              <p className="mt-1 text-xs text-slate-600">Source: {config.budgetSource === "env" ? "runtime env" : "dashboard default"}</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Active Listings Limit</p>
+              <p className="mt-1 text-xl font-semibold text-slate-950">{config.activeListingsLimit.toLocaleString("en-US")}</p>
+              <p className="mt-1 text-xs text-slate-600">Source: {config.activeListingsLimitSource === "env" ? "runtime env" : "dashboard default"}</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Min Job Start Delay</p>
+              <p className="mt-1 text-xl font-semibold text-slate-950">{config.minJobStartDelayMs.toLocaleString("en-US")} ms</p>
+              <p className="mt-1 text-xs text-slate-600">Source: {config.minJobStartDelaySource === "env" ? "runtime env" : "dashboard default"}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-[1.75rem] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-semibold text-slate-950">Recent Retry Pressure</h3>
+            <p className="text-sm text-slate-600">Recent pricing jobs whose error trail suggests 429 or rate-limit retry behavior.</p>
+          </div>
+          <OpsPill label={`${retryRows.length} rows`} tone={retryTone} />
+        </div>
+
+        {errors.retryPressure ? (
+          <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+            {errors.retryPressure}
+          </div>
+        ) : retryRows.length === 0 ? (
+          <div className="mt-4">
+            <EmptyPanel message="No recent 429 or rate-limit retry rows were found." />
+          </div>
+        ) : (
+          <div className="mt-5 overflow-x-auto">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
+              <thead className="text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <tr>
+                  <th className="pb-3 pr-4">Card</th>
+                  <th className="pb-3 pr-4">Status</th>
+                  <th className="pb-3 pr-4">Attempts</th>
+                  <th className="pb-3 pr-4">Requested</th>
+                  <th className="pb-3 pr-4">Started</th>
+                  <th className="pb-3">Error</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-slate-700">
+                {retryRows.map((row) => {
+                  const cardLabel = row.name
+                    ? [row.name, row.setCode, row.number ? `#${row.number}` : undefined].filter(Boolean).join(" • ")
+                    : row.cardPrintId ?? row.id;
+                  const cardContent = row.gvId ? (
+                    <Link href={`/card/${row.gvId}`} className="font-medium text-slate-900 hover:text-slate-700">
+                      {cardLabel}
+                    </Link>
+                  ) : (
+                    <span className="font-medium text-slate-900">{cardLabel}</span>
+                  );
+
+                  return (
+                    <tr key={row.id}>
+                      <td className="py-3 pr-4">
+                        <div className="space-y-1">
+                          {cardContent}
+                          {row.gvId ? <p className="text-xs text-slate-500">{row.gvId}</p> : null}
+                          {!row.gvId && row.cardPrintId ? <p className="text-xs text-slate-500">{row.cardPrintId}</p> : null}
+                        </div>
+                      </td>
+                      <td className="py-3 pr-4">
+                        <OpsPill
+                          label={row.status}
+                          tone={row.status === "failed" ? "danger" : row.status === "pending" ? "warning" : "neutral"}
+                        />
+                      </td>
+                      <td className="py-3 pr-4 font-medium text-slate-900">{row.attempts}</td>
+                      <td className="py-3 pr-4">{formatTimestamp(row.requestedAt)}</td>
+                      <td className="py-3 pr-4">{formatTimestamp(row.startedAt)}</td>
+                      <td className="py-3 align-top">
+                        <p className="max-w-[30rem] break-words text-slate-700">{row.error ?? "—"}</p>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

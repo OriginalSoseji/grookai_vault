@@ -7,7 +7,6 @@ export type ExploreResultCard = CardSummary & {
   set_code?: string;
   printed_set_abbrev?: string;
   tcgdex_set_id?: string;
-  latest_price?: number;
   variant_key?: string;
   variants?: VariantFlags;
 };
