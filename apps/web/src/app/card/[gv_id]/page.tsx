@@ -12,6 +12,7 @@ import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
+import PricingCompsPanel from "@/components/pricing/PricingCompsPanel";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
@@ -26,6 +27,7 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
+import { getCardPricingComps } from "@/lib/pricing/getCardPricingComps";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
@@ -302,6 +304,7 @@ export default async function CardPage({
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
+  const pricingComps = canViewPricing && resolvedCard.id ? await getCardPricingComps(resolvedCard.id) : null;
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
@@ -498,6 +501,15 @@ export default async function CardPage({
             ))}
           </dl>
         </section>
+      ) : null}
+
+      {canViewPricing && pricingComps ? (
+        <PricingCompsPanel
+          currentPrice={resolvedCard.raw_price}
+          currentPriceSource={resolvedCard.raw_price_source}
+          currentPriceTs={resolvedCard.raw_price_ts}
+          comps={pricingComps}
+        />
       ) : null}
 
       {relatedPrints.length > 0 ? (

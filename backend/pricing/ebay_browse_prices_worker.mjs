@@ -14,6 +14,10 @@ import {
   isEbayBrowseBudgetExceededError,
   logEbayBrowseBudgetConfig,
 } from '../clients/ebay_browse_budget_v1.mjs';
+import {
+  getAcceptedPricingObservationsForBatch,
+  insertPricingObservations,
+} from './pricing_observation_layer_v1.mjs';
 
 function normalizeTitle(str) {
   return (str || '')
@@ -27,22 +31,29 @@ function normalizeText(str) {
   return (str || '').toLowerCase();
 }
 
-const GRADED_PATTERNS = [
-  'psa',
-  'bgs',
-  'cgc',
-  'sgc',
-  'gma',
-  'graded',
-  'slab',
-  'mint 9',
-  'mint 10',
-  'nmmt',
-  'gem mint',
-  'pristine',
+const STRONG_SLAB_PATTERNS = [
+  ' psa ',
+  ' bgs ',
+  ' cgc ',
+  ' sgc ',
+  ' tag ',
+  ' beckett ',
+  ' graded ',
+  ' slab ',
+  ' cert ',
+  ' certificate ',
+  ' black label ',
+  ' pristine ',
 ];
+const GRADED_CONTEXT_REGEX = /\b(?:psa|bgs|cgc|sgc|tag|beckett)\s*(?:10|[0-9](?:\.[0-9])?)\b/;
 const GRADE_SCORE_REGEX = /\b(?:10|[0-9](?:\.[0-9])?)\/10\b/;
-const GRADE_WORD_REGEX = /\b(?:10|[0-9])(?:[\.\s]?)(?:gem|gm|mint)\b/;
+const GRADE_PATTERN_REGEXES = [
+  /\bgem\s*mint\s*10\b/,
+  /\bgem\s*mt\s*10\b/,
+  /\bmint\s*10\b/,
+  /\bpristine\s*10\b/,
+  /\bblack\s*label\s*10\b/,
+];
 const FIRST_EDITION_PATTERNS = ['1st edition', 'first edition', '1st ed', '1st-ed', '1sted'];
 const SHADOWLESS_PATTERNS = ['shadowless', 'no shadow', 'thin border', 'thick border', 'shdw'];
 const SEALED_PATTERNS = [
@@ -111,6 +122,7 @@ const HP_CONDITION_PATTERNS = [
 ];
 const DMG_CONDITION_PATTERNS = [
   ' damaged ',
+  ' dmg ',
   ' crease ',
   ' creases ',
   ' bent ',
@@ -127,6 +139,55 @@ const DMG_CONDITION_PATTERNS = [
   ' peeled ',
   ' peeling ',
 ];
+
+function normalizeDescriptor(str) {
+  const normalized = normalizeTitle(str);
+  return normalized ? ` ${normalized} ` : '';
+}
+
+export function detectGradedSignal(text) {
+  const descriptor = normalizeDescriptor(text);
+  if (!descriptor) {
+    return { isGraded: false, tier: null, reason: null };
+  }
+
+  if (STRONG_SLAB_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
+    return { isGraded: true, tier: 'strong', reason: 'strong_direct_signal' };
+  }
+
+  if (GRADED_CONTEXT_REGEX.test(descriptor) || GRADE_SCORE_REGEX.test(descriptor)) {
+    return { isGraded: true, tier: 'grade_pattern', reason: 'grader_score_pattern' };
+  }
+
+  if (GRADE_PATTERN_REGEXES.some((regex) => regex.test(descriptor))) {
+    return { isGraded: true, tier: 'grade_pattern', reason: 'mint_score_pattern' };
+  }
+
+  return { isGraded: false, tier: null, reason: null };
+}
+
+export function detectConditionBucket(text) {
+  const descriptor = normalizeDescriptor(text);
+  if (!descriptor) {
+    return null;
+  }
+
+  const orderedConditionRules = [
+    ['dmg', DMG_CONDITION_PATTERNS],
+    ['hp', HP_CONDITION_PATTERNS],
+    ['lp', LP_CONDITION_PATTERNS],
+    ['mp', MP_CONDITION_PATTERNS],
+    ['nm', NM_CONDITION_PATTERNS],
+  ];
+
+  for (const [bucket, patterns] of orderedConditionRules) {
+    if (patterns.some((pattern) => descriptor.includes(pattern))) {
+      return bucket;
+    }
+  }
+
+  return null;
+}
 
 function extractDescription(details) {
   if (!details) {
@@ -193,9 +254,10 @@ function getListingSkipReasonV3(listing) {
     if (desc.includes(p)) return 'not_single_card';
   }
 
+  const baseSet2Regex = /\bbase set 2\b(?!\/\d)/;
   const isBaseSet2InText =
-    title.includes('base set 2') ||
-    desc.includes('base set 2') ||
+    baseSet2Regex.test(title) ||
+    baseSet2Regex.test(desc) ||
     title.includes('4/130') ||
     desc.includes('4/130');
 
@@ -294,7 +356,7 @@ function buildRarityHints(print) {
   return [];
 }
 
-function buildSearchQueryForPrint(print) {
+export function buildSearchQueryForPrint(print) {
   const parts = ['Pokemon TCG'];
 
   if (print?.name) {
@@ -356,6 +418,95 @@ function buildPrintLabel(print) {
   return parts.join(' · ');
 }
 
+function getListingUrl(listing) {
+  return (
+    listing?.raw?.itemWebUrl ||
+    listing?.raw?.itemAffiliateWebUrl ||
+    null
+  );
+}
+
+function getListingType(listing) {
+  const buyingOption = Array.isArray(listing?.buyingOptions) && listing.buyingOptions.length > 0
+    ? listing.buyingOptions[0]
+    : null;
+  return buyingOption ? String(buyingOption) : null;
+}
+
+function buildObservationExternalId(listing, { cardPrintId, observedAt, sequence }) {
+  return (
+    listing?.itemId ||
+    listing?.raw?.itemId ||
+    listing?.raw?.legacyItemId ||
+    `missing-item-id:${cardPrintId}:${observedAt}:${sequence}`
+  );
+}
+
+function buildObservationRecord(listing, decision, {
+  cardPrintId,
+  observedAt,
+  sequence,
+  validationRunId = null,
+}) {
+  const baseRawPayload = listing?.raw && typeof listing.raw === 'object'
+    ? listing.raw
+    : {};
+
+  return {
+    card_print_id: cardPrintId,
+    source: 'ebay',
+    external_id: buildObservationExternalId(listing, { cardPrintId, observedAt, sequence }),
+    listing_url: getListingUrl(listing),
+    title: listing?.title || null,
+    price: listing?.price ?? 0,
+    shipping: Number.isFinite(listing?.shippingCost) ? listing.shippingCost : 0,
+    currency: listing?.currency || 'USD',
+    condition_raw:
+      listing?.condition ||
+      listing?.conditionDescription ||
+      listing?.itemCondition ||
+      null,
+    listing_type: getListingType(listing),
+    match_confidence: decision.matchConfidence,
+    mapping_status: decision.mappingStatus,
+    classification: decision.classification,
+    condition_bucket: decision.bucket ?? null,
+    exclusion_reason: decision.exclusionReason ?? null,
+    raw_payload: {
+      ...baseRawPayload,
+      ...(validationRunId ? {
+        validation_run_id: validationRunId,
+        validation_mode: 'live_validation_v1',
+      } : {}),
+    },
+    observed_at: observedAt,
+  };
+}
+
+function buildPriceBucketsFromAcceptedObservations(observations) {
+  const buckets = {
+    nm: [],
+    lp: [],
+    mp: [],
+    hp: [],
+    dmg: [],
+  };
+
+  for (const observation of observations) {
+    const bucket = observation?.condition_bucket;
+    const totalPrice = Number(observation?.total_price);
+    if (!bucket || !Object.prototype.hasOwnProperty.call(buckets, bucket)) {
+      continue;
+    }
+    if (!Number.isFinite(totalPrice) || totalPrice <= 0) {
+      continue;
+    }
+    buckets[bucket].push(totalPrice);
+  }
+
+  return buckets;
+}
+
 function parseArgs(argv) {
   const result = {
     dryRun: false,
@@ -397,9 +548,16 @@ function isBaseSetPrint(print) {
   return name.includes('base set') || code.includes('base1');
 }
 
-function categorizeListing(listing, { dryRun = false, debug = false, print = null } = {}) {
+export function categorizeListing(listing, { dryRun = false, debug = false, print = null } = {}) {
   if (!listing || typeof listing.price !== 'number') {
-    return null;
+    return {
+      classification: 'staged',
+      mappingStatus: 'unmapped',
+      exclusionReason: 'invalid_price',
+      bucket: null,
+      priceTotal: null,
+      matchConfidence: 0,
+    };
   }
 
   const normTitle = normalizeTitle(listing.title);
@@ -433,73 +591,83 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
     }
   };
 
+  const reject = (exclusionReason, mappingStatus = 'ambiguous') => {
+    logSkip(exclusionReason);
+    return {
+      classification: 'rejected',
+      mappingStatus,
+      exclusionReason,
+      bucket: null,
+      priceTotal: null,
+      matchConfidence: mappingStatus === 'mapped' ? 0.5 : 0,
+    };
+  };
+
+  const stage = (exclusionReason, mappingStatus = 'ambiguous') => {
+    logSkip(exclusionReason);
+    return {
+      classification: 'staged',
+      mappingStatus,
+      exclusionReason,
+      bucket: null,
+      priceTotal: null,
+      matchConfidence: mappingStatus === 'mapped' ? 0.6 : 0.25,
+    };
+  };
+
   if (!normTitle) {
-    logSkip('missing_title');
-    return null;
+    return stage('missing_title', 'unmapped');
   }
 
   if (isAuctionOnly(listing.buyingOptions)) {
-    logSkip('auction_only');
-    return null;
+    return reject('auction_only');
+  }
+
+  const gradedSignal = detectGradedSignal(normTitle);
+  if (gradedSignal.isGraded) {
+    return reject('graded');
   }
 
   const requireBaseHints = isBaseSetPrint(print);
   if (requireBaseHints) {
     const hasHint = REQUIRED_BASE_HINTS.some((hint) => normTitle.includes(hint));
     if (!hasHint) {
-      logSkip('missing_base_hint');
-      return null;
+      return reject('missing_base_hint', 'unmapped');
     }
   }
 
-  if (
-    GRADED_PATTERNS.some((pattern) => normTitle.includes(pattern)) ||
-    GRADE_SCORE_REGEX.test(normTitle) ||
-    GRADE_WORD_REGEX.test(normTitle)
-  ) {
-    logSkip('graded');
-    return null;
-  }
-
   if (FIRST_EDITION_PATTERNS.some((pattern) => normTitle.includes(pattern))) {
-    logSkip('first_edition');
-    return null;
+    return reject('first_edition');
   }
 
   if (SHADOWLESS_PATTERNS.some((pattern) => normTitle.includes(pattern))) {
-    logSkip('shadowless');
-    return null;
+    return reject('shadowless');
   }
 
   if (SEALED_PATTERNS.some((pattern) => normTitle.includes(pattern))) {
-    logSkip('sealed');
-    return null;
+    return reject('sealed');
   }
 
   if (
     LOT_PATTERNS.some((pattern) => paddedTitle.includes(pattern)) ||
     /\bx[2-9]\b/.test(normTitle)
   ) {
-    logSkip('lot');
-    return null;
+    return reject('lot');
   }
 
   if (FAKE_PATTERNS.some((pattern) => normTitle.includes(pattern))) {
-    logSkip('fake');
-    return null;
+    return reject('fake');
   }
 
   const priceTotal =
     listing.price + (Number.isFinite(listing.shippingCost) ? listing.shippingCost : 0);
   if (!Number.isFinite(priceTotal) || priceTotal <= 0) {
-    logSkip('invalid_price');
-    return null;
+    return reject('invalid_price', 'unmapped');
   }
 
   const skipReasonV3 = getListingSkipReasonV3(listing);
   if (skipReasonV3) {
-    logSkip(skipReasonV3);
-    return null;
+    return reject(skipReasonV3, skipReasonV3 === 'wrong_set' || skipReasonV3 === 'wrong_lang' ? 'unmapped' : 'ambiguous');
   }
 
   const expectedNumberValue = Number.parseInt(print?.number_plain ?? '', 10);
@@ -516,35 +684,27 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
       expectedNumberPlain,
       foundNumberPlain,
     });
-    return null;
+    return reject('collector_number_mismatch', 'unmapped');
   }
 
-  const pushBucket = (bucket, label = bucket) => {
+  const pushBucket = (bucket, label = bucket, matchConfidence = 1) => {
     if (dryRun) {
       console.log(`[use][${label}] ${listing.title}`);
     }
     logDecision(true, label, bucket);
-    return { bucket, priceTotal };
+    return {
+      classification: 'accepted',
+      mappingStatus: 'mapped',
+      exclusionReason: null,
+      bucket,
+      priceTotal,
+      matchConfidence,
+    };
   };
 
-  if (descriptor && DMG_CONDITION_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
-    return pushBucket('dmg', 'dmg');
-  }
-
-  if (descriptor && HP_CONDITION_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
-    return pushBucket('hp', 'hp');
-  }
-
-  if (descriptor && MP_CONDITION_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
-    return pushBucket('mp', 'mp');
-  }
-
-  if (descriptor && NM_CONDITION_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
-    return pushBucket('nm', 'nm');
-  }
-
-  if (descriptor && LP_CONDITION_PATTERNS.some((pattern) => descriptor.includes(pattern))) {
-    return pushBucket('lp', 'lp');
+  const conditionBucket = detectConditionBucket(condParts.join(' '));
+  if (conditionBucket) {
+    return pushBucket(conditionBucket, conditionBucket);
   }
 
   const numberDescriptor = buildNumberDescriptor(print);
@@ -561,12 +721,11 @@ function categorizeListing(listing, { dryRun = false, debug = false, print = nul
   const looksCorrect = looksSetName && hasCardNumber;
 
   if (looksCorrect) {
-    return pushBucket('lp', 'unknown_as_lp');
+    return pushBucket('lp', 'unknown_as_lp', 0.7);
   }
 
-  logSkip('no_condition_match');
   logDecision(false, 'no_condition_match', null);
-  return null;
+  return stage('no_condition_match', 'ambiguous');
 }
 
 function median(sortedValues) {
@@ -753,7 +912,13 @@ function enforceMonotonicCurve(summary) {
   return s;
 }
 
-export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun = false, debug = false }) {
+export async function updatePricingForCardPrint({
+  supabase,
+  cardPrintId,
+  dryRun = false,
+  debug = false,
+  validationRunId = null,
+}) {
   if (!supabase) {
     throw new Error('[pricing] Supabase client is required.');
   }
@@ -832,37 +997,47 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
     }
   }
 
-  const nmPrices = [];
-  const lpPrices = [];
-  const mpPrices = [];
-  const hpPrices = [];
-  const dmgPrices = [];
-
-  listings.forEach((listing) => {
-    const bucketed = categorizeListing(listing, { dryRun, debug, print: cardPrint });
-    if (!bucketed) {
-      return;
-    }
-    switch (bucketed.bucket) {
-      case 'nm':
-        nmPrices.push(bucketed.priceTotal);
-        break;
-      case 'lp':
-        lpPrices.push(bucketed.priceTotal);
-        break;
-      case 'mp':
-        mpPrices.push(bucketed.priceTotal);
-        break;
-      case 'hp':
-        hpPrices.push(bucketed.priceTotal);
-        break;
-      case 'dmg':
-        dmgPrices.push(bucketed.priceTotal);
-        break;
-      default:
-        break;
-    }
+  const observedAt = new Date().toISOString();
+  const observations = listings.map((listing, index) => {
+    const decision = categorizeListing(listing, { dryRun, debug, print: cardPrint });
+    return buildObservationRecord(listing, decision, {
+      cardPrintId,
+      observedAt,
+      sequence: index,
+      validationRunId,
+    });
   });
+
+  const acceptedObservations = dryRun
+    ? observations
+        .filter((observation) => observation.classification === 'accepted' && observation.mapping_status === 'mapped')
+        .map((observation, index) => ({
+          id: `dry-run-${index}`,
+          card_print_id: observation.card_print_id,
+          source: observation.source,
+          external_id: observation.external_id,
+          title: observation.title,
+          price: observation.price,
+          shipping: observation.shipping,
+          total_price: Number(observation.price) + Number(observation.shipping ?? 0),
+          condition_bucket: observation.condition_bucket,
+          match_confidence: observation.match_confidence,
+          observed_at: observation.observed_at,
+        }))
+    : await (async () => {
+        await insertPricingObservations(supabase, observations);
+        return getAcceptedPricingObservationsForBatch(supabase, {
+          cardPrintId,
+          source: 'ebay',
+          observedAt,
+        });
+      })();
+  const acceptedBuckets = buildPriceBucketsFromAcceptedObservations(acceptedObservations);
+  const nmPrices = acceptedBuckets.nm;
+  const lpPrices = acceptedBuckets.lp;
+  const mpPrices = acceptedBuckets.mp;
+  const hpPrices = acceptedBuckets.hp;
+  const dmgPrices = acceptedBuckets.dmg;
 
   const nmStats = computeStats(nmPrices);
   const lpStats = computeStats(lpPrices);
@@ -877,7 +1052,7 @@ export async function updatePricingForCardPrint({ supabase, cardPrintId, dryRun 
       hpCount: hpPrices.length,
       dmgCount: dmgPrices.length,
       totalKept: nmPrices.length + lpPrices.length + mpPrices.length + hpPrices.length + dmgPrices.length,
-      totalSkipped: listings.length - (nmPrices.length + lpPrices.length + mpPrices.length + hpPrices.length + dmgPrices.length),
+      totalSkipped: observations.length - (nmPrices.length + lpPrices.length + mpPrices.length + hpPrices.length + dmgPrices.length),
     });
   }
   if (lpPrices.length) {
