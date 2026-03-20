@@ -8,6 +8,7 @@ import {
   STRUCTURED_CARD_SET_ALIAS_MAP,
   type PublicSetSummary,
 } from "@/lib/publicSets.shared";
+import { normalizeQuery, type NormalizedQueryPacket } from "@/lib/resolver/normalizeQuery";
 
 const CARD_SELECT = "id,gv_id,name,number,set_code,printed_set_abbrev";
 const STRUCTURED_QUERY_LIMIT = 80;
@@ -195,18 +196,6 @@ function normalizeDigits(value: string) {
   return digits || "0";
 }
 
-function normalizeGvIdInput(value: string) {
-  const tokens = value.trim().toUpperCase().match(/[A-Z0-9]+/g);
-  if (!tokens || tokens.length < 3) return null;
-
-  const expandedTokens = tokens[0] === "GVPK" ? ["GV", "PK", ...tokens.slice(1)] : tokens;
-  if (expandedTokens[0] !== "GV" || expandedTokens[1] !== "PK" || expandedTokens.length < 4) {
-    return null;
-  }
-
-  return `GV-PK-${expandedTokens.slice(2).join("-")}`;
-}
-
 function parseCollectorFraction(token: string): ParsedFraction | null {
   const match = token.match(/^([a-z]*\d+)\/([a-z]*\d+)$/i);
   if (!match) {
@@ -246,15 +235,12 @@ function subtractTokens(tokens: string[], removeTokens: string[]) {
   return remaining;
 }
 
-function parseQuery(rawQuery: string): ParsedQuery {
-  const normalizedFallbackQuery = normalizeFallbackQuery(rawQuery);
-  const normalizedInput = normalizeResolverInput(rawQuery);
-
+function parseQuery(packet: NormalizedQueryPacket): ParsedQuery {
   return {
-    normalizedInput,
-    normalizedFallbackQuery,
-    normalizedGvId: normalizeGvIdInput(normalizedInput),
-    tokens: splitTokens(normalizedInput),
+    normalizedInput: packet.normalizedResolverInput,
+    normalizedFallbackQuery: normalizeFallbackQuery(packet.normalizedQuery),
+    normalizedGvId: packet.normalizedGvId,
+    tokens: splitTokens(packet.normalizedResolverInput),
   };
 }
 
@@ -551,13 +537,13 @@ async function resolveAliasOrNickname() {
   return null;
 }
 
-export async function resolvePublicSearchWithTiming(
-  rawQuery: string,
+export async function resolvePublicSearchPacketWithTiming(
+  packet: NormalizedQueryPacket,
 ): Promise<{ result: ResolverResult; timing: ResolvePublicSearchTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
 
-  const normalizeStage = await measureStage(() => parseQuery(rawQuery));
+  const normalizeStage = await measureStage(() => parseQuery(packet));
   const parsedQuery = normalizeStage.value;
   const directLookupStage = emptyStageTiming();
   const structuredStage = emptyStageTiming();
@@ -671,6 +657,12 @@ export async function resolvePublicSearchWithTiming(
       },
     },
   };
+}
+
+export async function resolvePublicSearchWithTiming(
+  rawQuery: string,
+): Promise<{ result: ResolverResult; timing: ResolvePublicSearchTiming }> {
+  return resolvePublicSearchPacketWithTiming(normalizeQuery(rawQuery));
 }
 
 export async function resolvePublicSearch(rawQuery: string): Promise<ResolverResult> {

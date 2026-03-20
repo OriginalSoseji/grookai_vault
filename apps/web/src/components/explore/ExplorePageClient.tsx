@@ -11,8 +11,8 @@ import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
-import { getExploreRows } from "@/lib/explore/getExploreRows";
 import { normalizeExploreViewMode, type ExploreViewMode } from "@/lib/exploreViewModes";
+import { resolveQuery } from "@/lib/resolver/resolveQuery";
 
 type ExploreRow = ExploreResultCard;
 type SortMode = "relevance" | "newest" | "oldest";
@@ -85,13 +85,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
       setError(null);
 
       try {
-        const nextRows = await getExploreRows(
-          normalizedQuery,
+        const nextRows = await resolveQuery(q, {
+          mode: "ranked",
           sortMode,
           exactSetCode,
           exactReleaseYear,
-          exactIllustrator || undefined,
-        );
+          exactIllustrator: exactIllustrator || undefined,
+        });
         if (cancelled) return;
         setRows(nextRows);
       } catch (searchError) {
@@ -110,7 +110,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
     return () => {
       cancelled = true;
     };
-  }, [normalizedQuery, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
+  }, [q, normalizedQuery, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
     const params = new URLSearchParams(searchParams.toString());

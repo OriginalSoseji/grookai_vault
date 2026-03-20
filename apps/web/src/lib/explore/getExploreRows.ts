@@ -3,6 +3,7 @@
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds, type PublicPricingRecord } from "@/lib/pricing/getPublicPricingByCardIds";
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
+import { normalizeQuery, type NormalizedQueryPacket } from "@/lib/resolver/normalizeQuery";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -207,16 +208,12 @@ function getReleaseYear(releaseDate?: string | null) {
   return Number.isFinite(parsedYear) ? parsedYear : undefined;
 }
 
-function normalizeFreeTextQuery(value: string) {
-  return value.trim().replace(/\s+/g, " ");
-}
-
 function normalizeTextForMatch(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-function normalizeCollectorToken(value: string) {
-  return value.trim().toUpperCase().replace(/\s+/g, "");
+function normalizeCollectorToken(value?: string | null) {
+  return (value ?? "").trim().toUpperCase().replace(/\s+/g, "");
 }
 
 function normalizeDigits(value: string) {
@@ -232,135 +229,39 @@ function tokenizeQuerySegments(value?: string | null) {
   return normalizeTextForMatch(value).match(/[a-z0-9/]+/g) ?? [];
 }
 
-function normalizeGvIdInput(value: string) {
-  const tokens = value.trim().toUpperCase().match(/[A-Z0-9]+/g);
-  if (!tokens || tokens.length < 3) return null;
-
-  const expandedTokens = tokens[0] === "GVPK" ? ["GV", "PK", ...tokens.slice(1)] : tokens;
-  if (expandedTokens[0] !== "GV" || expandedTokens[1] !== "PK" || expandedTokens.length < 4) {
-    return null;
-  }
-
-  return `GV-PK-${expandedTokens.slice(2).join("-")}`;
-}
-
-function detectSetExpectations(normalizedQuery: string) {
-  const normalized = normalizeSetQuery(normalizedQuery);
-  const expectedCodes: string[] = [];
-  const consumedTokens: string[] = [];
-
-  for (const [phrase, codes] of Object.entries(STRUCTURED_CARD_SET_ALIAS_MAP)) {
-    const normalizedPhrase = normalizeSetQuery(phrase);
-    if (!normalizedPhrase) continue;
-
-    if (` ${normalized} `.includes(` ${normalizedPhrase} `)) {
-      expectedCodes.push(...codes.map((code) => normalizeSetCode(code)));
-      consumedTokens.push(...tokenizeSetWords(normalizedPhrase));
-    }
-  }
-
-  return {
-    expectedCodes: uniqueValues(expectedCodes),
-    consumedTokens: uniqueValues(consumedTokens),
-  };
-}
-
-function detectVariantCues(normalizedQuery: string) {
-  const normalized = normalizeTextForMatch(normalizedQuery);
+function mapVariantTokensToCues(variantTokens: NormalizedQueryPacket["variantTokens"]): VariantCue[] {
   const cues = new Set<VariantCue>();
-  const consumedTokens = new Set<string>();
-  const phrases: Array<{ phrase: string; cue: VariantCue }> = [
-    { phrase: "alt art", cue: "alt_art" },
-    { phrase: "alternate art", cue: "alt_art" },
-    { phrase: "full art", cue: "full_art" },
-    { phrase: "black star promo", cue: "promo" },
-    { phrase: "black star", cue: "promo" },
-  ];
 
-  for (const { phrase, cue } of phrases) {
-    if (` ${normalized} `.includes(` ${phrase} `)) {
-      cues.add(cue);
-      for (const token of tokenizeNormalizedQuery(phrase)) {
-        consumedTokens.add(token);
-      }
+  for (const token of variantTokens) {
+    if (token === "alt art") {
+      cues.add("alt_art");
+    } else if (token === "full art") {
+      cues.add("full_art");
+    } else if (token === "promo") {
+      cues.add("promo");
+    } else if (token === "holo") {
+      cues.add("holo");
+    } else if (token === "rainbow") {
+      cues.add("rainbow");
+    } else if (token === "gold") {
+      cues.add("gold");
     }
   }
 
-  if (` ${normalized} `.includes(" promo ")) {
-    cues.add("promo");
-    consumedTokens.add("promo");
-  }
-
-  if (` ${normalized} `.includes(" holo ")) {
-    cues.add("holo");
-    consumedTokens.add("holo");
-  }
-
-  if (` ${normalized} `.includes(" rainbow ")) {
-    cues.add("rainbow");
-    consumedTokens.add("rainbow");
-  }
-
-  if (` ${normalized} `.includes(" gold ")) {
-    cues.add("gold");
-  }
-
-  return {
-    cues: [...cues],
-    consumedTokens: [...consumedTokens],
-  };
+  return [...cues];
 }
 
-function buildCollectorNumberExpectations(normalizedQuery: string) {
-  const expectations: CollectorNumberExpectation[] = [];
-
-  for (const segment of tokenizeQuerySegments(normalizedQuery)) {
-    const fractionMatch = segment.match(/^([a-z]*\d+)\/([a-z]*\d+)$/i);
-    if (fractionMatch) {
-      const printedNumber = normalizeCollectorToken(fractionMatch[1]);
-      expectations.push({
-        token: printedNumber,
-        digits: normalizeDigits(printedNumber),
-        exact_only: /[A-Z]/.test(printedNumber),
-      });
-      continue;
-    }
-
-    if (/^[a-z]+\d+$/i.test(segment)) {
-      expectations.push({
-        token: normalizeCollectorToken(segment),
-        exact_only: true,
-      });
-      continue;
-    }
-
-    if (/^\d+$/.test(segment)) {
-      const normalizedDigits = normalizeDigits(segment);
-      expectations.push({
-        token: normalizedDigits,
-        digits: normalizedDigits,
-        exact_only: false,
-      });
-    }
-  }
-
-  const deduped = new Map<string, CollectorNumberExpectation>();
-  for (const expectation of expectations) {
-    deduped.set(expectation.token, expectation);
-  }
-
-  return [...deduped.values()];
-}
-
-function buildResolverQuery(rawQuery: string): ResolverQuery {
-  const normalized = normalizeFreeTextQuery(rawQuery);
-  const setExpectations = detectSetExpectations(normalized);
-  const variantExpectations = detectVariantCues(normalized);
-  const collectorExpectations = buildCollectorNumberExpectations(normalized);
-  const tokens = tokenizeNormalizedQuery(normalized);
+function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
+  const normalized = packet.normalizedQuery;
+  const collectorExpectations = packet.collectorExpectations.map((expectation) => ({
+    token: expectation.token,
+    digits: expectation.digits,
+    exact_only: expectation.exactOnly,
+  }));
+  const tokens = packet.normalizedTokens;
   const consumedTokenSet = new Set([
-    ...setExpectations.consumedTokens,
-    ...variantExpectations.consumedTokens,
+    ...packet.setConsumedTokens,
+    ...packet.variantConsumedTokens,
   ]);
   const textTokens = uniqueValues(
     tokens.filter(
@@ -376,26 +277,18 @@ function buildResolverQuery(rawQuery: string): ResolverQuery {
     .slice(0, MAX_SIGNIFICANT_TEXT_TOKENS);
 
   return {
-    raw: rawQuery,
+    raw: packet.rawQuery,
     normalized,
     tokens,
     textTokens,
     significantTextTokens,
     numberTokens: collectorExpectations.map((expectation) => expectation.token),
-    numberDigitTokens: uniqueValues(
-      collectorExpectations
-        .map((expectation) => expectation.digits ?? "")
-        .filter(Boolean),
-    ),
-    setTokens: setExpectations.consumedTokens,
-    expectedSetCodes: setExpectations.expectedCodes,
-    variantCues: variantExpectations.cues,
-    hasStrongDisambiguator:
-      collectorExpectations.length > 0 ||
-      setExpectations.expectedCodes.length > 0 ||
-      setExpectations.consumedTokens.length > 0 ||
-      variantExpectations.cues.length > 0,
-    directGvId: normalizeGvIdInput(normalized),
+    numberDigitTokens: packet.numberDigitTokens,
+    setTokens: packet.setConsumedTokens,
+    expectedSetCodes: packet.expectedSetCodes,
+    variantCues: mapVariantTokensToCues(packet.variantTokens),
+    hasStrongDisambiguator: packet.hasStrongDisambiguator,
+    directGvId: packet.normalizedGvId,
   };
 }
 
@@ -1104,8 +997,8 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   );
 }
 
-export async function getExploreRowsWithTiming(
-  rawQuery: string,
+export async function getExploreRowsPacketWithTiming(
+  packet: NormalizedQueryPacket,
   sortMode: SortMode,
   exactSetCode: string,
   exactReleaseYear?: number,
@@ -1113,7 +1006,7 @@ export async function getExploreRowsWithTiming(
 ): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
-  const buildQueryStage = await measureStage(() => buildResolverQuery(rawQuery));
+  const buildQueryStage = await measureStage(() => buildResolverQuery(packet));
   const query = buildQueryStage.value;
 
   const fetchCandidatesStage = emptyStageTiming();
@@ -1271,6 +1164,22 @@ export async function getExploreRowsWithTiming(
       },
     },
   };
+}
+
+export async function getExploreRowsWithTiming(
+  rawQuery: string,
+  sortMode: SortMode,
+  exactSetCode: string,
+  exactReleaseYear?: number,
+  exactIllustrator?: string,
+): Promise<{ rows: ExploreRow[]; timing: ExploreRowsTiming }> {
+  return getExploreRowsPacketWithTiming(
+    normalizeQuery(rawQuery),
+    sortMode,
+    exactSetCode,
+    exactReleaseYear,
+    exactIllustrator,
+  );
 }
 
 export async function getExploreRows(

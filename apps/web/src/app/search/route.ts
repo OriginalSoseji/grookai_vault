@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
-import { resolvePublicSearch } from "@/lib/publicSearchResolver";
+import { resolveQuery } from "@/lib/resolver/resolveQuery";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const result = await resolvePublicSearch(rawQuery);
+    const result = await resolveQuery(rawQuery, { mode: "direct" });
 
     if (result.kind === "card") {
       const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
