@@ -83,6 +83,10 @@ export async function getCardPricingComps(cardPrintId: string): Promise<CardPric
     .map((row) => row.observed_at)
     .filter((value): value is string => typeof value === "string" && value.length > 0)
     .sort((left, right) => Date.parse(right) - Date.parse(left));
+  const acceptedObservedTimestamps = accepted
+    .map((row) => row.observed_at)
+    .filter((value): value is string => typeof value === "string" && value.length > 0)
+    .sort((left, right) => Date.parse(right) - Date.parse(left));
 
   const acceptedTotals = accepted
     .map((row) => row.total_price)
@@ -97,7 +101,7 @@ export async function getCardPricingComps(cardPrintId: string): Promise<CardPric
       accepted_count: accepted.length,
       staged_count: staged.length,
       rejected_count: rejected.length,
-      latest_observed_at: observedTimestamps[0],
+      latest_observed_at: acceptedObservedTimestamps[0] ?? observedTimestamps[0],
       accepted_price_min: acceptedTotals.length > 0 ? acceptedTotals[0] : undefined,
       accepted_price_max: acceptedTotals.length > 0 ? acceptedTotals[acceptedTotals.length - 1] : undefined,
       accepted_average_match_confidence: averageConfidence(accepted),

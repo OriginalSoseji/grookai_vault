@@ -77,6 +77,18 @@ Unresolved risk afterward:
 
 - live accepted comps and live price explainability were still unproven because the first live validation slice failed closed on a real `429`
 
+### `PRICING_CHECKPOINT_05_TRUST_SYSTEM_V1.md`
+
+This checkpoint explains why the price itself now needs to communicate trust at a glance, not only through the comps panel. It preserves the deterministic rules for market state, confidence, freshness, and honest empty / thin / stale states on card detail.
+
+Decision locked there:
+
+- the main pricing surface must expose trust state directly from persisted observation evidence
+
+Unresolved risk afterward:
+
+- live comp population is still limited by eBay throttling and the incomplete live validation window, so the trust surface exists before dense live evidence is broadly available
+
 ## Current Pricing State Summary
 
 Current pricing state in plain language:
@@ -94,6 +106,7 @@ What is already built:
 - accepted-lane and audit views
 - classifier hardening with offline certification
 - signed-in card detail comps trust surface
+- signed-in card detail trust summary
 
 What is proven offline:
 
@@ -128,7 +141,10 @@ Recommended reading order for future maintainers:
 4. `PRICING_CHECKPOINT_04_COMPS_TRUST_SURFACE.md`
    - finish with how the evidence layer became visible on product surfaces and why trust is a system property
 
-After those four checkpoints, read the supporting audits in this order:
+5. `PRICING_CHECKPOINT_05_TRUST_SYSTEM_V1.md`
+   - then read how trust moved into the at-a-glance price surface through deterministic market, confidence, and freshness rules
+
+After those five checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`

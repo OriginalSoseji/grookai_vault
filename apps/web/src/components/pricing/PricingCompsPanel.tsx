@@ -130,6 +130,8 @@ export default function PricingCompsPanel({
   const rejectedCount = comps.summary.rejected_count;
   const hasAccepted = acceptedCount > 0;
   const isThin = acceptedCount > 0 && acceptedCount <= 2;
+  const acceptedRangeMin = formatCurrency(comps.summary.accepted_price_min);
+  const acceptedRangeMax = formatCurrency(comps.summary.accepted_price_max);
 
   return (
     <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
@@ -147,9 +149,11 @@ export default function PricingCompsPanel({
         <div className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Accepted Comps</p>
           <p className="mt-2 text-lg font-semibold text-slate-950">{acceptedCount}</p>
-          <p className="mt-1 text-xs text-slate-500">
-            Range {formatCurrency(comps.summary.accepted_price_min)} to {formatCurrency(comps.summary.accepted_price_max)}
-          </p>
+          {hasAccepted && acceptedRangeMin && acceptedRangeMax ? (
+            <p className="mt-1 text-xs text-slate-500">Range {acceptedRangeMin} to {acceptedRangeMax}</p>
+          ) : (
+            <p className="mt-1 text-xs text-slate-500">No accepted comps yet</p>
+          )}
         </div>
         <div className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Last Observed</p>

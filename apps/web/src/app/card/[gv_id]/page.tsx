@@ -13,6 +13,7 @@ import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import PricingCompsPanel from "@/components/pricing/PricingCompsPanel";
+import PricingTrustSummary from "@/components/pricing/PricingTrustSummary";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
@@ -28,6 +29,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { getCardPricingComps } from "@/lib/pricing/getCardPricingComps";
+import { getPricingTrustState } from "@/lib/pricing/getPricingTrustState";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
@@ -305,6 +307,7 @@ export default async function CardPage({
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
   const pricingComps = canViewPricing && resolvedCard.id ? await getCardPricingComps(resolvedCard.id) : null;
+  const pricingTrustState = pricingComps ? getPricingTrustState({ comps: pricingComps }) : null;
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
@@ -453,6 +456,8 @@ export default async function CardPage({
                   )}
                 </div>
               </div>
+
+              {canViewPricing && pricingTrustState ? <PricingTrustSummary trustState={pricingTrustState} /> : null}
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>
