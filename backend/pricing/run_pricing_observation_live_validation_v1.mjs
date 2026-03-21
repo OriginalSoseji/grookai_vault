@@ -268,6 +268,22 @@ function summarizeDistribution(rows) {
   });
 }
 
+function classifyRunOutcome(executionResults) {
+  const blockedByThrottle = executionResults.some(
+    (row) => row.status === 'blocked_by_throttle' || row.error_status === 429,
+  );
+  if (blockedByThrottle) {
+    return 'BLOCKED_BY_THROTTLE';
+  }
+
+  const updatedCount = executionResults.filter((row) => row.status === 'updated').length;
+  if (updatedCount > 0) {
+    return 'PASS';
+  }
+
+  return 'UNPROVEN';
+}
+
 function toCardSummaries(targets) {
   return Object.entries(targets).map(([label, target]) => ({
     label,
@@ -357,16 +373,17 @@ async function main() {
         },
       });
     } catch (error) {
+      const blockedByThrottle = isEbayBrowseBudgetExceededError(error) || error?.status === 429 || error?.cause?.status === 429;
       const record = {
         card_print_id: target.card_print_id,
         name: target.name,
-        status: 'error',
+        status: blockedByThrottle ? 'blocked_by_throttle' : 'error',
         error_message: error?.message ?? String(error),
         error_code: error?.code ?? null,
         error_status: error?.status ?? error?.cause?.status ?? null,
       };
       executionResults.push(record);
-      if (isEbayBrowseBudgetExceededError(error) || record.error_status === 429) {
+      if (blockedByThrottle) {
         break;
       }
     }
@@ -418,6 +435,10 @@ async function main() {
   }));
 
   printJsonBlock('execution_results', executionResults);
+  printJsonBlock('run_classification', {
+    run_id: runId,
+    outcome: classifyRunOutcome(executionResults),
+  });
   printJsonBlock('budget_after', budgetAfter);
   printJsonBlock('observation_ingestion_results', {
     run_id: runId,

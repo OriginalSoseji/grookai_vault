@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
-import { resolveQuery } from "@/lib/resolver/resolveQuery";
+import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import { createRouteHandlerClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 
@@ -67,18 +67,27 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const result = await resolveQuery(rawQuery, { mode: "direct" });
+    const resolved = await resolveQueryWithMeta(rawQuery, { mode: "direct" });
+    const result = resolved.result;
 
     if (result.kind === "card") {
-      const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
-      applyCompareCardsParam(request, nextUrl);
-      return NextResponse.redirect(nextUrl);
+      if (resolved.meta.resolverState === "STRONG_MATCH") {
+        const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
+        applyCompareCardsParam(request, nextUrl);
+        return NextResponse.redirect(nextUrl);
+      }
+
+      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery));
     }
 
     if (result.kind === "set") {
-      const nextUrl = new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url);
-      applyCompareCardsParam(request, nextUrl);
-      return NextResponse.redirect(nextUrl);
+      if (resolved.meta.resolverState === "STRONG_MATCH") {
+        const nextUrl = new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url);
+        applyCompareCardsParam(request, nextUrl);
+        return NextResponse.redirect(nextUrl);
+      }
+
+      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery));
     }
 
     if (result.kind === "sets") {

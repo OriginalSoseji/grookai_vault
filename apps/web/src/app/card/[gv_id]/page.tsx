@@ -13,6 +13,7 @@ import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import PricingCompsPanel from "@/components/pricing/PricingCompsPanel";
+import PricingProjectionSummary from "@/components/pricing/PricingProjectionSummary";
 import PricingTrustSummary from "@/components/pricing/PricingTrustSummary";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
@@ -29,6 +30,8 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { getCardPricingComps } from "@/lib/pricing/getCardPricingComps";
+import { getPricingProjectionState } from "@/lib/pricing/getPricingProjectionState";
+import { getReferencePricing } from "@/lib/pricing/getReferencePricing";
 import { getPricingTrustState } from "@/lib/pricing/getPricingTrustState";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
@@ -308,6 +311,15 @@ export default async function CardPage({
   const canViewPricing = Boolean(user);
   const pricingComps = canViewPricing && resolvedCard.id ? await getCardPricingComps(resolvedCard.id) : null;
   const pricingTrustState = pricingComps ? getPricingTrustState({ comps: pricingComps }) : null;
+  const referencePricing = canViewPricing && resolvedCard.id ? await getReferencePricing(resolvedCard.id) : null;
+  const pricingProjectionState =
+    canViewPricing && referencePricing
+      ? getPricingProjectionState({
+          rawMarketValue: resolvedCard.raw_price,
+          rawMarketConfidenceLabel: pricingTrustState?.confidenceLabel,
+          referencePricing,
+        })
+      : null;
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
@@ -457,7 +469,10 @@ export default async function CardPage({
                 </div>
               </div>
 
-              {canViewPricing && pricingTrustState ? <PricingTrustSummary trustState={pricingTrustState} /> : null}
+              {canViewPricing && pricingTrustState ? (
+                <PricingTrustSummary trustState={pricingTrustState} referencePricing={referencePricing} />
+              ) : null}
+              {canViewPricing && pricingProjectionState ? <PricingProjectionSummary projectionState={pricingProjectionState} /> : null}
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>

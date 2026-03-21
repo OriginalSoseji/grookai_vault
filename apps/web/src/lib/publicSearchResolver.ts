@@ -41,6 +41,8 @@ type ParsedQuery = {
   normalizedFallbackQuery: string;
   normalizedGvId: string | null;
   tokens: string[];
+  expectedSetCodes: string[];
+  setConsumedTokens: string[];
 };
 
 type SetContext = {
@@ -241,6 +243,8 @@ function parseQuery(packet: NormalizedQueryPacket): ParsedQuery {
     normalizedFallbackQuery: normalizeFallbackQuery(packet.normalizedQuery),
     normalizedGvId: packet.normalizedGvId,
     tokens: splitTokens(packet.normalizedResolverInput),
+    expectedSetCodes: packet.expectedSetCodes,
+    setConsumedTokens: packet.setConsumedTokens,
   };
 }
 
@@ -248,6 +252,8 @@ function buildSetContext(
   normalizedInput: string,
   setInfos: PublicSetSummary[],
   aliasMap: Record<string, string[]>,
+  expectedSetCodes: string[] = [],
+  consumedTokens: string[] = [],
 ): SetContext {
   const aliasMatches = Object.entries(aliasMap)
     .filter(([phrase]) => phraseInQuery(normalizedInput, phrase))
@@ -268,15 +274,21 @@ function buildSetContext(
   });
 
   if (matches.length === 0) {
-    return { setCodes: [], consumedTokens: [] };
+    return {
+      setCodes: uniqueValues(expectedSetCodes.map((code) => normalizeSetCode(code))),
+      consumedTokens: uniqueValues(consumedTokens),
+    };
   }
 
   const strongestPhrase = matches[0].phrase;
   const strongestMatches = matches.filter((match) => match.phrase === strongestPhrase);
 
   return {
-    setCodes: uniqueValues(strongestMatches.flatMap((match) => match.codes.map((code) => normalizeSetCode(code)))),
-    consumedTokens: splitTokens(strongestPhrase),
+    setCodes: uniqueValues([
+      ...strongestMatches.flatMap((match) => match.codes.map((code) => normalizeSetCode(code))),
+      ...expectedSetCodes.map((code) => normalizeSetCode(code)),
+    ]),
+    consumedTokens: uniqueValues([...splitTokens(strongestPhrase), ...consumedTokens]),
   };
 }
 
@@ -367,7 +379,13 @@ async function resolveStructuredCollectorQuery(
 ) {
   const setInfos = await getPublicSets();
   const setInfoByCode = new Map(setInfos.map((setInfo) => [normalizeSetCode(setInfo.code), setInfo]));
-  const setContext = buildSetContext(parsedQuery.normalizedInput, setInfos, STRUCTURED_CARD_SET_ALIAS_MAP);
+  const setContext = buildSetContext(
+    parsedQuery.normalizedInput,
+    setInfos,
+    STRUCTURED_CARD_SET_ALIAS_MAP,
+    parsedQuery.expectedSetCodes,
+    parsedQuery.setConsumedTokens,
+  );
   const tokensWithoutSet = subtractTokens(parsedQuery.tokens, setContext.consumedTokens);
 
   const fractionToken = tokensWithoutSet.find((token) => Boolean(parseCollectorFraction(token)));
@@ -470,6 +488,7 @@ function findSetIntentMatches(normalizedInput: string, sets: PublicSetSummary[])
 
 async function resolveSetIntent(parsedQuery: ParsedQuery): Promise<ResolverResult | null> {
   const sets = await getPublicSets();
+  const normalizedExpectedSetCodes = uniqueValues(parsedQuery.expectedSetCodes.map((code) => normalizeSetCode(code)));
   const aliasMatches = exactAliasSetMatches(parsedQuery.normalizedInput);
   const exactSetMatches = uniqueValues(
     sets
@@ -480,6 +499,14 @@ async function resolveSetIntent(parsedQuery: ParsedQuery): Promise<ResolverResul
       )
       .map((setInfo) => setInfo.code),
   );
+
+  if (
+    normalizedExpectedSetCodes.length === 1 &&
+    parsedQuery.tokens.length > 0 &&
+    parsedQuery.tokens.every((token) => parsedQuery.setConsumedTokens.includes(token))
+  ) {
+    return { kind: "set", set_code: normalizedExpectedSetCodes[0] };
+  }
 
   if (aliasMatches.length === 1) {
     return { kind: "set", set_code: aliasMatches[0] };

@@ -6,6 +6,7 @@ import { resolvePublicSearchPacketWithTiming } from "@/lib/publicSearchResolver"
 
 type DirectResolverResult = Awaited<ReturnType<typeof resolvePublicSearchPacketWithTiming>>["result"];
 type RankedResolverResult = Awaited<ReturnType<typeof getExploreRowsPacketWithTiming>>["rows"];
+type RankedResolverTiming = Awaited<ReturnType<typeof getExploreRowsPacketWithTiming>>["timing"];
 
 type DirectResolveOptions = {
   mode: "direct";
@@ -19,6 +20,24 @@ type RankedResolveOptions = {
   exactIllustrator?: string;
 };
 
+export type ResolverState = "STRONG_MATCH" | "AMBIGUOUS_MATCH" | "WEAK_MATCH" | "NO_MATCH";
+
+export type ResolverMeta = {
+  resolverState: ResolverState;
+  topScore: number | null;
+  candidateCount: number;
+  autoResolved: boolean;
+  structuredEvidenceFlags:
+    | {
+        expectedSet: boolean;
+        number: boolean;
+        fraction: boolean;
+        promo: boolean;
+        variants: string[];
+      }
+    | null;
+};
+
 function logResolverTrace(payload: {
   rawQuery: string;
   normalizedQuery: string;
@@ -28,24 +47,150 @@ function logResolverTrace(payload: {
   promoTokens: string[];
   possibleSetTokens: string[];
   variantTokens: string[];
+  coverageSignals: {
+    setRules: string[];
+    promoRules: string[];
+    variantRules: string[];
+    specialRules: string[];
+    shorthandRules: string[];
+    familyRules: string[];
+  };
   resolverPathUsed: "direct" | "ranked";
   candidateCount: number;
   executionMs: number;
   requestCount?: number;
   resultKind?: string;
+  resolverState: ResolverState;
+  autoResolved: boolean;
+  topScore?: number | null;
+  topMatch?: {
+    gvId: string;
+    score: number;
+    secondScore: number | null;
+    scoreGapToSecond: number | null;
+    components: Record<string, number>;
+    evidence: {
+      expectedSet: boolean;
+      number: boolean;
+      fraction: boolean;
+      promo: boolean;
+      variants: string[];
+    };
+  };
 }) {
   console.info("[resolver]", payload);
 }
 
-export async function resolveQuery(rawQuery: string, options: DirectResolveOptions): Promise<DirectResolverResult>;
-export async function resolveQuery(rawQuery: string, options: RankedResolveOptions): Promise<RankedResolverResult>;
-export async function resolveQuery(rawQuery: string, options: DirectResolveOptions | RankedResolveOptions) {
+function hasStructuredEvidence(
+  topMatch: RankedResolverTiming["top_match"],
+): topMatch is NonNullable<RankedResolverTiming["top_match"]> {
+  if (!topMatch) {
+    return false;
+  }
+
+  return (
+    topMatch.evidence.expected_set ||
+    topMatch.evidence.number ||
+    topMatch.evidence.fraction ||
+    topMatch.evidence.promo ||
+    topMatch.evidence.variants.length > 0
+  );
+}
+
+function classifyRankedResolverState(
+  candidateCount: number,
+  topMatch: RankedResolverTiming["top_match"],
+): ResolverState {
+  if (candidateCount === 0 || !topMatch) {
+    return "NO_MATCH";
+  }
+
+  const scoreGap = topMatch.score_gap_to_second ?? Number.POSITIVE_INFINITY;
+  const structured = hasStructuredEvidence(topMatch);
+
+  if (topMatch.score >= 2200 && structured && scoreGap >= 400) {
+    return "STRONG_MATCH";
+  }
+
+  if (topMatch.score >= 2800 && scoreGap >= 600) {
+    return "STRONG_MATCH";
+  }
+
+  if ((candidateCount > 1 && topMatch.score >= 2200 && scoreGap < 400) || (candidateCount > 1 && topMatch.score >= 1800 && !structured)) {
+    return "AMBIGUOUS_MATCH";
+  }
+
+  return "WEAK_MATCH";
+}
+
+function buildRankedResolverMeta(
+  rows: RankedResolverResult,
+  timing: RankedResolverTiming,
+): ResolverMeta {
+  return {
+    resolverState: classifyRankedResolverState(rows.length, timing.top_match),
+    topScore: timing.top_match?.score ?? null,
+    candidateCount: rows.length,
+    autoResolved: false,
+    structuredEvidenceFlags: timing.top_match
+      ? {
+          expectedSet: timing.top_match.evidence.expected_set,
+          number: timing.top_match.evidence.number,
+          fraction: timing.top_match.evidence.fraction,
+          promo: timing.top_match.evidence.promo,
+          variants: timing.top_match.evidence.variants,
+        }
+      : null,
+  };
+}
+
+function buildDirectResolverMeta(result: DirectResolverResult, rawQuery: string): ResolverMeta {
+  const hasQuery = rawQuery.trim().length > 0;
+  if (result.kind === "card" || result.kind === "set") {
+    return {
+      resolverState: "STRONG_MATCH",
+      topScore: null,
+      candidateCount: 1,
+      autoResolved: true,
+      structuredEvidenceFlags: null,
+    };
+  }
+
+  if (result.kind === "sets") {
+    return {
+      resolverState: "AMBIGUOUS_MATCH",
+      topScore: null,
+      candidateCount: 0,
+      autoResolved: false,
+      structuredEvidenceFlags: null,
+    };
+  }
+
+  return {
+    resolverState: hasQuery ? "WEAK_MATCH" : "NO_MATCH",
+    topScore: null,
+    candidateCount: 0,
+    autoResolved: false,
+    structuredEvidenceFlags: null,
+  };
+}
+
+export async function resolveQueryWithMeta(
+  rawQuery: string,
+  options: DirectResolveOptions,
+): Promise<{ result: DirectResolverResult; meta: ResolverMeta }>;
+export async function resolveQueryWithMeta(
+  rawQuery: string,
+  options: RankedResolveOptions,
+): Promise<{ rows: RankedResolverResult; meta: ResolverMeta }>;
+export async function resolveQueryWithMeta(rawQuery: string, options: DirectResolveOptions | RankedResolveOptions) {
   const packet = normalizeQuery(rawQuery);
 
   if (options.mode === "direct") {
     const resolved = await resolvePublicSearchPacketWithTiming(packet);
     const result = resolved.result;
-    const candidateCount = result.kind === "card" || result.kind === "set" ? 1 : 0;
+    const meta = buildDirectResolverMeta(result, rawQuery);
+    const candidateCount = meta.candidateCount;
 
     logResolverTrace({
       rawQuery,
@@ -56,14 +201,18 @@ export async function resolveQuery(rawQuery: string, options: DirectResolveOptio
       promoTokens: packet.promoTokens,
       possibleSetTokens: packet.possibleSetTokens,
       variantTokens: packet.variantTokens,
+      coverageSignals: packet.coverageSignals,
       resolverPathUsed: "direct",
       candidateCount,
       executionMs: resolved.timing.total_ms,
       requestCount: resolved.timing.request_count,
       resultKind: result.kind,
+      resolverState: meta.resolverState,
+      autoResolved: meta.autoResolved,
+      topScore: meta.topScore,
     });
 
-    return result;
+    return { result, meta };
   }
 
   const resolved = await getExploreRowsPacketWithTiming(
@@ -73,6 +222,7 @@ export async function resolveQuery(rawQuery: string, options: DirectResolveOptio
     options.exactReleaseYear,
     options.exactIllustrator,
   );
+  const meta = buildRankedResolverMeta(resolved.rows, resolved.timing);
 
   logResolverTrace({
     rawQuery,
@@ -83,11 +233,41 @@ export async function resolveQuery(rawQuery: string, options: DirectResolveOptio
     promoTokens: packet.promoTokens,
     possibleSetTokens: packet.possibleSetTokens,
     variantTokens: packet.variantTokens,
+    coverageSignals: packet.coverageSignals,
     resolverPathUsed: "ranked",
     candidateCount: resolved.rows.length,
     executionMs: resolved.timing.total_ms,
     requestCount: resolved.timing.request_count,
+    resolverState: meta.resolverState,
+    autoResolved: false,
+    topScore: meta.topScore,
+    topMatch: resolved.timing.top_match
+      ? {
+          gvId: resolved.timing.top_match.gv_id,
+          score: resolved.timing.top_match.score,
+          secondScore: resolved.timing.top_match.second_score,
+          scoreGapToSecond: resolved.timing.top_match.score_gap_to_second,
+          components: resolved.timing.top_match.components,
+          evidence: {
+            expectedSet: resolved.timing.top_match.evidence.expected_set,
+            number: resolved.timing.top_match.evidence.number,
+            fraction: resolved.timing.top_match.evidence.fraction,
+            promo: resolved.timing.top_match.evidence.promo,
+            variants: resolved.timing.top_match.evidence.variants,
+          },
+        }
+      : undefined,
   });
 
-  return resolved.rows;
+  return { rows: resolved.rows, meta };
+}
+
+export async function resolveQuery(rawQuery: string, options: DirectResolveOptions): Promise<DirectResolverResult>;
+export async function resolveQuery(rawQuery: string, options: RankedResolveOptions): Promise<RankedResolverResult>;
+export async function resolveQuery(rawQuery: string, options: DirectResolveOptions | RankedResolveOptions) {
+  if (options.mode === "direct") {
+    return (await resolveQueryWithMeta(rawQuery, options)).result;
+  }
+
+  return (await resolveQueryWithMeta(rawQuery, options)).rows;
 }

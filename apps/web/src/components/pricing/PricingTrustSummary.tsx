@@ -1,7 +1,9 @@
 import type { PricingTrustState } from "@/lib/pricing/getPricingTrustState";
+import type { ReferencePricing } from "@/lib/pricing/getReferencePricing";
 
 type PricingTrustSummaryProps = {
   trustState: PricingTrustState;
+  referencePricing?: ReferencePricing | null;
 };
 
 function formatCurrency(value?: number) {
@@ -53,10 +55,15 @@ function titleCase(value: string) {
   return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
 }
 
-export default function PricingTrustSummary({ trustState }: PricingTrustSummaryProps) {
+export default function PricingTrustSummary({ trustState, referencePricing }: PricingTrustSummaryProps) {
   const rangeMin = formatCurrency(trustState.acceptedPriceMin);
   const rangeMax = formatCurrency(trustState.acceptedPriceMax);
   const showRange = trustState.hasAcceptedComps && rangeMin && rangeMax;
+  const referenceValue = formatCurrency(referencePricing?.rawReferenceValue ?? undefined);
+  const showReference =
+    trustState.acceptedCompCount === 0 &&
+    referencePricing?.referenceAvailable === true &&
+    Boolean(referenceValue);
 
   return (
     <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
@@ -84,6 +91,13 @@ export default function PricingTrustSummary({ trustState }: PricingTrustSummaryP
           <span>{formatAge(trustState.ageInDays)}</span>
           {trustState.hasFilteredRows ? <span>Filtered rows present</span> : null}
         </div>
+
+        {showReference ? (
+          <div className="rounded-[14px] border border-sky-200 bg-sky-50 px-3 py-3 text-xs text-sky-800">
+            <span className="font-semibold uppercase tracking-[0.14em]">Reference</span>
+            <span className="ml-2">Reference price: ~{referenceValue} (JustTCG)</span>
+          </div>
+        ) : null}
       </div>
     </div>
   );

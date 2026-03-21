@@ -15,7 +15,6 @@ function isUuid(v: string): boolean {
   return UUID_RE.test(v);
 }
 
-const COOL_DOWN_MS = 2 * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
 const HOT_VALUE_THRESHOLD = 100;
@@ -43,6 +42,10 @@ type CanonicalRawPriceRow = {
 type PricingJobRow = {
   id: string | null;
   requested_at: string | null;
+  next_eligible_at: string | null;
+  last_meaningful_attempt_at: string | null;
+  priority: string | null;
+  last_outcome: string | null;
 };
 
 type SlabCertRow = {
@@ -365,7 +368,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   const { data: recentJob, error: recentJobError } = await client
     .from("pricing_jobs")
-    .select("id,requested_at")
+    .select("id,requested_at,next_eligible_at,last_meaningful_attempt_at,priority,last_outcome")
     .eq("card_print_id", cardPrintId)
     .order("requested_at", { ascending: false })
     .limit(1)
@@ -385,8 +388,9 @@ const handler = async (req: Request): Promise<Response> => {
     return json(500, { error: "cooldown_lookup_failed", detail: "Failed to inspect recent pricing requests" });
   }
 
-  const recentJobRequestedAt = parseTimestamp((recentJob as PricingJobRow | null)?.requested_at);
-  if (recentJobRequestedAt !== null && now - recentJobRequestedAt < COOL_DOWN_MS) {
+  const recentJobNextEligibleAt = parseTimestamp((recentJob as PricingJobRow | null)?.next_eligible_at);
+  if (recentJobNextEligibleAt !== null && recentJobNextEligibleAt > now) {
+    const cooldownHours = Math.max(1, Math.ceil((recentJobNextEligibleAt - now) / HOUR_MS));
     console.log(
       JSON.stringify({
         route: "pricing-live-request",
@@ -395,24 +399,31 @@ const handler = async (req: Request): Promise<Response> => {
         card_print_id: cardPrintId,
         outcome: "cooldown",
         recent_job_id: (recentJob as PricingJobRow | null)?.id ?? null,
+        next_eligible_at: (recentJob as PricingJobRow | null)?.next_eligible_at ?? null,
+        last_outcome: (recentJob as PricingJobRow | null)?.last_outcome ?? null,
+        queue_priority: (recentJob as PricingJobRow | null)?.priority ?? null,
       }),
     );
     return json(200, {
       status: "cooldown",
       request_id: (recentJob as PricingJobRow | null)?.id ?? null,
       card_print_id: cardPrintId,
-      cooldown_hours: Math.round(COOL_DOWN_MS / HOUR_MS),
+      cooldown_hours: cooldownHours,
+      next_eligible_at: (recentJob as PricingJobRow | null)?.next_eligible_at ?? null,
     });
   }
+
+  const initialPriority = vaultCount > 0 ? "vault" : "user";
 
   const { data, error } = await client
     .from("pricing_jobs")
     .insert({
       card_print_id: cardPrintId,
       requester_user_id: userId,
-      priority: "user",
+      priority: initialPriority,
       reason: "live_price_request",
       status: "pending",
+      next_eligible_at: new Date().toISOString(),
     })
     .select("id, status, card_print_id")
     .maybeSingle();
@@ -439,6 +450,7 @@ const handler = async (req: Request): Promise<Response> => {
       card_print_id: cardPrintId,
       outcome: "enqueued",
       pricing_job_id: data?.id ?? null,
+      queue_priority: initialPriority,
     }),
   );
 
@@ -447,6 +459,7 @@ const handler = async (req: Request): Promise<Response> => {
     request_id: data?.id,
     card_print_id: data?.card_print_id,
     freshness_tier: freshnessTier.tier,
+    queue_priority: initialPriority,
   });
 };
 

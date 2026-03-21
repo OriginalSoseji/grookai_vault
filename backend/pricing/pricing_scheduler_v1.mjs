@@ -7,6 +7,7 @@ import {
   getEstimatedBrowseCallsPerPricingJob,
   logEbayBrowseBudgetConfig,
 } from '../clients/ebay_browse_budget_v1.mjs';
+import { isBroadPricingQueueEnabled } from './pricing_queue_policy_v1.mjs';
 
 const DEFAULT_LIMIT = 100;
 const DEFAULT_RAW_POOL_SIZE = 500;
@@ -480,6 +481,23 @@ async function enqueueScheduledJobs(supabase, eligibleCandidates, limit, openJob
 }
 
 async function runSchedulerCycle({ supabase, limit, rawPoolSize }) {
+  if (!isBroadPricingQueueEnabled()) {
+    const cycleTs = new Date().toISOString();
+    console.log(`[pricing_scheduler_v1] cycle=${cycleTs} queued=0 skip_reason=broad_backfill_disabled`);
+    return {
+      cycleTs,
+      coarseCandidates: 0,
+      enrichedCandidates: 0,
+      eligibleCount: 0,
+      queuedCount: 0,
+      skippedOpenJob: 0,
+      skippedCooldown: 0,
+      queuedIds: [],
+      remainingCalls: null,
+      budgetLimitedJobCapacity: 0,
+    };
+  }
+
   const budgetSnapshot = await getEbayBrowseBudgetSnapshot({ supabase });
   const estimatedCallsPerJob = getEstimatedBrowseCallsPerPricingJob();
   const budgetLimitedJobCapacity = Math.floor(budgetSnapshot.remaining_calls / estimatedCallsPerJob);

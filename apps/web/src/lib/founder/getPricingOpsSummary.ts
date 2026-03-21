@@ -11,7 +11,7 @@ const RECENT_FAILED_WINDOW_HOURS = 24;
 const RECENT_RETRY_WINDOW_HOURS = 24;
 const RECENT_ACTIVITY_WINDOW_HOURS = 1;
 const THROUGHPUT_BUCKET_MINUTES = 5;
-const RETRY_ERROR_FILTER = "error.ilike.*429*,error.ilike.*rate_limit*,error.ilike.*rate-limited*";
+const RETRY_ERROR_FILTER = "error.ilike.*429*,error.ilike.*rate_limit*,error.ilike.*rate-limited*,error.ilike.*throttle_blocked*";
 const RECENT_ERROR_DISTRIBUTION_LIMIT = 200;
 
 type AdminClient = ReturnType<typeof createServerAdminClient>;
@@ -295,7 +295,7 @@ async function fetchQueueHealth(admin: AdminClient): Promise<FounderPricingQueue
         .from("pricing_jobs")
         .select("*", { count: "exact", head: true })
         .eq("status", "pending")
-        .ilike("error", "retryable_429:%"),
+        .or("error.ilike.%retryable_429%,error.ilike.%throttle_blocked%"),
       "Founder retryable_429 pricing_jobs count failed",
     ),
     countRows(
@@ -402,6 +402,7 @@ function classifyPricingErrorBucket(error: string | null) {
   }
 
   if (
+    normalized.includes("throttle_blocked") ||
     normalized.includes("retryable_429") ||
     normalized.includes("429") ||
     normalized.includes("rate_limit") ||

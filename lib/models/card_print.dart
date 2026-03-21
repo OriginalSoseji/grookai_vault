@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../secrets.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
 
@@ -74,7 +79,9 @@ class CardPrint {
       name: (json['name'] ?? '').toString(),
       gvId: json['gv_id']?.toString(),
       setCode: (json['set_code'] ?? '').toString(),
-      setName: set != null ? (set['name'] ?? '').toString() : null,
+      setName: set != null
+          ? (set['name'] ?? '').toString()
+          : json['set_name']?.toString(),
       number: json['number']?.toString(),
       numberPlain: json['number_plain']?.toString(),
       rarity: json['rarity']?.toString(),
@@ -83,10 +90,182 @@ class CardPrint {
   }
 }
 
+enum ResolverSearchState { strongMatch, ambiguousMatch, weakMatch, noMatch }
+
+ResolverSearchState? _parseResolverSearchState(String? value) {
+  switch (value) {
+    case 'STRONG_MATCH':
+      return ResolverSearchState.strongMatch;
+    case 'AMBIGUOUS_MATCH':
+      return ResolverSearchState.ambiguousMatch;
+    case 'WEAK_MATCH':
+      return ResolverSearchState.weakMatch;
+    case 'NO_MATCH':
+      return ResolverSearchState.noMatch;
+    default:
+      return null;
+  }
+}
+
+class CardSearchResolverMeta {
+  const CardSearchResolverMeta({
+    required this.resolverState,
+    required this.topScore,
+    required this.candidateCount,
+    required this.autoResolved,
+    required this.structuredEvidenceFlags,
+  });
+
+  final ResolverSearchState resolverState;
+  final double? topScore;
+  final int candidateCount;
+  final bool autoResolved;
+  final ResolverStructuredEvidenceFlags? structuredEvidenceFlags;
+
+  factory CardSearchResolverMeta.fromJson(Map<String, dynamic> json) {
+    return CardSearchResolverMeta(
+      resolverState:
+          _parseResolverSearchState(json['resolverState']?.toString()) ??
+          ResolverSearchState.noMatch,
+      topScore: json['topScore'] is num
+          ? (json['topScore'] as num).toDouble()
+          : double.tryParse((json['topScore'] ?? '').toString()),
+      candidateCount: json['candidateCount'] is int
+          ? json['candidateCount'] as int
+          : int.tryParse((json['candidateCount'] ?? '').toString()) ?? 0,
+      autoResolved: json['autoResolved'] == true,
+      structuredEvidenceFlags:
+          json['structuredEvidenceFlags'] is Map<String, dynamic>
+          ? ResolverStructuredEvidenceFlags.fromJson(
+              json['structuredEvidenceFlags'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+}
+
+class ResolverStructuredEvidenceFlags {
+  const ResolverStructuredEvidenceFlags({
+    required this.expectedSet,
+    required this.number,
+    required this.fraction,
+    required this.promo,
+    required this.variants,
+  });
+
+  final bool expectedSet;
+  final bool number;
+  final bool fraction;
+  final bool promo;
+  final List<String> variants;
+
+  factory ResolverStructuredEvidenceFlags.fromJson(Map<String, dynamic> json) {
+    final variants = json['variants'];
+    return ResolverStructuredEvidenceFlags(
+      expectedSet: json['expectedSet'] == true,
+      number: json['number'] == true,
+      fraction: json['fraction'] == true,
+      promo: json['promo'] == true,
+      variants: variants is List
+          ? variants.map((value) => value.toString()).toList()
+          : const [],
+    );
+  }
+}
+
+class CardPrintSearchResult {
+  const CardPrintSearchResult({
+    required this.rows,
+    required this.meta,
+    required this.source,
+  });
+
+  final List<CardPrint> rows;
+  final CardSearchResolverMeta? meta;
+  final String source;
+}
+
 const _cardPrintSelect =
     'id,gv_id,name,number,number_plain,rarity,set_code,image_url,image_alt_url,set:sets(name,code)';
 
 class CardPrintRepository {
+  static Future<CardPrintSearchResult> searchCardPrintsResolved({
+    required SupabaseClient client,
+    required CardSearchOptions options,
+    int defaultLimit = 200,
+    int searchLimit = 500,
+  }) async {
+    final trimmed = options.query.trim();
+
+    if (trimmed.isEmpty) {
+      final rows = await searchCardPrints(
+        client: client,
+        options: options,
+        defaultLimit: defaultLimit,
+        searchLimit: searchLimit,
+      );
+
+      return CardPrintSearchResult(
+        rows: rows,
+        meta: null,
+        source: 'local_browse',
+      );
+    }
+
+    final resolverUri = Uri.parse(grookaiWebBaseUrl)
+        .resolve('/api/resolver/search')
+        .replace(
+          queryParameters: {
+            'q': trimmed,
+            'limit': options.limit.clamp(1, searchLimit).toString(),
+          },
+        );
+
+    final response = await http
+        .get(resolverUri, headers: const {'Accept': 'application/json'})
+        .timeout(const Duration(seconds: 10));
+
+    final decoded = jsonDecode(response.body);
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      final message = decoded is Map<String, dynamic>
+          ? (decoded['error'] ?? 'Resolver request failed.').toString()
+          : 'Resolver request failed.';
+      throw StateError(message);
+    }
+
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Resolver returned an invalid payload.');
+    }
+
+    final rowsJson = decoded['rows'];
+    final metaJson = decoded['meta'];
+    var rows = rowsJson is List
+        ? rowsJson
+              .whereType<Map<String, dynamic>>()
+              .map(CardPrint.fromJson)
+              .toList()
+        : <CardPrint>[];
+
+    rows = _filterByRarity(rows, options.rarity);
+
+    final meta = metaJson is Map<String, dynamic>
+        ? CardSearchResolverMeta.fromJson(metaJson)
+        : null;
+
+    if (kDebugMode) {
+      debugPrint(
+        'search:web_resolver ${meta?.resolverState.name ?? 'browse'} '
+        'count=${rows.length} source=${decoded['source'] ?? 'unknown'}',
+      );
+    }
+
+    return CardPrintSearchResult(
+      rows: rows,
+      meta: meta,
+      source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
+    );
+  }
+
   static Future<List<CardPrint>> searchCardPrints({
     required SupabaseClient client,
     required CardSearchOptions options,
@@ -317,6 +496,39 @@ class CardPrintRepository {
     final legacy = await legacySearch();
     if (kDebugMode && trimmed.isNotEmpty) debugPrint('search:legacy');
     return legacy;
+  }
+
+  static List<CardPrint> _filterByRarity(
+    List<CardPrint> rows,
+    RarityOption rarity,
+  ) {
+    bool matchesRarity(String? value) {
+      final raw = (value ?? '').toLowerCase();
+      if (raw.isEmpty) return false;
+
+      switch (rarity) {
+        case RarityOption.common:
+          return raw.contains('common');
+        case RarityOption.uncommon:
+          return raw.contains('uncommon');
+        case RarityOption.rare:
+          return raw.contains('rare') &&
+              !raw.contains('ultra') &&
+              !raw.contains('secret');
+        case RarityOption.ultra:
+          return raw.contains('ultra') || raw.contains('secret');
+        case RarityOption.secret:
+          return raw.contains('secret');
+        case RarityOption.all:
+          return true;
+      }
+    }
+
+    if (rarity == RarityOption.all) {
+      return rows;
+    }
+
+    return rows.where((row) => matchesRarity(row.rarity)).toList();
   }
 
   static _TokenizedQuery _tokenize(String raw) {

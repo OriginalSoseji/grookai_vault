@@ -588,6 +588,89 @@ class _CatalogSearchField extends StatelessWidget {
   }
 }
 
+class _ResolverStatusBanner extends StatelessWidget {
+  final CardSearchResolverMeta? meta;
+  final String query;
+
+  const _ResolverStatusBanner({
+    required this.meta,
+    required this.query,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final trimmed = query.trim();
+    if (meta == null || trimmed.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    late final Color background;
+    late final Color border;
+    late final String title;
+    late final String body;
+
+    switch (meta!.resolverState) {
+      case ResolverSearchState.strongMatch:
+        return const SizedBox.shrink();
+      case ResolverSearchState.ambiguousMatch:
+        background = Colors.amber.withOpacity(0.12);
+        border = Colors.amber.withOpacity(0.6);
+        title = 'Multiple plausible matches';
+        body =
+            'This query is still ambiguous. Review the ranked cards instead of treating the top result as certain.';
+        break;
+      case ResolverSearchState.weakMatch:
+        background = colorScheme.surfaceVariant.withOpacity(0.7);
+        border = colorScheme.outline.withOpacity(0.35);
+        title = 'Weak match';
+        body =
+            'These results are approximate. Add a set code, collector number, or promo code to strengthen the match.';
+        break;
+      case ResolverSearchState.noMatch:
+        background = colorScheme.surfaceVariant.withOpacity(0.7);
+        border = colorScheme.outline.withOpacity(0.35);
+        title = 'No matching cards';
+        body = 'No viable deterministic match was found for "$trimmed".';
+        break;
+    }
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: border, width: 0.8),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              body,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withOpacity(0.75),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _CatalogSectionHeader extends StatelessWidget {
   final String title;
 
@@ -1011,7 +1094,9 @@ class HomePageState extends State<HomePage> {
   final _searchCtrl = TextEditingController();
   List<CardPrint> _results = const [];
   List<CardPrint> _trending = const [];
+  CardSearchResolverMeta? _resolverMeta;
   bool _loading = false;
+  String? _searchError;
   Timer? _debounce;
   _RarityFilter _rarityFilter = _RarityFilter.all;
 
@@ -1127,11 +1212,21 @@ class HomePageState extends State<HomePage> {
   Future<void> _runSearch(String query) async {
     setState(() => _loading = true);
     try {
-      final rows = await CardPrintRepository.searchCardPrints(
+      final resolved = await CardPrintRepository.searchCardPrintsResolved(
         client: supabase,
         options: CardSearchOptions(query: query),
       );
-      setState(() => _results = rows);
+      setState(() {
+        _results = resolved.rows;
+        _resolverMeta = resolved.meta;
+        _searchError = null;
+      });
+    } catch (error) {
+      setState(() {
+        _results = const [];
+        _resolverMeta = null;
+        _searchError = error is Error ? error.toString() : 'Search failed.';
+      });
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -1160,6 +1255,20 @@ class HomePageState extends State<HomePage> {
           onChanged: _onQueryChanged,
           onSubmitted: _runSearch,
         ),
+        if (_searchError != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                _searchError!,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Colors.red),
+              ),
+            ),
+          ),
+        _ResolverStatusBanner(meta: _resolverMeta, query: trimmed),
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
           child: SingleChildScrollView(
@@ -1752,7 +1861,9 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   final supabase = Supabase.instance.client;
   final _q = TextEditingController();
   List<CardPrint> _rows = const [];
+  CardSearchResolverMeta? _resolverMeta;
   bool _loading = false;
+  String? _searchError;
   Timer? _debounce;
 
   @override
@@ -1771,11 +1882,21 @@ class _CatalogPickerState extends State<_CatalogPicker> {
   Future<void> _fetch(String query) async {
     setState(() => _loading = true);
     try {
-      final rows = await CardPrintRepository.searchCardPrints(
+      final resolved = await CardPrintRepository.searchCardPrintsResolved(
         client: supabase,
         options: CardSearchOptions(query: query),
       );
-      setState(() => _rows = rows);
+      setState(() {
+        _rows = resolved.rows;
+        _resolverMeta = resolved.meta;
+        _searchError = null;
+      });
+    } catch (error) {
+      setState(() {
+        _rows = const [];
+        _resolverMeta = null;
+        _searchError = error is Error ? error.toString() : 'Search failed.';
+      });
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -1826,6 +1947,20 @@ class _CatalogPickerState extends State<_CatalogPicker> {
                 onSubmitted: _fetch,
               ),
             ),
+            if (_searchError != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    _searchError!,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: Colors.red),
+                  ),
+                ),
+              ),
+            _ResolverStatusBanner(meta: _resolverMeta, query: _q.text),
             const SizedBox(height: 8),
             if (_loading) const LinearProgressIndicator(minHeight: 2),
             Flexible(

@@ -16,8 +16,28 @@ const MAX_SET_CANDIDATES = 6;
 const GENERIC_TOKENS = new Set(["set", "card", "pokemon", "pokmon", "the", "and"]);
 const VARIANT_QUERY_CUE_TOKENS = new Set(["alt", "alternate", "art", "rainbow", "promo", "holo", "reverse", "full"]);
 const PROMO_SET_CODE_PATTERN = /^(?:swshp|svp|smp|basep|bwp|xyp|dpp|pr-[a-z0-9]+)$/i;
+const EXACT_NAME_MATCH_WITH_DISAMBIGUATOR_BONUS = 900;
+const EXACT_NAME_MATCH_BASE_BONUS = 2200;
+const EXACT_COMBINED_MATCH_WITH_DISAMBIGUATOR_BONUS = 760;
+const EXACT_COMBINED_MATCH_BASE_BONUS = 1900;
+const PREFIX_NAME_MATCH_WITH_DISAMBIGUATOR_BONUS = 520;
+const PREFIX_NAME_MATCH_BASE_BONUS = 1500;
+const EXPECTED_SET_CODE_MATCH_BONUS = 1040;
+const EXPECTED_SET_CODE_MISS_PENALTY = -420;
+const ALL_SET_TOKENS_MATCH_BONUS = 320;
+const NO_SET_TOKEN_MATCH_PENALTY = -220;
+const EXACT_NUMBER_MATCH_BONUS = 1850;
+const DIGIT_NUMBER_MATCH_BONUS = 1250;
+const PARTIAL_NUMBER_MATCH_BONUS = 760;
+const NUMBER_MISS_PENALTY = -680;
+const EXACT_FRACTION_MATCH_BONUS = 980;
+const FRACTION_MISS_PENALTY = -560;
+const PROMO_TOKEN_MATCH_BONUS = 760;
+const PROMO_TOKEN_MISS_PENALTY = -360;
+const STRUCTURED_QUERY_WITHOUT_STRUCTURED_MATCH_PENALTY = -260;
+const VARIANT_MISS_PENALTY = -320;
 
-type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo";
+type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo" | "reverse";
 
 type CollectorNumberExpectation = {
   token: string;
@@ -25,7 +45,9 @@ type CollectorNumberExpectation = {
   exact_only: boolean;
 };
 
-type ExploreRow = ExploreResultCard;
+type ExploreRow = ExploreResultCard & {
+  printed_total?: number;
+};
 
 type SearchRpcRow = {
   id: string;
@@ -59,6 +81,7 @@ type TcgdexCardRow = {
 type SetMetadataLookupRow = {
   code: string | null;
   name: string | null;
+  printed_total: number | null;
   release_date: string | null;
 };
 
@@ -67,6 +90,7 @@ type SortMode = "relevance" | "newest" | "oldest";
 type PublicSetMetadata = {
   set_code: string;
   set_name?: string;
+  printed_total?: number;
   release_date?: string;
   release_year?: number;
 };
@@ -79,6 +103,8 @@ type ResolverQuery = {
   significantTextTokens: string[];
   numberTokens: string[];
   numberDigitTokens: string[];
+  fractionTokens: string[];
+  promoTokens: string[];
   setTokens: string[];
   expectedSetCodes: string[];
   variantCues: VariantCue[];
@@ -103,6 +129,22 @@ export type ExploreRowsTiming = RemoteTimingSnapshot & {
   app_ms: number;
   normalize_ms: number;
   postprocess_ms: number;
+  top_match:
+    | {
+        gv_id: string;
+        score: number;
+        second_score: number | null;
+        score_gap_to_second: number | null;
+        components: Record<string, number>;
+        evidence: {
+          expected_set: boolean;
+          number: boolean;
+          fraction: boolean;
+          promo: boolean;
+          variants: VariantCue[];
+        };
+      }
+    | null;
   stages: {
     build_query: ExploreStageTiming;
     fetch_candidates: ExploreStageTiming;
@@ -245,6 +287,8 @@ function mapVariantTokensToCues(variantTokens: NormalizedQueryPacket["variantTok
       cues.add("rainbow");
     } else if (token === "gold") {
       cues.add("gold");
+    } else if (token === "reverse") {
+      cues.add("reverse");
     }
   }
 
@@ -284,6 +328,8 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     significantTextTokens,
     numberTokens: collectorExpectations.map((expectation) => expectation.token),
     numberDigitTokens: packet.numberDigitTokens,
+    fractionTokens: packet.fractionTokens,
+    promoTokens: packet.promoTokens,
     setTokens: packet.setConsumedTokens,
     expectedSetCodes: packet.expectedSetCodes,
     variantCues: mapVariantTokensToCues(packet.variantTokens),
@@ -425,6 +471,7 @@ function buildExploreRows(
         name: row.name ?? "Unknown",
         number: row.number ?? "",
         set_name: setMetadata?.set_name ?? (tcgdexSetId ? setNameById.get(tcgdexSetId) : undefined),
+        printed_total: setMetadata?.printed_total,
         rarity: row.rarity ?? undefined,
         artist: row.artist ?? undefined,
         image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
@@ -482,6 +529,10 @@ function getRowVariantCueSet(row: ExploreRow) {
     cues.add("holo");
   }
 
+  if (row.variants?.reverse || row.variants?.reverseHolo || combined.includes("reverse")) {
+    cues.add("reverse");
+  }
+
   if (
     PROMO_SET_CODE_PATTERN.test(row.set_code ?? "") ||
     combined.includes("promo") ||
@@ -523,10 +574,72 @@ function getNumberMatchStrength(row: ExploreRow, query: ResolverQuery) {
   return bestStrength;
 }
 
+function getFractionMatchStrength(row: ExploreRow, query: ResolverQuery) {
+  if (query.fractionTokens.length === 0 || typeof row.printed_total !== "number") {
+    return 0;
+  }
+
+  const normalizedNumber = normalizeCollectorToken(row.number);
+  const normalizedPrintedTotal = normalizeDigits(String(row.printed_total));
+
+  for (const fractionToken of query.fractionTokens) {
+    const match = fractionToken.match(/^([A-Z]*\d+[A-Z]?)\/([A-Z]*\d+[A-Z]?)$/i);
+    if (!match) continue;
+
+    const printedNumber = normalizeCollectorToken(match[1]);
+    const printedTotalDigits = normalizeDigits(match[2]);
+    if (normalizedNumber === printedNumber && normalizedPrintedTotal === printedTotalDigits) {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+function isPromoFamilyRow(row: ExploreRow) {
+  return PROMO_SET_CODE_PATTERN.test(row.set_code ?? "") || normalizeTextForMatch(row.set_name).includes("black star");
+}
+
+function getPromoMatchStrength(row: ExploreRow, query: ResolverQuery) {
+  if (query.promoTokens.length === 0) {
+    return 0;
+  }
+
+  const normalizedNumber = normalizeCollectorToken(row.number);
+  for (const promoToken of query.promoTokens) {
+    if (normalizedNumber === normalizeCollectorToken(promoToken)) {
+      return 1;
+    }
+  }
+
+  if (isPromoFamilyRow(row)) {
+    return 0.5;
+  }
+
+  return 0;
+}
+
+type RowScoreDetail = {
+  score: number;
+  components: Record<string, number>;
+  evidence: {
+    expected_set: boolean;
+    number: boolean;
+    fraction: boolean;
+    promo: boolean;
+    variants: VariantCue[];
+  };
+};
+
+function addScoreComponent(components: Record<string, number>, key: string, value: number) {
+  if (!value) return;
+  components[key] = (components[key] ?? 0) + value;
+}
+
 // Resolver Quality Pass V1:
 // Ranking must strongly respect explicit disambiguators already present in the user query
 // (number tokens, set tokens, and variant cues) instead of over-dominating on name-only matches.
-function scoreRow(row: ExploreRow, query: ResolverQuery) {
+function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
   const normalizedName = normalizeTextForMatch(row.name);
   const normalizedSetName = normalizeTextForMatch(row.set_name);
   const normalizedCombined = [normalizedName, normalizedSetName].filter(Boolean).join(" ");
@@ -539,21 +652,35 @@ function scoreRow(row: ExploreRow, query: ResolverQuery) {
   ]);
   const gvTokens = uniqueValues(row.gv_id.toLowerCase().match(/[a-z0-9]+/g) ?? []);
   const rowVariantCues = getRowVariantCueSet(row);
-  let score = 0;
+  const components: Record<string, number> = {};
   let matchedTextTokens = 0;
   let exactNameMatches = 0;
   let matchedSetTokens = 0;
 
   if (query.directGvId && row.gv_id.toUpperCase() === query.directGvId) {
-    score += 6000;
+    addScoreComponent(components, "direct_gv_id", 6000);
   }
 
   if (query.normalized && normalizedName === query.normalized.toLowerCase()) {
-    score += query.hasStrongDisambiguator ? 1500 : 2200;
+    addScoreComponent(
+      components,
+      "exact_name_match",
+      query.hasStrongDisambiguator ? EXACT_NAME_MATCH_WITH_DISAMBIGUATOR_BONUS : EXACT_NAME_MATCH_BASE_BONUS,
+    );
   } else if (query.normalized && normalizedCombined === query.normalized.toLowerCase()) {
-    score += query.hasStrongDisambiguator ? 1300 : 1900;
+    addScoreComponent(
+      components,
+      "exact_combined_match",
+      query.hasStrongDisambiguator
+        ? EXACT_COMBINED_MATCH_WITH_DISAMBIGUATOR_BONUS
+        : EXACT_COMBINED_MATCH_BASE_BONUS,
+    );
   } else if (query.normalized && normalizedName.startsWith(query.normalized.toLowerCase())) {
-    score += query.hasStrongDisambiguator ? 950 : 1500;
+    addScoreComponent(
+      components,
+      "prefix_name_match",
+      query.hasStrongDisambiguator ? PREFIX_NAME_MATCH_WITH_DISAMBIGUATOR_BONUS : PREFIX_NAME_MATCH_BASE_BONUS,
+    );
   }
 
   for (const token of query.textTokens) {
@@ -563,113 +690,192 @@ function scoreRow(row: ExploreRow, query: ResolverQuery) {
     const bestSimilarity = Math.max(nameSimilarity, setSimilarity, gvSimilarity);
 
     if (bestSimilarity >= 1) {
-      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 240 : 280) : 260;
+      addScoreComponent(
+        components,
+        nameSimilarity >= setSimilarity ? "text_token_exact_name" : "text_token_exact_set",
+        nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 240 : 280) : 260,
+      );
       matchedTextTokens += 1;
       if (nameSimilarity >= 1) exactNameMatches += 1;
       continue;
     }
 
     if (bestSimilarity >= 0.96) {
-      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 180 : 220) : 210;
+      addScoreComponent(
+        components,
+        nameSimilarity >= setSimilarity ? "text_token_prefix_name" : "text_token_prefix_set",
+        nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 180 : 220) : 210,
+      );
       matchedTextTokens += 1;
       continue;
     }
 
     if (bestSimilarity >= 0.88) {
-      score += nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 120 : 150) : 150;
+      addScoreComponent(
+        components,
+        nameSimilarity >= setSimilarity ? "text_token_partial_name" : "text_token_partial_set",
+        nameSimilarity >= setSimilarity ? (query.hasStrongDisambiguator ? 120 : 150) : 150,
+      );
       matchedTextTokens += 1;
       continue;
     }
 
     if (bestSimilarity >= 0.72) {
-      score += 70;
+      addScoreComponent(components, "text_token_weak_overlap", 70);
     }
   }
 
   if (query.textTokens.length > 0 && matchedTextTokens === query.textTokens.length) {
-    score += 360;
+    addScoreComponent(components, "all_text_tokens_matched", 360);
   }
 
   if (query.textTokens.length > 0 && exactNameMatches > 0) {
-    score += query.hasStrongDisambiguator ? 80 : 140;
+    addScoreComponent(components, "exact_name_presence", query.hasStrongDisambiguator ? 80 : 140);
   }
 
   for (const setToken of query.setTokens) {
     const setSimilarity = bestTokenSimilarity(setToken, setTokens);
     if (setSimilarity >= 1) {
-      score += 260;
+      addScoreComponent(components, "set_token_exact", 260);
       matchedSetTokens += 1;
       continue;
     }
 
     if (setSimilarity >= 0.96) {
-      score += 220;
+      addScoreComponent(components, "set_token_prefix", 220);
       matchedSetTokens += 1;
       continue;
     }
 
     if (setSimilarity >= 0.88) {
-      score += 150;
+      addScoreComponent(components, "set_token_partial", 150);
     }
   }
 
   const hasExpectedSetCode = query.expectedSetCodes.length > 0;
   const matchesExpectedSetCode = hasExpectedSetCode && query.expectedSetCodes.includes(normalizeSetCode(row.set_code));
   if (matchesExpectedSetCode) {
-    score += 880;
+    addScoreComponent(components, "expected_set_code_match", EXPECTED_SET_CODE_MATCH_BONUS);
   } else if (hasExpectedSetCode) {
-    score -= 360;
+    addScoreComponent(components, "expected_set_code_miss", EXPECTED_SET_CODE_MISS_PENALTY);
   }
 
   if (query.setTokens.length > 0 && matchedSetTokens === query.setTokens.length) {
-    score += 260;
+    addScoreComponent(components, "all_set_tokens_matched", ALL_SET_TOKENS_MATCH_BONUS);
   } else if (query.setTokens.length > 0 && matchedSetTokens === 0) {
-    score -= 180;
+    addScoreComponent(components, "set_tokens_missing", NO_SET_TOKEN_MATCH_PENALTY);
   }
 
   const numberMatchStrength = getNumberMatchStrength(row, query);
   if (numberMatchStrength >= 1) {
-    score += 1600;
+    addScoreComponent(components, "collector_number_exact", EXACT_NUMBER_MATCH_BONUS);
   } else if (numberMatchStrength >= 0.86) {
-    score += 1120;
+    addScoreComponent(components, "collector_number_digits", DIGIT_NUMBER_MATCH_BONUS);
   } else if (numberMatchStrength >= 0.72) {
-    score += 760;
+    addScoreComponent(components, "collector_number_partial", PARTIAL_NUMBER_MATCH_BONUS);
   } else if (query.numberTokens.length > 0 || query.numberDigitTokens.length > 0) {
-    score -= 520;
+    addScoreComponent(components, "collector_number_missing", NUMBER_MISS_PENALTY);
   }
 
-  let matchedVariantCues = 0;
+  const fractionMatchStrength = getFractionMatchStrength(row, query);
+  if (fractionMatchStrength >= 1) {
+    addScoreComponent(components, "collector_fraction_exact", EXACT_FRACTION_MATCH_BONUS);
+  } else if (query.fractionTokens.length > 0) {
+    addScoreComponent(components, "collector_fraction_missing", FRACTION_MISS_PENALTY);
+  }
+
+  const promoMatchStrength = getPromoMatchStrength(row, query);
+  if (promoMatchStrength >= 1) {
+    addScoreComponent(components, "promo_token_exact", PROMO_TOKEN_MATCH_BONUS);
+  } else if (promoMatchStrength >= 0.5) {
+    addScoreComponent(components, "promo_family_match", Math.round(PROMO_TOKEN_MATCH_BONUS * 0.55));
+  } else if (query.promoTokens.length > 0) {
+    addScoreComponent(components, "promo_token_missing", PROMO_TOKEN_MISS_PENALTY);
+  }
+
+  const matchedVariantCues: VariantCue[] = [];
   for (const cue of query.variantCues) {
     if (!rowVariantCues.has(cue)) continue;
-    matchedVariantCues += 1;
+    matchedVariantCues.push(cue);
 
     switch (cue) {
       case "alt_art":
-        score += 720;
+        addScoreComponent(components, "variant_alt_art", 720);
         break;
       case "rainbow":
-        score += 620;
+        addScoreComponent(components, "variant_rainbow", 620);
         break;
       case "promo":
-        score += 520;
+        addScoreComponent(components, "variant_promo", 520);
         break;
       case "gold":
-        score += 320;
+        addScoreComponent(components, "variant_gold", 420);
         break;
       case "full_art":
-        score += 320;
+        addScoreComponent(components, "variant_full_art", 360);
         break;
       case "holo":
-        score += 220;
+        addScoreComponent(components, "variant_holo", 220);
+        break;
+      case "reverse":
+        addScoreComponent(components, "variant_reverse", 420);
         break;
     }
   }
 
-  if (query.variantCues.length > 0 && matchedVariantCues === 0) {
-    score -= 240;
+  if (query.variantCues.length > 0 && matchedVariantCues.length === 0) {
+    addScoreComponent(components, "variant_missing", VARIANT_MISS_PENALTY);
   }
 
-  return score;
+  const hasStructuredMatch =
+    matchesExpectedSetCode ||
+    numberMatchStrength >= 0.72 ||
+    fractionMatchStrength >= 1 ||
+    promoMatchStrength >= 0.5 ||
+    matchedVariantCues.length > 0;
+  if (query.hasStrongDisambiguator && !hasStructuredMatch) {
+    addScoreComponent(
+      components,
+      "structured_query_without_structured_match",
+      STRUCTURED_QUERY_WITHOUT_STRUCTURED_MATCH_PENALTY,
+    );
+  }
+
+  const score = Object.values(components).reduce((sum, value) => sum + value, 0);
+  return {
+    score,
+    components,
+    evidence: {
+      expected_set: matchesExpectedSetCode,
+      number: numberMatchStrength >= 0.72,
+      fraction: fractionMatchStrength >= 1,
+      promo: promoMatchStrength >= 0.5,
+      variants: matchedVariantCues,
+    },
+  };
+}
+
+function scoreRow(row: ExploreRow, query: ResolverQuery) {
+  return scoreRowDetail(row, query).score;
+}
+
+function getTopMatchTrace(rows: ExploreRow[], query: ResolverQuery): ExploreRowsTiming["top_match"] {
+  const topRow = rows[0];
+  if (!topRow) {
+    return null;
+  }
+
+  const detail = scoreRowDetail(topRow, query);
+  const secondRow = rows[1];
+  const secondScore = secondRow ? scoreRow(secondRow, query) : null;
+  return {
+    gv_id: topRow.gv_id,
+    score: detail.score,
+    second_score: secondScore,
+    score_gap_to_second: secondScore === null ? null : detail.score - secondScore,
+    components: detail.components,
+    evidence: detail.evidence,
+  };
 }
 
 function rankRows(rows: ExploreRow[], query: ResolverQuery) {
@@ -977,7 +1183,7 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 
   const supabase = createServerComponentClient();
-  const { data, error } = await supabase.from("sets").select("code,name,release_date").in("code", setCodes);
+  const { data, error } = await supabase.from("sets").select("code,name,printed_total,release_date").in("code", setCodes);
   if (error) {
     throw new Error(error.message);
   }
@@ -990,6 +1196,7 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
         {
           set_code: row.code,
           set_name: row.name ?? undefined,
+          printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
           release_date: row.release_date ?? undefined,
           release_year: getReleaseYear(row.release_date),
         },
@@ -1034,6 +1241,7 @@ export async function getExploreRowsPacketWithTiming(
         app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
         normalize_ms: buildQueryStage.timing.total_ms,
         postprocess_ms: roundTiming(Math.max(0, totalMs - buildQueryStage.timing.total_ms - totalRemote.remote_ms)),
+        top_match: null,
         stages: {
           build_query: buildQueryStage.timing,
           fetch_candidates: fetchCandidatesStage,
@@ -1150,6 +1358,7 @@ export async function getExploreRowsPacketWithTiming(
       app_ms: roundTiming(Math.max(0, totalMs - totalRemote.remote_ms)),
       normalize_ms: buildQueryStage.timing.total_ms,
       postprocess_ms: roundTiming(Math.max(0, totalMs - buildQueryStage.timing.total_ms - totalRemote.remote_ms)),
+      top_match: getTopMatchTrace(timedSortRows.value, query),
       stages: {
         build_query: buildQueryStage.timing,
         fetch_candidates: fetchCandidatesStage,

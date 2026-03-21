@@ -1,11 +1,11 @@
 export const AUTHORITATIVE_PRICING_RUNNER = 'pricing_job_runner_v1';
-export const AUTHORITATIVE_PRICING_CLAIM_STRATEGY = 'fifo_requested_at';
+export const AUTHORITATIVE_PRICING_CLAIM_STRATEGY = 'priority_then_eligibility_then_requested_at';
 
 export const PRICING_QUEUE_PRIORITY_ORDER = Object.freeze({
-  user: 0,
-  scheduled: 1,
-  backfill: 2,
-  vault: 3,
+  vault: 0,
+  user: 1,
+  scheduled: 2,
+  backfill: 3,
   rarity_auto: 4,
   hot: 5,
   normal: 6,

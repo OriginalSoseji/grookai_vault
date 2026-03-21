@@ -8,6 +8,7 @@ import '../env.mjs';
 
 import { pathToFileURL } from 'node:url';
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import { isBroadPricingQueueEnabled } from './pricing_queue_policy_v1.mjs';
 
 const DEFAULT_LIMIT = 25;
 const FETCH_PAGE_SIZE = 1000;
@@ -15,6 +16,7 @@ const CARD_ID_CHUNK_SIZE = 400;
 
 function parseArgs(argv) {
   let limit = DEFAULT_LIMIT;
+  let allowBackfill = false;
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -24,10 +26,12 @@ function parseArgs(argv) {
         limit = next;
       }
       i += 1;
+    } else if (arg === '--allow-backfill') {
+      allowBackfill = true;
     }
   }
 
-  return { limit };
+  return { limit, allowBackfill };
 }
 
 function chunkArray(items, chunkSize) {
@@ -283,7 +287,12 @@ async function enqueueBackfillJobs(supabase, rankedCandidates, limit) {
 }
 
 async function main() {
-  const { limit } = parseArgs(process.argv.slice(2));
+  const { limit, allowBackfill } = parseArgs(process.argv.slice(2));
+  if (!allowBackfill && !isBroadPricingQueueEnabled()) {
+    throw new Error(
+      '[pricing-backfill-v1] broad backfill is disabled by default; pass --allow-backfill or set PRICING_ENABLE_BROAD_BACKFILL=1 to run explicitly',
+    );
+  }
   const supabase = createBackendClient();
 
   const eligible = await fetchEligibleCardPrints(supabase);

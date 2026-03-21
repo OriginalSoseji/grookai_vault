@@ -17,6 +17,14 @@ import {
   isKnownPricingPriority,
   normalizePricingPriority,
 } from './pricing_queue_priority_contract.mjs';
+import {
+  buildPricingJobOutcomePatch,
+  classifyPricingRunOutcome,
+  isBroadPricingQueueEnabled,
+  isDemandDrivenPriority,
+  isVaultPricingJob,
+  sortPricingClaimCandidates,
+} from './pricing_queue_policy_v1.mjs';
 
 function log(event, payload = {}) {
   const entry = { ts: new Date().toISOString(), event, ...payload };
@@ -60,34 +68,45 @@ function parseArgs(argv) {
 async function claimJob(supabase, lockTtlMs) {
   const nowIso = new Date().toISOString();
   const ttlCutoff = new Date(Date.now() - lockTtlMs).toISOString();
+  const broadQueueEnabled = isBroadPricingQueueEnabled();
 
-  // pending oldest first
-  const { data: pending, error: pendingErr } = await supabase
+  let pendingQuery = supabase
     .from('pricing_jobs')
     .select('*')
     .eq('status', 'pending')
+    .or(`next_eligible_at.is.null,next_eligible_at.lte.${nowIso}`)
     .order('requested_at', { ascending: true })
-    .limit(1)
-    .maybeSingle();
+    .limit(100);
+
+  if (!broadQueueEnabled) {
+    pendingQuery = pendingQuery.in('priority', ['vault', 'user']);
+  }
+
+  const { data: pendingRows, error: pendingErr } = await pendingQuery;
 
   if (pendingErr) throw new Error(`claim select pending failed: ${pendingErr.message}`);
 
-  let candidate = pending;
+  let candidate = sortPricingClaimCandidates(pendingRows ?? [])[0] ?? null;
   let reclaimed = false;
 
   if (!candidate) {
-    // stale running
-    const { data: stale, error: staleErr } = await supabase
+    let staleQuery = supabase
       .from('pricing_jobs')
       .select('*')
       .eq('status', 'running')
       .lt('started_at', ttlCutoff)
       .order('started_at', { ascending: true })
-      .limit(1)
-      .maybeSingle();
+      .limit(100);
+
+    if (!broadQueueEnabled) {
+      staleQuery = staleQuery.in('priority', ['vault', 'user']);
+    }
+
+    const { data: staleRows, error: staleErr } = await staleQuery;
 
     if (staleErr) throw new Error(`claim select stale failed: ${staleErr.message}`);
 
+    const stale = sortPricingClaimCandidates(staleRows ?? [])[0] ?? null;
     if (stale) {
       candidate = stale;
       reclaimed = true;
@@ -105,7 +124,7 @@ async function claimJob(supabase, lockTtlMs) {
       attempts: nextAttempts,
     })
     .eq('id', candidate.id)
-    .in('status', ['pending', 'running'])
+    .eq('status', candidate.status)
     .select()
     .maybeSingle();
 
@@ -137,27 +156,9 @@ function runPricingWorker(cardPrintId) {
   });
 }
 
-async function markStatus(supabase, jobId, status, errorMsg = null) {
-  const payload = {
-    status,
-    completed_at: status === 'done' || status === 'failed' ? new Date().toISOString() : null,
-    error: errorMsg ? errorMsg.slice(0, 500) : null,
-  };
-
-  const { error } = await supabase.from('pricing_jobs').update(payload).eq('id', jobId);
-  if (error) throw new Error(`update status failed: ${error.message}`);
-}
-
-async function markRetryable(supabase, jobId, errorMsg = null) {
-  const payload = {
-    status: 'pending',
-    started_at: null,
-    completed_at: null,
-    error: errorMsg ? errorMsg.slice(0, 500) : 'retryable_error',
-  };
-
-  const { error } = await supabase.from('pricing_jobs').update(payload).eq('id', jobId);
-  if (error) throw new Error(`update retryable status failed: ${error.message}`);
+async function markJobOutcome(supabase, job, patch) {
+  const { error } = await supabase.from('pricing_jobs').update(patch).eq('id', job.id);
+  if (error) throw new Error(`update pricing job outcome failed: ${error.message}`);
 }
 
 async function main() {
@@ -169,6 +170,7 @@ async function main() {
     runnerAuthority: AUTHORITATIVE_PRICING_RUNNER,
     claimStrategy: AUTHORITATIVE_PRICING_CLAIM_STRATEGY,
     supportedPriorities: Object.keys(PRICING_QUEUE_PRIORITY_ORDER),
+    broadQueueEnabled: isBroadPricingQueueEnabled(),
     mode: opts.once ? 'once' : 'daemon',
     maxJobs: opts.maxJobs,
     sleepMs: opts.sleepMs,
@@ -255,6 +257,11 @@ async function main() {
       cardPrintId,
       attempts: job.attempts,
       priority: normalizedPriority,
+      demandDriven: isDemandDrivenPriority(job.priority),
+      vaultDriven: isVaultPricingJob(job),
+      nextEligibleAt: job.next_eligible_at ?? null,
+      lastMeaningfulAttemptAt: job.last_meaningful_attempt_at ?? null,
+      lastOutcome: job.last_outcome ?? null,
       reclaimed: reclaimed || false,
     });
 
@@ -268,7 +275,16 @@ async function main() {
     }
 
     if (!cardPrintId) {
-      await markStatus(supabase, job.id, 'failed', 'missing_card_print_id');
+      await markJobOutcome(
+        supabase,
+        job,
+        buildPricingJobOutcomePatch(job, {
+          outcome: 'attempted_failure',
+          errorClass: 'invalid_job',
+          errorMessage: 'missing_card_print_id',
+          keepPending: false,
+        }),
+      );
       log('job_error', { jobId: job.id, cardPrintId, error: 'missing_card_print_id' });
       processed += 1;
       continue;
@@ -285,12 +301,21 @@ async function main() {
         usageDate: budgetSnapshot.usage_date,
       });
     } catch (err) {
-      await markRetryable(supabase, job.id, `retryable_budget_snapshot: ${err.message}`);
+      const outcome = classifyPricingRunOutcome({ stage: 'budget_snapshot_retryable' });
+      const patch = buildPricingJobOutcomePatch(job, {
+        outcome,
+        errorClass: 'transient_budget_snapshot',
+        errorMessage: `retryable_budget_snapshot: ${err.message}`,
+        keepPending: true,
+      });
+      await markJobOutcome(supabase, job, patch);
       log('job_retryable', {
         jobId: job.id,
         cardPrintId,
         error: err.message,
         stage: 'budget_before_job_start',
+        outcome,
+        nextEligibleAt: patch.next_eligible_at,
       });
       backoffMs = 1000;
       processed += 1;
@@ -298,16 +323,21 @@ async function main() {
     }
 
     if (budgetSnapshot.exhausted) {
-      await markRetryable(
-        supabase,
-        job.id,
-        'retryable_quota_exhausted: daily_browse_budget_exhausted_before_start',
-      );
+      const outcome = classifyPricingRunOutcome({ stage: 'budget_exhausted_before_start' });
+      const patch = buildPricingJobOutcomePatch(job, {
+        outcome,
+        errorClass: 'budget_blocked',
+        errorMessage: 'retryable_quota_exhausted: daily_browse_budget_exhausted_before_start',
+        keepPending: true,
+      });
+      await markJobOutcome(supabase, job, patch);
       const pauseUntilMs = getNextUtcDayStartMs();
       budgetPauseUntilMs = pauseUntilMs;
       log('job_retryable_budget_exhausted_before_start', {
         jobId: job.id,
         cardPrintId,
+        outcome,
+        nextEligibleAt: patch.next_eligible_at,
         remainingCalls: budgetSnapshot.remaining_calls,
         consumedCalls: budgetSnapshot.consumed_calls,
         dailyBudget: budgetSnapshot.daily_budget,
@@ -334,25 +364,50 @@ async function main() {
       const exitCode = await runPricingWorker(cardPrintId);
 
       if (exitCode === 0) {
-        await markStatus(supabase, job.id, 'done', null);
+        const outcome = classifyPricingRunOutcome({ exitCode });
+        const patch = buildPricingJobOutcomePatch(job, {
+          outcome,
+          errorClass: null,
+          errorMessage: null,
+          keepPending: false,
+        });
+        await markJobOutcome(supabase, job, patch);
         const ms = Date.now() - started;
-        log('job_ok', { jobId: job.id, cardPrintId, ms });
+        log('job_ok', {
+          jobId: job.id,
+          cardPrintId,
+          ms,
+          outcome,
+          nextEligibleAt: patch.next_eligible_at,
+        });
       } else if (exitCode === 42) {
-        await markRetryable(
-          supabase,
-          job.id,
-          `retryable_429: rate_limited (exit=${exitCode})`,
-        );
-        log('job_retryable', { jobId: job.id, cardPrintId, exitCode });
+        const outcome = classifyPricingRunOutcome({ exitCode });
+        const patch = buildPricingJobOutcomePatch(job, {
+          outcome,
+          errorClass: 'throttle_blocked',
+          errorMessage: `throttle_blocked: rate_limited (exit=${exitCode})`,
+          keepPending: true,
+        });
+        await markJobOutcome(supabase, job, patch);
+        log('job_retryable', {
+          jobId: job.id,
+          cardPrintId,
+          exitCode,
+          outcome,
+          nextEligibleAt: patch.next_eligible_at,
+        });
 
         // Strong backoff to reduce repeated 429s.
         backoffMs = 60_000;
       } else if (exitCode === 43) {
-        await markRetryable(
-          supabase,
-          job.id,
-          'retryable_quota_exhausted: daily_browse_budget_exhausted',
-        );
+        const outcome = classifyPricingRunOutcome({ exitCode });
+        const patch = buildPricingJobOutcomePatch(job, {
+          outcome,
+          errorClass: 'budget_blocked',
+          errorMessage: 'retryable_quota_exhausted: daily_browse_budget_exhausted',
+          keepPending: true,
+        });
+        await markJobOutcome(supabase, job, patch);
         const pauseUntilMs = getNextUtcDayStartMs();
         budgetPauseUntilMs = pauseUntilMs;
         try {
@@ -374,6 +429,8 @@ async function main() {
         log('job_retryable_budget_exhausted', {
           jobId: job.id,
           cardPrintId,
+          outcome,
+          nextEligibleAt: patch.next_eligible_at,
           remainingCalls: budgetSnapshot.remaining_calls,
           consumedCalls: budgetSnapshot.consumed_calls,
           dailyBudget: budgetSnapshot.daily_budget,
@@ -381,14 +438,38 @@ async function main() {
           waitMs: Math.max(0, pauseUntilMs - Date.now()),
         });
       } else {
-        await markStatus(supabase, job.id, 'failed', `pricing worker exited with code ${exitCode}`);
-        log('job_error', { jobId: job.id, cardPrintId, error: `exit_${exitCode}` });
-        backoffMs = 1000;
+        const outcome = classifyPricingRunOutcome({ exitCode });
+        const patch = buildPricingJobOutcomePatch(job, {
+          outcome,
+          errorClass: 'worker_exit',
+          errorMessage: `pricing worker exited with code ${exitCode}`,
+          keepPending: false,
+        });
+        await markJobOutcome(supabase, job, patch);
+        log('job_error', {
+          jobId: job.id,
+          cardPrintId,
+          error: `exit_${exitCode}`,
+          outcome,
+          nextEligibleAt: patch.next_eligible_at,
+        });
       }
     } catch (err) {
-      await markStatus(supabase, job.id, 'failed', err.message);
-      log('job_error', { jobId: job.id, cardPrintId, error: err.message });
-      backoffMs = 1000;
+      const outcome = classifyPricingRunOutcome({ exitCode: 1 });
+      const patch = buildPricingJobOutcomePatch(job, {
+        outcome,
+        errorClass: 'runner_exception',
+        errorMessage: err.message,
+        keepPending: false,
+      });
+      await markJobOutcome(supabase, job, patch);
+      log('job_error', {
+        jobId: job.id,
+        cardPrintId,
+        error: err.message,
+        outcome,
+        nextEligibleAt: patch.next_eligible_at,
+      });
     }
 
     processed += 1;

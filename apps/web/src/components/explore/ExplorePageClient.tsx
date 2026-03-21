@@ -12,7 +12,7 @@ import type { ExploreResultCard } from "@/components/explore/exploreResultTypes"
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode, type ExploreViewMode } from "@/lib/exploreViewModes";
-import { resolveQuery } from "@/lib/resolver/resolveQuery";
+import { resolveQueryWithMeta, type ResolverMeta } from "@/lib/resolver/resolveQuery";
 
 type ExploreRow = ExploreResultCard;
 type SortMode = "relevance" | "newest" | "oldest";
@@ -48,6 +48,35 @@ function normalizeFreeTextQuery(value: string) {
   return value.trim().replace(/\s+/g, " ");
 }
 
+function getResolverSummary(meta: ResolverMeta | null) {
+  if (!meta) {
+    return null;
+  }
+
+  switch (meta.resolverState) {
+    case "STRONG_MATCH":
+      return null;
+    case "AMBIGUOUS_MATCH":
+      return {
+        tone: "border-amber-200 bg-amber-50/70",
+        title: "Multiple plausible matches",
+        body: "The query is still ambiguous. Review the ranked candidates instead of treating the top result as certain.",
+      };
+    case "WEAK_MATCH":
+      return {
+        tone: "border-slate-200 bg-slate-50",
+        title: "Weak match",
+        body: "These results are approximate. Add a set code, collector number, or promo code to strengthen the match.",
+      };
+    case "NO_MATCH":
+      return {
+        tone: "border-slate-200 bg-slate-50",
+        title: "No matching cards",
+        body: "No viable deterministic match was found for this query.",
+      };
+  }
+}
+
 type ExplorePageClientProps = {
   discoveryContent?: ReactNode;
   canViewPricing: boolean;
@@ -67,6 +96,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
   const normalizedQuery = normalizeFreeTextQuery(q);
   const isDiscoveryMode = !normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator;
   const [rows, setRows] = useState<ExploreRow[]>([]);
+  const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -76,6 +106,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
     const load = async () => {
       if (!normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
         setRows([]);
+        setResolverMeta(null);
         setError(null);
         setLoading(false);
         return;
@@ -85,7 +116,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
       setError(null);
 
       try {
-        const nextRows = await resolveQuery(q, {
+        const resolved = await resolveQueryWithMeta(q, {
           mode: "ranked",
           sortMode,
           exactSetCode,
@@ -93,11 +124,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
           exactIllustrator: exactIllustrator || undefined,
         });
         if (cancelled) return;
-        setRows(nextRows);
+        setRows(resolved.rows);
+        setResolverMeta(resolved.meta);
       } catch (searchError) {
         if (cancelled) return;
         setError(searchError instanceof Error ? searchError.message : "Search failed.");
         setRows([]);
+        setResolverMeta(null);
       } finally {
         if (!cancelled) {
           setLoading(false);
@@ -135,9 +168,12 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
   const buildCardHref = (gvId: string) => buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
   const currentPath = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
+  const resolverSummary = getResolverSummary(resolverMeta);
   const emptyState = (
     <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
-      No results yet.
+      {resolverMeta?.resolverState === "NO_MATCH"
+        ? `No matching cards found for "${normalizedQuery}". Try adding a set code, collector number, or promo code.`
+        : "No results yet."}
     </div>
   );
 
@@ -205,6 +241,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
               <ExploreViewModeToggle value={viewMode} onChange={commitViewMode} />
             </div>
           </div>
+
+          {resolverSummary ? (
+            <div className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}>
+              <p className="font-medium text-slate-900">{resolverSummary.title}</p>
+              <p className="mt-1 text-slate-600">{resolverSummary.body}</p>
+            </div>
+          ) : null}
 
           {viewMode === "list" ? (
             <ul className="space-y-3">
