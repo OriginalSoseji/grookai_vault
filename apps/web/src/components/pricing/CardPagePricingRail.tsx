@@ -9,16 +9,33 @@ type CardPagePricingRailProps = {
   pricing: CardPricingUiRecord | null;
 };
 
-function formatRange(minPrice?: number, maxPrice?: number) {
-  if (typeof minPrice !== "number" || typeof maxPrice !== "number") {
-    return null;
-  }
-
-  return `${formatUsdPrice(minPrice)} – ${formatUsdPrice(maxPrice)}`;
+function PricingSourceLabel() {
+  return <p className="text-[11px] text-slate-400">* Market reference</p>;
 }
 
-function PricingSourceLabel() {
-  return <p className="text-xs font-medium text-slate-500">Market reference</p>;
+function PricingLowMidHigh({
+  low,
+  mid,
+  high,
+}: {
+  low: number;
+  mid: number;
+  high: number;
+}) {
+  return (
+    <div className="mt-3 space-y-1.5">
+      <div className="flex justify-between gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">
+        <span>Low</span>
+        <span>Mid</span>
+        <span>High</span>
+      </div>
+      <div className="flex justify-between gap-3 text-sm font-medium text-slate-900">
+        <span>{formatUsdPrice(low)}</span>
+        <span>{formatUsdPrice(mid)}</span>
+        <span>{formatUsdPrice(high)}</span>
+      </div>
+    </div>
+  );
 }
 
 function PricingEmptyState() {
@@ -35,16 +52,23 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
     return <PricingEmptyState />;
   }
 
-  const priceRange = formatRange(pricing.min_price, pricing.max_price);
+  const lowPrice = typeof pricing.min_price === "number" ? pricing.min_price : null;
+  const midPrice = pricing.primary_price;
+  const highPrice = typeof pricing.max_price === "number" ? pricing.max_price : null;
+  const hasLowMidHigh =
+    typeof lowPrice === "number" &&
+    typeof midPrice === "number" &&
+    typeof highPrice === "number";
 
   return (
     <div className="space-y-2">
       <div className="space-y-1">
-        <p className="text-3xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(pricing.primary_price)}</p>
+        <p className="text-3xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(midPrice)}</p>
         <p className="text-sm font-medium text-slate-700">Near Mint</p>
       </div>
-      <PricingSourceLabel />
-      {priceRange ? <p className="text-sm text-slate-600">{priceRange}</p> : null}
+      {hasLowMidHigh ? (
+        <PricingLowMidHigh low={lowPrice} mid={midPrice} high={highPrice} />
+      ) : null}
     </div>
   );
 }
@@ -83,6 +107,8 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
 }
 
 function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: CardPricingUiRecord | null }) {
+  const hasPrimaryPrice = Boolean(pricing?.primary_source && typeof pricing.primary_price === "number");
+
   return (
     <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
       <div className="space-y-4">
@@ -96,6 +122,7 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
         >
           View market analysis →
         </Link>
+        {hasPrimaryPrice ? <PricingSourceLabel /> : null}
       </div>
     </div>
   );
