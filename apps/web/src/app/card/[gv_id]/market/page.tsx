@@ -1,26 +1,20 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import PricingDisclosure from "@/components/common/PricingDisclosure";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getMarketInsights } from "@/lib/pricing/getMarketInsights";
-import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
-function formatRange(minPrice?: number, maxPrice?: number) {
-  if (typeof minPrice !== "number" || typeof maxPrice !== "number") {
-    return null;
-  }
-
-  return `${formatUsdPrice(minPrice)} – ${formatUsdPrice(maxPrice)}`;
-}
-
-function formatCountLabel(value: number, singular: string, plural: string) {
-  return `${value} ${value === 1 ? singular : plural}`;
-}
+const CONDITION_ORDER = [
+  "Near Mint",
+  "Lightly Played",
+  "Moderately Played",
+  "Heavily Played",
+  "Damaged",
+] as const;
 
 function formatTimeAgo(value: string | null) {
   if (!value) return null;
@@ -37,7 +31,7 @@ function formatTimeAgo(value: string | null) {
   if (diffMinutes < 60) return `${diffMinutes} minutes ago`;
 
   const diffHours = Math.floor(diffMinutes / 60);
-  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffHours < 24) return `${diffHours} hours ago`;
 
   const diffDays = Math.floor(diffHours / 24);
   if (diffDays < 30) return `${diffDays} days ago`;
@@ -49,33 +43,42 @@ function formatTimeAgo(value: string | null) {
   });
 }
 
-function DetailRow({ label, value }: { label: string; value: string }) {
+function MarketMetricRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 text-sm">
+    <div className="flex items-center justify-between gap-4 text-sm">
       <span className="text-slate-600">{label}</span>
-      <span className="text-right font-medium text-slate-900">{value}</span>
+      <span className="text-right font-medium text-slate-950">{value}</span>
     </div>
   );
 }
 
-function AnalysisCard({
-  eyebrow,
+function MarketInsightCard({
   title,
+  subtitle,
   children,
 }: {
-  eyebrow: string;
   title: string;
+  subtitle?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-3 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{eyebrow}</p>
         <h2 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h2>
+        {subtitle ? <p className="text-sm text-slate-600">{subtitle}</p> : null}
       </div>
       {children}
     </section>
   );
+}
+
+function getConditionRank(condition: string) {
+  const exactIndex = CONDITION_ORDER.indexOf(condition as (typeof CONDITION_ORDER)[number]);
+  if (exactIndex >= 0) {
+    return exactIndex;
+  }
+
+  return CONDITION_ORDER.length;
 }
 
 export default async function MarketAnalysisPage({ params }: { params: { gv_id: string } }) {
@@ -94,21 +97,23 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
     notFound();
   }
 
-  const pricing = card.id ? await getCardPricingUiByCardPrintId(card.id) : null;
   const insights = card.id ? await getMarketInsights(card.id) : null;
-  const referenceRange = formatRange(pricing?.min_price, pricing?.max_price);
-  const hasJustTcgSection =
-    Boolean(referenceRange) ||
-    typeof pricing?.variant_count === "number" ||
-    (pricing?.primary_source === "justtcg" && typeof pricing.primary_price === "number");
-  const hasEbaySection =
-    typeof pricing?.ebay_median_price === "number" || typeof pricing?.ebay_listing_count === "number";
-  const hasGrookaiValue = typeof pricing?.grookai_value === "number";
-  const hasConditionCurve = Boolean(insights && Object.keys(insights.conditionCurve).length > 0);
   const freshnessLabel = formatTimeAgo(insights?.updatedAt ?? null);
+  const sortedConditions = insights
+    ? Object.entries(insights.conditionCurve).sort(([left], [right]) => {
+        const leftRank = getConditionRank(left);
+        const rightRank = getConditionRank(right);
+
+        if (leftRank !== rightRank) {
+          return leftRank - rightRank;
+        }
+
+        return left.localeCompare(right);
+      })
+    : [];
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-8">
+    <div className="mx-auto max-w-5xl space-y-8 py-8">
       <section className="space-y-3 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
         <Link
           href={`/card/${encodeURIComponent(card.gv_id)}`}
@@ -118,120 +123,119 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
         </Link>
         <div className="space-y-1">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Market Analysis</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">{card.name}</h1>
-          <p className="text-sm text-slate-600">Reference pricing, market context, and experimental Grookai signals.</p>
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Market Analysis</h1>
+          <p className="text-sm text-slate-600">A deeper look at this card&apos;s active market signals.</p>
         </div>
       </section>
 
-      <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="space-y-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Primary Price</p>
-          {pricing?.primary_source && typeof pricing.primary_price === "number" ? (
-            <>
-              <p className="text-4xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(pricing.primary_price)}</p>
-              <p className="text-sm font-medium text-slate-700">Near Mint</p>
-              <p className="text-xs font-medium text-slate-500">Market reference</p>
-              {referenceRange ? <p className="text-sm text-slate-600">{referenceRange}</p> : null}
-              {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
-            </>
-          ) : (
-            <>
-              <p className="text-xl font-semibold tracking-tight text-slate-950">No pricing data available</p>
-              <p className="text-sm text-slate-600">Pricing for this card is not available yet.</p>
-            </>
-          )}
-        </div>
-      </section>
-
-      {hasJustTcgSection ? (
-        <AnalysisCard eyebrow="Reference" title="JustTCG">
-          <div className="space-y-2">
-            {pricing?.primary_source === "justtcg" && typeof pricing.primary_price === "number" ? (
-              <DetailRow label="Reference price" value={formatUsdPrice(pricing.primary_price)} />
-            ) : null}
-            {referenceRange ? <DetailRow label="Range" value={referenceRange} /> : null}
-            {typeof pricing?.variant_count === "number" ? (
-              <DetailRow label="Variants" value={formatCountLabel(pricing.variant_count, "variant", "variants")} />
-            ) : null}
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {hasConditionCurve ? (
-        <AnalysisCard eyebrow="Condition Curve" title="Condition Pricing">
-          <div className="space-y-2">
-            {Object.entries(insights!.conditionCurve)
-              .sort(([left], [right]) => left.localeCompare(right))
-              .map(([condition, value]) => (
-                <DetailRow key={condition} label={condition} value={formatUsdPrice(value)} />
-              ))}
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {insights?.spread ? (
-        <AnalysisCard eyebrow="Range" title="Market Range">
-          <div className="space-y-2">
-            <DetailRow label="Low" value={formatUsdPrice(insights.spread.low)} />
-            <DetailRow label="Mid" value={formatUsdPrice(insights.spread.mid)} />
-            <DetailRow label="High" value={formatUsdPrice(insights.spread.high)} />
-            <DetailRow label="Width" value={insights.spread.width} />
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {typeof insights?.printingPremium === "number" ? (
-        <AnalysisCard eyebrow="Printing" title="Printing Premium">
-          <div className="space-y-2">
-            <DetailRow label="Reverse holofoil vs normal" value={`${insights.printingPremium}x`} />
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {insights?.trend ? (
-        <AnalysisCard eyebrow="Momentum" title="7 Day Trend">
-          <div className="space-y-2">
-            <DetailRow
-              label="Direction"
-              value={`${insights.trend.direction === "up" ? "↑" : insights.trend.direction === "down" ? "↓" : "→"} ${insights.trend.direction}`}
-            />
-            <DetailRow label="Change" value={`${insights.trend.percent}%`} />
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {hasEbaySection ? (
-        <AnalysisCard eyebrow="Fallback Context" title="eBay">
-          <div className="space-y-2">
-            {typeof pricing?.ebay_median_price === "number" ? (
-              <DetailRow label="Median price" value={formatUsdPrice(pricing.ebay_median_price)} />
-            ) : null}
-            {typeof pricing?.ebay_listing_count === "number" ? (
-              <DetailRow label="Listing count" value={formatCountLabel(pricing.ebay_listing_count, "listing", "listings")} />
-            ) : null}
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {hasGrookaiValue ? (
-        <AnalysisCard eyebrow="Experimental" title="Grookai Value (Beta)">
-          <div className="space-y-2">
-            <DetailRow label="Beta estimate" value={formatUsdPrice(pricing?.grookai_value)} />
-            <p className="text-sm text-slate-600">
-              Grookai Value is an experimental estimate derived from multiple signals and remains secondary to the market
-              reference.
-            </p>
-          </div>
-        </AnalysisCard>
-      ) : null}
-
-      {!hasJustTcgSection && !hasConditionCurve && !insights?.spread && typeof insights?.printingPremium !== "number" && !insights?.trend && !hasEbaySection && !hasGrookaiValue ? (
+      {!insights ? (
         <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-sm text-slate-600">No additional market analysis is available for this card yet.</p>
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Market Analysis</h2>
+            <p className="text-sm text-slate-600">No market insights are available for this card yet.</p>
+          </div>
         </section>
-      ) : null}
+      ) : (
+        <>
+          {insights.spread ? (
+            <section className="space-y-5 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="space-y-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Market reference</p>
+                <p className="text-sm font-medium text-slate-700">Near Mint · Normal</p>
+              </div>
 
-      <PricingDisclosure />
+              <div className="space-y-4">
+                <p className="text-5xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(insights.spread.mid)}</p>
+
+                <div className="max-w-md space-y-1.5">
+                  <div className="flex justify-between gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">
+                    <span>Low</span>
+                    <span>Mid</span>
+                    <span>High</span>
+                  </div>
+                  <div className="flex justify-between gap-3 text-sm font-medium text-slate-900">
+                    <span>{formatUsdPrice(insights.spread.low)}</span>
+                    <span>{formatUsdPrice(insights.spread.mid)}</span>
+                    <span>{formatUsdPrice(insights.spread.high)}</span>
+                  </div>
+                </div>
+
+                {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
+              </div>
+            </section>
+          ) : null}
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {sortedConditions.length > 0 ? (
+              <MarketInsightCard title="Condition Pricing">
+                <div className="space-y-3">
+                  {sortedConditions.map(([condition, value]) => (
+                    <MarketMetricRow key={condition} label={condition} value={formatUsdPrice(value)} />
+                  ))}
+                </div>
+              </MarketInsightCard>
+            ) : null}
+
+            {typeof insights.printingPremium === "number" ? (
+              <MarketInsightCard
+                title="Printing Premium"
+                subtitle="Based on available active market references."
+              >
+                <p className="text-lg font-medium text-slate-950">
+                  Reverse holo is {insights.printingPremium}x normal
+                </p>
+              </MarketInsightCard>
+            ) : null}
+
+            {insights.trend ? (
+              <MarketInsightCard title="7 Day Trend">
+                <div className="space-y-2">
+                  <p className="text-lg font-medium text-slate-950">
+                    {insights.trend.direction === "up"
+                      ? "Trending up"
+                      : insights.trend.direction === "down"
+                        ? "Trending down"
+                        : "Flat"}
+                  </p>
+                  <p className="text-sm font-medium text-slate-700">
+                    {insights.trend.percent > 0 ? "+" : ""}
+                    {insights.trend.percent}%
+                  </p>
+                </div>
+              </MarketInsightCard>
+            ) : null}
+
+            {insights.spread ? (
+              <MarketInsightCard
+                title="Market Width"
+                subtitle="Based on the current low-to-high spread for Near Mint normal."
+              >
+                <p className="text-lg font-medium text-slate-950">
+                  {insights.spread.width.charAt(0).toUpperCase()}
+                  {insights.spread.width.slice(1)}
+                </p>
+              </MarketInsightCard>
+            ) : null}
+          </div>
+
+          {sortedConditions.length === 0 &&
+          !insights.spread &&
+          typeof insights.printingPremium !== "number" &&
+          !insights.trend ? (
+            <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="text-sm text-slate-600">No market insights are available for this card yet.</p>
+            </section>
+          ) : null}
+        </>
+      )}
+
+      <section className="mt-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Pricing &amp; Data Sources</h2>
+        <p className="mb-2">
+          Market insights are derived from third-party pricing data and summarized by Grookai for easier interpretation.
+        </p>
+        <p>Data may be delayed and should not be treated as a guaranteed real-time market quote.</p>
+      </section>
     </div>
   );
 }
