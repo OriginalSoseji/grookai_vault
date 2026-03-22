@@ -8,12 +8,14 @@ const DEFAULT_FETCH_TIMEOUT_MS = 8000;
 const HISTORY_DURATIONS = ["7d", "30d", "90d", "180d"] as const;
 
 type JustTcgPriceHistoryDuration = (typeof HISTORY_DURATIONS)[number];
+type LookupMode = "variant" | "card";
 
 type ExternalMappingRow = {
   external_id: string | null;
 };
 
 type VariantSliceRow = {
+  variant_id: string | null;
   condition: string | null;
   printing: string | null;
   language: string | null;
@@ -27,9 +29,11 @@ type JustTcgPriceHistoryEntry = {
 };
 
 type JustTcgVariant = {
+  id?: string | null;
   condition?: string | null;
   printing?: string | null;
   language?: string | null;
+  tcgplayerSkuId?: string | null;
   price?: number | null;
   lastUpdated?: number | null;
   priceHistory?: JustTcgPriceHistoryEntry[] | null;
@@ -47,9 +51,16 @@ type JustTcgEnvelope<T> = {
 };
 
 type SelectedSlice = {
+  variantId: string;
   condition: string;
   printing: string;
   language: string | null;
+  currentPrice: number | null;
+  updatedAt: string | null;
+};
+
+type HistoryLookupAttemptResult = {
+  points: PriceHistoryPoint[];
   currentPrice: number | null;
   updatedAt: string | null;
 };
@@ -222,11 +233,6 @@ function isNormalPrinting(value: string) {
   return normalizeText(value) === "normal";
 }
 
-function isReverseHolofoilPrinting(value: string) {
-  const normalized = normalizeText(value);
-  return normalized === "reverse holofoil" || normalized === "reverse-holofoil";
-}
-
 function sortSliceRows(left: SelectedSlice, right: SelectedSlice) {
   const conditionDelta = conditionRank(right.condition) - conditionRank(left.condition);
   if (conditionDelta !== 0) {
@@ -243,8 +249,7 @@ function sortSliceRows(left: SelectedSlice, right: SelectedSlice) {
     return languageDelta;
   }
 
-  const updatedDelta =
-    new Date(right.updatedAt ?? 0).getTime() - new Date(left.updatedAt ?? 0).getTime();
+  const updatedDelta = new Date(right.updatedAt ?? 0).getTime() - new Date(left.updatedAt ?? 0).getTime();
   if (updatedDelta !== 0) {
     return updatedDelta;
   }
@@ -255,13 +260,16 @@ function sortSliceRows(left: SelectedSlice, right: SelectedSlice) {
 function pickSelectedSlice(rows: VariantSliceRow[]): SelectedSlice | null {
   const candidates = rows
     .map((row) => {
+      const variantId = row.variant_id?.trim() ?? "";
       const condition = row.condition?.trim() ?? "";
       const printing = row.printing?.trim() ?? "";
-      if (!condition || !printing) {
+
+      if (!variantId || !condition || !printing) {
         return null;
       }
 
       return {
+        variantId,
         condition: toConditionLabel(condition),
         printing: toPrintingLabel(printing),
         language: row.language?.trim() || null,
@@ -280,13 +288,6 @@ function pickSelectedSlice(rows: VariantSliceRow[]): SelectedSlice | null {
   );
   if (nearMintNormal.length > 0) {
     return nearMintNormal.sort(sortSliceRows)[0];
-  }
-
-  const nearMintReverse = candidates.filter(
-    (row) => isNearMint(row.condition) && isReverseHolofoilPrinting(row.printing),
-  );
-  if (nearMintReverse.length > 0) {
-    return nearMintReverse.sort(sortSliceRows)[0];
   }
 
   const nearMintAny = candidates.filter((row) => isNearMint(row.condition));
@@ -359,6 +360,11 @@ async function fetchJustTcgJson<T>(path: string, params: URLSearchParams) {
 }
 
 function selectHistoryVariant(variants: JustTcgVariant[], slice: SelectedSlice) {
+  const exactVariant = variants.find((variant) => normalizeText(variant.id) === normalizeText(slice.variantId));
+  if (exactVariant) {
+    return exactVariant;
+  }
+
   const matching = variants.filter(
     (variant) =>
       normalizeText(variant.condition) === normalizeText(slice.condition) &&
@@ -403,9 +409,7 @@ function readPriceHistoryEntries(variant: JustTcgVariant, duration: JustTcgPrice
   return [];
 }
 
-function normalizePriceHistory(
-  entries: JustTcgPriceHistoryEntry[],
-): PriceHistoryPoint[] {
+function normalizePriceHistory(entries: JustTcgPriceHistoryEntry[]): PriceHistoryPoint[] {
   const pointsByDate = new Map<string, { timestamp: number; price: number }>();
 
   const sortedEntries = entries
@@ -441,6 +445,156 @@ function normalizePriceHistory(
     }));
 }
 
+function logHistoryAttempt(details: {
+  cardPrintId: string;
+  slice: SelectedSlice;
+  mode: LookupMode;
+  status: "error" | "empty";
+  reason?: string;
+  rawCount: number;
+  normalizedCount: number;
+}) {
+  const payload = {
+    cardPrintId: details.cardPrintId,
+    slice: {
+      variantId: details.slice.variantId,
+      condition: details.slice.condition,
+      printing: details.slice.printing,
+      language: details.slice.language,
+    },
+    identifierType: details.mode,
+    rawHistoryPointCount: details.rawCount,
+    normalizedPointCount: details.normalizedCount,
+    reason: details.reason ?? null,
+  };
+
+  console.warn("[pricing:justtcg-history] history lookup did not produce usable points", payload);
+}
+
+async function fetchHistoryByVariantId({
+  cardPrintId,
+  slice,
+  duration,
+}: {
+  cardPrintId: string;
+  slice: SelectedSlice;
+  duration: JustTcgPriceHistoryDuration;
+}): Promise<HistoryLookupAttemptResult | null> {
+  const response = await fetchJustTcgJson<JustTcgEnvelope<JustTcgCard>>(
+    "/cards",
+    new URLSearchParams({
+      variantId: slice.variantId,
+      include_price_history: "true",
+      priceHistoryDuration: duration,
+    }),
+  );
+
+  if (!response.ok) {
+    logHistoryAttempt({
+      cardPrintId,
+      slice,
+      mode: "variant",
+      status: "error",
+      reason: response.error,
+      rawCount: 0,
+      normalizedCount: 0,
+    });
+    return null;
+  }
+
+  const card = unwrapData(response.payload)[0] ?? null;
+  const variants = Array.isArray(card?.variants) ? card.variants : [];
+  const selectedVariant = selectHistoryVariant(variants, slice);
+  const rawEntries = selectedVariant ? readPriceHistoryEntries(selectedVariant, duration) : [];
+  const points = normalizePriceHistory(rawEntries);
+  const variantUpdatedAt =
+    typeof selectedVariant?.lastUpdated === "number" && Number.isFinite(selectedVariant.lastUpdated)
+      ? new Date(selectedVariant.lastUpdated * 1000).toISOString()
+      : null;
+
+  if (points.length === 0) {
+    logHistoryAttempt({
+      cardPrintId,
+      slice,
+      mode: "variant",
+      status: "empty",
+      reason: selectedVariant ? undefined : "Variant lookup returned no exact matching variant.",
+      rawCount: rawEntries.length,
+      normalizedCount: points.length,
+    });
+    return null;
+  }
+
+  return {
+    points,
+    currentPrice: normalizePrice(selectedVariant?.price) ?? slice.currentPrice,
+    updatedAt: variantUpdatedAt ?? slice.updatedAt,
+  };
+}
+
+async function fetchHistoryByCardId({
+  cardPrintId,
+  justTcgCardId,
+  slice,
+  duration,
+}: {
+  cardPrintId: string;
+  justTcgCardId: string;
+  slice: SelectedSlice;
+  duration: JustTcgPriceHistoryDuration;
+}): Promise<HistoryLookupAttemptResult | null> {
+  const response = await fetchJustTcgJson<JustTcgEnvelope<JustTcgCard>>(
+    "/cards",
+    new URLSearchParams({
+      cardId: justTcgCardId,
+      include_price_history: "true",
+      priceHistoryDuration: duration,
+    }),
+  );
+
+  if (!response.ok) {
+    logHistoryAttempt({
+      cardPrintId,
+      slice,
+      mode: "card",
+      status: "error",
+      reason: response.error,
+      rawCount: 0,
+      normalizedCount: 0,
+    });
+    return null;
+  }
+
+  const card = unwrapData(response.payload)[0] ?? null;
+  const variants = Array.isArray(card?.variants) ? card.variants : [];
+  const selectedVariant = selectHistoryVariant(variants, slice);
+  const rawEntries = selectedVariant ? readPriceHistoryEntries(selectedVariant, duration) : [];
+  const points = normalizePriceHistory(rawEntries);
+  const variantUpdatedAt =
+    typeof selectedVariant?.lastUpdated === "number" && Number.isFinite(selectedVariant.lastUpdated)
+      ? new Date(selectedVariant.lastUpdated * 1000).toISOString()
+      : null;
+
+  if (points.length === 0) {
+    logHistoryAttempt({
+      cardPrintId,
+      slice,
+      mode: "card",
+      status: "empty",
+      reason: selectedVariant ? undefined : "Card lookup returned no exact matching variant.",
+      rawCount: rawEntries.length,
+      normalizedCount: points.length,
+    });
+    return null;
+  }
+
+  return {
+    points,
+    currentPrice: normalizePrice(selectedVariant?.price) ?? slice.currentPrice,
+    updatedAt: variantUpdatedAt ?? slice.updatedAt,
+  };
+}
+
 export function normalizeJustTcgHistoryDuration(
   value: string | null | undefined,
 ): JustTcgPriceHistoryDuration {
@@ -472,7 +626,7 @@ export async function getJustTcgPriceHistory({
           .maybeSingle(),
         supabase
           .from("justtcg_variant_prices_latest")
-          .select("condition,printing,language,price,updated_at")
+          .select("variant_id,condition,printing,language,price,updated_at")
           .eq("card_print_id", normalizedCardPrintId),
       ]);
 
@@ -492,58 +646,68 @@ export async function getJustTcgPriceHistory({
       return null;
     }
 
-    const justTcgCardId = (mappingData as ExternalMappingRow | null)?.external_id?.trim() ?? null;
     const selectedSlice = pickSelectedSlice((sliceData ?? []) as VariantSliceRow[]);
-
-    if (!justTcgCardId || !selectedSlice) {
+    if (!selectedSlice) {
       return null;
     }
 
-    const params = new URLSearchParams({
-      cardId: justTcgCardId,
-      condition: selectedSlice.condition,
-      printing: selectedSlice.printing,
-      include_price_history: "true",
-      priceHistoryDuration: duration,
+    const justTcgCardId = (mappingData as ExternalMappingRow | null)?.external_id?.trim() ?? null;
+    const variantResult = await fetchHistoryByVariantId({
+      cardPrintId: normalizedCardPrintId,
+      slice: selectedSlice,
+      duration,
     });
 
-    const response = await fetchJustTcgJson<JustTcgEnvelope<JustTcgCard>>("/cards", params);
-    if (!response.ok) {
-      console.error("[pricing:justtcg-history] history fetch failed", {
-        cardPrintId: normalizedCardPrintId,
-        justTcgCardId,
-        condition: selectedSlice.condition,
-        printing: selectedSlice.printing,
-        duration,
-        error: response.error,
-      });
-
+    if (variantResult) {
       return {
         condition: selectedSlice.condition,
         printing: selectedSlice.printing,
         duration,
-        points: [],
-        currentPrice: selectedSlice.currentPrice,
-        updatedAt: selectedSlice.updatedAt,
+        points: variantResult.points,
+        currentPrice: variantResult.currentPrice,
+        updatedAt: variantResult.updatedAt,
       };
     }
 
-    const card = unwrapData(response.payload)[0] ?? null;
-    const variants = Array.isArray(card?.variants) ? card.variants : [];
-    const selectedVariant = selectHistoryVariant(variants, selectedSlice);
-    const points = selectedVariant ? normalizePriceHistory(readPriceHistoryEntries(selectedVariant, duration)) : [];
-    const variantUpdatedAt =
-      typeof selectedVariant?.lastUpdated === "number" && Number.isFinite(selectedVariant.lastUpdated)
-        ? new Date(selectedVariant.lastUpdated * 1000).toISOString()
-        : null;
+    if (justTcgCardId) {
+      const cardResult = await fetchHistoryByCardId({
+        cardPrintId: normalizedCardPrintId,
+        justTcgCardId,
+        slice: selectedSlice,
+        duration,
+      });
+
+      if (cardResult) {
+        return {
+          condition: selectedSlice.condition,
+          printing: selectedSlice.printing,
+          duration,
+          points: cardResult.points,
+          currentPrice: cardResult.currentPrice,
+          updatedAt: cardResult.updatedAt,
+        };
+      }
+    } else {
+      console.warn("[pricing:justtcg-history] card-level fallback unavailable", {
+        cardPrintId: normalizedCardPrintId,
+        slice: {
+          variantId: selectedSlice.variantId,
+          condition: selectedSlice.condition,
+          printing: selectedSlice.printing,
+          language: selectedSlice.language,
+        },
+        identifierType: "card",
+        reason: "No active JustTCG card mapping was available for fallback.",
+      });
+    }
 
     return {
       condition: selectedSlice.condition,
       printing: selectedSlice.printing,
       duration,
-      points,
-      currentPrice: normalizePrice(selectedVariant?.price) ?? selectedSlice.currentPrice,
-      updatedAt: variantUpdatedAt ?? selectedSlice.updatedAt,
+      points: [],
+      currentPrice: selectedSlice.currentPrice,
+      updatedAt: selectedSlice.updatedAt,
     };
   } catch (error) {
     console.error("[pricing:justtcg-history] getJustTcgPriceHistory failed", {
