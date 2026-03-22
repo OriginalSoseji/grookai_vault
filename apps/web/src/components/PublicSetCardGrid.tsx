@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
-import PublicCardImage from "@/components/PublicCardImage";
 import ShareCardButton from "@/components/ShareCardButton";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets.shared";
@@ -84,38 +85,29 @@ export default function PublicSetCardGrid({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
         {cards.map((card, index) => (
-          <div
+          <PokemonCardGridTile
             key={card.gv_id}
-            className="card-hover group rounded-[16px] border border-slate-100 bg-white p-4 shadow-sm"
-          >
-            <div className="mb-3 flex items-center justify-end">
-              <CompareCardButton gvId={card.gv_id} variant="compact" />
-            </div>
-            <Link href={buildCardHref(card.gv_id)} className="block">
-              <div className="flex items-center justify-center rounded-[12px] border border-slate-100 bg-slate-50 p-4">
-                <PublicCardImage
-                  src={card.image_url}
-                  alt={card.name}
-                  loading={index < 12 ? "eager" : "lazy"}
-                  imageClassName="aspect-[3/4] w-full rounded-[10px] object-contain transition duration-150 group-hover:scale-[1.02]"
-                  fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[10px] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                />
-              </div>
-            </Link>
-            <div className="mt-3 space-y-1">
-              <Link href={buildCardHref(card.gv_id)} className="block">
-                <p className="truncate text-[15px] font-medium text-slate-900">{card.name}</p>
-                <p className="truncate text-sm text-slate-500">{setCode.toUpperCase()}</p>
+            utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
+            imageSrc={card.image_url}
+            imageAlt={card.name}
+            imageHref={buildCardHref(card.gv_id)}
+            imageLoading={index < 12 ? "eager" : "lazy"}
+            title={
+              <Link href={buildCardHref(card.gv_id)} className="block truncate transition hover:text-slate-700">
+                {card.name}
               </Link>
-              <div className="mt-2 flex items-center justify-between gap-3">
-                <p className="text-xs text-slate-400">{card.number ? `#${card.number}` : "—"}</p>
+            }
+            subtitle={<span className="block truncate">{setCode.toUpperCase()}</span>}
+            meta={<span>{card.number ? `#${card.number}` : "—"}</span>}
+            footer={
+              <div className="flex items-center justify-between gap-3">
+                <span>GV-ID: {card.gv_id}</span>
                 <ShareCardButton gvId={card.gv_id} />
               </div>
-              <p className="text-[11px] text-slate-400">GV-ID: {card.gv_id}</p>
-            </div>
-          </div>
+            }
+          />
         ))}
       </div>
 

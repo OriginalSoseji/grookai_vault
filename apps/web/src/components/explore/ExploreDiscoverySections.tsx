@@ -1,5 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import {
+  POKEMON_CARD_DISCOVERY_COMPACT_GRID_CLASSNAME,
+  POKEMON_CARD_DISCOVERY_GRID_CLASSNAME,
+} from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
@@ -156,26 +161,24 @@ export default function ExploreDiscoverySections({
               eyebrow="More cards"
               title="Worth a closer look"
             />
-            <div className="grid grid-cols-2 gap-2.5">
+            <div className={POKEMON_CARD_DISCOVERY_COMPACT_GRID_CLASSNAME}>
               {gridCards.map((card) => (
-                <Link
+                <PokemonCardGridTile
                   key={card.gv_id}
-                  href={buildCardHref(card.gv_id, compareCards)}
-                  className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
-                >
-                  <div className="rounded-t-[1.2rem] border-b border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-2.5">
-                    <PublicCardImage
-                      src={card.image_url}
-                      alt={card.name}
-                      imageClassName="aspect-[3/4] w-full object-contain"
-                      fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                    />
-                  </div>
-                  <div className="space-y-0.5 px-2.5 py-[0.5625rem]">
-                    <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.name}</p>
-                    <p className="line-clamp-2 text-[11px] leading-[1.125rem] text-slate-500">{buildCardMetaLine(card)}</p>
-                  </div>
-                </Link>
+                  density="compact"
+                  imageSrc={card.image_url}
+                  imageAlt={card.name}
+                  imageHref={buildCardHref(card.gv_id, compareCards)}
+                  title={
+                    <Link
+                      href={buildCardHref(card.gv_id, compareCards)}
+                      className="line-clamp-2 block transition hover:text-slate-700"
+                    >
+                      {card.name}
+                    </Link>
+                  }
+                  subtitle={<span className="line-clamp-2 block text-[11px] leading-[1.125rem]">{buildCardMetaLine(card)}</span>}
+                />
               ))}
             </div>
           </section>
@@ -264,34 +267,28 @@ export default function ExploreDiscoverySections({
           </div>
 
           {featuredCards.length > 0 ? (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+            <div className={POKEMON_CARD_DISCOVERY_GRID_CLASSNAME}>
               {featuredCards.map((card) => (
-                <article
+                <PokemonCardGridTile
                   key={card.gv_id}
-                  className="group overflow-hidden rounded-[22px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
-                >
-                  <div className="mb-3 flex items-center justify-end">
-                    <CompareCardButton gvId={card.gv_id} variant="compact" />
-                  </div>
-                  <Link href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)} className="block space-y-4">
-                    <div className="rounded-[18px] border border-slate-100 bg-slate-50 p-4">
-                      <PublicCardImage
-                        src={card.image_url}
-                        alt={card.name}
-                        imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain transition duration-150 group-hover:scale-[1.02]"
-                        fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <p className="truncate text-base font-semibold text-slate-950">{card.name}</p>
-                      <p className="truncate text-sm text-slate-600">{card.set_name ?? card.set_code ?? "Unknown set"}</p>
-                      <p className="text-xs text-slate-500">
-                        {[card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
-                      </p>
-                      <p className="text-[11px] font-medium tracking-[0.08em] text-slate-400">{card.gv_id}</p>
-                    </div>
-                  </Link>
-                </article>
+                  utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
+                  imageSrc={card.image_url}
+                  imageAlt={card.name}
+                  imageHref={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+                  title={
+                    <Link
+                      href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+                      className="block truncate transition hover:text-slate-700"
+                    >
+                      {card.name}
+                    </Link>
+                  }
+                  subtitle={<span className="block truncate">{card.set_name ?? card.set_code ?? "Unknown set"}</span>}
+                  meta={
+                    <span>{[card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}</span>
+                  }
+                  footer={<span>{card.gv_id}</span>}
+                />
               ))}
             </div>
           ) : (

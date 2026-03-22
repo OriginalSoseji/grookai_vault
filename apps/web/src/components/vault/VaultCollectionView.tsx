@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import PublicCardImage from "@/components/PublicCardImage";
+import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import { CollectorPageActivationCard } from "@/components/vault/CollectorPageActivationCard";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
@@ -362,16 +363,8 @@ function renderVaultGrid(
   onPublicNoteEdit: (item: VaultCardData) => void,
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
 ) {
-  const gridClassName =
-    density === "compact"
-      ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8"
-      : density === "large"
-        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-        : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
-  const gapClassName = density === "compact" ? "gap-2 sm:gap-3" : density === "large" ? "gap-6" : "gap-4";
-
   return (
-    <div className={`grid ${gridClassName} ${gapClassName}`}>
+    <div className={getPokemonCardCollectionGridClassName(density)}>
       {items.map((item) => {
         const rowKey = getVaultRowRuntimeKey(item);
         return (
@@ -1639,29 +1632,28 @@ export function VaultCollectionView({
         ) : (
           <div className="flex gap-4 overflow-x-auto pt-0.5 pb-2">
             {recent.map((item) => (
-              <Link
+              <PokemonCardGridTile
                 key={item.id}
-                href={`/card/${item.gv_id}`}
-                className="min-w-[220px] max-w-[220px] flex-none overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
-              >
-                <PublicCardImage
-                  src={item.image_url}
-                  alt={item.name}
-                  imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-5"
-                  fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-                  fallbackLabel={item.name}
-                />
-                <div className="space-y-2.5 border-t border-slate-200 px-4 py-4">
-                  <p className="line-clamp-2 text-base font-medium text-slate-950">{item.name}</p>
-                  <p className="text-sm text-slate-600">
-                    {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
-                  </p>
-                  <div className="space-y-1">
-                    <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{item.gv_id}</p>
-                    <p className="text-xs text-slate-500">{formatTimeAgo(item.created_at)}</p>
-                  </div>
-                </div>
-              </Link>
+                className="min-w-[220px] max-w-[220px] flex-none"
+                imageSrc={item.image_url}
+                imageAlt={item.name}
+                imageHref={`/card/${item.gv_id}`}
+                imageFallbackLabel={item.name}
+                title={
+                  <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
+                    {item.name}
+                  </Link>
+                }
+                subtitle={
+                  <span className="line-clamp-1 block">
+                    {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
+                      .filter(Boolean)
+                      .join(" • ")}
+                  </span>
+                }
+                meta={<span>Added {formatTimeAgo(item.created_at)}</span>}
+                footer={<span>{item.gv_id}</span>}
+              />
             ))}
           </div>
         )}

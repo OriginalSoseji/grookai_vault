@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CompareTray from "@/components/compare/CompareTray";
+import {
+  POKEMON_CARD_BROWSE_GRID_CLASSNAME,
+  POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME,
+} from "@/components/cards/pokemonCardGridLayout";
 import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
 import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
@@ -309,7 +313,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
               </div>
             </div>
           ) : viewMode === "thumb-lg" ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
               {rows.map((row) => (
                 <ExploreCardGridItem
                   key={row.id}
@@ -322,7 +326,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
               {rows.length === 0 && !loading ? <div className="sm:col-span-2 xl:col-span-3">{emptyState}</div> : null}
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
               {rows.map((row) => (
                 <ExploreCardGridItem
                   key={row.id}
