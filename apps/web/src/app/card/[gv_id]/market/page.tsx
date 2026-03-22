@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
+import { getMarketInsights } from "@/lib/pricing/getMarketInsights";
 import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -19,6 +20,33 @@ function formatRange(minPrice?: number, maxPrice?: number) {
 
 function formatCountLabel(value: number, singular: string, plural: string) {
   return `${value} ${value === 1 ? singular : plural}`;
+}
+
+function formatTimeAgo(value: string | null) {
+  if (!value) return null;
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+
+  const diffMs = Date.now() - date.getTime();
+  const diffSeconds = Math.max(1, Math.floor(diffMs / 1000));
+
+  if (diffSeconds < 60) return `${diffSeconds}s ago`;
+
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  if (diffMinutes < 60) return `${diffMinutes} minutes ago`;
+
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours < 24) return `${diffHours}h ago`;
+
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays < 30) return `${diffDays} days ago`;
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 function DetailRow({ label, value }: { label: string; value: string }) {
@@ -67,6 +95,7 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
   }
 
   const pricing = card.id ? await getCardPricingUiByCardPrintId(card.id) : null;
+  const insights = card.id ? await getMarketInsights(card.id) : null;
   const referenceRange = formatRange(pricing?.min_price, pricing?.max_price);
   const hasJustTcgSection =
     Boolean(referenceRange) ||
@@ -75,6 +104,8 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
   const hasEbaySection =
     typeof pricing?.ebay_median_price === "number" || typeof pricing?.ebay_listing_count === "number";
   const hasGrookaiValue = typeof pricing?.grookai_value === "number";
+  const hasConditionCurve = Boolean(insights && Object.keys(insights.conditionCurve).length > 0);
+  const freshnessLabel = formatTimeAgo(insights?.updatedAt ?? null);
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 py-8">
@@ -101,6 +132,7 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
               <p className="text-sm font-medium text-slate-700">Near Mint</p>
               <p className="text-xs font-medium text-slate-500">Market reference</p>
               {referenceRange ? <p className="text-sm text-slate-600">{referenceRange}</p> : null}
+              {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
             </>
           ) : (
             <>
@@ -121,6 +153,49 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
             {typeof pricing?.variant_count === "number" ? (
               <DetailRow label="Variants" value={formatCountLabel(pricing.variant_count, "variant", "variants")} />
             ) : null}
+          </div>
+        </AnalysisCard>
+      ) : null}
+
+      {hasConditionCurve ? (
+        <AnalysisCard eyebrow="Condition Curve" title="Condition Pricing">
+          <div className="space-y-2">
+            {Object.entries(insights!.conditionCurve)
+              .sort(([left], [right]) => left.localeCompare(right))
+              .map(([condition, value]) => (
+                <DetailRow key={condition} label={condition} value={formatUsdPrice(value)} />
+              ))}
+          </div>
+        </AnalysisCard>
+      ) : null}
+
+      {insights?.spread ? (
+        <AnalysisCard eyebrow="Range" title="Market Range">
+          <div className="space-y-2">
+            <DetailRow label="Low" value={formatUsdPrice(insights.spread.low)} />
+            <DetailRow label="Mid" value={formatUsdPrice(insights.spread.mid)} />
+            <DetailRow label="High" value={formatUsdPrice(insights.spread.high)} />
+            <DetailRow label="Width" value={insights.spread.width} />
+          </div>
+        </AnalysisCard>
+      ) : null}
+
+      {typeof insights?.printingPremium === "number" ? (
+        <AnalysisCard eyebrow="Printing" title="Printing Premium">
+          <div className="space-y-2">
+            <DetailRow label="Reverse holofoil vs normal" value={`${insights.printingPremium}x`} />
+          </div>
+        </AnalysisCard>
+      ) : null}
+
+      {insights?.trend ? (
+        <AnalysisCard eyebrow="Momentum" title="7 Day Trend">
+          <div className="space-y-2">
+            <DetailRow
+              label="Direction"
+              value={`${insights.trend.direction === "up" ? "↑" : insights.trend.direction === "down" ? "↓" : "→"} ${insights.trend.direction}`}
+            />
+            <DetailRow label="Change" value={`${insights.trend.percent}%`} />
           </div>
         </AnalysisCard>
       ) : null}
@@ -150,7 +225,7 @@ export default async function MarketAnalysisPage({ params }: { params: { gv_id: 
         </AnalysisCard>
       ) : null}
 
-      {!hasJustTcgSection && !hasEbaySection && !hasGrookaiValue ? (
+      {!hasJustTcgSection && !hasConditionCurve && !insights?.spread && typeof insights?.printingPremium !== "number" && !insights?.trend && !hasEbaySection && !hasGrookaiValue ? (
         <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
           <p className="text-sm text-slate-600">No additional market analysis is available for this card yet.</p>
         </section>
