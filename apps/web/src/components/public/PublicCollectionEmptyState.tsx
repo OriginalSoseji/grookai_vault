@@ -1,5 +1,3 @@
-"use client";
-
 type PublicCollectionEmptyStateProps = {
   title: string;
   body: string;

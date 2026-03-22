@@ -1,5 +1,12 @@
 "use client";
 
+import {
+  SearchToolbar,
+  SearchToolbarButton,
+  SearchToolbarField,
+  SearchToolbarInput,
+  SearchToolbarSelect,
+} from "@/components/common/SearchToolbar";
 import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -65,65 +72,51 @@ export default function PublicSetsToolbar() {
   const hasActiveFilters = currentQuery.trim().length > 0 || currentFilter !== "all";
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-sm sm:px-5"
-    >
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
-        <div className="min-w-0 flex-1 space-y-2">
-          <label htmlFor="public-sets-search" className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-            Search
-          </label>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <input
-              id="public-sets-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search sets by name or code"
-              aria-label="Search sets by name or code"
-              className="h-11 min-w-0 flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
-            />
-            <button
-              type="submit"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-slate-950 px-5 text-sm font-medium text-white transition hover:bg-slate-800"
-            >
-              Search
-            </button>
+    <form onSubmit={handleSubmit}>
+      <SearchToolbar surface="card">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
+          <SearchToolbarField label="Search" className="min-w-0 flex-1">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <SearchToolbarInput
+                id="public-sets-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search sets by name or code"
+                aria-label="Search sets by name or code"
+                tone="soft"
+              />
+              <SearchToolbarButton type="submit" tone="primary">
+                Search
+              </SearchToolbarButton>
+            </div>
+          </SearchToolbarField>
+
+          <div className="flex flex-col gap-3 sm:flex-row lg:w-auto lg:items-end">
+            <SearchToolbarField label="Filter" className="sm:min-w-[220px]">
+              <SearchToolbarSelect
+                id="public-sets-filter"
+                value={currentFilter}
+                onChange={(event) => handleFilterChange(normalizePublicSetFilter(event.target.value))}
+                aria-label="Filter sets"
+                tone="soft"
+              >
+                {PUBLIC_SET_FILTER_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </SearchToolbarSelect>
+            </SearchToolbarField>
+
+            {hasActiveFilters ? (
+              <SearchToolbarButton type="button" tone="secondary" onClick={handleReset}>
+                Reset
+              </SearchToolbarButton>
+            ) : null}
           </div>
         </div>
-
-        <div className="flex flex-col gap-3 sm:flex-row lg:w-auto lg:items-end">
-          <div className="space-y-2 sm:min-w-[220px]">
-            <label htmlFor="public-sets-filter" className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
-              Filter
-            </label>
-            <select
-              id="public-sets-filter"
-              value={currentFilter}
-              onChange={(event) => handleFilterChange(normalizePublicSetFilter(event.target.value))}
-              aria-label="Filter sets"
-              className="h-11 w-full rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition focus:bg-white focus:ring-2 focus:ring-slate-200"
-            >
-              {PUBLIC_SET_FILTER_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {hasActiveFilters ? (
-            <button
-              type="button"
-              onClick={handleReset}
-              className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-            >
-              Reset
-            </button>
-          ) : null}
-        </div>
-      </div>
+      </SearchToolbar>
     </form>
   );
 }

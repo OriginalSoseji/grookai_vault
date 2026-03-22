@@ -43,22 +43,27 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-img {
-  opacity: 0;
-  animation: imageFade 200ms forwards;
-}
-
 @keyframes imageFade {
   to {
     opacity: 1;
   }
 }
 
-button {
-  transition: background-color 120ms ease, transform 100ms ease, border-color 120ms ease, color 120ms ease;
+.gv-image-fade {
+  opacity: 0;
+  animation: imageFade 200ms forwards;
 }
 
-button:hover:not(:disabled) {
+.gv-interactive {
+  transition:
+    background-color 120ms ease,
+    transform 100ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.gv-interactive:hover:not(:disabled) {
   transform: translateY(-1px);
 }
 

@@ -1,6 +1,8 @@
 "use client";
 
 import GoogleSignInButton from "@/components/GoogleSignInButton";
+import PageIntro from "@/components/layout/PageIntro";
+import PageSection from "@/components/layout/PageSection";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -54,68 +56,87 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="mx-auto max-w-md rounded border bg-white p-6 shadow-sm">
-      <h1 className="mb-4 text-xl font-semibold">Sign {mode === "signin" ? "in" : "up"}</h1>
-      <p className="mb-4 text-sm leading-6 text-slate-600">
-        Sign in to build your vault, track your cards, and share your collection.
-      </p>
-      <div className="space-y-3">
-        <GoogleSignInButton
-          label="Sign in with Google"
-          className="w-full rounded border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
-          nextPath={nextPath}
-          onError={setError}
-        />
-        <p className="text-center text-xs uppercase tracking-[0.18em] text-slate-400">or use email</p>
-      </div>
-      <form className="space-y-3" onSubmit={handleSubmit}>
-        <label className="block text-sm font-medium">
-          Email
-          <input
-            className="mt-1 w-full rounded border px-3 py-2"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-6">
+      <PageIntro
+        eyebrow="Account"
+        title={`Sign ${mode === "signin" ? "in" : "up"}`}
+        description="Sign in to build your vault, track your cards, and share your collection."
+        size="compact"
+      />
+
+      <PageSection surface="card" spacing="loose" className="mx-auto w-full max-w-md">
+        <div className="space-y-3">
+          <GoogleSignInButton
+            label="Sign in with Google"
+            className="w-full rounded-full border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+            nextPath={nextPath}
+            onError={setError}
           />
-        </label>
-        <label className="block text-sm font-medium">
-          Password
-          <input
-            className="mt-1 w-full rounded border px-3 py-2"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        <button
-            className="w-full rounded bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-60"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? "Working..." : mode === "signin" ? "Sign in" : "Sign up"}
-        </button>
-      </form>
-      <div className="mt-4 text-sm">
-        {mode === "signin" ? (
-          <button className="text-blue-700 hover:underline" onClick={() => setMode("signup")}>
-            Need an account? Sign up
+          <p className="text-center text-xs uppercase tracking-[0.18em] text-slate-400">or use email</p>
+        </div>
+        <form className="space-y-3" onSubmit={handleSubmit}>
+          <label className="block text-sm font-medium text-slate-700">
+            <span>Email</span>
+            <input
+              className="mt-1.5 h-11 w-full rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="block text-sm font-medium text-slate-700">
+            <span>Password</span>
+            <input
+              className="mt-1.5 h-11 w-full rounded-full border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          {error ? <p className="text-sm text-red-600">{error}</p> : null}
+          <button
+            className="w-full rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Working..." : mode === "signin" ? "Sign in" : "Sign up"}
           </button>
-        ) : (
-          <button className="text-blue-700 hover:underline" onClick={() => setMode("signin")}>
-            Have an account? Sign in
-          </button>
-        )}
-      </div>
+        </form>
+        <div className="text-sm text-slate-600">
+          {mode === "signin" ? (
+            <button className="font-medium text-slate-700 hover:text-slate-950 hover:underline" onClick={() => setMode("signup")}>
+              Need an account? Sign up
+            </button>
+          ) : (
+            <button className="font-medium text-slate-700 hover:text-slate-950 hover:underline" onClick={() => setMode("signin")}>
+              Have an account? Sign in
+            </button>
+          )}
+        </div>
+      </PageSection>
     </div>
   );
 }
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="mx-auto max-w-md rounded border bg-white p-6 shadow-sm text-sm text-slate-600">Loading sign-in...</div>}>
+    <Suspense
+      fallback={(
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-6">
+          <PageIntro
+            eyebrow="Account"
+            title="Sign in"
+            description="Sign in to build your vault, track your cards, and share your collection."
+            size="compact"
+          />
+          <PageSection surface="card" className="mx-auto w-full max-w-md text-sm text-slate-600">
+            Loading sign-in...
+          </PageSection>
+        </div>
+      )}
+    >
       <LoginPageContent />
     </Suspense>
   );

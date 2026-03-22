@@ -8,6 +8,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  // TODO(Wave 2/3): split auth-aware header data from the public shell so public routes can regain static caching.
   const supabase = createServerComponentClient();
   const {
     data: { user },

@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  SearchToolbar,
+  SearchToolbarButton,
+  SearchToolbarInput,
+} from "@/components/common/SearchToolbar";
 import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareCardsParam, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -70,23 +75,22 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
-          <input
+        <SearchToolbar surface="pill" className="flex items-center gap-3">
+          <SearchToolbarInput
+            tone="bare"
             type="search"
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search Pokémon cards, sets, or Grookai IDs"
-            className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
+            shellClassName="min-w-0 flex-1"
+            inputClassName="px-3 text-base"
             aria-label="Search cards"
           />
-          <button
-            type="submit"
-            className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
+          <SearchToolbarButton type="submit" tone="primary" size="hero">
             Search
-          </button>
-        </div>
+          </SearchToolbarButton>
+        </SearchToolbar>
       </form>
     );
   }
@@ -97,31 +101,35 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
         {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
         {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50/90 px-3 py-2 shadow-sm shadow-slate-200/20">
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 20 20"
-            className="h-3.5 w-3.5 shrink-0 text-slate-400"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="8.5" cy="8.5" r="4.75" />
-            <path d="m12 12 4.25 4.25" />
-          </svg>
-          <input
+        <SearchToolbar surface="soft-pill">
+          <SearchToolbarInput
+            tone="bare"
+            icon={(
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                className="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="8.5" cy="8.5" r="4.75" />
+                <path d="m12 12 4.25 4.25" />
+              </svg>
+            )}
             type="search"
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search cards, sets, numbers, or Grookai ID"
             enterKeyHint="search"
-            className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+            shellClassName="gap-2"
+            inputClassName="text-sm"
             aria-label="Search cards, sets, numbers, or Grookai ID"
           />
-        </div>
+        </SearchToolbar>
       </form>
     );
   }
@@ -131,26 +139,26 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       action="/search"
       method="get"
       onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+      className="w-full"
     >
       {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
       {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
       {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-      <input
-        type="search"
-        name="q"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search cards, sets, numbers, or Grookai ID"
-        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200 sm:max-w-[420px]"
-        aria-label="Search cards"
-      />
-      <button
-        type="submit"
-        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-100 hover:bg-slate-700"
-      >
-        Search
-      </button>
+      <SearchToolbar surface="none" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
+        <SearchToolbarInput
+          type="search"
+          name="q"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search cards, sets, numbers, or Grookai ID"
+          tone="soft"
+          shellClassName="w-full sm:max-w-[420px]"
+          aria-label="Search cards"
+        />
+        <SearchToolbarButton type="submit" tone="primary">
+          Search
+        </SearchToolbarButton>
+      </SearchToolbar>
     </form>
   );
 }

@@ -3,6 +3,9 @@
 import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import VariantBadge from "@/components/cards/VariantBadge";
+import PageIntro from "@/components/layout/PageIntro";
+import PageSection from "@/components/layout/PageSection";
+import SectionHeader from "@/components/layout/SectionHeader";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
@@ -142,17 +145,16 @@ export default function CompareWorkspace({
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 py-6">
-      <section className="space-y-5 rounded-[16px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
-        <div className="space-y-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Compare</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Card Comparison</h1>
-          <p className="max-w-2xl text-sm text-slate-600">
-            Compare cards side by side, pin a reference, and focus only on what changes.
-          </p>
-          {canViewPricing ? (
-            <p className="text-sm text-slate-500">Beta market estimate. Derived from active listings and market data.</p>
-          ) : null}
-        </div>
+      <PageSection surface="card" spacing="loose">
+        <PageIntro
+          eyebrow="Compare"
+          title="Card Comparison"
+          description="Compare cards side by side, pin a reference, and focus only on what changes."
+          size="compact"
+        />
+        {canViewPricing ? (
+          <p className="text-sm text-slate-500">Beta market estimate. Derived from active listings and market data.</p>
+        ) : null}
 
         <div className="flex flex-col gap-4 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center gap-3">
@@ -204,7 +206,7 @@ export default function CompareWorkspace({
             </button>
           </div>
         </div>
-      </section>
+      </PageSection>
 
       <section className={`grid gap-6 ${gridClassName}`}>
         {cards.map((card) => {
@@ -279,7 +281,13 @@ export default function CompareWorkspace({
         })}
       </section>
 
-      <section className="overflow-hidden rounded-[16px] border border-slate-200 bg-white shadow-sm">
+      <PageSection surface="card" className="overflow-hidden p-0">
+        <div className="border-b border-slate-200 px-5 py-5">
+          <SectionHeader
+            title="Attribute breakdown"
+            description="Use a reference card and optionally show only the fields that change."
+          />
+        </div>
         <div className="overflow-x-auto">
           <table className="min-w-full border-separate border-spacing-0">
             <thead>
@@ -349,7 +357,7 @@ export default function CompareWorkspace({
             </tbody>
           </table>
         </div>
-      </section>
+      </PageSection>
     </div>
   );
 }
