@@ -11,11 +11,8 @@ import PrintingSelector from "@/components/cards/PrintingSelector";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
-import LockedPrice from "@/components/pricing/LockedPrice";
+import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
 import PricingCompsPanel from "@/components/pricing/PricingCompsPanel";
-import PricingProjectionSummary from "@/components/pricing/PricingProjectionSummary";
-import PricingTrustSummary from "@/components/pricing/PricingTrustSummary";
-import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
@@ -30,9 +27,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { getCardPricingComps } from "@/lib/pricing/getCardPricingComps";
-import { getPricingProjectionState } from "@/lib/pricing/getPricingProjectionState";
-import { getReferencePricing } from "@/lib/pricing/getReferencePricing";
-import { getPricingTrustState } from "@/lib/pricing/getPricingTrustState";
+import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
@@ -310,16 +305,7 @@ export default async function CardPage({
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
   const pricingComps = canViewPricing && resolvedCard.id ? await getCardPricingComps(resolvedCard.id) : null;
-  const pricingTrustState = pricingComps ? getPricingTrustState({ comps: pricingComps }) : null;
-  const referencePricing = canViewPricing && resolvedCard.id ? await getReferencePricing(resolvedCard.id) : null;
-  const pricingProjectionState =
-    canViewPricing && referencePricing
-      ? getPricingProjectionState({
-          rawMarketValue: resolvedCard.raw_price,
-          rawMarketConfidenceLabel: pricingTrustState?.confidenceLabel,
-          referencePricing,
-        })
-      : null;
+  const pricingUi = canViewPricing && resolvedCard.id ? await getCardPricingUiByCardPrintId(resolvedCard.id) : null;
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
     : undefined;
@@ -458,21 +444,7 @@ export default async function CardPage({
 
           <aside className="rounded-[24px] border border-slate-200 bg-slate-50/90 p-5 shadow-sm backdrop-blur">
             <div className="space-y-4">
-              <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Market Snapshot</p>
-                <div className="mt-2">
-                  {canViewPricing ? (
-                    <VisiblePrice value={resolvedCard.raw_price} size="detail" note="compact" />
-                  ) : (
-                    <LockedPrice href={loginHref} size="detail" />
-                  )}
-                </div>
-              </div>
-
-              {canViewPricing && pricingTrustState ? (
-                <PricingTrustSummary trustState={pricingTrustState} referencePricing={referencePricing} />
-              ) : null}
-              {canViewPricing && pricingProjectionState ? <PricingProjectionSummary projectionState={pricingProjectionState} /> : null}
+              <CardPagePricingRail isAuthenticated={canViewPricing} loginHref={loginHref} pricing={pricingUi} />
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>
