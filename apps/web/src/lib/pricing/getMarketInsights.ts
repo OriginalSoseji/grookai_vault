@@ -2,7 +2,15 @@ import "server-only";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
 
-type VariantRow = {
+const CONDITION_ORDER = [
+  "Near Mint",
+  "Lightly Played",
+  "Moderately Played",
+  "Heavily Played",
+  "Damaged",
+] as const;
+
+export type MarketInsightsRow = {
   condition: string | null;
   printing: string | null;
   price: number | null;
@@ -11,8 +19,14 @@ type VariantRow = {
   updated_at: string | null;
 };
 
+export type MarketInsightConditionRow = {
+  condition: string;
+  price: number;
+};
+
 export type MarketInsights = {
   conditionCurve: Record<string, number>;
+  conditionRows: MarketInsightConditionRow[];
   spread: {
     low: number;
     mid: number;
@@ -68,27 +82,17 @@ function isReverseHolofoilPrinting(value: string) {
   return normalized === "reverse holofoil" || normalized === "reverse-holofoil";
 }
 
-export async function getMarketInsights(cardPrintId: string): Promise<MarketInsights | null> {
-  const normalizedCardPrintId = cardPrintId.trim();
-  if (!normalizedCardPrintId) {
-    return null;
+function getConditionRank(condition: string) {
+  const exactIndex = CONDITION_ORDER.indexOf(condition as (typeof CONDITION_ORDER)[number]);
+  if (exactIndex >= 0) {
+    return exactIndex;
   }
 
-  const supabase = createServerComponentClient();
-  const { data, error } = await supabase
-    .from("justtcg_variant_prices_latest")
-    .select("condition,printing,price,avg_price,price_change_7d,updated_at")
-    .eq("card_print_id", normalizedCardPrintId);
+  return CONDITION_ORDER.length;
+}
 
-  if (error) {
-    console.error("[pricing:market-insights] getMarketInsights failed", {
-      cardPrintId: normalizedCardPrintId,
-      error,
-    });
-    return null;
-  }
-
-  const rows = ((data ?? []) as VariantRow[])
+export function deriveMarketInsights(inputRows: MarketInsightsRow[]): MarketInsights | null {
+  const rows = inputRows
     .map((row) => ({
       condition: normalizeText(row.condition),
       printing: normalizeText(row.printing),
@@ -137,6 +141,22 @@ export async function getMarketInsights(cardPrintId: string): Promise<MarketInsi
 
     conditionCurve[condition] = round(avg(prices));
   }
+
+  const conditionRows = Object.entries(conditionCurve)
+    .sort(([left], [right]) => {
+      const leftRank = getConditionRank(left);
+      const rightRank = getConditionRank(right);
+
+      if (leftRank !== rightRank) {
+        return leftRank - rightRank;
+      }
+
+      return left.localeCompare(right);
+    })
+    .map(([condition, price]) => ({
+      condition,
+      price,
+    }));
 
   const nmNormalRows = rows.filter((row) => isNearMint(row.condition) && isNormalPrinting(row.printing));
   let spread: MarketInsights["spread"] = null;
@@ -191,9 +211,33 @@ export async function getMarketInsights(cardPrintId: string): Promise<MarketInsi
 
   return {
     conditionCurve,
+    conditionRows,
     spread,
     printingPremium,
     trend,
     updatedAt,
   };
+}
+
+export async function getMarketInsights(cardPrintId: string): Promise<MarketInsights | null> {
+  const normalizedCardPrintId = cardPrintId.trim();
+  if (!normalizedCardPrintId) {
+    return null;
+  }
+
+  const supabase = createServerComponentClient();
+  const { data, error } = await supabase
+    .from("justtcg_variant_prices_latest")
+    .select("condition,printing,price,avg_price,price_change_7d,updated_at")
+    .eq("card_print_id", normalizedCardPrintId);
+
+  if (error) {
+    console.error("[pricing:market-insights] getMarketInsights failed", {
+      cardPrintId: normalizedCardPrintId,
+      error,
+    });
+    return null;
+  }
+
+  return deriveMarketInsights((data ?? []) as MarketInsightsRow[]);
 }

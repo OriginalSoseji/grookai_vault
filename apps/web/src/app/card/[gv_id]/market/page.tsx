@@ -4,24 +4,13 @@ import MarketHistoryChart from "@/components/pricing/MarketHistoryChart";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import {
-  getJustTcgPriceHistory,
-  normalizeJustTcgHistoryDuration,
-} from "@/lib/pricing/getJustTcgPriceHistory";
-import { getMarketInsights } from "@/lib/pricing/getMarketInsights";
+  CARD_MARKET_ANALYSIS_DURATIONS,
+  getCardMarketAnalysisModel,
+} from "@/lib/pricing/getCardMarketAnalysisModel";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
-
-const CONDITION_ORDER = [
-  "Near Mint",
-  "Lightly Played",
-  "Moderately Played",
-  "Heavily Played",
-  "Damaged",
-] as const;
-
-const HISTORY_TIMEFRAMES = ["7d", "30d", "90d", "180d"] as const;
 
 function formatTimeAgo(value: string | null) {
   if (!value) return null;
@@ -79,15 +68,6 @@ function MarketInsightCard({
   );
 }
 
-function getConditionRank(condition: string) {
-  const exactIndex = CONDITION_ORDER.indexOf(condition as (typeof CONDITION_ORDER)[number]);
-  if (exactIndex >= 0) {
-    return exactIndex;
-  }
-
-  return CONDITION_ORDER.length;
-}
-
 export default async function MarketAnalysisPage({
   params,
   searchParams,
@@ -96,7 +76,6 @@ export default async function MarketAnalysisPage({
   searchParams?: { duration?: string };
 }) {
   const marketPath = `/card/${encodeURIComponent(params.gv_id)}/market`;
-  const selectedDuration = normalizeJustTcgHistoryDuration(searchParams?.duration);
   const supabase = createServerComponentClient();
   const {
     data: { user },
@@ -111,43 +90,9 @@ export default async function MarketAnalysisPage({
     notFound();
   }
 
-  const [insights, history] = card.id
-    ? await Promise.all([
-        getMarketInsights(card.id),
-        getJustTcgPriceHistory({
-          cardPrintId: card.id,
-          duration: selectedDuration,
-        }),
-      ])
-    : [null, null];
-  const freshnessLabel = formatTimeAgo(history?.updatedAt ?? insights?.updatedAt ?? null);
-  const sortedConditions = insights
-    ? Object.entries(insights.conditionCurve).sort(([left], [right]) => {
-        const leftRank = getConditionRank(left);
-        const rightRank = getConditionRank(right);
-
-        if (leftRank !== rightRank) {
-          return leftRank - rightRank;
-        }
-
-        return left.localeCompare(right);
-      })
-    : [];
-  const spread = insights?.spread ?? null;
-  const trend = insights?.trend ?? null;
-  const printingPremium = typeof insights?.printingPremium === "number" ? insights.printingPremium : null;
-  const historyPoints = history?.points ?? [];
-  const latestHistoryPoint = historyPoints.length > 0 ? historyPoints[historyPoints.length - 1] : null;
-  const heroPrice =
-    typeof history?.currentPrice === "number"
-      ? history.currentPrice
-      : latestHistoryPoint?.price ?? null;
-  const hasInsightCards =
-    sortedConditions.length > 0 ||
-    typeof printingPremium === "number" ||
-    Boolean(trend) ||
-    Boolean(spread);
-  const hasHistoryCard = Boolean(history) || Boolean(insights);
+  const model = await getCardMarketAnalysisModel(card.id, searchParams?.duration);
+  const historyPoints = model.history?.points ?? [];
+  const freshnessLabel = formatTimeAgo(model.heroUpdatedAt);
 
   return (
     <div className="mx-auto max-w-5xl space-y-8 py-8">
@@ -165,7 +110,7 @@ export default async function MarketAnalysisPage({
         </div>
       </section>
 
-      {!hasHistoryCard && !hasInsightCards ? (
+      {model.uiFlags.showEmptyState ? (
         <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="space-y-2">
             <h2 className="text-xl font-semibold tracking-tight text-slate-950">Market Analysis</h2>
@@ -174,21 +119,23 @@ export default async function MarketAnalysisPage({
         </section>
       ) : (
         <>
-          {history && historyPoints.length > 0 ? (
+          {model.uiFlags.showChart ? (
             <section className="space-y-6 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                     Market reference
                   </p>
-                  <p className="text-sm font-medium text-slate-700">
-                    {history.condition} · {history.printing}
-                  </p>
+                  {model.selectedSlice ? (
+                    <p className="text-sm font-medium text-slate-700">
+                      {model.selectedSlice.condition} · {model.selectedSlice.printing}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {HISTORY_TIMEFRAMES.map((duration) => {
-                    const isActive = duration === selectedDuration;
+                  {CARD_MARKET_ANALYSIS_DURATIONS.map((duration) => {
+                    const isActive = duration === model.duration;
                     const href =
                       duration === "30d" ? marketPath : `${marketPath}?duration=${encodeURIComponent(duration)}`;
 
@@ -210,50 +157,50 @@ export default async function MarketAnalysisPage({
               </div>
 
               <div className="space-y-4">
-                {typeof heroPrice === "number" ? (
-                  <p className="text-5xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(heroPrice)}</p>
+                {typeof model.heroPrice === "number" ? (
+                  <p className="text-5xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
                 ) : null}
                 <MarketHistoryChart points={historyPoints} />
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
               </div>
             </section>
-          ) : hasHistoryCard ? (
+          ) : null}
+
+          {model.uiFlags.showEmptyHistory ? (
             <section className="space-y-5 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                     Market reference
                   </p>
-                  {history ? (
+                  {model.selectedSlice ? (
                     <p className="text-sm font-medium text-slate-700">
-                      {history.condition} · {history.printing}
+                      {model.selectedSlice.condition} · {model.selectedSlice.printing}
                     </p>
                   ) : null}
                 </div>
 
-                {history ? (
-                  <div className="flex flex-wrap gap-2">
-                    {HISTORY_TIMEFRAMES.map((duration) => {
-                      const isActive = duration === selectedDuration;
-                      const href =
-                        duration === "30d" ? marketPath : `${marketPath}?duration=${encodeURIComponent(duration)}`;
+                <div className="flex flex-wrap gap-2">
+                  {CARD_MARKET_ANALYSIS_DURATIONS.map((duration) => {
+                    const isActive = duration === model.duration;
+                    const href =
+                      duration === "30d" ? marketPath : `${marketPath}?duration=${encodeURIComponent(duration)}`;
 
-                      return (
-                        <Link
-                          key={duration}
-                          href={href}
-                          className={`inline-flex rounded-full px-3 py-1.5 text-xs font-medium transition ${
-                            isActive
-                              ? "bg-slate-950 text-white"
-                              : "border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-950"
-                          }`}
-                        >
-                          {duration.toUpperCase()}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                ) : null}
+                    return (
+                      <Link
+                        key={duration}
+                        href={href}
+                        className={`inline-flex rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                          isActive
+                            ? "bg-slate-950 text-white"
+                            : "border border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-950"
+                        }`}
+                      >
+                        {duration.toUpperCase()}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -261,63 +208,63 @@ export default async function MarketAnalysisPage({
                 <p className="text-sm text-slate-600">
                   Historical chart data is not available for this market slice yet.
                 </p>
-                {typeof heroPrice === "number" ? (
-                  <p className="pt-2 text-lg font-medium text-slate-950">{formatUsdPrice(heroPrice)}</p>
+                {typeof model.heroPrice === "number" ? (
+                  <p className="pt-2 text-lg font-medium text-slate-950">{formatUsdPrice(model.heroPrice)}</p>
                 ) : null}
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
               </div>
             </section>
           ) : null}
 
-          {hasInsightCards ? (
+          {model.uiFlags.showInsights && model.insights ? (
             <div className="grid gap-6 lg:grid-cols-2">
-              {sortedConditions.length > 0 ? (
+              {model.insights.conditionRows.length > 0 ? (
                 <MarketInsightCard title="Condition Pricing">
                   <div className="space-y-3">
-                    {sortedConditions.map(([condition, value]) => (
-                      <MarketMetricRow key={condition} label={condition} value={formatUsdPrice(value)} />
+                    {model.insights.conditionRows.map((row) => (
+                      <MarketMetricRow key={row.condition} label={row.condition} value={formatUsdPrice(row.price)} />
                     ))}
                   </div>
                 </MarketInsightCard>
               ) : null}
 
-              {typeof printingPremium === "number" ? (
+              {typeof model.insights.printingPremium === "number" ? (
                 <MarketInsightCard
                   title="Printing Premium"
                   subtitle="Based on available active market references."
                 >
                   <p className="text-lg font-medium text-slate-950">
-                    Reverse holo is {printingPremium}x normal
+                    Reverse holo is {model.insights.printingPremium}x normal
                   </p>
                 </MarketInsightCard>
               ) : null}
 
-              {trend ? (
+              {model.insights.trend ? (
                 <MarketInsightCard title="7 Day Trend">
                   <div className="space-y-2">
                     <p className="text-lg font-medium text-slate-950">
-                      {trend.direction === "up"
+                      {model.insights.trend.direction === "up"
                         ? "Trending up"
-                        : trend.direction === "down"
+                        : model.insights.trend.direction === "down"
                           ? "Trending down"
                           : "Flat"}
                     </p>
                     <p className="text-sm font-medium text-slate-700">
-                      {trend.percent > 0 ? "+" : ""}
-                      {trend.percent}%
+                      {model.insights.trend.percent > 0 ? "+" : ""}
+                      {model.insights.trend.percent}%
                     </p>
                   </div>
                 </MarketInsightCard>
               ) : null}
 
-              {spread ? (
+              {model.insights.spread ? (
                 <MarketInsightCard
                   title="Market Width"
                   subtitle="Based on the current low-to-high spread for Near Mint normal."
                 >
                   <p className="text-lg font-medium text-slate-950">
-                    {spread.width.charAt(0).toUpperCase()}
-                    {spread.width.slice(1)}
+                    {model.insights.spread.width.charAt(0).toUpperCase()}
+                    {model.insights.spread.width.slice(1)}
                   </p>
                 </MarketInsightCard>
               ) : null}
@@ -326,13 +273,17 @@ export default async function MarketAnalysisPage({
         </>
       )}
 
-      <section className="mt-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
-        <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Pricing &amp; Data Sources</h2>
-        <p className="mb-2">
-          Market insights are derived from third-party pricing data and summarized by Grookai for easier interpretation.
-        </p>
-        <p>Data may be delayed and should not be treated as a guaranteed real-time market quote.</p>
-      </section>
+      {model.uiFlags.showDisclosure ? (
+        <section className="mt-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Pricing &amp; Data Sources
+          </h2>
+          <p className="mb-2">
+            Market insights are derived from third-party pricing data and summarized by Grookai for easier interpretation.
+          </p>
+          <p>Data may be delayed and should not be treated as a guaranteed real-time market quote.</p>
+        </section>
+      ) : null}
     </div>
   );
 }
