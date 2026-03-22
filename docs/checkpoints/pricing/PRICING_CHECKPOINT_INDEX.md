@@ -177,6 +177,16 @@ Unresolved risk afterward:
 
 - JustTCG reliability remains unproven at runtime scale, and reference quality may still vary materially by card and set
 
+### `PRICING_CHECKPOINT_14_WAREHOUSE_CONTRACT_V1.md`
+
+Defines warehouse ingestion contract with snapshot-based storage model. Locks time-series listing behavior and ensures warehouse does not bypass observation layer. Enables scalable ingestion and replayable pricing.
+
+Unresolved:
+
+- ingestion pipeline not implemented
+- deduplication hash strategy optional
+- storage scale not yet tested
+
 ## Current Pricing State Summary
 
 Current pricing state in plain language:
@@ -263,7 +273,10 @@ Recommended reading order for future maintainers:
 12. `PRICING_CHECKPOINT_12_REFERENCE_LAYER_IMPLEMENTATION.md`
    - then read how the reference lane was implemented safely at runtime without allowing JustTCG or future vendor sources to replace truth infrastructure
 
-After those twelve checkpoints, read the supporting audits in this order:
+13. `PRICING_CHECKPOINT_14_WAREHOUSE_CONTRACT_V1.md`
+   - then read how warehouse-first ingestion was locked so replayable listing storage never bypasses the observation truth gate
+
+After those thirteen checkpoints, read the supporting audits in this order:
 
 - `docs/audits/PRICING_READINESS_AUDIT_V1.md`
 - `docs/audits/PRICING_CONTAMINATION_AUDIT_V1.md`
