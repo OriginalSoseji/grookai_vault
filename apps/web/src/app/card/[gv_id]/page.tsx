@@ -13,7 +13,6 @@ import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
-import PricingCompsPanel from "@/components/pricing/PricingCompsPanel";
 import ShareCardButton from "@/components/ShareCardButton";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
@@ -27,7 +26,6 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
-import { getCardPricingComps } from "@/lib/pricing/getCardPricingComps";
 import { getCardPricingUiByCardPrintId } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
 import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
@@ -305,7 +303,6 @@ export default async function CardPage({
 
   const loginHref = `/login?next=${encodeURIComponent(currentCardPath)}`;
   const canViewPricing = Boolean(user);
-  const pricingComps = canViewPricing && resolvedCard.id ? await getCardPricingComps(resolvedCard.id) : null;
   const pricingUi = canViewPricing && resolvedCard.id ? await getCardPricingUiByCardPrintId(resolvedCard.id) : null;
   const setLogoPath = resolvedCard.set_code
     ? (await getSetLogoAssetPathMap([resolvedCard.set_code])).get(resolvedCard.set_code.toLowerCase())
@@ -445,7 +442,7 @@ export default async function CardPage({
 
           <aside className="rounded-[24px] border border-slate-200 bg-slate-50/90 p-5 shadow-sm backdrop-blur">
             <div className="space-y-4">
-              <CardPagePricingRail isAuthenticated={canViewPricing} loginHref={loginHref} pricing={pricingUi} />
+              <CardPagePricingRail isAuthenticated={canViewPricing} loginHref={loginHref} gvId={resolvedCard.gv_id} pricing={pricingUi} />
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>
@@ -494,15 +491,6 @@ export default async function CardPage({
             ))}
           </dl>
         </section>
-      ) : null}
-
-      {canViewPricing && pricingComps ? (
-        <PricingCompsPanel
-          currentPrice={resolvedCard.raw_price}
-          currentPriceSource={resolvedCard.raw_price_source}
-          currentPriceTs={resolvedCard.raw_price_ts}
-          comps={pricingComps}
-        />
       ) : null}
 
       {relatedPrints.length > 0 ? (

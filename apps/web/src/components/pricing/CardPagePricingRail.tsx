@@ -5,6 +5,7 @@ import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPr
 type CardPagePricingRailProps = {
   isAuthenticated: boolean;
   loginHref: string;
+  gvId: string;
   pricing: CardPricingUiRecord | null;
 };
 
@@ -16,16 +17,8 @@ function formatRange(minPrice?: number, maxPrice?: number) {
   return `${formatUsdPrice(minPrice)} – ${formatUsdPrice(maxPrice)}`;
 }
 
-function formatCountLabel(value: number, singular: string, plural: string) {
-  return `${value} ${value === 1 ? singular : plural}`;
-}
-
-function PricingSourceLabel({ source }: { source: "justtcg" | "ebay" }) {
-  return (
-    <p className="text-xs font-medium text-slate-500">
-      {source === "justtcg" ? "Market reference" : "Market data: eBay"}
-    </p>
-  );
+function PricingSourceLabel() {
+  return <p className="text-xs font-medium text-slate-500">Market reference</p>;
 }
 
 function PricingEmptyState() {
@@ -50,76 +43,9 @@ function PrimaryPricingBlock({ pricing }: { pricing: CardPricingUiRecord | null 
         <p className="text-3xl font-semibold tracking-tight text-slate-950">{formatUsdPrice(pricing.primary_price)}</p>
         <p className="text-sm font-medium text-slate-700">Near Mint</p>
       </div>
-      <PricingSourceLabel source={pricing.primary_source} />
+      <PricingSourceLabel />
       {priceRange ? <p className="text-sm text-slate-600">{priceRange}</p> : null}
     </div>
-  );
-}
-
-function DetailRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between gap-3 text-sm">
-      <span className="text-slate-600">{label}</span>
-      <span className="text-right font-medium text-slate-900">{value}</span>
-    </div>
-  );
-}
-
-function PricingDetailsPanel({ pricing }: { pricing: CardPricingUiRecord }) {
-  const justTcgRange = formatRange(pricing.min_price, pricing.max_price);
-  const justTcgPrice = pricing.primary_source === "justtcg" && typeof pricing.primary_price === "number" ? pricing.primary_price : undefined;
-  const eBayPrice = typeof pricing.ebay_median_price === "number" ? pricing.ebay_median_price : undefined;
-  const grookaiValue = typeof pricing.grookai_value === "number" ? pricing.grookai_value : undefined;
-
-  const hasJustTcgDetails =
-    typeof justTcgPrice === "number" || Boolean(justTcgRange) || typeof pricing.variant_count === "number";
-  const hasEbayDetails = typeof eBayPrice === "number" || typeof pricing.ebay_listing_count === "number";
-  const hasGrookaiValue = typeof grookaiValue === "number";
-
-  if (!hasJustTcgDetails && !hasEbayDetails && !hasGrookaiValue) {
-    return null;
-  }
-
-  return (
-    <details className="group rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
-      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
-        View details
-        <span className="ml-2 text-xs font-medium text-slate-500 group-open:hidden">Reference and fallback context</span>
-      </summary>
-      <div className="mt-4 space-y-4">
-        {hasJustTcgDetails ? (
-          <div className="space-y-3 rounded-[14px] border border-slate-200 bg-white px-4 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reference Details</p>
-            <div className="space-y-2">
-              {typeof justTcgPrice === "number" ? <DetailRow label="Price" value={formatUsdPrice(justTcgPrice)} /> : null}
-              {justTcgRange ? <DetailRow label="Range" value={justTcgRange} /> : null}
-              {typeof pricing.variant_count === "number" ? (
-                <DetailRow label="Variants" value={formatCountLabel(pricing.variant_count, "variant", "variants")} />
-              ) : null}
-            </div>
-          </div>
-        ) : null}
-
-        {hasEbayDetails ? (
-          <div className="space-y-3 rounded-[14px] border border-slate-200 bg-white px-4 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">eBay Market</p>
-            <div className="space-y-2">
-              {typeof eBayPrice === "number" ? <DetailRow label="Median" value={formatUsdPrice(eBayPrice)} /> : null}
-              {typeof pricing.ebay_listing_count === "number" ? (
-                <DetailRow label="Listings" value={formatCountLabel(pricing.ebay_listing_count, "listing", "listings")} />
-              ) : null}
-            </div>
-          </div>
-        ) : null}
-
-        {hasGrookaiValue ? (
-          <div className="space-y-3 rounded-[14px] border border-slate-200 bg-white px-4 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Grookai Value (Beta)</p>
-            <DetailRow label="Beta value" value={formatUsdPrice(grookaiValue)} />
-          </div>
-        ) : null}
-      </div>
-    </details>
   );
 }
 
@@ -156,9 +82,7 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
   );
 }
 
-function AuthenticatedPricingState({ pricing }: { pricing: CardPricingUiRecord | null }) {
-  const hasPrimaryPrice = Boolean(pricing?.primary_source && typeof pricing.primary_price === "number");
-
+function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: CardPricingUiRecord | null }) {
   return (
     <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
       <div className="space-y-4">
@@ -166,16 +90,21 @@ function AuthenticatedPricingState({ pricing }: { pricing: CardPricingUiRecord |
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>
           <PrimaryPricingBlock pricing={pricing} />
         </div>
-        {pricing && hasPrimaryPrice ? <PricingDetailsPanel pricing={pricing} /> : null}
+        <Link
+          href={`/card/${encodeURIComponent(gvId)}/market`}
+          className="inline-flex text-sm text-slate-500 transition hover:text-slate-950"
+        >
+          View market analysis →
+        </Link>
       </div>
     </div>
   );
 }
 
-export default function CardPagePricingRail({ isAuthenticated, loginHref, pricing }: CardPagePricingRailProps) {
+export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, pricing }: CardPagePricingRailProps) {
   if (!isAuthenticated) {
     return <LockedPricingState loginHref={loginHref} />;
   }
 
-  return <AuthenticatedPricingState pricing={pricing} />;
+  return <AuthenticatedPricingState gvId={gvId} pricing={pricing} />;
 }
