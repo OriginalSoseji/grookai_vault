@@ -8,6 +8,7 @@ import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapsh
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import PrintingSelector from "@/components/cards/PrintingSelector";
+import PricingDisclosure from "@/components/common/PricingDisclosure";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -681,6 +682,8 @@ export default async function CardPage({
           </div>
         </section>
       ) : null}
+
+      <PricingDisclosure />
 
       <CompareTray cards={compareCards} addHref={buildPathWithCompareCards("/explore", "", compareCards)} />
     </div>

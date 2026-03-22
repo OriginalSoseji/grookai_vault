@@ -23,7 +23,7 @@ function formatCountLabel(value: number, singular: string, plural: string) {
 function PricingSourceLabel({ source }: { source: "justtcg" | "ebay" }) {
   return (
     <p className="text-xs font-medium text-slate-500">
-      {source === "justtcg" ? "Reference pricing: JustTCG" : "Market data: eBay"}
+      {source === "justtcg" ? "Market reference" : "Market data: eBay"}
     </p>
   );
 }
@@ -89,7 +89,7 @@ function PricingDetailsPanel({ pricing }: { pricing: CardPricingUiRecord }) {
       <div className="mt-4 space-y-4">
         {hasJustTcgDetails ? (
           <div className="space-y-3 rounded-[14px] border border-slate-200 bg-white px-4 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">JustTCG Reference</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reference Details</p>
             <div className="space-y-2">
               {typeof justTcgPrice === "number" ? <DetailRow label="Price" value={formatUsdPrice(justTcgPrice)} /> : null}
               {justTcgRange ? <DetailRow label="Range" value={justTcgRange} /> : null}
