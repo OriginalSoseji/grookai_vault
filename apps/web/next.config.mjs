@@ -14,6 +14,7 @@ dotenv.config({ path: rootEnv });
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnon = process.env.SUPABASE_PUBLISHABLE_KEY;
+const supabaseHost = supabaseUrl ? new URL(supabaseUrl).hostname : null;
 
 // STABILIZATION RULE:
 //
@@ -43,6 +44,27 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: supabaseAnon,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.tcgdex.net",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pokemontcg.io",
+      },
+      ...(supabaseHost
+        ? [
+            {
+              protocol: "https",
+              hostname: supabaseHost,
+              pathname: "/storage/v1/object/public/**",
+            },
+          ]
+        : []),
+    ],
   },
 };
 

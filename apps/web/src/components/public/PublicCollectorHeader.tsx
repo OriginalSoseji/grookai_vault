@@ -49,7 +49,7 @@ export function PublicCollectorHeader({
     <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60">
       {bannerUrl ? (
         <div aria-hidden="true" className="relative h-24 overflow-hidden sm:h-28">
-          <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
+          <Image src={bannerUrl} alt="" fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/20 to-slate-950/5" />
         </div>
       ) : setLogoPaths.length > 0 ? (
@@ -85,7 +85,7 @@ export function PublicCollectorHeader({
           <div className="flex min-w-0 items-end gap-4">
             <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/70 bg-slate-950 text-lg font-semibold tracking-[0.08em] text-white shadow-sm sm:h-[4.5rem] sm:w-[4.5rem] sm:rounded-[1.6rem] sm:text-xl">
               {avatarUrl ? (
-                <Image src={avatarUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
+                <Image src={avatarUrl} alt={`${displayName} profile photo`} fill className="object-cover" />
               ) : (
                 getInitials(displayName)
               )}

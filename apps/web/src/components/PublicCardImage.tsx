@@ -38,7 +38,6 @@ export default function PublicCardImage({
       className={imageClassName}
       width={1200}
       height={1600}
-      unoptimized
       onError={() => setImageFailed(true)}
     />
   );

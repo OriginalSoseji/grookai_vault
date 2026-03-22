@@ -16,7 +16,7 @@ import type { ExploreResultCard } from "@/components/explore/exploreResultTypes"
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode, type ExploreViewMode } from "@/lib/exploreViewModes";
-import { resolveQueryWithMeta, type ResolverMeta } from "@/lib/resolver/resolveQuery";
+import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 
 type ExploreRow = ExploreResultCard;
 type SortMode = "relevance" | "newest" | "oldest";
@@ -105,7 +105,7 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
 
     const load = async () => {
       if (!normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
@@ -120,32 +120,62 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
       setError(null);
 
       try {
-        const resolved = await resolveQueryWithMeta(q, {
-          mode: "ranked",
-          sortMode,
-          exactSetCode,
-          exactReleaseYear,
-          exactIllustrator: exactIllustrator || undefined,
+        const params = new URLSearchParams();
+
+        if (q) {
+          params.set("q", q);
+        }
+
+        if (sortMode !== "relevance") {
+          params.set("sort", sortMode);
+        }
+
+        if (exactSetCode) {
+          params.set("set", exactSetCode);
+        }
+
+        if (typeof exactReleaseYear === "number") {
+          params.set("year", String(exactReleaseYear));
+        }
+
+        if (exactIllustrator) {
+          params.set("illustrator", exactIllustrator);
+        }
+
+        const response = await fetch(`/api/resolver/search?${params.toString()}`, {
+          signal: controller.signal,
+          cache: "no-store",
         });
-        if (cancelled) return;
-        setRows(resolved.rows);
-        setResolverMeta(resolved.meta);
+
+        const payload = (await response.json()) as {
+          ok: boolean;
+          error?: string;
+          rows?: ExploreRow[];
+          meta?: ResolverMeta;
+        };
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error ?? "Search failed.");
+        }
+
+        setRows(payload.rows ?? []);
+        setResolverMeta(payload.meta ?? null);
       } catch (searchError) {
-        if (cancelled) return;
+        if (controller.signal.aborted) return;
         setError(searchError instanceof Error ? searchError.message : "Search failed.");
         setRows([]);
         setResolverMeta(null);
       } finally {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setLoading(false);
         }
       }
     };
 
-    load();
+    void load();
 
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, [q, normalizedQuery, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
 

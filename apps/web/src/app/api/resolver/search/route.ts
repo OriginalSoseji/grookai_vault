@@ -1,62 +1,66 @@
 import { NextRequest, NextResponse } from "next/server";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 
-function parseLimit(value: string | null) {
-  if (!value) {
-    return 50;
+function parseSortMode(value: string | null) {
+  if (value === "newest" || value === "oldest") {
+    return value;
   }
 
-  const parsed = Number.parseInt(value, 10);
-  if (!Number.isFinite(parsed)) {
-    return 50;
+  return "relevance";
+}
+
+function normalizeSetCode(value: string | null) {
+  return (value ?? "").trim().toLowerCase();
+}
+
+function parseReleaseYear(value: string | null) {
+  const normalized = (value ?? "").trim();
+  if (!/^\d{4}$/.test(normalized)) {
+    return undefined;
   }
 
-  return Math.min(Math.max(parsed, 1), 100);
+  const parsed = Number.parseInt(normalized, 10);
+  return Number.isFinite(parsed) ? parsed : undefined;
+}
+
+function normalizeIllustrator(value: string | null) {
+  const normalized = (value ?? "").trim();
+  return normalized.length > 0 ? normalized : undefined;
 }
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const query = rawQuery.trim();
-  const limit = parseLimit(request.nextUrl.searchParams.get("limit"));
+  const exactSetCode = normalizeSetCode(request.nextUrl.searchParams.get("set"));
+  const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
+  const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"));
+  const sortMode = parseSortMode(request.nextUrl.searchParams.get("sort"));
 
-  if (!query) {
+  if (!query && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Missing q",
+        error: "Missing search criteria",
       },
       { status: 400 },
     );
   }
 
   try {
-    const resolved = await resolveQueryWithMeta(query, {
+    const resolved = await resolveQueryWithMeta(rawQuery, {
       mode: "ranked",
-      sortMode: "relevance",
-      exactSetCode: "",
+      sortMode,
+      exactSetCode,
+      exactReleaseYear,
+      exactIllustrator,
     });
-
-    const rows = resolved.rows.slice(0, limit).map((row) => ({
-      id: row.id,
-      gv_id: row.gv_id,
-      name: row.name,
-      number: row.number,
-      number_plain: row.number,
-      rarity: row.rarity ?? null,
-      set_code: row.set_code ?? null,
-      image_url: row.image_url ?? null,
-      set: {
-        name: row.set_name ?? null,
-        code: row.set_code ?? null,
-      },
-    }));
 
     return NextResponse.json({
       ok: true,
       query,
-      rows,
+      rows: resolved.rows,
       meta: resolved.meta,
-      source: "web_ranked_resolver_v1",
+      source: "web_ranked_resolver_v2",
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Resolver request failed.";

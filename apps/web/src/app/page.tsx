@@ -1,12 +1,11 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { createClient } from "@supabase/supabase-js";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
-
-export const dynamic = "force-dynamic";
 
 type FeaturedCardRow = {
   gv_id: string | null;
@@ -59,6 +58,28 @@ async function getFeaturedCards() {
   return Promise.all(FEATURED_CARD_NAMES.map((name) => getFeaturedCardByName(supabase, name)));
 }
 
+function HomeSearchFallback() {
+  return (
+    <form action="/search" className="max-w-2xl">
+      <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-200/60">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search Pokémon cards, sets, or Grookai IDs"
+          className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
+          aria-label="Search cards"
+        />
+        <button
+          type="submit"
+          className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  );
+}
+
 export default async function HomePage() {
   const [leftCard, centerCard, rightCard] = await getFeaturedCards();
 
@@ -80,7 +101,9 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <PublicSearchForm variant="hero" />
+            <Suspense fallback={<HomeSearchFallback />}>
+              <PublicSearchForm variant="hero" />
+            </Suspense>
           </div>
 
           <div className="mx-auto flex w-full max-w-[420px] items-end justify-center gap-3 sm:gap-4">

@@ -63,7 +63,7 @@ function MediaFieldCard({
         <div className="relative overflow-hidden rounded-[1.25rem] border border-slate-200 bg-gradient-to-br from-slate-200 via-slate-100 to-white">
           <div className="relative aspect-[16/6] w-full">
             {previewUrl ? (
-              <Image src={previewUrl} alt={`${displayName} banner`} fill unoptimized className="object-cover" />
+              <Image src={previewUrl} alt={`${displayName} banner`} fill className="object-cover" />
             ) : (
               <div className="flex h-full w-full items-center justify-center text-sm font-medium text-slate-500">
                 No banner image yet
@@ -75,7 +75,7 @@ function MediaFieldCard({
         <div className="flex items-center gap-4">
           <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-950 text-2xl font-semibold tracking-[0.08em] text-white">
             {previewUrl ? (
-              <Image src={previewUrl} alt={`${displayName} profile photo`} fill unoptimized className="object-cover" />
+              <Image src={previewUrl} alt={`${displayName} profile photo`} fill className="object-cover" />
             ) : (
               (normalizePublicProfileDisplayName(displayName).trim().slice(0, 2).toUpperCase() || "GV")
             )}
