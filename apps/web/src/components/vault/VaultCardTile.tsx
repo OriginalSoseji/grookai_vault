@@ -1,14 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
-import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
+import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
+import {
+  formatVaultObjectLevelSlabSummary,
+  getVaultOwnershipSummary,
+  VaultActionButton,
+  VaultDetailPanel,
+  VaultFieldLabel,
+  VaultInsetCard,
+  VaultQuantityStepper,
+  VaultStatusBadges,
+} from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
 import {
-  getWallCategoryLabel,
   WALL_CATEGORY_OPTIONS,
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
@@ -54,90 +62,6 @@ export type VaultCardData = {
 
 const CONDITION_OPTIONS = ["NM", "LP", "MP", "HP", "DMG"];
 
-function formatSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {
-  return [item.grader, item.grade].filter((value): value is string => typeof value === "string" && value.length > 0).join(" ");
-}
-
-function formatObjectLevelSlabSummary(item: Pick<VaultCardSlabItemData, "grader" | "grade">) {
-  return [item.grader, item.grade].filter((value): value is string => typeof value === "string" && value.length > 0).join(" ");
-}
-
-function formatMixedOwnershipSummary(item: Pick<VaultCardData, "raw_count" | "slab_count" | "grader" | "grade">) {
-  if (!(item.raw_count > 0 && item.slab_count > 0)) {
-    return null;
-  }
-
-  const slabSummary = formatSlabSummary(item);
-  const rawLabel = `${item.raw_count} Raw`;
-
-  if (item.slab_count === 1 && slabSummary) {
-    return `${rawLabel} + 1 ${slabSummary}`;
-  }
-
-  return `${rawLabel} + ${item.slab_count} Slab`;
-}
-
-function CompactActionButton({
-  children,
-  onClick,
-  disabled = false,
-  tone = "default",
-}: {
-  children: ReactNode;
-  onClick: () => void;
-  disabled?: boolean;
-  tone?: "default" | "strong";
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-medium transition ${
-        tone === "strong"
-          ? "border border-slate-300 bg-slate-950 text-white hover:bg-slate-800"
-          : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50"
-      } disabled:cursor-not-allowed disabled:opacity-60`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function QuantityStepper({
-  item,
-  isPending,
-  onQuantityChange,
-}: {
-  item: VaultCardData;
-  isPending: boolean;
-  onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
-}) {
-  return (
-    <div className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50/90 p-1">
-      <button
-        type="button"
-        onClick={() => onQuantityChange(item.vault_item_id, "decrement")}
-        disabled={isPending}
-        className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
-        aria-label={`Decrease quantity for ${item.name}`}
-      >
-        −
-      </button>
-      <span className="min-w-[2rem] px-1.5 text-center text-sm font-medium text-slate-900">{item.owned_count}</span>
-      <button
-        type="button"
-        onClick={() => onQuantityChange(item.vault_item_id, "increment")}
-        disabled={isPending}
-        className="flex h-7 w-7 items-center justify-center rounded-full text-[15px] font-medium text-slate-600 transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
-        aria-label={`Increase quantity for ${item.name}`}
-      >
-        +
-      </button>
-    </div>
-  );
-}
-
 type VaultCardTileProps = {
   item: VaultCardData;
   density?: ViewDensity;
@@ -180,17 +104,10 @@ export function VaultCardTile({
   onPublicNoteEdit,
   onPublicImageToggle,
 }: VaultCardTileProps) {
-  const slabSummary = formatSlabSummary(item);
-  const mixedOwnershipSummary = formatMixedOwnershipSummary(item);
   const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
-  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
   const canManagePublicImages = !item.is_slab;
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
-  const ownershipSummary =
-    mixedOwnershipSummary ??
-    (item.is_slab
-      ? slabSummary || `${item.slab_count || item.owned_count} Slab`
-      : `Condition ${item.condition_label || "NM"}`);
+  const ownershipSummary = getVaultOwnershipSummary(item);
 
   const summaryRow = (
     <div className="space-y-3">
@@ -213,7 +130,7 @@ export function VaultCardTile({
                 ))}
               </select>
             </label>
-            <QuantityStepper item={item} isPending={isPending} onQuantityChange={onQuantityChange} />
+            <VaultQuantityStepper item={item} isPending={isPending} onQuantityChange={onQuantityChange} />
           </div>
         ) : (
           <p className="text-xs font-medium text-slate-500">Owned {item.owned_count}</p>
@@ -221,16 +138,16 @@ export function VaultCardTile({
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <CompactActionButton
+        <VaultActionButton
           onClick={() => onShareToggle(item)}
           disabled={isSharePending}
           tone={item.is_shared ? "strong" : "default"}
         >
           {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-        </CompactActionButton>
-        <CompactActionButton onClick={() => onSharedControlsToggle(item)}>
+        </VaultActionButton>
+        <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="quiet">
           {isSharedControlsExpanded ? "Hide controls" : "Manage card"}
-        </CompactActionButton>
+        </VaultActionButton>
         {item.is_shared && publicCollectionHref ? (
           <Link
             href={publicCollectionHref}
@@ -247,9 +164,9 @@ export function VaultCardTile({
   );
 
   const details = isSharedControlsExpanded ? (
-    <div className="space-y-4 rounded-[14px] border border-slate-200 bg-slate-50/80 p-3">
+    <VaultDetailPanel>
       <div className="space-y-1">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Manage</p>
+        <VaultFieldLabel>Manage</VaultFieldLabel>
         <p className="text-xs text-slate-500">
           {item.is_shared
             ? "Adjust wall settings and ownership controls."
@@ -262,9 +179,9 @@ export function VaultCardTile({
           <div className="space-y-2">
             <label
               htmlFor={`wall-category-${item.card_id}`}
-              className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400"
+              className="block"
             >
-              Wall Category
+              <VaultFieldLabel>Wall Category</VaultFieldLabel>
             </label>
             <select
               id={`wall-category-${item.card_id}`}
@@ -284,25 +201,25 @@ export function VaultCardTile({
             </select>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5">
+          <VaultInsetCard className="flex flex-wrap items-center justify-between gap-3">
             <div className="space-y-1">
               <p className="text-sm font-medium text-slate-900">{item.public_note ? "Wall note added" : "Wall note"}</p>
               <p className="text-xs text-slate-500">
                 {item.public_note ? "Edit the collector-facing note on this wall item." : "Add a note collectors can see on your wall."}
               </p>
             </div>
-            <button
+            <VaultActionButton
               type="button"
               onClick={() => onPublicNoteEdit(item)}
-              className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+              tone="default"
             >
               {item.public_note ? "Edit note" : "Add note"}
-            </button>
-          </div>
+            </VaultActionButton>
+          </VaultInsetCard>
 
           {canManagePublicImages ? (
             <div className="space-y-2">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Public Images</p>
+              <VaultFieldLabel>Public Images</VaultFieldLabel>
 
               <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
                 <input
@@ -342,30 +259,27 @@ export function VaultCardTile({
 
       {hasRemovableRaw || item.slab_items.length > 0 ? (
         <div className="space-y-2 border-t border-slate-200 pt-3">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Owned Objects</p>
+          <VaultFieldLabel>Owned Objects</VaultFieldLabel>
           {hasRemovableRaw ? (
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5">
+            <VaultInsetCard className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-slate-700">
                 <span className="font-medium text-slate-900">{item.raw_count}</span> Raw
               </p>
               <OwnedObjectRemoveAction mode="raw" instanceId={item.removable_raw_instance_id!} label="Remove Raw" />
-            </div>
+            </VaultInsetCard>
           ) : null}
           {item.slab_items.map((slabItem) => (
-            <div
-              key={slabItem.instance_id}
-              className="flex flex-wrap items-center justify-between gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5"
-            >
+            <VaultInsetCard key={slabItem.instance_id} className="flex flex-wrap items-center justify-between gap-3">
               <div className="space-y-1">
-                <p className="text-sm text-slate-700">{formatObjectLevelSlabSummary(slabItem) || "Graded slab"}</p>
+                <p className="text-sm text-slate-700">{formatVaultObjectLevelSlabSummary(slabItem) || "Graded slab"}</p>
                 {slabItem.cert_number ? <p className="text-xs text-slate-500">Cert {slabItem.cert_number}</p> : null}
               </div>
               <OwnedObjectRemoveAction mode="slab" instanceId={slabItem.instance_id} label="Remove Slab" />
-            </div>
+            </VaultInsetCard>
           ))}
         </div>
       ) : null}
-    </div>
+    </VaultDetailPanel>
   ) : null;
 
   return (
@@ -387,14 +301,7 @@ export function VaultCardTile({
         </span>
       }
       badges={
-        <>
-          <PokemonCardGridBadge tone="neutral">Qty {item.owned_count}</PokemonCardGridBadge>
-          <PokemonCardGridBadge tone={item.is_slab ? "warm" : "default"}>
-            {item.is_slab ? "Slab" : "Raw"}
-          </PokemonCardGridBadge>
-          {item.is_shared ? <PokemonCardGridBadge tone="positive">On Wall</PokemonCardGridBadge> : null}
-          {wallCategoryLabel ? <PokemonCardGridBadge tone="accent">{wallCategoryLabel}</PokemonCardGridBadge> : null}
-        </>
+        <VaultStatusBadges item={item} />
       }
       meta={<span>{ownershipSummary}</span>}
       summary={summaryRow}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import VaultDialogShell from "@/components/vault/VaultDialogShell";
 
 type ConfirmRemovalModalProps = {
   isOpen: boolean;
@@ -56,32 +57,17 @@ export function ConfirmRemovalModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 p-4 sm:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="vault-remove-title"
-      aria-describedby="vault-remove-body"
-      onClick={() => {
-        if (!isPending) {
-          onCancel();
-        }
-      }}
-    >
-      <div
-        className="w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl sm:p-7"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="space-y-3">
-          <h3 id="vault-remove-title" className="text-2xl font-semibold tracking-tight text-slate-950">
-            Remove card?
-          </h3>
-          <p id="vault-remove-body" className="text-sm leading-7 text-slate-600">
-            This will remove the card from your vault.
-          </p>
-        </div>
-
-        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+    <VaultDialogShell
+      isOpen={isOpen}
+      isPending={isPending}
+      title="Remove card?"
+      description="This will remove the card from your vault."
+      labelledBy="vault-remove-title"
+      describedBy="vault-remove-body"
+      onDismiss={onCancel}
+      maxWidthClassName="max-w-md"
+      footer={
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onCancel}
@@ -99,8 +85,8 @@ export function ConfirmRemovalModal({
             {isPending ? "Removing..." : "Remove"}
           </button>
         </div>
-      </div>
-    </div>
+      }
+    />
   );
 }
 
@@ -120,41 +106,16 @@ export function PublicNoteModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 p-4 sm:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="vault-public-note-title"
-      onClick={() => {
-        if (!isPending) {
-          onCancel();
-        }
-      }}
-    >
-      <div
-        className="w-full max-w-lg rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl sm:p-7"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="space-y-3">
-          <h3 id="vault-public-note-title" className="text-2xl font-semibold tracking-tight text-slate-950">
-            Wall note
-          </h3>
-          <p className="text-sm leading-7 text-slate-600">This note appears on your public wall item.</p>
-        </div>
-
-        <div className="mt-5 space-y-3">
-          <textarea
-            value={noteValue}
-            onChange={(event) => onNoteChange(event.target.value)}
-            rows={5}
-            disabled={isPending}
-            placeholder="Add a note collectors can see on your wall."
-            className="w-full rounded-[1.25rem] border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
-          />
-          {error ? <p className="text-sm text-rose-700">{error}</p> : null}
-        </div>
-
-        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+    <VaultDialogShell
+      isOpen={isOpen}
+      isPending={isPending}
+      title="Wall note"
+      description="This note appears on your public wall item."
+      labelledBy="vault-public-note-title"
+      onDismiss={onCancel}
+      maxWidthClassName="max-w-lg"
+      footer={
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onCancel}
@@ -172,7 +133,19 @@ export function PublicNoteModal({
             {isPending ? "Saving..." : "Save note"}
           </button>
         </div>
+      }
+    >
+      <div className="space-y-3">
+          <textarea
+            value={noteValue}
+            onChange={(event) => onNoteChange(event.target.value)}
+            rows={5}
+            disabled={isPending}
+            placeholder="Add a note collectors can see on your wall."
+            className="w-full rounded-[1.25rem] border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          />
+          {error ? <p className="text-sm text-rose-700">{error}</p> : null}
       </div>
-    </div>
+    </VaultDialogShell>
   );
 }

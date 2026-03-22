@@ -6,7 +6,12 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
+import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
+import PageIntro from "@/components/layout/PageIntro";
+import PageSection from "@/components/layout/PageSection";
+import SectionHeader from "@/components/layout/SectionHeader";
+import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { CollectorPageActivationCard } from "@/components/vault/CollectorPageActivationCard";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
 import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
@@ -155,14 +160,7 @@ function ViewEmptyState({
   title: string;
   body: string;
 }) {
-  return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white px-6 py-10 text-center shadow-sm">
-      <div className="mx-auto max-w-xl space-y-3">
-        <h3 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h3>
-        <p className="text-sm leading-7 text-slate-600">{body}</p>
-      </div>
-    </div>
-  );
+  return <PublicCollectionEmptyState title={title} body={body} />;
 }
 
 function renderVaultGrid(
@@ -956,20 +954,21 @@ export function VaultCollectionView({
       <div className="space-y-5 md:hidden">
         {sourceGroups.map((group) => (
           <section key={group.setCode} className="space-y-3">
-            <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3">
+            <PageSection surface="subtle" spacing="compact" className="px-4 py-3">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
-                <div className="flex items-end justify-between gap-4">
-                  <div className="space-y-1">
-                    <h3 className="text-base font-semibold tracking-tight text-slate-950">{group.setName}</h3>
-                    <p className="text-xs text-slate-500">{group.setCode}</p>
-                  </div>
-                  <p className="text-xs text-slate-500">
-                    {group.items.length} {group.items.length === 1 ? "card" : "cards"}
-                  </p>
-                </div>
+                <SectionHeader
+                  title={<span className="text-base">{group.setName}</span>}
+                  description={<span className="text-xs">{group.setCode}</span>}
+                  actions={
+                    <span className="text-xs text-slate-500">
+                      {group.items.length} {group.items.length === 1 ? "card" : "cards"}
+                    </span>
+                  }
+                  className="gap-2"
+                />
               </div>
-            </div>
+            </PageSection>
             {renderMobileVaultItems(group.items)}
           </section>
         ))}
@@ -1098,18 +1097,21 @@ export function VaultCollectionView({
         <div className="space-y-8">
           {filteredBySetGroups.map((group) => (
             <section key={group.setCode} className="space-y-4">
-              <div className="space-y-2 rounded-[1.5rem] border border-slate-200 bg-slate-50/55 px-5 py-4">
-                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
-                <div className="flex items-end justify-between gap-4">
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-semibold tracking-tight text-slate-950">{group.setName}</h3>
-                    <p className="text-sm text-slate-500">{group.setCode}</p>
-                  </div>
-                  <p className="text-sm text-slate-500">
-                    {group.items.length} {group.items.length === 1 ? "card" : "cards"}
-                  </p>
+              <PageSection surface="subtle" spacing="compact" className="px-5 py-4">
+                <div className="space-y-1">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
+                  <SectionHeader
+                    title={<span className="text-lg">{group.setName}</span>}
+                    description={group.setCode}
+                    actions={
+                      <p className="text-sm text-slate-500">
+                        {group.items.length} {group.items.length === 1 ? "card" : "cards"}
+                      </p>
+                    }
+                    className="gap-2"
+                  />
                 </div>
-              </div>
+              </PageSection>
               <div className="pt-1">
                 {renderVaultGrid(
                   group.items,
@@ -1152,21 +1154,20 @@ export function VaultCollectionView({
     const filteredPokemonItems = applyPokemonNameFilter(items);
     vaultContent = (
       <div className="space-y-4">
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50/70 px-4 py-4">
-          <label
-            htmlFor="pokemon-name-filter"
-            className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400"
-          >
-            Pokémon Name
-          </label>
-          <input
-            id="pokemon-name-filter"
-            type="text"
-            placeholder="Search Pokémon name..."
-            value={pokemonQuery}
-            onChange={(event) => setPokemonQuery(event.target.value)}
-            className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
-          />
+        <PageSection surface="subtle" spacing="compact" className="px-4 py-4">
+          <div className="space-y-2">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon Name</p>
+            <SearchToolbar>
+              <SearchToolbarInput
+                id="pokemon-name-filter"
+                type="text"
+                placeholder="Search Pokémon name..."
+                value={pokemonQuery}
+                onChange={(event) => setPokemonQuery(event.target.value)}
+                tone="default"
+              />
+            </SearchToolbar>
+          </div>
 
           {pokemonSuggestions.length > 0 ? (
             <div className="mt-3 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-sm">
@@ -1184,7 +1185,7 @@ export function VaultCollectionView({
               </div>
             </div>
           ) : null}
-        </div>
+        </PageSection>
 
         {filteredPokemonItems.length > 0 ? (
           renderVaultGrid(
@@ -1214,21 +1215,20 @@ export function VaultCollectionView({
     );
     mobileVaultContent = (
       <div className="space-y-4 md:hidden">
-        <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-4">
-          <label
-            htmlFor="pokemon-name-filter-mobile"
-            className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400"
-          >
-            Pokémon Name
-          </label>
-          <input
-            id="pokemon-name-filter-mobile"
-            type="text"
-            placeholder="Search Pokémon name..."
-            value={pokemonQuery}
-            onChange={(event) => setPokemonQuery(event.target.value)}
-            className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300"
-          />
+        <PageSection surface="subtle" spacing="compact" className="px-4 py-4">
+          <div className="space-y-2">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon Name</p>
+            <SearchToolbar>
+              <SearchToolbarInput
+                id="pokemon-name-filter-mobile"
+                type="text"
+                placeholder="Search Pokémon name..."
+                value={pokemonQuery}
+                onChange={(event) => setPokemonQuery(event.target.value)}
+                tone="default"
+              />
+            </SearchToolbar>
+          </div>
 
           {pokemonSuggestions.length > 0 ? (
             <div className="mt-3 overflow-hidden rounded-[1rem] border border-slate-200 bg-white shadow-sm">
@@ -1246,7 +1246,7 @@ export function VaultCollectionView({
               </div>
             </div>
           ) : null}
-        </div>
+        </PageSection>
 
         {filteredPokemonItems.length > 0 ? (
           renderMobileVaultItems(filteredPokemonItems)
@@ -1309,39 +1309,36 @@ export function VaultCollectionView({
       />
 
       <div className="space-y-8 py-6 md:space-y-10 md:py-7">
-      <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5 md:rounded-[2rem] md:px-7 md:py-5">
-        <div className="flex flex-col gap-3 md:gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="min-w-0 space-y-2">
-            <div className="space-y-1">
-              <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">Vault</p>
-              <h1 className="text-[1.75rem] font-semibold tracking-tight text-slate-950 sm:text-[2rem]">Your Vault</h1>
-              <p className="hidden text-sm text-slate-600 md:block">A clear view of the cards you own.</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 sm:text-sm">
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-medium text-slate-800">
-                {summary.cards} {summary.cards === 1 ? "card" : "cards"}
-              </span>
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                {summary.uniqueCards} unique
-              </span>
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                {summary.sets} {summary.sets === 1 ? "set" : "sets"}
-              </span>
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                Updated {summary.lastAdded}
-              </span>
-            </div>
-          </div>
-          <div className="flex shrink-0 items-start lg:justify-end">
+      <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-7 md:py-5">
+        <PageIntro
+          title="Your Vault"
+          eyebrow="Vault"
+          description={<span className="hidden md:inline">A clear view of the cards you own.</span>}
+          size="compact"
+          actions={
             <Link
               href="/vault/import"
               className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 md:px-5"
             >
               Import Collection
             </Link>
-          </div>
+          }
+        />
+        <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 sm:text-sm">
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-medium text-slate-800">
+            {summary.cards} {summary.cards === 1 ? "card" : "cards"}
+          </span>
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+            {summary.uniqueCards} unique
+          </span>
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+            {summary.sets} {summary.sets === 1 ? "set" : "sets"}
+          </span>
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+            Updated {summary.lastAdded}
+          </span>
         </div>
-      </section>
+      </PageSection>
 
       {itemsError ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
@@ -1369,7 +1366,7 @@ export function VaultCollectionView({
           </div>
         </section>
       ) : (
-        <section className="space-y-4">
+        <PageSection spacing="compact">
           {collectorPageActivationVariant ? (
             <CollectorPageActivationCard
               variant={collectorPageActivationVariant}
@@ -1377,32 +1374,33 @@ export function VaultCollectionView({
             />
           ) : null}
 
-          <div className="space-y-1.5">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Vault Cards</h2>
-            <p className="text-sm text-slate-600">Cards currently in your collection.</p>
-          </div>
+          <SectionHeader
+            title="Vault Cards"
+            description="Cards currently in your collection."
+          />
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:gap-3">
-            <input
-              type="text"
-              placeholder="Search your vault..."
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              className="w-full rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-300 sm:max-w-md"
-            />
-            {searchQuery.trim().length > 0 ? (
-              <button
-                type="button"
-                onClick={() => setSearchQuery("")}
-                className="inline-flex shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
-              >
-                Clear search
-              </button>
-            ) : null}
-          </div>
-
-          <div className="hidden items-center justify-end md:flex">
-            <ViewDensityToggle value={density} onChange={setDensity} />
+            <SearchToolbar className="w-full sm:max-w-md">
+              <SearchToolbarInput
+                type="text"
+                placeholder="Search your vault..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                tone="default"
+              />
+            </SearchToolbar>
+            <div className="flex items-center gap-3">
+              {searchQuery.trim().length > 0 ? (
+                <SearchToolbarButton
+                  type="button"
+                  tone="secondary"
+                  onClick={() => setSearchQuery("")}
+                >
+                  Clear search
+                </SearchToolbarButton>
+              ) : null}
+              <ViewDensityToggle value={density} onChange={setDensity} />
+            </div>
           </div>
 
           <VaultMobileToolbar
@@ -1413,7 +1411,7 @@ export function VaultCollectionView({
             onModeChange={setMobileViewMode}
           />
 
-          <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/70 p-2 md:rounded-[1.5rem]">
+          <PageSection surface="subtle" spacing="compact" className="p-2 md:rounded-[1.5rem] md:p-2.5">
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
@@ -1425,32 +1423,33 @@ export function VaultCollectionView({
                 />
               ))}
             </div>
-          </div>
+          </PageSection>
 
           <div className="md:hidden">{mobileVaultContent}</div>
           <div className="hidden md:block">{vaultContent}</div>
-        </section>
+        </PageSection>
       )}
 
-      <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <div className="space-y-1.5">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Recently Added</h2>
-            <p className="text-sm text-slate-600">Recent additions to your collection.</p>
-          </div>
-          <Link href="/wall" className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
-            View wall
-          </Link>
-        </div>
+      <PageSection spacing="compact">
+        <SectionHeader
+          title="Recently Added"
+          description="Recent additions to your collection."
+          actions={
+            <Link href="/wall" className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
+              View wall
+            </Link>
+          }
+        />
 
         {recentError ? (
           <div className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
             Recently added feed could not be loaded right now: {recentError}
           </div>
         ) : recent.length === 0 ? (
-          <div className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 text-sm text-slate-600 shadow-sm">
-            No recently added items yet.
-          </div>
+          <PublicCollectionEmptyState
+            title="No recently added items yet."
+            body="New additions will appear here after you import or add cards."
+          />
         ) : (
           <div className="flex gap-4 overflow-x-auto pt-0.5 pb-2">
             {recent.map((item) => (
@@ -1479,7 +1478,7 @@ export function VaultCollectionView({
             ))}
           </div>
         )}
-      </section>
+      </PageSection>
       </div>
     </>
   );
