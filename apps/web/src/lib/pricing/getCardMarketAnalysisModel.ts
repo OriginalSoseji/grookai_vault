@@ -41,8 +41,10 @@ type CardMarketAnalysisDiagnostics = {
   identifierPathUsed: "variant" | "card" | null;
   rawPointCount: number;
   normalizedPointCount: number;
+  historyPointCount: number;
   usedCardFallback: boolean;
   noHistoryReason: string | null;
+  pageMode: "chart" | "empty-history" | "empty-state" | "insights-only";
 };
 
 export type CardMarketAnalysisModel = {
@@ -239,14 +241,15 @@ function buildUiFlags(args: {
 }): CardMarketAnalysisUiFlags {
   const insights = args.insights;
   const history = args.history;
+  const historyPointCount = history?.points.length ?? 0;
   const hasInsights = insights
     ? insights.conditionRows.length > 0 ||
       typeof insights.printingPremium === "number" ||
       Boolean(insights.trend) ||
       Boolean(insights.spread)
     : false;
-  const showChart = Boolean(history?.hasHistory);
-  const showEmptyHistory = Boolean(args.selectedSlice) && Boolean(history) && history ? !history.hasHistory : false;
+  const showChart = historyPointCount > 0;
+  const showEmptyHistory = Boolean(args.selectedSlice) && Boolean(history) && historyPointCount === 0;
   const showEmptyState = !showChart && !showEmptyHistory && !hasInsights;
 
   return {
@@ -261,8 +264,10 @@ function buildUiFlags(args: {
 function buildDiagnostics(args: {
   selectedSlice: MarketAnalysisSelectedSlice | null;
   history: JustTcgPriceHistoryResult | null;
+  uiFlags: CardMarketAnalysisUiFlags;
 }): CardMarketAnalysisDiagnostics {
   const historyDiagnostics = args.history?.diagnostics;
+  const historyPointCount = args.history?.points.length ?? 0;
   const usedCardFallback = historyDiagnostics?.usedCardFallback ?? false;
   const rawPointCount =
     historyDiagnostics?.identifierPathUsed === "card" ||
@@ -287,8 +292,16 @@ function buildDiagnostics(args: {
     identifierPathUsed: historyDiagnostics?.identifierPathUsed ?? null,
     rawPointCount,
     normalizedPointCount,
+    historyPointCount,
     usedCardFallback,
     noHistoryReason: historyDiagnostics?.noHistoryReason ?? null,
+    pageMode: args.uiFlags.showChart
+      ? "chart"
+      : args.uiFlags.showEmptyHistory
+        ? "empty-history"
+        : args.uiFlags.showEmptyState
+          ? "empty-state"
+          : "insights-only",
   };
 }
 
@@ -319,8 +332,10 @@ export async function getCardMarketAnalysisModel(
         identifierPathUsed: null,
         rawPointCount: 0,
         normalizedPointCount: 0,
+        historyPointCount: 0,
         usedCardFallback: false,
         noHistoryReason: "No card_print_id was supplied for market analysis.",
+        pageMode: "empty-state",
       },
     };
   }
@@ -392,6 +407,7 @@ export async function getCardMarketAnalysisModel(
   const diagnostics = buildDiagnostics({
     selectedSlice,
     history,
+    uiFlags,
   });
 
   console.info("[pricing:market-analysis] resolved canonical model", {
@@ -401,11 +417,10 @@ export async function getCardMarketAnalysisModel(
     identifierPathUsed: diagnostics.identifierPathUsed,
     rawPointCount: diagnostics.rawPointCount,
     normalizedPointCount: diagnostics.normalizedPointCount,
+    historyPointCount: diagnostics.historyPointCount,
     usedCardFallback: diagnostics.usedCardFallback,
     noHistoryReason: diagnostics.noHistoryReason,
-    showChart: uiFlags.showChart,
-    showEmptyHistory: uiFlags.showEmptyHistory,
-    showInsights: uiFlags.showInsights,
+    finalPageMode: diagnostics.pageMode,
   });
 
   return {
