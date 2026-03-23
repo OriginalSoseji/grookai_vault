@@ -26,6 +26,9 @@ function parseArgs() {
     apply: false,
     limit: null,
     verbose: false,
+    setCode: null,
+    gvId: null,
+    cardPrintId: null,
   };
 
   for (let index = 0; index < args.length; index += 1) {
@@ -47,6 +50,21 @@ function parseArgs() {
       if (!Number.isNaN(value) && value > 0) {
         options.limit = value;
       }
+    } else if (token === '--set-code' && args[index + 1]) {
+      options.setCode = normalize(args[index + 1]).toLowerCase() || null;
+      index += 1;
+    } else if (token.startsWith('--set-code=')) {
+      options.setCode = normalize(token.split('=').slice(1).join('=')).toLowerCase() || null;
+    } else if (token === '--gv-id' && args[index + 1]) {
+      options.gvId = normalize(args[index + 1]).toUpperCase() || null;
+      index += 1;
+    } else if (token.startsWith('--gv-id=')) {
+      options.gvId = normalize(token.split('=').slice(1).join('=')).toUpperCase() || null;
+    } else if (token === '--card-print-id' && args[index + 1]) {
+      options.cardPrintId = normalize(args[index + 1]).toLowerCase() || null;
+      index += 1;
+    } else if (token.startsWith('--card-print-id=')) {
+      options.cardPrintId = normalize(token.split('=').slice(1).join('=')).toLowerCase() || null;
     } else if (token === '--verbose') {
       options.verbose = true;
     }
@@ -110,6 +128,33 @@ function normalizeCardName(value) {
       .replace(/\s+-\s+[A-Z0-9]+\/[A-Z0-9]+$/i, '')
       .replace(/\s+-\s+[A-Z0-9]+$/i, ''),
   );
+}
+
+function hasDeltaSpeciesMarker(value) {
+  const raw = normalize(value);
+  if (!raw) {
+    return false;
+  }
+
+  return /(?:δ|\(\s*delta species\s*\)|\bdelta species\b)/iu.test(raw);
+}
+
+function normalizeNameV2(name) {
+  if (!name) {
+    return '';
+  }
+
+  return normalize(name)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\(delta species\)/g, '')
+    .replace(/δ/g, '')
+    .replace(/★/g, '')
+    .replace(/\s*-\s*\d+\s*\/\s*\d+\b/g, '')
+    .replace(/\bdelta species\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function normalizeRarity(value) {
@@ -179,16 +224,29 @@ async function withRetries(fn, label) {
   );
 }
 
-async function fetchCardPrintPage(supabase, offset, pageSize) {
+async function fetchCardPrintPage(supabase, offset, pageSize, options) {
   return withRetries(async () => {
-    const { data, error } = await supabase
+    let query = supabase
       .from('card_prints')
       .select('id,gv_id,name,number,number_plain,set_id,set_code,variant_key,rarity,sets(name)')
       .order('set_code', { ascending: true, nullsFirst: false })
       .order('number_plain', { ascending: true, nullsFirst: false })
       .order('number', { ascending: true, nullsFirst: false })
-      .order('id', { ascending: true })
-      .range(offset, offset + pageSize - 1);
+      .order('id', { ascending: true });
+
+    if (options.setCode) {
+      query = query.eq('set_code', options.setCode);
+    }
+
+    if (options.gvId) {
+      query = query.eq('gv_id', options.gvId);
+    }
+
+    if (options.cardPrintId) {
+      query = query.eq('id', options.cardPrintId);
+    }
+
+    const { data, error } = await query.range(offset, offset + pageSize - 1);
 
     if (error) {
       throw new Error(error.message);
@@ -235,13 +293,29 @@ async function fetchAllActiveJustTcgMappedCardPrintIds(supabase) {
   return mapped;
 }
 
-async function loadScopedCards(supabase) {
+function rowMatchesScope(row, options) {
+  if (options.setCode && normalize(row.set_code ?? '').toLowerCase() !== options.setCode) {
+    return false;
+  }
+
+  if (options.gvId && normalize(row.gv_id ?? '').toUpperCase() !== options.gvId) {
+    return false;
+  }
+
+  if (options.cardPrintId && normalize(row.id ?? '').toLowerCase() !== options.cardPrintId) {
+    return false;
+  }
+
+  return true;
+}
+
+async function loadScopedCards(supabase, options) {
   const scoped = [];
   const activeJustTcgMappedIds = await fetchAllActiveJustTcgMappedCardPrintIds(supabase);
   let offset = 0;
 
   while (true) {
-    const rows = await fetchCardPrintPage(supabase, offset, FETCH_PAGE_SIZE);
+    const rows = await fetchCardPrintPage(supabase, offset, FETCH_PAGE_SIZE, options);
     if (rows.length === 0) {
       break;
     }
@@ -249,7 +323,7 @@ async function loadScopedCards(supabase) {
     offset += rows.length;
 
     for (const row of rows) {
-      if (!row.id || activeJustTcgMappedIds.has(row.id)) {
+      if (!row.id || activeJustTcgMappedIds.has(row.id) || !rowMatchesScope(row, options)) {
         continue;
       }
 
@@ -275,16 +349,20 @@ async function loadScopedCards(supabase) {
   return scoped;
 }
 
-function alignmentPriority(alignment) {
-  if (!alignment?.justTcgSet?.id) {
-    return 2;
-  }
-
-  if (alignment.fromManualHelper) {
+function computeRowPriority(row, alignment, override) {
+  if (override?.card_print_id) {
     return 0;
   }
 
-  return 1;
+  if (alignment?.justTcgSet?.id && alignment.fromManualHelper) {
+    return 1;
+  }
+
+  if (alignment?.justTcgSet?.id) {
+    return 2;
+  }
+
+  return 3;
 }
 
 function compareScopedRows(left, right) {
@@ -606,12 +684,31 @@ function resolveCardCandidate(row, alignment, override, cards) {
   }
 
   const exactName = sameNumber.filter((card) => normalizeCardName(card.name) === targetName);
+  const deltaSpeciesAware =
+    hasDeltaSpeciesMarker(override?.justtcg_name ?? row.name) ||
+    sameNumber.some((card) => hasDeltaSpeciesMarker(card.name));
+  const deltaSpeciesNameMatches =
+    exactName.length === 0 && deltaSpeciesAware
+      ? sameNumber.filter(
+          (card) =>
+            normalizeNameV2(card.name) === normalizeNameV2(override?.justtcg_name ?? row.name),
+        )
+      : [];
   let resolved = null;
 
   if (exactName.length === 1) {
     resolved = exactName[0];
+  } else if (deltaSpeciesNameMatches.length === 1) {
+    resolved = deltaSpeciesNameMatches[0];
   } else if (exactName.length > 1) {
     const rarityMatches = exactName.filter(
+      (card) => targetRarity && normalizeRarity(card.rarity) === targetRarity,
+    );
+    if (rarityMatches.length === 1) {
+      resolved = rarityMatches[0];
+    }
+  } else if (deltaSpeciesNameMatches.length > 1) {
+    const rarityMatches = deltaSpeciesNameMatches.filter(
       (card) => targetRarity && normalizeRarity(card.rarity) === targetRarity,
     );
     if (rarityMatches.length === 1) {
@@ -665,23 +762,34 @@ async function main() {
   console.log('RUN_CONFIG:');
   console.log(`mode: ${options.apply ? 'apply' : 'dry-run'}`);
   console.log('selection_mode: unmapped-justtcg-direct-structure');
-  console.log('selection_order: helper-aligned first, auto-exact-aligned second, unresolved last; then set_code asc, number_plain asc, number asc, card_print_id asc');
+  console.log('selection_priority: override -> manual_helper_set -> auto_exact_alignment -> unresolved');
+  console.log('selection_order: set_code asc, number_plain asc, number asc, card_print_id asc');
+  console.log(`scope_set_code: ${options.setCode ?? 'none'}`);
+  console.log(`scope_gv_id: ${options.gvId ?? 'none'}`);
+  console.log(`scope_card_print_id: ${options.cardPrintId ?? 'none'}`);
   console.log(`limit: ${options.limit ?? 'none'}`);
   console.log(`verbose: ${options.verbose ? 'true' : 'false'}`);
 
-  const allUnmappedRows = await loadScopedCards(supabase);
+  const allUnmappedRows = await loadScopedCards(supabase, options);
   const [manualSetMappings, justTcgSets] = await Promise.all([
     loadActiveSetMappings(supabase, uniqueValues(allUnmappedRows.map((row) => row.setId))),
     fetchJustTcgPokemonSets(),
   ]);
+  const identityOverrides = await loadActiveIdentityOverrides(
+    supabase,
+    uniqueValues(allUnmappedRows.map((row) => row.cardPrintId)),
+  );
 
   const scopedRows = allUnmappedRows
     .map((row) => ({
       row,
       alignment: resolveSetAlignment(row, manualSetMappings, justTcgSets),
+      override: identityOverrides.get(row.cardPrintId) ?? null,
     }))
     .sort((left, right) => {
-      const priorityDelta = alignmentPriority(left.alignment) - alignmentPriority(right.alignment);
+      const priorityDelta =
+        computeRowPriority(left.row, left.alignment, left.override) -
+        computeRowPriority(right.row, right.alignment, right.override);
       if (priorityDelta !== 0) {
         return priorityDelta;
       }
@@ -691,10 +799,6 @@ async function main() {
     .map((entry) => entry.row);
 
   const limitedRows = options.limit == null ? scopedRows : scopedRows.slice(0, options.limit);
-  const identityOverrides = await loadActiveIdentityOverrides(
-    supabase,
-    uniqueValues(limitedRows.map((row) => row.cardPrintId)),
-  );
 
   const cardsBySetAndNumber = new Map();
   let consoleRowLogs = 0;
