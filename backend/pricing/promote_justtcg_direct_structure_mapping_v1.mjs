@@ -107,6 +107,12 @@ function normalizeNumberToken(value) {
     return null;
   }
 
+  const letterOrSymbolSlash = trimmed.match(/^([A-Z]|!|\?)\s*\/\s*(\d+)$/);
+  if (letterOrSymbolSlash) {
+    const [, token] = letterOrSymbolSlash;
+    return token;
+  }
+
   const slash = trimmed.match(/^([A-Z]{0,6})(\d+)\s*\/\s*(\d+)$/);
   if (slash) {
     const [, prefix, number] = slash;
@@ -126,7 +132,8 @@ function normalizeCardName(value) {
   return normText(
     normalize(value)
       .replace(/\s+-\s+[A-Z0-9]+\/[A-Z0-9]+$/i, '')
-      .replace(/\s+-\s+[A-Z0-9]+$/i, ''),
+      .replace(/\s+-\s+[A-Z0-9]+$/i, '')
+      .replace(/\s*\(([A-Z]|!|\?)\)$/i, ''),
   );
 }
 
@@ -180,6 +187,18 @@ function buildNumberQueryVariants(value) {
 
   const raw = normalize(value).toUpperCase();
   addVariant(raw, 'raw');
+
+  if (/^[A-Z]$/.test(raw)) {
+    addVariant(`${raw}/28`, 'letter_slash_28');
+  }
+
+  if (raw === '!') {
+    addVariant('!/28', 'symbol_bang_slash_28');
+  }
+
+  if (raw === '?') {
+    addVariant('?/28', 'symbol_qmark_slash_28');
+  }
 
   const prefixedShortCode = raw.match(/^([A-Z]{1,8})(\d{1,2})$/);
   if (prefixedShortCode) {
