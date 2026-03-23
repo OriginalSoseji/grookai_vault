@@ -5,6 +5,7 @@ export const DEFAULT_FETCH_TIMEOUT_MS = 8000;
 export const DEFAULT_POST_BATCH_SIZE = 200;
 const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 500;
+const RATE_LIMIT_DELAY_MS = 1200;
 
 export function getJustTcgApiConfig() {
   const apiKey = (process.env.JUSTTCG_API_KEY ?? '').trim();
@@ -17,6 +18,18 @@ export function getJustTcgApiConfig() {
 
 export function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function resolveRetryAfterDelayMs(response, attempt) {
+  const retryAfter = response.headers.get('retry-after');
+  if (retryAfter) {
+    const parsedSeconds = Number.parseFloat(retryAfter);
+    if (Number.isFinite(parsedSeconds) && parsedSeconds > 0) {
+      return Math.ceil(parsedSeconds * 1000);
+    }
+  }
+
+  return RATE_LIMIT_DELAY_MS * attempt;
 }
 
 export function uniqueValues(values) {
@@ -144,6 +157,11 @@ export async function requestJustTcgJson(method, path, { params = null, body = n
       const payload = await response.json().catch(() => null);
 
       clearTimeout(timeout);
+
+      if (response.status === 429 && attempt < MAX_RETRIES) {
+        await delay(resolveRetryAfterDelayMs(response, attempt));
+        continue;
+      }
 
       if (!response.ok) {
         return {
