@@ -116,6 +116,35 @@ function normalizeRarity(value) {
   return Array.from(new Set(normText(value).split(' ').filter(Boolean))).sort().join(' ');
 }
 
+function buildNumberQueryVariants(value) {
+  const variants = [];
+  const seen = new Set();
+
+  function addVariant(queryValue, label) {
+    const normalizedValue = normalize(queryValue).toUpperCase();
+    if (!normalizedValue || seen.has(normalizedValue)) {
+      return;
+    }
+
+    seen.add(normalizedValue);
+    variants.push({
+      value: normalizedValue,
+      label,
+    });
+  }
+
+  const raw = normalize(value).toUpperCase();
+  addVariant(raw, 'raw');
+
+  const prefixedShortCode = raw.match(/^([A-Z]{1,8})(\d{1,2})$/);
+  if (prefixedShortCode) {
+    const [, prefix, digits] = prefixedShortCode;
+    addVariant(`${prefix}${digits.padStart(3, '0')}`, 'prefix_padded_3');
+  }
+
+  return variants;
+}
+
 function unwrapData(payload) {
   const data = payload?.data;
   if (Array.isArray(data)) {
@@ -419,6 +448,9 @@ function logResult(row) {
   console.log(`number: ${row.number ?? 'null'}`);
   console.log(`alignment_status: ${row.alignmentStatus ?? 'null'}`);
   console.log(`justtcg_set_id: ${row.justTcgSetId ?? 'null'}`);
+  if (row.justTcgQueryNumber) {
+    console.log(`justtcg_query_number: ${row.justTcgQueryNumber}`);
+  }
   console.log(`returned justtcg card id: ${row.justTcgCardId ?? 'null'}`);
   console.log(`status: ${row.status}`);
   console.log(`reason: ${row.reason}`);
@@ -520,6 +552,33 @@ async function fetchCardsBySetAndNumber(justTcgSetId, queryNumber) {
     cards: unwrapData(response.payload),
     meta: response.payload?.meta ?? null,
   };
+}
+
+async function fetchCardsBySetAndExactNumberVariants(justTcgSetId, queryNumber) {
+  const variants = buildNumberQueryVariants(queryNumber);
+  let lastResult = {
+    cards: [],
+    meta: null,
+    queryNumberUsed: normalize(queryNumber).toUpperCase(),
+    queryVariantUsed: 'raw',
+    queryVariantsTried: variants.map((variant) => variant.value),
+  };
+
+  for (const variant of variants) {
+    const result = await fetchCardsBySetAndNumber(justTcgSetId, variant.value);
+    lastResult = {
+      ...result,
+      queryNumberUsed: variant.value,
+      queryVariantUsed: variant.label,
+      queryVariantsTried: variants.map((entry) => entry.value),
+    };
+
+    if (result.cards.length > 0) {
+      return lastResult;
+    }
+  }
+
+  return lastResult;
 }
 
 function resolveCardCandidate(row, alignment, override, cards) {
@@ -686,10 +745,11 @@ async function main() {
         continue;
       }
 
-      const cacheKey = `${alignment.justTcgSet.id}|${queryNumber}`;
+      const queryVariants = buildNumberQueryVariants(queryNumber);
+      const cacheKey = `${alignment.justTcgSet.id}|${queryVariants.map((variant) => variant.value).join('|')}`;
       let cached = cardsBySetAndNumber.get(cacheKey);
       if (!cached) {
-        cached = await fetchCardsBySetAndNumber(alignment.justTcgSet.id, queryNumber);
+        cached = await fetchCardsBySetAndExactNumberVariants(alignment.justTcgSet.id, queryNumber);
         cardsBySetAndNumber.set(cacheKey, cached);
       }
 
@@ -700,6 +760,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId: null,
           status: 'SKIP_NO_CANDIDATE_ROWS',
           reason: resolution.reason,
@@ -713,6 +774,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId: null,
           status: 'SKIP_AMBIGUOUS',
           reason: resolution.reason,
@@ -733,6 +795,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId: null,
           status: 'SKIP_ERROR',
           reason: 'JustTCG returned a matched row without a usable card id.',
@@ -748,6 +811,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId,
           status: 'SKIP_CONFLICTING_EXISTING_JUSTTCG_MAPPING',
           reason: `Active justtcg mapping already exists for this card_print_id with a different external_id (${activeJustTcgExternalIds.join(', ')}).`,
@@ -761,6 +825,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId,
           status: 'SKIP_ALREADY_CORRECT',
           reason: 'Active justtcg mapping already matches the resolved JustTCG card id.',
@@ -778,6 +843,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId,
           status: 'SKIP_CONFLICTING_EXISTING_JUSTTCG_EXTERNAL_ID',
           reason: `Validated justtcg external_id ${justTcgCardId} is already attached to a different card_print_id (${conflictingExternalRows.map((mapping) => mapping.card_print_id).join(', ')}).`,
@@ -796,6 +862,9 @@ async function main() {
         justtcg_number: resolution.card.number ?? null,
         justtcg_name: resolution.card.name ?? null,
         justtcg_rarity: resolution.card.rarity ?? null,
+        justtcg_query_number_used: cached.queryNumberUsed,
+        justtcg_query_variant_used: cached.queryVariantUsed,
+        justtcg_query_variants_tried: cached.queryVariantsTried,
         set_alignment_status: alignment.status,
         set_alignment_method: alignment.matchMethod,
         override_reason: override?.reason ?? null,
@@ -807,6 +876,7 @@ async function main() {
           ...row,
           alignmentStatus: alignment.status,
           justTcgSetId: alignment.justTcgSet.id,
+          justTcgQueryNumber: cached.queryNumberUsed,
           justTcgCardId,
           status:
             resolution.matchType === 'override_match'
@@ -827,6 +897,7 @@ async function main() {
         ...row,
         alignmentStatus: alignment.status,
         justTcgSetId: alignment.justTcgSet.id,
+        justTcgQueryNumber: cached.queryNumberUsed,
         justTcgCardId,
         status:
           resolution.matchType === 'override_match'
