@@ -18,6 +18,7 @@ type PublicCollectorProfileSegment = "collection" | "in-play";
 type PublicCollectorProfileContentProps = {
   slug: string;
   collectorDisplayName: string;
+  collectorUserId: string;
   cards: PublicWallCard[];
   inPlayCards?: PublicWallCard[];
   collectionTitle?: string;
@@ -25,6 +26,7 @@ type PublicCollectorProfileContentProps = {
   collectionDescription?: string;
   defaultPokemonValue?: string;
   isAuthenticated: boolean;
+  viewerUserId: string | null;
   currentPath: string;
 };
 
@@ -95,12 +97,14 @@ function compareInPlayCards(left: PublicWallCard, right: PublicWallCard) {
 export function PublicCollectorProfileContent({
   slug,
   collectorDisplayName,
+  collectorUserId,
   cards,
   inPlayCards: providedInPlayCards = [],
   collectionTitle = "Collection",
   collectionDescription = "View the full collection this collector has put on display.",
   defaultPokemonValue,
   isAuthenticated,
+  viewerUserId,
   currentPath,
 }: PublicCollectorProfileContentProps) {
   const inPlayCards = useMemo(
@@ -112,6 +116,7 @@ export function PublicCollectorProfileContent({
   );
   const { density, setDensity } = useViewDensity();
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
+  const isOwnProfile = viewerUserId === collectorUserId;
   const inPlayCounts = useMemo(
     () =>
       inPlayCards.reduce(
@@ -266,18 +271,22 @@ export function PublicCollectorProfileContent({
                     </>
                   }
                   details={
-                    <ContactOwnerButton
-                      vaultItemId={card.vault_item_id}
-                      cardPrintId={card.card_print_id}
-                      ownerDisplayName={collectorDisplayName}
-                      cardName={card.name}
-                      intent={card.intent}
-                      isAuthenticated={isAuthenticated}
-                      loginHref={loginHref}
-                      currentPath={currentPath}
-                      buttonLabel={getInPlayActionLabel(card.intent)}
-                      buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                    />
+                    !isOwnProfile ? (
+                      <ContactOwnerButton
+                        vaultItemId={card.vault_item_id}
+                        cardPrintId={card.card_print_id}
+                        ownerUserId={collectorUserId}
+                        viewerUserId={viewerUserId}
+                        ownerDisplayName={collectorDisplayName}
+                        cardName={card.name}
+                        intent={card.intent}
+                        isAuthenticated={isAuthenticated}
+                        loginHref={loginHref}
+                        currentPath={currentPath}
+                        buttonLabel={getInPlayActionLabel(card.intent)}
+                        buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                      />
+                    ) : null
                   }
                   footer={<span>GV-ID: {card.gv_id}</span>}
                 />

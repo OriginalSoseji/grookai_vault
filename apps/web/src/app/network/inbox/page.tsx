@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
+import InteractionGroupReplyForm from "@/components/network/InteractionGroupReplyForm";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { getUserCardInteractionGroups, type UserCardInteractionGroup } from "@/lib/network/getUserCardInteractions";
@@ -91,6 +92,16 @@ function InteractionGroupCard({
               </div>
             ))}
           </div>
+
+          {group.vaultItemId ? (
+            <InteractionGroupReplyForm
+              vaultItemId={group.vaultItemId}
+              cardPrintId={group.card.cardPrintId}
+              counterpartUserId={group.counterpartUserId}
+              counterpartDisplayName={group.counterpartDisplayName}
+              currentPath="/network/inbox"
+            />
+          ) : null}
         </div>
       </div>
     </article>
@@ -148,7 +159,7 @@ export default async function NetworkInboxPage() {
         <PageIntro
           eyebrow="Interactions"
           title="Card interaction inbox"
-          description="Phase 1 inbox for card-anchored contact. Replies and thread continuity land in the next phase."
+          description="Grouped card-anchored conversations with collectors about specific cards."
           actions={
             <Link
               href="/network"

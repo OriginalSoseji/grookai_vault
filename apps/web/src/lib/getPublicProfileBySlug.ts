@@ -5,6 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { resolveProfileMediaUrl } from "@/lib/profileMedia";
 
 export type PublicProfile = {
+  user_id: string;
   slug: string;
   display_name: string;
   public_profile_enabled: boolean;
@@ -14,6 +15,7 @@ export type PublicProfile = {
 };
 
 type PublicProfileRow = {
+  user_id: string | null;
   slug: string | null;
   display_name: string | null;
   public_profile_enabled: boolean | null;
@@ -46,7 +48,7 @@ export const getPublicProfileBySlug = cache(async (slug: string): Promise<Public
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("public_profiles")
-    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled,avatar_path,banner_path")
+    .select("user_id,slug,display_name,public_profile_enabled,vault_sharing_enabled,avatar_path,banner_path")
     .eq("slug", normalizedSlug)
     .maybeSingle();
 
@@ -55,11 +57,12 @@ export const getPublicProfileBySlug = cache(async (slug: string): Promise<Public
   }
 
   const row = data as PublicProfileRow;
-  if (!row.public_profile_enabled || !row.slug || !row.display_name) {
+  if (!row.public_profile_enabled || !row.user_id || !row.slug || !row.display_name) {
     return null;
   }
 
   return {
+    user_id: row.user_id,
     slug: row.slug,
     display_name: row.display_name,
     public_profile_enabled: true,

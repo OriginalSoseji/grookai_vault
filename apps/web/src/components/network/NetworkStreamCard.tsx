@@ -7,6 +7,7 @@ import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
 type NetworkStreamCardProps = {
   row: CardStreamRow;
   isAuthenticated: boolean;
+  viewerUserId: string | null;
   currentPath: string;
 };
 
@@ -22,9 +23,10 @@ function getOwnershipSummary(row: CardStreamRow) {
   return row.conditionLabel ?? "Raw";
 }
 
-export function NetworkStreamCard({ row, isAuthenticated, currentPath }: NetworkStreamCardProps) {
+export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentPath }: NetworkStreamCardProps) {
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const ownerHref = `/u/${row.ownerSlug}`;
+  const canContactOwner = viewerUserId !== row.ownerUserId;
 
   return (
     <article className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
@@ -74,16 +76,20 @@ export function NetworkStreamCard({ row, isAuthenticated, currentPath }: Network
               <p>{row.gvId}</p>
               <p>{row.createdAt ? new Date(row.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recently listed"}</p>
             </div>
-            <ContactOwnerButton
-              vaultItemId={row.vaultItemId}
-              cardPrintId={row.cardPrintId}
-              ownerDisplayName={row.ownerDisplayName}
-              cardName={row.name}
-              intent={row.intent}
-              isAuthenticated={isAuthenticated}
-              loginHref={loginHref}
-              currentPath={currentPath}
-            />
+            {canContactOwner ? (
+              <ContactOwnerButton
+                vaultItemId={row.vaultItemId}
+                cardPrintId={row.cardPrintId}
+                ownerUserId={row.ownerUserId}
+                viewerUserId={viewerUserId}
+                ownerDisplayName={row.ownerDisplayName}
+                cardName={row.name}
+                intent={row.intent}
+                isAuthenticated={isAuthenticated}
+                loginHref={loginHref}
+                currentPath={currentPath}
+              />
+            ) : null}
           </div>
         </div>
       </div>

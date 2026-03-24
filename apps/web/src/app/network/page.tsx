@@ -116,6 +116,7 @@ export default async function NetworkPage({
                 key={row.vaultItemId}
                 row={row}
                 isAuthenticated={Boolean(user)}
+                viewerUserId={user?.id ?? null}
                 currentPath={currentPath}
               />
             ))}

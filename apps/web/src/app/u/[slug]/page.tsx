@@ -94,9 +94,11 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         <PublicCollectorProfileContent
           slug={profile.slug}
           collectorDisplayName={profile.display_name}
+          collectorUserId={profile.user_id}
           cards={sharedCards}
           inPlayCards={inPlayCards}
           isAuthenticated={Boolean(authData.user)}
+          viewerUserId={authData.user?.id ?? null}
           currentPath={`/u/${profile.slug}`}
         />
       )}

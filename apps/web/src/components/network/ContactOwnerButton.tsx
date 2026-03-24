@@ -18,6 +18,8 @@ import {
 type ContactOwnerButtonProps = {
   vaultItemId: string;
   cardPrintId: string;
+  ownerUserId?: string | null;
+  viewerUserId?: string | null;
   ownerDisplayName: string;
   cardName: string;
   intent: DiscoverableVaultIntent;
@@ -87,6 +89,8 @@ function SubmitInteractionButton({ isSubmitting }: { isSubmitting: boolean }) {
 export function ContactOwnerButton({
   vaultItemId,
   cardPrintId,
+  ownerUserId = null,
+  viewerUserId = null,
   ownerDisplayName,
   cardName,
   intent,
@@ -109,6 +113,7 @@ export function ContactOwnerButton({
   const canRenderPortal = typeof document !== "undefined";
   const submissionLockRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const isSelfContact = Boolean(ownerUserId && viewerUserId && ownerUserId === viewerUserId);
 
   useEffect(() => {
     setDraft(defaultMessage);
@@ -155,6 +160,10 @@ export function ContactOwnerButton({
 
     submissionLockRef.current = true;
     setIsSubmitting(true);
+  }
+
+  if (isSelfContact) {
+    return null;
   }
 
   if (!isAuthenticated) {

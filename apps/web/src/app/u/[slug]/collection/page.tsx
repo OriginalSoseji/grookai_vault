@@ -99,11 +99,13 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
         <PublicCollectorProfileContent
           slug={profile.slug}
           collectorDisplayName={profile.display_name}
+          collectorUserId={profile.user_id}
           cards={sharedCards}
           collectionTitle="Shared Collection"
           collectionEyebrow="Collection"
           collectionDescription="View the full collection this collector has put on display."
           isAuthenticated={Boolean(authData.user)}
+          viewerUserId={authData.user?.id ?? null}
           currentPath={`/u/${profile.slug}/collection`}
         />
       )}

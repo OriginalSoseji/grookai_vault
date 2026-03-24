@@ -40,6 +40,7 @@ type PublicProfileRow = {
 
 export type UserCardInteractionRow = {
   id: string;
+  vaultItemId: string;
   direction: "sent" | "received";
   message: string;
   status: "open" | "closed";
@@ -60,6 +61,7 @@ export type UserCardInteractionRow = {
 
 export type UserCardInteractionGroup = {
   groupKey: string;
+  vaultItemId: string | null;
   direction: "sent" | "received";
   counterpartUserId: string;
   counterpartSlug: string | null;
@@ -169,13 +171,14 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
   );
 
   const flatRows = interactionRows.flatMap((row) => {
+    const vaultItemId = normalizeOptionalText(row.vault_item_id);
     const cardPrintId = normalizeOptionalText(row.card_print_id);
     const senderUserId = normalizeOptionalText(row.sender_user_id);
     const receiverUserId = normalizeOptionalText(row.receiver_user_id);
     const status = normalizeOptionalText(row.status) === "closed" ? "closed" : "open";
     const message = normalizeOptionalText(row.message);
 
-    if (!cardPrintId || !senderUserId || !receiverUserId || !message) {
+    if (!vaultItemId || !cardPrintId || !senderUserId || !receiverUserId || !message) {
       return [];
     }
 
@@ -192,6 +195,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     return [
       {
         id: row.id,
+        vaultItemId,
         direction,
         message,
         status,
@@ -233,6 +237,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     if (!existingGroup) {
       groups.set(groupKey, {
         groupKey,
+        vaultItemId: row.vaultItemId,
         direction: row.direction,
         counterpartUserId: row.counterpartUserId,
         counterpartSlug: row.counterpartSlug,
@@ -244,6 +249,10 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         messages: [message],
       });
       continue;
+    }
+
+    if (existingGroup.vaultItemId !== row.vaultItemId) {
+      existingGroup.vaultItemId = null;
     }
 
     existingGroup.messages.push(message);

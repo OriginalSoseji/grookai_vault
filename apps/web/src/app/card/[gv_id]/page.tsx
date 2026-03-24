@@ -522,16 +522,20 @@ export default async function CardPage({
                       </Link>
                     </p>
                   </div>
-                  <ContactOwnerButton
-                    vaultItemId={offer.vaultItemId}
-                    cardPrintId={offer.cardPrintId}
-                    ownerDisplayName={offer.ownerDisplayName}
-                    cardName={resolvedCard.name}
-                    intent={offer.intent}
-                    isAuthenticated={Boolean(user)}
-                    loginHref={loginHref}
-                    currentPath={currentCardPath}
-                  />
+                  {offer.ownerUserId !== user?.id ? (
+                    <ContactOwnerButton
+                      vaultItemId={offer.vaultItemId}
+                      cardPrintId={offer.cardPrintId}
+                      ownerUserId={offer.ownerUserId}
+                      viewerUserId={user?.id ?? null}
+                      ownerDisplayName={offer.ownerDisplayName}
+                      cardName={resolvedCard.name}
+                      intent={offer.intent}
+                      isAuthenticated={Boolean(user)}
+                      loginHref={loginHref}
+                      currentPath={currentCardPath}
+                    />
+                  ) : null}
                 </div>
               </article>
             ))}
