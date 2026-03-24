@@ -4,6 +4,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import InteractionGroupControls from "@/components/network/InteractionGroupControls";
+import InteractionGroupExecutionPanel from "@/components/network/InteractionGroupExecutionPanel";
 import InteractionGroupReadMarker from "@/components/network/InteractionGroupReadMarker";
 import InteractionGroupReplyForm from "@/components/network/InteractionGroupReplyForm";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -238,6 +239,17 @@ function InteractionGroupCard({
               </div>
             ))}
           </div>
+
+          <InteractionGroupExecutionPanel
+            latestInteractionId={group.latestInteractionId}
+            counterpartDisplayName={group.counterpartDisplayName}
+            cardName={group.card.name}
+            currentPath={currentPath}
+            ownedSourceInstances={group.ownedSourceInstances}
+            latestOutcome={group.latestOutcome}
+            pendingTradeExecutionEventId={group.pendingTradeExecutionEventId}
+            hasAmbiguousPendingTradeEvent={group.hasAmbiguousPendingTradeEvent}
+          />
 
           <InteractionGroupControls
             cardPrintId={group.card.cardPrintId}
