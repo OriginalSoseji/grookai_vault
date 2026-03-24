@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { createPortal } from "react-dom";
 import {
   createCardInteractionAction,
@@ -68,6 +68,22 @@ function getStatusMessage(state: CreateCardInteractionActionResult | null) {
   };
 }
 
+function SubmitInteractionButton({ isSubmitting }: { isSubmitting: boolean }) {
+  const { pending } = useFormStatus();
+  const isDisabled = pending || isSubmitting;
+
+  return (
+    <button
+      type="submit"
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      {isDisabled ? "Sending..." : "Send interaction"}
+    </button>
+  );
+}
+
 export function ContactOwnerButton({
   vaultItemId,
   cardPrintId,
@@ -91,10 +107,21 @@ export function ContactOwnerButton({
   const statusMessage = getStatusMessage(state);
   const buttonLabel = providedButtonLabel ?? getVaultIntentActionLabel(intent);
   const canRenderPortal = typeof document !== "undefined";
+  const submissionLockRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setDraft(defaultMessage);
   }, [defaultMessage]);
+
+  useEffect(() => {
+    if (!state) {
+      return;
+    }
+
+    submissionLockRef.current = false;
+    setIsSubmitting(false);
+  }, [state]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -119,6 +146,16 @@ export function ContactOwnerButton({
     router.refresh();
     setIsOpen(false);
   }, [router, state]);
+
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (submissionLockRef.current) {
+      event.preventDefault();
+      return;
+    }
+
+    submissionLockRef.current = true;
+    setIsSubmitting(true);
+  }
 
   if (!isAuthenticated) {
     return (
@@ -188,7 +225,7 @@ export function ContactOwnerButton({
                   </p>
                 </div>
 
-                <form action={formAction} className="mt-5 space-y-4">
+                <form action={formAction} onSubmit={handleFormSubmit} className="mt-5 space-y-4">
                   <input type="hidden" name="vault_item_id" value={vaultItemId} />
                   <input type="hidden" name="card_print_id" value={cardPrintId} />
                   <input type="hidden" name="return_path" value={currentPath} />
@@ -211,16 +248,12 @@ export function ContactOwnerButton({
                     <button
                       type="button"
                       onClick={() => setIsOpen(false)}
+                      disabled={isSubmitting}
                       className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
                     >
                       Cancel
                     </button>
-                    <button
-                      type="submit"
-                      className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-                    >
-                      Send interaction
-                    </button>
+                    <SubmitInteractionButton isSubmitting={isSubmitting} />
                   </div>
                 </form>
               </div>

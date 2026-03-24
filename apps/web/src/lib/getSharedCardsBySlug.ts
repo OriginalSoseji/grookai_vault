@@ -35,6 +35,25 @@ type InPlayStreamRow = {
   created_at: string | null;
 };
 
+type CollectorInPlayStreamRow = {
+  vault_item_id: string | null;
+  card_print_id: string | null;
+  intent: string | null;
+  quantity: number | null;
+  condition_label: string | null;
+  is_graded: boolean | null;
+  grade_company: string | null;
+  grade_value: string | null;
+  grade_label: string | null;
+  created_at: string | null;
+  gv_id: string | null;
+  name: string | null;
+  set_code: string | null;
+  set_name: string | null;
+  number: string | null;
+  image_url: string | null;
+};
+
 type InPlayCardState = {
   vault_item_id: string;
   intent: NonNullable<PublicWallCard["intent"]>;
@@ -447,4 +466,172 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       };
     })
     .filter((row): row is NonNullable<typeof row> => row !== null);
+});
+
+export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCard[]> => {
+  const normalizedSlug = normalizeSlug(slug);
+  if (!normalizedSlug) {
+    return [];
+  }
+
+  const supabase = createServerSupabase();
+  const { data: profile, error: profileError } = await supabase
+    .from("public_profiles")
+    .select("user_id,vault_sharing_enabled")
+    .eq("slug", normalizedSlug)
+    .maybeSingle();
+
+  if (profileError || !profile) {
+    return [];
+  }
+
+  const profileRow = profile as PublicProfileLookup;
+  if (!profileRow.user_id || !profileRow.vault_sharing_enabled) {
+    return [];
+  }
+
+  const { data: streamRows, error: streamError } = await supabase
+    .from("v_card_stream_v1")
+    .select(
+      "vault_item_id,card_print_id,intent,quantity,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
+    )
+    .eq("owner_slug", normalizedSlug)
+    .order("created_at", { ascending: false })
+    .order("vault_item_id", { ascending: false });
+
+  if (streamError || !streamRows) {
+    return [];
+  }
+
+  const rows = (streamRows as CollectorInPlayStreamRow[])
+    .map((row) => ({
+      vaultItemId: normalizeOptionalText(row.vault_item_id),
+      cardPrintId: normalizeOptionalText(row.card_print_id),
+      intent: normalizeDiscoverableVaultIntent(row.intent),
+      quantity: Math.max(1, row.quantity ?? 1),
+      conditionLabel: normalizeOptionalText(row.condition_label),
+      isGraded: row.is_graded === true,
+      gradeCompany: normalizeOptionalText(row.grade_company),
+      gradeValue: normalizeOptionalText(row.grade_value),
+      gradeLabel: normalizeOptionalText(row.grade_label),
+      createdAt: row.created_at ?? null,
+      gvId: normalizeOptionalText(row.gv_id),
+      name: normalizeOptionalText(row.name),
+      setCode: normalizeOptionalText(row.set_code),
+      setName: normalizeOptionalText(row.set_name),
+      number: normalizeOptionalText(row.number),
+      imageUrl: normalizeOptionalText(row.image_url),
+    }))
+    .filter(
+      (
+        row,
+      ): row is {
+        vaultItemId: string;
+        cardPrintId: string;
+        intent: NonNullable<SharedCard["intent"]>;
+        quantity: number;
+        conditionLabel: string | null;
+        isGraded: boolean;
+        gradeCompany: string | null;
+        gradeValue: string | null;
+        gradeLabel: string | null;
+        createdAt: string | null;
+        gvId: string;
+        name: string | null;
+        setCode: string | null;
+        setName: string | null;
+        number: string | null;
+        imageUrl: string | null;
+      } => Boolean(row.vaultItemId && row.cardPrintId && row.intent && row.gvId),
+    );
+
+  if (rows.length === 0) {
+    return [];
+  }
+
+  const cardPrintIds = Array.from(new Set(rows.map((row) => row.cardPrintId)));
+  const [cardPrintsResponse, sharedResponse] = await Promise.all([
+    supabase
+      .from("card_prints")
+      .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
+      .in("id", cardPrintIds),
+    supabase
+      .from("shared_cards")
+      .select(
+        `
+          card_id,
+          gv_id,
+          public_note,
+          public_front_image_path,
+          show_personal_front
+        `,
+      )
+      .eq("user_id", profileRow.user_id)
+      .eq("is_shared", true)
+      .in("card_id", cardPrintIds),
+  ]);
+
+  if (cardPrintsResponse.error || !cardPrintsResponse.data) {
+    return [];
+  }
+
+  const cardPrintById = new Map(
+    (cardPrintsResponse.data as CardPrintRow[])
+      .filter((row): row is CardPrintRow & { id: string } => typeof row.id === "string" && row.id.length > 0)
+      .map((row) => [row.id, row]),
+  );
+  const sharedByCardId = new Map(
+    ((sharedResponse.data ?? []) as Pick<
+      SharedCardRow,
+      "card_id" | "gv_id" | "public_note" | "public_front_image_path" | "show_personal_front"
+    >[])
+      .map((row) => [normalizeOptionalText(row.card_id), row] as const)
+      .filter(
+        (
+          entry,
+        ): entry is [
+          string,
+          Pick<SharedCardRow, "card_id" | "gv_id" | "public_note" | "public_front_image_path" | "show_personal_front">,
+        ] => Boolean(entry[0]),
+      ),
+  );
+
+  return rows.map((row) => {
+    const cardPrint = cardPrintById.get(row.cardPrintId) ?? null;
+    const shared = sharedByCardId.get(row.cardPrintId) ?? null;
+    const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
+    const personalFrontImageUrl =
+      shared?.show_personal_front === true
+        ? getBestPublicCardImageUrl(shared.public_front_image_path) ?? undefined
+        : undefined;
+
+    return {
+      card_print_id: row.cardPrintId,
+      gv_id: row.gvId,
+      name: row.name ?? normalizeOptionalText(cardPrint?.name) ?? "Unknown card",
+      set_code: row.setCode ?? normalizeOptionalText(cardPrint?.set_code) ?? undefined,
+      set_name:
+        row.setName ??
+        normalizeOptionalText(setRecord?.name) ??
+        row.setCode ??
+        normalizeOptionalText(cardPrint?.set_code) ??
+        undefined,
+      number: row.number ?? normalizeOptionalText(cardPrint?.number) ?? "—",
+      rarity: normalizeOptionalText(cardPrint?.rarity) ?? undefined,
+      image_url:
+        personalFrontImageUrl ??
+        getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ??
+        undefined,
+      public_note: normalizeOptionalText(shared?.public_note) ?? undefined,
+      vault_item_id: row.vaultItemId,
+      intent: row.intent,
+      in_play_quantity: row.quantity,
+      in_play_condition_label: row.conditionLabel ?? undefined,
+      in_play_is_graded: row.isGraded,
+      in_play_grade_company: row.gradeCompany ?? undefined,
+      in_play_grade_value: row.gradeValue ?? undefined,
+      in_play_grade_label: row.gradeLabel ?? undefined,
+      in_play_created_at: row.createdAt ?? undefined,
+    } satisfies SharedCard;
+  });
 });

@@ -18,6 +18,10 @@ type InsertedInteractionRow = {
   id: string;
 };
 
+type ExistingInteractionRow = {
+  id: string;
+};
+
 export type CreateCardInteractionActionResult =
   | {
       ok: true;
@@ -40,6 +44,20 @@ function normalizeOptionalText(value: FormDataEntryValue | string | null | undef
 
   const normalized = value.trim();
   return normalized.length > 0 ? normalized : null;
+}
+
+function buildSuccessResult(
+  submissionKey: number,
+  interactionId: string,
+  ownerDisplayName: string | null,
+): CreateCardInteractionActionResult {
+  return {
+    ok: true,
+    status: "created",
+    interactionId,
+    submissionKey,
+    message: `Message sent to ${ownerDisplayName ?? "collector"}.`,
+  };
 }
 
 export async function createCardInteractionAction(
@@ -121,6 +139,38 @@ export async function createCardInteractionAction(
     };
   }
 
+  const duplicateWindowStart = new Date(Date.now() - 15_000).toISOString();
+  const { data: existingInteraction, error: existingInteractionError } = await client
+    .from("card_interactions")
+    .select("id")
+    .eq("sender_user_id", user.id)
+    .eq("receiver_user_id", receiverUserId)
+    .eq("vault_item_id", target.vault_item_id)
+    .eq("card_print_id", target.card_print_id)
+    .eq("message", message)
+    .gte("created_at", duplicateWindowStart)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (existingInteractionError) {
+    return {
+      ok: false,
+      status: "error",
+      submissionKey,
+      message: "Interaction history could not be checked.",
+    };
+  }
+
+  const duplicate = (existingInteraction ?? null) as ExistingInteractionRow | null;
+  if (duplicate?.id) {
+    revalidatePath(returnPath);
+    revalidatePath("/network");
+    revalidatePath("/network/inbox");
+
+    return buildSuccessResult(submissionKey, duplicate.id, target.owner_display_name);
+  }
+
   const { data: insertedRow, error: insertError } = await client
     .from("card_interactions")
     .insert({
@@ -154,11 +204,5 @@ export async function createCardInteractionAction(
 
   const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
 
-  return {
-    ok: true,
-    status: "created",
-    interactionId: inserted?.id ?? "",
-    submissionKey,
-    message: `Message sent to ${target.owner_display_name ?? "collector"}.`,
-  };
+  return buildSuccessResult(submissionKey, inserted?.id ?? "", target.owner_display_name);
 }

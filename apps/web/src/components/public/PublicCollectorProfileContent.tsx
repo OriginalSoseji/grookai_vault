@@ -19,6 +19,7 @@ type PublicCollectorProfileContentProps = {
   slug: string;
   collectorDisplayName: string;
   cards: PublicWallCard[];
+  inPlayCards?: PublicWallCard[];
   collectionTitle?: string;
   collectionEyebrow?: string;
   collectionDescription?: string;
@@ -95,13 +96,17 @@ export function PublicCollectorProfileContent({
   slug,
   collectorDisplayName,
   cards,
+  inPlayCards: providedInPlayCards = [],
   collectionTitle = "Collection",
   collectionDescription = "View the full collection this collector has put on display.",
   defaultPokemonValue,
   isAuthenticated,
   currentPath,
 }: PublicCollectorProfileContentProps) {
-  const inPlayCards = useMemo(() => [...cards].filter(isInPlayCard).sort(compareInPlayCards), [cards]);
+  const inPlayCards = useMemo(
+    () => [...providedInPlayCards].filter(isInPlayCard).sort(compareInPlayCards),
+    [providedInPlayCards],
+  );
   const [activeSegment, setActiveSegment] = useState<PublicCollectorProfileSegment>(
     inPlayCards.length > 0 ? "in-play" : "collection",
   );
@@ -173,7 +178,14 @@ export function PublicCollectorProfileContent({
             </div>
           </div>
 
-          <PublicCollectionGrid cards={cards} density={density} />
+          {cards.length > 0 ? (
+            <PublicCollectionGrid cards={cards} density={density} />
+          ) : (
+            <PublicCollectionEmptyState
+              title="No collection cards yet"
+              body="This collector hasn't added any shared collection cards yet."
+            />
+          )}
         </div>
       ) : inPlayCards.length > 0 ? (
         <div className="space-y-4">

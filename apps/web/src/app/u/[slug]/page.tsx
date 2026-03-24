@@ -4,7 +4,7 @@ import { PublicCollectionEmptyState } from "@/components/public/PublicCollection
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
-import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
+import { getInPlayCardsBySlug, getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
@@ -55,9 +55,10 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
   }
 
   const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards] = await Promise.all([
+  const [{ data: authData }, sharedCards, inPlayCards] = await Promise.all([
     supabase.auth.getUser(),
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
+    profile.vault_sharing_enabled ? getInPlayCardsBySlug(profile.slug) : Promise.resolve([]),
   ]);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
@@ -87,13 +88,14 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
 
       {!profile.vault_sharing_enabled ? (
         <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
-      ) : sharedCards.length === 0 ? (
+      ) : sharedCards.length === 0 && inPlayCards.length === 0 ? (
         <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
       ) : (
         <PublicCollectorProfileContent
           slug={profile.slug}
           collectorDisplayName={profile.display_name}
           cards={sharedCards}
+          inPlayCards={inPlayCards}
           isAuthenticated={Boolean(authData.user)}
           currentPath={`/u/${profile.slug}`}
         />
