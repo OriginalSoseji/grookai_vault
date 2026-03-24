@@ -58,6 +58,33 @@ export type UserCardInteractionRow = {
   };
 };
 
+export type UserCardInteractionGroup = {
+  groupKey: string;
+  direction: "sent" | "received";
+  counterpartUserId: string;
+  counterpartSlug: string | null;
+  counterpartDisplayName: string;
+  card: {
+    cardPrintId: string;
+    gvId: string;
+    name: string;
+    setCode: string;
+    setName: string;
+    number: string;
+    imageUrl: string | null;
+  };
+  status: "open" | "closed";
+  messageCount: number;
+  latestCreatedAt: string | null;
+  messages: Array<{
+    id: string;
+    message: string;
+    createdAt: string | null;
+    direction: "sent" | "received";
+    status: "open" | "closed";
+  }>;
+};
+
 function normalizeOptionalText(value: string | null | undefined) {
   if (typeof value !== "string") {
     return null;
@@ -71,7 +98,11 @@ function uniqueValues(values: string[]) {
   return Array.from(new Set(values.map((value) => value.trim()).filter(Boolean)));
 }
 
-export async function getUserCardInteractions(userId: string): Promise<UserCardInteractionRow[]> {
+function buildInteractionGroupKey(cardPrintId: string, counterpartUserId: string) {
+  return `${cardPrintId}:${counterpartUserId}`;
+}
+
+export async function getUserCardInteractionGroups(userId: string): Promise<UserCardInteractionGroup[]> {
   const normalizedUserId = userId.trim();
   if (!normalizedUserId) {
     return [];
@@ -137,7 +168,7 @@ export async function getUserCardInteractions(userId: string): Promise<UserCardI
       .filter((entry): entry is [string, PublicProfileRow] => Boolean(entry[0])),
   );
 
-  return interactionRows.flatMap((row) => {
+  const flatRows = interactionRows.flatMap((row) => {
     const cardPrintId = normalizeOptionalText(row.card_print_id);
     const senderUserId = normalizeOptionalText(row.sender_user_id);
     const receiverUserId = normalizeOptionalText(row.receiver_user_id);
@@ -185,4 +216,42 @@ export async function getUserCardInteractions(userId: string): Promise<UserCardI
       } satisfies UserCardInteractionRow,
     ];
   });
+
+  const groups = new Map<string, UserCardInteractionGroup>();
+
+  for (const row of flatRows) {
+    const groupKey = buildInteractionGroupKey(row.card.cardPrintId, row.counterpartUserId);
+    const existingGroup = groups.get(groupKey);
+    const message = {
+      id: row.id,
+      message: row.message,
+      createdAt: row.createdAt,
+      direction: row.direction,
+      status: row.status,
+    };
+
+    if (!existingGroup) {
+      groups.set(groupKey, {
+        groupKey,
+        direction: row.direction,
+        counterpartUserId: row.counterpartUserId,
+        counterpartSlug: row.counterpartSlug,
+        counterpartDisplayName: row.counterpartDisplayName,
+        card: row.card,
+        status: row.status,
+        messageCount: 1,
+        latestCreatedAt: row.createdAt,
+        messages: [message],
+      });
+      continue;
+    }
+
+    existingGroup.messages.push(message);
+    existingGroup.messageCount += 1;
+  }
+
+  return Array.from(groups.values()).map((group) => ({
+    ...group,
+    messages: [...group.messages].reverse(),
+  }));
 }
