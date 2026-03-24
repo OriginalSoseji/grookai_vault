@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
+import { createPortal } from "react-dom";
 import {
   createCardInteractionAction,
   type CreateCardInteractionActionResult,
@@ -89,10 +90,26 @@ export function ContactOwnerButton({
   const [draft, setDraft] = useState(defaultMessage);
   const statusMessage = getStatusMessage(state);
   const buttonLabel = providedButtonLabel ?? getVaultIntentActionLabel(intent);
+  const canRenderPortal = typeof document !== "undefined";
 
   useEffect(() => {
     setDraft(defaultMessage);
   }, [defaultMessage]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!state?.ok) {
@@ -150,68 +167,67 @@ export function ContactOwnerButton({
         </div>
       ) : null}
 
-      {isOpen ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={`contact-owner-${vaultItemId}`}
-          onClick={() => setIsOpen(false)}
-        >
-          <div
-            className="w-full max-w-xl rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-2xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="space-y-2">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                {getVaultIntentLabel(intent)}
-              </p>
-              <h3 id={`contact-owner-${vaultItemId}`} className="text-2xl font-semibold tracking-tight text-slate-950">
-                Contact {ownerDisplayName}
-              </h3>
-              <p className="text-sm leading-6 text-slate-600">
-                Start a card-anchored interaction for {cardName}. This message will stay attached to this specific card.
-              </p>
-            </div>
+      {isOpen && canRenderPortal
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`contact-owner-${vaultItemId}`}
+            >
+              <div className="w-full max-w-xl rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-2xl">
+                <div className="space-y-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    {getVaultIntentLabel(intent)}
+                  </p>
+                  <h3 id={`contact-owner-${vaultItemId}`} className="text-2xl font-semibold tracking-tight text-slate-950">
+                    Contact {ownerDisplayName}
+                  </h3>
+                  <p className="text-sm leading-6 text-slate-600">
+                    Start a card-anchored interaction for {cardName}. This message will stay attached to this specific card.
+                  </p>
+                </div>
 
-            <form action={formAction} className="mt-5 space-y-4">
-              <input type="hidden" name="vault_item_id" value={vaultItemId} />
-              <input type="hidden" name="card_print_id" value={cardPrintId} />
-              <input type="hidden" name="return_path" value={currentPath} />
+                <form action={formAction} className="mt-5 space-y-4">
+                  <input type="hidden" name="vault_item_id" value={vaultItemId} />
+                  <input type="hidden" name="card_print_id" value={cardPrintId} />
+                  <input type="hidden" name="return_path" value={currentPath} />
 
-              <label className="block space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Message</span>
-                <textarea
-                  name="message"
-                  value={draft}
-                  onChange={(event) => setDraft(event.target.value)}
-                  rows={6}
-                  maxLength={2000}
-                  className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-sm leading-6 text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
-                />
-              </label>
+                  <label className="block space-y-2">
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Message</span>
+                    <textarea
+                      name="message"
+                      value={draft}
+                      onChange={(event) => setDraft(event.target.value)}
+                      rows={6}
+                      maxLength={2000}
+                      className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-sm leading-6 text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                    />
+                  </label>
 
-              <p className="text-xs text-slate-500">Keep it specific to this card. Maximum 2000 characters.</p>
+                  <p className="text-xs text-slate-500">Keep it specific to this card. Maximum 2000 characters.</p>
 
-              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-                >
-                  Send interaction
-                </button>
+                  <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(false)}
+                      className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+                    >
+                      Send interaction
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </div>
   );
 }
