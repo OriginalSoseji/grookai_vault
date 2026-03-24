@@ -13,6 +13,42 @@
       "command": "pwsh",
       "args": ["-NoProfile", "-File", "scripts/ci/align_until_proofs.ps1"],
       "problemMatcher": []
+    },
+    {
+      "label": "GV: Migration Audit (Strict)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-File",
+        "scripts/migration_preflight_strict.ps1",
+        "-Phase",
+        "AuditLinkedSchema"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "GV: Migration PrePush (Strict)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-File",
+        "scripts/migration_preflight_strict.ps1",
+        "-Phase",
+        "PrePush",
+        "-ExpectedLocalOnlyIds",
+        "${input:gvExpectedLocalOnlyIds}"
+      ],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "gvExpectedLocalOnlyIds",
+      "type": "promptString",
+      "description": "Comma-separated expected local-only migration IDs",
+      "default": ""
     }
   ]
 }

@@ -4,13 +4,15 @@
 
 `scripts/drift_guard.ps1` is a read-only migration ledger helper.
 
+ADVISORY ONLY — NOT A SAFE APPLY GATE
+
 It is useful for:
 
 - local vs linked migration ledger comparison when local Supabase is available
 - repo-file vs linked migration comparison when the local DB is unavailable
 - spotting pending, error, remote-only, or local-only migration drift
 
-It is not rebuild proof.
+It is not rebuild proof and it is not sufficient pre-push evidence.
 
 Authoritative rebuild validation remains:
 
@@ -40,7 +42,14 @@ DriftGuard now:
 
 If local Supabase is unavailable, DriftGuard can still compare repo migration files to the linked ledger.
 
-For definitive validation, start local Supabase and run:
+For definitive validation, run the strict migration gate:
+
+```powershell
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>
+```
+
+For replay proof, start local Supabase and run:
 
 ```powershell
 supabase db reset --local

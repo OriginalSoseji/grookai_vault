@@ -32,13 +32,16 @@ Before any L2/L3 audit or implementation:
 - Idempotent, replay-safe migrations only; no destructive ops. Follow guards for fresh DBs.
 - Replay trifecta before declaring schema "done": `supabase db push`, `supabase db reset` + `supabase db push --local`, `supabase db pull`.
 - No direct DB edits outside migrations. Card-print UUID/FK rules are sacred.
-- Before applying any new migration or doing schema work: run `supabase migration list` and confirm all local migrations are applied remotely, no entries are in "error" or "pending", and there are no remote-only migrations; if anything is off, perform a Migration Healthcheck first.
+- Before any schema work: run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`.
+- Before any remote apply: run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>`.
+- `supabase db reset --local` is mandatory replay proof for schema work.
 - Source: `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
 
 ## 2. Migration Drift Guardrail
-- Always run `supabase migration list` before any `supabase db push`.
-- No remote-only migrations (Remote has version, Local blank). Fix drift first via `supabase migration repair` or `supabase db pull`.
-- Local-only migrations are the expected payload to push.
+- `scripts/drift_guard.ps1` is advisory only and not a safe apply gate.
+- `scripts/migration_preflight_strict.ps1` is the fail-closed migration gate.
+- No remote-only migrations (Remote has version, Local blank). Fix drift first via `docs/playbooks/REMOTE_SCHEMA_DRIFT_RECOVERY_V1.md`.
+- Local-only migrations must match the exact expected payload to push.
 - Pointer: Migration Drift Guardrail section in `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md`.
 
 ## 3. Backend Architecture Contract
@@ -96,7 +99,9 @@ Before any L2/L3 audit or implementation:
 ## 11. Developer Workflow Contract
 - Start local Supabase correctly; respect env separation.
 - Use Codex tasks for changes; follow Audit Rule levels (L1/L2/L3).
-- Run `supabase migration list` before pushes; no Studio schema edits.
+- For schema work, follow `Audit → Classify → Plan → Apply → Verify`.
+- Run strict migration preflight before schema work and before remote apply.
+- No Studio schema edits; if an emergency remote edit occurs, stop and follow `docs/playbooks/REMOTE_SCHEMA_DRIFT_RECOVERY_V1.md`.
 - CI uses highway (workers) with injected secrets, not public endpoints.
 
 ## 12. Production Readiness Rule V1
@@ -116,6 +121,8 @@ Before any L2/L3 audit or implementation:
 ## 12. Forbidden Moves
 - Never modify schema in Supabase Studio or ad-hoc SQL tabs.
 - Never bypass migrations or migration list checks.
+- Never treat `scripts/drift_guard.ps1` as sufficient proof that apply is safe.
+- Never continue migration work after an emergency remote edit until reconciliation is complete.
 - Never write business logic in Flutter or client-side pricing logic.
 - Never bypass ingestion pipeline to write canon directly.
 - Never store secrets in Flutter or expose service-role keys.

@@ -46,16 +46,24 @@ Prevent drift and dangerous automation in Codex-assisted workflows, especially a
   - Requires explicit user token: “PROCEED” to enter Phase B apply.
   - If token absent: STOP after audit.
 
-6) Remote/Local Target Gate (HARD STOP)
+6) Migration Workflow Gate (HARD STOP)
+- Migration tasks must follow: `Audit → Classify → Plan → Apply → Verify`.
+- Before schema work begins:
+  - Run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`.
+- Before remote schema apply:
+  - Run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>`.
+- If strict preflight fails or `supabase db reset --local` fails: STOP.
+
+7) Remote/Local Target Gate (HARD STOP)
 - Any command that can hit remote must print the target:
   - SUPABASE_URL (or local URL) and explicitly state “REMOTE” or “LOCAL”.
   - If ambiguous: STOP and ask for target.
 
-7) Secrets Hygiene Gate (HARD STOP)
+8) Secrets Hygiene Gate (HARD STOP)
 - Never print secret keys in logs or repo files.
 - Do not advise using service role keys in browser contexts.
 
-8) Contract Creation Gate (HARD STOP)
+9) Contract Creation Gate (HARD STOP)
 - Any new contract requires:
   - Search for existing contract.
   - Update CONTRACT_INDEX.md.
@@ -72,6 +80,8 @@ Prevent drift and dangerous automation in Codex-assisted workflows, especially a
 - Migration list reviewed; no applied migration edits planned.
 - Duplicate timestamps: none.
 - Target declared (REMOTE/LOCAL) with SUPABASE_URL.
+- Migration workflow confirmed: Audit → Classify → Plan → Apply → Verify.
+- Strict preflight planned or completed for schema work.
 - Scope allowlist confirmed; build artifacts excluded.
 - Two-phase gate: audit vs apply; PROCEED token checked (if required).
 - Secrets hygiene affirmed (no key leakage).

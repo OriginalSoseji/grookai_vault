@@ -8,15 +8,12 @@
 # Behavior:
 #   - Runs `supabase migration list --local` when local Supabase is reachable
 #   - Runs `supabase migration list --linked`
-#   - Falls back to repo migration files if the local DB is unavailable
-#   - Fails only on:
-#       * real drift
-#       * pending/error migrations
-#       * real Supabase CLI command failure
+#   - Parses the linked migration table by Local / Remote columns
+#   - Reports local-only, remote-only, and shared applied IDs accurately
 #
 # Notes:
-#   - Read-only guard. No DB writes.
-#   - Rebuild proof still requires: `supabase db reset --local`
+#   - Advisory helper only. Not a safe apply gate.
+#   - Authoritative rebuild proof remains: `supabase db reset --local`
 # ======================================================================
 
 Set-StrictMode -Version Latest
@@ -29,6 +26,10 @@ function Write-Section([string]$title) {
   Write-Host "============================================================"
 }
 
+function Write-AdvisoryBanner {
+  Write-Host "ADVISORY ONLY — NOT A SAFE APPLY GATE" -ForegroundColor Yellow
+}
+
 function Require-Command([string]$name) {
   $cmd = Get-Command $name -ErrorAction SilentlyContinue
   if (-not $cmd) {
@@ -36,17 +37,18 @@ function Require-Command([string]$name) {
   }
 }
 
-function Invoke-SupabaseCommand {
+function Invoke-ExternalCommand {
   param(
+    [Parameter(Mandatory = $true)]
+    [string]$FileName,
+
     [Parameter(Mandatory = $true)]
     [string[]]$Arguments
   )
 
   $argumentPreview = $Arguments -join " "
-  Write-Host "Running: supabase $argumentPreview"
-
   $psi = New-Object System.Diagnostics.ProcessStartInfo
-  $psi.FileName = "supabase"
+  $psi.FileName = $FileName
   $psi.UseShellExecute = $false
   $psi.RedirectStandardOutput = $true
   $psi.RedirectStandardError = $true
@@ -64,7 +66,7 @@ function Invoke-SupabaseCommand {
     $process.StartInfo = $psi
     [void]$process.Start()
   } catch {
-    throw "Failed to launch Supabase CLI: $($_.Exception.Message)"
+    throw "Failed to launch ${FileName}: $($_.Exception.Message)"
   }
 
   $stdOut = $process.StandardOutput.ReadToEnd()
@@ -72,11 +74,22 @@ function Invoke-SupabaseCommand {
   $process.WaitForExit()
 
   return [pscustomobject]@{
-    Command  = "supabase $argumentPreview"
+    Command  = "$FileName $argumentPreview"
     ExitCode = $process.ExitCode
     StdOut   = $stdOut
     StdErr   = $stdErr
   }
+}
+
+function Invoke-SupabaseCommand {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string[]]$Arguments
+  )
+
+  $argumentPreview = $Arguments -join " "
+  Write-Host "Running: supabase $argumentPreview"
+  return Invoke-ExternalCommand -FileName "cmd.exe" -Arguments (@("/c", "supabase") + $Arguments)
 }
 
 function Write-CommandTranscript($result) {
@@ -127,39 +140,89 @@ function Test-IsLocalDbUnavailable($result) {
   return $false
 }
 
-function Parse-MigrationList([string[]]$lines) {
-  $ids = New-Object System.Collections.Generic.HashSet[string]
+function New-IdSet {
+  return New-Object 'System.Collections.Generic.HashSet[string]'
+}
+
+function Parse-MigrationListTable {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$StdOut
+  )
+
+  $rows = @()
   $pending = @()
   $error = @()
 
-  foreach ($line in $lines) {
-    $l = $line.Trim()
-    if ([string]::IsNullOrWhiteSpace($l)) { continue }
+  foreach ($line in ($StdOut -split "`r?`n")) {
+    $trimmed = $line.Trim()
+    if ([string]::IsNullOrWhiteSpace($trimmed)) {
+      continue
+    }
 
-    if ($l -match '(?i)\bpending\b') { $pending += $line }
-    if ($l -match '(?i)\berror\b')   { $error += $line }
+    if ($trimmed -match '(?i)\bpending\b') {
+      $pending += $line
+    }
 
-    $matches = [regex]::Matches($l, '\b\d{8,14}\b')
-    foreach ($m in $matches) {
-      [void]$ids.Add($m.Value)
+    if ($trimmed -match '(?i)\berror\b') {
+      $error += $line
+    }
+
+    $match = [regex]::Match($line, '^\s*(\d{8,14})?\s*\|\s*(\d{8,14})?\s*\|\s*(.+?)\s*$')
+    if (-not $match.Success) {
+      continue
+    }
+
+    $rows += [pscustomobject]@{
+      Local  = $match.Groups[1].Value.Trim()
+      Remote = $match.Groups[2].Value.Trim()
+      Time   = $match.Groups[3].Value.Trim()
+      Raw    = $line
+    }
+  }
+
+  $localIds = New-IdSet
+  $remoteIds = New-IdSet
+  $appliedIds = @()
+  $localOnlyIds = @()
+  $remoteOnlyIds = @()
+
+  foreach ($row in $rows) {
+    if (-not [string]::IsNullOrWhiteSpace($row.Local)) {
+      [void]$localIds.Add($row.Local)
+    }
+    if (-not [string]::IsNullOrWhiteSpace($row.Remote)) {
+      [void]$remoteIds.Add($row.Remote)
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($row.Local) -and -not [string]::IsNullOrWhiteSpace($row.Remote)) {
+      $appliedIds += $row.Local
+    } elseif (-not [string]::IsNullOrWhiteSpace($row.Local) -and [string]::IsNullOrWhiteSpace($row.Remote)) {
+      $localOnlyIds += $row.Local
+    } elseif ([string]::IsNullOrWhiteSpace($row.Local) -and -not [string]::IsNullOrWhiteSpace($row.Remote)) {
+      $remoteOnlyIds += $row.Remote
     }
   }
 
   return [pscustomobject]@{
-    Ids     = $ids
-    Pending = $pending
-    Error   = $error
-    Raw     = $lines
+    Rows         = $rows
+    Pending      = @($pending | Select-Object -Unique)
+    Error        = @($error | Select-Object -Unique)
+    LocalIds     = $localIds
+    RemoteIds    = $remoteIds
+    AppliedIds   = @($appliedIds | Sort-Object -Unique)
+    LocalOnlyIds = @($localOnlyIds | Sort-Object -Unique)
+    RemoteOnlyIds = @($remoteOnlyIds | Sort-Object -Unique)
   }
 }
 
-function Get-RepoMigrationLedger {
+function Get-RepoMigrationIds {
   param(
     [Parameter(Mandatory = $true)]
     [string]$RepoRoot
   )
 
-  $ids = New-Object System.Collections.Generic.HashSet[string]
+  $ids = New-IdSet
   $migrationPath = Join-Path $RepoRoot "supabase\migrations"
 
   Get-ChildItem -Path $migrationPath -File -Filter "*.sql" | ForEach-Object {
@@ -168,40 +231,44 @@ function Get-RepoMigrationLedger {
     }
   }
 
-  return [pscustomobject]@{
-    Ids     = $ids
-    Pending = @()
-    Error   = @()
-    Raw     = @()
-  }
+  return $ids
 }
 
 function Diff-Ids($aSet, $bSet) {
   $diff = @()
   foreach ($x in $aSet) {
-    if (-not $bSet.Contains($x)) { $diff += $x }
+    if (-not $bSet.Contains($x)) {
+      $diff += $x
+    }
   }
-  return $diff | Sort-Object
+  return @($diff | Sort-Object)
+}
+
+function Get-LatestId([string[]]$ids) {
+  $sorted = @($ids | Sort-Object)
+  if ($sorted.Count -eq 0) {
+    return $null
+  }
+  return $sorted[-1]
 }
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 
 Write-Section "Grookai Vault - DriftGuard (Read-only)"
+Write-AdvisoryBanner
 
 Require-Command "supabase"
 
-$localSourceLabel = "local Supabase DB"
-$local = $null
-$linked = $null
+$localSourceLabel = "linked output local column"
+$localSummary = $null
 
 Write-Section "1) Read Local Migration Ledger"
 $localResult = Run-SupabaseMigrationList -mode "local"
 if ($localResult.ExitCode -eq 0) {
-  $local = Parse-MigrationList -lines ($localResult.StdOut -split "`r?`n")
+  $localSummary = Parse-MigrationListTable -StdOut $localResult.StdOut
 } elseif (Test-IsLocalDbUnavailable -result $localResult) {
-  Write-Host "Local Supabase DB not reachable. DriftGuard local comparison skipped."
-  Write-Host "Falling back to repo migration files for linked ledger comparison."
-  $local = Get-RepoMigrationLedger -RepoRoot $repoRoot
+  Write-Host "Local Supabase DB not reachable. DriftGuard local DB comparison skipped."
+  Write-Host "Repo migration files will be used as the advisory local source."
   $localSourceLabel = "repo migration files"
 } else {
   throw "Supabase CLI returned non-zero exit code ($($localResult.ExitCode)) while running migration list --local."
@@ -212,69 +279,85 @@ $linkedResult = Run-SupabaseMigrationList -mode "linked"
 if ($linkedResult.ExitCode -ne 0) {
   throw "Supabase CLI returned non-zero exit code ($($linkedResult.ExitCode)) while running migration list --linked."
 }
-$linked = Parse-MigrationList -lines ($linkedResult.StdOut -split "`r?`n")
 
-$localIds = $local.Ids
-$remoteIds = $linked.Ids
+$linkedSummary = Parse-MigrationListTable -StdOut $linkedResult.StdOut
 
-$remoteOnly = Diff-Ids $remoteIds $localIds
-$localOnly = Diff-Ids $localIds $remoteIds
+if ($localSourceLabel -eq "repo migration files") {
+  $repoIds = Get-RepoMigrationIds -RepoRoot $repoRoot
+  $localIds = $repoIds
+  $remoteIds = $linkedSummary.RemoteIds
+  $localOnly = Diff-Ids $localIds $remoteIds
+  $remoteOnly = Diff-Ids $remoteIds $localIds
+  $applied = @($localIds | Where-Object { $remoteIds.Contains($_) } | Sort-Object)
+} else {
+  $localOnly = $linkedSummary.LocalOnlyIds
+  $remoteOnly = $linkedSummary.RemoteOnlyIds
+  $applied = $linkedSummary.AppliedIds
+}
 
-$hasPending = ($local.Pending.Count -gt 0) -or ($linked.Pending.Count -gt 0)
-$hasError = ($local.Error.Count -gt 0) -or ($linked.Error.Count -gt 0)
+$hasPending = (($null -ne $localSummary) -and $localSummary.Pending.Count -gt 0) -or ($linkedSummary.Pending.Count -gt 0)
+$hasError = (($null -ne $localSummary) -and $localSummary.Error.Count -gt 0) -or ($linkedSummary.Error.Count -gt 0)
+$latestApplied = Get-LatestId -ids $applied
+
+Write-Section "3) Advisory Summary"
+Write-AdvisoryBanner
+Write-Host "Local source: $localSourceLabel"
+Write-Host "Applied/shared migration IDs: $($applied.Count)"
+Write-Host "Latest shared applied ID: $(if ($latestApplied) { $latestApplied } else { '<none>' })"
+Write-Host "Local-only IDs: $(if ($localOnly.Count -gt 0) { $localOnly -join ', ' } else { 'none' })"
+Write-Host "Remote-only IDs: $(if ($remoteOnly.Count -gt 0) { $remoteOnly -join ', ' } else { 'none' })"
+Write-Host "Pending rows detected: $(if ($hasPending) { 'yes' } else { 'no' })"
+Write-Host "Error rows detected: $(if ($hasError) { 'yes' } else { 'no' })"
+Write-Host "Authoritative rebuild proof remains: supabase db reset --local"
 
 $violations = @()
-
 if ($hasPending) { $violations += "PENDING migrations detected" }
 if ($hasError) { $violations += "ERROR migrations detected" }
-if ((@($remoteOnly)).Count -gt 0) { $violations += "REMOTE-ONLY migrations detected" }
-if ((@($localOnly)).Count -gt 0) { $violations += "LOCAL-ONLY migrations detected" }
+if ($remoteOnly.Count -gt 0) { $violations += "REMOTE-ONLY migrations detected" }
+if ($localOnly.Count -gt 0) { $violations += "LOCAL-ONLY migrations detected" }
 
 if ($violations.Count -gt 0) {
-  Write-Section "DRIFT GUARD FAILED"
-  Write-Host "Local ledger source: $localSourceLabel"
-  Write-Host "Violations:"
-  foreach ($v in $violations) { Write-Host " - $v" }
+  Write-Section "DRIFT GUARD ADVISORY FAIL"
+  foreach ($violation in $violations) {
+    Write-Host " - $violation"
+  }
 
-  if ((@($remoteOnly)).Count -gt 0) {
+  if ($remoteOnly.Count -gt 0) {
     Write-Host ""
-    Write-Host "Remote-only migration IDs (present in linked DB history but not in $localSourceLabel):"
+    Write-Host "Remote-only IDs:"
     $remoteOnly | ForEach-Object { Write-Host " - $_" }
   }
 
-  if ((@($localOnly)).Count -gt 0) {
+  if ($localOnly.Count -gt 0) {
     Write-Host ""
-    Write-Host "Local-only migration IDs (present in $localSourceLabel but not in linked DB history):"
+    Write-Host "Local-only IDs:"
     $localOnly | ForEach-Object { Write-Host " - $_" }
   }
 
   if ($hasPending) {
     Write-Host ""
     Write-Host "Pending lines:"
-    ($local.Pending + $linked.Pending) | Select-Object -Unique | ForEach-Object { Write-Host $_ }
+    @($localSummary?.Pending + $linkedSummary.Pending) |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+      Select-Object -Unique |
+      ForEach-Object { Write-Host $_ }
   }
 
   if ($hasError) {
     Write-Host ""
     Write-Host "Error lines:"
-    ($local.Error + $linked.Error) | Select-Object -Unique | ForEach-Object { Write-Host $_ }
-  }
-
-  if ($localSourceLabel -ne "local Supabase DB") {
-    Write-Host ""
-    Write-Host "For definitive validation, start local Supabase and run: supabase db reset --local"
+    @($localSummary?.Error + $linkedSummary.Error) |
+      Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+      Select-Object -Unique |
+      ForEach-Object { Write-Host $_ }
   }
 
   exit 1
 }
 
-Write-Section "DRIFT GUARD PASSED"
-Write-Host "Local ledger source: $localSourceLabel"
-Write-Host "Local and linked migration histories appear consistent. No pending/error detected."
+Write-Section "DRIFT GUARD ADVISORY PASS"
+Write-Host "No local-only, remote-only, pending, or error rows were detected."
+Write-Host "ADVISORY ONLY — NOT A SAFE APPLY GATE"
 Write-Host "Rebuild proof still requires: supabase db reset --local"
-
-if ($localSourceLabel -ne "local Supabase DB") {
-  Write-Host "For definitive validation, start local Supabase and run: supabase db reset --local"
-}
 
 exit 0

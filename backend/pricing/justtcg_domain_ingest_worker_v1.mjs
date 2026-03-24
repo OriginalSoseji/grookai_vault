@@ -59,6 +59,9 @@ function parseArgs(argv) {
     apply: false,
     limit: null,
     batchSize: null,
+    setCode: null,
+    gvId: null,
+    cardPrintId: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -81,6 +84,21 @@ function parseArgs(argv) {
       index += 1;
     } else if (token.startsWith('--batch-size=')) {
       options.batchSize = parseBatchSizeValue(token.split('=')[1], '--batch-size');
+    } else if (token === '--set-code' && argv[index + 1]) {
+      options.setCode = String(argv[index + 1]).trim().toLowerCase() || null;
+      index += 1;
+    } else if (token.startsWith('--set-code=')) {
+      options.setCode = String(token.split('=').slice(1).join('=')).trim().toLowerCase() || null;
+    } else if (token === '--gv-id' && argv[index + 1]) {
+      options.gvId = String(argv[index + 1]).trim().toUpperCase() || null;
+      index += 1;
+    } else if (token.startsWith('--gv-id=')) {
+      options.gvId = String(token.split('=').slice(1).join('=')).trim().toUpperCase() || null;
+    } else if (token === '--card-print-id' && argv[index + 1]) {
+      options.cardPrintId = String(argv[index + 1]).trim().toLowerCase() || null;
+      index += 1;
+    } else if (token.startsWith('--card-print-id=')) {
+      options.cardPrintId = String(token.split('=').slice(1).join('=')).trim().toLowerCase() || null;
     } else if (token === '--batch-size') {
       throw new Error('[justtcg-domain-ingest] --batch-size requires a value.');
     }
@@ -136,10 +154,116 @@ async function fetchMappedJustTcgPage(supabase, from, to) {
   return data ?? [];
 }
 
-async function loadMappedCards(supabase, limit = null) {
+function hasScopedCardFilter(options) {
+  return Boolean(options.setCode || options.gvId || options.cardPrintId);
+}
+
+async function loadScopedCardPrintIds(supabase, options) {
+  const ids = [];
+  let from = 0;
+
+  while (true) {
+    let query = supabase
+      .from('card_prints')
+      .select('id')
+      .order('id', { ascending: true })
+      .range(from, from + FETCH_PAGE_SIZE - 1);
+
+    if (options.setCode) {
+      query = query.eq('set_code', options.setCode);
+    }
+
+    if (options.gvId) {
+      query = query.eq('gv_id', options.gvId);
+    }
+
+    if (options.cardPrintId) {
+      query = query.eq('id', options.cardPrintId);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      throw new Error(`[justtcg-domain-ingest] scoped card_print query failed: ${error.message}`);
+    }
+
+    const rows = data ?? [];
+    if (rows.length === 0) {
+      break;
+    }
+
+    ids.push(...rows.map((row) => row.id));
+
+    if (rows.length < FETCH_PAGE_SIZE) {
+      break;
+    }
+
+    from += FETCH_PAGE_SIZE;
+  }
+
+  return ids;
+}
+
+async function fetchMappedJustTcgByCardPrintIds(supabase, cardPrintIds) {
+  if (cardPrintIds.length === 0) {
+    return [];
+  }
+
+  const mapped = [];
+  const seenExternalIds = new Set();
+
+  for (const chunk of chunkArray(cardPrintIds, 200)) {
+    const { data, error } = await supabase
+      .from('external_mappings')
+      .select('card_print_id,external_id,synced_at')
+      .eq('source', SOURCE)
+      .eq('active', true)
+      .in('card_print_id', chunk)
+      .order('card_print_id', { ascending: true })
+      .order('external_id', { ascending: true });
+
+    if (error) {
+      throw new Error(`[justtcg-domain-ingest] scoped mapping query failed: ${error.message}`);
+    }
+
+    for (const row of data ?? []) {
+      const externalId = normalizeExternalId(row.external_id);
+      if (!row.card_print_id || !externalId) {
+        throw new Error('[justtcg-domain-ingest] encountered malformed scoped active justtcg mapping row.');
+      }
+
+      if (seenExternalIds.has(externalId)) {
+        throw new Error(`[justtcg-domain-ingest] duplicate active justtcg external_id detected: ${externalId}`);
+      }
+
+      seenExternalIds.add(externalId);
+      mapped.push({
+        cardPrintId: row.card_print_id,
+        justTcgExternalId: externalId,
+      });
+    }
+  }
+
+  return mapped.sort((left, right) => {
+    const cardPrintDelta = left.cardPrintId.localeCompare(right.cardPrintId);
+    if (cardPrintDelta !== 0) {
+      return cardPrintDelta;
+    }
+
+    return left.justTcgExternalId.localeCompare(right.justTcgExternalId);
+  });
+}
+
+async function loadMappedCards(supabase, options) {
+  if (hasScopedCardFilter(options)) {
+    const scopedCardPrintIds = await loadScopedCardPrintIds(supabase, options);
+    const mapped = await fetchMappedJustTcgByCardPrintIds(supabase, scopedCardPrintIds);
+    return options.limit != null ? mapped.slice(0, options.limit) : mapped;
+  }
+
   const mapped = [];
   const seenExternalIds = new Set();
   let from = 0;
+  const limit = options.limit ?? null;
 
   while (limit == null || mapped.length < limit) {
     const to = from + FETCH_PAGE_SIZE - 1;
@@ -424,11 +548,14 @@ async function main() {
   console.log(`batch_size: ${batchSize}`);
   console.log(`batch_size_ceiling: ${MAX_BATCH_SIZE}`);
   console.log(`limit: ${options.limit ?? 'none'}`);
+  console.log(`scope_set_code: ${options.setCode ?? 'none'}`);
+  console.log(`scope_gv_id: ${options.gvId ?? 'none'}`);
+  console.log(`scope_card_print_id: ${options.cardPrintId ?? 'none'}`);
   console.log('writes: justtcg_variants + justtcg_variant_price_snapshots');
   console.log('does_not_write: justtcg_variant_prices_latest');
 
   try {
-    const mappedCards = await loadMappedCards(supabase, options.limit);
+    const mappedCards = await loadMappedCards(supabase, options);
     summary.total_mapped_cards_read = mappedCards.length;
 
     for (const [batchIndex, batch] of chunkArray(mappedCards, batchSize).entries()) {

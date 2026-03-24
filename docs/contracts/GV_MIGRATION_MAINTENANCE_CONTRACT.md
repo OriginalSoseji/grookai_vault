@@ -8,24 +8,29 @@ The goal is to **never** repeat the migration drift and shadow DB errors we just
 
 - The only source of truth for schema is `supabase/migrations` in git.
 - Schema changes never happen directly in Studio or via ad-hoc SQL; they only happen via migrations.
-- Before any `supabase db push`, we must run `supabase migration list` and confirm there are no remote-only migrations.
+- Before any schema work starts, we must run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`.
+- Before any `supabase db push`, we must run `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>`.
+- `supabase db reset --local` is mandatory proof that the migration chain is replayable.
 
 ### No-Drift Checklist (Run Before Any `supabase db push`)
 
-1. `supabase migration list`
-2. Confirm:
+1. `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`
+2. `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>`
+3. Confirm:
    - No rows where **Remote has a version and Local is blank** (remote-only drift).
-   - Local-only rows are exactly the new migrations you intend to push.
-3. If remote-only drift exists:
+   - Local-only rows are exactly the migrations you intend to push.
+   - `supabase db reset --local` passed as part of strict preflight.
+4. If remote-only drift exists:
    - STOP.
-   - Use `supabase migration repair` or `supabase db pull` deliberately before proceeding.
-4. Only then run: `supabase db push`.
+   - Follow `docs/playbooks/REMOTE_SCHEMA_DRIFT_RECOVERY_V1.md`.
+5. Only then run: `supabase db push`.
 
 ### Forbidden moves
 
 - ❌ No schema edits directly in Supabase Studio.
 - ❌ No `ALTER TABLE` / `CREATE TABLE` in random SQL tabs without a migration file.
-- ❌ No `db push` without first checking `migration list`.
+- ❌ No `db push` without strict preflight passing.
+- ❌ No continuing migration work after an emergency remote edit until reconciliation is complete.
 
 ## 1. Principles
 
@@ -150,20 +155,31 @@ END $$;
 
 Whenever we add or modify migrations, the **minimum** validation sequence is:
 
-1. Apply to the target DB (remote or local):
+1. Linked audit before any apply:
+
+   ```bash
+   pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
+   ```
+
+2. Apply to the target DB (remote or local):
 
    ```bash
    supabase db push
    ```
 
-2. Fresh local DB replay:
+3. Fresh local DB replay:
 
    ```bash
-   supabase db reset
-   supabase db push --local
+   supabase db reset --local
    ```
 
-3. Shadow DB + baseline replay:
+4. Strict pre-push proof for the exact pending set:
+
+   ```bash
+   pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>
+   ```
+
+5. Shadow DB + baseline replay:
 
    ```bash
    supabase db pull
@@ -177,9 +193,10 @@ building additional features on top of that schema.
 * Production schema must be the result of migrations + `supabase db push`, not manual edits.
 * In an emergency hotfix:
 
-  * Document the change.
-  * Add a corresponding migration as soon as possible.
-  * Re-run the replay trifecta to re-align schema and migrations.
+  * Document the exact change.
+  * Stop all other migration work.
+  * Run `supabase db pull` immediately in a clean reconciliation worktree.
+  * Follow `docs/playbooks/REMOTE_SCHEMA_DRIFT_RECOVERY_V1.md` before any additional migration work.
 
 ## 6. Rule 5 — Card-print rules are sacred
 
@@ -208,3 +225,4 @@ Following this contract guarantees:
 * No more drift between remote schema and migrations.
 * The ability to spin up fresh environments easily.
 * Confidence that schema changes are intentional, reproducible, and safe.
+* `supabase db reset --local` remains a mandatory gate, not an optional confidence check.

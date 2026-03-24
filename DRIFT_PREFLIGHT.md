@@ -1,5 +1,5 @@
 # Drift Preflight Checklist
-Quick checklist to avoid view drift, replay failures, out-of-sync migrations, and future-shape pricing assumptions.
+Strict checklist to avoid view drift, replay failures, out-of-sync migrations, and future-shape pricing assumptions.
 
 ## When to Use This
 - Modifying or creating a Postgres view.
@@ -17,6 +17,8 @@ Quick checklist to avoid view drift, replay failures, out-of-sync migrations, an
 - Is this a multi-step change (schema → pricing view → dependent views)?
 
 ## Required Checks
+- Run strict linked audit first:
+  - `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`
 - Check `docs/VIEW_EVOLUTION_V1.md` (core rules).
 - Check `docs/PRICING_VIEW_SHAPE_V1.md` (pricing view rules).
 - Verify new fields exist in base tables before using in views.
@@ -47,9 +49,10 @@ Review these before writing any view or pricing migration.
   - Example: `20251206140000_vault_views_back_fields_fix_v1.sql`.
 
 ## Final Gate
+- Does strict linked audit pass? (`pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema`)
+- Does strict pre-push pass for the exact pending IDs? (`pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds <ids>`)
 - Can the migrations replay cleanly from scratch? (`supabase db reset --local`)
 - Does `supabase db push` run with no errors?
-- Does `.\scripts\drift_guard.ps1` return exit code 0?
 - Does the new view shape match the canonical contracts?
 - Are future features NOT referenced prematurely?
 
