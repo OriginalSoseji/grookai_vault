@@ -3,10 +3,16 @@ import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
+import InteractionGroupControls from "@/components/network/InteractionGroupControls";
+import InteractionGroupReadMarker from "@/components/network/InteractionGroupReadMarker";
 import InteractionGroupReplyForm from "@/components/network/InteractionGroupReplyForm";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
-import { getUserCardInteractionGroups, type UserCardInteractionGroup } from "@/lib/network/getUserCardInteractions";
+import {
+  getUserCardInteractionGroups,
+  type UserCardInteractionGroup,
+  type UserCardInteractionInboxView,
+} from "@/lib/network/getUserCardInteractions";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -31,13 +37,155 @@ function formatTimestamp(value: string | null) {
   });
 }
 
+function normalizeInboxView(value: string | string[] | undefined): UserCardInteractionInboxView {
+  const candidate = Array.isArray(value) ? value[0] : value;
+
+  switch (candidate) {
+    case "unread":
+    case "sent":
+    case "closed":
+      return candidate;
+    default:
+      return "inbox";
+  }
+}
+
+function buildInboxHref(view: UserCardInteractionInboxView) {
+  return view === "inbox" ? "/network/inbox" : `/network/inbox?view=${encodeURIComponent(view)}`;
+}
+
+function getConversationPill(group: UserCardInteractionGroup) {
+  if (group.conversationState === "archived") {
+    return "Archived";
+  }
+
+  if (group.conversationState === "closed") {
+    return "Closed";
+  }
+
+  if (group.hasUnread) {
+    return "Unread";
+  }
+
+  return group.direction === "received" ? "Latest received" : "Latest sent";
+}
+
+function getVisibleGroups(groups: UserCardInteractionGroup[], view: UserCardInteractionInboxView) {
+  switch (view) {
+    case "unread":
+      return groups.filter((group) => group.conversationState === "inbox" && group.hasUnread);
+    case "sent":
+      return groups.filter((group) => group.conversationState === "inbox" && group.startedByCurrentUser);
+    case "closed":
+      return groups.filter((group) => group.conversationState !== "inbox");
+    case "inbox":
+    default:
+      return groups.filter((group) => group.conversationState === "inbox");
+  }
+}
+
+function getViewCopy(view: UserCardInteractionInboxView) {
+  switch (view) {
+    case "unread":
+      return {
+        title: "Unread",
+        description: "Grouped card conversations with new collector activity you have not cleared yet.",
+        emptyTitle: "Nothing unread",
+        emptyBody: "New card replies from collectors will appear here.",
+      };
+    case "sent":
+      return {
+        title: "Sent",
+        description: "Active card conversations you started with another collector.",
+        emptyTitle: "Nothing in Sent",
+        emptyBody: "Conversations you initiate will appear here while they stay active.",
+      };
+    case "closed":
+      return {
+        title: "Closed / Archived",
+        description: "Grouped card conversations you removed from the active workflow.",
+        emptyTitle: "Nothing closed or archived",
+        emptyBody: "Closed or archived card conversations will appear here.",
+      };
+    case "inbox":
+    default:
+      return {
+        title: "Inbox",
+        description: "Active grouped card conversations with collectors, ordered by the latest interaction.",
+        emptyTitle: "No active conversations",
+        emptyBody: "Messages you send or receive about specific cards will appear here.",
+      };
+  }
+}
+
+function InboxViewTabs({
+  currentView,
+  unreadCount,
+  inboxCount,
+  sentCount,
+  closedCount,
+}: {
+  currentView: UserCardInteractionInboxView;
+  unreadCount: number;
+  inboxCount: number;
+  sentCount: number;
+  closedCount: number;
+}) {
+  const items: Array<{
+    view: UserCardInteractionInboxView;
+    label: string;
+    count: number;
+  }> = [
+    { view: "unread", label: "Unread", count: unreadCount },
+    { view: "inbox", label: "Inbox", count: inboxCount },
+    { view: "sent", label: "Sent", count: sentCount },
+    { view: "closed", label: "Closed / Archived", count: closedCount },
+  ];
+
+  return (
+    <PageSection surface="subtle" spacing="compact" className="p-2.5">
+      <div className="flex flex-wrap gap-2">
+        {items.map((item) => {
+          const isActive = item.view === currentView;
+          return (
+            <Link
+              key={item.view}
+              href={buildInboxHref(item.view)}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition ${
+                isActive
+                  ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
+                  : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
+              }`}
+            >
+              <span>{item.label}</span>
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                {item.count}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </PageSection>
+  );
+}
+
 function InteractionGroupCard({
   group,
-  counterpartLabel,
+  currentPath,
 }: {
   group: UserCardInteractionGroup;
-  counterpartLabel: "From" | "To";
+  currentPath: string;
 }) {
+  const pillLabel = getConversationPill(group);
+  const pillClassName =
+    group.conversationState === "archived"
+      ? "border-slate-200 bg-slate-100 text-slate-700"
+      : group.conversationState === "closed"
+        ? "border-amber-200 bg-amber-50 text-amber-900"
+        : group.hasUnread
+          ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+          : "border-slate-200 bg-white text-slate-700";
+
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -53,7 +201,7 @@ function InteractionGroupCard({
         <div className="min-w-0 flex-1 space-y-3">
           <div className="space-y-1">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-              {counterpartLabel} {group.counterpartDisplayName}
+              With {group.counterpartDisplayName}
             </p>
             <Link href={`/card/${group.card.gvId}`} className="block">
               <h2 className="text-xl font-semibold tracking-tight text-slate-950">{group.card.name}</h2>
@@ -66,9 +214,7 @@ function InteractionGroupCard({
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-            <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700">
-              {group.status}
-            </span>
+            <span className={`rounded-full border px-2.5 py-1 font-medium ${pillClassName}`}>{pillLabel}</span>
             <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700">
               {group.messageCount} {group.messageCount === 1 ? "message" : "messages"}
             </span>
@@ -93,13 +239,21 @@ function InteractionGroupCard({
             ))}
           </div>
 
-          {group.vaultItemId ? (
+          <InteractionGroupControls
+            cardPrintId={group.card.cardPrintId}
+            counterpartUserId={group.counterpartUserId}
+            currentPath={currentPath}
+            hasUnread={group.hasUnread}
+            conversationState={group.conversationState}
+          />
+
+          {group.conversationState === "inbox" && group.vaultItemId ? (
             <InteractionGroupReplyForm
               vaultItemId={group.vaultItemId}
               cardPrintId={group.card.cardPrintId}
               counterpartUserId={group.counterpartUserId}
               counterpartDisplayName={group.counterpartDisplayName}
-              currentPath="/network/inbox"
+              currentPath={currentPath}
             />
           ) : null}
         </div>
@@ -108,38 +262,11 @@ function InteractionGroupCard({
   );
 }
 
-function InteractionGroupSection({
-  title,
-  description,
-  emptyTitle,
-  emptyBody,
-  groups,
-  counterpartLabel,
+export default async function NetworkInboxPage({
+  searchParams,
 }: {
-  title: string;
-  description: string;
-  emptyTitle: string;
-  emptyBody: string;
-  groups: UserCardInteractionGroup[];
-  counterpartLabel: "From" | "To";
+  searchParams?: { view?: string | string[] };
 }) {
-  return (
-    <PageSection spacing="compact">
-      <SectionHeader title={title} description={description} />
-      {groups.length === 0 ? (
-        <PublicCollectionEmptyState title={emptyTitle} body={emptyBody} />
-      ) : (
-        <div className="space-y-4">
-          {groups.map((group) => (
-            <InteractionGroupCard key={group.groupKey} group={group} counterpartLabel={counterpartLabel} />
-          ))}
-        </div>
-      )}
-    </PageSection>
-  );
-}
-
-export default async function NetworkInboxPage() {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -149,17 +276,32 @@ export default async function NetworkInboxPage() {
     redirect("/login?next=/network/inbox");
   }
 
+  const currentView = normalizeInboxView(searchParams?.view);
+  const currentPath = buildInboxHref(currentView);
   const groups = await getUserCardInteractionGroups(user.id);
-  const received = groups.filter((group) => group.direction === "received");
-  const sent = groups.filter((group) => group.direction === "sent");
+  const unreadCount = groups.filter((group) => group.conversationState === "inbox" && group.hasUnread).length;
+  const inboxCount = groups.filter((group) => group.conversationState === "inbox").length;
+  const sentCount = groups.filter((group) => group.conversationState === "inbox" && group.startedByCurrentUser).length;
+  const closedCount = groups.filter((group) => group.conversationState !== "inbox").length;
+  const visibleGroups = getVisibleGroups(groups, currentView);
+  const viewCopy = getViewCopy(currentView);
+  const autoReadTargets =
+    currentView === "inbox"
+      ? visibleGroups
+          .filter((group) => group.hasUnread)
+          .map((group) => ({
+            cardPrintId: group.card.cardPrintId,
+            counterpartUserId: group.counterpartUserId,
+          }))
+      : [];
 
   return (
     <div className="space-y-8 py-8">
       <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
         <PageIntro
           eyebrow="Interactions"
-          title="Card interaction inbox"
-          description="Grouped card-anchored conversations with collectors about specific cards."
+          title="Card conversation inbox"
+          description="Card-first conversations grouped by the exact card and the exact collector on the other side."
           actions={
             <Link
               href="/network"
@@ -171,32 +313,31 @@ export default async function NetworkInboxPage() {
         />
       </PageSection>
 
-      {groups.length === 0 ? (
-        <PublicCollectionEmptyState
-          title="No interactions yet"
-          body="Messages you send or receive about specific cards will appear here."
-        />
-      ) : (
-        <>
-          <InteractionGroupSection
-            title="Received"
-            description="Card-anchored conversations where the latest interaction came from another collector."
-            emptyTitle="Nothing received yet"
-            emptyBody="Incoming interactions will appear here."
-            groups={received}
-            counterpartLabel="From"
-          />
+      <InboxViewTabs
+        currentView={currentView}
+        unreadCount={unreadCount}
+        inboxCount={inboxCount}
+        sentCount={sentCount}
+        closedCount={closedCount}
+      />
 
-          <InteractionGroupSection
-            title="Sent"
-            description="Card-anchored conversations where your latest interaction was sent to another collector."
-            emptyTitle="Nothing sent yet"
-            emptyBody="Messages you start will appear here."
-            groups={sent}
-            counterpartLabel="To"
-          />
-        </>
-      )}
+      <PageSection spacing="compact">
+        <SectionHeader title={viewCopy.title} description={viewCopy.description} />
+
+        {autoReadTargets.length > 0 ? (
+          <InteractionGroupReadMarker currentPath={currentPath} targets={autoReadTargets} />
+        ) : null}
+
+        {visibleGroups.length === 0 ? (
+          <PublicCollectionEmptyState title={viewCopy.emptyTitle} body={viewCopy.emptyBody} />
+        ) : (
+          <div className="space-y-4">
+            {visibleGroups.map((group) => (
+              <InteractionGroupCard key={group.groupKey} group={group} currentPath={currentPath} />
+            ))}
+          </div>
+        )}
+      </PageSection>
     </div>
   );
 }

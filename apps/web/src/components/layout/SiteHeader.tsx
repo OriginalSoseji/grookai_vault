@@ -12,9 +12,23 @@ import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam
 type SiteHeaderProps = {
   isAuthenticated: boolean;
   profileHref: string | null;
+  networkUnreadCount: number;
 };
 
-export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
+function NetworkLabel({ unreadCount }: { unreadCount: number }) {
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span>Network</span>
+      {unreadCount > 0 ? (
+        <span className="inline-flex min-w-[1.35rem] items-center justify-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-950 ring-1 ring-emerald-200">
+          {unreadCount > 99 ? "99+" : unreadCount}
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
+export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount }: SiteHeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
@@ -86,7 +100,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
                     : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
                 }`}
               >
-                Network
+                <NetworkLabel unreadCount={networkUnreadCount} />
               </Link>
               <Link
                 href={buildCompareHref(compareCards)}
@@ -148,7 +162,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
                     }`}
                   >
-                    {item.label}
+                    {matchHref === "/network" ? <NetworkLabel unreadCount={networkUnreadCount} /> : item.label}
                   </Link>
                 );
               })}

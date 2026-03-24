@@ -145,6 +145,7 @@ export async function replyToCardInteractionGroupAction(
   if (duplicate?.id) {
     revalidatePath(returnPath);
     revalidatePath("/network/inbox");
+    revalidatePath("/", "layout");
 
     return buildSuccessResult(submissionKey, duplicate.id, counterpartDisplayName);
   }
@@ -178,6 +179,7 @@ export async function replyToCardInteractionGroupAction(
 
   revalidatePath(returnPath);
   revalidatePath("/network/inbox");
+  revalidatePath("/", "layout");
 
   const inserted = (insertedRow ?? null) as ExistingInteractionRow | null;
   return buildSuccessResult(submissionKey, inserted?.id ?? "", counterpartDisplayName);

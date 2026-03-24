@@ -1,92 +1,60 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { supabase } from "@/lib/supabaseClient";
+import { getUnreadCardInteractionGroupCount } from "@/lib/network/getUserCardInteractions";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 type ShellAuthState = {
   isAuthenticated: boolean;
   profileHref: string | null;
   wallHref: string | null;
+  networkUnreadCount: number;
 };
 
 const DEFAULT_SHELL_AUTH_STATE: ShellAuthState = {
   isAuthenticated: false,
   profileHref: null,
   wallHref: null,
+  networkUnreadCount: 0,
 };
 
-async function resolveShellAuthState(userId: string): Promise<ShellAuthState> {
-  const { data, error } = await supabase
-    .from("public_profiles")
-    .select("slug,public_profile_enabled")
-    .eq("user_id", userId)
-    .maybeSingle();
+export async function AppChrome() {
+  const client = createServerComponentClient();
+  const {
+    data: { user },
+  } = await client.auth.getUser();
 
-  if (error) {
-    console.warn("[shell-auth] profile lookup failed", error.message);
-    return {
-      isAuthenticated: true,
-      profileHref: null,
-      wallHref: null,
-    };
+  if (!user) {
+    return (
+      <>
+        <SiteHeader
+          isAuthenticated={DEFAULT_SHELL_AUTH_STATE.isAuthenticated}
+          profileHref={DEFAULT_SHELL_AUTH_STATE.profileHref}
+          networkUnreadCount={DEFAULT_SHELL_AUTH_STATE.networkUnreadCount}
+        />
+        <MobileBottomNav
+          wallHref={DEFAULT_SHELL_AUTH_STATE.wallHref}
+        />
+      </>
+    );
   }
 
-  const slug = typeof data?.slug === "string" ? data.slug.trim() : "";
+  const [profileResponse, networkUnreadCount] = await Promise.all([
+    client
+      .from("public_profiles")
+      .select("slug,public_profile_enabled")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    getUnreadCardInteractionGroupCount(user.id),
+  ]);
+
+  const slug = typeof profileResponse.data?.slug === "string" ? profileResponse.data.slug.trim() : "";
   const profileHref = slug ? `/u/${slug}` : null;
-  const wallHref = slug && data?.public_profile_enabled ? `/u/${slug}` : null;
-
-  return {
-    isAuthenticated: true,
-    profileHref,
-    wallHref,
-  };
-}
-
-export function AppChrome() {
-  const [authState, setAuthState] = useState<ShellAuthState>(DEFAULT_SHELL_AUTH_STATE);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function syncAuthState(userId?: string | null) {
-      if (!userId) {
-        if (!cancelled) {
-          setAuthState(DEFAULT_SHELL_AUTH_STATE);
-        }
-        return;
-      }
-
-      const nextState = await resolveShellAuthState(userId);
-      if (!cancelled) {
-        setAuthState(nextState);
-      }
-    }
-
-    supabase.auth.getSession().then(({ data }) => {
-      void syncAuthState(data.session?.user?.id ?? null);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      void syncAuthState(session?.user?.id ?? null);
-    });
-
-    return () => {
-      cancelled = true;
-      subscription.unsubscribe();
-    };
-  }, []);
+  const wallHref = slug && profileResponse.data?.public_profile_enabled ? `/u/${slug}` : null;
 
   return (
     <>
-      <SiteHeader
-        isAuthenticated={authState.isAuthenticated}
-        profileHref={authState.profileHref}
-      />
-      <MobileBottomNav wallHref={authState.wallHref} />
+      <SiteHeader isAuthenticated={true} profileHref={profileHref} networkUnreadCount={networkUnreadCount} />
+      <MobileBottomNav wallHref={wallHref} />
     </>
   );
 }

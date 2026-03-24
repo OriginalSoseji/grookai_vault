@@ -167,6 +167,7 @@ export async function createCardInteractionAction(
     revalidatePath(returnPath);
     revalidatePath("/network");
     revalidatePath("/network/inbox");
+    revalidatePath("/", "layout");
 
     return buildSuccessResult(submissionKey, duplicate.id, target.owner_display_name);
   }
@@ -201,6 +202,7 @@ export async function createCardInteractionAction(
   revalidatePath(returnPath);
   revalidatePath("/network");
   revalidatePath("/network/inbox");
+  revalidatePath("/", "layout");
 
   const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
 
