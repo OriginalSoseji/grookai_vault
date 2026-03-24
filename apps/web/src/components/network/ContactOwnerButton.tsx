@@ -23,6 +23,7 @@ type ContactOwnerButtonProps = {
   isAuthenticated: boolean;
   loginHref: string;
   currentPath: string;
+  buttonLabel?: string;
   buttonClassName?: string;
 };
 
@@ -75,6 +76,7 @@ export function ContactOwnerButton({
   isAuthenticated,
   loginHref,
   currentPath,
+  buttonLabel: providedButtonLabel,
   buttonClassName,
 }: ContactOwnerButtonProps) {
   const router = useRouter();
@@ -86,7 +88,7 @@ export function ContactOwnerButton({
   );
   const [draft, setDraft] = useState(defaultMessage);
   const statusMessage = getStatusMessage(state);
-  const buttonLabel = getVaultIntentActionLabel(intent);
+  const buttonLabel = providedButtonLabel ?? getVaultIntentActionLabel(intent);
 
   useEffect(() => {
     setDraft(defaultMessage);

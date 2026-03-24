@@ -8,6 +8,7 @@ import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -53,7 +54,11 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
     notFound();
   }
 
-  const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const supabase = createServerComponentClient();
+  const [{ data: authData }, sharedCards] = await Promise.all([
+    supabase.auth.getUser(),
+    profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
+  ]);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -85,7 +90,13 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
       ) : sharedCards.length === 0 ? (
         <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
       ) : (
-        <PublicCollectorProfileContent slug={profile.slug} cards={sharedCards} />
+        <PublicCollectorProfileContent
+          slug={profile.slug}
+          collectorDisplayName={profile.display_name}
+          cards={sharedCards}
+          isAuthenticated={Boolean(authData.user)}
+          currentPath={`/u/${profile.slug}`}
+        />
       )}
     </div>
   );

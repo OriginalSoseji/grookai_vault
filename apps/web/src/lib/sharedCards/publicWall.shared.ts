@@ -1,6 +1,8 @@
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
+import type { DiscoverableVaultIntent } from "@/lib/network/intent";
 
 export type PublicWallCard = {
+  card_print_id: string;
   gv_id: string;
   name: string;
   set_code?: string;
@@ -18,4 +20,13 @@ export type PublicWallCard = {
   grader?: string;
   grade?: string;
   cert_number?: string;
+  vault_item_id?: string;
+  intent?: DiscoverableVaultIntent;
+  in_play_quantity?: number;
+  in_play_condition_label?: string;
+  in_play_is_graded?: boolean;
+  in_play_grade_company?: string;
+  in_play_grade_value?: string;
+  in_play_grade_label?: string;
+  in_play_created_at?: string;
 };

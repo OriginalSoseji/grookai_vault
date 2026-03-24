@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
@@ -19,6 +20,31 @@ type SharedCardRow = {
   public_back_image_path: string | null;
   show_personal_front: boolean | null;
   show_personal_back: boolean | null;
+};
+
+type InPlayStreamRow = {
+  vault_item_id: string | null;
+  card_print_id: string | null;
+  intent: string | null;
+  quantity: number | null;
+  condition_label: string | null;
+  is_graded: boolean | null;
+  grade_company: string | null;
+  grade_value: string | null;
+  grade_label: string | null;
+  created_at: string | null;
+};
+
+type InPlayCardState = {
+  vault_item_id: string;
+  intent: NonNullable<PublicWallCard["intent"]>;
+  quantity: number;
+  condition_label?: string;
+  is_graded: boolean;
+  grade_company?: string;
+  grade_value?: string;
+  grade_label?: string;
+  created_at: string | null;
 };
 
 type CardPrintRow = {
@@ -136,6 +162,59 @@ type SharedWallCardState = {
   grade?: string;
   cert_number?: string;
 };
+
+async function fetchInPlayStateByCardId(ownerSlug: string, cardIds: string[]) {
+  const normalizedOwnerSlug = normalizeSlug(ownerSlug);
+  const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
+  if (!normalizedOwnerSlug || normalizedCardIds.length === 0) {
+    return new Map<string, InPlayCardState>();
+  }
+
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase
+    .from("v_card_stream_v1")
+    .select(
+      "vault_item_id,card_print_id,intent,quantity,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+    )
+    .eq("owner_slug", normalizedOwnerSlug)
+    .in("card_print_id", normalizedCardIds)
+    .order("created_at", { ascending: false })
+    .order("vault_item_id", { ascending: false });
+
+  if (error) {
+    console.error("[public:shared-cards] in-play lookup failed", {
+      ownerSlug: normalizedOwnerSlug,
+      cardIds: normalizedCardIds,
+      error,
+    });
+    return new Map<string, InPlayCardState>();
+  }
+
+  const byCardId = new Map<string, InPlayCardState>();
+
+  for (const row of (data ?? []) as InPlayStreamRow[]) {
+    const cardPrintId = normalizeOptionalText(row.card_print_id);
+    const vaultItemId = normalizeOptionalText(row.vault_item_id);
+    const intent = normalizeDiscoverableVaultIntent(row.intent);
+    if (!cardPrintId || !vaultItemId || !intent || byCardId.has(cardPrintId)) {
+      continue;
+    }
+
+    byCardId.set(cardPrintId, {
+      vault_item_id: vaultItemId,
+      intent,
+      quantity: Math.max(1, row.quantity ?? 1),
+      condition_label: normalizeOptionalText(row.condition_label) ?? undefined,
+      is_graded: row.is_graded === true,
+      grade_company: normalizeOptionalText(row.grade_company) ?? undefined,
+      grade_value: normalizeOptionalText(row.grade_value) ?? undefined,
+      grade_label: normalizeOptionalText(row.grade_label) ?? undefined,
+      created_at: row.created_at ?? null,
+    });
+  }
+
+  return byCardId;
+}
 
 async function fetchSharedWallStateByCardId(userId: string, cardIds: string[]) {
   const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
@@ -299,6 +378,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
     profileRow.user_id,
     sharedRows.map((row) => row.card_id),
   );
+  const inPlayStateByCardId = await fetchInPlayStateByCardId(
+    normalizedSlug,
+    sharedRows.map((row) => row.card_id),
+  );
 
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
@@ -331,8 +414,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       const personalBackImageUrl =
         row.show_personal_back === true ? getBestPublicCardImageUrl(row.public_back_image_path) ?? undefined : undefined;
       const wallState = wallStateByCardId.get(row.card_id);
+      const inPlayState = inPlayStateByCardId.get(row.card_id);
 
       return {
+        card_print_id: row.card_id,
         gv_id: row.gv_id,
         name: cardPrint.name?.trim() || "Unknown card",
         set_code: cardPrint.set_code?.trim() || undefined,
@@ -350,6 +435,15 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         grader: wallState?.grader,
         grade: wallState?.grade,
         cert_number: wallState?.cert_number,
+        vault_item_id: inPlayState?.vault_item_id,
+        intent: inPlayState?.intent,
+        in_play_quantity: inPlayState?.quantity,
+        in_play_condition_label: inPlayState?.condition_label,
+        in_play_is_graded: inPlayState?.is_graded,
+        in_play_grade_company: inPlayState?.grade_company,
+        in_play_grade_value: inPlayState?.grade_value,
+        in_play_grade_label: inPlayState?.grade_label,
+        in_play_created_at: inPlayState?.created_at ?? undefined,
       };
     })
     .filter((row): row is NonNullable<typeof row> => row !== null);

@@ -9,6 +9,7 @@ import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -54,7 +55,11 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
     notFound();
   }
 
-  const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const supabase = createServerComponentClient();
+  const [{ data: authData }, sharedCards] = await Promise.all([
+    supabase.auth.getUser(),
+    profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
+  ]);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const sharedSetCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -93,10 +98,13 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
       ) : (
         <PublicCollectorProfileContent
           slug={profile.slug}
+          collectorDisplayName={profile.display_name}
           cards={sharedCards}
           collectionTitle="Shared Collection"
           collectionEyebrow="Collection"
-          collectionDescription="A cleaner browse through everything this collector has chosen to show."
+          collectionDescription="View the full collection this collector has put on display."
+          isAuthenticated={Boolean(authData.user)}
+          currentPath={`/u/${profile.slug}/collection`}
         />
       )}
     </div>
