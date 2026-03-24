@@ -1,7 +1,7 @@
 import "server-only";
 
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 type CardInteractionSourceRow = {
   id: string;
@@ -77,8 +77,8 @@ export async function getUserCardInteractions(userId: string): Promise<UserCardI
     return [];
   }
 
-  const admin = createServerAdminClient();
-  const { data, error } = await admin
+  const client = createServerComponentClient();
+  const { data, error } = await client
     .from("card_interactions")
     .select("id,card_print_id,vault_item_id,sender_user_id,receiver_user_id,message,status,created_at")
     .or(`sender_user_id.eq.${normalizedUserId},receiver_user_id.eq.${normalizedUserId}`)
@@ -107,13 +107,13 @@ export async function getUserCardInteractions(userId: string): Promise<UserCardI
 
   const [cardPrintsResponse, profilesResponse] = await Promise.all([
     cardPrintIds.length > 0
-      ? admin
+      ? client
           .from("card_prints")
           .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
           .in("id", cardPrintIds)
       : Promise.resolve({ data: [], error: null }),
     counterpartUserIds.length > 0
-      ? admin
+      ? client
           .from("public_profiles")
           .select("user_id,slug,display_name")
           .in("user_id", counterpartUserIds)

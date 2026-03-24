@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type StreamTargetRow = {
@@ -85,8 +84,7 @@ export async function createCardInteractionAction(
     };
   }
 
-  const admin = createServerAdminClient();
-  const { data: streamTarget, error: streamError } = await admin
+  const { data: streamTarget, error: streamError } = await client
     .from("v_card_stream_v1")
     .select("vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,gv_id,name")
     .eq("vault_item_id", vaultItemId)
@@ -123,7 +121,7 @@ export async function createCardInteractionAction(
     };
   }
 
-  const { data: insertedRow, error: insertError } = await admin
+  const { data: insertedRow, error: insertError } = await client
     .from("card_interactions")
     .insert({
       card_print_id: target.card_print_id,
@@ -144,7 +142,7 @@ export async function createCardInteractionAction(
     };
   }
 
-  await admin.from("card_signals").insert({
+  await client.from("card_signals").insert({
     user_id: user.id,
     card_print_id: target.card_print_id,
     signal_type: "interaction",
