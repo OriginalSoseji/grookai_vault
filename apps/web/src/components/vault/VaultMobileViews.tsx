@@ -27,12 +27,18 @@ import {
   WALL_CATEGORY_OPTIONS,
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
+import {
+  DISCOVERABLE_VAULT_INTENT_VALUES,
+  getVaultIntentLabel,
+  type VaultIntent,
+} from "@/lib/network/intent";
 
 type VaultMobileCommonProps = {
   items: VaultCardData[];
   mode: VaultMobileViewMode;
   pendingItemId: string | null;
   pendingShareItemId: string | null;
+  pendingIntentItemId: string | null;
   pendingWallCategoryItemId: string | null;
   pendingPublicImageKey: string | null;
   expandedSharedItemIds: Set<string>;
@@ -41,6 +47,7 @@ type VaultMobileCommonProps = {
   publicCollectionHref: string | null;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (item: VaultCardData, condition: string) => void;
+  onIntentChange: (item: VaultCardData, intent: VaultIntent) => void;
   onShareToggle: (item: VaultCardData) => void;
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onSharedControlsToggle: (item: VaultCardData) => void;
@@ -131,6 +138,7 @@ function MobileDetailRow({
   item,
   pendingItemId,
   pendingShareItemId,
+  pendingIntentItemId,
   pendingWallCategoryItemId,
   pendingPublicImageKey,
   expandedSharedItemIds,
@@ -139,6 +147,7 @@ function MobileDetailRow({
   publicCollectionHref,
   onQuantityChange,
   onConditionChange,
+  onIntentChange,
   onShareToggle,
   onWallCategoryChange,
   onSharedControlsToggle,
@@ -150,6 +159,7 @@ function MobileDetailRow({
   const canAdjustRaw = item.raw_count > 0;
   const isPending = pendingItemId === rowKey;
   const isSharePending = pendingShareItemId === rowKey;
+  const isIntentPending = pendingIntentItemId === rowKey;
   const isWallCategoryPending = pendingWallCategoryItemId === rowKey;
   const isPublicFrontImagePending = pendingPublicImageKey === `${rowKey}:front`;
   const isPublicBackImagePending = pendingPublicImageKey === `${rowKey}:back`;
@@ -256,6 +266,29 @@ function MobileDetailRow({
                 </VaultInsetCard>
               </div>
             ) : null}
+
+            <div className="space-y-2">
+              <label htmlFor={`mobile-intent-${rowKey}`} className="block">
+                <VaultFieldLabel>Network Intent</VaultFieldLabel>
+              </label>
+              <select
+                id={`mobile-intent-${rowKey}`}
+                value={item.intent}
+                disabled={isIntentPending}
+                onChange={(event) => onIntentChange(item, event.target.value as VaultIntent)}
+                className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:opacity-60"
+              >
+                <option value="hold">{getVaultIntentLabel("hold")} - hidden from network</option>
+                {DISCOVERABLE_VAULT_INTENT_VALUES.map((intent) => (
+                  <option key={intent} value={intent}>
+                    {getVaultIntentLabel(intent)}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-slate-500">
+                Trade, sell, and showcase cards appear in the collector network when profile sharing is enabled.
+              </p>
+            </div>
 
             {(hasRemovableRaw || item.slab_items.length > 0) ? (
               <div className="space-y-2 border-t border-slate-200 pt-3">

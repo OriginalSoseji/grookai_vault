@@ -32,6 +32,8 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
     pathname.startsWith("/card/") ||
     pathname === "/compare" ||
     pathname.startsWith("/compare/") ||
+    pathname === "/network" ||
+    pathname.startsWith("/network/") ||
     pathname === "/account" ||
     pathname.startsWith("/account/") ||
     pathname === "/wall" ||
@@ -42,6 +44,7 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
   const primaryNav = [
     { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Explore", matchHref: "/explore" },
     { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
+    { href: "/network", label: "Network", matchHref: "/network" },
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
     { href: "/vault", label: "Vault" },
   ];
@@ -50,6 +53,8 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
       ? "Vault"
       : pathname === "/account" || pathname.startsWith("/account/")
         ? "Profile"
+        : pathname === "/network" || pathname.startsWith("/network/")
+          ? "Network"
         : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
           ? "Showcase"
           : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
@@ -73,6 +78,16 @@ export function SiteHeader({ isAuthenticated, profileHref }: SiteHeaderProps) {
             </Link>
 
             <div className="flex shrink-0 items-center gap-2">
+              <Link
+                href="/network"
+                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
+                  pathname === "/network" || pathname.startsWith("/network/")
+                    ? "bg-emerald-100 text-emerald-950 ring-1 ring-emerald-200"
+                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+                }`}
+              >
+                Network
+              </Link>
               <Link
                 href={buildCompareHref(compareCards)}
                 className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${

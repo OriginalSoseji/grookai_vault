@@ -14,6 +14,7 @@ import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
 import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
 import ShareCardButton from "@/components/ShareCardButton";
+import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
@@ -21,6 +22,8 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
+import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
+import { getVaultIntentLabel } from "@/lib/network/intent";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
@@ -346,6 +349,13 @@ export default async function CardPage({
     releaseDateLabel ? { label: "Release Date", value: releaseDateLabel } : null,
   ].filter((item): item is DetailItem => item !== null);
   const relatedPrints = resolvedCard.related_prints ?? [];
+  const networkOffers = resolvedCard.id
+    ? await getCardStreamRows({
+        cardPrintId: resolvedCard.id,
+        excludeUserId: user?.id ?? null,
+        limit: 6,
+      })
+    : [];
   const hasOwnedItems = ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabItems.length > 0;
   const ownershipLabel = vaultCount > 0
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
@@ -475,6 +485,59 @@ export default async function CardPage({
       </section>
 
       <PrintingSelector printings={resolvedCard.printings} />
+
+      {networkOffers.length > 0 ? (
+        <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="space-y-1">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector Network</h2>
+            <p className="text-sm text-slate-600">Collectors currently exposing this exact card for trade, sale, or showcase.</p>
+          </div>
+          <div className="space-y-3">
+            {networkOffers.map((offer) => (
+              <article
+                key={offer.vaultItemId}
+                className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4"
+              >
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                        {getVaultIntentLabel(offer.intent)}
+                      </span>
+                      <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        {offer.isGraded
+                          ? (offer.gradeLabel ?? [offer.gradeCompany, offer.gradeValue].filter(Boolean).join(" ")) || "Graded"
+                          : offer.quantity > 1
+                            ? `${offer.quantity} copies`
+                            : offer.conditionLabel ?? "Raw"}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600">
+                      Collector{" "}
+                      <Link
+                        href={`/u/${offer.ownerSlug}`}
+                        className="font-medium text-slate-900 underline-offset-4 hover:underline"
+                      >
+                        {offer.ownerDisplayName}
+                      </Link>
+                    </p>
+                  </div>
+                  <ContactOwnerButton
+                    vaultItemId={offer.vaultItemId}
+                    cardPrintId={offer.cardPrintId}
+                    ownerDisplayName={offer.ownerDisplayName}
+                    cardName={resolvedCard.name}
+                    intent={offer.intent}
+                    isAuthenticated={Boolean(user)}
+                    loginHref={loginHref}
+                    currentPath={currentCardPath}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {detailItems.length > 0 ? (
         <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">

@@ -20,6 +20,11 @@ import {
   WALL_CATEGORY_OPTIONS,
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
+import {
+  DISCOVERABLE_VAULT_INTENT_VALUES,
+  getVaultIntentLabel,
+  type VaultIntent,
+} from "@/lib/network/intent";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -39,6 +44,7 @@ export type VaultCardData = {
   set_name: string;
   number: string;
   condition_label: string;
+  intent: VaultIntent;
   owned_count: number;
   raw_count: number;
   slab_count: number;
@@ -67,6 +73,7 @@ type VaultCardTileProps = {
   density?: ViewDensity;
   isPending: boolean;
   isSharePending: boolean;
+  isIntentPending: boolean;
   isWallCategoryPending: boolean;
   isPublicFrontImagePending: boolean;
   isPublicBackImagePending: boolean;
@@ -77,6 +84,7 @@ type VaultCardTileProps = {
   logoPath?: string;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (condition: string) => void;
+  onIntentChange: (item: VaultCardData, intent: VaultIntent) => void;
   onShareToggle: (item: VaultCardData) => void;
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onSharedControlsToggle: (item: VaultCardData) => void;
@@ -89,6 +97,7 @@ export function VaultCardTile({
   density = "default",
   isPending,
   isSharePending,
+  isIntentPending,
   isWallCategoryPending,
   isPublicFrontImagePending,
   isPublicBackImagePending,
@@ -98,6 +107,7 @@ export function VaultCardTile({
   publicCollectionHref,
   onQuantityChange,
   onConditionChange,
+  onIntentChange,
   onShareToggle,
   onWallCategoryChange,
   onSharedControlsToggle,
@@ -168,9 +178,30 @@ export function VaultCardTile({
       <div className="space-y-1">
         <VaultFieldLabel>Manage</VaultFieldLabel>
         <p className="text-xs text-slate-500">
-          {item.is_shared
-            ? "Adjust wall settings and ownership controls."
-            : "Wall settings become available after adding this card to your wall."}
+          Set discovery intent for the collector network, then manage wall settings and ownership controls.
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor={`vault-intent-${item.card_id}`} className="block">
+          <VaultFieldLabel>Network Intent</VaultFieldLabel>
+        </label>
+        <select
+          id={`vault-intent-${item.card_id}`}
+          value={item.intent}
+          disabled={isIntentPending}
+          onChange={(event) => onIntentChange(item, event.target.value as VaultIntent)}
+          className="w-full rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <option value="hold">{getVaultIntentLabel("hold")} - hidden from network</option>
+          {DISCOVERABLE_VAULT_INTENT_VALUES.map((intent) => (
+            <option key={intent} value={intent}>
+              {getVaultIntentLabel(intent)}
+            </option>
+          ))}
+        </select>
+        <p className="text-xs text-slate-500">
+          Trade, sell, and showcase cards appear in the collector network when your public profile sharing is enabled.
         </p>
       </div>
 

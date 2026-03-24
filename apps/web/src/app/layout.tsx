@@ -35,6 +35,9 @@ function ChromeFallback() {
               <Link href="/sets" className="rounded-full px-3 py-2 text-slate-600">
                 Sets
               </Link>
+              <Link href="/network" className="rounded-full px-3 py-2 text-slate-600">
+                Network
+              </Link>
               <Link href="/compare" className="rounded-full px-3 py-2 text-slate-600">
                 Compare
               </Link>
@@ -59,6 +62,7 @@ function ChromeFallback() {
           {[
             { href: "/vault", label: "Vault" },
             { href: "/explore", label: "Discover" },
+            { href: "/network", label: "Network" },
             { href: "/wall", label: "Showcase" },
             { href: "/account", label: "Profile" },
           ].map((item) => (

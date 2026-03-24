@@ -26,6 +26,8 @@ import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleShare
 import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
 import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
 import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
+import { saveVaultItemIntentAction } from "@/lib/network/saveVaultItemIntentAction";
+import type { VaultIntent } from "@/lib/network/intent";
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { ReactNode } from "react";
 import { supabase } from "@/lib/supabaseClient";
@@ -169,6 +171,7 @@ function renderVaultGrid(
   setLogoPathByCode: Record<string, string>,
   pendingItemId: string | null,
   pendingShareItemId: string | null,
+  pendingIntentItemId: string | null,
   pendingWallCategoryItemId: string | null,
   pendingPublicImageKey: string | null,
   expandedSharedItemIds: Set<string>,
@@ -177,6 +180,7 @@ function renderVaultGrid(
   publicCollectionHref: string | null,
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
   onConditionChange: (item: VaultCardData, condition: string) => void,
+  onIntentChange: (item: VaultCardData, intent: VaultIntent) => void,
   onShareToggle: (item: VaultCardData) => void,
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void,
   onSharedControlsToggle: (item: VaultCardData) => void,
@@ -195,6 +199,7 @@ function renderVaultGrid(
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
           isPending={pendingItemId === rowKey}
           isSharePending={pendingShareItemId === rowKey}
+          isIntentPending={pendingIntentItemId === rowKey}
           isWallCategoryPending={pendingWallCategoryItemId === rowKey}
           isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
           isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
@@ -204,6 +209,7 @@ function renderVaultGrid(
           publicCollectionHref={item.is_shared ? publicCollectionHref : null}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
+          onIntentChange={onIntentChange}
           onShareToggle={onShareToggle}
           onWallCategoryChange={onWallCategoryChange}
           onSharedControlsToggle={onSharedControlsToggle}
@@ -266,6 +272,17 @@ function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, 
       ? {
           ...item,
           condition_label: condition,
+        }
+      : item,
+  );
+}
+
+function applyOptimisticIntentChange(items: VaultCardData[], rowKey: string, intent: VaultIntent) {
+  return items.map((item) =>
+    getVaultRowRuntimeKey(item) === rowKey
+      ? {
+          ...item,
+          intent,
         }
       : item,
   );
@@ -361,6 +378,7 @@ export function VaultCollectionView({
   const [pokemonQuery, setPokemonQuery] = useState("");
   const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [pendingShareItemId, setPendingShareItemId] = useState<string | null>(null);
+  const [pendingIntentItemId, setPendingIntentItemId] = useState<string | null>(null);
   const [pendingWallCategoryItemId, setPendingWallCategoryItemId] = useState<string | null>(null);
   const [pendingPublicImageKey, setPendingPublicImageKey] = useState<string | null>(null);
   const [pendingPublicNoteItemId, setPendingPublicNoteItemId] = useState<string | null>(null);
@@ -379,6 +397,7 @@ export function VaultCollectionView({
     setPokemonQuery("");
     setPendingItemId(null);
     setPendingShareItemId(null);
+    setPendingIntentItemId(null);
     setPendingWallCategoryItemId(null);
     setPendingPublicImageKey(null);
     setPendingPublicNoteItemId(null);
@@ -650,8 +669,60 @@ export function VaultCollectionView({
     });
   }
 
+  function handleIntentChange(item: VaultCardData, nextIntent: VaultIntent) {
+    if (
+      pendingIntentItemId ||
+      pendingItemId ||
+      pendingShareItemId ||
+      pendingWallCategoryItemId ||
+      pendingPublicImageKey ||
+      item.intent === nextIntent
+    ) {
+      return;
+    }
+
+    const currentItems = items;
+    const rowKey = getVaultRowRuntimeKey(item);
+    setItemErrors((current) => {
+      const next = { ...current };
+      delete next[rowKey];
+      return next;
+    });
+    setPendingIntentItemId(rowKey);
+    setItems(applyOptimisticIntentChange(currentItems, rowKey, nextIntent));
+
+    startTransition(async () => {
+      try {
+        const result = await saveVaultItemIntentAction({
+          itemId: item.vault_item_id,
+          intent: nextIntent,
+        });
+
+        if (!result.ok) {
+          setItems(currentItems);
+          setItemErrors((current) => ({
+            ...current,
+            [rowKey]: result.message,
+          }));
+          return;
+        }
+
+        setItems((current) => applyOptimisticIntentChange(current, rowKey, result.intent));
+        router.refresh();
+      } catch (error) {
+        setItems(currentItems);
+        setItemErrors((current) => ({
+          ...current,
+          [rowKey]: "Couldn’t save network intent.",
+        }));
+      } finally {
+        setPendingIntentItemId(null);
+      }
+    });
+  }
+
   function handleShareToggle(item: VaultCardData) {
-    if (pendingShareItemId || pendingWallCategoryItemId || pendingItemId || pendingPublicImageKey) {
+    if (pendingShareItemId || pendingIntentItemId || pendingWallCategoryItemId || pendingItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -742,7 +813,7 @@ export function VaultCollectionView({
   }
 
   function handleWallCategoryChange(item: VaultCardData, wallCategory: WallCategory | null) {
-    if (!item.is_shared || pendingWallCategoryItemId || pendingShareItemId || pendingItemId || pendingPublicImageKey) {
+    if (!item.is_shared || pendingWallCategoryItemId || pendingIntentItemId || pendingShareItemId || pendingItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -789,9 +860,6 @@ export function VaultCollectionView({
   }
 
   function handleSharedControlsToggle(item: VaultCardData) {
-    if (!item.is_shared) {
-      return;
-    }
     const rowKey = getVaultRowRuntimeKey(item);
 
     setExpandedSharedItemIds((current) => {
@@ -809,7 +877,7 @@ export function VaultCollectionView({
   }
 
   function handlePublicImageToggle(item: VaultCardData, side: "front" | "back", enabled: boolean) {
-    if (!item.is_shared || pendingPublicImageKey || pendingWallCategoryItemId || pendingShareItemId || pendingItemId) {
+    if (!item.is_shared || pendingPublicImageKey || pendingIntentItemId || pendingWallCategoryItemId || pendingShareItemId || pendingItemId) {
       return;
     }
 
@@ -866,7 +934,7 @@ export function VaultCollectionView({
   }
 
   function handleOpenPublicNote(item: VaultCardData) {
-    if (!item.is_shared || pendingPublicNoteItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
+    if (!item.is_shared || pendingPublicNoteItemId || pendingIntentItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -932,6 +1000,7 @@ export function VaultCollectionView({
         mode={mobileViewMode}
         pendingItemId={pendingItemId}
         pendingShareItemId={pendingShareItemId}
+        pendingIntentItemId={pendingIntentItemId}
         pendingWallCategoryItemId={pendingWallCategoryItemId}
         pendingPublicImageKey={pendingPublicImageKey}
         expandedSharedItemIds={expandedSharedItemIds}
@@ -940,6 +1009,7 @@ export function VaultCollectionView({
         publicCollectionHref={publicCollectionHref}
         onQuantityChange={handleQuantityChange}
         onConditionChange={changeCondition}
+        onIntentChange={handleIntentChange}
         onShareToggle={handleShareToggle}
         onWallCategoryChange={handleWallCategoryChange}
         onSharedControlsToggle={handleSharedControlsToggle}
@@ -989,6 +1059,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
@@ -997,6 +1068,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
+            handleIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1024,6 +1096,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
@@ -1032,6 +1105,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
+            handleIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1059,6 +1133,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
@@ -1067,6 +1142,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
+            handleIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1119,6 +1195,7 @@ export function VaultCollectionView({
                   setLogoPathByCode,
                   pendingItemId,
                   pendingShareItemId,
+                  pendingIntentItemId,
                   pendingWallCategoryItemId,
                   pendingPublicImageKey,
                   expandedSharedItemIds,
@@ -1127,6 +1204,7 @@ export function VaultCollectionView({
                   publicCollectionHref,
                   handleQuantityChange,
                   changeCondition,
+                  handleIntentChange,
                   handleShareToggle,
                   handleWallCategoryChange,
                   handleSharedControlsToggle,
@@ -1194,6 +1272,7 @@ export function VaultCollectionView({
             setLogoPathByCode,
             pendingItemId,
             pendingShareItemId,
+            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
@@ -1202,6 +1281,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
+            handleIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1265,6 +1345,7 @@ export function VaultCollectionView({
           setLogoPathByCode,
           pendingItemId,
           pendingShareItemId,
+          pendingIntentItemId,
           pendingWallCategoryItemId,
           pendingPublicImageKey,
           expandedSharedItemIds,
@@ -1273,6 +1354,7 @@ export function VaultCollectionView({
           publicCollectionHref,
           handleQuantityChange,
           changeCondition,
+          handleIntentChange,
           handleShareToggle,
           handleWallCategoryChange,
           handleSharedControlsToggle,
@@ -1316,12 +1398,20 @@ export function VaultCollectionView({
           description={<span className="hidden md:inline">A clear view of the cards you own.</span>}
           size="compact"
           actions={
-            <Link
-              href="/vault/import"
-              className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 md:px-5"
-            >
-              Import Collection
-            </Link>
+            <>
+              <Link
+                href="/network"
+                className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 md:px-5"
+              >
+                Browse Network
+              </Link>
+              <Link
+                href="/vault/import"
+                className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 md:px-5"
+              >
+                Import Collection
+              </Link>
+            </>
           }
         />
         <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 sm:text-sm">

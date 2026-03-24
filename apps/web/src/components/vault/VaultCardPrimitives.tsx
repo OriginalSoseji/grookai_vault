@@ -1,6 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
+import { getVaultIntentLabel } from "@/lib/network/intent";
 import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type VaultActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -73,7 +74,7 @@ export function VaultStatusBadges({
   includeQuantity = true,
   size = "xs",
 }: {
-  item: Pick<VaultCardData, "owned_count" | "is_slab" | "is_shared" | "wall_category">;
+  item: Pick<VaultCardData, "owned_count" | "is_slab" | "is_shared" | "wall_category" | "intent">;
   includeQuantity?: boolean;
   size?: "xs" | "sm";
 }) {
@@ -89,6 +90,11 @@ export function VaultStatusBadges({
       <PokemonCardGridBadge tone={item.is_slab ? "warm" : "default"} size={size}>
         {item.is_slab ? "Slab" : "Raw"}
       </PokemonCardGridBadge>
+      {item.intent !== "hold" ? (
+        <PokemonCardGridBadge tone="accent" size={size}>
+          {getVaultIntentLabel(item.intent)}
+        </PokemonCardGridBadge>
+      ) : null}
       {item.is_shared ? (
         <PokemonCardGridBadge tone="positive" size={size}>
           On Wall

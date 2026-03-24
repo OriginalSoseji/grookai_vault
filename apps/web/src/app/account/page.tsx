@@ -76,6 +76,18 @@ export default async function AccountPage() {
             >
               View Wall
             </Link>
+            <Link
+              href="/network"
+              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
+            >
+              Browse Network
+            </Link>
+            <Link
+              href="/network/inbox"
+              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
+            >
+              View Interactions
+            </Link>
           </div>
         </div>
       </section>

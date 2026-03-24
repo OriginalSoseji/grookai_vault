@@ -6,6 +6,7 @@ import {
   type RecentCardData,
 } from "@/components/vault/VaultCollectionView";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
+import { normalizeVaultIntent } from "@/lib/network/intent";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import {
   normalizeWallCategory,
@@ -87,6 +88,7 @@ function normalizeVaultItems(
         set_name: row.set_name.trim() || row.set_code.trim() || "Unknown set",
         number: row.number.trim() || "—",
         condition_label: row.condition_label.trim() || "Unknown",
+        intent: normalizeVaultIntent(row.intent) ?? "hold",
         quantity: row.owned_count,
         owned_count: row.owned_count,
         raw_count: row.raw_count,

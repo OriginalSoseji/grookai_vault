@@ -65,7 +65,7 @@ function HomeSearchFallback() {
         <input
           type="search"
           name="q"
-          placeholder="Search Pokémon cards, sets, or Grookai IDs"
+          placeholder="Search cards, sets, or Grookai IDs to find collectors"
           className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
           aria-label="Search cards"
         />
@@ -91,13 +91,13 @@ export default async function HomePage() {
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                The vault for trading card collectors.
+                Find cards. Talk to collectors. Make moves.
               </h1>
               <p className="max-w-2xl text-lg text-slate-600">
-                Catalog your cards. Verify exactly what you own. Share your collection.
+                See who has the card you want, who&rsquo;s willing to trade or sell it, and reach out instantly.
               </p>
               <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
-                Built on a trusted card identity system
+                Built on a trusted card identity system.
               </p>
             </div>
 
@@ -157,38 +157,46 @@ export default async function HomePage() {
 
       <section className="grid gap-10 md:grid-cols-2">
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">What is Grookai Vault</h2>
+          <h2 className="text-2xl font-semibold text-slate-950">Cards aren&rsquo;t just data here</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Grookai Vault is a platform where collectors catalog, verify, and show their trading cards.
+            Every card is tied to a real collector and a real intent.
           </p>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Every card on Grookai is anchored to a trusted identity so collectors always know exactly which card they
-            are referencing.
+            You&rsquo;re not just looking at listings. You&rsquo;re seeing what&rsquo;s actually available.
           </p>
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Where Grookai is going</h2>
+          <h2 className="text-2xl font-semibold text-slate-950">Built for real collector behavior</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Grookai starts with trusted card identity, then expands into collection tools, provenance, and trading
-            utilities.
+            Collectors don&rsquo;t just track cards.
           </p>
+          <p className="max-w-xl text-sm leading-7 text-slate-600">They trade, buy, and connect.</p>
+          <p className="max-w-xl text-sm leading-7 text-slate-600">Grookai makes that simple:</p>
+          <ul className="max-w-xl space-y-1 text-sm leading-7 text-slate-600">
+            <li>mark what you&rsquo;re willing to move</li>
+            <li>discover what others have</li>
+            <li>reach out instantly</li>
+          </ul>
         </div>
       </section>
 
       <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
         <div className="max-w-3xl space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Create your profile</h2>
+          <h2 className="text-2xl font-semibold text-slate-950">Turn your collection into opportunities</h2>
           <p className="text-sm leading-7 text-slate-600">
-            Build your personal card vault. Track the cards you own, show your collection, and explore what other
-            collectors are discovering.
+            Set your intent on your cards.
+          </p>
+          <p className="text-sm leading-7 text-slate-600">Trade them. Sell them. Showcase them.</p>
+          <p className="text-sm leading-7 text-slate-600">
+            When you&rsquo;re ready, your collection becomes visible to other collectors.
           </p>
           <div>
             <Link
               href="/login?next=%2Faccount"
               className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Create your profile
+              Start your vault
             </Link>
           </div>
         </div>

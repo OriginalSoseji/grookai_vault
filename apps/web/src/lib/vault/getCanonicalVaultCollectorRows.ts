@@ -17,6 +17,7 @@
 import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 
 export type CanonicalVaultCollectorSlabItem = {
   instance_id: string;
@@ -40,6 +41,7 @@ export type CanonicalVaultCollectorRow = {
   set_name: string;
   number: string;
   condition_label: string;
+  intent: VaultIntent;
   owned_count: number;
   total_count: number;
   raw_count: number;
@@ -75,6 +77,7 @@ type BucketMetadataRow = {
   card_id: string | null;
   gv_id: string | null;
   condition_label: string | null;
+  intent: string | null;
   name: string | null;
   set_name: string | null;
   photo_url: string | null;
@@ -321,7 +324,7 @@ async function fetchBucketMetadataByCardId(userId: string, cardPrintIds: string[
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("vault_items")
-      .select("id,card_id,gv_id,condition_label,name,set_name,photo_url,created_at")
+      .select("id,card_id,gv_id,condition_label,intent,name,set_name,photo_url,created_at")
       .eq("user_id", userId)
       .is("archived_at", null)
       .in("card_id", ids)
@@ -497,6 +500,7 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
         setRecord?.name?.trim() || representativeBucket.set_name?.trim() || card?.set_code?.trim() || "Unknown set",
       number: card?.number?.trim() || "—",
       condition_label: aggregate.conditionLabel ?? representativeBucket.condition_label?.trim() ?? "Unknown",
+      intent: normalizeVaultIntent(representativeBucket.intent) ?? "hold",
       owned_count: aggregate.totalCount,
       total_count: aggregate.totalCount,
       raw_count: aggregate.rawCount,

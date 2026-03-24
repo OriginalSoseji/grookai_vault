@@ -25,6 +25,8 @@ function isExplorePath(pathname: string) {
     pathname.startsWith("/card/") ||
     pathname === "/compare" ||
     pathname.startsWith("/compare/") ||
+    pathname === "/network" ||
+    pathname.startsWith("/network/") ||
     pathname === "/search" ||
     pathname.startsWith("/search/")
   );
