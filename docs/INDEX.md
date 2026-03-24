@@ -66,6 +66,7 @@ The goal is clarity without destructive churn:
 - [Pricing Surface Contract](/c:/grookai_vault/docs/contracts/PRICING_SURFACE_CONTRACT_V1.md)
 - [Pricing Schema Audit](/c:/grookai_vault/docs/audits/PRICING_SCHEMA_AUDIT_V1.md)
 - [Resolver Stress Test](/c:/grookai_vault/docs/audits/RESOLVER_STRESS_TEST_V1.md)
+- [Card Interaction Network + Execution Layer Checkpoint](/c:/grookai_vault/docs/checkpoints/2026-03-24_card_interaction_network_execution_layer_p3.md)
 - [Pricing Highway Worker Runbook](/c:/grookai_vault/docs/ops/PRICING_HIGHWAY_WORKER_V1.md)
 - [Production Readiness Gate](/c:/grookai_vault/docs/release/PRODUCTION_READINESS_GATE_V1.md)
 
