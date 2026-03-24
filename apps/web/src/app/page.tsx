@@ -65,7 +65,7 @@ function HomeSearchFallback() {
         <input
           type="search"
           name="q"
-          placeholder="Search cards, sets, or Grookai IDs to find collectors"
+          placeholder="Search cards, sets, or Grookai IDs to find available cards"
           className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
           aria-label="Search cards"
         />
@@ -91,13 +91,16 @@ export default async function HomePage() {
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                Find cards. Talk to collectors. Make moves.
+                Find the cards you want. Reach the collectors who have them.
               </h1>
               <p className="max-w-2xl text-lg text-slate-600">
-                See who has the card you want, who&rsquo;s willing to trade or sell it, and reach out instantly.
+                See who has the card you want, who&rsquo;s willing to move it, and reach out instantly.
               </p>
               <p className="text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
                 Built on a trusted card identity system.
+              </p>
+              <p className="max-w-2xl text-sm leading-6 text-slate-600">
+                Collectors can already mark cards for trade, sale, and showcase.
               </p>
             </div>
 
@@ -162,41 +165,41 @@ export default async function HomePage() {
             Every card is tied to a real collector and a real intent.
           </p>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
-            You&rsquo;re not just looking at listings. You&rsquo;re seeing what&rsquo;s actually available.
+            You&rsquo;re not just browsing listings. You&rsquo;re seeing what collectors are actually open to moving.
           </p>
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Built for real collector behavior</h2>
+          <h2 className="text-2xl font-semibold text-slate-950">Built for how collectors actually move cards</h2>
           <p className="max-w-xl text-sm leading-7 text-slate-600">
             Collectors don&rsquo;t just track cards.
           </p>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">They trade, buy, and connect.</p>
-          <p className="max-w-xl text-sm leading-7 text-slate-600">Grookai makes that simple:</p>
+          <p className="max-w-xl text-sm leading-7 text-slate-600">They trade, buy, sell, and connect.</p>
+          <p className="max-w-xl text-sm leading-7 text-slate-600">Grookai makes that visible:</p>
           <ul className="max-w-xl space-y-1 text-sm leading-7 text-slate-600">
             <li>mark what you&rsquo;re willing to move</li>
-            <li>discover what others have</li>
-            <li>reach out instantly</li>
+            <li>see what other collectors have</li>
+            <li>reach out directly on the card</li>
           </ul>
         </div>
       </section>
 
       <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
         <div className="max-w-3xl space-y-4">
-          <h2 className="text-2xl font-semibold text-slate-950">Turn your collection into opportunities</h2>
+          <h2 className="text-2xl font-semibold text-slate-950">Turn your collection into real opportunities</h2>
           <p className="text-sm leading-7 text-slate-600">
-            Set your intent on your cards.
+            Set intent on your cards.
           </p>
           <p className="text-sm leading-7 text-slate-600">Trade them. Sell them. Showcase them.</p>
           <p className="text-sm leading-7 text-slate-600">
-            When you&rsquo;re ready, your collection becomes visible to other collectors.
+            When you&rsquo;re ready, other collectors can find them and reach out.
           </p>
           <div>
             <Link
               href="/login?next=%2Faccount"
               className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Start your vault
+              Put your cards in play
             </Link>
           </div>
         </div>

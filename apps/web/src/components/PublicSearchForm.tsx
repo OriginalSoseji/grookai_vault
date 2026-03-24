@@ -82,7 +82,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, or Grookai IDs to find collectors"
+            placeholder="Search cards, sets, or Grookai IDs to find available cards"
             shellClassName="min-w-0 flex-1"
             inputClassName="px-3 text-base"
             aria-label="Search cards"
