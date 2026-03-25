@@ -5,8 +5,16 @@ import {
   normalizeDiscoverableVaultIntent,
   type DiscoverableVaultIntent,
 } from "@/lib/network/intent";
+import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  normalizeVaultInstancePricingAmount,
+  normalizeVaultInstancePricingCurrency,
+  normalizeVaultInstancePricingMode,
+  normalizeVaultInstancePricingNote,
+  type VaultInstancePricingMode,
+} from "@/lib/vaultInstancePricing";
 
 type PublicVaultInstanceRow = {
   id: string;
@@ -24,6 +32,10 @@ type PublicVaultInstanceRow = {
   image_url: string | null;
   image_back_url: string | null;
   archived_at: string | null;
+  pricing_mode: string | null;
+  asking_price_amount: number | string | null;
+  asking_price_currency: string | null;
+  asking_price_note: string | null;
 };
 
 type PublicProfileRow = {
@@ -104,6 +116,13 @@ export type PublicVaultInstanceDetail = {
   grade: string | null;
   certNumber: string | null;
   createdAt: string | null;
+  pricingMode: VaultInstancePricingMode;
+  askingPriceAmount: number | null;
+  askingPriceCurrency: string | null;
+  askingPriceNote: string | null;
+  marketReferencePrice: number | null;
+  marketReferenceSource: string | null;
+  marketReferenceUpdatedAt: string | null;
 };
 
 export async function getPublicVaultInstanceByGvvi(
@@ -118,7 +137,7 @@ export async function getPublicVaultInstanceByGvvi(
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,created_at,grade_company,grade_value,grade_label,image_url,image_back_url,archived_at",
+      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,created_at,grade_company,grade_value,grade_label,image_url,image_back_url,archived_at,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .maybeSingle();
@@ -178,10 +197,12 @@ export async function getPublicVaultInstanceByGvvi(
   }
 
   const card = cardData as CardPrintRow;
-  const [frontImageUrl, backImageUrl] = await Promise.all([
+  const [frontImageUrl, backImageUrl, pricingByCardId] = await Promise.all([
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
+    getPublicPricingByCardIds(admin, [cardPrintId]),
   ]);
+  const pricingRecord = !instance.slab_cert_id ? pricingByCardId.get(cardPrintId) : undefined;
 
   return {
     instanceId: instance.id,
@@ -209,5 +230,19 @@ export async function getPublicVaultInstanceByGvvi(
       normalizeOptionalText(instance.grade_value),
     certNumber: normalizeOptionalText(slabCert?.cert_number),
     createdAt: instance.created_at ?? null,
+    pricingMode: normalizeVaultInstancePricingMode(instance.pricing_mode) ?? "market",
+    askingPriceAmount: normalizeVaultInstancePricingAmount(instance.asking_price_amount),
+    askingPriceCurrency: normalizeVaultInstancePricingCurrency(instance.asking_price_currency),
+    askingPriceNote: normalizeVaultInstancePricingNote(instance.asking_price_note),
+    marketReferencePrice:
+      typeof pricingRecord?.raw_price === "number" && Number.isFinite(pricingRecord.raw_price)
+        ? pricingRecord.raw_price
+        : null,
+    marketReferenceSource:
+      typeof pricingRecord?.raw_price_source === "string" ? pricingRecord.raw_price_source.trim() : null,
+    marketReferenceUpdatedAt:
+      typeof pricingRecord?.raw_price_ts === "string" && pricingRecord.raw_price_ts.trim().length > 0
+        ? pricingRecord.raw_price_ts
+        : null,
   };
 }

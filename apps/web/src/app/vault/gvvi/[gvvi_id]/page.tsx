@@ -5,6 +5,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -243,6 +244,19 @@ export default async function VaultInstancePage({
         </div>
 
         <div className="space-y-6">
+          <VaultInstancePricingCard
+            instanceId={detail.instanceId}
+            isActive={isActive}
+            isGraded={detail.isGraded}
+            initialPricingMode={detail.pricingMode}
+            initialAskingPriceAmount={detail.askingPriceAmount}
+            initialAskingPriceCurrency={detail.askingPriceCurrency}
+            initialAskingPriceNote={detail.askingPriceNote}
+            marketReferencePrice={detail.marketReferencePrice}
+            marketReferenceSource={detail.marketReferenceSource}
+            marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
+          />
+
           <VaultInstanceSettingsCard
             instanceId={detail.instanceId}
             initialIntent={detail.intent}

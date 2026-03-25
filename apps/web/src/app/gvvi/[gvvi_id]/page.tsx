@@ -6,6 +6,7 @@ import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import VaultInstanceVisiblePricingCard from "@/components/vault/VaultInstanceVisiblePricingCard";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -213,6 +214,23 @@ export default async function PublicVaultInstancePage({
         </div>
 
         <div className="space-y-6">
+          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+            <SectionHeader
+              title="Pricing"
+              description="This exact copy can show a market reference or an owner-set asking price."
+            />
+            <VaultInstanceVisiblePricingCard
+              pricingMode={detail.pricingMode}
+              askingPriceAmount={detail.askingPriceAmount}
+              askingPriceCurrency={detail.askingPriceCurrency}
+              askingPriceNote={detail.askingPriceNote}
+              marketReferencePrice={detail.marketReferencePrice}
+              marketReferenceSource={detail.marketReferenceSource}
+              marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
+              isGraded={detail.isGraded}
+            />
+          </PageSection>
+
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
               title="Contact"

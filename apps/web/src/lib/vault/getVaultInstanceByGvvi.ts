@@ -2,8 +2,16 @@ import "server-only";
 
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
+import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  normalizeVaultInstancePricingAmount,
+  normalizeVaultInstancePricingCurrency,
+  normalizeVaultInstancePricingMode,
+  normalizeVaultInstancePricingNote,
+  type VaultInstancePricingMode,
+} from "@/lib/vaultInstancePricing";
 
 type VaultInstanceRow = {
   id: string;
@@ -23,6 +31,10 @@ type VaultInstanceRow = {
   photo_url: string | null;
   image_url: string | null;
   image_back_url: string | null;
+  pricing_mode: string | null;
+  asking_price_amount: number | string | null;
+  asking_price_currency: string | null;
+  asking_price_note: string | null;
 };
 
 type SlabCertRow = {
@@ -137,6 +149,13 @@ export type VaultInstanceDetail = {
   backImagePath: string | null;
   frontImageUrl: string | null;
   backImageUrl: string | null;
+  pricingMode: VaultInstancePricingMode;
+  askingPriceAmount: number | null;
+  askingPriceCurrency: string | null;
+  askingPriceNote: string | null;
+  marketReferencePrice: number | null;
+  marketReferenceSource: string | null;
+  marketReferenceUpdatedAt: string | null;
   outcomes: VaultInstanceOutcome[];
 };
 
@@ -152,7 +171,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url",
+      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .maybeSingle();
@@ -198,7 +217,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const frontImagePath = normalizeOptionalText(instance.image_url);
   const backImagePath = normalizeOptionalText(instance.image_back_url);
 
-  const [frontImageUrl, backImageUrl, outcomeResult] = await Promise.all([
+  const [frontImageUrl, backImageUrl, outcomeResult, pricingByCardId] = await Promise.all([
     resolveVaultInstanceMediaUrl(frontImagePath),
     resolveVaultInstanceMediaUrl(backImagePath),
     admin
@@ -208,12 +227,14 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
       )
       .or(`source_instance_id.eq.${instance.id},result_instance_id.eq.${instance.id}`)
       .order("created_at", { ascending: false }),
+    getPublicPricingByCardIds(admin, [resolvedCardPrintId]),
   ]);
 
   const outcomeRows = ((outcomeResult.data ?? []) as OutcomeRow[]).filter(
     (row): row is OutcomeRow & { outcome_type: "sale" | "trade" } =>
       row.outcome_type === "sale" || row.outcome_type === "trade",
   );
+  const pricingRecord = !instance.slab_cert_id ? pricingByCardId.get(resolvedCardPrintId) : undefined;
 
   return {
     instanceId: instance.id,
@@ -244,6 +265,20 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     backImagePath,
     frontImageUrl,
     backImageUrl,
+    pricingMode: normalizeVaultInstancePricingMode(instance.pricing_mode) ?? "market",
+    askingPriceAmount: normalizeVaultInstancePricingAmount(instance.asking_price_amount),
+    askingPriceCurrency: normalizeVaultInstancePricingCurrency(instance.asking_price_currency),
+    askingPriceNote: normalizeVaultInstancePricingNote(instance.asking_price_note),
+    marketReferencePrice:
+      typeof pricingRecord?.raw_price === "number" && Number.isFinite(pricingRecord.raw_price)
+        ? pricingRecord.raw_price
+        : null,
+    marketReferenceSource:
+      typeof pricingRecord?.raw_price_source === "string" ? pricingRecord.raw_price_source.trim() : null,
+    marketReferenceUpdatedAt:
+      typeof pricingRecord?.raw_price_ts === "string" && pricingRecord.raw_price_ts.trim().length > 0
+        ? pricingRecord.raw_price_ts
+        : null,
     outcomes: outcomeRows.map((row) => ({
       id: row.id,
       executionEventId: normalizeOptionalText(row.execution_event_id),
