@@ -75,6 +75,10 @@ function mapExecutionErrorMessage(message: string | null) {
     case "source_instance_missing_card_print":
     case "source_instance_missing_vault_item_lineage":
     case "source_instance_already_archived":
+    case "source_instance_intent_sale_required":
+      return "Only a copy marked Sell can be recorded as sold.";
+    case "source_instance_intent_trade_required":
+      return "Only a copy marked Trade can be recorded as traded.";
     case "source_vault_item_not_found":
     case "source_vault_item_already_archived":
     case "source_vault_item_not_owned_by_actor":

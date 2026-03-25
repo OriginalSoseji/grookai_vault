@@ -361,6 +361,25 @@ export default async function CardPage({
     ? `You own ${vaultCount} ${vaultCount === 1 ? "copy" : "copies"}`
     : "This card can be added to your Vault";
 
+  const getOfferIntentSummary = (offer: (typeof networkOffers)[number]) =>
+    [
+      offer.sellCount > 0 ? `${getVaultIntentLabel("sell")} ${offer.sellCount}` : null,
+      offer.tradeCount > 0 ? `${getVaultIntentLabel("trade")} ${offer.tradeCount}` : null,
+      offer.showcaseCount > 0 ? `${getVaultIntentLabel("showcase")} ${offer.showcaseCount}` : null,
+    ].filter((value): value is string => Boolean(value));
+
+  const getGroupedOfferContactAnchor = (offer: (typeof networkOffers)[number]) => {
+    const copyVaultItemIds = Array.from(new Set(offer.inPlayCopies.map((copy) => copy.vaultItemId)));
+    if (copyVaultItemIds.length > 1) {
+      return null;
+    }
+
+    return {
+      vaultItemId: copyVaultItemIds[0] ?? offer.vaultItemId,
+      intent: offer.intent,
+    };
+  };
+
   return (
     <div className={`space-y-8 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <TrackPageEvent eventName="page_view_card" path={currentCardPath} gvId={resolvedCard.gv_id} />
@@ -494,22 +513,27 @@ export default async function CardPage({
           </div>
           <div className="space-y-3">
             {networkOffers.map((offer) => (
-              <article
-                key={offer.vaultItemId}
-                className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4"
-              >
+              <article key={offer.vaultItemId} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
+                {(() => {
+                  const groupedContactAnchor = getGroupedOfferContactAnchor(offer);
+                  return (
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
-                        {getVaultIntentLabel(offer.intent)}
-                      </span>
+                      {getOfferIntentSummary(offer).map((label) => (
+                        <span
+                          key={`${offer.vaultItemId}-${label}`}
+                          className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700"
+                        >
+                          {label}
+                        </span>
+                      ))}
                       <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
-                        {offer.isGraded
+                        {offer.inPlayCount > 1
+                          ? `${offer.inPlayCount} copies in play`
+                          : offer.isGraded
                           ? (offer.gradeLabel ?? [offer.gradeCompany, offer.gradeValue].filter(Boolean).join(" ")) || "Graded"
-                          : offer.quantity > 1
-                            ? `${offer.quantity} copies`
-                            : offer.conditionLabel ?? "Raw"}
+                          : offer.conditionLabel ?? "Raw"}
                       </span>
                     </div>
                     <p className="text-sm text-slate-600">
@@ -522,21 +546,73 @@ export default async function CardPage({
                       </Link>
                     </p>
                   </div>
-                  {offer.ownerUserId !== user?.id ? (
+                  {offer.ownerUserId !== user?.id && groupedContactAnchor ? (
                     <ContactOwnerButton
-                      vaultItemId={offer.vaultItemId}
+                      vaultItemId={groupedContactAnchor.vaultItemId}
                       cardPrintId={offer.cardPrintId}
                       ownerUserId={offer.ownerUserId}
                       viewerUserId={user?.id ?? null}
                       ownerDisplayName={offer.ownerDisplayName}
                       cardName={resolvedCard.name}
-                      intent={offer.intent}
+                      intent={groupedContactAnchor.intent}
+                      buttonLabel={groupedContactAnchor.intent ? undefined : "Contact owner"}
                       isAuthenticated={Boolean(user)}
                       loginHref={loginHref}
                       currentPath={currentCardPath}
                     />
                   ) : null}
                 </div>
+                  );
+                })()}
+                {offer.inPlayCopies.length > 1 ? (
+                  <details className="mt-4 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
+                    <summary className="cursor-pointer text-sm font-medium text-slate-800">
+                      View copies ({offer.inPlayCopies.length})
+                    </summary>
+                    <div className="mt-3 space-y-2">
+                      {offer.inPlayCopies.map((copy) => (
+                        <div key={copy.instanceId} className="rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-3">
+                          <div className="space-y-3">
+                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                              <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-700">
+                                {getVaultIntentLabel(copy.intent)}
+                              </span>
+                              {copy.isGraded ? (
+                                <span>
+                                  {copy.gradeLabel ?? ([copy.gradeCompany, copy.gradeValue].filter(Boolean).join(" ") || "Graded")}
+                                </span>
+                              ) : copy.conditionLabel ? (
+                                <span>{copy.conditionLabel}</span>
+                              ) : null}
+                              {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
+                            </div>
+                            {offer.ownerUserId !== user?.id ? (
+                              <ContactOwnerButton
+                                vaultItemId={copy.vaultItemId}
+                                cardPrintId={offer.cardPrintId}
+                                ownerUserId={offer.ownerUserId}
+                                viewerUserId={user?.id ?? null}
+                                ownerDisplayName={offer.ownerDisplayName}
+                                cardName={resolvedCard.name}
+                                intent={copy.intent}
+                                buttonLabel="Contact about this copy"
+                                isAuthenticated={Boolean(user)}
+                                loginHref={loginHref}
+                                currentPath={currentCardPath}
+                                buttonClassName="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                              />
+                            ) : null}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                ) : null}
+                {offer.ownerUserId !== user?.id && !getGroupedOfferContactAnchor(offer) && offer.inPlayCopies.length > 1 ? (
+                  <p className="mt-3 text-xs text-slate-500">
+                    Choose a copy above to contact this collector about the exact card in play.
+                  </p>
+                ) : null}
               </article>
             ))}
           </div>

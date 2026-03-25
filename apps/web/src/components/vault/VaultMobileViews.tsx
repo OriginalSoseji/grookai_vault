@@ -47,7 +47,7 @@ type VaultMobileCommonProps = {
   publicCollectionHref: string | null;
   onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
   onConditionChange: (item: VaultCardData, condition: string) => void;
-  onIntentChange: (item: VaultCardData, intent: VaultIntent) => void;
+  onInstanceIntentChange: (item: VaultCardData, instanceId: string, intent: VaultIntent) => void;
   onShareToggle: (item: VaultCardData) => void;
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onSharedControlsToggle: (item: VaultCardData) => void;
@@ -147,7 +147,7 @@ function MobileDetailRow({
   publicCollectionHref,
   onQuantityChange,
   onConditionChange,
-  onIntentChange,
+  onInstanceIntentChange,
   onShareToggle,
   onWallCategoryChange,
   onSharedControlsToggle,
@@ -159,14 +159,12 @@ function MobileDetailRow({
   const canAdjustRaw = item.raw_count > 0;
   const isPending = pendingItemId === rowKey;
   const isSharePending = pendingShareItemId === rowKey;
-  const isIntentPending = pendingIntentItemId === rowKey;
+  const isIntentPending = Boolean(pendingIntentItemId);
   const isWallCategoryPending = pendingWallCategoryItemId === rowKey;
   const isPublicFrontImagePending = pendingPublicImageKey === `${rowKey}:front`;
   const isPublicBackImagePending = pendingPublicImageKey === `${rowKey}:back`;
   const isSharedControlsExpanded = expandedSharedItemIds.has(rowKey);
   const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
-  const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
-
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="space-y-4">
@@ -267,57 +265,85 @@ function MobileDetailRow({
               </div>
             ) : null}
 
-            <div className="space-y-2">
-              <label htmlFor={`mobile-intent-${rowKey}`} className="block">
-                <VaultFieldLabel>Network Intent</VaultFieldLabel>
-              </label>
-              <select
-                id={`mobile-intent-${rowKey}`}
-                value={item.intent}
-                disabled={isIntentPending}
-                onChange={(event) => onIntentChange(item, event.target.value as VaultIntent)}
-                className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:opacity-60"
-              >
-                <option value="hold">{getVaultIntentLabel("hold")} - hidden from network</option>
-                {DISCOVERABLE_VAULT_INTENT_VALUES.map((intent) => (
-                  <option key={intent} value={intent}>
-                    {getVaultIntentLabel(intent)}
-                  </option>
-                ))}
-              </select>
-              <p className="text-xs text-slate-500">
-                Trade, sell, and showcase cards appear in the collector network when profile sharing is enabled.
-              </p>
-            </div>
-
-            {(hasRemovableRaw || item.slab_items.length > 0) ? (
-              <div className="space-y-2 border-t border-slate-200 pt-3">
-                <VaultFieldLabel>Owned Objects</VaultFieldLabel>
-                {hasRemovableRaw ? (
-                  <VaultInsetCard className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-sm text-slate-700">
-                      <span className="font-medium text-slate-900">{item.raw_count}</span> Raw
-                    </p>
-                    <OwnedObjectRemoveAction mode="raw" instanceId={item.removable_raw_instance_id!} label="Remove Raw" />
-                  </VaultInsetCard>
-                ) : null}
-                {item.slab_items.map((slabItem) => (
-                  <VaultInsetCard
-                    key={slabItem.instance_id}
-                    className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <div className="space-y-1">
-                      <p className="text-sm text-slate-700">
-                        <span className="font-medium text-slate-900">1</span>{" "}
-                        {formatVaultObjectLevelSlabSummary(slabItem) || "Graded slab"}
-                      </p>
-                      {slabItem.cert_number ? <p className="text-xs text-slate-500">Cert {slabItem.cert_number}</p> : null}
-                    </div>
-                    <OwnedObjectRemoveAction mode="slab" instanceId={slabItem.instance_id} label="Remove Slab" />
-                  </VaultInsetCard>
-                ))}
+            <div className="space-y-3 border-t border-slate-200 pt-3">
+              <div className="space-y-1">
+                <VaultFieldLabel>Manage copies</VaultFieldLabel>
+                <p className="text-xs text-slate-500">
+                  Set discovery intent per owned copy. Grouped summaries and network exposure derive from these exact copies.
+                </p>
               </div>
-            ) : null}
+
+              <div className="grid gap-2 sm:grid-cols-2">
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.owned_count}</span> total
+                </VaultInsetCard>
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
+                </VaultInsetCard>
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.sell_count}</span> sell
+                </VaultInsetCard>
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.trade_count}</span> trade
+                </VaultInsetCard>
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.showcase_count}</span> showcase
+                </VaultInsetCard>
+                <VaultInsetCard className="text-xs text-slate-700">
+                  <span className="font-medium text-slate-900">{item.hold_count}</span> hold
+                </VaultInsetCard>
+              </div>
+
+              <div className="space-y-2">
+                {item.copy_items.map((copy) => {
+                  const copySummary = copy.is_graded
+                    ? formatVaultObjectLevelSlabSummary(copy) || "Graded slab"
+                    : copy.condition_label ?? "Raw";
+
+                  return (
+                    <VaultInsetCard key={copy.instance_id} className="space-y-3">
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium text-slate-900">{copySummary}</p>
+                          <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+                            {copy.gv_vi_id ? <span>{copy.gv_vi_id}</span> : null}
+                            {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}
+                          </div>
+                          {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
+                        </div>
+                        <OwnedObjectRemoveAction
+                          mode={copy.is_graded ? "slab" : "raw"}
+                          instanceId={copy.instance_id}
+                          label={copy.is_graded ? "Remove Slab" : "Remove Raw"}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label htmlFor={`mobile-copy-intent-${copy.instance_id}`} className="block">
+                          <VaultFieldLabel>Copy Intent</VaultFieldLabel>
+                        </label>
+                        <select
+                          id={`mobile-copy-intent-${copy.instance_id}`}
+                          value={copy.intent}
+                          disabled={isIntentPending}
+                          onChange={(event) =>
+                            onInstanceIntentChange(item, copy.instance_id, event.target.value as VaultIntent)
+                          }
+                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:opacity-60"
+                        >
+                          <option value="hold">{getVaultIntentLabel("hold")} - hidden from network</option>
+                          {DISCOVERABLE_VAULT_INTENT_VALUES.map((intent) => (
+                            <option key={intent} value={intent}>
+                              {getVaultIntentLabel(intent)}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </VaultInsetCard>
+                  );
+                })}
+              </div>
+            </div>
 
             <div className="border-t border-slate-200 pt-3">
               <VaultActionButton

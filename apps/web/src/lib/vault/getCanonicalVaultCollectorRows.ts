@@ -18,6 +18,11 @@ import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
+import {
+  countVaultIntents,
+  getInPlayCount,
+  getSingleDiscoverableIntent,
+} from "@/lib/network/intentSummary";
 
 export type CanonicalVaultCollectorSlabItem = {
   instance_id: string;
@@ -26,6 +31,19 @@ export type CanonicalVaultCollectorSlabItem = {
   grader: string | null;
   grade: string | null;
   cert_number: string | null;
+  created_at: string | null;
+};
+
+export type CanonicalVaultCollectorCopyItem = {
+  instance_id: string;
+  gv_vi_id: string | null;
+  intent: VaultIntent;
+  condition_label: string | null;
+  is_graded: boolean;
+  grader: string | null;
+  grade: string | null;
+  cert_number: string | null;
+  notes: string | null;
   created_at: string | null;
 };
 
@@ -42,12 +60,19 @@ export type CanonicalVaultCollectorRow = {
   number: string;
   condition_label: string;
   intent: VaultIntent;
+  primary_intent: VaultIntent | null;
+  hold_count: number;
+  trade_count: number;
+  sell_count: number;
+  showcase_count: number;
+  in_play_count: number;
   owned_count: number;
   total_count: number;
   raw_count: number;
   slab_count: number;
   removable_raw_instance_id: string | null;
   slab_items: CanonicalVaultCollectorSlabItem[];
+  copy_items: CanonicalVaultCollectorCopyItem[];
   effective_price: number | null;
   image_url: string | null;
   created_at: string | null;
@@ -70,6 +95,8 @@ type ActiveInstanceRow = {
   grade_company: string | null;
   grade_value: string | null;
   grade_label: string | null;
+  intent: string | null;
+  notes: string | null;
 };
 
 type BucketMetadataRow = {
@@ -77,7 +104,6 @@ type BucketMetadataRow = {
   card_id: string | null;
   gv_id: string | null;
   condition_label: string | null;
-  intent: string | null;
   name: string | null;
   set_name: string | null;
   photo_url: string | null;
@@ -121,6 +147,10 @@ type CardAggregate = {
   totalCount: number;
   rawCount: number;
   slabCount: number;
+  holdCount: number;
+  tradeCount: number;
+  sellCount: number;
+  showcaseCount: number;
   removableRawInstanceId: string | null;
   latestCreatedAt: string | null;
   singleGvviId: string | null;
@@ -129,6 +159,7 @@ type CardAggregate = {
   imageUrl: string | null;
   anchorInstanceCounts: Map<string, number>;
   slabItems: CanonicalVaultCollectorSlabItem[];
+  copyItems: CanonicalVaultCollectorCopyItem[];
   primarySlab: CanonicalVaultCollectorSlabItem | null;
 };
 
@@ -176,12 +207,33 @@ function compareBuckets(left: BucketMetadataRow, right: BucketMetadataRow) {
   return left.id.localeCompare(right.id);
 }
 
+function buildCopyItem(
+  row: ActiveInstanceRow,
+  slabCert: SlabCertMetadataRow | null,
+): CanonicalVaultCollectorCopyItem {
+  return {
+    instance_id: row.id,
+    gv_vi_id: normalizeOptionalText(row.gv_vi_id),
+    intent: normalizeVaultIntent(row.intent) ?? "hold",
+    condition_label: normalizeOptionalText(row.condition_label),
+    is_graded: Boolean(row.slab_cert_id),
+    grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
+    grade:
+      normalizeGradeValue(slabCert?.grade) ??
+      normalizeOptionalText(row.grade_label) ??
+      normalizeOptionalText(row.grade_value),
+    cert_number: normalizeOptionalText(slabCert?.cert_number),
+    notes: normalizeOptionalText(row.notes),
+    created_at: row.created_at ?? null,
+  };
+}
+
 async function fetchActiveInstances(userId: string) {
   const adminClient = createServerAdminClient();
   const { data, error } = await adminClient
     .from("vault_item_instances")
     .select(
-      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label",
+      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -243,6 +295,10 @@ function aggregateInstances(
       totalCount: 0,
       rawCount: 0,
       slabCount: 0,
+      holdCount: 0,
+      tradeCount: 0,
+      sellCount: 0,
+      showcaseCount: 0,
       removableRawInstanceId: null,
       latestCreatedAt: null,
       singleGvviId: null,
@@ -251,8 +307,9 @@ function aggregateInstances(
       imageUrl: null,
       anchorInstanceCounts: new Map<string, number>(),
       slabItems: [],
+      copyItems: [],
       primarySlab: null,
-    };
+    } satisfies CardAggregate;
 
     current.totalCount += 1;
 
@@ -278,6 +335,23 @@ function aggregateInstances(
       current.imageUrl = normalizeOptionalText(row.image_url);
     }
 
+    const normalizedIntent = normalizeVaultIntent(row.intent) ?? "hold";
+    switch (normalizedIntent) {
+      case "trade":
+        current.tradeCount += 1;
+        break;
+      case "sell":
+        current.sellCount += 1;
+        break;
+      case "showcase":
+        current.showcaseCount += 1;
+        break;
+      case "hold":
+      default:
+        current.holdCount += 1;
+        break;
+    }
+
     const legacyVaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
     if (legacyVaultItemId) {
       current.anchorInstanceCounts.set(
@@ -286,6 +360,9 @@ function aggregateInstances(
       );
     }
 
+    const copyItem = buildCopyItem(row, slabCert);
+    current.copyItems.push(copyItem);
+
     if (slabCertId) {
       current.slabCount += 1;
 
@@ -293,12 +370,9 @@ function aggregateInstances(
         instance_id: row.id,
         gv_vi_id: normalizeOptionalText(row.gv_vi_id),
         slab_cert_id: slabCertId,
-        grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company),
-        grade:
-          normalizeGradeValue(slabCert?.grade) ??
-          normalizeOptionalText(row.grade_label) ??
-          normalizeOptionalText(row.grade_value),
-        cert_number: normalizeOptionalText(slabCert?.cert_number),
+        grader: copyItem.grader,
+        grade: copyItem.grade,
+        cert_number: copyItem.cert_number,
         created_at: row.created_at ?? null,
       };
 
@@ -314,6 +388,11 @@ function aggregateInstances(
     aggregates.set(cardPrintId, current);
   }
 
+  for (const aggregate of aggregates.values()) {
+    aggregate.copyItems.sort((left, right) => compareIsoDesc(left.created_at, right.created_at));
+    aggregate.slabItems.sort((left, right) => compareIsoDesc(left.created_at, right.created_at));
+  }
+
   return aggregates;
 }
 
@@ -324,7 +403,7 @@ async function fetchBucketMetadataByCardId(userId: string, cardPrintIds: string[
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("vault_items")
-      .select("id,card_id,gv_id,condition_label,intent,name,set_name,photo_url,created_at")
+      .select("id,card_id,gv_id,condition_label,name,set_name,photo_url,created_at")
       .eq("user_id", userId)
       .is("archived_at", null)
       .in("card_id", ids)
@@ -486,6 +565,10 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const setRecord = Array.isArray(card?.sets) ? card?.sets[0] : card?.sets;
     const primarySlab = aggregate.primarySlab;
+    const counts = countVaultIntents(aggregate.copyItems);
+    const inPlayCount = getInPlayCount(counts);
+    const singleDiscoverableIntent = getSingleDiscoverableIntent(counts);
+    const primaryIntent: VaultIntent | null = inPlayCount === 0 ? "hold" : singleDiscoverableIntent;
 
     rows.push({
       id: `card:${cardPrintId}`,
@@ -500,13 +583,20 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
         setRecord?.name?.trim() || representativeBucket.set_name?.trim() || card?.set_code?.trim() || "Unknown set",
       number: card?.number?.trim() || "—",
       condition_label: aggregate.conditionLabel ?? representativeBucket.condition_label?.trim() ?? "Unknown",
-      intent: normalizeVaultIntent(representativeBucket.intent) ?? "hold",
+      intent: primaryIntent ?? "hold",
+      primary_intent: primaryIntent,
+      hold_count: counts.holdCount,
+      trade_count: counts.tradeCount,
+      sell_count: counts.sellCount,
+      showcase_count: counts.showcaseCount,
+      in_play_count: inPlayCount,
       owned_count: aggregate.totalCount,
       total_count: aggregate.totalCount,
       raw_count: aggregate.rawCount,
       slab_count: aggregate.slabCount,
       removable_raw_instance_id: aggregate.removableRawInstanceId,
       slab_items: aggregate.slabItems,
+      copy_items: aggregate.copyItems,
       effective_price: typeof price?.effective_price === "number" ? price.effective_price : null,
       image_url:
         aggregate.imageUrl ??

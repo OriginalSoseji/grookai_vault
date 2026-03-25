@@ -32,18 +32,19 @@ type PublicCollectorProfileContentProps = {
 
 function isInPlayCard(card: PublicWallCard): card is PublicWallCard & {
   vault_item_id: string;
-  intent: DiscoverableVaultIntent;
 } {
-  return typeof card.vault_item_id === "string" && card.vault_item_id.length > 0 && typeof card.intent === "string";
+  return typeof card.vault_item_id === "string" && card.vault_item_id.length > 0 && (card.in_play_quantity ?? 0) > 0;
 }
 
-function getInPlayActionLabel(intent: DiscoverableVaultIntent) {
+function getInPlayActionLabel(intent: DiscoverableVaultIntent | null | undefined) {
   switch (intent) {
     case "trade":
       return "Ask to trade";
     case "sell":
       return "Ask to buy";
     case "showcase":
+      return "Contact";
+    default:
       return "Contact";
   }
 }
@@ -60,27 +61,62 @@ function getInPlayIntentBadgeClassName(intent: DiscoverableVaultIntent) {
 }
 
 function getInPlaySupportBadge(card: PublicWallCard) {
-  if (card.in_play_is_graded) {
-    return "Graded";
+  const rawCount = card.in_play_raw_count ?? 0;
+  const slabCount = card.in_play_slab_count ?? 0;
+
+  if (rawCount > 0 && slabCount > 0) {
+    return `${rawCount} raw • ${slabCount} slab`;
   }
 
-  if ((card.in_play_quantity ?? 0) > 1) {
-    return `Qty ${card.in_play_quantity}`;
-  }
-
-  return null;
-}
-
-function getInPlayOwnershipSummary(card: PublicWallCard) {
-  if (card.in_play_is_graded) {
-    return (card.in_play_grade_label ?? [card.in_play_grade_company, card.in_play_grade_value].filter(Boolean).join(" ")) || "Graded";
+  if (slabCount > 0) {
+    return slabCount > 1 ? `${slabCount} slabs` : "Slab";
   }
 
   if ((card.in_play_quantity ?? 0) > 1) {
     return `${card.in_play_quantity} copies`;
   }
 
+  return null;
+}
+
+function getInPlayOwnershipSummary(card: PublicWallCard) {
+  if ((card.in_play_quantity ?? 0) > 1) {
+    return `${card.in_play_quantity} discoverable copies`;
+  }
+
+  if (card.in_play_is_graded) {
+    return (card.in_play_grade_label ?? [card.in_play_grade_company, card.in_play_grade_value].filter(Boolean).join(" ")) || "Graded";
+  }
+
   return card.in_play_condition_label ?? null;
+}
+
+function getIntentBadgeLabels(card: PublicWallCard) {
+  return (
+    [
+      (card.sell_count ?? 0) > 0 ? { intent: "sell" as const, count: card.sell_count ?? 0 } : null,
+      (card.trade_count ?? 0) > 0 ? { intent: "trade" as const, count: card.trade_count ?? 0 } : null,
+      (card.showcase_count ?? 0) > 0 ? { intent: "showcase" as const, count: card.showcase_count ?? 0 } : null,
+    ] as const
+  ).filter(
+    (value): value is { intent: DiscoverableVaultIntent; count: number } => Boolean(value && value.count > 0),
+  );
+}
+
+function getGroupedContactAnchor(card: PublicWallCard) {
+  if (!card.vault_item_id) {
+    return null;
+  }
+
+  const copyVaultItemIds = Array.from(new Set((card.in_play_copies ?? []).map((copy) => copy.vault_item_id)));
+  if (copyVaultItemIds.length > 1) {
+    return null;
+  }
+
+  return {
+    vaultItemId: copyVaultItemIds[0] ?? card.vault_item_id,
+    intent: card.intent ?? null,
+  };
 }
 
 function compareInPlayCards(left: PublicWallCard, right: PublicWallCard) {
@@ -121,7 +157,9 @@ export function PublicCollectorProfileContent({
     () =>
       inPlayCards.reduce(
         (counts, card) => {
-          counts[card.intent] += 1;
+          counts.trade += card.trade_count ?? 0;
+          counts.sell += card.sell_count ?? 0;
+          counts.showcase += card.showcase_count ?? 0;
           return counts;
         },
         {
@@ -223,6 +261,8 @@ export function PublicCollectorProfileContent({
             {inPlayCards.map((card) => {
               const supportBadge = getInPlaySupportBadge(card);
               const ownershipSummary = getInPlayOwnershipSummary(card);
+              const intentBadges = getIntentBadgeLabels(card);
+              const groupedContactAnchor = getGroupedContactAnchor(card);
 
               return (
                 <PokemonCardGridTile
@@ -235,11 +275,14 @@ export function PublicCollectorProfileContent({
                   imageOverlay={
                     <>
                       <div className="flex min-w-0 flex-wrap gap-1.5">
-                        <span
-                          className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] shadow-sm ${getInPlayIntentBadgeClassName(card.intent)}`}
-                        >
-                          {getVaultIntentLabel(card.intent)}
-                        </span>
+                        {intentBadges.map((badge) => (
+                          <span
+                            key={`${card.card_print_id}-${badge.intent}`}
+                            className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] shadow-sm ${getInPlayIntentBadgeClassName(badge.intent)}`}
+                          >
+                            {getVaultIntentLabel(badge.intent)} {badge.count}
+                          </span>
+                        ))}
                       </div>
                       {supportBadge ? (
                         <span className="inline-flex rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-700 shadow-sm">
@@ -271,22 +314,75 @@ export function PublicCollectorProfileContent({
                     </>
                   }
                   details={
-                    !isOwnProfile ? (
-                      <ContactOwnerButton
-                        vaultItemId={card.vault_item_id}
-                        cardPrintId={card.card_print_id}
-                        ownerUserId={collectorUserId}
-                        viewerUserId={viewerUserId}
-                        ownerDisplayName={collectorDisplayName}
-                        cardName={card.name}
-                        intent={card.intent}
-                        isAuthenticated={isAuthenticated}
-                        loginHref={loginHref}
-                        currentPath={currentPath}
-                        buttonLabel={getInPlayActionLabel(card.intent)}
-                        buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                      />
-                    ) : null
+                    <div className="space-y-3">
+                      {card.in_play_copies && card.in_play_copies.length > 0 ? (
+                        <details className="rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-3">
+                          <summary className="cursor-pointer text-sm font-medium text-slate-800">
+                            View copies ({card.in_play_copies.length})
+                          </summary>
+                          <div className="mt-3 space-y-2">
+                            {card.in_play_copies.map((copy) => (
+                              <div key={copy.instance_id} className="rounded-[0.8rem] border border-slate-200 bg-white px-3 py-2.5">
+                                <div className="space-y-3">
+                                  <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                    <span
+                                      className={`inline-flex rounded-full border px-2 py-0.5 ${getInPlayIntentBadgeClassName(copy.intent)}`}
+                                    >
+                                      {getVaultIntentLabel(copy.intent)}
+                                    </span>
+                                    {copy.is_graded ? (
+                                      <span>
+                                        {copy.grade_label ?? ([copy.grade_company, copy.grade_value].filter(Boolean).join(" ") || "Graded")}
+                                      </span>
+                                    ) : copy.condition_label ? (
+                                      <span>{copy.condition_label}</span>
+                                    ) : null}
+                                    {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}
+                                  </div>
+                                  {!isOwnProfile ? (
+                                    <ContactOwnerButton
+                                      vaultItemId={copy.vault_item_id}
+                                      cardPrintId={card.card_print_id}
+                                      ownerUserId={collectorUserId}
+                                      viewerUserId={viewerUserId}
+                                      ownerDisplayName={collectorDisplayName}
+                                      cardName={card.name}
+                                      intent={copy.intent}
+                                      isAuthenticated={isAuthenticated}
+                                      loginHref={loginHref}
+                                      currentPath={currentPath}
+                                      buttonLabel={getInPlayActionLabel(copy.intent)}
+                                      buttonClassName="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                                    />
+                                  ) : null}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      ) : null}
+                      {!isOwnProfile && groupedContactAnchor ? (
+                        <ContactOwnerButton
+                          vaultItemId={groupedContactAnchor.vaultItemId}
+                          cardPrintId={card.card_print_id}
+                          ownerUserId={collectorUserId}
+                          viewerUserId={viewerUserId}
+                          ownerDisplayName={collectorDisplayName}
+                          cardName={card.name}
+                          intent={groupedContactAnchor.intent}
+                          isAuthenticated={isAuthenticated}
+                          loginHref={loginHref}
+                          currentPath={currentPath}
+                          buttonLabel={getInPlayActionLabel(groupedContactAnchor.intent)}
+                          buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                        />
+                      ) : null}
+                      {!isOwnProfile && !groupedContactAnchor && card.in_play_copies && card.in_play_copies.length > 1 ? (
+                        <p className="text-xs text-slate-500">
+                          Choose a copy above to contact this collector about the exact card in play.
+                        </p>
+                      ) : null}
+                    </div>
                   }
                   footer={<span>GV-ID: {card.gv_id}</span>}
                 />

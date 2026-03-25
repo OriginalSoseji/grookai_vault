@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -56,6 +57,7 @@ type OwnedSourceInstanceRow = {
   card_print_id: string | null;
   legacy_vault_item_id: string | null;
   condition_label: string | null;
+  intent: string | null;
   is_graded: boolean | null;
   grade_company: string | null;
   grade_value: string | null;
@@ -104,6 +106,7 @@ export type UserCardInteractionOwnedSourceInstance = {
   instanceId: string;
   gvviId: string | null;
   label: string;
+  intent: VaultIntent;
   conditionLabel: string | null;
   isGraded: boolean;
   gradeCompany: string | null;
@@ -478,7 +481,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
   if (groupVaultItemIds.length > 0) {
     const { data: ownedInstancesData, error: ownedInstancesError } = await adminClient
       .from("vault_item_instances")
-      .select("id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,is_graded,grade_company,grade_value,grade_label,created_at")
+      .select("id,gv_vi_id,card_print_id,legacy_vault_item_id,condition_label,intent,is_graded,grade_company,grade_value,grade_label,created_at")
       .eq("user_id", normalizedUserId)
       .is("archived_at", null)
       .in("legacy_vault_item_id", groupVaultItemIds);
@@ -509,6 +512,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
         instanceId: row.id,
         gvviId: normalizeOptionalText(row.gv_vi_id),
         label: buildOwnedInstanceLabel(row),
+        intent: normalizeVaultIntent(row.intent) ?? "hold",
         conditionLabel: normalizeOptionalText(row.condition_label),
         isGraded: Boolean(row.is_graded),
         gradeCompany: normalizeOptionalText(row.grade_company),

@@ -22,7 +22,7 @@ type ContactOwnerButtonProps = {
   viewerUserId?: string | null;
   ownerDisplayName: string;
   cardName: string;
-  intent: DiscoverableVaultIntent;
+  intent: DiscoverableVaultIntent | null;
   isAuthenticated: boolean;
   loginHref: string;
   currentPath: string;
@@ -30,7 +30,7 @@ type ContactOwnerButtonProps = {
   buttonClassName?: string;
 };
 
-function getDefaultMessage(ownerDisplayName: string, cardName: string, intent: DiscoverableVaultIntent) {
+function getDefaultMessage(ownerDisplayName: string, cardName: string, intent: DiscoverableVaultIntent | null) {
   const collectorName = ownerDisplayName.trim() || "there";
 
   switch (intent) {
@@ -40,6 +40,8 @@ function getDefaultMessage(ownerDisplayName: string, cardName: string, intent: D
       return `Hi ${collectorName}, I'm interested in buying your ${cardName}. Is it still available?`;
     case "showcase":
       return `Hi ${collectorName}, I saw your ${cardName} in the collector network and wanted to ask about it.`;
+    default:
+      return `Hi ${collectorName}, I'm interested in your ${cardName}. Is it still available?`;
   }
 }
 
@@ -224,7 +226,7 @@ export function ContactOwnerButton({
               <div className="w-full max-w-xl rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-2xl">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    {getVaultIntentLabel(intent)}
+                    {intent ? getVaultIntentLabel(intent) : "Collector Network"}
                   </p>
                   <h3 id={`contact-owner-${vaultItemId}`} className="text-2xl font-semibold tracking-tight text-slate-950">
                     Contact {ownerDisplayName}

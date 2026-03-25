@@ -19,6 +19,11 @@ import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardT
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import {
+  countVaultIntents,
+  getInPlayCount,
+  getSingleDiscoverableIntent,
+} from "@/lib/network/intentSummary";
+import {
   changeVaultItemQuantityAction,
   type VaultQuantityMutationInput,
 } from "@/lib/vault/changeVaultItemQuantityAction";
@@ -26,7 +31,7 @@ import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleShare
 import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
 import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
 import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
-import { saveVaultItemIntentAction } from "@/lib/network/saveVaultItemIntentAction";
+import { saveVaultItemInstanceIntentAction } from "@/lib/network/saveVaultItemInstanceIntentAction";
 import type { VaultIntent } from "@/lib/network/intent";
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { ReactNode } from "react";
@@ -180,7 +185,7 @@ function renderVaultGrid(
   publicCollectionHref: string | null,
   onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
   onConditionChange: (item: VaultCardData, condition: string) => void,
-  onIntentChange: (item: VaultCardData, intent: VaultIntent) => void,
+  onInstanceIntentChange: (item: VaultCardData, instanceId: string, intent: VaultIntent) => void,
   onShareToggle: (item: VaultCardData) => void,
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void,
   onSharedControlsToggle: (item: VaultCardData) => void,
@@ -199,7 +204,7 @@ function renderVaultGrid(
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
           isPending={pendingItemId === rowKey}
           isSharePending={pendingShareItemId === rowKey}
-          isIntentPending={pendingIntentItemId === rowKey}
+          isIntentPending={Boolean(pendingIntentItemId)}
           isWallCategoryPending={pendingWallCategoryItemId === rowKey}
           isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
           isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
@@ -209,7 +214,7 @@ function renderVaultGrid(
           publicCollectionHref={item.is_shared ? publicCollectionHref : null}
           onQuantityChange={onQuantityChange}
           onConditionChange={(condition) => onConditionChange(item, condition)}
-          onIntentChange={onIntentChange}
+          onInstanceIntentChange={onInstanceIntentChange}
           onShareToggle={onShareToggle}
           onWallCategoryChange={onWallCategoryChange}
           onSharedControlsToggle={onSharedControlsToggle}
@@ -277,13 +282,43 @@ function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, 
   );
 }
 
-function applyOptimisticIntentChange(items: VaultCardData[], rowKey: string, intent: VaultIntent) {
+function applyGroupedIntentSummary(item: VaultCardData, nextCopyItems: VaultCardData["copy_items"]): VaultCardData {
+  const counts = countVaultIntents(nextCopyItems);
+  const inPlayCount = getInPlayCount(counts);
+  const primaryIntent = inPlayCount === 0 ? "hold" : getSingleDiscoverableIntent(counts);
+
+  return {
+    ...item,
+    copy_items: nextCopyItems,
+    intent: primaryIntent ?? "hold",
+    primary_intent: primaryIntent ?? null,
+    hold_count: counts.holdCount,
+    trade_count: counts.tradeCount,
+    sell_count: counts.sellCount,
+    showcase_count: counts.showcaseCount,
+    in_play_count: inPlayCount,
+  };
+}
+
+function applyOptimisticInstanceIntentChange(
+  items: VaultCardData[],
+  rowKey: string,
+  instanceId: string,
+  intent: VaultIntent,
+) {
   return items.map((item) =>
     getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          intent,
-        }
+      ? applyGroupedIntentSummary(
+          item,
+          item.copy_items.map((copyItem) =>
+            copyItem.instance_id === instanceId
+              ? {
+                  ...copyItem,
+                  intent,
+                }
+              : copyItem,
+          ),
+        )
       : item,
   );
 }
@@ -669,14 +704,14 @@ export function VaultCollectionView({
     });
   }
 
-  function handleIntentChange(item: VaultCardData, nextIntent: VaultIntent) {
+  function handleInstanceIntentChange(item: VaultCardData, instanceId: string, nextIntent: VaultIntent) {
     if (
       pendingIntentItemId ||
       pendingItemId ||
       pendingShareItemId ||
       pendingWallCategoryItemId ||
       pendingPublicImageKey ||
-      item.intent === nextIntent
+      item.copy_items.find((copyItem) => copyItem.instance_id === instanceId)?.intent === nextIntent
     ) {
       return;
     }
@@ -688,13 +723,13 @@ export function VaultCollectionView({
       delete next[rowKey];
       return next;
     });
-    setPendingIntentItemId(rowKey);
-    setItems(applyOptimisticIntentChange(currentItems, rowKey, nextIntent));
+    setPendingIntentItemId(instanceId);
+    setItems(applyOptimisticInstanceIntentChange(currentItems, rowKey, instanceId, nextIntent));
 
     startTransition(async () => {
       try {
-        const result = await saveVaultItemIntentAction({
-          itemId: item.vault_item_id,
+        const result = await saveVaultItemInstanceIntentAction({
+          instanceId,
           intent: nextIntent,
         });
 
@@ -707,13 +742,15 @@ export function VaultCollectionView({
           return;
         }
 
-        setItems((current) => applyOptimisticIntentChange(current, rowKey, result.intent));
+        setItems((current) =>
+          applyOptimisticInstanceIntentChange(current, rowKey, result.instanceId, result.intent),
+        );
         router.refresh();
       } catch (error) {
         setItems(currentItems);
         setItemErrors((current) => ({
           ...current,
-          [rowKey]: "Couldn’t save network intent.",
+          [rowKey]: "Couldn’t save copy intent.",
         }));
       } finally {
         setPendingIntentItemId(null);
@@ -1009,7 +1046,7 @@ export function VaultCollectionView({
         publicCollectionHref={publicCollectionHref}
         onQuantityChange={handleQuantityChange}
         onConditionChange={changeCondition}
-        onIntentChange={handleIntentChange}
+        onInstanceIntentChange={handleInstanceIntentChange}
         onShareToggle={handleShareToggle}
         onWallCategoryChange={handleWallCategoryChange}
         onSharedControlsToggle={handleSharedControlsToggle}
@@ -1068,7 +1105,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
-            handleIntentChange,
+            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1105,7 +1142,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
-            handleIntentChange,
+            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1142,7 +1179,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
-            handleIntentChange,
+            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1204,7 +1241,7 @@ export function VaultCollectionView({
                   publicCollectionHref,
                   handleQuantityChange,
                   changeCondition,
-                  handleIntentChange,
+                  handleInstanceIntentChange,
                   handleShareToggle,
                   handleWallCategoryChange,
                   handleSharedControlsToggle,
@@ -1281,7 +1318,7 @@ export function VaultCollectionView({
             publicCollectionHref,
             handleQuantityChange,
             changeCondition,
-            handleIntentChange,
+            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1354,7 +1391,7 @@ export function VaultCollectionView({
           publicCollectionHref,
           handleQuantityChange,
           changeCondition,
-          handleIntentChange,
+          handleInstanceIntentChange,
           handleShareToggle,
           handleWallCategoryChange,
           handleSharedControlsToggle,

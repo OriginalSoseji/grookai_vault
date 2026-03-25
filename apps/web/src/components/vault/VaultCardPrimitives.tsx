@@ -59,7 +59,9 @@ export function getVaultOwnershipSummary(
     formatVaultMixedOwnershipSummary(item) ??
     (item.is_slab
       ? formatVaultSlabSummary(item) || `${item.slab_count || item.owned_count} Slab`
-      : `Condition ${item.condition_label || "NM"}`)
+      : item.owned_count > 1
+        ? `${item.raw_count || item.owned_count} Raw`
+        : `Condition ${item.condition_label || "NM"}`)
   );
 }
 
@@ -74,11 +76,31 @@ export function VaultStatusBadges({
   includeQuantity = true,
   size = "xs",
 }: {
-  item: Pick<VaultCardData, "owned_count" | "is_slab" | "is_shared" | "wall_category" | "intent">;
+  item: Pick<
+    VaultCardData,
+    | "owned_count"
+    | "is_slab"
+    | "is_shared"
+    | "wall_category"
+    | "intent"
+    | "in_play_count"
+    | "trade_count"
+    | "sell_count"
+    | "showcase_count"
+  >;
   includeQuantity?: boolean;
   size?: "xs" | "sm";
 }) {
   const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
+  const discoverableIntentKinds = [item.trade_count > 0, item.sell_count > 0, item.showcase_count > 0].filter(Boolean).length;
+  const singleIntentLabel =
+    item.trade_count > 0 && item.sell_count === 0 && item.showcase_count === 0
+      ? `${getVaultIntentLabel("trade")}${item.trade_count > 1 ? ` ${item.trade_count}` : ""}`
+      : item.sell_count > 0 && item.trade_count === 0 && item.showcase_count === 0
+        ? `${getVaultIntentLabel("sell")}${item.sell_count > 1 ? ` ${item.sell_count}` : ""}`
+        : item.showcase_count > 0 && item.trade_count === 0 && item.sell_count === 0
+          ? `${getVaultIntentLabel("showcase")}${item.showcase_count > 1 ? ` ${item.showcase_count}` : ""}`
+          : null;
 
   return (
     <>
@@ -90,9 +112,14 @@ export function VaultStatusBadges({
       <PokemonCardGridBadge tone={item.is_slab ? "warm" : "default"} size={size}>
         {item.is_slab ? "Slab" : "Raw"}
       </PokemonCardGridBadge>
-      {item.intent !== "hold" ? (
+      {item.in_play_count > 0 && discoverableIntentKinds === 1 && singleIntentLabel ? (
         <PokemonCardGridBadge tone="accent" size={size}>
-          {getVaultIntentLabel(item.intent)}
+          {singleIntentLabel}
+        </PokemonCardGridBadge>
+      ) : null}
+      {item.in_play_count > 0 && discoverableIntentKinds > 1 ? (
+        <PokemonCardGridBadge tone="accent" size={size}>
+          In Play {item.in_play_count}
         </PokemonCardGridBadge>
       ) : null}
       {item.is_shared ? (

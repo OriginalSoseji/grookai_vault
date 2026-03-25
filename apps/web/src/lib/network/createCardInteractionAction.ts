@@ -10,8 +10,7 @@ type StreamTargetRow = {
   owner_display_name: string | null;
   card_print_id: string | null;
   intent: string | null;
-  gv_id: string | null;
-  name: string | null;
+  created_at: string | null;
 };
 
 type InsertedInteractionRow = {
@@ -103,10 +102,12 @@ export async function createCardInteractionAction(
   }
 
   const { data: streamTarget, error: streamError } = await client
-    .from("v_card_stream_v1")
-    .select("vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,gv_id,name")
+    .from("v_card_contact_targets_v1")
+    .select("vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,created_at")
     .eq("vault_item_id", vaultItemId)
     .eq("card_print_id", cardPrintId)
+    .order("created_at", { ascending: false })
+    .limit(1)
     .maybeSingle();
 
   if (streamError) {

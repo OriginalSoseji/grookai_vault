@@ -27,6 +27,12 @@ type InPlayStreamRow = {
   card_print_id: string | null;
   intent: string | null;
   quantity: number | null;
+  in_play_count: number | null;
+  trade_count: number | null;
+  sell_count: number | null;
+  showcase_count: number | null;
+  raw_count: number | null;
+  slab_count: number | null;
   condition_label: string | null;
   is_graded: boolean | null;
   grade_company: string | null;
@@ -40,6 +46,12 @@ type CollectorInPlayStreamRow = {
   card_print_id: string | null;
   intent: string | null;
   quantity: number | null;
+  in_play_count: number | null;
+  trade_count: number | null;
+  sell_count: number | null;
+  showcase_count: number | null;
+  raw_count: number | null;
+  slab_count: number | null;
   condition_label: string | null;
   is_graded: boolean | null;
   grade_company: string | null;
@@ -56,8 +68,13 @@ type CollectorInPlayStreamRow = {
 
 type InPlayCardState = {
   vault_item_id: string;
-  intent: NonNullable<PublicWallCard["intent"]>;
+  intent?: NonNullable<PublicWallCard["intent"]>;
   quantity: number;
+  trade_count: number;
+  sell_count: number;
+  showcase_count: number;
+  raw_count: number;
+  slab_count: number;
   condition_label?: string;
   is_graded: boolean;
   grade_company?: string;
@@ -102,6 +119,20 @@ type SlabCertRow = {
   grader: string | null;
   cert_number: string | null;
   grade: number | string | null;
+};
+
+type DiscoverableInstanceRow = {
+  id: string;
+  card_print_id: string | null;
+  slab_cert_id: string | null;
+  legacy_vault_item_id: string | null;
+  intent: string | null;
+  condition_label: string | null;
+  is_graded: boolean | null;
+  grade_company: string | null;
+  grade_value: string | null;
+  grade_label: string | null;
+  created_at: string | null;
 };
 
 function createServerSupabase() {
@@ -193,7 +224,7 @@ async function fetchInPlayStateByCardId(ownerSlug: string, cardIds: string[]) {
   const { data, error } = await supabase
     .from("v_card_stream_v1")
     .select(
-      "vault_item_id,card_print_id,intent,quantity,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
     )
     .eq("owner_slug", normalizedOwnerSlug)
     .in("card_print_id", normalizedCardIds)
@@ -215,14 +246,19 @@ async function fetchInPlayStateByCardId(ownerSlug: string, cardIds: string[]) {
     const cardPrintId = normalizeOptionalText(row.card_print_id);
     const vaultItemId = normalizeOptionalText(row.vault_item_id);
     const intent = normalizeDiscoverableVaultIntent(row.intent);
-    if (!cardPrintId || !vaultItemId || !intent || byCardId.has(cardPrintId)) {
+    if (!cardPrintId || !vaultItemId || byCardId.has(cardPrintId)) {
       continue;
     }
 
     byCardId.set(cardPrintId, {
       vault_item_id: vaultItemId,
-      intent,
-      quantity: Math.max(1, row.quantity ?? 1),
+      intent: intent ?? undefined,
+      quantity: Math.max(1, row.in_play_count ?? row.quantity ?? 1),
+      trade_count: Math.max(0, row.trade_count ?? 0),
+      sell_count: Math.max(0, row.sell_count ?? 0),
+      showcase_count: Math.max(0, row.showcase_count ?? 0),
+      raw_count: Math.max(0, row.raw_count ?? 0),
+      slab_count: Math.max(0, row.slab_count ?? 0),
       condition_label: normalizeOptionalText(row.condition_label) ?? undefined,
       is_graded: row.is_graded === true,
       grade_company: normalizeOptionalText(row.grade_company) ?? undefined,
@@ -337,6 +373,98 @@ async function fetchSharedWallStateByCardId(userId: string, cardIds: string[]) {
   return out;
 }
 
+async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]) {
+  const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
+  const requestedCardIds = new Set(normalizedCardIds);
+  if (!userId || normalizedCardIds.length === 0) {
+    return new Map<string, NonNullable<PublicWallCard["in_play_copies"]>>();
+  }
+
+  const admin = createServerAdminClient();
+  const { data: instances, error: instancesError } = await admin
+    .from("vault_item_instances")
+    .select(
+      "id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+    )
+    .eq("user_id", userId)
+    .is("archived_at", null)
+    .in("intent", ["trade", "sell", "showcase"])
+    .order("created_at", { ascending: false })
+    .order("id", { ascending: false });
+
+  if (instancesError) {
+    console.error("[public:shared-cards] discoverable copy lookup failed", {
+      userId,
+      error: instancesError,
+    });
+    return new Map<string, NonNullable<PublicWallCard["in_play_copies"]>>();
+  }
+
+  const slabCertIds = Array.from(
+    new Set(
+      ((instances ?? []) as DiscoverableInstanceRow[])
+        .map((row) => normalizeOptionalText(row.slab_cert_id))
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
+
+  const slabCertById = new Map<string, SlabCertRow>();
+  if (slabCertIds.length > 0) {
+    const { data: slabCerts, error: slabCertsError } = await admin
+      .from("slab_certs")
+      .select("id,card_print_id,grader,cert_number,grade")
+      .in("id", slabCertIds);
+
+    if (slabCertsError) {
+      console.error("[public:shared-cards] discoverable slab cert lookup failed", {
+        userId,
+        error: slabCertsError,
+      });
+      return new Map<string, NonNullable<PublicWallCard["in_play_copies"]>>();
+    }
+
+    for (const row of (slabCerts ?? []) as SlabCertRow[]) {
+      const slabCertId = normalizeOptionalText(row.id);
+      if (slabCertId) {
+        slabCertById.set(slabCertId, row);
+      }
+    }
+  }
+
+  const byCardId = new Map<string, NonNullable<PublicWallCard["in_play_copies"]>>();
+
+  for (const row of (instances ?? []) as DiscoverableInstanceRow[]) {
+    const slabCert = normalizeOptionalText(row.slab_cert_id)
+      ? slabCertById.get(normalizeOptionalText(row.slab_cert_id)!)
+      : null;
+    const cardPrintId =
+      normalizeOptionalText(row.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
+    const instanceId = normalizeOptionalText(row.id);
+    const vaultItemId = normalizeOptionalText(row.legacy_vault_item_id);
+    const intent = normalizeDiscoverableVaultIntent(row.intent);
+    if (!cardPrintId || !requestedCardIds.has(cardPrintId) || !instanceId || !vaultItemId || !intent) {
+      continue;
+    }
+
+    const copies = byCardId.get(cardPrintId) ?? [];
+    copies.push({
+      instance_id: instanceId,
+      vault_item_id: vaultItemId,
+      intent,
+      condition_label: normalizeOptionalText(row.condition_label) ?? undefined,
+      is_graded: row.is_graded === true,
+      grade_company: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company) ?? undefined,
+      grade_value: normalizeGradeValue(slabCert?.grade) ?? normalizeOptionalText(row.grade_value) ?? undefined,
+      grade_label: normalizeOptionalText(row.grade_label) ?? undefined,
+      cert_number: normalizeOptionalText(slabCert?.cert_number) ?? undefined,
+      created_at: row.created_at ?? undefined,
+    });
+    byCardId.set(cardPrintId, copies);
+  }
+
+  return byCardId;
+}
+
 export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCard[]> => {
   const normalizedSlug = normalizeSlug(slug);
   if (!normalizedSlug) {
@@ -355,7 +483,8 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
   }
 
   const profileRow = profile as PublicProfileLookup;
-  if (!profileRow.user_id || !profileRow.vault_sharing_enabled) {
+  const ownerUserId = normalizeOptionalText(profileRow.user_id);
+  if (!ownerUserId || !profileRow.vault_sharing_enabled) {
     return [];
   }
 
@@ -394,7 +523,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
   }
 
   const wallStateByCardId = await fetchSharedWallStateByCardId(
-    profileRow.user_id,
+    ownerUserId,
     sharedRows.map((row) => row.card_id),
   );
   const inPlayStateByCardId = await fetchInPlayStateByCardId(
@@ -456,7 +585,12 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         cert_number: wallState?.cert_number,
         vault_item_id: inPlayState?.vault_item_id,
         intent: inPlayState?.intent,
+        trade_count: inPlayState?.trade_count,
+        sell_count: inPlayState?.sell_count,
+        showcase_count: inPlayState?.showcase_count,
         in_play_quantity: inPlayState?.quantity,
+        in_play_raw_count: inPlayState?.raw_count,
+        in_play_slab_count: inPlayState?.slab_count,
         in_play_condition_label: inPlayState?.condition_label,
         in_play_is_graded: inPlayState?.is_graded,
         in_play_grade_company: inPlayState?.grade_company,
@@ -486,14 +620,15 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
   }
 
   const profileRow = profile as PublicProfileLookup;
-  if (!profileRow.user_id || !profileRow.vault_sharing_enabled) {
+  const ownerUserId = normalizeOptionalText(profileRow.user_id);
+  if (!ownerUserId || !profileRow.vault_sharing_enabled) {
     return [];
   }
 
   const { data: streamRows, error: streamError } = await supabase
     .from("v_card_stream_v1")
     .select(
-      "vault_item_id,card_print_id,intent,quantity,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
+      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
     )
     .eq("owner_slug", normalizedSlug)
     .order("created_at", { ascending: false })
@@ -508,7 +643,12 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       vaultItemId: normalizeOptionalText(row.vault_item_id),
       cardPrintId: normalizeOptionalText(row.card_print_id),
       intent: normalizeDiscoverableVaultIntent(row.intent),
-      quantity: Math.max(1, row.quantity ?? 1),
+      quantity: Math.max(1, row.in_play_count ?? row.quantity ?? 1),
+      tradeCount: Math.max(0, row.trade_count ?? 0),
+      sellCount: Math.max(0, row.sell_count ?? 0),
+      showcaseCount: Math.max(0, row.showcase_count ?? 0),
+      rawCount: Math.max(0, row.raw_count ?? 0),
+      slabCount: Math.max(0, row.slab_count ?? 0),
       conditionLabel: normalizeOptionalText(row.condition_label),
       isGraded: row.is_graded === true,
       gradeCompany: normalizeOptionalText(row.grade_company),
@@ -528,8 +668,13 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       ): row is {
         vaultItemId: string;
         cardPrintId: string;
-        intent: NonNullable<SharedCard["intent"]>;
+        intent: NonNullable<SharedCard["intent"]> | null;
         quantity: number;
+        tradeCount: number;
+        sellCount: number;
+        showcaseCount: number;
+        rawCount: number;
+        slabCount: number;
         conditionLabel: string | null;
         isGraded: boolean;
         gradeCompany: string | null;
@@ -542,7 +687,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         setName: string | null;
         number: string | null;
         imageUrl: string | null;
-      } => Boolean(row.vaultItemId && row.cardPrintId && row.intent && row.gvId),
+      } => Boolean(row.vaultItemId && row.cardPrintId && row.gvId),
     );
 
   if (rows.length === 0) {
@@ -550,7 +695,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
   }
 
   const cardPrintIds = Array.from(new Set(rows.map((row) => row.cardPrintId)));
-  const [cardPrintsResponse, sharedResponse] = await Promise.all([
+  const [cardPrintsResponse, sharedResponse, discoverableCopiesByCardId] = await Promise.all([
     supabase
       .from("card_prints")
       .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
@@ -566,9 +711,10 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
           show_personal_front
         `,
       )
-      .eq("user_id", profileRow.user_id)
+      .eq("user_id", ownerUserId)
       .eq("is_shared", true)
       .in("card_id", cardPrintIds),
+    fetchDiscoverableCopiesByCardId(ownerUserId, cardPrintIds),
   ]);
 
   if (cardPrintsResponse.error || !cardPrintsResponse.data) {
@@ -624,14 +770,20 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         undefined,
       public_note: normalizeOptionalText(shared?.public_note) ?? undefined,
       vault_item_id: row.vaultItemId,
-      intent: row.intent,
+      intent: row.intent ?? undefined,
+      trade_count: row.tradeCount,
+      sell_count: row.sellCount,
+      showcase_count: row.showcaseCount,
       in_play_quantity: row.quantity,
+      in_play_raw_count: row.rawCount,
+      in_play_slab_count: row.slabCount,
       in_play_condition_label: row.conditionLabel ?? undefined,
       in_play_is_graded: row.isGraded,
       in_play_grade_company: row.gradeCompany ?? undefined,
       in_play_grade_value: row.gradeValue ?? undefined,
       in_play_grade_label: row.gradeLabel ?? undefined,
       in_play_created_at: row.createdAt ?? undefined,
+      in_play_copies: discoverableCopiesByCardId.get(row.cardPrintId) ?? undefined,
     } satisfies SharedCard;
   });
 });

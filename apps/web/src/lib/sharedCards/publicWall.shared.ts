@@ -1,6 +1,19 @@
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { DiscoverableVaultIntent } from "@/lib/network/intent";
 
+export type PublicInPlayCopy = {
+  instance_id: string;
+  vault_item_id: string;
+  intent: DiscoverableVaultIntent;
+  condition_label?: string;
+  is_graded: boolean;
+  grade_company?: string;
+  grade_value?: string;
+  grade_label?: string;
+  cert_number?: string;
+  created_at?: string;
+};
+
 export type PublicWallCard = {
   card_print_id: string;
   gv_id: string;
@@ -22,11 +35,17 @@ export type PublicWallCard = {
   cert_number?: string;
   vault_item_id?: string;
   intent?: DiscoverableVaultIntent;
+  trade_count?: number;
+  sell_count?: number;
+  showcase_count?: number;
   in_play_quantity?: number;
+  in_play_raw_count?: number;
+  in_play_slab_count?: number;
   in_play_condition_label?: string;
   in_play_is_graded?: boolean;
   in_play_grade_company?: string;
   in_play_grade_value?: string;
   in_play_grade_label?: string;
   in_play_created_at?: string;
+  in_play_copies?: PublicInPlayCopy[];
 };

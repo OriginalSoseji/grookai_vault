@@ -70,12 +70,14 @@ function formatOutcomeSummary(outcome: UserCardInteractionOutcome) {
 function SubmitExecutionButton({
   mode,
   isSubmitting,
+  canSubmit,
 }: {
   mode: ExecutionMode;
   isSubmitting: boolean;
+  canSubmit: boolean;
 }) {
   const { pending } = useFormStatus();
-  const isDisabled = pending || isSubmitting;
+  const isDisabled = pending || isSubmitting || !canSubmit;
 
   return (
     <button
@@ -84,7 +86,7 @@ function SubmitExecutionButton({
       aria-disabled={isDisabled}
       className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {isDisabled ? "Saving..." : mode === "sale" ? "Confirm sale" : "Confirm trade"}
+      {pending || isSubmitting ? "Saving..." : mode === "sale" ? "Confirm sale" : "Confirm trade"}
     </button>
   );
 }
@@ -108,13 +110,27 @@ export function InteractionGroupExecutionPanel({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submissionLockRef = useRef(false);
   const statusMessage = getStatusMessage(state);
+  const saleEligibleInstances = useMemo(
+    () => ownedSourceInstances.filter((instance) => instance.intent === "sell"),
+    [ownedSourceInstances],
+  );
+  const tradeEligibleInstances = useMemo(
+    () => ownedSourceInstances.filter((instance) => instance.intent === "trade"),
+    [ownedSourceInstances],
+  );
+  const eligibleInstances =
+    mode === "sale" ? saleEligibleInstances : mode === "trade" ? tradeEligibleInstances : ownedSourceInstances;
   const canExecute = ownedSourceInstances.length > 0;
-  const multipleInstances = ownedSourceInstances.length > 1;
+  const canExecuteSale = saleEligibleInstances.length > 0;
+  const canExecuteTrade = tradeEligibleInstances.length > 0;
+  const multipleInstances = eligibleInstances.length > 1;
   const currentExecutionEventId = mode === "trade" ? pendingTradeExecutionEventId : null;
 
   useEffect(() => {
-    setSelectedInstanceId(ownedSourceInstances[0]?.instanceId ?? "");
-  }, [ownedSourceInstances]);
+    const nextEligibleInstances =
+      mode === "sale" ? saleEligibleInstances : mode === "trade" ? tradeEligibleInstances : ownedSourceInstances;
+    setSelectedInstanceId(nextEligibleInstances[0]?.instanceId ?? "");
+  }, [mode, ownedSourceInstances, saleEligibleInstances, tradeEligibleInstances]);
 
   useEffect(() => {
     if (!state) {
@@ -177,18 +193,19 @@ export function InteractionGroupExecutionPanel({
             <button
               type="button"
               onClick={() => setMode((current) => (current === "sale" ? null : "sale"))}
+              disabled={!canExecuteSale}
               className={`inline-flex rounded-full px-3 py-1.5 text-xs font-medium transition ${
                 mode === "sale"
                   ? "bg-slate-950 text-white"
                   : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50"
-              }`}
+              } disabled:cursor-not-allowed disabled:opacity-60`}
             >
               Mark as sold
             </button>
             <button
               type="button"
               onClick={() => setMode((current) => (current === "trade" ? null : "trade"))}
-              disabled={hasAmbiguousPendingTradeEvent}
+              disabled={hasAmbiguousPendingTradeEvent || !canExecuteTrade}
               className={`inline-flex rounded-full px-3 py-1.5 text-xs font-medium transition ${
                 mode === "trade"
                   ? "bg-slate-950 text-white"
@@ -218,18 +235,25 @@ export function InteractionGroupExecutionPanel({
                     onChange={(event) => setSelectedInstanceId(event.target.value)}
                     className="w-full rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
                   >
-                    {ownedSourceInstances.map((instance) => (
+                    {eligibleInstances.map((instance) => (
                       <option key={instance.instanceId} value={instance.instanceId}>
-                        {instance.label}
+                        {instance.label} • {instance.intent.toUpperCase()}
                       </option>
                     ))}
                   </select>
                 ) : (
                   <div className="rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-700">
-                    {ownedSourceInstances[0]?.label ?? "Owned instance"}
+                    {eligibleInstances[0] ? `${eligibleInstances[0].label} • ${eligibleInstances[0].intent.toUpperCase()}` : "Owned instance"}
                   </div>
                 )}
               </label>
+
+              {mode === "sale" && !canExecuteSale ? (
+                <p className="text-sm text-slate-600">Mark one of your active copies as Sell in your vault before recording a sale.</p>
+              ) : null}
+              {mode === "trade" && !hasAmbiguousPendingTradeEvent && !canExecuteTrade ? (
+                <p className="text-sm text-slate-600">Mark one of your active copies as Trade in your vault before recording a trade.</p>
+              ) : null}
 
               {mode === "sale" ? (
                 <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_140px]">
@@ -285,7 +309,7 @@ export function InteractionGroupExecutionPanel({
                 >
                   Cancel
                 </button>
-                <SubmitExecutionButton mode={mode} isSubmitting={isSubmitting} />
+                <SubmitExecutionButton mode={mode} isSubmitting={isSubmitting} canSubmit={Boolean(selectedInstanceId)} />
               </div>
             </form>
           ) : null}
