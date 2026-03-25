@@ -36,6 +36,39 @@ export function formatVaultObjectLevelSlabSummary(item: { grader: string | null;
     .join(" ");
 }
 
+export function formatVaultCopyIdentityLabel(item: {
+  is_graded: boolean;
+  grader: string | null;
+  grade: string | null;
+  cert_number: string | null;
+  condition_label: string | null;
+}) {
+  if (item.is_graded) {
+    const slabSummary = formatVaultObjectLevelSlabSummary(item);
+    const certSuffix = item.cert_number ? ` • Cert ${item.cert_number}` : "";
+    return `${slabSummary || "Graded slab"}${certSuffix}`;
+  }
+
+  return `${item.condition_label || "Unknown"} • Raw`;
+}
+
+export function formatVaultCopyDate(value: string | null) {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return null;
+  }
+
+  return parsed.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export function formatVaultMixedOwnershipSummary(
   item: Pick<VaultCardData, "raw_count" | "slab_count" | "grader" | "grade">,
 ) {

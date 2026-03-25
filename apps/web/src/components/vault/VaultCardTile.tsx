@@ -4,9 +4,9 @@ import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
-import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
-  formatVaultObjectLevelSlabSummary,
+  formatVaultCopyDate,
+  formatVaultCopyIdentityLabel,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
@@ -15,7 +15,6 @@ import {
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
-  VaultQuantityStepper,
   VaultStatusBadges,
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
@@ -24,7 +23,6 @@ import {
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
 import {
-  DISCOVERABLE_VAULT_INTENT_VALUES,
   getVaultIntentLabel,
   type VaultIntent,
 } from "@/lib/network/intent";
@@ -89,25 +87,17 @@ export type VaultCardData = {
   has_back_photo: boolean;
 };
 
-const CONDITION_OPTIONS = ["NM", "LP", "MP", "HP", "DMG"];
-
 type VaultCardTileProps = {
   item: VaultCardData;
   density?: ViewDensity;
-  isPending: boolean;
   isSharePending: boolean;
-  isIntentPending: boolean;
   isWallCategoryPending: boolean;
   isPublicFrontImagePending: boolean;
   isPublicBackImagePending: boolean;
   isSharedControlsExpanded: boolean;
-  error?: string;
   shareError?: string;
   publicCollectionHref?: string | null;
   logoPath?: string;
-  onQuantityChange: (itemId: string, type: "increment" | "decrement") => void;
-  onConditionChange: (condition: string) => void;
-  onInstanceIntentChange: (item: VaultCardData, instanceId: string, intent: VaultIntent) => void;
   onShareToggle: (item: VaultCardData) => void;
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onSharedControlsToggle: (item: VaultCardData) => void;
@@ -115,61 +105,80 @@ type VaultCardTileProps = {
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
 
+function formatCopyMixSummary(item: Pick<VaultCardData, "raw_count" | "slab_count">) {
+  const parts = [];
+
+  if (item.raw_count > 0) {
+    parts.push(`${item.raw_count} raw`);
+  }
+
+  if (item.slab_count > 0) {
+    parts.push(`${item.slab_count} slab`);
+  }
+
+  return parts.length > 0 ? parts.join(" • ") : "No active copies";
+}
+
+function formatIntentMixSummary(item: Pick<VaultCardData, "sell_count" | "trade_count" | "showcase_count">) {
+  const parts = [];
+
+  if (item.sell_count > 0) {
+    parts.push(`${item.sell_count} sell`);
+  }
+
+  if (item.trade_count > 0) {
+    parts.push(`${item.trade_count} trade`);
+  }
+
+  if (item.showcase_count > 0) {
+    parts.push(`${item.showcase_count} showcase`);
+  }
+
+  return parts.join(" • ");
+}
+
 export function VaultCardTile({
   item,
   density = "default",
-  isPending,
   isSharePending,
-  isIntentPending,
   isWallCategoryPending,
   isPublicFrontImagePending,
   isPublicBackImagePending,
   isSharedControlsExpanded,
-  error,
   shareError,
   publicCollectionHref,
-  onQuantityChange,
-  onConditionChange,
-  onInstanceIntentChange,
   onShareToggle,
   onWallCategoryChange,
   onSharedControlsToggle,
   onPublicNoteEdit,
   onPublicImageToggle,
 }: VaultCardTileProps) {
-  const hasRemovableRaw = Boolean(item.removable_raw_instance_id && item.raw_count > 0);
   const canManagePublicImages = !item.is_slab;
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const ownershipSummary = getVaultOwnershipSummary(item);
-  const manageButtonLabel = item.owned_count > 1 ? "Manage copies" : "Manage card";
+  const intentMixSummary = formatIntentMixSummary(item);
+  const manageButtonLabel = isSharedControlsExpanded
+    ? "Hide controls"
+    : item.copy_items.length > 1
+      ? "Manage copies"
+      : "Manage copy";
 
   const summaryRow = (
     <div className="space-y-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <VisiblePrice value={item.effective_price} size="dense" />
-        {!item.is_slab ? (
-          <div className="flex flex-wrap items-center gap-2">
-            <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
-              <span className="sr-only">Condition</span>
-              <select
-                value={item.condition_label || "NM"}
-                onChange={(event) => onConditionChange(event.target.value)}
-                disabled={isPending}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {CONDITION_OPTIONS.map((condition) => (
-                  <option key={condition} value={condition}>
-                    {condition}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <VaultQuantityStepper item={item} isPending={isPending} onQuantityChange={onQuantityChange} />
-          </div>
-        ) : (
-          <p className="text-xs font-medium text-slate-500">Owned {item.owned_count}</p>
-        )}
+        <VisiblePrice value={item.effective_price} size="dense" label="Pricing" />
+        <div className="flex flex-wrap gap-2 text-xs text-slate-700">
+          <VaultInsetCard className="px-3 py-2">
+            <span className="font-medium text-slate-900">{item.owned_count}</span> total
+          </VaultInsetCard>
+          <VaultInsetCard className="px-3 py-2">
+            <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
+          </VaultInsetCard>
+          <VaultInsetCard className="px-3 py-2">{formatCopyMixSummary(item)}</VaultInsetCard>
+        </div>
       </div>
+
+      {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
 
       <div className="flex flex-wrap items-center gap-2">
         <VaultActionButton
@@ -180,7 +189,7 @@ export function VaultCardTile({
           {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
         </VaultActionButton>
         <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="quiet">
-          {isSharedControlsExpanded ? "Hide controls" : manageButtonLabel}
+          {manageButtonLabel}
         </VaultActionButton>
         {item.is_shared && publicCollectionHref ? (
           <Link
@@ -192,143 +201,30 @@ export function VaultCardTile({
         ) : null}
       </div>
 
-      {error ? <p className="text-xs text-slate-500">{error}</p> : null}
       {shareError ? <p className="text-xs text-slate-500">{shareError}</p> : null}
     </div>
   );
 
   const details = isSharedControlsExpanded ? (
     <VaultDetailPanel>
-      <div className="space-y-1">
-        <VaultFieldLabel>Manage</VaultFieldLabel>
-        <p className="text-xs text-slate-500">
-          Set discovery intent for the collector network, then manage wall settings and ownership controls.
-        </p>
-      </div>
-
-      {item.is_shared ? (
-        <div className="space-y-3">
-          <div className="space-y-2">
-            <label
-              htmlFor={`wall-category-${item.card_id}`}
-              className="block"
-            >
-              <VaultFieldLabel>Wall Category</VaultFieldLabel>
-            </label>
-            <select
-              id={`wall-category-${item.card_id}`}
-              value={item.wall_category ?? ""}
-              disabled={isWallCategoryPending}
-              onChange={(event) =>
-                onWallCategoryChange(item, event.target.value ? (event.target.value as WallCategory) : null)
-              }
-              className="w-full rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              <option value="">No category</option>
-              {WALL_CATEGORY_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <VaultInsetCard className="flex flex-wrap items-center justify-between gap-3">
-            <div className="space-y-1">
-              <p className="text-sm font-medium text-slate-900">{item.public_note ? "Wall note added" : "Wall note"}</p>
-              <p className="text-xs text-slate-500">
-                {item.public_note ? "Edit the collector-facing note on this wall item." : "Add a note collectors can see on your wall."}
-              </p>
-            </div>
-            <VaultActionButton
-              type="button"
-              onClick={() => onPublicNoteEdit(item)}
-              tone="default"
-            >
-              {item.public_note ? "Edit note" : "Add note"}
-            </VaultActionButton>
-          </VaultInsetCard>
-
-          {canManagePublicImages ? (
-            <div className="space-y-2">
-              <VaultFieldLabel>Public Images</VaultFieldLabel>
-
-              <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
-                <input
-                  type="checkbox"
-                  checked={item.show_personal_front}
-                  disabled={!item.has_front_photo || isPublicFrontImagePending}
-                  onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                />
-                <span className="min-w-0">
-                  <span className="block font-medium text-slate-800">Show front photo</span>
-                  <span className="mt-1 block text-xs text-slate-500">
-                    {item.has_front_photo ? "Collectors will see your uploaded front photo." : "Upload a front photo in your vault to enable this."}
-                  </span>
-                </span>
-              </label>
-
-              <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
-                <input
-                  type="checkbox"
-                  checked={item.show_personal_back}
-                  disabled={!item.has_back_photo || isPublicBackImagePending}
-                  onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                />
-                <span className="min-w-0">
-                  <span className="block font-medium text-slate-800">Show back photo</span>
-                  <span className="mt-1 block text-xs text-slate-500">
-                    {item.has_back_photo ? "Collectors will see your uploaded back photo." : "Upload a back photo in your vault to enable this."}
-                  </span>
-                </span>
-              </label>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
-      <div className="space-y-3 border-t border-slate-200 pt-3">
+      <div className="space-y-3">
         <div className="space-y-1">
-          <VaultFieldLabel>Manage copies</VaultFieldLabel>
+          <VaultFieldLabel>Manage Copies</VaultFieldLabel>
           <p className="text-xs text-slate-500">
-            Set discovery intent per owned copy. Grouped vault and network summaries now derive from these exact copies.
+            Open each exact copy to edit condition, intent, notes, and ownership actions without cluttering the grouped vault row.
           </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 text-xs">
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.owned_count}</span> total
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.sell_count}</span> sell
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.trade_count}</span> trade
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.showcase_count}</span> showcase
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2 text-slate-700">
-            <span className="font-medium text-slate-900">{item.hold_count}</span> hold
-          </VaultInsetCard>
         </div>
 
         <div className="space-y-2">
           {item.copy_items.map((copy) => {
-            const copySummary = copy.is_graded
-              ? formatVaultObjectLevelSlabSummary(copy) || "Graded slab"
-              : copy.condition_label ?? "Raw";
+            const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+            const createdAt = formatVaultCopyDate(copy.created_at);
 
             return (
               <VaultInsetCard key={copy.instance_id} className="space-y-3">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 space-y-1">
-                    <p className="text-sm font-medium text-slate-900">{copySummary}</p>
+                    <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
                     <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
                       <span
                         className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
@@ -342,43 +238,110 @@ export function VaultCardTile({
                       </span>
                     </div>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                      {copy.gv_vi_id ? <span>{copy.gv_vi_id}</span> : null}
-                      {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}
-                      {copy.created_at ? <span>{new Date(copy.created_at).toLocaleDateString("en-US")}</span> : null}
+                      <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
+                      {createdAt ? <span>{createdAt}</span> : null}
                     </div>
                     {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
                   </div>
-                  <OwnedObjectRemoveAction
-                    mode={copy.is_graded ? "slab" : "raw"}
-                    instanceId={copy.instance_id}
-                    label={copy.is_graded ? "Remove Slab" : "Remove Raw"}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor={`vault-copy-intent-${copy.instance_id}`} className="block">
-                    <VaultFieldLabel>Copy Intent</VaultFieldLabel>
-                  </label>
-                  <select
-                    id={`vault-copy-intent-${copy.instance_id}`}
-                    value={copy.intent}
-                    disabled={isIntentPending}
-                    onChange={(event) => onInstanceIntentChange(item, copy.instance_id, event.target.value as VaultIntent)}
-                    className="w-full rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    <option value="hold">{getVaultIntentLabel("hold")} - hidden from network</option>
-                    {DISCOVERABLE_VAULT_INTENT_VALUES.map((intent) => (
-                      <option key={intent} value={intent}>
-                        {getVaultIntentLabel(intent)}
-                      </option>
-                    ))}
-                  </select>
+                  {copyHref ? (
+                    <Link
+                      href={copyHref}
+                      className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                    >
+                      Open copy
+                    </Link>
+                  ) : (
+                    <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
+                  )}
                 </div>
               </VaultInsetCard>
             );
           })}
         </div>
       </div>
+
+      {item.is_shared ? (
+        <div className="space-y-3 border-t border-slate-200 pt-3">
+          <div className="space-y-1">
+            <VaultFieldLabel>Wall Controls</VaultFieldLabel>
+            <p className="text-xs text-slate-500">Grouped wall settings remain card-level because public sharing is still card-based.</p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="space-y-2">
+              <label htmlFor={`wall-category-${item.card_id}`} className="block">
+                <VaultFieldLabel>Wall Category</VaultFieldLabel>
+              </label>
+              <select
+                id={`wall-category-${item.card_id}`}
+                value={item.wall_category ?? ""}
+                disabled={isWallCategoryPending}
+                onChange={(event) =>
+                  onWallCategoryChange(item, event.target.value ? (event.target.value as WallCategory) : null)
+                }
+                className="w-full rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <option value="">No category</option>
+                {WALL_CATEGORY_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <VaultInsetCard className="flex flex-wrap items-center justify-between gap-3">
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-slate-900">{item.public_note ? "Wall note added" : "Wall note"}</p>
+                <p className="text-xs text-slate-500">
+                  {item.public_note ? "Edit the collector-facing note on this wall item." : "Add a note collectors can see on your wall."}
+                </p>
+              </div>
+              <VaultActionButton type="button" onClick={() => onPublicNoteEdit(item)} tone="default">
+                {item.public_note ? "Edit note" : "Add note"}
+              </VaultActionButton>
+            </VaultInsetCard>
+
+            {canManagePublicImages ? (
+              <div className="space-y-2">
+                <VaultFieldLabel>Public Images</VaultFieldLabel>
+
+                <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={item.show_personal_front}
+                    disabled={!item.has_front_photo || isPublicFrontImagePending}
+                    onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-medium text-slate-800">Show front photo</span>
+                    <span className="mt-1 block text-xs text-slate-500">
+                      {item.has_front_photo ? "Collectors will see your uploaded front photo." : "Upload a front photo in your vault to enable this."}
+                    </span>
+                  </span>
+                </label>
+
+                <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={item.show_personal_back}
+                    disabled={!item.has_back_photo || isPublicBackImagePending}
+                    onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                  <span className="min-w-0">
+                    <span className="block font-medium text-slate-800">Show back photo</span>
+                    <span className="mt-1 block text-xs text-slate-500">
+                      {item.has_back_photo ? "Collectors will see your uploaded back photo." : "Upload a back photo in your vault to enable this."}
+                    </span>
+                  </span>
+                </label>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </VaultDetailPanel>
   ) : null;
 
@@ -400,9 +363,7 @@ export function VaultCardTile({
           {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
         </span>
       }
-      badges={
-        <VaultStatusBadges item={item} />
-      }
+      badges={<VaultStatusBadges item={item} />}
       meta={<span>{ownershipSummary}</span>}
       summary={summaryRow}
       details={details}

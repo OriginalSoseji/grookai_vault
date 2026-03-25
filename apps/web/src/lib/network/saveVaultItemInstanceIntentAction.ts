@@ -69,7 +69,7 @@ export async function saveVaultItemInstanceIntentAction(
       intent: nextIntent,
     })
     .eq("id", normalizedInstanceId)
-    .select("id,intent")
+    .select("id,intent,gv_vi_id")
     .maybeSingle();
 
   if (error || !data) {
@@ -82,6 +82,10 @@ export async function saveVaultItemInstanceIntentAction(
 
   revalidatePath("/vault");
   revalidatePath("/network");
+  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  if (gvviId) {
+    revalidatePath(`/vault/gvvi/${gvviId}`);
+  }
 
   return {
     ok: true,

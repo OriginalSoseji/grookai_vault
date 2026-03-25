@@ -5,6 +5,7 @@ type VisiblePriceProps = {
   size?: "grid" | "list" | "dense" | "detail";
   note?: "none" | "compact" | "full";
   className?: string;
+  label?: string;
 };
 
 function getClasses(size: VisiblePriceProps["size"]) {
@@ -45,12 +46,13 @@ export default function VisiblePrice({
   size = "grid",
   note = "none",
   className = "",
+  label = "Grookai Value",
 }: VisiblePriceProps) {
   const classes = getClasses(size);
 
   return (
     <div className={`${classes.wrapper} ${className}`.trim()}>
-      <p className={classes.label}>Grookai Value</p>
+      <p className={classes.label}>{label}</p>
       <p className={classes.value}>{formatUsdPrice(value)}</p>
       {note === "compact" ? <p className={classes.note}>Beta estimate</p> : null}
       {note === "full" ? (

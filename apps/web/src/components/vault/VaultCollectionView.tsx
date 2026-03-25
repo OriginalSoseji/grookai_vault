@@ -18,24 +18,12 @@ import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
-import {
-  countVaultIntents,
-  getInPlayCount,
-  getSingleDiscoverableIntent,
-} from "@/lib/network/intentSummary";
-import {
-  changeVaultItemQuantityAction,
-  type VaultQuantityMutationInput,
-} from "@/lib/vault/changeVaultItemQuantityAction";
 import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleSharedCardPublicImageAction";
 import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
 import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
 import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
-import { saveVaultItemInstanceIntentAction } from "@/lib/network/saveVaultItemInstanceIntentAction";
-import type { VaultIntent } from "@/lib/network/intent";
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { ReactNode } from "react";
-import { supabase } from "@/lib/supabaseClient";
 
 export type RecentCardData = {
   id: string;
@@ -57,10 +45,6 @@ type SetGroup = {
 };
 
 const COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS = 6;
-const ConfirmRemovalModal = dynamic(
-  () => import("@/components/vault/VaultDialogs").then((mod) => mod.ConfirmRemovalModal),
-  { ssr: false },
-);
 const PublicNoteModal = dynamic(
   () => import("@/components/vault/VaultDialogs").then((mod) => mod.PublicNoteModal),
   { ssr: false },
@@ -174,18 +158,12 @@ function renderVaultGrid(
   items: VaultCardData[],
   density: ViewDensity,
   setLogoPathByCode: Record<string, string>,
-  pendingItemId: string | null,
   pendingShareItemId: string | null,
-  pendingIntentItemId: string | null,
   pendingWallCategoryItemId: string | null,
   pendingPublicImageKey: string | null,
   expandedSharedItemIds: Set<string>,
-  itemErrors: Record<string, string>,
   shareErrors: Record<string, string>,
   publicCollectionHref: string | null,
-  onQuantityChange: (itemId: string, type: VaultQuantityMutationInput["type"]) => void,
-  onConditionChange: (item: VaultCardData, condition: string) => void,
-  onInstanceIntentChange: (item: VaultCardData, instanceId: string, intent: VaultIntent) => void,
   onShareToggle: (item: VaultCardData) => void,
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void,
   onSharedControlsToggle: (item: VaultCardData) => void,
@@ -202,19 +180,13 @@ function renderVaultGrid(
           item={item}
           density={density}
           logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
-          isPending={pendingItemId === rowKey}
           isSharePending={pendingShareItemId === rowKey}
-          isIntentPending={Boolean(pendingIntentItemId)}
           isWallCategoryPending={pendingWallCategoryItemId === rowKey}
           isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
           isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
           isSharedControlsExpanded={expandedSharedItemIds.has(rowKey)}
-          error={itemErrors[rowKey]}
           shareError={shareErrors[rowKey]}
           publicCollectionHref={item.is_shared ? publicCollectionHref : null}
-          onQuantityChange={onQuantityChange}
-          onConditionChange={(condition) => onConditionChange(item, condition)}
-          onInstanceIntentChange={onInstanceIntentChange}
           onShareToggle={onShareToggle}
           onWallCategoryChange={onWallCategoryChange}
           onSharedControlsToggle={onSharedControlsToggle}
@@ -229,98 +201,6 @@ function renderVaultGrid(
 
 function getVaultRowRuntimeKey(item: Pick<VaultCardData, "card_id">) {
   return item.card_id;
-}
-
-function applyOptimisticQuantityChange(
-  items: VaultCardData[],
-  rowKey: string,
-  type: VaultQuantityMutationInput["type"],
-) {
-  return items.flatMap((item) => {
-    if (getVaultRowRuntimeKey(item) !== rowKey) {
-      return [item];
-    }
-
-    const nextOwnedCount = type === "increment" ? item.owned_count + 1 : item.owned_count - 1;
-    if (nextOwnedCount <= 0) {
-      return [];
-    }
-
-    return [{ ...item, owned_count: nextOwnedCount }];
-  });
-}
-
-function reconcileQuantityResult(
-  items: VaultCardData[],
-  rowKey: string,
-  result:
-    | { status: "incremented" | "decremented"; itemId: string; quantity: number }
-    | { status: "removed"; itemId: string },
-) {
-  if (result.status === "removed") {
-    return items.filter((item) => getVaultRowRuntimeKey(item) !== rowKey);
-  }
-
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          owned_count: result.quantity,
-        }
-      : item,
-  );
-}
-
-function applyOptimisticConditionChange(items: VaultCardData[], itemId: string, condition: string) {
-  return items.map((item) =>
-    item.id === itemId
-      ? {
-          ...item,
-          condition_label: condition,
-        }
-      : item,
-  );
-}
-
-function applyGroupedIntentSummary(item: VaultCardData, nextCopyItems: VaultCardData["copy_items"]): VaultCardData {
-  const counts = countVaultIntents(nextCopyItems);
-  const inPlayCount = getInPlayCount(counts);
-  const primaryIntent = inPlayCount === 0 ? "hold" : getSingleDiscoverableIntent(counts);
-
-  return {
-    ...item,
-    copy_items: nextCopyItems,
-    intent: primaryIntent ?? "hold",
-    primary_intent: primaryIntent ?? null,
-    hold_count: counts.holdCount,
-    trade_count: counts.tradeCount,
-    sell_count: counts.sellCount,
-    showcase_count: counts.showcaseCount,
-    in_play_count: inPlayCount,
-  };
-}
-
-function applyOptimisticInstanceIntentChange(
-  items: VaultCardData[],
-  rowKey: string,
-  instanceId: string,
-  intent: VaultIntent,
-) {
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? applyGroupedIntentSummary(
-          item,
-          item.copy_items.map((copyItem) =>
-            copyItem.instance_id === instanceId
-              ? {
-                  ...copyItem,
-                  intent,
-                }
-              : copyItem,
-          ),
-        )
-      : item,
-  );
 }
 
 function applyOptimisticShareChange(items: VaultCardData[], rowKey: string, nextShared: boolean) {
@@ -411,17 +291,13 @@ export function VaultCollectionView({
   const [expandedSharedItemIds, setExpandedSharedItemIds] = useState<Set<string>>(() => new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
-  const [pendingItemId, setPendingItemId] = useState<string | null>(null);
   const [pendingShareItemId, setPendingShareItemId] = useState<string | null>(null);
-  const [pendingIntentItemId, setPendingIntentItemId] = useState<string | null>(null);
   const [pendingWallCategoryItemId, setPendingWallCategoryItemId] = useState<string | null>(null);
   const [pendingPublicImageKey, setPendingPublicImageKey] = useState<string | null>(null);
   const [pendingPublicNoteItemId, setPendingPublicNoteItemId] = useState<string | null>(null);
-  const [confirmRemovalItemId, setConfirmRemovalItemId] = useState<string | null>(null);
   const [publicNoteItemId, setPublicNoteItemId] = useState<string | null>(null);
   const [publicNoteDraft, setPublicNoteDraft] = useState("");
   const [publicNoteError, setPublicNoteError] = useState<string | null>(null);
-  const [itemErrors, setItemErrors] = useState<Record<string, string>>({});
   const [shareErrors, setShareErrors] = useState<Record<string, string>>({});
   const [activeView, setActiveView] = useState<SmartViewKey>("all");
   const [, startTransition] = useTransition();
@@ -430,17 +306,13 @@ export function VaultCollectionView({
   useEffect(() => {
     setItems(initialItems);
     setPokemonQuery("");
-    setPendingItemId(null);
     setPendingShareItemId(null);
-    setPendingIntentItemId(null);
     setPendingWallCategoryItemId(null);
     setPendingPublicImageKey(null);
     setPendingPublicNoteItemId(null);
-    setConfirmRemovalItemId(null);
     setPublicNoteItemId(null);
     setPublicNoteDraft("");
     setPublicNoteError(null);
-    setItemErrors({});
     setShareErrors({});
   }, [initialItems]);
 
@@ -583,183 +455,8 @@ export function VaultCollectionView({
     });
   }
 
-  function runQuantityChange(
-    rowKey: string,
-    itemId: string,
-    type: VaultQuantityMutationInput["type"],
-    currentItems: VaultCardData[],
-  ) {
-    setItemErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingItemId(rowKey);
-    setItems(applyOptimisticQuantityChange(currentItems, rowKey, type));
-
-    startTransition(async () => {
-      try {
-        // The canonical vault quantity mutation deletes the owned row when a decrement hits zero.
-        const result = await changeVaultItemQuantityAction({ itemId, type });
-        setItems((current) => reconcileQuantityResult(current, rowKey, result));
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setItemErrors((current) => ({
-          ...current,
-          [rowKey]: "Couldn’t update quantity.",
-        }));
-      } finally {
-        setPendingItemId(null);
-      }
-    });
-  }
-
-  function handleQuantityChange(itemId: string, type: VaultQuantityMutationInput["type"]) {
-    if (pendingItemId) {
-      return;
-    }
-
-    const currentItems = items;
-    const targetItem = currentItems.find((item) => item.vault_item_id === itemId);
-    if (!targetItem) {
-      return;
-    }
-    const rowKey = getVaultRowRuntimeKey(targetItem);
-
-    if (type === "decrement" && targetItem.owned_count === 1) {
-      setConfirmRemovalItemId(rowKey);
-      return;
-    }
-
-    runQuantityChange(rowKey, itemId, type, currentItems);
-  }
-
-  function handleCancelRemoval() {
-    if (pendingItemId) {
-      return;
-    }
-
-    setConfirmRemovalItemId(null);
-  }
-
-  function handleConfirmRemoval() {
-    if (!confirmRemovalItemId || pendingItemId) {
-      return;
-    }
-
-    const currentItems = items;
-    const targetItem = findItemByRowRuntimeKey(currentItems, confirmRemovalItemId);
-    if (!targetItem || targetItem.owned_count !== 1) {
-      setConfirmRemovalItemId(null);
-      return;
-    }
-
-    setConfirmRemovalItemId(null);
-    runQuantityChange(confirmRemovalItemId, targetItem.vault_item_id, "decrement", currentItems);
-  }
-
-  function changeCondition(item: VaultCardData, newCondition: string) {
-    if (pendingItemId || item.condition_label === newCondition) {
-      return;
-    }
-
-    const currentItems = items;
-    const rowKey = getVaultRowRuntimeKey(item);
-    setItemErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingItemId(rowKey);
-    setItems(applyOptimisticConditionChange(currentItems, item.id, newCondition));
-
-    startTransition(async () => {
-      try {
-        const { error } = await supabase.rpc("rpc_set_item_condition", {
-          p_vault_item_id: item.vault_item_id,
-          p_condition_label: newCondition,
-          p_card_id: item.card_id,
-          p_market_price: null,
-        });
-
-        if (error) {
-          throw error;
-        }
-
-        router.refresh();
-      } catch (error) {
-        console.error("Condition update failed:", error);
-        setItems(currentItems);
-        setItemErrors((current) => ({
-          ...current,
-          [rowKey]:
-            error instanceof Error && error.message === "Condition edits are currently disabled"
-              ? "Condition edits are currently disabled."
-              : "Couldn’t update condition.",
-        }));
-      } finally {
-        setPendingItemId(null);
-      }
-    });
-  }
-
-  function handleInstanceIntentChange(item: VaultCardData, instanceId: string, nextIntent: VaultIntent) {
-    if (
-      pendingIntentItemId ||
-      pendingItemId ||
-      pendingShareItemId ||
-      pendingWallCategoryItemId ||
-      pendingPublicImageKey ||
-      item.copy_items.find((copyItem) => copyItem.instance_id === instanceId)?.intent === nextIntent
-    ) {
-      return;
-    }
-
-    const currentItems = items;
-    const rowKey = getVaultRowRuntimeKey(item);
-    setItemErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingIntentItemId(instanceId);
-    setItems(applyOptimisticInstanceIntentChange(currentItems, rowKey, instanceId, nextIntent));
-
-    startTransition(async () => {
-      try {
-        const result = await saveVaultItemInstanceIntentAction({
-          instanceId,
-          intent: nextIntent,
-        });
-
-        if (!result.ok) {
-          setItems(currentItems);
-          setItemErrors((current) => ({
-            ...current,
-            [rowKey]: result.message,
-          }));
-          return;
-        }
-
-        setItems((current) =>
-          applyOptimisticInstanceIntentChange(current, rowKey, result.instanceId, result.intent),
-        );
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setItemErrors((current) => ({
-          ...current,
-          [rowKey]: "Couldn’t save copy intent.",
-        }));
-      } finally {
-        setPendingIntentItemId(null);
-      }
-    });
-  }
-
   function handleShareToggle(item: VaultCardData) {
-    if (pendingShareItemId || pendingIntentItemId || pendingWallCategoryItemId || pendingItemId || pendingPublicImageKey) {
+    if (pendingShareItemId || pendingWallCategoryItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -850,7 +547,7 @@ export function VaultCollectionView({
   }
 
   function handleWallCategoryChange(item: VaultCardData, wallCategory: WallCategory | null) {
-    if (!item.is_shared || pendingWallCategoryItemId || pendingIntentItemId || pendingShareItemId || pendingItemId || pendingPublicImageKey) {
+    if (!item.is_shared || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -914,7 +611,7 @@ export function VaultCollectionView({
   }
 
   function handlePublicImageToggle(item: VaultCardData, side: "front" | "back", enabled: boolean) {
-    if (!item.is_shared || pendingPublicImageKey || pendingIntentItemId || pendingWallCategoryItemId || pendingShareItemId || pendingItemId) {
+    if (!item.is_shared || pendingPublicImageKey || pendingWallCategoryItemId || pendingShareItemId) {
       return;
     }
 
@@ -971,7 +668,7 @@ export function VaultCollectionView({
   }
 
   function handleOpenPublicNote(item: VaultCardData) {
-    if (!item.is_shared || pendingPublicNoteItemId || pendingIntentItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
+    if (!item.is_shared || pendingPublicNoteItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
       return;
     }
 
@@ -1035,18 +732,12 @@ export function VaultCollectionView({
       <VaultMobileViews
         items={sourceItems}
         mode={mobileViewMode}
-        pendingItemId={pendingItemId}
         pendingShareItemId={pendingShareItemId}
-        pendingIntentItemId={pendingIntentItemId}
         pendingWallCategoryItemId={pendingWallCategoryItemId}
         pendingPublicImageKey={pendingPublicImageKey}
         expandedSharedItemIds={expandedSharedItemIds}
-        itemErrors={itemErrors}
         shareErrors={shareErrors}
         publicCollectionHref={publicCollectionHref}
-        onQuantityChange={handleQuantityChange}
-        onConditionChange={changeCondition}
-        onInstanceIntentChange={handleInstanceIntentChange}
         onShareToggle={handleShareToggle}
         onWallCategoryChange={handleWallCategoryChange}
         onSharedControlsToggle={handleSharedControlsToggle}
@@ -1094,18 +785,12 @@ export function VaultCollectionView({
             filteredDuplicateItems,
             density,
             setLogoPathByCode,
-            pendingItemId,
             pendingShareItemId,
-            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
-            itemErrors,
             shareErrors,
             publicCollectionHref,
-            handleQuantityChange,
-            changeCondition,
-            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1131,18 +816,12 @@ export function VaultCollectionView({
             filteredRecentItems,
             density,
             setLogoPathByCode,
-            pendingItemId,
             pendingShareItemId,
-            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
-            itemErrors,
             shareErrors,
             publicCollectionHref,
-            handleQuantityChange,
-            changeCondition,
-            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1168,18 +847,12 @@ export function VaultCollectionView({
             filteredSharedItems,
             density,
             setLogoPathByCode,
-            pendingItemId,
             pendingShareItemId,
-            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
-            itemErrors,
             shareErrors,
             publicCollectionHref,
-            handleQuantityChange,
-            changeCondition,
-            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1230,18 +903,12 @@ export function VaultCollectionView({
                   group.items,
                   density,
                   setLogoPathByCode,
-                  pendingItemId,
                   pendingShareItemId,
-                  pendingIntentItemId,
                   pendingWallCategoryItemId,
                   pendingPublicImageKey,
                   expandedSharedItemIds,
-                  itemErrors,
                   shareErrors,
                   publicCollectionHref,
-                  handleQuantityChange,
-                  changeCondition,
-                  handleInstanceIntentChange,
                   handleShareToggle,
                   handleWallCategoryChange,
                   handleSharedControlsToggle,
@@ -1307,18 +974,12 @@ export function VaultCollectionView({
             filteredPokemonItems,
             density,
             setLogoPathByCode,
-            pendingItemId,
             pendingShareItemId,
-            pendingIntentItemId,
             pendingWallCategoryItemId,
             pendingPublicImageKey,
             expandedSharedItemIds,
-            itemErrors,
             shareErrors,
             publicCollectionHref,
-            handleQuantityChange,
-            changeCondition,
-            handleInstanceIntentChange,
             handleShareToggle,
             handleWallCategoryChange,
             handleSharedControlsToggle,
@@ -1380,18 +1041,12 @@ export function VaultCollectionView({
           filteredItems,
           density,
           setLogoPathByCode,
-          pendingItemId,
           pendingShareItemId,
-          pendingIntentItemId,
           pendingWallCategoryItemId,
           pendingPublicImageKey,
           expandedSharedItemIds,
-          itemErrors,
           shareErrors,
           publicCollectionHref,
-          handleQuantityChange,
-          changeCondition,
-          handleInstanceIntentChange,
           handleShareToggle,
           handleWallCategoryChange,
           handleSharedControlsToggle,
@@ -1411,12 +1066,6 @@ export function VaultCollectionView({
 
   return (
     <>
-      <ConfirmRemovalModal
-        isOpen={confirmRemovalItemId !== null}
-        isPending={pendingItemId !== null}
-        onCancel={handleCancelRemoval}
-        onConfirm={handleConfirmRemoval}
-      />
       <PublicNoteModal
         isOpen={publicNoteItemId !== null}
         isPending={pendingPublicNoteItemId !== null}
