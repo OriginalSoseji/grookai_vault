@@ -4,6 +4,7 @@ import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
+import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -243,16 +244,22 @@ export function VaultCardTile({
                     </div>
                     {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
                   </div>
-                  {copyHref ? (
-                    <Link
-                      href={copyHref}
-                      className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
-                    >
-                      Open copy
-                    </Link>
-                  ) : (
-                    <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
-                  )}
+                  <div className="flex flex-wrap items-center justify-end gap-2">
+                    {copyHref ? (
+                      <Link
+                        href={copyHref}
+                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                      >
+                        Open copy
+                      </Link>
+                    ) : (
+                      <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
+                    )}
+                    <OwnedObjectRemoveAction
+                      instanceId={copy.instance_id}
+                      label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                    />
+                  </div>
                 </div>
               </VaultInsetCard>
             );

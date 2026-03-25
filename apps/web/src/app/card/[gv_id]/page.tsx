@@ -260,6 +260,7 @@ export default async function CardPage({
     rawCount: 0,
     slabCount: 0,
     removableRawInstanceId: null,
+    rawItems: [],
     slabItems: [],
     lines: [],
   };
@@ -297,6 +298,7 @@ export default async function CardPage({
         rawCount: 0,
         slabCount: 0,
         removableRawInstanceId: null,
+        rawItems: [],
         slabItems: [],
         lines: [],
       };
@@ -746,17 +748,33 @@ export default async function CardPage({
           </div>
           <ul className="space-y-3 text-sm text-slate-600">
             {ownedObjectSummary.rawCount > 0 ? (
-              <li className="flex flex-col gap-2 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="space-y-1">
-                  <p className="font-medium text-slate-900">
-                    <span className="font-semibold">{ownedObjectSummary.rawCount}</span> Raw {ownedObjectSummary.rawCount === 1 ? "copy" : "copies"}
-                  </p>
-                  <p className="text-xs text-slate-500">Ungraded ownership tracked on your active vault entry.</p>
-                </div>
-                {ownedObjectSummary.removableRawInstanceId ? (
-                  <OwnedObjectRemoveAction mode="raw" instanceId={ownedObjectSummary.removableRawInstanceId} label="Remove Raw" />
-                ) : null}
-              </li>
+              ownedObjectSummary.rawItems.map((rawItem) => (
+                <li
+                  key={rawItem.instanceId}
+                  className="flex flex-col gap-2 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="space-y-1">
+                    <p className="font-medium text-slate-900">
+                      {rawItem.conditionLabel ? `${rawItem.conditionLabel} • Raw copy` : "Raw copy"}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <span>Tracked on your active vault entry.</span>
+                      {rawItem.gvviId ? <span>{rawItem.gvviId}</span> : null}
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {rawItem.gvviId ? (
+                      <Link
+                        href={`/vault/gvvi/${encodeURIComponent(rawItem.gvviId)}`}
+                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                      >
+                        Open copy
+                      </Link>
+                    ) : null}
+                    <OwnedObjectRemoveAction instanceId={rawItem.instanceId} label="Remove raw copy" />
+                  </div>
+                </li>
+              ))
             ) : null}
             {ownedObjectSummary.slabItems.map((slabItem) => (
               <li
@@ -769,7 +787,7 @@ export default async function CardPage({
                   </p>
                   {slabItem.certNumber ? <p className="text-xs text-slate-500">Cert {slabItem.certNumber}</p> : null}
                 </div>
-                <OwnedObjectRemoveAction mode="slab" instanceId={slabItem.instanceId} label="Remove Slab" />
+                <OwnedObjectRemoveAction instanceId={slabItem.instanceId} label="Remove slab" />
               </li>
             ))}
           </ul>

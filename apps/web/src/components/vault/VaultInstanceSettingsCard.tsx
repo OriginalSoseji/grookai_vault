@@ -176,10 +176,13 @@ export default function VaultInstanceSettingsCard({
 
       {isActive ? (
         <div className="border-t border-slate-200 pt-4">
+          <p className="mb-3 text-sm text-slate-600">
+            Remove this exact copy from the active vault. History, notes, media, and outcomes stay preserved.
+          </p>
           <OwnedObjectRemoveAction
-            mode={isGraded ? "slab" : "raw"}
             instanceId={instanceId}
-            label={isGraded ? "Remove slab" : "Remove raw copy"}
+            label="Remove from vault"
+            redirectHref="/vault"
           />
         </div>
       ) : null}

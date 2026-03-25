@@ -19,17 +19,27 @@ export type OwnedSlabObjectSummaryItem = {
   certNumber: string | null;
 };
 
+export type OwnedRawObjectSummaryItem = {
+  instanceId: string;
+  gvviId: string | null;
+  conditionLabel: string | null;
+  createdAt: string | null;
+};
+
 export type OwnedObjectSummary = {
   totalCount: number;
   rawCount: number;
   slabCount: number;
   removableRawInstanceId: string | null;
+  rawItems: OwnedRawObjectSummaryItem[];
   slabItems: OwnedSlabObjectSummaryItem[];
   lines: OwnedObjectSummaryLine[];
 };
 
 type RawInstanceRow = {
   id: string;
+  gv_vi_id: string | null;
+  condition_label: string | null;
   created_at: string | null;
 };
 
@@ -73,6 +83,7 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
       rawCount: 0,
       slabCount: 0,
       removableRawInstanceId: null,
+      rawItems: [],
       slabItems: [],
       lines: [],
     };
@@ -82,7 +93,7 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   const [{ data: rawRows, error: rawError }, { data: slabCertRows, error: slabCertError }] = await Promise.all([
     adminClient
       .from("vault_item_instances")
-      .select("id,created_at")
+      .select("id,gv_vi_id,condition_label,created_at")
       .eq("user_id", normalizedUserId)
       .eq("card_print_id", normalizedCardPrintId)
       .is("slab_cert_id", null)
@@ -100,8 +111,15 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
     throw new Error(`[card:ownership] slab cert summary query failed: ${slabCertError.message}`);
   }
 
-  const rawCount = ((rawRows ?? []) as RawInstanceRow[]).length;
-  const removableRawInstanceId = ((rawRows ?? []) as RawInstanceRow[])[0]?.id ?? null;
+  const normalizedRawRows = (rawRows ?? []) as RawInstanceRow[];
+  const rawItems: OwnedRawObjectSummaryItem[] = normalizedRawRows.map((row) => ({
+    instanceId: row.id,
+    gvviId: normalizeOptionalText(row.gv_vi_id),
+    conditionLabel: normalizeOptionalText(row.condition_label),
+    createdAt: row.created_at ?? null,
+  }));
+  const rawCount = rawItems.length;
+  const removableRawInstanceId = rawCount === 1 ? rawItems[0]?.instanceId ?? null : null;
   const slabCerts = (slabCertRows ?? []) as SlabCertRow[];
   const slabCertIds = slabCerts
     .map((row) => normalizeOptionalText(row.id))
@@ -195,6 +213,7 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
     rawCount,
     slabCount: slabItems.length,
     removableRawInstanceId,
+    rawItems,
     slabItems,
     lines,
   };
