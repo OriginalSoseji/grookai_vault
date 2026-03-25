@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
@@ -58,6 +58,10 @@ export default async function PublicVaultInstancePage({
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (user?.id === detail.ownerUserId) {
+    redirect(`/vault/gvvi/${encodeURIComponent(detail.gvviId)}`);
+  }
 
   const currentPath = `/gvvi/${encodeURIComponent(detail.gvviId)}`;
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;

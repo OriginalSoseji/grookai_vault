@@ -36,6 +36,7 @@ import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
+import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 
 type DetailItem = { label: string; value: string };
@@ -381,7 +382,7 @@ export default async function CardPage({
   };
   const getSingleOfferCopyHref = (offer: (typeof networkOffers)[number]) =>
     offer.inPlayCopies.length === 1 && offer.inPlayCopies[0]?.gvviId
-      ? `/gvvi/${encodeURIComponent(offer.inPlayCopies[0].gvviId)}`
+      ? getVaultInstanceHref(offer.inPlayCopies[0].gvviId, user?.id ?? null, offer.ownerUserId)
       : null;
 
   return (
@@ -601,7 +602,7 @@ export default async function CardPage({
                             </div>
                             {copy.gvviId ? (
                               <Link
-                                href={`/gvvi/${encodeURIComponent(copy.gvviId)}`}
+                                href={getVaultInstanceHref(copy.gvviId, user?.id ?? null, offer.ownerUserId) ?? `/card/${resolvedCard.gv_id}`}
                                 className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                               >
                                 Open copy

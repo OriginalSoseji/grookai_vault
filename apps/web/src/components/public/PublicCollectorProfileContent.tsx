@@ -12,6 +12,7 @@ import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm
 import { useViewDensity } from "@/hooks/useViewDensity";
 import { getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
+import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 
 type PublicCollectorProfileSegment = "collection" | "in-play";
 
@@ -119,13 +120,17 @@ function getGroupedContactAnchor(card: PublicWallCard) {
   };
 }
 
-function getSingleCopyHref(card: PublicWallCard) {
+function getSingleCopyHref(
+  card: PublicWallCard,
+  viewerUserId: string | null,
+  ownerUserId: string,
+) {
   if (!card.in_play_copies || card.in_play_copies.length !== 1) {
     return null;
   }
 
   const gvviId = card.in_play_copies[0]?.gv_vi_id;
-  return gvviId ? `/gvvi/${encodeURIComponent(gvviId)}` : null;
+  return getVaultInstanceHref(gvviId, viewerUserId, ownerUserId);
 }
 
 function compareInPlayCards(left: PublicWallCard, right: PublicWallCard) {
@@ -272,7 +277,7 @@ export function PublicCollectorProfileContent({
               const ownershipSummary = getInPlayOwnershipSummary(card);
               const intentBadges = getIntentBadgeLabels(card);
               const groupedContactAnchor = getGroupedContactAnchor(card);
-              const exactCopyHref = getSingleCopyHref(card) ?? `/card/${card.gv_id}`;
+              const exactCopyHref = getSingleCopyHref(card, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`;
 
               return (
                 <PokemonCardGridTile
@@ -351,7 +356,7 @@ export function PublicCollectorProfileContent({
                                   </div>
                                   {copy.gv_vi_id ? (
                                     <Link
-                                      href={`/gvvi/${encodeURIComponent(copy.gv_vi_id)}`}
+                                      href={getVaultInstanceHref(copy.gv_vi_id, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`}
                                       className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                                     >
                                       Open copy

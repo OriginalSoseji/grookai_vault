@@ -3,6 +3,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
+import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 
 type NetworkStreamCardProps = {
   row: CardStreamRow;
@@ -51,7 +52,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
   const groupedContactAnchor = getGroupedContactAnchor(row);
   const singleCopyHref =
     row.inPlayCopies.length === 1 && row.inPlayCopies[0]?.gvviId
-      ? `/gvvi/${encodeURIComponent(row.inPlayCopies[0].gvviId)}`
+      ? getVaultInstanceHref(row.inPlayCopies[0].gvviId, viewerUserId, row.ownerUserId) ?? `/card/${row.gvId}`
       : `/card/${row.gvId}`;
 
   return (
@@ -147,7 +148,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                       </div>
                       {copy.gvviId ? (
                         <Link
-                          href={`/gvvi/${encodeURIComponent(copy.gvviId)}`}
+                          href={getVaultInstanceHref(copy.gvviId, viewerUserId, row.ownerUserId) ?? `/card/${row.gvId}`}
                           className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                         >
                           Open copy
