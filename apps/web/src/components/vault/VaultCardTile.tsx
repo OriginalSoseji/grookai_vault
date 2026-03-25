@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
-import VisiblePrice from "@/components/pricing/VisiblePrice";
 import ShareCardButton from "@/components/ShareCardButton";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
+  formatVaultCardValue,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
@@ -158,6 +158,7 @@ export function VaultCardTile({
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const ownershipSummary = getVaultOwnershipSummary(item);
   const intentMixSummary = formatIntentMixSummary(item);
+  const cardValue = formatVaultCardValue(item.effective_price);
   const manageButtonLabel = isSharedControlsExpanded
     ? "Hide controls"
     : item.copy_items.length > 1
@@ -167,7 +168,7 @@ export function VaultCardTile({
   const summaryRow = (
     <div className="space-y-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <VisiblePrice value={item.effective_price} size="dense" label="Pricing" />
+        {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
         <div className="flex flex-wrap gap-2 text-xs text-slate-700">
           <VaultInsetCard className="px-3 py-2">
             <span className="font-medium text-slate-900">{item.owned_count}</span> total

@@ -14,7 +14,7 @@ type VaultActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function formatVaultCurrency(value: number | null) {
   if (typeof value !== "number" || Number.isNaN(value)) {
-    return "Value unavailable";
+    return null;
   }
 
   return new Intl.NumberFormat("en-US", {
@@ -22,6 +22,11 @@ export function formatVaultCurrency(value: number | null) {
     currency: "USD",
     maximumFractionDigits: 2,
   }).format(value);
+}
+
+export function formatVaultCardValue(value: number | null) {
+  const formattedValue = formatVaultCurrency(value);
+  return formattedValue ? `~${formattedValue}` : null;
 }
 
 export function formatVaultSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {

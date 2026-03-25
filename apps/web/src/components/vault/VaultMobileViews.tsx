@@ -10,7 +10,7 @@ import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
-  formatVaultCurrency,
+  formatVaultCardValue,
   formatVaultMixedOwnershipSummary,
   formatVaultSlabSummary,
   getVaultCardMetaLine,
@@ -84,6 +84,8 @@ function getRowKey(item: VaultCardData) {
 }
 
 function MobileGridCard({ item }: { item: VaultCardData }) {
+  const cardValue = formatVaultCardValue(item.effective_price);
+
   return (
     <PokemonCardGridTile
       density="compact"
@@ -101,8 +103,8 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       badges={<VaultStatusBadges item={item} includeQuantity={false} />}
       meta={<span>{formatMixedOwnershipHeadline(item)}</span>}
       footer={
-        <div className="flex items-center justify-between gap-2">
-          <span>{formatVaultCurrency(item.effective_price)}</span>
+        <div className={`flex items-center gap-2 ${cardValue ? "justify-between" : "justify-end"}`}>
+          {cardValue ? <span>{cardValue}</span> : null}
           <span>{item.owned_count} total</span>
         </div>
       }
@@ -111,6 +113,8 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
 }
 
 function MobileCompactRow({ item }: { item: VaultCardData }) {
+  const cardValue = formatVaultCardValue(item.effective_price);
+
   return (
     <Link
       href={`/card/${item.gv_id}`}
@@ -133,7 +137,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
         <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
         <div className="flex items-center justify-between gap-3">
           <p className="line-clamp-1 text-xs text-slate-600">{getVaultOwnershipSummary(item)}</p>
-          <p className="shrink-0 text-xs text-slate-500">{formatVaultCurrency(item.effective_price)}</p>
+          {cardValue ? <p className="shrink-0 text-xs text-slate-500">{cardValue}</p> : null}
         </div>
         <div className="flex flex-wrap gap-1.5">
           <VaultStatusBadges item={item} includeQuantity={false} size="sm" />
@@ -166,6 +170,7 @@ function MobileDetailRow({
   const isSharedControlsExpanded = expandedSharedItemIds.has(rowKey);
   const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
   const intentMixSummary = formatIntentMixSummary(item);
+  const cardValue = formatVaultCardValue(item.effective_price);
 
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
@@ -197,7 +202,7 @@ function MobileDetailRow({
 
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-medium text-slate-700">{formatMixedOwnershipHeadline(item)}</p>
-                <p className="text-sm font-medium text-slate-900">{formatVaultCurrency(item.effective_price)}</p>
+                {cardValue ? <p className="text-sm font-medium text-slate-900">{cardValue}</p> : null}
               </div>
 
               {!wallCategoryLabel ? (
