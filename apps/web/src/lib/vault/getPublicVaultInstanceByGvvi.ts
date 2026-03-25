@@ -1,11 +1,14 @@
 import "server-only";
 
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
-import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
+import {
+  normalizeDiscoverableVaultIntent,
+  type DiscoverableVaultIntent,
+} from "@/lib/network/intent";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
-type VaultInstanceRow = {
+type PublicVaultInstanceRow = {
   id: string;
   user_id: string | null;
   gv_vi_id: string | null;
@@ -14,15 +17,20 @@ type VaultInstanceRow = {
   legacy_vault_item_id: string | null;
   condition_label: string | null;
   intent: string | null;
-  notes: string | null;
   created_at: string | null;
-  archived_at: string | null;
   grade_company: string | null;
   grade_value: string | null;
   grade_label: string | null;
-  photo_url: string | null;
   image_url: string | null;
   image_back_url: string | null;
+  archived_at: string | null;
+};
+
+type PublicProfileRow = {
+  slug: string | null;
+  display_name: string | null;
+  public_profile_enabled: boolean | null;
+  vault_sharing_enabled: boolean | null;
 };
 
 type SlabCertRow = {
@@ -51,19 +59,6 @@ type CardPrintRow = {
     | null;
 };
 
-type OutcomeRow = {
-  id: string;
-  execution_event_id: string | null;
-  outcome_type: string | null;
-  price_amount: number | string | null;
-  price_currency: string | null;
-  created_at: string | null;
-  source_instance_id: string | null;
-  result_instance_id: string | null;
-  source_user_id: string | null;
-  target_user_id: string | null;
-};
-
 function normalizeOptionalText(value: string | null | undefined) {
   if (typeof value !== "string") {
     return null;
@@ -86,34 +81,13 @@ function normalizeSetName(value: CardPrintRow["sets"]) {
   return normalizeOptionalText(record?.name) ?? "Unknown set";
 }
 
-function normalizePriceAmount(value: number | string | null | undefined) {
-  if (typeof value === "number") {
-    return Number.isFinite(value) ? value : null;
-  }
-
-  if (typeof value === "string") {
-    const parsed = Number(value);
-    return Number.isFinite(parsed) ? parsed : null;
-  }
-
-  return null;
-}
-
-export type VaultInstanceOutcome = {
-  id: string;
-  executionEventId: string | null;
-  outcomeType: "sale" | "trade";
-  role: "source" | "result";
-  createdAt: string | null;
-  priceAmount: number | null;
-  priceCurrency: string | null;
-  sourceUserId: string | null;
-  targetUserId: string | null;
-};
-
-export type VaultInstanceDetail = {
+export type PublicVaultInstanceDetail = {
   instanceId: string;
   gvviId: string;
+  vaultItemId: string;
+  ownerUserId: string;
+  ownerSlug: string;
+  ownerDisplayName: string;
   cardPrintId: string;
   gvId: string;
   cardName: string;
@@ -121,30 +95,22 @@ export type VaultInstanceDetail = {
   setName: string;
   number: string;
   imageUrl: string | null;
+  frontImageUrl: string | null;
+  backImageUrl: string | null;
+  intent: DiscoverableVaultIntent;
   conditionLabel: string | null;
-  intent: VaultIntent;
   isGraded: boolean;
   grader: string | null;
   grade: string | null;
   certNumber: string | null;
-  notes: string | null;
   createdAt: string | null;
-  archivedAt: string | null;
-  legacyVaultItemId: string | null;
-  hasFrontPhoto: boolean;
-  hasBackPhoto: boolean;
-  frontImagePath: string | null;
-  backImagePath: string | null;
-  frontImageUrl: string | null;
-  backImageUrl: string | null;
-  outcomes: VaultInstanceOutcome[];
 };
 
-export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Promise<VaultInstanceDetail | null> {
-  const normalizedUserId = userId.trim();
+export async function getPublicVaultInstanceByGvvi(
+  gvviId: string,
+): Promise<PublicVaultInstanceDetail | null> {
   const normalizedGvviId = gvviId.trim();
-
-  if (!normalizedUserId || !normalizedGvviId) {
+  if (!normalizedGvviId) {
     return null;
   }
 
@@ -152,7 +118,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url",
+      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,created_at,grade_company,grade_value,grade_label,image_url,image_back_url,archived_at",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .maybeSingle();
@@ -161,8 +127,26 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     return null;
   }
 
-  const instance = instanceData as VaultInstanceRow;
-  if (instance.user_id !== normalizedUserId || normalizeOptionalText(instance.gv_vi_id) !== normalizedGvviId) {
+  const instance = instanceData as PublicVaultInstanceRow;
+  const ownerUserId = normalizeOptionalText(instance.user_id);
+  const vaultItemId = normalizeOptionalText(instance.legacy_vault_item_id);
+  const intent = normalizeDiscoverableVaultIntent(instance.intent);
+
+  if (!ownerUserId || !vaultItemId || !intent || instance.archived_at !== null) {
+    return null;
+  }
+
+  const { data: profileData } = await admin
+    .from("public_profiles")
+    .select("slug,display_name,public_profile_enabled,vault_sharing_enabled")
+    .eq("user_id", ownerUserId)
+    .maybeSingle();
+
+  const profile = (profileData ?? null) as PublicProfileRow | null;
+  const ownerSlug = normalizeOptionalText(profile?.slug);
+  const ownerDisplayName = normalizeOptionalText(profile?.display_name);
+
+  if (!profile?.public_profile_enabled || !profile.vault_sharing_enabled || !ownerSlug || !ownerDisplayName) {
     return null;
   }
 
@@ -177,16 +161,16 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     slabCert = (slabData ?? null) as SlabCertRow | null;
   }
 
-  const resolvedCardPrintId =
+  const cardPrintId =
     normalizeOptionalText(instance.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
-  if (!resolvedCardPrintId) {
+  if (!cardPrintId) {
     return null;
   }
 
   const { data: cardData } = await admin
     .from("card_prints")
     .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
-    .eq("id", resolvedCardPrintId)
+    .eq("id", cardPrintId)
     .maybeSingle();
 
   if (!cardData) {
@@ -194,39 +178,29 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   }
 
   const card = cardData as CardPrintRow;
-  const legacyVaultItemId = normalizeOptionalText(instance.legacy_vault_item_id);
-  const frontImagePath = normalizeOptionalText(instance.image_url);
-  const backImagePath = normalizeOptionalText(instance.image_back_url);
-
-  const [frontImageUrl, backImageUrl, outcomeResult] = await Promise.all([
-    resolveVaultInstanceMediaUrl(frontImagePath),
-    resolveVaultInstanceMediaUrl(backImagePath),
-    admin
-      .from("card_interaction_outcomes")
-      .select(
-        "id,execution_event_id,outcome_type,price_amount,price_currency,created_at,source_instance_id,result_instance_id,source_user_id,target_user_id",
-      )
-      .or(`source_instance_id.eq.${instance.id},result_instance_id.eq.${instance.id}`)
-      .order("created_at", { ascending: false }),
+  const [frontImageUrl, backImageUrl] = await Promise.all([
+    resolveVaultInstanceMediaUrl(instance.image_url),
+    resolveVaultInstanceMediaUrl(instance.image_back_url),
   ]);
-
-  const outcomeRows = ((outcomeResult.data ?? []) as OutcomeRow[]).filter(
-    (row): row is OutcomeRow & { outcome_type: "sale" | "trade" } =>
-      row.outcome_type === "sale" || row.outcome_type === "trade",
-  );
 
   return {
     instanceId: instance.id,
     gvviId: normalizedGvviId,
-    cardPrintId: resolvedCardPrintId,
+    vaultItemId,
+    ownerUserId,
+    ownerSlug,
+    ownerDisplayName,
+    cardPrintId,
     gvId: normalizeOptionalText(card.gv_id) ?? "",
     cardName: normalizeOptionalText(card.name) ?? "Unknown card",
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
     imageUrl: getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
+    frontImageUrl,
+    backImageUrl,
+    intent,
     conditionLabel: normalizeOptionalText(instance.condition_label),
-    intent: normalizeVaultIntent(instance.intent) ?? "hold",
     isGraded: Boolean(instance.slab_cert_id),
     grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(instance.grade_company),
     grade:
@@ -234,26 +208,6 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
       normalizeOptionalText(instance.grade_label) ??
       normalizeOptionalText(instance.grade_value),
     certNumber: normalizeOptionalText(slabCert?.cert_number),
-    notes: normalizeOptionalText(instance.notes),
     createdAt: instance.created_at ?? null,
-    archivedAt: instance.archived_at ?? null,
-    legacyVaultItemId,
-    hasFrontPhoto: Boolean(frontImageUrl),
-    hasBackPhoto: Boolean(backImageUrl),
-    frontImagePath,
-    backImagePath,
-    frontImageUrl,
-    backImageUrl,
-    outcomes: outcomeRows.map((row) => ({
-      id: row.id,
-      executionEventId: normalizeOptionalText(row.execution_event_id),
-      outcomeType: row.outcome_type,
-      role: row.source_instance_id === instance.id ? "source" : "result",
-      createdAt: row.created_at ?? null,
-      priceAmount: normalizePriceAmount(row.price_amount),
-      priceCurrency: normalizeOptionalText(row.price_currency),
-      sourceUserId: normalizeOptionalText(row.source_user_id),
-      targetUserId: normalizeOptionalText(row.target_user_id),
-    })),
   };
 }

@@ -3,35 +3,34 @@
 import { revalidatePath } from "next/cache";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import {
+  isOwnedVaultInstanceMediaPath,
+  type VaultInstanceMediaSide,
+} from "@/lib/vaultInstanceMedia";
 
-const ALLOWED_CONDITIONS = new Set(["NM", "LP", "MP", "HP", "DMG"]);
-
-export type SaveVaultItemInstanceConditionInput = {
+export type SaveVaultItemInstanceMediaInput = {
   instanceId: string;
-  conditionLabel: string;
+  side: VaultInstanceMediaSide;
+  storagePath: string | null;
 };
 
-export type SaveVaultItemInstanceConditionResult =
+export type SaveVaultItemInstanceMediaResult =
   | {
       ok: true;
       instanceId: string;
-      conditionLabel: string;
-      gvviId: string | null;
+      side: VaultInstanceMediaSide;
+      storagePath: string | null;
     }
   | {
       ok: false;
       instanceId: string;
+      side: VaultInstanceMediaSide;
       message: string;
     };
 
-function normalizeConditionLabel(value: string) {
-  const normalized = value.trim().toUpperCase();
-  return ALLOWED_CONDITIONS.has(normalized) ? normalized : null;
-}
-
-export async function saveVaultItemInstanceConditionAction(
-  input: SaveVaultItemInstanceConditionInput,
-): Promise<SaveVaultItemInstanceConditionResult> {
+export async function saveVaultItemInstanceMediaAction(
+  input: SaveVaultItemInstanceMediaInput,
+): Promise<SaveVaultItemInstanceMediaResult> {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -41,24 +40,25 @@ export async function saveVaultItemInstanceConditionAction(
     return {
       ok: false,
       instanceId: input.instanceId,
+      side: input.side,
       message: "Sign in required.",
     };
   }
 
   const normalizedInstanceId = input.instanceId.trim();
-  const nextCondition = normalizeConditionLabel(input.conditionLabel);
-  if (!normalizedInstanceId || !nextCondition) {
+  if (!normalizedInstanceId || (input.side !== "front" && input.side !== "back")) {
     return {
       ok: false,
       instanceId: input.instanceId,
-      message: "Condition is invalid.",
+      side: input.side,
+      message: "Copy photo could not be saved.",
     };
   }
 
   const admin = createServerAdminClient();
   const { data: instance, error: instanceError } = await admin
     .from("vault_item_instances")
-    .select("id,user_id,archived_at,slab_cert_id,condition_label,gv_vi_id")
+    .select("id,user_id,archived_at,gv_vi_id")
     .eq("id", normalizedInstanceId)
     .maybeSingle();
 
@@ -66,49 +66,47 @@ export async function saveVaultItemInstanceConditionAction(
     return {
       ok: false,
       instanceId: normalizedInstanceId,
-      message: "Condition could not be saved.",
+      side: input.side,
+      message: "Copy photo could not be saved.",
     };
   }
 
-  if (instance.slab_cert_id) {
+  if (
+    input.storagePath &&
+    !isOwnedVaultInstanceMediaPath(user.id, normalizedInstanceId, input.side, input.storagePath)
+  ) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
-      message: "Graded copies keep condition through slab identity.",
+      side: input.side,
+      message: "Copy photo path is invalid.",
     };
   }
 
-  const currentCondition =
-    typeof instance.condition_label === "string" ? instance.condition_label.trim().toUpperCase() : null;
-  if (currentCondition === nextCondition) {
-    return {
-      ok: true,
-      instanceId: normalizedInstanceId,
-      conditionLabel: nextCondition,
-      gvviId: typeof instance.gv_vi_id === "string" ? instance.gv_vi_id.trim() : null,
-    };
-  }
+  const imageField = input.side === "front" ? "image_url" : "image_back_url";
+  const sourceField = input.side === "front" ? "image_source" : "image_back_source";
 
   const { data, error } = await admin
     .from("vault_item_instances")
     .update({
-      condition_label: nextCondition,
+      [imageField]: input.storagePath,
+      [sourceField]: input.storagePath ? "user_photo" : null,
     })
     .eq("id", normalizedInstanceId)
-    .select("id,condition_label,gv_vi_id")
+    .select("id,gv_vi_id")
     .maybeSingle();
 
   if (error || !data) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
-      message: "Condition could not be saved.",
+      side: input.side,
+      message: "Copy photo could not be saved.",
     };
   }
 
   const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
   revalidatePath("/vault");
-  revalidatePath("/network");
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
     revalidatePath(`/gvvi/${gvviId}`);
@@ -117,10 +115,7 @@ export async function saveVaultItemInstanceConditionAction(
   return {
     ok: true,
     instanceId: data.id,
-    conditionLabel:
-      typeof data.condition_label === "string" && data.condition_label.trim().length > 0
-        ? data.condition_label.trim().toUpperCase()
-        : nextCondition,
-    gvviId,
+    side: input.side,
+    storagePath: input.storagePath,
   };
 }

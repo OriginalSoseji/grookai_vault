@@ -3,18 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
-import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 
-export type SaveVaultItemInstanceIntentInput = {
+export type SaveVaultItemInstanceNotesInput = {
   instanceId: string;
-  intent: VaultIntent;
+  notes: string;
 };
 
-export type SaveVaultItemInstanceIntentResult =
+export type SaveVaultItemInstanceNotesResult =
   | {
       ok: true;
       instanceId: string;
-      intent: VaultIntent;
+      notes: string | null;
     }
   | {
       ok: false;
@@ -22,9 +21,18 @@ export type SaveVaultItemInstanceIntentResult =
       message: string;
     };
 
-export async function saveVaultItemInstanceIntentAction(
-  input: SaveVaultItemInstanceIntentInput,
-): Promise<SaveVaultItemInstanceIntentResult> {
+function normalizeNotes(value: string) {
+  const normalized = value.trim();
+  if (!normalized) {
+    return null;
+  }
+
+  return normalized.slice(0, 2000);
+}
+
+export async function saveVaultItemInstanceNotesAction(
+  input: SaveVaultItemInstanceNotesInput,
+): Promise<SaveVaultItemInstanceNotesResult> {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -38,20 +46,19 @@ export async function saveVaultItemInstanceIntentAction(
     };
   }
 
-  const nextIntent = normalizeVaultIntent(input.intent);
   const normalizedInstanceId = input.instanceId.trim();
-  if (!normalizedInstanceId || !nextIntent) {
+  if (!normalizedInstanceId) {
     return {
       ok: false,
       instanceId: input.instanceId,
-      message: "Copy intent is invalid.",
+      message: "Notes could not be saved.",
     };
   }
 
   const admin = createServerAdminClient();
   const { data: instance, error: instanceError } = await admin
     .from("vault_item_instances")
-    .select("id,user_id,archived_at,intent")
+    .select("id,user_id,archived_at,notes,gv_vi_id")
     .eq("id", normalizedInstanceId)
     .maybeSingle();
 
@@ -59,38 +66,47 @@ export async function saveVaultItemInstanceIntentAction(
     return {
       ok: false,
       instanceId: normalizedInstanceId,
-      message: "Copy intent could not be saved.",
+      message: "Notes could not be saved.",
+    };
+  }
+
+  const nextNotes = normalizeNotes(input.notes);
+  const currentNotes = typeof instance.notes === "string" ? instance.notes.trim() : null;
+
+  if (currentNotes === nextNotes) {
+    return {
+      ok: true,
+      instanceId: normalizedInstanceId,
+      notes: nextNotes,
     };
   }
 
   const { data, error } = await admin
     .from("vault_item_instances")
     .update({
-      intent: nextIntent,
+      notes: nextNotes,
     })
     .eq("id", normalizedInstanceId)
-    .select("id,intent,gv_vi_id")
+    .select("id,notes,gv_vi_id")
     .maybeSingle();
 
   if (error || !data) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
-      message: "Copy intent could not be saved.",
+      message: "Notes could not be saved.",
     };
   }
 
-  revalidatePath("/vault");
-  revalidatePath("/network");
   const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  revalidatePath("/vault");
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
-    revalidatePath(`/gvvi/${gvviId}`);
   }
 
   return {
     ok: true,
     instanceId: data.id,
-    intent: normalizeVaultIntent(data.intent) ?? "hold",
+    notes: typeof data.notes === "string" && data.notes.trim().length > 0 ? data.notes.trim() : null,
   };
 }

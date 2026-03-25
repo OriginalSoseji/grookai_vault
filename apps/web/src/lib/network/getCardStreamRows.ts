@@ -38,6 +38,7 @@ type CardStreamSourceRow = {
 
 type CardStreamCopySourceRow = {
   id: string;
+  gv_vi_id: string | null;
   user_id: string | null;
   card_print_id: string | null;
   slab_cert_id: string | null;
@@ -61,6 +62,7 @@ type SlabCertMetadataRow = {
 
 export type CardStreamCopy = {
   instanceId: string;
+  gvviId: string | null;
   vaultItemId: string;
   intent: DiscoverableVaultIntent;
   conditionLabel: string | null;
@@ -192,7 +194,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
   const { data: instances, error: instancesError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      "id,gv_vi_id,user_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
     )
     .in("user_id", ownerUserIds)
     .is("archived_at", null)
@@ -255,6 +257,7 @@ async function fetchInPlayCopies(rows: CardStreamRow[]) {
     const copies = copiesByGroupKey.get(groupKey) ?? [];
     copies.push({
       instanceId: row.id,
+      gvviId: normalizeOptionalText(row.gv_vi_id),
       vaultItemId,
       intent,
       conditionLabel: normalizeOptionalText(row.condition_label),

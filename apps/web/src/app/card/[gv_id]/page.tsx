@@ -379,6 +379,10 @@ export default async function CardPage({
       intent: offer.intent,
     };
   };
+  const getSingleOfferCopyHref = (offer: (typeof networkOffers)[number]) =>
+    offer.inPlayCopies.length === 1 && offer.inPlayCopies[0]?.gvviId
+      ? `/gvvi/${encodeURIComponent(offer.inPlayCopies[0].gvviId)}`
+      : null;
 
   return (
     <div className={`space-y-8 py-4 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
@@ -516,6 +520,7 @@ export default async function CardPage({
               <article key={offer.vaultItemId} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4">
                 {(() => {
                   const groupedContactAnchor = getGroupedOfferContactAnchor(offer);
+                  const singleCopyHref = getSingleOfferCopyHref(offer);
                   return (
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                   <div className="space-y-2">
@@ -545,6 +550,14 @@ export default async function CardPage({
                         {offer.ownerDisplayName}
                       </Link>
                     </p>
+                    {singleCopyHref ? (
+                      <Link
+                        href={singleCopyHref}
+                        className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                      >
+                        Open exact copy
+                      </Link>
+                    ) : null}
                   </div>
                   {offer.ownerUserId !== user?.id && groupedContactAnchor ? (
                     <ContactOwnerButton
@@ -586,6 +599,14 @@ export default async function CardPage({
                               ) : null}
                               {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
                             </div>
+                            {copy.gvviId ? (
+                              <Link
+                                href={`/gvvi/${encodeURIComponent(copy.gvviId)}`}
+                                className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                              >
+                                Open copy
+                              </Link>
+                            ) : null}
                             {offer.ownerUserId !== user?.id ? (
                               <ContactOwnerButton
                                 vaultItemId={copy.vaultItemId}

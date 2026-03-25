@@ -123,6 +123,7 @@ type SlabCertRow = {
 
 type DiscoverableInstanceRow = {
   id: string;
+  gv_vi_id: string | null;
   card_print_id: string | null;
   slab_cert_id: string | null;
   legacy_vault_item_id: string | null;
@@ -384,7 +385,7 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
   const { data: instances, error: instancesError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      "id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -449,6 +450,7 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
     const copies = byCardId.get(cardPrintId) ?? [];
     copies.push({
       instance_id: instanceId,
+      gv_vi_id: normalizeOptionalText(row.gv_vi_id) ?? undefined,
       vault_item_id: vaultItemId,
       intent,
       condition_label: normalizeOptionalText(row.condition_label) ?? undefined,

@@ -3,6 +3,7 @@ import type { DiscoverableVaultIntent } from "@/lib/network/intent";
 
 export type PublicInPlayCopy = {
   instance_id: string;
+  gv_vi_id?: string;
   vault_item_id: string;
   intent: DiscoverableVaultIntent;
   condition_label?: string;

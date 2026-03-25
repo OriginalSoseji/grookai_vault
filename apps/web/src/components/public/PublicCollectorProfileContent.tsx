@@ -119,6 +119,15 @@ function getGroupedContactAnchor(card: PublicWallCard) {
   };
 }
 
+function getSingleCopyHref(card: PublicWallCard) {
+  if (!card.in_play_copies || card.in_play_copies.length !== 1) {
+    return null;
+  }
+
+  const gvviId = card.in_play_copies[0]?.gv_vi_id;
+  return gvviId ? `/gvvi/${encodeURIComponent(gvviId)}` : null;
+}
+
 function compareInPlayCards(left: PublicWallCard, right: PublicWallCard) {
   const leftCreatedAt = left.in_play_created_at ? Date.parse(left.in_play_created_at) : Number.NEGATIVE_INFINITY;
   const rightCreatedAt = right.in_play_created_at ? Date.parse(right.in_play_created_at) : Number.NEGATIVE_INFINITY;
@@ -263,6 +272,7 @@ export function PublicCollectorProfileContent({
               const ownershipSummary = getInPlayOwnershipSummary(card);
               const intentBadges = getIntentBadgeLabels(card);
               const groupedContactAnchor = getGroupedContactAnchor(card);
+              const exactCopyHref = getSingleCopyHref(card) ?? `/card/${card.gv_id}`;
 
               return (
                 <PokemonCardGridTile
@@ -270,7 +280,7 @@ export function PublicCollectorProfileContent({
                   density={density}
                   imageSrc={card.image_url}
                   imageAlt={card.name}
-                  imageHref={`/card/${card.gv_id}`}
+                  imageHref={exactCopyHref}
                   imageFallbackLabel={card.name}
                   imageOverlay={
                     <>
@@ -294,7 +304,7 @@ export function PublicCollectorProfileContent({
                     </>
                   }
                   title={
-                    <Link href={`/card/${card.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
+                    <Link href={exactCopyHref} className="line-clamp-2 block transition hover:text-slate-700">
                       {card.name}
                     </Link>
                   }
@@ -339,6 +349,14 @@ export function PublicCollectorProfileContent({
                                     ) : null}
                                     {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}
                                   </div>
+                                  {copy.gv_vi_id ? (
+                                    <Link
+                                      href={`/gvvi/${encodeURIComponent(copy.gv_vi_id)}`}
+                                      className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                                    >
+                                      Open copy
+                                    </Link>
+                                  ) : null}
                                   {!isOwnProfile ? (
                                     <ContactOwnerButton
                                       vaultItemId={copy.vault_item_id}

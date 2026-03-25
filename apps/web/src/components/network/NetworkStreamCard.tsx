@@ -49,12 +49,16 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
   const canContactOwner = viewerUserId !== row.ownerUserId;
   const intentSummary = getIntentSummary(row);
   const groupedContactAnchor = getGroupedContactAnchor(row);
+  const singleCopyHref =
+    row.inPlayCopies.length === 1 && row.inPlayCopies[0]?.gvviId
+      ? `/gvvi/${encodeURIComponent(row.inPlayCopies[0].gvviId)}`
+      : `/card/${row.gvId}`;
 
   return (
     <article className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
       <div className="flex flex-col gap-5 sm:flex-row">
         <Link
-          href={`/card/${row.gvId}`}
+          href={singleCopyHref}
           className="flex w-full justify-center sm:w-[140px] sm:shrink-0"
         >
           <PublicCardImage
@@ -82,7 +86,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
           </div>
 
           <div className="space-y-2">
-            <Link href={`/card/${row.gvId}`} className="block">
+            <Link href={singleCopyHref} className="block">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
                 {row.name}
               </h2>
@@ -141,6 +145,14 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                         ) : null}
                         {copy.certNumber ? <span>Cert {copy.certNumber}</span> : null}
                       </div>
+                      {copy.gvviId ? (
+                        <Link
+                          href={`/gvvi/${encodeURIComponent(copy.gvviId)}`}
+                          className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                        >
+                          Open copy
+                        </Link>
+                      ) : null}
                       {canContactOwner ? (
                         <ContactOwnerButton
                           vaultItemId={copy.vaultItemId}

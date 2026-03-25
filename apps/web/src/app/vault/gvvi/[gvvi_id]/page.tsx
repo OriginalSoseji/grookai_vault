@@ -5,6 +5,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
@@ -71,7 +72,10 @@ export default async function VaultInstancePage({
   }
 
   const isActive = detail.archivedAt === null;
-  const sharePath = `/vault/gvvi/${encodeURIComponent(detail.gvviId)}`;
+  const publicSharePath =
+    isActive && detail.intent !== "hold" ? `/gvvi/${encodeURIComponent(detail.gvviId)}` : null;
+  const managementPath = `/vault/gvvi/${encodeURIComponent(detail.gvviId)}`;
+  const sharePath = publicSharePath ?? managementPath;
   const siteOrigin = getSiteOrigin();
   const shareUrl = siteOrigin ? `${siteOrigin}${sharePath}` : sharePath;
 
@@ -191,41 +195,19 @@ export default async function VaultInstancePage({
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
             <SectionHeader
               title="Notes / Media"
-              description="Per-copy notes and photo hooks live here instead of inside the grouped vault card."
+              description="Per-copy notes and exact-copy media live here instead of inside the grouped vault card."
             />
 
-            <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Notes</p>
-                <p className="mt-2 text-sm leading-6 text-slate-700">
-                  {detail.notes ?? "No notes are stored on this copy yet."}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                    {detail.hasFrontPhoto ? "Front photo ready" : "No front photo"}
-                  </span>
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                    {detail.hasBackPhoto ? "Back photo ready" : "No back photo"}
-                  </span>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded-[1rem] border border-slate-200 bg-slate-50 p-3">
-                {detail.photoUrl ? (
-                  <PublicCardImage
-                    src={detail.photoUrl}
-                    alt={`${detail.cardName} owned copy`}
-                    imageClassName="aspect-[3/4] w-full object-contain"
-                    fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
-                    fallbackLabel={detail.cardName}
-                  />
-                ) : (
-                  <div className="flex aspect-[3/4] w-full items-center justify-center rounded-[0.85rem] border border-dashed border-slate-300 bg-white px-4 text-center text-sm text-slate-500">
-                    Photo upload remains tied to your existing vault capture flows.
-                  </div>
-                )}
-              </div>
-            </div>
+            <VaultInstanceNotesMediaCard
+              userId={user.id}
+              instanceId={detail.instanceId}
+              initialNotes={detail.notes}
+              initialFrontImageUrl={detail.frontImageUrl}
+              initialBackImageUrl={detail.backImageUrl}
+              initialFrontImagePath={detail.frontImagePath}
+              initialBackImagePath={detail.backImagePath}
+              isActive={isActive}
+            />
           </PageSection>
 
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
@@ -272,13 +254,25 @@ export default async function VaultInstancePage({
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
               title="Share"
-              description="Copy the exact GVVI route for this owned card."
+              description={
+                publicSharePath
+                  ? "Copy the public exact-copy route for this discoverable owned card."
+                  : "Only discoverable copies have a public exact-copy route."
+              }
             />
             <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
               <p className="break-all text-sm text-slate-600">{shareUrl}</p>
               <div className="flex flex-wrap gap-2">
                 <CopyButton text={shareUrl} />
                 <CopyButton text={detail.gvviId} />
+                {publicSharePath ? (
+                  <Link
+                    href={publicSharePath}
+                    className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                  >
+                    Open public page
+                  </Link>
+                ) : null}
               </div>
             </div>
           </PageSection>
