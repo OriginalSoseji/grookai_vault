@@ -315,7 +315,7 @@ export function PublicCollectorProfileContent({
                   }
                   details={
                     <div className="space-y-3">
-                      {card.in_play_copies && card.in_play_copies.length > 0 ? (
+                      {card.in_play_copies && card.in_play_copies.length > 1 ? (
                         <details className="rounded-[0.9rem] border border-slate-200 bg-slate-50 px-3 py-3">
                           <summary className="cursor-pointer text-sm font-medium text-slate-800">
                             View copies ({card.in_play_copies.length})

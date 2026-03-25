@@ -13,6 +13,9 @@ import {
   formatVaultObjectLevelSlabSummary,
   formatVaultSlabSummary,
   getVaultCardMetaLine,
+  getVaultCopyIntentBadgeClassName,
+  getVaultCopyVisibilityBadgeClassName,
+  getVaultCopyVisibilityLabel,
   getVaultOwnershipSummary,
   VaultActionButton,
   VaultDetailPanel,
@@ -218,7 +221,7 @@ function MobileDetailRow({
                 {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
               </VaultActionButton>
               <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="quiet">
-                {detailsOpen ? "Hide details" : "Details"}
+                {detailsOpen ? "Hide details" : item.owned_count > 1 ? "Manage copies" : "Details"}
               </VaultActionButton>
               <ShareCardButton gvId={item.gv_id} />
             </div>
@@ -305,6 +308,18 @@ function MobileDetailRow({
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                         <div className="space-y-1">
                           <p className="text-sm font-medium text-slate-900">{copySummary}</p>
+                          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
+                            <span
+                              className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
+                            >
+                              {getVaultIntentLabel(copy.intent)}
+                            </span>
+                            <span
+                              className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
+                            >
+                              {getVaultCopyVisibilityLabel(copy.intent)}
+                            </span>
+                          </div>
                           <div className="flex flex-wrap gap-2 text-xs text-slate-500">
                             {copy.gv_vi_id ? <span>{copy.gv_vi_id}</span> : null}
                             {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}

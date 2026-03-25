@@ -1,7 +1,11 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
-import { getVaultIntentLabel } from "@/lib/network/intent";
+import {
+  getVaultIntentLabel,
+  normalizeDiscoverableVaultIntent,
+  type VaultIntent,
+} from "@/lib/network/intent";
 import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type VaultActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -69,6 +73,30 @@ export function getVaultCardMetaLine(item: Pick<VaultCardData, "set_name" | "set
   return [item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
     .filter(Boolean)
     .join(" • ");
+}
+
+export function getVaultCopyIntentBadgeClassName(intent: VaultIntent) {
+  switch (intent) {
+    case "trade":
+      return "border-emerald-300 bg-emerald-100 text-emerald-900";
+    case "sell":
+      return "border-sky-300 bg-sky-100 text-sky-900";
+    case "showcase":
+      return "border-amber-300 bg-amber-100 text-amber-900";
+    case "hold":
+    default:
+      return "border-slate-300 bg-slate-100 text-slate-700";
+  }
+}
+
+export function getVaultCopyVisibilityLabel(intent: VaultIntent) {
+  return normalizeDiscoverableVaultIntent(intent) ? "In Play" : "Hidden";
+}
+
+export function getVaultCopyVisibilityBadgeClassName(intent: VaultIntent) {
+  return normalizeDiscoverableVaultIntent(intent)
+    ? "border-slate-300 bg-white text-slate-700"
+    : "border-slate-200 bg-slate-100 text-slate-500";
 }
 
 export function VaultStatusBadges({

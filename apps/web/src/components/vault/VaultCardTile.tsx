@@ -7,6 +7,9 @@ import ShareCardButton from "@/components/ShareCardButton";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
   formatVaultObjectLevelSlabSummary,
+  getVaultCopyIntentBadgeClassName,
+  getVaultCopyVisibilityBadgeClassName,
+  getVaultCopyVisibilityLabel,
   getVaultOwnershipSummary,
   VaultActionButton,
   VaultDetailPanel,
@@ -138,6 +141,7 @@ export function VaultCardTile({
   const canManagePublicImages = !item.is_slab;
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const ownershipSummary = getVaultOwnershipSummary(item);
+  const manageButtonLabel = item.owned_count > 1 ? "Manage copies" : "Manage card";
 
   const summaryRow = (
     <div className="space-y-3">
@@ -176,7 +180,7 @@ export function VaultCardTile({
           {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
         </VaultActionButton>
         <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="quiet">
-          {isSharedControlsExpanded ? "Hide controls" : "Manage card"}
+          {isSharedControlsExpanded ? "Hide controls" : manageButtonLabel}
         </VaultActionButton>
         {item.is_shared && publicCollectionHref ? (
           <Link
@@ -325,6 +329,18 @@ export function VaultCardTile({
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 space-y-1">
                     <p className="text-sm font-medium text-slate-900">{copySummary}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
+                      <span
+                        className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
+                      >
+                        {getVaultIntentLabel(copy.intent)}
+                      </span>
+                      <span
+                        className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
+                      >
+                        {getVaultCopyVisibilityLabel(copy.intent)}
+                      </span>
+                    </div>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
                       {copy.gv_vi_id ? <span>{copy.gv_vi_id}</span> : null}
                       {copy.cert_number ? <span>Cert {copy.cert_number}</span> : null}
