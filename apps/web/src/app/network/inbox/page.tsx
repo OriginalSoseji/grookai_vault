@@ -84,10 +84,19 @@ function getConversationPill(group: UserCardInteractionGroup) {
   }
 
   if (group.hasUnread) {
-    return "Unread";
+    return "New";
   }
 
-  return group.direction === "received" ? "Latest received" : "Latest sent";
+  return "Active";
+}
+
+function getLatestMessage(group: UserCardInteractionGroup) {
+  return group.messages[group.messages.length - 1] ?? null;
+}
+
+function getMessagePreview(value: string) {
+  const normalized = value.trim().replace(/\s+/g, " ");
+  return normalized.length > 0 ? normalized : "No message yet.";
 }
 
 function getVisibleGroups(groups: UserCardInteractionGroup[], view: UserCardInteractionInboxView) {
@@ -207,6 +216,10 @@ function InteractionGroupCard({
   currentPath: string;
 }) {
   const pillLabel = getConversationPill(group);
+  const latestMessage = getLatestMessage(group);
+  const hasExecutionActions = group.ownedSourceInstances.length > 0 || Boolean(group.latestOutcome);
+  const hasSecondaryActions = hasExecutionActions || group.conversationState === "inbox";
+  const secondarySummaryLabel = group.latestOutcome ? "Card actions • outcome recorded" : "Card actions";
   const pillClassName =
     group.conversationState === "archived"
       ? "border-slate-200 bg-slate-100 text-slate-700"
@@ -219,7 +232,7 @@ function InteractionGroupCard({
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-4 sm:flex-row">
-        <Link href={`/card/${group.card.gvId}`} className="w-[96px] shrink-0">
+        <Link href={`/card/${group.card.gvId}`} className="mx-auto w-[96px] shrink-0 sm:mx-0">
           <PublicCardImage
             src={group.card.imageUrl ?? undefined}
             alt={group.card.name}
@@ -228,39 +241,57 @@ function InteractionGroupCard({
             fallbackLabel={group.card.name}
           />
         </Link>
-        <div className="min-w-0 flex-1 space-y-3">
-          <div className="space-y-1">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-              With {group.counterpartDisplayName}
-            </p>
-            <Link href={`/card/${group.card.gvId}`} className="block">
-              <h2 className="text-xl font-semibold tracking-tight text-slate-950">{group.card.name}</h2>
-            </Link>
-            <p className="text-sm text-slate-600">
-              {[group.card.setName || group.card.setCode, group.card.number !== "—" ? `#${group.card.number}` : undefined]
-                .filter(Boolean)
-                .join(" • ")}
-            </p>
-          </div>
+        <div className="min-w-0 flex-1 space-y-4">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+              <span className={`rounded-full border px-2.5 py-1 font-medium ${pillClassName}`}>{pillLabel}</span>
+              <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700">
+                {group.messageCount} {group.messageCount === 1 ? "message" : "messages"}
+              </span>
+              <span>{formatTimestamp(group.latestCreatedAt)}</span>
+              {group.counterpartSlug ? (
+                <Link href={`/u/${group.counterpartSlug}`} className="font-medium text-slate-700 underline-offset-4 hover:underline">
+                  View collector
+                </Link>
+              ) : null}
+            </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-            <span className={`rounded-full border px-2.5 py-1 font-medium ${pillClassName}`}>{pillLabel}</span>
-            <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 font-medium text-slate-700">
-              {group.messageCount} {group.messageCount === 1 ? "message" : "messages"}
-            </span>
-            <span>{formatTimestamp(group.latestCreatedAt)}</span>
-            {group.counterpartSlug ? (
-              <Link href={`/u/${group.counterpartSlug}`} className="font-medium text-slate-700 underline-offset-4 hover:underline">
-                View collector
+            <div className="space-y-1.5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                With {group.counterpartDisplayName}
+              </p>
+              <Link href={`/card/${group.card.gvId}`} className="block">
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950">{group.card.name}</h2>
               </Link>
+              <p className="text-sm text-slate-600">
+                {[group.card.setName || group.card.setCode, group.card.number !== "—" ? `#${group.card.number}` : undefined]
+                  .filter(Boolean)
+                  .join(" • ")}
+              </p>
+            </div>
+
+            {latestMessage ? (
+              <div className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+                <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                  <span>Latest</span>
+                  <span className="h-1 w-1 rounded-full bg-slate-300" />
+                  <span>{latestMessage.direction === "sent" ? "You" : group.counterpartDisplayName}</span>
+                </div>
+                <p className="line-clamp-2 text-sm leading-6 text-slate-700">
+                  {getMessagePreview(latestMessage.message)}
+                </p>
+              </div>
             ) : null}
           </div>
 
-          <div className="space-y-2">
-            {group.messages.map((message) => (
-              <div key={message.id} className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
-                <div className="mb-2 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                  <span>{message.direction === "sent" ? "Sent" : "Received"}</span>
+          <div className="space-y-2 rounded-[1rem] border border-slate-200 bg-white/70 px-3 py-3">
+            {group.messages.map((message, index) => (
+              <div
+                key={message.id}
+                className={`${index > 0 ? "border-t border-slate-100 pt-2.5" : ""}`}
+              >
+                <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                  <span>{message.direction === "sent" ? "You" : group.counterpartDisplayName}</span>
                   <span className="h-1 w-1 rounded-full bg-slate-300" />
                   <span>{formatTimestamp(message.createdAt)}</span>
                 </div>
@@ -268,25 +299,6 @@ function InteractionGroupCard({
               </div>
             ))}
           </div>
-
-          <InteractionGroupExecutionPanel
-            latestInteractionId={group.latestInteractionId}
-            counterpartDisplayName={group.counterpartDisplayName}
-            cardName={group.card.name}
-            currentPath={currentPath}
-            ownedSourceInstances={group.ownedSourceInstances}
-            latestOutcome={group.latestOutcome}
-            pendingTradeExecutionEventId={group.pendingTradeExecutionEventId}
-            hasAmbiguousPendingTradeEvent={group.hasAmbiguousPendingTradeEvent}
-          />
-
-          <InteractionGroupControls
-            cardPrintId={group.card.cardPrintId}
-            counterpartUserId={group.counterpartUserId}
-            currentPath={currentPath}
-            hasUnread={group.hasUnread}
-            conversationState={group.conversationState}
-          />
 
           {group.conversationState === "inbox" && group.vaultItemId ? (
             <InteractionGroupReplyForm
@@ -296,6 +308,34 @@ function InteractionGroupCard({
               counterpartDisplayName={group.counterpartDisplayName}
               currentPath={currentPath}
             />
+          ) : null}
+
+          {hasSecondaryActions ? (
+            <details className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+              <summary className="cursor-pointer text-sm font-medium text-slate-700">
+                {secondarySummaryLabel}
+              </summary>
+              <div className="mt-3 space-y-3">
+                <InteractionGroupExecutionPanel
+                  latestInteractionId={group.latestInteractionId}
+                  counterpartDisplayName={group.counterpartDisplayName}
+                  cardName={group.card.name}
+                  currentPath={currentPath}
+                  ownedSourceInstances={group.ownedSourceInstances}
+                  latestOutcome={group.latestOutcome}
+                  pendingTradeExecutionEventId={group.pendingTradeExecutionEventId}
+                  hasAmbiguousPendingTradeEvent={group.hasAmbiguousPendingTradeEvent}
+                />
+
+                <InteractionGroupControls
+                  cardPrintId={group.card.cardPrintId}
+                  counterpartUserId={group.counterpartUserId}
+                  currentPath={currentPath}
+                  hasUnread={group.hasUnread}
+                  conversationState={group.conversationState}
+                />
+              </div>
+            </details>
           ) : null}
         </div>
       </div>
@@ -346,7 +386,7 @@ export default async function NetworkInboxPage({
         <PageIntro
           eyebrow="Messages"
           title="Messages about cards"
-          description="Card-first messages grouped by the exact card and the collector on the other side."
+          description="Reply to collectors about specific cards without losing the card context."
           actions={
             <Link
               href="/network"

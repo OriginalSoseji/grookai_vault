@@ -43,7 +43,7 @@ function SubmitReplyButton({ isSubmitting }: { isSubmitting: boolean }) {
       aria-disabled={isDisabled}
       className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {isDisabled ? "Sending..." : "Send reply"}
+      {isDisabled ? "Sending..." : "Send"}
     </button>
   );
 }
@@ -87,11 +87,8 @@ export function InteractionGroupReplyForm({
   }
 
   return (
-    <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-4">
-      <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reply</p>
-        <p className="text-sm text-slate-600">Reply to {counterpartDisplayName} on this card.</p>
-      </div>
+    <div className="space-y-3 rounded-[1.1rem] border border-slate-300 bg-slate-50 px-4 py-4 shadow-sm">
+      <p className="text-sm font-semibold text-slate-950">Reply</p>
 
       <form action={formAction} onSubmit={handleFormSubmit} className="space-y-3">
         <input type="hidden" name="vault_item_id" value={vaultItemId} />
@@ -106,11 +103,11 @@ export function InteractionGroupReplyForm({
             name="message"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            rows={3}
+            rows={4}
             maxLength={2000}
             disabled={isSubmitting}
-            placeholder="Keep the reply tied to this card."
-            className="w-full rounded-[1rem] border border-slate-200 bg-slate-50 px-3 py-3 text-sm leading-6 text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-70"
+            placeholder={`Reply to ${counterpartDisplayName} about this card`}
+            className="w-full rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-sm leading-6 text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-70"
           />
         </label>
 

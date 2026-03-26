@@ -177,8 +177,8 @@ export function InteractionGroupExecutionPanel({
   return (
     <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-4">
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Execution</p>
-        <p className="text-sm text-slate-600">Record what actually happened to this card conversation.</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Card outcome</p>
+        <p className="text-sm text-slate-600">Record what actually happened only after the card changes hands.</p>
       </div>
 
       {latestOutcome ? (
