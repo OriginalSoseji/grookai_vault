@@ -159,7 +159,7 @@ export async function createCardInteractionAction(
       ok: false,
       status: "error",
       submissionKey,
-      message: "Interaction history could not be checked.",
+      message: "Message history could not be checked.",
     };
   }
 
@@ -190,7 +190,7 @@ export async function createCardInteractionAction(
       ok: false,
       status: "error",
       submissionKey,
-      message: "Interaction could not be created.",
+      message: "Message could not be created.",
     };
   }
 

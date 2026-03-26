@@ -29,6 +29,42 @@ export function formatVaultCardValue(value: number | null) {
   return formattedValue ? `~${formattedValue}` : null;
 }
 
+export function getVaultMessageSignalLabel({
+  activeMessageCount,
+  unreadMessageCount,
+}: {
+  activeMessageCount: number;
+  unreadMessageCount: number;
+}) {
+  if (unreadMessageCount > 0) {
+    return `${unreadMessageCount} new ${unreadMessageCount === 1 ? "message" : "messages"}`;
+  }
+
+  if (activeMessageCount > 0) {
+    return `${activeMessageCount} interested`;
+  }
+
+  return null;
+}
+
+export function getVaultPrimaryActionLabel({
+  inPlayCount,
+  activeMessageCount,
+}: {
+  inPlayCount: number;
+  activeMessageCount: number;
+}) {
+  if (activeMessageCount > 0) {
+    return "View messages";
+  }
+
+  if (inPlayCount > 0) {
+    return "Manage";
+  }
+
+  return "Make available";
+}
+
 export function formatVaultSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {
   return [item.grader, item.grade]
     .filter((value): value is string => typeof value === "string" && value.length > 0)

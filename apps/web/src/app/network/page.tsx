@@ -49,7 +49,7 @@ export default async function NetworkPage({
       <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
         <PageIntro
           eyebrow="Collector Network"
-          title="Cards open for interaction"
+          title="Cards open for contact"
           description="Trade, sell, and showcase cards from collectors who have chosen to be discoverable."
           actions={
             user ? (
@@ -57,7 +57,7 @@ export default async function NetworkPage({
                 href="/network/inbox"
                 className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
               >
-                View interactions
+                Messages
               </Link>
             ) : (
               <Link

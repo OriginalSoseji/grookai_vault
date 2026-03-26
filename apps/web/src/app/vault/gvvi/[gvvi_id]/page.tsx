@@ -8,6 +8,10 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
+import {
+  buildOwnedCardMessagesHref,
+  getOwnedCardMessageSummaries,
+} from "@/lib/network/getOwnedCardMessageSummaries";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -54,6 +58,14 @@ function formatOutcomePrice(amount: number, currency: string) {
   }
 }
 
+function formatMessageSummary(activeCount: number, unreadCount: number) {
+  if (unreadCount > 0) {
+    return `${unreadCount} new ${unreadCount === 1 ? "message" : "messages"} about this card`;
+  }
+
+  return `${activeCount} ${activeCount === 1 ? "active message" : "active messages"} about this card`;
+}
+
 export default async function VaultInstancePage({
   params,
 }: {
@@ -85,6 +97,29 @@ export default async function VaultInstancePage({
     uploadedImageUrl: detail.frontImageUrl,
     canonicalImageUrl: detail.imageUrl,
   });
+  let messageSummary:
+    | {
+        activeCount: number;
+        unreadCount: number;
+      }
+    | null = null;
+  try {
+    const [summary] = await getOwnedCardMessageSummaries(user.id, [detail.cardPrintId]);
+    messageSummary = summary ?? null;
+  } catch (error) {
+    console.error("[vault:gvvi] message summary lookup failed", {
+      userId: user.id,
+      cardPrintId: detail.cardPrintId,
+      error,
+    });
+  }
+  const messagesHref =
+    messageSummary && messageSummary.activeCount > 0
+      ? buildOwnedCardMessagesHref({
+          cardPrintId: detail.cardPrintId,
+          unreadCount: messageSummary.unreadCount,
+        })
+      : null;
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
@@ -263,6 +298,32 @@ export default async function VaultInstancePage({
             marketReferenceSource={detail.marketReferenceSource}
             marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
           />
+
+          {messageSummary && messagesHref ? (
+            <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+              <SectionHeader
+                title="Messages"
+                description="Demand for this card stays card-anchored, even when you are managing one exact copy."
+              />
+              <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
+                <p
+                  className={`text-sm font-medium ${
+                    messageSummary.unreadCount > 0 ? "text-emerald-700" : "text-slate-700"
+                  }`}
+                >
+                  {formatMessageSummary(messageSummary.activeCount, messageSummary.unreadCount)}
+                </p>
+                <div>
+                  <Link
+                    href={messagesHref}
+                    className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                  >
+                    View messages
+                  </Link>
+                </div>
+              </div>
+            </PageSection>
+          ) : null}
 
           <VaultInstanceSettingsCard
             instanceId={detail.instanceId}

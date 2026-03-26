@@ -7,6 +7,10 @@ import {
 } from "@/components/vault/VaultCollectionView";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import { normalizeVaultIntent } from "@/lib/network/intent";
+import {
+  buildOwnedCardMessagesHref,
+  getOwnedCardMessageSummaries,
+} from "@/lib/network/getOwnedCardMessageSummaries";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import {
   normalizeWallCategory,
@@ -70,6 +74,7 @@ function normalizeVaultItems(
   sharedBackImageGvIds: Set<string>,
   vaultFrontPhotoIds: Set<string>,
   vaultBackPhotoIds: Set<string>,
+  messageSummaryByCardPrintId: Map<string, { activeCount: number; unreadCount: number }>,
 ): VaultCardData[] {
   return (rows ?? [])
     .filter((row): row is CanonicalVaultCollectorRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
@@ -135,6 +140,14 @@ function normalizeVaultItems(
         show_personal_back: sharedBackImageCardIds.has(row.card_id) || sharedBackImageGvIds.has(row.gv_id),
         has_front_photo: vaultFrontPhotoIds.has(vaultItemId),
         has_back_photo: vaultBackPhotoIds.has(vaultItemId),
+        active_message_count: messageSummaryByCardPrintId.get(row.card_id)?.activeCount ?? 0,
+        unread_message_count: messageSummaryByCardPrintId.get(row.card_id)?.unreadCount ?? 0,
+        messages_href: messageSummaryByCardPrintId.has(row.card_id)
+          ? buildOwnedCardMessagesHref({
+              cardPrintId: row.card_id,
+              unreadCount: messageSummaryByCardPrintId.get(row.card_id)?.unreadCount ?? 0,
+            })
+          : null,
       };
     });
 }
@@ -197,6 +210,28 @@ export default async function VaultPage() {
     itemRows = await getCanonicalVaultCollectorRows(user.id);
   } catch (error) {
     canonicalItemsError = error instanceof Error ? error.message : "Unknown canonical vault read error";
+  }
+
+  let messageSummaryByCardPrintId = new Map<string, { activeCount: number; unreadCount: number }>();
+  try {
+    const messageSummaries = await getOwnedCardMessageSummaries(
+      user.id,
+      itemRows.map((row) => row.card_id),
+    );
+    messageSummaryByCardPrintId = new Map(
+      messageSummaries.map((summary) => [
+        summary.cardPrintId,
+        {
+          activeCount: summary.activeCount,
+          unreadCount: summary.unreadCount,
+        },
+      ]),
+    );
+  } catch (error) {
+    console.error("[vault] owned card message summary lookup failed", {
+      userId: user.id,
+      error,
+    });
   }
 
   const [
@@ -308,6 +343,7 @@ export default async function VaultPage() {
     sharedBackImageGvIds,
     vaultFrontPhotoIds,
     vaultBackPhotoIds,
+    messageSummaryByCardPrintId,
   );
   const recent = normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null);
   const setLogoPathByCode = Object.fromEntries(

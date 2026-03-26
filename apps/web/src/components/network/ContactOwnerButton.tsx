@@ -53,7 +53,7 @@ function getStatusMessage(state: CreateCardInteractionActionResult | null) {
   if (state.ok) {
     return {
       tone: "success" as const,
-      title: "Interaction created",
+      title: "Message sent",
       body: state.message,
     };
   }
@@ -67,7 +67,7 @@ function getStatusMessage(state: CreateCardInteractionActionResult | null) {
           ? "Message blocked"
           : state.status === "unavailable"
             ? "Card unavailable"
-            : "Interaction failed",
+            : "Message failed",
     body: state.message,
   };
 }
@@ -83,7 +83,7 @@ function SubmitInteractionButton({ isSubmitting }: { isSubmitting: boolean }) {
       aria-disabled={isDisabled}
       className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {isDisabled ? "Sending..." : "Send interaction"}
+      {isDisabled ? "Sending..." : "Send message"}
     </button>
   );
 }
@@ -208,7 +208,7 @@ export function ContactOwnerButton({
           {state?.ok ? (
             <div className="mt-3">
               <Link href="/network/inbox" className="font-medium underline underline-offset-4">
-                View interactions
+                View messages
               </Link>
             </div>
           ) : null}
@@ -232,7 +232,7 @@ export function ContactOwnerButton({
                     Contact {ownerDisplayName}
                   </h3>
                   <p className="text-sm leading-6 text-slate-600">
-                    Start a card-anchored interaction for {cardName}. This message will stay attached to this specific card.
+                    Start a message about {cardName}. This thread stays attached to this specific card.
                   </p>
                 </div>
 

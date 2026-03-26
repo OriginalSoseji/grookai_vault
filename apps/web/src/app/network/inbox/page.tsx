@@ -51,8 +51,27 @@ function normalizeInboxView(value: string | string[] | undefined): UserCardInter
   }
 }
 
-function buildInboxHref(view: UserCardInteractionInboxView) {
-  return view === "inbox" ? "/network/inbox" : `/network/inbox?view=${encodeURIComponent(view)}`;
+function normalizeCardFilter(value: string | string[] | undefined) {
+  const candidate = Array.isArray(value) ? value[0] : value;
+  if (typeof candidate !== "string") {
+    return null;
+  }
+
+  const normalized = candidate.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function buildInboxHref(view: UserCardInteractionInboxView, cardPrintId: string | null = null) {
+  const params = new URLSearchParams();
+  if (view !== "inbox") {
+    params.set("view", view);
+  }
+  if (cardPrintId) {
+    params.set("card", cardPrintId);
+  }
+
+  const query = params.toString();
+  return query ? `/network/inbox?${query}` : "/network/inbox";
 }
 
 function getConversationPill(group: UserCardInteractionGroup) {
@@ -85,35 +104,43 @@ function getVisibleGroups(groups: UserCardInteractionGroup[], view: UserCardInte
   }
 }
 
+function filterGroupsByCardPrintId(groups: UserCardInteractionGroup[], cardPrintId: string | null) {
+  if (!cardPrintId) {
+    return groups;
+  }
+
+  return groups.filter((group) => group.card.cardPrintId === cardPrintId);
+}
+
 function getViewCopy(view: UserCardInteractionInboxView) {
   switch (view) {
     case "unread":
       return {
         title: "Unread",
-        description: "Grouped card conversations with new collector activity you have not cleared yet.",
+        description: "Card messages with new collector activity you have not cleared yet.",
         emptyTitle: "Nothing unread",
-        emptyBody: "New card replies from collectors will appear here.",
+        emptyBody: "New card messages from collectors will appear here.",
       };
     case "sent":
       return {
         title: "Sent",
-        description: "Active card conversations you started with another collector.",
+        description: "Active card messages you started with another collector.",
         emptyTitle: "Nothing in Sent",
-        emptyBody: "Conversations you initiate will appear here while they stay active.",
+        emptyBody: "Messages you initiate will appear here while they stay active.",
       };
     case "closed":
       return {
         title: "Closed / Archived",
-        description: "Grouped card conversations you removed from the active workflow.",
+        description: "Card messages you removed from the active workflow.",
         emptyTitle: "Nothing closed or archived",
-        emptyBody: "Closed or archived card conversations will appear here.",
+        emptyBody: "Closed or archived card messages will appear here.",
       };
     case "inbox":
     default:
       return {
         title: "Inbox",
-        description: "Active grouped card conversations with collectors, ordered by the latest interaction.",
-        emptyTitle: "No active conversations",
+        description: "Active grouped card messages with collectors, ordered by the latest reply.",
+        emptyTitle: "No active messages",
         emptyBody: "Messages you send or receive about specific cards will appear here.",
       };
   }
@@ -121,12 +148,14 @@ function getViewCopy(view: UserCardInteractionInboxView) {
 
 function InboxViewTabs({
   currentView,
+  cardPrintId,
   unreadCount,
   inboxCount,
   sentCount,
   closedCount,
 }: {
   currentView: UserCardInteractionInboxView;
+  cardPrintId: string | null;
   unreadCount: number;
   inboxCount: number;
   sentCount: number;
@@ -151,7 +180,7 @@ function InboxViewTabs({
           return (
             <Link
               key={item.view}
-              href={buildInboxHref(item.view)}
+              href={buildInboxHref(item.view, cardPrintId)}
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition ${
                 isActive
                   ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
@@ -277,7 +306,7 @@ function InteractionGroupCard({
 export default async function NetworkInboxPage({
   searchParams,
 }: {
-  searchParams?: { view?: string | string[] };
+  searchParams?: { view?: string | string[]; card?: string | string[] };
 }) {
   const client = createServerComponentClient();
   const {
@@ -289,14 +318,18 @@ export default async function NetworkInboxPage({
   }
 
   const currentView = normalizeInboxView(searchParams?.view);
-  const currentPath = buildInboxHref(currentView);
+  const currentCardFilter = normalizeCardFilter(searchParams?.card);
+  const currentPath = buildInboxHref(currentView, currentCardFilter);
   const groups = await getUserCardInteractionGroups(user.id);
   const unreadCount = groups.filter((group) => group.conversationState === "inbox" && group.hasUnread).length;
   const inboxCount = groups.filter((group) => group.conversationState === "inbox").length;
   const sentCount = groups.filter((group) => group.conversationState === "inbox" && group.startedByCurrentUser).length;
   const closedCount = groups.filter((group) => group.conversationState !== "inbox").length;
-  const visibleGroups = getVisibleGroups(groups, currentView);
+  const visibleGroups = filterGroupsByCardPrintId(getVisibleGroups(groups, currentView), currentCardFilter);
   const viewCopy = getViewCopy(currentView);
+  const filteredCard = currentCardFilter
+    ? groups.find((group) => group.card.cardPrintId === currentCardFilter)?.card ?? null
+    : null;
   const autoReadTargets =
     currentView === "inbox"
       ? visibleGroups
@@ -311,9 +344,9 @@ export default async function NetworkInboxPage({
     <div className="space-y-8 py-8">
       <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
         <PageIntro
-          eyebrow="Interactions"
-          title="Card conversation inbox"
-          description="Card-first conversations grouped by the exact card and the exact collector on the other side."
+          eyebrow="Messages"
+          title="Messages about cards"
+          description="Card-first messages grouped by the exact card and the collector on the other side."
           actions={
             <Link
               href="/network"
@@ -327,6 +360,7 @@ export default async function NetworkInboxPage({
 
       <InboxViewTabs
         currentView={currentView}
+        cardPrintId={currentCardFilter}
         unreadCount={unreadCount}
         inboxCount={inboxCount}
         sentCount={sentCount}
@@ -334,7 +368,28 @@ export default async function NetworkInboxPage({
       />
 
       <PageSection spacing="compact">
-        <SectionHeader title={viewCopy.title} description={viewCopy.description} />
+        <SectionHeader
+          title={
+            filteredCard
+              ? `${viewCopy.title} for ${filteredCard.name}`
+              : viewCopy.title
+          }
+          description={
+            filteredCard
+              ? `Messages tied to ${filteredCard.name}.`
+              : viewCopy.description
+          }
+          actions={
+            currentCardFilter ? (
+              <Link
+                href={buildInboxHref(currentView)}
+                className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+              >
+                All messages
+              </Link>
+            ) : null
+          }
+        />
 
         {autoReadTargets.length > 0 ? (
           <InteractionGroupReadMarker currentPath={currentPath} targets={autoReadTargets} />

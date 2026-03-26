@@ -8,6 +8,8 @@ import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
   formatVaultCardValue,
+  getVaultMessageSignalLabel,
+  getVaultPrimaryActionLabel,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
@@ -87,6 +89,9 @@ export type VaultCardData = {
   show_personal_back: boolean;
   has_front_photo: boolean;
   has_back_photo: boolean;
+  active_message_count: number;
+  unread_message_count: number;
+  messages_href: string | null;
 };
 
 type VaultCardTileProps = {
@@ -139,6 +144,15 @@ function formatIntentMixSummary(item: Pick<VaultCardData, "sell_count" | "trade_
   return parts.join(" • ");
 }
 
+function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
+  if (item.copy_items.length !== 1) {
+    return null;
+  }
+
+  const gvviId = item.copy_items[0]?.gv_vi_id;
+  return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
+}
+
 export function VaultCardTile({
   item,
   density = "default",
@@ -160,11 +174,18 @@ export function VaultCardTile({
   const ownershipSummary = getVaultOwnershipSummary(item);
   const intentMixSummary = formatIntentMixSummary(item);
   const cardValue = formatVaultCardValue(item.effective_price);
-  const manageButtonLabel = isSharedControlsExpanded
-    ? "Hide controls"
-    : item.copy_items.length > 1
-      ? "Manage copies"
-      : "Manage copy";
+  const messageSignal = getVaultMessageSignalLabel({
+    activeMessageCount: item.active_message_count,
+    unreadMessageCount: item.unread_message_count,
+  });
+  const primaryActionHref =
+    item.active_message_count > 0 ? item.messages_href : getSingleCopyHref(item);
+  const primaryActionBaseLabel = getVaultPrimaryActionLabel({
+    inPlayCount: item.in_play_count,
+    activeMessageCount: item.active_message_count,
+  });
+  const primaryActionLabel =
+    !primaryActionHref && isSharedControlsExpanded ? "Hide details" : primaryActionBaseLabel;
 
   const summaryRow = (
     <div className="space-y-3">
@@ -178,21 +199,41 @@ export function VaultCardTile({
             <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
           </VaultInsetCard>
           <VaultInsetCard className="px-3 py-2">{formatCopyMixSummary(item)}</VaultInsetCard>
+          {messageSignal ? (
+            <VaultInsetCard
+              className={`px-3 py-2 ${
+                item.unread_message_count > 0
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                  : "text-slate-700"
+              }`}
+            >
+              {messageSignal}
+            </VaultInsetCard>
+          ) : null}
         </div>
       </div>
 
       {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
 
       <div className="flex flex-wrap items-center gap-2">
+        {primaryActionHref ? (
+          <Link
+            href={primaryActionHref}
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-800"
+          >
+            {primaryActionLabel}
+          </Link>
+        ) : (
+          <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="strong">
+            {primaryActionLabel}
+          </VaultActionButton>
+        )}
         <VaultActionButton
           onClick={() => onShareToggle(item)}
           disabled={isSharePending}
-          tone={item.is_shared ? "strong" : "default"}
+          tone="default"
         >
           {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-        </VaultActionButton>
-        <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="quiet">
-          {manageButtonLabel}
         </VaultActionButton>
         {item.is_shared && publicCollectionHref ? (
           <Link

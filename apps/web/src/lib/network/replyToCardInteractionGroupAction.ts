@@ -104,7 +104,7 @@ export async function replyToCardInteractionGroupAction(
       ok: false,
       status: "error",
       submissionKey,
-      message: "Interaction group could not be verified.",
+      message: "Message thread could not be verified.",
     };
   }
 
@@ -114,7 +114,7 @@ export async function replyToCardInteractionGroupAction(
       ok: false,
       status: "unavailable",
       submissionKey,
-      message: "That interaction group is no longer available for reply.",
+      message: "That message thread is no longer available for reply.",
     };
   }
 
@@ -137,7 +137,7 @@ export async function replyToCardInteractionGroupAction(
       ok: false,
       status: "error",
       submissionKey,
-      message: "Interaction history could not be checked.",
+      message: "Message history could not be checked.",
     };
   }
 

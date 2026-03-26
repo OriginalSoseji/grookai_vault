@@ -17,7 +17,9 @@ import {
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
+  getVaultMessageSignalLabel,
   getVaultOwnershipSummary,
+  getVaultPrimaryActionLabel,
   VaultActionButton,
   VaultDetailPanel,
   VaultFieldLabel,
@@ -83,8 +85,21 @@ function getRowKey(item: VaultCardData) {
   return item.card_id;
 }
 
+function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
+  if (item.copy_items.length !== 1) {
+    return null;
+  }
+
+  const gvviId = item.copy_items[0]?.gv_vi_id;
+  return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
+}
+
 function MobileGridCard({ item }: { item: VaultCardData }) {
   const cardValue = formatVaultCardValue(item.effective_price);
+  const messageSignal = getVaultMessageSignalLabel({
+    activeMessageCount: item.active_message_count,
+    unreadMessageCount: item.unread_message_count,
+  });
 
   return (
     <PokemonCardGridTile
@@ -102,7 +117,16 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       }
       subtitle={<span className="line-clamp-2 block">{getVaultCardMetaLine(item)}</span>}
       badges={<VaultStatusBadges item={item} includeQuantity={false} />}
-      meta={<span>{formatMixedOwnershipHeadline(item)}</span>}
+      meta={
+        <div className="space-y-1">
+          <span>{formatMixedOwnershipHeadline(item)}</span>
+          {messageSignal ? (
+            <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
+              {messageSignal}
+            </p>
+          ) : null}
+        </div>
+      }
       footer={
         <div className={`flex items-center gap-2 ${cardValue ? "justify-between" : "justify-end"}`}>
           {cardValue ? <span>{cardValue}</span> : null}
@@ -115,6 +139,10 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
 
 function MobileCompactRow({ item }: { item: VaultCardData }) {
   const cardValue = formatVaultCardValue(item.effective_price);
+  const messageSignal = getVaultMessageSignalLabel({
+    activeMessageCount: item.active_message_count,
+    unreadMessageCount: item.unread_message_count,
+  });
 
   return (
     <Link
@@ -141,6 +169,11 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
           <p className="line-clamp-1 text-xs text-slate-600">{getVaultOwnershipSummary(item)}</p>
           {cardValue ? <p className="shrink-0 text-xs text-slate-500">{cardValue}</p> : null}
         </div>
+        {messageSignal ? (
+          <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
+            {messageSignal}
+          </p>
+        ) : null}
         <div className="flex flex-wrap gap-1.5">
           <VaultStatusBadges item={item} includeQuantity={false} size="sm" />
         </div>
@@ -173,6 +206,18 @@ function MobileDetailRow({
   const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
   const intentMixSummary = formatIntentMixSummary(item);
   const cardValue = formatVaultCardValue(item.effective_price);
+  const messageSignal = getVaultMessageSignalLabel({
+    activeMessageCount: item.active_message_count,
+    unreadMessageCount: item.unread_message_count,
+  });
+  const primaryActionHref =
+    item.active_message_count > 0 ? item.messages_href : getSingleCopyHref(item);
+  const primaryActionBaseLabel = getVaultPrimaryActionLabel({
+    inPlayCount: item.in_play_count,
+    activeMessageCount: item.active_message_count,
+  });
+  const primaryActionLabel =
+    !primaryActionHref && detailsOpen ? "Hide details" : primaryActionBaseLabel;
 
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
@@ -221,22 +266,42 @@ function MobileDetailRow({
                 <VaultInsetCard className="px-3 py-2">
                   <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
                 </VaultInsetCard>
+                {messageSignal ? (
+                  <VaultInsetCard
+                    className={`px-3 py-2 ${
+                      item.unread_message_count > 0
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                        : "text-slate-700"
+                    }`}
+                  >
+                    {messageSignal}
+                  </VaultInsetCard>
+                ) : null}
               </div>
 
               {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
+              {primaryActionHref ? (
+                <Link
+                  href={primaryActionHref}
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-800"
+                >
+                  {primaryActionLabel}
+                </Link>
+              ) : (
+                <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="strong">
+                  {primaryActionLabel}
+                </VaultActionButton>
+              )}
               <VaultActionButton
                 type="button"
                 onClick={() => onShareToggle(item)}
                 disabled={isSharePending}
-                tone={item.is_shared ? "strong" : "default"}
+                tone="default"
               >
                 {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-              </VaultActionButton>
-              <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="quiet">
-                {detailsOpen ? "Hide controls" : item.copy_items.length > 1 ? "Manage copies" : "Manage copy"}
               </VaultActionButton>
               <ShareCardButton gvId={item.gv_id} />
             </div>
