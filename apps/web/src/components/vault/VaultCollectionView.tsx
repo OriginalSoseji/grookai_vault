@@ -13,6 +13,7 @@ import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { CollectorPageActivationCard } from "@/components/vault/CollectorPageActivationCard";
+import { formatVaultCurrency } from "@/components/vault/VaultCardPrimitives";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
 import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
@@ -37,6 +38,13 @@ export type RecentCardData = {
 };
 
 type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon" | "shared";
+
+type VaultHeaderValueSummary = {
+  totalEstimatedValue: number | null;
+  pricedGroupedCount: number;
+  totalGroupedCount: number;
+  latestPricingUpdateAt: string | null;
+};
 
 type SetGroup = {
   setCode: string;
@@ -115,6 +123,40 @@ function formatLastAdded(value: string | null) {
     day: "numeric",
     year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
   });
+}
+
+function formatPricingFreshness(value: string | null) {
+  if (!value) {
+    return "Freshness unavailable";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "Freshness unavailable";
+  }
+
+  const diffMs = Date.now() - date.getTime();
+  const diffMinutes = Math.max(1, Math.floor(diffMs / 60000));
+
+  if (diffMinutes < 60) {
+    return `Latest refresh ${diffMinutes}m ago`;
+  }
+
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours < 24) {
+    return `Latest refresh ${diffHours}h ago`;
+  }
+
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays < 7) {
+    return `Latest refresh ${diffDays}d ago`;
+  }
+
+  return `Latest refresh ${date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: date.getFullYear() !== new Date().getFullYear() ? "numeric" : undefined,
+  })}`;
 }
 
 function SmartViewButton({
@@ -270,6 +312,7 @@ type VaultCollectionViewProps = {
   recent: RecentCardData[];
   itemsError?: string | null;
   recentError?: string | null;
+  valueSummary: VaultHeaderValueSummary;
   publicProfileHref?: string | null;
   publicCollectionHref?: string | null;
   setLogoPathByCode?: Record<string, string>;
@@ -280,6 +323,7 @@ export function VaultCollectionView({
   recent,
   itemsError,
   recentError,
+  valueSummary,
   publicProfileHref = null,
   publicCollectionHref = null,
   setLogoPathByCode = {},
@@ -364,6 +408,12 @@ export function VaultCollectionView({
         : "setup"
       : null;
   const collectorPageActivationHref = publicProfileHref ?? "/account";
+  const formattedVaultValue =
+    typeof valueSummary.totalEstimatedValue === "number"
+      ? formatVaultCurrency(valueSummary.totalEstimatedValue)
+      : null;
+  const coverageLabel = `${valueSummary.pricedGroupedCount} / ${valueSummary.totalGroupedCount}`;
+  const freshnessLabel = formatPricingFreshness(valueSummary.latestPricingUpdateAt);
 
   const recentItems = useMemo(
     () =>
@@ -1104,6 +1154,28 @@ export function VaultCollectionView({
               </div>
             }
           />
+          {valueSummary.totalGroupedCount > 0 ? (
+            <div className="rounded-[1.75rem] border border-slate-200/80 bg-white/90 px-5 py-5 shadow-[0_22px_48px_-36px_rgba(15,23,42,0.28)] md:px-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div className="min-w-0 space-y-2">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    Estimated Vault Value
+                  </p>
+                  <p className="text-[2rem] font-semibold tracking-tight text-slate-950 sm:text-[2.4rem]">
+                    {formattedVaultValue ?? "No estimate yet"}
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
+                  <span>
+                    Priced cards{" "}
+                    <span className="font-medium text-slate-700">{coverageLabel}</span>
+                  </span>
+                  <span className="hidden text-slate-300 sm:inline">•</span>
+                  <span>{freshnessLabel}</span>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className="flex flex-wrap items-center gap-2.5 text-sm text-slate-600">
             <span className="rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white shadow-[0_14px_30px_-24px_rgba(15,23,42,0.5)]">
               {summary.cards} {summary.cards === 1 ? "card" : "cards"}

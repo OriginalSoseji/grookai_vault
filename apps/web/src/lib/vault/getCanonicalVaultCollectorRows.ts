@@ -77,6 +77,7 @@ export type CanonicalVaultCollectorRow = {
   slab_items: CanonicalVaultCollectorSlabItem[];
   copy_items: CanonicalVaultCollectorCopyItem[];
   effective_price: number | null;
+  pricing_updated_at: string | null;
   image_url: string | null;
   canonical_image_url: string | null;
   created_at: string | null;
@@ -119,12 +120,19 @@ type PriceMetadataRow = {
   card_id: string | null;
   effective_price: number | null;
   image_url: string | null;
+  price_ts: string | null;
 };
 
 type RawFallbackPriceRow = {
   card_print_id: string | null;
   primary_price: number | null;
   grookai_value: number | null;
+};
+
+type PriceFreshnessRow = {
+  card_print_id: string | null;
+  updated_at: string | null;
+  last_snapshot_at: string | null;
 };
 
 type SlabCertMetadataRow = {
@@ -482,7 +490,7 @@ async function fetchPriceMetadataByCardId(userId: string, cardPrintIds: string[]
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("v_vault_items_web")
-      .select("card_id,effective_price,image_url")
+      .select("card_id,effective_price,image_url,price_ts")
       .eq("user_id", userId)
       .in("card_id", ids);
 
@@ -535,6 +543,35 @@ async function fetchRawFallbackPriceMetadataByCardId(cardPrintIds: string[]) {
   return rowsByCardId;
 }
 
+async function fetchPriceFreshnessMetadataByCardId(cardPrintIds: string[]) {
+  const adminClient = createServerAdminClient();
+  const rowsByCardId = new Map<string, PriceFreshnessRow>();
+
+  for (const ids of chunkArray(cardPrintIds, 200)) {
+    const { data, error } = await adminClient
+      .from("card_print_active_prices")
+      .select("card_print_id,updated_at,last_snapshot_at")
+      .in("card_print_id", ids);
+
+    if (error) {
+      console.error("[vault:read-model] price freshness metadata query failed", {
+        cardPrintIds: ids,
+        error,
+      });
+      continue;
+    }
+
+    for (const row of (data ?? []) as PriceFreshnessRow[]) {
+      const cardId = row.card_print_id?.trim() ?? "";
+      if (cardId) {
+        rowsByCardId.set(cardId, row);
+      }
+    }
+  }
+
+  return rowsByCardId;
+}
+
 function selectVaultEffectivePrice({
   aggregate,
   compatibilityPrice,
@@ -559,6 +596,36 @@ function selectVaultEffectivePrice({
 
   if (typeof rawFallbackPrice?.grookai_value === "number") {
     return rawFallbackPrice.grookai_value;
+  }
+
+  return null;
+}
+
+function selectVaultPricingUpdatedAt({
+  aggregate,
+  compatibilityPrice,
+  rawFallbackPrice,
+  priceFreshness,
+}: {
+  aggregate: CardAggregate;
+  compatibilityPrice: PriceMetadataRow | null;
+  rawFallbackPrice: RawFallbackPriceRow | null;
+  priceFreshness: PriceFreshnessRow | null;
+}) {
+  if (typeof compatibilityPrice?.effective_price === "number") {
+    return compatibilityPrice.price_ts ?? null;
+  }
+
+  const isRawOnlyGroup = aggregate.rawCount > 0 && aggregate.slabCount === 0;
+  if (!isRawOnlyGroup) {
+    return null;
+  }
+
+  if (
+    typeof rawFallbackPrice?.primary_price === "number" ||
+    typeof rawFallbackPrice?.grookai_value === "number"
+  ) {
+    return priceFreshness?.last_snapshot_at ?? priceFreshness?.updated_at ?? null;
   }
 
   return null;
@@ -614,11 +681,18 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     return [];
   }
 
-  const [bucketMetadataByCardId, cardMetadataById, priceMetadataByCardId, rawFallbackPriceMetadataByCardId] = await Promise.all([
+  const [
+    bucketMetadataByCardId,
+    cardMetadataById,
+    priceMetadataByCardId,
+    rawFallbackPriceMetadataByCardId,
+    priceFreshnessMetadataByCardId,
+  ] = await Promise.all([
     fetchBucketMetadataByCardId(normalizedUserId, cardPrintIds),
     fetchCardMetadataById(cardPrintIds),
     fetchPriceMetadataByCardId(normalizedUserId, cardPrintIds),
     fetchRawFallbackPriceMetadataByCardId(cardPrintIds),
+    fetchPriceFreshnessMetadataByCardId(cardPrintIds),
   ]);
   const preferredImageUrlByCardId = new Map(
     await Promise.all(
@@ -647,6 +721,7 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const card = cardMetadataById.get(cardPrintId) ?? null;
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
+    const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
     const canonicalImageUrl =
       getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
       getBestPublicCardImageUrl(price?.image_url) ??
@@ -690,6 +765,12 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
         aggregate,
         compatibilityPrice: price,
         rawFallbackPrice,
+      }),
+      pricing_updated_at: selectVaultPricingUpdatedAt({
+        aggregate,
+        compatibilityPrice: price,
+        rawFallbackPrice,
+        priceFreshness,
       }),
       image_url: preferredImageUrl ?? canonicalImageUrl,
       canonical_image_url: canonicalImageUrl,

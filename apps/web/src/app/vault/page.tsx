@@ -60,6 +60,48 @@ type RecentItemRow = {
   image_alt_url: string | null;
 };
 
+type VaultValueSummary = {
+  totalEstimatedValue: number | null;
+  pricedGroupedCount: number;
+  totalGroupedCount: number;
+  latestPricingUpdateAt: string | null;
+};
+
+function pickLatestIsoTimestamp(left: string | null, right: string | null) {
+  if (!left) {
+    return right;
+  }
+
+  if (!right) {
+    return left;
+  }
+
+  return new Date(left).getTime() >= new Date(right).getTime() ? left : right;
+}
+
+function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): VaultValueSummary {
+  let totalEstimatedValue = 0;
+  let pricedGroupedCount = 0;
+  let latestPricingUpdateAt: string | null = null;
+
+  for (const row of rows) {
+    if (typeof row.effective_price !== "number" || Number.isNaN(row.effective_price)) {
+      continue;
+    }
+
+    pricedGroupedCount += 1;
+    totalEstimatedValue += row.effective_price;
+    latestPricingUpdateAt = pickLatestIsoTimestamp(latestPricingUpdateAt, row.pricing_updated_at ?? null);
+  }
+
+  return {
+    totalEstimatedValue: pricedGroupedCount > 0 ? Number(totalEstimatedValue.toFixed(2)) : null,
+    pricedGroupedCount,
+    totalGroupedCount: rows.length,
+    latestPricingUpdateAt,
+  };
+}
+
 function normalizeVaultItems(
   rows: CanonicalVaultCollectorRow[] | null | undefined,
   sharedCardIds: Set<string>,
@@ -349,6 +391,7 @@ export default async function VaultPage() {
   const setLogoPathByCode = Object.fromEntries(
     (await getSetLogoAssetPathMap(items.map((item) => item.set_code))).entries(),
   );
+  const valueSummary = buildVaultValueSummary(itemRows);
   const profile = (profileData ?? null) as PublicProfileRow | null;
   const publicProfileHref =
     profile?.slug && profile.public_profile_enabled && profile.vault_sharing_enabled ? `/u/${profile.slug}` : null;
@@ -363,6 +406,7 @@ export default async function VaultPage() {
         recent={recent}
         itemsError={canonicalItemsError ?? sharedError?.message ?? profileError?.message ?? imageError?.message}
         recentError={recentError?.message}
+        valueSummary={valueSummary}
         publicProfileHref={publicProfileHref}
         publicCollectionHref={publicCollectionHref}
         setLogoPathByCode={setLogoPathByCode}
