@@ -18,6 +18,7 @@ import {
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
+  VaultStatPill,
   VaultStatusBadges,
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
@@ -188,61 +189,63 @@ export function VaultCardTile({
     !primaryActionHref && isSharedControlsExpanded ? "Hide details" : primaryActionBaseLabel;
 
   const summaryRow = (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
-        <div className="flex flex-wrap gap-2 text-xs text-slate-700">
-          <VaultInsetCard className="px-3 py-2">
-            <span className="font-medium text-slate-900">{item.owned_count}</span> total
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2">
-            <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
-          </VaultInsetCard>
-          <VaultInsetCard className="px-3 py-2">{formatCopyMixSummary(item)}</VaultInsetCard>
-          {messageSignal ? (
-            <VaultInsetCard
-              className={`px-3 py-2 ${
-                item.unread_message_count > 0
-                  ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                  : "text-slate-700"
-              }`}
-            >
-              {messageSignal}
-            </VaultInsetCard>
-          ) : null}
+        <div className="min-w-0 space-y-1">
+          {cardValue ? <p className="text-base font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
+          {intentMixSummary ? <p className="text-xs leading-5 text-slate-500">{intentMixSummary}</p> : null}
         </div>
+        {messageSignal ? (
+          <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
+        ) : null}
       </div>
 
-      {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
+      <div className="flex flex-wrap gap-2 text-xs text-slate-700">
+        <VaultStatPill>
+          <span className="font-semibold text-slate-900">{item.owned_count}</span>
+          <span>total</span>
+        </VaultStatPill>
+        <VaultStatPill tone={item.in_play_count > 0 ? "default" : "muted"}>
+          <span className="font-semibold text-slate-900">{item.in_play_count}</span>
+          <span>in play</span>
+        </VaultStatPill>
+        <VaultStatPill tone="muted">{formatCopyMixSummary(item)}</VaultStatPill>
+      </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        {primaryActionHref ? (
-          <Link
-            href={primaryActionHref}
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-800"
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-3">
+        <div className="flex flex-wrap items-center gap-2">
+          {primaryActionHref ? (
+            <Link
+              href={primaryActionHref}
+              className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
+            >
+              {primaryActionLabel}
+            </Link>
+          ) : (
+            <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="strong">
+              {primaryActionLabel}
+            </VaultActionButton>
+          )}
+          <VaultActionButton
+            onClick={() => onShareToggle(item)}
+            disabled={isSharePending}
+            tone="quiet"
           >
-            {primaryActionLabel}
-          </Link>
-        ) : (
-          <VaultActionButton onClick={() => onSharedControlsToggle(item)} tone="strong">
-            {primaryActionLabel}
+            {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
           </VaultActionButton>
-        )}
-        <VaultActionButton
-          onClick={() => onShareToggle(item)}
-          disabled={isSharePending}
-          tone="default"
-        >
-          {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-        </VaultActionButton>
-        {item.is_shared && publicCollectionHref ? (
-          <Link
-            href={publicCollectionHref}
-            className="text-xs font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
-          >
-            View wall
-          </Link>
-        ) : null}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+          {item.is_shared && publicCollectionHref ? (
+            <Link
+              href={publicCollectionHref}
+              className="font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+            >
+              View wall
+            </Link>
+          ) : null}
+          <ShareCardButton gvId={item.gv_id} />
+        </div>
       </div>
 
       {shareError ? <p className="text-xs text-slate-500">{shareError}</p> : null}
@@ -253,10 +256,8 @@ export function VaultCardTile({
     <VaultDetailPanel>
       <div className="space-y-3">
         <div className="space-y-1">
-          <VaultFieldLabel>Manage Copies</VaultFieldLabel>
-          <p className="text-xs text-slate-500">
-            Open each exact copy to edit condition, intent, notes, and ownership actions without cluttering the grouped vault row.
-          </p>
+          <VaultFieldLabel>Copies</VaultFieldLabel>
+          <p className="text-xs leading-5 text-slate-500">Open an exact copy when you want to edit details or remove it from your vault.</p>
         </div>
 
         <div className="space-y-2">
@@ -266,8 +267,8 @@ export function VaultCardTile({
 
             return (
               <VaultInsetCard key={copy.instance_id} className="space-y-3">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0 space-y-1">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="min-w-0 space-y-2">
                     <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
                     <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
                       <span
@@ -291,7 +292,7 @@ export function VaultCardTile({
                     {copyHref ? (
                       <Link
                         href={copyHref}
-                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                        className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                       >
                         Open copy
                       </Link>
@@ -301,6 +302,7 @@ export function VaultCardTile({
                     <OwnedObjectRemoveAction
                       instanceId={copy.instance_id}
                       label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                      buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
                     />
                   </div>
                 </div>
@@ -313,8 +315,8 @@ export function VaultCardTile({
       {item.is_shared ? (
         <div className="space-y-3 border-t border-slate-200 pt-3">
           <div className="space-y-1">
-            <VaultFieldLabel>Wall Controls</VaultFieldLabel>
-            <p className="text-xs text-slate-500">Grouped wall settings remain card-level because public sharing is still card-based.</p>
+            <VaultFieldLabel>Wall</VaultFieldLabel>
+            <p className="text-xs leading-5 text-slate-500">Public wall settings stay grouped at the card level.</p>
           </div>
 
           <div className="space-y-3">
@@ -398,12 +400,18 @@ export function VaultCardTile({
   return (
     <PokemonCardGridTile
       density={tileDensity}
+      className="h-full rounded-[1.6rem] border-slate-200/80 bg-white/95 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)]"
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={item.name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={item.name}
-      imageClassName={tileDensity === "large" ? "max-w-[260px]" : undefined}
+      imageClassName={[
+        tileDensity === "large" ? "max-w-[260px]" : undefined,
+        "drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       title={
         <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
           {item.name}
@@ -414,16 +422,11 @@ export function VaultCardTile({
           {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
         </span>
       }
-      badges={<VaultStatusBadges item={item} />}
-      meta={<span>{ownershipSummary}</span>}
+      badges={<VaultStatusBadges item={item} includeQuantity={false} />}
+      meta={<span className="text-sm font-medium text-slate-700">{ownershipSummary}</span>}
       summary={summaryRow}
       details={details}
-      footer={
-        <div className="flex items-center justify-between gap-3">
-          <span>{item.gv_id}</span>
-          <ShareCardButton gvId={item.gv_id} />
-        </div>
-      }
+      footer={<span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>}
     />
   );
 }

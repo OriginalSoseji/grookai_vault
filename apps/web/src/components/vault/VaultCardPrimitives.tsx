@@ -246,10 +246,10 @@ export function VaultActionButton({
 }: VaultActionButtonProps) {
   const toneClassName =
     tone === "strong"
-      ? "border border-slate-300 bg-slate-950 text-white hover:bg-slate-800"
+      ? "border border-slate-950 bg-slate-950 text-white shadow-[0_10px_24px_-18px_rgba(15,23,42,0.55)] hover:bg-slate-800"
       : tone === "quiet"
-        ? "border border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-        : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50";
+        ? "border border-slate-200/80 bg-slate-50/85 text-slate-700 hover:border-slate-300 hover:bg-white"
+        : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50";
 
   return (
     <button
@@ -312,14 +312,21 @@ export function VaultDetailPanel({
   className?: string;
 }) {
   return (
-    <div className={["space-y-4 rounded-[14px] border border-slate-200 bg-slate-50/80 p-3", className].filter(Boolean).join(" ")}>
+    <div
+      className={[
+        "space-y-5 rounded-[18px] border border-slate-200/80 bg-slate-50/75 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {children}
     </div>
   );
 }
 
 export function VaultFieldLabel({ children }: { children: ReactNode }) {
-  return <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{children}</p>;
+  return <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">{children}</p>;
 }
 
 export function VaultInsetCard({
@@ -330,8 +337,46 @@ export function VaultInsetCard({
   className?: string;
 }) {
   return (
-    <div className={["rounded-[12px] border border-slate-200 bg-white px-3 py-2.5", className].filter(Boolean).join(" ")}>
+    <div
+      className={[
+        "rounded-[14px] border border-slate-200/80 bg-white/95 px-3.5 py-3 shadow-[0_12px_28px_-26px_rgba(15,23,42,0.35)]",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {children}
     </div>
+  );
+}
+
+export function VaultStatPill({
+  children,
+  tone = "default",
+  className,
+}: {
+  children: ReactNode;
+  tone?: "default" | "muted" | "attention";
+  className?: string;
+}) {
+  const toneClassName =
+    tone === "attention"
+      ? "bg-emerald-50 text-emerald-800 ring-1 ring-inset ring-emerald-200"
+      : tone === "muted"
+        ? "bg-slate-100/70 text-slate-500 ring-1 ring-inset ring-slate-200/70"
+        : "bg-slate-100/90 text-slate-700 ring-1 ring-inset ring-slate-200/80";
+
+  return (
+    <span
+      className={[
+        "inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-medium",
+        toneClassName,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {children}
+    </span>
   );
 }

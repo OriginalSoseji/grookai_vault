@@ -24,6 +24,7 @@ import {
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
+  VaultStatPill,
   VaultStatusBadges,
 } from "@/components/vault/VaultCardPrimitives";
 import { type VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
@@ -104,12 +105,13 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
   return (
     <PokemonCardGridTile
       density="compact"
-      className="h-full"
+      className="h-full rounded-[1.5rem] border-slate-200/80 bg-white/95 shadow-[0_20px_40px_-34px_rgba(15,23,42,0.28)]"
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={item.name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={item.name}
+      imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
       title={
         <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
           {item.name}
@@ -119,7 +121,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       badges={<VaultStatusBadges item={item} includeQuantity={false} />}
       meta={
         <div className="space-y-1">
-          <span>{formatMixedOwnershipHeadline(item)}</span>
+          <span className="text-slate-600">{formatMixedOwnershipHeadline(item)}</span>
           {messageSignal ? (
             <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
               {messageSignal}
@@ -129,8 +131,11 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       }
       footer={
         <div className={`flex items-center gap-2 ${cardValue ? "justify-between" : "justify-end"}`}>
-          {cardValue ? <span>{cardValue}</span> : null}
-          <span>{item.owned_count} total</span>
+          {cardValue ? <span className="text-sm font-semibold text-slate-900">{cardValue}</span> : null}
+          <VaultStatPill className="shrink-0">
+            <span className="font-semibold text-slate-900">{item.owned_count}</span>
+            <span>total</span>
+          </VaultStatPill>
         </div>
       }
     />
@@ -147,9 +152,9 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
   return (
     <Link
       href={`/card/${item.gv_id}`}
-      className="flex items-center gap-3 rounded-[1.25rem] border border-slate-200 bg-white px-3 py-3 shadow-sm transition hover:border-slate-300"
+      className="flex items-center gap-3.5 rounded-[1.4rem] border border-slate-200/80 bg-white/95 px-3.5 py-3.5 shadow-[0_18px_36px_-30px_rgba(15,23,42,0.26)] transition hover:border-slate-300"
     >
-      <div className="h-16 w-12 shrink-0 overflow-hidden rounded-[0.8rem] border border-slate-200 bg-slate-50">
+      <div className="h-16 w-12 shrink-0 overflow-hidden rounded-[0.95rem] border border-slate-200 bg-slate-50">
         <PublicCardImage
           src={item.image_url}
           fallbackSrc={item.canonical_image_url}
@@ -159,16 +164,21 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
           fallbackLabel={item.name}
         />
       </div>
-      <div className="min-w-0 flex-1 space-y-1.5">
+      <div className="min-w-0 flex-1 space-y-2">
         <div className="flex items-start justify-between gap-3">
-          <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{item.name}</p>
-          <p className="shrink-0 text-xs font-medium text-slate-700">{item.owned_count}</p>
+          <div className="min-w-0 space-y-1">
+            <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{item.name}</p>
+            <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
+          </div>
+          <div className="shrink-0 space-y-1 text-right">
+            {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
+            <VaultStatPill className="justify-center">
+              <span className="font-semibold text-slate-900">{item.owned_count}</span>
+              <span>total</span>
+            </VaultStatPill>
+          </div>
         </div>
-        <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
-        <div className="flex items-center justify-between gap-3">
-          <p className="line-clamp-1 text-xs text-slate-600">{getVaultOwnershipSummary(item)}</p>
-          {cardValue ? <p className="shrink-0 text-xs text-slate-500">{cardValue}</p> : null}
-        </div>
+        <p className="line-clamp-1 text-xs text-slate-600">{getVaultOwnershipSummary(item)}</p>
         {messageSignal ? (
           <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
             {messageSignal}
@@ -220,18 +230,18 @@ function MobileDetailRow({
     !primaryActionHref && detailsOpen ? "Hide details" : primaryActionBaseLabel;
 
   return (
-    <article className="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="rounded-[1.65rem] border border-slate-200/80 bg-white/95 p-4 shadow-[0_24px_48px_-36px_rgba(15,23,42,0.3)]">
       <div className="space-y-4">
         <div className="flex gap-4">
           <Link
             href={`/card/${item.gv_id}`}
-            className="flex w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1rem] border border-slate-200 bg-slate-50 p-3"
+            className="flex w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-slate-200 bg-slate-50 p-3"
           >
             <PublicCardImage
               src={item.image_url}
               fallbackSrc={item.canonical_image_url}
               alt={item.name}
-              imageClassName="aspect-[3/4] w-full object-contain"
+              imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
               fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
               fallbackLabel={item.name}
             />
@@ -250,60 +260,76 @@ function MobileDetailRow({
 
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-medium text-slate-700">{formatMixedOwnershipHeadline(item)}</p>
-                {cardValue ? <p className="text-sm font-medium text-slate-900">{cardValue}</p> : null}
+                {cardValue ? <p className="text-base font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
               </div>
 
               {!wallCategoryLabel ? (
                 <div className="flex flex-wrap gap-1.5">
-                  <VaultStatusBadges item={item} includeQuantity />
+                  <VaultStatusBadges item={item} includeQuantity={false} />
                 </div>
               ) : null}
 
               <div className="flex flex-wrap gap-2 text-xs text-slate-600">
-                <VaultInsetCard className="px-3 py-2">
-                  <span className="font-medium text-slate-900">{item.owned_count}</span> total
-                </VaultInsetCard>
-                <VaultInsetCard className="px-3 py-2">
-                  <span className="font-medium text-slate-900">{item.in_play_count}</span> in play
-                </VaultInsetCard>
+                <VaultStatPill>
+                  <span className="font-semibold text-slate-900">{item.owned_count}</span>
+                  <span>total</span>
+                </VaultStatPill>
+                <VaultStatPill tone={item.in_play_count > 0 ? "default" : "muted"}>
+                  <span className="font-semibold text-slate-900">{item.in_play_count}</span>
+                  <span>in play</span>
+                </VaultStatPill>
+                <VaultStatPill tone="muted">
+                  {item.raw_count > 0 && item.slab_count > 0
+                    ? `${item.raw_count} raw • ${item.slab_count} slab`
+                    : item.is_slab
+                      ? `${item.slab_count || item.owned_count} slab`
+                      : `${item.raw_count || item.owned_count} raw`}
+                </VaultStatPill>
                 {messageSignal ? (
-                  <VaultInsetCard
-                    className={`px-3 py-2 ${
-                      item.unread_message_count > 0
-                        ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                        : "text-slate-700"
-                    }`}
-                  >
+                  <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>
                     {messageSignal}
-                  </VaultInsetCard>
+                  </VaultStatPill>
                 ) : null}
               </div>
 
               {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              {primaryActionHref ? (
-                <Link
-                  href={primaryActionHref}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-800"
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-2">
+                {primaryActionHref ? (
+                  <Link
+                    href={primaryActionHref}
+                    className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
+                  >
+                    {primaryActionLabel}
+                  </Link>
+                ) : (
+                  <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="strong">
+                    {primaryActionLabel}
+                  </VaultActionButton>
+                )}
+                <VaultActionButton
+                  type="button"
+                  onClick={() => onShareToggle(item)}
+                  disabled={isSharePending}
+                  tone="quiet"
                 >
-                  {primaryActionLabel}
-                </Link>
-              ) : (
-                <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="strong">
-                  {primaryActionLabel}
+                  {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
                 </VaultActionButton>
-              )}
-              <VaultActionButton
-                type="button"
-                onClick={() => onShareToggle(item)}
-                disabled={isSharePending}
-                tone="default"
-              >
-                {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-              </VaultActionButton>
-              <ShareCardButton gvId={item.gv_id} />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                {item.is_shared && publicCollectionHref ? (
+                  <Link
+                    href={publicCollectionHref}
+                    className="font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+                  >
+                    View wall
+                  </Link>
+                ) : null}
+                <ShareCardButton gvId={item.gv_id} />
+              </div>
             </div>
           </div>
         </div>
@@ -312,10 +338,8 @@ function MobileDetailRow({
           <VaultDetailPanel>
             <div className="space-y-3">
               <div className="space-y-1">
-                <VaultFieldLabel>Manage Copies</VaultFieldLabel>
-                <p className="text-xs text-slate-500">
-                  Open each exact copy to edit condition, intent, notes, or ownership actions from its GVVI page.
-                </p>
+                <VaultFieldLabel>Copies</VaultFieldLabel>
+                <p className="text-xs leading-5 text-slate-500">Open an exact copy when you want to edit details or remove it from your vault.</p>
               </div>
 
               <div className="space-y-2">
@@ -326,7 +350,7 @@ function MobileDetailRow({
                   return (
                     <VaultInsetCard key={copy.instance_id} className="space-y-3">
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="space-y-1">
+                        <div className="space-y-2">
                           <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
                           <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
                             <span
@@ -350,7 +374,7 @@ function MobileDetailRow({
                           {copyHref ? (
                             <Link
                               href={copyHref}
-                              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                             >
                               Open copy
                             </Link>
@@ -360,6 +384,7 @@ function MobileDetailRow({
                           <OwnedObjectRemoveAction
                             instanceId={copy.instance_id}
                             label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                            buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
                           />
                         </div>
                       </div>
@@ -421,7 +446,7 @@ function MobileDetailRow({
                       {item.is_shared && publicCollectionHref ? (
                         <Link
                           href={publicCollectionHref}
-                          className="text-xs font-medium text-slate-700 underline-offset-4 transition hover:text-slate-950 hover:underline"
+                          className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
                         >
                           View wall
                         </Link>

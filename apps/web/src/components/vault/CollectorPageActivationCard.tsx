@@ -43,14 +43,14 @@ export function CollectorPageActivationCard({ variant, href }: CollectorPageActi
   const copy = COPY_BY_VARIANT[variant];
 
   return (
-    <section className="rounded-[1.4rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(148,163,184,0.12),_transparent_38%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-4 py-4 shadow-sm md:rounded-[1.8rem] md:px-5">
-      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div className="min-w-0 space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{copy.eyebrow}</p>
-          <h2 className="text-lg font-semibold tracking-tight text-slate-950 md:text-xl">{copy.title}</h2>
+    <section className="rounded-[1.65rem] border border-slate-200/80 bg-[radial-gradient(circle_at_top_left,_rgba(148,163,184,0.14),_transparent_40%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] px-5 py-5 shadow-[0_28px_60px_-44px_rgba(15,23,42,0.35)] md:rounded-[1.9rem] md:px-6 md:py-6">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="min-w-0 space-y-2">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">{copy.eyebrow}</p>
+          <h2 className="text-lg font-semibold tracking-tight text-slate-950 md:text-[1.35rem]">{copy.title}</h2>
           <p className="max-w-2xl text-sm leading-6 text-slate-600">{copy.body}</p>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2.5">
           <button
             type="button"
             onClick={() => {
@@ -61,13 +61,13 @@ export function CollectorPageActivationCard({ variant, href }: CollectorPageActi
               }
               setDismissedVariant(variant);
             }}
-            className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+            className="inline-flex rounded-full border border-slate-200 bg-white/90 px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:bg-white hover:text-slate-900"
           >
             Dismiss
           </button>
           <Link
             href={href}
-            className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 md:px-5"
+            className="inline-flex rounded-full bg-slate-950 px-4.5 py-2 text-sm font-medium text-white shadow-[0_16px_30px_-22px_rgba(15,23,42,0.6)] transition hover:bg-slate-800 md:px-5"
           >
             {copy.cta}
           </Link>

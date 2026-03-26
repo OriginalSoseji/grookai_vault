@@ -134,8 +134,8 @@ function SmartViewButton({
       onClick={onClick}
       className={`rounded-full px-4 py-2 text-sm font-medium transition ${
         selected
-          ? "border border-slate-300 bg-white text-slate-950 shadow-sm"
-          : "border border-transparent text-slate-500 hover:border-slate-200 hover:bg-white/70 hover:text-slate-900"
+          ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)]"
+          : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900"
       }`}
     >
       <span>{label}</span>
@@ -1076,45 +1076,49 @@ export function VaultCollectionView({
         onSave={handleSavePublicNote}
       />
 
-      <div className="space-y-8 py-6 md:space-y-10 md:py-7">
-      <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-7 md:py-5">
-        <PageIntro
-          title="Your Vault"
-          eyebrow="Vault"
-          description={<span className="hidden md:inline">A clear view of the cards you own.</span>}
-          size="compact"
-          actions={
-            <>
-              <Link
-                href="/network"
-                className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 md:px-5"
-              >
-                Browse Network
-              </Link>
-              <Link
-                href="/vault/import"
-                className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 md:px-5"
-              >
-                Import Collection
-              </Link>
-            </>
-          }
-        />
-        <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 sm:text-sm">
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-medium text-slate-800">
-            {summary.cards} {summary.cards === 1 ? "card" : "cards"}
-          </span>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-            {summary.uniqueCards} unique
-          </span>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-            {summary.sets} {summary.sets === 1 ? "set" : "sets"}
-          </span>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-            Updated {summary.lastAdded}
-          </span>
-        </div>
-      </PageSection>
+      <div className="space-y-9 py-6 md:space-y-11 md:py-8">
+        <PageSection
+          surface="card"
+          spacing="default"
+          className="overflow-hidden rounded-[1.9rem] border-slate-200/80 bg-[linear-gradient(180deg,_rgba(255,255,255,1)_0%,_rgba(248,250,252,0.94)_100%)] px-5 py-5 shadow-[0_32px_70px_-48px_rgba(15,23,42,0.35)] sm:px-6 md:px-8 md:py-6"
+        >
+          <PageIntro
+            title="Your Vault"
+            eyebrow="Vault"
+            description="A clear, focused view of the cards you own."
+            size="compact"
+            actions={
+              <div className="flex flex-wrap items-center gap-2.5">
+                <Link
+                  href="/network"
+                  className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white shadow-[0_16px_30px_-22px_rgba(15,23,42,0.6)] transition hover:bg-slate-800 md:px-5"
+                >
+                  Browse Network
+                </Link>
+                <Link
+                  href="/vault/import"
+                  className="inline-flex rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-300 hover:bg-white md:px-5"
+                >
+                  Import Collection
+                </Link>
+              </div>
+            }
+          />
+          <div className="flex flex-wrap items-center gap-2.5 text-sm text-slate-600">
+            <span className="rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white shadow-[0_14px_30px_-24px_rgba(15,23,42,0.5)]">
+              {summary.cards} {summary.cards === 1 ? "card" : "cards"}
+            </span>
+            <span className="rounded-full border border-slate-200/80 bg-white/80 px-4 py-2">
+              {summary.uniqueCards} unique
+            </span>
+            <span className="rounded-full border border-slate-200/80 bg-white/80 px-4 py-2">
+              {summary.sets} {summary.sets === 1 ? "set" : "sets"}
+            </span>
+            <span className="rounded-full border border-slate-200/80 bg-white/80 px-4 py-2 text-slate-500">
+              Updated {summary.lastAdded}
+            </span>
+          </div>
+        </PageSection>
 
       {itemsError ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
@@ -1142,7 +1146,7 @@ export function VaultCollectionView({
           </div>
         </section>
       ) : (
-        <PageSection spacing="compact">
+        <PageSection spacing="default">
           {collectorPageActivationVariant ? (
             <CollectorPageActivationCard
               variant={collectorPageActivationVariant}
@@ -1155,7 +1159,7 @@ export function VaultCollectionView({
             description="Cards currently in your collection."
           />
 
-          <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:gap-3">
+          <div className="hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:rounded-[1.5rem] md:border md:border-slate-200/80 md:bg-slate-50/70 md:p-3.5">
             <SearchToolbar className="w-full sm:max-w-md">
               <SearchToolbarInput
                 type="text"
@@ -1187,7 +1191,11 @@ export function VaultCollectionView({
             onModeChange={setMobileViewMode}
           />
 
-          <PageSection surface="subtle" spacing="compact" className="p-2 md:rounded-[1.5rem] md:p-2.5">
+          <PageSection
+            surface="subtle"
+            spacing="compact"
+            className="rounded-[1.5rem] border-slate-200/80 bg-slate-50/70 p-2.5 md:p-3"
+          >
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
@@ -1231,11 +1239,12 @@ export function VaultCollectionView({
             {recent.map((item) => (
               <PokemonCardGridTile
                 key={item.id}
-                className="min-w-[220px] max-w-[220px] flex-none"
+                className="min-w-[220px] max-w-[220px] flex-none rounded-[1.5rem] border-slate-200/80 bg-white/95 shadow-[0_20px_42px_-34px_rgba(15,23,42,0.28)]"
                 imageSrc={item.image_url}
                 imageAlt={item.name}
                 imageHref={`/card/${item.gv_id}`}
                 imageFallbackLabel={item.name}
+                imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
                 title={
                   <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
                     {item.name}
@@ -1249,7 +1258,7 @@ export function VaultCollectionView({
                   </span>
                 }
                 meta={<span>Added {formatTimeAgo(item.created_at)}</span>}
-                footer={<span>{item.gv_id}</span>}
+                footer={<span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>}
               />
             ))}
           </div>
