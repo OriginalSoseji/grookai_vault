@@ -4,6 +4,7 @@ import { PublicCollectionEmptyState } from "@/components/public/PublicCollection
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
+import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
 import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getInPlayCardsBySlug, getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
@@ -57,10 +58,11 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
   }
 
   const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards, inPlayCards] = await Promise.all([
+  const [{ data: authData }, sharedCards, inPlayCards, followCounts] = await Promise.all([
     supabase.auth.getUser(),
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
     profile.vault_sharing_enabled ? getInPlayCardsBySlug(profile.slug) : Promise.resolve([]),
+    getCollectorFollowCounts(profile.user_id),
   ]);
   const viewerUserId = authData.user?.id ?? null;
   const isOwnProfile = viewerUserId === profile.user_id;
@@ -86,6 +88,9 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         displayName={profile.display_name}
         slug={profile.slug}
         description={description}
+        joinedAt={profile.created_at}
+        followingCount={followCounts.followingCount}
+        followerCount={followCounts.followerCount}
         avatarUrl={profile.avatar_url}
         bannerUrl={profile.banner_url}
         stats={stats}

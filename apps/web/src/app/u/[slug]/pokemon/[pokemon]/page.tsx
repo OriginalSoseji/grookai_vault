@@ -6,6 +6,7 @@ import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
+import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
 import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import {
@@ -75,11 +76,13 @@ export default async function PublicPokemonCollectionPage({
     notFound();
   }
 
-  const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
   const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const [{ data: authData }, sharedCards, followCounts] = await Promise.all([
+    supabase.auth.getUser(),
+    profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
+    getCollectorFollowCounts(profile.user_id),
+  ]);
+  const user = authData.user ?? null;
   const viewerUserId = user?.id ?? null;
   const isOwnProfile = viewerUserId === profile.user_id;
   const initialIsFollowing =
@@ -104,6 +107,9 @@ export default async function PublicPokemonCollectionPage({
         displayName={profile.display_name}
         slug={profile.slug}
         description={description}
+        joinedAt={profile.created_at}
+        followingCount={followCounts.followingCount}
+        followerCount={followCounts.followerCount}
         avatarUrl={profile.avatar_url}
         bannerUrl={profile.banner_url}
         stats={stats}

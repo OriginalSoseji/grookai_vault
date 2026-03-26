@@ -10,6 +10,9 @@ type PublicCollectorHeaderProps = {
   displayName: string;
   slug: string;
   description: string;
+  joinedAt?: string | null;
+  followingCount?: number | null;
+  followerCount?: number | null;
   avatarUrl?: string | null;
   bannerUrl?: string | null;
   stats?: PublicCollectorStat[];
@@ -28,10 +31,37 @@ function getInitials(displayName: string) {
   return initials || "GV";
 }
 
+function formatJoinedAt(value: string | null | undefined) {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return null;
+  }
+
+  return `Joined ${parsed.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  })}`;
+}
+
+function formatRelationshipCount(count: number | null | undefined, singularLabel: string, pluralLabel: string) {
+  if (typeof count !== "number" || !Number.isFinite(count) || count < 0) {
+    return null;
+  }
+
+  return `${count} ${count === 1 ? singularLabel : pluralLabel}`;
+}
+
 export function PublicCollectorHeader({
   displayName,
   slug,
   description,
+  joinedAt = null,
+  followingCount = null,
+  followerCount = null,
   avatarUrl = null,
   bannerUrl = null,
   stats = [],
@@ -46,6 +76,11 @@ export function PublicCollectorHeader({
     "--wm-blur-mobile": "10px",
     "--wm-scale-mobile": "1.4",
   } as CSSProperties;
+  const relationshipItems = [
+    formatJoinedAt(joinedAt),
+    formatRelationshipCount(followingCount, "following", "following"),
+    formatRelationshipCount(followerCount, "follower", "followers"),
+  ].filter((value): value is string => Boolean(value));
 
   return (
     <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60">
@@ -99,6 +134,16 @@ export function PublicCollectorHeader({
                 <p className="text-xs font-medium tracking-[0.08em] text-slate-500 sm:text-sm">/u/{slug}</p>
               </div>
               <p className="max-w-2xl text-sm leading-5 text-slate-600">{description}</p>
+              {relationshipItems.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-xs font-medium text-slate-500">
+                  {relationshipItems.map((item, index) => (
+                    <div key={`${slug}-${item}`} className="inline-flex items-center gap-2">
+                      {index > 0 ? <span className="text-slate-300">•</span> : null}
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
           {stats.length > 0 || actions ? (

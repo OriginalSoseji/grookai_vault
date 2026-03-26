@@ -10,6 +10,7 @@ export type PublicProfile = {
   display_name: string;
   public_profile_enabled: boolean;
   vault_sharing_enabled: boolean;
+  created_at: string | null;
   avatar_url: string | null;
   banner_url: string | null;
 };
@@ -20,6 +21,7 @@ type PublicProfileRow = {
   display_name: string | null;
   public_profile_enabled: boolean | null;
   vault_sharing_enabled: boolean | null;
+  created_at: string | null;
   avatar_path: string | null;
   banner_path: string | null;
 };
@@ -48,7 +50,7 @@ export const getPublicProfileBySlug = cache(async (slug: string): Promise<Public
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("public_profiles")
-    .select("user_id,slug,display_name,public_profile_enabled,vault_sharing_enabled,avatar_path,banner_path")
+    .select("user_id,slug,display_name,public_profile_enabled,vault_sharing_enabled,created_at,avatar_path,banner_path")
     .eq("slug", normalizedSlug)
     .maybeSingle();
 
@@ -67,6 +69,7 @@ export const getPublicProfileBySlug = cache(async (slug: string): Promise<Public
     display_name: row.display_name,
     public_profile_enabled: true,
     vault_sharing_enabled: Boolean(row.vault_sharing_enabled),
+    created_at: row.created_at ?? null,
     avatar_url: resolveProfileMediaUrl(row.avatar_path),
     banner_url: resolveProfileMediaUrl(row.banner_path),
   };
