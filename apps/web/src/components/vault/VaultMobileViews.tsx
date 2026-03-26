@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import PublicCardImage from "@/components/PublicCardImage";
@@ -29,7 +28,6 @@ import {
 } from "@/components/vault/VaultCardPrimitives";
 import { type VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import {
-  getWallCategoryLabel,
   WALL_CATEGORY_OPTIONS,
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
@@ -38,15 +36,15 @@ import { getVaultIntentLabel } from "@/lib/network/intent";
 type VaultMobileCommonProps = {
   items: VaultCardData[];
   mode: VaultMobileViewMode;
+  expandedCardId: string | null;
   pendingShareItemId: string | null;
   pendingWallCategoryItemId: string | null;
   pendingPublicImageKey: string | null;
-  expandedSharedItemIds: Set<string>;
   shareErrors: Record<string, string>;
   publicCollectionHref: string | null;
+  onExpansionToggle: (item: VaultCardData) => void;
   onShareToggle: (item: VaultCardData) => void;
   onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
-  onSharedControlsToggle: (item: VaultCardData) => void;
   onPublicNoteEdit: (item: VaultCardData) => void;
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
@@ -194,27 +192,26 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
 
 function MobileDetailRow({
   item,
+  expandedCardId,
   pendingShareItemId,
   pendingWallCategoryItemId,
   pendingPublicImageKey,
-  expandedSharedItemIds,
   shareErrors,
   publicCollectionHref,
+  onExpansionToggle,
   onShareToggle,
   onWallCategoryChange,
-  onSharedControlsToggle,
   onPublicNoteEdit,
   onPublicImageToggle,
 }: Omit<VaultMobileCommonProps, "items" | "mode"> & { item: VaultCardData }) {
-  const [detailsOpen, setDetailsOpen] = useState(false);
   const rowKey = getRowKey(item);
+  const isExpanded = expandedCardId === rowKey;
   const isSharePending = pendingShareItemId === rowKey;
   const isWallCategoryPending = pendingWallCategoryItemId === rowKey;
   const isPublicFrontImagePending = pendingPublicImageKey === `${rowKey}:front`;
   const isPublicBackImagePending = pendingPublicImageKey === `${rowKey}:back`;
-  const isSharedControlsExpanded = expandedSharedItemIds.has(rowKey);
-  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
   const intentMixSummary = formatIntentMixSummary(item);
+  const copiesSectionId = `vault-card-copies-mobile-${rowKey}`;
   const cardValue = formatVaultCardValue(item.effective_price);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
@@ -222,12 +219,21 @@ function MobileDetailRow({
   });
   const primaryActionHref =
     item.active_message_count > 0 ? item.messages_href : getSingleCopyHref(item);
-  const primaryActionBaseLabel = getVaultPrimaryActionLabel({
+  const primaryActionLabel = getVaultPrimaryActionLabel({
     inPlayCount: item.in_play_count,
     activeMessageCount: item.active_message_count,
   });
-  const primaryActionLabel =
-    !primaryActionHref && detailsOpen ? "Hide details" : primaryActionBaseLabel;
+
+  function handlePrimaryActionClick() {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    document.getElementById(copiesSectionId)?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  }
 
   return (
     <article className="rounded-[1.65rem] border border-slate-200/80 bg-white/95 p-4 shadow-[0_24px_48px_-36px_rgba(15,23,42,0.3)]">
@@ -253,22 +259,37 @@ function MobileDetailRow({
                 <Link href={`/card/${item.gv_id}`} className="min-w-0 flex-1">
                   <h3 className="line-clamp-2 text-lg font-semibold tracking-tight text-slate-950">{item.name}</h3>
                 </Link>
-                {wallCategoryLabel ? <VaultStatusBadges item={item} includeQuantity={false} /> : null}
-              </div>
-
-              <p className="text-sm text-slate-500">{getVaultCardMetaLine(item)}</p>
-
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-medium text-slate-700">{formatMixedOwnershipHeadline(item)}</p>
                 {cardValue ? <p className="text-base font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
               </div>
 
-              {!wallCategoryLabel ? (
-                <div className="flex flex-wrap gap-1.5">
-                  <VaultStatusBadges item={item} includeQuantity={false} />
-                </div>
-              ) : null}
+              <p className="text-sm text-slate-500">{getVaultCardMetaLine(item)}</p>
+              <p className="text-sm font-medium text-slate-700">{formatMixedOwnershipHeadline(item)}</p>
 
+              <div className="flex flex-wrap gap-1.5">
+                <VaultStatusBadges item={item} includeQuantity={false} />
+              </div>
+
+              {messageSignal ? (
+                <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
+              ) : null}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-3">
+          {isExpanded ? <span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span> : <span />}
+          <button
+            type="button"
+            onClick={() => onExpansionToggle(item)}
+            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+          >
+            {isExpanded ? "Hide details" : "Details"}
+          </button>
+        </div>
+
+        {isExpanded ? (
+          <div className="space-y-4">
+            <div className="space-y-4 border-t border-slate-100 pt-4">
               <div className="flex flex-wrap gap-2 text-xs text-slate-600">
                 <VaultStatPill>
                   <span className="font-semibold text-slate-900">{item.owned_count}</span>
@@ -285,128 +306,117 @@ function MobileDetailRow({
                       ? `${item.slab_count || item.owned_count} slab`
                       : `${item.raw_count || item.owned_count} raw`}
                 </VaultStatPill>
-                {messageSignal ? (
-                  <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>
-                    {messageSignal}
-                  </VaultStatPill>
-                ) : null}
               </div>
 
               {intentMixSummary ? <p className="text-xs text-slate-500">{intentMixSummary}</p> : null}
-            </div>
 
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                {primaryActionHref ? (
-                  <Link
-                    href={primaryActionHref}
-                    className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  {primaryActionHref ? (
+                    <Link
+                      href={primaryActionHref}
+                      className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
+                    >
+                      {primaryActionLabel}
+                    </Link>
+                  ) : (
+                    <VaultActionButton type="button" onClick={handlePrimaryActionClick} tone="strong">
+                      {primaryActionLabel}
+                    </VaultActionButton>
+                  )}
+                  <VaultActionButton
+                    type="button"
+                    onClick={() => onShareToggle(item)}
+                    disabled={isSharePending}
+                    tone="quiet"
                   >
-                    {primaryActionLabel}
-                  </Link>
-                ) : (
-                  <VaultActionButton type="button" onClick={() => setDetailsOpen((current) => !current)} tone="strong">
-                    {primaryActionLabel}
+                    {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
                   </VaultActionButton>
-                )}
-                <VaultActionButton
-                  type="button"
-                  onClick={() => onShareToggle(item)}
-                  disabled={isSharePending}
-                  tone="quiet"
-                >
-                  {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-                </VaultActionButton>
-              </div>
+                </div>
 
-              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-                {item.is_shared && publicCollectionHref ? (
-                  <Link
-                    href={publicCollectionHref}
-                    className="font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
-                  >
-                    View wall
-                  </Link>
-                ) : null}
-                <ShareCardButton gvId={item.gv_id} />
-              </div>
-            </div>
-          </div>
-        </div>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                  {item.is_shared && publicCollectionHref ? (
+                    <Link
+                      href={publicCollectionHref}
+                      className="font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+                    >
+                      View wall
+                    </Link>
+                  ) : null}
+                  <ShareCardButton gvId={item.gv_id} />
+                </div>
 
-        {detailsOpen ? (
-          <VaultDetailPanel>
-            <div className="space-y-3">
-              <div className="space-y-1">
-                <VaultFieldLabel>Copies</VaultFieldLabel>
-                <p className="text-xs leading-5 text-slate-500">Open an exact copy when you want to edit details or remove it from your vault.</p>
-              </div>
-
-              <div className="space-y-2">
-                {item.copy_items.map((copy) => {
-                  const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
-                  const createdAt = formatVaultCopyDate(copy.created_at);
-
-                  return (
-                    <VaultInsetCard key={copy.instance_id} className="space-y-3">
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="space-y-2">
-                          <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
-                          <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
-                            <span
-                              className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
-                            >
-                              {getVaultIntentLabel(copy.intent)}
-                            </span>
-                            <span
-                              className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
-                            >
-                              {getVaultCopyVisibilityLabel(copy.intent)}
-                            </span>
-                          </div>
-                          <div className="flex flex-wrap gap-2 text-xs text-slate-500">
-                            <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
-                            {createdAt ? <span>{createdAt}</span> : null}
-                          </div>
-                          {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          {copyHref ? (
-                            <Link
-                              href={copyHref}
-                              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
-                            >
-                              Open copy
-                            </Link>
-                          ) : (
-                            <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
-                          )}
-                          <OwnedObjectRemoveAction
-                            instanceId={copy.instance_id}
-                            label={copy.is_graded ? "Remove slab" : "Remove copy"}
-                            buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
-                          />
-                        </div>
-                      </div>
-                    </VaultInsetCard>
-                  );
-                })}
+                {shareErrors[rowKey] ? <p className="text-xs text-slate-500">{shareErrors[rowKey]}</p> : null}
               </div>
             </div>
 
-            {item.is_shared ? (
-              <div className="border-t border-slate-200 pt-3">
-                <VaultActionButton
-                  type="button"
-                  onClick={() => onSharedControlsToggle(item)}
-                  disabled={!item.is_shared}
-                  tone="quiet"
-                >
-                  {isSharedControlsExpanded ? "Hide wall controls" : "Manage wall item"}
-                </VaultActionButton>
+            <VaultDetailPanel>
+              <div id={copiesSectionId} className="space-y-3">
+                <div className="space-y-1">
+                  <VaultFieldLabel>Copies</VaultFieldLabel>
+                  <p className="text-xs leading-5 text-slate-500">Open an exact copy when you want to edit details or remove it from your vault.</p>
+                </div>
 
-                {isSharedControlsExpanded ? (
-                  <div className="mt-3 space-y-3">
+                <div className="space-y-2">
+                  {item.copy_items.map((copy) => {
+                    const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+                    const createdAt = formatVaultCopyDate(copy.created_at);
+
+                    return (
+                      <VaultInsetCard key={copy.instance_id} className="space-y-3">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-slate-900">{formatVaultCopyIdentityLabel(copy)}</p>
+                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em]">
+                              <span
+                                className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyIntentBadgeClassName(copy.intent)}`}
+                              >
+                                {getVaultIntentLabel(copy.intent)}
+                              </span>
+                              <span
+                                className={`inline-flex rounded-full border px-2 py-0.5 ${getVaultCopyVisibilityBadgeClassName(copy.intent)}`}
+                              >
+                                {getVaultCopyVisibilityLabel(copy.intent)}
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+                              <span>{copy.gv_vi_id ?? "GVVI pending"}</span>
+                              {createdAt ? <span>{createdAt}</span> : null}
+                            </div>
+                            {copy.notes ? <p className="text-xs leading-5 text-slate-500">{copy.notes}</p> : null}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            {copyHref ? (
+                              <Link
+                                href={copyHref}
+                                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                              >
+                                Open copy
+                              </Link>
+                            ) : (
+                              <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
+                            )}
+                            <OwnedObjectRemoveAction
+                              instanceId={copy.instance_id}
+                              label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                              buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
+                            />
+                          </div>
+                        </div>
+                      </VaultInsetCard>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {item.is_shared ? (
+                <div className="space-y-3 border-t border-slate-200 pt-3">
+                  <div className="space-y-1">
+                    <VaultFieldLabel>Wall</VaultFieldLabel>
+                    <p className="text-xs leading-5 text-slate-500">Public wall settings stay grouped at the card level.</p>
+                  </div>
+
+                  <div className="space-y-3">
                     <div className="space-y-2">
                       <label htmlFor={`mobile-wall-category-${rowKey}`} className="block">
                         <VaultFieldLabel>Wall Category</VaultFieldLabel>
@@ -501,13 +511,12 @@ function MobileDetailRow({
                       </div>
                     ) : null}
                   </div>
-                ) : null}
-              </div>
-            ) : null}
-          </VaultDetailPanel>
+                </div>
+              ) : null}
+            </VaultDetailPanel>
+          </div>
         ) : null}
 
-        {shareErrors[rowKey] ? <p className="text-xs text-slate-500">{shareErrors[rowKey]}</p> : null}
       </div>
     </article>
   );
