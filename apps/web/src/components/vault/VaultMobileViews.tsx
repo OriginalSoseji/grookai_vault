@@ -10,21 +10,19 @@ import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
   formatVaultCardValue,
-  formatVaultMixedOwnershipSummary,
-  formatVaultSlabSummary,
+  formatVaultSecondaryContext,
   getVaultCardMetaLine,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
   getVaultMessageSignalLabel,
-  getVaultOwnershipSummary,
   getVaultPrimaryActionLabel,
   VaultActionButton,
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
+  VaultPrimaryStateBadge,
   VaultStatPill,
-  VaultStatusBadges,
 } from "@/components/vault/VaultCardPrimitives";
 import { type VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import {
@@ -48,19 +46,6 @@ type VaultMobileCommonProps = {
   onPublicNoteEdit: (item: VaultCardData) => void;
   onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
-
-function formatMixedOwnershipHeadline(item: VaultCardData) {
-  const mixedSummary = formatVaultMixedOwnershipSummary(item);
-  if (mixedSummary) {
-    return mixedSummary;
-  }
-
-  if (item.is_slab) {
-    return formatVaultSlabSummary(item) || "Graded slab";
-  }
-
-  return `${item.condition_label} • Qty ${item.owned_count}`;
-}
 
 function formatIntentMixSummary(item: Pick<VaultCardData, "sell_count" | "trade_count" | "showcase_count">) {
   const parts = [];
@@ -95,6 +80,7 @@ function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
 
 function MobileGridCard({ item }: { item: VaultCardData }) {
   const cardValue = formatVaultCardValue(item.effective_price);
+  const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
@@ -116,24 +102,20 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
         </Link>
       }
       subtitle={<span className="line-clamp-2 block">{getVaultCardMetaLine(item)}</span>}
-      badges={<VaultStatusBadges item={item} includeQuantity={false} />}
+      badges={<VaultPrimaryStateBadge item={item} />}
       meta={
         <div className="space-y-1">
-          <span className="text-slate-600">{formatMixedOwnershipHeadline(item)}</span>
-          {messageSignal ? (
-            <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
-              {messageSignal}
-            </p>
-          ) : null}
+          {secondaryContext ? <span className="text-slate-600">{secondaryContext}</span> : null}
         </div>
       }
-      footer={
-        <div className={`flex items-center gap-2 ${cardValue ? "justify-between" : "justify-end"}`}>
-          {cardValue ? <span className="text-sm font-semibold text-slate-900">{cardValue}</span> : null}
-          <VaultStatPill className="shrink-0">
-            <span className="font-semibold text-slate-900">{item.owned_count}</span>
-            <span>total</span>
-          </VaultStatPill>
+      summary={
+        <div className="space-y-2">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            {cardValue ? <p className="text-sm font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
+            {messageSignal ? (
+              <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
+            ) : null}
+          </div>
         </div>
       }
     />
@@ -142,6 +124,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
 
 function MobileCompactRow({ item }: { item: VaultCardData }) {
   const cardValue = formatVaultCardValue(item.effective_price);
+  const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
@@ -167,24 +150,18 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
           <div className="min-w-0 space-y-1">
             <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{item.name}</p>
             <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
+            <VaultPrimaryStateBadge item={item} size="sm" />
           </div>
-          <div className="shrink-0 space-y-1 text-right">
+          <div className="shrink-0 text-right">
             {cardValue ? <p className="text-sm font-semibold text-slate-900">{cardValue}</p> : null}
-            <VaultStatPill className="justify-center">
-              <span className="font-semibold text-slate-900">{item.owned_count}</span>
-              <span>total</span>
-            </VaultStatPill>
           </div>
         </div>
-        <p className="line-clamp-1 text-xs text-slate-600">{getVaultOwnershipSummary(item)}</p>
+        {secondaryContext ? <p className="line-clamp-1 text-xs text-slate-600">{secondaryContext}</p> : null}
         {messageSignal ? (
           <p className={`text-xs font-medium ${item.unread_message_count > 0 ? "text-emerald-700" : "text-slate-500"}`}>
             {messageSignal}
           </p>
         ) : null}
-        <div className="flex flex-wrap gap-1.5">
-          <VaultStatusBadges item={item} includeQuantity={false} size="sm" />
-        </div>
       </div>
     </Link>
   );
@@ -213,6 +190,7 @@ function MobileDetailRow({
   const intentMixSummary = formatIntentMixSummary(item);
   const copiesSectionId = `vault-card-copies-mobile-${rowKey}`;
   const cardValue = formatVaultCardValue(item.effective_price);
+  const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
@@ -263,11 +241,9 @@ function MobileDetailRow({
               </div>
 
               <p className="text-sm text-slate-500">{getVaultCardMetaLine(item)}</p>
-              <p className="text-sm font-medium text-slate-700">{formatMixedOwnershipHeadline(item)}</p>
+              <VaultPrimaryStateBadge item={item} />
 
-              <div className="flex flex-wrap gap-1.5">
-                <VaultStatusBadges item={item} includeQuantity={false} />
-              </div>
+              {secondaryContext ? <p className="text-sm font-medium text-slate-700">{secondaryContext}</p> : null}
 
               {messageSignal ? (
                 <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>

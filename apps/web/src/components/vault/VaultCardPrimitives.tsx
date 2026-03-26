@@ -143,10 +143,107 @@ export function getVaultOwnershipSummary(
   );
 }
 
+function formatVaultClosedOwnershipContext(
+  item: Pick<
+    VaultCardData,
+    "raw_count" | "slab_count" | "grader" | "grade" | "is_slab" | "condition_label" | "owned_count"
+  >,
+) {
+  return (
+    formatVaultMixedOwnershipSummary(item) ??
+    (item.is_slab
+      ? formatVaultSlabSummary(item) || `${item.slab_count || item.owned_count} Slab`
+      : item.owned_count > 1
+        ? `${item.raw_count || item.owned_count} Raw`
+        : `${item.condition_label || "Unknown"} Raw`)
+  );
+}
+
+export function formatVaultSecondaryContext(
+  item: Pick<
+    VaultCardData,
+    | "raw_count"
+    | "slab_count"
+    | "grader"
+    | "grade"
+    | "is_slab"
+    | "condition_label"
+    | "owned_count"
+    | "is_shared"
+    | "wall_category"
+    | "primary_intent"
+  >,
+) {
+  const parts: string[] = [];
+  const ownershipContext = formatVaultClosedOwnershipContext(item);
+  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
+
+  if (ownershipContext) {
+    parts.push(ownershipContext);
+  }
+
+  if (item.is_shared) {
+    parts.push("On Wall");
+  }
+
+  if (wallCategoryLabel) {
+    const isIntentDuplicate =
+      (wallCategoryLabel === "For Sale" && item.primary_intent === "sell") ||
+      (wallCategoryLabel === "Trades" && item.primary_intent === "trade");
+    const isGraderDuplicate =
+      (wallCategoryLabel === "PSA" && (item.grader ?? "").toUpperCase() === "PSA") ||
+      (wallCategoryLabel === "CGC" && (item.grader ?? "").toUpperCase() === "CGC") ||
+      (wallCategoryLabel === "BGS" && (item.grader ?? "").toUpperCase() === "BGS");
+
+    if (!isIntentDuplicate && !isGraderDuplicate) {
+      parts.push(wallCategoryLabel);
+    }
+  }
+
+  return parts.length > 0 ? parts.join(" • ") : null;
+}
+
+export function getVaultPrimaryStateBadge(
+  item: Pick<VaultCardData, "primary_intent" | "in_play_count">,
+): { label: string; tone: "accent" | "positive" | "warm" | "neutral" } | null {
+  switch (item.primary_intent) {
+    case "sell":
+      return { label: "For Sale", tone: "accent" };
+    case "trade":
+      return { label: "Trade", tone: "positive" };
+    case "showcase":
+      return { label: "Showcase", tone: "warm" };
+    case "hold":
+    case null:
+    default:
+      return item.in_play_count > 0 ? { label: "In Play", tone: "neutral" } : null;
+  }
+}
+
 export function getVaultCardMetaLine(item: Pick<VaultCardData, "set_name" | "set_code" | "number">) {
   return [item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
     .filter(Boolean)
     .join(" • ");
+}
+
+export function VaultPrimaryStateBadge({
+  item,
+  size = "xs",
+}: {
+  item: Pick<VaultCardData, "primary_intent" | "in_play_count">;
+  size?: "xs" | "sm";
+}) {
+  const badge = getVaultPrimaryStateBadge(item);
+
+  if (!badge) {
+    return null;
+  }
+
+  return (
+    <PokemonCardGridBadge tone={badge.tone} size={size}>
+      {badge.label}
+    </PokemonCardGridBadge>
+  );
 }
 
 export function getVaultCopyIntentBadgeClassName(intent: VaultIntent) {

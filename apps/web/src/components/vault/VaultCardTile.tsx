@@ -8,18 +8,18 @@ import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
   formatVaultCardValue,
+  formatVaultSecondaryContext,
   getVaultMessageSignalLabel,
   getVaultPrimaryActionLabel,
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
-  getVaultOwnershipSummary,
   VaultActionButton,
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
+  VaultPrimaryStateBadge,
   VaultStatPill,
-  VaultStatusBadges,
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
 import {
@@ -172,7 +172,7 @@ export function VaultCardTile({
 }: VaultCardTileProps) {
   const canManagePublicImages = !item.is_slab;
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
-  const ownershipSummary = getVaultOwnershipSummary(item);
+  const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
   const copiesSectionId = `vault-card-copies-${item.card_id}`;
   const cardValue = formatVaultCardValue(item.effective_price);
@@ -439,8 +439,10 @@ export function VaultCardTile({
           {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
         </span>
       }
-      badges={<VaultStatusBadges item={item} includeQuantity={false} />}
-      meta={<span className="text-sm font-medium text-slate-700">{ownershipSummary}</span>}
+      badges={<VaultPrimaryStateBadge item={item} />}
+      meta={
+        secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined
+      }
       summary={closedSummary}
       details={details}
       footer={
