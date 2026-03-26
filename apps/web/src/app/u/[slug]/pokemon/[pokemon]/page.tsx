@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
+import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
+import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import {
   filterSharedCardsByPokemonSlug,
@@ -78,6 +80,10 @@ export default async function PublicPokemonCollectionPage({
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const viewerUserId = user?.id ?? null;
+  const isOwnProfile = viewerUserId === profile.user_id;
+  const initialIsFollowing =
+    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const matchingCards = profile.vault_sharing_enabled ? filterSharedCardsByPokemonSlug(sharedCards, params.pokemon) : [];
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
@@ -102,6 +108,15 @@ export default async function PublicPokemonCollectionPage({
         bannerUrl={profile.banner_url}
         stats={stats}
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
+        actions={
+          <FollowCollectorButton
+            collectorUserId={profile.user_id}
+            isAuthenticated={Boolean(user)}
+            isOwnProfile={isOwnProfile}
+            initialIsFollowing={initialIsFollowing}
+            loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/pokemon/${params.pokemon}`)}`}
+          />
+        }
       />
 
       <section className="space-y-4">
@@ -129,7 +144,7 @@ export default async function PublicPokemonCollectionPage({
         ) : (
           <PublicCollectionGrid
             cards={matchingCards}
-            viewerUserId={user?.id ?? null}
+            viewerUserId={viewerUserId}
             ownerUserId={profile.user_id}
           />
         )}

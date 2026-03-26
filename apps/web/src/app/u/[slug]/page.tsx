@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
+import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getInPlayCardsBySlug, getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -60,6 +62,10 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
     profile.vault_sharing_enabled ? getInPlayCardsBySlug(profile.slug) : Promise.resolve([]),
   ]);
+  const viewerUserId = authData.user?.id ?? null;
+  const isOwnProfile = viewerUserId === profile.user_id;
+  const initialIsFollowing =
+    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -84,6 +90,15 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
         bannerUrl={profile.banner_url}
         stats={stats}
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
+        actions={
+          <FollowCollectorButton
+            collectorUserId={profile.user_id}
+            isAuthenticated={Boolean(authData.user)}
+            isOwnProfile={isOwnProfile}
+            initialIsFollowing={initialIsFollowing}
+            loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}`)}`}
+          />
+        }
       />
 
       {!profile.vault_sharing_enabled ? (
@@ -98,7 +113,7 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
           cards={sharedCards}
           inPlayCards={inPlayCards}
           isAuthenticated={Boolean(authData.user)}
-          viewerUserId={authData.user?.id ?? null}
+          viewerUserId={viewerUserId}
           currentPath={`/u/${profile.slug}`}
         />
       )}

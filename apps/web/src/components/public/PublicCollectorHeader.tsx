@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export type PublicCollectorStat = {
   value: string;
@@ -14,6 +14,7 @@ type PublicCollectorHeaderProps = {
   bannerUrl?: string | null;
   stats?: PublicCollectorStat[];
   setLogoPaths?: string[];
+  actions?: ReactNode;
 };
 
 function getInitials(displayName: string) {
@@ -35,6 +36,7 @@ export function PublicCollectorHeader({
   bannerUrl = null,
   stats = [],
   setLogoPaths = [],
+  actions = null,
 }: PublicCollectorHeaderProps) {
   const collageWatermarkStyle = {
     "--wm-opacity-desktop": "0.025",
@@ -99,17 +101,22 @@ export function PublicCollectorHeader({
               <p className="max-w-2xl text-sm leading-5 text-slate-600">{description}</p>
             </div>
           </div>
-          {stats.length > 0 ? (
-            <div className="flex flex-wrap gap-2 md:max-w-[24rem] md:justify-end">
-              {stats.map((stat) => (
-                <div
-                  key={`${stat.label}-${stat.value}`}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5"
-                >
-                  <p className="text-sm font-medium text-slate-900">{stat.value}</p>
-                  <p className="text-[11px] text-slate-500">{stat.label}</p>
+          {stats.length > 0 || actions ? (
+            <div className="flex flex-col gap-3 md:max-w-[24rem] md:items-end">
+              {stats.length > 0 ? (
+                <div className="flex flex-wrap gap-2 md:justify-end">
+                  {stats.map((stat) => (
+                    <div
+                      key={`${stat.label}-${stat.value}`}
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5"
+                    >
+                      <p className="text-sm font-medium text-slate-900">{stat.value}</p>
+                      <p className="text-[11px] text-slate-500">{stat.label}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : null}
+              {actions ? <div className="flex flex-wrap gap-2 md:justify-end">{actions}</div> : null}
             </div>
           ) : null}
         </div>

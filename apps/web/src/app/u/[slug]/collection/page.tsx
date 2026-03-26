@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
+import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -60,6 +62,10 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
     supabase.auth.getUser(),
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
   ]);
+  const viewerUserId = authData.user?.id ?? null;
+  const isOwnProfile = viewerUserId === profile.user_id;
+  const initialIsFollowing =
+    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const sharedSetCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -83,6 +89,15 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
         bannerUrl={profile.banner_url}
         stats={stats}
         setLogoPaths={[...profileSetLogoPathMap.values()].slice(0, 3)}
+        actions={
+          <FollowCollectorButton
+            collectorUserId={profile.user_id}
+            isAuthenticated={Boolean(authData.user)}
+            isOwnProfile={isOwnProfile}
+            initialIsFollowing={initialIsFollowing}
+            loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/collection`)}`}
+          />
+        }
       />
 
       <div className="flex justify-end">
@@ -105,7 +120,7 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
           collectionEyebrow="Collection"
           collectionDescription="View the full collection this collector has put on display."
           isAuthenticated={Boolean(authData.user)}
-          viewerUserId={authData.user?.id ?? null}
+          viewerUserId={viewerUserId}
           currentPath={`/u/${profile.slug}/collection`}
         />
       )}
