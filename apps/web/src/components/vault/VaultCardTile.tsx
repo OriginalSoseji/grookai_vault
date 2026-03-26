@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
-import ShareCardButton from "@/components/ShareCardButton";
-import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -14,7 +12,6 @@ import {
   getVaultCopyIntentBadgeClassName,
   getVaultCopyVisibilityBadgeClassName,
   getVaultCopyVisibilityLabel,
-  VaultActionButton,
   VaultDetailPanel,
   VaultFieldLabel,
   VaultInsetCard,
@@ -22,14 +19,8 @@ import {
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
-import {
-  WALL_CATEGORY_OPTIONS,
-  type WallCategory,
-} from "@/lib/sharedCards/wallCategories";
-import {
-  getVaultIntentLabel,
-  type VaultIntent,
-} from "@/lib/network/intent";
+import { getVaultIntentLabel, type VaultIntent } from "@/lib/network/intent";
+import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -98,19 +89,9 @@ export type VaultCardData = {
 type VaultCardTileProps = {
   item: VaultCardData;
   density?: ViewDensity;
-  isSharePending: boolean;
-  isWallCategoryPending: boolean;
-  isPublicFrontImagePending: boolean;
-  isPublicBackImagePending: boolean;
   isExpanded: boolean;
-  shareError?: string;
-  publicCollectionHref?: string | null;
   logoPath?: string;
-  onShareToggle: (item: VaultCardData) => void;
-  onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void;
   onExpansionToggle: (item: VaultCardData) => void;
-  onPublicNoteEdit: (item: VaultCardData) => void;
-  onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void;
 };
 
 function formatCopyMixSummary(item: Pick<VaultCardData, "raw_count" | "slab_count">) {
@@ -157,46 +138,25 @@ function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
 export function VaultCardTile({
   item,
   density = "default",
-  isSharePending,
-  isWallCategoryPending,
-  isPublicFrontImagePending,
-  isPublicBackImagePending,
   isExpanded,
-  shareError,
-  publicCollectionHref,
-  onShareToggle,
-  onWallCategoryChange,
   onExpansionToggle,
-  onPublicNoteEdit,
-  onPublicImageToggle,
 }: VaultCardTileProps) {
-  const canManagePublicImages = !item.is_slab;
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
-  const copiesSectionId = `vault-card-copies-${item.card_id}`;
+  const manageCardHref = `/vault/card/${encodeURIComponent(item.card_id)}`;
   const cardValue = formatVaultCardValue(item.effective_price);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
   });
   const primaryActionHref =
-    item.active_message_count > 0 ? item.messages_href : getSingleCopyHref(item);
+    (item.active_message_count > 0 ? item.messages_href : null) ?? getSingleCopyHref(item) ?? manageCardHref;
   const primaryActionLabel = getVaultPrimaryActionLabel({
     inPlayCount: item.in_play_count,
     activeMessageCount: item.active_message_count,
   });
-
-  function handlePrimaryActionClick() {
-    if (typeof document === "undefined") {
-      return;
-    }
-
-    document.getElementById(copiesSectionId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  }
+  const previewCopies = item.copy_items.slice(0, 2);
 
   const closedSummary = (
     <div className="space-y-3">
@@ -227,41 +187,23 @@ export function VaultCardTile({
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          {primaryActionHref ? (
-            <Link
-              href={primaryActionHref}
-              className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
-            >
-              {primaryActionLabel}
-            </Link>
-          ) : (
-            <VaultActionButton onClick={handlePrimaryActionClick} tone="strong">
-              {primaryActionLabel}
-            </VaultActionButton>
-          )}
-          <VaultActionButton
-            onClick={() => onShareToggle(item)}
-            disabled={isSharePending}
-            tone="quiet"
+          <Link
+            href={primaryActionHref}
+            className="inline-flex items-center justify-center rounded-full border border-slate-950 bg-slate-950 px-3 py-1.5 text-xs font-medium text-white shadow-[0_12px_26px_-18px_rgba(15,23,42,0.55)] transition hover:bg-slate-800"
           >
-            {isSharePending ? "Saving..." : item.is_shared ? "Remove from Wall" : "Add to Wall"}
-          </VaultActionButton>
+            {primaryActionLabel}
+          </Link>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
-          {item.is_shared && publicCollectionHref ? (
-            <Link
-              href={publicCollectionHref}
-              className="font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
-            >
-              View wall
-            </Link>
-          ) : null}
-          <ShareCardButton gvId={item.gv_id} />
-        </div>
+        {primaryActionHref !== manageCardHref ? (
+          <Link
+            href={manageCardHref}
+            className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+          >
+            Manage card
+          </Link>
+        ) : null}
       </div>
-
-      {shareError ? <p className="text-xs text-slate-500">{shareError}</p> : null}
     </div>
   ) : null;
 
@@ -270,14 +212,16 @@ export function VaultCardTile({
       {expandedSummary}
 
       <VaultDetailPanel>
-        <div id={copiesSectionId} className="space-y-3">
+        <div className="space-y-3">
           <div className="space-y-1">
             <VaultFieldLabel>Copies</VaultFieldLabel>
-            <p className="text-xs leading-5 text-slate-500">Open an exact copy when you want to edit details or remove it from your vault.</p>
+            <p className="text-xs leading-5 text-slate-500">
+              Open an exact copy when you want to edit deep details. Use Manage Card for grouped settings and the full copy list.
+            </p>
           </div>
 
           <div className="space-y-2">
-            {item.copy_items.map((copy) => {
+            {previewCopies.map((copy) => {
               const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
               const createdAt = formatVaultCopyDate(copy.created_at);
 
@@ -315,101 +259,24 @@ export function VaultCardTile({
                       ) : (
                         <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
                       )}
-                      <OwnedObjectRemoveAction
-                        instanceId={copy.instance_id}
-                        label={copy.is_graded ? "Remove slab" : "Remove copy"}
-                        buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
-                      />
                     </div>
                   </div>
                 </VaultInsetCard>
               );
             })}
           </div>
-        </div>
 
-        {item.is_shared ? (
-          <div className="space-y-3 border-t border-slate-200 pt-3">
-            <div className="space-y-1">
-              <VaultFieldLabel>Wall</VaultFieldLabel>
-              <p className="text-xs leading-5 text-slate-500">Public wall settings stay grouped at the card level.</p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="space-y-2">
-                <label htmlFor={`wall-category-${item.card_id}`} className="block">
-                  <VaultFieldLabel>Wall Category</VaultFieldLabel>
-                </label>
-                <select
-                  id={`wall-category-${item.card_id}`}
-                  value={item.wall_category ?? ""}
-                  disabled={isWallCategoryPending}
-                  onChange={(event) =>
-                    onWallCategoryChange(item, event.target.value ? (event.target.value as WallCategory) : null)
-                  }
-                  className="w-full rounded-[12px] border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 transition hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  <option value="">No category</option>
-                  {WALL_CATEGORY_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <VaultInsetCard className="flex flex-wrap items-center justify-between gap-3">
-                <div className="space-y-1">
-                  <p className="text-sm font-medium text-slate-900">{item.public_note ? "Wall note added" : "Wall note"}</p>
-                  <p className="text-xs text-slate-500">
-                    {item.public_note ? "Edit the collector-facing note on this wall item." : "Add a note collectors can see on your wall."}
-                  </p>
-                </div>
-                <VaultActionButton type="button" onClick={() => onPublicNoteEdit(item)} tone="default">
-                  {item.public_note ? "Edit note" : "Add note"}
-                </VaultActionButton>
-              </VaultInsetCard>
-
-              {canManagePublicImages ? (
-                <div className="space-y-2">
-                  <VaultFieldLabel>Public Images</VaultFieldLabel>
-
-                  <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={item.show_personal_front}
-                      disabled={!item.has_front_photo || isPublicFrontImagePending}
-                      onChange={(event) => onPublicImageToggle(item, "front", event.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                    />
-                    <span className="min-w-0">
-                      <span className="block font-medium text-slate-800">Show front photo</span>
-                      <span className="mt-1 block text-xs text-slate-500">
-                        {item.has_front_photo ? "Collectors will see your uploaded front photo." : "Upload a front photo in your vault to enable this."}
-                      </span>
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-3 rounded-[12px] border border-slate-200 bg-white px-3 py-2.5 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={item.show_personal_back}
-                      disabled={!item.has_back_photo || isPublicBackImagePending}
-                      onChange={(event) => onPublicImageToggle(item, "back", event.target.checked)}
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-                    />
-                    <span className="min-w-0">
-                      <span className="block font-medium text-slate-800">Show back photo</span>
-                      <span className="mt-1 block text-xs text-slate-500">
-                        {item.has_back_photo ? "Collectors will see your uploaded back photo." : "Upload a back photo in your vault to enable this."}
-                      </span>
-                    </span>
-                  </label>
-                </div>
-              ) : null}
-            </div>
+          <div className="border-t border-slate-200 pt-3">
+            <Link
+              href={manageCardHref}
+              className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
+            >
+              {item.copy_items.length > previewCopies.length
+                ? `View all ${item.copy_items.length} copies and grouped settings`
+                : "Open grouped settings"}
+            </Link>
           </div>
-        ) : null}
+        </div>
       </VaultDetailPanel>
     </div>
   ) : null;
@@ -440,9 +307,7 @@ export function VaultCardTile({
         </span>
       }
       badges={<VaultPrimaryStateBadge item={item} />}
-      meta={
-        secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined
-      }
+      meta={secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined}
       summary={closedSummary}
       details={details}
       footer={

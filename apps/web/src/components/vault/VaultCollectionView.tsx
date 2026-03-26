@@ -1,9 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect, useMemo, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
@@ -19,11 +17,6 @@ import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
-import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleSharedCardPublicImageAction";
-import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
-import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
-import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
-import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { ReactNode } from "react";
 
 export type RecentCardData = {
@@ -53,10 +46,6 @@ type SetGroup = {
 };
 
 const COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS = 6;
-const PublicNoteModal = dynamic(
-  () => import("@/components/vault/VaultDialogs").then((mod) => mod.PublicNoteModal),
-  { ssr: false },
-);
 
 function formatTimeAgo(value: string | null) {
   if (!value) return "Recently";
@@ -196,114 +185,33 @@ function ViewEmptyState({
   return <PublicCollectionEmptyState title={title} body={body} />;
 }
 
+function getVaultRowRuntimeKey(item: Pick<VaultCardData, "card_id">) {
+  return item.card_id;
+}
+
 function renderVaultGrid(
   items: VaultCardData[],
   density: ViewDensity,
   setLogoPathByCode: Record<string, string>,
-  pendingShareItemId: string | null,
-  pendingWallCategoryItemId: string | null,
-  pendingPublicImageKey: string | null,
   expandedCardId: string | null,
-  shareErrors: Record<string, string>,
-  publicCollectionHref: string | null,
-  onShareToggle: (item: VaultCardData) => void,
-  onWallCategoryChange: (item: VaultCardData, wallCategory: WallCategory | null) => void,
   onExpansionToggle: (item: VaultCardData) => void,
-  onPublicNoteEdit: (item: VaultCardData) => void,
-  onPublicImageToggle: (item: VaultCardData, side: "front" | "back", enabled: boolean) => void,
 ) {
   return (
     <div className={getPokemonCardCollectionGridClassName(density)}>
       {items.map((item) => {
         const rowKey = getVaultRowRuntimeKey(item);
         return (
-        <VaultCardTile
-          key={item.id}
-          item={item}
-          density={density}
-          logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
-          isSharePending={pendingShareItemId === rowKey}
-          isWallCategoryPending={pendingWallCategoryItemId === rowKey}
-          isPublicFrontImagePending={pendingPublicImageKey === `${rowKey}:front`}
-          isPublicBackImagePending={pendingPublicImageKey === `${rowKey}:back`}
-          isExpanded={expandedCardId === rowKey}
-          shareError={shareErrors[rowKey]}
-          publicCollectionHref={item.is_shared ? publicCollectionHref : null}
-          onShareToggle={onShareToggle}
-          onWallCategoryChange={onWallCategoryChange}
-          onExpansionToggle={onExpansionToggle}
-          onPublicNoteEdit={onPublicNoteEdit}
-          onPublicImageToggle={onPublicImageToggle}
-        />
+          <VaultCardTile
+            key={item.id}
+            item={item}
+            density={density}
+            logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
+            isExpanded={expandedCardId === rowKey}
+            onExpansionToggle={onExpansionToggle}
+          />
         );
       })}
     </div>
-  );
-}
-
-function getVaultRowRuntimeKey(item: Pick<VaultCardData, "card_id">) {
-  return item.card_id;
-}
-
-function applyOptimisticShareChange(items: VaultCardData[], rowKey: string, nextShared: boolean) {
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          is_shared: nextShared,
-          wall_category: nextShared ? item.wall_category : null,
-          public_note: nextShared ? item.public_note : null,
-          show_personal_front: nextShared ? item.show_personal_front : false,
-          show_personal_back: nextShared ? item.show_personal_back : false,
-        }
-      : item,
-  );
-}
-
-function applyOptimisticPublicNoteChange(items: VaultCardData[], rowKey: string, publicNote: string | null) {
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          public_note: publicNote,
-        }
-      : item,
-  );
-}
-
-function applyOptimisticWallCategoryChange(
-  items: VaultCardData[],
-  rowKey: string,
-  wallCategory: WallCategory | null,
-) {
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          wall_category: wallCategory,
-        }
-      : item,
-  );
-}
-
-function findItemByRowRuntimeKey(items: VaultCardData[], rowKey: string) {
-  return items.find((item) => getVaultRowRuntimeKey(item) === rowKey);
-}
-
-function applyOptimisticPublicImageChange(
-  items: VaultCardData[],
-  rowKey: string,
-  side: "front" | "back",
-  enabled: boolean,
-) {
-  return items.map((item) =>
-    getVaultRowRuntimeKey(item) === rowKey
-      ? {
-          ...item,
-          show_personal_front: side === "front" ? enabled : item.show_personal_front,
-          show_personal_back: side === "back" ? enabled : item.show_personal_back,
-        }
-      : item,
   );
 }
 
@@ -325,26 +233,15 @@ export function VaultCollectionView({
   recentError,
   valueSummary,
   publicProfileHref = null,
-  publicCollectionHref = null,
   setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
-  const router = useRouter();
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
   const [items, setItems] = useState(initialItems);
   const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [pokemonQuery, setPokemonQuery] = useState("");
-  const [pendingShareItemId, setPendingShareItemId] = useState<string | null>(null);
-  const [pendingWallCategoryItemId, setPendingWallCategoryItemId] = useState<string | null>(null);
-  const [pendingPublicImageKey, setPendingPublicImageKey] = useState<string | null>(null);
-  const [pendingPublicNoteItemId, setPendingPublicNoteItemId] = useState<string | null>(null);
-  const [publicNoteItemId, setPublicNoteItemId] = useState<string | null>(null);
-  const [publicNoteDraft, setPublicNoteDraft] = useState("");
-  const [publicNoteError, setPublicNoteError] = useState<string | null>(null);
-  const [shareErrors, setShareErrors] = useState<Record<string, string>>({});
   const [activeView, setActiveView] = useState<SmartViewKey>("all");
-  const [, startTransition] = useTransition();
 
   useEffect(() => {
     setItems(initialItems);
@@ -356,14 +253,6 @@ export function VaultCollectionView({
       return initialItems.some((item) => getVaultRowRuntimeKey(item) === current) ? current : null;
     });
     setPokemonQuery("");
-    setPendingShareItemId(null);
-    setPendingWallCategoryItemId(null);
-    setPendingPublicImageKey(null);
-    setPendingPublicNoteItemId(null);
-    setPublicNoteItemId(null);
-    setPublicNoteDraft("");
-    setPublicNoteError(null);
-    setShareErrors({});
   }, [initialItems]);
 
   const summary = useMemo(() => {
@@ -494,221 +383,9 @@ export function VaultCollectionView({
     });
   }
 
-  function handleShareToggle(item: VaultCardData) {
-    if (pendingShareItemId || pendingWallCategoryItemId || pendingPublicImageKey) {
-      return;
-    }
-
-    const currentItems = items;
-    const rowKey = getVaultRowRuntimeKey(item);
-    const nextShared = !item.is_shared;
-
-    setShareErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingShareItemId(rowKey);
-    setItems(applyOptimisticShareChange(currentItems, rowKey, nextShared));
-
-    startTransition(async () => {
-      try {
-        const result = await toggleSharedCardAction({
-          itemId: item.vault_item_id,
-          gvViId: item.gv_vi_id,
-          nextShared,
-        });
-
-        if (!result.ok) {
-          setItems(currentItems);
-          setShareErrors((current) => ({
-            ...current,
-            [rowKey]: result.message,
-          }));
-          return;
-        }
-
-        setItems((current) => applyOptimisticShareChange(current, rowKey, result.status === "shared"));
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setShareErrors((current) => ({
-          ...current,
-          [rowKey]: "Couldn’t update wall state.",
-        }));
-      } finally {
-        setPendingShareItemId(null);
-      }
-    });
-  }
-
-  function handleWallCategoryChange(item: VaultCardData, wallCategory: WallCategory | null) {
-    if (!item.is_shared || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
-      return;
-    }
-
-    const rowKey = getVaultRowRuntimeKey(item);
-    const currentItems = items;
-
-    setShareErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingWallCategoryItemId(rowKey);
-    setItems(applyOptimisticWallCategoryChange(currentItems, rowKey, wallCategory));
-
-    startTransition(async () => {
-      try {
-        const result = await saveSharedCardWallCategoryAction({
-          itemId: item.vault_item_id,
-          gvViId: item.gv_vi_id,
-          wallCategory,
-        });
-
-        if (!result.ok) {
-          setItems(currentItems);
-          setShareErrors((current) => ({
-            ...current,
-            [rowKey]: result.message,
-          }));
-          return;
-        }
-
-        setItems((current) => applyOptimisticWallCategoryChange(current, rowKey, result.wallCategory));
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setShareErrors((current) => ({
-          ...current,
-          [rowKey]: "Couldn’t save wall category.",
-        }));
-      } finally {
-        setPendingWallCategoryItemId(null);
-      }
-    });
-  }
-
   function handleExpansionToggle(item: VaultCardData) {
     const rowKey = getVaultRowRuntimeKey(item);
     setExpandedCardId((current) => (current === rowKey ? null : rowKey));
-  }
-
-  function handlePublicImageToggle(item: VaultCardData, side: "front" | "back", enabled: boolean) {
-    if (!item.is_shared || pendingPublicImageKey || pendingWallCategoryItemId || pendingShareItemId) {
-      return;
-    }
-
-    const hasPhoto = side === "front" ? item.has_front_photo : item.has_back_photo;
-    const rowKey = getVaultRowRuntimeKey(item);
-    if (enabled && !hasPhoto) {
-      setShareErrors((current) => ({
-        ...current,
-        [rowKey]: "Upload a card photo in your vault to enable this.",
-      }));
-      return;
-    }
-
-    const currentItems = items;
-    const pendingKey = `${rowKey}:${side}`;
-
-    setShareErrors((current) => {
-      const next = { ...current };
-      delete next[rowKey];
-      return next;
-    });
-    setPendingPublicImageKey(pendingKey);
-    setItems(applyOptimisticPublicImageChange(currentItems, rowKey, side, enabled));
-
-    startTransition(async () => {
-      try {
-        const result = await toggleSharedCardPublicImageAction({
-          cardId: item.card_id,
-          side,
-          enabled,
-        });
-
-        if (!result.ok) {
-          setItems(currentItems);
-          setShareErrors((current) => ({
-            ...current,
-            [rowKey]: result.message,
-          }));
-          return;
-        }
-
-        setItems((current) => applyOptimisticPublicImageChange(current, rowKey, side, result.enabled));
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setShareErrors((current) => ({
-          ...current,
-          [rowKey]: "Couldn’t update public image settings.",
-        }));
-      } finally {
-        setPendingPublicImageKey(null);
-      }
-    });
-  }
-
-  function handleOpenPublicNote(item: VaultCardData) {
-    if (!item.is_shared || pendingPublicNoteItemId || pendingWallCategoryItemId || pendingShareItemId || pendingPublicImageKey) {
-      return;
-    }
-
-    setPublicNoteItemId(getVaultRowRuntimeKey(item));
-    setPublicNoteDraft(item.public_note ?? "");
-    setPublicNoteError(null);
-  }
-
-  function handleCancelPublicNote() {
-    if (pendingPublicNoteItemId) {
-      return;
-    }
-
-    setPublicNoteItemId(null);
-    setPublicNoteDraft("");
-    setPublicNoteError(null);
-  }
-
-  function handleSavePublicNote() {
-    if (!publicNoteItemId || pendingPublicNoteItemId || pendingWallCategoryItemId) {
-      return;
-    }
-
-    const currentItems = items;
-    const targetItem = findItemByRowRuntimeKey(currentItems, publicNoteItemId);
-    const nextPublicNote = publicNoteDraft.trim().length > 0 ? publicNoteDraft.trim() : null;
-
-    setPendingPublicNoteItemId(publicNoteItemId);
-    setPublicNoteError(null);
-    setItems(applyOptimisticPublicNoteChange(currentItems, publicNoteItemId, nextPublicNote));
-
-    startTransition(async () => {
-      try {
-        const result = await saveSharedCardPublicNoteAction({
-          itemId: targetItem?.vault_item_id,
-          gvViId: targetItem?.gv_vi_id ?? null,
-          note: publicNoteDraft,
-        });
-
-        if (!result.ok) {
-          setItems(currentItems);
-          setPublicNoteError(result.message);
-          return;
-        }
-
-        setItems((current) => applyOptimisticPublicNoteChange(current, publicNoteItemId, result.publicNote));
-        setPublicNoteItemId(null);
-        setPublicNoteDraft("");
-        router.refresh();
-      } catch (error) {
-        setItems(currentItems);
-        setPublicNoteError("Couldn’t save public note.");
-      } finally {
-        setPendingPublicNoteItemId(null);
-      }
-    });
   }
 
   function renderMobileVaultItems(sourceItems: VaultCardData[]) {
@@ -716,37 +393,24 @@ export function VaultCollectionView({
       <VaultMobileViews
         items={sourceItems}
         mode={mobileViewMode}
-        pendingShareItemId={pendingShareItemId}
-        pendingWallCategoryItemId={pendingWallCategoryItemId}
-        pendingPublicImageKey={pendingPublicImageKey}
         expandedCardId={expandedCardId}
-        shareErrors={shareErrors}
-        publicCollectionHref={publicCollectionHref}
         onExpansionToggle={handleExpansionToggle}
-        onShareToggle={handleShareToggle}
-        onWallCategoryChange={handleWallCategoryChange}
-        onPublicNoteEdit={handleOpenPublicNote}
-        onPublicImageToggle={handlePublicImageToggle}
       />
     );
   }
 
-  function renderMobileBySetGroups(sourceGroups: SetGroup[]) {
+  function renderMobileBySetGroups(groups: SetGroup[]) {
     return (
-      <div className="space-y-5 md:hidden">
-        {sourceGroups.map((group) => (
+      <div className="space-y-6 md:hidden">
+        {groups.map((group) => (
           <section key={group.setCode} className="space-y-3">
-            <PageSection surface="subtle" spacing="compact" className="px-4 py-3">
+            <PageSection surface="subtle" spacing="compact" className="px-4 py-3.5">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
                 <SectionHeader
                   title={<span className="text-base">{group.setName}</span>}
-                  description={<span className="text-xs">{group.setCode}</span>}
-                  actions={
-                    <span className="text-xs text-slate-500">
-                      {group.items.length} {group.items.length === 1 ? "card" : "cards"}
-                    </span>
-                  }
+                  description={group.setCode}
+                  actions={<p className="text-sm text-slate-500">{group.items.length} cards</p>}
                   className="gap-2"
                 />
               </div>
@@ -758,65 +422,31 @@ export function VaultCollectionView({
     );
   }
 
-  let vaultContent: ReactNode;
-  let mobileVaultContent: ReactNode;
+  let vaultContent: ReactNode = null;
+  let mobileVaultContent: ReactNode = null;
 
   if (activeView === "duplicates") {
     const filteredDuplicateItems = applySearch(duplicateItems);
     vaultContent =
       filteredDuplicateItems.length > 0
-        ? renderVaultGrid(
-            filteredDuplicateItems,
-            density,
-            setLogoPathByCode,
-            pendingShareItemId,
-            pendingWallCategoryItemId,
-            pendingPublicImageKey,
-            expandedCardId,
-            shareErrors,
-            publicCollectionHref,
-            handleShareToggle,
-            handleWallCategoryChange,
-            handleExpansionToggle,
-            handleOpenPublicNote,
-            handlePublicImageToggle,
-          )
+        ? renderVaultGrid(filteredDuplicateItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
         : searchQuery.trim().length > 0
-        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-        : (
-            <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />
-          );
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No duplicate cards yet." body="Duplicate copies will appear here once you add more than one." />;
     mobileVaultContent =
       filteredDuplicateItems.length > 0
         ? renderMobileVaultItems(filteredDuplicateItems)
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-          : <ViewEmptyState title="No duplicates yet." body="Cards with extra copies will appear here." />;
+          : <ViewEmptyState title="No duplicate cards yet." body="Duplicate copies will appear here once you add more than one." />;
   } else if (activeView === "recent") {
     const filteredRecentItems = applySearch(recentItems);
     vaultContent =
       filteredRecentItems.length > 0
-        ? renderVaultGrid(
-            filteredRecentItems,
-            density,
-            setLogoPathByCode,
-            pendingShareItemId,
-            pendingWallCategoryItemId,
-            pendingPublicImageKey,
-            expandedCardId,
-            shareErrors,
-            publicCollectionHref,
-            handleShareToggle,
-            handleWallCategoryChange,
-            handleExpansionToggle,
-            handleOpenPublicNote,
-            handlePublicImageToggle,
-          )
+        ? renderVaultGrid(filteredRecentItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
         : searchQuery.trim().length > 0
-        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-        : (
-            <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />
-          );
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />;
     mobileVaultContent =
       filteredRecentItems.length > 0
         ? renderMobileVaultItems(filteredRecentItems)
@@ -827,27 +457,10 @@ export function VaultCollectionView({
     const filteredSharedItems = applySearch(sharedItems);
     vaultContent =
       filteredSharedItems.length > 0
-        ? renderVaultGrid(
-            filteredSharedItems,
-            density,
-            setLogoPathByCode,
-            pendingShareItemId,
-            pendingWallCategoryItemId,
-            pendingPublicImageKey,
-            expandedCardId,
-            shareErrors,
-            publicCollectionHref,
-            handleShareToggle,
-            handleWallCategoryChange,
-            handleExpansionToggle,
-            handleOpenPublicNote,
-            handlePublicImageToggle,
-          )
+        ? renderVaultGrid(filteredSharedItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
         : searchQuery.trim().length > 0
-        ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-        : (
-            <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />
-          );
+          ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
+          : <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />;
     mobileVaultContent =
       filteredSharedItems.length > 0
         ? renderMobileVaultItems(filteredSharedItems)
@@ -883,22 +496,7 @@ export function VaultCollectionView({
                 </div>
               </PageSection>
               <div className="pt-1">
-                {renderVaultGrid(
-                  group.items,
-                  density,
-                  setLogoPathByCode,
-                  pendingShareItemId,
-                  pendingWallCategoryItemId,
-                  pendingPublicImageKey,
-                  expandedCardId,
-                  shareErrors,
-                  publicCollectionHref,
-                  handleShareToggle,
-                  handleWallCategoryChange,
-                  handleExpansionToggle,
-                  handleOpenPublicNote,
-                  handlePublicImageToggle,
-                )}
+                {renderVaultGrid(group.items, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)}
               </div>
             </section>
           ))}
@@ -954,22 +552,7 @@ export function VaultCollectionView({
         </PageSection>
 
         {filteredPokemonItems.length > 0 ? (
-          renderVaultGrid(
-            filteredPokemonItems,
-            density,
-            setLogoPathByCode,
-            pendingShareItemId,
-            pendingWallCategoryItemId,
-            pendingPublicImageKey,
-            expandedCardId,
-            shareErrors,
-            publicCollectionHref,
-            handleShareToggle,
-            handleWallCategoryChange,
-            handleExpansionToggle,
-            handleOpenPublicNote,
-            handlePublicImageToggle,
-          )
+          renderVaultGrid(filteredPokemonItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
         ) : (
           <ViewEmptyState title="No matching cards" body="Try a different Pokémon name." />
         )}
@@ -1021,22 +604,7 @@ export function VaultCollectionView({
     const filteredItems = applySearch(items);
     vaultContent =
       filteredItems.length > 0 ? (
-        renderVaultGrid(
-          filteredItems,
-          density,
-          setLogoPathByCode,
-          pendingShareItemId,
-          pendingWallCategoryItemId,
-          pendingPublicImageKey,
-          expandedCardId,
-          shareErrors,
-          publicCollectionHref,
-          handleShareToggle,
-          handleWallCategoryChange,
-          handleExpansionToggle,
-          handleOpenPublicNote,
-          handlePublicImageToggle,
-        )
+        renderVaultGrid(filteredItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
       ) : (
         <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
       );
@@ -1049,85 +617,73 @@ export function VaultCollectionView({
   }
 
   return (
-    <>
-      <PublicNoteModal
-        isOpen={publicNoteItemId !== null}
-        isPending={pendingPublicNoteItemId !== null}
-        noteValue={publicNoteDraft}
-        error={publicNoteError}
-        onNoteChange={setPublicNoteDraft}
-        onCancel={handleCancelPublicNote}
-        onSave={handleSavePublicNote}
-      />
-
-      <div className="space-y-10 py-7 md:space-y-12 md:py-9">
-        <PageSection
-          surface="card"
-          spacing="default"
-          className="overflow-hidden rounded-[2rem] border-slate-200/80 bg-[linear-gradient(180deg,_rgba(255,255,255,1)_0%,_rgba(248,250,252,0.94)_100%)] px-5 py-6 shadow-[0_34px_76px_-52px_rgba(15,23,42,0.34)] sm:px-6 md:px-8 md:py-7"
-        >
-          <PageIntro
-            title="Your Vault"
-            eyebrow="Vault"
-            description="A clear, focused view of the cards you own."
-            size="compact"
-            actions={
-              <div className="flex flex-wrap items-center gap-2.5">
-                <Link
-                  href="/network"
-                  className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white shadow-[0_16px_30px_-22px_rgba(15,23,42,0.6)] transition hover:bg-slate-800 md:px-5"
-                >
-                  Browse Network
-                </Link>
-                <Link
-                  href="/vault/import"
-                  className="inline-flex rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-300 hover:bg-white md:px-5"
-                >
-                  Import Collection
-                </Link>
-              </div>
-            }
-          />
-          {valueSummary.totalGroupedCount > 0 ? (
-            <div className="rounded-[1.9rem] border border-slate-200/75 bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(248,250,252,0.88)_100%)] px-5 py-5 shadow-[0_26px_56px_-40px_rgba(15,23,42,0.28)] md:px-6 md:py-6">
-              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <div className="min-w-0 space-y-2.5">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
-                    Estimated Vault Value
+    <div className="space-y-10 py-7 md:space-y-12 md:py-9">
+      <PageSection
+        surface="card"
+        spacing="default"
+        className="overflow-hidden rounded-[2rem] border-slate-200/80 bg-[linear-gradient(180deg,_rgba(255,255,255,1)_0%,_rgba(248,250,252,0.94)_100%)] px-5 py-6 shadow-[0_34px_76px_-52px_rgba(15,23,42,0.34)] sm:px-6 md:px-8 md:py-7"
+      >
+        <PageIntro
+          title="Your Vault"
+          eyebrow="Vault"
+          description="A clear, focused view of the cards you own."
+          size="compact"
+          actions={
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link
+                href="/network"
+                className="inline-flex rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white shadow-[0_16px_30px_-22px_rgba(15,23,42,0.6)] transition hover:bg-slate-800 md:px-5"
+              >
+                Browse Network
+              </Link>
+              <Link
+                href="/vault/import"
+                className="inline-flex rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-300 hover:bg-white md:px-5"
+              >
+                Import Collection
+              </Link>
+            </div>
+          }
+        />
+        {valueSummary.totalGroupedCount > 0 ? (
+          <div className="rounded-[1.9rem] border border-slate-200/75 bg-[linear-gradient(180deg,_rgba(255,255,255,0.98)_0%,_rgba(248,250,252,0.88)_100%)] px-5 py-5 shadow-[0_26px_56px_-40px_rgba(15,23,42,0.28)] md:px-6 md:py-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div className="min-w-0 space-y-2.5">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
+                  Estimated Vault Value
+                </p>
+                <div className="space-y-1">
+                  <p className="text-[2.15rem] font-semibold tracking-[-0.045em] text-slate-950 sm:text-[2.7rem]">
+                    {formattedVaultValue ?? "No estimate yet"}
                   </p>
-                  <div className="space-y-1">
-                    <p className="text-[2.15rem] font-semibold tracking-[-0.045em] text-slate-950 sm:text-[2.7rem]">
-                      {formattedVaultValue ?? "No estimate yet"}
-                    </p>
-                    <p className="text-xs text-slate-400">Best available pricing across your vault.</p>
-                  </div>
+                  <p className="text-xs text-slate-400">Best available pricing across your vault.</p>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
-                  <span>
-                    Priced cards{" "}
-                    <span className="font-medium text-slate-600">{coverageLabel}</span>
-                  </span>
-                  <span className="hidden text-slate-300 sm:inline">•</span>
-                  <span>{freshnessLabel}</span>
-                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
+                <span>
+                  Priced cards <span className="font-medium text-slate-600">{coverageLabel}</span>
+                </span>
+                <span className="hidden text-slate-300 sm:inline">•</span>
+                <span>{freshnessLabel}</span>
               </div>
             </div>
-          ) : null}
-          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
-            <span className="rounded-full border border-slate-200/75 bg-white/80 px-4 py-2 font-medium text-slate-700 shadow-[0_14px_26px_-24px_rgba(15,23,42,0.22)]">
-              {summary.cards} {summary.cards === 1 ? "card" : "cards"}
-            </span>
-            <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
-              {summary.uniqueCards} unique
-            </span>
-            <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
-              {summary.sets} {summary.sets === 1 ? "set" : "sets"}
-            </span>
-            <span className="rounded-full border border-slate-200/70 bg-white/60 px-4 py-2 text-slate-400">
-              Last added {summary.lastAdded}
-            </span>
           </div>
-        </PageSection>
+        ) : null}
+        <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+          <span className="rounded-full border border-slate-200/75 bg-white/80 px-4 py-2 font-medium text-slate-700 shadow-[0_14px_26px_-24px_rgba(15,23,42,0.22)]">
+            {summary.cards} {summary.cards === 1 ? "card" : "cards"}
+          </span>
+          <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
+            {summary.uniqueCards} unique
+          </span>
+          <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
+            {summary.sets} {summary.sets === 1 ? "set" : "sets"}
+          </span>
+          <span className="rounded-full border border-slate-200/70 bg-white/60 px-4 py-2 text-slate-400">
+            Last added {summary.lastAdded}
+          </span>
+        </div>
+      </PageSection>
 
       {itemsError ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
@@ -1273,7 +829,6 @@ export function VaultCollectionView({
           </div>
         )}
       </PageSection>
-      </div>
-    </>
+    </div>
   );
 }
