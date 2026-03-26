@@ -1,12 +1,14 @@
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { DiscoverableVaultIntent } from "@/lib/network/intent";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
+import type { VaultInstanceImageDisplayMode } from "@/lib/vaultInstanceImageDisplay";
 
 export type PublicInPlayCopy = {
   instance_id: string;
   gv_vi_id?: string;
   vault_item_id: string;
   intent: DiscoverableVaultIntent;
+  image_display_mode?: VaultInstanceImageDisplayMode;
   condition_label?: string;
   is_graded: boolean;
   grade_company?: string;

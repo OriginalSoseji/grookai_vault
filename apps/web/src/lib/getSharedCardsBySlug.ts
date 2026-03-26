@@ -10,6 +10,11 @@ import {
   type WallCategory,
 } from "@/lib/sharedCards/wallCategories";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  normalizeVaultInstanceImageDisplayMode,
+  prefersUploadedVaultInstanceImage,
+  type VaultInstanceImageDisplayMode,
+} from "@/lib/vaultInstanceImageDisplay";
 
 type SharedCardRow = {
   card_id: string | null;
@@ -134,6 +139,7 @@ type DiscoverableInstanceRow = {
   grade_value: string | null;
   grade_label: string | null;
   created_at: string | null;
+  image_display_mode: string | null;
 };
 
 type SharedInstanceRow = {
@@ -142,6 +148,12 @@ type SharedInstanceRow = {
   card_print_id: string | null;
   slab_cert_id: string | null;
   created_at: string | null;
+  image_display_mode: string | null;
+};
+
+type RepresentativeSharedInstance = {
+  gvviId: string;
+  imageDisplayMode: VaultInstanceImageDisplayMode;
 };
 
 function createServerSupabase() {
@@ -393,7 +405,7 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
   const { data: instances, error: instancesError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at",
+      "id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,image_display_mode",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -461,6 +473,7 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
       gv_vi_id: normalizeOptionalText(row.gv_vi_id) ?? undefined,
       vault_item_id: vaultItemId,
       intent,
+      image_display_mode: normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ?? "canonical",
       condition_label: normalizeOptionalText(row.condition_label) ?? undefined,
       is_graded: row.is_graded === true,
       grade_company: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(row.grade_company) ?? undefined,
@@ -475,17 +488,17 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
   return byCardId;
 }
 
-async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: string[]) {
+async function fetchRepresentativeSharedInstanceByCardId(userId: string, cardIds: string[]) {
   const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
   const requestedCardIds = new Set(normalizedCardIds);
   if (!userId || normalizedCardIds.length === 0) {
-    return new Map<string, string>();
+    return new Map<string, RepresentativeSharedInstance>();
   }
 
   const admin = createServerAdminClient();
   const { data: instances, error: instancesError } = await admin
     .from("vault_item_instances")
-    .select("id,gv_vi_id,card_print_id,slab_cert_id,created_at")
+    .select("id,gv_vi_id,card_print_id,slab_cert_id,created_at,image_display_mode")
     .eq("user_id", userId)
     .is("archived_at", null)
     .order("created_at", { ascending: false })
@@ -496,7 +509,7 @@ async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: st
       userId,
       error: instancesError,
     });
-    return new Map<string, string>();
+    return new Map<string, RepresentativeSharedInstance>();
   }
 
   const slabCertIds = Array.from(
@@ -519,7 +532,7 @@ async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: st
         userId,
         error: slabCertsError,
       });
-      return new Map<string, string>();
+      return new Map<string, RepresentativeSharedInstance>();
     }
 
     for (const row of (slabCerts ?? []) as SlabCertRow[]) {
@@ -530,7 +543,7 @@ async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: st
     }
   }
 
-  const representativeByCardId = new Map<string, string>();
+  const representativeByCardId = new Map<string, RepresentativeSharedInstance>();
 
   for (const row of (instances ?? []) as SharedInstanceRow[]) {
     const gvviId = normalizeOptionalText(row.gv_vi_id);
@@ -544,7 +557,10 @@ async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: st
       continue;
     }
 
-    representativeByCardId.set(cardPrintId, gvviId);
+    representativeByCardId.set(cardPrintId, {
+      gvviId,
+      imageDisplayMode: normalizeVaultInstanceImageDisplayMode(row.image_display_mode) ?? "canonical",
+    });
   }
 
   return representativeByCardId;
@@ -607,12 +623,12 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
     return [];
   }
 
-  const [wallStateByCardId, representativeSharedGvviByCardId, inPlayStateByCardId] = await Promise.all([
+  const [wallStateByCardId, representativeSharedInstanceByCardId, inPlayStateByCardId] = await Promise.all([
     fetchSharedWallStateByCardId(
       ownerUserId,
       sharedRows.map((row) => row.card_id),
     ),
-    fetchRepresentativeSharedGvviByCardId(
+    fetchRepresentativeSharedInstanceByCardId(
       ownerUserId,
       sharedRows.map((row) => row.card_id),
     ),
@@ -648,8 +664,11 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       }
 
       const setRecord = Array.isArray(cardPrint.sets) ? cardPrint.sets[0] : cardPrint.sets;
+      const representativeSharedInstance = representativeSharedInstanceByCardId.get(row.card_id) ?? null;
       const personalFrontImageUrl =
-        row.show_personal_front === true ? getBestPublicCardImageUrl(row.public_front_image_path) ?? undefined : undefined;
+        row.show_personal_front === true && prefersUploadedVaultInstanceImage(representativeSharedInstance?.imageDisplayMode)
+          ? getBestPublicCardImageUrl(row.public_front_image_path) ?? undefined
+          : undefined;
       const personalBackImageUrl =
         row.show_personal_back === true ? getBestPublicCardImageUrl(row.public_back_image_path) ?? undefined : undefined;
       const wallState = wallStateByCardId.get(row.card_id);
@@ -658,7 +677,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       return {
         card_print_id: row.card_id,
         gv_id: row.gv_id,
-        gv_vi_id: representativeSharedGvviByCardId.get(row.card_id) ?? undefined,
+        gv_vi_id: representativeSharedInstance?.gvviId ?? undefined,
         name: cardPrint.name?.trim() || "Unknown card",
         set_code: cardPrint.set_code?.trim() || undefined,
         set_name: setRecord?.name?.trim() || undefined,
@@ -839,8 +858,9 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
     const cardPrint = cardPrintById.get(row.cardPrintId) ?? null;
     const shared = sharedByCardId.get(row.cardPrintId) ?? null;
     const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
+    const primaryDiscoverableCopy = (discoverableCopiesByCardId.get(row.cardPrintId) ?? [])[0] ?? null;
     const personalFrontImageUrl =
-      shared?.show_personal_front === true
+      shared?.show_personal_front === true && prefersUploadedVaultInstanceImage(primaryDiscoverableCopy?.image_display_mode)
         ? getBestPublicCardImageUrl(shared.public_front_image_path) ?? undefined
         : undefined;
 

@@ -25,6 +25,7 @@ import {
 } from "@/lib/network/intentSummary";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
+import { prefersUploadedVaultInstanceImage } from "@/lib/vaultInstanceImageDisplay";
 
 export type CanonicalVaultCollectorSlabItem = {
   instance_id: string;
@@ -100,6 +101,7 @@ type ActiveInstanceRow = {
   grade_label: string | null;
   intent: string | null;
   notes: string | null;
+  image_display_mode: string | null;
 };
 
 type BucketMetadataRow = {
@@ -236,7 +238,7 @@ async function fetchActiveInstances(userId: string) {
   const { data, error } = await adminClient
     .from("vault_item_instances")
     .select(
-      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes",
+      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes,image_display_mode",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -330,12 +332,14 @@ function aggregateInstances(
       current.conditionLabel = normalizeOptionalText(row.condition_label);
     }
 
-    if (!current.photoUrl) {
-      current.photoUrl = normalizeOptionalText(row.photo_url);
-    }
+    if (prefersUploadedVaultInstanceImage(row.image_display_mode)) {
+      if (!current.photoUrl) {
+        current.photoUrl = normalizeOptionalText(row.photo_url);
+      }
 
-    if (!current.imageUrl) {
-      current.imageUrl = normalizeOptionalText(row.image_url);
+      if (!current.imageUrl) {
+        current.imageUrl = normalizeOptionalText(row.image_url);
+      }
     }
 
     const normalizedIntent = normalizeVaultIntent(row.intent) ?? "hold";

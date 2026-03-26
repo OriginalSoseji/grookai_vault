@@ -16,6 +16,10 @@ import {
   normalizeVaultInstancePricingNote,
   type VaultInstancePricingMode,
 } from "@/lib/vaultInstancePricing";
+import {
+  normalizeVaultInstanceImageDisplayMode,
+  type VaultInstanceImageDisplayMode,
+} from "@/lib/vaultInstanceImageDisplay";
 
 type PublicVaultInstanceRow = {
   id: string;
@@ -32,6 +36,7 @@ type PublicVaultInstanceRow = {
   grade_label: string | null;
   image_url: string | null;
   image_back_url: string | null;
+  image_display_mode: string | null;
   archived_at: string | null;
   pricing_mode: string | null;
   asking_price_amount: number | string | null;
@@ -110,6 +115,7 @@ export type PublicVaultInstanceDetail = {
   imageUrl: string | null;
   frontImageUrl: string | null;
   backImageUrl: string | null;
+  imageDisplayMode: VaultInstanceImageDisplayMode;
   intent: VaultIntent;
   isDiscoverable: boolean;
   conditionLabel: string | null;
@@ -139,7 +145,7 @@ export async function getPublicVaultInstanceByGvvi(
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,created_at,grade_company,grade_value,grade_label,image_url,image_back_url,archived_at,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
+      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,created_at,grade_company,grade_value,grade_label,image_url,image_back_url,image_display_mode,archived_at,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .maybeSingle();
@@ -236,6 +242,7 @@ export async function getPublicVaultInstanceByGvvi(
     imageUrl: getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
     frontImageUrl,
     backImageUrl,
+    imageDisplayMode: normalizeVaultInstanceImageDisplayMode(instance.image_display_mode) ?? "canonical",
     intent: normalizedIntent,
     isDiscoverable: Boolean(discoverableIntent),
     conditionLabel: normalizeOptionalText(instance.condition_label),

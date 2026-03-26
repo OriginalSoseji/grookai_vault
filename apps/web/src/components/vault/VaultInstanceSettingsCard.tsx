@@ -9,14 +9,18 @@ import {
 } from "@/lib/network/intent";
 import { saveVaultItemInstanceIntentAction } from "@/lib/network/saveVaultItemInstanceIntentAction";
 import { saveVaultItemInstanceConditionAction } from "@/lib/vault/saveVaultItemInstanceConditionAction";
+import { saveVaultItemInstanceImageDisplayModeAction } from "@/lib/vault/saveVaultItemInstanceImageDisplayModeAction";
+import { type VaultInstanceImageDisplayMode } from "@/lib/vaultInstanceImageDisplay";
 
 const CONDITION_OPTIONS = ["NM", "LP", "MP", "HP", "DMG"] as const;
 const INTENT_OPTIONS: VaultIntent[] = ["hold", "trade", "sell", "showcase"];
+const IMAGE_DISPLAY_MODE_OPTIONS: VaultInstanceImageDisplayMode[] = ["canonical", "uploaded"];
 
 type VaultInstanceSettingsCardProps = {
   instanceId: string;
   initialIntent: VaultIntent;
   initialConditionLabel: string | null;
+  initialImageDisplayMode: VaultInstanceImageDisplayMode;
   isActive: boolean;
   isGraded: boolean;
 };
@@ -25,14 +29,16 @@ export default function VaultInstanceSettingsCard({
   instanceId,
   initialIntent,
   initialConditionLabel,
+  initialImageDisplayMode,
   isActive,
   isGraded,
 }: VaultInstanceSettingsCardProps) {
   const router = useRouter();
   const [intent, setIntent] = useState(initialIntent);
   const [conditionLabel, setConditionLabel] = useState(initialConditionLabel ?? "NM");
+  const [imageDisplayMode, setImageDisplayMode] = useState(initialImageDisplayMode);
   const [statusMessage, setStatusMessage] = useState<{ tone: "success" | "error"; body: string } | null>(null);
-  const [pendingField, setPendingField] = useState<"intent" | "condition" | null>(null);
+  const [pendingField, setPendingField] = useState<"intent" | "condition" | "imageDisplayMode" | null>(null);
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -42,6 +48,10 @@ export default function VaultInstanceSettingsCard({
   useEffect(() => {
     setConditionLabel(initialConditionLabel ?? "NM");
   }, [initialConditionLabel]);
+
+  useEffect(() => {
+    setImageDisplayMode(initialImageDisplayMode);
+  }, [initialImageDisplayMode]);
 
   function handleIntentChange(nextIntent: VaultIntent) {
     if (!isActive || pendingField || nextIntent === intent) {
@@ -115,6 +125,42 @@ export default function VaultInstanceSettingsCard({
     });
   }
 
+  function handleImageDisplayModeChange(nextImageDisplayMode: VaultInstanceImageDisplayMode) {
+    if (!isActive || pendingField || nextImageDisplayMode === imageDisplayMode) {
+      return;
+    }
+
+    const previousImageDisplayMode = imageDisplayMode;
+    setImageDisplayMode(nextImageDisplayMode);
+    setPendingField("imageDisplayMode");
+    setStatusMessage(null);
+
+    startTransition(async () => {
+      try {
+        const result = await saveVaultItemInstanceImageDisplayModeAction({
+          instanceId,
+          imageDisplayMode: nextImageDisplayMode,
+        });
+
+        if (!result.ok) {
+          setImageDisplayMode(previousImageDisplayMode);
+          setStatusMessage({ tone: "error", body: result.message });
+          setPendingField(null);
+          return;
+        }
+
+        setImageDisplayMode(result.imageDisplayMode);
+        setStatusMessage({ tone: "success", body: "Image display saved." });
+        setPendingField(null);
+        router.refresh();
+      } catch {
+        setImageDisplayMode(previousImageDisplayMode);
+        setStatusMessage({ tone: "error", body: "Image display could not be saved." });
+        setPendingField(null);
+      }
+    });
+  }
+
   return (
     <div className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="space-y-1">
@@ -161,6 +207,27 @@ export default function VaultInstanceSettingsCard({
               ))}
             </select>
           )}
+        </label>
+
+        <label className="space-y-2 md:col-span-2">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Image Display</span>
+          <select
+            value={imageDisplayMode}
+            disabled={!isActive || pendingField !== null}
+            onChange={(event) => handleImageDisplayModeChange(event.target.value as VaultInstanceImageDisplayMode)}
+            className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {IMAGE_DISPLAY_MODE_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option === "canonical" ? "Use canonical art" : "Use uploaded photo"}
+              </option>
+            ))}
+          </select>
+          <p className="text-xs text-slate-500">
+            {imageDisplayMode === "uploaded"
+              ? "This copy prefers your uploaded front photo. Canonical art stays as fallback if the photo is unavailable."
+              : "This copy always presents with canonical card art for its primary image."}
+          </p>
         </label>
       </div>
 

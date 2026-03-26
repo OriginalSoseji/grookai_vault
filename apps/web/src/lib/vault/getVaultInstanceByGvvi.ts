@@ -12,6 +12,10 @@ import {
   normalizeVaultInstancePricingNote,
   type VaultInstancePricingMode,
 } from "@/lib/vaultInstancePricing";
+import {
+  normalizeVaultInstanceImageDisplayMode,
+  type VaultInstanceImageDisplayMode,
+} from "@/lib/vaultInstanceImageDisplay";
 
 type VaultInstanceRow = {
   id: string;
@@ -31,6 +35,7 @@ type VaultInstanceRow = {
   photo_url: string | null;
   image_url: string | null;
   image_back_url: string | null;
+  image_display_mode: string | null;
   pricing_mode: string | null;
   asking_price_amount: number | string | null;
   asking_price_currency: string | null;
@@ -149,6 +154,7 @@ export type VaultInstanceDetail = {
   backImagePath: string | null;
   frontImageUrl: string | null;
   backImageUrl: string | null;
+  imageDisplayMode: VaultInstanceImageDisplayMode;
   pricingMode: VaultInstancePricingMode;
   askingPriceAmount: number | null;
   askingPriceCurrency: string | null;
@@ -171,7 +177,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
+      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,image_display_mode,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .maybeSingle();
@@ -265,6 +271,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     backImagePath,
     frontImageUrl,
     backImageUrl,
+    imageDisplayMode: normalizeVaultInstanceImageDisplayMode(instance.image_display_mode) ?? "canonical",
     pricingMode: normalizeVaultInstancePricingMode(instance.pricing_mode) ?? "market",
     askingPriceAmount: normalizeVaultInstancePricingAmount(instance.asking_price_amount),
     askingPriceCurrency: normalizeVaultInstancePricingCurrency(instance.asking_price_currency),

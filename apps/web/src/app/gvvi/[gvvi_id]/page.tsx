@@ -11,6 +11,7 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
+import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -72,6 +73,11 @@ export default async function PublicVaultInstancePage({
     (detail.intent === "trade" || detail.intent === "sell" || detail.intent === "showcase")
       ? detail.intent
       : null;
+  const heroImage = getVaultInstancePresentationImageSources({
+    imageDisplayMode: detail.imageDisplayMode,
+    uploadedImageUrl: detail.frontImageUrl,
+    canonicalImageUrl: detail.imageUrl,
+  });
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
@@ -113,8 +119,8 @@ export default async function PublicVaultInstancePage({
             <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)]">
               <div className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3">
                 <PublicCardImage
-                  src={detail.frontImageUrl ?? undefined}
-                  fallbackSrc={detail.imageUrl ?? undefined}
+                  src={heroImage.primaryImageUrl ?? undefined}
+                  fallbackSrc={heroImage.fallbackImageUrl ?? undefined}
                   alt={detail.cardName}
                   imageClassName="aspect-[3/4] w-full object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"
