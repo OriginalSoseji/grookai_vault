@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CollectorListRow from "@/components/public/CollectorListRow";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
-import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
 import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
+import { getCollectorFollowStateMap } from "@/lib/follows/getCollectorFollowStateMap";
+import { getFollowingCollectors } from "@/lib/follows/getFollowingCollectors";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
@@ -21,53 +23,64 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     return {
-      title: "Collection not found | Grookai Vault",
+      title: "Following not found | Grookai Vault",
     };
   }
 
   const siteOrigin = getSiteOrigin();
-  const title = `${profile.display_name} Collection | Grookai Vault`;
-  const description = `${profile.display_name}'s collection on Grookai.`;
+  const title = `${profile.display_name} Following | Grookai Vault`;
+  const description = `Collectors ${profile.display_name} follows on Grookai.`;
 
   return {
     title,
     description,
     alternates: siteOrigin
       ? {
-          canonical: `${siteOrigin}/u/${profile.slug}/collection`,
+          canonical: `${siteOrigin}/u/${profile.slug}/following`,
         }
       : undefined,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: siteOrigin ? `${siteOrigin}/u/${profile.slug}/collection` : undefined,
-    },
-    twitter: {
-      card: "summary",
-      title,
-      description,
-    },
   };
 }
 
-export default async function PublicCollectionPage({ params }: { params: { slug: string } }) {
-  const profile = await getPublicProfileBySlug(params.slug);
+function formatFollowedAt(value: string | null) {
+  if (!value) {
+    return "Recently followed";
+  }
 
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return "Recently followed";
+  }
+
+  return `Followed ${parsed.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  })}`;
+}
+
+export default async function PublicFollowingPage({ params }: { params: { slug: string } }) {
+  const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     notFound();
   }
 
   const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards, followCounts] = await Promise.all([
+  const [{ data: authData }, sharedCards, followCounts, followedCollectors] = await Promise.all([
     supabase.auth.getUser(),
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
     getCollectorFollowCounts(profile.user_id),
+    getFollowingCollectors(profile.user_id),
   ]);
+
   const viewerUserId = authData.user?.id ?? null;
   const isOwnProfile = viewerUserId === profile.user_id;
   const initialIsFollowing =
     viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
+  const followStateMap = await getCollectorFollowStateMap(
+    viewerUserId,
+    followedCollectors.map((collector) => collector.userId),
+  );
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const sharedSetCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -77,16 +90,13 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
           { value: `${sharedSetCount}`, label: sharedSetCount === 1 ? "set" : "sets" },
         ]
       : [];
-  const description = profile.vault_sharing_enabled
-    ? `${profile.display_name}'s collection on Grookai.`
-    : "A collection on Grookai.";
 
   return (
     <div className="space-y-8 py-8">
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}
-        description={description}
+        description={`${profile.display_name}'s collector follows on Grookai.`}
         joinedAt={profile.created_at}
         followingCount={followCounts.followingCount}
         followerCount={followCounts.followerCount}
@@ -102,35 +112,44 @@ export default async function PublicCollectionPage({ params }: { params: { slug:
             isAuthenticated={Boolean(authData.user)}
             isOwnProfile={isOwnProfile}
             initialIsFollowing={initialIsFollowing}
-            loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/collection`)}`}
+            loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/following`)}`}
           />
         }
       />
 
-      <div className="flex justify-end">
-        <Link href={`/u/${profile.slug}`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
-          View profile
-        </Link>
-      </div>
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-5 py-4 shadow-sm shadow-slate-200/60">
+          <div className="space-y-1">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collector relationships</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Following</h2>
+            <p className="text-sm text-slate-600">Collectors {profile.display_name} wants to revisit.</p>
+          </div>
+          <Link href={`/u/${profile.slug}`} className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline">
+            View profile
+          </Link>
+        </div>
 
-      {!profile.vault_sharing_enabled ? (
-        <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
-      ) : sharedCards.length === 0 ? (
-        <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
-      ) : (
-        <PublicCollectorProfileContent
-          slug={profile.slug}
-          collectorDisplayName={profile.display_name}
-          collectorUserId={profile.user_id}
-          cards={sharedCards}
-          collectionTitle="Shared Collection"
-          collectionEyebrow="Collection"
-          collectionDescription="View the full collection this collector has put on display."
-          isAuthenticated={Boolean(authData.user)}
-          viewerUserId={viewerUserId}
-          currentPath={`/u/${profile.slug}/collection`}
-        />
-      )}
+        {followedCollectors.length === 0 ? (
+          <PublicCollectionEmptyState
+            title="No follows yet"
+            body={`${profile.display_name} is not following any public collectors yet.`}
+          />
+        ) : (
+          <div className="space-y-4">
+            {followedCollectors.map((collector) => (
+              <CollectorListRow
+                key={collector.userId}
+                collector={collector}
+                viewerUserId={viewerUserId}
+                isAuthenticated={Boolean(authData.user)}
+                initialIsFollowing={followStateMap.has(collector.userId)}
+                loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/following`)}`}
+                metadata={formatFollowedAt(collector.followedAt)}
+              />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

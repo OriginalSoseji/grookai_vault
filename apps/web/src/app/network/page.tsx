@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
+import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 import SectionHeader from "@/components/layout/SectionHeader";
 import NetworkStreamCard from "@/components/network/NetworkStreamCard";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
@@ -68,6 +69,10 @@ export default async function NetworkPage({
             )
           }
         />
+      </PageSection>
+
+      <PageSection surface="subtle" spacing="compact" className="p-2.5">
+        <NetworkSectionNav active="cards" />
       </PageSection>
 
       <PageSection surface="subtle" spacing="compact" className="p-2.5">

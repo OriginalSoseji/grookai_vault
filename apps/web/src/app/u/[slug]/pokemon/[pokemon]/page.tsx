@@ -110,6 +110,8 @@ export default async function PublicPokemonCollectionPage({
         joinedAt={profile.created_at}
         followingCount={followCounts.followingCount}
         followerCount={followCounts.followerCount}
+        followingHref={`/u/${profile.slug}/following`}
+        followerHref={`/u/${profile.slug}/followers`}
         avatarUrl={profile.avatar_url}
         bannerUrl={profile.banner_url}
         stats={stats}

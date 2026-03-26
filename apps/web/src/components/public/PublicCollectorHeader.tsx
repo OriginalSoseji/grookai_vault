@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
 export type PublicCollectorStat = {
@@ -13,6 +14,8 @@ type PublicCollectorHeaderProps = {
   joinedAt?: string | null;
   followingCount?: number | null;
   followerCount?: number | null;
+  followingHref?: string | null;
+  followerHref?: string | null;
   avatarUrl?: string | null;
   bannerUrl?: string | null;
   stats?: PublicCollectorStat[];
@@ -62,6 +65,8 @@ export function PublicCollectorHeader({
   joinedAt = null,
   followingCount = null,
   followerCount = null,
+  followingHref = null,
+  followerHref = null,
   avatarUrl = null,
   bannerUrl = null,
   stats = [],
@@ -77,10 +82,10 @@ export function PublicCollectorHeader({
     "--wm-scale-mobile": "1.4",
   } as CSSProperties;
   const relationshipItems = [
-    formatJoinedAt(joinedAt),
-    formatRelationshipCount(followingCount, "following", "following"),
-    formatRelationshipCount(followerCount, "follower", "followers"),
-  ].filter((value): value is string => Boolean(value));
+    { label: formatJoinedAt(joinedAt), href: null },
+    { label: formatRelationshipCount(followingCount, "following", "following"), href: followingHref },
+    { label: formatRelationshipCount(followerCount, "follower", "followers"), href: followerHref },
+  ].filter((value): value is { label: string; href: string | null } => Boolean(value.label));
 
   return (
     <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60">
@@ -137,9 +142,15 @@ export function PublicCollectorHeader({
               {relationshipItems.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-xs font-medium text-slate-500">
                   {relationshipItems.map((item, index) => (
-                    <div key={`${slug}-${item}`} className="inline-flex items-center gap-2">
+                    <div key={`${slug}-${index}-${item.label}`} className="inline-flex items-center gap-2">
                       {index > 0 ? <span className="text-slate-300">•</span> : null}
-                      <span>{item}</span>
+                      {item.href ? (
+                        <Link href={item.href} className="underline-offset-4 transition hover:text-slate-700 hover:underline">
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <span>{item.label}</span>
+                      )}
                     </div>
                   ))}
                 </div>
