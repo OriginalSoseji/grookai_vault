@@ -53,6 +53,7 @@ export function PublicCollectionGrid({
                 key={card.gv_id}
                 density={density}
                 imageSrc={card.image_url}
+                imageFallbackSrc={card.canonical_image_url}
                 imageAlt={card.name}
                 imageHref={cardHref}
                 imageFallbackLabel={card.name}

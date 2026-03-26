@@ -7,6 +7,7 @@ type PokemonCardGridTileProps = {
   density?: ViewDensity;
   utility?: ReactNode;
   imageSrc?: string;
+  imageFallbackSrc?: string;
   imageAlt: string;
   imageHref?: string;
   imageLoading?: "eager" | "lazy";
@@ -81,6 +82,7 @@ const FOOTER_TEXT_BY_DENSITY: Record<ViewDensity, string> = {
 function renderImage({
   density,
   imageSrc,
+  imageFallbackSrc,
   imageAlt,
   imageLoading,
   imageFallbackLabel,
@@ -89,6 +91,7 @@ function renderImage({
 }: {
   density: ViewDensity;
   imageSrc?: string;
+  imageFallbackSrc?: string;
   imageAlt: string;
   imageLoading?: "eager" | "lazy";
   imageFallbackLabel?: string;
@@ -101,6 +104,7 @@ function renderImage({
     >
       <PublicCardImage
         src={imageSrc}
+        fallbackSrc={imageFallbackSrc}
         alt={imageAlt}
         loading={imageLoading}
         imageClassName={`aspect-[3/4] w-full rounded-[12px] object-contain transition duration-200 group-hover:scale-[1.02] ${imageClassName ?? ""}`.trim()}
@@ -148,6 +152,7 @@ export default function PokemonCardGridTile({
   density = "default",
   utility,
   imageSrc,
+  imageFallbackSrc,
   imageAlt,
   imageHref,
   imageLoading,
@@ -166,6 +171,7 @@ export default function PokemonCardGridTile({
   const image = renderImage({
     density,
     imageSrc,
+    imageFallbackSrc,
     imageAlt,
     imageLoading,
     imageFallbackLabel,

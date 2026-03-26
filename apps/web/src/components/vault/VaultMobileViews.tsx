@@ -91,6 +91,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       density="compact"
       className="h-full"
       imageSrc={item.image_url}
+      imageFallbackSrc={item.canonical_image_url}
       imageAlt={item.name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={item.name}
@@ -123,6 +124,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
       <div className="h-16 w-12 shrink-0 overflow-hidden rounded-[0.8rem] border border-slate-200 bg-slate-50">
         <PublicCardImage
           src={item.image_url}
+          fallbackSrc={item.canonical_image_url}
           alt={item.name}
           imageClassName="h-full w-full object-contain p-1.5"
           fallbackClassName="flex h-full w-full items-center justify-center bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -182,6 +184,7 @@ function MobileDetailRow({
           >
             <PublicCardImage
               src={item.image_url}
+              fallbackSrc={item.canonical_image_url}
               alt={item.name}
               imageClassName="aspect-[3/4] w-full object-contain"
               fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"

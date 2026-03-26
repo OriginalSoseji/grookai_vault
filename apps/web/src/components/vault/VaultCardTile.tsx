@@ -74,6 +74,7 @@ export type VaultCardData = {
   copy_items: VaultCardInstanceData[];
   effective_price: number | null;
   image_url?: string;
+  canonical_image_url?: string;
   created_at: string | null;
   is_slab: boolean;
   grader: string | null;
@@ -357,6 +358,7 @@ export function VaultCardTile({
     <PokemonCardGridTile
       density={tileDensity}
       imageSrc={item.image_url}
+      imageFallbackSrc={item.canonical_image_url}
       imageAlt={item.name}
       imageHref={`/card/${item.gv_id}`}
       imageFallbackLabel={item.name}

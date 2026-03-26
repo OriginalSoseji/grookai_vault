@@ -26,6 +26,7 @@ export type PublicWallCard = {
   number: string;
   rarity?: string;
   image_url?: string;
+  canonical_image_url?: string;
   back_image_url?: string;
   public_note?: string;
   wall_category?: WallCategory;

@@ -288,6 +288,7 @@ export function PublicCollectorProfileContent({
                   key={`${card.card_print_id}-${card.vault_item_id}`}
                   density={density}
                   imageSrc={card.image_url}
+                  imageFallbackSrc={card.canonical_image_url}
                   imageAlt={card.name}
                   imageHref={exactCopyHref}
                   imageFallbackLabel={card.name}

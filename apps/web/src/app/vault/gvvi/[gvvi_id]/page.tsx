@@ -120,7 +120,8 @@ export default async function VaultInstancePage({
             <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)]">
               <div className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50 p-3">
                 <PublicCardImage
-                  src={detail.imageUrl ?? undefined}
+                  src={detail.frontImageUrl ?? undefined}
+                  fallbackSrc={detail.imageUrl ?? undefined}
                   alt={detail.cardName}
                   imageClassName="aspect-[3/4] w-full object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-xs text-slate-500"

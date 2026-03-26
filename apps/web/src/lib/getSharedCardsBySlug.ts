@@ -665,6 +665,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         number: cardPrint.number?.trim() || "—",
         rarity: cardPrint.rarity?.trim() || undefined,
         image_url: personalFrontImageUrl ?? getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
+        canonical_image_url: getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
         back_image_url: personalBackImageUrl,
         public_note: row.public_note?.trim() || undefined,
         wall_category: normalizeWallCategory(row.wall_category) ?? undefined,
@@ -860,6 +861,8 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         personalFrontImageUrl ??
         getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ??
         undefined,
+      canonical_image_url:
+        getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ?? undefined,
       public_note: normalizeOptionalText(shared?.public_note) ?? undefined,
       vault_item_id: row.vaultItemId,
       intent: row.intent ?? undefined,

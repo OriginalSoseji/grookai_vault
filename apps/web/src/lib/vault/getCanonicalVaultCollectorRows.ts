@@ -23,6 +23,8 @@ import {
   getInPlayCount,
   getSingleDiscoverableIntent,
 } from "@/lib/network/intentSummary";
+import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
 export type CanonicalVaultCollectorSlabItem = {
   instance_id: string;
@@ -75,6 +77,7 @@ export type CanonicalVaultCollectorRow = {
   copy_items: CanonicalVaultCollectorCopyItem[];
   effective_price: number | null;
   image_url: string | null;
+  canonical_image_url: string | null;
   created_at: string | null;
   is_slab: boolean;
   grader: string | null;
@@ -548,6 +551,17 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     fetchCardMetadataById(cardPrintIds),
     fetchPriceMetadataByCardId(normalizedUserId, cardPrintIds),
   ]);
+  const preferredImageUrlByCardId = new Map(
+    await Promise.all(
+      cardPrintIds.map(async (cardPrintId) => {
+        const aggregate = aggregatesByCardId.get(cardPrintId);
+        const resolvedUrl = aggregate
+          ? await resolveVaultInstanceMediaUrl(aggregate.imageUrl ?? aggregate.photoUrl)
+          : null;
+        return [cardPrintId, resolvedUrl] as const;
+      }),
+    ),
+  );
 
   const rows: CanonicalVaultCollectorRow[] = [];
 
@@ -563,6 +577,11 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
 
     const card = cardMetadataById.get(cardPrintId) ?? null;
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
+    const canonicalImageUrl =
+      getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
+      getBestPublicCardImageUrl(price?.image_url) ??
+      null;
+    const preferredImageUrl = preferredImageUrlByCardId.get(cardPrintId) ?? null;
     const setRecord = Array.isArray(card?.sets) ? card?.sets[0] : card?.sets;
     const primarySlab = aggregate.primarySlab;
     const counts = countVaultIntents(aggregate.copyItems);
@@ -598,14 +617,8 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       slab_items: aggregate.slabItems,
       copy_items: aggregate.copyItems,
       effective_price: typeof price?.effective_price === "number" ? price.effective_price : null,
-      image_url:
-        aggregate.imageUrl ??
-        aggregate.photoUrl ??
-        card?.image_url?.trim() ??
-        card?.image_alt_url?.trim() ??
-        price?.image_url?.trim() ??
-        representativeBucket.photo_url?.trim() ??
-        null,
+      image_url: preferredImageUrl ?? canonicalImageUrl,
+      canonical_image_url: canonicalImageUrl,
       created_at: aggregate.latestCreatedAt ?? representativeBucket.created_at ?? null,
       is_slab: aggregate.slabCount > 0,
       grader: primarySlab?.grader ?? null,
