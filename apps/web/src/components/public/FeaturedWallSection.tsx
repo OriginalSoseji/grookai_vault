@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
-import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
+import { getPublicWallCardHref, type PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   getWallCategoryLabel,
   WALL_CATEGORY_OPTIONS,
@@ -13,6 +13,8 @@ import {
 type FeaturedWallSectionProps = {
   cards: PublicWallCard[];
   showHeader?: boolean;
+  viewerUserId?: string | null;
+  ownerUserId?: string | null;
 };
 
 type FeaturedWallFilter = "all" | WallCategory;
@@ -32,13 +34,22 @@ function getMixedOwnershipSummary(card: PublicWallCard) {
   return `${rawCount} Raw + ${slabCount} Slab`;
 }
 
-function FeaturedWallCard({ card }: { card: PublicWallCard }) {
+function FeaturedWallCard({
+  card,
+  viewerUserId,
+  ownerUserId,
+}: {
+  card: PublicWallCard;
+  viewerUserId?: string | null;
+  ownerUserId?: string | null;
+}) {
   const wallCategoryLabel = getWallCategoryLabel(card.wall_category);
   const mixedSummary = getMixedOwnershipSummary(card);
+  const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
 
   return (
     <Link
-      href={`/card/${card.gv_id}`}
+      href={cardHref}
       className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
     >
       <div className="grid min-h-full gap-0 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
@@ -113,7 +124,12 @@ function FeaturedWallCard({ card }: { card: PublicWallCard }) {
   );
 }
 
-export function FeaturedWallSection({ cards, showHeader = true }: FeaturedWallSectionProps) {
+export function FeaturedWallSection({
+  cards,
+  showHeader = true,
+  viewerUserId = null,
+  ownerUserId = null,
+}: FeaturedWallSectionProps) {
   const [activeFilter, setActiveFilter] = useState<FeaturedWallFilter>("all");
 
   const orderedCards = useMemo(() => {
@@ -196,7 +212,12 @@ export function FeaturedWallSection({ cards, showHeader = true }: FeaturedWallSe
       ) : (
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
           {filteredCards.map((card) => (
-            <FeaturedWallCard key={`${card.gv_id}-${card.wall_category ?? "none"}`} card={card} />
+            <FeaturedWallCard
+              key={`${card.gv_id}-${card.wall_category ?? "none"}`}
+              card={card}
+              viewerUserId={viewerUserId}
+              ownerUserId={ownerUserId}
+            />
           ))}
         </div>
       )}

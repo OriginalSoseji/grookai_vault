@@ -11,8 +11,11 @@ import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 import { useViewDensity } from "@/hooks/useViewDensity";
 import { getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
-import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
-import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
+import {
+  getPublicWallCardHref,
+  getPublicWallCardPrimaryGvviId,
+  type PublicWallCard,
+} from "@/lib/sharedCards/publicWall.shared";
 
 type PublicCollectorProfileSegment = "collection" | "in-play";
 
@@ -120,17 +123,12 @@ function getGroupedContactAnchor(card: PublicWallCard) {
   };
 }
 
-function getSingleCopyHref(
+function getPrimaryCopyHref(
   card: PublicWallCard,
   viewerUserId: string | null,
   ownerUserId: string,
 ) {
-  if (!card.in_play_copies || card.in_play_copies.length !== 1) {
-    return null;
-  }
-
-  const gvviId = card.in_play_copies[0]?.gv_vi_id;
-  return getVaultInstanceHref(gvviId, viewerUserId, ownerUserId);
+  return getPublicWallCardHref(card, viewerUserId, ownerUserId);
 }
 
 function compareInPlayCards(left: PublicWallCard, right: PublicWallCard) {
@@ -236,7 +234,12 @@ export function PublicCollectorProfileContent({
           </div>
 
           {cards.length > 0 ? (
-            <PublicCollectionGrid cards={cards} density={density} />
+            <PublicCollectionGrid
+              cards={cards}
+              density={density}
+              viewerUserId={viewerUserId}
+              ownerUserId={collectorUserId}
+            />
           ) : (
             <PublicCollectionEmptyState
               title="No collection cards yet"
@@ -277,7 +280,8 @@ export function PublicCollectorProfileContent({
               const ownershipSummary = getInPlayOwnershipSummary(card);
               const intentBadges = getIntentBadgeLabels(card);
               const groupedContactAnchor = getGroupedContactAnchor(card);
-              const exactCopyHref = getSingleCopyHref(card, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`;
+              const exactCopyHref = getPrimaryCopyHref(card, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`;
+              const exactCopyGvviId = getPublicWallCardPrimaryGvviId(card);
 
               return (
                 <PokemonCardGridTile
@@ -356,7 +360,14 @@ export function PublicCollectorProfileContent({
                                   </div>
                                   {copy.gv_vi_id ? (
                                     <Link
-                                      href={getVaultInstanceHref(copy.gv_vi_id, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`}
+                                      href={getPublicWallCardHref(
+                                        {
+                                          gv_vi_id: copy.gv_vi_id,
+                                          in_play_copies: undefined,
+                                        },
+                                        viewerUserId,
+                                        collectorUserId,
+                                      ) ?? `/card/${card.gv_id}`}
                                       className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                                     >
                                       Open copy
@@ -407,7 +418,7 @@ export function PublicCollectorProfileContent({
                       ) : null}
                     </div>
                   }
-                  footer={<span>GV-ID: {card.gv_id}</span>}
+                  footer={exactCopyGvviId ? <span>GVVI: {exactCopyGvviId}</span> : null}
                 />
               );
             })}

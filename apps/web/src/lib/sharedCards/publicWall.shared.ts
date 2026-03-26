@@ -1,5 +1,6 @@
 import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { DiscoverableVaultIntent } from "@/lib/network/intent";
+import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 
 export type PublicInPlayCopy = {
   instance_id: string;
@@ -18,6 +19,7 @@ export type PublicInPlayCopy = {
 export type PublicWallCard = {
   card_print_id: string;
   gv_id: string;
+  gv_vi_id?: string;
   name: string;
   set_code?: string;
   set_name?: string;
@@ -50,3 +52,28 @@ export type PublicWallCard = {
   in_play_created_at?: string;
   in_play_copies?: PublicInPlayCopy[];
 };
+
+function normalizeOptionalText(value: string | null | undefined) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+export function getPublicWallCardPrimaryGvviId(card: Pick<PublicWallCard, "gv_vi_id" | "in_play_copies">) {
+  const discoverableCopyGvviId = card.in_play_copies
+    ?.map((copy) => normalizeOptionalText(copy.gv_vi_id))
+    .find((value): value is string => Boolean(value));
+
+  return discoverableCopyGvviId ?? normalizeOptionalText(card.gv_vi_id);
+}
+
+export function getPublicWallCardHref(
+  card: Pick<PublicWallCard, "gv_vi_id" | "in_play_copies">,
+  viewerUserId: string | null | undefined,
+  ownerUserId: string | null | undefined,
+) {
+  return getVaultInstanceHref(getPublicWallCardPrimaryGvviId(card), viewerUserId, ownerUserId);
+}

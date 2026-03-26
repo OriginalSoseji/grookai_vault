@@ -4,17 +4,25 @@ import Link from "next/link";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
-import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
+import {
+  getPublicWallCardHref,
+  getPublicWallCardPrimaryGvviId,
+  type PublicWallCard,
+} from "@/lib/sharedCards/publicWall.shared";
 import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type PublicCollectionGridProps = {
   cards: PublicWallCard[];
   density?: ViewDensity;
+  viewerUserId: string | null;
+  ownerUserId: string;
 };
 
 export function PublicCollectionGrid({
   cards,
   density: providedDensity,
+  viewerUserId,
+  ownerUserId,
 }: PublicCollectionGridProps) {
   const storedDensity = useViewDensity();
   const density = providedDensity ?? storedDensity.density;
@@ -37,6 +45,8 @@ export function PublicCollectionGrid({
               mixedSummary ??
               (card.is_slab ? [card.grader, card.grade].filter(Boolean).join(" ") || "Graded slab" : null);
             const ownedCount = card.owned_count ?? 0;
+            const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
+            const gvviId = getPublicWallCardPrimaryGvviId(card);
 
             return (
               <PokemonCardGridTile
@@ -44,7 +54,7 @@ export function PublicCollectionGrid({
                 density={density}
                 imageSrc={card.image_url}
                 imageAlt={card.name}
-                imageHref={`/card/${card.gv_id}`}
+                imageHref={cardHref}
                 imageFallbackLabel={card.name}
                 imageOverlay={
                   <>
@@ -56,7 +66,7 @@ export function PublicCollectionGrid({
                   </>
                 }
                 title={
-                  <Link href={`/card/${card.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
+                  <Link href={cardHref} className="line-clamp-2 block transition hover:text-slate-700">
                     {card.name}
                   </Link>
                 }
@@ -73,7 +83,7 @@ export function PublicCollectionGrid({
                     {card.public_note ? <p className="line-clamp-2 pt-1 text-xs leading-5 text-slate-500">{card.public_note}</p> : null}
                   </>
                 }
-                footer={<span>GV-ID: {card.gv_id}</span>}
+                footer={gvviId ? <span>GVVI: {gvviId}</span> : null}
               />
             );
           })()

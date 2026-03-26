@@ -15,6 +15,7 @@ import {
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -73,6 +74,10 @@ export default async function PublicPokemonCollectionPage({
   }
 
   const sharedCards = profile.vault_sharing_enabled ? await getSharedCardsBySlug(profile.slug) : [];
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const matchingCards = profile.vault_sharing_enabled ? filterSharedCardsByPokemonSlug(sharedCards, params.pokemon) : [];
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
@@ -122,7 +127,11 @@ export default async function PublicPokemonCollectionPage({
         ) : matchingCards.length === 0 ? (
           <PublicCollectionEmptyState title="No cards found" body={`No cards match ${pokemonLabel}.`} />
         ) : (
-          <PublicCollectionGrid cards={matchingCards} />
+          <PublicCollectionGrid
+            cards={matchingCards}
+            viewerUserId={user?.id ?? null}
+            ownerUserId={profile.user_id}
+          />
         )}
       </section>
     </div>

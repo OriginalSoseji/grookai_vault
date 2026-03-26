@@ -136,6 +136,14 @@ type DiscoverableInstanceRow = {
   created_at: string | null;
 };
 
+type SharedInstanceRow = {
+  id: string;
+  gv_vi_id: string | null;
+  card_print_id: string | null;
+  slab_cert_id: string | null;
+  created_at: string | null;
+};
+
 function createServerSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -467,6 +475,81 @@ async function fetchDiscoverableCopiesByCardId(userId: string, cardIds: string[]
   return byCardId;
 }
 
+async function fetchRepresentativeSharedGvviByCardId(userId: string, cardIds: string[]) {
+  const normalizedCardIds = Array.from(new Set(cardIds.map((value) => value.trim()).filter(Boolean)));
+  const requestedCardIds = new Set(normalizedCardIds);
+  if (!userId || normalizedCardIds.length === 0) {
+    return new Map<string, string>();
+  }
+
+  const admin = createServerAdminClient();
+  const { data: instances, error: instancesError } = await admin
+    .from("vault_item_instances")
+    .select("id,gv_vi_id,card_print_id,slab_cert_id,created_at")
+    .eq("user_id", userId)
+    .is("archived_at", null)
+    .order("created_at", { ascending: false })
+    .order("id", { ascending: false });
+
+  if (instancesError) {
+    console.error("[public:shared-cards] representative GVVI lookup failed", {
+      userId,
+      error: instancesError,
+    });
+    return new Map<string, string>();
+  }
+
+  const slabCertIds = Array.from(
+    new Set(
+      ((instances ?? []) as SharedInstanceRow[])
+        .map((row) => normalizeOptionalText(row.slab_cert_id))
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
+
+  const slabCertById = new Map<string, SlabCertRow>();
+  if (slabCertIds.length > 0) {
+    const { data: slabCerts, error: slabCertsError } = await admin
+      .from("slab_certs")
+      .select("id,card_print_id,grader,cert_number,grade")
+      .in("id", slabCertIds);
+
+    if (slabCertsError) {
+      console.error("[public:shared-cards] representative GVVI slab lookup failed", {
+        userId,
+        error: slabCertsError,
+      });
+      return new Map<string, string>();
+    }
+
+    for (const row of (slabCerts ?? []) as SlabCertRow[]) {
+      const slabCertId = normalizeOptionalText(row.id);
+      if (slabCertId) {
+        slabCertById.set(slabCertId, row);
+      }
+    }
+  }
+
+  const representativeByCardId = new Map<string, string>();
+
+  for (const row of (instances ?? []) as SharedInstanceRow[]) {
+    const gvviId = normalizeOptionalText(row.gv_vi_id);
+    const slabCert = normalizeOptionalText(row.slab_cert_id)
+      ? slabCertById.get(normalizeOptionalText(row.slab_cert_id)!)
+      : null;
+    const cardPrintId =
+      normalizeOptionalText(row.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
+
+    if (!cardPrintId || !gvviId || !requestedCardIds.has(cardPrintId) || representativeByCardId.has(cardPrintId)) {
+      continue;
+    }
+
+    representativeByCardId.set(cardPrintId, gvviId);
+  }
+
+  return representativeByCardId;
+}
+
 export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCard[]> => {
   const normalizedSlug = normalizeSlug(slug);
   if (!normalizedSlug) {
@@ -524,14 +607,20 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
     return [];
   }
 
-  const wallStateByCardId = await fetchSharedWallStateByCardId(
-    ownerUserId,
-    sharedRows.map((row) => row.card_id),
-  );
-  const inPlayStateByCardId = await fetchInPlayStateByCardId(
-    normalizedSlug,
-    sharedRows.map((row) => row.card_id),
-  );
+  const [wallStateByCardId, representativeSharedGvviByCardId, inPlayStateByCardId] = await Promise.all([
+    fetchSharedWallStateByCardId(
+      ownerUserId,
+      sharedRows.map((row) => row.card_id),
+    ),
+    fetchRepresentativeSharedGvviByCardId(
+      ownerUserId,
+      sharedRows.map((row) => row.card_id),
+    ),
+    fetchInPlayStateByCardId(
+      normalizedSlug,
+      sharedRows.map((row) => row.card_id),
+    ),
+  ]);
 
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
@@ -569,6 +658,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       return {
         card_print_id: row.card_id,
         gv_id: row.gv_id,
+        gv_vi_id: representativeSharedGvviByCardId.get(row.card_id) ?? undefined,
         name: cardPrint.name?.trim() || "Unknown card",
         set_code: cardPrint.set_code?.trim() || undefined,
         set_name: setRecord?.name?.trim() || undefined,

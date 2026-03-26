@@ -3,7 +3,8 @@ import "server-only";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import {
   normalizeDiscoverableVaultIntent,
-  type DiscoverableVaultIntent,
+  normalizeVaultIntent,
+  type VaultIntent,
 } from "@/lib/network/intent";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
@@ -109,7 +110,8 @@ export type PublicVaultInstanceDetail = {
   imageUrl: string | null;
   frontImageUrl: string | null;
   backImageUrl: string | null;
-  intent: DiscoverableVaultIntent;
+  intent: VaultIntent;
+  isDiscoverable: boolean;
   conditionLabel: string | null;
   isGraded: boolean;
   grader: string | null;
@@ -149,9 +151,10 @@ export async function getPublicVaultInstanceByGvvi(
   const instance = instanceData as PublicVaultInstanceRow;
   const ownerUserId = normalizeOptionalText(instance.user_id);
   const vaultItemId = normalizeOptionalText(instance.legacy_vault_item_id);
-  const intent = normalizeDiscoverableVaultIntent(instance.intent);
+  const normalizedIntent = normalizeVaultIntent(instance.intent) ?? "hold";
+  const discoverableIntent = normalizeDiscoverableVaultIntent(instance.intent);
 
-  if (!ownerUserId || !vaultItemId || !intent || instance.archived_at !== null) {
+  if (!ownerUserId || !vaultItemId || instance.archived_at !== null) {
     return null;
   }
 
@@ -183,6 +186,19 @@ export async function getPublicVaultInstanceByGvvi(
   const cardPrintId =
     normalizeOptionalText(instance.card_print_id) ?? normalizeOptionalText(slabCert?.card_print_id);
   if (!cardPrintId) {
+    return null;
+  }
+
+  const { data: sharedCardRow } = await admin
+    .from("shared_cards")
+    .select("id")
+    .eq("user_id", ownerUserId)
+    .eq("card_id", cardPrintId)
+    .eq("is_shared", true)
+    .maybeSingle();
+
+  const isSharedOnWall = Boolean(sharedCardRow);
+  if (!discoverableIntent && !isSharedOnWall) {
     return null;
   }
 
@@ -220,7 +236,8 @@ export async function getPublicVaultInstanceByGvvi(
     imageUrl: getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
     frontImageUrl,
     backImageUrl,
-    intent,
+    intent: normalizedIntent,
+    isDiscoverable: Boolean(discoverableIntent),
     conditionLabel: normalizeOptionalText(instance.condition_label),
     isGraded: Boolean(instance.slab_cert_id),
     grader: normalizeOptionalText(slabCert?.grader) ?? normalizeOptionalText(instance.grade_company),

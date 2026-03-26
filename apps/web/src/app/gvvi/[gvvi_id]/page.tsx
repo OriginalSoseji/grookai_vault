@@ -67,6 +67,11 @@ export default async function PublicVaultInstancePage({
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const siteOrigin = getSiteOrigin();
   const shareUrl = siteOrigin ? `${siteOrigin}${currentPath}` : currentPath;
+  const contactIntent =
+    detail.isDiscoverable &&
+    (detail.intent === "trade" || detail.intent === "sell" || detail.intent === "showcase")
+      ? detail.intent
+      : null;
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
@@ -235,31 +240,33 @@ export default async function PublicVaultInstancePage({
             />
           </PageSection>
 
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
-            <SectionHeader
-              title="Contact"
-              description="Reach out about this exact discoverable copy."
-            />
-            <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-              <p className="text-sm text-slate-600">
-                This copy is currently marked <span className="font-medium text-slate-900">{getVaultIntentLabel(detail.intent)}</span>.
-              </p>
-              <ContactOwnerButton
-                vaultItemId={detail.vaultItemId}
-                cardPrintId={detail.cardPrintId}
-                ownerUserId={detail.ownerUserId}
-                viewerUserId={user?.id ?? null}
-                ownerDisplayName={detail.ownerDisplayName}
-                cardName={detail.cardName}
-                intent={detail.intent}
-                buttonLabel={getContactLabel(detail.intent)}
-                isAuthenticated={Boolean(user)}
-                loginHref={loginHref}
-                currentPath={currentPath}
-                buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+          {contactIntent ? (
+            <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+              <SectionHeader
+                title="Contact"
+                description="Reach out about this exact discoverable copy."
               />
-            </div>
-          </PageSection>
+              <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
+                <p className="text-sm text-slate-600">
+                  This copy is currently marked <span className="font-medium text-slate-900">{getVaultIntentLabel(detail.intent)}</span>.
+                </p>
+                <ContactOwnerButton
+                  vaultItemId={detail.vaultItemId}
+                  cardPrintId={detail.cardPrintId}
+                  ownerUserId={detail.ownerUserId}
+                  viewerUserId={user?.id ?? null}
+                  ownerDisplayName={detail.ownerDisplayName}
+                  cardName={detail.cardName}
+                  intent={contactIntent}
+                  buttonLabel={getContactLabel(contactIntent)}
+                  isAuthenticated={Boolean(user)}
+                  loginHref={loginHref}
+                  currentPath={currentPath}
+                  buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                />
+              </div>
+            </PageSection>
+          ) : null}
 
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
