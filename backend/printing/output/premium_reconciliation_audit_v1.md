@@ -1,0 +1,186 @@
+# PREMIUM RECONCILIATION AUDIT V1
+
+## Summary
+- Total Rows: 167
+- Governed: 0
+- Ungoverned Legacy: 167
+- Excluded Special-Set Rows: 130
+
+## By Set
+- sv8pt5: 0 governed / 167 legacy / 167 total
+
+## Governed Rows
+- None
+
+## Ungoverned Legacy Rows
+- sv8pt5 #1 | GV-PK-PRE-1 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #1 | GV-PK-PRE-1 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #002 | GV-PK-PRE-002 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #002 | GV-PK-PRE-002 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #3 | GV-PK-PRE-3 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #3 | GV-PK-PRE-3 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #4 | GV-PK-PRE-4 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #4 | GV-PK-PRE-4 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #5 | GV-PK-PRE-5 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #5 | GV-PK-PRE-5 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #007 | GV-PK-PRE-007 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #007 | GV-PK-PRE-007 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #008 | GV-PK-PRE-008 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #008 | GV-PK-PRE-008 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #9 | GV-PK-PRE-9 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #9 | GV-PK-PRE-9 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #10 | GV-PK-PRE-10 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #10 | GV-PK-PRE-10 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #13 | GV-PK-PRE-13 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #13 | GV-PK-PRE-13 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #15 | GV-PK-PRE-15 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #15 | GV-PK-PRE-15 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #16 | GV-PK-PRE-16 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #16 | GV-PK-PRE-16 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #18 | GV-PK-PRE-18 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #18 | GV-PK-PRE-18 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #19 | GV-PK-PRE-19 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #19 | GV-PK-PRE-19 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #20 | GV-PK-PRE-20 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #20 | GV-PK-PRE-20 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #21 | GV-PK-PRE-21 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #21 | GV-PK-PRE-21 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #22 | GV-PK-PRE-22 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #22 | GV-PK-PRE-22 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #24 | GV-PK-PRE-24 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #24 | GV-PK-PRE-24 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #025 | GV-PK-PRE-025 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #025 | GV-PK-PRE-025 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #29 | GV-PK-PRE-29 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #29 | GV-PK-PRE-29 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #33 | GV-PK-PRE-33 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #33 | GV-PK-PRE-33 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #35 | GV-PK-PRE-35 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #35 | GV-PK-PRE-35 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #36 | GV-PK-PRE-36 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #36 | GV-PK-PRE-36 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #37 | GV-PK-PRE-37 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #37 | GV-PK-PRE-37 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #038 | GV-PK-PRE-038 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #038 | GV-PK-PRE-038 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #039 | GV-PK-PRE-039 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #039 | GV-PK-PRE-039 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #40 | GV-PK-PRE-40 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #40 | GV-PK-PRE-40 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #042 | GV-PK-PRE-042 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #042 | GV-PK-PRE-042 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #43 | GV-PK-PRE-43 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #43 | GV-PK-PRE-43 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #44 | GV-PK-PRE-44 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #44 | GV-PK-PRE-44 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #45 | GV-PK-PRE-45 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #45 | GV-PK-PRE-45 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #46 | GV-PK-PRE-46 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #46 | GV-PK-PRE-46 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #47 | GV-PK-PRE-47 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #47 | GV-PK-PRE-47 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #48 | GV-PK-PRE-48 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #48 | GV-PK-PRE-48 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #49 | GV-PK-PRE-49 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #49 | GV-PK-PRE-49 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #50 | GV-PK-PRE-50 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #50 | GV-PK-PRE-50 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #52 | GV-PK-PRE-52 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #52 | GV-PK-PRE-52 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #53 | GV-PK-PRE-53 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #53 | GV-PK-PRE-53 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #54 | GV-PK-PRE-54 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #54 | GV-PK-PRE-54 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #55 | GV-PK-PRE-55 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #55 | GV-PK-PRE-55 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #57 | GV-PK-PRE-57 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #57 | GV-PK-PRE-57 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #59 | GV-PK-PRE-59 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #59 | GV-PK-PRE-59 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #61 | GV-PK-PRE-61 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #61 | GV-PK-PRE-61 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #62 | GV-PK-PRE-62 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #62 | GV-PK-PRE-62 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #63 | GV-PK-PRE-63 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #63 | GV-PK-PRE-63 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #65 | GV-PK-PRE-65 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #65 | GV-PK-PRE-65 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #66 | GV-PK-PRE-66 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #66 | GV-PK-PRE-66 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #67 | GV-PK-PRE-67 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #67 | GV-PK-PRE-67 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #68 | GV-PK-PRE-68 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #68 | GV-PK-PRE-68 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #69 | GV-PK-PRE-69 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #69 | GV-PK-PRE-69 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #70 | GV-PK-PRE-70 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #70 | GV-PK-PRE-70 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #71 | GV-PK-PRE-71 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #71 | GV-PK-PRE-71 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #72 | GV-PK-PRE-72 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #72 | GV-PK-PRE-72 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #74 | GV-PK-PRE-74 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #74 | GV-PK-PRE-74 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #77 | GV-PK-PRE-77 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #77 | GV-PK-PRE-77 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #78 | GV-PK-PRE-78 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #78 | GV-PK-PRE-78 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #79 | GV-PK-PRE-79 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #79 | GV-PK-PRE-79 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #80 | GV-PK-PRE-80 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #80 | GV-PK-PRE-80 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #81 | GV-PK-PRE-81 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #81 | GV-PK-PRE-81 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #83 | GV-PK-PRE-83 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #83 | GV-PK-PRE-83 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #84 | GV-PK-PRE-84 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #84 | GV-PK-PRE-84 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #85 | GV-PK-PRE-85 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #85 | GV-PK-PRE-85 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #86 | GV-PK-PRE-86 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #86 | GV-PK-PRE-86 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #87 | GV-PK-PRE-87 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #87 | GV-PK-PRE-87 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #88 | GV-PK-PRE-88 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #88 | GV-PK-PRE-88 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #89 | GV-PK-PRE-89 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #89 | GV-PK-PRE-89 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #090 | GV-PK-PRE-090 | masterball | UNGOVERNED_LEGACY
+- sv8pt5 #090 | GV-PK-PRE-090 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #93 | GV-PK-PRE-93 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #94 | GV-PK-PRE-94 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #95 | GV-PK-PRE-95 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #96 | GV-PK-PRE-96 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #97 | GV-PK-PRE-97 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #98 | GV-PK-PRE-98 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #099 | GV-PK-PRE-099 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #100 | GV-PK-PRE-100 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #101 | GV-PK-PRE-101 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #102 | GV-PK-PRE-102 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #103 | GV-PK-PRE-103 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #104 | GV-PK-PRE-104 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #105 | GV-PK-PRE-105 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #106 | GV-PK-PRE-106 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #107 | GV-PK-PRE-107 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #108 | GV-PK-PRE-108 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #109 | GV-PK-PRE-109 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #110 | GV-PK-PRE-110 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #111 | GV-PK-PRE-111 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #112 | GV-PK-PRE-112 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #113 | GV-PK-PRE-113 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #114 | GV-PK-PRE-114 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #115 | GV-PK-PRE-115 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #118 | GV-PK-PRE-118 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #120 | GV-PK-PRE-120 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #121 | GV-PK-PRE-121 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #122 | GV-PK-PRE-122 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #123 | GV-PK-PRE-123 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #124 | GV-PK-PRE-124 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #125 | GV-PK-PRE-125 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #126 | GV-PK-PRE-126 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #127 | GV-PK-PRE-127 | pokeball | UNGOVERNED_LEGACY
+- sv8pt5 #130 | GV-PK-PRE-130 | pokeball | UNGOVERNED_LEGACY
+
+## Notes
+- Excluded set codes: me02.5
+- Rows within global premium scope are GOVERNED only when provenance_source and created_by are both non-null; otherwise they remain UNGOVERNED_LEGACY.

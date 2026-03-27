@@ -1,0 +1,1527 @@
+{
+  "generatedAt": "2026-03-27T22:10:40.543Z",
+  "excludedSetCodes": [
+    "me02.5"
+  ],
+  "totals": {
+    "totalRows": 167,
+    "governed": 0,
+    "ungovernedLegacy": 167
+  },
+  "bySet": {
+    "sv8pt5": {
+      "total": 167,
+      "governed": 0,
+      "ungovernedLegacy": 167
+    }
+  },
+  "rows": [
+    {
+      "gv_id": "GV-PK-PRE-1",
+      "set_code": "sv8pt5",
+      "number": "1",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-1",
+      "set_code": "sv8pt5",
+      "number": "1",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-002",
+      "set_code": "sv8pt5",
+      "number": "002",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-002",
+      "set_code": "sv8pt5",
+      "number": "002",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-3",
+      "set_code": "sv8pt5",
+      "number": "3",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-3",
+      "set_code": "sv8pt5",
+      "number": "3",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-4",
+      "set_code": "sv8pt5",
+      "number": "4",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-4",
+      "set_code": "sv8pt5",
+      "number": "4",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-5",
+      "set_code": "sv8pt5",
+      "number": "5",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-5",
+      "set_code": "sv8pt5",
+      "number": "5",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-007",
+      "set_code": "sv8pt5",
+      "number": "007",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-007",
+      "set_code": "sv8pt5",
+      "number": "007",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-008",
+      "set_code": "sv8pt5",
+      "number": "008",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-008",
+      "set_code": "sv8pt5",
+      "number": "008",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-9",
+      "set_code": "sv8pt5",
+      "number": "9",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-9",
+      "set_code": "sv8pt5",
+      "number": "9",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-10",
+      "set_code": "sv8pt5",
+      "number": "10",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-10",
+      "set_code": "sv8pt5",
+      "number": "10",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-13",
+      "set_code": "sv8pt5",
+      "number": "13",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-13",
+      "set_code": "sv8pt5",
+      "number": "13",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-15",
+      "set_code": "sv8pt5",
+      "number": "15",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-15",
+      "set_code": "sv8pt5",
+      "number": "15",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-16",
+      "set_code": "sv8pt5",
+      "number": "16",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-16",
+      "set_code": "sv8pt5",
+      "number": "16",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-18",
+      "set_code": "sv8pt5",
+      "number": "18",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-18",
+      "set_code": "sv8pt5",
+      "number": "18",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-19",
+      "set_code": "sv8pt5",
+      "number": "19",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-19",
+      "set_code": "sv8pt5",
+      "number": "19",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-20",
+      "set_code": "sv8pt5",
+      "number": "20",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-20",
+      "set_code": "sv8pt5",
+      "number": "20",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-21",
+      "set_code": "sv8pt5",
+      "number": "21",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-21",
+      "set_code": "sv8pt5",
+      "number": "21",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-22",
+      "set_code": "sv8pt5",
+      "number": "22",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-22",
+      "set_code": "sv8pt5",
+      "number": "22",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-24",
+      "set_code": "sv8pt5",
+      "number": "24",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-24",
+      "set_code": "sv8pt5",
+      "number": "24",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-025",
+      "set_code": "sv8pt5",
+      "number": "025",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-025",
+      "set_code": "sv8pt5",
+      "number": "025",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-29",
+      "set_code": "sv8pt5",
+      "number": "29",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-29",
+      "set_code": "sv8pt5",
+      "number": "29",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-33",
+      "set_code": "sv8pt5",
+      "number": "33",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-33",
+      "set_code": "sv8pt5",
+      "number": "33",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-35",
+      "set_code": "sv8pt5",
+      "number": "35",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-35",
+      "set_code": "sv8pt5",
+      "number": "35",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-36",
+      "set_code": "sv8pt5",
+      "number": "36",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-36",
+      "set_code": "sv8pt5",
+      "number": "36",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-37",
+      "set_code": "sv8pt5",
+      "number": "37",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-37",
+      "set_code": "sv8pt5",
+      "number": "37",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-038",
+      "set_code": "sv8pt5",
+      "number": "038",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-038",
+      "set_code": "sv8pt5",
+      "number": "038",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-039",
+      "set_code": "sv8pt5",
+      "number": "039",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-039",
+      "set_code": "sv8pt5",
+      "number": "039",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-40",
+      "set_code": "sv8pt5",
+      "number": "40",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-40",
+      "set_code": "sv8pt5",
+      "number": "40",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-042",
+      "set_code": "sv8pt5",
+      "number": "042",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-042",
+      "set_code": "sv8pt5",
+      "number": "042",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-43",
+      "set_code": "sv8pt5",
+      "number": "43",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-43",
+      "set_code": "sv8pt5",
+      "number": "43",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-44",
+      "set_code": "sv8pt5",
+      "number": "44",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-44",
+      "set_code": "sv8pt5",
+      "number": "44",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-45",
+      "set_code": "sv8pt5",
+      "number": "45",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-45",
+      "set_code": "sv8pt5",
+      "number": "45",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-46",
+      "set_code": "sv8pt5",
+      "number": "46",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-46",
+      "set_code": "sv8pt5",
+      "number": "46",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-47",
+      "set_code": "sv8pt5",
+      "number": "47",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-47",
+      "set_code": "sv8pt5",
+      "number": "47",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-48",
+      "set_code": "sv8pt5",
+      "number": "48",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-48",
+      "set_code": "sv8pt5",
+      "number": "48",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-49",
+      "set_code": "sv8pt5",
+      "number": "49",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-49",
+      "set_code": "sv8pt5",
+      "number": "49",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-50",
+      "set_code": "sv8pt5",
+      "number": "50",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-50",
+      "set_code": "sv8pt5",
+      "number": "50",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-52",
+      "set_code": "sv8pt5",
+      "number": "52",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-52",
+      "set_code": "sv8pt5",
+      "number": "52",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-53",
+      "set_code": "sv8pt5",
+      "number": "53",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-53",
+      "set_code": "sv8pt5",
+      "number": "53",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-54",
+      "set_code": "sv8pt5",
+      "number": "54",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-54",
+      "set_code": "sv8pt5",
+      "number": "54",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-55",
+      "set_code": "sv8pt5",
+      "number": "55",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-55",
+      "set_code": "sv8pt5",
+      "number": "55",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-57",
+      "set_code": "sv8pt5",
+      "number": "57",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-57",
+      "set_code": "sv8pt5",
+      "number": "57",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-59",
+      "set_code": "sv8pt5",
+      "number": "59",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-59",
+      "set_code": "sv8pt5",
+      "number": "59",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-61",
+      "set_code": "sv8pt5",
+      "number": "61",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-61",
+      "set_code": "sv8pt5",
+      "number": "61",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-62",
+      "set_code": "sv8pt5",
+      "number": "62",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-62",
+      "set_code": "sv8pt5",
+      "number": "62",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-63",
+      "set_code": "sv8pt5",
+      "number": "63",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-63",
+      "set_code": "sv8pt5",
+      "number": "63",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-65",
+      "set_code": "sv8pt5",
+      "number": "65",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-65",
+      "set_code": "sv8pt5",
+      "number": "65",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-66",
+      "set_code": "sv8pt5",
+      "number": "66",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-66",
+      "set_code": "sv8pt5",
+      "number": "66",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-67",
+      "set_code": "sv8pt5",
+      "number": "67",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-67",
+      "set_code": "sv8pt5",
+      "number": "67",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-68",
+      "set_code": "sv8pt5",
+      "number": "68",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-68",
+      "set_code": "sv8pt5",
+      "number": "68",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-69",
+      "set_code": "sv8pt5",
+      "number": "69",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-69",
+      "set_code": "sv8pt5",
+      "number": "69",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-70",
+      "set_code": "sv8pt5",
+      "number": "70",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-70",
+      "set_code": "sv8pt5",
+      "number": "70",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-71",
+      "set_code": "sv8pt5",
+      "number": "71",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-71",
+      "set_code": "sv8pt5",
+      "number": "71",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-72",
+      "set_code": "sv8pt5",
+      "number": "72",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-72",
+      "set_code": "sv8pt5",
+      "number": "72",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-74",
+      "set_code": "sv8pt5",
+      "number": "74",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-74",
+      "set_code": "sv8pt5",
+      "number": "74",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-77",
+      "set_code": "sv8pt5",
+      "number": "77",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-77",
+      "set_code": "sv8pt5",
+      "number": "77",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-78",
+      "set_code": "sv8pt5",
+      "number": "78",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-78",
+      "set_code": "sv8pt5",
+      "number": "78",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-79",
+      "set_code": "sv8pt5",
+      "number": "79",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-79",
+      "set_code": "sv8pt5",
+      "number": "79",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-80",
+      "set_code": "sv8pt5",
+      "number": "80",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-80",
+      "set_code": "sv8pt5",
+      "number": "80",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-81",
+      "set_code": "sv8pt5",
+      "number": "81",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-81",
+      "set_code": "sv8pt5",
+      "number": "81",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-83",
+      "set_code": "sv8pt5",
+      "number": "83",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-83",
+      "set_code": "sv8pt5",
+      "number": "83",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-84",
+      "set_code": "sv8pt5",
+      "number": "84",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-84",
+      "set_code": "sv8pt5",
+      "number": "84",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-85",
+      "set_code": "sv8pt5",
+      "number": "85",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-85",
+      "set_code": "sv8pt5",
+      "number": "85",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-86",
+      "set_code": "sv8pt5",
+      "number": "86",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-86",
+      "set_code": "sv8pt5",
+      "number": "86",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-87",
+      "set_code": "sv8pt5",
+      "number": "87",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-87",
+      "set_code": "sv8pt5",
+      "number": "87",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-88",
+      "set_code": "sv8pt5",
+      "number": "88",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-88",
+      "set_code": "sv8pt5",
+      "number": "88",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-89",
+      "set_code": "sv8pt5",
+      "number": "89",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-89",
+      "set_code": "sv8pt5",
+      "number": "89",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-090",
+      "set_code": "sv8pt5",
+      "number": "090",
+      "finish_key": "masterball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-090",
+      "set_code": "sv8pt5",
+      "number": "090",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-93",
+      "set_code": "sv8pt5",
+      "number": "93",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-94",
+      "set_code": "sv8pt5",
+      "number": "94",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-95",
+      "set_code": "sv8pt5",
+      "number": "95",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-96",
+      "set_code": "sv8pt5",
+      "number": "96",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-97",
+      "set_code": "sv8pt5",
+      "number": "97",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-98",
+      "set_code": "sv8pt5",
+      "number": "98",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-099",
+      "set_code": "sv8pt5",
+      "number": "099",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-100",
+      "set_code": "sv8pt5",
+      "number": "100",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-101",
+      "set_code": "sv8pt5",
+      "number": "101",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-102",
+      "set_code": "sv8pt5",
+      "number": "102",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-103",
+      "set_code": "sv8pt5",
+      "number": "103",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-104",
+      "set_code": "sv8pt5",
+      "number": "104",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-105",
+      "set_code": "sv8pt5",
+      "number": "105",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-106",
+      "set_code": "sv8pt5",
+      "number": "106",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-107",
+      "set_code": "sv8pt5",
+      "number": "107",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-108",
+      "set_code": "sv8pt5",
+      "number": "108",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-109",
+      "set_code": "sv8pt5",
+      "number": "109",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-110",
+      "set_code": "sv8pt5",
+      "number": "110",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-111",
+      "set_code": "sv8pt5",
+      "number": "111",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-112",
+      "set_code": "sv8pt5",
+      "number": "112",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-113",
+      "set_code": "sv8pt5",
+      "number": "113",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-114",
+      "set_code": "sv8pt5",
+      "number": "114",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-115",
+      "set_code": "sv8pt5",
+      "number": "115",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-118",
+      "set_code": "sv8pt5",
+      "number": "118",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-120",
+      "set_code": "sv8pt5",
+      "number": "120",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-121",
+      "set_code": "sv8pt5",
+      "number": "121",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-122",
+      "set_code": "sv8pt5",
+      "number": "122",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-123",
+      "set_code": "sv8pt5",
+      "number": "123",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-124",
+      "set_code": "sv8pt5",
+      "number": "124",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-125",
+      "set_code": "sv8pt5",
+      "number": "125",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-126",
+      "set_code": "sv8pt5",
+      "number": "126",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-127",
+      "set_code": "sv8pt5",
+      "number": "127",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    },
+    {
+      "gv_id": "GV-PK-PRE-130",
+      "set_code": "sv8pt5",
+      "number": "130",
+      "finish_key": "pokeball",
+      "provenance_source": null,
+      "created_by": null,
+      "status": "UNGOVERNED_LEGACY"
+    }
+  ],
+  "notes": {
+    "excludedSpecialSetRows": 130,
+    "classificationRule": "Rows within global premium scope are GOVERNED only when provenance_source and created_by are both non-null; otherwise they remain UNGOVERNED_LEGACY."
+  }
+}
