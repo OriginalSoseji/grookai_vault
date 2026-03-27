@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-27T21:33:32.703Z",
+  "generatedAt": "2026-03-27T21:48:41.960Z",
   "requestCount": 8,
   "requestLimit": 8,
   "targets": [
@@ -7,6 +7,9 @@
       "grookaiSetCode": "sv8pt5",
       "justtcgSetId": "sv-prismatic-evolutions-pokemon",
       "requestedNumber": "1",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
         {
           "target": {
@@ -20,6 +23,11 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "masterball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Master Ball Pattern",
+            "Master Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "masterball",
@@ -39,32 +47,17 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball Pattern",
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
           "needsPromotionReview": false,
           "explanation": "Classified justtcg candidate pokemon-sv-prismatic-evolutions-exeggcute-poke-ball-pattern-common (Exeggcute (Poke Ball Pattern)) as CHILD because it is finish-only and resolves to finish_key=pokeball.",
           "variantCount": 4
-        },
-        {
-          "target": {
-            "grookaiSetCode": "sv8pt5",
-            "requestedNumber": "1",
-            "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-          },
-          "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggcute-common",
-          "upstreamName": "Exeggcute",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggcute-common (Exeggcute) because available evidence is insufficient to classify sv8pt5 #1 as ROW or CHILD.",
-          "variantCount": 5
         }
       ]
     },
@@ -72,6 +65,9 @@
       "grookaiSetCode": "sv8pt5",
       "justtcgSetId": "sv-prismatic-evolutions-pokemon",
       "requestedNumber": "2",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
         {
           "target": {
@@ -85,6 +81,11 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "masterball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Master Ball Pattern",
+            "Master Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "masterball",
@@ -104,32 +105,17 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball Pattern",
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
           "needsPromotionReview": false,
           "explanation": "Classified justtcg candidate pokemon-sv-prismatic-evolutions-exeggutor-poke-ball-pattern-uncommon (Exeggutor (Poke Ball Pattern)) as CHILD because it is finish-only and resolves to finish_key=pokeball.",
           "variantCount": 5
-        },
-        {
-          "target": {
-            "grookaiSetCode": "sv8pt5",
-            "requestedNumber": "2",
-            "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-          },
-          "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggutor-uncommon",
-          "upstreamName": "Exeggutor",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggutor-uncommon (Exeggutor) because available evidence is insufficient to classify sv8pt5 #2 as ROW or CHILD.",
-          "variantCount": 6
         }
       ]
     },
@@ -137,6 +123,9 @@
       "grookaiSetCode": "sv8pt5",
       "justtcgSetId": "sv-prismatic-evolutions-pokemon",
       "requestedNumber": "3",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
         {
           "target": {
@@ -150,6 +139,11 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "masterball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Master Ball Pattern",
+            "Master Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "masterball",
@@ -169,32 +163,17 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball Pattern",
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
           "needsPromotionReview": false,
           "explanation": "Classified justtcg candidate pokemon-sv-prismatic-evolutions-pinsir-poke-ball-pattern-common (Pinsir (Poke Ball Pattern)) as CHILD because it is finish-only and resolves to finish_key=pokeball.",
           "variantCount": 3
-        },
-        {
-          "target": {
-            "grookaiSetCode": "sv8pt5",
-            "requestedNumber": "3",
-            "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-          },
-          "upstreamCardId": "pokemon-sv-prismatic-evolutions-pinsir-common",
-          "upstreamName": "Pinsir",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-pinsir-common (Pinsir) because available evidence is insufficient to classify sv8pt5 #3 as ROW or CHILD.",
-          "variantCount": 5
         }
       ]
     },
@@ -202,6 +181,9 @@
       "grookaiSetCode": "sv8pt5",
       "justtcgSetId": "sv-prismatic-evolutions-pokemon",
       "requestedNumber": "10",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
         {
           "target": {
@@ -215,6 +197,11 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "masterball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Master Ball Pattern",
+            "Master Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "masterball",
@@ -234,31 +221,16 @@
             "Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball Pattern",
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
           "needsPromotionReview": false,
           "explanation": "Classified justtcg candidate pokemon-sv-prismatic-evolutions-dipplin-poke-ball-pattern-uncommon (Dipplin (Poke Ball Pattern)) as CHILD because it is finish-only and resolves to finish_key=pokeball.",
-          "variantCount": 5
-        },
-        {
-          "target": {
-            "grookaiSetCode": "sv8pt5",
-            "requestedNumber": "10",
-            "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-          },
-          "upstreamCardId": "pokemon-sv-prismatic-evolutions-dipplin-uncommon",
-          "upstreamName": "Dipplin",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-dipplin-uncommon (Dipplin) because available evidence is insufficient to classify sv8pt5 #10 as ROW or CHILD.",
           "variantCount": 5
         }
       ]
@@ -267,27 +239,10 @@
       "grookaiSetCode": "me02.5",
       "justtcgSetId": "me-ascended-heroes-pokemon",
       "requestedNumber": "001",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
-        {
-          "target": {
-            "grookaiSetCode": "me02.5",
-            "requestedNumber": "001",
-            "justtcgSetId": "me-ascended-heroes-pokemon"
-          },
-          "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-common",
-          "upstreamName": "Erika's Oddish",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-oddish-common (Erika's Oddish) because available evidence is insufficient to classify me02.5 #001 as ROW or CHILD.",
-          "variantCount": 3
-        },
         {
           "target": {
             "grookaiSetCode": "me02.5",
@@ -300,6 +255,10 @@
             "Reverse Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
@@ -319,6 +278,10 @@
             "Reverse Holofoil"
           ],
           "heuristicFinishCandidate": "energy-symbol-pattern",
+          "relevanceBucket": "UNSUPPORTED_PATTERN",
+          "matchedSignals": [
+            "Pattern"
+          ],
           "decision": "BLOCKED",
           "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
           "resolvedFinishKey": null,
@@ -332,27 +295,10 @@
       "grookaiSetCode": "me02.5",
       "justtcgSetId": "me-ascended-heroes-pokemon",
       "requestedNumber": "002",
+      "totalFetched": 3,
+      "relevantCandidates": 2,
+      "suppressedBaseNoise": 1,
       "candidates": [
-        {
-          "target": {
-            "grookaiSetCode": "me02.5",
-            "requestedNumber": "002",
-            "justtcgSetId": "me-ascended-heroes-pokemon"
-          },
-          "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-uncommon",
-          "upstreamName": "Erika's Gloom",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-uncommon (Erika's Gloom) because available evidence is insufficient to classify me02.5 #002 as ROW or CHILD.",
-          "variantCount": 3
-        },
         {
           "target": {
             "grookaiSetCode": "me02.5",
@@ -365,6 +311,10 @@
             "Reverse Holofoil"
           ],
           "heuristicFinishCandidate": "energy-symbol-pattern",
+          "relevanceBucket": "UNSUPPORTED_PATTERN",
+          "matchedSignals": [
+            "Pattern"
+          ],
           "decision": "BLOCKED",
           "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
           "resolvedFinishKey": null,
@@ -384,6 +334,10 @@
             "Reverse Holofoil"
           ],
           "heuristicFinishCandidate": "pokeball",
+          "relevanceBucket": "PREMIUM_LIKE",
+          "matchedSignals": [
+            "Poke Ball"
+          ],
           "decision": "CHILD",
           "reasonCode": "FINISH_ONLY_ALLOWED",
           "resolvedFinishKey": "pokeball",
@@ -397,183 +351,60 @@
       "grookaiSetCode": "me02.5",
       "justtcgSetId": "me-ascended-heroes-pokemon",
       "requestedNumber": "010",
-      "candidates": [
-        {
-          "target": {
-            "grookaiSetCode": "me02.5",
-            "requestedNumber": "010",
-            "justtcgSetId": "me-ascended-heroes-pokemon"
-          },
-          "upstreamCardId": "pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare",
-          "upstreamName": "Mega Meganium ex - 010/217",
-          "observedPrintings": [
-            "Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare (Mega Meganium ex - 010/217) because available evidence is insufficient to classify me02.5 #010 as ROW or CHILD.",
-          "variantCount": 3
-        }
-      ]
+      "totalFetched": 1,
+      "relevantCandidates": 0,
+      "suppressedBaseNoise": 1,
+      "candidates": []
     },
     {
       "grookaiSetCode": "sv02",
       "justtcgSetId": "sv02-paldea-evolved-pokemon",
       "requestedNumber": "1",
-      "candidates": [
-        {
-          "target": {
-            "grookaiSetCode": "sv02",
-            "requestedNumber": "1",
-            "justtcgSetId": "sv02-paldea-evolved-pokemon"
-          },
-          "upstreamCardId": "pokemon-sv02-paldea-evolved-hoppip-common",
-          "upstreamName": "Hoppip",
-          "observedPrintings": [
-            "Normal",
-            "Reverse Holofoil"
-          ],
-          "heuristicFinishCandidate": null,
-          "decision": "BLOCKED",
-          "reasonCode": "INSUFFICIENT_PROOF",
-          "resolvedFinishKey": null,
-          "needsPromotionReview": true,
-          "explanation": "Blocked justtcg candidate pokemon-sv02-paldea-evolved-hoppip-common (Hoppip) because available evidence is insufficient to classify sv02 #1 as ROW or CHILD.",
-          "variantCount": 7
-        }
-      ]
+      "totalFetched": 1,
+      "relevantCandidates": 0,
+      "suppressedBaseNoise": 1,
+      "candidates": []
     }
   ],
   "totals": {
-    "totalCandidates": 20,
+    "totalFetchedCandidates": 20,
+    "totalRelevantCandidates": 12,
+    "totalSuppressedBaseNoise": 8,
+    "totalInterpretedCandidates": 12,
     "rowCount": 0,
     "childCount": 10,
-    "blockedCount": 10
+    "blockedCount": 2
   },
   "bySet": {
     "sv8pt5": {
-      "total": 12,
+      "fetched": 12,
+      "relevant": 8,
+      "suppressedBaseNoise": 4,
+      "interpreted": 8,
       "row": 0,
       "child": 8,
-      "blocked": 4
+      "blocked": 0
     },
     "me02.5": {
-      "total": 7,
+      "fetched": 7,
+      "relevant": 4,
+      "suppressedBaseNoise": 3,
+      "interpreted": 4,
       "row": 0,
       "child": 2,
-      "blocked": 5
+      "blocked": 2
     },
     "sv02": {
-      "total": 1,
+      "fetched": 1,
+      "relevant": 0,
+      "suppressedBaseNoise": 1,
+      "interpreted": 0,
       "row": 0,
       "child": 0,
-      "blocked": 1
+      "blocked": 0
     }
   },
   "blockedCases": [
-    {
-      "target": {
-        "grookaiSetCode": "sv8pt5",
-        "requestedNumber": "1",
-        "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-      },
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggcute-common",
-      "upstreamName": "Exeggcute",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggcute-common (Exeggcute) because available evidence is insufficient to classify sv8pt5 #1 as ROW or CHILD.",
-      "variantCount": 5
-    },
-    {
-      "target": {
-        "grookaiSetCode": "sv8pt5",
-        "requestedNumber": "2",
-        "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-      },
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggutor-uncommon",
-      "upstreamName": "Exeggutor",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggutor-uncommon (Exeggutor) because available evidence is insufficient to classify sv8pt5 #2 as ROW or CHILD.",
-      "variantCount": 6
-    },
-    {
-      "target": {
-        "grookaiSetCode": "sv8pt5",
-        "requestedNumber": "3",
-        "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-      },
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-pinsir-common",
-      "upstreamName": "Pinsir",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-pinsir-common (Pinsir) because available evidence is insufficient to classify sv8pt5 #3 as ROW or CHILD.",
-      "variantCount": 5
-    },
-    {
-      "target": {
-        "grookaiSetCode": "sv8pt5",
-        "requestedNumber": "10",
-        "justtcgSetId": "sv-prismatic-evolutions-pokemon"
-      },
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-dipplin-uncommon",
-      "upstreamName": "Dipplin",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-dipplin-uncommon (Dipplin) because available evidence is insufficient to classify sv8pt5 #10 as ROW or CHILD.",
-      "variantCount": 5
-    },
-    {
-      "target": {
-        "grookaiSetCode": "me02.5",
-        "requestedNumber": "001",
-        "justtcgSetId": "me-ascended-heroes-pokemon"
-      },
-      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-common",
-      "upstreamName": "Erika's Oddish",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-oddish-common (Erika's Oddish) because available evidence is insufficient to classify me02.5 #001 as ROW or CHILD.",
-      "variantCount": 3
-    },
     {
       "target": {
         "grookaiSetCode": "me02.5",
@@ -586,6 +417,10 @@
         "Reverse Holofoil"
       ],
       "heuristicFinishCandidate": "energy-symbol-pattern",
+      "relevanceBucket": "UNSUPPORTED_PATTERN",
+      "matchedSignals": [
+        "Pattern"
+      ],
       "decision": "BLOCKED",
       "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
       "resolvedFinishKey": null,
@@ -599,77 +434,22 @@
         "requestedNumber": "002",
         "justtcgSetId": "me-ascended-heroes-pokemon"
       },
-      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-uncommon",
-      "upstreamName": "Erika's Gloom",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-uncommon (Erika's Gloom) because available evidence is insufficient to classify me02.5 #002 as ROW or CHILD.",
-      "variantCount": 3
-    },
-    {
-      "target": {
-        "grookaiSetCode": "me02.5",
-        "requestedNumber": "002",
-        "justtcgSetId": "me-ascended-heroes-pokemon"
-      },
       "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon",
       "upstreamName": "Erika's Gloom (Energy Symbol Pattern)",
       "observedPrintings": [
         "Reverse Holofoil"
       ],
       "heuristicFinishCandidate": "energy-symbol-pattern",
+      "relevanceBucket": "UNSUPPORTED_PATTERN",
+      "matchedSignals": [
+        "Pattern"
+      ],
       "decision": "BLOCKED",
       "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
       "resolvedFinishKey": null,
       "needsPromotionReview": true,
       "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon (Erika's Gloom (Energy Symbol Pattern)) because the finish-only distinction is outside the bounded finish vocabulary.",
       "variantCount": 2
-    },
-    {
-      "target": {
-        "grookaiSetCode": "me02.5",
-        "requestedNumber": "010",
-        "justtcgSetId": "me-ascended-heroes-pokemon"
-      },
-      "upstreamCardId": "pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare",
-      "upstreamName": "Mega Meganium ex - 010/217",
-      "observedPrintings": [
-        "Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare (Mega Meganium ex - 010/217) because available evidence is insufficient to classify me02.5 #010 as ROW or CHILD.",
-      "variantCount": 3
-    },
-    {
-      "target": {
-        "grookaiSetCode": "sv02",
-        "requestedNumber": "1",
-        "justtcgSetId": "sv02-paldea-evolved-pokemon"
-      },
-      "upstreamCardId": "pokemon-sv02-paldea-evolved-hoppip-common",
-      "upstreamName": "Hoppip",
-      "observedPrintings": [
-        "Normal",
-        "Reverse Holofoil"
-      ],
-      "heuristicFinishCandidate": null,
-      "decision": "BLOCKED",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "resolvedFinishKey": null,
-      "needsPromotionReview": true,
-      "explanation": "Blocked justtcg candidate pokemon-sv02-paldea-evolved-hoppip-common (Hoppip) because available evidence is insufficient to classify sv02 #1 as ROW or CHILD.",
-      "variantCount": 7
     }
   ],
   "childCandidates": [
@@ -685,6 +465,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "masterball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Master Ball Pattern",
+        "Master Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "masterball",
@@ -704,6 +489,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball Pattern",
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",
@@ -723,6 +513,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "masterball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Master Ball Pattern",
+        "Master Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "masterball",
@@ -742,6 +537,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball Pattern",
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",
@@ -761,6 +561,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "masterball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Master Ball Pattern",
+        "Master Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "masterball",
@@ -780,6 +585,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball Pattern",
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",
@@ -799,6 +609,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "masterball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Master Ball Pattern",
+        "Master Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "masterball",
@@ -818,6 +633,11 @@
         "Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball Pattern",
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",
@@ -837,6 +657,10 @@
         "Reverse Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",
@@ -856,6 +680,10 @@
         "Reverse Holofoil"
       ],
       "heuristicFinishCandidate": "pokeball",
+      "relevanceBucket": "PREMIUM_LIKE",
+      "matchedSignals": [
+        "Poke Ball"
+      ],
       "decision": "CHILD",
       "reasonCode": "FINISH_ONLY_ALLOWED",
       "resolvedFinishKey": "pokeball",

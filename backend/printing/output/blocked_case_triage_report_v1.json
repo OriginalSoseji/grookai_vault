@@ -1,40 +1,20 @@
 {
-  "generatedAt": "2026-03-27T21:39:16.973Z",
+  "generatedAt": "2026-03-27T21:48:53.801Z",
   "sourceReportPath": "C:\\grookai_vault\\backend\\printing\\output\\version_finish_audit_report_v1.json",
   "totals": {
-    "totalBlocked": 10,
-    "baseNoise": 8,
+    "totalBlocked": 2,
+    "baseNoise": 0,
     "unsupportedPattern": 2,
     "premiumAuthorityNeeded": 0,
     "potentialVersionReview": 0,
     "unclassified": 0
   },
   "bySet": {
-    "sv8pt5": {
-      "totalBlocked": 4,
-      "buckets": {
-        "BASE_NO_DISTINCTION_NOISE": 4,
-        "UNSUPPORTED_PATTERN_VOCAB": 0,
-        "PREMIUM_AUTHORITY_NEEDED": 0,
-        "POTENTIAL_VERSION_REVIEW": 0,
-        "UNCLASSIFIED_BLOCKED": 0
-      }
-    },
     "me02.5": {
-      "totalBlocked": 5,
+      "totalBlocked": 2,
       "buckets": {
-        "BASE_NO_DISTINCTION_NOISE": 3,
+        "BASE_NO_DISTINCTION_NOISE": 0,
         "UNSUPPORTED_PATTERN_VOCAB": 2,
-        "PREMIUM_AUTHORITY_NEEDED": 0,
-        "POTENTIAL_VERSION_REVIEW": 0,
-        "UNCLASSIFIED_BLOCKED": 0
-      }
-    },
-    "sv02": {
-      "totalBlocked": 1,
-      "buckets": {
-        "BASE_NO_DISTINCTION_NOISE": 1,
-        "UNSUPPORTED_PATTERN_VOCAB": 0,
         "PREMIUM_AUTHORITY_NEEDED": 0,
         "POTENTIAL_VERSION_REVIEW": 0,
         "UNCLASSIFIED_BLOCKED": 0
@@ -42,20 +22,6 @@
     }
   },
   "repeatedLabelFamilies": [
-    {
-      "family": "PLAIN_BASE_NAME",
-      "count": 8,
-      "sampleNames": [
-        "Dipplin",
-        "Erika's Gloom",
-        "Erika's Oddish",
-        "Exeggcute",
-        "Exeggutor",
-        "Hoppip",
-        "Mega Meganium ex - 010/217",
-        "Pinsir"
-      ]
-    },
     {
       "family": "ENERGY_SYMBOL_PATTERN",
       "count": 2,
@@ -66,80 +32,7 @@
     }
   ],
   "recommendedNextQueues": {
-    "ignore": [
-      {
-        "setCode": "sv8pt5",
-        "requestedNumber": "1",
-        "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggcute-common",
-        "upstreamName": "Exeggcute",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggcute-common (Exeggcute) because available evidence is insufficient to classify sv8pt5 #1 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "sv8pt5",
-        "requestedNumber": "2",
-        "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggutor-uncommon",
-        "upstreamName": "Exeggutor",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggutor-uncommon (Exeggutor) because available evidence is insufficient to classify sv8pt5 #2 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "sv8pt5",
-        "requestedNumber": "3",
-        "upstreamCardId": "pokemon-sv-prismatic-evolutions-pinsir-common",
-        "upstreamName": "Pinsir",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-pinsir-common (Pinsir) because available evidence is insufficient to classify sv8pt5 #3 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "sv8pt5",
-        "requestedNumber": "10",
-        "upstreamCardId": "pokemon-sv-prismatic-evolutions-dipplin-uncommon",
-        "upstreamName": "Dipplin",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-dipplin-uncommon (Dipplin) because available evidence is insufficient to classify sv8pt5 #10 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "me02.5",
-        "requestedNumber": "001",
-        "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-common",
-        "upstreamName": "Erika's Oddish",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-oddish-common (Erika's Oddish) because available evidence is insufficient to classify me02.5 #001 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "me02.5",
-        "requestedNumber": "002",
-        "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-uncommon",
-        "upstreamName": "Erika's Gloom",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-uncommon (Erika's Gloom) because available evidence is insufficient to classify me02.5 #002 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "me02.5",
-        "requestedNumber": "010",
-        "upstreamCardId": "pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare",
-        "upstreamName": "Mega Meganium ex - 010/217",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare (Mega Meganium ex - 010/217) because available evidence is insufficient to classify me02.5 #010 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      },
-      {
-        "setCode": "sv02",
-        "requestedNumber": "1",
-        "upstreamCardId": "pokemon-sv02-paldea-evolved-hoppip-common",
-        "upstreamName": "Hoppip",
-        "reasonCode": "INSUFFICIENT_PROOF",
-        "explanation": "Blocked justtcg candidate pokemon-sv02-paldea-evolved-hoppip-common (Hoppip) because available evidence is insufficient to classify sv02 #1 as ROW or CHILD.",
-        "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-      }
-    ],
+    "ignore": [],
     "unsupportedPatternReview": [
       {
         "setCode": "me02.5",
@@ -165,51 +58,6 @@
   },
   "blockedCases": [
     {
-      "setCode": "sv8pt5",
-      "requestedNumber": "1",
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggcute-common",
-      "upstreamName": "Exeggcute",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggcute-common (Exeggcute) because available evidence is insufficient to classify sv8pt5 #1 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "sv8pt5",
-      "requestedNumber": "2",
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-exeggutor-uncommon",
-      "upstreamName": "Exeggutor",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-exeggutor-uncommon (Exeggutor) because available evidence is insufficient to classify sv8pt5 #2 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "sv8pt5",
-      "requestedNumber": "3",
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-pinsir-common",
-      "upstreamName": "Pinsir",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-pinsir-common (Pinsir) because available evidence is insufficient to classify sv8pt5 #3 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "sv8pt5",
-      "requestedNumber": "10",
-      "upstreamCardId": "pokemon-sv-prismatic-evolutions-dipplin-uncommon",
-      "upstreamName": "Dipplin",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-sv-prismatic-evolutions-dipplin-uncommon (Dipplin) because available evidence is insufficient to classify sv8pt5 #10 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "me02.5",
-      "requestedNumber": "001",
-      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-common",
-      "upstreamName": "Erika's Oddish",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-oddish-common (Erika's Oddish) because available evidence is insufficient to classify me02.5 #001 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
       "setCode": "me02.5",
       "requestedNumber": "001",
       "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-energy-symbol-pattern-common",
@@ -221,38 +69,11 @@
     {
       "setCode": "me02.5",
       "requestedNumber": "002",
-      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-uncommon",
-      "upstreamName": "Erika's Gloom",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-uncommon (Erika's Gloom) because available evidence is insufficient to classify me02.5 #002 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "me02.5",
-      "requestedNumber": "002",
       "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon",
       "upstreamName": "Erika's Gloom (Energy Symbol Pattern)",
       "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
       "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon (Erika's Gloom (Energy Symbol Pattern)) because the finish-only distinction is outside the bounded finish vocabulary.",
       "triageBucket": "UNSUPPORTED_PATTERN_VOCAB"
-    },
-    {
-      "setCode": "me02.5",
-      "requestedNumber": "010",
-      "upstreamCardId": "pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare",
-      "upstreamName": "Mega Meganium ex - 010/217",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-me-ascended-heroes-mega-meganium-ex-010-217-double-rare (Mega Meganium ex - 010/217) because available evidence is insufficient to classify me02.5 #010 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
-    },
-    {
-      "setCode": "sv02",
-      "requestedNumber": "1",
-      "upstreamCardId": "pokemon-sv02-paldea-evolved-hoppip-common",
-      "upstreamName": "Hoppip",
-      "reasonCode": "INSUFFICIENT_PROOF",
-      "explanation": "Blocked justtcg candidate pokemon-sv02-paldea-evolved-hoppip-common (Hoppip) because available evidence is insufficient to classify sv02 #1 as ROW or CHILD.",
-      "triageBucket": "BASE_NO_DISTINCTION_NOISE"
     }
   ]
 }

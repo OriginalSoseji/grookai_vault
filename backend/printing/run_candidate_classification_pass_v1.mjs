@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import '../env.mjs';
 
 import { requestJustTcgJson, unwrapJustTcgData } from '../pricing/justtcg_client.mjs';
+import { classifyJustTCGCandidateRelevance } from './justtcg_candidate_filter_v1.mjs';
 import {
   VERSION_FINISH_DECISIONS,
   interpretVersionVsFinish,
@@ -153,7 +154,10 @@ function createEmptyReport() {
     requestLimit: MAX_REQUESTS_PER_RUN,
     targets: [],
     totals: {
-      totalCandidates: 0,
+      totalFetchedCandidates: 0,
+      totalRelevantCandidates: 0,
+      totalSuppressedBaseNoise: 0,
+      totalInterpretedCandidates: 0,
       rowCount: 0,
       childCount: 0,
       blockedCount: 0,
@@ -168,7 +172,10 @@ function createEmptyReport() {
 function ensureSetSummary(report, setCode) {
   if (!report.bySet[setCode]) {
     report.bySet[setCode] = {
-      total: 0,
+      fetched: 0,
+      relevant: 0,
+      suppressedBaseNoise: 0,
+      interpreted: 0,
       row: 0,
       child: 0,
       blocked: 0,
@@ -178,7 +185,13 @@ function ensureSetSummary(report, setCode) {
   return report.bySet[setCode];
 }
 
-function addCandidateResult(report, targetContext, candidate, input, result) {
+function addSuppressedCandidate(report, targetContext) {
+  const setSummary = ensureSetSummary(report, targetContext.grookaiSetCode);
+  report.totals.totalSuppressedBaseNoise += 1;
+  setSummary.suppressedBaseNoise += 1;
+}
+
+function addCandidateResult(report, targetContext, candidate, input, relevance, result) {
   const setSummary = ensureSetSummary(report, targetContext.grookaiSetCode);
   const row = {
     target: {
@@ -190,6 +203,8 @@ function addCandidateResult(report, targetContext, candidate, input, result) {
     upstreamName: input.upstreamName,
     observedPrintings: input.observedPrintings ?? [],
     heuristicFinishCandidate: input.canonicalFinishCandidate,
+    relevanceBucket: relevance.relevanceBucket,
+    matchedSignals: relevance.matchedSignals,
     decision: result.decision,
     reasonCode: result.reasonCode,
     resolvedFinishKey: result.resolvedFinishKey,
@@ -198,8 +213,8 @@ function addCandidateResult(report, targetContext, candidate, input, result) {
     variantCount: Array.isArray(candidate?.variants) ? candidate.variants.length : 0,
   };
 
-  report.totals.totalCandidates += 1;
-  setSummary.total += 1;
+  report.totals.totalInterpretedCandidates += 1;
+  setSummary.interpreted += 1;
 
   if (result.decision === VERSION_FINISH_DECISIONS.ROW) {
     report.totals.rowCount += 1;
@@ -222,8 +237,12 @@ function addCandidateResult(report, targetContext, candidate, input, result) {
 }
 
 function printSummary(report) {
-  console.log('\n=== SUMMARY ===');
-  console.log(`Total Candidates: ${report.totals.totalCandidates}`);
+  console.log('\n=== CANDIDATE FILTER SUMMARY ===');
+  console.log(`Fetched: ${report.totals.totalFetchedCandidates}`);
+  console.log(`Relevant: ${report.totals.totalRelevantCandidates}`);
+  console.log(`Suppressed Base Noise: ${report.totals.totalSuppressedBaseNoise}`);
+  console.log(`Interpreted: ${report.totals.totalInterpretedCandidates}`);
+  console.log('');
   console.log(`ROW: ${report.totals.rowCount}`);
   console.log(`CHILD: ${report.totals.childCount}`);
   console.log(`BLOCKED: ${report.totals.blockedCount}`);
@@ -231,7 +250,9 @@ function printSummary(report) {
   console.log('\n=== BY SET ===');
   for (const setCode of Object.keys(report.bySet).sort((left, right) => left.localeCompare(right))) {
     const summary = report.bySet[setCode];
-    console.log(`${setCode} -> ROW ${summary.row} | CHILD ${summary.child} | BLOCKED ${summary.blocked}`);
+    console.log(
+      `${setCode} -> fetched ${summary.fetched} | relevant ${summary.relevant} | suppressed ${summary.suppressedBaseNoise} | interpreted ${summary.interpreted} | ROW ${summary.row} | CHILD ${summary.child} | BLOCKED ${summary.blocked}`,
+    );
   }
 
   console.log('\n=== BLOCKED CASES ===');
@@ -241,6 +262,7 @@ function printSummary(report) {
     for (const row of report.blockedCases) {
       console.log(`- ${row.upstreamName ?? 'null'}`);
       console.log(`  reasonCode: ${row.reasonCode}`);
+      console.log(`  relevanceBucket: ${row.relevanceBucket}`);
       console.log(`  explanation: ${row.explanation}`);
     }
   }
@@ -250,7 +272,9 @@ function printSummary(report) {
     console.log('(none)');
   } else {
     for (const row of report.childCandidates) {
-      console.log(`- ${row.upstreamName ?? 'null'} | finishKey: ${row.resolvedFinishKey ?? 'null'}`);
+      console.log(
+        `- ${row.upstreamName ?? 'null'} | finishKey: ${row.resolvedFinishKey ?? 'null'} | relevanceBucket: ${row.relevanceBucket}`,
+      );
     }
   }
 
@@ -294,15 +318,32 @@ async function main() {
       };
 
       const candidates = await fetchCandidatesForTarget(target, requestedNumber);
+      const setSummary = ensureSetSummary(report, targetContext.grookaiSetCode);
+      report.totals.totalFetchedCandidates += candidates.length;
+      setSummary.fetched += candidates.length;
       const targetRecord = {
         ...targetContext,
+        totalFetched: candidates.length,
+        relevantCandidates: 0,
+        suppressedBaseNoise: 0,
         candidates: [],
       };
 
       for (const candidate of candidates) {
         const input = buildInterpretationInputFromJustTCGCandidate(candidate, targetContext);
+        const relevance = classifyJustTCGCandidateRelevance(input);
+
+        if (!relevance.isRelevant) {
+          targetRecord.suppressedBaseNoise += 1;
+          addSuppressedCandidate(report, targetContext);
+          continue;
+        }
+
+        report.totals.totalRelevantCandidates += 1;
+        setSummary.relevant += 1;
+        targetRecord.relevantCandidates += 1;
         const result = interpretVersionVsFinish(input);
-        const row = addCandidateResult(report, targetContext, candidate, input, result);
+        const row = addCandidateResult(report, targetContext, candidate, input, relevance, result);
         targetRecord.candidates.push(row);
       }
 

@@ -1,6 +1,7 @@
 import '../env.mjs';
 
 import { requestJustTcgJson, unwrapJustTcgData } from '../pricing/justtcg_client.mjs';
+import { classifyJustTCGCandidateRelevance } from './justtcg_candidate_filter_v1.mjs';
 import {
   VERSION_FINISH_DECISIONS,
   interpretVersionVsFinish,
@@ -122,31 +123,38 @@ function buildInterpretationInputFromJustTCGCandidate(candidate, context) {
   };
 }
 
-function printCandidateAudit(candidate, input, result) {
+function printCandidateAudit(candidate, input, relevance, result) {
   console.log(`--- CANDIDATE ---`);
   console.log(`upstreamCardId: ${input.upstreamCardId ?? 'null'}`);
   console.log(`upstreamName: ${input.upstreamName ?? 'null'}`);
   console.log(`observedPrintings: ${input.observedPrintings?.join(', ') || 'none'}`);
   console.log(`heuristicFinishCandidate: ${input.canonicalFinishCandidate ?? 'null'}`);
+  console.log(`relevanceBucket: ${relevance.relevanceBucket}`);
+  console.log(`matchedSignals: ${relevance.matchedSignals.join(', ') || 'none'}`);
   console.log(`decision: ${result.decision}`);
   console.log(`reasonCode: ${result.reasonCode}`);
   console.log(`resolvedFinishKey: ${result.resolvedFinishKey ?? 'null'}`);
   console.log(`needsPromotionReview: ${result.needsPromotionReview}`);
+  console.log(`relevanceExplanation: ${relevance.explanation}`);
   console.log(`explanation: ${result.explanation}`);
   console.log(`variantCount: ${Array.isArray(candidate?.variants) ? candidate.variants.length : 0}`);
   console.log('');
 }
 
-function printTargetSummary(candidates, results) {
+function printTargetSummary(candidates, relevantRows, results) {
   const summary = {
-    totalCandidates: candidates.length,
+    totalFetched: candidates.length,
+    relevantCandidates: relevantRows.length,
+    suppressedBaseNoise: candidates.length - relevantRows.length,
     rows: results.filter((result) => result.decision === VERSION_FINISH_DECISIONS.ROW).length,
     children: results.filter((result) => result.decision === VERSION_FINISH_DECISIONS.CHILD).length,
     blocked: results.filter((result) => result.decision === VERSION_FINISH_DECISIONS.BLOCKED).length,
   };
 
   console.log(`--- TARGET SUMMARY ---`);
-  console.log(`totalCandidates: ${summary.totalCandidates}`);
+  console.log(`totalFetched: ${summary.totalFetched}`);
+  console.log(`relevantCandidates: ${summary.relevantCandidates}`);
+  console.log(`suppressedBaseNoise: ${summary.suppressedBaseNoise}`);
   console.log(`rows: ${summary.rows}`);
   console.log(`children: ${summary.children}`);
   console.log(`blocked: ${summary.blocked}`);
@@ -182,15 +190,22 @@ async function auditTarget(target) {
 
   const candidates = await fetchCandidatesForTarget(target);
   const results = [];
+  const relevantRows = [];
 
   for (const candidate of candidates) {
     const input = buildInterpretationInputFromJustTCGCandidate(candidate, target);
+    const relevance = classifyJustTCGCandidateRelevance(input);
+    if (!relevance.isRelevant) {
+      continue;
+    }
+
     const result = interpretVersionVsFinish(input);
+    relevantRows.push({ candidate, input, relevance, result });
     results.push(result);
-    printCandidateAudit(candidate, input, result);
+    printCandidateAudit(candidate, input, relevance, result);
   }
 
-  printTargetSummary(candidates, results);
+  printTargetSummary(candidates, relevantRows, results);
 }
 
 async function main() {
