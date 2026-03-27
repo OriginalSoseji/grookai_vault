@@ -7,6 +7,8 @@
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import { normalizeFromTcgDex } from '../printing/finish_normalizer_v1.mjs';
+import { upsertPrinting } from '../printing/printing_upsert_v1.mjs';
 
 const SOURCE = 'tcgdex';
 const IMAGE_SOURCE = 'tcgdex';
@@ -486,6 +488,9 @@ async function upsertTraits(supabase, cardPrintId, traits, options) {
       'id, hp, national_dex, types, rarity, supertype, card_category, legacy_rarity, source, trait_type, trait_value',
     )
     .eq('card_print_id', cardPrintId)
+    .eq('trait_type', TRAIT_TYPE)
+    .eq('trait_value', TRAIT_VALUE)
+    .eq('source', SOURCE)
     .maybeSingle();
   if (error) {
     console.warn('[tcgdex][normalize] trait fetch failed:', error?.message ?? error);
@@ -689,6 +694,27 @@ async function upsertCardPrint(supabase, raw, cardPayload, setId, options) {
   return { status: 'updated', id: match.id };
 }
 
+async function handleTcgDexPrintings({
+  supabase,
+  card_print_id,
+  card,
+  options,
+}) {
+  if (!card_print_id) return;
+
+  const finishes = normalizeFromTcgDex(card?.variants);
+  for (const finish of finishes) {
+    await upsertPrinting({
+      supabase,
+      card_print_id,
+      finish_key: finish,
+      source: SOURCE,
+      ref: card?.id ?? card?._id ?? null,
+      dryRun: options?.dryRun === true,
+    });
+  }
+}
+
 async function normalizeSets(supabase, options) {
   const stats = { normalized: 0, conflicts: 0, errors: 0, processed: 0 };
   let remaining = options.limit ?? null;
@@ -772,7 +798,14 @@ async function normalizeCards(supabase, options) {
 
         const cardExternalId =
           cardPayload._external_id || cardPayload.card?.id || cardPayload.card?._id || null;
+        const cardData = cardPayload?.card ?? cardPayload ?? {};
         await ensureTcgdexMapping(supabase, upsertResult.id, cardExternalId, null, options);
+        await handleTcgDexPrintings({
+          supabase,
+          card_print_id: upsertResult.id,
+          card: cardData,
+          options,
+        });
         await upsertTraits(supabase, upsertResult.id, extractTraits(cardPayload), options);
         await markRawImport(supabase, raw.id, 'normalized', options);
         stats.normalized += 1;

@@ -13,6 +13,7 @@ export interface CardSummary {
   set_name?: string;
   rarity?: string;
   image_url?: string;
+  tcgdex_external_id?: string;
   release_date?: string;
   release_year?: number;
   raw_price?: number;

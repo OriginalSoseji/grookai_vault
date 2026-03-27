@@ -14,6 +14,7 @@ type CardNavigationRow = {
   number_plain: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  external_ids?: { tcgdex?: string | null } | null;
 };
 
 export type AdjacentPublicCard = {
@@ -21,6 +22,7 @@ export type AdjacentPublicCard = {
   name: string;
   number: string;
   image_url?: string;
+  tcgdex_external_id?: string;
 };
 
 export type AdjacentPublicCards = {
@@ -79,6 +81,11 @@ function comparePrintedNumbers(left: CardNavigationRow, right: CardNavigationRow
   return leftParts.raw.localeCompare(rightParts.raw);
 }
 
+function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null) {
+  const value = externalIds?.tcgdex;
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+}
+
 function toAdjacentCard(row?: CardNavigationRow): AdjacentPublicCard | undefined {
   if (!row?.gv_id) return undefined;
 
@@ -87,6 +94,7 @@ function toAdjacentCard(row?: CardNavigationRow): AdjacentPublicCard | undefined
     name: row.name ?? "Unknown",
     number: row.number ?? "",
     image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
   };
 }
 
@@ -109,7 +117,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
 
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,number_plain,image_url,image_alt_url")
+    .select("gv_id,name,number,number_plain,image_url,image_alt_url,external_ids")
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);
 

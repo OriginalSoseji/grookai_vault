@@ -5,12 +5,13 @@ import PublicCardImage from "@/components/PublicCardImage";
 
 type CardZoomModalProps = {
   src?: string;
+  fallbackSrc?: string;
   alt: string;
   imageClassName: string;
   fallbackClassName: string;
 };
 
-export default function CardZoomModal({ src, alt, imageClassName, fallbackClassName }: CardZoomModalProps) {
+export default function CardZoomModal({ src, fallbackSrc, alt, imageClassName, fallbackClassName }: CardZoomModalProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function CardZoomModal({ src, alt, imageClassName, fallbackClassN
       <button type="button" onClick={() => setOpen(true)} className="block w-full cursor-zoom-in text-left">
         <PublicCardImage
           src={src}
+          fallbackSrc={fallbackSrc}
           alt={alt}
           imageClassName={`${imageClassName} transition duration-150 hover:scale-[1.02]`}
           fallbackClassName={fallbackClassName}
@@ -47,6 +49,7 @@ export default function CardZoomModal({ src, alt, imageClassName, fallbackClassN
           <div className="w-full max-w-4xl" onClick={(event) => event.stopPropagation()}>
             <PublicCardImage
               src={src}
+              fallbackSrc={fallbackSrc}
               alt={alt}
               imageClassName="max-h-[90vh] w-full rounded-lg bg-white object-contain p-4 shadow-xl"
               fallbackClassName="flex min-h-[20rem] items-center justify-center rounded-lg bg-white px-6 text-center text-sm text-slate-500 shadow-xl"

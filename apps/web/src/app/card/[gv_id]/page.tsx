@@ -19,6 +19,8 @@ import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
+import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -75,6 +77,8 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const card = await getPublicCardByGvId(params.gv_id);
   const siteOrigin = getSiteOrigin();
   if (!card) return { title: "Card not found | Grookai Vault" };
+  const metadataImageUrl =
+    normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
 
   const titleParts = [card.name, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
   const title = `${titleParts.join(" • ")} | Grookai Vault`;
@@ -96,13 +100,13 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
       description,
       type: "website",
       url: siteOrigin ? `${siteOrigin}/card/${card.gv_id}` : undefined,
-      images: card.image_url ? [{ url: card.image_url, alt: card.name }] : undefined,
+      images: metadataImageUrl ? [{ url: metadataImageUrl, alt: card.name }] : undefined,
     },
     twitter: {
-      card: card.image_url ? "summary_large_image" : "summary",
+      card: metadataImageUrl ? "summary_large_image" : "summary",
       title,
       description,
-      images: card.image_url ? [card.image_url] : undefined,
+      images: metadataImageUrl ? [metadataImageUrl] : undefined,
     },
   };
 }
@@ -126,6 +130,8 @@ export default async function CardPage({
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
+  const resolvedCardImageSrc = normalizeCardImageUrl(resolvedCard.image_url) ?? undefined;
+  const resolvedCardImageFallback = buildTcgDexImageUrl(resolvedCard.tcgdex_external_id);
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -412,7 +418,8 @@ export default async function CardPage({
         <div className="relative z-10 grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(280px,360px)_minmax(0,1fr)_300px] xl:gap-8 xl:p-8">
           <div className="rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 shadow-sm">
             <CardZoomModal
-              src={resolvedCard.image_url}
+              src={resolvedCardImageSrc}
+              fallbackSrc={resolvedCardImageFallback ?? undefined}
               alt={resolvedCard.name}
               imageClassName="w-full cursor-zoom-in object-contain"
               fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
@@ -670,6 +677,8 @@ export default async function CardPage({
             {relatedPrints.map((relatedCard) => {
               const relatedVariantLabels = getVariantLabels(relatedCard, 2);
               const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
+              const relatedCardImageSrc = normalizeCardImageUrl(relatedCard.image_url) ?? undefined;
+              const relatedCardImageFallback = buildTcgDexImageUrl(relatedCard.tcgdex_external_id);
               return (
                 <Link
                   key={relatedCard.gv_id}
@@ -678,7 +687,8 @@ export default async function CardPage({
                 >
                   <div className="flex gap-3 md:flex-col md:items-start">
                     <PublicCardImage
-                      src={relatedCard.image_url}
+                      src={relatedCardImageSrc}
+                      fallbackSrc={relatedCardImageFallback ?? undefined}
                       alt={relatedCard.name}
                       imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
                       fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
@@ -810,12 +820,17 @@ export default async function CardPage({
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {adjacentCards.previous ? (
+              (() => {
+                const previousCardImageSrc = normalizeCardImageUrl(adjacentCards.previous?.image_url) ?? undefined;
+                const previousCardImageFallback = buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id);
+                return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.previous.gv_id}`, "", compareCards)}
                 className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
               >
                 <PublicCardImage
-                  src={adjacentCards.previous.image_url}
+                  src={previousCardImageSrc}
+                  fallbackSrc={previousCardImageFallback ?? undefined}
                   alt={adjacentCards.previous.name}
                   imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                   fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -826,17 +841,24 @@ export default async function CardPage({
                   <p className="text-xs text-slate-600">#{adjacentCards.previous.number}</p>
                 </div>
               </Link>
+                );
+              })()
             ) : (
               <div className="hidden sm:block" />
             )}
 
             {adjacentCards.next ? (
+              (() => {
+                const nextCardImageSrc = normalizeCardImageUrl(adjacentCards.next?.image_url) ?? undefined;
+                const nextCardImageFallback = buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id);
+                return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.next.gv_id}`, "", compareCards)}
                 className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
               >
                 <PublicCardImage
-                  src={adjacentCards.next.image_url}
+                  src={nextCardImageSrc}
+                  fallbackSrc={nextCardImageFallback ?? undefined}
                   alt={adjacentCards.next.name}
                   imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                   fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
@@ -847,6 +869,8 @@ export default async function CardPage({
                   <p className="text-xs text-slate-600">#{adjacentCards.next.number}</p>
                 </div>
               </Link>
+                );
+              })()
             ) : (
               <div className="hidden sm:block" />
             )}

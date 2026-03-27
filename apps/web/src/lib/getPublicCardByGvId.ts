@@ -26,6 +26,7 @@ type PublicCardRow = {
   set_code: string | null;
   variant_key: string | null;
   variants: VariantFlags;
+  external_ids?: { tcgdex?: string | null } | null;
   card_print_traits?: TraitRow | TraitRow[] | null;
   card_printings?:
     | {
@@ -55,6 +56,7 @@ type RelatedCardRow = {
   set_code: string | null;
   variant_key: string | null;
   variants: VariantFlags;
+  external_ids?: { tcgdex?: string | null } | null;
   sets?:
     | { name: string | null; release_date: string | null }
     | { name: string | null; release_date: string | null }[]
@@ -70,6 +72,11 @@ type SetRow = {
   printed_total: number | null;
   release_date: string | null;
 };
+
+function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null) {
+  const value = externalIds?.tcgdex;
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+}
 
 function getReleaseYear(releaseDate?: string | null) {
   if (!releaseDate) {
@@ -158,6 +165,7 @@ function mapRelatedPrints(rows: RelatedCardRow[]): RelatedCardPrint[] | undefine
       set_code: row.set_code?.trim() || undefined,
       rarity: row.rarity?.trim() || undefined,
       image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
       release_date: setRecord?.release_date ?? undefined,
       release_year: getReleaseYear(setRecord?.release_date),
       variant_key: row.variant_key?.trim() || undefined,
@@ -227,6 +235,7 @@ async function getRelatedPrintsByName(
         rarity,
         image_url,
         image_alt_url,
+        external_ids,
         set_code,
         variant_key,
         variants,
@@ -265,6 +274,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         image_url,
         image_alt_url,
         artist,
+        external_ids,
         set_code,
         variant_key,
         variants,
@@ -318,6 +328,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     set_code: row.set_code ?? undefined,
     rarity: row.rarity ?? undefined,
     image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
     artist: row.artist ?? undefined,
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,

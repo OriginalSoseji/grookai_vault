@@ -7,6 +7,8 @@
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import { normalizeFromPokemonApi } from '../printing/finish_normalizer_v1.mjs';
+import { upsertPrinting } from '../printing/printing_upsert_v1.mjs';
 import { ensurePokemonApiMapping, getPokemonApiId } from './pokemonapi_mapping_helpers.mjs';
 
 const SOURCE = 'pokemonapi';
@@ -371,6 +373,25 @@ async function upsertCardPrint(supabase, card, setId) {
   return { status: 'updated', id: match.id };
 }
 
+async function handlePokemonApiPrintings({
+  supabase,
+  card_print_id,
+  card,
+}) {
+  if (!card_print_id) return;
+
+  const finishes = normalizeFromPokemonApi(card?.variants);
+  for (const finish of finishes) {
+    await upsertPrinting({
+      supabase,
+      card_print_id,
+      finish_key: finish,
+      source: SOURCE,
+      ref: card?.id ?? card?._external_id ?? null,
+    });
+  }
+}
+
 async function normalizeCardTraits(supabase, cardPrintId, card) {
   const tasks = [];
   const add = (fn) => tasks.push(fn);
@@ -479,6 +500,11 @@ async function normalizeCards(supabase) {
 
       await normalizeCardTraits(supabase, cardPrintId, card);
       await ensurePokemonApiMapping(supabase, cardPrintId, getPokemonApiId(card));
+      await handlePokemonApiPrintings({
+        supabase,
+        card_print_id: cardPrintId,
+        card,
+      });
       await markRawImport(supabase, raw.id, 'normalized');
       normalized += 1;
     } catch (err) {
