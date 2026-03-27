@@ -124,6 +124,28 @@ function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[
   return mapped;
 }
 
+function buildFallbackDisplayPrinting(row: Pick<PublicCardRow, "id" | "gv_id">): CardPrinting {
+  const fallbackId = row.id?.trim() || row.gv_id?.trim() || "canonical";
+
+  return {
+    id: `canonical:${fallbackId}`,
+    finish_name: "Base",
+    display_finish: null,
+    is_display_fallback: true,
+  };
+}
+
+function resolveDisplayPrintings(
+  row: Pick<PublicCardRow, "id" | "gv_id">,
+  printings?: CardPrinting[],
+): CardPrinting[] {
+  if (Array.isArray(printings) && printings.length > 0) {
+    return printings;
+  }
+
+  return [buildFallbackDisplayPrinting(row)];
+}
+
 function mapTraitRecord(record?: PublicCardRow["card_print_traits"]): TraitRow | undefined {
   const traitRecord = Array.isArray(record) ? record[0] : record;
 
@@ -313,6 +335,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const pricingByCardId = row.id ? await getPublicPricingByCardIds(supabase, [row.id]) : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
   const traitRecord = mapTraitRecord(row.card_print_traits);
+  const printings = mapCardPrintings(row.card_printings);
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
@@ -350,7 +373,8 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     card_category: traitRecord?.card_category ?? undefined,
     variant_key: row.variant_key?.trim() || undefined,
     variants: row.variants ?? undefined,
-    printings: mapCardPrintings(row.card_printings),
+    printings,
+    display_printings: resolveDisplayPrintings(row, printings),
     related_prints: relatedPrints,
   };
 }

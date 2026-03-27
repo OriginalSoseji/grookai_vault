@@ -3,6 +3,8 @@ export type CardPrinting = {
   finish_key?: string;
   finish_name?: string;
   finish_sort_order?: number;
+  display_finish?: string | null;
+  is_display_fallback?: boolean;
 };
 
 export interface CardSummary {
@@ -48,5 +50,6 @@ export interface CardDetail extends CardSummary {
   variant_key?: string;
   variants?: import("@/lib/cards/variantPresentation").VariantFlags;
   printings?: CardPrinting[];
+  display_printings?: CardPrinting[];
   related_prints?: RelatedCardPrint[];
 }

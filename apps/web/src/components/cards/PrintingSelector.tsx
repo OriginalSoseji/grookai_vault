@@ -36,6 +36,8 @@ export default function PrintingSelector({ printings = [] }: PrintingSelectorPro
   }, [printings]);
   const [selectedPrintingId, setSelectedPrintingId] = useState(displayablePrintings[0]?.id ?? "");
   const [expanded, setExpanded] = useState(false);
+  const selectedPrintingFallbackOnly =
+    displayablePrintings.length === 1 && displayablePrintings[0]?.is_display_fallback === true;
 
   useEffect(() => {
     if (displayablePrintings.length <= 1) {
@@ -48,7 +50,7 @@ export default function PrintingSelector({ printings = [] }: PrintingSelectorPro
     }
   }, [displayablePrintings, selectedPrintingId]);
 
-  if (displayablePrintings.length <= 1) {
+  if (displayablePrintings.length === 0 || (!selectedPrintingFallbackOnly && displayablePrintings.length <= 1)) {
     return null;
   }
 
@@ -63,7 +65,11 @@ export default function PrintingSelector({ printings = [] }: PrintingSelectorPro
     <section className="space-y-4 rounded-[16px] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="space-y-1">
         <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Printings</h2>
-        <p className="text-sm text-slate-600">Available finishes for this card.</p>
+        <p className="text-sm text-slate-600">
+          {selectedPrintingFallbackOnly
+            ? "No child printings are cataloged for this card. Showing the canonical base display."
+            : "Available finishes for this card."}
+        </p>
       </div>
 
       <div className="flex flex-wrap gap-2">

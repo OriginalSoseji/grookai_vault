@@ -517,7 +517,7 @@ export default async function CardPage({
         </div>
       </section>
 
-      <PrintingSelector printings={resolvedCard.printings} />
+      <PrintingSelector printings={resolvedCard.display_printings} />
 
       {networkOffers.length > 0 ? (
         <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
