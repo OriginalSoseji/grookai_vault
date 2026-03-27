@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-03-27T21:56:32.517Z",
+  "sourceReports": {
+    "classification": "C:\\grookai_vault\\backend\\printing\\output\\version_finish_audit_report_v1.json",
+    "triage": "C:\\grookai_vault\\backend\\printing\\output\\blocked_case_triage_report_v1.json"
+  },
+  "casesAudited": 2,
+  "currentPhaseConclusion": "OPTION A — CORRECTLY BLOCKED AS UNSUPPORTED PATTERN",
+  "recommendedNextStep": "NO ACTION — REMAIN BLOCKED",
+  "summaryReason": "Current Grookai law already blocks Energy Symbol Pattern cleanly because it is an external naming-pattern distinction outside the locked finish vocabulary and lacks proof of a distinct issued version.",
+  "cases": [
+    {
+      "setCode": "me02.5",
+      "requestedNumber": "001",
+      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-energy-symbol-pattern-common",
+      "upstreamName": "Erika's Oddish (Energy Symbol Pattern)",
+      "observedPrintings": [
+        "Reverse Holofoil"
+      ],
+      "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
+      "triageBucket": "UNSUPPORTED_PATTERN_VOCAB",
+      "family": {
+        "setCode": "me02.5",
+        "requestedNumber": "001",
+        "justtcgSetId": "me-ascended-heroes-pokemon",
+        "cards": [
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-common",
+            "upstreamName": "Erika's Oddish",
+            "observedPrintings": [
+              "Normal",
+              "Reverse Holofoil"
+            ],
+            "variantCount": 3
+          },
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-poke-ball-common",
+            "upstreamName": "Erika's Oddish (Poke Ball)",
+            "observedPrintings": [
+              "Reverse Holofoil"
+            ],
+            "variantCount": 2
+          },
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-oddish-energy-symbol-pattern-common",
+            "upstreamName": "Erika's Oddish (Energy Symbol Pattern)",
+            "observedPrintings": [
+              "Reverse Holofoil"
+            ],
+            "variantCount": 2
+          }
+        ]
+      },
+      "contractFit": {
+        "VERSION_VS_FINISH": {
+          "governingRules": [
+            "the distinction is within the bounded finish vocabulary",
+            "If not representable within finish_keys:",
+            "→ BLOCKED pending explicit rule or promotion",
+            "Naming patterns are not authority."
+          ],
+          "evaluation": "Current law forces BLOCKED because this distinction is expressed through an upstream naming pattern, is not representable within the locked finish vocabulary, and does not carry proof of a different issued version."
+        },
+        "CHILD_PRINTING": {
+          "governingRules": [
+            "new finish categories must not be introduced implicitly through ingestion, mapping, or source payload interpretation",
+            "does not prove that every distinction expressed through a finish-like label is permanently a child distinction",
+            "External mappings do not decide whether a distinction is canonical or child."
+          ],
+          "evaluation": "Current child-layer law does not permit implicit finish expansion from source labels. Even though the family also contains a lawful Poke Ball sibling, Energy Symbol Pattern is not itself a governed child finish."
+        },
+        "PRINTING_MODEL_V2": {
+          "governingRules": [
+            "If a canon-sensitive distinction cannot be expressed lawfully through the locked finish vocabulary, V2 does not create a child row for it.",
+            "Locked values remain:",
+            "- `pokeball`",
+            "- `masterball`"
+          ],
+          "evaluation": "V2 does not create child rows for distinctions outside the locked finish vocabulary. Energy Symbol Pattern therefore cannot materialize as a child row under current implementation law."
+        },
+        "REFERENCE_BACKED_IDENTITY": {
+          "governingRules": [
+            "DO NOT define canonical naming",
+            "DO NOT define identity relationships",
+            "External sources may assist but never define."
+          ],
+          "evaluation": "JustTCG card names and sibling structure are evidence only. They can support discovery, but they cannot define canonical identity or promote this label into child or row status on their own."
+        }
+      },
+      "currentLegalStatus": "BLOCKED",
+      "statusReason": "The family proves the label recurs as a sibling pattern alongside a base row and a lawful Poke Ball row, but current law still treats the Energy Symbol Pattern label as an unsupported external pattern outside finish_keys and without version proof."
+    },
+    {
+      "setCode": "me02.5",
+      "requestedNumber": "002",
+      "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon",
+      "upstreamName": "Erika's Gloom (Energy Symbol Pattern)",
+      "observedPrintings": [
+        "Reverse Holofoil"
+      ],
+      "reasonCode": "UNSUPPORTED_FINISH_VOCAB",
+      "triageBucket": "UNSUPPORTED_PATTERN_VOCAB",
+      "family": {
+        "setCode": "me02.5",
+        "requestedNumber": "002",
+        "justtcgSetId": "me-ascended-heroes-pokemon",
+        "cards": [
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-uncommon",
+            "upstreamName": "Erika's Gloom",
+            "observedPrintings": [
+              "Normal",
+              "Reverse Holofoil"
+            ],
+            "variantCount": 3
+          },
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-energy-symbol-pattern-uncommon",
+            "upstreamName": "Erika's Gloom (Energy Symbol Pattern)",
+            "observedPrintings": [
+              "Reverse Holofoil"
+            ],
+            "variantCount": 2
+          },
+          {
+            "upstreamCardId": "pokemon-me-ascended-heroes-erika-s-gloom-poke-ball-uncommon",
+            "upstreamName": "Erika's Gloom (Poke Ball)",
+            "observedPrintings": [
+              "Reverse Holofoil"
+            ],
+            "variantCount": 2
+          }
+        ]
+      },
+      "contractFit": {
+        "VERSION_VS_FINISH": {
+          "governingRules": [
+            "the distinction is within the bounded finish vocabulary",
+            "If not representable within finish_keys:",
+            "→ BLOCKED pending explicit rule or promotion",
+            "Naming patterns are not authority."
+          ],
+          "evaluation": "Current law forces BLOCKED because this distinction is expressed through an upstream naming pattern, is not representable within the locked finish vocabulary, and does not carry proof of a different issued version."
+        },
+        "CHILD_PRINTING": {
+          "governingRules": [
+            "new finish categories must not be introduced implicitly through ingestion, mapping, or source payload interpretation",
+            "does not prove that every distinction expressed through a finish-like label is permanently a child distinction",
+            "External mappings do not decide whether a distinction is canonical or child."
+          ],
+          "evaluation": "Current child-layer law does not permit implicit finish expansion from source labels. Even though the family also contains a lawful Poke Ball sibling, Energy Symbol Pattern is not itself a governed child finish."
+        },
+        "PRINTING_MODEL_V2": {
+          "governingRules": [
+            "If a canon-sensitive distinction cannot be expressed lawfully through the locked finish vocabulary, V2 does not create a child row for it.",
+            "Locked values remain:",
+            "- `pokeball`",
+            "- `masterball`"
+          ],
+          "evaluation": "V2 does not create child rows for distinctions outside the locked finish vocabulary. Energy Symbol Pattern therefore cannot materialize as a child row under current implementation law."
+        },
+        "REFERENCE_BACKED_IDENTITY": {
+          "governingRules": [
+            "DO NOT define canonical naming",
+            "DO NOT define identity relationships",
+            "External sources may assist but never define."
+          ],
+          "evaluation": "JustTCG card names and sibling structure are evidence only. They can support discovery, but they cannot define canonical identity or promote this label into child or row status on their own."
+        }
+      },
+      "currentLegalStatus": "BLOCKED",
+      "statusReason": "The family proves the label recurs as a sibling pattern alongside a base row and a lawful Poke Ball row, but current law still treats the Energy Symbol Pattern label as an unsupported external pattern outside finish_keys and without version proof."
+    }
+  ]
+}
