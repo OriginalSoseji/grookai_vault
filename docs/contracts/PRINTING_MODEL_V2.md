@@ -377,6 +377,8 @@ Reason:
 
 `pokeball` and `masterball` are contract-governed premium parallels.
 
+Global premium child authority for this lane is governed by `PREMIUM_CHILD_AUTHORITY_CONTRACT_V1.md`.
+
 V2 rule:
 
 - premium child rows may be created only when eligibility is explicit and deterministic
