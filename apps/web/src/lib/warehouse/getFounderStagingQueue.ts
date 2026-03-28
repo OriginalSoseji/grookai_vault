@@ -24,6 +24,8 @@ type WarehouseStagingRow = {
   execution_status: string;
   execution_attempts: number | null;
   last_error: string | null;
+  last_attempted_at: string | null;
+  executed_at: string | null;
 };
 
 type WarehouseCandidateRow = {
@@ -31,12 +33,22 @@ type WarehouseCandidateRow = {
   notes: string;
   submission_intent: string;
   state: string;
+  promotion_result_type: string | null;
+  promoted_card_print_id: string | null;
+  promoted_card_printing_id: string | null;
+  promoted_image_target_type: string | null;
+  promoted_image_target_id: string | null;
 };
 
 export type FounderStagingQueueRow = WarehouseStagingRow & {
   candidate_notes_preview: string;
   submission_intent: string | null;
   candidate_state: string | null;
+  promotion_result_type: string | null;
+  promoted_card_print_id: string | null;
+  promoted_card_printing_id: string | null;
+  promoted_image_target_type: string | null;
+  promoted_image_target_id: string | null;
 };
 
 export type FounderStagingQueueResult = {
@@ -81,7 +93,7 @@ export async function getFounderStagingQueue(input?: {
   let query = admin
     .from("canon_warehouse_promotion_staging")
     .select(
-      "id,candidate_id,approved_action_type,frozen_payload,founder_approved_at,staged_at,execution_status,execution_attempts,last_error",
+      "id,candidate_id,approved_action_type,frozen_payload,founder_approved_at,staged_at,execution_status,execution_attempts,last_error,last_attempted_at,executed_at",
     )
     .order("staged_at", { ascending: false })
     .limit(limit);
@@ -101,7 +113,7 @@ export async function getFounderStagingQueue(input?: {
   const { data: candidateData, error: candidateError } = candidateIds.length
     ? await admin
         .from("canon_warehouse_candidates")
-        .select("id,notes,submission_intent,state")
+        .select("id,notes,submission_intent,state,promotion_result_type,promoted_card_print_id,promoted_card_printing_id,promoted_image_target_type,promoted_image_target_id")
         .in("id", candidateIds)
     : { data: [], error: null };
 
@@ -122,6 +134,11 @@ export async function getFounderStagingQueue(input?: {
         candidate_notes_preview: buildNotesPreview(candidate?.notes),
         submission_intent: candidate?.submission_intent ?? null,
         candidate_state: candidate?.state ?? null,
+        promotion_result_type: candidate?.promotion_result_type ?? null,
+        promoted_card_print_id: candidate?.promoted_card_print_id ?? null,
+        promoted_card_printing_id: candidate?.promoted_card_printing_id ?? null,
+        promoted_image_target_type: candidate?.promoted_image_target_type ?? null,
+        promoted_image_target_id: candidate?.promoted_image_target_id ?? null,
       };
     }),
     statusFilter,

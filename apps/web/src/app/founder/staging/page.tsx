@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import WarehouseStagingExecutionPanel from "@/components/founder/WarehouseStagingExecutionPanel";
 import {
   JsonDisclosure,
   WarehouseBadge,
@@ -120,7 +121,7 @@ export default async function FounderStagingPage({
       <PageSection spacing="default">
         <SectionHeader
           title={`Staging rows (${rows.length})`}
-          description="Frozen payloads plus execution bookkeeping. Promotion execution itself remains out of scope here."
+          description="Frozen payloads plus execution bookkeeping. Single-row execution runs only through the protected founder-triggered executor path."
         />
 
         {rows.length === 0 ? (
@@ -170,10 +171,29 @@ export default async function FounderStagingPage({
                     <dd className="mt-1 text-sm text-slate-900">{row.execution_attempts}</dd>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Last error</dt>
-                    <dd className="mt-1 text-sm text-slate-900">{row.last_error ?? "—"}</dd>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Last attempted</dt>
+                    <dd className="mt-1 text-sm text-slate-900">{formatTimestamp(row.last_attempted_at)}</dd>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Executed at</dt>
+                    <dd className="mt-1 text-sm text-slate-900">{formatTimestamp(row.executed_at)}</dd>
                   </div>
                 </dl>
+
+                <WarehouseStagingExecutionPanel
+                  stagingId={row.id}
+                  candidateId={row.candidate_id}
+                  executionStatus={row.execution_status}
+                  executionAttempts={row.execution_attempts ?? 0}
+                  lastError={row.last_error}
+                  lastAttemptedAt={row.last_attempted_at}
+                  executedAt={row.executed_at}
+                  promotionResultType={row.promotion_result_type}
+                  promotedCardPrintId={row.promoted_card_print_id}
+                  promotedCardPrintingId={row.promoted_card_printing_id}
+                  promotedImageTargetType={row.promoted_image_target_type}
+                  promotedImageTargetId={row.promoted_image_target_id}
+                />
 
                 <JsonDisclosure
                   label="Frozen staging payload"

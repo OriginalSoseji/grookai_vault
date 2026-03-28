@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import WarehouseFounderActionPanel from "@/components/founder/WarehouseFounderActionPanel";
+import WarehouseStagingExecutionPanel from "@/components/founder/WarehouseStagingExecutionPanel";
 import {
   DefinitionGrid,
   JsonDisclosure,
@@ -281,22 +282,30 @@ export default async function FounderWarehouseCandidatePage({
             { label: "Archived by", value: candidate.archived_by_user_id ?? "—" },
             { label: "Archived at", value: formatTimestamp(candidate.archived_at) },
             { label: "Archive notes", value: candidate.archive_notes ?? "—" },
+            { label: "Promotion result", value: candidate.promotion_result_type ?? "—" },
+            { label: "Promoted by", value: candidate.promoted_by_user_id ?? "—" },
+            { label: "Promoted at", value: formatTimestamp(candidate.promoted_at) },
           ]}
         />
 
         <div className="mt-4">
           <WarehouseFounderActionPanel candidateId={candidate.id} candidateState={candidate.state} />
         </div>
+      </PageSection>
 
-        {candidate.state === "STAGED_FOR_PROMOTION" && latestStagingRow ? (
-          <div className="mt-4 rounded-[1.5rem] border border-amber-200 bg-amber-50 px-5 py-5 text-sm text-amber-900">
-            <p className="font-semibold">This candidate is already staged for promotion.</p>
-            <p className="mt-1">
+      {latestStagingRow && candidate.current_staging_id === latestStagingRow.id ? (
+        <PageSection surface="card" spacing="default">
+          <SectionHeader
+            title="Promotion execution"
+            description="Execution remains separate from review. Founder UI can trigger only the protected executor path for the current staging row."
+          />
+          <div className="mb-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5 text-sm text-slate-700">
+            <p>
               Current staging row:
               {" "}
               <Link
                 href="/founder/staging"
-                className="underline decoration-amber-400 underline-offset-4"
+                className="underline decoration-slate-300 underline-offset-4"
               >
                 {latestStagingRow.id}
               </Link>
@@ -304,8 +313,22 @@ export default async function FounderWarehouseCandidatePage({
               ({latestStagingRow.execution_status})
             </p>
           </div>
-        ) : null}
-      </PageSection>
+          <WarehouseStagingExecutionPanel
+            stagingId={latestStagingRow.id}
+            candidateId={candidate.id}
+            executionStatus={latestStagingRow.execution_status}
+            executionAttempts={latestStagingRow.execution_attempts}
+            lastError={latestStagingRow.last_error}
+            lastAttemptedAt={latestStagingRow.last_attempted_at}
+            executedAt={latestStagingRow.executed_at}
+            promotionResultType={candidate.promotion_result_type}
+            promotedCardPrintId={candidate.promoted_card_print_id}
+            promotedCardPrintingId={candidate.promoted_card_printing_id}
+            promotedImageTargetType={candidate.promoted_image_target_type}
+            promotedImageTargetId={candidate.promoted_image_target_id}
+          />
+        </PageSection>
+      ) : null}
 
       <PageSection surface="card" spacing="default">
         <SectionHeader
