@@ -780,6 +780,31 @@ export default async function FounderPage() {
         </div>
       </section>
 
+      <section className="rounded-[2rem] border border-slate-200 bg-white px-6 py-6 shadow-sm shadow-slate-200/60">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Founder Tools</h2>
+            <p className="text-sm text-slate-600">
+              Warehouse review stays in the decision lane. Staging stays in the execution lane.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/founder/warehouse"
+              className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            >
+              Warehouse Review
+            </Link>
+            <Link
+              href="/founder/staging"
+              className="rounded-full border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            >
+              Staging Dashboard
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {telemetryError ? (
         <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryError.message}`} />
       ) : null}
