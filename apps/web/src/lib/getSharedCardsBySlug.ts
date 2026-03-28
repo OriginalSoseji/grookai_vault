@@ -12,7 +12,6 @@ import {
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import {
   normalizeVaultInstanceImageDisplayMode,
-  prefersUploadedVaultInstanceImage,
   type VaultInstanceImageDisplayMode,
 } from "@/lib/vaultInstanceImageDisplay";
 
@@ -21,10 +20,6 @@ type SharedCardRow = {
   gv_id: string | null;
   wall_category: string | null;
   public_note: string | null;
-  public_front_image_path: string | null;
-  public_back_image_path: string | null;
-  show_personal_front: boolean | null;
-  show_personal_back: boolean | null;
 };
 
 type InPlayStreamRow = {
@@ -596,11 +591,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         card_id,
         gv_id,
         wall_category,
-        public_note,
-        public_front_image_path,
-        public_back_image_path,
-        show_personal_front,
-        show_personal_back
+        public_note
       `,
     )
     .eq("user_id", profileRow.user_id)
@@ -665,12 +656,6 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
       const setRecord = Array.isArray(cardPrint.sets) ? cardPrint.sets[0] : cardPrint.sets;
       const representativeSharedInstance = representativeSharedInstanceByCardId.get(row.card_id) ?? null;
-      const personalFrontImageUrl =
-        row.show_personal_front === true && prefersUploadedVaultInstanceImage(representativeSharedInstance?.imageDisplayMode)
-          ? getBestPublicCardImageUrl(row.public_front_image_path) ?? undefined
-          : undefined;
-      const personalBackImageUrl =
-        row.show_personal_back === true ? getBestPublicCardImageUrl(row.public_back_image_path) ?? undefined : undefined;
       const wallState = wallStateByCardId.get(row.card_id);
       const inPlayState = inPlayStateByCardId.get(row.card_id);
 
@@ -683,9 +668,9 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         set_name: setRecord?.name?.trim() || undefined,
         number: cardPrint.number?.trim() || "—",
         rarity: cardPrint.rarity?.trim() || undefined,
-        image_url: personalFrontImageUrl ?? getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
+        image_url: getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
         canonical_image_url: getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
-        back_image_url: personalBackImageUrl,
+        back_image_url: undefined,
         public_note: row.public_note?.trim() || undefined,
         wall_category: normalizeWallCategory(row.wall_category) ?? undefined,
         owned_count: wallState?.total_count,
@@ -818,9 +803,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         `
           card_id,
           gv_id,
-          public_note,
-          public_front_image_path,
-          show_personal_front
+          public_note
         `,
       )
       .eq("user_id", ownerUserId)
@@ -841,7 +824,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
   const sharedByCardId = new Map(
     ((sharedResponse.data ?? []) as Pick<
       SharedCardRow,
-      "card_id" | "gv_id" | "public_note" | "public_front_image_path" | "show_personal_front"
+      "card_id" | "gv_id" | "public_note"
     >[])
       .map((row) => [normalizeOptionalText(row.card_id), row] as const)
       .filter(
@@ -849,7 +832,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
           entry,
         ): entry is [
           string,
-          Pick<SharedCardRow, "card_id" | "gv_id" | "public_note" | "public_front_image_path" | "show_personal_front">,
+          Pick<SharedCardRow, "card_id" | "gv_id" | "public_note">,
         ] => Boolean(entry[0]),
       ),
   );
@@ -858,11 +841,6 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
     const cardPrint = cardPrintById.get(row.cardPrintId) ?? null;
     const shared = sharedByCardId.get(row.cardPrintId) ?? null;
     const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
-    const primaryDiscoverableCopy = (discoverableCopiesByCardId.get(row.cardPrintId) ?? [])[0] ?? null;
-    const personalFrontImageUrl =
-      shared?.show_personal_front === true && prefersUploadedVaultInstanceImage(primaryDiscoverableCopy?.image_display_mode)
-        ? getBestPublicCardImageUrl(shared.public_front_image_path) ?? undefined
-        : undefined;
 
     return {
       card_print_id: row.cardPrintId,
@@ -877,10 +855,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         undefined,
       number: row.number ?? normalizeOptionalText(cardPrint?.number) ?? "—",
       rarity: normalizeOptionalText(cardPrint?.rarity) ?? undefined,
-      image_url:
-        personalFrontImageUrl ??
-        getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ??
-        undefined,
+      image_url: getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ?? undefined,
       canonical_image_url:
         getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ?? undefined,
       public_note: normalizeOptionalText(shared?.public_note) ?? undefined,

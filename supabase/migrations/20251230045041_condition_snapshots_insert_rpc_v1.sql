@@ -30,6 +30,11 @@ begin
     raise exception 'auth_required';
   end if;
 
+  -- IMPORTANT:
+  -- card_print_id must NEVER be set during upload.
+  -- Identity is resolved through interpreter + identity pipeline only.
+  -- This prevents user input from polluting canonical identity.
+
   insert into public.condition_snapshots (
     id,
     vault_item_id,
@@ -56,7 +61,7 @@ begin
     coalesce(p_confidence, 0.0),
     coalesce(p_device_meta, '{}'::jsonb),
     p_fingerprint_id,
-    p_card_print_id
+    null
   );
 
   return p_id;

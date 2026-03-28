@@ -12,7 +12,6 @@ import {
 import { saveSharedCardPublicNoteAction } from "@/lib/sharedCards/saveSharedCardPublicNoteAction";
 import { saveSharedCardWallCategoryAction } from "@/lib/sharedCards/saveSharedCardWallCategoryAction";
 import { toggleSharedCardAction } from "@/lib/sharedCards/toggleSharedCardAction";
-import { toggleSharedCardPublicImageAction } from "@/lib/sharedCards/toggleSharedCardPublicImageAction";
 import {
   WALL_CATEGORY_OPTIONS,
   type WallCategory,
@@ -31,9 +30,7 @@ export default function VaultManageCardSettingsPanel({
   const [isShared, setIsShared] = useState(item.is_shared);
   const [wallCategory, setWallCategory] = useState<WallCategory | null>(item.wall_category);
   const [publicNote, setPublicNote] = useState(item.public_note ?? "");
-  const [showFront, setShowFront] = useState(item.show_personal_front);
-  const [showBack, setShowBack] = useState(item.show_personal_back);
-  const [pendingField, setPendingField] = useState<"share" | "wallCategory" | "note" | "front" | "back" | null>(null);
+  const [pendingField, setPendingField] = useState<"share" | "wallCategory" | "note" | null>(null);
   const [statusMessage, setStatusMessage] = useState<{ tone: "success" | "error"; body: string } | null>(null);
   const [, startTransition] = useTransition();
 
@@ -41,8 +38,6 @@ export default function VaultManageCardSettingsPanel({
     setIsShared(item.is_shared);
     setWallCategory(item.wall_category);
     setPublicNote(item.public_note ?? "");
-    setShowFront(item.show_personal_front);
-    setShowBack(item.show_personal_back);
   }, [item]);
 
   function handleShareToggle() {
@@ -55,8 +50,6 @@ export default function VaultManageCardSettingsPanel({
       isShared,
       wallCategory,
       publicNote,
-      showFront,
-      showBack,
     };
 
     setStatusMessage(null);
@@ -65,8 +58,6 @@ export default function VaultManageCardSettingsPanel({
 
     if (!nextShared) {
       setWallCategory(null);
-      setShowFront(false);
-      setShowBack(false);
     }
 
     startTransition(async () => {
@@ -81,8 +72,6 @@ export default function VaultManageCardSettingsPanel({
           setIsShared(previousState.isShared);
           setWallCategory(previousState.wallCategory);
           setPublicNote(previousState.publicNote);
-          setShowFront(previousState.showFront);
-          setShowBack(previousState.showBack);
           setStatusMessage({ tone: "error", body: result.message });
           setPendingField(null);
           return;
@@ -99,8 +88,6 @@ export default function VaultManageCardSettingsPanel({
         setIsShared(previousState.isShared);
         setWallCategory(previousState.wallCategory);
         setPublicNote(previousState.publicNote);
-        setShowFront(previousState.showFront);
-        setShowBack(previousState.showBack);
         setStatusMessage({ tone: "error", body: "Couldn’t update wall state." });
         setPendingField(null);
       }
@@ -180,73 +167,6 @@ export default function VaultManageCardSettingsPanel({
     });
   }
 
-  function handlePublicImageToggle(side: "front" | "back", enabled: boolean) {
-    if (!isShared || pendingField) {
-      return;
-    }
-
-    const hasPhoto = side === "front" ? item.has_front_photo : item.has_back_photo;
-    if (enabled && !hasPhoto) {
-      setStatusMessage({
-        tone: "error",
-        body: side === "front" ? "Upload a front photo on the copy page first." : "Upload a back photo on the copy page first.",
-      });
-      return;
-    }
-
-    const previousValue = side === "front" ? showFront : showBack;
-    setStatusMessage(null);
-    setPendingField(side);
-
-    if (side === "front") {
-      setShowFront(enabled);
-    } else {
-      setShowBack(enabled);
-    }
-
-    startTransition(async () => {
-      try {
-        const result = await toggleSharedCardPublicImageAction({
-          cardId: item.card_id,
-          side,
-          enabled,
-        });
-
-        if (!result.ok) {
-          if (side === "front") {
-            setShowFront(previousValue);
-          } else {
-            setShowBack(previousValue);
-          }
-          setStatusMessage({ tone: "error", body: result.message });
-          setPendingField(null);
-          return;
-        }
-
-        if (side === "front") {
-          setShowFront(result.enabled);
-        } else {
-          setShowBack(result.enabled);
-        }
-
-        setStatusMessage({
-          tone: "success",
-          body: side === "front" ? "Front image visibility saved." : "Back image visibility saved.",
-        });
-        setPendingField(null);
-        router.refresh();
-      } catch {
-        if (side === "front") {
-          setShowFront(previousValue);
-        } else {
-          setShowBack(previousValue);
-        }
-        setStatusMessage({ tone: "error", body: "Couldn’t update public image settings." });
-        setPendingField(null);
-      }
-    });
-  }
-
   return (
     <div className="space-y-4 rounded-[1.6rem] border border-slate-200/80 bg-white/95 p-5 shadow-[0_24px_48px_-38px_rgba(15,23,42,0.2)]">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -318,52 +238,12 @@ export default function VaultManageCardSettingsPanel({
         <div className="space-y-3">
           <div className="space-y-1">
             <VaultFieldLabel>Public Images</VaultFieldLabel>
-            <p className="text-sm text-slate-600">Grouped wall visibility can use the photos already uploaded on your exact copy pages.</p>
+            <p className="text-sm text-slate-600">Legacy grouped-card public images are disabled until the GVVI-aligned replacement exists.</p>
           </div>
 
-          {!item.is_slab ? (
-            <div className="space-y-2">
-              <label className="flex items-start gap-3 rounded-[1rem] border border-slate-200 bg-slate-50/80 px-3 py-3 text-sm">
-                <input
-                  type="checkbox"
-                  checked={showFront}
-                  disabled={!isShared || !item.has_front_photo || pendingField !== null}
-                  onChange={(event) => handlePublicImageToggle("front", event.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:opacity-50"
-                />
-                <span className="min-w-0">
-                  <span className="block font-medium text-slate-800">Show front photo</span>
-                  <span className="mt-1 block text-xs text-slate-500">
-                    {item.has_front_photo
-                      ? "Collectors will see the uploaded front photo for this grouped card."
-                      : "Upload a front photo on an exact copy page first."}
-                  </span>
-                </span>
-              </label>
-
-              <label className="flex items-start gap-3 rounded-[1rem] border border-slate-200 bg-slate-50/80 px-3 py-3 text-sm">
-                <input
-                  type="checkbox"
-                  checked={showBack}
-                  disabled={!isShared || !item.has_back_photo || pendingField !== null}
-                  onChange={(event) => handlePublicImageToggle("back", event.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:opacity-50"
-                />
-                <span className="min-w-0">
-                  <span className="block font-medium text-slate-800">Show back photo</span>
-                  <span className="mt-1 block text-xs text-slate-500">
-                    {item.has_back_photo
-                      ? "Collectors will see the uploaded back photo for this grouped card."
-                      : "Upload a back photo on an exact copy page first."}
-                  </span>
-                </span>
-              </label>
-            </div>
-          ) : (
-            <VaultInsetCard className="text-sm text-slate-600">
-              Slabbed grouped cards keep their public identity through slab details instead of personal image toggles.
-            </VaultInsetCard>
-          )}
+          <VaultInsetCard className="text-sm text-slate-600">
+            Public wall rendering now falls back to canonical card imagery only. Personal front/back image toggles remain disabled while the GVVI media pipeline is designed for public use.
+          </VaultInsetCard>
         </div>
       </div>
 
