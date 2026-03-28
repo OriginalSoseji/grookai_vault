@@ -168,3 +168,5 @@ This contract enables safe expansion of the canonical database while preserving:
 * identity integrity
 * deterministic behavior
 * system stability
+
+Approval-gated review and promotion workflow is governed by `CANON_WAREHOUSE_APPROVAL_PIPELINE_CONTRACT_V1.md`.
