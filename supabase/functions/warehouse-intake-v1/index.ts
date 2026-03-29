@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { json, requireUser } from "../_shared/auth.ts";
+import { requireUser } from "../_shared/auth.ts";
+import { corsHeaders, corsJson } from "../_shared/cors.ts";
 
 type SubmissionIntent = "MISSING_CARD" | "MISSING_IMAGE";
 type IntakeChannel = "SCAN" | "UPLOAD" | "MANUAL";
@@ -146,10 +147,13 @@ function parsePayload(body: IntakePayload) {
 serve(async (req) => {
   try {
     if (req.method === "OPTIONS") {
-      return new Response("ok", { status: 200 });
+      return new Response("ok", {
+        status: 200,
+        headers: corsHeaders,
+      });
     }
     if (req.method !== "POST") {
-      return json(405, { error: "method_not_allowed" });
+      return corsJson(405, { error: "method_not_allowed" });
     }
 
     let auth: Awaited<ReturnType<typeof requireUser>>;
@@ -157,9 +161,9 @@ serve(async (req) => {
       auth = await requireUser(req);
     } catch (err) {
       const code = (err as { code?: string } | null | undefined)?.code;
-      if (code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
-      if (code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
-      if (code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
+      if (code === "missing_bearer_token") return corsJson(401, { error: "missing_bearer_token" });
+      if (code === "invalid_jwt") return corsJson(401, { error: "invalid_jwt" });
+      if (code === "server_misconfigured") return corsJson(500, { error: "server_misconfigured" });
       throw err;
     }
 
@@ -178,13 +182,13 @@ serve(async (req) => {
     });
 
     if (error || !data) {
-      return json(500, {
+      return corsJson(500, {
         error: "warehouse_intake_failed",
         detail: error?.message ?? "unknown",
       });
     }
 
-    return json(200, {
+    return corsJson(200, {
       success: true,
       candidate_id: data,
     });
@@ -204,9 +208,9 @@ serve(async (req) => {
       case "missing_image_storage_path":
       case "evidence_required":
       case "missing_image_requires_reference":
-        return json(400, { error: (err as { code?: string }).code, detail });
+        return corsJson(400, { error: (err as { code?: string }).code, detail });
       default:
-        return json(500, { error: "internal_error", detail });
+        return corsJson(500, { error: "internal_error", detail });
     }
   }
 });
