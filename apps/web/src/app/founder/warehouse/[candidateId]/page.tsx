@@ -16,6 +16,7 @@ import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
 import type { FounderUnresolvedReview } from "@/lib/warehouse/buildFounderPromotionReview";
+import type { WarehouseInterpreterPackage } from "@/lib/warehouse/buildWarehouseInterpreterV1";
 import {
   getFounderWarehouseCandidateById,
   type FounderWarehouseEvidenceDetailRow,
@@ -141,6 +142,43 @@ function BlockingIssuesPanel({ unresolved }: { unresolved: FounderUnresolvedRevi
         />
       </div>
       <JsonDisclosure label="Unresolved review JSON" value={unresolved} />
+    </section>
+  );
+}
+
+function InterpreterBlockingPanel({ interpreter }: { interpreter: WarehouseInterpreterPackage }) {
+  return (
+    <section className="space-y-4 rounded-[1.5rem] border border-rose-200 bg-rose-50 px-5 py-5">
+      <div className="flex flex-wrap items-center gap-2">
+        <WarehouseBadge value={interpreter.status} />
+        <WarehouseBadge value={interpreter.decision} />
+        <WarehouseBadge value={interpreter.reason_code} tone="default" />
+        <WarehouseBadge value={interpreter.confidence} tone="muted" />
+      </div>
+      <div className="space-y-2">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-700">Blocking reason</p>
+        <p className="text-sm leading-7 text-rose-950">{interpreter.founder_explanation}</p>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <SupportingList
+          title="Missing for promotion"
+          items={interpreter.missing_fields}
+          emptyMessage="No specific missing fields were recorded."
+        />
+        <SupportingList
+          title="Next actions"
+          items={interpreter.next_actions}
+          emptyMessage="No next actions were recorded."
+        />
+      </div>
+      {interpreter.evidence_gaps.length > 0 ? (
+        <SupportingList
+          title="Evidence gaps"
+          items={interpreter.evidence_gaps}
+          emptyMessage="No evidence gaps were recorded."
+        />
+      ) : null}
+      <JsonDisclosure label="Interpreter package JSON" value={interpreter} />
     </section>
   );
 }
@@ -280,6 +318,7 @@ export default async function FounderWarehouseCandidatePage({
   const candidate = detail.candidate;
   const currentStagingRow = detail.currentStagingRow;
   const promotionReview = detail.promotionReview;
+  const interpreterPackage = detail.interpreterPackage;
   const normalizedPackage = detail.latestNormalizedPackage;
   const classificationPackage = detail.latestClassificationPackage;
   const normalizedSummary = (normalizedPackage?.source_summary ?? null) as Record<string, unknown> | null;
@@ -321,8 +360,12 @@ export default async function FounderWarehouseCandidatePage({
         <div className="flex flex-wrap gap-2">
           <WarehouseBadge value={candidate.state} />
           <WarehouseBadge value={candidate.submission_intent} tone="default" />
-          <WarehouseBadge value={promotionReview?.actionTypeLabel ?? candidate.proposed_action_type ?? "UNSET"} tone="default" />
-          <WarehouseBadge value={promotionReview?.candidateTypeLabel ?? "Unresolved"} tone="default" />
+          <WarehouseBadge value={interpreterPackage?.decision ?? promotionReview?.candidateTypeLabel ?? "UNRESOLVED"} />
+          <WarehouseBadge
+            value={interpreterPackage?.proposed_action ?? promotionReview?.actionTypeLabel ?? candidate.proposed_action_type ?? "UNSET"}
+            tone="default"
+          />
+          {interpreterPackage ? <WarehouseBadge value={interpreterPackage.confidence} tone="muted" /> : null}
           {promotionReview?.writePlan.resultPreviewType ? (
             <WarehouseBadge value={promotionReview.writePlan.resultPreviewType} />
           ) : null}
@@ -332,13 +375,16 @@ export default async function FounderWarehouseCandidatePage({
             { label: "Candidate id", value: candidate.id },
             { label: "Current state", value: candidate.state },
             { label: "Submission intent", value: candidate.submission_intent },
-            { label: "Decision type", value: promotionReview?.candidateTypeLabel ?? "Unresolved" },
-            { label: "Proposed action", value: promotionReview?.actionTypeLabel ?? candidate.proposed_action_type ?? "—" },
+            { label: "Interpreter decision", value: interpreterPackage?.decision ?? "—" },
+            { label: "Interpreter status", value: interpreterPackage?.status ?? "—" },
+            { label: "Interpreter confidence", value: interpreterPackage?.confidence ?? "—" },
+            { label: "Proposed action", value: interpreterPackage?.proposed_action ?? "—" },
+            { label: "Reason code", value: interpreterPackage?.reason_code ?? candidate.interpreter_reason_code ?? "—" },
             { label: "Payload source", value: promotionReview?.payloadSource ?? "—" },
             { label: "Promotion result preview", value: promotionReview?.writePlan.resultPreviewType ?? candidate.promotion_result_type ?? "—" },
             { label: "Current staging id", value: candidate.current_staging_id ?? "—" },
             { label: "TCGplayer id", value: candidate.tcgplayer_id ?? "—" },
-            { label: "Hold reason", value: candidate.current_review_hold_reason ?? "—" },
+            { label: "Hold reason", value: candidate.current_review_hold_reason ?? interpreterPackage?.reason_code ?? "—" },
             { label: "Created", value: formatTimestamp(candidate.created_at) },
             { label: "Updated", value: formatTimestamp(candidate.updated_at) },
             { label: "Founder approved at", value: formatTimestamp(candidate.founder_approved_at) },
@@ -351,22 +397,22 @@ export default async function FounderWarehouseCandidatePage({
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Promotion call</p>
               <p className="mt-2 text-base font-semibold text-slate-950">
-                {promotionReview?.decisionSummary ?? "No promotion interpretation is available yet."}
+                {interpreterPackage?.founder_explanation ?? promotionReview?.decisionSummary ?? "No promotion interpretation is available yet."}
               </p>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Interpreter explanation</p>
               <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-slate-700">
-                {candidate.interpreter_explanation ?? "No interpreter explanation recorded yet."}
+                {interpreterPackage?.founder_explanation ?? candidate.interpreter_explanation ?? "No interpreter explanation recorded yet."}
               </p>
             </div>
           </div>
           <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5">
             <DefinitionGrid
               items={[
-                { label: "Interpreter decision", value: candidate.interpreter_decision ?? "—" },
-                { label: "Reason code", value: candidate.interpreter_reason_code ?? "—" },
-                { label: "Resolved finish key", value: candidate.interpreter_resolved_finish_key ?? "—" },
+                { label: "Candidate summary decision", value: candidate.interpreter_decision ?? "—" },
+                { label: "Candidate summary reason", value: candidate.interpreter_reason_code ?? "—" },
+                { label: "Resolved finish key", value: interpreterPackage?.canon_context.finish_key ?? candidate.interpreter_resolved_finish_key ?? "—" },
                 {
                   label: "Needs promotion review",
                   value: (
@@ -378,12 +424,30 @@ export default async function FounderWarehouseCandidatePage({
                 },
                 { label: "Founder approval notes", value: candidate.founder_approval_notes ?? "—" },
                 { label: "Promotion result", value: candidate.promotion_result_type ?? "—" },
+                { label: "Matched card print", value: interpreterPackage?.canon_context.matched_card_print_id ?? promotionReview?.references.matchedCardPrintId ?? "—" },
+                { label: "Matched card printing", value: interpreterPackage?.canon_context.matched_card_printing_id ?? promotionReview?.references.matchedCardPrintingId ?? "—" },
               ]}
             />
           </div>
         </div>
-        {promotionReview?.unresolved ? (
+        {interpreterPackage?.status === "BLOCKED" ? (
+          <InterpreterBlockingPanel interpreter={interpreterPackage} />
+        ) : promotionReview?.unresolved ? (
           <BlockingIssuesPanel unresolved={promotionReview.unresolved} />
+        ) : null}
+        {interpreterPackage?.status === "READY" ? (
+          <div className="grid gap-4 lg:grid-cols-2">
+            <SupportingList
+              title="Evidence gaps"
+              items={interpreterPackage.evidence_gaps}
+              emptyMessage="No evidence gaps were recorded for the current interpretation."
+            />
+            <SupportingList
+              title="Next actions"
+              items={interpreterPackage.next_actions}
+              emptyMessage="No next actions were recorded."
+            />
+          </div>
         ) : null}
         <div className="space-y-4">
           <WarehouseFounderActionPanel candidateId={candidate.id} candidateState={candidate.state} />
@@ -490,8 +554,14 @@ export default async function FounderWarehouseCandidatePage({
             {promotionReview?.writePlan.resultPreviewType ? (
               <WarehouseBadge value={promotionReview.writePlan.resultPreviewType} />
             ) : null}
+            {interpreterPackage ? <WarehouseBadge value={interpreterPackage.decision} tone="default" /> : null}
           </div>
-          {promotionReview?.unresolved ? (
+          {interpreterPackage?.status === "BLOCKED" ? (
+            <div className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-6 text-rose-950">
+              <p className="font-semibold">{interpreterPackage.reason_code}</p>
+              <p className="mt-1">{interpreterPackage.founder_explanation}</p>
+            </div>
+          ) : promotionReview?.unresolved ? (
             <div className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-6 text-rose-950">
               <p className="font-semibold">{promotionReview.unresolved.blocking_reason_label}</p>
               <p className="mt-1">{promotionReview.unresolved.founder_explanation}</p>
@@ -534,6 +604,9 @@ export default async function FounderWarehouseCandidatePage({
           items={promotionReview?.comparison.delta ?? []}
           emptyMessage="No explicit identity delta has been recorded yet."
         />
+        {interpreterPackage ? (
+          <JsonDisclosure label="Interpreter package JSON" value={interpreterPackage} />
+        ) : null}
       </PageSection>
 
       <PageSection surface="card" spacing="default">

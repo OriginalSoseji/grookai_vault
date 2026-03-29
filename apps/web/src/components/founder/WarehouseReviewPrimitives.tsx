@@ -21,6 +21,7 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
   }
 
   switch (String(value ?? "").toUpperCase()) {
+    case "READY":
     case "REVIEW_READY":
     case "NORMALIZED":
     case "CLASSIFIED":
@@ -34,6 +35,10 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
     case "CARD_PRINT_CREATED":
     case "CARD_PRINTING_CREATED":
     case "CANON_IMAGE_ENRICHED":
+    case "NEW_CANONICAL_REQUIRED":
+    case "NEW_CHILD_PRINTING_REQUIRED":
+    case "IMAGE_REPAIR_ONLY":
+    case "DUPLICATE_EXISTING":
       return "success";
     case "RAW":
     case "PENDING":
@@ -42,7 +47,9 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
     case "CLASSIFIED_PARTIAL":
     case "REVIEW_REQUIRED":
     case "UPDATE":
+    case "HOLD_FOR_REVIEW":
       return "warning";
+    case "BLOCKED":
     case "BLOCKED_NO_PROMOTION":
     case "CLASSIFICATION_BLOCKED":
     case "NORMALIZATION_BLOCKED":
