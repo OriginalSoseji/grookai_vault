@@ -1,4 +1,5 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.81.1";
+import { getServiceRoleKey } from "./key_resolver.ts";
 
 export type AuthEnv = {
   supabaseUrl: string;
@@ -50,7 +51,10 @@ export function extractBearerToken(req: Request): string | null {
 
 export function readAuthEnv(): AuthEnv | null {
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+  const serviceRoleKey =
+    getServiceRoleKey() ??
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ??
+    "";
   if (!supabaseUrl || !serviceRoleKey) return null;
   return { supabaseUrl, serviceRoleKey };
 }
@@ -70,14 +74,16 @@ export async function requireUser(req: Request): Promise<{
   const token = extractBearerToken(req);
   if (!token) throw Object.assign(new Error("missing_bearer_token"), { code: "missing_bearer_token" });
 
+  const authClient = createClient(env.supabaseUrl, env.serviceRoleKey);
+
+  const { data: userData, error: userErr } = await authClient.auth.getUser(token);
+  if (userErr || !userData?.user) throw Object.assign(new Error("invalid_jwt"), { code: "invalid_jwt" });
+
   const sb = createClient(env.supabaseUrl, env.serviceRoleKey, {
     global: {
       headers: { Authorization: `Bearer ${token}` },
     },
   });
-
-  const { data: userData, error: userErr } = await sb.auth.getUser(token);
-  if (userErr || !userData?.user) throw Object.assign(new Error("invalid_jwt"), { code: "invalid_jwt" });
 
   return { sb, userId: userData.user.id };
 }
