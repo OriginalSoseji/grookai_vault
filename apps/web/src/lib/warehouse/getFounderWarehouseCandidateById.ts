@@ -1,7 +1,10 @@
 import "server-only";
 
 import { isUsablePublicImageUrl } from "@/lib/publicCardImage";
+import type { FounderPromotionReviewModel } from "@/lib/warehouse/buildFounderPromotionReview";
+import { buildFounderPromotionReview } from "@/lib/warehouse/buildFounderPromotionReview";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -137,8 +140,10 @@ export type FounderWarehouseCandidateDetailResult = {
   evidenceRows: FounderWarehouseEvidenceDetailRow[];
   eventRows: WarehouseEventRow[];
   stagingRows: WarehouseStagingRow[];
+  currentStagingRow: WarehouseStagingRow | null;
   latestNormalizedPackage: JsonRecord | null;
   latestClassificationPackage: JsonRecord | null;
+  promotionReview: FounderPromotionReviewModel | null;
 };
 
 function normalizeIdArray(values: Array<string | null | undefined>) {
@@ -231,8 +236,10 @@ export async function getFounderWarehouseCandidateById(
       evidenceRows: [],
       eventRows: [],
       stagingRows: [],
+      currentStagingRow: null,
       latestNormalizedPackage: null,
       latestClassificationPackage: null,
+      promotionReview: null,
     };
   }
 
@@ -343,13 +350,21 @@ export async function getFounderWarehouseCandidateById(
     }
   }
 
-  const detailEvidenceRows = evidenceRows.map((row) => {
+  const detailEvidenceRows = await Promise.all(evidenceRows.map(async (row) => {
     const previews: WarehouseEvidencePreview[] = [];
     if (row.storage_path && isUsablePublicImageUrl(row.storage_path)) {
       previews.push({
         label: row.evidence_slot ? `warehouse:${row.evidence_slot}` : "warehouse:image",
         url: row.storage_path.trim(),
       });
+    } else if (row.storage_path) {
+      const signedUrl = await resolveVaultInstanceMediaUrl(row.storage_path);
+      if (signedUrl) {
+        previews.push({
+          label: row.evidence_slot ? `warehouse:${row.evidence_slot}` : "warehouse:image",
+          url: signedUrl,
+        });
+      }
     }
 
     const linkedIdentitySnapshot = row.identity_snapshot_id
@@ -378,6 +393,23 @@ export async function getFounderWarehouseCandidateById(
       linked_scan_event: linkedScanEvent,
       linked_scan_result: linkedScanResult,
     };
+  }));
+
+  const currentStagingRow =
+    (candidate.current_staging_id
+      ? stagingRows.find((row) => row.id === candidate.current_staging_id) ?? null
+      : null) ?? null;
+
+  const latestNormalizedPackage = extractLatestPackage(eventRows, "normalized_package");
+  const latestClassificationPackage = extractLatestPackage(eventRows, "classification_package");
+  const promotionReview = await buildFounderPromotionReview(admin, {
+    candidate,
+    evidenceRows: detailEvidenceRows,
+    eventRows,
+    stagingRows,
+    currentStagingRow,
+    latestNormalizedPackage,
+    latestClassificationPackage,
   });
 
   return {
@@ -385,7 +417,9 @@ export async function getFounderWarehouseCandidateById(
     evidenceRows: detailEvidenceRows,
     eventRows,
     stagingRows,
-    latestNormalizedPackage: extractLatestPackage(eventRows, "normalized_package"),
-    latestClassificationPackage: extractLatestPackage(eventRows, "classification_package"),
+    currentStagingRow,
+    latestNormalizedPackage,
+    latestClassificationPackage,
+    promotionReview,
   };
 }

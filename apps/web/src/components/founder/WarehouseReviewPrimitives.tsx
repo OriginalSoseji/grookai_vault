@@ -29,6 +29,8 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
     case "CLASSIFIED_READY":
     case "SUCCEEDED":
     case "NO_OP":
+    case "CREATE":
+    case "REUSE":
     case "CARD_PRINT_CREATED":
     case "CARD_PRINTING_CREATED":
     case "CANON_IMAGE_ENRICHED":
@@ -39,6 +41,7 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
     case "NORMALIZED_PARTIAL":
     case "CLASSIFIED_PARTIAL":
     case "REVIEW_REQUIRED":
+    case "UPDATE":
       return "warning";
     case "BLOCKED_NO_PROMOTION":
     case "CLASSIFICATION_BLOCKED":
@@ -46,7 +49,10 @@ function normalizeTone(value: string | boolean | null | undefined): NonNullable<
     case "FAILED":
     case "REJECTED":
     case "ARCHIVED":
+    case "UNRESOLVED":
       return "danger";
+    case "NONE":
+      return "muted";
     default:
       return "muted";
   }
