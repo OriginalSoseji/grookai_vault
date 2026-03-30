@@ -17,6 +17,72 @@ function pickLatestPayload(detail: FounderWarehouseCandidateDetailResult) {
   return {
     normalized_package: detail.latestNormalizedPackage ?? null,
     classification_package: detail.latestClassificationPackage ?? null,
+    metadata_extraction_package:
+      detail.latestMetadataExtractionPackage?.normalized_metadata_package ?? null,
+    interpreter_package: detail.interpreterPackage ?? null,
+  };
+}
+
+function asRecord(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  return value as Record<string, unknown>;
+}
+
+function normalizeLowerSnake(value: string | null | undefined) {
+  const normalized = normalizeText(value);
+  if (!normalized) {
+    return null;
+  }
+
+  return normalized
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Za-z0-9]+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+}
+
+function buildFrozenIdentity(detail: FounderWarehouseCandidateDetailResult) {
+  const afterCardPrint = asRecord(detail.promotionWritePlan?.preview.after?.card_prints);
+  const extractionIdentity = asRecord(
+    detail.latestMetadataExtractionPackage?.normalized_metadata_package?.identity,
+  );
+  const printedModifier = asRecord(
+    detail.latestMetadataExtractionPackage?.normalized_metadata_package?.printed_modifier,
+  );
+
+  const printedModifierVariantKey =
+    normalizeText(printedModifier?.status as string | null | undefined) === "READY"
+      ? normalizeLowerSnake(
+          (printedModifier?.modifier_key as string | null | undefined) ??
+            (printedModifier?.modifier_label as string | null | undefined),
+        )
+      : null;
+
+  return {
+    set_code:
+      normalizeText(afterCardPrint?.set_code as string | null | undefined) ??
+      normalizeText(extractionIdentity?.set_code as string | null | undefined),
+    name:
+      normalizeText(afterCardPrint?.name as string | null | undefined) ??
+      normalizeText(extractionIdentity?.name as string | null | undefined),
+    number_plain:
+      normalizeText(afterCardPrint?.number_plain as string | null | undefined) ??
+      normalizeText(
+        (afterCardPrint?.number as string | null | undefined)?.split("/", 1)?.[0] ??
+          null,
+      ) ??
+      normalizeText(
+        (extractionIdentity?.printed_number as string | null | undefined)?.split("/", 1)?.[0] ??
+          (extractionIdentity?.number as string | null | undefined)?.split("/", 1)?.[0] ??
+          null,
+      ),
+    variant_key:
+      normalizeText(afterCardPrint?.variant_key as string | null | undefined) ??
+      printedModifierVariantKey,
   };
 }
 
@@ -37,6 +103,7 @@ export function buildWarehouseStagingPayload(detail: FounderWarehouseCandidateDe
     payload_version: "warehouse_staging_v1",
     candidate_id: candidate.id,
     approved_action_type: approvedActionType,
+    staging_contract: "promotion_stage_from_write_plan_v1",
     candidate_summary: {
       state: candidate.state,
       submission_intent: candidate.submission_intent,
@@ -72,10 +139,24 @@ export function buildWarehouseStagingPayload(detail: FounderWarehouseCandidateDe
     },
     latest_normalized_package: latestPackages.normalized_package,
     latest_classification_package: latestPackages.classification_package,
+    latest_metadata_extraction_package: latestPackages.metadata_extraction_package,
+    latest_interpreter_package: latestPackages.interpreter_package,
+    write_plan: detail.promotionWritePlan ?? null,
+    frozen_identity: buildFrozenIdentity(detail),
+    normalization_asset: {
+      front_path:
+        detail.latestPromotionImageNormalizationPackage?.promotion_image_normalization_package
+          ?.outputs?.normalized_front_storage_path ?? null,
+      back_path:
+        detail.latestPromotionImageNormalizationPackage?.promotion_image_normalization_package
+          ?.outputs?.normalized_back_storage_path ?? null,
+    },
     staged_context: {
       staged_at: stagedAt,
       candidate_created_at: candidate.created_at,
       candidate_updated_at: candidate.updated_at,
+      created_at: stagedAt,
+      created_by: candidate.founder_approved_by_user_id,
     },
   };
 }

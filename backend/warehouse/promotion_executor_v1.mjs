@@ -154,6 +154,22 @@ function getClassificationPackage(payload) {
   return asRecord(payload?.latest_classification_package) ?? null;
 }
 
+function getMetadataExtractionPackage(payload) {
+  return asRecord(payload?.latest_metadata_extraction_package) ?? null;
+}
+
+function getMetadataIdentity(payload) {
+  return asRecord(getMetadataExtractionPackage(payload)?.identity) ?? null;
+}
+
+function getWritePlan(payload) {
+  return asRecord(payload?.write_plan) ?? null;
+}
+
+function getPlannedCardPrint(payload) {
+  return asRecord(getWritePlan(payload)?.preview?.after?.card_prints) ?? null;
+}
+
 function getResolverSummary(payload) {
   return asRecord(getClassificationPackage(payload)?.resolver_summary) ?? null;
 }
@@ -172,10 +188,16 @@ function extractSetCode(payload) {
   const visibleHints = getVisibleIdentityHints(payload);
   const normalizedPackage = getNormalizedPackage(payload);
   const classificationPackage = getClassificationPackage(payload);
+  const metadataIdentity = getMetadataIdentity(payload);
+  const frozenIdentity = asRecord(payload?.frozen_identity);
+  const plannedCardPrint = getPlannedCardPrint(payload);
   const normalizedExtracted = asRecord(normalizedPackage?.raw_metadata_documentation)?.extracted_fields;
   const classifiedExtracted = asRecord(classificationPackage?.metadata_documentation)?.extracted_fields;
 
   return (
+    normalizeLowerOrNull(plannedCardPrint?.set_code) ||
+    normalizeLowerOrNull(frozenIdentity?.set_code) ||
+    normalizeLowerOrNull(metadataIdentity?.set_code) ||
     normalizeLowerOrNull(visibleHints?.set_hint) ||
     normalizeLowerOrNull(normalizedExtracted?.set_hint) ||
     normalizeLowerOrNull(classifiedExtracted?.set_hint)
@@ -186,10 +208,16 @@ function extractCardName(payload) {
   const visibleHints = getVisibleIdentityHints(payload);
   const normalizedPackage = getNormalizedPackage(payload);
   const classificationPackage = getClassificationPackage(payload);
+  const metadataIdentity = getMetadataIdentity(payload);
+  const frozenIdentity = asRecord(payload?.frozen_identity);
+  const plannedCardPrint = getPlannedCardPrint(payload);
   const normalizedExtracted = asRecord(normalizedPackage?.raw_metadata_documentation)?.extracted_fields;
   const classifiedExtracted = asRecord(classificationPackage?.metadata_documentation)?.extracted_fields;
 
   return (
+    normalizeTextOrNull(plannedCardPrint?.name) ||
+    normalizeTextOrNull(frozenIdentity?.name) ||
+    normalizeTextOrNull(metadataIdentity?.name) ||
     normalizeTextOrNull(visibleHints?.card_name) ||
     normalizeTextOrNull(normalizedExtracted?.card_name) ||
     normalizeTextOrNull(classifiedExtracted?.card_name)
@@ -200,16 +228,37 @@ function extractPrintedNumberPlain(payload) {
   const visibleHints = getVisibleIdentityHints(payload);
   const normalizedPackage = getNormalizedPackage(payload);
   const classificationPackage = getClassificationPackage(payload);
+  const metadataIdentity = getMetadataIdentity(payload);
+  const frozenIdentity = asRecord(payload?.frozen_identity);
+  const plannedCardPrint = getPlannedCardPrint(payload);
   const normalizedExtracted = asRecord(normalizedPackage?.raw_metadata_documentation)?.extracted_fields;
   const classifiedExtracted = asRecord(classificationPackage?.metadata_documentation)?.extracted_fields;
 
   return (
+    normalizeTextOrNull(plannedCardPrint?.number_plain) ||
+    normalizeNumberPlain(plannedCardPrint?.number) ||
+    normalizeTextOrNull(frozenIdentity?.number_plain) ||
+    normalizeTextOrNull(metadataIdentity?.number_plain) ||
+    normalizeNumberPlain(metadataIdentity?.printed_number) ||
+    normalizeNumberPlain(metadataIdentity?.number) ||
     normalizeTextOrNull(visibleHints?.printed_number_plain) ||
     normalizeNumberPlain(visibleHints?.printed_number) ||
     normalizeTextOrNull(normalizedExtracted?.printed_number_plain) ||
     normalizeNumberPlain(normalizedExtracted?.printed_number) ||
     normalizeTextOrNull(classifiedExtracted?.printed_number_plain) ||
     normalizeNumberPlain(classifiedExtracted?.printed_number)
+  );
+}
+
+function extractVariantKey(payload) {
+  const frozenIdentity = asRecord(payload?.frozen_identity);
+  const writePlan = asRecord(payload?.write_plan);
+  const plannedCardPrint = asRecord(writePlan?.preview?.after?.card_prints);
+
+  return (
+    normalizeTextOrNull(plannedCardPrint?.variant_key) ||
+    normalizeTextOrNull(frozenIdentity?.variant_key) ||
+    ''
   );
 }
 
@@ -359,7 +408,7 @@ async function fetchSetByCode(client, setCode) {
   return rows;
 }
 
-async function fetchExistingCardPrints(client, setId, numberPlain) {
+async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = '') {
   const sql = `
     select
       id,
@@ -374,7 +423,7 @@ async function fetchExistingCardPrints(client, setId, numberPlain) {
       image_alt_url
     from public.card_prints
     where set_id = $1
-      and coalesce(variant_key, '') = ''
+      and coalesce(variant_key, '') = $3
       and (
         number_plain = $2
         or number = $2
@@ -382,7 +431,7 @@ async function fetchExistingCardPrints(client, setId, numberPlain) {
     order by id asc
     limit 2
   `;
-  const { rows } = await client.query(sql, [setId, numberPlain]);
+  const { rows } = await client.query(sql, [setId, numberPlain, normalizeTextOrNull(variantKey) ?? '']);
   return rows;
 }
 
@@ -566,6 +615,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   const setCode = extractSetCode(payload);
   const cardName = extractCardName(payload);
   const numberPlain = extractPrintedNumberPlain(payload);
+  const variantKey = extractVariantKey(payload);
   const rarity = extractRarityHint(payload);
   const tcgplayerId = normalizeTextOrNull(payload?.candidate_summary?.tcgplayer_id);
 
@@ -585,7 +635,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
 
   const setRow = setRows[0];
-  const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain);
+  const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain, variantKey);
   if (existingRows.length > 1) {
     throw new ExecutorError('duplicate_existing_card_prints', `${setRow.code}:${numberPlain}`);
   }
@@ -630,6 +680,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
         number_plain: numberPlain,
         card_name: cardName,
         result_card_print_id: existingRow.id,
+        variant_key: variantKey,
       },
       payload,
       candidate,
@@ -646,7 +697,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       set_id: setRow.id,
       set_code: setRow.code,
       number: numberPlain,
-      variant_key: '',
+      variant_key: variantKey,
       name: cardName,
       rarity,
       tcgplayer_id: tcgplayerId,
@@ -663,6 +714,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       set_code: setRow.code,
       number_plain: numberPlain,
       card_name: cardName,
+      variant_key: variantKey,
       tcgplayer_id: tcgplayerId,
     },
     payload,
@@ -1015,7 +1067,12 @@ async function applyMutation(connection, plan) {
       let cardPrintId = insertResult.rows[0]?.id ?? null;
 
       if (!cardPrintId) {
-        const existingRows = await fetchExistingCardPrints(connection, plan.mutation.set_id, plan.mutation.number);
+        const existingRows = await fetchExistingCardPrints(
+          connection,
+          plan.mutation.set_id,
+          plan.mutation.number,
+          plan.mutation.variant_key,
+        );
         if (existingRows.length !== 1) {
           throw new ExecutorError('card_print_insert_conflict', `${plan.mutation.set_code}:${plan.mutation.number}`);
         }
