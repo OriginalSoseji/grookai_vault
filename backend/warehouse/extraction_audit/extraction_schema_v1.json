@@ -67,6 +67,27 @@
     "raw_signals": {
       "type": "object"
     },
+    "printed_modifier": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["READY", "PARTIAL", "BLOCKED"]
+        },
+        "modifier_key": {
+          "type": ["string", "null"]
+        },
+        "modifier_label": {
+          "type": ["string", "null"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": true
+    },
     "errors": {
       "type": "array",
       "items": {

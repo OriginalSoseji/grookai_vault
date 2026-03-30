@@ -17,6 +17,14 @@ function normalizeLowerName(value) {
   return normalized.toLowerCase().replace(/\s+/g, ' ');
 }
 
+function normalizeNumberPlain(value) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) return null;
+  const source = normalized.includes('/') ? normalized.split('/', 1)[0] : normalized;
+  const digits = source.replace(/[^0-9]/g, '');
+  return digits.length > 0 ? digits : null;
+}
+
 function clamp01(value) {
   if (typeof value !== 'number' || !Number.isFinite(value)) return 0;
   if (value < 0) return 0;
@@ -212,12 +220,60 @@ function matchSignalToSets(signal, setIndex) {
   return matches;
 }
 
+async function resolveDirectSetByCanonPoolV1({
+  supabase,
+  candidateSetCodes,
+  resolvedName,
+  resolvedNumber,
+}) {
+  const normalizedName = normalizeLowerName(resolvedName);
+  const normalizedNumberPlain = normalizeNumberPlain(resolvedNumber);
+
+  if (!normalizedName || !normalizedNumberPlain || !Array.isArray(candidateSetCodes) || candidateSetCodes.length < 2) {
+    return [];
+  }
+
+  const matches = [];
+  for (const setCode of candidateSetCodes) {
+    const { data, error } = await supabase.rpc('search_card_prints_v1', {
+      q: resolvedName,
+      set_code_in: setCode,
+      number_in: resolvedNumber,
+      limit_in: 5,
+      offset_in: 0,
+    });
+
+    if (error) {
+      continue;
+    }
+
+    const rows = Array.isArray(data) ? data : [];
+    const exactRows = rows.filter((row) => {
+      const rowName = normalizeLowerName(row?.name);
+      const rowSetCode = normalizeTextOrNull(row?.set_code)?.toLowerCase() ?? null;
+      const rowNumberPlain = normalizeNumberPlain(row?.number_plain ?? row?.number);
+      return rowName === normalizedName && rowSetCode === setCode && rowNumberPlain === normalizedNumberPlain;
+    });
+
+    if (exactRows.length > 0) {
+      matches.push({
+        set_code: setCode,
+        match_count: exactRows.length,
+      });
+    }
+  }
+
+  return matches;
+}
+
 export async function normalizeSetIdentityV1({
   supabase,
   rawSignals,
   resolverCandidates,
   nameConfidence,
   numberConfidence,
+  resolvedName = null,
+  resolvedNumber = null,
 }) {
   const setIndex = await loadPokemonSetIndexV1(supabase);
   const directSignals = collectDirectSetSignals(rawSignals);
@@ -274,8 +330,31 @@ export async function normalizeSetIdentityV1({
   const directBest = directEntries[0] ?? null;
   const directSecond = directEntries[1] ?? null;
   const resolverCode = resolverSummary.unique_set_code;
+  const canonPoolDisambiguation = await resolveDirectSetByCanonPoolV1({
+    supabase,
+    candidateSetCodes: directEntries.map((entry) => entry.set_code),
+    resolvedName,
+    resolvedNumber,
+  });
+  const canonPoolWinner =
+    canonPoolDisambiguation.length === 1
+      ? directEntries.find((entry) => entry.set_code === canonPoolDisambiguation[0].set_code) ?? null
+      : null;
 
   if (directBest && directSecond && directBest.set_code !== directSecond.set_code) {
+    if (canonPoolWinner) {
+      return {
+        status: identityStrong ? 'READY' : 'PARTIAL',
+        set_code: canonPoolWinner.set_code,
+        set_name: canonPoolWinner.set_name,
+        confidence: clamp01(Math.max(canonPoolWinner.confidence, 0.86)),
+        ambiguity_flags: ['direct_set_signal_ambiguous', 'canon_pool_disambiguated_set'],
+        reason: 'canon_pool_disambiguated_direct_set_signals',
+        raw_inputs_used: rawInputsUsed,
+        matched_set_candidates: matchedSetCandidates,
+      };
+    }
+
     if (resolverCode && directEntries.some((entry) => entry.set_code === resolverCode)) {
       const winner = directEntries.find((entry) => entry.set_code === resolverCode);
       return {

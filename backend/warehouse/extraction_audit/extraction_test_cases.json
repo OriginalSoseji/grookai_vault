@@ -193,6 +193,21 @@
       }
     },
     {
+      "id": "pikachu_pokemon_together_stamp",
+      "category": "promo/stamp",
+      "image_path": "../../../tmp/pikachu_pokemon_together_front.jpg",
+      "expected": {
+        "status": "PARTIAL",
+        "name": "Pikachu",
+        "number": "025/165",
+        "set": "sv03.5",
+        "printed_modifier": {
+          "status": "READY",
+          "modifier_key": "pokemon_together_stamp"
+        }
+      }
+    },
+    {
       "id": "missing_image",
       "category": "missing image",
       "image_path": "../../../tmp/__does_not_exist__.jpg",

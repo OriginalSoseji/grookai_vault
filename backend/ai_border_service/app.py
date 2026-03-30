@@ -41,6 +41,11 @@ class OCRResponse(BaseModel):
     raw_set_text: dict | None = None
     raw_set_symbol_region_text: dict | None = None
     raw_set_candidate_signals: list | None = None
+    raw_printed_modifier_text: dict | None = None
+    raw_stamp_text: dict | None = None
+    raw_modifier_region_text: dict | None = None
+    raw_modifier_candidate_signals: list | None = None
+    printed_modifier_confidence_0_1: float | None = None
     debug: dict | None = None
 
 class AIIdentifyRequest(BaseModel):
@@ -61,6 +66,7 @@ def _debug_dir():
 
 _AI_CACHE_MAX = 2000
 _ai_cache = OrderedDict()  # sha256 -> {"result":..., "cached_at": ...}
+_AI_IDENTIFY_PROMPT_VERSION = "ai_identify_v3_printed_modifier"
 
 def _cache_get(k):
     v = _ai_cache.get(k)
@@ -82,6 +88,85 @@ def _downscale_rgb_np(img_rgb, long_edge=1024):
     scale = long_edge / float(m)
     nh, nw = int(round(h * scale)), int(round(w * scale))
     return cv2.resize(img_rgb, (nw, nh), interpolation=cv2.INTER_AREA)
+
+def _encode_rgb_to_data_url(img_rgb):
+    ok, enc = cv2.imencode(
+        ".jpg",
+        cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR),
+        [int(cv2.IMWRITE_JPEG_QUALITY), 85],
+    )
+    if not ok:
+        raise RuntimeError("jpeg_encode_failed")
+    return f"data:image/jpeg;base64,{base64.b64encode(enc.tobytes()).decode('utf-8')}"
+
+def _extract_modifier_crop_rgb(img_rgb):
+    H, W = img_rgb.shape[:2]
+    x0 = max(0, min(W - 1, int(round(W * 0.10))))
+    x1 = max(x0 + 1, min(W, int(round(W * 0.60))))
+    y0 = max(0, min(H - 1, int(round(H * 0.32))))
+    y1 = max(y0 + 1, min(H, int(round(H * 0.62))))
+    return img_rgb[y0:y1, x0:x1], {
+        "x0": x0 / float(W),
+        "x1": x1 / float(W),
+        "y0": y0 / float(H),
+        "y1": y1 / float(H),
+    }
+
+def _extract_json_payload(out_text):
+    text = (out_text or "").strip()
+    if text.lower().startswith("json"):
+        parts = text.splitlines()
+        if len(parts) > 1:
+            text = "\n".join(parts[1:]).strip()
+
+    if text.startswith("```"):
+        text = text.strip("`").strip()
+        if text.lower().startswith("json"):
+            text = text[4:].strip()
+
+    m = re.search(r"\{.*\}", text, flags=re.DOTALL)
+    out_json = m.group(0).strip() if m else text
+    return json.loads(out_json)
+
+def _openai_responses_json(model_name, data_url, prompt, max_output_tokens):
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY not set")
+
+    payload = {
+        "model": model_name,
+        "input": [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "input_text", "text": prompt},
+                    {"type": "input_image", "image_url": data_url},
+                ],
+            }
+        ],
+        "temperature": 0,
+        "max_output_tokens": max_output_tokens,
+        "store": False,
+    }
+
+    r = requests.post(
+        "https://api.openai.com/v1/responses",
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"openai_http_{r.status_code}")
+
+    resp = r.json()
+    out_text = ""
+    for item in resp.get("output", []):
+        if item.get("type") == "message":
+            for c in item.get("content", []):
+                if c.get("type") == "output_text":
+                    out_text += c.get("text", "")
+
+    return _extract_json_payload(out_text), out_text
 def _norm(points, W, H):
     return [[float(x) / W, float(y) / H] for (x, y) in points]
 
@@ -148,10 +233,6 @@ def _center_seed_mask_bbox(img_bgr):
     return (x, y, w, h, area_frac)
 
 def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, trace_id=None):
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("OPENAI_API_KEY not set")
-
     long_edge = int(os.environ.get("GV_AI_LONG_EDGE", "1024") or "1024")
     if long_edge <= 0:
         long_edge = 1024
@@ -160,17 +241,9 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
     pil = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     img_rgb = np.array(pil)
     img_rgb = _downscale_rgb_np(img_rgb, long_edge=long_edge)
-
-    ok, enc = cv2.imencode(
-        ".jpg",
-        cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR),
-        [int(cv2.IMWRITE_JPEG_QUALITY), 85],
-    )
-    if not ok:
-        raise RuntimeError("jpeg_encode_failed")
-
-    b64 = base64.b64encode(enc.tobytes()).decode("utf-8")
-    data_url = f"data:image/jpeg;base64,{b64}"
+    data_url = _encode_rgb_to_data_url(img_rgb)
+    modifier_crop_rgb, modifier_crop_box_norm = _extract_modifier_crop_rgb(img_rgb)
+    modifier_data_url = _encode_rgb_to_data_url(modifier_crop_rgb)
 
     prompt = (
         "Read this single Pokémon card image (already warped/card-only).\n"
@@ -182,9 +255,12 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         '  \"raw_number_text\": string|null,\n'
         '  \"raw_set_abbrev_text\": string|null,  // short printed set abbreviation like \"MEG\" or \"JTG\" when visible\n'
         '  \"raw_set_text\": string|null,  // full set identity text when confidently visible or inferable from the printed set mark\n'
+        '  \"raw_printed_modifier_text\": string|null,  // visible printed modifier text or stamped text when readable\n'
+        '  \"raw_stamp_text\": string|null,  // alternate raw stamp text field if the modifier is logo-like or stamped\n'
         '  \"printed_total\": integer|null,\n'
         '  \"hp\": integer|null,\n'
         '  \"set_confidence_0_1\": number|null,\n'
+        '  \"printed_modifier_confidence_0_1\": number|null,\n'
         '  \"confidence_0_1\": number,\n'
         '  \"notes\": string[]\n'
         "}\n"
@@ -195,73 +271,45 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         "- raw_name_text and raw_number_text should mirror the visible printed text when possible\n"
         "- raw_set_abbrev_text should preserve the printed set abbreviation or short set token when visible\n"
         "- raw_set_text should preserve the readable set identity when confidently available\n"
+        "- raw_printed_modifier_text/raw_stamp_text should preserve visible printed modifier or stamp text when readable\n"
         "- If set identity is weak or ambiguous, leave raw_set_abbrev_text/raw_set_text null and keep set_confidence_0_1 below 0.6\n"
+        "- If the printed modifier is weak or ambiguous, leave raw_printed_modifier_text/raw_stamp_text null and keep printed_modifier_confidence_0_1 below 0.6\n"
         "- printed_total should match denominator when present\n"
         "Return JSON only. No prose.\n"
     )
-
-    payload = {
-        "model": model_name,
-        "input": [
-            {
-                "role": "user",
-                "content": [
-                    {"type": "input_text", "text": prompt},
-                    {"type": "input_image", "image_url": data_url},
-                ],
-            }
-        ],
-        "temperature": 0,
-        "max_output_tokens": 250,
-        "store": False,
-    }
-
-    r = requests.post(
-        "https://api.openai.com/v1/responses",
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        json=payload,
-        timeout=30,
+    modifier_prompt = (
+        "This is a deterministic crop from the lower-left artwork area of a single Pokémon card image.\n"
+        "Read only any visible printed modifier or stamp text printed on top of the card face.\n"
+        "Return ONLY valid JSON with keys:\n"
+        "{\n"
+        '  \"raw_printed_modifier_text\": string|null,\n'
+        '  \"raw_stamp_text\": string|null,\n'
+        '  \"printed_modifier_confidence_0_1\": number|null,\n'
+        '  \"notes\": string[]\n'
+        "}\n"
+        "Rules:\n"
+        "- Preserve visible printed modifier text exactly enough to identify it, like \"Pokemon Together\"\n"
+        "- If no readable printed modifier or stamp text is visible, use nulls and confidence below 0.6\n"
+        "- Do not guess beyond visible text\n"
+        "Return JSON only. No prose.\n"
     )
-    if r.status_code != 200:
-        raise RuntimeError(f"openai_http_{r.status_code}")
 
-    resp = r.json()
-
-    out_text = ""
-    for item in resp.get("output", []):
-        if item.get("type") == "message":
-            for c in item.get("content", []):
-                if c.get("type") == "output_text":
-                    out_text += c.get("text", "")
-    out_text = (out_text or "").strip()
+    data, out_text = _openai_responses_json(model_name, data_url, prompt, 300)
+    modifier_data, modifier_out_text = _openai_responses_json(model_name, modifier_data_url, modifier_prompt, 180)
 
     try:
         with open(os.path.join(dbg_dir, f"ai_identify_raw_{run_id}.txt"), "w", encoding="utf-8") as f:
-            f.write(f"model={model_name}\nsha256={sha256_hex}\nlong_edge={long_edge}\ncache_hit={cache_hit}\ntrace_id={trace_id}\n")
+            f.write(
+                f"model={model_name}\nprompt_version={_AI_IDENTIFY_PROMPT_VERSION}\nsha256={sha256_hex}\n"
+                f"long_edge={long_edge}\ncache_hit={cache_hit}\ntrace_id={trace_id}\n"
+            )
             f.write(out_text)
+            f.write("\n\n--- modifier_crop ---\n")
+            f.write(json.dumps(modifier_crop_box_norm))
+            f.write("\n")
+            f.write(modifier_out_text)
     except Exception:
         pass
-
-    if out_text.lower().startswith("json"):
-        parts = out_text.splitlines()
-        if len(parts) > 1:
-            out_text = "\n".join(parts[1:]).strip()
-
-    if out_text.startswith("```"):
-        out_text = out_text.strip("`").strip()
-        if out_text.lower().startswith("json"):
-            out_text = out_text[4:].strip()
-
-    m = re.search(r"\{.*\}", out_text, flags=re.DOTALL)
-    if m:
-        out_json = m.group(0).strip()
-    else:
-        out_json = out_text
-
-    try:
-        data = json.loads(out_json)
-    except Exception:
-        raise RuntimeError("openai_non_json")
 
     name = data.get("name")
     raw_name_text = data.get("raw_name_text")
@@ -279,7 +327,15 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
     set_conf = data.get("set_confidence_0_1")
     if set_conf is None:
         set_conf = data.get("set_confidence")
+    raw_printed_modifier_text = data.get("raw_printed_modifier_text")
+    raw_stamp_text = data.get("raw_stamp_text")
+    modifier_conf = data.get("printed_modifier_confidence_0_1")
     notes = data.get("notes")
+
+    crop_modifier_text = modifier_data.get("raw_printed_modifier_text")
+    crop_stamp_text = modifier_data.get("raw_stamp_text")
+    crop_modifier_conf = modifier_data.get("printed_modifier_confidence_0_1")
+    modifier_notes = modifier_data.get("notes")
 
     if isinstance(number, str) and "/" in number:
         a, b = number.split("/", 1)
@@ -305,6 +361,40 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
     if isinstance(set_conf, float):
         set_conf = max(0.0, min(1.0, set_conf))
 
+    try:
+        modifier_conf = float(modifier_conf)
+    except Exception:
+        modifier_conf = None
+    if isinstance(modifier_conf, float):
+        modifier_conf = max(0.0, min(1.0, modifier_conf))
+
+    try:
+        crop_modifier_conf = float(crop_modifier_conf)
+    except Exception:
+        crop_modifier_conf = None
+    if isinstance(crop_modifier_conf, float):
+        crop_modifier_conf = max(0.0, min(1.0, crop_modifier_conf))
+
+    final_modifier_text = None
+    final_stamp_text = None
+    final_modifier_conf = None
+
+    if isinstance(crop_modifier_text, str) and crop_modifier_text.strip():
+        final_modifier_text = crop_modifier_text.strip()
+        final_modifier_conf = crop_modifier_conf if isinstance(crop_modifier_conf, float) else 0.0
+    elif isinstance(raw_printed_modifier_text, str) and raw_printed_modifier_text.strip():
+        final_modifier_text = raw_printed_modifier_text.strip()
+        final_modifier_conf = modifier_conf if isinstance(modifier_conf, float) else 0.0
+
+    if isinstance(crop_stamp_text, str) and crop_stamp_text.strip():
+        final_stamp_text = crop_stamp_text.strip()
+        if final_modifier_conf is None:
+            final_modifier_conf = crop_modifier_conf if isinstance(crop_modifier_conf, float) else 0.0
+    elif isinstance(raw_stamp_text, str) and raw_stamp_text.strip():
+        final_stamp_text = raw_stamp_text.strip()
+        if final_modifier_conf is None:
+            final_modifier_conf = modifier_conf if isinstance(modifier_conf, float) else 0.0
+
     return {
         "name": name if isinstance(name, str) and name.strip() else None,
         "raw_name_text": raw_name_text if isinstance(raw_name_text, str) and raw_name_text.strip() else (name if isinstance(name, str) and name.strip() else None),
@@ -312,16 +402,22 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         "raw_number_text": raw_number_text if isinstance(raw_number_text, str) and raw_number_text.strip() else (number if isinstance(number, str) and number.strip() else None),
         "raw_set_abbrev_text": raw_set_abbrev_text if isinstance(raw_set_abbrev_text, str) and raw_set_abbrev_text.strip() else None,
         "raw_set_text": raw_set_text if isinstance(raw_set_text, str) and raw_set_text.strip() else None,
+        "raw_printed_modifier_text": final_modifier_text,
+        "raw_stamp_text": final_stamp_text,
         "number": number if isinstance(number, str) and number.strip() else None,
         "printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
         "collector_printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
         "hp": int(hp) if isinstance(hp, (int, float)) else None,
         "set_confidence_0_1": set_conf,
+        "printed_modifier_confidence_0_1": final_modifier_conf,
         "confidence_0_1": conf,
         "confidence": conf,
-        "notes": notes if isinstance(notes, list) else [],
+        "notes": [*(notes if isinstance(notes, list) else []), *(modifier_notes if isinstance(modifier_notes, list) else [])],
         "raw_text": out_text,
+        "modifier_raw_text": modifier_out_text,
+        "modifier_crop_box_norm": modifier_crop_box_norm,
         "model": model_name,
+        "prompt_version": _AI_IDENTIFY_PROMPT_VERSION,
     }
 
 def _require_gv_token(request: Request):
@@ -494,6 +590,11 @@ async def ocr_card_signals(request: Request):
         set_region_text = None
         set_region_conf = 0.0
         set_candidate_signals = []
+        modifier_region_text = None
+        modifier_region_conf = 0.0
+        modifier_candidate_signals = []
+        raw_printed_modifier_text = None
+        raw_stamp_text = None
 
         def _clean_set_token(token):
             token = re.sub(r"[^A-Za-z0-9.-]+", "", token or "").strip().upper()
@@ -574,6 +675,84 @@ async def ocr_card_signals(request: Request):
 
             deduped = {}
             for item in collected:
+                key = (item["text"], item["source"])
+                if key not in deduped or item["confidence"] > deduped[key]["confidence"]:
+                    deduped[key] = item
+
+            ranked = sorted(
+                deduped.values(),
+                key=lambda item: (-item["confidence"], item["text"], item["source"]),
+            )
+            return ranked[:8]
+
+        def _scan_modifier_region(img_rgb):
+            H, W = img_rgb.shape[:2]
+            regions = [
+                ("art_lower_left", 0.10, 0.60, 0.32, 0.62),
+                ("art_lower_full", 0.06, 0.74, 0.28, 0.68),
+            ]
+            candidates = []
+
+            for region_name, x0f, x1f, y0f, y1f in regions:
+                x0, x1 = int(x0f * W), int(x1f * W)
+                y0, y1 = int(y0f * H), int(y1f * H)
+                roi = img_rgb[y0:y1, x0:x1]
+                if roi.size == 0:
+                    continue
+
+                roi_gray = cv2.cvtColor(roi, cv2.COLOR_RGB2GRAY)
+                roi_up = cv2.resize(roi_gray, None, fx=4.0, fy=4.0, interpolation=cv2.INTER_CUBIC)
+                roi_clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(roi_up)
+                roi_blur = cv2.GaussianBlur(roi_clahe, (3, 3), 0)
+                roi_sharp = cv2.addWeighted(roi_clahe, 1.35, roi_blur, -0.35, 0)
+                _, roi_thresh = cv2.threshold(
+                    roi_sharp, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU
+                )
+                if roi_thresh.mean() / 255.0 > 0.9:
+                    roi_thresh = cv2.bitwise_not(roi_thresh)
+
+                for psm in ("7", "6"):
+                    raw = (
+                        pytesseract.image_to_string(
+                            roi_thresh,
+                            config=(
+                                f"--psm {psm} "
+                                "-c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'’ -"
+                            ),
+                        )
+                        or ""
+                    ).strip()
+                    if not raw:
+                        continue
+
+                    cleaned = re.sub(r"\s+", " ", raw).strip()
+                    normalized = re.sub(r"[^A-Za-z0-9'’ -]+", " ", cleaned)
+                    normalized = re.sub(r"\s+", " ", normalized).strip()
+                    if not normalized:
+                        continue
+
+                    confidence = 0.44
+                    if region_name == "art_lower_left":
+                        confidence += 0.12
+                    if psm == "7":
+                        confidence += 0.06
+                    if "TOGETHER" in normalized.upper():
+                        confidence += 0.12
+                    if "POK" in normalized.upper():
+                        confidence += 0.08
+
+                    candidates.append(
+                        {
+                            "text": normalized,
+                            "source": f"ocr:{region_name}:psm{psm}",
+                            "kind": "modifier_phrase",
+                            "confidence": max(0.0, min(1.0, confidence)),
+                            "raw_text": cleaned,
+                        }
+                    )
+
+            deduped = {}
+            for item in candidates:
                 key = (item["text"], item["source"])
                 if key not in deduped or item["confidence"] > deduped[key]["confidence"]:
                     deduped[key] = item
@@ -817,6 +996,14 @@ async def ocr_card_signals(request: Request):
             if not abbrev_text or set_region_conf > 0.45:
                 abbrev_text = best_set_signal["text"]
 
+        modifier_candidate_signals = _scan_modifier_region(img_np)
+        if modifier_candidate_signals:
+            best_modifier_signal = modifier_candidate_signals[0]
+            modifier_region_text = best_modifier_signal["text"]
+            modifier_region_conf = float(best_modifier_signal["confidence"])
+            raw_printed_modifier_text = modifier_region_text
+            raw_stamp_text = modifier_region_text
+
         debug_text_raw = text_norm
         if roi_text:
             debug_text_raw = f"{text_norm}\n[roi_num] {roi_text}"
@@ -829,6 +1016,20 @@ async def ocr_card_signals(request: Request):
             "raw_set_text": {"text": abbrev_text or None, "confidence": 0.0},
             "raw_set_symbol_region_text": {"text": set_region_text or None, "confidence": set_region_conf},
             "raw_set_candidate_signals": set_candidate_signals,
+            "raw_printed_modifier_text": {
+                "text": raw_printed_modifier_text or None,
+                "confidence": modifier_region_conf if raw_printed_modifier_text else 0.0,
+            },
+            "raw_stamp_text": {
+                "text": raw_stamp_text or None,
+                "confidence": modifier_region_conf if raw_stamp_text else 0.0,
+            },
+            "raw_modifier_region_text": {
+                "text": modifier_region_text or None,
+                "confidence": modifier_region_conf,
+            },
+            "raw_modifier_candidate_signals": modifier_candidate_signals,
+            "printed_modifier_confidence_0_1": modifier_region_conf if raw_printed_modifier_text else 0.0,
             "debug": {
                 "engine": "pytesseract" if _OCR_AVAILABLE else "none",
                 "text_raw": debug_text_raw,
@@ -847,6 +1048,11 @@ async def ocr_card_signals(request: Request):
             "raw_set_text": None,
             "raw_set_symbol_region_text": None,
             "raw_set_candidate_signals": [],
+            "raw_printed_modifier_text": None,
+            "raw_stamp_text": None,
+            "raw_modifier_region_text": None,
+            "raw_modifier_candidate_signals": [],
+            "printed_modifier_confidence_0_1": None,
             "debug": {"engine": "exception"},
         }
 
@@ -897,14 +1103,16 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
             }
 
         sha = hashlib.sha256(img_bytes).hexdigest()
+        cache_key = f"{sha}:{_AI_IDENTIFY_PROMPT_VERSION}"
 
         if not req.force_refresh:
-            cached = _cache_get(sha)
+            cached = _cache_get(cache_key)
             if cached is not None:
                 try:
                     with open(os.path.join(dbg_dir, f"ai_identify_raw_{run_id}.txt"), "w", encoding="utf-8") as f:
                         f.write(
                             f"model={cached['result'].get('model')}\n"
+                            f"prompt_version={_AI_IDENTIFY_PROMPT_VERSION}\n"
                             f"sha256={sha}\n"
                             f"long_edge={os.environ.get('GV_AI_LONG_EDGE','1024')}\n"
                             f"cache_hit=True\n"
@@ -929,7 +1137,7 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
 
         result = _openai_identify(img_bytes, run_id, dbg_dir, sha, cache_hit=False, trace_id=req.trace_id)
         cached_entry = {"result": result, "cached_at": datetime.utcnow().isoformat() + "Z"}
-        _cache_put(sha, cached_entry)
+        _cache_put(cache_key, cached_entry)
 
         return {
             "ok": True,

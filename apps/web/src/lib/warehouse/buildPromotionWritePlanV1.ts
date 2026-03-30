@@ -194,6 +194,10 @@ function getMetadataIdentity(metadataExtraction: MetadataExtractionInput) {
   return asRecord(getNormalizedMetadataPackage(metadataExtraction)?.identity);
 }
 
+function getPrintedModifier(metadataExtraction: MetadataExtractionInput) {
+  return asRecord(getNormalizedMetadataPackage(metadataExtraction)?.printed_modifier);
+}
+
 function extractStagedPublicImageUrl(candidate: PromotionWritePlanCandidate) {
   const payload = asRecord(candidate.current_staging_payload);
   if (!payload) {
@@ -400,7 +404,27 @@ export async function buildPromotionWritePlanV1({
     ]);
   }
 
+  const printedModifier = getPrintedModifier(metadataExtraction);
+  const printedModifierLabel =
+    normalizeTextOrNull(printedModifier?.modifier_label) ??
+    normalizeTextOrNull(printedModifier?.modifier_key);
+  const printedModifierStatus = normalizeTextOrNull(printedModifier?.status);
+
   if (interpreterPackage.status !== "READY") {
+    if (
+      interpreterPackage.reason_code === "PRINTED_IDENTITY_DELTA_DETECTED" &&
+      printedModifierLabel &&
+      (printedModifierStatus === "READY" || printedModifierStatus === "PARTIAL")
+    ) {
+      return buildBlockedPlan(
+        `${printedModifierLabel} creates a modifier-backed identity delta, but promotion still lacks a lawful variant mapping for canon writes.`,
+        [
+          "Lawful variant_key or canon contract for the detected printed modifier",
+          ...interpreterPackage.missing_fields,
+        ],
+      );
+    }
+
     return buildBlockedPlan(interpreterPackage.founder_explanation, [
       ...interpreterPackage.missing_fields,
     ]);

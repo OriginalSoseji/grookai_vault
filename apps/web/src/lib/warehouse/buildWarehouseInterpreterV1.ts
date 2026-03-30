@@ -188,6 +188,10 @@ function getExtractionIdentity(payload: JsonRecord | null) {
   return asRecord(payload?.identity);
 }
 
+function getExtractionPrintedModifier(payload: JsonRecord | null) {
+  return asRecord(payload?.printed_modifier);
+}
+
 function noteClaimsPrintedModifier(notes: string) {
   return NOTE_MODIFIER_PATTERNS.some((pattern) => pattern.test(notes));
 }
@@ -469,6 +473,13 @@ export function buildWarehouseInterpreterV1(
   const hasFrontEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "front");
   const hasBackEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "back");
   const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
+  const extractionPrintedModifier = getExtractionPrintedModifier(latestMetadataExtractionPackage);
+  const printedModifierStatus = normalizeTextOrNull(extractionPrintedModifier?.status);
+  const printedModifierLabel =
+    normalizeTextOrNull(extractionPrintedModifier?.modifier_label) ??
+    normalizeTextOrNull(extractionPrintedModifier?.modifier_key);
+  const hasStructuredPrintedModifier =
+    (printedModifierStatus === "READY" || printedModifierStatus === "PARTIAL") && Boolean(printedModifierLabel);
   const extractionMissingFields = asStringArray(latestMetadataExtractionPackage?.missing_fields);
   const extractionEvidenceGaps = asStringArray(latestMetadataExtractionPackage?.evidence_gaps);
   const extractionAmbiguityNotes = asStringArray(latestMetadataExtractionPackage?.ambiguity_notes);
@@ -535,10 +546,52 @@ export function buildWarehouseInterpreterV1(
     return buildReadyPackage(
       input,
       "NEW_CANONICAL_REQUIRED",
-      noteModifierClaim ? "PRINTED_IDENTITY_DELTA_DETECTED" : "NO_EXISTING_CANON_MATCH",
+      hasStructuredPrintedModifier || noteModifierClaim
+        ? "PRINTED_IDENTITY_DELTA_DETECTED"
+        : "NO_EXISTING_CANON_MATCH",
       "CREATE_CARD_PRINT",
       canonContext.canonical_set_code && canonContext.number ? "MEDIUM" : "LOW",
     );
+  }
+
+  if (
+    hasStructuredPrintedModifier &&
+    !input.currentStagingRow &&
+    input.candidate.state !== "PROMOTED" &&
+    reviewActionType !== "ENRICH_CANON_IMAGE"
+  ) {
+    const modifierSummary = printedModifierLabel ?? "printed modifier";
+    const baseIdentitySummary = uniqueText([
+      normalizeTextOrNull(extractionIdentity?.name),
+      normalizeTextOrNull(extractionIdentity?.printed_number),
+      normalizeTextOrNull(extractionIdentity?.set_name) ?? normalizeTextOrNull(extractionIdentity?.set_code),
+    ]).join(" / ");
+
+    return {
+      version: "V1",
+      status: "BLOCKED",
+      decision: "HOLD_FOR_REVIEW",
+      reason_code: "PRINTED_IDENTITY_DELTA_DETECTED",
+      confidence: printedModifierStatus === "READY" ? "MEDIUM" : "LOW",
+      founder_explanation: baseIdentitySummary
+        ? `${modifierSummary} is present as a structured printed modifier signal on ${baseIdentitySummary}. The base card identity is known, but founder review still needs a lawful canon identity mapping for that printed modifier before promotion can proceed.`
+        : `${modifierSummary} is present as a structured printed modifier signal. Founder review still needs a lawful canon identity mapping for that printed modifier before promotion can proceed.`,
+      canon_context: canonContext,
+      proposed_action: null,
+      missing_fields: uniqueText([
+        "Lawful printed modifier identity mapping",
+        "Variant key or canon contract for the detected printed modifier",
+        ...missingFieldsBase,
+      ]),
+      evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+      next_actions: [
+        `Confirm whether ${modifierSummary} represents a real canonical identity delta.`,
+        "Only stage the candidate after the modifier-backed identity can be represented lawfully in canon.",
+      ],
+      raw_reason_code:
+        normalizeTextOrNull(extractionPrintedModifier?.modifier_key) ??
+        normalizeTextOrNull(input.latestClassificationPackage?.interpreter_reason_code),
+    };
   }
 
   if (

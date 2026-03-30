@@ -112,6 +112,12 @@ function normalizeSet(value) {
   return normalized.toUpperCase();
 }
 
+function normalizeModifierKey(value) {
+  const normalized = normalizeString(value);
+  if (!normalized) return null;
+  return normalized.toLowerCase();
+}
+
 export function classifySetOutcome(caseDef, result) {
   const expectedSet = normalizeSet(caseDef?.expected?.set);
   const actualSet = normalizeSet(result?.identity?.set);
@@ -141,6 +147,34 @@ export function classifySetOutcome(caseDef, result) {
   return 'set_correct';
 }
 
+export function classifyModifierOutcome(caseDef, result) {
+  const expectedModifier = caseDef?.expected?.printed_modifier ?? undefined;
+  const actualModifier = result?.printed_modifier ?? null;
+  const actualKey = normalizeModifierKey(actualModifier?.modifier_key);
+  const actualStatus = normalizeString(actualModifier?.status);
+
+  if (expectedModifier === undefined) {
+    return actualKey ? 'modifier_detected' : 'modifier_not_expected';
+  }
+
+  if (expectedModifier === null) {
+    return actualKey ? 'modifier_wrong' : 'modifier_unresolved_honest';
+  }
+
+  const expectedKey = normalizeModifierKey(expectedModifier.modifier_key);
+  const expectedStatus = normalizeString(expectedModifier.status);
+
+  if (expectedKey && actualKey === expectedKey && (!expectedStatus || actualStatus === expectedStatus)) {
+    return 'modifier_correct';
+  }
+
+  if (!actualKey) {
+    return 'modifier_missing';
+  }
+
+  return 'modifier_wrong';
+}
+
 function isPlausibleNumber(value) {
   const normalized = normalizeString(value);
   if (!normalized) return false;
@@ -160,6 +194,7 @@ export function validateSemantics(result) {
   const name = normalizeString(result?.identity?.name);
   const number = normalizeString(result?.identity?.number);
   const setCode = normalizeString(result?.identity?.set);
+  const printedModifier = result?.printed_modifier ?? null;
   const confidence = result?.confidence?.identity ?? {};
 
   if (result?.status === 'READY') {
@@ -200,6 +235,32 @@ export function validateSemantics(result) {
 
   if (!Array.isArray(result?.errors)) {
     violations.push('errors must be an array');
+  }
+
+  if (printedModifier && typeof printedModifier === 'object') {
+    const modifierStatus = normalizeString(printedModifier.status);
+    const modifierKey = normalizeString(printedModifier.modifier_key);
+    const modifierLabel = normalizeString(printedModifier.modifier_label);
+    const modifierConfidence = printedModifier.confidence;
+
+    if (modifierStatus && !['READY', 'PARTIAL', 'BLOCKED'].includes(modifierStatus)) {
+      violations.push(`printed_modifier.status is invalid: ${modifierStatus}`);
+    }
+    if (modifierStatus === 'READY' && !modifierKey) {
+      violations.push('printed_modifier READY requires modifier_key');
+    }
+    if (modifierStatus === 'READY' && !modifierLabel) {
+      violations.push('printed_modifier READY requires modifier_label');
+    }
+    if (modifierConfidence !== null && modifierConfidence !== undefined) {
+      if (typeof modifierConfidence !== 'number' || !Number.isFinite(modifierConfidence)) {
+        violations.push('printed_modifier.confidence is missing or non-numeric');
+      } else if (modifierConfidence < 0 || modifierConfidence > 1) {
+        violations.push('printed_modifier.confidence is outside [0,1]');
+      } else if (modifierConfidence < 0.5) {
+        warnings.push('low_confidence:printed_modifier');
+      }
+    }
   }
 
   return {
@@ -243,6 +304,31 @@ export function validateExpected(caseDef, result) {
     }
   }
 
+  if (expected.printed_modifier !== undefined) {
+    const expectedModifier = expected.printed_modifier ?? null;
+    const actualModifier = result?.printed_modifier ?? null;
+
+    if (expectedModifier === null) {
+      if (actualModifier?.modifier_key) {
+        failures.push(`printed_modifier mismatch: expected null, got ${actualModifier.modifier_key}`);
+      }
+    } else {
+      const expectedStatus = normalizeString(expectedModifier.status);
+      const expectedKey = normalizeModifierKey(expectedModifier.modifier_key);
+      const actualStatus = normalizeString(actualModifier?.status);
+      const actualKey = normalizeModifierKey(actualModifier?.modifier_key);
+
+      if (expectedStatus && expectedStatus !== actualStatus) {
+        failures.push(`printed_modifier status mismatch: expected ${expectedStatus}, got ${actualStatus ?? 'null'}`);
+      }
+      if (expectedKey && expectedKey !== actualKey) {
+        failures.push(
+          `printed_modifier key mismatch: expected ${expectedModifier.modifier_key}, got ${actualModifier?.modifier_key ?? 'null'}`,
+        );
+      }
+    }
+  }
+
   return {
     ok: failures.length === 0,
     failures,
@@ -256,6 +342,14 @@ export function stableOutputView(result) {
       name: normalizeString(result?.identity?.name),
       number: normalizeNumber(result?.identity?.number),
       set: normalizeSet(result?.identity?.set),
+    },
+    printed_modifier: {
+      status: normalizeString(result?.printed_modifier?.status),
+      modifier_key: normalizeModifierKey(result?.printed_modifier?.modifier_key),
+      confidence:
+        typeof result?.printed_modifier?.confidence === 'number'
+          ? Number(result.printed_modifier.confidence.toFixed(4))
+          : null,
     },
     confidence: {
       overall:

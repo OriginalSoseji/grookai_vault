@@ -18,8 +18,10 @@ import {
 } from '../../identity/normalizeCardNameV1.mjs';
 import { preprocessImageV1 } from '../../identity/preprocessImageV1.mjs';
 import { normalizeSetIdentityV1 } from '../../identity/normalizeSetIdentityV1.mjs';
+import { normalizePrintedModifierV1 } from '../../identity/normalizePrintedModifierV1.mjs';
 
 import {
+  classifyModifierOutcome,
   classifySetOutcome,
   stableOutputView,
   validateDeterminism,
@@ -492,13 +494,12 @@ function extractAiRawName(ai) {
 }
 
 function extractAiRawNumber(ai) {
-  return normalizeText(
-    ai?.result?.raw_number_text ??
-      ai?.result?.collector_number ??
-      ai?.result?.number ??
-      ai?.result?.number_raw ??
-      ai?.result?.number_raw?.text,
-  );
+  const collectorNumber = normalizeText(ai?.result?.collector_number ?? ai?.result?.number);
+  const rawNumberText = normalizeText(ai?.result?.raw_number_text ?? ai?.result?.number_raw ?? ai?.result?.number_raw?.text);
+  if (collectorNumber?.includes('/')) {
+    return collectorNumber;
+  }
+  return rawNumberText ?? collectorNumber;
 }
 
 function extractAiParsedNumber(ai) {
@@ -538,6 +539,23 @@ function extractAiSetConfidence(ai) {
   );
 }
 
+function extractAiRawPrintedModifierText(ai) {
+  return normalizeText(ai?.result?.raw_printed_modifier_text ?? null);
+}
+
+function extractAiRawStampText(ai) {
+  return normalizeText(ai?.result?.raw_stamp_text ?? null);
+}
+
+function extractAiPrintedModifierConfidence(ai) {
+  return clamp01(
+    ai?.result?.printed_modifier_confidence_0_1 ??
+      ai?.result?.printed_modifier_confidence ??
+      ai?.payload?.printed_modifier_confidence_0_1 ??
+      ai?.payload?.printed_modifier_confidence,
+  );
+}
+
 function extractOcrRawName(ocr) {
   return normalizeText(ocr?.result?.name?.text);
 }
@@ -569,6 +587,55 @@ function extractOcrSetSymbolRegionText(ocr) {
     ocr?.result?.raw_set_symbol_region_text?.text ??
       ocr?.result?.raw_set_symbol_region_text ??
       null,
+  );
+}
+
+function extractOcrRawPrintedModifierText(ocr) {
+  return normalizeText(
+    ocr?.result?.raw_printed_modifier_text?.text ??
+      ocr?.result?.raw_printed_modifier_text ??
+      null,
+  );
+}
+
+function extractOcrRawStampText(ocr) {
+  return normalizeText(
+    ocr?.result?.raw_stamp_text?.text ??
+      ocr?.result?.raw_stamp_text ??
+      null,
+  );
+}
+
+function extractOcrModifierRegionText(ocr) {
+  return normalizeText(
+    ocr?.result?.raw_modifier_region_text?.text ??
+      ocr?.result?.raw_modifier_region_text ??
+      null,
+  );
+}
+
+function extractOcrModifierCandidateSignals(ocr, sourcePrefix = '') {
+  const signals = Array.isArray(ocr?.result?.raw_modifier_candidate_signals)
+    ? ocr.result.raw_modifier_candidate_signals
+    : [];
+
+  return signals
+    .map((signal) => ({
+      ...signal,
+      source: `${sourcePrefix}${normalizeText(signal?.source) ?? 'ocr:modifier_candidate'}`,
+      text: normalizeText(signal?.text ?? signal?.raw_text),
+      confidence: clamp01(signal?.confidence ?? 0),
+      kind: normalizeText(signal?.kind) ?? 'modifier_phrase',
+    }))
+    .filter((signal) => signal.text);
+}
+
+function extractOcrPrintedModifierConfidence(ocr) {
+  return clamp01(
+    ocr?.result?.printed_modifier_confidence_0_1 ??
+      ocr?.result?.raw_printed_modifier_text?.confidence ??
+      ocr?.result?.raw_modifier_region_text?.confidence ??
+      0,
   );
 }
 
@@ -665,6 +732,57 @@ function buildSetRawSignals({ ai, ocr, preprocessed }) {
       ...baseSignals.ocr,
       raw_set_candidate_signals: [
         ...baseSignals.ocr.raw_set_candidate_signals,
+        ...preprocessedOcrSignals,
+      ],
+      preprocessed: preprocessedOcr,
+    },
+  };
+}
+
+function buildModifierRawSignals({ ai, ocr, preprocessed }) {
+  const baseSignals = {
+    ai: {
+      raw_printed_modifier_text: extractAiRawPrintedModifierText(ai),
+      raw_stamp_text: extractAiRawStampText(ai),
+      printed_modifier_confidence: extractAiPrintedModifierConfidence(ai),
+    },
+    ocr: {
+      raw_printed_modifier_text: extractOcrRawPrintedModifierText(ocr),
+      raw_stamp_text: extractOcrRawStampText(ocr),
+      raw_modifier_region_text: extractOcrModifierRegionText(ocr),
+      printed_modifier_confidence: extractOcrPrintedModifierConfidence(ocr),
+      raw_modifier_candidate_signals: extractOcrModifierCandidateSignals(ocr),
+    },
+  };
+
+  if (!preprocessed) {
+    return baseSignals;
+  }
+
+  const preprocessedAi = {
+    raw_printed_modifier_text: extractAiRawPrintedModifierText(preprocessed.ai),
+    raw_stamp_text: extractAiRawStampText(preprocessed.ai),
+    printed_modifier_confidence: extractAiPrintedModifierConfidence(preprocessed.ai),
+  };
+
+  const preprocessedOcrSignals = extractOcrModifierCandidateSignals(preprocessed.ocr, 'preprocessed:');
+  const preprocessedOcr = {
+    raw_printed_modifier_text: extractOcrRawPrintedModifierText(preprocessed.ocr),
+    raw_stamp_text: extractOcrRawStampText(preprocessed.ocr),
+    raw_modifier_region_text: extractOcrModifierRegionText(preprocessed.ocr),
+    printed_modifier_confidence: extractOcrPrintedModifierConfidence(preprocessed.ocr),
+    raw_modifier_candidate_signals: preprocessedOcrSignals,
+  };
+
+  return {
+    ai: {
+      ...baseSignals.ai,
+      preprocessed: preprocessedAi,
+    },
+    ocr: {
+      ...baseSignals.ocr,
+      raw_modifier_candidate_signals: [
+        ...baseSignals.ocr.raw_modifier_candidate_signals,
         ...preprocessedOcrSignals,
       ],
       preprocessed: preprocessedOcr,
@@ -945,6 +1063,8 @@ async function buildExtractionResult({
     resolverCandidates: resolver.rows,
     nameConfidence: confidenceIdentity.name,
     numberConfidence: confidenceIdentity.number,
+    resolvedName: finalName,
+    resolvedNumber: finalNumber,
   });
 
   if (setIdentity.status === 'READY') {
@@ -962,7 +1082,18 @@ async function buildExtractionResult({
     ambiguityFlags.push(...setIdentity.ambiguity_flags);
   }
 
-  const confidenceValues = Object.values(confidenceIdentity);
+  const printedModifier = normalizePrintedModifierV1({
+    rawSignals: buildModifierRawSignals({ ai, ocr, preprocessed }),
+    baseIdentity: {
+      name: finalName,
+      number: finalNumber,
+      set_code: finalSet,
+    },
+    noteText: caseDef.note_text ?? caseDef.noteText ?? null,
+  });
+  const printedModifierConfidence = clamp01(printedModifier.confidence);
+
+  const confidenceValues = [...Object.values(confidenceIdentity), ...(printedModifierConfidence > 0 ? [printedModifierConfidence] : [])];
   const overall =
     confidenceValues.reduce((sum, value) => sum + value, 0) / Math.max(1, confidenceValues.length);
   const hasMatchedOcrBackedSetSignal = (setIdentity?.matched_set_candidates ?? []).some((candidate) =>
@@ -1003,7 +1134,9 @@ async function buildExtractionResult({
         number: clamp01(confidenceIdentity.number),
         set: clamp01(confidenceIdentity.set),
       },
+      printed_modifier: printedModifierConfidence,
     },
+    printed_modifier: printedModifier,
     raw_signals: {
       source_image_path: imagePath,
       category: caseDef.category,
@@ -1025,6 +1158,8 @@ async function buildExtractionResult({
             raw_number_text: aiRawNumber,
             raw_set_abbrev_text: extractAiRawSetAbbrev(ai),
             raw_set_text: extractAiRawSetText(ai),
+            raw_printed_modifier_text: extractAiRawPrintedModifierText(ai),
+            raw_stamp_text: extractAiRawStampText(ai),
             name: primaryName.corrected_name ?? null,
             number: aiParsedNumber.ok ? aiParsedNumber.number_raw : null,
             number_plain: aiParsedNumber.ok ? aiParsedNumber.number_plain : null,
@@ -1032,6 +1167,7 @@ async function buildExtractionResult({
             ambiguity_flags: aiParsedNumber.ambiguity_flags ?? [],
             confidence: aiConfidence,
             set_confidence: extractAiSetConfidence(ai),
+            printed_modifier_confidence: extractAiPrintedModifierConfidence(ai),
             payload: ai.payload,
           }
         : {
@@ -1046,11 +1182,16 @@ async function buildExtractionResult({
             raw_set_text: extractOcrSetText(ocr),
             raw_set_symbol_region_text: extractOcrSetSymbolRegionText(ocr),
             raw_set_candidate_signals: extractOcrSetCandidateSignals(ocr),
+            raw_printed_modifier_text: extractOcrRawPrintedModifierText(ocr),
+            raw_stamp_text: extractOcrRawStampText(ocr),
+            raw_modifier_region_text: extractOcrModifierRegionText(ocr),
+            raw_modifier_candidate_signals: extractOcrModifierCandidateSignals(ocr),
             name: normalizeCardNameV1(ocrRawName).corrected_name ?? null,
             number: ocrParsedNumber.ok ? ocrParsedNumber.number_raw : null,
             number_plain: ocrParsedNumber.ok ? ocrParsedNumber.number_plain : null,
             set: ocrSet,
             ambiguity_flags: ocrParsedNumber.ambiguity_flags ?? [],
+            printed_modifier_confidence: extractOcrPrintedModifierConfidence(ocr),
             payload: ocr.result,
           }
         : {
@@ -1061,6 +1202,7 @@ async function buildExtractionResult({
       preprocessed_pass: preprocessedSignals,
       canon_name_correction: canonCorrection,
       set_identity: setIdentity,
+      printed_modifier: printedModifier,
       identity_scan_candidates: {
         ok: resolver.ok,
         query: resolver.query,
@@ -1253,6 +1395,7 @@ async function runCase(caseDef, schema, supabase, runtimeDir) {
     replay_failures: replayCheck.ok ? [] : replayCheck.failures,
     confidence_warnings: confidenceWarnings,
     set_outcome: classifySetOutcome(caseDef, runs[0]),
+    modifier_outcome: classifyModifierOutcome(caseDef, runs[0]),
     replay_safe: replayCheck.ok,
     stable_view: stableOutputView(runs[0]),
     runs,

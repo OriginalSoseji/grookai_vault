@@ -149,6 +149,10 @@ function sameJson(left, right) {
   return JSON.stringify(canonicalizeJson(left)) === JSON.stringify(canonicalizeJson(right));
 }
 
+function cloneJson(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 function parseJsonSafe(value, fallback = null) {
   if (value === null || value === undefined) {
     return fallback;
@@ -235,6 +239,7 @@ function chooseDirectSignal(result, key) {
   const aiIdentify = asRecord(result?.raw_signals?.ai_identify);
   const ocr = asRecord(result?.raw_signals?.ocr);
   const setIdentity = asRecord(result?.raw_signals?.set_identity);
+  const printedModifier = asRecord(result?.raw_signals?.printed_modifier);
 
   if (key === 'name') {
     return normalizeText(aiIdentify?.raw_name_text) ?? normalizeText(ocr?.raw_name_text);
@@ -242,6 +247,18 @@ function chooseDirectSignal(result, key) {
 
   if (key === 'number') {
     return normalizeText(aiIdentify?.raw_number_text) ?? normalizeText(ocr?.raw_number_text);
+  }
+
+  if (key === 'printed_modifier') {
+    return (
+      normalizeText(aiIdentify?.raw_printed_modifier_text) ??
+      normalizeText(aiIdentify?.raw_stamp_text) ??
+      normalizeText(ocr?.raw_printed_modifier_text) ??
+      normalizeText(ocr?.raw_stamp_text) ??
+      normalizeText(ocr?.raw_modifier_region_text) ??
+      normalizeText(printedModifier?.modifier_label) ??
+      normalizeText(printedModifier?.modifier_key)
+    );
   }
 
   return (
@@ -252,6 +269,29 @@ function chooseDirectSignal(result, key) {
     normalizeText(setIdentity?.set_name) ??
     normalizeText(setIdentity?.set_code)
   );
+}
+
+function buildStableWorkerRawSignals(rawSignalsInput) {
+  const rawSignals = asRecord(rawSignalsInput);
+  if (!rawSignals) {
+    return {};
+  }
+
+  const cloned = cloneJson(rawSignals);
+  const aiIdentify = asRecord(cloned.ai_identify);
+  const payload = asRecord(aiIdentify?.payload);
+  const payloadResult = asRecord(payload?.result);
+
+  if (aiIdentify) {
+    if (payloadResult) {
+      delete payloadResult.cached;
+      delete payloadResult.sha256;
+    }
+
+    aiIdentify.payload = payloadResult ? { result: payloadResult } : null;
+  }
+
+  return cloned;
 }
 
 function buildRawExtractionPackage({ candidate, evidenceRows, scanResults, extractionResult }) {
@@ -271,12 +311,17 @@ function buildRawExtractionPackage({ candidate, evidenceRows, scanResults, extra
       name: chooseDirectSignal(extractionResult, 'name'),
       number: chooseDirectSignal(extractionResult, 'number'),
       set: chooseDirectSignal(extractionResult, 'set'),
+      printed_modifier: chooseDirectSignal(extractionResult, 'printed_modifier'),
     },
     confidence: {
       overall: typeof extractionResult?.confidence?.overall === 'number' ? extractionResult.confidence.overall : null,
       ...normalizeFieldConfidence(extractionResult),
+      printed_modifier:
+        typeof extractionResult?.confidence?.printed_modifier === 'number'
+          ? extractionResult.confidence.printed_modifier
+          : null,
     },
-    raw_signals: extractionResult.raw_signals ?? {},
+    raw_signals: buildStableWorkerRawSignals(extractionResult.raw_signals ?? {}),
     errors: asArray(extractionResult.errors).map((value) => String(value)),
   };
 }
@@ -369,6 +414,7 @@ function buildNextActions({ extractionResult, missingFields, evidenceGaps, ambig
 function buildNormalizedMetadataPackage({ candidate, evidenceRows, extractionResult }) {
   const parsedNumber = parseCollectorNumberV1(extractionResult?.identity?.number);
   const setIdentity = asRecord(extractionResult?.raw_signals?.set_identity);
+  const printedModifier = asRecord(extractionResult?.printed_modifier ?? extractionResult?.raw_signals?.printed_modifier);
   const fieldConfidence = normalizeFieldConfidence(extractionResult);
   const missingFields = buildMissingFields(extractionResult, parsedNumber, setIdentity);
   const evidenceGaps = buildEvidenceGaps({
@@ -389,6 +435,17 @@ function buildNormalizedMetadataPackage({ candidate, evidenceRows, extractionRes
       printed_number: parsedNumber.ok ? parsedNumber.number_raw : null,
       set_code: normalizeText(setIdentity?.set_code),
       set_name: normalizeText(setIdentity?.set_name),
+    },
+    printed_modifier: {
+      status: normalizeText(printedModifier?.status),
+      modifier_key: normalizeText(printedModifier?.modifier_key),
+      modifier_label: normalizeText(printedModifier?.modifier_label),
+      confidence:
+        typeof printedModifier?.confidence === 'number'
+          ? printedModifier.confidence
+          : null,
+      reason: normalizeText(printedModifier?.reason),
+      ambiguity_flags: uniqueText(asArray(printedModifier?.ambiguity_flags)),
     },
     field_confidence: fieldConfidence,
     missing_fields: missingFields,
@@ -428,12 +485,14 @@ function buildBlockedExtractionPackages({
       name: null,
       number: null,
       set: null,
+      printed_modifier: null,
     },
     confidence: {
       overall: 0,
       name: 0,
       number: 0,
       set: 0,
+      printed_modifier: 0,
     },
     raw_signals: {},
     errors: [errorCode],
@@ -450,14 +509,22 @@ function buildBlockedExtractionPackages({
       set_code: null,
       set_name: null,
     },
-    field_confidence: {
-      name: null,
-      number: null,
-      set: null,
-    },
-    missing_fields: uniqueText(missingFields),
-    evidence_gaps: uniqueText(evidenceGaps),
-    ambiguity_notes: [],
+        field_confidence: {
+          name: null,
+          number: null,
+          set: null,
+        },
+        printed_modifier: {
+          status: 'BLOCKED',
+          modifier_key: null,
+          modifier_label: null,
+          confidence: null,
+          reason: 'missing_printed_modifier_signal',
+          ambiguity_flags: [],
+        },
+        missing_fields: uniqueText(missingFields),
+        evidence_gaps: uniqueText(evidenceGaps),
+        ambiguity_notes: [],
     next_actions: uniqueText(nextActions),
   };
 
@@ -900,6 +967,7 @@ async function processCandidate(pool, supabase, candidateId, opts) {
       caseDef: {
         id: artifact.candidate.id,
         category: 'warehouse',
+        note_text: artifact.candidate.notes,
       },
       imagePath: frontEvidence.storage_path,
       imageBuffer,

@@ -30,6 +30,14 @@ export function createReport({ mode, selectedCaseIds, schemaPath }) {
       set_wrong: 0,
       set_ambiguous: 0,
     },
+    modifier_metrics: {
+      modifier_correct: 0,
+      modifier_missing: 0,
+      modifier_wrong: 0,
+      modifier_unresolved_honest: 0,
+      modifier_detected: 0,
+      modifier_not_expected: 0,
+    },
     cases: [],
   };
 }
@@ -69,6 +77,9 @@ export function appendCaseReport(report, caseResult) {
   if (caseResult.set_outcome && caseResult.set_outcome in report.set_metrics) {
     report.set_metrics[caseResult.set_outcome] += 1;
   }
+  if (caseResult.modifier_outcome && caseResult.modifier_outcome in report.modifier_metrics) {
+    report.modifier_metrics[caseResult.modifier_outcome] += 1;
+  }
 }
 
 export async function writeReport(report, outputPath) {
@@ -81,6 +92,9 @@ export function printReport(report, outputPath) {
   console.log(`total=${report.total} passed=${report.passed} failed=${report.failed}`);
   console.log(
     `set_metrics=${JSON.stringify(report.set_metrics)}`,
+  );
+  console.log(
+    `modifier_metrics=${JSON.stringify(report.modifier_metrics)}`,
   );
 
   if (report.determinism_failures.length > 0) {
@@ -119,6 +133,7 @@ export function printReport(report, outputPath) {
         passed: report.passed,
         failed: report.failed,
         set_metrics: report.set_metrics,
+        modifier_metrics: report.modifier_metrics,
         failures: report.failures,
       },
       null,
