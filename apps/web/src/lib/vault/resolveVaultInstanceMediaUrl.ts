@@ -1,11 +1,23 @@
 import "server-only";
 
-import { isUsablePublicImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import {
   normalizeVaultInstanceMediaPath,
   VAULT_INSTANCE_MEDIA_BUCKET,
 } from "@/lib/vaultInstanceMedia";
+
+function isUsablePublicImageUrl(value: string | null | undefined) {
+  if (!value) {
+    return false;
+  }
+
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 export async function resolveVaultInstanceMediaUrl(pathOrUrl?: string | null) {
   if (!pathOrUrl) {

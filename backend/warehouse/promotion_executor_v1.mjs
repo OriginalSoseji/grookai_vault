@@ -316,6 +316,11 @@ function extractPublicImageUrl(payload) {
   return null;
 }
 
+function extractNormalizedFrontImagePath(payload) {
+  const normalizationAsset = asRecord(payload?.normalization_asset);
+  return normalizeTextOrNull(normalizationAsset?.front_path);
+}
+
 function buildPreflightFailure(stage, candidate, error) {
   return {
     ok: false,
@@ -419,6 +424,8 @@ async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = 
       number_plain,
       variant_key,
       tcgplayer_id,
+      image_source,
+      image_path,
       image_url,
       image_alt_url
     from public.card_prints
@@ -445,6 +452,8 @@ async function fetchCardPrintById(client, cardPrintId) {
       number,
       number_plain,
       variant_key,
+      image_source,
+      image_path,
       image_url,
       image_alt_url
     from public.card_prints
@@ -618,6 +627,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   const variantKey = extractVariantKey(payload);
   const rarity = extractRarityHint(payload);
   const tcgplayerId = normalizeTextOrNull(payload?.candidate_summary?.tcgplayer_id);
+  const normalizedFrontImagePath = extractNormalizedFrontImagePath(payload);
 
   if (!setCode) {
     throw new ExecutorError('set_code_missing_from_payload');
@@ -701,11 +711,13 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       name: cardName,
       rarity,
       tcgplayer_id: tcgplayerId,
+      image_source: normalizedFrontImagePath ? 'identity' : null,
+      image_path: normalizedFrontImagePath,
     },
     result_linkage: {
       promoted_card_print_id: null,
       promoted_card_printing_id: null,
-      promoted_image_target_type: null,
+      promoted_image_target_type: normalizedFrontImagePath ? PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT : null,
       promoted_image_target_id: null,
     },
     summary: {
@@ -716,6 +728,8 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       card_name: cardName,
       variant_key: variantKey,
       tcgplayer_id: tcgplayerId,
+      image_source: normalizedFrontImagePath ? 'identity' : null,
+      image_path: normalizedFrontImagePath,
     },
     payload,
     candidate,
@@ -824,11 +838,41 @@ async function buildEnrichCanonImagePlan(client, stage, candidate, payload, base
     throw new ExecutorError('image_target_not_found', targetCardPrintId);
   }
 
+  const desiredImagePath = extractNormalizedFrontImagePath(payload);
   const desiredImageUrl = extractPublicImageUrl(payload);
+  const currentImagePath = normalizeTextOrNull(targetCardPrint.image_path);
   const currentImageUrl = normalizeTextOrNull(targetCardPrint.image_url);
   const currentImageAltUrl = normalizeTextOrNull(targetCardPrint.image_alt_url);
+  const currentImageSource = normalizeLowerOrNull(targetCardPrint.image_source);
   const hasUsablePrimary = isUsablePublicImageUrl(currentImageUrl);
   const hasUsableAlt = isUsablePublicImageUrl(currentImageAltUrl);
+
+  if (desiredImagePath && currentImageSource === 'identity' && currentImagePath === desiredImagePath) {
+    return {
+      ok: true,
+      action_type: stage.approved_action_type,
+      result_type: PROMOTION_RESULT_TYPES.NO_OP,
+      mutation: {
+        type: 'canon_image_existing_noop',
+        target_card_print_id: targetCardPrintId,
+      },
+      result_linkage: {
+        promoted_card_print_id: null,
+        promoted_card_printing_id: null,
+        promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT,
+        promoted_image_target_id: targetCardPrintId,
+      },
+      summary: {
+        ...baseSummary,
+        plan: 'canon_image_existing_noop',
+        target_card_print_id: targetCardPrintId,
+        desired_image_path: desiredImagePath,
+      },
+      payload,
+      candidate,
+      stage,
+    };
+  }
 
   if (desiredImageUrl && (currentImageUrl === desiredImageUrl || currentImageAltUrl === desiredImageUrl)) {
     return {
@@ -855,6 +899,44 @@ async function buildEnrichCanonImagePlan(client, stage, candidate, payload, base
       candidate,
       stage,
     };
+  }
+
+  if (desiredImagePath) {
+    if (currentImagePath && currentImagePath !== desiredImagePath) {
+      throw new ExecutorError('card_print_identity_image_path_conflict', targetCardPrintId, {
+        current_image_path: currentImagePath,
+        desired_image_path: desiredImagePath,
+      });
+    }
+
+    if (!currentImagePath && !hasUsablePrimary && !hasUsableAlt) {
+      return {
+        ok: true,
+        action_type: stage.approved_action_type,
+        result_type: PROMOTION_RESULT_TYPES.CANON_IMAGE_ENRICHED,
+        mutation: {
+          type: 'update_card_print_identity_image',
+          card_print_id: targetCardPrintId,
+          image_source: 'identity',
+          image_path: desiredImagePath,
+        },
+        result_linkage: {
+          promoted_card_print_id: null,
+          promoted_card_printing_id: null,
+          promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT,
+          promoted_image_target_id: targetCardPrintId,
+        },
+        summary: {
+          ...baseSummary,
+          plan: 'update_card_print_identity_image',
+          target_card_print_id: targetCardPrintId,
+          desired_image_path: desiredImagePath,
+        },
+        payload,
+        candidate,
+        stage,
+      };
+    }
   }
 
   if (!desiredImageUrl) {
@@ -884,10 +966,10 @@ async function buildEnrichCanonImagePlan(client, stage, candidate, payload, base
       };
     }
 
-    throw new ExecutorError('image_url_missing_from_payload');
+    throw new ExecutorError(desiredImagePath ? 'identity_image_path_not_attachable' : 'image_url_missing_from_payload');
   }
 
-  if (!hasUsablePrimary) {
+  if (!desiredImagePath && !hasUsablePrimary) {
     return {
       ok: true,
       action_type: stage.approved_action_type,
@@ -915,7 +997,7 @@ async function buildEnrichCanonImagePlan(client, stage, candidate, payload, base
     };
   }
 
-  if (!hasUsableAlt) {
+  if (!desiredImagePath && !hasUsableAlt) {
     return {
       ok: true,
       action_type: stage.approved_action_type,
@@ -1049,9 +1131,11 @@ async function applyMutation(connection, plan) {
           variant_key,
           name,
           rarity,
-          tcgplayer_id
+          tcgplayer_id,
+          image_source,
+          image_path
         )
-        values ($1, $2, $3, $4, $5, $6, $7)
+        values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
         on conflict do nothing
         returning id
       `;
@@ -1063,6 +1147,8 @@ async function applyMutation(connection, plan) {
         plan.mutation.name,
         plan.mutation.rarity,
         plan.mutation.tcgplayer_id,
+        plan.mutation.image_source,
+        plan.mutation.image_path,
       ]);
       let cardPrintId = insertResult.rows[0]?.id ?? null;
 
@@ -1084,8 +1170,9 @@ async function applyMutation(connection, plan) {
           result_type: PROMOTION_RESULT_TYPES.NO_OP,
           promoted_card_print_id: cardPrintId,
           promoted_card_printing_id: null,
-          promoted_image_target_type: null,
-          promoted_image_target_id: null,
+          promoted_image_target_type:
+            plan.mutation.image_path ? PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT : null,
+          promoted_image_target_id: plan.mutation.image_path ? cardPrintId : null,
         };
       }
 
@@ -1093,8 +1180,9 @@ async function applyMutation(connection, plan) {
         result_type: plan.result_type,
         promoted_card_print_id: cardPrintId,
         promoted_card_printing_id: null,
-        promoted_image_target_type: null,
-        promoted_image_target_id: null,
+        promoted_image_target_type:
+          plan.mutation.image_path ? PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT : null,
+        promoted_image_target_id: plan.mutation.image_path ? cardPrintId : null,
       };
     }
     case 'insert_card_printing': {
@@ -1146,6 +1234,34 @@ async function applyMutation(connection, plan) {
         promoted_card_printing_id: cardPrintingId,
         promoted_image_target_type: null,
         promoted_image_target_id: null,
+      };
+    }
+    case 'update_card_print_identity_image': {
+      const updateResult = await connection.query(
+        `
+          update public.card_prints
+          set
+            image_source = $2,
+            image_path = $3
+          where id = $1
+            and (
+              image_path is null
+              or btrim(image_path) = ''
+              or image_path = $3
+            )
+          returning id
+        `,
+        [plan.mutation.card_print_id, plan.mutation.image_source, plan.mutation.image_path],
+      );
+      if (!updateResult.rows[0]?.id) {
+        throw new ExecutorError('card_print_identity_image_update_conflict', plan.mutation.card_print_id);
+      }
+      return {
+        result_type: plan.result_type,
+        promoted_card_print_id: null,
+        promoted_card_printing_id: null,
+        promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT,
+        promoted_image_target_id: plan.mutation.card_print_id,
       };
     }
     case 'update_card_print_image_url': {

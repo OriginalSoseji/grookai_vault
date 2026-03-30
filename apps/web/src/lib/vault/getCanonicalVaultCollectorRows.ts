@@ -16,6 +16,7 @@
  */
 import "server-only";
 
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import {
@@ -151,6 +152,8 @@ type CardPrintMetadataRow = {
   number: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   sets:
     | {
         name: string | null;
@@ -463,7 +466,7 @@ async function fetchCardMetadataById(cardPrintIds: string[]) {
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
+      .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name)")
       .in("id", ids);
 
     if (error) {
@@ -722,7 +725,9 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
     const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
+    const resolvedCanonicalImageUrl = card ? await resolveCanonImageUrlV1(card) : null;
     const canonicalImageUrl =
+      resolvedCanonicalImageUrl ??
       getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
       getBestPublicCardImageUrl(price?.image_url) ??
       null;

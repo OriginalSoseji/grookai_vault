@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -22,6 +23,8 @@ type PublicCardRow = {
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   artist: string | null;
   set_code: string | null;
   variant_key: string | null;
@@ -53,6 +56,8 @@ type RelatedCardRow = {
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   set_code: string | null;
   variant_key: string | null;
   variants: VariantFlags;
@@ -162,7 +167,7 @@ function mapTraitRecord(record?: PublicCardRow["card_print_traits"]): TraitRow |
   };
 }
 
-function mapRelatedPrints(rows: RelatedCardRow[]): RelatedCardPrint[] | undefined {
+async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrint[] | undefined> {
   if (rows.length === 0) {
     return undefined;
   }
@@ -176,6 +181,7 @@ function mapRelatedPrints(rows: RelatedCardRow[]): RelatedCardPrint[] | undefine
     }
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+    const imageUrl = await resolveCanonImageUrlV1(row);
 
     mapped.set(gvId, {
       id: row.id ?? gvId,
@@ -186,7 +192,7 @@ function mapRelatedPrints(rows: RelatedCardRow[]): RelatedCardPrint[] | undefine
       set_name: setRecord?.name?.trim() || undefined,
       set_code: row.set_code?.trim() || undefined,
       rarity: row.rarity?.trim() || undefined,
-      image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
       tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
       release_date: setRecord?.release_date ?? undefined,
       release_year: getReleaseYear(setRecord?.release_date),
@@ -257,6 +263,8 @@ async function getRelatedPrintsByName(
         rarity,
         image_url,
         image_alt_url,
+        image_source,
+        image_path,
         external_ids,
         set_code,
         variant_key,
@@ -295,6 +303,8 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         rarity,
         image_url,
         image_alt_url,
+        image_source,
+        image_path,
         artist,
         external_ids,
         set_code,
@@ -324,9 +334,10 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
 
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const [fallbackSet, relatedPrints] = await Promise.all([
+  const [fallbackSet, relatedPrints, imageUrl] = await Promise.all([
     getSetDetailsByCode(row.set_code),
     getRelatedPrintsByName(supabase, row.name, row.id),
+    resolveCanonImageUrlV1(row),
   ]);
   // Pricing authority note:
   // Current active engine = v_grookai_value_v1_1
@@ -350,7 +361,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     set_name: setName,
     set_code: row.set_code ?? undefined,
     rarity: row.rarity ?? undefined,
-    image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
     artist: row.artist ?? undefined,
     printed_total: printedTotal,

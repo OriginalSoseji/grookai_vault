@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 
@@ -12,6 +13,8 @@ type FeaturedExploreCardRow = {
   set_code: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   sets:
     | {
         name: string | null;
@@ -35,12 +38,13 @@ export type FeaturedExploreCard = {
 const FEATURED_EXPLORE_CARD_COUNT = 10;
 const FEATURED_EXPLORE_CANDIDATE_WINDOW = 48;
 
-function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null | undefined): FeaturedExploreCard | null {
+async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null | undefined): Promise<FeaturedExploreCard | null> {
   if (!row?.gv_id) {
     return null;
   }
 
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+  const imageUrl = await resolveCanonImageUrlV1(row);
 
   return {
     gv_id: row.gv_id,
@@ -49,7 +53,7 @@ function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null | undef
     rarity: row.rarity?.trim() || undefined,
     set_code: row.set_code?.trim() || undefined,
     set_name: setRecord?.name?.trim() || undefined,
-    image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
+    image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
   } satisfies FeaturedExploreCard;
 }
 
@@ -74,7 +78,7 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
   const supabase = createServerComponentClient();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,set_code,image_url,image_alt_url,sets(name)")
+    .select("gv_id,name,number,rarity,set_code,image_url,image_alt_url,image_source,image_path,sets(name)")
     .ilike("rarity", "%Special Illustration Rare%")
     .order("gv_id", { ascending: true })
     .range(offset, offset + windowSize - 1);
@@ -83,9 +87,11 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
     throw error;
   }
 
-  return ((data ?? []) as FeaturedExploreCardRow[])
-    .map(normalizeFeaturedExploreCard)
-    .filter((row): row is FeaturedExploreCard => Boolean(row?.gv_id));
+  const normalizedRows = await Promise.all(
+    ((data ?? []) as FeaturedExploreCardRow[]).map((row) => normalizeFeaturedExploreCard(row)),
+  );
+
+  return normalizedRows.filter((row): row is FeaturedExploreCard => Boolean(row?.gv_id));
 }
 
 function dedupeFeaturedExploreCards(cards: FeaturedExploreCard[]) {

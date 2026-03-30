@@ -1,5 +1,6 @@
 import "server-only";
 
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import {
   normalizeDiscoverableVaultIntent,
@@ -67,6 +68,8 @@ type CardPrintRow = {
   number: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   sets:
     | {
         name: string | null;
@@ -210,7 +213,7 @@ export async function getPublicVaultInstanceByGvvi(
 
   const { data: cardData } = await admin
     .from("card_prints")
-    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
+    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name)")
     .eq("id", cardPrintId)
     .maybeSingle();
 
@@ -219,7 +222,8 @@ export async function getPublicVaultInstanceByGvvi(
   }
 
   const card = cardData as CardPrintRow;
-  const [frontImageUrl, backImageUrl, pricingByCardId] = await Promise.all([
+  const [cardImageUrl, frontImageUrl, backImageUrl, pricingByCardId] = await Promise.all([
+    resolveCanonImageUrlV1(card),
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
     getPublicPricingByCardIds(admin, [cardPrintId]),
@@ -239,7 +243,7 @@ export async function getPublicVaultInstanceByGvvi(
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
-    imageUrl: getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
+    imageUrl: cardImageUrl ?? getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
     frontImageUrl,
     backImageUrl,
     imageDisplayMode: normalizeVaultInstanceImageDisplayMode(instance.image_display_mode) ?? "canonical",

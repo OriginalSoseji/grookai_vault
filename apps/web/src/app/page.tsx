@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { createClient } from "@supabase/supabase-js";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
@@ -12,6 +13,8 @@ type FeaturedCardRow = {
   name: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
 };
 
 type FeaturedCard = {
@@ -37,19 +40,28 @@ async function getFeaturedCardByName(
 ): Promise<FeaturedCard> {
   const { data } = await supabase
     .from("card_prints")
-    .select("gv_id,name,image_url,image_alt_url")
+    .select("gv_id,name,image_url,image_alt_url,image_source,image_path")
     .eq("name", name)
     .order("gv_id")
     .limit(12);
 
-  const bestRow = ((data ?? []) as FeaturedCardRow[]).find(
-    (row) => typeof row.gv_id === "string" && Boolean(getBestPublicCardImageUrl(row.image_url, row.image_alt_url)),
+  const resolvedRows = await Promise.all(
+    ((data ?? []) as FeaturedCardRow[]).map(async (row) => ({
+      row,
+      resolvedImageUrl:
+        (await resolveCanonImageUrlV1(row)) ??
+        getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ??
+        null,
+    })),
+  );
+  const bestRow = resolvedRows.find(
+    (entry) => typeof entry.row.gv_id === "string" && Boolean(entry.resolvedImageUrl),
   );
 
   return {
-    gv_id: bestRow?.gv_id ?? `featured-${name.toLowerCase()}`,
+    gv_id: bestRow?.row.gv_id ?? `featured-${name.toLowerCase()}`,
     name,
-    image_url: bestRow ? getBestPublicCardImageUrl(bestRow.image_url, bestRow.image_alt_url) ?? undefined : undefined,
+    image_url: bestRow?.resolvedImageUrl ?? undefined,
   };
 }
 

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -40,6 +41,8 @@ type PublicCompareCardRow = {
   artist: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   variant_key: string | null;
   variants: VariantFlags;
   sets:
@@ -89,6 +92,8 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
         variants,
         image_url,
         image_alt_url,
+        image_source,
+        image_path,
         id,
         sets(name,release_date)
       `,
@@ -118,6 +123,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
     }
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+    const imageUrl = await resolveCanonImageUrlV1(row);
 
     cards.push({
       id: row.id ?? row.gv_id,
@@ -129,7 +135,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       rarity: row.rarity?.trim() || undefined,
       release_year: getReleaseYear(setRecord?.release_date),
       artist: row.artist?.trim() || undefined,
-      image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
       raw_price: row.id ? pricesByCardId.get(row.id)?.raw_price : undefined,
       raw_price_source: row.id ? pricesByCardId.get(row.id)?.raw_price_source : undefined,
       raw_price_ts: row.id ? pricesByCardId.get(row.id)?.raw_price_ts : undefined,

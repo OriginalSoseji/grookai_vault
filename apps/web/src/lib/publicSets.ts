@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import {
   SET_INTENT_ALIAS_MAP,
@@ -31,6 +32,8 @@ type PublicSetCardRow = {
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
 };
 
 function createServerSupabase() {
@@ -209,7 +212,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,image_url,image_alt_url")
+    .select("gv_id,name,number,rarity,image_url,image_alt_url,image_source,image_path")
     .eq("set_code", normalizedCode)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
@@ -220,15 +223,20 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
     throw new Error(error.message);
   }
 
-  return ((data ?? []) as PublicSetCardRow[])
-    .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id))
-    .map((row) => ({
+  const rows = ((data ?? []) as PublicSetCardRow[])
+    .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id));
+
+  return Promise.all(
+    rows.map(async (row) => ({
       gv_id: row.gv_id,
       name: row.name ?? "Unknown",
       number: row.number ?? "",
       rarity: row.rarity ?? undefined,
-      image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
-    }));
+      image_url:
+        (await resolveCanonImageUrlV1(row)) ??
+        getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    })),
+  );
 }
 
 export async function getPublicSetDetail(setCode: string): Promise<PublicSetDetail | null> {

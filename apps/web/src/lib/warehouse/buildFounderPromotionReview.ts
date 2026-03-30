@@ -1,5 +1,6 @@
 import "server-only";
 
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl, isUsablePublicImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { buildWarehouseStagingPayload } from "@/lib/founder/buildWarehouseStagingPayload";
@@ -93,6 +94,8 @@ type CanonCardPrintRow = {
   tcgplayer_id: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
 };
 
 type CanonCardPrintingRow = {
@@ -545,7 +548,7 @@ async function fetchCardPrintById(admin: AdminClient, cardPrintId: string | null
 
   const { data, error } = await admin
     .from("card_prints")
-    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url")
+    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path")
     .eq("id", normalizedCardPrintId)
     .maybeSingle();
 
@@ -578,7 +581,7 @@ async function fetchCardPrintingById(admin: AdminClient, cardPrintingId: string 
 async function fetchExistingCardPrints(admin: AdminClient, setId: string, numberPlain: string) {
   const { data, error } = await admin
     .from("card_prints")
-    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url")
+    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path")
     .eq("set_id", setId)
     .or(`number_plain.eq.${numberPlain},number.eq.${numberPlain}`)
     .limit(10);
@@ -1026,10 +1029,7 @@ export async function buildFounderPromotionReview(
     normalizeTextOrNull(visibleHints?.printed_number) ||
     normalizeTextOrNull(visibleHints?.printed_number_plain);
   const variantLabel = humanizeToken(parentCardPrint?.variant_key);
-  const previewImageFromCanon = getBestPublicCardImageUrl(
-    parentCardPrint?.image_url ?? null,
-    parentCardPrint?.image_alt_url ?? null,
-  );
+  const previewImageFromCanon = await resolveCanonImageUrlV1(parentCardPrint);
 
   let previewImageUrl: string | null = null;
   let imageOriginLabel: string | null = null;
@@ -1227,8 +1227,9 @@ export async function buildFounderPromotionReview(
         comparisonSummary = "A parent row already exists at this set and number, but the staged name does not match canon.";
         existing = [describeCardPrint(existingRow, setTarget)].filter(Boolean) as string[];
         delta = ["No canonical parent row should be written until the name conflict is resolved."];
-        previewImageUrl = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ?? frontEvidenceUrl ?? null;
-        imageOriginLabel = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+        const existingCanonImageUrl = await resolveCanonImageUrlV1(existingRow);
+        previewImageUrl = existingCanonImageUrl ?? frontEvidenceUrl ?? null;
+        imageOriginLabel = existingCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
       } else if (
         existingRow &&
         tcgplayerId &&
@@ -1269,8 +1270,9 @@ export async function buildFounderPromotionReview(
         comparisonSummary = "Canon already has a matching parent row, but the staged external identity conflicts with the existing TCGPlayer reference.";
         existing = [describeCardPrint(existingRow, setTarget)].filter(Boolean) as string[];
         delta = ["No canonical parent row should be written until the external identity conflict is resolved."];
-        previewImageUrl = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ?? frontEvidenceUrl ?? null;
-        imageOriginLabel = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+        const existingCanonImageUrl = await resolveCanonImageUrlV1(existingRow);
+        previewImageUrl = existingCanonImageUrl ?? frontEvidenceUrl ?? null;
+        imageOriginLabel = existingCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
       } else if (existingRow) {
         resultPreviewType = "NO_OP";
         decisionSummary = "Canon already contains the parent card this candidate resolves to. Promotion would reuse that row and write no new parent identity.";
@@ -1306,8 +1308,9 @@ export async function buildFounderPromotionReview(
         existing = [describeCardPrint(existingRow, setTarget)].filter(Boolean) as string[];
         introduced = ["No new canonical parent row would be created."];
         delta = ["Promotion would reuse the existing parent card and leave child/image tables untouched."];
-        previewImageUrl = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ?? frontEvidenceUrl ?? null;
-        imageOriginLabel = getBestPublicCardImageUrl(existingRow.image_url, existingRow.image_alt_url) ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+        const existingCanonImageUrl = await resolveCanonImageUrlV1(existingRow);
+        previewImageUrl = existingCanonImageUrl ?? frontEvidenceUrl ?? null;
+        imageOriginLabel = existingCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
       } else {
         resultPreviewType = "CARD_PRINT_CREATED";
         decisionSummary = "Promotion would create one new canonical parent card row.";
@@ -1417,8 +1420,9 @@ export async function buildFounderPromotionReview(
       comparisonSummary = "The parent card exists, but the candidate does not yet resolve to a lawful finish target.";
       existing = [describeCardPrint(parentCardPrint, setRow)].filter(Boolean) as string[];
       delta = ["No child printing should be written until the finish target is resolved."];
-      previewImageUrl = getBestPublicCardImageUrl(parentCardPrint.image_url, parentCardPrint.image_alt_url) ?? frontEvidenceUrl ?? null;
-      imageOriginLabel = getBestPublicCardImageUrl(parentCardPrint.image_url, parentCardPrint.image_alt_url) ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+      const parentCanonImageUrl = await resolveCanonImageUrlV1(parentCardPrint);
+      previewImageUrl = parentCanonImageUrl ?? frontEvidenceUrl ?? null;
+      imageOriginLabel = parentCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
     } else {
       const existingPrinting = await fetchExistingCardPrinting(admin, parentCardPrint.id, finishKey);
 
@@ -1517,12 +1521,13 @@ export async function buildFounderPromotionReview(
         delta = ["Parent card_print is reused; only the child printing layer changes."];
       }
 
-      previewImageUrl = getBestPublicCardImageUrl(parentCardPrint.image_url, parentCardPrint.image_alt_url) ?? frontEvidenceUrl ?? null;
-      imageOriginLabel = getBestPublicCardImageUrl(parentCardPrint.image_url, parentCardPrint.image_alt_url) ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+      const parentCanonImageUrl = await resolveCanonImageUrlV1(parentCardPrint);
+      previewImageUrl = parentCanonImageUrl ?? frontEvidenceUrl ?? null;
+      imageOriginLabel = parentCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
     }
   } else {
     const targetCardPrint = parentCardPrint;
-    const targetImageUrl = getBestPublicCardImageUrl(targetCardPrint?.image_url ?? null, targetCardPrint?.image_alt_url ?? null);
+    const targetImageUrl = await resolveCanonImageUrlV1(targetCardPrint);
     const currentPrimaryImage = normalizeTextOrNull(targetCardPrint?.image_url);
     const currentAltImage = normalizeTextOrNull(targetCardPrint?.image_alt_url);
     const targetDisplay = describeCardPrint(targetCardPrint, setRow);

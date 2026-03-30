@@ -1,5 +1,6 @@
 "use server";
 
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds, type PublicPricingRecord } from "@/lib/pricing/getPublicPricingByCardIds";
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
@@ -62,6 +63,8 @@ type CardPrintLookupRow = {
   artist?: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source?: string | null;
+  image_path?: string | null;
   set_code?: string | null;
   printed_set_abbrev?: string | null;
   external_ids?: { tcgdex?: string | null } | null;
@@ -452,18 +455,22 @@ function rankSetCandidates(setRows: TcgdexSetRow[], query: ResolverQuery) {
     .slice(0, MAX_SET_CANDIDATES);
 }
 
-function buildExploreRows(
+async function buildExploreRows(
   lookupRows: CardPrintLookupRow[],
   setNameById: Map<string, string>,
   setMetadataByCode: Map<string, PublicSetMetadata>,
   pricingByCardId: Map<string, PublicPricingRecord>,
 ) {
-  return lookupRows
-    .filter((row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id))
-    .map((row) => {
+  const rows = lookupRows.filter(
+    (row): row is CardPrintLookupRow & { gv_id: string } => Boolean(row.gv_id),
+  );
+
+  return Promise.all(
+    rows.map(async (row) => {
       const tcgdexCardId = extractTcgdexCardId(row.external_ids);
       const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
       const setMetadata = row.set_code ? setMetadataByCode.get(row.set_code) : undefined;
+      const imageUrl = await resolveCanonImageUrlV1(row);
 
       return {
         id: row.id,
@@ -474,7 +481,7 @@ function buildExploreRows(
         printed_total: setMetadata?.printed_total,
         rarity: row.rarity ?? undefined,
         artist: row.artist ?? undefined,
-        image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+        image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
         set_code: row.set_code ?? undefined,
@@ -493,7 +500,8 @@ function buildExploreRows(
         variant_key: row.variant_key?.trim() || undefined,
         variants: row.variants ?? undefined,
       };
-    });
+    }),
+  );
 }
 
 function getRowVariantCueSet(row: ExploreRow) {
@@ -1069,7 +1077,7 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
 async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], directGvId: string | null) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
 
   const [lookupById, lookupByTcgdex, directLookup] = await Promise.all([
     ids.length > 0
@@ -1103,7 +1111,7 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
 async function fetchCardRowsBySetCode(setCode: string) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -1120,7 +1128,7 @@ async function fetchCardRowsBySetCode(setCode: string) {
 async function fetchCardRowsByIllustrator(illustrator: string) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -1163,7 +1171,7 @@ async function fetchCardRowsByReleaseYear(year: number) {
   }
 
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)

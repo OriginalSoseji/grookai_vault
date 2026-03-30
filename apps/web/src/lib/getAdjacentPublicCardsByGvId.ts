@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 type CardNavigationSeedRow = {
@@ -14,6 +15,8 @@ type CardNavigationRow = {
   number_plain: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
   external_ids?: { tcgdex?: string | null } | null;
 };
 
@@ -86,14 +89,16 @@ function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
 }
 
-function toAdjacentCard(row?: CardNavigationRow): AdjacentPublicCard | undefined {
+async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCard | undefined> {
   if (!row?.gv_id) return undefined;
+
+  const imageUrl = await resolveCanonImageUrlV1(row);
 
   return {
     gv_id: row.gv_id,
     name: row.name ?? "Unknown",
     number: row.number ?? "",
-    image_url: getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
   };
 }
@@ -117,7 +122,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
 
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,number_plain,image_url,image_alt_url,external_ids")
+    .select("gv_id,name,number,number_plain,image_url,image_alt_url,image_source,image_path,external_ids")
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);
 
@@ -138,8 +143,10 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
     return {};
   }
 
-  return {
-    previous: toAdjacentCard(orderedRows[currentIndex - 1]),
-    next: toAdjacentCard(orderedRows[currentIndex + 1]),
-  };
+  const [previous, next] = await Promise.all([
+    toAdjacentCard(orderedRows[currentIndex - 1]),
+    toAdjacentCard(orderedRows[currentIndex + 1]),
+  ]);
+
+  return { previous, next };
 });
