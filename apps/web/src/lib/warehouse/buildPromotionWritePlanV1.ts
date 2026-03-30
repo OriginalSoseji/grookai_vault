@@ -1,6 +1,11 @@
 import { isUsablePublicImageUrl } from "../publicCardImage";
 import { createServerAdminClient } from "../supabase/admin";
 import type { WarehouseInterpreterPackage } from "./buildWarehouseInterpreterV1";
+import {
+  asPrintedModifierRecord,
+  getPrintedModifierLabel,
+  normalizePrintedModifierVariantKey,
+} from "./printedIdentityModel";
 
 type JsonRecord = Record<string, unknown>;
 type AdminClient = ReturnType<typeof createServerAdminClient>;
@@ -149,6 +154,10 @@ function normalizeNumberPlain(value: unknown) {
   return digits.length > 0 ? digits : null;
 }
 
+function normalizeVariantKey(value: unknown) {
+  return normalizeTextOrNull(value) ?? "";
+}
+
 function buildEmptyAction(reason?: string | null): WriteAction {
   return {
     action: "NONE",
@@ -195,7 +204,7 @@ function getMetadataIdentity(metadataExtraction: MetadataExtractionInput) {
 }
 
 function getPrintedModifier(metadataExtraction: MetadataExtractionInput) {
-  return asRecord(getNormalizedMetadataPackage(metadataExtraction)?.printed_modifier);
+  return asPrintedModifierRecord(getNormalizedMetadataPackage(metadataExtraction)?.printed_modifier);
 }
 
 function extractStagedPublicImageUrl(candidate: PromotionWritePlanCandidate) {
@@ -256,6 +265,7 @@ async function resolveCardPrintMatches(
   name: string,
   setCode: string,
   number: string,
+  variantKey: string | null,
 ) {
   const { data, error } = await admin.rpc("search_card_prints_v1", {
     q: name,
@@ -273,6 +283,7 @@ async function resolveCardPrintMatches(
   const normalizedName = normalizeNameKey(name);
   const normalizedSetCode = normalizeLowerOrNull(setCode);
   const normalizedNumber = normalizeNumberPlain(number);
+  const normalizedVariantKey = normalizeVariantKey(variantKey);
 
   const exactMatches = rows
     .map((row) => asRecord(row))
@@ -290,7 +301,8 @@ async function resolveCardPrintMatches(
       (row) =>
         normalizeNameKey(row.name) === normalizedName &&
         normalizeLowerOrNull(row.set_code) === normalizedSetCode &&
-        normalizeNumberPlain(row.number_plain ?? row.number) === normalizedNumber,
+        normalizeNumberPlain(row.number_plain ?? row.number) === normalizedNumber &&
+        normalizeVariantKey(row.variant_key) === normalizedVariantKey,
     );
 
   return exactMatches;
@@ -357,10 +369,18 @@ async function fetchExistingExternalMapping(
   return (data as ExternalMappingRow | null) ?? null;
 }
 
-function deriveVariantKey(interpreterPackage: WarehouseInterpreterPackage) {
+function deriveVariantKey(
+  interpreterPackage: WarehouseInterpreterPackage,
+  printedModifier: JsonRecord | null,
+) {
   const explicitVariantKey = normalizeTextOrNull(interpreterPackage.canon_context.variant_key);
   if (explicitVariantKey) {
     return explicitVariantKey;
+  }
+
+  const stampVariantKey = normalizePrintedModifierVariantKey(printedModifier);
+  if (stampVariantKey) {
+    return stampVariantKey;
   }
 
   if (interpreterPackage.decision === "NEW_CANONICAL_REQUIRED") {
@@ -405,26 +425,10 @@ export async function buildPromotionWritePlanV1({
   }
 
   const printedModifier = getPrintedModifier(metadataExtraction);
-  const printedModifierLabel =
-    normalizeTextOrNull(printedModifier?.modifier_label) ??
-    normalizeTextOrNull(printedModifier?.modifier_key);
-  const printedModifierStatus = normalizeTextOrNull(printedModifier?.status);
+  const printedModifierLabel = getPrintedModifierLabel(printedModifier);
+  const desiredVariantKey = deriveVariantKey(interpreterPackage, printedModifier);
 
   if (interpreterPackage.status !== "READY") {
-    if (
-      interpreterPackage.reason_code === "PRINTED_IDENTITY_DELTA_DETECTED" &&
-      printedModifierLabel &&
-      (printedModifierStatus === "READY" || printedModifierStatus === "PARTIAL")
-    ) {
-      return buildBlockedPlan(
-        `${printedModifierLabel} creates a modifier-backed identity delta, but promotion still lacks a lawful variant mapping for canon writes.`,
-        [
-          "Lawful variant_key or canon contract for the detected printed modifier",
-          ...interpreterPackage.missing_fields,
-        ],
-      );
-    }
-
     return buildBlockedPlan(interpreterPackage.founder_explanation, [
       ...interpreterPackage.missing_fields,
     ]);
@@ -453,7 +457,13 @@ export async function buildPromotionWritePlanV1({
   }
 
   const admin = createServerAdminClient();
-  const exactMatches = await resolveCardPrintMatches(admin, name, setCode, numberPlain);
+  const exactMatches = await resolveCardPrintMatches(
+    admin,
+    name,
+    setCode,
+    numberPlain,
+    desiredVariantKey,
+  );
 
   if (exactMatches.length > 1) {
     return buildBlockedPlan("AMBIGUOUS_TARGET", [
@@ -461,22 +471,26 @@ export async function buildPromotionWritePlanV1({
     ]);
   }
 
-  const exactMatchId = exactMatches[0]?.id ?? normalizeTextOrNull(interpreterPackage.canon_context.matched_card_print_id);
+  const exactMatchId = exactMatches[0]?.id ?? null;
   const exactMatch = await fetchCardPrintById(admin, exactMatchId);
+  const matchedCardPrint = await fetchCardPrintById(
+    admin,
+    normalizeTextOrNull(interpreterPackage.canon_context.matched_card_print_id),
+  );
   const existingExternalMapping = await fetchExistingExternalMapping(
     admin,
-    exactMatch?.id ?? null,
+    matchedCardPrint?.id ?? exactMatch?.id ?? null,
     normalizeTextOrNull(candidate.tcgplayer_id),
   );
 
   const beforeBase = buildCanonState({
-    cardPrint: exactMatch,
+    cardPrint: exactMatch ?? matchedCardPrint,
     cardPrinting: null,
     externalMapping: existingExternalMapping,
-    imageFields: exactMatch
+    imageFields: (exactMatch ?? matchedCardPrint)
       ? {
-          image_url: normalizeTextOrNull(exactMatch.image_url),
-          image_alt_url: normalizeTextOrNull(exactMatch.image_alt_url),
+          image_url: normalizeTextOrNull((exactMatch ?? matchedCardPrint)?.image_url),
+          image_alt_url: normalizeTextOrNull((exactMatch ?? matchedCardPrint)?.image_alt_url),
         }
       : null,
   });
@@ -527,7 +541,7 @@ export async function buildPromotionWritePlanV1({
       ]);
     }
 
-    const variantKey = deriveVariantKey(interpreterPackage);
+    const variantKey = desiredVariantKey;
     if (variantKey === null) {
       return buildBlockedPlan("Missing required variant_key for CREATE_CARD_PRINT.", [
         "variant_key",
@@ -556,13 +570,17 @@ export async function buildPromotionWritePlanV1({
 
     return {
       status: "READY",
-      reason: "Promotion would create one new canonical parent row.",
+      reason: printedModifierLabel
+        ? `Promotion would create one new canonical parent row for the stamped identity ${printedModifierLabel}.`
+        : "Promotion would create one new canonical parent row.",
       actions: {
         card_prints: {
           action: "CREATE",
           target_id: null,
           payload: cardPrintPayload,
-          reason: "No exact canonical parent row exists for this set, number, and name.",
+          reason: printedModifierLabel
+            ? `No exact canonical parent row exists for this set, number, and variant_key ${variantKey}.`
+            : "No exact canonical parent row exists for this set, number, and name.",
         },
         card_printings: buildEmptyAction("This action path does not create a child printing."),
         external_mappings: buildEmptyAction("Promotion Executor V1 does not write external_mappings."),

@@ -18,6 +18,7 @@ import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
 import type { FounderUnresolvedReview } from "@/lib/warehouse/buildFounderPromotionReview";
 import type { PromotionWritePlanV1, WriteAction } from "@/lib/warehouse/buildPromotionWritePlanV1";
 import type { WarehouseInterpreterPackage } from "@/lib/warehouse/buildWarehouseInterpreterV1";
+import { asPrintedModifierRecord, getPrintedModifierLabel } from "@/lib/warehouse/printedIdentityModel";
 import {
   getFounderWarehouseCandidateById,
   type FounderWarehouseEvidenceDetailRow,
@@ -409,6 +410,10 @@ export default async function FounderWarehouseCandidatePage({
   const metadataExtraction = candidate.metadata_extraction ?? detail.latestMetadataExtractionPackage;
   const metadataExtractionNormalized = asRecord(metadataExtraction?.normalized_metadata_package);
   const metadataExtractionIdentity = asRecord(metadataExtractionNormalized?.identity);
+  const metadataExtractionPrintedModifier = asPrintedModifierRecord(
+    metadataExtractionNormalized?.printed_modifier,
+  );
+  const metadataPrintedModifierLabel = getPrintedModifierLabel(metadataExtractionPrintedModifier);
   const normalizedPackage = detail.latestNormalizedPackage;
   const classificationPackage = detail.latestClassificationPackage;
   const normalizedSummary = (normalizedPackage?.source_summary ?? null) as Record<string, unknown> | null;
@@ -597,7 +602,10 @@ export default async function FounderWarehouseCandidatePage({
                 { label: "Display name", value: promotionReview?.preview.displayName ?? "—" },
                 { label: "Set display", value: promotionReview?.preview.setDisplay ?? "—" },
                 { label: "Printed number", value: promotionReview?.preview.printedNumber ?? "—" },
-                { label: "Variant / modifier", value: promotionReview?.preview.variantLabel ?? "—" },
+                {
+                  label: "Variant / modifier",
+                  value: promotionReview?.preview.variantLabel ?? metadataPrintedModifierLabel ?? "—",
+                },
                 { label: "Finish", value: promotionReview?.preview.finishLabel ?? "—" },
                 { label: "Preview source", value: promotionReview?.preview.imageOriginLabel ?? "—" },
               ]}
@@ -810,6 +818,10 @@ export default async function FounderWarehouseCandidatePage({
                   value: renderScalar(metadataExtractionIdentity?.set_name) !== "—"
                     ? `${renderScalar(metadataExtractionIdentity?.set_name)} (${renderScalar(metadataExtractionIdentity?.set_code)})`
                     : renderScalar(metadataExtractionIdentity?.set_code),
+                },
+                {
+                  label: "Extracted modifier",
+                  value: metadataPrintedModifierLabel ?? "—",
                 },
               ]}
             />

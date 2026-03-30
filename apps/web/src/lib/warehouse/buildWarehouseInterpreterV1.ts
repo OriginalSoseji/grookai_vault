@@ -4,6 +4,12 @@ import type {
   FounderPromotionReviewModel,
   FounderUnresolvedBlockingReasonCode,
 } from "@/lib/warehouse/buildFounderPromotionReview";
+import {
+  asPrintedModifierRecord,
+  getPrintedModifierLabel,
+  isReadyStampPrintedModifier,
+  normalizePrintedModifierVariantKey,
+} from "@/lib/warehouse/printedIdentityModel";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -189,7 +195,7 @@ function getExtractionIdentity(payload: JsonRecord | null) {
 }
 
 function getExtractionPrintedModifier(payload: JsonRecord | null) {
-  return asRecord(payload?.printed_modifier);
+  return asPrintedModifierRecord(payload?.printed_modifier);
 }
 
 function noteClaimsPrintedModifier(notes: string) {
@@ -203,6 +209,8 @@ function buildCanonContext(input: WarehouseInterpreterInput) {
   const rawPlan = asRecord(input.promotionReview?.writePlan.raw);
   const rawMutation = asRecord(rawPlan?.mutation);
   const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
+  const extractionPrintedModifier = getExtractionPrintedModifier(latestMetadataExtractionPackage);
+  const stampVariantKey = normalizePrintedModifierVariantKey(extractionPrintedModifier);
 
   const matchedCardPrintId =
     normalizeTextOrNull(input.promotionReview?.references.matchedCardPrintId) ??
@@ -229,7 +237,7 @@ function buildCanonContext(input: WarehouseInterpreterInput) {
       normalizeTextOrNull(visibleHints?.printed_number) ??
       normalizeTextOrNull(visibleHints?.printed_number_plain) ??
       normalizeTextOrNull(extractionIdentity?.number),
-    variant_key: normalizeTextOrNull(rawMutation?.variant_key),
+    variant_key: normalizeTextOrNull(rawMutation?.variant_key) ?? stampVariantKey,
     finish_key:
       normalizeTextOrNull(input.promotionReview?.references.finishKey) ??
       normalizeTextOrNull(input.candidate.interpreter_resolved_finish_key),
@@ -475,9 +483,10 @@ export function buildWarehouseInterpreterV1(
   const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
   const extractionPrintedModifier = getExtractionPrintedModifier(latestMetadataExtractionPackage);
   const printedModifierStatus = normalizeTextOrNull(extractionPrintedModifier?.status);
-  const printedModifierLabel =
-    normalizeTextOrNull(extractionPrintedModifier?.modifier_label) ??
-    normalizeTextOrNull(extractionPrintedModifier?.modifier_key);
+  const printedModifierLabel = getPrintedModifierLabel(extractionPrintedModifier);
+  const stampedVariantKey = normalizePrintedModifierVariantKey(extractionPrintedModifier);
+  const hasReadyStampPrintedModifier =
+    printedModifierStatus === "READY" && isReadyStampPrintedModifier(extractionPrintedModifier);
   const hasStructuredPrintedModifier =
     (printedModifierStatus === "READY" || printedModifierStatus === "PARTIAL") && Boolean(printedModifierLabel);
   const extractionMissingFields = asStringArray(latestMetadataExtractionPackage?.missing_fields);
@@ -520,6 +529,47 @@ export function buildWarehouseInterpreterV1(
       "NO_OP",
       "HIGH",
     );
+  }
+
+  if (
+    hasReadyStampPrintedModifier &&
+    stampedVariantKey &&
+    input.candidate.state !== "PROMOTED"
+  ) {
+    const modifierSummary = printedModifierLabel ?? "printed stamp";
+    const baseIdentitySummary = uniqueText([
+      normalizeTextOrNull(extractionIdentity?.name),
+      normalizeTextOrNull(extractionIdentity?.printed_number),
+      normalizeTextOrNull(extractionIdentity?.set_name) ?? normalizeTextOrNull(extractionIdentity?.set_code),
+    ]).join(" / ");
+
+    return {
+      version: "V1",
+      status: "READY",
+      decision: "NEW_CANONICAL_REQUIRED",
+      reason_code: "PRINTED_IDENTITY_DELTA_DETECTED",
+      confidence:
+        canonContext.canonical_set_code && canonContext.number ? "HIGH" : "MEDIUM",
+      founder_explanation: baseIdentitySummary
+        ? `${modifierSummary} is a structured printed identity delta on ${baseIdentitySummary}. Under PRINTED_IDENTITY_MODEL_V1, stamped cards are new canonical rows, so promotion should create a new card_prints identity with variant_key ${stampedVariantKey}.`
+        : `${modifierSummary} is a structured printed identity delta. Under PRINTED_IDENTITY_MODEL_V1, stamped cards are new canonical rows, so promotion should create a new card_prints identity with variant_key ${stampedVariantKey}.`,
+      canon_context: {
+        ...canonContext,
+        variant_key: stampedVariantKey,
+        matched_card_printing_id: null,
+        finish_key: null,
+      },
+      proposed_action: "CREATE_CARD_PRINT",
+      missing_fields: [],
+      evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+      next_actions: [
+        "Founder may approve and stage this candidate as a new canonical row.",
+        `Promotion should create a new card_prints row with variant_key ${stampedVariantKey}.`,
+      ],
+      raw_reason_code:
+        normalizeTextOrNull(extractionPrintedModifier?.modifier_key) ??
+        normalizeTextOrNull(input.latestClassificationPackage?.interpreter_reason_code),
+    };
   }
 
   if (writePlanReady && reviewActionType === "ENRICH_CANON_IMAGE") {
