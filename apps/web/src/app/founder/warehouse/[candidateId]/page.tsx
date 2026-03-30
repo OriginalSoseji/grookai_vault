@@ -15,6 +15,7 @@ import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
+import { buildFounderReviewPresentationV1 } from "@/lib/warehouse/buildFounderReviewPresentationV1";
 import type { FounderUnresolvedReview } from "@/lib/warehouse/buildFounderPromotionReview";
 import type { PromotionWritePlanV1, WriteAction } from "@/lib/warehouse/buildPromotionWritePlanV1";
 import type { WarehouseInterpreterPackage } from "@/lib/warehouse/buildWarehouseInterpreterV1";
@@ -413,7 +414,9 @@ export default async function FounderWarehouseCandidatePage({
   const metadataExtractionPrintedModifier = asPrintedModifierRecord(
     metadataExtractionNormalized?.printed_modifier,
   );
-  const metadataPrintedModifierLabel = getPrintedModifierLabel(metadataExtractionPrintedModifier);
+  const metadataExtractionPrintedModifierLabel = getPrintedModifierLabel(
+    metadataExtractionPrintedModifier,
+  );
   const normalizedPackage = detail.latestNormalizedPackage;
   const classificationPackage = detail.latestClassificationPackage;
   const normalizedSummary = (normalizedPackage?.source_summary ?? null) as Record<string, unknown> | null;
@@ -423,6 +426,12 @@ export default async function FounderWarehouseCandidatePage({
   const evidenceFrontPreview = promotionReview?.preview.frontEvidenceUrl ?? null;
   const evidenceBackPreview = promotionReview?.preview.backEvidenceUrl ?? null;
   const promotionWritePlanOutcome = getPromotionWritePlanOutcomeLabel(promotionWritePlan);
+  const founderPresentation = buildFounderReviewPresentationV1({
+    promotionWritePlan,
+    promotionReview,
+    interpreterPackage,
+    metadataExtraction,
+  });
 
   return (
     <PageContainer className="space-y-8 py-8">
@@ -526,11 +535,11 @@ export default async function FounderWarehouseCandidatePage({
             />
           </div>
         </div>
-        {interpreterPackage?.status === "BLOCKED" ? (
-          <InterpreterBlockingPanel interpreter={interpreterPackage} />
-        ) : promotionReview?.unresolved ? (
-          <BlockingIssuesPanel unresolved={promotionReview.unresolved} />
-        ) : null}
+          {founderPresentation.showFallbackBlocking && interpreterPackage?.status === "BLOCKED" ? (
+            <InterpreterBlockingPanel interpreter={interpreterPackage} />
+          ) : founderPresentation.showFallbackBlocking && promotionReview?.unresolved ? (
+            <BlockingIssuesPanel unresolved={promotionReview.unresolved} />
+          ) : null}
         {interpreterPackage?.status === "READY" ? (
           <div className="grid gap-4 lg:grid-cols-2">
             <SupportingList
@@ -585,34 +594,34 @@ export default async function FounderWarehouseCandidatePage({
         <div className="grid gap-6 lg:grid-cols-[minmax(280px,380px)_minmax(0,1fr)]">
           <div className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50 px-5 py-5">
             <PublicCardImage
-              src={promotionReview?.preview.imageUrl ?? undefined}
-              alt={promotionReview?.preview.displayName ?? "Promotion preview"}
+              src={founderPresentation.preview.imageUrl ?? undefined}
+              alt={founderPresentation.preview.displayName ?? "Promotion preview"}
               imageClassName="mx-auto aspect-[3/4] h-auto w-full max-w-[320px] rounded-[1.25rem] border border-slate-200 bg-white object-contain p-2"
               fallbackClassName="mx-auto flex aspect-[3/4] w-full max-w-[320px] items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white px-6 text-center text-sm text-slate-500"
               fallbackLabel="No preview image is safely available yet."
             />
             <div className="flex flex-wrap gap-2">
-              <WarehouseBadge value={promotionReview?.candidateTypeLabel ?? "Unresolved"} tone="default" />
+              <WarehouseBadge value={founderPresentation.preview.candidateTypeLabel} tone="default" />
               {promotionWritePlanOutcome ? (
                 <WarehouseBadge value={promotionWritePlanOutcome} />
               ) : null}
             </div>
             <DefinitionGrid
               items={[
-                { label: "Display name", value: promotionReview?.preview.displayName ?? "—" },
-                { label: "Set display", value: promotionReview?.preview.setDisplay ?? "—" },
-                { label: "Printed number", value: promotionReview?.preview.printedNumber ?? "—" },
+                { label: "Display name", value: founderPresentation.preview.displayName ?? "—" },
+                { label: "Set display", value: founderPresentation.preview.setDisplay ?? "—" },
+                { label: "Printed number", value: founderPresentation.preview.printedNumber ?? "—" },
                 {
                   label: "Variant / modifier",
-                  value: promotionReview?.preview.variantLabel ?? metadataPrintedModifierLabel ?? "—",
+                  value: founderPresentation.preview.variantLabel ?? "—",
                 },
                 { label: "Finish", value: promotionReview?.preview.finishLabel ?? "—" },
-                { label: "Preview source", value: promotionReview?.preview.imageOriginLabel ?? "—" },
+                { label: "Preview source", value: founderPresentation.preview.imageOriginLabel ?? "—" },
               ]}
             />
-            {promotionReview?.preview.unresolvedReason ? (
+            {founderPresentation.preview.unresolvedReason ? (
               <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-6 text-amber-900">
-                {promotionReview.preview.unresolvedReason}
+                {founderPresentation.preview.unresolvedReason}
               </div>
             ) : null}
           </div>
@@ -691,23 +700,23 @@ export default async function FounderWarehouseCandidatePage({
           description="Human-readable comparison of what canon already has versus what this candidate would add or repair."
         />
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5 text-sm leading-7 text-slate-800">
-          {promotionReview?.comparison.summary ?? "No comparison summary is available yet."}
+          {founderPresentation.comparison?.summary ?? "No comparison summary is available yet."}
         </div>
         <div className="grid gap-4 lg:grid-cols-2">
           <SupportingList
             title="Already In Canon"
-            items={promotionReview?.comparison.existing ?? []}
+            items={founderPresentation.comparison?.existing ?? []}
             emptyMessage="No existing canonical target has been resolved yet."
           />
           <SupportingList
             title="Promotion Introduces"
-            items={promotionReview?.comparison.introduced ?? []}
+            items={founderPresentation.comparison?.introduced ?? []}
             emptyMessage="This promotion currently introduces no new canonical write."
           />
         </div>
         <SupportingList
           title="Identity Delta"
-          items={promotionReview?.comparison.delta ?? []}
+          items={founderPresentation.comparison?.delta ?? []}
           emptyMessage="No explicit identity delta has been recorded yet."
         />
         {interpreterPackage ? (
@@ -821,7 +830,7 @@ export default async function FounderWarehouseCandidatePage({
                 },
                 {
                   label: "Extracted modifier",
-                  value: metadataPrintedModifierLabel ?? "—",
+                  value: metadataExtractionPrintedModifierLabel ?? "—",
                 },
               ]}
             />
