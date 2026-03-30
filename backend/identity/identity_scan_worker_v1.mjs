@@ -9,6 +9,7 @@ import { createBackendClient } from '../supabase_backend_client.mjs';
 import { detectOuterBorderAI, warpCardQuadAI } from '../condition/ai_border_detector_client.mjs';
 import { parseCollectorNumberV1 } from './parseCollectorNumberV1.mjs';
 import { normalizeCardNameV1 } from './normalizeCardNameV1.mjs';
+import { normalizeSetIdentityV1 } from './normalizeSetIdentityV1.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'identity_scan_v1';
@@ -488,6 +489,16 @@ async function processEvent(supabase, eventId) {
     run_id: aiPayload.run_id ?? null,
     trace_id: aiPayload.trace_id ?? eventId,
     notes: aiPayload.notes ?? aiResult?.notes ?? null,
+    raw_set_abbrev_text:
+      typeof aiResult?.raw_set_abbrev_text === 'string' ? aiResult.raw_set_abbrev_text : null,
+    raw_set_text:
+      typeof aiResult?.raw_set_text === 'string' ? aiResult.raw_set_text : null,
+    set_confidence_0_1:
+      typeof aiResult?.set_confidence_0_1 === 'number'
+        ? aiResult.set_confidence_0_1
+        : typeof aiResult?.set_confidence === 'number'
+          ? aiResult.set_confidence
+          : null,
     identify_debug: {
       raw_name_text: rawNameText,
       raw_number_text: rawCollectorNumber,
@@ -554,6 +565,40 @@ async function processEvent(supabase, eventId) {
         };
       }
     }
+    const setIdentity = await normalizeSetIdentityV1({
+      supabase,
+      rawSignals: {
+        ai: {
+          raw_set_abbrev_text: gvEvidence.raw_set_abbrev_text,
+          raw_set_text: gvEvidence.raw_set_text,
+          set_confidence: gvEvidence.set_confidence_0_1,
+        },
+        ocr: null,
+      },
+      resolverCandidates: candidates,
+      nameConfidence: confidence ?? 0,
+      numberConfidence: confidence ?? 0,
+    });
+    signals.ai.set_code = setIdentity.set_code ?? null;
+    signals.ai.set_name = setIdentity.set_name ?? null;
+    signals.ai.set_status = setIdentity.status;
+    signals.ai.set_reason = setIdentity.reason;
+    signals.ai.set_ambiguity_flags = Array.isArray(setIdentity.ambiguity_flags)
+      ? setIdentity.ambiguity_flags
+      : [];
+    signals.ai.identify_debug = {
+      ...(signals.ai.identify_debug ?? {}),
+      set_identity: {
+        set_code: setIdentity.set_code ?? null,
+        set_name: setIdentity.set_name ?? null,
+        status: setIdentity.status,
+        confidence: setIdentity.confidence,
+        reason: setIdentity.reason,
+        ambiguity_flags: Array.isArray(setIdentity.ambiguity_flags)
+          ? setIdentity.ambiguity_flags
+          : [],
+      },
+    };
     log('resolver_candidates', { eventId, q, count: candidates.length });
     log('ai_identify_ok', { eventId, run_id: aiPayload.run_id || null });
     await insertResult(supabase, eventId, userId, 'ai_hint_ready', signals, candidates, null);

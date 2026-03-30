@@ -38,6 +38,9 @@ class OCRResponse(BaseModel):
     number_raw: dict | None = None
     printed_total: dict | None = None
     printed_set_abbrev_raw: dict | None = None
+    raw_set_text: dict | None = None
+    raw_set_symbol_region_text: dict | None = None
+    raw_set_candidate_signals: list | None = None
     debug: dict | None = None
 
 class AIIdentifyRequest(BaseModel):
@@ -177,8 +180,11 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         '  \"raw_name_text\": string|null,\n'
         '  \"collector_number\": string|null,  // preserve printed zeros exactly, like \"012/112\"\n'
         '  \"raw_number_text\": string|null,\n'
+        '  \"raw_set_abbrev_text\": string|null,  // short printed set abbreviation like \"MEG\" or \"JTG\" when visible\n'
+        '  \"raw_set_text\": string|null,  // full set identity text when confidently visible or inferable from the printed set mark\n'
         '  \"printed_total\": integer|null,\n'
         '  \"hp\": integer|null,\n'
+        '  \"set_confidence_0_1\": number|null,\n'
         '  \"confidence_0_1\": number,\n'
         '  \"notes\": string[]\n'
         "}\n"
@@ -187,6 +193,9 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         "- Preserve collector_number exactly as printed; do NOT strip leading zeros\n"
         "- Preserve apostrophes in names when visible\n"
         "- raw_name_text and raw_number_text should mirror the visible printed text when possible\n"
+        "- raw_set_abbrev_text should preserve the printed set abbreviation or short set token when visible\n"
+        "- raw_set_text should preserve the readable set identity when confidently available\n"
+        "- If set identity is weak or ambiguous, leave raw_set_abbrev_text/raw_set_text null and keep set_confidence_0_1 below 0.6\n"
         "- printed_total should match denominator when present\n"
         "Return JSON only. No prose.\n"
     )
@@ -260,11 +269,16 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
     if not isinstance(number, str):
         number = data.get("number")
     raw_number_text = data.get("raw_number_text")
+    raw_set_abbrev_text = data.get("raw_set_abbrev_text")
+    raw_set_text = data.get("raw_set_text")
     printed_total = data.get("printed_total")
     hp = data.get("hp")
     conf = data.get("confidence_0_1")
     if conf is None:
         conf = data.get("confidence")
+    set_conf = data.get("set_confidence_0_1")
+    if set_conf is None:
+        set_conf = data.get("set_confidence")
     notes = data.get("notes")
 
     if isinstance(number, str) and "/" in number:
@@ -284,15 +298,25 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         conf = 0.0
     conf = max(0.0, min(1.0, conf))
 
+    try:
+        set_conf = float(set_conf)
+    except Exception:
+        set_conf = None
+    if isinstance(set_conf, float):
+        set_conf = max(0.0, min(1.0, set_conf))
+
     return {
         "name": name if isinstance(name, str) and name.strip() else None,
         "raw_name_text": raw_name_text if isinstance(raw_name_text, str) and raw_name_text.strip() else (name if isinstance(name, str) and name.strip() else None),
         "collector_number": number if isinstance(number, str) and number.strip() else None,
         "raw_number_text": raw_number_text if isinstance(raw_number_text, str) and raw_number_text.strip() else (number if isinstance(number, str) and number.strip() else None),
+        "raw_set_abbrev_text": raw_set_abbrev_text if isinstance(raw_set_abbrev_text, str) and raw_set_abbrev_text.strip() else None,
+        "raw_set_text": raw_set_text if isinstance(raw_set_text, str) and raw_set_text.strip() else None,
         "number": number if isinstance(number, str) and number.strip() else None,
         "printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
         "collector_printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
         "hp": int(hp) if isinstance(hp, (int, float)) else None,
+        "set_confidence_0_1": set_conf,
         "confidence_0_1": conf,
         "confidence": conf,
         "notes": notes if isinstance(notes, list) else [],
@@ -467,6 +491,98 @@ async def ocr_card_signals(request: Request):
         number_conf = 0.0
         total_conf = 0.0
         roi_text = ""
+        set_region_text = None
+        set_region_conf = 0.0
+        set_candidate_signals = []
+
+        def _clean_set_token(token):
+            token = re.sub(r"[^A-Za-z0-9.-]+", "", token or "").strip().upper()
+            if len(token) < 2 or len(token) > 8:
+                return None
+            if not any(ch.isalpha() for ch in token):
+                return None
+            if token in {"HP", "GX", "EX", "VMAX", "VSTAR", "POKEMON", "TRAINER"}:
+                return None
+            return token
+
+        def _scan_set_regions(img_rgb):
+            H, W = img_rgb.shape[:2]
+            regions = [
+                ("bottom_left_band", 0.00, 0.42, 0.80, 1.00),
+                ("bottom_center_band", 0.20, 0.72, 0.80, 1.00),
+                ("bottom_right_band", 0.58, 1.00, 0.78, 1.00),
+                ("number_neighbor_band", 0.00, 0.36, 0.72, 0.95),
+            ]
+            collected = []
+
+            for region_name, x0f, x1f, y0f, y1f in regions:
+                x0, x1 = int(x0f * W), int(x1f * W)
+                y0, y1 = int(y0f * H), int(y1f * H)
+                roi = img_rgb[y0:y1, x0:x1]
+                if roi.size == 0:
+                    continue
+
+                roi_gray = cv2.cvtColor(roi, cv2.COLOR_RGB2GRAY)
+                roi_up = cv2.resize(roi_gray, None, fx=4.0, fy=4.0, interpolation=cv2.INTER_CUBIC)
+                roi_clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(roi_up)
+                roi_blur = cv2.GaussianBlur(roi_clahe, (3, 3), 0)
+                roi_sharp = cv2.addWeighted(roi_clahe, 1.35, roi_blur, -0.35, 0)
+                _, roi_thresh = cv2.threshold(
+                    roi_sharp, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU
+                )
+                if roi_thresh.mean() / 255.0 > 0.9:
+                    roi_thresh = cv2.bitwise_not(roi_thresh)
+
+                for psm in ("7", "6"):
+                    raw = (
+                        pytesseract.image_to_string(
+                            roi_thresh,
+                            config=(
+                                f"--psm {psm} "
+                                "-c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.-"
+                            ),
+                        )
+                        or ""
+                    ).strip()
+                    if not raw:
+                        continue
+
+                    cleaned = re.sub(r"\s+", " ", raw).strip()
+                    tokens = re.findall(r"[A-Za-z0-9.-]{2,8}", cleaned)
+                    for token in tokens:
+                        token_clean = _clean_set_token(token)
+                        if not token_clean:
+                            continue
+                        confidence = 0.42
+                        if region_name in ("bottom_left_band", "bottom_center_band"):
+                            confidence += 0.08
+                        if psm == "7":
+                            confidence += 0.05
+                        if 3 <= len(token_clean) <= 4:
+                            confidence += 0.08
+                        if any(ch.isdigit() for ch in token_clean):
+                            confidence -= 0.03
+                        collected.append(
+                            {
+                                "text": token_clean,
+                                "source": f"ocr:{region_name}:psm{psm}",
+                                "kind": "abbrev",
+                                "confidence": max(0.0, min(1.0, confidence)),
+                                "raw_text": cleaned,
+                            }
+                        )
+
+            deduped = {}
+            for item in collected:
+                key = (item["text"], item["source"])
+                if key not in deduped or item["confidence"] > deduped[key]["confidence"]:
+                    deduped[key] = item
+
+            ranked = sorted(
+                deduped.values(),
+                key=lambda item: (-item["confidence"], item["text"], item["source"]),
+            )
+            return ranked[:8]
 
         def _scan_number(img_rgb):
             H, W = img_rgb.shape[:2]
@@ -693,6 +809,14 @@ async def ocr_card_signals(request: Request):
             ):
                 abbrev_text = token.upper()
 
+        set_candidate_signals = _scan_set_regions(img_np)
+        if set_candidate_signals:
+            best_set_signal = set_candidate_signals[0]
+            set_region_text = best_set_signal["text"]
+            set_region_conf = float(best_set_signal["confidence"])
+            if not abbrev_text or set_region_conf > 0.45:
+                abbrev_text = best_set_signal["text"]
+
         debug_text_raw = text_norm
         if roi_text:
             debug_text_raw = f"{text_norm}\n[roi_num] {roi_text}"
@@ -702,6 +826,9 @@ async def ocr_card_signals(request: Request):
             "number_raw": {"text": number_text or None, "confidence": number_conf if number_text else 0.0},
             "printed_total": {"value": total_val, "confidence": total_conf if total_val is not None else 0.0},
             "printed_set_abbrev_raw": {"text": abbrev_text or None, "confidence": 0.4 if abbrev_text else 0.0},
+            "raw_set_text": {"text": abbrev_text or None, "confidence": 0.0},
+            "raw_set_symbol_region_text": {"text": set_region_text or None, "confidence": set_region_conf},
+            "raw_set_candidate_signals": set_candidate_signals,
             "debug": {
                 "engine": "pytesseract" if _OCR_AVAILABLE else "none",
                 "text_raw": debug_text_raw,
@@ -717,6 +844,9 @@ async def ocr_card_signals(request: Request):
             "number_raw": None,
             "printed_total": None,
             "printed_set_abbrev_raw": None,
+            "raw_set_text": None,
+            "raw_set_symbol_region_text": None,
+            "raw_set_candidate_signals": [],
             "debug": {"engine": "exception"},
         }
 
@@ -828,6 +958,8 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
                 "result": None,
                 "error": "unauthorized",
             }
+        if "cannot identify image file" in err.lower():
+            err = "invalid_image"
         return {
             "ok": False,
             "cache_hit": False,

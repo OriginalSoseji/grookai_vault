@@ -112,6 +112,35 @@ function normalizeSet(value) {
   return normalized.toUpperCase();
 }
 
+export function classifySetOutcome(caseDef, result) {
+  const expectedSet = normalizeSet(caseDef?.expected?.set);
+  const actualSet = normalizeSet(result?.identity?.set);
+  const ambiguityFlags = Array.isArray(result?.raw_signals?.set_identity?.ambiguity_flags)
+    ? result.raw_signals.set_identity.ambiguity_flags
+    : [];
+  const setStatus = normalizeString(result?.raw_signals?.set_identity?.status);
+
+  if (expectedSet) {
+    if (actualSet === expectedSet) {
+      return 'set_correct';
+    }
+    if (!actualSet) {
+      return 'set_wrong';
+    }
+    return 'set_wrong';
+  }
+
+  if (!actualSet) {
+    return 'set_unresolved_honest';
+  }
+
+  if (setStatus !== 'READY' || ambiguityFlags.length > 0) {
+    return 'set_ambiguous';
+  }
+
+  return 'set_correct';
+}
+
 function isPlausibleNumber(value) {
   const normalized = normalizeString(value);
   if (!normalized) return false;

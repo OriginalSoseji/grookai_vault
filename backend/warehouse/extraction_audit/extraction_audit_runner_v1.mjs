@@ -17,8 +17,10 @@ import {
   normalizeCardNameV1,
 } from '../../identity/normalizeCardNameV1.mjs';
 import { preprocessImageV1 } from '../../identity/preprocessImageV1.mjs';
+import { normalizeSetIdentityV1 } from '../../identity/normalizeSetIdentityV1.mjs';
 
 import {
+  classifySetOutcome,
   stableOutputView,
   validateDeterminism,
   validateExpected,
@@ -394,7 +396,9 @@ async function aiIdentifyWarp({ imageBuffer, traceId, timeoutMs }) {
     if (payload?.ok === false || normalizeText(payload?.error) || normalizeText(result?.error)) {
       return {
         ok: false,
-        error: normalizeText(payload?.error) || normalizeText(result?.error) || 'ai_failed',
+        error: normalizeAiError(
+          normalizeText(payload?.error) || normalizeText(result?.error) || 'ai_failed',
+        ),
       };
     }
     return {
@@ -411,7 +415,7 @@ async function aiIdentifyWarp({ imageBuffer, traceId, timeoutMs }) {
     }
     return {
       ok: false,
-      error: error?.message || 'ai_failed',
+      error: normalizeAiError(error?.message || 'ai_failed'),
     };
   } finally {
     clearTimeout(timer);
@@ -510,6 +514,30 @@ function extractAiConfidence(ai) {
   );
 }
 
+function normalizeAiError(errorText) {
+  const normalized = normalizeText(errorText);
+  if (!normalized) return 'ai_failed';
+  if (/cannot identify image file/i.test(normalized)) return 'ai_invalid_image';
+  return normalized;
+}
+
+function extractAiRawSetAbbrev(ai) {
+  return normalizeText(ai?.result?.raw_set_abbrev_text ?? ai?.result?.set_abbrev ?? null);
+}
+
+function extractAiRawSetText(ai) {
+  return normalizeText(ai?.result?.raw_set_text ?? ai?.result?.set_text ?? null);
+}
+
+function extractAiSetConfidence(ai) {
+  return clamp01(
+    ai?.result?.set_confidence_0_1 ??
+      ai?.result?.set_confidence ??
+      ai?.payload?.set_confidence_0_1 ??
+      ai?.payload?.set_confidence,
+  );
+}
+
 function extractOcrRawName(ocr) {
   return normalizeText(ocr?.result?.name?.text);
 }
@@ -524,6 +552,40 @@ function extractOcrParsedNumber(ocr) {
 
 function extractOcrSet(ocr) {
   return normalizeText(ocr?.result?.printed_set_abbrev_raw?.text)?.toUpperCase() ?? null;
+}
+
+function extractOcrSetText(ocr) {
+  return normalizeText(
+    ocr?.result?.raw_set_text?.text ??
+      ocr?.result?.raw_set_text ??
+      ocr?.result?.set_text?.text ??
+      ocr?.result?.set_text ??
+      null,
+  );
+}
+
+function extractOcrSetSymbolRegionText(ocr) {
+  return normalizeText(
+    ocr?.result?.raw_set_symbol_region_text?.text ??
+      ocr?.result?.raw_set_symbol_region_text ??
+      null,
+  );
+}
+
+function extractOcrSetCandidateSignals(ocr, sourcePrefix = '') {
+  const signals = Array.isArray(ocr?.result?.raw_set_candidate_signals)
+    ? ocr.result.raw_set_candidate_signals
+    : [];
+
+  return signals
+    .map((signal) => ({
+      ...signal,
+      source: `${sourcePrefix}${normalizeText(signal?.source) ?? 'ocr:set_candidate'}`,
+      text: normalizeText(signal?.text ?? signal?.raw_text),
+      confidence: clamp01(signal?.confidence ?? 0),
+      kind: normalizeText(signal?.kind) ?? 'abbrev',
+    }))
+    .filter((signal) => signal.text);
 }
 
 function extractOcrConfidence(ocr, key) {
@@ -555,6 +617,59 @@ function choosePassSet(primarySet, secondarySet, errors, ambiguityFlags) {
     return null;
   }
   return primarySet ?? secondarySet ?? null;
+}
+
+function buildSetRawSignals({ ai, ocr, preprocessed }) {
+  const baseSignals = {
+    ai: {
+      raw_set_abbrev_text: extractAiRawSetAbbrev(ai),
+      raw_set_text: extractAiRawSetText(ai),
+      set_confidence: extractAiSetConfidence(ai),
+    },
+    ocr: {
+      raw_set_abbrev_text: extractOcrSet(ocr),
+      raw_set_text: extractOcrSetText(ocr),
+      raw_set_symbol_region_text: extractOcrSetSymbolRegionText(ocr),
+      set_confidence: extractOcrConfidence(ocr, 'printed_set_abbrev_raw'),
+      set_symbol_region_confidence: extractOcrConfidence(ocr, 'raw_set_symbol_region_text'),
+      raw_set_candidate_signals: extractOcrSetCandidateSignals(ocr),
+    },
+  };
+
+  if (!preprocessed) {
+    return baseSignals;
+  }
+
+  const preprocessedAi = {
+    raw_set_abbrev_text: extractAiRawSetAbbrev(preprocessed.ai),
+    raw_set_text: extractAiRawSetText(preprocessed.ai),
+    set_confidence: extractAiSetConfidence(preprocessed.ai),
+  };
+
+  const preprocessedOcrSignals = extractOcrSetCandidateSignals(preprocessed.ocr, 'preprocessed:');
+  const preprocessedOcr = {
+    raw_set_abbrev_text: extractOcrSet(preprocessed.ocr),
+    raw_set_text: extractOcrSetText(preprocessed.ocr),
+    raw_set_symbol_region_text: extractOcrSetSymbolRegionText(preprocessed.ocr),
+    set_confidence: extractOcrConfidence(preprocessed.ocr, 'printed_set_abbrev_raw'),
+    set_symbol_region_confidence: extractOcrConfidence(preprocessed.ocr, 'raw_set_symbol_region_text'),
+    raw_set_candidate_signals: preprocessedOcrSignals,
+  };
+
+  return {
+    ai: {
+      ...baseSignals.ai,
+      preprocessed: preprocessedAi,
+    },
+    ocr: {
+      ...baseSignals.ocr,
+      raw_set_candidate_signals: [
+        ...baseSignals.ocr.raw_set_candidate_signals,
+        ...preprocessedOcrSignals,
+      ],
+      preprocessed: preprocessedOcr,
+    },
+  };
 }
 
 function boostConfidence(base, delta) {
@@ -824,9 +939,36 @@ async function buildExtractionResult({
     errors.push(`resolver:${resolver.error}`);
   }
 
+  const setIdentity = await normalizeSetIdentityV1({
+    supabase,
+    rawSignals: buildSetRawSignals({ ai, ocr, preprocessed }),
+    resolverCandidates: resolver.rows,
+    nameConfidence: confidenceIdentity.name,
+    numberConfidence: confidenceIdentity.number,
+  });
+
+  if (setIdentity.status === 'READY') {
+    finalSet = setIdentity.set_code ?? finalSet;
+    confidenceIdentity.set = clamp01(setIdentity.confidence);
+  } else if (setIdentity.set_code) {
+    finalSet = setIdentity.set_code;
+    confidenceIdentity.set = clamp01(setIdentity.confidence);
+    if (!setIdentity.ambiguity_flags.includes('resolver_only_set')) {
+      ambiguityFlags.push(...setIdentity.ambiguity_flags);
+    }
+  } else {
+    finalSet = null;
+    confidenceIdentity.set = clamp01(setIdentity.confidence);
+    ambiguityFlags.push(...setIdentity.ambiguity_flags);
+  }
+
   const confidenceValues = Object.values(confidenceIdentity);
   const overall =
     confidenceValues.reduce((sum, value) => sum + value, 0) / Math.max(1, confidenceValues.length);
+  const hasMatchedOcrBackedSetSignal = (setIdentity?.matched_set_candidates ?? []).some((candidate) =>
+    Array.isArray(candidate?.sources) &&
+    candidate.sources.some((source) => String(source).startsWith('ocr:')),
+  );
 
   let status = 'BLOCKED';
   if (!ai.ok) {
@@ -835,6 +977,8 @@ async function buildExtractionResult({
     finalName &&
     finalNumber &&
     finalSet &&
+    setIdentity.status === 'READY' &&
+    hasMatchedOcrBackedSetSignal &&
     !ambiguityFlags.includes('preprocessed_name_conflict') &&
     !ambiguityFlags.includes('preprocessed_set_conflict') &&
     !ambiguityFlags.includes('number_source_conflict') &&
@@ -879,12 +1023,15 @@ async function buildExtractionResult({
             ok: true,
             raw_name_text: aiRawName,
             raw_number_text: aiRawNumber,
+            raw_set_abbrev_text: extractAiRawSetAbbrev(ai),
+            raw_set_text: extractAiRawSetText(ai),
             name: primaryName.corrected_name ?? null,
             number: aiParsedNumber.ok ? aiParsedNumber.number_raw : null,
             number_plain: aiParsedNumber.ok ? aiParsedNumber.number_plain : null,
             printed_total: aiParsedNumber.ok ? aiParsedNumber.printed_total : null,
             ambiguity_flags: aiParsedNumber.ambiguity_flags ?? [],
             confidence: aiConfidence,
+            set_confidence: extractAiSetConfidence(ai),
             payload: ai.payload,
           }
         : {
@@ -896,6 +1043,9 @@ async function buildExtractionResult({
             ok: true,
             raw_name_text: ocrRawName,
             raw_number_text: extractOcrRawNumber(ocr),
+            raw_set_text: extractOcrSetText(ocr),
+            raw_set_symbol_region_text: extractOcrSetSymbolRegionText(ocr),
+            raw_set_candidate_signals: extractOcrSetCandidateSignals(ocr),
             name: normalizeCardNameV1(ocrRawName).corrected_name ?? null,
             number: ocrParsedNumber.ok ? ocrParsedNumber.number_raw : null,
             number_plain: ocrParsedNumber.ok ? ocrParsedNumber.number_plain : null,
@@ -910,6 +1060,7 @@ async function buildExtractionResult({
           },
       preprocessed_pass: preprocessedSignals,
       canon_name_correction: canonCorrection,
+      set_identity: setIdentity,
       identity_scan_candidates: {
         ok: resolver.ok,
         query: resolver.query,
@@ -1085,6 +1236,7 @@ async function runCase(caseDef, schema, supabase, runtimeDir) {
     semantic_violations: semanticViolations,
     replay_failures: replayCheck.ok ? [] : replayCheck.failures,
     confidence_warnings: confidenceWarnings,
+    set_outcome: classifySetOutcome(caseDef, runs[0]),
     replay_safe: replayCheck.ok,
     stable_view: stableOutputView(runs[0]),
     runs,

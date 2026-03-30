@@ -24,6 +24,12 @@ export function createReport({ mode, selectedCaseIds, schemaPath }) {
     semantic_violations: [],
     replay_failures: [],
     confidence_warnings: [],
+    set_metrics: {
+      set_correct: 0,
+      set_unresolved_honest: 0,
+      set_wrong: 0,
+      set_ambiguous: 0,
+    },
     cases: [],
   };
 }
@@ -59,6 +65,10 @@ export function appendCaseReport(report, caseResult) {
       warning,
     });
   }
+
+  if (caseResult.set_outcome && caseResult.set_outcome in report.set_metrics) {
+    report.set_metrics[caseResult.set_outcome] += 1;
+  }
 }
 
 export async function writeReport(report, outputPath) {
@@ -69,6 +79,9 @@ export async function writeReport(report, outputPath) {
 export function printReport(report, outputPath) {
   console.log('Extraction audit summary');
   console.log(`total=${report.total} passed=${report.passed} failed=${report.failed}`);
+  console.log(
+    `set_metrics=${JSON.stringify(report.set_metrics)}`,
+  );
 
   if (report.determinism_failures.length > 0) {
     console.log('determinism failures:');
@@ -105,6 +118,7 @@ export function printReport(report, outputPath) {
         total: report.total,
         passed: report.passed,
         failed: report.failed,
+        set_metrics: report.set_metrics,
         failures: report.failures,
       },
       null,

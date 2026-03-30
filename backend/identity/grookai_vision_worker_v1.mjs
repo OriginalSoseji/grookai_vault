@@ -6,6 +6,7 @@ import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { parseCollectorNumberV1 } from './parseCollectorNumberV1.mjs';
 import { normalizeCardNameV1 } from './normalizeCardNameV1.mjs';
+import { normalizeSetIdentityV1 } from './normalizeSetIdentityV1.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'grookai_vision_v1';
@@ -349,10 +350,43 @@ async function processJob(supabase, job) {
         : typeof result?.confidence_0_1 === 'number'
           ? result.confidence_0_1
           : null,
+    raw_set_abbrev_text:
+      typeof result?.raw_set_abbrev_text === 'string' ? result.raw_set_abbrev_text : null,
+    raw_set_text:
+      typeof result?.raw_set_text === 'string' ? result.raw_set_text : null,
+    set_confidence_0_1:
+      typeof result?.set_confidence_0_1 === 'number'
+        ? result.set_confidence_0_1
+        : typeof result?.set_confidence === 'number'
+          ? result.set_confidence
+          : null,
     model: 'grookai-vision-v1',
     run_id: payload.run_id ?? null,
     warp_sha: payload.sha256 ?? null,
   };
+
+  const setIdentity = await normalizeSetIdentityV1({
+    supabase,
+    rawSignals: {
+      ai: {
+        raw_set_abbrev_text: gvEvidence.raw_set_abbrev_text,
+        raw_set_text: gvEvidence.raw_set_text,
+        set_confidence: gvEvidence.set_confidence_0_1,
+      },
+      ocr: null,
+    },
+    resolverCandidates: [],
+    nameConfidence: gvEvidence.confidence_0_1 ?? 0,
+    numberConfidence: gvEvidence.confidence_0_1 ?? 0,
+  });
+
+  gvEvidence.set_code = setIdentity.set_code ?? null;
+  gvEvidence.set_name = setIdentity.set_name ?? null;
+  gvEvidence.set_status = setIdentity.status;
+  gvEvidence.set_reason = setIdentity.reason;
+  gvEvidence.set_ambiguity_flags = Array.isArray(setIdentity.ambiguity_flags)
+    ? setIdentity.ambiguity_flags
+    : [];
 
   const signals = { ...(event.signals || {}), grookai_vision: gvEvidence };
   const { error: insErr } = await supabase.from('identity_scan_event_results').insert({
