@@ -50,6 +50,7 @@ type FounderWarehouseCandidateRow = {
   promoted_at: string | null;
   created_at: string;
   updated_at: string;
+  metadata_extraction?: WarehouseMetadataExtractionEnvelope | null;
 };
 
 type WarehouseEvidenceRow = {
@@ -148,11 +149,19 @@ export type FounderWarehouseCandidateDetailResult = {
   eventRows: WarehouseEventRow[];
   stagingRows: WarehouseStagingRow[];
   currentStagingRow: WarehouseStagingRow | null;
+  latestMetadataExtractionPackage: WarehouseMetadataExtractionEnvelope | null;
   latestNormalizedPackage: JsonRecord | null;
   latestClassificationPackage: JsonRecord | null;
   latestInterpreterPackage: JsonRecord | null;
   interpreterPackage: WarehouseInterpreterPackage | null;
   promotionReview: FounderPromotionReviewModel | null;
+};
+
+export type WarehouseMetadataExtractionEnvelope = {
+  event_type: string;
+  created_at: string;
+  raw_extraction_package: JsonRecord | null;
+  normalized_metadata_package: JsonRecord | null;
 };
 
 function normalizeIdArray(values: Array<string | null | undefined>) {
@@ -220,6 +229,30 @@ function extractLatestPackage(
       return candidate;
     }
   }
+  return null;
+}
+
+function extractLatestMetadataExtractionPackage(
+  eventRows: WarehouseEventRow[],
+): WarehouseMetadataExtractionEnvelope | null {
+  for (let index = eventRows.length - 1; index >= 0; index -= 1) {
+    const row = eventRows[index];
+    const metadata = asRecord(row?.metadata);
+    const rawExtractionPackage = asRecord(metadata?.raw_extraction_package);
+    const normalizedMetadataPackage = asRecord(metadata?.normalized_metadata_package);
+
+    if (!rawExtractionPackage && !normalizedMetadataPackage) {
+      continue;
+    }
+
+    return {
+      event_type: row.event_type,
+      created_at: row.created_at,
+      raw_extraction_package: rawExtractionPackage,
+      normalized_metadata_package: normalizedMetadataPackage,
+    };
+  }
+
   return null;
 }
 
@@ -355,6 +388,7 @@ export async function getFounderWarehouseCandidateById(
       eventRows: [],
       stagingRows: [],
       currentStagingRow: null,
+      latestMetadataExtractionPackage: null,
       latestNormalizedPackage: null,
       latestClassificationPackage: null,
       latestInterpreterPackage: null,
@@ -520,6 +554,7 @@ export async function getFounderWarehouseCandidateById(
       ? stagingRows.find((row) => row.id === candidate.current_staging_id) ?? null
       : null) ?? null;
 
+  const latestMetadataExtractionPackage = extractLatestMetadataExtractionPackage(eventRows);
   const latestNormalizedPackage = extractLatestPackage(eventRows, "normalized_package");
   const latestClassificationPackage = extractLatestPackage(eventRows, "classification_package");
   const latestInterpreterPackage = extractLatestPackage(eventRows, "interpreter_package");
@@ -543,6 +578,7 @@ export async function getFounderWarehouseCandidateById(
   const interpreterPackage = buildWarehouseInterpreterV1({
     candidate: seedCandidate,
     evidenceRows: detailEvidenceRows,
+    latestMetadataExtractionPackage: latestMetadataExtractionPackage?.normalized_metadata_package ?? null,
     latestNormalizedPackage,
     latestClassificationPackage,
     currentStagingRow,
@@ -550,6 +586,10 @@ export async function getFounderWarehouseCandidateById(
   });
   const finalSummary = mapWarehouseInterpreterToCandidateSummary(interpreterPackage);
   const effectiveCandidate = buildEffectiveCandidate(candidate, finalSummary);
+  const effectiveCandidateWithMetadata: FounderWarehouseCandidateRow = {
+    ...effectiveCandidate,
+    metadata_extraction: latestMetadataExtractionPackage,
+  };
 
   await persistWarehouseInterpreterIfNeeded({
     admin,
@@ -560,11 +600,12 @@ export async function getFounderWarehouseCandidateById(
   });
 
   return {
-    candidate: effectiveCandidate,
+    candidate: effectiveCandidateWithMetadata,
     evidenceRows: detailEvidenceRows,
     eventRows,
     stagingRows,
     currentStagingRow,
+    latestMetadataExtractionPackage,
     latestNormalizedPackage,
     latestClassificationPackage,
     latestInterpreterPackage,

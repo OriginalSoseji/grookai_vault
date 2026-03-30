@@ -42,6 +42,7 @@ type InterpreterStagingRow = {
 type WarehouseInterpreterInput = {
   candidate: InterpreterCandidate;
   evidenceRows: InterpreterEvidenceRow[];
+  latestMetadataExtractionPackage?: JsonRecord | null;
   latestNormalizedPackage: JsonRecord | null;
   latestClassificationPackage: JsonRecord | null;
   currentStagingRow: InterpreterStagingRow;
@@ -183,15 +184,21 @@ function asStringArray(value: unknown) {
   );
 }
 
+function getExtractionIdentity(payload: JsonRecord | null) {
+  return asRecord(payload?.identity);
+}
+
 function noteClaimsPrintedModifier(notes: string) {
   return NOTE_MODIFIER_PATTERNS.some((pattern) => pattern.test(notes));
 }
 
 function buildCanonContext(input: WarehouseInterpreterInput) {
+  const latestMetadataExtractionPackage = input.latestMetadataExtractionPackage ?? null;
   const visibleHints = asRecord(input.latestNormalizedPackage?.visible_identity_hints);
   const resolverSummary = asRecord(input.latestClassificationPackage?.resolver_summary);
   const rawPlan = asRecord(input.promotionReview?.writePlan.raw);
   const rawMutation = asRecord(rawPlan?.mutation);
+  const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
 
   const matchedCardPrintId =
     normalizeTextOrNull(input.promotionReview?.references.matchedCardPrintId) ??
@@ -211,11 +218,13 @@ function buildCanonContext(input: WarehouseInterpreterInput) {
     matched_card_printing_id: matchedCardPrintingId,
     canonical_set_code:
       normalizeTextOrNull(input.promotionReview?.references.setCode) ??
-      normalizeTextOrNull(visibleHints?.set_hint),
+      normalizeTextOrNull(visibleHints?.set_hint) ??
+      normalizeTextOrNull(extractionIdentity?.set_code),
     number:
       normalizeTextOrNull(input.promotionReview?.preview.printedNumber) ??
       normalizeTextOrNull(visibleHints?.printed_number) ??
-      normalizeTextOrNull(visibleHints?.printed_number_plain),
+      normalizeTextOrNull(visibleHints?.printed_number_plain) ??
+      normalizeTextOrNull(extractionIdentity?.number),
     variant_key: normalizeTextOrNull(rawMutation?.variant_key),
     finish_key:
       normalizeTextOrNull(input.promotionReview?.references.finishKey) ??
@@ -454,10 +463,16 @@ export function buildWarehouseInterpreterSeed(
 export function buildWarehouseInterpreterV1(
   input: WarehouseInterpreterInput,
 ): WarehouseInterpreterPackage {
+  const latestMetadataExtractionPackage = input.latestMetadataExtractionPackage ?? null;
   const canonContext = buildCanonContext(input);
   const noteModifierClaim = noteClaimsPrintedModifier(input.candidate.notes);
   const hasFrontEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "front");
   const hasBackEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "back");
+  const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
+  const extractionMissingFields = asStringArray(latestMetadataExtractionPackage?.missing_fields);
+  const extractionEvidenceGaps = asStringArray(latestMetadataExtractionPackage?.evidence_gaps);
+  const extractionAmbiguityNotes = asStringArray(latestMetadataExtractionPackage?.ambiguity_notes);
+  const extractionStatus = normalizeTextOrNull(latestMetadataExtractionPackage?.status);
   const normalizedGaps = asStringArray(input.latestNormalizedPackage?.evidence_gaps);
   const classificationMetadata = asRecord(input.latestClassificationPackage?.metadata_documentation);
   const classificationUnresolved = asStringArray(classificationMetadata?.unresolved_fields);
@@ -472,11 +487,14 @@ export function buildWarehouseInterpreterV1(
     normalizeTextOrNull(input.candidate.promotion_result_type);
   const writePlanReady = input.promotionReview?.writePlan.status === "READY";
   const missingFieldsBase = uniqueText([
+    ...extractionMissingFields,
     ...(unresolved?.missing_fields ?? []),
     ...classificationUnresolved,
   ]);
   const evidenceGapsBase = uniqueText([
+    ...extractionEvidenceGaps,
     ...normalizedGaps,
+    ...extractionAmbiguityNotes,
     ...(!hasFrontEvidence ? ["Front image evidence"] : []),
     ...(!hasBackEvidence && input.candidate.submission_intent === "MISSING_CARD"
       ? ["Back image evidence or stronger identity proof"]
@@ -587,6 +605,10 @@ export function buildWarehouseInterpreterV1(
   }
 
   if (!input.latestClassificationPackage) {
+    const extractionExplanation = extractionStatus
+      ? `Metadata extraction is ${extractionStatus.toLowerCase()}, but no classification package exists yet. Founder review still lacks a lawful promotion action.`
+      : null;
+
     return {
       version: "V1",
       status: "BLOCKED",
@@ -594,12 +616,23 @@ export function buildWarehouseInterpreterV1(
       reason_code: "NO_CLASSIFICATION_DECISION",
       confidence: "LOW",
       founder_explanation:
+        extractionExplanation ??
         "Promotion cannot proceed because no classification package exists yet. Warehouse evidence is present, but the system has not produced a lawful interpretation boundary for founder review.",
       canon_context: canonContext,
       proposed_action: null,
-      missing_fields: uniqueText(["Normalization package", "Classification package", "Lawful promotion action"]),
+      missing_fields: uniqueText([
+        ...(extractionIdentity ? [] : ["Metadata extraction package"]),
+        ...missingFieldsBase,
+        "Classification package",
+        "Lawful promotion action",
+      ]),
       evidence_gaps: evidenceGapsBase,
       next_actions: [
+        ...(extractionStatus
+          ? [
+              "Use the metadata extraction package as supporting context while classification is still missing.",
+            ]
+          : ["Run metadata extraction before relying on fallback identity hints."]),
         "Run normalization and classification before relying on this candidate for promotion.",
         "Review evidence quality if the interpreter continues to produce no decision.",
       ],

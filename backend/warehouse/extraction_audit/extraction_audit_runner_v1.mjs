@@ -1072,34 +1072,13 @@ async function buildExtractionResult({
   };
 }
 
-async function runSingleCaseExtraction(caseDef, imagePath, supabase, runIndex) {
-  let imageBuffer;
-  try {
-    imageBuffer = await readImageBuffer(imagePath);
-  } catch (error) {
-    return {
-      status: 'BLOCKED',
-      identity: {
-        name: null,
-        number: null,
-        set: null,
-      },
-      confidence: {
-        overall: 0,
-        identity: {
-          name: 0,
-          number: 0,
-          set: 0,
-        },
-      },
-      raw_signals: {
-        source_image_path: imagePath,
-        category: caseDef.category,
-      },
-      errors: [`image_read_failed:${error.message}`],
-    };
-  }
-
+export async function runBufferedExtractionV1({
+  caseDef,
+  imagePath,
+  imageBuffer,
+  supabase,
+  runIndex = 1,
+}) {
   const timeouts = caseDef.timeouts ?? {};
   const traceId = buildTraceId(caseDef.id, runIndex);
   const simulationKind = caseDef?.simulation?.kind ?? null;
@@ -1170,6 +1149,43 @@ async function runSingleCaseExtraction(caseDef, imagePath, supabase, runIndex) {
     ai,
     ocr,
     preprocessed,
+  });
+}
+
+async function runSingleCaseExtraction(caseDef, imagePath, supabase, runIndex) {
+  let imageBuffer;
+  try {
+    imageBuffer = await readImageBuffer(imagePath);
+  } catch (error) {
+    return {
+      status: 'BLOCKED',
+      identity: {
+        name: null,
+        number: null,
+        set: null,
+      },
+      confidence: {
+        overall: 0,
+        identity: {
+          name: 0,
+          number: 0,
+          set: 0,
+        },
+      },
+      raw_signals: {
+        source_image_path: imagePath,
+        category: caseDef.category,
+      },
+      errors: [`image_read_failed:${error.message}`],
+    };
+  }
+
+  return runBufferedExtractionV1({
+    caseDef,
+    imagePath,
+    imageBuffer,
+    supabase,
+    runIndex,
   });
 }
 
@@ -1287,7 +1303,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error?.stack || error?.message || String(error));
-  process.exit(1);
-});
+if (process.argv[1] && process.argv[1].includes('extraction_audit_runner_v1.mjs')) {
+  main().catch((error) => {
+    console.error(error?.stack || error?.message || String(error));
+    process.exit(1);
+  });
+}

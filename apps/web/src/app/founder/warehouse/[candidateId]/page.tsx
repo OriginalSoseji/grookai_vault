@@ -67,6 +67,13 @@ function renderScalar(value: unknown) {
   return String(value);
 }
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  return value as Record<string, unknown>;
+}
+
 function renderStructuredEntries(value: Record<string, unknown> | null) {
   if (!value) {
     return <p className="text-sm text-slate-500">No structured detail recorded yet.</p>;
@@ -319,6 +326,9 @@ export default async function FounderWarehouseCandidatePage({
   const currentStagingRow = detail.currentStagingRow;
   const promotionReview = detail.promotionReview;
   const interpreterPackage = detail.interpreterPackage;
+  const metadataExtraction = candidate.metadata_extraction ?? detail.latestMetadataExtractionPackage;
+  const metadataExtractionNormalized = asRecord(metadataExtraction?.normalized_metadata_package);
+  const metadataExtractionIdentity = asRecord(metadataExtractionNormalized?.identity);
   const normalizedPackage = detail.latestNormalizedPackage;
   const classificationPackage = detail.latestClassificationPackage;
   const normalizedSummary = (normalizedPackage?.source_summary ?? null) as Record<string, unknown> | null;
@@ -684,6 +694,40 @@ export default async function FounderWarehouseCandidatePage({
             <JsonDisclosure label="Classification package JSON" value={classificationPackage} />
           </div>
         </div>
+        {metadataExtraction ? (
+          <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+            <h3 className="text-lg font-semibold tracking-tight text-slate-950">Metadata extraction package</h3>
+            <DefinitionGrid
+              items={[
+                { label: "Event type", value: metadataExtraction.event_type },
+                { label: "Recorded at", value: formatTimestamp(metadataExtraction.created_at) },
+                {
+                  label: "Extraction status",
+                  value: renderScalar(metadataExtractionNormalized?.status),
+                },
+                {
+                  label: "Extraction confidence",
+                  value: renderScalar(metadataExtractionNormalized?.confidence),
+                },
+                {
+                  label: "Extracted name",
+                  value: renderScalar(metadataExtractionIdentity?.name),
+                },
+                {
+                  label: "Extracted number",
+                  value: renderScalar(metadataExtractionIdentity?.printed_number),
+                },
+                {
+                  label: "Extracted set",
+                  value: renderScalar(metadataExtractionIdentity?.set_name) !== "—"
+                    ? `${renderScalar(metadataExtractionIdentity?.set_name)} (${renderScalar(metadataExtractionIdentity?.set_code)})`
+                    : renderScalar(metadataExtractionIdentity?.set_code),
+                },
+              ]}
+            />
+            <JsonDisclosure label="Metadata extraction JSON" value={metadataExtraction} />
+          </div>
+        ) : null}
       </PageSection>
 
       <PageSection surface="card" spacing="default">
