@@ -4,6 +4,10 @@ import { isUsablePublicImageUrl } from "@/lib/publicCardImage";
 import type { FounderPromotionReviewModel } from "@/lib/warehouse/buildFounderPromotionReview";
 import { buildFounderPromotionReview } from "@/lib/warehouse/buildFounderPromotionReview";
 import {
+  buildPromotionWritePlanV1,
+  type PromotionWritePlanV1,
+} from "@/lib/warehouse/buildPromotionWritePlanV1";
+import {
   buildWarehouseInterpreterSeed,
   buildWarehouseInterpreterV1,
   mapWarehouseInterpreterToCandidateSummary,
@@ -51,6 +55,7 @@ type FounderWarehouseCandidateRow = {
   created_at: string;
   updated_at: string;
   metadata_extraction?: WarehouseMetadataExtractionEnvelope | null;
+  current_staging_payload?: JsonRecord | null;
 };
 
 type WarehouseEvidenceRow = {
@@ -155,6 +160,7 @@ export type FounderWarehouseCandidateDetailResult = {
   latestInterpreterPackage: JsonRecord | null;
   interpreterPackage: WarehouseInterpreterPackage | null;
   promotionReview: FounderPromotionReviewModel | null;
+  promotionWritePlan: PromotionWritePlanV1 | null;
 };
 
 export type WarehouseMetadataExtractionEnvelope = {
@@ -394,6 +400,7 @@ export async function getFounderWarehouseCandidateById(
       latestInterpreterPackage: null,
       interpreterPackage: null,
       promotionReview: null,
+      promotionWritePlan: null,
     };
   }
 
@@ -589,7 +596,19 @@ export async function getFounderWarehouseCandidateById(
   const effectiveCandidateWithMetadata: FounderWarehouseCandidateRow = {
     ...effectiveCandidate,
     metadata_extraction: latestMetadataExtractionPackage,
+    current_staging_payload: currentStagingRow?.frozen_payload ?? null,
   };
+
+  const promotionWritePlan = await buildPromotionWritePlanV1({
+    candidate: {
+      id: effectiveCandidateWithMetadata.id,
+      tcgplayer_id: effectiveCandidateWithMetadata.tcgplayer_id,
+      current_staging_id: effectiveCandidateWithMetadata.current_staging_id,
+      current_staging_payload: effectiveCandidateWithMetadata.current_staging_payload ?? null,
+    },
+    metadataExtraction: latestMetadataExtractionPackage,
+    interpreterPackage,
+  });
 
   await persistWarehouseInterpreterIfNeeded({
     admin,
@@ -611,5 +630,6 @@ export async function getFounderWarehouseCandidateById(
     latestInterpreterPackage,
     interpreterPackage,
     promotionReview,
+    promotionWritePlan,
   };
 }

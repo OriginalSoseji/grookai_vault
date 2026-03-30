@@ -16,6 +16,7 @@ import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
 import type { FounderUnresolvedReview } from "@/lib/warehouse/buildFounderPromotionReview";
+import type { PromotionWritePlanV1, WriteAction } from "@/lib/warehouse/buildPromotionWritePlanV1";
 import type { WarehouseInterpreterPackage } from "@/lib/warehouse/buildWarehouseInterpreterV1";
 import {
   getFounderWarehouseCandidateById,
@@ -228,6 +229,84 @@ function PlanRowCard({
   );
 }
 
+function formatWritePlanDomain(domain: string) {
+  switch (domain) {
+    case "card_prints":
+      return "card_prints";
+    case "card_printings":
+      return "card_printings";
+    case "external_mappings":
+      return "external_mappings";
+    case "image_fields":
+      return "image_fields";
+    default:
+      return domain;
+  }
+}
+
+function formatWritePlanTitle(domain: string) {
+  switch (domain) {
+    case "card_prints":
+      return "Card print";
+    case "card_printings":
+      return "Card printing";
+    case "external_mappings":
+      return "External mappings";
+    case "image_fields":
+      return "Image fields";
+    default:
+      return domain;
+  }
+}
+
+function getPromotionWritePlanOutcomeLabel(plan: PromotionWritePlanV1 | null) {
+  if (!plan || plan.status === "BLOCKED") {
+    return null;
+  }
+
+  if (plan.actions.card_printings.action === "CREATE") {
+    return "CARD_PRINTING_CREATED";
+  }
+  if (plan.actions.card_prints.action === "CREATE") {
+    return "CARD_PRINT_CREATED";
+  }
+  if (plan.actions.image_fields.action === "UPDATE") {
+    return "CANON_IMAGE_ENRICHED";
+  }
+
+  return "NO_OP";
+}
+
+function PromotionWriteActionCard({
+  domain,
+  action,
+}: {
+  domain: string;
+  action: WriteAction;
+}) {
+  return (
+    <article className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+      <div className="flex flex-wrap items-center gap-2">
+        <WarehouseBadge value={action.action} />
+        <WarehouseBadge value={formatWritePlanDomain(domain)} tone="default" />
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold tracking-tight text-slate-950">
+          {formatWritePlanTitle(domain)}
+        </h3>
+        <p className="text-sm leading-6 text-slate-700">{action.reason ?? "No mutation would be planned."}</p>
+      </div>
+      <DefinitionGrid
+        items={[
+          { label: "Target", value: action.target_id ?? "—" },
+          { label: "Action", value: action.action },
+        ]}
+      />
+      <JsonDisclosure label={`${formatWritePlanTitle(domain)} payload`} value={action.payload} />
+    </article>
+  );
+}
+
 function EvidenceCard({ row }: { row: FounderWarehouseEvidenceDetailRow }) {
   return (
     <article className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
@@ -326,6 +405,7 @@ export default async function FounderWarehouseCandidatePage({
   const currentStagingRow = detail.currentStagingRow;
   const promotionReview = detail.promotionReview;
   const interpreterPackage = detail.interpreterPackage;
+  const promotionWritePlan = detail.promotionWritePlan;
   const metadataExtraction = candidate.metadata_extraction ?? detail.latestMetadataExtractionPackage;
   const metadataExtractionNormalized = asRecord(metadataExtraction?.normalized_metadata_package);
   const metadataExtractionIdentity = asRecord(metadataExtractionNormalized?.identity);
@@ -337,6 +417,7 @@ export default async function FounderWarehouseCandidatePage({
   const resolverSummary = (classificationPackage?.resolver_summary ?? null) as Record<string, unknown> | null;
   const evidenceFrontPreview = promotionReview?.preview.frontEvidenceUrl ?? null;
   const evidenceBackPreview = promotionReview?.preview.backEvidenceUrl ?? null;
+  const promotionWritePlanOutcome = getPromotionWritePlanOutcomeLabel(promotionWritePlan);
 
   return (
     <PageContainer className="space-y-8 py-8">
@@ -376,8 +457,8 @@ export default async function FounderWarehouseCandidatePage({
             tone="default"
           />
           {interpreterPackage ? <WarehouseBadge value={interpreterPackage.confidence} tone="muted" /> : null}
-          {promotionReview?.writePlan.resultPreviewType ? (
-            <WarehouseBadge value={promotionReview.writePlan.resultPreviewType} />
+          {promotionWritePlanOutcome ? (
+            <WarehouseBadge value={promotionWritePlanOutcome} />
           ) : null}
         </div>
         <DefinitionGrid
@@ -391,7 +472,7 @@ export default async function FounderWarehouseCandidatePage({
             { label: "Proposed action", value: interpreterPackage?.proposed_action ?? "—" },
             { label: "Reason code", value: interpreterPackage?.reason_code ?? candidate.interpreter_reason_code ?? "—" },
             { label: "Payload source", value: promotionReview?.payloadSource ?? "—" },
-            { label: "Promotion result preview", value: promotionReview?.writePlan.resultPreviewType ?? candidate.promotion_result_type ?? "—" },
+            { label: "Promotion result preview", value: promotionWritePlanOutcome ?? candidate.promotion_result_type ?? "—" },
             { label: "Current staging id", value: candidate.current_staging_id ?? "—" },
             { label: "TCGplayer id", value: candidate.tcgplayer_id ?? "—" },
             { label: "Hold reason", value: candidate.current_review_hold_reason ?? interpreterPackage?.reason_code ?? "—" },
@@ -507,8 +588,8 @@ export default async function FounderWarehouseCandidatePage({
             />
             <div className="flex flex-wrap gap-2">
               <WarehouseBadge value={promotionReview?.candidateTypeLabel ?? "Unresolved"} tone="default" />
-              {promotionReview?.writePlan.resultPreviewType ? (
-                <WarehouseBadge value={promotionReview.writePlan.resultPreviewType} />
+              {promotionWritePlanOutcome ? (
+                <WarehouseBadge value={promotionWritePlanOutcome} />
               ) : null}
             </div>
             <DefinitionGrid
@@ -555,38 +636,45 @@ export default async function FounderWarehouseCandidatePage({
 
       <PageSection surface="card" spacing="default">
         <SectionHeader
-          title="Write Plan"
+          title="Promotion Write Plan"
           description="Deterministic founder-safe preview of what Promotion Executor V1 will create, reuse, update, or leave untouched."
         />
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5">
           <div className="flex flex-wrap gap-2">
-            <WarehouseBadge value={promotionReview?.writePlan.status ?? "UNRESOLVED"} />
-            {promotionReview?.writePlan.resultPreviewType ? (
-              <WarehouseBadge value={promotionReview.writePlan.resultPreviewType} />
+            <WarehouseBadge value={promotionWritePlan?.status ?? "BLOCKED"} />
+            {promotionWritePlanOutcome ? (
+              <WarehouseBadge value={promotionWritePlanOutcome} />
             ) : null}
             {interpreterPackage ? <WarehouseBadge value={interpreterPackage.decision} tone="default" /> : null}
           </div>
-          {interpreterPackage?.status === "BLOCKED" ? (
+          {promotionWritePlan?.status === "BLOCKED" ? (
             <div className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-6 text-rose-950">
-              <p className="font-semibold">{interpreterPackage.reason_code}</p>
-              <p className="mt-1">{interpreterPackage.founder_explanation}</p>
-            </div>
-          ) : promotionReview?.unresolved ? (
-            <div className="mt-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-6 text-rose-950">
-              <p className="font-semibold">{promotionReview.unresolved.blocking_reason_label}</p>
-              <p className="mt-1">{promotionReview.unresolved.founder_explanation}</p>
+              <p className="font-semibold">{promotionWritePlan.reason}</p>
+              <p className="mt-1">
+                {promotionWritePlan.missing_requirements.length > 0
+                  ? promotionWritePlan.missing_requirements.join(" • ")
+                  : "No additional requirements were recorded."}
+              </p>
             </div>
           ) : null}
           <p className="mt-3 text-sm leading-7 text-slate-800">
-            {promotionReview?.writePlan.summary ?? "No promotion write plan is available yet."}
+            {promotionWritePlan?.reason ?? "No promotion write plan is available yet."}
           </p>
         </div>
         <div className="grid gap-4 xl:grid-cols-2">
-          {(promotionReview?.writePlan.rows ?? []).map((row) => (
-            <PlanRowCard key={`${row.domain}:${row.title}`} {...row} />
-          ))}
+          {promotionWritePlan ? (
+            <>
+              <PromotionWriteActionCard domain="card_prints" action={promotionWritePlan.actions.card_prints} />
+              <PromotionWriteActionCard domain="card_printings" action={promotionWritePlan.actions.card_printings} />
+              <PromotionWriteActionCard domain="external_mappings" action={promotionWritePlan.actions.external_mappings} />
+              <PromotionWriteActionCard domain="image_fields" action={promotionWritePlan.actions.image_fields} />
+            </>
+          ) : null}
         </div>
-        <JsonDisclosure label="Promotion plan JSON" value={promotionReview?.writePlan.raw ?? null} />
+        <div className="grid gap-4 xl:grid-cols-2">
+          <JsonDisclosure label="Write plan before state" value={promotionWritePlan?.preview.before ?? null} />
+          <JsonDisclosure label="Write plan after state" value={promotionWritePlan?.preview.after ?? null} />
+        </div>
       </PageSection>
 
       <PageSection surface="card" spacing="default">
