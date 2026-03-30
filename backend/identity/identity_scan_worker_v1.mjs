@@ -7,6 +7,8 @@ import '../env.mjs';
 import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { detectOuterBorderAI, warpCardQuadAI } from '../condition/ai_border_detector_client.mjs';
+import { parseCollectorNumberV1 } from './parseCollectorNumberV1.mjs';
+import { normalizeCardNameV1 } from './normalizeCardNameV1.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'identity_scan_v1';
@@ -277,13 +279,8 @@ function extractIdentitySnapshotFrontRef(images) {
 }
 
 function normalizeCollectorNumber(raw) {
-  if (!raw || typeof raw !== 'string') return null;
-  const trimmed = raw.trim();
-  const m = trimmed.match(/^(\d{1,3})\s*\/\s*(\d{1,3})$/);
-  if (!m) return null;
-  const num = m[1].padStart(3, '0');
-  const total = m[2].padStart(3, '0');
-  return `${num}/${total}`;
+  const parsed = parseCollectorNumberV1(raw);
+  return parsed.ok ? parsed.number_raw : null;
 }
 
 async function insertResult(supabase, eventId, userId, status, signals, candidates, error) {
@@ -418,22 +415,34 @@ async function processEvent(supabase, eventId) {
     typeof aiPayload.result === 'object' && aiPayload.result
       ? aiPayload.result
       : aiPayload;
-  const name =
-    typeof aiResult?.name === 'string'
-      ? aiResult.name
-      : typeof aiResult?.name?.text === 'string'
-        ? aiResult.name.text
-        : null;
-  const identifyCollectorNumber =
-    typeof aiResult?.collector_number === 'string'
-      ? aiResult.collector_number
-      : null;
+  const rawNameText =
+    typeof aiResult?.raw_name_text === 'string'
+      ? aiResult.raw_name_text
+      : typeof aiResult?.name === 'string'
+        ? aiResult.name
+        : typeof aiResult?.name?.text === 'string'
+          ? aiResult.name.text
+          : null;
+  const normalizedName = normalizeCardNameV1(rawNameText);
+  const name = normalizedName.corrected_name ?? null;
+  const rawCollectorNumber =
+    typeof aiResult?.raw_number_text === 'string'
+      ? aiResult.raw_number_text
+      : typeof aiResult?.collector_number === 'string'
+        ? aiResult.collector_number
+        : typeof aiResult?.number === 'string'
+          ? aiResult.number
+          : null;
+  const parsedCollectorNumber = parseCollectorNumberV1(rawCollectorNumber);
+  const identifyCollectorNumber = parsedCollectorNumber.ok ? parsedCollectorNumber.number_raw : null;
   const identifyPrintedTotal =
-    typeof aiResult?.printed_total === 'number'
-      ? aiResult.printed_total
-      : typeof aiResult?.collector_printed_total === 'number'
-        ? aiResult.collector_printed_total
-        : null;
+    parsedCollectorNumber.ok
+      ? parsedCollectorNumber.printed_total
+      : typeof aiResult?.printed_total === 'number'
+        ? aiResult.printed_total
+        : typeof aiResult?.collector_printed_total === 'number'
+          ? aiResult.collector_printed_total
+          : null;
   const hp = typeof aiResult?.hp === 'number' ? aiResult.hp : null;
   const confidence =
     typeof aiResult?.confidence === 'number'
@@ -473,18 +482,25 @@ async function processEvent(supabase, eventId) {
 
   const gvEvidence = {
     name,
+    raw_name_text: rawNameText,
     hp,
     confidence,
     run_id: aiPayload.run_id ?? null,
     trace_id: aiPayload.trace_id ?? eventId,
     notes: aiPayload.notes ?? aiResult?.notes ?? null,
     identify_debug: {
+      raw_name_text: rawNameText,
+      raw_number_text: rawCollectorNumber,
       collector_number: identifyCollectorNumber,
       printed_total: identifyPrintedTotal,
+      number_plain: parsedCollectorNumber.ok ? parsedCollectorNumber.number_plain : null,
+      ambiguity_flags: parsedCollectorNumber.ambiguity_flags ?? [],
     },
   };
   gvEvidence.collector_number = readCollectorNumber ?? null;
   gvEvidence.printed_total = readPrintedTotal ?? null;
+  gvEvidence.raw_number_text = rawCollectorNumber;
+  gvEvidence.number_plain = parsedCollectorNumber.ok ? parsedCollectorNumber.number_plain : null;
   if (ENABLE_AI_READ_NUMBER) {
     gvEvidence.number_confidence_0_1 = readNumberConfidence ?? null;
     gvEvidence.number_source = readNumberOk ? 'ai_read_number' : 'missing';
@@ -518,6 +534,24 @@ async function processEvent(supabase, eventId) {
           print_identity_key: row.print_identity_key,
           source: 'search_card_prints_v1_q_limit',
         }));
+      }
+    }
+    if (name && candidates.length === 1 && candidates[0]?.name) {
+      const resolverNameCorrection = normalizeCardNameV1(name, {
+        canonName: candidates[0].name,
+      });
+      if (resolverNameCorrection.used_canon_correction) {
+        signals.ai.name = resolverNameCorrection.corrected_name;
+        signals.ai.identify_debug = {
+          ...(signals.ai.identify_debug ?? {}),
+          resolver_name_correction: {
+            canon_name: candidates[0].name,
+            card_print_id: candidates[0].card_print_id,
+            distance_to_canon: resolverNameCorrection.distance_to_canon,
+            correction_reason: resolverNameCorrection.correction_reason,
+            source: 'unique_resolver_candidate',
+          },
+        };
       }
     }
     log('resolver_candidates', { eventId, q, count: candidates.length });

@@ -1,0 +1,249 @@
+{
+  "version": "V1",
+  "description": "Runtime-backed extraction audit cases. Degraded scenarios are synthesized from checked-in local fixtures at execution time.",
+  "cases": [
+    {
+      "id": "mega_clean",
+      "category": "clean",
+      "image_path": "../../../tmp/front.jpg",
+      "expected": {
+        "status": "PARTIAL",
+        "name": "Mega Gardevoir EX",
+        "number": "012/112",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_clean",
+      "category": "clean",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_low_light",
+      "category": "low light",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_rect",
+          "x": 0,
+          "y": 0,
+          "w": 1,
+          "h": 1,
+          "color": "#000000",
+          "alpha": 90
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_glare",
+      "category": "glare",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_ellipse",
+          "x": 0.18,
+          "y": 0.36,
+          "w": 0.46,
+          "h": 0.18,
+          "color": "#FFFFFF",
+          "alpha": 140
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_rotated",
+      "category": "rotated",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "rotate90"
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_cropped",
+      "category": "cropped",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "crop",
+          "x": 0.04,
+          "y": 0.02,
+          "w": 0.92,
+          "h": 0.84
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_promo_stamp",
+      "category": "promo/stamp",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_text",
+          "text": "PROMO",
+          "x": 0.72,
+          "y": 0.73,
+          "size": 0.035,
+          "color": "#FFD700",
+          "alpha": 220
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_ambiguous_number",
+      "category": "ambiguous number",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_rect",
+          "x": 0.0,
+          "y": 0.86,
+          "w": 0.24,
+          "h": 0.10,
+          "color": "#000000",
+          "alpha": 150
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_missing_number",
+      "category": "missing number",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_rect",
+          "x": 0.0,
+          "y": 0.84,
+          "w": 0.32,
+          "h": 0.14,
+          "color": "#000000",
+          "alpha": 255
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_multi_language",
+      "category": "multi-language",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "transforms": [
+        {
+          "kind": "overlay_text",
+          "text": "CARTE",
+          "x": 0.17,
+          "y": 0.10,
+          "size": 0.030,
+          "color": "#FFFFFF",
+          "alpha": 200
+        }
+      ],
+      "expected": {
+        "status": "PARTIAL",
+        "name": "N's Darmanitan",
+        "number": "027/159",
+        "set": null
+      }
+    },
+    {
+      "id": "missing_image",
+      "category": "missing image",
+      "image_path": "../../../tmp/__does_not_exist__.jpg",
+      "expected": {
+        "status": "BLOCKED",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "corrupted_image",
+      "category": "corrupted image",
+      "image_path": "../../../tmp/front.jpg",
+      "simulation": {
+        "kind": "corrupted_copy"
+      },
+      "expected": {
+        "status": "BLOCKED",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_ocr_timeout",
+      "category": "ocr failure",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "simulation": {
+        "kind": "ocr_failure"
+      },
+      "expected": {
+        "status": "PARTIAL",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    },
+    {
+      "id": "darmanitan_ai_timeout",
+      "category": "ai failure",
+      "image_path": "../../../tmp/9430B4F1-35DC-4BD5-9962-813933526C6Efront.jpeg",
+      "simulation": {
+        "kind": "ai_timeout"
+      },
+      "expected": {
+        "status": "BLOCKED",
+        "name": null,
+        "number": null,
+        "set": null
+      }
+    }
+  ]
+}

@@ -4,6 +4,8 @@
 import '../env.mjs';
 import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import { parseCollectorNumberV1 } from './parseCollectorNumberV1.mjs';
+import { normalizeCardNameV1 } from './normalizeCardNameV1.mjs';
 
 const { Pool } = pg;
 const JOB_TYPE = 'grookai_vision_v1';
@@ -298,31 +300,44 @@ async function processJob(supabase, job) {
 
   const payload = gvResp.data || {};
   const result = payload.result || {};
-  const gvEvidence = {
-    name:
-      typeof result?.name === 'string'
+  const rawNameText =
+    typeof result?.raw_name_text === 'string'
+      ? result.raw_name_text
+      : typeof result?.name === 'string'
         ? result.name
         : typeof result?.name?.text === 'string'
           ? result.name.text
-          : null,
-    number_raw:
-      typeof result?.collector_number === 'string'
+          : null;
+  const normalizedName = normalizeCardNameV1(rawNameText);
+  const rawNumberText =
+    typeof result?.raw_number_text === 'string'
+      ? result.raw_number_text
+      : typeof result?.collector_number === 'string'
         ? result.collector_number
         : typeof result?.number === 'string'
           ? result.number
-      : typeof result?.number_raw === 'string'
-        ? result.number_raw
-        : typeof result?.number_raw?.text === 'string'
-          ? result.number_raw.text
-          : null,
+          : typeof result?.number_raw === 'string'
+            ? result.number_raw
+            : typeof result?.number_raw?.text === 'string'
+              ? result.number_raw.text
+              : null;
+  const parsedCollectorNumber = parseCollectorNumberV1(rawNumberText);
+  const gvEvidence = {
+    name: normalizedName.corrected_name ?? null,
+    raw_name_text: rawNameText,
+    number_raw: parsedCollectorNumber.ok ? parsedCollectorNumber.number_raw : rawNumberText,
+    raw_number_text: rawNumberText,
+    number_plain: parsedCollectorNumber.ok ? parsedCollectorNumber.number_plain : null,
     printed_total:
-  typeof result?.collector_printed_total === 'number'
-    ? result.collector_printed_total
-    : typeof result?.printed_total === 'number'
-      ? result.printed_total
-      : typeof result?.printed_total?.value === 'number'
-        ? result.printed_total.value
-        : null,
+      parsedCollectorNumber.ok
+        ? parsedCollectorNumber.printed_total
+        : typeof result?.collector_printed_total === 'number'
+          ? result.collector_printed_total
+          : typeof result?.printed_total === 'number'
+            ? result.printed_total
+            : typeof result?.printed_total?.value === 'number'
+              ? result.printed_total.value
+              : null,
 
     hp:
       typeof result?.hp === 'number'

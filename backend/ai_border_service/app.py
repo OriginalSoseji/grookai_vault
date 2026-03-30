@@ -174,14 +174,19 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         "Return ONLY valid JSON with keys:\n"
         "{\n"
         '  \"name\": string|null,\n'
-        '  \"number\": string|null,          // like \"27/159\"\n'
-        '  \"printed_total\": integer|null,  // like 159\n'
-        '  \"hp\": integer|null,             // like 140\n'
-        '  \"confidence\": number            // 0.0-1.0\n'
+        '  \"raw_name_text\": string|null,\n'
+        '  \"collector_number\": string|null,  // preserve printed zeros exactly, like \"012/112\"\n'
+        '  \"raw_number_text\": string|null,\n'
+        '  \"printed_total\": integer|null,\n'
+        '  \"hp\": integer|null,\n'
+        '  \"confidence_0_1\": number,\n'
+        '  \"notes\": string[]\n'
         "}\n"
         "Rules:\n"
         "- If unsure, use nulls and confidence < 0.6\n"
-        "- Normalize number: remove leading zeros (027/159 -> 27/159)\n"
+        "- Preserve collector_number exactly as printed; do NOT strip leading zeros\n"
+        "- Preserve apostrophes in names when visible\n"
+        "- raw_name_text and raw_number_text should mirror the visible printed text when possible\n"
         "- printed_total should match denominator when present\n"
         "Return JSON only. No prose.\n"
     )
@@ -250,15 +255,22 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
         raise RuntimeError("openai_non_json")
 
     name = data.get("name")
-    number = data.get("number")
+    raw_name_text = data.get("raw_name_text")
+    number = data.get("collector_number")
+    if not isinstance(number, str):
+        number = data.get("number")
+    raw_number_text = data.get("raw_number_text")
     printed_total = data.get("printed_total")
     hp = data.get("hp")
-    conf = data.get("confidence")
+    conf = data.get("confidence_0_1")
+    if conf is None:
+        conf = data.get("confidence")
+    notes = data.get("notes")
 
     if isinstance(number, str) and "/" in number:
         a, b = number.split("/", 1)
         try:
-            a_i = int(a)
+            a_i = a.strip()
             b_i = int(b)
             number = f"{a_i}/{b_i}"
             if printed_total is None:
@@ -274,10 +286,17 @@ def _openai_identify(image_bytes, run_id, dbg_dir, sha256_hex, cache_hit=False, 
 
     return {
         "name": name if isinstance(name, str) and name.strip() else None,
+        "raw_name_text": raw_name_text if isinstance(raw_name_text, str) and raw_name_text.strip() else (name if isinstance(name, str) and name.strip() else None),
+        "collector_number": number if isinstance(number, str) and number.strip() else None,
+        "raw_number_text": raw_number_text if isinstance(raw_number_text, str) and raw_number_text.strip() else (number if isinstance(number, str) and number.strip() else None),
         "number": number if isinstance(number, str) and number.strip() else None,
         "printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
+        "collector_printed_total": int(printed_total) if isinstance(printed_total, (int, float)) else None,
         "hp": int(hp) if isinstance(hp, (int, float)) else None,
+        "confidence_0_1": conf,
         "confidence": conf,
+        "notes": notes if isinstance(notes, list) else [],
+        "raw_text": out_text,
         "model": model_name,
     }
 
@@ -770,7 +789,11 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
                     "trace_id": req.trace_id,
                     "sha256": sha,
                     "cached_at": cached.get("cached_at"),
-                    "result": cached["result"],
+                    "result": {
+                        **cached["result"],
+                        "cached": True,
+                        "sha256": sha,
+                    },
                     "error": None,
                 }
 
@@ -785,7 +808,11 @@ async def ai_identify_warp(request: Request, req: AIIdentifyRequest):
             "trace_id": req.trace_id,
             "sha256": sha,
             "cached_at": cached_entry["cached_at"],
-            "result": result,
+            "result": {
+                **result,
+                "cached": False,
+                "sha256": sha,
+            },
             "error": None,
         }
     except Exception as e:

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Grookai Extraction Audit Output V1",
+  "type": "object",
+  "required": [
+    "status",
+    "identity",
+    "confidence",
+    "raw_signals",
+    "errors"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["READY", "PARTIAL", "BLOCKED"]
+    },
+    "identity": {
+      "type": "object",
+      "required": ["name", "number", "set"],
+      "properties": {
+        "name": {
+          "type": ["string", "null"]
+        },
+        "number": {
+          "type": ["string", "null"]
+        },
+        "set": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "confidence": {
+      "type": "object",
+      "required": ["overall", "identity"],
+      "properties": {
+        "overall": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "identity": {
+          "type": "object",
+          "required": ["name", "number", "set"],
+          "properties": {
+            "name": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "number": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "set": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "raw_signals": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
