@@ -3,6 +3,7 @@ import "server-only";
 import type { FounderPromotionReviewModel } from "./buildFounderPromotionReview";
 import type { PromotionWritePlanV1 } from "./buildPromotionWritePlanV1";
 import type { WarehouseInterpreterPackage } from "./buildWarehouseInterpreterV1";
+import type { PromotionImageNormalizationEnvelope } from "./promotionImageNormalization";
 import { asPrintedModifierRecord, getPrintedModifierLabel } from "./printedIdentityModel";
 
 type JsonRecord = Record<string, unknown>;
@@ -223,6 +224,7 @@ export function buildFounderReviewPresentationV1({
   promotionReview,
   interpreterPackage,
   metadataExtraction,
+  promotionImageNormalization,
 }: {
   promotionWritePlan: PromotionWritePlanV1 | null;
   promotionReview: FounderPromotionReviewModel | null;
@@ -233,6 +235,7 @@ export function buildFounderReviewPresentationV1({
       }
     | null
     | undefined;
+  promotionImageNormalization?: PromotionImageNormalizationEnvelope | null;
 }) {
   const metadataExtractionNormalized = asRecord(metadataExtraction?.normalized_metadata_package);
   const metadataExtractionIdentity = asRecord(metadataExtractionNormalized?.identity);
@@ -240,17 +243,23 @@ export function buildFounderReviewPresentationV1({
     metadataExtractionNormalized?.printed_modifier,
   );
   const metadataPrintedModifierLabel = getPrintedModifierLabel(metadataExtractionPrintedModifier);
+  const normalizationPackage = asRecord(
+    promotionImageNormalization?.promotion_image_normalization_package,
+  );
+  const normalizationPreviewUrls = asRecord(promotionImageNormalization?.preview_urls);
   const hasReadyWritePlan = promotionWritePlan?.status === "READY";
   const writePlanAfterCardPrint = asRecord(promotionWritePlan?.preview.after?.card_prints);
   const previewImageUrl =
+    normalizeTextOrNull(normalizationPreviewUrls?.normalized_front_url) ??
     normalizeTextOrNull(writePlanAfterCardPrint?.image_url) ??
     normalizeTextOrNull(writePlanAfterCardPrint?.image_alt_url) ??
     promotionReview?.preview.imageUrl ??
     promotionReview?.preview.frontEvidenceUrl ??
     null;
-  const previewImageOriginLabel =
-    normalizeTextOrNull(writePlanAfterCardPrint?.image_url) ||
-    normalizeTextOrNull(writePlanAfterCardPrint?.image_alt_url)
+  const previewImageOriginLabel = normalizeTextOrNull(normalizationPreviewUrls?.normalized_front_url)
+    ? `Normalized promotion asset (${normalizeTextOrNull(normalizationPackage?.status) ?? "READY"})`
+    : normalizeTextOrNull(writePlanAfterCardPrint?.image_url) ||
+        normalizeTextOrNull(writePlanAfterCardPrint?.image_alt_url)
       ? "Planned canon image"
       : promotionReview?.preview.imageOriginLabel ??
         (promotionReview?.preview.frontEvidenceUrl ? "Warehouse front evidence" : null);

@@ -19,6 +19,7 @@ import { buildFounderReviewPresentationV1 } from "@/lib/warehouse/buildFounderRe
 import type { FounderUnresolvedReview } from "@/lib/warehouse/buildFounderPromotionReview";
 import type { PromotionWritePlanV1, WriteAction } from "@/lib/warehouse/buildPromotionWritePlanV1";
 import type { WarehouseInterpreterPackage } from "@/lib/warehouse/buildWarehouseInterpreterV1";
+import { asPromotionImageNormalizationPackage } from "@/lib/warehouse/promotionImageNormalization";
 import { asPrintedModifierRecord, getPrintedModifierLabel } from "@/lib/warehouse/printedIdentityModel";
 import {
   getFounderWarehouseCandidateById,
@@ -409,6 +410,8 @@ export default async function FounderWarehouseCandidatePage({
   const interpreterPackage = detail.interpreterPackage;
   const promotionWritePlan = detail.promotionWritePlan;
   const metadataExtraction = candidate.metadata_extraction ?? detail.latestMetadataExtractionPackage;
+  const promotionImageNormalization =
+    candidate.promotion_image_normalization ?? detail.latestPromotionImageNormalizationPackage;
   const metadataExtractionNormalized = asRecord(metadataExtraction?.normalized_metadata_package);
   const metadataExtractionIdentity = asRecord(metadataExtractionNormalized?.identity);
   const metadataExtractionPrintedModifier = asPrintedModifierRecord(
@@ -425,12 +428,31 @@ export default async function FounderWarehouseCandidatePage({
   const resolverSummary = (classificationPackage?.resolver_summary ?? null) as Record<string, unknown> | null;
   const evidenceFrontPreview = promotionReview?.preview.frontEvidenceUrl ?? null;
   const evidenceBackPreview = promotionReview?.preview.backEvidenceUrl ?? null;
+  const normalizationPackage = asPromotionImageNormalizationPackage(
+    promotionImageNormalization?.promotion_image_normalization_package,
+  );
+  const normalizationFrontPreview =
+    promotionImageNormalization?.preview_urls?.normalized_front_url ?? null;
+  const normalizationBackPreview =
+    promotionImageNormalization?.preview_urls?.normalized_back_url ?? null;
+  const assetReadinessStatus =
+    normalizationPackage?.status ?? (promotionWritePlan?.status === "READY" ? "BLOCKED" : null);
+  const assetReadinessSummary = normalizationPackage
+    ? normalizationPackage.errors.length > 0
+      ? normalizationPackage.errors.join(" • ")
+      : normalizationPackage.next_actions.length > 0
+        ? normalizationPackage.next_actions.join(" • ")
+        : "Derived promotion asset is ready."
+    : promotionWritePlan?.status === "READY"
+      ? "Promotion identity is ready, but no normalization package has been generated yet."
+      : "No normalization package recorded yet.";
   const promotionWritePlanOutcome = getPromotionWritePlanOutcomeLabel(promotionWritePlan);
   const founderPresentation = buildFounderReviewPresentationV1({
     promotionWritePlan,
     promotionReview,
     interpreterPackage,
     metadataExtraction,
+    promotionImageNormalization,
   });
 
   return (
@@ -471,6 +493,7 @@ export default async function FounderWarehouseCandidatePage({
             tone="default"
           />
           {interpreterPackage ? <WarehouseBadge value={interpreterPackage.confidence} tone="muted" /> : null}
+          {assetReadinessStatus ? <WarehouseBadge value={`ASSET_${assetReadinessStatus}`} tone="muted" /> : null}
           {promotionWritePlanOutcome ? (
             <WarehouseBadge value={promotionWritePlanOutcome} />
           ) : null}
@@ -487,6 +510,7 @@ export default async function FounderWarehouseCandidatePage({
             { label: "Reason code", value: interpreterPackage?.reason_code ?? candidate.interpreter_reason_code ?? "—" },
             { label: "Payload source", value: promotionReview?.payloadSource ?? "—" },
             { label: "Promotion result preview", value: promotionWritePlanOutcome ?? candidate.promotion_result_type ?? "—" },
+            { label: "Asset readiness", value: assetReadinessStatus ?? "—" },
             { label: "Current staging id", value: candidate.current_staging_id ?? "—" },
             { label: "TCGplayer id", value: candidate.tcgplayer_id ?? "—" },
             { label: "Hold reason", value: candidate.current_review_hold_reason ?? interpreterPackage?.reason_code ?? "—" },
@@ -529,6 +553,7 @@ export default async function FounderWarehouseCandidatePage({
                 },
                 { label: "Founder approval notes", value: candidate.founder_approval_notes ?? "—" },
                 { label: "Promotion result", value: candidate.promotion_result_type ?? "—" },
+                { label: "Normalized asset recorded", value: formatTimestamp(promotionImageNormalization?.created_at) },
                 { label: "Matched card print", value: interpreterPackage?.canon_context.matched_card_print_id ?? promotionReview?.references.matchedCardPrintId ?? "—" },
                 { label: "Matched card printing", value: interpreterPackage?.canon_context.matched_card_printing_id ?? promotionReview?.references.matchedCardPrintingId ?? "—" },
               ]}
@@ -659,6 +684,7 @@ export default async function FounderWarehouseCandidatePage({
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5">
           <div className="flex flex-wrap gap-2">
             <WarehouseBadge value={promotionWritePlan?.status ?? "BLOCKED"} />
+            {assetReadinessStatus ? <WarehouseBadge value={`ASSET_${assetReadinessStatus}`} tone="muted" /> : null}
             {promotionWritePlanOutcome ? (
               <WarehouseBadge value={promotionWritePlanOutcome} />
             ) : null}
@@ -677,6 +703,9 @@ export default async function FounderWarehouseCandidatePage({
           <p className="mt-3 text-sm leading-7 text-slate-800">
             {promotionWritePlan?.reason ?? "No promotion write plan is available yet."}
           </p>
+          <p className="mt-2 text-sm leading-7 text-slate-700">
+            Asset readiness: {assetReadinessSummary}
+          </p>
         </div>
         <div className="grid gap-4 xl:grid-cols-2">
           {promotionWritePlan ? (
@@ -691,6 +720,111 @@ export default async function FounderWarehouseCandidatePage({
         <div className="grid gap-4 xl:grid-cols-2">
           <JsonDisclosure label="Write plan before state" value={promotionWritePlan?.preview.before ?? null} />
           <JsonDisclosure label="Write plan after state" value={promotionWritePlan?.preview.after ?? null} />
+        </div>
+      </PageSection>
+
+      <PageSection surface="card" spacing="default">
+        <SectionHeader
+          title="Promotion Image Normalization"
+          description="Derived app-grade asset preparation. Raw warehouse evidence stays immutable and remains visible below."
+        />
+        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5">
+          <div className="flex flex-wrap gap-2">
+            <WarehouseBadge value={assetReadinessStatus ?? "NOT_RUN"} />
+            {normalizationPackage?.method?.warp_used ? (
+              <WarehouseBadge value="WARP_APPLIED" tone="default" />
+            ) : null}
+            {normalizationPackage?.method?.openai_tunnel_used ? (
+              <WarehouseBadge value="OPENAI_TUNNEL" tone="muted" />
+            ) : null}
+          </div>
+          <p className="mt-3 text-sm leading-7 text-slate-800">{assetReadinessSummary}</p>
+        </div>
+        <div className="grid gap-6 xl:grid-cols-2">
+          <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+            <h3 className="text-lg font-semibold tracking-tight text-slate-950">Raw evidence</h3>
+            {(evidenceFrontPreview || evidenceBackPreview) ? (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {evidenceFrontPreview ? (
+                  <a href={evidenceFrontPreview} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50">
+                    <img src={evidenceFrontPreview} alt="Raw front evidence" className="aspect-[3/4] h-full w-full object-cover transition group-hover:scale-[1.01]" />
+                    <div className="border-t border-slate-200 px-4 py-3 text-sm text-slate-700">Front evidence</div>
+                  </a>
+                ) : null}
+                {evidenceBackPreview ? (
+                  <a href={evidenceBackPreview} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50">
+                    <img src={evidenceBackPreview} alt="Raw back evidence" className="aspect-[3/4] h-full w-full object-cover transition group-hover:scale-[1.01]" />
+                    <div className="border-t border-slate-200 px-4 py-3 text-sm text-slate-700">Back evidence</div>
+                  </a>
+                ) : null}
+              </div>
+            ) : (
+              <div className="rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm text-slate-600">
+                No raw evidence preview is safely available yet.
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-white px-5 py-5 shadow-sm">
+            <h3 className="text-lg font-semibold tracking-tight text-slate-950">Normalized promotion asset</h3>
+            {(normalizationFrontPreview || normalizationBackPreview) ? (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {normalizationFrontPreview ? (
+                  <a href={normalizationFrontPreview} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50">
+                    <img src={normalizationFrontPreview} alt="Normalized front asset" className="aspect-[3/4] h-full w-full object-contain transition group-hover:scale-[1.01]" />
+                    <div className="border-t border-slate-200 px-4 py-3 text-sm text-slate-700">Normalized front</div>
+                  </a>
+                ) : null}
+                {normalizationBackPreview ? (
+                  <a href={normalizationBackPreview} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-50">
+                    <img src={normalizationBackPreview} alt="Normalized back asset" className="aspect-[3/4] h-full w-full object-contain transition group-hover:scale-[1.01]" />
+                    <div className="border-t border-slate-200 px-4 py-3 text-sm text-slate-700">Normalized back</div>
+                  </a>
+                ) : null}
+              </div>
+            ) : (
+              <div className="rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm text-slate-600">
+                No normalized promotion asset is available yet.
+              </div>
+            )}
+            <DefinitionGrid
+              items={[
+                { label: "Status", value: assetReadinessStatus ?? "—" },
+                { label: "Recorded at", value: formatTimestamp(promotionImageNormalization?.created_at) },
+                {
+                  label: "Front confidence",
+                  value:
+                    typeof normalizationPackage?.quality?.front_confidence === "number"
+                      ? normalizationPackage.quality.front_confidence.toFixed(3)
+                      : "—",
+                },
+                {
+                  label: "Back confidence",
+                  value:
+                    typeof normalizationPackage?.quality?.back_confidence === "number"
+                      ? normalizationPackage.quality.back_confidence.toFixed(3)
+                      : "—",
+                },
+                {
+                  label: "Front storage path",
+                  value: normalizationPackage?.outputs?.normalized_front_storage_path ?? "—",
+                },
+                {
+                  label: "Back storage path",
+                  value: normalizationPackage?.outputs?.normalized_back_storage_path ?? "—",
+                },
+              ]}
+            />
+            <SupportingList
+              title="Next actions"
+              items={normalizationPackage?.next_actions ?? []}
+              emptyMessage="No normalization follow-up actions were recorded."
+            />
+            <JsonDisclosure
+              label="Normalization package JSON"
+              value={promotionImageNormalization?.promotion_image_normalization_package ?? null}
+            />
+          </div>
         </div>
       </PageSection>
 

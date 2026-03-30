@@ -14,6 +14,8 @@ import {
   type WarehouseInterpreterCandidateSummary,
   type WarehouseInterpreterPackage,
 } from "@/lib/warehouse/buildWarehouseInterpreterV1";
+import type { PromotionImageNormalizationEnvelope } from "@/lib/warehouse/promotionImageNormalization";
+import { asPromotionImageNormalizationPackage } from "@/lib/warehouse/promotionImageNormalization";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 
@@ -55,6 +57,7 @@ type FounderWarehouseCandidateRow = {
   created_at: string;
   updated_at: string;
   metadata_extraction?: WarehouseMetadataExtractionEnvelope | null;
+  promotion_image_normalization?: PromotionImageNormalizationEnvelope | null;
   current_staging_payload?: JsonRecord | null;
 };
 
@@ -155,6 +158,7 @@ export type FounderWarehouseCandidateDetailResult = {
   stagingRows: WarehouseStagingRow[];
   currentStagingRow: WarehouseStagingRow | null;
   latestMetadataExtractionPackage: WarehouseMetadataExtractionEnvelope | null;
+  latestPromotionImageNormalizationPackage: PromotionImageNormalizationEnvelope | null;
   latestNormalizedPackage: JsonRecord | null;
   latestClassificationPackage: JsonRecord | null;
   latestInterpreterPackage: JsonRecord | null;
@@ -178,6 +182,15 @@ function normalizeIdArray(values: Array<string | null | undefined>) {
         .filter((value) => value.length > 0),
     ),
   );
+}
+
+function normalizeTextOrNull(value: unknown) {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
 }
 
 function asRecord(value: unknown): JsonRecord | null {
@@ -256,6 +269,30 @@ function extractLatestMetadataExtractionPackage(
       created_at: row.created_at,
       raw_extraction_package: rawExtractionPackage,
       normalized_metadata_package: normalizedMetadataPackage,
+    };
+  }
+
+  return null;
+}
+
+function extractLatestPromotionImageNormalizationPackage(
+  eventRows: WarehouseEventRow[],
+): PromotionImageNormalizationEnvelope | null {
+  for (let index = eventRows.length - 1; index >= 0; index -= 1) {
+    const row = eventRows[index];
+    const metadata = asRecord(row?.metadata);
+    const normalizationPackage = asPromotionImageNormalizationPackage(
+      metadata?.promotion_image_normalization_package,
+    );
+
+    if (!normalizationPackage) {
+      continue;
+    }
+
+    return {
+      event_type: row.event_type,
+      created_at: row.created_at,
+      promotion_image_normalization_package: normalizationPackage,
     };
   }
 
@@ -395,6 +432,7 @@ export async function getFounderWarehouseCandidateById(
       stagingRows: [],
       currentStagingRow: null,
       latestMetadataExtractionPackage: null,
+      latestPromotionImageNormalizationPackage: null,
       latestNormalizedPackage: null,
       latestClassificationPackage: null,
       latestInterpreterPackage: null,
@@ -562,9 +600,38 @@ export async function getFounderWarehouseCandidateById(
       : null) ?? null;
 
   const latestMetadataExtractionPackage = extractLatestMetadataExtractionPackage(eventRows);
+  const latestPromotionImageNormalizationPackage =
+    extractLatestPromotionImageNormalizationPackage(eventRows);
   const latestNormalizedPackage = extractLatestPackage(eventRows, "normalized_package");
   const latestClassificationPackage = extractLatestPackage(eventRows, "classification_package");
   const latestInterpreterPackage = extractLatestPackage(eventRows, "interpreter_package");
+
+  const normalizedFrontStoragePath = normalizeTextOrNull(
+    latestPromotionImageNormalizationPackage?.promotion_image_normalization_package?.outputs
+      ?.normalized_front_storage_path,
+  );
+  const normalizedBackStoragePath = normalizeTextOrNull(
+    latestPromotionImageNormalizationPackage?.promotion_image_normalization_package?.outputs
+      ?.normalized_back_storage_path,
+  );
+
+  const normalizedFrontUrl = normalizedFrontStoragePath
+    ? await resolveVaultInstanceMediaUrl(normalizedFrontStoragePath)
+    : null;
+  const normalizedBackUrl = normalizedBackStoragePath
+    ? await resolveVaultInstanceMediaUrl(normalizedBackStoragePath)
+    : null;
+
+  const latestPromotionImageNormalizationPackageWithPreviews =
+    latestPromotionImageNormalizationPackage
+      ? {
+          ...latestPromotionImageNormalizationPackage,
+          preview_urls: {
+            normalized_front_url: normalizedFrontUrl,
+            normalized_back_url: normalizedBackUrl,
+          },
+        }
+      : null;
   const seedSummary = buildWarehouseInterpreterSeed({
     candidate,
     evidenceRows: detailEvidenceRows,
@@ -596,6 +663,7 @@ export async function getFounderWarehouseCandidateById(
   const effectiveCandidateWithMetadata: FounderWarehouseCandidateRow = {
     ...effectiveCandidate,
     metadata_extraction: latestMetadataExtractionPackage,
+    promotion_image_normalization: latestPromotionImageNormalizationPackageWithPreviews,
     current_staging_payload: currentStagingRow?.frozen_payload ?? null,
   };
 
@@ -625,6 +693,7 @@ export async function getFounderWarehouseCandidateById(
     stagingRows,
     currentStagingRow,
     latestMetadataExtractionPackage,
+    latestPromotionImageNormalizationPackage: latestPromotionImageNormalizationPackageWithPreviews,
     latestNormalizedPackage,
     latestClassificationPackage,
     latestInterpreterPackage,

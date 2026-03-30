@@ -53,6 +53,12 @@ class AIIdentifyRequest(BaseModel):
     force_refresh: bool = False
     trace_id: str | None = None
 
+class WarpQuadRequest(BaseModel):
+    image_b64: str
+    quad_norm: list
+    out_w: int = 1024
+    out_h: int = 1428
+
 def _run_id():
     return datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
 
@@ -179,6 +185,31 @@ def _order_quad(pts):
     tr = pts[np.argmin(diff)]
     bl = pts[np.argmax(diff)]
     return [tuple(tl), tuple(tr), tuple(br), tuple(bl)]
+
+def _decode_image_b64(image_b64: str):
+    try:
+        img_bytes = base64.b64decode(image_b64)
+    except Exception:
+        raise RuntimeError("decode_failed")
+    pil = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+    return np.array(pil)
+
+def _coerce_quad_norm(quad_norm):
+    if not isinstance(quad_norm, list) or len(quad_norm) != 4:
+        raise RuntimeError("invalid_quad_norm")
+    pts = []
+    for point in quad_norm:
+        if not isinstance(point, list) or len(point) != 2:
+            raise RuntimeError("invalid_quad_point")
+        try:
+            x = float(point[0])
+            y = float(point[1])
+        except Exception:
+            raise RuntimeError("invalid_quad_point")
+        if x < 0 or x > 1 or y < 0 or y > 1:
+            raise RuntimeError("quad_out_of_bounds")
+        pts.append((x, y))
+    return pts
 
 def _center_seed_mask_bbox(img_bgr):
     H, W = img_bgr.shape[:2]
@@ -1054,6 +1085,56 @@ async def ocr_card_signals(request: Request):
             "raw_modifier_candidate_signals": [],
             "printed_modifier_confidence_0_1": None,
             "debug": {"engine": "exception"},
+        }
+
+@app.post("/warp-card-quad")
+async def warp_card_quad(req: WarpQuadRequest):
+    try:
+        img_rgb = _decode_image_b64(req.image_b64)
+        H, W = img_rgb.shape[:2]
+        quad_norm = _coerce_quad_norm(req.quad_norm)
+        pts = np.array([(x * W, y * H) for x, y in quad_norm], dtype=np.float32)
+        pts_ord = np.array(_order_quad(pts), dtype=np.float32)
+
+        out_w = int(req.out_w or 1024)
+        out_h = int(req.out_h or 1428)
+        if out_w <= 0 or out_h <= 0 or out_w > 4096 or out_h > 4096:
+            raise RuntimeError("invalid_output_size")
+
+        dst = np.array(
+            [[0, 0], [out_w - 1, 0], [out_w - 1, out_h - 1], [0, out_h - 1]],
+            dtype=np.float32,
+        )
+        matrix = cv2.getPerspectiveTransform(pts_ord, dst)
+        warped = cv2.warpPerspective(
+            img_rgb,
+            matrix,
+            (out_w, out_h),
+            flags=cv2.INTER_CUBIC,
+            borderMode=cv2.BORDER_REPLICATE,
+        )
+
+        ok, enc = cv2.imencode(
+            ".jpg",
+            cv2.cvtColor(warped, cv2.COLOR_RGB2BGR),
+            [int(cv2.IMWRITE_JPEG_QUALITY), 92],
+        )
+        if not ok:
+            raise RuntimeError("jpeg_encode_failed")
+
+        return {
+            "ok": True,
+            "warped_jpg_b64": base64.b64encode(enc.tobytes()).decode("utf-8"),
+            "width": out_w,
+            "height": out_h,
+            "notes": ["perspective_warp_applied"],
+        }
+    except Exception as e:
+        return {
+            "ok": False,
+            "warped_jpg_b64": None,
+            "error": str(e),
+            "notes": ["exception"],
         }
 
 @app.post("/ai-identify-warp")
