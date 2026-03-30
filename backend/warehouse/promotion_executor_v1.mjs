@@ -1,6 +1,7 @@
 import '../env.mjs';
 
 import pg from 'pg';
+import { buildCardPrintGvIdV1 } from './buildCardPrintGvIdV1.mjs';
 
 const { Pool } = pg;
 
@@ -402,7 +403,7 @@ async function fetchCandidateRow(client, candidateId) {
 
 async function fetchSetByCode(client, setCode) {
   const sql = `
-    select id, code, game
+    select id, code, game, printed_set_abbrev
     from public.sets
     where lower(code) = $1
       and game = $2
@@ -423,6 +424,7 @@ async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = 
       number,
       number_plain,
       variant_key,
+      gv_id,
       tcgplayer_id,
       image_source,
       image_path,
@@ -452,6 +454,7 @@ async function fetchCardPrintById(client, cardPrintId) {
       number,
       number_plain,
       variant_key,
+      gv_id,
       image_source,
       image_path,
       image_url,
@@ -645,6 +648,13 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
 
   const setRow = setRows[0];
+  const gvId = buildCardPrintGvIdV1({
+    setCode: setRow.code,
+    printedSetAbbrev: setRow.printed_set_abbrev,
+    number: numberPlain,
+    numberPlain,
+    variantKey,
+  });
   const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain, variantKey);
   if (existingRows.length > 1) {
     throw new ExecutorError('duplicate_existing_card_prints', `${setRow.code}:${numberPlain}`);
@@ -666,6 +676,13 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       throw new ExecutorError('existing_card_print_tcgplayer_conflict', existingRow.id, {
         existing_tcgplayer_id: existingRow.tcgplayer_id,
         staged_tcgplayer_id: tcgplayerId,
+      });
+    }
+    const existingGvId = normalizeTextOrNull(existingRow.gv_id);
+    if (existingGvId && existingGvId !== gvId) {
+      throw new ExecutorError('existing_card_print_gv_id_conflict', existingRow.id, {
+        existing_gv_id: existingGvId,
+        staged_gv_id: gvId,
       });
     }
 
@@ -691,6 +708,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
         card_name: cardName,
         result_card_print_id: existingRow.id,
         variant_key: variantKey,
+        gv_id: existingGvId ?? gvId,
       },
       payload,
       candidate,
@@ -711,6 +729,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       name: cardName,
       rarity,
       tcgplayer_id: tcgplayerId,
+      gv_id: gvId,
       image_source: normalizedFrontImagePath ? 'identity' : null,
       image_path: normalizedFrontImagePath,
     },
@@ -727,6 +746,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       number_plain: numberPlain,
       card_name: cardName,
       variant_key: variantKey,
+      gv_id: gvId,
       tcgplayer_id: tcgplayerId,
       image_source: normalizedFrontImagePath ? 'identity' : null,
       image_path: normalizedFrontImagePath,
@@ -1132,10 +1152,11 @@ async function applyMutation(connection, plan) {
           name,
           rarity,
           tcgplayer_id,
+          gv_id,
           image_source,
           image_path
         )
-        values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
         on conflict do nothing
         returning id
       `;
@@ -1147,6 +1168,7 @@ async function applyMutation(connection, plan) {
         plan.mutation.name,
         plan.mutation.rarity,
         plan.mutation.tcgplayer_id,
+        plan.mutation.gv_id,
         plan.mutation.image_source,
         plan.mutation.image_path,
       ]);
@@ -1164,6 +1186,28 @@ async function applyMutation(connection, plan) {
         }
         if (normalizeNameKey(existingRows[0].name) !== normalizeNameKey(plan.mutation.name)) {
           throw new ExecutorError('card_print_insert_name_conflict', existingRows[0].id);
+        }
+        const existingGvId = normalizeTextOrNull(existingRows[0].gv_id);
+        if (existingGvId && existingGvId !== plan.mutation.gv_id) {
+          throw new ExecutorError('card_print_insert_gv_id_conflict', existingRows[0].id, {
+            existing_gv_id: existingGvId,
+            planned_gv_id: plan.mutation.gv_id,
+          });
+        }
+        if (!existingGvId) {
+          const gvIdUpdateResult = await connection.query(
+            `
+              update public.card_prints
+              set gv_id = $2
+              where id = $1
+                and gv_id is null
+              returning id
+            `,
+            [existingRows[0].id, plan.mutation.gv_id],
+          );
+          if (!gvIdUpdateResult.rows[0]?.id) {
+            throw new ExecutorError('card_print_insert_gv_id_backfill_failed', existingRows[0].id);
+          }
         }
         cardPrintId = existingRows[0].id;
         return {
