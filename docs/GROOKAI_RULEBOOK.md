@@ -16,6 +16,31 @@ This rulebook consolidates all engineering contracts, guardrails, and workflows 
 - `price_observations` and `card_print_price_curves` may be 0 if pricing has not run yet.
 - If the above invariants fail, all implementation/audit work is **BLOCKED** with warning: “Environment mismatch — fix before proceeding.”
 
+## Canonical Maturity Gate Scope (Active Clarification)
+- The `card_prints >= 40,000` gate remains a hard blocker for:
+  - canon-expanding write systems
+  - canonical schema changes tied to truth mutation
+  - direct promotion into `card_prints`
+  - any write system that mutates canonical truth layers
+- The same gate does **not** block non-canon external discovery staging layers when their explicit purpose is:
+  - preserving external discovery candidates
+  - holding review-state candidates
+  - preserving provenance before canon decision
+  - writing outside canonical truth tables
+- Allowed below `40,000`:
+  - raw ingestion improvements
+  - read-only normalization, matching, and canon-gate logic
+  - non-canon staging systems for external discovery candidates
+  - provenance-preserving review queues that do not mutate canon
+- Still blocked below `40,000`:
+  - new direct canon writers
+  - auto-promotion into `card_prints`
+  - schema or workers that mutate canonical truth layers without staging and review
+  - any external source bypassing canon gate or review
+- Staging is a review boundary, not a truth boundary.
+- This clarification exists specifically to prevent unsafe canon writes in special-case-heavy domains such as Pokemon while preserving a lawful buffer before canon acceptance.
+- This clarification does not weaken printed identity authority or any canon-first identity contract.
+
 ## Env / DB Sanity Check (Required for Supabase-backed work)
 Before any L2/L3 audit or implementation:
 1) Confirm the active project_ref by comparing `SUPABASE_URL` with `project_ref` in `supabase/config.toml`.
@@ -26,7 +51,7 @@ Before any L2/L3 audit or implementation:
    select count(*) from card_print_traits;
    ```
 3) Compare against the Canonical Environment Invariants.
-4) If invariants fail, declare the task BLOCKED until environment routing is fixed.
+4) If invariants fail, declare the task BLOCKED until environment routing is fixed, except for non-canon external discovery staging work explicitly allowed by the Canonical Maturity Gate Scope clarification above.
 
 ## 1. Migration Maintenance Contract
 - Idempotent, replay-safe migrations only; no destructive ops. Follow guards for fresh DBs.

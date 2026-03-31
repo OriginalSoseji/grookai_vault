@@ -32,6 +32,7 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | INGESTION_PIPELINE_CONTRACT_V1 | Active | Contract-first staged ingestion via raw_imports |
 | EXTERNAL_SOURCE_INGESTION_MODEL_V1 | Active | Shared raw-first canon-bound ingestion model for external catalog and discovery rows before comparison, canon gate, and staged promotion |
+| EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1 | Active | Non-canon staging boundary for external discovery candidates before review and any later canon decision |
 | TCGDEX_SOURCE_CONTRACT_V1 | Active | Deterministic tcgdex ingestion and mapping rules |
 | POKEMONAPI_SOURCE_CONTRACT_V1 | Active | PokémonAPI ingestion and normalization rules |
 | TCGDEX_MAPPING_WORKER_V2_CONTRACT | Frozen | 100% certainty tcgdex → canonical mapping |
