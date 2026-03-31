@@ -1,8 +1,10 @@
 "use server";
 
+import fs from "node:fs";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { revalidatePath } from "next/cache";
 import type { PostgrestError } from "@supabase/supabase-js";
-import { buildWarehouseStagingPayload } from "@/lib/founder/buildWarehouseStagingPayload";
 import { getFounderAuthUser, isFounderUser } from "@/lib/founder/requireFounderAccess";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { getFounderWarehouseCandidateById } from "@/lib/warehouse/getFounderWarehouseCandidateById";
@@ -17,7 +19,23 @@ type FounderWarehouseActionErrorCode =
   | "INVALID_STATE"
   | "ACTIVE_STAGING_EXISTS"
   | "INVALID_APPROVED_ACTION"
+  | "STAGE_BLOCKED"
+  | "STAGE_UNAVAILABLE"
   | "MUTATION_FAILED";
+
+type PromotionStageCandidateResult = {
+  candidateId: string;
+  status: string;
+  reason?: string;
+  staging_id?: string | null;
+  execution_status?: string | null;
+  missing_requirements?: string[];
+};
+
+type PromotionStageRunSummary = {
+  mode: string;
+  results: PromotionStageCandidateResult[];
+};
 
 export type FounderWarehouseActionResult =
   | {
@@ -119,6 +137,50 @@ function getActionLabel(action: FounderWarehouseOperation) {
   }
 }
 
+function resolveRepoRoot() {
+  const candidates = [
+    process.cwd(),
+    path.resolve(process.cwd(), ".."),
+    path.resolve(process.cwd(), "../.."),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(path.join(candidate, "backend", "warehouse", "promotion_stage_worker_v1.mjs"))) {
+      return candidate;
+    }
+  }
+
+  throw new Error("Unable to resolve repository root for promotion stage worker.");
+}
+
+async function loadPromotionStageRunner() {
+  const repoRoot = resolveRepoRoot();
+  const envLocalPath = path.join(repoRoot, ".env.local");
+  const envPath = path.join(repoRoot, ".env");
+
+  if (!process.env.DOTENV_CONFIG_PATH) {
+    process.env.DOTENV_CONFIG_PATH = fs.existsSync(envLocalPath) ? envLocalPath : envPath;
+  }
+
+  const moduleUrl = pathToFileURL(
+    path.join(repoRoot, "backend", "warehouse", "promotion_stage_worker_v1.mjs"),
+  ).href;
+  const stageModule = (await import(/* webpackIgnore: true */ moduleUrl)) as {
+    runPromotionStageWorkerV1?: (input: {
+      candidateId: string;
+      dryRun?: boolean;
+      apply?: boolean;
+      emitLogs?: boolean;
+    }) => Promise<PromotionStageRunSummary>;
+  };
+
+  if (typeof stageModule.runPromotionStageWorkerV1 !== "function") {
+    throw new Error("Promotion stage worker reusable entrypoint is unavailable.");
+  }
+
+  return stageModule.runPromotionStageWorkerV1;
+}
+
 async function appendWarehouseEvent(params: {
   candidateId: string;
   stagingId?: string | null;
@@ -153,6 +215,20 @@ function revalidateWarehouseFounderPaths(candidateId: string) {
   revalidatePath("/founder/warehouse");
   revalidatePath(`/founder/warehouse/${candidateId}`);
   revalidatePath("/founder/staging");
+}
+
+function buildStageBlockedMessage(result: PromotionStageCandidateResult) {
+  const missing = Array.isArray(result.missing_requirements)
+    ? result.missing_requirements.filter((value) => typeof value === "string" && value.trim().length > 0)
+    : [];
+
+  if (missing.length === 0) {
+    return result.reason
+      ? `Staging blocked: ${result.reason}.`
+      : "Staging blocked by the governed promotion worker.";
+  }
+
+  return `${result.reason ? `Staging blocked: ${result.reason}. ` : "Staging blocked. "}Missing: ${missing.join(", ")}.`;
 }
 
 export async function runFounderWarehouseAction(
@@ -392,120 +468,101 @@ export async function runFounderWarehouseAction(
       };
     }
 
-    const approvedActionType = candidate.proposed_action_type?.trim() ?? null;
-    if (!approvedActionType || !["CREATE_CARD_PRINT", "CREATE_CARD_PRINTING", "ENRICH_CANON_IMAGE"].includes(approvedActionType)) {
-      return {
-        ok: false,
-        submissionKey,
-        action,
-        candidateId,
-        errorCode: "INVALID_APPROVED_ACTION",
-        message: "This candidate does not have a stageable approved action type.",
-      };
-    }
-
-    const { data: activeStagingRows, error: activeStagingError } = await admin
-      .from("canon_warehouse_promotion_staging")
-      .select("id,execution_status")
-      .eq("candidate_id", candidateId)
-      .in("execution_status", ["PENDING", "RUNNING"])
-      .limit(1);
-
-    if (activeStagingError) {
-      throw activeStagingError;
-    }
-
-    if ((activeStagingRows ?? []).length > 0) {
-      return {
-        ok: false,
-        submissionKey,
-        action,
-        candidateId,
-        errorCode: "ACTIVE_STAGING_EXISTS",
-        message: "An active staging row already exists for this candidate.",
-      };
-    }
-
-    const frozenPayload = buildWarehouseStagingPayload(detail, now);
-
-    const { data: stagingRow, error: stagingInsertError } = await admin
-      .from("canon_warehouse_promotion_staging")
-      .insert({
-        candidate_id: candidateId,
-        approved_action_type: approvedActionType,
-        frozen_payload: frozenPayload,
-        founder_approved_by_user_id: candidate.founder_approved_by_user_id,
-        founder_approved_at: candidate.founder_approved_at,
-        staged_by_user_id: actorUserId,
-        staged_at: now,
-        execution_status: "PENDING",
-        execution_attempts: 0,
-      })
-      .select("id")
-      .single();
-
-    if (stagingInsertError || !stagingRow?.id) {
-      throw stagingInsertError ?? new Error("staging_insert_failed");
-    }
-
-    const stagingId = stagingRow.id as string;
-
     try {
-      const { data: stagedCandidate, error: candidateUpdateError } = await admin
-        .from("canon_warehouse_candidates")
-        .update({
-          current_staging_id: stagingId,
-          state: "STAGED_FOR_PROMOTION",
-          current_review_hold_reason: null,
-        })
-        .eq("id", candidateId)
-        .eq("state", "APPROVED_BY_FOUNDER")
-        .select("id")
-        .maybeSingle();
-
-      if (candidateUpdateError) {
-        throw candidateUpdateError;
-      }
-      if (!stagedCandidate?.id) {
-        throw new Error("illegal_candidate_state_transition");
-      }
-
-      await appendWarehouseEvent({
+      const runPromotionStageWorkerV1 = await loadPromotionStageRunner();
+      const stageRun = await runPromotionStageWorkerV1({
         candidateId,
-        stagingId,
-        eventType: "FOUNDER_STAGED",
-        action: "STAGE",
-        previousState: "APPROVED_BY_FOUNDER",
-        nextState: "STAGED_FOR_PROMOTION",
-        actorUserId,
-        metadata: {
-          staging_id: stagingId,
-          approved_action_type: approvedActionType,
-        },
+        apply: true,
+        emitLogs: false,
       });
+      const result = stageRun.results[0];
+
+      if (!result) {
+        return {
+          ok: false,
+          submissionKey,
+          action,
+          candidateId,
+          errorCode: "STAGE_UNAVAILABLE",
+          message: "Stage worker returned no result for the requested candidate.",
+        };
+      }
+
+      if (result.status === "applied") {
+        revalidateWarehouseFounderPaths(candidateId);
+        return {
+          ok: true,
+          submissionKey,
+          action,
+          candidateId,
+          stagingId: result.staging_id ?? null,
+          message: "Candidate staged for promotion. Frozen payload created; no canon mutation was executed.",
+        };
+      }
+
+      if (result.status === "skipped") {
+        const refreshableReasons = new Set([
+          "identical_staging_exists",
+          "already_staged_for_promotion",
+        ]);
+        if (result.reason && refreshableReasons.has(result.reason)) {
+          revalidateWarehouseFounderPaths(candidateId);
+          return {
+            ok: true,
+            submissionKey,
+            action,
+            candidateId,
+            stagingId: result.staging_id ?? null,
+            message:
+              result.reason === "already_staged_for_promotion"
+                ? "Candidate is already linked to a staging row. No duplicate stage was created."
+                : "An identical frozen staging payload already exists. No duplicate stage was created.",
+          };
+        }
+
+        return {
+          ok: false,
+          submissionKey,
+          action,
+          candidateId,
+          errorCode: "STAGE_BLOCKED",
+          message: result.reason
+            ? `Stage did not run: ${result.reason}.`
+            : "Stage did not run for the requested candidate.",
+        };
+      }
+
+      if (result.status === "blocked") {
+        return {
+          ok: false,
+          submissionKey,
+          action,
+          candidateId,
+          errorCode: "STAGE_BLOCKED",
+          message: buildStageBlockedMessage(result),
+        };
+      }
+
+      return {
+        ok: false,
+        submissionKey,
+        action,
+        candidateId,
+        errorCode: "MUTATION_FAILED",
+        message: result.reason
+          ? `stage failed: ${result.reason}`
+          : "stage failed: promotion stage worker did not complete successfully.",
+      };
     } catch (error) {
-      await admin
-        .from("canon_warehouse_promotion_staging")
-        .update({
-          execution_status: "FAILED",
-          last_error: `staging_link_failed:${mapMutationError(error as Error)}`,
-          last_attempted_at: now,
-        })
-        .eq("id", stagingId)
-        .neq("execution_status", "SUCCEEDED");
-
-      throw error;
+      return {
+        ok: false,
+        submissionKey,
+        action,
+        candidateId,
+        errorCode: "STAGE_UNAVAILABLE",
+        message: `stage failed: ${mapMutationError(error as Error)}`,
+      };
     }
-
-    revalidateWarehouseFounderPaths(candidateId);
-    return {
-      ok: true,
-      submissionKey,
-      action,
-      candidateId,
-      stagingId,
-      message: "Candidate staged for promotion. No canon mutation was executed.",
-    };
   } catch (error) {
     return {
       ok: false,

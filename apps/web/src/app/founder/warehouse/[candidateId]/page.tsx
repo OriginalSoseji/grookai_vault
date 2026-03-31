@@ -280,6 +280,43 @@ function getPromotionWritePlanOutcomeLabel(plan: PromotionWritePlanV1 | null) {
   return "NO_OP";
 }
 
+function getStageBlockedReason(args: {
+  candidateState: string;
+  currentStagingId: string | null;
+  interpreterStatus: string | null;
+  interpreterExplanation: string | null;
+  writePlanStatus: string | null;
+  writePlanReason: string | null;
+  normalizationStatus: string | null;
+  assetReadinessSummary: string;
+}) {
+  if (args.candidateState !== "APPROVED_BY_FOUNDER") {
+    return null;
+  }
+
+  if (args.currentStagingId) {
+    return `A staging row is already linked to this candidate (${args.currentStagingId}).`;
+  }
+
+  if (args.interpreterStatus !== "READY") {
+    return args.interpreterExplanation
+      ? `Stage is blocked until interpreter is READY. ${args.interpreterExplanation}`
+      : "Stage is blocked until interpreter is READY.";
+  }
+
+  if (args.writePlanStatus !== "READY") {
+    return args.writePlanReason
+      ? `Stage is blocked until the promotion write plan is READY. ${args.writePlanReason}`
+      : "Stage is blocked until the promotion write plan is READY.";
+  }
+
+  if (args.normalizationStatus !== "READY") {
+    return `Stage is blocked until promotion image normalization is READY. ${args.assetReadinessSummary}`;
+  }
+
+  return null;
+}
+
 function PromotionWriteActionCard({
   domain,
   action,
@@ -454,6 +491,23 @@ export default async function FounderWarehouseCandidatePage({
     metadataExtraction,
     promotionImageNormalization,
   });
+  const canApprove = candidate.state === "REVIEW_READY";
+  const canStage =
+    candidate.state === "APPROVED_BY_FOUNDER" &&
+    interpreterPackage?.status === "READY" &&
+    promotionWritePlan?.status === "READY" &&
+    normalizationPackage?.status === "READY" &&
+    !currentStagingRow;
+  const stageBlockedReason = getStageBlockedReason({
+    candidateState: candidate.state,
+    currentStagingId: currentStagingRow?.id ?? null,
+    interpreterStatus: interpreterPackage?.status ?? null,
+    interpreterExplanation: interpreterPackage?.founder_explanation ?? null,
+    writePlanStatus: promotionWritePlan?.status ?? null,
+    writePlanReason: promotionWritePlan?.reason ?? null,
+    normalizationStatus: normalizationPackage?.status ?? null,
+    assetReadinessSummary,
+  });
 
   return (
     <PageContainer className="space-y-8 py-8">
@@ -579,36 +633,6 @@ export default async function FounderWarehouseCandidatePage({
             />
           </div>
         ) : null}
-        <div className="space-y-4">
-          <WarehouseFounderActionPanel candidateId={candidate.id} candidateState={candidate.state} />
-          {currentStagingRow ? (
-            <div className="space-y-3">
-              <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5 text-sm text-slate-700">
-                Current staging row:
-                {" "}
-                <Link href="/founder/staging" className="underline decoration-slate-300 underline-offset-4">
-                  {currentStagingRow.id}
-                </Link>
-                {" "}
-                ({currentStagingRow.execution_status})
-              </div>
-              <WarehouseStagingExecutionPanel
-                stagingId={currentStagingRow.id}
-                candidateId={candidate.id}
-                executionStatus={currentStagingRow.execution_status}
-                executionAttempts={currentStagingRow.execution_attempts}
-                lastError={currentStagingRow.last_error}
-                lastAttemptedAt={currentStagingRow.last_attempted_at}
-                executedAt={currentStagingRow.executed_at}
-                promotionResultType={candidate.promotion_result_type}
-                promotedCardPrintId={candidate.promoted_card_print_id}
-                promotedCardPrintingId={candidate.promoted_card_printing_id}
-                promotedImageTargetType={candidate.promoted_image_target_type}
-                promotedImageTargetId={candidate.promoted_image_target_id}
-              />
-            </div>
-          ) : null}
-        </div>
       </PageSection>
 
       <PageSection surface="card" spacing="default">
@@ -720,6 +744,91 @@ export default async function FounderWarehouseCandidatePage({
         <div className="grid gap-4 xl:grid-cols-2">
           <JsonDisclosure label="Write plan before state" value={promotionWritePlan?.preview.before ?? null} />
           <JsonDisclosure label="Write plan after state" value={promotionWritePlan?.preview.after ?? null} />
+        </div>
+      </PageSection>
+
+      <PageSection surface="card" spacing="default">
+        <SectionHeader
+          title="Founder Promotion Actions"
+          description="Founder-only controls for approval, staging, and execution. These actions reuse the governed backend path and never bypass staging."
+        />
+        <div className="space-y-4">
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5">
+            <div className="flex flex-wrap gap-2">
+              <WarehouseBadge value={candidate.state} />
+              {currentStagingRow ? (
+                <WarehouseBadge value={currentStagingRow.execution_status} tone="default" />
+              ) : null}
+              {promotionWritePlan?.status ? (
+                <WarehouseBadge value={`WRITE_${promotionWritePlan.status}`} tone="muted" />
+              ) : null}
+              {interpreterPackage?.status ? (
+                <WarehouseBadge value={`INTERPRETER_${interpreterPackage.status}`} tone="muted" />
+              ) : null}
+              {assetReadinessStatus ? (
+                <WarehouseBadge value={`ASSET_${assetReadinessStatus}`} tone="muted" />
+              ) : null}
+            </div>
+            <div className="mt-4">
+              <DefinitionGrid
+                items={[
+                  { label: "Candidate state", value: candidate.state },
+                  { label: "Founder approved at", value: formatTimestamp(candidate.founder_approved_at) },
+                  {
+                    label: "Current staging row",
+                    value: currentStagingRow ? (
+                      <Link
+                        href="/founder/staging"
+                        className="underline decoration-slate-300 underline-offset-4"
+                      >
+                        {currentStagingRow.id}
+                      </Link>
+                    ) : "—",
+                  },
+                  {
+                    label: "Staging execution status",
+                    value: currentStagingRow?.execution_status ?? "—",
+                  },
+                  { label: "Write plan status", value: promotionWritePlan?.status ?? "—" },
+                  { label: "Asset readiness", value: assetReadinessStatus ?? "—" },
+                  { label: "Promoted at", value: formatTimestamp(candidate.promoted_at) },
+                  { label: "Promotion result", value: candidate.promotion_result_type ?? "—" },
+                ]}
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-4 xl:grid-cols-2">
+            <WarehouseFounderActionPanel
+              candidateId={candidate.id}
+              candidateState={candidate.state}
+              canApprove={canApprove}
+              canStage={canStage}
+              stageBlockedReason={stageBlockedReason}
+            />
+            {currentStagingRow ? (
+              <WarehouseStagingExecutionPanel
+                stagingId={currentStagingRow.id}
+                candidateId={candidate.id}
+                executionStatus={currentStagingRow.execution_status}
+                executionAttempts={currentStagingRow.execution_attempts}
+                lastError={currentStagingRow.last_error}
+                lastAttemptedAt={currentStagingRow.last_attempted_at}
+                executedAt={currentStagingRow.executed_at}
+                promotionResultType={candidate.promotion_result_type}
+                promotedCardPrintId={candidate.promoted_card_print_id}
+                promotedCardPrintingId={candidate.promoted_card_printing_id}
+                promotedImageTargetType={candidate.promoted_image_target_type}
+                promotedImageTargetId={candidate.promoted_image_target_id}
+              />
+            ) : (
+              <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-5 text-sm text-slate-600">
+                {candidate.state === "PROMOTED"
+                  ? "This candidate is already promoted. No further staging or execution action is available."
+                  : "No staging row is linked yet. Execution becomes available only after founder staging succeeds."}
+              </div>
+            )}
+          </div>
         </div>
       </PageSection>
 
