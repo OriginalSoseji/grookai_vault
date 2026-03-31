@@ -13,7 +13,7 @@ function applyCompareCardsParam(request: NextRequest, nextUrl: URL) {
   }
 }
 
-function buildExploreUrl(request: NextRequest, query: string) {
+function buildExploreUrl(request: NextRequest, query: string, defaultSort?: "relevance") {
   const nextUrl = new URL("/explore", request.url);
 
   if (query) {
@@ -29,6 +29,8 @@ function buildExploreUrl(request: NextRequest, query: string) {
 
   if (sort) {
     nextUrl.searchParams.set("sort", sort);
+  } else if (defaultSort === "relevance") {
+    nextUrl.searchParams.set("sort", "relevance");
   }
 
   applyCompareCardsParam(request, nextUrl);
@@ -69,6 +71,7 @@ export async function GET(request: NextRequest) {
   try {
     const resolved = await resolveQueryWithMeta(rawQuery, { mode: "direct" });
     const result = resolved.result;
+    const defaultSort = resolved.meta.resolverState !== "NO_MATCH" ? "relevance" : undefined;
 
     if (result.kind === "card") {
       if (resolved.meta.resolverState === "DIRECT_MATCH") {
@@ -77,7 +80,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.redirect(nextUrl);
       }
 
-      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery));
+      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery, defaultSort));
     }
 
     if (result.kind === "set") {
@@ -87,14 +90,14 @@ export async function GET(request: NextRequest) {
         return NextResponse.redirect(nextUrl);
       }
 
-      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery));
+      return NextResponse.redirect(buildExploreUrl(request, normalizedQuery, defaultSort));
     }
 
     if (result.kind === "sets") {
       return NextResponse.redirect(buildSetsUrl(request, result.query));
     }
 
-    return NextResponse.redirect(buildExploreUrl(request, result.query));
+    return NextResponse.redirect(buildExploreUrl(request, result.query, defaultSort));
   } catch {
     return NextResponse.redirect(buildExploreUrl(request, rawQuery.trim()));
   }

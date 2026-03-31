@@ -321,6 +321,26 @@ function mapVariantTokensToCues(variantTokens: NormalizedQueryPacket["variantTok
   return [...cues];
 }
 
+function buildEffectiveExpectedSetCodes(
+  expectedSetCodes: string[],
+  promoTokens: string[],
+  variantCues: VariantCue[],
+  traitIntent: string[],
+) {
+  const normalizedExpectedSetCodes = normalizeExpectedSetCodes(expectedSetCodes);
+  const hasPromoIntent =
+    promoTokens.length > 0 ||
+    variantCues.includes("promo") ||
+    traitIntent.includes("promo");
+
+  if (!hasPromoIntent) {
+    return normalizedExpectedSetCodes;
+  }
+
+  const promoScopedSetCodes = normalizedExpectedSetCodes.filter((code) => PROMO_SET_CODE_PATTERN.test(code));
+  return promoScopedSetCodes.length > 0 ? promoScopedSetCodes : normalizedExpectedSetCodes;
+}
+
 function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
   const normalized = packet.normalizedQuery;
   const collectorExpectations = packet.collectorExpectations.map((expectation) => ({
@@ -328,6 +348,13 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     digits: expectation.digits,
     exact_only: expectation.exactOnly,
   }));
+  const variantCues = mapVariantTokensToCues(packet.variantTokens);
+  const expectedSetCodes = buildEffectiveExpectedSetCodes(
+    packet.expectedSetCodes,
+    packet.promoTokens,
+    variantCues,
+    packet.traitIntent,
+  );
   const tokens = packet.expandedSearchTokens;
   const consumedTokenSet = new Set([
     ...packet.setConsumedTokens,
@@ -359,10 +386,10 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     fractionTokens: packet.fractionTokens,
     promoTokens: packet.promoTokens,
     setTokens: packet.setConsumedTokens,
-    expectedSetCodes: packet.expectedSetCodes,
+    expectedSetCodes,
     rarityIntent: packet.rarityIntent,
     traitIntent: packet.traitIntent,
-    variantCues: mapVariantTokensToCues(packet.variantTokens),
+    variantCues,
     hasStrongDisambiguator: packet.hasStrongDisambiguator,
     directGvId: packet.normalizedGvId,
   };
@@ -882,6 +909,7 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
   const matchesExpectedSetCode = hasExpectedSetCode && query.expectedSetCodes.includes(normalizeSetCode(row.set_code));
   if (matchesExpectedSetCode) {
     addScoreComponent(components, "expected_set_code_match", EXPECTED_SET_CODE_MATCH_BONUS);
+    addScoreComponent(components, "expected_set_code_visibility_boost", 0.25);
   } else if (hasExpectedSetCode) {
     addScoreComponent(components, "expected_set_code_miss", EXPECTED_SET_CODE_MISS_PENALTY);
   }
@@ -1075,6 +1103,10 @@ function rankRows(rows: ExploreRow[], query: ResolverQuery) {
   });
 }
 
+function normalizeExpectedSetCodes(expectedSetCodes: string[]) {
+  return uniqueValues(expectedSetCodes.map((code) => normalizeSetCode(code)).filter(Boolean));
+}
+
 function compareRowsByRelevance(a: ExploreRow, b: ExploreRow, query: ResolverQuery) {
   const scoreA = scoreRow(a, query);
   const scoreB = scoreRow(b, query);
@@ -1184,6 +1216,10 @@ function rowMatchesScopedTextTokens(row: CardPrintLookupRow, query: ResolverQuer
 }
 
 async function fetchIntentScopedRows(query: ResolverQuery, selectClause: string) {
+  if (query.expectedSetCodes.length > 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
   const hasCollectorIntent =
     query.rarityIntent.length > 0 || query.traitIntent.length > 0 || query.variantCues.length > 0;
   if (!hasCollectorIntent) {
@@ -1284,6 +1320,10 @@ async function fetchIntentScopedRows(query: ResolverQuery, selectClause: string)
 }
 
 async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
+  if (query.expectedSetCodes.length > 0) {
+    return { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
+  }
+
   if (query.significantTextTokens.length === 0) {
     return { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
   }
@@ -1372,19 +1412,42 @@ async function fetchExactCardRows(
   const supabase = createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+  const normalizedExpectedSetCodes = normalizeExpectedSetCodes(expectedSetCodes);
+  const hasExpectedSetScope = normalizedExpectedSetCodes.length > 0;
 
   const [lookupById, lookupByTcgdex, directLookup, expectedSetRows, intentScopedRows] = await Promise.all([
     ids.length > 0
-      ? supabase.from("card_prints").select(selectClause).in("id", ids)
+      ? (
+          hasExpectedSetScope
+            ? supabase.from("card_prints").select(selectClause).in("set_code", normalizedExpectedSetCodes).in("id", ids)
+            : supabase.from("card_prints").select(selectClause).in("id", ids)
+        )
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     tcgdexCardIds.length > 0
-      ? supabase.from("card_prints").select(selectClause).in("external_ids->>tcgdex", tcgdexCardIds)
+      ? (
+          hasExpectedSetScope
+            ? supabase
+                .from("card_prints")
+                .select(selectClause)
+                .in("set_code", normalizedExpectedSetCodes)
+                .in("external_ids->>tcgdex", tcgdexCardIds)
+            : supabase.from("card_prints").select(selectClause).in("external_ids->>tcgdex", tcgdexCardIds)
+        )
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     directGvId
-      ? supabase.from("card_prints").select(selectClause).eq("gv_id", directGvId).limit(1)
+      ? (
+          hasExpectedSetScope
+            ? supabase
+                .from("card_prints")
+                .select(selectClause)
+                .in("set_code", normalizedExpectedSetCodes)
+                .eq("gv_id", directGvId)
+                .limit(1)
+            : supabase.from("card_prints").select(selectClause).eq("gv_id", directGvId).limit(1)
+        )
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
-    expectedSetCodes.length > 0
-      ? supabase.from("card_prints").select(selectClause).in("set_code", expectedSetCodes).limit(250)
+    hasExpectedSetScope
+      ? supabase.from("card_prints").select(selectClause).in("set_code", normalizedExpectedSetCodes).limit(250)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     fetchIntentScopedRows(query, selectClause).then((data) => ({ data, error: null })),
   ]);

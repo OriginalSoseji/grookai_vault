@@ -31,6 +31,10 @@ export type ResolverMeta = {
   topScore: number | null;
   candidateCount: number;
   autoResolved: boolean;
+  intentSummary: {
+    expectedSetCodes: string[];
+    nameTokens: string[];
+  };
   structuredEvidenceFlags:
     | {
         text: boolean;
@@ -43,6 +47,29 @@ export type ResolverMeta = {
       }
     | null;
 };
+
+function uniqueValues(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function buildIntentSummary(packet: ReturnType<typeof normalizeQuery>) {
+  const consumedTokens = new Set([
+    ...packet.setConsumedTokens,
+    ...packet.rarityConsumedTokens,
+    ...packet.traitConsumedTokens,
+    ...packet.variantConsumedTokens,
+    ...packet.numberDigitTokens,
+    ...packet.numberTokens.map((token) => token.toLowerCase()),
+    ...packet.promoTokens.map((token) => token.toLowerCase()),
+  ]);
+
+  return {
+    expectedSetCodes: packet.expectedSetCodes,
+    nameTokens: uniqueValues(
+      packet.expandedNameTokens.filter((token) => !consumedTokens.has(token)),
+    ),
+  };
+}
 
 function logResolverTrace(payload: {
   rawQuery: string;
@@ -143,12 +170,14 @@ function classifyRankedResolverState(
 function buildRankedResolverMeta(
   rows: RankedResolverResult,
   timing: RankedResolverTiming,
+  packet: ReturnType<typeof normalizeQuery>,
 ): ResolverMeta {
   return {
     resolverState: classifyRankedResolverState(rows.length, timing.top_match),
     topScore: timing.top_match?.score ?? null,
     candidateCount: rows.length,
     autoResolved: false,
+    intentSummary: buildIntentSummary(packet),
     structuredEvidenceFlags: timing.top_match
       ? {
           text: timing.top_match.evidence.text,
@@ -167,6 +196,7 @@ function buildDirectResolverMeta(
   result: DirectResolverResult,
   rawQuery: string,
   matchedStage: DirectResolverMatchedStage,
+  packet: ReturnType<typeof normalizeQuery>,
 ): ResolverMeta {
   const hasQuery = rawQuery.trim().length > 0;
   const exactNameOnlyMatch = matchedStage === "exact_name";
@@ -177,6 +207,7 @@ function buildDirectResolverMeta(
       topScore: null,
       candidateCount: 1,
       autoResolved: !exactNameOnlyMatch,
+      intentSummary: buildIntentSummary(packet),
       structuredEvidenceFlags: null,
     };
   }
@@ -187,6 +218,7 @@ function buildDirectResolverMeta(
       topScore: null,
       candidateCount: 0,
       autoResolved: false,
+      intentSummary: buildIntentSummary(packet),
       structuredEvidenceFlags: null,
     };
   }
@@ -196,6 +228,7 @@ function buildDirectResolverMeta(
     topScore: null,
     candidateCount: 0,
     autoResolved: false,
+    intentSummary: buildIntentSummary(packet),
     structuredEvidenceFlags: null,
   };
 }
@@ -214,7 +247,7 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
   if (options.mode === "direct") {
     const resolved = await resolvePublicSearchPacketWithTiming(packet);
     const result = resolved.result;
-    const meta = buildDirectResolverMeta(result, rawQuery, resolved.matchedStage);
+    const meta = buildDirectResolverMeta(result, rawQuery, resolved.matchedStage, packet);
     const candidateCount = meta.candidateCount;
 
     logResolverTrace({
@@ -249,7 +282,7 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
     options.exactReleaseYear,
     options.exactIllustrator,
   );
-  const meta = buildRankedResolverMeta(resolved.rows, resolved.timing);
+  const meta = buildRankedResolverMeta(resolved.rows, resolved.timing, packet);
 
   logResolverTrace({
     rawQuery,

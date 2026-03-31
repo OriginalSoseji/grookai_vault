@@ -57,16 +57,33 @@ function getResolverSummary(meta: ResolverMeta | null) {
     return null;
   }
 
+  const hasStrongIntent =
+    meta.intentSummary.expectedSetCodes.length > 0 ||
+    meta.intentSummary.nameTokens.length > 0;
+  const refinedMatchSummary = {
+    tone: "border-sky-200 bg-sky-50/70",
+    title: "Refined match",
+    body: "Structured query intent narrowed the pool, but the resolver is still preserving ambiguity instead of forcing a single identity.",
+  };
+
   switch (meta.resolverState) {
     case "DIRECT_MATCH":
       return null;
     case "AMBIGUOUS_MATCH":
+      if (hasStrongIntent) {
+        return refinedMatchSummary;
+      }
+
       return {
         tone: "border-amber-200 bg-amber-50/70",
         title: "Multiple plausible matches",
         body: "The query is still ambiguous. Review the ranked candidates instead of treating the top result as certain.",
       };
     case "WEAK_MATCH":
+      if (hasStrongIntent) {
+        return refinedMatchSummary;
+      }
+
       return {
         tone: "border-slate-200 bg-slate-50",
         title: "Weak match",
