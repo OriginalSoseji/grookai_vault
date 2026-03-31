@@ -198,6 +198,7 @@ function buildDirectResolverMeta(
   matchedStage: DirectResolverMatchedStage,
   packet: ReturnType<typeof normalizeQuery>,
 ): ResolverMeta {
+  // Decorated name-family recall is ranked-only. Direct resolution remains exact/structured.
   const hasQuery = rawQuery.trim().length > 0;
   const exactNameOnlyMatch = matchedStage === "exact_name";
 

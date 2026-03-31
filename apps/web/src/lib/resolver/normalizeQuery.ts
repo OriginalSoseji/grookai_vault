@@ -586,6 +586,7 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
   const normalizedResolverInput = normalizeResolverInput(normalizedQuery);
   const normalizedTokens = tokenizeNormalizedQuery(normalizedQuery);
   const nicknameArtifacts = expandResolverNicknameTokens(normalizedTokens);
+  const expandedSearchTokens = uniqueValues(nicknameArtifacts.expandedTokens);
   const rarityArtifacts = expandIntentShorthandTokens(
     normalizedQuery,
     normalizedTokens,
@@ -616,14 +617,14 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
     normalizedQuery,
     normalizedResolverInput,
     normalizedTokens,
-    expandedNameTokens: nicknameArtifacts.expandedTokens,
+    expandedNameTokens: expandedSearchTokens,
     expandedSetTokens: uniqueValues([
       ...coverageFamilyHints.possibleSetTokens,
       ...setExpectations.possibleSetTokens,
     ]),
     expandedTraitTokens: traitArtifacts.expandedTokens,
     expandedRarityTokens: rarityArtifacts.expandedTokens,
-    expandedSearchTokens: nicknameArtifacts.expandedTokens,
+    expandedSearchTokens,
     compactTokens,
     numberTokens: collectorArtifacts.numberTokens,
     numberDigitTokens: collectorArtifacts.numberDigitTokens,

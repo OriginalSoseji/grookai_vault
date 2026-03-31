@@ -5,6 +5,11 @@ import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds, type PublicPricingRecord } from "@/lib/pricing/getPublicPricingByCardIds";
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
 import { normalizeQuery, type NormalizedQueryPacket } from "@/lib/resolver/normalizeQuery";
+import {
+  getPrimaryFamilyTokensFromTokens,
+  queryContainsNameDecoratorTokens,
+  rowMatchesNameFamily,
+} from "@/lib/resolver/nameFamily";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -43,7 +48,9 @@ const RARITY_INTENT_MISS_PENALTY = -90;
 const TRAIT_INTENT_MATCH_BONUS = 110;
 const TRAIT_INTENT_PARTIAL_BONUS = 60;
 const TRAIT_INTENT_MISS_PENALTY = -80;
+const NAME_FAMILY_MATCH_BONUS = 140;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
+const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
 
 type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo" | "reverse";
 
@@ -793,6 +800,7 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
   const normalizedSetName = normalizeTextForMatch(row.set_name);
   const normalizedCombined = [normalizedName, normalizedSetName].filter(Boolean).join(" ");
   const nameTokens = tokenizeNormalizedQuery(row.name);
+  const matchesNameFamily = rowMatchesNameFamily(row.name, query.textTokens);
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_name),
     ...tokenizeNormalizedQuery(row.set_code),
@@ -884,6 +892,14 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
 
   if (query.textTokens.length > 0 && exactNameMatches > 0) {
     addScoreComponent(components, "exact_name_presence", query.hasStrongDisambiguator ? 80 : 140);
+  }
+
+  if (
+    query.textTokens.length > 0 &&
+    matchesNameFamily &&
+    normalizedName !== query.normalized.toLowerCase()
+  ) {
+    addScoreComponent(components, "name_family_match", NAME_FAMILY_MATCH_BONUS);
   }
 
   for (const setToken of query.setTokens) {
@@ -1085,7 +1101,7 @@ function getTopMatchTrace(rows: ExploreRow[], query: ResolverQuery): ExploreRows
 }
 
 function rankRows(rows: ExploreRow[], query: ResolverQuery) {
-  return [...rows].sort((a, b) => {
+  const rankedRows = [...rows].sort((a, b) => {
     const scoreA = scoreRow(a, query);
     const scoreB = scoreRow(b, query);
     if (scoreA !== scoreB) return scoreB - scoreA;
@@ -1101,6 +1117,65 @@ function rankRows(rows: ExploreRow[], query: ResolverQuery) {
 
     return a.gv_id.localeCompare(b.gv_id);
   });
+
+  return promoteDecoratedFamilyRows(rankedRows, query);
+}
+
+function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
+  const primaryFamilyTokens = getPrimaryFamilyTokensFromTokens(query.textTokens);
+  if (
+    rows.length === 0 ||
+    query.hasStrongDisambiguator ||
+    query.textTokens.length === 0 ||
+    primaryFamilyTokens.length === 0 ||
+    queryContainsNameDecoratorTokens(query.textTokens)
+  ) {
+    return rows;
+  }
+
+  const normalizedQueryName = query.normalized.toLowerCase();
+  const promotedRowIds = new Set<string>();
+  const decoratedNameKeys = new Set<string>();
+  const promotedRows: ExploreRow[] = [];
+
+  const leadExactRow = rows.find((row) => normalizeTextForMatch(row.name) === normalizedQueryName);
+  if (leadExactRow) {
+    promotedRows.push(leadExactRow);
+    promotedRowIds.add(leadExactRow.id);
+  }
+
+  for (const row of rows) {
+    if (promotedRows.length >= FAMILY_DIVERSITY_PROMOTION_LIMIT + (leadExactRow ? 1 : 0)) {
+      break;
+    }
+
+    if (promotedRowIds.has(row.id)) {
+      continue;
+    }
+
+    const normalizedRowName = normalizeTextForMatch(row.name);
+    if (!normalizedRowName || normalizedRowName === normalizedQueryName) {
+      continue;
+    }
+
+    if (!rowMatchesNameFamily(row.name, primaryFamilyTokens)) {
+      continue;
+    }
+
+    if (decoratedNameKeys.has(normalizedRowName)) {
+      continue;
+    }
+
+    decoratedNameKeys.add(normalizedRowName);
+    promotedRows.push(row);
+    promotedRowIds.add(row.id);
+  }
+
+  if (promotedRows.length <= (leadExactRow ? 1 : 0)) {
+    return rows;
+  }
+
+  return [...promotedRows, ...rows.filter((row) => !promotedRowIds.has(row.id))];
 }
 
 function normalizeExpectedSetCodes(expectedSetCodes: string[]) {
@@ -1209,10 +1284,67 @@ function rowMatchesScopedTextTokens(row: CardPrintLookupRow, query: ResolverQuer
     ...tokenizeNormalizedQuery(row.printed_set_abbrev),
   ]);
 
+  if (rowMatchesNameFamily(row.name, scopedTokens)) {
+    return true;
+  }
+
   return scopedTokens.some((token) => {
     const bestSimilarity = Math.max(bestTokenSimilarity(token, nameTokens), bestTokenSimilarity(token, setTokens));
     return bestSimilarity >= 0.88;
   });
+}
+
+async function fetchNameFamilyRows(query: ResolverQuery, selectClause: string) {
+  const familyTokens = getPrimaryFamilyTokensFromTokens(
+    query.significantTextTokens.length > 0 ? query.significantTextTokens : query.textTokens,
+  ).filter((token) => token.length >= 3);
+
+  if (familyTokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  const normalizedExpectedSetCodes = normalizeExpectedSetCodes(query.expectedSetCodes);
+  type LookupQueryResult = {
+    data: CardPrintLookupRow[] | null;
+    error: { message: string } | null;
+  };
+  const requests: Array<Promise<LookupQueryResult>> = [];
+  const addRequest = (builderPromise: PromiseLike<{ data: unknown; error: { message: string } | null }>) => {
+    requests.push(
+      Promise.resolve(builderPromise).then((result) => ({
+        data: ((result.data ?? []) as CardPrintLookupRow[]) ?? [],
+        error: result.error,
+      })),
+    );
+  };
+
+  for (const token of familyTokens.slice(0, 2)) {
+    let request = supabase.from("card_prints").select(selectClause).ilike("name", `%${token}%`).limit(120);
+
+    if (normalizedExpectedSetCodes.length > 0) {
+      request = request.in("set_code", normalizedExpectedSetCodes);
+    }
+
+    addRequest(request);
+  }
+
+  const results = await Promise.all(requests);
+  const lookupError = results.find((result) => result.error);
+  if (lookupError?.error) {
+    throw new Error(lookupError.error.message);
+  }
+
+  const deduped = new Map<string, CardPrintLookupRow>();
+  for (const row of results.flatMap((result) => (result.data ?? []) as CardPrintLookupRow[])) {
+    if (!rowMatchesNameFamily(row.name, familyTokens)) {
+      continue;
+    }
+
+    deduped.set(row.id, row);
+  }
+
+  return [...deduped.values()];
 }
 
 async function fetchIntentScopedRows(query: ResolverQuery, selectClause: string) {
@@ -1415,7 +1547,7 @@ async function fetchExactCardRows(
   const normalizedExpectedSetCodes = normalizeExpectedSetCodes(expectedSetCodes);
   const hasExpectedSetScope = normalizedExpectedSetCodes.length > 0;
 
-  const [lookupById, lookupByTcgdex, directLookup, expectedSetRows, intentScopedRows] = await Promise.all([
+  const [lookupById, lookupByTcgdex, directLookup, expectedSetRows, intentScopedRows, nameFamilyRows] = await Promise.all([
     ids.length > 0
       ? (
           hasExpectedSetScope
@@ -1450,6 +1582,7 @@ async function fetchExactCardRows(
       ? supabase.from("card_prints").select(selectClause).in("set_code", normalizedExpectedSetCodes).limit(250)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     fetchIntentScopedRows(query, selectClause).then((data) => ({ data, error: null })),
+    fetchNameFamilyRows(query, selectClause).then((data) => ({ data, error: null })),
   ]);
 
   const lookupError = lookupById.error ?? lookupByTcgdex.error ?? directLookup.error ?? expectedSetRows.error;
@@ -1464,6 +1597,7 @@ async function fetchExactCardRows(
     ...((lookupByTcgdex.data ?? []) as CardPrintLookupRow[]),
     ...((expectedSetRows.data ?? []) as CardPrintLookupRow[]),
     ...((intentScopedRows.data ?? []) as CardPrintLookupRow[]),
+    ...((nameFamilyRows.data ?? []) as CardPrintLookupRow[]),
   ]) {
     deduped.set(row.id, row);
   }

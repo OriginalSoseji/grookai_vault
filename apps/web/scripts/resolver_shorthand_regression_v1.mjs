@@ -2,12 +2,15 @@ import "dotenv/config";
 
 const DEFAULT_BASE_URL = process.env.RESOLVER_BASE_URL ?? "http://127.0.0.1:3101";
 const QUERIES = [
+  "pika",
+  "pikachu",
   "asc pika",
   "asc pikachu",
   "asc pikachu 55",
   "pika asc 55",
   "pikachu asc",
   "pikachu asc 055",
+  "pikachu ex",
   "pikachu sv promo",
   "pikachu promo",
   "svp pikachu",
