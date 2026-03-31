@@ -1,5 +1,10 @@
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
-import { NAME_SHORTHANDS, SET_SHORTHANDS } from "@/lib/resolver/shorthand";
+import {
+  NAME_SHORTHANDS,
+  RARITY_SHORTHANDS,
+  SET_SHORTHANDS,
+  TRAIT_SHORTHANDS,
+} from "@/lib/resolver/shorthand";
 
 const PROMO_PREFIXES = new Set(["swsh", "svp", "smp", "xyp", "bwp", "basep", "dpp"]);
 const SET_CODE_ALIASES = new Set(["151", "base1", "brs", "lor", "ltr", "obs", "sit", "svi", ...Object.keys(SET_SHORTHANDS)]);
@@ -26,9 +31,11 @@ type CoverageSignals = {
   setRules: string[];
   promoRules: string[];
   variantRules: string[];
+  rarityRules: string[];
   specialRules: string[];
   shorthandRules: string[];
   familyRules: string[];
+  traitRules: string[];
 };
 
 export type CollectorNumberExpectation = {
@@ -51,6 +58,10 @@ export type NormalizedQueryPacket = {
   normalizedQuery: string;
   normalizedResolverInput: string;
   normalizedTokens: string[];
+  expandedNameTokens: string[];
+  expandedSetTokens: string[];
+  expandedTraitTokens: string[];
+  expandedRarityTokens: string[];
   expandedSearchTokens: string[];
   compactTokens: string[];
   numberTokens: string[];
@@ -60,12 +71,23 @@ export type NormalizedQueryPacket = {
   possibleSetTokens: string[];
   expectedSetCodes: string[];
   setConsumedTokens: string[];
+  rarityIntent: string[];
+  rarityConsumedTokens: string[];
+  traitIntent: string[];
+  traitConsumedTokens: string[];
   variantTokens: NormalizedVariantToken[];
   variantConsumedTokens: string[];
   normalizedGvId: string | null;
   collectorExpectations: CollectorNumberExpectation[];
   hasStrongDisambiguator: boolean;
   coverageSignals: CoverageSignals;
+};
+
+type IntentShorthandArtifacts = {
+  expandedTokens: string[];
+  intent: string[];
+  consumedTokens: string[];
+  appliedRules: string[];
 };
 
 function uniqueValues(values: string[]) {
@@ -92,6 +114,60 @@ export function expandResolverNicknameTokens(tokens: string[]) {
 
   return {
     expandedTokens: [...expanded],
+    appliedRules: [...appliedRules],
+  };
+}
+
+function expandIntentShorthandTokens(
+  normalizedQuery: string,
+  normalizedTokens: string[],
+  shorthandMap: Record<string, string[]>,
+  rulePrefix: string,
+): IntentShorthandArtifacts {
+  const normalizedQueryText = normalizeTextForMatch(normalizedQuery);
+  const expandedTokens = new Set<string>();
+  const intent = new Set<string>();
+  const consumedTokens = new Set<string>();
+  const appliedRules = new Set<string>();
+  const normalizedEntries = Object.entries(shorthandMap)
+    .map(([source, targets]) => ({
+      source: normalizeTextForMatch(source),
+      targets: targets.map((target) => normalizeTextForMatch(target)).filter(Boolean),
+    }))
+    .filter((entry) => entry.source.length > 0)
+    .sort((left, right) => right.source.length - left.source.length);
+
+  for (const entry of normalizedEntries) {
+    const sourceTokens = tokenizeNormalizedQuery(entry.source);
+    const matched =
+      entry.source.includes(" ")
+        ? ` ${normalizedQueryText} `.includes(` ${entry.source} `)
+        : normalizedTokens.includes(entry.source);
+
+    if (!matched) {
+      continue;
+    }
+
+    expandedTokens.add(entry.source);
+    for (const token of sourceTokens) {
+      consumedTokens.add(token);
+    }
+
+    if (entry.targets.length === 0) {
+      intent.add(entry.source);
+    }
+
+    for (const target of entry.targets) {
+      expandedTokens.add(target);
+      intent.add(target);
+      appliedRules.add(`${rulePrefix}:${entry.source}->${target}`);
+    }
+  }
+
+  return {
+    expandedTokens: [...expandedTokens],
+    intent: [...intent],
+    consumedTokens: [...consumedTokens],
     appliedRules: [...appliedRules],
   };
 }
@@ -127,6 +203,21 @@ function applySpecialPhraseNormalizations(value: string) {
   if (/\bgold(?:\s+|-)+star\b/i.test(normalized)) {
     normalized = normalized.replace(/\bgold(?:\s+|-)+star\b/gi, "★");
     appliedRules.add("special_family:gold star->★");
+  }
+
+  if (/\bfelt(?:\s+|-)+hat\b/i.test(normalized)) {
+    normalized = normalized.replace(/\bfelt(?:\s+|-)+hat\b/gi, "felt hat");
+    appliedRules.add("special_phrase:felt hat");
+  }
+
+  if (/\bbaby(?:\s+|-)+shiny\b/i.test(normalized)) {
+    normalized = normalized.replace(/\bbaby(?:\s+|-)+shiny\b/gi, "baby shiny");
+    appliedRules.add("special_phrase:baby shiny");
+  }
+
+  if (/\balt(?:\s+|-)+art\b/i.test(normalized)) {
+    normalized = normalized.replace(/\balt(?:\s+|-)+art\b/gi, "alt art");
+    appliedRules.add("special_phrase:alt art");
   }
 
   return {
@@ -495,6 +586,18 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
   const normalizedResolverInput = normalizeResolverInput(normalizedQuery);
   const normalizedTokens = tokenizeNormalizedQuery(normalizedQuery);
   const nicknameArtifacts = expandResolverNicknameTokens(normalizedTokens);
+  const rarityArtifacts = expandIntentShorthandTokens(
+    normalizedQuery,
+    normalizedTokens,
+    RARITY_SHORTHANDS,
+    "rarity_shorthand",
+  );
+  const traitArtifacts = expandIntentShorthandTokens(
+    normalizedQuery,
+    normalizedTokens,
+    TRAIT_SHORTHANDS,
+    "trait_shorthand",
+  );
   const baseSegments = tokenizeQuerySegments(normalizedQuery);
   const compactTokens = buildCompactTokens(normalizedTokens, baseSegments);
   const setExpectations = detectSetExpectations(normalizedQuery);
@@ -513,6 +616,13 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
     normalizedQuery,
     normalizedResolverInput,
     normalizedTokens,
+    expandedNameTokens: nicknameArtifacts.expandedTokens,
+    expandedSetTokens: uniqueValues([
+      ...coverageFamilyHints.possibleSetTokens,
+      ...setExpectations.possibleSetTokens,
+    ]),
+    expandedTraitTokens: traitArtifacts.expandedTokens,
+    expandedRarityTokens: rarityArtifacts.expandedTokens,
     expandedSearchTokens: nicknameArtifacts.expandedTokens,
     compactTokens,
     numberTokens: collectorArtifacts.numberTokens,
@@ -528,6 +638,10 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
       ...setExpectations.consumedTokens,
       ...coverageFamilyHints.consumedTokens,
     ]),
+    rarityIntent: rarityArtifacts.intent,
+    rarityConsumedTokens: rarityArtifacts.consumedTokens,
+    traitIntent: traitArtifacts.intent,
+    traitConsumedTokens: traitArtifacts.consumedTokens,
     variantTokens: variantArtifacts.variantTokens,
     variantConsumedTokens: variantArtifacts.consumedTokens,
     normalizedGvId,
@@ -537,17 +651,21 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
       expectedSetCodes.length > 0 ||
       setExpectations.consumedTokens.length > 0 ||
       coverageFamilyHints.consumedTokens.length > 0 ||
+      rarityArtifacts.intent.length > 0 ||
+      traitArtifacts.intent.length > 0 ||
       variantArtifacts.variantTokens.length > 0,
     coverageSignals: {
       setRules: setExpectations.appliedRules,
       promoRules: collectorArtifacts.appliedRules,
       variantRules: variantArtifacts.appliedRules,
+      rarityRules: rarityArtifacts.appliedRules,
       specialRules: specialPhraseArtifacts.appliedRules,
       shorthandRules: uniqueValues([
         ...coverageFamilyHints.shorthandRules,
         ...nicknameArtifacts.appliedRules,
       ]),
       familyRules: coverageFamilyHints.familyRules,
+      traitRules: traitArtifacts.appliedRules,
     },
   };
 }

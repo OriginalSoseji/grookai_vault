@@ -52,14 +52,18 @@ function logResolverTrace(payload: {
   fractionTokens: string[];
   promoTokens: string[];
   possibleSetTokens: string[];
+  rarityIntent: string[];
+  traitIntent: string[];
   variantTokens: string[];
   coverageSignals: {
     setRules: string[];
     promoRules: string[];
     variantRules: string[];
+    rarityRules: string[];
     specialRules: string[];
     shorthandRules: string[];
     familyRules: string[];
+    traitRules: string[];
   };
   resolverPathUsed: "direct" | "ranked";
   candidateCount: number;
@@ -82,6 +86,8 @@ function logResolverTrace(payload: {
       number: boolean;
       fraction: boolean;
       promo: boolean;
+      rarity: boolean;
+      traits: string[];
       variants: string[];
     };
   };
@@ -219,6 +225,8 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
       fractionTokens: packet.fractionTokens,
       promoTokens: packet.promoTokens,
       possibleSetTokens: packet.possibleSetTokens,
+      rarityIntent: packet.rarityIntent,
+      traitIntent: packet.traitIntent,
       variantTokens: packet.variantTokens,
       coverageSignals: packet.coverageSignals,
       resolverPathUsed: "direct",
@@ -251,6 +259,8 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
     fractionTokens: packet.fractionTokens,
     promoTokens: packet.promoTokens,
     possibleSetTokens: packet.possibleSetTokens,
+    rarityIntent: packet.rarityIntent,
+    traitIntent: packet.traitIntent,
     variantTokens: packet.variantTokens,
     coverageSignals: packet.coverageSignals,
     resolverPathUsed: "ranked",
@@ -274,6 +284,8 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
             number: resolved.timing.top_match.evidence.number,
             fraction: resolved.timing.top_match.evidence.fraction,
             promo: resolved.timing.top_match.evidence.promo,
+            rarity: resolved.timing.top_match.evidence.rarity,
+            traits: resolved.timing.top_match.evidence.traits,
             variants: resolved.timing.top_match.evidence.variants,
           },
         }

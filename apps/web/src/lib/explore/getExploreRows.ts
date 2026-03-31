@@ -37,6 +37,12 @@ const PROMO_TOKEN_MATCH_BONUS = 760;
 const PROMO_TOKEN_MISS_PENALTY = -360;
 const STRUCTURED_QUERY_WITHOUT_STRUCTURED_MATCH_PENALTY = -260;
 const VARIANT_MISS_PENALTY = -320;
+const RARITY_INTENT_MATCH_BONUS = 140;
+const RARITY_INTENT_PARTIAL_BONUS = 70;
+const RARITY_INTENT_MISS_PENALTY = -90;
+const TRAIT_INTENT_MATCH_BONUS = 110;
+const TRAIT_INTENT_PARTIAL_BONUS = 60;
+const TRAIT_INTENT_MISS_PENALTY = -80;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 
 type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo" | "reverse";
@@ -99,6 +105,16 @@ type PublicSetMetadata = {
   release_year?: number;
 };
 
+type IntentLookupRow = {
+  name?: string | null;
+  number?: string | null;
+  rarity?: string | null;
+  variant_key?: string | null;
+  variants?: VariantFlags;
+  set_code?: string | null;
+  set_name?: string | null;
+};
+
 type ResolverQuery = {
   raw: string;
   normalized: string;
@@ -111,6 +127,8 @@ type ResolverQuery = {
   promoTokens: string[];
   setTokens: string[];
   expectedSetCodes: string[];
+  rarityIntent: string[];
+  traitIntent: string[];
   variantCues: VariantCue[];
   hasStrongDisambiguator: boolean;
   directGvId: string | null;
@@ -147,7 +165,9 @@ export type ExploreRowsTiming = RemoteTimingSnapshot & {
         number: boolean;
         fraction: boolean;
         promo: boolean;
-          variants: VariantCue[];
+        rarity: boolean;
+        traits: string[];
+        variants: VariantCue[];
         };
       }
     | null;
@@ -311,6 +331,8 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
   const tokens = packet.expandedSearchTokens;
   const consumedTokenSet = new Set([
     ...packet.setConsumedTokens,
+    ...packet.rarityConsumedTokens,
+    ...packet.traitConsumedTokens,
     ...packet.variantConsumedTokens,
   ]);
   const textTokens = uniqueValues(
@@ -338,6 +360,8 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     promoTokens: packet.promoTokens,
     setTokens: packet.setConsumedTokens,
     expectedSetCodes: packet.expectedSetCodes,
+    rarityIntent: packet.rarityIntent,
+    traitIntent: packet.traitIntent,
     variantCues: mapVariantTokensToCues(packet.variantTokens),
     hasStrongDisambiguator: packet.hasStrongDisambiguator,
     directGvId: packet.normalizedGvId,
@@ -607,11 +631,11 @@ function getFractionMatchStrength(row: ExploreRow, query: ResolverQuery) {
   return 0;
 }
 
-function isPromoFamilyRow(row: ExploreRow) {
+function isPromoFamilyRow(row: IntentLookupRow) {
   return PROMO_SET_CODE_PATTERN.test(row.set_code ?? "") || normalizeTextForMatch(row.set_name).includes("black star");
 }
 
-function getPromoMatchStrength(row: ExploreRow, query: ResolverQuery) {
+function getPromoMatchStrength(row: IntentLookupRow, query: ResolverQuery) {
   if (query.promoTokens.length === 0) {
     return 0;
   }
@@ -630,6 +654,89 @@ function getPromoMatchStrength(row: ExploreRow, query: ResolverQuery) {
   return 0;
 }
 
+function phraseMatchesNormalizedText(text: string, phrase: string) {
+  const normalizedPhrase = normalizeTextForMatch(phrase);
+  if (!text || !normalizedPhrase) {
+    return false;
+  }
+
+  return (` ${text} `).includes(` ${normalizedPhrase} `);
+}
+
+function buildRowTraitSearchText(row: IntentLookupRow) {
+  return normalizeTextForMatch([row.name, row.rarity, row.variant_key, row.set_name].filter(Boolean).join(" "));
+}
+
+function getRarityIntentMatchStrength(row: IntentLookupRow, intent: string) {
+  const normalizedIntent = normalizeTextForMatch(intent);
+  const normalizedRarity = normalizeTextForMatch(row.rarity);
+  const rowTraitText = buildRowTraitSearchText(row);
+
+  if (!normalizedIntent) {
+    return 0;
+  }
+
+  if (normalizedIntent === "illustration rare") {
+    return normalizedRarity === "illustration rare" ? 1 : 0;
+  }
+
+  if (normalizedIntent === "special illustration rare") {
+    return normalizedRarity === "special illustration rare" ? 1 : 0;
+  }
+
+  if (normalizedIntent === "hyper rare") {
+    return normalizedRarity === "hyper rare" ? 1 : 0;
+  }
+
+  if (phraseMatchesNormalizedText(rowTraitText, normalizedIntent)) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function getTraitIntentMatchStrength(row: IntentLookupRow, intent: string) {
+  const normalizedIntent = normalizeTextForMatch(intent);
+  const rowTraitText = buildRowTraitSearchText(row);
+  const normalizedRarity = normalizeTextForMatch(row.rarity);
+
+  if (!normalizedIntent) {
+    return 0;
+  }
+
+  if (normalizedIntent === "promo") {
+    return isPromoFamilyRow(row) || phraseMatchesNormalizedText(rowTraitText, "promo") ? 1 : 0;
+  }
+
+  if (normalizedIntent === "stamp") {
+    if (row.variants?.stamped) {
+      return 1;
+    }
+
+    return phraseMatchesNormalizedText(rowTraitText, "stamp") || phraseMatchesNormalizedText(rowTraitText, "stamped")
+      ? 1
+      : 0;
+  }
+
+  if (normalizedIntent === "felt hat") {
+    return phraseMatchesNormalizedText(rowTraitText, normalizedIntent) ? 1 : 0;
+  }
+
+  if (normalizedIntent === "baby shiny") {
+    if (phraseMatchesNormalizedText(rowTraitText, normalizedIntent)) {
+      return 1;
+    }
+
+    return normalizedRarity === "shiny rare" || normalizedRarity === "shiny holo rare" ? 0.85 : 0;
+  }
+
+  if (normalizedIntent === "shiny") {
+    return phraseMatchesNormalizedText(rowTraitText, normalizedIntent) ? 1 : 0;
+  }
+
+  return 0;
+}
+
 type RowScoreDetail = {
   score: number;
   components: Record<string, number>;
@@ -640,6 +747,8 @@ type RowScoreDetail = {
     number: boolean;
     fraction: boolean;
     promo: boolean;
+    rarity: boolean;
+    traits: string[];
     variants: VariantCue[];
   };
 };
@@ -810,6 +919,54 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     addScoreComponent(components, "promo_token_missing", PROMO_TOKEN_MISS_PENALTY);
   }
 
+  const matchedRarityIntent: string[] = [];
+  let partialRarityIntentMatchCount = 0;
+  for (const intent of query.rarityIntent) {
+    const rarityMatchStrength = getRarityIntentMatchStrength(row, intent);
+    if (rarityMatchStrength >= 1) {
+      matchedRarityIntent.push(intent);
+      addScoreComponent(components, `rarity_intent_${intent.replace(/\s+/g, "_")}`, RARITY_INTENT_MATCH_BONUS);
+      continue;
+    }
+
+    if (rarityMatchStrength >= 0.75) {
+      partialRarityIntentMatchCount += 1;
+      addScoreComponent(
+        components,
+        `rarity_intent_partial_${intent.replace(/\s+/g, "_")}`,
+        RARITY_INTENT_PARTIAL_BONUS,
+      );
+    }
+  }
+
+  if (query.rarityIntent.length > 0 && matchedRarityIntent.length === 0 && partialRarityIntentMatchCount === 0) {
+    addScoreComponent(components, "rarity_intent_missing", RARITY_INTENT_MISS_PENALTY);
+  }
+
+  const matchedTraitIntent: string[] = [];
+  let partialTraitIntentMatchCount = 0;
+  for (const intent of query.traitIntent) {
+    const traitMatchStrength = getTraitIntentMatchStrength(row, intent);
+    if (traitMatchStrength >= 1) {
+      matchedTraitIntent.push(intent);
+      addScoreComponent(components, `trait_intent_${intent.replace(/\s+/g, "_")}`, TRAIT_INTENT_MATCH_BONUS);
+      continue;
+    }
+
+    if (traitMatchStrength >= 0.75) {
+      partialTraitIntentMatchCount += 1;
+      addScoreComponent(
+        components,
+        `trait_intent_partial_${intent.replace(/\s+/g, "_")}`,
+        TRAIT_INTENT_PARTIAL_BONUS,
+      );
+    }
+  }
+
+  if (query.traitIntent.length > 0 && matchedTraitIntent.length === 0 && partialTraitIntentMatchCount === 0) {
+    addScoreComponent(components, "trait_intent_missing", TRAIT_INTENT_MISS_PENALTY);
+  }
+
   const matchedVariantCues: VariantCue[] = [];
   for (const cue of query.variantCues) {
     if (!rowVariantCues.has(cue)) continue;
@@ -869,6 +1026,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
       number: numberMatchStrength >= 0.72,
       fraction: fractionMatchStrength >= 1,
       promo: promoMatchStrength >= 0.5,
+      rarity: matchedRarityIntent.length > 0 || partialRarityIntentMatchCount > 0,
+      traits: matchedTraitIntent,
       variants: matchedVariantCues,
     },
   };
@@ -1006,6 +1165,124 @@ async function fetchRpcIds(query: ResolverQuery) {
   );
 }
 
+function rowMatchesScopedTextTokens(row: CardPrintLookupRow, query: ResolverQuery) {
+  const scopedTokens = query.significantTextTokens.length > 0 ? query.significantTextTokens : query.textTokens;
+  if (scopedTokens.length === 0) {
+    return true;
+  }
+
+  const nameTokens = tokenizeNormalizedQuery(row.name);
+  const setTokens = uniqueValues([
+    ...tokenizeNormalizedQuery(row.set_code),
+    ...tokenizeNormalizedQuery(row.printed_set_abbrev),
+  ]);
+
+  return scopedTokens.some((token) => {
+    const bestSimilarity = Math.max(bestTokenSimilarity(token, nameTokens), bestTokenSimilarity(token, setTokens));
+    return bestSimilarity >= 0.88;
+  });
+}
+
+async function fetchIntentScopedRows(query: ResolverQuery, selectClause: string) {
+  const hasCollectorIntent =
+    query.rarityIntent.length > 0 || query.traitIntent.length > 0 || query.variantCues.length > 0;
+  if (!hasCollectorIntent) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = createServerComponentClient();
+  type LookupQueryResult = {
+    data: CardPrintLookupRow[] | null;
+    error: { message: string } | null;
+  };
+
+  const requests: Array<Promise<LookupQueryResult>> = [];
+  const addRequest = (builderPromise: PromiseLike<{ data: unknown; error: { message: string } | null }>) => {
+    requests.push(
+      Promise.resolve(builderPromise).then((result) => ({
+        data: ((result.data ?? []) as CardPrintLookupRow[]) ?? [],
+        error: result.error,
+      })),
+    );
+  };
+
+  for (const intent of query.rarityIntent) {
+    if (intent === "illustration rare" || intent === "special illustration rare" || intent === "hyper rare") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", `%${intent}%`).limit(120));
+    }
+  }
+
+  for (const intent of query.traitIntent) {
+    if (intent === "promo") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", "%promo%").limit(120));
+      continue;
+    }
+
+    if (intent === "stamp") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("variant_key", "%stamp%").limit(120));
+      addRequest(supabase.from("card_prints").select(selectClause).eq("variants->>stamped", "true").limit(120));
+      continue;
+    }
+
+    if (intent === "felt hat") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("name", "%felt hat%").limit(120));
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("variant_key", "%felt hat%").limit(120));
+      continue;
+    }
+
+    if (intent === "baby shiny") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", "%shiny rare%").limit(120));
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("name", "%baby shiny%").limit(120));
+      continue;
+    }
+
+    if (intent === "shiny") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", "%shiny%").limit(120));
+    }
+  }
+
+  for (const cue of query.variantCues) {
+    if (cue === "alt_art") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("variant_key", "%alt%").limit(120));
+      addRequest(
+        supabase.from("card_prints").select(selectClause).ilike("rarity", "%special illustration rare%").limit(120),
+      );
+      continue;
+    }
+
+    if (cue === "gold" || cue === "rainbow") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", "%hyper rare%").limit(120));
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("variant_key", `%${cue}%`).limit(120));
+      continue;
+    }
+
+    if (cue === "promo") {
+      addRequest(supabase.from("card_prints").select(selectClause).ilike("rarity", "%promo%").limit(120));
+    }
+  }
+
+  if (requests.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const results = await Promise.all(requests);
+  const fetchError = results.find((result) => result.error);
+  if (fetchError?.error) {
+    throw new Error(fetchError.error.message);
+  }
+
+  const deduped = new Map<string, CardPrintLookupRow>();
+  for (const row of results.flatMap((result) => (result.data ?? []) as CardPrintLookupRow[])) {
+    if (!rowMatchesScopedTextTokens(row, query)) {
+      continue;
+    }
+
+    deduped.set(row.id, row);
+  }
+
+  return [...deduped.values()];
+}
+
 async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
   if (query.significantTextTokens.length === 0) {
     return { setNameById: new Map<string, string>(), tcgdexCardIds: [] as string[] };
@@ -1090,12 +1367,13 @@ async function fetchExactCardRows(
   tcgdexCardIds: string[],
   directGvId: string | null,
   expectedSetCodes: string[],
+  query: ResolverQuery,
 ) {
   const supabase = createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
 
-  const [lookupById, lookupByTcgdex, directLookup, expectedSetRows] = await Promise.all([
+  const [lookupById, lookupByTcgdex, directLookup, expectedSetRows, intentScopedRows] = await Promise.all([
     ids.length > 0
       ? supabase.from("card_prints").select(selectClause).in("id", ids)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
@@ -1108,6 +1386,7 @@ async function fetchExactCardRows(
     expectedSetCodes.length > 0
       ? supabase.from("card_prints").select(selectClause).in("set_code", expectedSetCodes).limit(250)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
+    fetchIntentScopedRows(query, selectClause).then((data) => ({ data, error: null })),
   ]);
 
   const lookupError = lookupById.error ?? lookupByTcgdex.error ?? directLookup.error ?? expectedSetRows.error;
@@ -1121,6 +1400,7 @@ async function fetchExactCardRows(
     ...((lookupById.data ?? []) as CardPrintLookupRow[]),
     ...((lookupByTcgdex.data ?? []) as CardPrintLookupRow[]),
     ...((expectedSetRows.data ?? []) as CardPrintLookupRow[]),
+    ...((intentScopedRows.data ?? []) as CardPrintLookupRow[]),
   ]) {
     deduped.set(row.id, row);
   }
@@ -1299,7 +1579,7 @@ export async function getExploreRowsPacketWithTiming(
     setAwareResults = resolvedSetAwareResults;
 
     const timedExactRows = await measureStage(() =>
-      fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId, query.expectedSetCodes),
+      fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId, query.expectedSetCodes, query),
     );
     Object.assign(fetchExactRowsStage, timedExactRows.timing);
     exactRows = timedExactRows.value;
@@ -1332,6 +1612,24 @@ export async function getExploreRowsPacketWithTiming(
     if (query.expectedSetCodes.length > 0) {
       const expectedSetCodeSet = new Set(query.expectedSetCodes.map((code) => normalizeSetCode(code)));
       filteredRows = filteredRows.filter((row) => expectedSetCodeSet.has(normalizeSetCode(row.set_code)));
+    }
+
+    if (query.rarityIntent.length > 0) {
+      const rarityScopedRows = filteredRows.filter((row) =>
+        query.rarityIntent.some((intent) => getRarityIntentMatchStrength(row, intent) >= 1),
+      );
+      if (rarityScopedRows.length > 0) {
+        filteredRows = rarityScopedRows;
+      }
+    }
+
+    if (query.traitIntent.length > 0) {
+      const traitScopedRows = filteredRows.filter((row) =>
+        query.traitIntent.some((intent) => getTraitIntentMatchStrength(row, intent) >= 1),
+      );
+      if (traitScopedRows.length > 0) {
+        filteredRows = traitScopedRows;
+      }
     }
 
     if (exactSetCode) {
