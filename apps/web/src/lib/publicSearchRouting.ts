@@ -1,5 +1,9 @@
+import { SET_INTENT_ALIAS_MAP } from "@/lib/publicSets.shared";
+
 const EXACT_SET_ALIASES = new Set([
   "151",
+  "asc",
+  "ascended heroes",
   "base set",
   "base set 2",
   "black and white",
@@ -20,6 +24,7 @@ const EXACT_SET_ALIASES = new Set([
 ]);
 
 const SET_PHRASES = [
+  "ascended heroes",
   "base set",
   "base set 2",
   "black and white",
@@ -34,7 +39,20 @@ const SET_PHRASES = [
   "trainer gallery",
 ];
 
-const EXACT_SET_ALIAS_TOKENS = new Set(["151", "base1", "brs", "lor", "ltr", "obs", "sit", "svi"]);
+const EXACT_SET_ALIAS_TOKENS = new Set([
+  "151",
+  "asc",
+  "base1",
+  "brs",
+  "lor",
+  "ltr",
+  "obs",
+  "sit",
+  "svi",
+  ...Object.keys(SET_INTENT_ALIAS_MAP)
+    .map((value) => value.trim().toLowerCase())
+    .filter((value) => /^[a-z0-9.]+$/.test(value)),
+]);
 
 function normalizeForClassification(raw: string) {
   return normalizeSearchInput(raw)
@@ -183,6 +201,8 @@ export function buildPublicSearchDestination(raw: string): { pathname: "/search"
   // Resolver collapse rule:
   // /explore is the single authoritative results surface for searches that are likely
   // to end in ranked results. Reserve /search for direct-resolution candidates only.
+  // Downstream redirect enforcement remains in /app/search/route.ts and must only
+  // redirect on DIRECT_MATCH under RESOLVER_CONTRACT_V2.
   if (!q) {
     return { pathname: "/explore", q };
   }

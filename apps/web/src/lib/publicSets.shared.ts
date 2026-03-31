@@ -1,4 +1,8 @@
+import { SET_SHORTHANDS } from "@/lib/resolver/shorthand";
+
 export const SET_INTENT_ALIAS_MAP: Record<string, string[]> = {
+  ...SET_SHORTHANDS,
+  "ascended heroes": ["me02.5"],
   "pokemon 151": ["sv03.5"],
   "151": ["sv03.5"],
   "prismatic evolutions": ["sv8pt5"],
@@ -31,12 +35,14 @@ export const STRUCTURED_CARD_SET_ALIAS_MAP: Record<string, string[]> = {
 export type PublicSetSummary = {
   code: string;
   name: string;
+  printed_set_abbrev?: string;
   printed_total?: number;
   release_date?: string;
   release_year?: number;
   card_count: number;
   normalized_name: string;
   normalized_tokens: string[];
+  normalized_printed_set_abbrev?: string;
 };
 
 export type PublicSetCard = {

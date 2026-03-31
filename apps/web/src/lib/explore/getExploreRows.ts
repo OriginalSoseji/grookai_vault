@@ -37,6 +37,7 @@ const PROMO_TOKEN_MATCH_BONUS = 760;
 const PROMO_TOKEN_MISS_PENALTY = -360;
 const STRUCTURED_QUERY_WITHOUT_STRUCTURED_MATCH_PENALTY = -260;
 const VARIANT_MISS_PENALTY = -320;
+const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 
 type VariantCue = "alt_art" | "rainbow" | "gold" | "promo" | "full_art" | "holo" | "reverse";
 
@@ -138,12 +139,14 @@ export type ExploreRowsTiming = RemoteTimingSnapshot & {
         score: number;
         second_score: number | null;
         score_gap_to_second: number | null;
-        components: Record<string, number>;
-        evidence: {
-          expected_set: boolean;
-          number: boolean;
-          fraction: boolean;
-          promo: boolean;
+      components: Record<string, number>;
+      evidence: {
+        text: boolean;
+        text_required: boolean;
+        expected_set: boolean;
+        number: boolean;
+        fraction: boolean;
+        promo: boolean;
           variants: VariantCue[];
         };
       }
@@ -305,7 +308,7 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     digits: expectation.digits,
     exact_only: expectation.exactOnly,
   }));
-  const tokens = packet.normalizedTokens;
+  const tokens = packet.expandedSearchTokens;
   const consumedTokenSet = new Set([
     ...packet.setConsumedTokens,
     ...packet.variantConsumedTokens,
@@ -631,6 +634,8 @@ type RowScoreDetail = {
   score: number;
   components: Record<string, number>;
   evidence: {
+    text: boolean;
+    text_required: boolean;
     expected_set: boolean;
     number: boolean;
     fraction: boolean;
@@ -735,6 +740,10 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
 
   if (query.textTokens.length > 0 && matchedTextTokens === query.textTokens.length) {
     addScoreComponent(components, "all_text_tokens_matched", 360);
+  }
+
+  if (query.textTokens.length > 0 && matchedTextTokens === 0) {
+    addScoreComponent(components, "text_tokens_missing", NO_TEXT_TOKEN_MATCH_PENALTY);
   }
 
   if (query.textTokens.length > 0 && exactNameMatches > 0) {
@@ -854,6 +863,8 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     score,
     components,
     evidence: {
+      text: matchedTextTokens > 0,
+      text_required: query.textTokens.length > 0,
       expected_set: matchesExpectedSetCode,
       number: numberMatchStrength >= 0.72,
       fraction: fractionMatchStrength >= 1,
@@ -1074,12 +1085,17 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
   };
 }
 
-async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], directGvId: string | null) {
+async function fetchExactCardRows(
+  ids: string[],
+  tcgdexCardIds: string[],
+  directGvId: string | null,
+  expectedSetCodes: string[],
+) {
   const supabase = createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
 
-  const [lookupById, lookupByTcgdex, directLookup] = await Promise.all([
+  const [lookupById, lookupByTcgdex, directLookup, expectedSetRows] = await Promise.all([
     ids.length > 0
       ? supabase.from("card_prints").select(selectClause).in("id", ids)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
@@ -1089,9 +1105,12 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
     directGvId
       ? supabase.from("card_prints").select(selectClause).eq("gv_id", directGvId).limit(1)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
+    expectedSetCodes.length > 0
+      ? supabase.from("card_prints").select(selectClause).in("set_code", expectedSetCodes).limit(250)
+      : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
   ]);
 
-  const lookupError = lookupById.error ?? lookupByTcgdex.error ?? directLookup.error;
+  const lookupError = lookupById.error ?? lookupByTcgdex.error ?? directLookup.error ?? expectedSetRows.error;
   if (lookupError) {
     throw new Error(lookupError.message);
   }
@@ -1101,6 +1120,7 @@ async function fetchExactCardRows(ids: string[], tcgdexCardIds: string[], direct
     ...((directLookup.data ?? []) as CardPrintLookupRow[]),
     ...((lookupById.data ?? []) as CardPrintLookupRow[]),
     ...((lookupByTcgdex.data ?? []) as CardPrintLookupRow[]),
+    ...((expectedSetRows.data ?? []) as CardPrintLookupRow[]),
   ]) {
     deduped.set(row.id, row);
   }
@@ -1279,7 +1299,7 @@ export async function getExploreRowsPacketWithTiming(
     setAwareResults = resolvedSetAwareResults;
 
     const timedExactRows = await measureStage(() =>
-      fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId),
+      fetchExactCardRows(rpcIds, resolvedSetAwareResults.tcgdexCardIds, query.directGvId, query.expectedSetCodes),
     );
     Object.assign(fetchExactRowsStage, timedExactRows.timing);
     exactRows = timedExactRows.value;
@@ -1308,6 +1328,11 @@ export async function getExploreRowsPacketWithTiming(
 
   const timedExactFilters = await measureStage(() => {
     let filteredRows = exactRows;
+
+    if (query.expectedSetCodes.length > 0) {
+      const expectedSetCodeSet = new Set(query.expectedSetCodes.map((code) => normalizeSetCode(code)));
+      filteredRows = filteredRows.filter((row) => expectedSetCodeSet.has(normalizeSetCode(row.set_code)));
+    }
 
     if (exactSetCode) {
       filteredRows = filteredRows.filter((row) => normalizeSetCode(row.set_code) === exactSetCode);

@@ -17,6 +17,7 @@ import {
 type SetRow = {
   code: string | null;
   name: string | null;
+  printed_set_abbrev: string | null;
   printed_total: number | null;
   release_date: string | null;
 };
@@ -129,7 +130,7 @@ async function fetchAllCanonicalSetCodes(supabase: ReturnType<typeof createServe
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const supabase = createServerSupabase();
   const [{ data: setRows, error: setError }, setCodeRows] = await Promise.all([
-    supabase.from("sets").select("code,name,printed_total,release_date"),
+    supabase.from("sets").select("code,name,printed_set_abbrev,printed_total,release_date"),
     fetchAllCanonicalSetCodes(supabase),
   ]);
 
@@ -156,12 +157,14 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
     const candidate: PublicSetSummary = {
       code,
       name: row.name,
+      printed_set_abbrev: row.printed_set_abbrev?.trim().toUpperCase() || undefined,
       printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
       release_date: row.release_date ?? undefined,
       release_year: getReleaseYear(row.release_date),
       card_count: cardCountBySetCode.get(code) ?? 0,
       normalized_name: normalizedName,
       normalized_tokens: tokenizeSetWords(row.name),
+      normalized_printed_set_abbrev: normalizeSetQuery(row.printed_set_abbrev ?? ""),
     };
 
     const existing = canonicalSetsByName.get(normalizedName);

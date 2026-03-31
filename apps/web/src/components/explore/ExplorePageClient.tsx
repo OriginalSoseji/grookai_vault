@@ -58,7 +58,7 @@ function getResolverSummary(meta: ResolverMeta | null) {
   }
 
   switch (meta.resolverState) {
-    case "STRONG_MATCH":
+    case "DIRECT_MATCH":
       return null;
     case "AMBIGUOUS_MATCH":
       return {

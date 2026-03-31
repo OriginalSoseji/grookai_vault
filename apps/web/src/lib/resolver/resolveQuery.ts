@@ -1,3 +1,6 @@
+// RESOLVER_CONTRACT_V2 ENFORCED
+// Any changes must comply with deterministic pipeline + ambiguity preservation.
+
 "use server";
 
 import { getExploreRowsPacketWithTiming } from "@/lib/explore/getExploreRows";
@@ -7,6 +10,7 @@ import { resolvePublicSearchPacketWithTiming } from "@/lib/publicSearchResolver"
 type DirectResolverResult = Awaited<ReturnType<typeof resolvePublicSearchPacketWithTiming>>["result"];
 type RankedResolverResult = Awaited<ReturnType<typeof getExploreRowsPacketWithTiming>>["rows"];
 type RankedResolverTiming = Awaited<ReturnType<typeof getExploreRowsPacketWithTiming>>["timing"];
+type DirectResolverMatchedStage = Awaited<ReturnType<typeof resolvePublicSearchPacketWithTiming>>["matchedStage"];
 
 type DirectResolveOptions = {
   mode: "direct";
@@ -20,7 +24,7 @@ type RankedResolveOptions = {
   exactIllustrator?: string;
 };
 
-export type ResolverState = "STRONG_MATCH" | "AMBIGUOUS_MATCH" | "WEAK_MATCH" | "NO_MATCH";
+export type ResolverState = "DIRECT_MATCH" | "AMBIGUOUS_MATCH" | "WEAK_MATCH" | "NO_MATCH";
 
 export type ResolverMeta = {
   resolverState: ResolverState;
@@ -29,6 +33,8 @@ export type ResolverMeta = {
   autoResolved: boolean;
   structuredEvidenceFlags:
     | {
+        text: boolean;
+        textRequired: boolean;
         expectedSet: boolean;
         number: boolean;
         fraction: boolean;
@@ -70,6 +76,8 @@ function logResolverTrace(payload: {
     scoreGapToSecond: number | null;
     components: Record<string, number>;
     evidence: {
+      text: boolean;
+      textRequired: boolean;
       expectedSet: boolean;
       number: boolean;
       fraction: boolean;
@@ -89,11 +97,14 @@ function hasStructuredEvidence(
   }
 
   return (
-    topMatch.evidence.expected_set ||
-    topMatch.evidence.number ||
-    topMatch.evidence.fraction ||
-    topMatch.evidence.promo ||
-    topMatch.evidence.variants.length > 0
+    (!topMatch.evidence.text_required || topMatch.evidence.text) &&
+    (
+      topMatch.evidence.expected_set ||
+      topMatch.evidence.number ||
+      topMatch.evidence.fraction ||
+      topMatch.evidence.promo ||
+      topMatch.evidence.variants.length > 0
+    )
   );
 }
 
@@ -109,11 +120,11 @@ function classifyRankedResolverState(
   const structured = hasStructuredEvidence(topMatch);
 
   if (topMatch.score >= 2200 && structured && scoreGap >= 400) {
-    return "STRONG_MATCH";
+    return "DIRECT_MATCH";
   }
 
   if (topMatch.score >= 2800 && scoreGap >= 600) {
-    return "STRONG_MATCH";
+    return "DIRECT_MATCH";
   }
 
   if ((candidateCount > 1 && topMatch.score >= 2200 && scoreGap < 400) || (candidateCount > 1 && topMatch.score >= 1800 && !structured)) {
@@ -134,6 +145,8 @@ function buildRankedResolverMeta(
     autoResolved: false,
     structuredEvidenceFlags: timing.top_match
       ? {
+          text: timing.top_match.evidence.text,
+          textRequired: timing.top_match.evidence.text_required,
           expectedSet: timing.top_match.evidence.expected_set,
           number: timing.top_match.evidence.number,
           fraction: timing.top_match.evidence.fraction,
@@ -144,14 +157,20 @@ function buildRankedResolverMeta(
   };
 }
 
-function buildDirectResolverMeta(result: DirectResolverResult, rawQuery: string): ResolverMeta {
+function buildDirectResolverMeta(
+  result: DirectResolverResult,
+  rawQuery: string,
+  matchedStage: DirectResolverMatchedStage,
+): ResolverMeta {
   const hasQuery = rawQuery.trim().length > 0;
+  const exactNameOnlyMatch = matchedStage === "exact_name";
+
   if (result.kind === "card" || result.kind === "set") {
     return {
-      resolverState: "STRONG_MATCH",
+      resolverState: exactNameOnlyMatch ? "AMBIGUOUS_MATCH" : "DIRECT_MATCH",
       topScore: null,
       candidateCount: 1,
-      autoResolved: true,
+      autoResolved: !exactNameOnlyMatch,
       structuredEvidenceFlags: null,
     };
   }
@@ -189,7 +208,7 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
   if (options.mode === "direct") {
     const resolved = await resolvePublicSearchPacketWithTiming(packet);
     const result = resolved.result;
-    const meta = buildDirectResolverMeta(result, rawQuery);
+    const meta = buildDirectResolverMeta(result, rawQuery, resolved.matchedStage);
     const candidateCount = meta.candidateCount;
 
     logResolverTrace({
@@ -249,6 +268,8 @@ export async function resolveQueryWithMeta(rawQuery: string, options: DirectReso
           scoreGapToSecond: resolved.timing.top_match.score_gap_to_second,
           components: resolved.timing.top_match.components,
           evidence: {
+            text: resolved.timing.top_match.evidence.text,
+            textRequired: resolved.timing.top_match.evidence.text_required,
             expectedSet: resolved.timing.top_match.evidence.expected_set,
             number: resolved.timing.top_match.evidence.number,
             fraction: resolved.timing.top_match.evidence.fraction,

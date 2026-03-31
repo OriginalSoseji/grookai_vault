@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     const result = resolved.result;
 
     if (result.kind === "card") {
-      if (resolved.meta.resolverState === "STRONG_MATCH") {
+      if (resolved.meta.resolverState === "DIRECT_MATCH") {
         const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
         applyCompareCardsParam(request, nextUrl);
         return NextResponse.redirect(nextUrl);
@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (result.kind === "set") {
-      if (resolved.meta.resolverState === "STRONG_MATCH") {
+      if (resolved.meta.resolverState === "DIRECT_MATCH") {
         const nextUrl = new URL(`/sets/${encodeURIComponent(result.set_code)}`, request.url);
         applyCompareCardsParam(request, nextUrl);
         return NextResponse.redirect(nextUrl);

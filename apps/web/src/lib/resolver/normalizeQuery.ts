@@ -1,7 +1,8 @@
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
+import { NAME_SHORTHANDS, SET_SHORTHANDS } from "@/lib/resolver/shorthand";
 
 const PROMO_PREFIXES = new Set(["swsh", "svp", "smp", "xyp", "bwp", "basep", "dpp"]);
-const SET_CODE_ALIASES = new Set(["151", "base1", "brs", "lor", "ltr", "obs", "sit", "svi"]);
+const SET_CODE_ALIASES = new Set(["151", "base1", "brs", "lor", "ltr", "obs", "sit", "svi", ...Object.keys(SET_SHORTHANDS)]);
 const PROMO_SET_CODE_MAP: Record<string, string> = {
   swsh: "swshp",
   svp: "svp",
@@ -50,6 +51,7 @@ export type NormalizedQueryPacket = {
   normalizedQuery: string;
   normalizedResolverInput: string;
   normalizedTokens: string[];
+  expandedSearchTokens: string[];
   compactTokens: string[];
   numberTokens: string[];
   numberDigitTokens: string[];
@@ -68,6 +70,30 @@ export type NormalizedQueryPacket = {
 
 function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+export function expandResolverNicknameTokens(tokens: string[]) {
+  const expanded = new Set<string>();
+  const appliedRules = new Set<string>();
+
+  for (const token of tokens) {
+    if (!token) {
+      continue;
+    }
+
+    expanded.add(token);
+
+    const aliases = NAME_SHORTHANDS[token] ?? [];
+    for (const alias of aliases) {
+      expanded.add(alias);
+      appliedRules.add(`nickname:${token}->${alias}`);
+    }
+  }
+
+  return {
+    expandedTokens: [...expanded],
+    appliedRules: [...appliedRules],
+  };
 }
 
 function normalizeWhitespace(value: string) {
@@ -468,6 +494,7 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
   const normalizedQuery = specialPhraseArtifacts.normalizedQuery;
   const normalizedResolverInput = normalizeResolverInput(normalizedQuery);
   const normalizedTokens = tokenizeNormalizedQuery(normalizedQuery);
+  const nicknameArtifacts = expandResolverNicknameTokens(normalizedTokens);
   const baseSegments = tokenizeQuerySegments(normalizedQuery);
   const compactTokens = buildCompactTokens(normalizedTokens, baseSegments);
   const setExpectations = detectSetExpectations(normalizedQuery);
@@ -486,6 +513,7 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
     normalizedQuery,
     normalizedResolverInput,
     normalizedTokens,
+    expandedSearchTokens: nicknameArtifacts.expandedTokens,
     compactTokens,
     numberTokens: collectorArtifacts.numberTokens,
     numberDigitTokens: collectorArtifacts.numberDigitTokens,
@@ -515,7 +543,10 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
       promoRules: collectorArtifacts.appliedRules,
       variantRules: variantArtifacts.appliedRules,
       specialRules: specialPhraseArtifacts.appliedRules,
-      shorthandRules: coverageFamilyHints.shorthandRules,
+      shorthandRules: uniqueValues([
+        ...coverageFamilyHints.shorthandRules,
+        ...nicknameArtifacts.appliedRules,
+      ]),
       familyRules: coverageFamilyHints.familyRules,
     },
   };

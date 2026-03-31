@@ -8,7 +8,11 @@ import {
   STRUCTURED_CARD_SET_ALIAS_MAP,
   type PublicSetSummary,
 } from "@/lib/publicSets.shared";
-import { normalizeQuery, type NormalizedQueryPacket } from "@/lib/resolver/normalizeQuery";
+import {
+  expandResolverNicknameTokens,
+  normalizeQuery,
+  type NormalizedQueryPacket,
+} from "@/lib/resolver/normalizeQuery";
 
 const CARD_SELECT = "id,gv_id,name,number,set_code,printed_set_abbrev";
 const STRUCTURED_QUERY_LIMIT = 80;
@@ -260,8 +264,25 @@ function buildSetContext(
     .map(([phrase, codes]) => ({ phrase: normalizeResolverInput(phrase), codes }));
 
   const exactSetMatches = setInfos
-    .filter((setInfo) => phraseInQuery(normalizedInput, setInfo.normalized_name))
-    .map((setInfo) => ({ phrase: setInfo.normalized_name, codes: [setInfo.code] }));
+    .flatMap((setInfo) => {
+      const matches: Array<{ phrase: string; codes: string[] }> = [];
+
+      if (phraseInQuery(normalizedInput, setInfo.normalized_name)) {
+        matches.push({ phrase: setInfo.normalized_name, codes: [setInfo.code] });
+      }
+
+      if (
+        setInfo.normalized_printed_set_abbrev &&
+        phraseInQuery(normalizedInput, setInfo.normalized_printed_set_abbrev)
+      ) {
+        matches.push({
+          phrase: setInfo.normalized_printed_set_abbrev,
+          codes: [setInfo.code],
+        });
+      }
+
+      return matches;
+    });
 
   const matches = [...aliasMatches, ...exactSetMatches].sort((left, right) => {
     const leftTokenCount = splitTokens(left.phrase).length;
@@ -334,7 +355,14 @@ function rowMatchesNameTokens(row: ResolverCardRow, nameTokens: string[]) {
   }
 
   const rowNameTokens = new Set(tokenizeWords(row.name));
-  return nameTokens.every((token) => rowNameTokens.has(token));
+  return nameTokens.every((token) => {
+    if (rowNameTokens.has(token)) {
+      return true;
+    }
+
+    const expanded = expandResolverNicknameTokens([token]).expandedTokens.filter((candidate) => candidate !== token);
+    return expanded.some((candidate) => rowNameTokens.has(candidate));
+  });
 }
 
 async function fetchRowsByNumberCandidates(
@@ -368,6 +396,10 @@ function buildNumberCandidates(numberToken: string) {
 
   if (!prefix && digits && digits !== normalizedToken) {
     candidates.push(digits);
+  }
+
+  if (!prefix && /^\d+$/.test(digits) && digits.length < 3) {
+    candidates.push(digits.padStart(3, "0"));
   }
 
   return uniqueValues(candidates);
@@ -495,7 +527,8 @@ async function resolveSetIntent(parsedQuery: ParsedQuery): Promise<ResolverResul
       .filter(
         (setInfo) =>
           setInfo.normalized_name === parsedQuery.normalizedInput ||
-          normalizeSetCode(setInfo.code) === parsedQuery.normalizedInput,
+          normalizeSetCode(setInfo.code) === parsedQuery.normalizedInput ||
+          setInfo.normalized_printed_set_abbrev === parsedQuery.normalizedInput,
       )
       .map((setInfo) => setInfo.code),
   );
@@ -566,7 +599,11 @@ async function resolveAliasOrNickname() {
 
 export async function resolvePublicSearchPacketWithTiming(
   packet: NormalizedQueryPacket,
-): Promise<{ result: ResolverResult; timing: ResolvePublicSearchTiming }> {
+): Promise<{
+  result: ResolverResult;
+  timing: ResolvePublicSearchTiming;
+  matchedStage: "direct_gv_lookup" | "structured_collector" | "exact_name" | "set_intent" | "alias" | "fallback";
+}> {
   const totalStartMs = performance.now();
   const totalStartRemote = snapshotRemoteTiming();
 
@@ -584,6 +621,7 @@ export async function resolvePublicSearchPacketWithTiming(
 
     return {
       result: { kind: "explore", query: parsedQuery.normalizedFallbackQuery },
+      matchedStage: "fallback",
       timing: {
         total_ms: totalMs,
         remote_ms: totalRemote.remote_ms,
@@ -607,6 +645,8 @@ export async function resolvePublicSearchPacketWithTiming(
 
   const supabase = createServerSupabase();
   let result: ResolverResult = { kind: "explore", query: parsedQuery.normalizedFallbackQuery };
+  let matchedStage: "direct_gv_lookup" | "structured_collector" | "exact_name" | "set_intent" | "alias" | "fallback" =
+    "fallback";
 
   if (parsedQuery.normalizedGvId) {
     const directGvId = parsedQuery.normalizedGvId;
@@ -629,6 +669,9 @@ export async function resolvePublicSearchPacketWithTiming(
     });
 
     result = timedLookup.value;
+    if (result.kind === "card") {
+      matchedStage = "direct_gv_lookup";
+    }
     Object.assign(directLookupStage, timedLookup.timing);
   } else {
     const timedStructured = await measureStage(() => resolveStructuredCollectorQuery(supabase, parsedQuery));
@@ -636,24 +679,28 @@ export async function resolvePublicSearchPacketWithTiming(
 
     if (timedStructured.value) {
       result = { kind: "card", gv_id: timedStructured.value };
+      matchedStage = "structured_collector";
     } else {
       const timedExactName = await measureStage(() => resolveExactCanonicalName(supabase, parsedQuery.normalizedInput));
       Object.assign(exactNameStage, timedExactName.timing);
 
       if (timedExactName.value) {
         result = { kind: "card", gv_id: timedExactName.value };
+        matchedStage = "exact_name";
       } else {
         const timedSetIntent = await measureStage(() => resolveSetIntent(parsedQuery));
         Object.assign(setIntentStage, timedSetIntent.timing);
 
         if (timedSetIntent.value) {
           result = timedSetIntent.value;
+          matchedStage = "set_intent";
         } else {
           const timedAlias = await measureStage(() => resolveAliasOrNickname());
           Object.assign(aliasStage, timedAlias.timing);
 
           if (timedAlias.value) {
             result = { kind: "card", gv_id: timedAlias.value };
+            matchedStage = "alias";
           }
         }
       }
@@ -665,6 +712,7 @@ export async function resolvePublicSearchPacketWithTiming(
 
   return {
     result,
+    matchedStage,
     timing: {
       total_ms: totalMs,
       remote_ms: totalRemote.remote_ms,
