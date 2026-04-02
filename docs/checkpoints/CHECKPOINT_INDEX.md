@@ -4,3 +4,4 @@
 - `EXTERNAL_SOURCE_INGESTION_MODEL_V1_LOCKED` — `2026-03-31`
 - `EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1_LOCKED` — `2026-03-31`
 - `EXTERNAL_DISCOVERY_STAGING_V1_FIRST_FULL_LOCAL_RUN` — `2026-03-31`
+- `BATTLE_ACADEMY_PHASE2_BRIDGE_V1` — `2026-04-01` — Locks Battle Academy current reality, the corrected identity law, the completed Phase 1 harvest, and the exact next Phase 2 objective
