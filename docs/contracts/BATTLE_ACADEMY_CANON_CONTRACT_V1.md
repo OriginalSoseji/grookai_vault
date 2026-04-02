@@ -1,0 +1,447 @@
+# BATTLE_ACADEMY_CANON_CONTRACT_V1
+
+Status: FROZEN (amended in place by explicit audit-backed reality correction on 2026-04-01)  
+Type: Canon Domain / Governance Contract  
+Scope: Defines Battle Academy as a curated-product overlay canon domain inside Grookai, including release resolution, identity law, inclusion and exclusion boundaries, promotion guardrails, conflict governance, and future implementation constraints.  
+Authority: Aligns with `GROOKAI_RULEBOOK.md`, `GV_SCHEMA_CONTRACT_V1.md`, `REFERENCE_BACKED_IDENTITY_CONTRACT_V1.md`, `EXTERNAL_SOURCE_INGESTION_MODEL_V1.md`, `EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1.md`, `PRINTED_IDENTITY_MODEL_V1.md`, and `CANON_WAREHOUSE_FOUNDER_GATED_PROMOTION_CONTRACT_V1.md`.
+
+---
+
+## 1. Purpose
+
+This contract defines and locks the Battle Academy canon model for Grookai.
+
+It exists to prevent Battle Academy rows from being mis-modeled as:
+
+- standard expansion-set prints
+- TK-style mapping-only rows
+- product packaging noise
+- pure standalone set-number identities
+
+Battle Academy is a governed canon domain.
+It is not a loose exception lane.
+
+---
+
+## 2. Reality Lock
+
+As of 2026-04-01, this contract is frozen against the audited Battle Academy corpus with the following verified operating reality:
+
+- upstream sets:
+  - `battle-academy-pokemon`
+  - `battle-academy-2022-pokemon`
+  - `battle-academy-2024-pokemon`
+- staged rows:
+  - `334` `CLEAN_CANON_CANDIDATE`
+  - plus product and noise rows outside canon eligibility
+- no existing Battle Academy canonical presence in:
+  - `sets`
+  - `card_prints`
+  - `external_mappings`
+- observed row population includes:
+  - valid Pokemon cards
+  - trainer cards
+  - energy cards
+  - product noise such as code cards, `N/A`, and stamped or packaging labels
+
+If later audit evidence differs, V1 must not be silently reinterpreted.
+Audit first, then version or amend explicitly.
+
+---
+
+## 3. Amendment / Reality Correction
+
+This contract was amended in place on 2026-04-01 because the original V1 identity assumption was false in audited production reality.
+
+The disproven assumption was:
+
+```text
+(ba-YYYY, printed number) = full Battle Academy canonical identity
+```
+
+The recent production conflict audit showed real collisions where the same Battle Academy release plus printed number pointed to different cards and/or different printed totals.
+
+Audited conflict surface:
+
+- total conflict groups: `9`
+- `IDENTITY_NAME_CONFLICT`: `0`
+- `IDENTITY_PRINTED_TOTAL_CONFLICT`: `2`
+- `IDENTITY_NAME_AND_TOTAL_CONFLICT`: `7`
+
+Representative examples:
+
+- `ba-2020 | 043` -> `Electabuzz 43/156` and `Electivire 43/147`
+- `ba-2020 | 119` -> `Cynthia 119/156` and `Great Ball 119/149`
+- `ba-2022 | 029` -> `Turtonator 29/202` and `Vulpix 29/264`
+- `ba-2024 | 188` -> `Potion 188/198` and `Potion 188/192`
+
+Therefore:
+
+- `(ba-YYYY, printed number)` is not a lawful full identity key
+- Battle Academy promotion cannot proceed on release plus number alone
+- any implementation that treats Battle Academy as a simple standalone set-number domain is non-compliant with this amended contract
+
+This amendment is the governing interpretation of V1.
+
+---
+
+## 4. Domain Definition
+
+Battle Academy is a curated-product overlay domain.
+
+It contains:
+
+- real printed cards
+- cards originating from multiple existing canonical identities
+- product-scoped numbering
+- curated deck composition
+- duplicate physical copies inside the product
+- product-only artifacts that are not cards
+
+Therefore Battle Academy is modeled as:
+
+```text
+a first-class curated-product overlay canon domain in Grookai
+```
+
+It is NOT:
+
+- a mapping-only domain
+- a TK-style slot-resolution lane
+- a standard expansion-set family
+- a pure standalone set-local identity model
+
+Duplicate physical copies inside a Battle Academy product do not create multiple canonical identities.
+Quantity and deck composition are product facts, not identity.
+
+---
+
+## 5. Canonical Release Set Model
+
+Each Battle Academy release remains its own canonical release container:
+
+```text
+ba-2020
+ba-2022
+ba-2024
+```
+
+Authoritative upstream-to-release mapping:
+
+| Upstream set id | Canonical release code |
+|---|---|
+| `battle-academy-pokemon` | `ba-2020` |
+| `battle-academy-2022-pokemon` | `ba-2022` |
+| `battle-academy-2024-pokemon` | `ba-2024` |
+
+Rules:
+
+- each release code defines Battle Academy release context
+- no cross-release identity reuse
+- upstream set ids are routing inputs, not canonical identity
+- Battle Academy printed number alone does not guarantee uniqueness within one release
+- the same Battle Academy number may appear on multiple different underlying cards within the same release
+
+---
+
+## 6. Identity Model
+
+### 6.1 Routing Hint vs Full Identity
+
+Within Battle Academy:
+
+```text
+(ba-YYYY, printed number)
+```
+
+is a routing hint and grouping key.
+It is not a lawful full identity key.
+
+### 6.2 Full Battle Academy Identity
+
+The full Battle Academy identity must be modeled as:
+
+```text
+(ba-YYYY, printed number, underlying card identity)
+```
+
+All three parts are required.
+
+### 6.3 Validation Fields
+
+`name`, printed total, stamp prose, deck suffixes, and package labels are evidence fields.
+
+They may help validate or disprove identity.
+They do not, by themselves, replace the requirement for validated underlying card identity.
+
+### 6.4 Schema-Agnostic Constraint
+
+This contract locks identity law only.
+
+It does not choose:
+
+- a specific database schema
+- a specific column layout
+- a specific linkage table
+- a specific storage representation for Battle Academy overlay identity
+
+Any implementation must satisfy this identity law without inventing schema commitments that have not yet been audited.
+
+---
+
+## 7. Underlying Card Identity
+
+Underlying card identity means:
+
+- the real canonical printed card identity outside the Battle Academy overlay
+- determined by Grookai's existing canonical identity model
+- validated through deterministic normalization and evidence
+- never trusted directly from upstream labels without review
+
+Clarifications:
+
+- Battle Academy rows are not pure set-local identities like standard expansions
+- Battle Academy rows are curated-product printings of existing card identities
+- the Battle Academy layer preserves product-specific identity only in combination with the validated underlying card identity
+
+If underlying card identity is not deterministically resolved, Battle Academy promotion is not lawful.
+
+---
+
+## 8. Inclusion and Promotion Rules
+
+A Battle Academy row is promotable only if all of the following are true:
+
+1. the row belongs to a valid Battle Academy release
+2. the row is a real playable card, not packaging or product metadata
+3. the Battle Academy printed number is parseable deterministically
+4. the underlying source-card identity is resolved deterministically
+5. no conflicting Battle Academy identity remains for the same release, printed number, and underlying card identity
+6. no unresolved printed-total conflict or interpretation conflict remains
+7. founder-gated promotion rules are obeyed
+
+Hard rule:
+
+```text
+If only (ba-YYYY, printed number) is known, promotion is NOT lawful.
+```
+
+Promotion requires resolved underlying identity.
+
+Required path remains:
+
+```text
+raw_imports
+-> normalization
+-> BA domain classification and release resolution
+-> external_discovery_candidates
+-> founder-gated staged promotion
+-> canon
+```
+
+No automatic process may promote Battle Academy rows directly into canon.
+
+---
+
+## 9. Exclusion and Hold Rules
+
+Reject a row if any of the following are true:
+
+- `number_raw = N/A`
+- the row is a code card
+- the row is packaging, a bundle label, a guide, a board, or metadata-only product context
+- the usable identity collapses to a product label instead of a card
+- the row cannot produce deterministic Battle Academy printed-number routing
+
+Hold a row out of promotion if any of the following are true:
+
+- the same Battle Academy release plus printed number maps to more than one plausible underlying card identity and that identity is not yet resolved
+- printed-total conflicts remain unresolved
+- stamped, deck, or package suffixes change the interpretation of the underlying card identity
+- deterministic normalization cannot safely prove which underlying card the Battle Academy row actually is
+
+These hold conditions are not reject-forever by default.
+They are not-promotable-until-resolved conditions.
+
+---
+
+## 10. Classification Model
+
+Each Battle Academy row must still classify into exactly one content class:
+
+- `POKEMON`
+- `TRAINER`
+- `ENERGY`
+- `PRODUCT_CONTEXT`
+- `REJECT`
+
+Promotable content classes:
+
+- `POKEMON`
+- `TRAINER`
+- `ENERGY`
+
+Never promotable:
+
+- `PRODUCT_CONTEXT`
+- `REJECT`
+
+However, promotable content class alone is insufficient.
+A playable card row still cannot promote unless underlying card identity is resolved lawfully.
+
+---
+
+## 11. Relation to Existing Canon
+
+A Battle Academy printing is a product-context canonical printing layered on top of an existing underlying canonical card identity.
+
+Rules:
+
+- Battle Academy does not replace the underlying card
+- Battle Academy does not merge into the underlying set
+- Battle Academy is a distinct canonical product printing only when linked to the validated underlying card identity
+
+This is a hybrid identity model:
+
+- release-context identity
+- plus underlying-source identity
+
+Source-set lineage may be preserved as provenance or audit context.
+It must not override Battle Academy identity law.
+
+---
+
+## 12. Difference From Standard Sets and TK
+
+| Domain | Identity basis | Canon behavior |
+|---|---|---|
+| Standard expansion set | set-local print identity | direct canon inside the expansion set |
+| TK | deck and slot resolution | deterministic mapping to existing canon by deck-slot logic |
+| Battle Academy | release context plus printed number plus underlying card identity | curated-product overlay printing linked to validated underlying canon |
+
+Hard rules:
+
+- TK logic must not be reused to define Battle Academy identity
+- Battle Academy must not be collapsed into standard-set reprints
+- Battle Academy must not be promoted from release plus number alone
+
+---
+
+## 13. Conflict Governance
+
+If conflict audit finds that multiple rows share the same Battle Academy release and printed number but disagree on:
+
+- normalized name
+- printed total
+- underlying source identity
+
+then:
+
+- promotion must stop
+- the rows remain in review
+- the contract interpretation must be corrected before implementation resumes
+
+The recent production conflict audit is the reason this contract was corrected in place.
+It proved that naive release-plus-number promotion is unsafe.
+
+---
+
+## 14. Mapping Rules
+
+After a lawful Battle Academy canonical row exists:
+
+- source mappings may point to that Battle Academy row
+- mapping may carry provenance about the underlying source card
+
+Before lawful canon exists:
+
+- no mapping may define Battle Academy identity
+- no upstream `cardId`, `set`, or source label may substitute for resolved underlying identity
+
+Battle Academy remains canon first, mapping second.
+
+---
+
+## 15. Invariants
+
+The following must always hold:
+
+1. Battle Academy number alone is never sufficient to define full identity.
+2. Full Battle Academy identity requires release context, Battle Academy printed number, and validated underlying card identity.
+3. Underlying card identity must be resolved through deterministic evidence, not upstream trust.
+4. Product noise never enters canon.
+5. Battle Academy rows never replace or merge into the underlying standard set by default.
+6. Deterministic promotion only; no fuzzy or first-result-wins behavior.
+7. Unresolved printed-total or same-number conflicts block promotion.
+8. Duplicate product quantity is not identity.
+
+---
+
+## 16. Future Extension Gate
+
+Future implementation may use:
+
+- manifest-based source card linkage
+- deterministic normalization to existing canon
+- product-printing or overlay modeling
+
+This contract does NOT choose schema yet.
+It only locks the identity law.
+
+Future curated box sets or starter-deck families may reuse this model only after explicit audit proves all of the following:
+
+- release context is real and deterministic
+- product-scoped numbering is usable as routing input
+- underlying card identity can be resolved deterministically
+- product-only noise can be excluded deterministically
+- no unresolved same-number or printed-total conflicts remain
+
+If those proofs are missing, do not silently apply this contract to the new family.
+Write a new domain contract instead.
+
+---
+
+## 17. Stop Rule
+
+STOP and refine the contract or implementation if any Battle Academy canon step requires:
+
+- guessing
+- heuristic identity matching
+- upstream trust as identity authority
+- promotion from release plus number alone
+- unresolved same-number collisions
+- unresolved printed-total conflicts
+- unresolved underlying-card ambiguity
+- unresolved boundary between valid card and product context
+
+Fail closed.
+Do not promote around uncertainty.
+
+---
+
+## 18. Result
+
+Grookai gains:
+
+- a reality-aligned Battle Academy identity law
+- a fail-closed curated-product overlay model
+- explicit prohibition on naive `(ba-YYYY, printed number)` promotion
+- a safe path for future implementation once underlying identity is resolved
+- preserved doctrine: audit first, no assumptions, deterministic promotion only
+
+Battle Academy is no longer treated as a pure standalone set-number identity domain.
+It is now governed as a curated-product overlay domain requiring validated underlying card identity before canonical promotion.
+
+---
+
+## 19. Lock
+
+This contract remains frozen.
+
+Any further change requires:
+
+- explicit audit evidence
+- explicit version bump or explicit amendment
+- explicit contract-index update
+
+Silent reinterpretation is prohibited.
