@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-04-02T12:33:28.618Z",
+  "phase": "BA_PHASE4_IDENTITY_DIMENSION_EXPANSION_V1",
+  "verified_artifacts": {
+    "diff_surface": "ba_phase4_dimension_diff_surface_v1.json",
+    "test_results": "ba_phase4_dimension_test_results_v1.json"
+  },
+  "key_definitions": {
+    "K1": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name"
+    ],
+    "K2": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw"
+    ],
+    "K3": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "parsed_printed_total"
+    ],
+    "K4": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ],
+    "K5": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "raw_printed_name"
+    ],
+    "K6": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "parsed_printed_total"
+    ],
+    "K7": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "source_name_raw"
+    ],
+    "K8": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "parsed_printed_total",
+      "source_name_raw"
+    ],
+    "K9": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "parsed_printed_total",
+      "source_name_raw"
+    ]
+  },
+  "diff_surface_summary_counts": {
+    "duplicate_group_count": 63,
+    "raw_printed_name_diff_count": 0,
+    "source_name_raw_diff_count": 63,
+    "number_raw_diff_count": 2,
+    "parsed_printed_total_diff_count": 2
+  },
+  "candidate_identity_key_v1": {
+    "key_name": "K4",
+    "key_fields": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ],
+    "distinct_keys": 328,
+    "groups_single": 328,
+    "groups_duplicate": 0,
+    "duplicate_reduction": 63,
+    "remaining_duplicates": 0,
+    "named_conflicts": [
+      {
+        "canonical_model_key_k1": "ba-2022::226::bug catcher",
+        "resolved": true,
+        "resulting_group_count": 5,
+        "resulting_group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "key_fields": [
+          "ba_set_code",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw"
+        ]
+      },
+      {
+        "canonical_model_key_k1": "ba-2024::188::potion",
+        "resolved": true,
+        "resulting_group_count": 5,
+        "resulting_group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "key_fields": [
+          "ba_set_code",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw"
+        ]
+      }
+    ],
+    "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+  },
+  "checks": [
+    {
+      "name": "V1_ALL_DIMENSIONS_FROM_REPO_ARTIFACTS",
+      "passed": true,
+      "detail": {
+        "required_dimensions": [
+          "normalized_printed_name",
+          "raw_printed_name",
+          "source_name_raw",
+          "printed_number",
+          "number_raw",
+          "parsed_printed_total",
+          "ba_set_code"
+        ],
+        "tested_key_fields": [
+          "ba_set_code",
+          "printed_number",
+          "normalized_printed_name",
+          "number_raw",
+          "parsed_printed_total",
+          "source_name_raw",
+          "raw_printed_name"
+        ]
+      }
+    },
+    {
+      "name": "V2_NO_FUZZY_MATCHING_USED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "fuzzymatch(",
+          "fuzzy_match(",
+          "similarity(",
+          "levenshtein(",
+          "jarowinkler(",
+          "cosinesimilarity(",
+          "expandsynonyms("
+        ]
+      }
+    },
+    {
+      "name": "V3_NO_CROSS_SET_INFERENCE",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "cross-set",
+          "cross set",
+          "equivalence"
+        ]
+      }
+    },
+    {
+      "name": "V4_NO_EXTERNAL_DATA_USED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "createbackendclient(",
+          ".from(",
+          "fetch(",
+          "axios",
+          "open(",
+          "search_query",
+          "external data"
+        ]
+      }
+    },
+    {
+      "name": "V5_NO_CANON_WRITES_PERFORMED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete("
+        ]
+      }
+    },
+    {
+      "name": "V6_NO_GV_ID_GENERATED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "gv_id"
+        ]
+      }
+    },
+    {
+      "name": "V7_NO_MAPPINGS_WRITTEN",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "external_mappings",
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete("
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

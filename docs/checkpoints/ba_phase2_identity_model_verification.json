@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-04-02T05:26:02.504Z",
+  "phase": "BA_PHASE2_IDENTITY_MODEL_V1",
+  "verified_artifacts": {
+    "baseline": "ba_phase2_identity_model_baseline.json",
+    "pass1": "ba_phase2_identity_model_pass1.json",
+    "conflict_resolution": "ba_phase2_conflict_resolution_v1.json",
+    "structured_multi": "ba_phase2_structured_multi_resolution_v1.json",
+    "no_underlying": "ba_phase2_no_underlying_reclassification_v1.json"
+  },
+  "checks": [
+    {
+      "name": "V1_NO_HEURISTIC_LOGIC_PRESENT",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "fuzzymatch(",
+          "fuzzy_match(",
+          "similarity(",
+          "levenshtein(",
+          "jarowinkler(",
+          "cosinesimilarity(",
+          "expandsynonyms("
+        ]
+      }
+    },
+    {
+      "name": "V2_NO_CANON_WRITES_PERFORMED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete("
+        ]
+      }
+    },
+    {
+      "name": "V3_NO_GV_ID_GENERATED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "gv_id"
+        ]
+      }
+    },
+    {
+      "name": "V4_ALL_CONFLICTS_RESOLVED_OR_ISOLATED",
+      "passed": true,
+      "detail": {
+        "total_conflict_groups": 9,
+        "outcomes": [
+          "BA_NUMBER_COLLISION_RESOLVED",
+          "BA_MODEL_DUPLICATE"
+        ]
+      }
+    },
+    {
+      "name": "V5_STRUCTURED_MULTI_HANDLED_DETERMINISTICALLY",
+      "passed": true,
+      "detail": {
+        "source_row_count": 6,
+        "grouped_row_count": 6
+      }
+    },
+    {
+      "name": "V6_NO_UNDERLYING_ROWS_PROPERLY_CLASSIFIED",
+      "passed": true,
+      "detail": {
+        "baseline_no_underlying_match_count": 138,
+        "source_row_count": 138,
+        "ba_underlying_unknown_row_count": 138
+      }
+    },
+    {
+      "name": "V7_NO_CROSS_SET_MERGES_PERFORMED",
+      "passed": true,
+      "detail": {
+        "distinct_canonical_model_key_count": 115,
+        "group_count": 115
+      }
+    }
+  ],
+  "passed": true
+}

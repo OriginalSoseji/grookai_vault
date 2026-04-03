@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1",
+  "identity_domain": "pokemon_ba",
+  "identity_key_version": "pokemon_ba:v1",
+  "storage_mapping": {
+    "ba_set_code": {
+      "table": "public.card_print_identity",
+      "column": "set_code_identity"
+    },
+    "printed_number": {
+      "table": "public.card_print_identity",
+      "column": "printed_number"
+    },
+    "normalized_printed_name": {
+      "table": "public.card_print_identity",
+      "column": "normalized_printed_name"
+    },
+    "source_name_raw": {
+      "table": "public.card_print_identity",
+      "column": "source_name_raw"
+    }
+  },
+  "candidate_projection": {
+    "ba_candidate_count": 328,
+    "mapping_rule": "Each BA promotion candidate maps to exactly one card_print_identity row in domain pokemon_ba:v1 before canon promotion.",
+    "row_shape": {
+      "identity_domain": "pokemon_ba",
+      "identity_key_version": "pokemon_ba:v1",
+      "set_code_identity": "candidate.ba_set_code",
+      "printed_number": "candidate.printed_number",
+      "normalized_printed_name": "candidate.normalized_printed_name",
+      "source_name_raw": "candidate.source_name_raw",
+      "identity_payload": {
+        "printed_total": "candidate.parsed_printed_total when available",
+        "upstream_set_id": "candidate.source_upstream_set_id when available",
+        "underlying_card_print_id": "candidate.underlying_reference_card_print_id when available"
+      }
+    }
+  },
+  "why_no_ad_hoc_card_prints_columns": [
+    "The BA 4D identity law is represented directly on card_print_identity explicit fields.",
+    "Uniqueness lives on identity_domain + identity_key_version + identity_key_hash instead of widening card_prints.",
+    "card_prints remains the durable canonical object and does not need BA-only discriminator columns."
+  ],
+  "ba_unblock_statement": "BA promotion may proceed only after card_print_identity exists, BA sets are registered, BA identity rows can be represented losslessly, and all Phase 6 unblock conditions remain satisfied."
+}

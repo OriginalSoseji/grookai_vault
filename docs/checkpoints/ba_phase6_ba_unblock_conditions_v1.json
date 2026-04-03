@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1",
+  "ba_unblock_conditions": [
+    {
+      "code": "B1",
+      "description": "identity subsystem contract approved",
+      "status": "PENDING"
+    },
+    {
+      "code": "B2",
+      "description": "migration plan approved",
+      "status": "PENDING"
+    },
+    {
+      "code": "B3",
+      "description": "storage layer replayable from baseline with new identity subsystem",
+      "status": "PENDING"
+    },
+    {
+      "code": "B4",
+      "description": "BA sets registered lawfully",
+      "status": "PENDING"
+    },
+    {
+      "code": "B5",
+      "description": "BA promotion candidates mapped into card_print_identity without collision",
+      "status": "PENDING"
+    },
+    {
+      "code": "B6",
+      "description": "gv_id derivation path verified under Option B",
+      "status": "PENDING"
+    }
+  ],
+  "result": "BA_PROMOTION_REMAINS_BLOCKED_UNTIL_ALL_B1_TO_B6_ARE_SATISFIED"
+}

@@ -1,0 +1,1214 @@
+{
+  "generated_at": "2026-04-02T12:33:28.585Z",
+  "phase": "BA_PHASE4_IDENTITY_DIMENSION_EXPANSION_V1",
+  "summary_counts": {
+    "duplicate_group_count": 63,
+    "raw_printed_name_diff_count": 0,
+    "source_name_raw_diff_count": 63,
+    "number_raw_diff_count": 2,
+    "parsed_printed_total_diff_count": 2
+  },
+  "groups": [
+    {
+      "canonical_model_key": "ba-2020::008::charmeleon",
+      "ba_set_code": "ba-2020",
+      "printed_number": "008",
+      "normalized_printed_name": "charmeleon",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::018::charmander",
+      "ba_set_code": "ba-2020",
+      "printed_number": "018",
+      "normalized_printed_name": "charmander",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::019::pikachu",
+      "ba_set_code": "ba-2020",
+      "printed_number": "019",
+      "normalized_printed_name": "pikachu",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::025::salandit",
+      "ba_set_code": "ba-2020",
+      "printed_number": "025",
+      "normalized_printed_name": "salandit",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::034::salazzle",
+      "ba_set_code": "ba-2020",
+      "printed_number": "034",
+      "normalized_printed_name": "salazzle",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::043::electabuzz",
+      "ba_set_code": "ba-2020",
+      "printed_number": "043",
+      "normalized_printed_name": "electabuzz",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::043::electivire",
+      "ba_set_code": "ba-2020",
+      "printed_number": "043",
+      "normalized_printed_name": "electivire",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::045::zebstrika",
+      "ba_set_code": "ba-2020",
+      "printed_number": "045",
+      "normalized_printed_name": "zebstrika",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::046::chansey",
+      "ba_set_code": "ba-2020",
+      "printed_number": "046",
+      "normalized_printed_name": "chansey",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::049::eevee",
+      "ba_set_code": "ba-2020",
+      "printed_number": "049",
+      "normalized_printed_name": "eevee",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::055::kangaskhan",
+      "ba_set_code": "ba-2020",
+      "printed_number": "055",
+      "normalized_printed_name": "kangaskhan",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::081::blitzle",
+      "ba_set_code": "ba-2020",
+      "printed_number": "081",
+      "normalized_printed_name": "blitzle",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::119::cynthia",
+      "ba_set_code": "ba-2020",
+      "printed_number": "119",
+      "normalized_printed_name": "cynthia",
+      "row_count": 7,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 7,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::119::great ball",
+      "ba_set_code": "ba-2020",
+      "printed_number": "119",
+      "normalized_printed_name": "great ball",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::120::hau",
+      "ba_set_code": "ba-2020",
+      "printed_number": "120",
+      "normalized_printed_name": "hau",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::127::potion",
+      "ba_set_code": "ba-2020",
+      "printed_number": "127",
+      "normalized_printed_name": "potion",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::132::switch",
+      "ba_set_code": "ba-2020",
+      "printed_number": "132",
+      "normalized_printed_name": "switch",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::164::tauros",
+      "ba_set_code": "ba-2020",
+      "printed_number": "164",
+      "normalized_printed_name": "tauros",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2020::189::bug catcher",
+      "ba_set_code": "ba-2020",
+      "printed_number": "189",
+      "normalized_printed_name": "bug catcher",
+      "row_count": 7,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 7,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::007::victini",
+      "ba_set_code": "ba-2022",
+      "printed_number": "007",
+      "normalized_printed_name": "victini",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::023::larvesta",
+      "ba_set_code": "ba-2022",
+      "printed_number": "023",
+      "normalized_printed_name": "larvesta",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::024::volcarona",
+      "ba_set_code": "ba-2022",
+      "printed_number": "024",
+      "normalized_printed_name": "volcarona",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::029::vulpix",
+      "ba_set_code": "ba-2022",
+      "printed_number": "029",
+      "normalized_printed_name": "vulpix",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::030::ninetales",
+      "ba_set_code": "ba-2022",
+      "printed_number": "030",
+      "normalized_printed_name": "ninetales",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::046::sizzlipede",
+      "ba_set_code": "ba-2022",
+      "printed_number": "046",
+      "normalized_printed_name": "sizzlipede",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::049::centiskorch",
+      "ba_set_code": "ba-2022",
+      "printed_number": "049",
+      "normalized_printed_name": "centiskorch",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::053::blitzle",
+      "ba_set_code": "ba-2022",
+      "printed_number": "053",
+      "normalized_printed_name": "blitzle",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::054::zebstrika",
+      "ba_set_code": "ba-2022",
+      "printed_number": "054",
+      "normalized_printed_name": "zebstrika",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::074::yamper",
+      "ba_set_code": "ba-2022",
+      "printed_number": "074",
+      "normalized_printed_name": "yamper",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::091::shinx",
+      "ba_set_code": "ba-2022",
+      "printed_number": "091",
+      "normalized_printed_name": "shinx",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::092::luxio",
+      "ba_set_code": "ba-2022",
+      "printed_number": "092",
+      "normalized_printed_name": "luxio",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::093::luxray",
+      "ba_set_code": "ba-2022",
+      "printed_number": "093",
+      "normalized_printed_name": "luxray",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::160::energy retrieval",
+      "ba_set_code": "ba-2022",
+      "printed_number": "160",
+      "normalized_printed_name": "energy retrieval",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::164::great ball",
+      "ba_set_code": "ba-2022",
+      "printed_number": "164",
+      "normalized_printed_name": "great ball",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::165::hop",
+      "ba_set_code": "ba-2022",
+      "printed_number": "165",
+      "normalized_printed_name": "hop",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::167::sonia",
+      "ba_set_code": "ba-2022",
+      "printed_number": "167",
+      "normalized_printed_name": "sonia",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::177::potion",
+      "ba_set_code": "ba-2022",
+      "printed_number": "177",
+      "normalized_printed_name": "potion",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::183::switch",
+      "ba_set_code": "ba-2022",
+      "printed_number": "183",
+      "normalized_printed_name": "switch",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::226::bug catcher",
+      "ba_set_code": "ba-2022",
+      "printed_number": "226",
+      "normalized_printed_name": "bug catcher",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw",
+        "number_raw",
+        "parsed_printed_total"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 2,
+        "parsed_printed_total": 2,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2022::240::shauna",
+      "ba_set_code": "ba-2022",
+      "printed_number": "240",
+      "normalized_printed_name": "shauna",
+      "row_count": 7,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 7,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::002::basic fire energy",
+      "ba_set_code": "ba-2024",
+      "printed_number": "002",
+      "normalized_printed_name": "basic fire energy",
+      "row_count": 18,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 18,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::004::basic lightning energy",
+      "ba_set_code": "ba-2024",
+      "printed_number": "004",
+      "normalized_printed_name": "basic lightning energy",
+      "row_count": 18,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 18,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::023::fuecoco",
+      "ba_set_code": "ba-2024",
+      "printed_number": "023",
+      "normalized_printed_name": "fuecoco",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::033::houndour",
+      "ba_set_code": "ba-2024",
+      "printed_number": "033",
+      "normalized_printed_name": "houndour",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::034::houndoom",
+      "ba_set_code": "ba-2024",
+      "printed_number": "034",
+      "normalized_printed_name": "houndoom",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::035::torkoal",
+      "ba_set_code": "ba-2024",
+      "printed_number": "035",
+      "normalized_printed_name": "torkoal",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::036::crocalor",
+      "ba_set_code": "ba-2024",
+      "printed_number": "036",
+      "normalized_printed_name": "crocalor",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::039::charcadet",
+      "ba_set_code": "ba-2024",
+      "printed_number": "039",
+      "normalized_printed_name": "charcadet",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::040::larvesta",
+      "ba_set_code": "ba-2024",
+      "printed_number": "040",
+      "normalized_printed_name": "larvesta",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::066::voltorb",
+      "ba_set_code": "ba-2024",
+      "printed_number": "066",
+      "normalized_printed_name": "voltorb",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::067::electrode",
+      "ba_set_code": "ba-2024",
+      "printed_number": "067",
+      "normalized_printed_name": "electrode",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::077::wattrel",
+      "ba_set_code": "ba-2024",
+      "printed_number": "077",
+      "normalized_printed_name": "wattrel",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::107::mareep",
+      "ba_set_code": "ba-2024",
+      "printed_number": "107",
+      "normalized_printed_name": "mareep",
+      "row_count": 4,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 4,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::108::flaaffy",
+      "ba_set_code": "ba-2024",
+      "printed_number": "108",
+      "normalized_printed_name": "flaaffy",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::109::ampharos",
+      "ba_set_code": "ba-2024",
+      "printed_number": "109",
+      "normalized_printed_name": "ampharos",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::114::picnicker",
+      "ba_set_code": "ba-2024",
+      "printed_number": "114",
+      "normalized_printed_name": "picnicker",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::175::jacq",
+      "ba_set_code": "ba-2024",
+      "printed_number": "175",
+      "normalized_printed_name": "jacq",
+      "row_count": 2,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 2,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::180::nemona",
+      "ba_set_code": "ba-2024",
+      "printed_number": "180",
+      "normalized_printed_name": "nemona",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::181::nest ball",
+      "ba_set_code": "ba-2024",
+      "printed_number": "181",
+      "normalized_printed_name": "nest ball",
+      "row_count": 3,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 3,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::183::great ball",
+      "ba_set_code": "ba-2024",
+      "printed_number": "183",
+      "normalized_printed_name": "great ball",
+      "row_count": 9,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 9,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::188::potion",
+      "ba_set_code": "ba-2024",
+      "printed_number": "188",
+      "normalized_printed_name": "potion",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw",
+        "number_raw",
+        "parsed_printed_total"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 2,
+        "parsed_printed_total": 2,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::194::switch",
+      "ba_set_code": "ba-2024",
+      "printed_number": "194",
+      "normalized_printed_name": "switch",
+      "row_count": 5,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 5,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::198::youngster",
+      "ba_set_code": "ba-2024",
+      "printed_number": "198",
+      "normalized_printed_name": "youngster",
+      "row_count": 7,
+      "differing_fields": [
+        "source_name_raw"
+      ],
+      "field_value_counts": {
+        "normalized_printed_name": 1,
+        "raw_printed_name": 1,
+        "source_name_raw": 7,
+        "printed_number": 1,
+        "number_raw": 1,
+        "parsed_printed_total": 1,
+        "ba_set_code": 1
+      }
+    }
+  ]
+}

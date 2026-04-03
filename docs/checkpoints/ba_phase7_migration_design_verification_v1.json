@@ -1,0 +1,164 @@
+{
+  "generated_at": "2026-04-02T15:35:46.171Z",
+  "phase": "BA_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1",
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "V1_ALL_REQUIRED_ARTIFACTS_EXIST",
+      "passed": true,
+      "detail": [
+        {
+          "key": "baseline",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_migration_design_baseline_v1.json",
+          "exists": true
+        },
+        {
+          "key": "tableDesign",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_card_print_identity_table_design_v1.md",
+          "exists": true
+        },
+        {
+          "key": "indexDesign",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_card_print_identity_index_design_v1.md",
+          "exists": true
+        },
+        {
+          "key": "domainMatrix",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_identity_domain_field_matrix_v1.md",
+          "exists": true
+        },
+        {
+          "key": "hashDesign",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_identity_key_hash_design_v1.md",
+          "exists": true
+        },
+        {
+          "key": "gvIdDesign",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_gvid_derivation_design_v1.md",
+          "exists": true
+        },
+        {
+          "key": "mappingsContinuity",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_external_mappings_continuity_v1.md",
+          "exists": true
+        },
+        {
+          "key": "backfillPlan",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_identity_backfill_plan_v1.md",
+          "exists": true
+        },
+        {
+          "key": "noDrift",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_no_drift_checks_v1.md",
+          "exists": true
+        },
+        {
+          "key": "baAlignment",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase7_ba_storage_alignment_target_v1.json",
+          "exists": true
+        },
+        {
+          "key": "checkpoint",
+          "path": "C:\\grookai_vault\\docs\\checkpoints\\BATTLE_ACADEMY_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1.md",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "name": "V2_TARGET_TABLE_SHAPE_IS_EXACT",
+      "passed": true,
+      "detail": {
+        "required_columns_locked": true
+      }
+    },
+    {
+      "name": "V3_CONSTRAINT_DESIGN_IS_EXPLICIT",
+      "passed": true,
+      "detail": {
+        "required_constraints": [
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6"
+        ]
+      }
+    },
+    {
+      "name": "V4_INDEX_DESIGN_IS_EXPLICIT_AND_QUERY_LINKED",
+      "passed": true,
+      "detail": {
+        "required_index_surface": true
+      }
+    },
+    {
+      "name": "V5_EACH_APPROVED_DOMAIN_HAS_FIELD_MATRIX",
+      "passed": true,
+      "detail": {
+        "approved_domain_versions": {
+          "pokemon_eng_standard": "pokemon_eng_standard:v1",
+          "pokemon_ba": "pokemon_ba:v1",
+          "pokemon_eng_special_print": "pokemon_eng_special_print:v1",
+          "pokemon_jpn": "pokemon_jpn:v1"
+        }
+      }
+    },
+    {
+      "name": "V6_IDENTITY_KEY_HASH_DESIGN_IS_DETERMINISTIC_AND_VERSIONED",
+      "passed": true,
+      "detail": {
+        "hash_function": "sha256"
+      }
+    },
+    {
+      "name": "V7_GV_ID_DERIVATION_PATH_IS_EXPLICIT",
+      "passed": true,
+      "detail": {
+        "gv_id_anchor": "card_prints"
+      }
+    },
+    {
+      "name": "V8_EXTERNAL_MAPPINGS_CONTINUITY_IS_EXPLICIT",
+      "passed": true,
+      "detail": {
+        "mapping_anchor": "card_prints"
+      }
+    },
+    {
+      "name": "V9_BACKFILL_PHASES_ARE_EXPLICIT_AND_ORDERED",
+      "passed": true,
+      "detail": {
+        "ordered_phases": [
+          "7A",
+          "7B",
+          "7C",
+          "7D",
+          "7E"
+        ]
+      }
+    },
+    {
+      "name": "V10_NO_DRIFT_CHECKS_EXIST_AND_INCLUDE_REPLAYABILITY",
+      "passed": true,
+      "detail": {
+        "replayability_required": true
+      }
+    },
+    {
+      "name": "V11_BA_STORAGE_ALIGNMENT_TARGET_IS_EXPLICIT",
+      "passed": true,
+      "detail": {
+        "candidate_count": 328,
+        "unblock_statement_present": true
+      }
+    },
+    {
+      "name": "V12_NO_SCHEMA_WRITE_MIGRATION_OR_PROMOTION_OCCURRED",
+      "passed": true,
+      "detail": {
+        "phase_boundary_locked": true
+      }
+    }
+  ]
+}

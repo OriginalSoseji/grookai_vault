@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-04-02T16:47:30.422Z",
+  "phase": "BA_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1",
+  "continuity_checks": {
+    "external_mappings_fk_definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+    "external_mappings_still_anchor_to_card_prints": true,
+    "card_print_identity_is_not_a_mapping_anchor": true
+  }
+}

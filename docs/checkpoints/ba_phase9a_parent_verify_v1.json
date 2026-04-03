@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-04-03T04:10:35.655Z",
+  "phase": "BA_PHASE9A_PARENT_UNIQUENESS_REALIGNMENT_V1",
+  "checks": {
+    "V1_LEGACY_PARENT_UNIQUENESS_CONSTRAINT_REMOVED": {
+      "passed": true,
+      "detail": {
+        "remaining_constraint_names": [
+          "card_prints_game_id_fkey",
+          "card_prints_image_source_check",
+          "card_prints_image_status_check",
+          "card_prints_pkey",
+          "card_prints_set_id_fkey"
+        ],
+        "remaining_unique_index_names": [
+          "card_prints_gv_id_uq",
+          "card_prints_pkey",
+          "card_prints_print_identity_key_uq"
+        ]
+      }
+    },
+    "V2_CARD_PRINTS_ALLOWS_DUPLICATE_SET_CODE_NUMBER_PLAIN": {
+      "passed": true,
+      "detail": {
+        "row_one": {
+          "id": "d9ad289f-c7dc-4865-8eb1-b02166821555",
+          "set_code": "ba-2020",
+          "number": "999",
+          "number_plain": "999",
+          "variant_key": "",
+          "gv_id": "GV-PK-BA-PARENT-VERIFY-A"
+        },
+        "row_two": {
+          "id": "ab35fa7e-66ab-431b-9f6c-816772a8abd5",
+          "set_code": "ba-2020",
+          "number": "999",
+          "number_plain": "999",
+          "variant_key": "",
+          "gv_id": "GV-PK-BA-PARENT-VERIFY-B"
+        }
+      }
+    },
+    "V3_CARD_PRINT_IDENTITY_UNIQUENESS_REMAINS_ENFORCED": {
+      "passed": true,
+      "detail": {
+        "parent_constraint_failure": {
+          "code": "23505",
+          "constraint": "uq_card_print_identity_active_card_print_id",
+          "message": "duplicate key value violates unique constraint \"uq_card_print_identity_active_card_print_id\""
+        },
+        "hash_constraint_failure": {
+          "code": "23505",
+          "constraint": "uq_card_print_identity_active_domain_hash",
+          "message": "duplicate key value violates unique constraint \"uq_card_print_identity_active_domain_hash\""
+        }
+      }
+    },
+    "V4_NO_SCHEMA_DRIFT_OUTSIDE_INTENDED_CHANGE": {
+      "passed": true,
+      "detail": {
+        "legacy_constraint_present": false,
+        "parent_identity_leak_definitions": [],
+        "missing_required_card_print_indexes_or_constraints": [],
+        "missing_required_identity_indexes": []
+      }
+    }
+  },
+  "all_passed": true
+}

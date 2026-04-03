@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-04-03T04:31:05.517Z",
+  "phase": "BA_PHASE9B_GAME_FK_ALIGNMENT_V1",
+  "schema_fact": {
+    "sets_columns": [
+      "id",
+      "game",
+      "code",
+      "name",
+      "release_date",
+      "source",
+      "logo_url",
+      "symbol_url",
+      "created_at",
+      "updated_at",
+      "last_synced_at"
+    ],
+    "sets_has_game_id": false,
+    "sets_uses_game_text": true
+  },
+  "rows": [
+    {
+      "set_id": "97d0c882-869e-47ff-bdb4-9f228dd6ea18",
+      "set_code": "ba-2020",
+      "sets_game": "pokemon",
+      "set_name": "Battle Academy 2020",
+      "pre_fix_alignment_status": "UNRESOLVED_POKEMON_GAME_FK"
+    },
+    {
+      "set_id": "ad37968f-4742-4e62-ac6d-13efd37d3689",
+      "set_code": "ba-2022",
+      "sets_game": "pokemon",
+      "set_name": "Battle Academy 2022",
+      "pre_fix_alignment_status": "UNRESOLVED_POKEMON_GAME_FK"
+    },
+    {
+      "set_id": "d7fefca0-d9e2-477d-a59a-593dde6db063",
+      "set_code": "ba-2024",
+      "sets_game": "pokemon",
+      "set_name": "Battle Academy 2024",
+      "pre_fix_alignment_status": "UNRESOLVED_POKEMON_GAME_FK"
+    }
+  ],
+  "expected_pokemon_game_match_count": 1,
+  "actual_pokemon_game_match_count": 0,
+  "post_fix_alignment": {
+    "generated_at": "2026-04-03T04:32:03.182Z",
+    "rows": [
+      {
+        "set_id": "0a62d63f-7e01-424c-a69d-f54f774b67db",
+        "set_code": "ba-2020",
+        "sets_game": "pokemon",
+        "set_name": "Battle Academy 2020",
+        "resolved_game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "resolved_game_code": "pokemon",
+        "resolved_game_name": "Pokemon",
+        "resolved_game_slug": "pokemon",
+        "alignment_status": "ALIGNED_TO_POKEMON_GAME"
+      },
+      {
+        "set_id": "561572b4-0efb-48a4-8afa-4c32b03c5242",
+        "set_code": "ba-2022",
+        "sets_game": "pokemon",
+        "set_name": "Battle Academy 2022",
+        "resolved_game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "resolved_game_code": "pokemon",
+        "resolved_game_name": "Pokemon",
+        "resolved_game_slug": "pokemon",
+        "alignment_status": "ALIGNED_TO_POKEMON_GAME"
+      },
+      {
+        "set_id": "5a570c4b-0600-449f-a36a-17d1ac10ccbe",
+        "set_code": "ba-2024",
+        "sets_game": "pokemon",
+        "set_name": "Battle Academy 2024",
+        "resolved_game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "resolved_game_code": "pokemon",
+        "resolved_game_name": "Pokemon",
+        "resolved_game_slug": "pokemon",
+        "alignment_status": "ALIGNED_TO_POKEMON_GAME"
+      }
+    ],
+    "pokemon_row_count": 1,
+    "all_ba_sets_aligned": true
+  }
+}

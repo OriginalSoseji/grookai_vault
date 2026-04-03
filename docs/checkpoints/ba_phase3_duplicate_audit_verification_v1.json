@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-04-02T05:38:56.326Z",
+  "phase": "BA_PHASE3_DUPLICATE_AUDIT_AND_PROMOTION_GATE_V1",
+  "verified_artifacts": {
+    "duplicate_audit_input": "ba_phase3_duplicate_audit_input.json",
+    "duplicate_classification": "ba_phase3_duplicate_classification_v1.json",
+    "named_conflict_findings": "ba_phase3_named_conflict_duplicate_findings_v1.json",
+    "promotion_gate_partition": "ba_phase3_promotion_gate_partition_v1.json"
+  },
+  "checks": [
+    {
+      "name": "V1_EVERY_PHASE2_DUPLICATE_GROUP_CLASSIFIED_ONCE",
+      "passed": true,
+      "detail": {
+        "expected_duplicate_group_count": 63,
+        "actual_duplicate_group_count": 63
+      }
+    },
+    {
+      "name": "V2_EVERY_WORKING_KEY_PARTITIONED_ONCE",
+      "passed": true,
+      "detail": {
+        "expected_working_key_count": 115,
+        "actual_working_key_count": 115
+      }
+    },
+    {
+      "name": "V3_NO_KEY_IN_MULTIPLE_GATE_BUCKETS",
+      "passed": true,
+      "detail": {
+        "multi_bucket_key_count": 0
+      }
+    },
+    {
+      "name": "V4_NO_HEURISTIC_LOGIC_EXISTS",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "fuzzymatch(",
+          "fuzzy_match(",
+          "similarity(",
+          "levenshtein(",
+          "jarowinkler(",
+          "cosinesimilarity(",
+          "expandsynonyms("
+        ]
+      }
+    },
+    {
+      "name": "V5_NO_SILENT_CONTRACT_AMENDMENT_IMPLIED",
+      "passed": true,
+      "detail": {
+        "promotion_eligible_count": 0,
+        "blocked_contract_count": 52
+      }
+    },
+    {
+      "name": "V6_NO_CANON_ROWS_INSERTED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete(",
+          "card_prints",
+          "external_mappings"
+        ]
+      }
+    },
+    {
+      "name": "V7_NO_MAPPINGS_WRITTEN",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete(",
+          "external_mappings"
+        ]
+      }
+    },
+    {
+      "name": "V8_NO_GV_ID_VALUES_GENERATED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "gv_id"
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

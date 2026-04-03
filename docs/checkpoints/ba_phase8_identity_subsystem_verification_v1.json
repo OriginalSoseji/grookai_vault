@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-04-02T16:47:30.425Z",
+  "phase": "BA_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1",
+  "all_passed": false,
+  "checks": [
+    {
+      "name": "V1_LOCAL_RESET_SURFACE_IS_REACHABLE_AFTER_REPLAY",
+      "passed": true,
+      "detail": {
+        "local_db_connected": true,
+        "verifier_assumes_caller_ran": "supabase db reset --local"
+      }
+    },
+    {
+      "name": "V2_CARD_PRINT_IDENTITY_EXISTS_WITH_EXACT_APPROVED_COLUMNS",
+      "passed": true,
+      "detail": {
+        "required_columns": [
+          "id",
+          "card_print_id",
+          "identity_domain",
+          "set_code_identity",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw",
+          "identity_payload",
+          "identity_key_version",
+          "identity_key_hash",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ]
+      }
+    },
+    {
+      "name": "V3_REQUIRED_INDEXES_AND_CONSTRAINTS_MATCH_ROLLOUT_INTENT",
+      "passed": true,
+      "detail": {
+        "required_indexes": [
+          "uq_card_print_identity_active_card_print_id",
+          "idx_card_print_identity_card_print_id",
+          "idx_card_print_identity_identity_domain",
+          "uq_card_print_identity_active_domain_hash",
+          "idx_card_print_identity_domain_set_code_number",
+          "idx_card_print_identity_domain_normalized_name_not_null"
+        ],
+        "required_constraints": [
+          "card_print_identity_pkey",
+          "card_print_identity_card_print_id_fkey",
+          "card_print_identity_identity_domain_check",
+          "card_print_identity_identity_payload_object_check",
+          "card_print_identity_domain_version_check",
+          "card_print_identity_active_required_fields_check"
+        ]
+      }
+    },
+    {
+      "name": "V4_EXISTING_CANON_BACKFILL_CREATED_ONE_ACTIVE_IDENTITY_ROW_PER_BACKFILLED_CARD_PRINT",
+      "passed": true,
+      "detail": {
+        "total_card_print_rows": 0,
+        "total_identity_rows": 0,
+        "active_identity_rows": 0,
+        "missing_active_identity_rows": 0,
+        "duplicate_active_parent_rows": 0
+      }
+    },
+    {
+      "name": "V5_ACTIVE_IDENTITY_UNIQUENESS_HOLDS",
+      "passed": true,
+      "detail": {
+        "duplicate_active_parent_rows": 0,
+        "duplicate_active_hash_groups": 0
+      }
+    },
+    {
+      "name": "V6_GV_ID_STILL_LIVES_ON_CARD_PRINTS",
+      "passed": true,
+      "detail": {
+        "card_prints_has_gv_id": true,
+        "card_print_identity_has_gv_id": false
+      }
+    },
+    {
+      "name": "V7_EXTERNAL_MAPPINGS_STILL_POINT_TO_CARD_PRINTS",
+      "passed": true,
+      "detail": {
+        "fk_definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      }
+    },
+    {
+      "name": "V8_VARIANT_KEY_WAS_NOT_REPURPOSED_AS_IDENTITY_SHORTCUT",
+      "passed": true,
+      "detail": {
+        "card_print_identity_has_variant_key_column": false,
+        "card_print_identity_indexes_reference_variant_key": false
+      }
+    },
+    {
+      "name": "V9_BA_STORAGE_REPRESENTATION_IS_NOW_POSSIBLE_IN_SUBSYSTEM_SHAPE",
+      "passed": true,
+      "detail": {
+        "ba_sets_registered_locally": [
+          "ba-2020",
+          "ba-2022",
+          "ba-2024"
+        ],
+        "local_ba_card_print_rows": 0,
+        "promotion_candidate_count": 328
+      }
+    },
+    {
+      "name": "V10_NO_BA_CANON_ROWS_WERE_PROMOTED_IN_THIS_PHASE",
+      "passed": true,
+      "detail": {
+        "ba_card_print_rows": 0
+      }
+    },
+    {
+      "name": "V11_NO_HEURISTIC_IDENTITY_LOGIC_EXISTS_IN_FUNCTIONS_OR_BACKFILL",
+      "passed": true,
+      "detail": {
+        "forbidden_tokens_absent": true
+      }
+    }
+  ],
+  "runtime_blockers": [
+    {
+      "type": "CURRENT_CANON_DOMAIN_BLOCKER",
+      "message": "Existing remote canon contains rows outside the approved Phase 7 identity domains and cannot be backfilled deterministically under BA_PHASE8.",
+      "detail": [
+        {
+          "block_reason": "UNSUPPORTED_SET_SOURCE_DOMAIN:tcg_pocket",
+          "row_count": 2947
+        }
+      ]
+    }
+  ]
+}

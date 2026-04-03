@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-04-03T04:36:52.757Z",
+  "phase": "BA_PHASE9_BA_CANON_PROMOTION_V3",
+  "identity_law": {
+    "identity_domain": "pokemon_ba",
+    "identity_key_version": "pokemon_ba:v1",
+    "identity_key_fields": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ]
+  },
+  "execution": {
+    "total_candidates": 328,
+    "inserted_card_prints": 328,
+    "inserted_identity_rows": 328,
+    "skipped_existing_on_second_apply": 328
+  },
+  "verification_results": {
+    "V1_card_prints_ba_count_328": {
+      "passed": true,
+      "detail": 328
+    },
+    "V2_identity_rows_328": {
+      "passed": true,
+      "detail": 328
+    },
+    "V3_identity_uniqueness_holds": {
+      "passed": true,
+      "detail": {
+        "total_rows": 328,
+        "distinct_identity_key_hashes": 328
+      }
+    },
+    "V4_one_active_identity_per_parent": {
+      "passed": true,
+      "detail": 0
+    },
+    "V5_gv_id_uniqueness_holds": {
+      "passed": true,
+      "detail": {
+        "total_rows": 328,
+        "distinct_gv_ids": 328
+      }
+    },
+    "V6_tcg_pocket_identity_domain_zero": {
+      "passed": true,
+      "detail": 0
+    },
+    "V7_external_mappings_unchanged": {
+      "passed": true,
+      "detail": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+    },
+    "V8_idempotency_passes": {
+      "passed": true,
+      "detail": {
+        "second_apply_insert_card_prints": 0,
+        "second_apply_insert_identity_rows": 0,
+        "second_apply_skipped_existing": 328
+      }
+    },
+    "V9_no_cross_domain_leakage": {
+      "passed": true,
+      "detail": 0
+    }
+  },
+  "fk_and_domain_validation": {
+    "pokemon_game_row_count": 1,
+    "pokemon_game_rows": [
+      {
+        "id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "code": "pokemon",
+        "name": "Pokemon",
+        "slug": "pokemon"
+      }
+    ],
+    "ba_sets_resolve_to_pokemon_game": true,
+    "ba_set_resolution": [
+      {
+        "code": "ba-2020",
+        "game": "pokemon",
+        "game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "game_code": "pokemon"
+      },
+      {
+        "code": "ba-2022",
+        "game": "pokemon",
+        "game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "game_code": "pokemon"
+      },
+      {
+        "code": "ba-2024",
+        "game": "pokemon",
+        "game_id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "game_code": "pokemon"
+      }
+    ],
+    "tcg_pocket_excluded": true,
+    "blocked_unknown_domains": 0
+  },
+  "idempotency_confirmation": {
+    "passed": true,
+    "message": "Second apply produced 0 inserts and 328 skips."
+  },
+  "domain_isolation_confirmation": {
+    "passed": true,
+    "message": "BA rows exist only under pokemon_ba and tcg_pocket remains excluded from identity rows."
+  }
+}

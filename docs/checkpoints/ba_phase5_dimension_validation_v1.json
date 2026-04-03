@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-04-02T12:48:14.098Z",
+  "phase": "BA_PHASE5_CONTRACT_AMENDMENT_V1",
+  "dimension": "source_name_raw",
+  "validation_status": "VALID_DIMENSION",
+  "evidence_summary": {
+    "duplicate_group_count": 63,
+    "source_name_raw_diff_count": 63,
+    "raw_printed_name_diff_count": 0,
+    "number_raw_diff_count": 2,
+    "parsed_printed_total_diff_count": 2,
+    "source_name_raw_presence_row_count": 276,
+    "source_name_raw_missing_row_count": 0,
+    "unstable_row_count": 0
+  },
+  "legitimacy_findings": {
+    "originates_from_raw_ingestion_payload": true,
+    "card_facing_identity_label_captured_from_source_data": true,
+    "consistently_present": true,
+    "differentiates_conflicting_rows": true,
+    "stable_per_row": true,
+    "not_computed_or_normalized_beyond_raw_extraction": true
+  },
+  "blocking_rows": {
+    "missing_source_name_rows": [],
+    "unstable_rows": []
+  }
+}

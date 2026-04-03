@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-04-02T16:47:30.422Z",
+  "phase": "BA_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1",
+  "local_replay_backfill_state": {
+    "total_card_print_rows_inspected": 0,
+    "total_identity_rows_inserted": 0,
+    "active_identity_rows": 0,
+    "counts_by_identity_domain": [],
+    "blocked_unclassified_rows": 0,
+    "duplicate_active_parent_rows": 0,
+    "duplicate_active_hash_groups": 0
+  },
+  "current_canon_read_only_audit": {
+    "available": true,
+    "total_card_print_rows": 33998,
+    "ready_backfill_rows": 31051,
+    "blocked_unclassified_rows": 2947,
+    "blocked_reasons": [
+      {
+        "block_reason": "UNSUPPORTED_SET_SOURCE_DOMAIN:tcg_pocket",
+        "row_count": 2947
+      }
+    ],
+    "set_domain_surface": [
+      {
+        "set_domain": "<null>",
+        "row_count": 31051
+      },
+      {
+        "set_domain": "tcg_pocket",
+        "row_count": 2947
+      }
+    ]
+  }
+}

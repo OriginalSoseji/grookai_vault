@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1",
+  "authoritative_sources": [
+    "docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md",
+    "docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md",
+    "docs/CONTRACT_INDEX.md",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1.md",
+    "docs/checkpoints/ba_phase7_card_print_identity_table_design_v1.md",
+    "docs/checkpoints/ba_phase7_card_print_identity_index_design_v1.md",
+    "docs/checkpoints/ba_phase7_identity_domain_field_matrix_v1.md",
+    "docs/checkpoints/ba_phase7_identity_key_hash_design_v1.md",
+    "docs/checkpoints/ba_phase7_gvid_derivation_design_v1.md",
+    "docs/checkpoints/ba_phase7_external_mappings_continuity_v1.md",
+    "docs/checkpoints/ba_phase7_identity_backfill_plan_v1.md",
+    "docs/checkpoints/ba_phase7_no_drift_checks_v1.md",
+    "docs/checkpoints/ba_phase7_ba_storage_alignment_target_v1.json",
+    "docs/checkpoints/ba_phase7_migration_design_verification_v1.json"
+  ],
+  "baseline_facts": {
+    "ba_promotion_candidates": 328,
+    "ba_identity_law": {
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "source_name_raw"
+      ],
+      "key_string": "(ba_set_code, printed_number, normalized_printed_name, source_name_raw)"
+    },
+    "live_storage_gap_before_phase8": {
+      "card_prints_missing_columns": [
+        "normalized_printed_name",
+        "source_name_raw"
+      ],
+      "card_prints_uniqueness_constraint": "uq_card_prints_identity = (game_id, set_id, number_plain, variant_key)",
+      "gv_id_storage_anchor": "card_prints",
+      "external_mappings_anchor": "card_prints"
+    },
+    "option_b_selection_basis": {
+      "selected_direction": "identity becomes its own governed subsystem",
+      "reason": "Identity growth extends beyond BA into stamped, staff, prerelease, and future JPN expansion without widening card_prints ad hoc."
+    },
+    "pre_phase_replayability_proof": {
+      "command": "supabase db reset --local",
+      "status": "PREVIOUSLY_PROVEN_SUCCESS"
+    },
+    "current_canon_read_only_domain_surface": {
+      "approved_phase7_identity_domains": [
+        "pokemon_eng_standard",
+        "pokemon_ba",
+        "pokemon_eng_special_print",
+        "pokemon_jpn"
+      ],
+      "live_card_print_count": 33998,
+      "ready_under_phase8_existing_canon_backfill": 31051,
+      "blocked_unclassified_rows": 2947,
+      "blocked_reason_summary": [
+        {
+          "block_reason": "UNSUPPORTED_SET_SOURCE_DOMAIN:tcg_pocket",
+          "row_count": 2947
+        }
+      ]
+    }
+  },
+  "stop_rule_status": "BASELINE_LOCKED"
+}

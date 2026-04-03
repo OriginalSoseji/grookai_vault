@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-04-02T17:05:51.211Z",
+  "phase": "BA_PHASE8A_NONCANON_DOMAIN_EXCLUSION_V1",
+  "total_tcg_pocket_rows": 2947,
+  "distinct_sets_affected": 10,
+  "affected_set_codes": [
+    {
+      "code": "A4",
+      "row_count": 482
+    },
+    {
+      "code": "A3",
+      "row_count": 453
+    },
+    {
+      "code": "A2",
+      "row_count": 393
+    },
+    {
+      "code": "B1",
+      "row_count": 331
+    },
+    {
+      "code": "A1",
+      "row_count": 287
+    },
+    {
+      "code": "A2b",
+      "row_count": 222
+    },
+    {
+      "code": "A3b",
+      "row_count": 214
+    },
+    {
+      "code": "A4a",
+      "row_count": 210
+    },
+    {
+      "code": "A2a",
+      "row_count": 192
+    },
+    {
+      "code": "A1a",
+      "row_count": 163
+    }
+  ],
+  "gv_id_public_facing_dependencies_detected": false,
+  "gv_id_dependency_detail": {
+    "rows_with_non_null_gv_id": 0,
+    "basis": "Read-only runtime audit of remote card_prints joined to sets where set.source.domain = tcg_pocket."
+  },
+  "cleanup_deferred": true,
+  "statement": "tcg_pocket remains outside CanonDB and is excluded from identity rollout"
+}

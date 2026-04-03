@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE8A_NONCANON_DOMAIN_EXCLUSION_V1",
+  "authoritative_sources": [
+    "docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md",
+    "docs/CONTRACT_INDEX.md",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1.md",
+    "docs/checkpoints/ba_phase8_identity_subsystem_verification_v1.json",
+    "docs/checkpoints/ba_phase8_existing_canon_backfill_summary_v1.json",
+    "docs/checkpoints/ba_phase8_execution_baseline_v1.json"
+  ],
+  "baseline_facts": {
+    "phase8_local_replay_passed": true,
+    "live_current_canon_tcg_pocket_rows": 2947,
+    "approved_canonical_identity_domains": [
+      "pokemon_eng_standard",
+      "pokemon_ba",
+      "pokemon_eng_special_print",
+      "pokemon_jpn"
+    ],
+    "tcg_pocket_contract_classification": "NON_CANON_DOMAIN",
+    "tcg_pocket_scope": "outside CanonDB",
+    "phase8a_founder_decision": {
+      "tcg_pocket_does_not_belong_in_canondb": true,
+      "tcg_pocket_must_not_block_identity_rollout": true,
+      "unsupported_noncanonical_domains_must_be_excluded_explicitly": true
+    }
+  },
+  "stop_rule_status": "BASELINE_LOCKED"
+}

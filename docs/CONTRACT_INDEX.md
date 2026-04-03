@@ -17,6 +17,7 @@ If a contract is missing from this index, it is not authoritative.
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
+| CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1 | Frozen | docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md — Active identity-subsystem authority for the final BA rollout: `card_prints` remains the stable canonical object and `gv_id` holder, while `card_print_identity` owns printed-identity uniqueness, domain-governed dimensions, and explicit exclusion/reporting of non-canonical domains such as `tcg_pocket` |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
 | PRODUCTION_READINESS_GATE_V1 | Active | docs/release/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
 | DOCUMENTATION_SYSTEM_V1 | Active | docs/contracts/DOCUMENTATION_SYSTEM_V1.md — Official documentation buckets, naming, and governance rules |
@@ -33,7 +34,7 @@ If a contract is missing from this index, it is not authoritative.
 | INGESTION_PIPELINE_CONTRACT_V1 | Active | Contract-first staged ingestion via raw_imports |
 | EXTERNAL_SOURCE_INGESTION_MODEL_V1 | Active | Shared raw-first canon-bound ingestion model for external catalog and discovery rows before comparison, canon gate, and staged promotion |
 | EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1 | Active | Non-canon staging boundary for external discovery candidates before review and any later canon decision |
-| BATTLE_ACADEMY_CANON_CONTRACT_V1 | Frozen | docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md — Amended in place by prod conflict audit; Battle Academy is a curated-product overlay domain and `(ba-YYYY, printed number)` is routing only, not full identity |
+| BATTLE_ACADEMY_CANON_CONTRACT_V1 | Frozen | docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md — Active BA identity-law authority used by the final rollout; Battle Academy is a curated-product overlay domain whose lawful identity is `(ba_set_code, printed_number, normalized_printed_name, source_name_raw)` and whose promotion gate is strict and fail-closed |
 | TCGDEX_SOURCE_CONTRACT_V1 | Active | Deterministic tcgdex ingestion and mapping rules |
 | POKEMONAPI_SOURCE_CONTRACT_V1 | Active | PokémonAPI ingestion and normalization rules |
 | TCGDEX_MAPPING_WORKER_V2_CONTRACT | Frozen | 100% certainty tcgdex → canonical mapping |

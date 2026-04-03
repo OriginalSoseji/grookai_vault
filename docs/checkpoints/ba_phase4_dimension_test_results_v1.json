@@ -1,0 +1,575 @@
+{
+  "generated_at": "2026-04-02T12:33:28.595Z",
+  "phase": "BA_PHASE4_IDENTITY_DIMENSION_EXPANSION_V1",
+  "source_row_count": 328,
+  "key_definitions": {
+    "K1": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name"
+    ],
+    "K2": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw"
+    ],
+    "K3": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "parsed_printed_total"
+    ],
+    "K4": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ],
+    "K5": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "raw_printed_name"
+    ],
+    "K6": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "parsed_printed_total"
+    ],
+    "K7": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "source_name_raw"
+    ],
+    "K8": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "parsed_printed_total",
+      "source_name_raw"
+    ],
+    "K9": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "number_raw",
+      "parsed_printed_total",
+      "source_name_raw"
+    ]
+  },
+  "results": [
+    {
+      "key_name": "K1",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name"
+      ],
+      "distinct_keys": 115,
+      "groups_single": 52,
+      "groups_duplicate": 63,
+      "duplicate_reduction": 0,
+      "remaining_duplicates": 63,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": false,
+          "resulting_group_count": 1,
+          "resulting_group_sizes": [
+            5
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": false,
+          "resulting_group_count": 1,
+          "resulting_group_sizes": [
+            5
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name"
+          ]
+        }
+      ],
+      "sufficiency_classification": "INSUFFICIENT"
+    },
+    {
+      "key_name": "K2",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "number_raw"
+      ],
+      "distinct_keys": 117,
+      "groups_single": 53,
+      "groups_duplicate": 64,
+      "duplicate_reduction": -1,
+      "remaining_duplicates": 64,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            4,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            3,
+            2
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw"
+          ]
+        }
+      ],
+      "sufficiency_classification": "INSUFFICIENT"
+    },
+    {
+      "key_name": "K3",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "parsed_printed_total"
+      ],
+      "distinct_keys": 117,
+      "groups_single": 53,
+      "groups_duplicate": 64,
+      "duplicate_reduction": -1,
+      "remaining_duplicates": 64,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            4,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "parsed_printed_total"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            3,
+            2
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "parsed_printed_total"
+          ]
+        }
+      ],
+      "sufficiency_classification": "INSUFFICIENT"
+    },
+    {
+      "key_name": "K4",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "source_name_raw"
+      ],
+      "distinct_keys": 328,
+      "groups_single": 328,
+      "groups_duplicate": 0,
+      "duplicate_reduction": 63,
+      "remaining_duplicates": 0,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "source_name_raw"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "source_name_raw"
+          ]
+        }
+      ],
+      "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+    },
+    {
+      "key_name": "K5",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "raw_printed_name"
+      ],
+      "distinct_keys": 115,
+      "groups_single": 52,
+      "groups_duplicate": 63,
+      "duplicate_reduction": 0,
+      "remaining_duplicates": 63,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": false,
+          "resulting_group_count": 1,
+          "resulting_group_sizes": [
+            5
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "raw_printed_name"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": false,
+          "resulting_group_count": 1,
+          "resulting_group_sizes": [
+            5
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "raw_printed_name"
+          ]
+        }
+      ],
+      "sufficiency_classification": "INSUFFICIENT"
+    },
+    {
+      "key_name": "K6",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "number_raw",
+        "parsed_printed_total"
+      ],
+      "distinct_keys": 117,
+      "groups_single": 53,
+      "groups_duplicate": 64,
+      "duplicate_reduction": -1,
+      "remaining_duplicates": 64,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            4,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "parsed_printed_total"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 2,
+          "resulting_group_sizes": [
+            3,
+            2
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "parsed_printed_total"
+          ]
+        }
+      ],
+      "sufficiency_classification": "INSUFFICIENT"
+    },
+    {
+      "key_name": "K7",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "number_raw",
+        "source_name_raw"
+      ],
+      "distinct_keys": 328,
+      "groups_single": 328,
+      "groups_duplicate": 0,
+      "duplicate_reduction": 63,
+      "remaining_duplicates": 0,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "source_name_raw"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "source_name_raw"
+          ]
+        }
+      ],
+      "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+    },
+    {
+      "key_name": "K8",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "parsed_printed_total",
+        "source_name_raw"
+      ],
+      "distinct_keys": 328,
+      "groups_single": 328,
+      "groups_duplicate": 0,
+      "duplicate_reduction": 63,
+      "remaining_duplicates": 0,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "parsed_printed_total",
+            "source_name_raw"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "parsed_printed_total",
+            "source_name_raw"
+          ]
+        }
+      ],
+      "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+    },
+    {
+      "key_name": "K9",
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "number_raw",
+        "parsed_printed_total",
+        "source_name_raw"
+      ],
+      "distinct_keys": 328,
+      "groups_single": 328,
+      "groups_duplicate": 0,
+      "duplicate_reduction": 63,
+      "remaining_duplicates": 0,
+      "named_conflicts": [
+        {
+          "canonical_model_key_k1": "ba-2022::226::bug catcher",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "parsed_printed_total",
+            "source_name_raw"
+          ]
+        },
+        {
+          "canonical_model_key_k1": "ba-2024::188::potion",
+          "resolved": true,
+          "resulting_group_count": 5,
+          "resulting_group_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "key_fields": [
+            "ba_set_code",
+            "printed_number",
+            "normalized_printed_name",
+            "number_raw",
+            "parsed_printed_total",
+            "source_name_raw"
+          ]
+        }
+      ],
+      "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+    }
+  ],
+  "candidate_identity_key_v1": {
+    "key_name": "K4",
+    "key_fields": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ],
+    "distinct_keys": 328,
+    "groups_single": 328,
+    "groups_duplicate": 0,
+    "duplicate_reduction": 63,
+    "remaining_duplicates": 0,
+    "named_conflicts": [
+      {
+        "canonical_model_key_k1": "ba-2022::226::bug catcher",
+        "resolved": true,
+        "resulting_group_count": 5,
+        "resulting_group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "key_fields": [
+          "ba_set_code",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw"
+        ]
+      },
+      {
+        "canonical_model_key_k1": "ba-2024::188::potion",
+        "resolved": true,
+        "resulting_group_count": 5,
+        "resulting_group_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "key_fields": [
+          "ba_set_code",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw"
+        ]
+      }
+    ],
+    "sufficiency_classification": "MINIMALLY_SUFFICIENT"
+  }
+}

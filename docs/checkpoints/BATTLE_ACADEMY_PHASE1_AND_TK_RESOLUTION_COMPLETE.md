@@ -2,8 +2,8 @@
 
 Date: 2026-04-01
 
-Status: LOCKED  
-Scope: TK domain resolution + BA Phase 1 mapping  
+Status: LOCKED
+Scope: TK domain resolution + BA Phase 1 mapping
 Phase: External Identity Resolution -> Canon Expansion Preparation
 
 ---
@@ -135,13 +135,13 @@ raw_imports
 
 ### Domain Types
 
-1. Standard Sets  
+1. Standard Sets
    identity = (set + number)
 
-2. TK  
+2. TK
    identity = (deck + slot)
 
-3. Battle Academy  
+3. Battle Academy
    identity = (ba release + number + underlying card identity)
 
 ---

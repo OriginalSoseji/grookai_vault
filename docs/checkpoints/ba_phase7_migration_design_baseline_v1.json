@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1",
+  "authoritative_sources": [
+    "docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md",
+    "docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md",
+    "docs/CONTRACT_INDEX.md",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1.md",
+    "docs/checkpoints/ba_phase6_identity_architecture_baseline_v1.json",
+    "docs/checkpoints/ba_phase6_gvid_location_decision_v1.json",
+    "docs/checkpoints/ba_phase6_mapping_reference_decision_v1.json",
+    "docs/checkpoints/ba_phase6_identity_migration_strategy_v1.md",
+    "docs/checkpoints/ba_phase6_ba_unblock_conditions_v1.json",
+    "docs/checkpoints/ba_phase6_identity_architecture_verification_v1.json"
+  ],
+  "locked_truth": {
+    "card_prints_remains_durable_canonical_object": true,
+    "gv_id_remains_on_card_prints": true,
+    "external_mappings_remain_anchored_to_card_prints": true,
+    "identity_uniqueness_target_owner": "card_print_identity",
+    "live_card_prints_cannot_directly_represent_ba_4d_identity_law": true,
+    "ba_promotion_candidate_count": 328,
+    "ba_identity_law": "(ba_set_code, printed_number, normalized_printed_name, source_name_raw)"
+  },
+  "approved_domain_versions": {
+    "pokemon_eng_standard": "pokemon_eng_standard:v1",
+    "pokemon_ba": "pokemon_ba:v1",
+    "pokemon_eng_special_print": "pokemon_eng_special_print:v1",
+    "pokemon_jpn": "pokemon_jpn:v1"
+  },
+  "architecture_decisions_complete": true,
+  "stop_rule_status": "BASELINE_LOCKED"
+}

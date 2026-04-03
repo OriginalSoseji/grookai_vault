@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-04-02T17:05:51.211Z",
+  "phase": "BA_PHASE8A_NONCANON_DOMAIN_EXCLUSION_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "total_card_prints_inspected": 33998,
+  "supported_canon_domain_count": 31051,
+  "excluded_noncanon_domain_count": 2947,
+  "blocked_unknown_domain_count": 0,
+  "supported_breakdown_by_domain": [
+    {
+      "identity_domain": "pokemon_eng_standard",
+      "row_count": 31051
+    }
+  ],
+  "excluded_breakdown_by_domain": [
+    {
+      "domain": "tcg_pocket",
+      "row_count": 2947
+    }
+  ],
+  "explicit_confirmation_that_tcg_pocket_rows_received_zero_identity_rows": {
+    "confirmed": true,
+    "identity_row_count": 0,
+    "evidence": "Remote CanonDB surface does not currently have public.card_print_identity; zero remote identity rows exist for tcg_pocket."
+  }
+}

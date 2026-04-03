@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-04-02T15:10:48.593Z",
+  "phase": "BA_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1",
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "V1_MAJOR_DECISION_QUESTIONS_ANSWERED",
+      "passed": true,
+      "detail": {
+        "required_questions": [
+          "Q1.",
+          "Q2.",
+          "Q3.",
+          "Q4.",
+          "Q5.",
+          "Q6."
+        ]
+      }
+    },
+    {
+      "name": "V2_CONTRACT_DEFINES_REQUIRED_ARCHITECTURE_SURFACES",
+      "passed": true,
+      "detail": {
+        "required_sections": [
+          "boundary",
+          "gv_id_location",
+          "mapping_reference_model",
+          "uniqueness_law",
+          "identity_domains",
+          "migration_strategy_link"
+        ]
+      }
+    },
+    {
+      "name": "V3_CARD_PRINTS_REMAINS_STABLE_CANONICAL_REFERENCE",
+      "passed": true,
+      "detail": {
+        "gv_id_storage_table": "card_prints",
+        "mapping_anchor_table": "card_prints"
+      }
+    },
+    {
+      "name": "V4_NO_VARIANT_KEY_ABUSE",
+      "passed": true,
+      "detail": {
+        "required_rule": "No identity discriminator may be hidden inside `variant_key` as a shortcut."
+      }
+    },
+    {
+      "name": "V5_NO_HEURISTIC_MATCHING_DEPENDENCY",
+      "passed": true,
+      "detail": {
+        "required_markers": [
+          "No heuristic fields are allowed in the hash input.",
+          "no domain may use fuzzy matching as identity input"
+        ]
+      }
+    },
+    {
+      "name": "V6_NO_SCHEMA_WRITE_OR_CANON_PROMOTION_IN_THIS_PHASE",
+      "passed": true,
+      "detail": {
+        "checkpoint_statement_present": true,
+        "migration_statement_present": true,
+        "baseline_storage_gap_locked": true
+      }
+    },
+    {
+      "name": "V7_BA_UNBLOCK_CONDITIONS_EXPLICIT",
+      "passed": true,
+      "detail": {
+        "required_codes": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6"
+        ],
+        "present_codes": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6"
+        ]
+      }
+    }
+  ]
+}

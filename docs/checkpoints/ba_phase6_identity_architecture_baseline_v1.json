@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1",
+  "authoritative_sources": [
+    "docs/contracts/BATTLE_ACADEMY_CANON_CONTRACT_V1.md",
+    "docs/CONTRACT_INDEX.md",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE5_CONTRACT_AMENDMENT_V1.md",
+    "docs/checkpoints/ba_phase5_promotion_candidates_v1.json",
+    "docs/checkpoints/ba_phase6_contract_verification_v1.json",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE6_CANON_PROMOTION_V1.md",
+    "docs/contracts/GV_ID_ASSIGNMENT_V1.md",
+    "docs/contracts/VERSION_VS_FINISH_CONTRACT_V1.md",
+    "docs/playbooks/JUSTTCG_MAPPING_PLAYBOOK_V1.md",
+    "docs/audits/AUDIT_EBAY_MAPPING_L2.md",
+    "docs/audits/web_vault_contract_reuse_audit_v1.md"
+  ],
+  "baseline_facts": {
+    "ba_promotion_candidate_count": 328,
+    "ba_identity_law": {
+      "key_fields": [
+        "ba_set_code",
+        "printed_number",
+        "normalized_printed_name",
+        "source_name_raw"
+      ],
+      "key_string": "(ba_set_code, printed_number, normalized_printed_name, source_name_raw)"
+    },
+    "current_storage_cannot_represent_ba_identity_law_directly": true,
+    "live_storage_gap": {
+      "card_prints_missing_columns": [
+        "normalized_printed_name",
+        "source_name_raw"
+      ],
+      "card_prints_uniqueness_constraint": "uq_card_prints_identity = (game_id, set_id, number_plain, variant_key)",
+      "ba_release_sets_present": false,
+      "missing_ba_set_codes": [
+        "ba-2020",
+        "ba-2022",
+        "ba-2024"
+      ]
+    },
+    "option_b_selection_basis": {
+      "selected_direction": "identity becomes its own governed subsystem",
+      "reason": "Identity pressure now exceeds Battle Academy and extends into stamped, staff, prerelease, and Japanese-domain expansion lanes.",
+      "repo_evidence": [
+        "docs/contracts/VERSION_VS_FINISH_CONTRACT_V1.md identifies stamped cards, prerelease/staff families, promo-vs-set releases, and Japanese edition differences as canonical version differences.",
+        "docs/playbooks/JUSTTCG_MAPPING_PLAYBOOK_V1.md records prerelease/staff and special-suffix families as true identity ambiguity lanes.",
+        "docs/audits/AUDIT_EBAY_MAPPING_L2.md and docs/audits/web_vault_contract_reuse_audit_v1.md show downstream systems and external mappings already anchor to card_prints.",
+        "docs/checkpoints/BATTLE_ACADEMY_PHASE6_CANON_PROMOTION_V1.md proves the current card_prints storage shape cannot lawfully store the BA 4D identity law directly."
+      ]
+    }
+  },
+  "stop_rule_status": "BASELINE_LOCKED"
+}

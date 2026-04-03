@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1",
+  "decision_id": "M1",
+  "decision_name": "EXTERNAL_MAPPINGS_REMAIN_ANCHORED_TO_CARD_PRINTS",
+  "chosen_option": "M1",
+  "rejected_option": "M2",
+  "decision": {
+    "mapping_anchor_table": "card_prints",
+    "summary": "external_mappings continues to reference card_prints only; card_print_identity informs identity law but does not replace the external mapping anchor."
+  },
+  "decision_criteria": {
+    "existing_repo_assumptions": "Repo workers and audits already treat external_mappings as the canonical link between external ids and card_prints.",
+    "downstream_breakage_risk": "Changing the foreign-key anchor would ripple through pricing, ingestion, and catalog flows.",
+    "canonical_object_stability": "Mappings represent which canonical card object an external row refers to, not the internal identity-authority row.",
+    "migration_safety": "Keeping mappings on card_prints allows the identity subsystem to be introduced without rewriting external reference semantics."
+  },
+  "repo_evidence": [
+    "docs/audits/AUDIT_EBAY_MAPPING_L2.md",
+    "docs/audits/web_vault_contract_reuse_audit_v1.md",
+    "supabase/migrations/20251213153630_baseline_constraints.sql",
+    "backend/pricing/ba_phase1_mapping_write_v1.mjs"
+  ],
+  "hard_rules": [
+    "external_mappings.card_print_id remains the external reference anchor",
+    "identity rows may inform canonical identity but do not become the direct mapping target",
+    "changing the mapping anchor requires its own explicit contract"
+  ],
+  "status": "DECIDED"
+}

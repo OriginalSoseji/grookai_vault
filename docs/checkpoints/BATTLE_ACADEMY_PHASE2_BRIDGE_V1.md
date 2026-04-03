@@ -2,8 +2,8 @@
 
 Date: 2026-04-01
 
-Status: LOCKED  
-Scope: Battle Academy current truth, completed Phase 1 harvest, and exact Phase 2 handoff target  
+Status: LOCKED
+Scope: Battle Academy current truth, completed Phase 1 harvest, and exact Phase 2 handoff target
 Phase: Battle Academy Phase 2 bridge / canon expansion preparation
 
 ---

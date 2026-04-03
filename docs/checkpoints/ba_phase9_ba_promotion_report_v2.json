@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-04-03T04:36:22.979Z",
+  "phase": "BA_PHASE9_BA_CANON_PROMOTION_V2",
+  "mode": "apply",
+  "identity_law": {
+    "identity_domain": "pokemon_ba",
+    "identity_key_version": "pokemon_ba:v1",
+    "identity_key_fields": [
+      "ba_set_code",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ]
+  },
+  "authority_lock": {
+    "promotion_candidate_count": 328,
+    "tcg_pocket_excluded_noncanon_domain_count": 2947,
+    "ba_sets_registered_locally": [
+      "ba-2020",
+      "ba-2022",
+      "ba-2024"
+    ]
+  },
+  "plan_summary": {
+    "total_candidates": 328,
+    "insert_card_prints_count": 0,
+    "insert_identity_rows_count": 0,
+    "skipped_existing_count": 328,
+    "blocker_count": 0
+  },
+  "execution_summary": {
+    "inserted_card_prints": 0,
+    "inserted_identity_rows": 0,
+    "skipped_existing": 328,
+    "reused_existing_card_prints_for_identity_only": 0
+  },
+  "gv_id_sample": [
+    {
+      "ba_row_id": "219f05e7-7954-485b-8d9d-5f4385999658",
+      "gv_id": "GV-PK-BA-003-CHARIZARD-CHARIZARD-3-70-39-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "4c796b2f-271e-4219-97f1-47c96ec6f3c3",
+      "gv_id": "GV-PK-BA-008-CHARMELEON-CHARMELEON-8-68-15-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "8ea99283-eec1-404c-8288-550fb9818897",
+      "gv_id": "GV-PK-BA-008-CHARMELEON-CHARMELEON-8-68-30-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "c1987373-2420-48cc-8f42-87fa2f573cda",
+      "gv_id": "GV-PK-BA-008-CHARMELEON-CHARMELEON-8-68-51-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "45e0b1db-72b2-4032-8d9c-db0a75eb34f5",
+      "gv_id": "GV-PK-BA-009-CHARIZARD-GX-CHARIZARD-GX-9-68-60-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "de193d0d-c1a3-4cd8-a785-b2618dd3d767",
+      "gv_id": "GV-PK-BA-018-CHARMANDER-CHARMANDER-18-147-1-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "76612917-5057-4153-99a7-b4ada95d69ff",
+      "gv_id": "GV-PK-BA-018-CHARMANDER-CHARMANDER-18-147-16-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "7b08c643-f025-4150-8468-84d1c07c3156",
+      "gv_id": "GV-PK-BA-018-CHARMANDER-CHARMANDER-18-147-42-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "212396f5-7c7e-4859-a9af-4e4d05260221",
+      "gv_id": "GV-PK-BA-018-CHARMANDER-CHARMANDER-18-147-56-CHARIZARD-STAMPED"
+    },
+    {
+      "ba_row_id": "bf2e1165-f6bc-4748-8cf2-e6047592ff33",
+      "gv_id": "GV-PK-BA-019-PIKACHU-PIKACHU-19-68-15-PIKACHU-STAMPED"
+    }
+  ],
+  "blockers": [],
+  "verification_results": null
+}

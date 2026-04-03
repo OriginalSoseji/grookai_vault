@@ -1,0 +1,1053 @@
+{
+  "generated_at": "2026-04-02T05:38:32.066Z",
+  "phase": "BA_PHASE3_DUPLICATE_AUDIT_AND_PROMOTION_GATE_V1",
+  "promotion_permitted_in_phase": false,
+  "summary_counts": {
+    "total_working_keys": 115,
+    "promotion_eligible_count": 0,
+    "blocked_duplicate_count": 63,
+    "blocked_contract_count": 52
+  },
+  "partitions": {
+    "PROMOTION_ELIGIBLE": [],
+    "BLOCKED_DUPLICATE": [
+      {
+        "canonical_model_key": "ba-2020::008::charmeleon",
+        "ba_set_code": "ba-2020",
+        "printed_number": "008",
+        "normalized_printed_name": "charmeleon",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::018::charmander",
+        "ba_set_code": "ba-2020",
+        "printed_number": "018",
+        "normalized_printed_name": "charmander",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::019::pikachu",
+        "ba_set_code": "ba-2020",
+        "printed_number": "019",
+        "normalized_printed_name": "pikachu",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::025::salandit",
+        "ba_set_code": "ba-2020",
+        "printed_number": "025",
+        "normalized_printed_name": "salandit",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::034::salazzle",
+        "ba_set_code": "ba-2020",
+        "printed_number": "034",
+        "normalized_printed_name": "salazzle",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::043::electabuzz",
+        "ba_set_code": "ba-2020",
+        "printed_number": "043",
+        "normalized_printed_name": "electabuzz",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::043::electivire",
+        "ba_set_code": "ba-2020",
+        "printed_number": "043",
+        "normalized_printed_name": "electivire",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::045::zebstrika",
+        "ba_set_code": "ba-2020",
+        "printed_number": "045",
+        "normalized_printed_name": "zebstrika",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::046::chansey",
+        "ba_set_code": "ba-2020",
+        "printed_number": "046",
+        "normalized_printed_name": "chansey",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::049::eevee",
+        "ba_set_code": "ba-2020",
+        "printed_number": "049",
+        "normalized_printed_name": "eevee",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::055::kangaskhan",
+        "ba_set_code": "ba-2020",
+        "printed_number": "055",
+        "normalized_printed_name": "kangaskhan",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::081::blitzle",
+        "ba_set_code": "ba-2020",
+        "printed_number": "081",
+        "normalized_printed_name": "blitzle",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::119::cynthia",
+        "ba_set_code": "ba-2020",
+        "printed_number": "119",
+        "normalized_printed_name": "cynthia",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::119::great ball",
+        "ba_set_code": "ba-2020",
+        "printed_number": "119",
+        "normalized_printed_name": "great ball",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::120::hau",
+        "ba_set_code": "ba-2020",
+        "printed_number": "120",
+        "normalized_printed_name": "hau",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::127::potion",
+        "ba_set_code": "ba-2020",
+        "printed_number": "127",
+        "normalized_printed_name": "potion",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::132::switch",
+        "ba_set_code": "ba-2020",
+        "printed_number": "132",
+        "normalized_printed_name": "switch",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::164::tauros",
+        "ba_set_code": "ba-2020",
+        "printed_number": "164",
+        "normalized_printed_name": "tauros",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2020::189::bug catcher",
+        "ba_set_code": "ba-2020",
+        "printed_number": "189",
+        "normalized_printed_name": "bug catcher",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::007::victini",
+        "ba_set_code": "ba-2022",
+        "printed_number": "007",
+        "normalized_printed_name": "victini",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::023::larvesta",
+        "ba_set_code": "ba-2022",
+        "printed_number": "023",
+        "normalized_printed_name": "larvesta",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::024::volcarona",
+        "ba_set_code": "ba-2022",
+        "printed_number": "024",
+        "normalized_printed_name": "volcarona",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::029::vulpix",
+        "ba_set_code": "ba-2022",
+        "printed_number": "029",
+        "normalized_printed_name": "vulpix",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::030::ninetales",
+        "ba_set_code": "ba-2022",
+        "printed_number": "030",
+        "normalized_printed_name": "ninetales",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::046::sizzlipede",
+        "ba_set_code": "ba-2022",
+        "printed_number": "046",
+        "normalized_printed_name": "sizzlipede",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::049::centiskorch",
+        "ba_set_code": "ba-2022",
+        "printed_number": "049",
+        "normalized_printed_name": "centiskorch",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::053::blitzle",
+        "ba_set_code": "ba-2022",
+        "printed_number": "053",
+        "normalized_printed_name": "blitzle",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::054::zebstrika",
+        "ba_set_code": "ba-2022",
+        "printed_number": "054",
+        "normalized_printed_name": "zebstrika",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::074::yamper",
+        "ba_set_code": "ba-2022",
+        "printed_number": "074",
+        "normalized_printed_name": "yamper",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::091::shinx",
+        "ba_set_code": "ba-2022",
+        "printed_number": "091",
+        "normalized_printed_name": "shinx",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::092::luxio",
+        "ba_set_code": "ba-2022",
+        "printed_number": "092",
+        "normalized_printed_name": "luxio",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::093::luxray",
+        "ba_set_code": "ba-2022",
+        "printed_number": "093",
+        "normalized_printed_name": "luxray",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::160::energy retrieval",
+        "ba_set_code": "ba-2022",
+        "printed_number": "160",
+        "normalized_printed_name": "energy retrieval",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::164::great ball",
+        "ba_set_code": "ba-2022",
+        "printed_number": "164",
+        "normalized_printed_name": "great ball",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::165::hop",
+        "ba_set_code": "ba-2022",
+        "printed_number": "165",
+        "normalized_printed_name": "hop",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::167::sonia",
+        "ba_set_code": "ba-2022",
+        "printed_number": "167",
+        "normalized_printed_name": "sonia",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::177::potion",
+        "ba_set_code": "ba-2022",
+        "printed_number": "177",
+        "normalized_printed_name": "potion",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::183::switch",
+        "ba_set_code": "ba-2022",
+        "printed_number": "183",
+        "normalized_printed_name": "switch",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::226::bug catcher",
+        "ba_set_code": "ba-2022",
+        "printed_number": "226",
+        "normalized_printed_name": "bug catcher",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2022::240::shauna",
+        "ba_set_code": "ba-2022",
+        "printed_number": "240",
+        "normalized_printed_name": "shauna",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::002::basic fire energy",
+        "ba_set_code": "ba-2024",
+        "printed_number": "002",
+        "normalized_printed_name": "basic fire energy",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::004::basic lightning energy",
+        "ba_set_code": "ba-2024",
+        "printed_number": "004",
+        "normalized_printed_name": "basic lightning energy",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::023::fuecoco",
+        "ba_set_code": "ba-2024",
+        "printed_number": "023",
+        "normalized_printed_name": "fuecoco",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::033::houndour",
+        "ba_set_code": "ba-2024",
+        "printed_number": "033",
+        "normalized_printed_name": "houndour",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::034::houndoom",
+        "ba_set_code": "ba-2024",
+        "printed_number": "034",
+        "normalized_printed_name": "houndoom",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::035::torkoal",
+        "ba_set_code": "ba-2024",
+        "printed_number": "035",
+        "normalized_printed_name": "torkoal",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::036::crocalor",
+        "ba_set_code": "ba-2024",
+        "printed_number": "036",
+        "normalized_printed_name": "crocalor",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::039::charcadet",
+        "ba_set_code": "ba-2024",
+        "printed_number": "039",
+        "normalized_printed_name": "charcadet",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::040::larvesta",
+        "ba_set_code": "ba-2024",
+        "printed_number": "040",
+        "normalized_printed_name": "larvesta",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::066::voltorb",
+        "ba_set_code": "ba-2024",
+        "printed_number": "066",
+        "normalized_printed_name": "voltorb",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::067::electrode",
+        "ba_set_code": "ba-2024",
+        "printed_number": "067",
+        "normalized_printed_name": "electrode",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::077::wattrel",
+        "ba_set_code": "ba-2024",
+        "printed_number": "077",
+        "normalized_printed_name": "wattrel",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::107::mareep",
+        "ba_set_code": "ba-2024",
+        "printed_number": "107",
+        "normalized_printed_name": "mareep",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::108::flaaffy",
+        "ba_set_code": "ba-2024",
+        "printed_number": "108",
+        "normalized_printed_name": "flaaffy",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::109::ampharos",
+        "ba_set_code": "ba-2024",
+        "printed_number": "109",
+        "normalized_printed_name": "ampharos",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::114::picnicker",
+        "ba_set_code": "ba-2024",
+        "printed_number": "114",
+        "normalized_printed_name": "picnicker",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::175::jacq",
+        "ba_set_code": "ba-2024",
+        "printed_number": "175",
+        "normalized_printed_name": "jacq",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::180::nemona",
+        "ba_set_code": "ba-2024",
+        "printed_number": "180",
+        "normalized_printed_name": "nemona",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::181::nest ball",
+        "ba_set_code": "ba-2024",
+        "printed_number": "181",
+        "normalized_printed_name": "nest ball",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::183::great ball",
+        "ba_set_code": "ba-2024",
+        "printed_number": "183",
+        "normalized_printed_name": "great ball",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::188::potion",
+        "ba_set_code": "ba-2024",
+        "printed_number": "188",
+        "normalized_printed_name": "potion",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::194::switch",
+        "ba_set_code": "ba-2024",
+        "printed_number": "194",
+        "normalized_printed_name": "switch",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      },
+      {
+        "canonical_model_key": "ba-2024::198::youngster",
+        "ba_set_code": "ba-2024",
+        "printed_number": "198",
+        "normalized_printed_name": "youngster",
+        "phase2_group_classification": "BA_MODEL_DUPLICATE",
+        "gate_bucket": "BLOCKED_DUPLICATE",
+        "gate_reason": "MODEL_INSUFFICIENT"
+      }
+    ],
+    "BLOCKED_CONTRACT": [
+      {
+        "canonical_model_key": "ba-2020::003::charizard",
+        "ba_set_code": "ba-2020",
+        "printed_number": "003",
+        "normalized_printed_name": "charizard",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::009::charizard gx",
+        "ba_set_code": "ba-2020",
+        "printed_number": "009",
+        "normalized_printed_name": "charizard gx",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::020::raichu gx",
+        "ba_set_code": "ba-2020",
+        "printed_number": "020",
+        "normalized_printed_name": "raichu gx",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::031::mewtwo gx",
+        "ba_set_code": "ba-2020",
+        "printed_number": "031",
+        "normalized_printed_name": "mewtwo gx",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::032::mew",
+        "ba_set_code": "ba-2020",
+        "printed_number": "032",
+        "normalized_printed_name": "mew",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::038::moltres",
+        "ba_set_code": "ba-2020",
+        "printed_number": "038",
+        "normalized_printed_name": "moltres",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::050::snorlax",
+        "ba_set_code": "ba-2020",
+        "printed_number": "050",
+        "normalized_printed_name": "snorlax",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::084::mesprit",
+        "ba_set_code": "ba-2020",
+        "printed_number": "084",
+        "normalized_printed_name": "mesprit",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::087::cresselia",
+        "ba_set_code": "ba-2020",
+        "printed_number": "087",
+        "normalized_printed_name": "cresselia",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::089::espeon",
+        "ba_set_code": "ba-2020",
+        "printed_number": "089",
+        "normalized_printed_name": "espeon",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::097::toxapex",
+        "ba_set_code": "ba-2020",
+        "printed_number": "097",
+        "normalized_printed_name": "toxapex",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::105::mareanie",
+        "ba_set_code": "ba-2020",
+        "printed_number": "105",
+        "normalized_printed_name": "mareanie",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::172::electropower",
+        "ba_set_code": "ba-2020",
+        "printed_number": "172",
+        "normalized_printed_name": "electropower",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::175::jacq",
+        "ba_set_code": "ba-2020",
+        "printed_number": "175",
+        "normalized_printed_name": "jacq",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2020::189::welder",
+        "ba_set_code": "ba-2020",
+        "printed_number": "189",
+        "normalized_printed_name": "welder",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::029::turtonator",
+        "ba_set_code": "ba-2022",
+        "printed_number": "029",
+        "normalized_printed_name": "turtonator",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::035::galarian zigzagoon",
+        "ba_set_code": "ba-2022",
+        "printed_number": "035",
+        "normalized_printed_name": "galarian zigzagoon",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::036::galarian linoone",
+        "ba_set_code": "ba-2022",
+        "printed_number": "036",
+        "normalized_printed_name": "galarian linoone",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::043::cinderace v",
+        "ba_set_code": "ba-2022",
+        "printed_number": "043",
+        "normalized_printed_name": "cinderace v",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::043::pikachu v",
+        "ba_set_code": "ba-2022",
+        "printed_number": "043",
+        "normalized_printed_name": "pikachu v",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::076::boltund",
+        "ba_set_code": "ba-2022",
+        "printed_number": "076",
+        "normalized_printed_name": "boltund",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::102::zeraora",
+        "ba_set_code": "ba-2022",
+        "printed_number": "102",
+        "normalized_printed_name": "zeraora",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::109::morpeko",
+        "ba_set_code": "ba-2022",
+        "printed_number": "109",
+        "normalized_printed_name": "morpeko",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::124::energy recycler",
+        "ba_set_code": "ba-2022",
+        "printed_number": "124",
+        "normalized_printed_name": "energy recycler",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::154::boss's orders",
+        "ba_set_code": "ba-2022",
+        "printed_number": "154",
+        "normalized_printed_name": "boss's orders",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::162::carvanha",
+        "ba_set_code": "ba-2022",
+        "printed_number": "162",
+        "normalized_printed_name": "carvanha",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::163::sharpedo",
+        "ba_set_code": "ba-2022",
+        "printed_number": "163",
+        "normalized_printed_name": "sharpedo",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::165::piers",
+        "ba_set_code": "ba-2022",
+        "printed_number": "165",
+        "normalized_printed_name": "piers",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::167::darkrai",
+        "ba_set_code": "ba-2022",
+        "printed_number": "167",
+        "normalized_printed_name": "darkrai",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::170::zorua",
+        "ba_set_code": "ba-2022",
+        "printed_number": "170",
+        "normalized_printed_name": "zorua",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::171::zoroark",
+        "ba_set_code": "ba-2022",
+        "printed_number": "171",
+        "normalized_printed_name": "zoroark",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2022::228::cook",
+        "ba_set_code": "ba-2022",
+        "printed_number": "228",
+        "normalized_printed_name": "cook",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::007::basic darkness energy",
+        "ba_set_code": "ba-2024",
+        "printed_number": "007",
+        "normalized_printed_name": "basic darkness energy",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::038::skeledirge",
+        "ba_set_code": "ba-2024",
+        "printed_number": "038",
+        "normalized_printed_name": "skeledirge",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::041::volcarona",
+        "ba_set_code": "ba-2024",
+        "printed_number": "041",
+        "normalized_printed_name": "volcarona",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::069::rotom",
+        "ba_set_code": "ba-2024",
+        "printed_number": "069",
+        "normalized_printed_name": "rotom",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::082::kilowattrel",
+        "ba_set_code": "ba-2024",
+        "printed_number": "082",
+        "normalized_printed_name": "kilowattrel",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::105::armarouge ex",
+        "ba_set_code": "ba-2024",
+        "printed_number": "105",
+        "normalized_printed_name": "armarouge ex",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::106::pikachu ex",
+        "ba_set_code": "ba-2024",
+        "printed_number": "106",
+        "normalized_printed_name": "pikachu ex",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::110::darkrai ex",
+        "ba_set_code": "ba-2024",
+        "printed_number": "110",
+        "normalized_printed_name": "darkrai ex",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::111::pawniard",
+        "ba_set_code": "ba-2024",
+        "printed_number": "111",
+        "normalized_printed_name": "pawniard",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::112::bisharp",
+        "ba_set_code": "ba-2024",
+        "printed_number": "112",
+        "normalized_printed_name": "bisharp",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::113::kingambit",
+        "ba_set_code": "ba-2024",
+        "printed_number": "113",
+        "normalized_printed_name": "kingambit",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::118::yveltal",
+        "ba_set_code": "ba-2024",
+        "printed_number": "118",
+        "normalized_printed_name": "yveltal",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::137::seviper",
+        "ba_set_code": "ba-2024",
+        "printed_number": "137",
+        "normalized_printed_name": "seviper",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::139::salandit",
+        "ba_set_code": "ba-2024",
+        "printed_number": "139",
+        "normalized_printed_name": "salandit",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::140::salazzle",
+        "ba_set_code": "ba-2024",
+        "printed_number": "140",
+        "normalized_printed_name": "salazzle",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::148::miraidon",
+        "ba_set_code": "ba-2024",
+        "printed_number": "148",
+        "normalized_printed_name": "miraidon",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::164::cyclizar",
+        "ba_set_code": "ba-2024",
+        "printed_number": "164",
+        "normalized_printed_name": "cyclizar",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::167::mela",
+        "ba_set_code": "ba-2024",
+        "printed_number": "167",
+        "normalized_printed_name": "mela",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::170::electric generator",
+        "ba_set_code": "ba-2024",
+        "printed_number": "170",
+        "normalized_printed_name": "electric generator",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      },
+      {
+        "canonical_model_key": "ba-2024::172::boss's orders",
+        "ba_set_code": "ba-2024",
+        "printed_number": "172",
+        "normalized_printed_name": "boss's orders",
+        "phase2_group_classification": "BA_MODEL_SINGLE",
+        "gate_bucket": "BLOCKED_CONTRACT",
+        "gate_reason": "BA_CANONICAL_LAW_NOT_AMENDED"
+      }
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-04-02T17:05:51.214Z",
+  "phase": "BA_PHASE8A_NONCANON_DOMAIN_EXCLUSION_V1",
+  "approved_canonical_identity_domains": [
+    "pokemon_eng_standard",
+    "pokemon_ba",
+    "pokemon_eng_special_print",
+    "pokemon_jpn"
+  ],
+  "explicitly_excluded_noncanon_domains": [
+    "tcg_pocket"
+  ],
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "V1_LOCAL_RESET_SURFACE_IS_REACHABLE_AFTER_REPLAY",
+      "passed": true,
+      "detail": {
+        "local_db_connected": true,
+        "verifier_assumes_caller_ran": "supabase db reset --local"
+      }
+    },
+    {
+      "name": "V2_CARD_PRINT_IDENTITY_EXISTS_WITH_APPROVED_SHAPE",
+      "passed": true,
+      "detail": {
+        "required_columns": [
+          "id",
+          "card_print_id",
+          "identity_domain",
+          "set_code_identity",
+          "printed_number",
+          "normalized_printed_name",
+          "source_name_raw",
+          "identity_payload",
+          "identity_key_version",
+          "identity_key_hash",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ]
+      }
+    },
+    {
+      "name": "V3_SUPPORTED_CANONICAL_DOMAINS_BACKFILL_CORRECTLY",
+      "passed": true,
+      "detail": {
+        "local_supported_canon_domain_rows": 0,
+        "local_missing_active_identity_rows": 0,
+        "local_duplicate_active_parent_rows": 0,
+        "local_duplicate_active_hash_groups": 0,
+        "remote_supported_canon_domain_count": 31051,
+        "forbidden_tokens_absent": true
+      }
+    },
+    {
+      "name": "V4_TCG_POCKET_ROWS_ARE_EXCLUDED_AND_RECEIVE_ZERO_IDENTITY_ROWS",
+      "passed": true,
+      "detail": {
+        "total_tcg_pocket_rows": 2947,
+        "excluded_noncanon_domain_count": 2947,
+        "tcg_pocket_identity_rows_detected": 0,
+        "evidence": "Remote CanonDB surface does not currently have public.card_print_identity; zero remote identity rows exist for tcg_pocket."
+      }
+    },
+    {
+      "name": "V5_EXCLUDED_NONCANON_DOMAINS_DO_NOT_FAIL_VERIFICATION_IF_EXPLICITLY_CLASSIFIED",
+      "passed": true,
+      "detail": {
+        "excluded_noncanon_domain_count": 2947,
+        "excluded_domains": [
+          {
+            "domain": "tcg_pocket",
+            "row_count": 2947
+          }
+        ]
+      }
+    },
+    {
+      "name": "V6_UNKNOWN_UNCLASSIFIED_DOMAINS_STILL_FAIL_CLOSED",
+      "passed": true,
+      "detail": {
+        "blocked_unknown_domain_count": 0,
+        "blocked_breakdown_by_domain": []
+      }
+    },
+    {
+      "name": "V7_GV_ID_STILL_LIVES_ON_CARD_PRINTS",
+      "passed": true,
+      "detail": {
+        "card_prints_has_gv_id": true,
+        "card_print_identity_has_gv_id": false
+      }
+    },
+    {
+      "name": "V8_EXTERNAL_MAPPINGS_STILL_POINT_TO_CARD_PRINTS",
+      "passed": true,
+      "detail": {
+        "fk_definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      }
+    },
+    {
+      "name": "V9_VARIANT_KEY_WAS_NOT_REPURPOSED",
+      "passed": true,
+      "detail": {
+        "card_print_identity_has_variant_key_column": false,
+        "card_print_identity_indexes_reference_variant_key": false
+      }
+    },
+    {
+      "name": "V10_BA_STORAGE_REPRESENTATION_REMAINS_POSSIBLE",
+      "passed": true,
+      "detail": {
+        "ba_sets_registered_locally": [
+          "ba-2020",
+          "ba-2022",
+          "ba-2024"
+        ],
+        "local_ba_card_print_rows": 0,
+        "promotion_candidate_count": 328,
+        "missing_required_projection_fields": 0
+      }
+    },
+    {
+      "name": "V11_NO_BA_CANON_ROWS_WERE_PROMOTED",
+      "passed": true,
+      "detail": {
+        "ba_card_print_rows": 0
+      }
+    }
+  ],
+  "runtime_blockers": []
+}

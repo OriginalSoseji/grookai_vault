@@ -1,0 +1,649 @@
+{
+  "generated_at": "2026-04-02T05:25:56.369Z",
+  "phase": "BA_PHASE2_IDENTITY_MODEL_V1",
+  "summary_counts": {
+    "total_conflict_groups": 9,
+    "ba_number_collision_resolved_count": 7,
+    "ba_model_duplicate_count": 2
+  },
+  "groups": [
+    {
+      "ba_set_code": "ba-2020",
+      "printed_number": "043",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 5,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2020::043::electabuzz",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 3,
+          "normalized_printed_name": "electabuzz",
+          "raw_printed_name": "Electabuzz",
+          "rows": [
+            {
+              "ba_row_id": "70b3b699-0969-4ff1-87a9-b78da7733579",
+              "upstream_id": "pokemon-battle-academy-electabuzz-43-156-41-pikachu-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "eecf7f92-fe9f-4ec2-8da8-2b0aa8a026ee",
+              "upstream_id": "pokemon-battle-academy-electabuzz-43-156-58-pikachu-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "2471f604-1f1e-4cb7-8950-868c8a1abc50",
+              "upstream_id": "pokemon-battle-academy-electabuzz-43-156-6-pikachu-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 156
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2020::043::electivire",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 2,
+          "normalized_printed_name": "electivire",
+          "raw_printed_name": "Electivire",
+          "rows": [
+            {
+              "ba_row_id": "49896824-69d3-4af7-aa78-32687a78c8df",
+              "upstream_id": "pokemon-battle-academy-electivire-43-147-32-pikachu-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 147
+            },
+            {
+              "ba_row_id": "2a7319ab-63ea-4065-801f-1015115addfb",
+              "upstream_id": "pokemon-battle-academy-electivire-43-147-53-pikachu-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 147
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2020",
+      "printed_number": "119",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 16,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2020::119::cynthia",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 7,
+          "normalized_printed_name": "cynthia",
+          "raw_printed_name": "Cynthia",
+          "rows": [
+            {
+              "ba_row_id": "5c644b31-a018-4f95-bdfe-2e6fcf5111ae",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-21-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "35109726-f138-47f7-ae8a-30d657d311bf",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-24-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "68f5b3e7-df97-4bc3-9a22-1aafd8ad1272",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-50-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "5c1a50ae-df93-47f9-8438-eabc78a18d6c",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-50-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "1eda0deb-0ae9-478f-97c7-19e5dac6d697",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-59-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "c2836f06-61a0-4d9d-afc4-1e08177eba87",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-59-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            },
+            {
+              "ba_row_id": "2a06d660-64c5-46d9-ae4e-076cb49a41b7",
+              "upstream_id": "pokemon-battle-academy-cynthia-119-156-mewtwo-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 156
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2020::119::great ball",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 9,
+          "normalized_printed_name": "great ball",
+          "raw_printed_name": "Great Ball",
+          "rows": [
+            {
+              "ba_row_id": "2b936e24-852b-4b5c-bacc-f79e78174feb",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-29-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "d135329d-0a66-4b65-b87e-6ec250eac3d1",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-33-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "797519db-c928-4713-bb5f-92a48e4eff66",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-38-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "b0bcc85b-c4ae-488a-90d3-ecc3fa9a93c0",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-43-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "55bee4f0-ead8-4784-80bb-92b12bfcd712",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-48-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "e48e0d3d-dd75-4bd3-bc30-50b71a108bd5",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-49-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "f9a88ff5-8680-442a-841e-d09beb1e6de9",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-55-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "cb36145e-812f-44df-a5b8-a724ffdd90d7",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-57-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            },
+            {
+              "ba_row_id": "6e947cf9-d3ea-430b-abf9-e46d8374f0ad",
+              "upstream_id": "pokemon-battle-academy-great-ball-119-149-mewtwo-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 149
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2020",
+      "printed_number": "189",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 8,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2020::189::bug catcher",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 7,
+          "normalized_printed_name": "bug catcher",
+          "raw_printed_name": "Bug Catcher",
+          "rows": [
+            {
+              "ba_row_id": "a05a764b-525a-4e88-a199-d03d885f788e",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-26-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "637a8b94-a049-43c7-a3e1-913e2fbcd54c",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-34-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "0159fd8c-bb70-437c-a049-8b21d0a87b60",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-44-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "77804bf4-2cac-4c23-b524-0b933c2e0bae",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-46-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "7735fe82-3921-410d-bf00-a4ee287c00f7",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-47-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "d3340c7c-7e1b-459c-bfd0-71f5a92f2fa3",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-51-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            },
+            {
+              "ba_row_id": "7ec29f5f-3ca1-40c6-a353-a820d54c0181",
+              "upstream_id": "pokemon-battle-academy-bug-catcher-189-236-mewtwo-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 236
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2020::189::welder",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "welder",
+          "raw_printed_name": "Welder",
+          "rows": [
+            {
+              "ba_row_id": "fba951f3-4558-46ed-8092-77f818ffdb70",
+              "upstream_id": "pokemon-battle-academy-welder-189-214-25-charizard-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 214
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2022",
+      "printed_number": "029",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 4,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2022::029::turtonator",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "turtonator",
+          "raw_printed_name": "Turtonator",
+          "rows": [
+            {
+              "ba_row_id": "0c977f38-5712-49c4-a0d3-1b5fa861568a",
+              "upstream_id": "pokemon-battle-academy-2022-turtonator-029-202-39-cinderace-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 202
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2022::029::vulpix",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 3,
+          "normalized_printed_name": "vulpix",
+          "raw_printed_name": "Vulpix",
+          "rows": [
+            {
+              "ba_row_id": "1c93ed22-1f7b-4b2b-8b36-f426bca5171e",
+              "upstream_id": "pokemon-battle-academy-2022-vulpix-029-264-13-cinderace-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 264
+            },
+            {
+              "ba_row_id": "67eb1748-cbd6-44d3-96de-f38622e507b0",
+              "upstream_id": "pokemon-battle-academy-2022-vulpix-029-264-18-cinderace-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 264
+            },
+            {
+              "ba_row_id": "5ff7822f-ce19-4cab-b874-2e3ded038021",
+              "upstream_id": "pokemon-battle-academy-2022-vulpix-029-264-31-cinderace-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 264
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2022",
+      "printed_number": "043",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 2,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2022::043::cinderace v",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "cinderace v",
+          "raw_printed_name": "Cinderace V",
+          "rows": [
+            {
+              "ba_row_id": "560f2c92-0edd-4426-ad32-5acf0159d891",
+              "upstream_id": "pokemon-battle-academy-2022-cinderace-v-043-264-60-cinderace-stamped-promo",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 264
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2022::043::pikachu v",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "pikachu v",
+          "raw_printed_name": "Pikachu V",
+          "rows": [
+            {
+              "ba_row_id": "c2d4abf8-bf09-4f96-9cf0-b909d4a9713b",
+              "upstream_id": "pokemon-battle-academy-2022-pikachu-v-043-185-60-pikachu-stamped-holo-rare",
+              "prior_classification": "NO_UNDERLYING_MATCH",
+              "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN",
+              "parsed_printed_total": 185
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2022",
+      "printed_number": "165",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 10,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2022::165::hop",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 9,
+          "normalized_printed_name": "hop",
+          "raw_printed_name": "Hop",
+          "rows": [
+            {
+              "ba_row_id": "6a17d000-809a-4277-bf54-f71cbe165b09",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-13-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "6fe0e0e7-0e32-445a-b72b-755f85eddb32",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-28-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "54ae6500-2c9e-441e-82f7-f65ad0bd846d",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-33-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "9211c990-6000-4890-9436-eb7ac042a78f",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-41-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "b62ea26c-3347-4af1-a2cc-25e5ace06343",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-42-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "ca3265cb-3976-49ee-a866-524934f066eb",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-52-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "eb63af03-bcec-4ddc-a97d-ac9364fdce3e",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-54-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "7d29a408-889a-4b24-b5c2-27813d6065be",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-57-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            },
+            {
+              "ba_row_id": "2106588b-355e-498d-aaaa-c3979e116a7b",
+              "upstream_id": "pokemon-battle-academy-2022-hop-165-202-eevee-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 202
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2022::165::piers",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "piers",
+          "raw_printed_name": "Piers",
+          "rows": [
+            {
+              "ba_row_id": "2e31d4c8-d7d2-4669-95a0-447b6d1f2efd",
+              "upstream_id": "pokemon-battle-academy-2022-piers-165-189-eevee-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 189
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2022",
+      "printed_number": "167",
+      "prior_conflict_type": "IDENTITY_NAME_AND_TOTAL_CONFLICT",
+      "row_count": 4,
+      "outcome": "BA_NUMBER_COLLISION_RESOLVED",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2022::167::darkrai",
+          "model_group_classification": "BA_MODEL_SINGLE",
+          "row_count": 1,
+          "normalized_printed_name": "darkrai",
+          "raw_printed_name": "Darkrai",
+          "rows": [
+            {
+              "ba_row_id": "08e0fc7e-14a6-4df7-b064-67edbb8892de",
+              "upstream_id": "pokemon-battle-academy-2022-darkrai-167-264-eevee-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 264
+            }
+          ]
+        },
+        {
+          "canonical_model_key": "ba-2022::167::sonia",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 3,
+          "normalized_printed_name": "sonia",
+          "raw_printed_name": "Sonia",
+          "rows": [
+            {
+              "ba_row_id": "8d54ee22-a40a-4e0a-889a-629f5dbf53ad",
+              "upstream_id": "pokemon-battle-academy-2022-sonia-167-192-45-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 192
+            },
+            {
+              "ba_row_id": "2c69e0c8-577c-429a-a7f4-3cd0feac5bb9",
+              "upstream_id": "pokemon-battle-academy-2022-sonia-167-192-51-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 192
+            },
+            {
+              "ba_row_id": "8981f1e3-3e77-40d7-8569-be74fadbc815",
+              "upstream_id": "pokemon-battle-academy-2022-sonia-167-192-eevee-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 192
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2022",
+      "printed_number": "226",
+      "prior_conflict_type": "IDENTITY_PRINTED_TOTAL_CONFLICT",
+      "row_count": 5,
+      "outcome": "BA_MODEL_DUPLICATE",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2022::226::bug catcher",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 5,
+          "normalized_printed_name": "bug catcher",
+          "raw_printed_name": "Bug Catcher",
+          "rows": [
+            {
+              "ba_row_id": "1f16e072-9c98-4035-944b-a9df1c1f2804",
+              "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-26-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 264
+            },
+            {
+              "ba_row_id": "9d099144-cedd-4a63-96f1-a1f55ed7e76e",
+              "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-34-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 164
+            },
+            {
+              "ba_row_id": "57179017-4efa-489e-b2dd-74909d0b7c5d",
+              "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-46-pikachu-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 264
+            },
+            {
+              "ba_row_id": "b2f66526-aabc-4f93-a0c1-6d54dd91e047",
+              "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-47-cinderace-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 264
+            },
+            {
+              "ba_row_id": "dee2e053-3879-4a80-9538-94d64f432a06",
+              "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-eevee-stamped-promo",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 264
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ba_set_code": "ba-2024",
+      "printed_number": "188",
+      "prior_conflict_type": "IDENTITY_PRINTED_TOTAL_CONFLICT",
+      "row_count": 5,
+      "outcome": "BA_MODEL_DUPLICATE",
+      "projected_model_groups": [
+        {
+          "canonical_model_key": "ba-2024::188::potion",
+          "model_group_classification": "BA_MODEL_DUPLICATE",
+          "row_count": 5,
+          "normalized_printed_name": "potion",
+          "raw_printed_name": "Potion",
+          "rows": [
+            {
+              "ba_row_id": "8e216611-fd5e-44ae-a257-6b968e5bef3f",
+              "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-25-common",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 198
+            },
+            {
+              "ba_row_id": "dd5f03fb-45c3-4ba3-bac1-ba8e450519cc",
+              "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-37-common",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 198
+            },
+            {
+              "ba_row_id": "0e38cb00-a158-4ea2-8853-84343ef96ecf",
+              "upstream_id": "pokemon-battle-academy-2024-potion-darkrai-deck-common",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 198
+            },
+            {
+              "ba_row_id": "1c01316b-5644-4de8-8fc5-3c7ddb99d520",
+              "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-15-common",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 192
+            },
+            {
+              "ba_row_id": "b4e9dc87-f2d8-45a6-86fa-3bf3dfa05337",
+              "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-18-common",
+              "prior_classification": "MAPPED_UNDERLYING",
+              "underlying_reference_classification": "BA_UNDERLYING_REFERENCE_PROVEN",
+              "parsed_printed_total": 192
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

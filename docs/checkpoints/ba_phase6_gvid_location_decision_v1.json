@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-04-02T00:00:00.000Z",
+  "phase": "BA_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1",
+  "decision_id": "B1",
+  "decision_name": "GV_ID_ON_CARD_PRINTS_DERIVED_FROM_ACTIVE_IDENTITY",
+  "chosen_option": "B1",
+  "rejected_option": "B2",
+  "decision": {
+    "gv_id_storage_table": "card_prints",
+    "gv_id_derivation_input_owner": "card_print_identity",
+    "summary": "gv_id remains stored on card_prints and is derived from the one active canonical identity row."
+  },
+  "decision_criteria": {
+    "public_url_stability": "Existing public routing already treats card_prints.gv_id as the outward-facing canonical identity.",
+    "downstream_simplicity": "Vault, pricing, and catalog flows already anchor to card_prints.",
+    "search_read_simplicity": "Read paths remain one-hop for public card resolution.",
+    "migration_safety": "Keeping gv_id on card_prints avoids moving the public token to a new table during subsystem introduction.",
+    "active_identity_cardinality": "One active canonical identity row per card_print keeps gv_id unambiguous on the parent row."
+  },
+  "repo_evidence": [
+    "docs/contracts/GV_ID_ASSIGNMENT_V1.md",
+    "docs/audits/web_vault_contract_reuse_audit_v1.md",
+    "backend/warehouse/buildCardPrintGvIdV1.mjs",
+    "backend/warehouse/promotion_executor_v1.mjs"
+  ],
+  "hard_rules": [
+    "card_print_identity owns gv_id derivation inputs",
+    "card_prints owns the public stable gv_id token",
+    "future gv_id changes require explicit migration/backfill review"
+  ],
+  "status": "DECIDED"
+}

@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-04-02T05:25:56.369Z",
+  "phase": "BA_PHASE2_IDENTITY_MODEL_V1",
+  "summary_counts": {
+    "source_label": "STRUCTURED_MULTI_MATCH",
+    "source_row_count": 6,
+    "grouped_row_count": 6,
+    "ba_model_single_group_count": 1,
+    "ba_model_duplicate_group_count": 1,
+    "duplicate_surface_row_count": 5
+  },
+  "groups": [
+    {
+      "source_label": "STRUCTURED_MULTI_MATCH",
+      "canonical_model_key": "ba-2020::127::potion",
+      "ba_set_code": "ba-2020",
+      "printed_number": "127",
+      "normalized_printed_name": "potion",
+      "model_group_classification": "BA_MODEL_DUPLICATE",
+      "row_count": 5,
+      "rows": [
+        {
+          "ba_row_id": "fa9c2491-7cc7-4b71-a491-be640d868ec7",
+          "ba_set_code": "ba-2020",
+          "printed_number": "127",
+          "raw_printed_name": "Potion",
+          "normalized_printed_name": "potion",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "254dd378-42dc-406d-9b35-e38a11981a8b",
+            "d3ffbc7f-6039-4019-bbf2-6467d9288238"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-potion-127-149-14-charizard-stamped-promo",
+          "name_raw": "Potion - 127/149 (#14 Charizard Stamped)",
+          "number_raw": "127/149",
+          "parsed_printed_total": 149,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        },
+        {
+          "ba_row_id": "11a80ab2-7edd-44ea-b6a0-d52a2e4120a8",
+          "ba_set_code": "ba-2020",
+          "printed_number": "127",
+          "raw_printed_name": "Potion",
+          "normalized_printed_name": "potion",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "254dd378-42dc-406d-9b35-e38a11981a8b",
+            "d3ffbc7f-6039-4019-bbf2-6467d9288238"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-potion-127-149-20-pikachu-stamped-promo",
+          "name_raw": "Potion - 127/149 (#20 Pikachu Stamped)",
+          "number_raw": "127/149",
+          "parsed_printed_total": 149,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        },
+        {
+          "ba_row_id": "76ea1835-3014-4b2c-88b6-6d3ae498778e",
+          "ba_set_code": "ba-2020",
+          "printed_number": "127",
+          "raw_printed_name": "Potion",
+          "normalized_printed_name": "potion",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "254dd378-42dc-406d-9b35-e38a11981a8b",
+            "d3ffbc7f-6039-4019-bbf2-6467d9288238"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-potion-127-149-37-charizard-stamped-promo",
+          "name_raw": "Potion - 127/149 (#37 Charizard Stamped)",
+          "number_raw": "127/149",
+          "parsed_printed_total": 149,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        },
+        {
+          "ba_row_id": "d0952d6f-4028-4ac7-bb61-8b9b110af394",
+          "ba_set_code": "ba-2020",
+          "printed_number": "127",
+          "raw_printed_name": "Potion",
+          "normalized_printed_name": "potion",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "254dd378-42dc-406d-9b35-e38a11981a8b",
+            "d3ffbc7f-6039-4019-bbf2-6467d9288238"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-potion-127-149-40-pikachu-stamped-promo",
+          "name_raw": "Potion - 127/149 (#40 Pikachu Stamped)",
+          "number_raw": "127/149",
+          "parsed_printed_total": 149,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        },
+        {
+          "ba_row_id": "8dc8e481-312a-4d28-9b4b-7d4d8e494281",
+          "ba_set_code": "ba-2020",
+          "printed_number": "127",
+          "raw_printed_name": "Potion",
+          "normalized_printed_name": "potion",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "254dd378-42dc-406d-9b35-e38a11981a8b",
+            "d3ffbc7f-6039-4019-bbf2-6467d9288238"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-potion-127-149-mewtwo-stamped-promo",
+          "name_raw": "Potion - 127/149 (Mewtwo Stamped)",
+          "number_raw": "127/149",
+          "parsed_printed_total": 149,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        }
+      ]
+    },
+    {
+      "source_label": "STRUCTURED_MULTI_MATCH",
+      "canonical_model_key": "ba-2024::110::darkrai ex",
+      "ba_set_code": "ba-2024",
+      "printed_number": "110",
+      "normalized_printed_name": "darkrai ex",
+      "model_group_classification": "BA_MODEL_SINGLE",
+      "row_count": 1,
+      "rows": [
+        {
+          "ba_row_id": "2023836e-90c2-4517-9f18-00e6663919bf",
+          "ba_set_code": "ba-2024",
+          "printed_number": "110",
+          "raw_printed_name": "Darkrai ex",
+          "normalized_printed_name": "darkrai ex",
+          "underlying_candidate_count": 2,
+          "underlying_candidate_ids": [
+            "2933e42e-3a6a-46ba-a30a-974294978e9a",
+            "e9562176-e21f-40af-a643-74a0e0b10e83"
+          ],
+          "prior_classification": "STRUCTURED_MULTI_MATCH",
+          "upstream_id": "pokemon-battle-academy-2024-darkrai-ex-darkrai-holo-rare",
+          "name_raw": "Darkrai ex (Darkrai)",
+          "number_raw": "110",
+          "parsed_printed_total": null,
+          "underlying_reference_classification": "BA_UNDERLYING_UNKNOWN"
+        }
+      ]
+    }
+  ]
+}

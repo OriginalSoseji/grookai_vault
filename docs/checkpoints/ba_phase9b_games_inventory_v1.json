@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-03T04:31:05.516Z",
+  "phase": "BA_PHASE9B_GAME_FK_ALIGNMENT_V1",
+  "query": "SELECT id, name FROM public.games;",
+  "rows": [
+    {
+      "id": "7c4464a0-ea81-41a9-a1bf-e2a173d294bc",
+      "name": "BA Phase 9A Verify"
+    }
+  ],
+  "pokemon_name_like_matches": [],
+  "pokemon_name_like_match_count": 0,
+  "post_fix_inventory": {
+    "generated_at": "2026-04-03T04:32:03.181Z",
+    "rows": [
+      {
+        "id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "code": "pokemon",
+        "name": "Pokemon",
+        "slug": "pokemon"
+      }
+    ],
+    "pokemon_name_like_matches": [
+      {
+        "id": "28c64d58-d7ed-4e91-af71-b3e9b0cf3bbf",
+        "code": "pokemon",
+        "name": "Pokemon",
+        "slug": "pokemon"
+      }
+    ],
+    "pokemon_name_like_match_count": 1
+  }
+}

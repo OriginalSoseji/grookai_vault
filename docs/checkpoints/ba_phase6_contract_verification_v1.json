@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-04-02T14:35:48.159Z",
+  "phase": "BA_PHASE6_CANON_PROMOTION_V1",
+  "status": "BLOCKED",
+  "report_status": "STOPPED_PRECONDITION_FAILURE",
+  "report_path": "C:\\grookai_vault\\docs\\checkpoints\\ba_phase6_promotion_report_v1.json",
+  "checks": [
+    {
+      "name": "V1_TOTAL_INSERTED_ROWS_MATCHES_MISSING_DELTA",
+      "passed": false,
+      "detail": {
+        "status": "STOPPED_PRECONDITION_FAILURE",
+        "inserted_count": 0,
+        "expected_candidate_count": 328
+      }
+    },
+    {
+      "name": "V2_IDENTITY_KEY_UNIQUENESS",
+      "passed": true,
+      "detail": {
+        "total_candidates": 328,
+        "unique_identity_keys": 328
+      }
+    },
+    {
+      "name": "V3_GV_ID_UNIQUENESS",
+      "passed": true,
+      "detail": {
+        "total_candidates": 328,
+        "unique_gv_ids": 328,
+        "existing_gv_id_collision_count": 0
+      }
+    },
+    {
+      "name": "V4_IDEMPOTENCY_RERUN_ZERO_NEW_INSERTS",
+      "passed": false,
+      "detail": {
+        "status": "STOPPED_PRECONDITION_FAILURE",
+        "skipped_existing_count": 0
+      }
+    },
+    {
+      "name": "V5_NO_CROSS_SET_CONTAMINATION",
+      "passed": true,
+      "detail": {
+        "ba_gv_id_prefix_rows_detected_before_insert": 0
+      }
+    },
+    {
+      "name": "V6_NO_NULL_IDENTITY_FIELDS",
+      "passed": true,
+      "detail": {
+        "total_candidates": 328
+      }
+    },
+    {
+      "name": "V7_SCHEMA_CAN_STORE_IDENTITY_KEY",
+      "passed": false,
+      "detail": {
+        "missing_columns": [
+          "normalized_printed_name",
+          "source_name_raw"
+        ]
+      }
+    },
+    {
+      "name": "V8_BA_RELEASE_SETS_PRESENT",
+      "passed": false,
+      "detail": {
+        "missing_set_codes": [
+          "ba-2020",
+          "ba-2022",
+          "ba-2024"
+        ]
+      }
+    }
+  ]
+}

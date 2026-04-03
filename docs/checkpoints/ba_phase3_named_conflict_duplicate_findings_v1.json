@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-04-02T05:38:32.066Z",
+  "phase": "BA_PHASE3_DUPLICATE_AUDIT_AND_PROMOTION_GATE_V1",
+  "named_conflict_keys": [
+    "ba-2022::226::bug catcher",
+    "ba-2024::188::potion"
+  ],
+  "findings": [
+    {
+      "canonical_model_key": "ba-2022::226::bug catcher",
+      "ba_set_code": "ba-2022",
+      "printed_number": "226",
+      "normalized_printed_name": "bug catcher",
+      "row_count": 5,
+      "duplicate_classification": "MODEL_INSUFFICIENT",
+      "rationale": "Audited artifacts contain additional printed evidence differences not represented in the current working key.",
+      "printed_evidence_difference_fields": [
+        "source_name_raw",
+        "number_raw",
+        "parsed_printed_total"
+      ],
+      "prior_classifications": [
+        "MAPPED_UNDERLYING"
+      ],
+      "underlying_candidate_counts": [
+        1
+      ],
+      "underlying_candidate_ids": [
+        [
+          "b4732c84-7e03-47c6-af4d-952be27e603c"
+        ]
+      ],
+      "source_row_identifiers": [
+        {
+          "ba_row_id": "1f16e072-9c98-4035-944b-a9df1c1f2804",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-26-pikachu-stamped-promo"
+        },
+        {
+          "ba_row_id": "9d099144-cedd-4a63-96f1-a1f55ed7e76e",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-34-cinderace-stamped-promo"
+        },
+        {
+          "ba_row_id": "57179017-4efa-489e-b2dd-74909d0b7c5d",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-46-pikachu-stamped-promo"
+        },
+        {
+          "ba_row_id": "b2f66526-aabc-4f93-a0c1-6d54dd91e047",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-47-cinderace-stamped-promo"
+        },
+        {
+          "ba_row_id": "dee2e053-3879-4a80-9538-94d64f432a06",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-eevee-stamped-promo"
+        }
+      ],
+      "raw_payload_identity_fields": [
+        {
+          "ba_row_id": "1f16e072-9c98-4035-944b-a9df1c1f2804",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-26-pikachu-stamped-promo",
+          "raw_printed_name": "Bug Catcher",
+          "source_name_raw": "Bug Catcher - 226/264 (#26 Pikachu Stamped)",
+          "number_raw": "226/264",
+          "parsed_printed_total": 264
+        },
+        {
+          "ba_row_id": "9d099144-cedd-4a63-96f1-a1f55ed7e76e",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-34-cinderace-stamped-promo",
+          "raw_printed_name": "Bug Catcher",
+          "source_name_raw": "Bug Catcher - 226/264 (#34 Cinderace Stamped)",
+          "number_raw": "226/164",
+          "parsed_printed_total": 164
+        },
+        {
+          "ba_row_id": "57179017-4efa-489e-b2dd-74909d0b7c5d",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-46-pikachu-stamped-promo",
+          "raw_printed_name": "Bug Catcher",
+          "source_name_raw": "Bug Catcher - 226/264 (#46 Pikachu Stamped)",
+          "number_raw": "226/264",
+          "parsed_printed_total": 264
+        },
+        {
+          "ba_row_id": "b2f66526-aabc-4f93-a0c1-6d54dd91e047",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-47-cinderace-stamped-promo",
+          "raw_printed_name": "Bug Catcher",
+          "source_name_raw": "Bug Catcher - 226/264 (#47 Cinderace Stamped)",
+          "number_raw": "226/264",
+          "parsed_printed_total": 264
+        },
+        {
+          "ba_row_id": "dee2e053-3879-4a80-9538-94d64f432a06",
+          "upstream_id": "pokemon-battle-academy-2022-bug-catcher-226-264-eevee-stamped-promo",
+          "raw_printed_name": "Bug Catcher",
+          "source_name_raw": "Bug Catcher - 226/264 (Eevee Stamped)",
+          "number_raw": "226/264",
+          "parsed_printed_total": 264
+        }
+      ],
+      "prior_conflict_group": {
+        "ba_set_code": "ba-2022",
+        "parsed_number": "226",
+        "conflict_type": "IDENTITY_PRINTED_TOTAL_CONFLICT",
+        "distinct_normalized_names": [
+          "Bug Catcher"
+        ],
+        "distinct_printed_totals": [
+          264,
+          164
+        ],
+        "row_count": 5
+      }
+    },
+    {
+      "canonical_model_key": "ba-2024::188::potion",
+      "ba_set_code": "ba-2024",
+      "printed_number": "188",
+      "normalized_printed_name": "potion",
+      "row_count": 5,
+      "duplicate_classification": "MODEL_INSUFFICIENT",
+      "rationale": "Audited artifacts contain additional printed evidence differences not represented in the current working key.",
+      "printed_evidence_difference_fields": [
+        "source_name_raw",
+        "number_raw",
+        "parsed_printed_total"
+      ],
+      "prior_classifications": [
+        "MAPPED_UNDERLYING"
+      ],
+      "underlying_candidate_counts": [
+        1
+      ],
+      "underlying_candidate_ids": [
+        [
+          "f46bd8d9-61b0-4023-9586-213fdcdd6fa7"
+        ]
+      ],
+      "source_row_identifiers": [
+        {
+          "ba_row_id": "8e216611-fd5e-44ae-a257-6b968e5bef3f",
+          "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-25-common"
+        },
+        {
+          "ba_row_id": "dd5f03fb-45c3-4ba3-bac1-ba8e450519cc",
+          "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-37-common"
+        },
+        {
+          "ba_row_id": "0e38cb00-a158-4ea2-8853-84343ef96ecf",
+          "upstream_id": "pokemon-battle-academy-2024-potion-darkrai-deck-common"
+        },
+        {
+          "ba_row_id": "1c01316b-5644-4de8-8fc5-3c7ddb99d520",
+          "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-15-common"
+        },
+        {
+          "ba_row_id": "b4e9dc87-f2d8-45a6-86fa-3bf3dfa05337",
+          "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-18-common"
+        }
+      ],
+      "raw_payload_identity_fields": [
+        {
+          "ba_row_id": "8e216611-fd5e-44ae-a257-6b968e5bef3f",
+          "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-25-common",
+          "raw_printed_name": "Potion",
+          "source_name_raw": "Potion - Armarouge 25",
+          "number_raw": "188/198",
+          "parsed_printed_total": 198
+        },
+        {
+          "ba_row_id": "dd5f03fb-45c3-4ba3-bac1-ba8e450519cc",
+          "upstream_id": "pokemon-battle-academy-2024-potion-armarouge-37-common",
+          "raw_printed_name": "Potion",
+          "source_name_raw": "Potion - Armarouge 37",
+          "number_raw": "188/198",
+          "parsed_printed_total": 198
+        },
+        {
+          "ba_row_id": "0e38cb00-a158-4ea2-8853-84343ef96ecf",
+          "upstream_id": "pokemon-battle-academy-2024-potion-darkrai-deck-common",
+          "raw_printed_name": "Potion",
+          "source_name_raw": "Potion - Darkrai Deck",
+          "number_raw": "188/198",
+          "parsed_printed_total": 198
+        },
+        {
+          "ba_row_id": "1c01316b-5644-4de8-8fc5-3c7ddb99d520",
+          "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-15-common",
+          "raw_printed_name": "Potion",
+          "source_name_raw": "Potion - Pikachu 15",
+          "number_raw": "188/192",
+          "parsed_printed_total": 192
+        },
+        {
+          "ba_row_id": "b4e9dc87-f2d8-45a6-86fa-3bf3dfa05337",
+          "upstream_id": "pokemon-battle-academy-2024-potion-pikachu-18-common",
+          "raw_printed_name": "Potion",
+          "source_name_raw": "Potion - Pikachu 18",
+          "number_raw": "188/192",
+          "parsed_printed_total": 192
+        }
+      ],
+      "prior_conflict_group": {
+        "ba_set_code": "ba-2024",
+        "parsed_number": "188",
+        "conflict_type": "IDENTITY_PRINTED_TOTAL_CONFLICT",
+        "distinct_normalized_names": [
+          "Potion"
+        ],
+        "distinct_printed_totals": [
+          198,
+          192
+        ],
+        "row_count": 5
+      }
+    }
+  ]
+}

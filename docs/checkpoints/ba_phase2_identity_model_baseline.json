@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-04-02T05:25:56.366Z",
+  "phase": "BA_PHASE2_IDENTITY_MODEL_V1",
+  "expected_counts": {
+    "mapped_underlying_count": 184,
+    "conflict_group_count": 9,
+    "structured_multi_match_count": 6,
+    "no_underlying_match_count": 138
+  },
+  "actual_counts": {
+    "mapped_underlying_count": 184,
+    "conflict_group_count": 9,
+    "structured_multi_match_count": 6,
+    "no_underlying_match_count": 138,
+    "excluded_from_audit_count": 6
+  },
+  "status": "LOCKED"
+}

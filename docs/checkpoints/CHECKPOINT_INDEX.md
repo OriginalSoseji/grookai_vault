@@ -4,4 +4,18 @@
 - `EXTERNAL_SOURCE_INGESTION_MODEL_V1_LOCKED` — `2026-03-31`
 - `EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1_LOCKED` — `2026-03-31`
 - `EXTERNAL_DISCOVERY_STAGING_V1_FIRST_FULL_LOCAL_RUN` — `2026-03-31`
-- `BATTLE_ACADEMY_PHASE2_BRIDGE_V1` — `2026-04-01` — Locks Battle Academy current reality, the corrected identity law, the completed Phase 1 harvest, and the exact next Phase 2 objective
+- `BATTLE_ACADEMY_PHASE2_BRIDGE_V1` — `2026-04-01` — Historical bridge / handoff checkpoint locking the corrected BA starting reality and next-work boundary
+- `BATTLE_ACADEMY_PHASE2_IDENTITY_MODEL_V1` — `2026-04-01` — Architectural discovery checkpoint for the phase-local BA identity model validation and duplicate surface isolation
+- `BATTLE_ACADEMY_PHASE3_DUPLICATE_AUDIT_AND_PROMOTION_GATE_V1` — `2026-04-01` — Architectural discovery checkpoint proving the Phase 2 key was insufficient and promotion had to remain closed
+- `BATTLE_ACADEMY_PHASE4_IDENTITY_DIMENSION_EXPANSION_V1` — `2026-04-02` — Architectural discovery checkpoint identifying `K4` as the minimal sufficient printed-evidence key candidate
+- `BATTLE_ACADEMY_PHASE5_CONTRACT_AMENDMENT_V1` — `2026-04-02` — Contract-amendment checkpoint locking the evidence-backed BA identity law and strict promotion gate
+- `BATTLE_ACADEMY_PHASE6_CANON_PROMOTION_V1` — `2026-04-02` — Historical blocked stop showing BA promotion was still unlawful before subsystem storage existed
+- `BATTLE_ACADEMY_PHASE6_IDENTITY_SUBSYSTEM_ARCHITECTURE_V1` — `2026-04-02` — Architectural discovery checkpoint selecting Option B and fixing the subsystem ownership boundary
+- `BATTLE_ACADEMY_PHASE7_IDENTITY_SUBSYSTEM_MIGRATION_DESIGN_V1` — `2026-04-02` — Architectural migration-design checkpoint locking the exact subsystem rollout and BA storage alignment plan
+- `BATTLE_ACADEMY_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1` — `2026-04-02` — Historical implementation checkpoint and blocked stop showing subsystem rollout succeeded locally but `tcg_pocket` still had to be excluded
+- `BATTLE_ACADEMY_PHASE8A_NONCANON_DOMAIN_EXCLUSION_V1` — `2026-04-02` — Historical unblock checkpoint explicitly excluding non-canonical `tcg_pocket` rows from CanonDB identity rollout
+- `BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V2` — `2026-04-02` — Historical blocked stop proving BA identity was ready but parent `card_prints` uniqueness still blocked lawful execution
+- `BATTLE_ACADEMY_PHASE9A_PARENT_UNIQUENESS_REALIGNMENT_V1` — `2026-04-02` — Historical unblock checkpoint removing parent identity enforcement from `card_prints`
+- `BATTLE_ACADEMY_PHASE9B_GAME_FK_ALIGNMENT_V1` — `2026-04-02` — Historical unblock checkpoint aligning BA parent `game_id` to the canonical Pokemon game source
+- `BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V3` — `2026-04-02` — Authoritative final BA execution checkpoint: 328 parent rows, 328 active identity rows, verified uniqueness, domain isolation, and explicit idempotency
+- `BATTLE_ACADEMY_FINAL_STATE_V1` — `2026-04-02` — Final consolidation / handoff checkpoint for future BA resume and historical-proof preservation

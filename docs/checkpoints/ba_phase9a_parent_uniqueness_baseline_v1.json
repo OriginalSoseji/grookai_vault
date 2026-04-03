@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "BA_PHASE9A_PARENT_UNIQUENESS_REALIGNMENT_V1",
+  "authority_sources": [
+    "docs/checkpoints/ba_phase9_ba_promotion_report_v2.json",
+    "docs/checkpoints/BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V2.md"
+  ],
+  "locked_facts": {
+    "ba_promotion_blocked_by": "uq_card_prints_identity",
+    "duplicate_number_plain_group_count": 62,
+    "duplicate_number_plain_row_count": 282,
+    "identity_subsystem_status": "correct",
+    "legacy_parent_uniqueness_definition": "(game_id, set_id, number_plain, variant_key)"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-04-02T16:47:30.423Z",
+  "phase": "BA_PHASE8_IDENTITY_SUBSYSTEM_MIGRATIONS_V1",
+  "schema_alignment": {
+    "identity_domain_supported": true,
+    "explicit_columns_present": [
+      "set_code_identity",
+      "printed_number",
+      "normalized_printed_name",
+      "source_name_raw"
+    ],
+    "ba_sets_registered_locally": [
+      "ba-2020",
+      "ba-2022",
+      "ba-2024"
+    ],
+    "ba_set_count": 3,
+    "local_ba_card_print_rows": 0
+  },
+  "candidate_projection": {
+    "total_candidates": 328,
+    "missing_required_projection_fields": 0,
+    "storage_blocker_removed_at_schema_level": true
+  },
+  "ba_unblock_statement": "BA promotion remains deferred. Storage alignment is now possible at the schema level, but BA canon promotion may proceed only in its own execution phase after subsystem verification and BA-specific promotion gates are rerun."
+}

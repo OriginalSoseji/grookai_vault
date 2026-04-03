@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-04-02T12:48:14.147Z",
+  "phase": "BA_PHASE5_CONTRACT_AMENDMENT_V1",
+  "verified_artifacts": {
+    "dimension_validation": "ba_phase5_dimension_validation_v1.json",
+    "promotion_candidates": "ba_phase5_promotion_candidates_v1.json"
+  },
+  "checks": [
+    {
+      "name": "V1_IDENTITY_KEY_PRODUCES_ZERO_COLLISIONS",
+      "passed": true,
+      "detail": {
+        "promotion_candidate_count": 328,
+        "unique_key_count": 328
+      }
+    },
+    {
+      "name": "V2_NO_HEURISTIC_LOGIC_INTRODUCED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "fuzzymatch(",
+          "fuzzy_match(",
+          "similarity(",
+          "levenshtein(",
+          "jarowinkler(",
+          "cosinesimilarity(",
+          "expandsynonyms("
+        ]
+      }
+    },
+    {
+      "name": "V3_NO_EXTERNAL_DATA_USED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "createbackendclient(",
+          ".from(",
+          "fetch(",
+          "axios",
+          "open(",
+          "search_query"
+        ]
+      }
+    },
+    {
+      "name": "V4_NO_CANON_ROWS_INSERTED",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete("
+        ]
+      }
+    },
+    {
+      "name": "V5_NO_MAPPINGS_WRITTEN",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "external_mappings",
+          ".insert(",
+          ".update(",
+          ".upsert(",
+          ".delete("
+        ]
+      }
+    },
+    {
+      "name": "V6_NO_GV_ID_GENERATED_YET",
+      "passed": true,
+      "detail": {
+        "rejected_tokens": [
+          "gv_id"
+        ]
+      }
+    },
+    {
+      "name": "V7_PROMOTION_CANDIDATES_DETERMINISTIC",
+      "passed": true,
+      "detail": {
+        "validation_status": "VALID_DIMENSION",
+        "promotion_candidate_count": 328,
+        "nondeterministic_row_count": 0
+      }
+    }
+  ],
+  "passed": true
+}
