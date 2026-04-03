@@ -1,0 +1,30 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:15:28.602Z",
+  "target": "remote",
+  "table_present": true,
+  "row_count": 0,
+  "counts_by_identity_domain": [],
+  "counts_by_identity_key_version": [],
+  "active_vs_inactive": {
+    "active_count": "0",
+    "inactive_count": "0"
+  },
+  "duplicate_active_card_print_id_groups": [],
+  "duplicate_active_identity_hash_groups": [],
+  "null_required_field_checks": {
+    "card_print_id_null": "0",
+    "identity_domain_null": "0",
+    "set_code_identity_null": "0",
+    "printed_number_null": "0",
+    "identity_key_version_null": "0",
+    "identity_key_hash_null": "0"
+  },
+  "ba_identity_rows_count": {
+    "row_count": "0"
+  },
+  "tcg_pocket_identity_rows_count": {
+    "row_count": "0"
+  },
+  "population_state": "present_but_empty"
+}

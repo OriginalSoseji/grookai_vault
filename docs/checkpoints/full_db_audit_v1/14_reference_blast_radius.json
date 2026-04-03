@@ -1,0 +1,718 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:17:44.297Z",
+  "target": "remote",
+  "reference_counts": [
+    {
+      "relation": "ai_decision_logs",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "alerts",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "card_embeddings",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "card_interaction_group_states",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "54"
+    },
+    {
+      "relation": "card_interaction_outcomes",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "6"
+    },
+    {
+      "relation": "card_interactions",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "45"
+    },
+    {
+      "relation": "card_price_observations",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "322"
+    },
+    {
+      "relation": "card_price_rollups",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "321"
+    },
+    {
+      "relation": "card_price_ticks",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "card_prices",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "card_print_active_prices",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "card_print_file_paths",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "card_print_identity",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "card_print_latest_price_curve",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "1692"
+    },
+    {
+      "relation": "card_print_price_curves",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "1818"
+    },
+    {
+      "relation": "card_print_traits",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "1809",
+      "ba_refs": "0",
+      "relation_row_count": "29569"
+    },
+    {
+      "relation": "card_printings",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10508",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "77632"
+    },
+    {
+      "relation": "card_signals",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "38"
+    },
+    {
+      "relation": "condition_prices",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1"
+    },
+    {
+      "relation": "condition_snapshots",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "38"
+    },
+    {
+      "relation": "ebay_active_price_snapshots",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "1832"
+    },
+    {
+      "relation": "ebay_active_prices_latest",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "1692"
+    },
+    {
+      "relation": "external_discovery_candidates",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "417"
+    },
+    {
+      "relation": "external_mappings",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "1810",
+      "ba_refs": "0",
+      "relation_row_count": "63562"
+    },
+    {
+      "relation": "graded_prices",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "import_image_errors",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "3307"
+    },
+    {
+      "relation": "justtcg_identity_overrides",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "10"
+    },
+    {
+      "relation": "justtcg_variant_price_snapshots",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "358304"
+    },
+    {
+      "relation": "justtcg_variant_prices_latest",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "140541"
+    },
+    {
+      "relation": "justtcg_variants",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "140541"
+    },
+    {
+      "relation": "latest_card_prices_v",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "listings",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "7"
+    },
+    {
+      "relation": "market_prices",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "prices",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1662"
+    },
+    {
+      "relation": "pricing_jobs",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "175",
+      "ba_refs": "0",
+      "relation_row_count": "2628"
+    },
+    {
+      "relation": "pricing_observations",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "pricing_watch",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "262"
+    },
+    {
+      "relation": "shared_cards",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "15"
+    },
+    {
+      "relation": "slab_certs",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "10"
+    },
+    {
+      "relation": "slab_provenance_events",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "user_card_photos",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "22"
+    },
+    {
+      "relation": "v_best_prices_all",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "390"
+    },
+    {
+      "relation": "v_best_prices_all_gv_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_card_contact_targets_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "23"
+    },
+    {
+      "relation": "v_card_prices_usd",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_card_pricing_ui_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_card_prints_web_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_card_stream_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "21"
+    },
+    {
+      "relation": "v_grookai_value_compare_v1_v2",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_grookai_value_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_grookai_value_v1_1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_grookai_value_v1_clean",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "19175"
+    },
+    {
+      "relation": "v_grookai_value_v1_justtcg_bridge",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "19175"
+    },
+    {
+      "relation": "v_grookai_value_v2",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "10620",
+      "tcg_pocket_refs": "2947",
+      "ba_refs": "0",
+      "relation_row_count": "33998"
+    },
+    {
+      "relation": "v_justtcg_display_summary_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "18975"
+    },
+    {
+      "relation": "v_justtcg_vs_ebay_classified_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "19175"
+    },
+    {
+      "relation": "v_justtcg_vs_ebay_pricing_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "19175"
+    },
+    {
+      "relation": "v_justtcg_vs_ebay_valid_v1",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "117",
+      "ba_refs": "0",
+      "relation_row_count": "19175"
+    },
+    {
+      "relation": "v_latest_price",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "v_latest_price_by_card",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "780"
+    },
+    {
+      "relation": "v_latest_price_clean",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "v_latest_price_pref",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "390"
+    },
+    {
+      "relation": "v_latest_prices",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "390"
+    },
+    {
+      "relation": "v_pricing_observation_audit",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "v_pricing_observations_accepted",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "0"
+    },
+    {
+      "relation": "v_recently_added",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "100"
+    },
+    {
+      "relation": "v_special_set_print_membership",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "180",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "525"
+    },
+    {
+      "relation": "v_ticker_24h",
+      "relation_type": "VIEW",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1886"
+    },
+    {
+      "relation": "v_vault_items",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "289"
+    },
+    {
+      "relation": "v_vault_items_ext",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "289"
+    },
+    {
+      "relation": "v_vault_items_web",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "289"
+    },
+    {
+      "relation": "v_wall_feed",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "7"
+    },
+    {
+      "relation": "v_wishlist_items",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1"
+    },
+    {
+      "relation": "vault_item_instances",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_print_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "498"
+    },
+    {
+      "relation": "vault_items",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "300"
+    },
+    {
+      "relation": "vault_items_backup_20251115",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "19"
+    },
+    {
+      "relation": "wall_feed_v",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "7"
+    },
+    {
+      "relation": "wall_feed_view",
+      "relation_type": "VIEW",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "7"
+    },
+    {
+      "relation": "wishlist_items",
+      "relation_type": "BASE TABLE",
+      "reference_column": "card_id",
+      "supported_null_parent_refs": "0",
+      "tcg_pocket_refs": "0",
+      "ba_refs": "0",
+      "relation_row_count": "1"
+    }
+  ]
+}

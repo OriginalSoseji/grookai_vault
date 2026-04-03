@@ -1,0 +1,46 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:16:50.317Z",
+  "target": "remote",
+  "observed_source_domains": [
+    {
+      "domain": "",
+      "set_count": "238"
+    },
+    {
+      "domain": "tcg_pocket",
+      "set_count": "10"
+    }
+  ],
+  "card_prints_counts": [
+    {
+      "domain_bucket": "null/unknown/unclassified",
+      "row_count": "31051"
+    },
+    {
+      "domain_bucket": "tcg_pocket",
+      "row_count": "2947"
+    }
+  ],
+  "card_print_identity_counts": [],
+  "null_parent_surface_counts": [
+    {
+      "domain_bucket": "null/unknown/unclassified",
+      "row_count": "10652"
+    },
+    {
+      "domain_bucket": "tcg_pocket",
+      "row_count": "1138"
+    }
+  ],
+  "mapped_surface_counts": [
+    {
+      "domain_bucket": "null/unknown/unclassified",
+      "row_count": "30282"
+    },
+    {
+      "domain_bucket": "tcg_pocket",
+      "row_count": "1810"
+    }
+  ]
+}

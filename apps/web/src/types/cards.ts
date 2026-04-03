@@ -7,6 +7,21 @@ export type CardPrinting = {
   is_display_fallback?: boolean;
 };
 
+export type ActiveCardPrintIdentity = {
+  identity_domain: string;
+  set_code_identity?: string;
+  printed_number: string;
+  identity_key_version: string;
+};
+
+export type DisplayPrintedIdentitySource = "card_print_identity" | "card_prints" | "missing";
+
+export type DisplayPrintedIdentity = {
+  displayPrintedNumber: string | null;
+  displayPrintedSetAbbrev: string | null;
+  identitySource: DisplayPrintedIdentitySource;
+};
+
 export interface CardSummary {
   id: string;
   gv_id: string;
@@ -41,7 +56,9 @@ export interface CardDetail extends CardSummary {
   artist?: string;
   number_plain?: string;
   printed_total?: number;
+  printed_set_abbrev?: string;
   set_code?: string;
+  active_identity?: ActiveCardPrintIdentity | null;
   hp?: number;
   national_dex?: number;
   types?: string[];

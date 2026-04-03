@@ -1,0 +1,363 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "CANON_IDENTITY_COMPLETENESS_AUDIT_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "statement": "Read-only audit of card_print rows missing a numeric printed number. No writes, migrations, or schema changes were performed.",
+  "missing_count": 11790,
+  "breakdown_by_type": [
+    {
+      "type": "NULL",
+      "row_count": 11758
+    },
+    {
+      "type": "NO_DIGITS",
+      "row_count": 32
+    }
+  ],
+  "top_affected_sets": [
+    {
+      "set_code": null,
+      "cnt": 11758
+    },
+    {
+      "set_code": "ex10",
+      "cnt": 28
+    },
+    {
+      "set_code": "hgss1",
+      "cnt": 1
+    },
+    {
+      "set_code": "hgss2",
+      "cnt": 1
+    },
+    {
+      "set_code": "hgss3",
+      "cnt": 1
+    },
+    {
+      "set_code": "hgss4",
+      "cnt": 1
+    }
+  ],
+  "domain_distribution": [
+    {
+      "domain": "NULL",
+      "row_count": 10652
+    },
+    {
+      "domain": "tcg_pocket",
+      "row_count": 1138
+    }
+  ],
+  "sample_rows": [
+    {
+      "id": "0281feb6-13e9-4464-8f76-cc0dd779b59b",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "A"
+    },
+    {
+      "id": "038765c9-66bc-4d95-95d2-8ce16c65a0de",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "F"
+    },
+    {
+      "id": "065aa0f7-6b66-4383-809f-328492ad139e",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "!"
+    },
+    {
+      "id": "0a372480-c960-47f4-be0a-fa3cf7b20004",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "V"
+    },
+    {
+      "id": "14128686-13dc-41e1-8d30-f49552616f32",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "U"
+    },
+    {
+      "id": "1746053b-155f-4557-97c4-dc4c254d5638",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "T"
+    },
+    {
+      "id": "4fcde912-14d7-47ab-a8af-9e5a1cb0370b",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "W"
+    },
+    {
+      "id": "5c5de53e-e4fb-4eee-96d4-1b37bf260e42",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "Z"
+    },
+    {
+      "id": "70de2f4b-a7ec-4b06-a98e-360582af0cfe",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "P"
+    },
+    {
+      "id": "73d84339-5997-4844-a144-32d469dc4666",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "S"
+    },
+    {
+      "id": "7a1d0396-aadc-4333-8652-b97a8c9f7791",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "I"
+    },
+    {
+      "id": "7c6ee0f1-e058-4fed-bc16-18ce9a985458",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "K"
+    },
+    {
+      "id": "837b59cc-5cf6-496e-9ce7-e604236e0825",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "X"
+    },
+    {
+      "id": "83dc8f5d-06fd-4007-bb9c-d096baa6f3da",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "E"
+    },
+    {
+      "id": "8665ed72-9bfe-46c9-b140-fd707c887175",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "M"
+    },
+    {
+      "id": "8ee10c61-bbe4-4a20-aadb-4b994928c9de",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "?"
+    },
+    {
+      "id": "97709389-fbf1-4790-925e-5e95e89a80a0",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "B"
+    },
+    {
+      "id": "98b680f3-4158-498e-9c68-4c45801f544d",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "H"
+    },
+    {
+      "id": "99756d62-8124-456c-84fd-a1b74ac2240e",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "R"
+    },
+    {
+      "id": "c5f69fc5-805d-4e06-b629-fe6f13d3c8d3",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "C"
+    },
+    {
+      "id": "d1100eaa-7dc2-4882-bc8f-70f74935b7bf",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "O"
+    },
+    {
+      "id": "d5d21cf6-579d-4dfb-a15a-e32cd29dc7fa",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "L"
+    },
+    {
+      "id": "d5ee93fa-14a4-46ae-8649-087001a36eb7",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "Q"
+    },
+    {
+      "id": "dd3d341b-09f5-445b-9a01-56d67d3b641c",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "J"
+    },
+    {
+      "id": "e6954d97-cab9-4479-99a9-7fa10c8c411d",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "G"
+    },
+    {
+      "id": "e9b7843f-74e6-4418-a9f1-49ae2582a78b",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "N"
+    },
+    {
+      "id": "eff73c3c-568f-4b56-9130-bbd84f763f7a",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "D"
+    },
+    {
+      "id": "faf577b9-9178-4074-963d-0098bd272b66",
+      "set_code": "ex10",
+      "name": "Unown",
+      "number": "Y"
+    },
+    {
+      "id": "675d93c2-f6ea-4012-b660-0a7f3d2174a9",
+      "set_code": "hgss1",
+      "name": "Alph Lithograph",
+      "number": "ONE"
+    },
+    {
+      "id": "a30dd8d5-2b21-4092-8582-3da5477680f6",
+      "set_code": "hgss2",
+      "name": "Alph Lithograph",
+      "number": "TWO"
+    },
+    {
+      "id": "9e0ec5b0-53fb-46a8-a8df-84bc784f01ee",
+      "set_code": "hgss3",
+      "name": "Alph Lithograph",
+      "number": "THREE"
+    },
+    {
+      "id": "3816c090-3a46-434f-9546-803565869e6c",
+      "set_code": "hgss4",
+      "name": "Alph Lithograph",
+      "number": "FOUR"
+    },
+    {
+      "id": "a06df0a7-1f4e-4144-929f-6b6e0a9817a1",
+      "set_code": null,
+      "name": "_____'s Pikachu",
+      "number": null
+    },
+    {
+      "id": "369fa0c6-b03b-40f8-83b4-1ba59c93bb20",
+      "set_code": null,
+      "name": "Aaron's Collection",
+      "number": null
+    },
+    {
+      "id": "065eb731-65b2-4ebd-ab1a-e87afc0bf6fa",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "41a84304-4bf5-47e4-a733-fff2224300e4",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "5ca511db-2d5e-4fc6-b74b-4498c1239331",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "7a0034dc-d495-4423-8e54-dd43dc9eb4c9",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "912d1115-124a-4d90-8c96-2f69baa7cbc2",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "9764de93-8ddf-4f91-9ef1-fe5289d35d07",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "9f4e2a0f-ecc4-4670-bcae-0aa8a7e5503f",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "b982f4ca-0fbb-4519-866a-00e2725018c2",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "d21677bf-60b0-4c27-a0df-731983c8d016",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "da22b2f1-ae50-4f92-95ba-127dfba8652e",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "fe6d719a-7af2-485f-8a1f-a2fbb6f937ad",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null
+    },
+    {
+      "id": "831ea01a-9756-44dd-ba5e-7d836b299200",
+      "set_code": null,
+      "name": "Abra",
+      "number": null
+    },
+    {
+      "id": "d8288a16-8dfc-4b37-affa-bb64607ba28e",
+      "set_code": null,
+      "name": "Abra",
+      "number": null
+    },
+    {
+      "id": "dc34875d-6ccd-4568-9921-63d75593bc9c",
+      "set_code": null,
+      "name": "Abra",
+      "number": null
+    },
+    {
+      "id": "f73cbbb6-bf96-42b0-91b6-ab877974695d",
+      "set_code": null,
+      "name": "Abra",
+      "number": null
+    },
+    {
+      "id": "0a325e0b-5ebe-476b-b4a9-76f35ed3d709",
+      "set_code": null,
+      "name": "Absol",
+      "number": null
+    }
+  ],
+  "sample_rows_with_slash_number": [],
+  "observations": {
+    "expected_10620_did_not_hold": true,
+    "difference_from_10620": 1170,
+    "majority_problem_shape": "number is NULL",
+    "largest_surface": "Rows with set_code = NULL and domain = NULL dominate the missing-number population.",
+    "noncanon_excluded_surface_present": "tcg_pocket contributes 1138 rows to the missing-number audit surface."
+  }
+}

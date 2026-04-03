@@ -1,0 +1,1673 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "FORENSIC_10_ROW_AUDIT_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "selected_row_ids": [
+    "21fa9139-031a-4f30-834c-072c43b14957",
+    "4950f92f-952d-4141-a527-b993d16e3d1b",
+    "944592b2-a1a6-4918-b9ee-3213e02e481f",
+    "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+    "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+    "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+    "636f4312-1a44-4290-b412-736bf81e20d3",
+    "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+    "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+    "e3638edc-31a4-4b58-88e8-6d0dccf222d2"
+  ],
+  "selected_rows_summary": [
+    {
+      "id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "name": "Alomomola",
+      "joined_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "domain": null
+    },
+    {
+      "id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "name": "Axew",
+      "joined_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "domain": null
+    },
+    {
+      "id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "name": "Bunnelby",
+      "joined_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "domain": null
+    },
+    {
+      "id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "name": "Electrike",
+      "joined_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "domain": null
+    },
+    {
+      "id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "name": "Dedenne",
+      "joined_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "domain": null
+    },
+    {
+      "id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "name": "Alolan Diglett",
+      "joined_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "domain": null
+    },
+    {
+      "id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "name": "Chansey",
+      "joined_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "domain": null
+    },
+    {
+      "id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "name": "Alolan Dugtrio",
+      "joined_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "domain": null
+    },
+    {
+      "id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "name": "Bulbasaur",
+      "joined_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "domain": null
+    },
+    {
+      "id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "name": "Aerodactyl",
+      "joined_set_code": "A3a",
+      "set_name": "Extradimensional Crisis",
+      "domain": null
+    }
+  ],
+  "card_print_rows": [
+    {
+      "id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "name": "Alomomola",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2011bw-5"
+      },
+      "updated_at": "2026-03-27T00:23:24.318Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T00:23:24.318Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "Floating in the open sea is how they live. When they find a wounded Pokémon, they embrace it and bring it to shore."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "name": "Dedenne",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2016xy-10"
+      },
+      "updated_at": "2026-03-27T01:24:53.793Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T01:24:53.793Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "Its whiskers serve as antennas. By sending and receiving electrical waves, it can communicate with others over vast distances."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "name": "Axew",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2012bw-12"
+      },
+      "updated_at": "2026-03-27T00:31:59.784Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T00:31:59.784Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "They use their tusks to crush the berries they eat. Repeated regrowth makes their tusks strong and sharp."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "name": "Chansey",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2018sm-10"
+      },
+      "updated_at": "2026-03-27T02:07:20.076Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T02:07:20.076Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "name": "Alolan Diglett",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2017sm-9"
+      },
+      "updated_at": "2026-03-27T01:50:12.354Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T01:50:12.354Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "name": "Bunnelby",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2014xy-10"
+      },
+      "updated_at": "2026-03-27T01:04:50.258Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T01:04:50.258Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "name": "Electrike",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2015xy-7"
+      },
+      "updated_at": "2026-03-27T01:19:12.237Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T01:19:12.237Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "name": "Bulbasaur",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2021swsh-1"
+      },
+      "updated_at": "2026-03-27T03:01:31.139Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T03:01:31.139Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "name": "Aerodactyl",
+      "number": null,
+      "variant_key": "",
+      "rarity": "One Shiny",
+      "image_url": "https://assets.tcgdex.net/en/tcgp/A3a/098/high.webp",
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "A3a-098"
+      },
+      "updated_at": "2026-03-27T04:15:06.176Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/tcgp/A3a/098",
+      "image_source": "tcgdex",
+      "variants": null,
+      "created_at": "2026-03-27T04:15:06.176Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "This is a ferocious Pokémon from ancient times.\nApparently even modern technology is incapable\nof producing a perfectly restored specimen."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    },
+    {
+      "id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "name": "Alolan Dugtrio",
+      "number": null,
+      "variant_key": "",
+      "rarity": "None",
+      "image_url": null,
+      "tcgplayer_id": null,
+      "external_ids": {
+        "tcgdex": "2019sm-11"
+      },
+      "updated_at": "2026-03-27T02:22:29.264Z",
+      "set_code": null,
+      "artist": null,
+      "regulation_mark": null,
+      "image_alt_url": null,
+      "image_source": null,
+      "variants": null,
+      "created_at": "2026-03-27T02:22:29.264Z",
+      "last_synced_at": null,
+      "print_identity_key": null,
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": "These Pokémon are cherished in the Alola region, where they are thought to be feminine deities of the land incarnate."
+        }
+      },
+      "image_hash": null,
+      "data_quality_flags": null,
+      "image_status": null,
+      "image_res": null,
+      "image_last_checked_at": null,
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "number_plain": null,
+      "gv_id": null,
+      "image_path": null
+    }
+  ],
+  "set_rows": [
+    {
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "game": "pokemon",
+      "code": "2011bw",
+      "name": "Macdonald's Collection 2011",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2011bw",
+          "raw": {
+            "id": "2011bw",
+            "name": "Macdonald's Collection 2011",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2011",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2011bw",
+          "name": "Macdonald's Collection 2011",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          },
+          "fetched_at": "2025-12-14T21:56:31.579Z"
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:07:49.089Z",
+      "updated_at": "2026-03-26T22:00:19.378Z",
+      "last_synced_at": "2026-02-24T23:32:29.142Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "game": "pokemon",
+      "code": "2016xy",
+      "name": "Macdonald's Collection 2016",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2016xy",
+          "raw": {
+            "id": "2016xy",
+            "name": "Macdonald's Collection 2016",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2016",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2016xy",
+          "name": "Macdonald's Collection 2016",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:04.601Z",
+      "updated_at": "2026-03-26T22:05:35.771Z",
+      "last_synced_at": "2026-02-25T00:47:28.786Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "id": "c592059c-0338-46d4-bb47-69822c118727",
+      "game": "pokemon",
+      "code": "2012bw",
+      "name": "Macdonald's Collection 2012",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2012bw",
+          "raw": {
+            "id": "2012bw",
+            "name": "Macdonald's Collection 2012",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2012",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2012bw",
+          "name": "Macdonald's Collection 2012",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:07:51.690Z",
+      "updated_at": "2026-03-26T22:00:22.021Z",
+      "last_synced_at": "2026-02-24T23:43:10.422Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "game": "pokemon",
+      "code": "2018sm",
+      "name": "Macdonald's Collection 2018",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2018sm",
+          "raw": {
+            "id": "2018sm",
+            "name": "Macdonald's Collection 2018",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2018",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2018sm",
+          "name": "Macdonald's Collection 2018",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:10.401Z",
+      "updated_at": "2026-03-26T22:05:42.104Z",
+      "last_synced_at": "2026-02-25T00:56:38.232Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "game": "pokemon",
+      "code": "2017sm",
+      "name": "Macdonald's Collection 2017",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2017sm",
+          "raw": {
+            "id": "2017sm",
+            "name": "Macdonald's Collection 2017",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2017",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2017sm",
+          "name": "Macdonald's Collection 2017",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:07.331Z",
+      "updated_at": "2026-03-26T22:05:38.703Z",
+      "last_synced_at": "2026-02-25T00:54:00.164Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "game": "pokemon",
+      "code": "2014xy",
+      "name": "Macdonald's Collection 2014",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2014xy",
+          "raw": {
+            "id": "2014xy",
+            "name": "Macdonald's Collection 2014",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2014",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2014xy",
+          "name": "Macdonald's Collection 2014",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:07:57.528Z",
+      "updated_at": "2026-03-26T22:05:27.670Z",
+      "last_synced_at": "2026-02-25T00:43:46.503Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "game": "pokemon",
+      "code": "2015xy",
+      "name": "Macdonald's Collection 2015",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2015xy",
+          "raw": {
+            "id": "2015xy",
+            "name": "Macdonald's Collection 2015",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2015",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2015xy",
+          "name": "Macdonald's Collection 2015",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:02.077Z",
+      "updated_at": "2026-03-26T22:05:33.024Z",
+      "last_synced_at": "2026-02-25T00:45:35.832Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "game": "pokemon",
+      "code": "2021swsh",
+      "name": "Macdonald's Collection 2021",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2021swsh",
+          "raw": {
+            "id": "2021swsh",
+            "name": "Macdonald's Collection 2021",
+            "symbol": "https://assets.tcgdex.net/univ/mc/2021swsh/symbol",
+            "cardCount": {
+              "total": 25,
+              "official": 25
+            }
+          },
+          "name": "Macdonald's Collection 2021",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2021swsh",
+          "name": "Macdonald's Collection 2021",
+          "cardCount": {
+            "total": 25,
+            "official": 25
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:17.302Z",
+      "updated_at": "2026-03-26T22:05:48.774Z",
+      "last_synced_at": "2026-02-25T04:03:21.401Z",
+      "printed_total": 25,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    },
+    {
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "game": "pokemon",
+      "code": "A3a",
+      "name": "Extradimensional Crisis",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "A3a",
+          "raw": {
+            "id": "A3a",
+            "name": "Extradimensional Crisis",
+            "cardCount": {
+              "total": 103,
+              "official": 69
+            }
+          },
+          "name": "Extradimensional Crisis",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2026-03-26T22:06:06.031Z",
+      "updated_at": "2026-03-26T22:06:06.031Z",
+      "last_synced_at": null,
+      "printed_total": null,
+      "printed_set_abbrev": null,
+      "set_role": null
+    },
+    {
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "game": "pokemon",
+      "code": "2019sm",
+      "name": "Macdonald's Collection 2019",
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "2019sm",
+          "raw": {
+            "id": "2019sm",
+            "name": "Macdonald's Collection 2019",
+            "cardCount": {
+              "total": 12,
+              "official": 12
+            }
+          },
+          "name": "Macdonald's Collection 2019",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "tcgdex_set": {
+          "id": "2019sm",
+          "name": "Macdonald's Collection 2019",
+          "cardCount": {
+            "total": 12,
+            "official": 12
+          }
+        }
+      },
+      "logo_url": null,
+      "symbol_url": null,
+      "created_at": "2025-11-19T22:08:13.629Z",
+      "updated_at": "2026-03-26T22:05:44.754Z",
+      "last_synced_at": "2026-02-25T01:00:44.575Z",
+      "printed_total": 12,
+      "printed_set_abbrev": "MCD",
+      "set_role": "promotion_umbrella"
+    }
+  ],
+  "external_mappings": [
+    {
+      "id": "61594",
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "source": "tcgdex",
+      "external_id": "2011bw-5",
+      "meta": null,
+      "synced_at": "2026-03-03T21:34:21.191Z",
+      "active": true,
+      "card_name": "Alomomola"
+    },
+    {
+      "id": "61646",
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "source": "tcgdex",
+      "external_id": "2016xy-10",
+      "meta": null,
+      "synced_at": "2026-03-03T21:43:37.940Z",
+      "active": true,
+      "card_name": "Dedenne"
+    },
+    {
+      "id": "61608",
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "source": "tcgdex",
+      "external_id": "2012bw-12",
+      "meta": null,
+      "synced_at": "2026-03-03T21:36:46.398Z",
+      "active": true,
+      "card_name": "Axew"
+    },
+    {
+      "id": "61674",
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "source": "tcgdex",
+      "external_id": "2018sm-10",
+      "meta": null,
+      "synced_at": "2026-03-03T21:48:23.629Z",
+      "active": true,
+      "card_name": "Chansey"
+    },
+    {
+      "id": "61660",
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "source": "tcgdex",
+      "external_id": "2017sm-9",
+      "meta": null,
+      "synced_at": "2026-03-03T21:46:10.019Z",
+      "active": true,
+      "card_name": "Alolan Diglett"
+    },
+    {
+      "id": "61626",
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "source": "tcgdex",
+      "external_id": "2014xy-10",
+      "meta": null,
+      "synced_at": "2026-03-03T21:39:05.133Z",
+      "active": true,
+      "card_name": "Bunnelby"
+    },
+    {
+      "id": "61637",
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "source": "tcgdex",
+      "external_id": "2015xy-7",
+      "meta": null,
+      "synced_at": "2026-03-03T21:41:16.113Z",
+      "active": true,
+      "card_name": "Electrike"
+    },
+    {
+      "id": "61690",
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "source": "tcgdex",
+      "external_id": "2021swsh-1",
+      "meta": null,
+      "synced_at": "2026-03-03T21:13:00.764Z",
+      "active": true,
+      "card_name": "Bulbasaur"
+    },
+    {
+      "id": "118326",
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "source": "tcgdex",
+      "external_id": "A3a-098",
+      "meta": null,
+      "synced_at": "2026-03-27T04:15:06.267Z",
+      "active": true,
+      "card_name": "Aerodactyl"
+    },
+    {
+      "id": "61686",
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "source": "tcgdex",
+      "external_id": "2019sm-11",
+      "meta": null,
+      "synced_at": "2026-03-03T21:52:43.066Z",
+      "active": true,
+      "card_name": "Alolan Dugtrio"
+    }
+  ],
+  "card_print_traits": [
+    {
+      "id": "38367",
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T00:23:24.698Z",
+      "hp": 100,
+      "national_dex": null,
+      "types": [
+        "Water"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "41621",
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T01:24:54.384Z",
+      "hp": null,
+      "national_dex": null,
+      "types": null,
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "38757",
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T00:32:00.076Z",
+      "hp": 60,
+      "national_dex": null,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "43611",
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T02:07:20.448Z",
+      "hp": 110,
+      "national_dex": 113,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "42646",
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T01:50:12.735Z",
+      "hp": 50,
+      "national_dex": 50,
+      "types": [
+        "Metal"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "40484",
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T01:04:50.651Z",
+      "hp": 60,
+      "national_dex": 659,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "41303",
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T01:19:12.519Z",
+      "hp": 60,
+      "national_dex": 309,
+      "types": [
+        "Lightning"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "46315",
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T03:01:31.591Z",
+      "hp": 70,
+      "national_dex": 1,
+      "types": [
+        "Grass"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Basic",
+      "legacy_rarity": null
+    },
+    {
+      "id": "50175",
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T04:15:06.757Z",
+      "hp": 100,
+      "national_dex": null,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "One Shiny",
+      "supertype": "Pokemon",
+      "card_category": "Stage1",
+      "legacy_rarity": null
+    },
+    {
+      "id": "44460",
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "source": "tcgdex",
+      "confidence": null,
+      "created_at": "2026-03-27T02:22:29.652Z",
+      "hp": 60,
+      "national_dex": null,
+      "types": [
+        "Metal"
+      ],
+      "rarity": "None",
+      "supertype": "Pokemon",
+      "card_category": "Stage1",
+      "legacy_rarity": null
+    }
+  ],
+  "card_printings": [
+    {
+      "id": "d92f3779-6cb6-41d5-8c3e-f1c6aac00479",
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T00:23:24.509Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2011bw-5",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "025b1f04-8889-4c13-90b3-c2c9e8fd23b6",
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:24:54.003Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2016xy-10",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "9dcc19fe-0bc0-409b-9422-b44d7daeeeb8",
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:24:54.102Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2016xy-10",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "c578200c-1cae-4e27-8b65-c501bde913cd",
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:24:54.197Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2016xy-10",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "834d4986-caa7-450c-a319-ca48f3231c14",
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T02:07:20.264Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2018sm-10",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4eca7b46-3f04-48fb-9213-e0f8aca33c6f",
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:50:12.549Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2017sm-9",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "1b37c241-a803-46b2-8563-55e7654f85e4",
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:04:50.466Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2014xy-10",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "52c965a2-34cc-47f9-9ee1-d3be13bd22d5",
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T03:01:31.322Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2021swsh-1",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "beb79a29-4561-415b-a5e0-433a9b9f1d4b",
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T03:01:31.413Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2021swsh-1",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "12d0c529-63fd-477e-8763-89b4ae640cb9",
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T04:15:06.584Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "A3a-098",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "2a4cf323-9bcf-4574-a5da-b1aa0d02b33f",
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T04:15:06.494Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "A3a-098",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "6017a1a7-4ca7-4ed0-ac6e-0681047deeab",
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T04:15:06.374Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "A3a-098",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "3f74794b-64ee-4329-bf09-5253dd1c9ae8",
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T02:22:29.461Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "2019sm-11",
+      "created_by": "printing_ingestion_v2"
+    }
+  ],
+  "raw_import_rows": [],
+  "row_forensic_summaries": [
+    {
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "joined_set_code": "2011bw",
+      "card_name": "Alomomola",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2011bw-5"
+        ],
+        "printing_provenance_refs_present": [
+          "2011bw-5"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2011bw",
+        "joined_set_name": "Macdonald's Collection 2011",
+        "external_id_strings_present": [
+          "2011bw-5"
+        ],
+        "printing_provenance_refs_present": [
+          "2011bw-5"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "joined_set_code": "2012bw",
+      "card_name": "Axew",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2012bw-12"
+        ],
+        "printing_provenance_refs_present": []
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2012bw",
+        "joined_set_name": "Macdonald's Collection 2012",
+        "external_id_strings_present": [
+          "2012bw-12"
+        ],
+        "printing_provenance_refs_present": []
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "joined_set_code": "2014xy",
+      "card_name": "Bunnelby",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2014xy-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2014xy-10"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2014xy",
+        "joined_set_name": "Macdonald's Collection 2014",
+        "external_id_strings_present": [
+          "2014xy-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2014xy-10"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "joined_set_code": "2015xy",
+      "card_name": "Electrike",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2015xy-7"
+        ],
+        "printing_provenance_refs_present": []
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2015xy",
+        "joined_set_name": "Macdonald's Collection 2015",
+        "external_id_strings_present": [
+          "2015xy-7"
+        ],
+        "printing_provenance_refs_present": []
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "joined_set_code": "2016xy",
+      "card_name": "Dedenne",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2016xy-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2016xy-10"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2016xy",
+        "joined_set_name": "Macdonald's Collection 2016",
+        "external_id_strings_present": [
+          "2016xy-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2016xy-10"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "joined_set_code": "2017sm",
+      "card_name": "Alolan Diglett",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2017sm-9"
+        ],
+        "printing_provenance_refs_present": [
+          "2017sm-9"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2017sm",
+        "joined_set_name": "Macdonald's Collection 2017",
+        "external_id_strings_present": [
+          "2017sm-9"
+        ],
+        "printing_provenance_refs_present": [
+          "2017sm-9"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "joined_set_code": "2018sm",
+      "card_name": "Chansey",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2018sm-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2018sm-10"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2018sm",
+        "joined_set_name": "Macdonald's Collection 2018",
+        "external_id_strings_present": [
+          "2018sm-10"
+        ],
+        "printing_provenance_refs_present": [
+          "2018sm-10"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "joined_set_code": "2019sm",
+      "card_name": "Alolan Dugtrio",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2019sm-11"
+        ],
+        "printing_provenance_refs_present": [
+          "2019sm-11"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2019sm",
+        "joined_set_name": "Macdonald's Collection 2019",
+        "external_id_strings_present": [
+          "2019sm-11"
+        ],
+        "printing_provenance_refs_present": [
+          "2019sm-11"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "joined_set_code": "2021swsh",
+      "card_name": "Bulbasaur",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "2021swsh-1"
+        ],
+        "printing_provenance_refs_present": [
+          "2021swsh-1"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "2021swsh",
+        "joined_set_name": "Macdonald's Collection 2021",
+        "external_id_strings_present": [
+          "2021swsh-1"
+        ],
+        "printing_provenance_refs_present": [
+          "2021swsh-1"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    },
+    {
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "joined_set_code": "A3a",
+      "card_name": "Aerodactyl",
+      "existing_parent_number": null,
+      "mapping_sources_present": [
+        "tcgdex"
+      ],
+      "candidate_number_evidence": {
+        "direct_number_fields_present": false,
+        "mapping_meta_number_fields": [],
+        "external_id_strings_present": [
+          "A3a-098"
+        ],
+        "printing_provenance_refs_present": [
+          "A3a-098"
+        ]
+      },
+      "candidate_set_evidence": {
+        "joined_set_code": "A3a",
+        "joined_set_name": "Extradimensional Crisis",
+        "external_id_strings_present": [
+          "A3a-098"
+        ],
+        "printing_provenance_refs_present": [
+          "A3a-098"
+        ]
+      },
+      "provable_printed_number_from_stored_evidence": "NO",
+      "evidence_notes": "Joined set evidence exists through sets.code. Parent number is null. No dedicated printed-number field exists in the inspected parent row, mapping meta, traits, or card_printings rows. Number-like tokens appear only inside external_id/provenance_ref strings, which were not parsed in this audit.",
+      "requires_guessing": "YES"
+    }
+  ],
+  "final_summary": {
+    "directly_provable_printed_number_count": 0,
+    "requires_guessing_count": 10,
+    "surface_characterization": "mixed",
+    "surface_characterization_notes": "In this 10-row sample, the rows look like legacy incomplete canon parents with consistent linked set and tcgdex reference evidence, but without a directly stored printed-number field. Embedded external_id/provenance_ref strings exist, but using them as numbers would require parsing outside this audit.",
+    "safest_next_phase_based_on_evidence_only": "Continue read-only provenance auditing focused on whether any authoritative stored numeric printed-number field exists for the supported null-parent surface. Do not repair from embedded external_id or provenance_ref tokens without an explicit evidence rule."
+  }
+}

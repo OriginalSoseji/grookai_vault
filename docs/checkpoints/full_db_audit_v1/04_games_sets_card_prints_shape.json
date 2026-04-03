@@ -1,0 +1,2566 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:14:13.117Z",
+  "target": "remote",
+  "games": [
+    {
+      "id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "code": "pokemon",
+      "name": "Pokémon TCG",
+      "slug": "pokemon"
+    }
+  ],
+  "sets_shape_summary": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": false,
+        "column_default": "gen_random_uuid()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "game",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": false,
+        "column_default": "'pokemon'::text",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "code",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "name",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "release_date",
+        "data_type": "date",
+        "udt_name": "date",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "source",
+        "data_type": "jsonb",
+        "udt_name": "jsonb",
+        "is_nullable": true,
+        "column_default": "'{}'::jsonb",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "logo_url",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "symbol_url",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": false,
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": false,
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "last_synced_at",
+        "data_type": "timestamp with time zone",
+        "udt_name": "timestamptz",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "printed_total",
+        "data_type": "integer",
+        "udt_name": "int4",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "printed_set_abbrev",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "set_role",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      }
+    ],
+    "sampled_sets": [
+      {
+        "id": "25a68e56-57fd-430e-a21a-3ec1ac2fcf19",
+        "set_code": "me02.5",
+        "name": "Ascended Heroes",
+        "game": "pokemon",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "domain": null,
+        "card_print_count": "590"
+      },
+      {
+        "id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+        "set_code": "sm12",
+        "name": "Cosmic Eclipse",
+        "game": "pokemon",
+        "printed_set_abbrev": "CEC",
+        "printed_total": 236,
+        "domain": null,
+        "card_print_count": "542"
+      },
+      {
+        "id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+        "set_code": "sv04",
+        "name": "Paradox Rift",
+        "game": "pokemon",
+        "printed_set_abbrev": "PAR",
+        "printed_total": 182,
+        "domain": null,
+        "card_print_count": "532"
+      },
+      {
+        "id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+        "set_code": "sv08",
+        "name": "Surging Sparks",
+        "game": "pokemon",
+        "printed_set_abbrev": "SSP",
+        "printed_total": 191,
+        "domain": null,
+        "card_print_count": "504"
+      },
+      {
+        "id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+        "set_code": "smp",
+        "name": "SM Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-SM",
+        "printed_total": 248,
+        "domain": null,
+        "card_print_count": "492"
+      },
+      {
+        "id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "set_code": "sv10",
+        "name": "Destined Rivals",
+        "game": "pokemon",
+        "printed_set_abbrev": "DRI",
+        "printed_total": 182,
+        "domain": null,
+        "card_print_count": "488"
+      },
+      {
+        "id": "e3a888ee-42ab-4a49-b856-b485f16a4306",
+        "set_code": "A4",
+        "name": "Wisdom of Sea and Sky",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 161,
+        "domain": "tcg_pocket",
+        "card_print_count": "482"
+      },
+      {
+        "id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "set_code": "swsh7",
+        "name": "Evolving Skies",
+        "game": "pokemon",
+        "printed_set_abbrev": "EVS",
+        "printed_total": 203,
+        "domain": null,
+        "card_print_count": "474"
+      },
+      {
+        "id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "set_code": "sm8",
+        "name": "Lost Thunder",
+        "game": "pokemon",
+        "printed_set_abbrev": "LOT",
+        "printed_total": 214,
+        "domain": null,
+        "card_print_count": "472"
+      },
+      {
+        "id": "6958fc04-24e6-45ff-b729-b0119353f734",
+        "set_code": "sm10",
+        "name": "Unbroken Bonds",
+        "game": "pokemon",
+        "printed_set_abbrev": "UNB",
+        "printed_total": 214,
+        "domain": null,
+        "card_print_count": "468"
+      },
+      {
+        "id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "set_code": "swsh10",
+        "name": "Astral Radiance",
+        "game": "pokemon",
+        "printed_set_abbrev": "ASR",
+        "printed_total": 189,
+        "domain": null,
+        "card_print_count": "461"
+      },
+      {
+        "id": "52a15d52-18a9-4e49-bd77-b69966285635",
+        "set_code": "A3",
+        "name": "Celestial Guardians",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 155,
+        "domain": "tcg_pocket",
+        "card_print_count": "453"
+      },
+      {
+        "id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+        "set_code": "sv06",
+        "name": "Twilight Masquerade",
+        "game": "pokemon",
+        "printed_set_abbrev": "TWM",
+        "printed_total": 167,
+        "domain": null,
+        "card_print_count": "452"
+      },
+      {
+        "id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "set_code": "swsh12",
+        "name": "Silver Tempest",
+        "game": "pokemon",
+        "printed_set_abbrev": "SIT",
+        "printed_total": 195,
+        "domain": null,
+        "card_print_count": "446"
+      },
+      {
+        "id": "076bc367-57a2-44db-853c-dfa32115761f",
+        "set_code": "xyp",
+        "name": "XY Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-XY",
+        "printed_total": 211,
+        "domain": null,
+        "card_print_count": "427"
+      },
+      {
+        "id": "83cdb2aa-b7bd-4935-b5be-180ba0b094ff",
+        "set_code": "A2",
+        "name": "Space-Time Smackdown",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 140,
+        "domain": "tcg_pocket",
+        "card_print_count": "393"
+      },
+      {
+        "id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "set_code": "swsh9",
+        "name": "Brilliant Stars",
+        "game": "pokemon",
+        "printed_set_abbrev": "BRS",
+        "printed_total": 172,
+        "domain": null,
+        "card_print_count": "393"
+      },
+      {
+        "id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+        "set_code": "swsh12.5",
+        "name": "Crown Zenith",
+        "game": "pokemon",
+        "printed_set_abbrev": "CRZ",
+        "printed_total": 159,
+        "domain": null,
+        "card_print_count": "390"
+      },
+      {
+        "id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "set_code": "sv09",
+        "name": "Journey Together",
+        "game": "pokemon",
+        "printed_set_abbrev": "JTG",
+        "printed_total": 159,
+        "domain": null,
+        "card_print_count": "380"
+      },
+      {
+        "id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "name": "Paldea Evolved",
+        "game": "pokemon",
+        "printed_set_abbrev": "PAL",
+        "printed_total": 193,
+        "domain": null,
+        "card_print_count": "378"
+      },
+      {
+        "id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "set_code": "swsh11",
+        "name": "Lost Origin",
+        "game": "pokemon",
+        "printed_set_abbrev": "LOR",
+        "printed_total": 196,
+        "domain": null,
+        "card_print_count": "377"
+      },
+      {
+        "id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "set_code": "swsh8",
+        "name": "Fusion Strike",
+        "game": "pokemon",
+        "printed_set_abbrev": "FST",
+        "printed_total": 264,
+        "domain": null,
+        "card_print_count": "368"
+      },
+      {
+        "id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+        "set_code": "sm7",
+        "name": "Celestial Storm",
+        "game": "pokemon",
+        "printed_set_abbrev": "CES",
+        "printed_total": 168,
+        "domain": null,
+        "card_print_count": "366"
+      },
+      {
+        "id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "set_code": "me01",
+        "name": "Mega Evolution",
+        "game": "pokemon",
+        "printed_set_abbrev": "MEG",
+        "printed_total": 132,
+        "domain": null,
+        "card_print_count": "352"
+      },
+      {
+        "id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "name": "Stellar Crown",
+        "game": "pokemon",
+        "printed_set_abbrev": "SCR",
+        "printed_total": 142,
+        "domain": null,
+        "card_print_count": "350"
+      },
+      {
+        "id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+        "set_code": "sm5",
+        "name": "Ultra Prism",
+        "game": "pokemon",
+        "printed_set_abbrev": "UPR",
+        "printed_total": 156,
+        "domain": null,
+        "card_print_count": "346"
+      },
+      {
+        "id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+        "set_code": "sm2",
+        "name": "Guardians Rising",
+        "game": "pokemon",
+        "printed_set_abbrev": "GRI",
+        "printed_total": 145,
+        "domain": null,
+        "card_print_count": "338"
+      },
+      {
+        "id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+        "set_code": "sm3",
+        "name": "Burning Shadows",
+        "game": "pokemon",
+        "printed_set_abbrev": "BUS",
+        "printed_total": 147,
+        "domain": null,
+        "card_print_count": "338"
+      },
+      {
+        "id": "04f84c99-900c-412d-9c1e-69df6362d48d",
+        "set_code": "B1",
+        "name": "Mega Rising",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 226,
+        "domain": "tcg_pocket",
+        "card_print_count": "331"
+      },
+      {
+        "id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+        "set_code": "xy8",
+        "name": "BREAKthrough",
+        "game": "pokemon",
+        "printed_set_abbrev": "BKT",
+        "printed_total": 162,
+        "domain": null,
+        "card_print_count": "329"
+      },
+      {
+        "id": "36779186-1b7c-41b2-8409-c6db6a2b0707",
+        "set_code": "sm11",
+        "name": "Unified Minds",
+        "game": "pokemon",
+        "printed_set_abbrev": "UNM",
+        "printed_total": 236,
+        "domain": null,
+        "card_print_count": "316"
+      },
+      {
+        "id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "name": "SWSH Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-SW",
+        "printed_total": 307,
+        "domain": null,
+        "card_print_count": "304"
+      },
+      {
+        "id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+        "set_code": "pl3",
+        "name": "Supreme Victors",
+        "game": "pokemon",
+        "printed_set_abbrev": "SV",
+        "printed_total": 147,
+        "domain": null,
+        "card_print_count": "303"
+      },
+      {
+        "id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "name": "Scarlet & Violet Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-SV",
+        "printed_total": 215,
+        "domain": null,
+        "card_print_count": "293"
+      },
+      {
+        "id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "set_code": "sm6",
+        "name": "Forbidden Light",
+        "game": "pokemon",
+        "printed_set_abbrev": "FLI",
+        "printed_total": 131,
+        "domain": null,
+        "card_print_count": "292"
+      },
+      {
+        "id": "33003417-c045-4fe2-9135-2b22bddafc74",
+        "set_code": "A1",
+        "name": "Genetic Apex",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 226,
+        "domain": "tcg_pocket",
+        "card_print_count": "287"
+      },
+      {
+        "id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+        "set_code": "bw8",
+        "name": "Plasma Storm",
+        "game": "pokemon",
+        "printed_set_abbrev": "PLS",
+        "printed_total": 135,
+        "domain": null,
+        "card_print_count": "276"
+      },
+      {
+        "id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "name": "Shining Fates",
+        "game": "pokemon",
+        "printed_set_abbrev": "SHF",
+        "printed_total": 72,
+        "domain": null,
+        "card_print_count": "268"
+      },
+      {
+        "id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "set_code": "swsh6",
+        "name": "Chilling Reign",
+        "game": "pokemon",
+        "printed_set_abbrev": "CRE",
+        "printed_total": 198,
+        "domain": null,
+        "card_print_count": "266"
+      },
+      {
+        "id": "527ab611-6142-40e4-844b-0eb395007e7b",
+        "set_code": "pl1",
+        "name": "Platinum",
+        "game": "pokemon",
+        "printed_set_abbrev": "PL",
+        "printed_total": 127,
+        "domain": null,
+        "card_print_count": "263"
+      },
+      {
+        "id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+        "set_code": "ex10",
+        "name": "Unseen Forces",
+        "game": "pokemon",
+        "printed_set_abbrev": "UF",
+        "printed_total": 115,
+        "domain": null,
+        "card_print_count": "262"
+      },
+      {
+        "id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "set_code": "bw11",
+        "name": "Legendary Treasures",
+        "game": "pokemon",
+        "printed_set_abbrev": "LTR",
+        "printed_total": 113,
+        "domain": null,
+        "card_print_count": "260"
+      },
+      {
+        "id": "97122072-f868-492c-913d-b3fa77deab09",
+        "set_code": "sv01",
+        "name": "Scarlet & Violet",
+        "game": "pokemon",
+        "printed_set_abbrev": "SVI",
+        "printed_total": 198,
+        "domain": null,
+        "card_print_count": "258"
+      },
+      {
+        "id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+        "set_code": "xy10",
+        "name": "Fates Collide",
+        "game": "pokemon",
+        "printed_set_abbrev": "FCO",
+        "printed_total": 124,
+        "domain": null,
+        "card_print_count": "255"
+      },
+      {
+        "id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+        "set_code": "xy9",
+        "name": "BREAKpoint",
+        "game": "pokemon",
+        "printed_set_abbrev": "BKP",
+        "printed_total": 122,
+        "domain": null,
+        "card_print_count": "251"
+      },
+      {
+        "id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+        "set_code": "sm4",
+        "name": "Crimson Invasion",
+        "game": "pokemon",
+        "printed_set_abbrev": "CIN",
+        "printed_total": 111,
+        "domain": null,
+        "card_print_count": "249"
+      },
+      {
+        "id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+        "set_code": "xy4",
+        "name": "Phantom Forces",
+        "game": "pokemon",
+        "printed_set_abbrev": "PHF",
+        "printed_total": 119,
+        "domain": null,
+        "card_print_count": "247"
+      },
+      {
+        "id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+        "set_code": "sv04.5",
+        "name": "Paldean Fates",
+        "game": "pokemon",
+        "printed_set_abbrev": "PAF",
+        "printed_total": 91,
+        "domain": null,
+        "card_print_count": "245"
+      },
+      {
+        "id": "5df2c9e8-fbb9-43fb-9005-ac501b9dc5b6",
+        "set_code": "sv4pt5",
+        "name": "Paldean Fates",
+        "game": "pokemon",
+        "printed_set_abbrev": "PAF",
+        "printed_total": 91,
+        "domain": null,
+        "card_print_count": "245"
+      },
+      {
+        "id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+        "set_code": "bw9",
+        "name": "Plasma Freeze",
+        "game": "pokemon",
+        "printed_set_abbrev": "PLF",
+        "printed_total": 116,
+        "domain": null,
+        "card_print_count": "244"
+      },
+      {
+        "id": "1b4f553a-f12c-4616-bead-ac5081865492",
+        "set_code": "pl2",
+        "name": "Rising Rivals",
+        "game": "pokemon",
+        "printed_set_abbrev": "RR",
+        "printed_total": 111,
+        "domain": null,
+        "card_print_count": "234"
+      },
+      {
+        "id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+        "set_code": "swsh1",
+        "name": "Sword & Shield",
+        "game": "pokemon",
+        "printed_set_abbrev": "SSH",
+        "printed_total": 202,
+        "domain": null,
+        "card_print_count": "232"
+      },
+      {
+        "id": "58a601d0-5d14-47a5-b589-425423207912",
+        "set_code": "sv03",
+        "name": "Obsidian Flames",
+        "game": "pokemon",
+        "printed_set_abbrev": "OBF",
+        "printed_total": 197,
+        "domain": null,
+        "card_print_count": "230"
+      },
+      {
+        "id": "f7c6de96-8e34-4c36-9efc-6848021ba6c0",
+        "set_code": "xy3",
+        "name": "Furious Fists",
+        "game": "pokemon",
+        "printed_set_abbrev": "FFI",
+        "printed_total": 111,
+        "domain": null,
+        "card_print_count": "228"
+      },
+      {
+        "id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+        "set_code": "xy6",
+        "name": "Roaring Skies",
+        "game": "pokemon",
+        "printed_set_abbrev": "ROS",
+        "printed_total": 108,
+        "domain": null,
+        "card_print_count": "224"
+      },
+      {
+        "id": "40623fdb-11f2-407a-b6c7-0b60cf543d70",
+        "set_code": "A2b",
+        "name": "Shining Revelry",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 72,
+        "domain": "tcg_pocket",
+        "card_print_count": "222"
+      },
+      {
+        "id": "10256f30-684c-4367-a89a-5a8678284c93",
+        "set_code": "xy2",
+        "name": "Flashfire",
+        "game": "pokemon",
+        "printed_set_abbrev": "FLF",
+        "printed_total": 106,
+        "domain": null,
+        "card_print_count": "219"
+      },
+      {
+        "id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "set_code": "sv05",
+        "name": "Temporal Forces",
+        "game": "pokemon",
+        "printed_set_abbrev": "TEF",
+        "printed_total": 162,
+        "domain": null,
+        "card_print_count": "218"
+      },
+      {
+        "id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+        "set_code": "swsh2",
+        "name": "Rebel Clash",
+        "game": "pokemon",
+        "printed_set_abbrev": "RCL",
+        "printed_total": 192,
+        "domain": null,
+        "card_print_count": "218"
+      },
+      {
+        "id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+        "set_code": "g1",
+        "name": "Generations",
+        "game": "pokemon",
+        "printed_set_abbrev": "GEN",
+        "printed_total": 83,
+        "domain": null,
+        "card_print_count": "217"
+      },
+      {
+        "id": "7f616ea0-8f96-4250-bee3-c4293c629552",
+        "set_code": "ecard2",
+        "name": "Aquapolis",
+        "game": "pokemon",
+        "printed_set_abbrev": "AQ",
+        "printed_total": 147,
+        "domain": null,
+        "card_print_count": "215"
+      },
+      {
+        "id": "3c9357af-18e8-4bd4-b2d8-6a69b72f051b",
+        "set_code": "A3b",
+        "name": "Eevee Grove",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 69,
+        "domain": "tcg_pocket",
+        "card_print_count": "214"
+      },
+      {
+        "id": "a3e7cb46-2954-41b3-9d3e-691bacdcc3ab",
+        "set_code": "A4a",
+        "name": "Secluded Springs",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 71,
+        "domain": "tcg_pocket",
+        "card_print_count": "210"
+      },
+      {
+        "id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+        "set_code": "bw10",
+        "name": "Plasma Blast",
+        "game": "pokemon",
+        "printed_set_abbrev": "PLB",
+        "printed_total": 101,
+        "domain": null,
+        "card_print_count": "210"
+      },
+      {
+        "id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+        "set_code": "pl4",
+        "name": "Arceus",
+        "game": "pokemon",
+        "printed_set_abbrev": "AR",
+        "printed_total": 99,
+        "domain": null,
+        "card_print_count": "210"
+      },
+      {
+        "id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+        "set_code": "dp7",
+        "name": "Stormfront",
+        "game": "pokemon",
+        "printed_set_abbrev": "SF",
+        "printed_total": 100,
+        "domain": null,
+        "card_print_count": "209"
+      },
+      {
+        "id": "ef51e693-459f-43d1-a823-9146f387ab32",
+        "set_code": "sv03.5",
+        "name": "151",
+        "game": "pokemon",
+        "printed_set_abbrev": "MEW",
+        "printed_total": 165,
+        "domain": null,
+        "card_print_count": "208"
+      },
+      {
+        "id": "4f5a343c-9030-4816-aad3-56f5570ef433",
+        "set_code": "swsh4",
+        "name": "Vivid Voltage",
+        "game": "pokemon",
+        "printed_set_abbrev": "VIV",
+        "printed_total": 185,
+        "domain": null,
+        "card_print_count": "206"
+      },
+      {
+        "id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+        "set_code": "bwp",
+        "name": "BW Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-BLW",
+        "printed_total": 101,
+        "domain": null,
+        "card_print_count": "202"
+      },
+      {
+        "id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+        "set_code": "swsh3",
+        "name": "Darkness Ablaze",
+        "game": "pokemon",
+        "printed_set_abbrev": "DAA",
+        "printed_total": 189,
+        "domain": null,
+        "card_print_count": "202"
+      },
+      {
+        "id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+        "set_code": "col1",
+        "name": "Call of Legends",
+        "game": "pokemon",
+        "printed_set_abbrev": "CL",
+        "printed_total": 95,
+        "domain": null,
+        "card_print_count": "201"
+      },
+      {
+        "id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+        "set_code": "xy7",
+        "name": "Ancient Origins",
+        "game": "pokemon",
+        "printed_set_abbrev": "AOR",
+        "printed_total": 98,
+        "domain": null,
+        "card_print_count": "201"
+      },
+      {
+        "id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5",
+        "set_code": "ecard3",
+        "name": "Skyridge",
+        "game": "pokemon",
+        "printed_set_abbrev": "SK",
+        "printed_total": 144,
+        "domain": null,
+        "card_print_count": "198"
+      },
+      {
+        "id": "f88303d3-2e84-41d7-85ac-d95b6c63ee17",
+        "set_code": "sm9",
+        "name": "Team Up",
+        "game": "pokemon",
+        "printed_set_abbrev": "TEU",
+        "printed_total": 181,
+        "domain": null,
+        "card_print_count": "196"
+      },
+      {
+        "id": "c58341d2-900f-40ec-898f-768d7b836229",
+        "set_code": "A2a",
+        "name": "Triumphant Light",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 75,
+        "domain": "tcg_pocket",
+        "card_print_count": "192"
+      },
+      {
+        "id": "565f8f35-e3dc-4ad1-9696-1203fdebb5cd",
+        "set_code": "sma",
+        "name": "Hidden Fates Shiny Vault",
+        "game": "pokemon",
+        "printed_set_abbrev": "HIF",
+        "printed_total": 94,
+        "domain": null,
+        "card_print_count": "188"
+      },
+      {
+        "id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "set_code": "swsh5",
+        "name": "Battle Styles",
+        "game": "pokemon",
+        "printed_set_abbrev": "BST",
+        "printed_total": 163,
+        "domain": null,
+        "card_print_count": "183"
+      },
+      {
+        "id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+        "set_code": "sv08.5",
+        "name": "Prismatic Evolutions",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 131,
+        "domain": null,
+        "card_print_count": "180"
+      },
+      {
+        "id": "dbe31bda-1177-4db5-8067-8efdbcf43d96",
+        "set_code": "sv8pt5",
+        "name": "Prismatic Evolutions",
+        "game": "pokemon",
+        "printed_set_abbrev": "PRE",
+        "printed_total": 131,
+        "domain": null,
+        "card_print_count": "180"
+      },
+      {
+        "id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "set_code": "sm1",
+        "name": "Sun & Moon",
+        "game": "pokemon",
+        "printed_set_abbrev": "SUM",
+        "printed_total": 149,
+        "domain": null,
+        "card_print_count": "173"
+      },
+      {
+        "id": "c8548b0e-a517-47c9-974b-5bef0362fe92",
+        "set_code": "sv10.5w",
+        "name": "White Flare",
+        "game": "pokemon",
+        "printed_set_abbrev": "WHT",
+        "printed_total": 86,
+        "domain": null,
+        "card_print_count": "173"
+      },
+      {
+        "id": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
+        "set_code": "sv10.5b",
+        "name": "Black Bolt",
+        "game": "pokemon",
+        "printed_set_abbrev": "BLK",
+        "printed_total": 86,
+        "domain": null,
+        "card_print_count": "172"
+      },
+      {
+        "id": "2ab53b6f-aed9-42e7-a335-49c6df539a31",
+        "set_code": "ecard1",
+        "name": "Expedition Base Set",
+        "game": "pokemon",
+        "printed_set_abbrev": "EX",
+        "printed_total": 165,
+        "domain": null,
+        "card_print_count": "165"
+      },
+      {
+        "id": "90ad9e95-61b9-4869-9c7d-97f675f5e5c4",
+        "set_code": "xy5",
+        "name": "Primal Clash",
+        "game": "pokemon",
+        "printed_set_abbrev": "PRC",
+        "printed_total": 160,
+        "domain": null,
+        "card_print_count": "164"
+      },
+      {
+        "id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+        "set_code": "A1a",
+        "name": "Mythical Island",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 68,
+        "domain": "tcg_pocket",
+        "card_print_count": "163"
+      },
+      {
+        "id": "d4f58a11-da4c-4a4c-b0d5-8f1f5313d8fd",
+        "set_code": "swsh3.5",
+        "name": "Champion's Path",
+        "game": "pokemon",
+        "printed_set_abbrev": "CPA",
+        "printed_total": 70,
+        "domain": null,
+        "card_print_count": "160"
+      },
+      {
+        "id": "3c75028f-5798-4271-b390-ab040e76346c",
+        "set_code": "sm3.5",
+        "name": "Shining Legends",
+        "game": "pokemon",
+        "printed_set_abbrev": "SLG",
+        "printed_total": 78,
+        "domain": null,
+        "card_print_count": "156"
+      },
+      {
+        "id": "4260e7d2-8b35-4741-860a-116b08d897cc",
+        "set_code": "bw7",
+        "name": "Boundaries Crossed",
+        "game": "pokemon",
+        "printed_set_abbrev": "BCR",
+        "printed_total": 149,
+        "domain": null,
+        "card_print_count": "153"
+      },
+      {
+        "id": "74ac5cb4-d64c-451b-9642-18523097609a",
+        "set_code": "dp6",
+        "name": "Legends Awakened",
+        "game": "pokemon",
+        "printed_set_abbrev": "LA",
+        "printed_total": 146,
+        "domain": null,
+        "card_print_count": "146"
+      },
+      {
+        "id": "37b25b6d-7f33-4e6f-8c40-086f7df82d7e",
+        "set_code": "xy1",
+        "name": "XY",
+        "game": "pokemon",
+        "printed_set_abbrev": "XY",
+        "printed_total": 146,
+        "domain": null,
+        "card_print_count": "146"
+      },
+      {
+        "id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+        "set_code": "dp3",
+        "name": "Secret Wonders",
+        "game": "pokemon",
+        "printed_set_abbrev": "SW",
+        "printed_total": 132,
+        "domain": null,
+        "card_print_count": "132"
+      },
+      {
+        "id": "7dc95963-5900-4fc2-a07e-7a48328f451d",
+        "set_code": "gym1",
+        "name": "Gym Heroes",
+        "game": "pokemon",
+        "printed_set_abbrev": "G1",
+        "printed_total": 132,
+        "domain": null,
+        "card_print_count": "132"
+      },
+      {
+        "id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+        "set_code": "gym2",
+        "name": "Gym Challenge",
+        "game": "pokemon",
+        "printed_set_abbrev": "G2",
+        "printed_total": 132,
+        "domain": null,
+        "card_print_count": "132"
+      },
+      {
+        "id": "e4c6274f-51a7-4b4f-9cf1-57692c600d2b",
+        "set_code": "base4",
+        "name": "Base Set 2",
+        "game": "pokemon",
+        "printed_set_abbrev": "B2",
+        "printed_total": 130,
+        "domain": null,
+        "card_print_count": "130"
+      },
+      {
+        "id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+        "set_code": "dp1",
+        "name": "Diamond & Pearl",
+        "game": "pokemon",
+        "printed_set_abbrev": "DP",
+        "printed_total": 130,
+        "domain": null,
+        "card_print_count": "130"
+      },
+      {
+        "id": "3b753746-98f4-43a3-ab4c-c1a2cfe8219b",
+        "set_code": "me02",
+        "name": "Phantasmal Flames",
+        "game": "pokemon",
+        "printed_set_abbrev": "PFL",
+        "printed_total": 94,
+        "domain": null,
+        "card_print_count": "130"
+      },
+      {
+        "id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+        "set_code": "bw6",
+        "name": "Dragons Exalted",
+        "game": "pokemon",
+        "printed_set_abbrev": "DRX",
+        "printed_total": 124,
+        "domain": null,
+        "card_print_count": "128"
+      },
+      {
+        "id": "c3585cc2-6bb0-42c9-a359-8e6d7a2e28be",
+        "set_code": "dp2",
+        "name": "Mysterious Treasures",
+        "game": "pokemon",
+        "printed_set_abbrev": "MT",
+        "printed_total": 123,
+        "domain": null,
+        "card_print_count": "124"
+      },
+      {
+        "id": "5518f66e-92c1-40b9-95a3-754fe1d8361a",
+        "set_code": "hgss1",
+        "name": "HeartGold & SoulSilver",
+        "game": "pokemon",
+        "printed_set_abbrev": "HS",
+        "printed_total": 123,
+        "domain": null,
+        "card_print_count": "124"
+      },
+      {
+        "id": "c92d270c-b813-4e21-ab84-443b335ef047",
+        "set_code": "swsh45sv",
+        "name": "Shining Fates Shiny Vault",
+        "game": "pokemon",
+        "printed_set_abbrev": "SHF",
+        "printed_total": 122,
+        "domain": null,
+        "card_print_count": "122"
+      },
+      {
+        "id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+        "set_code": "ex6",
+        "name": "FireRed & LeafGreen",
+        "game": "pokemon",
+        "printed_set_abbrev": "RG",
+        "printed_total": 112,
+        "domain": null,
+        "card_print_count": "116"
+      },
+      {
+        "id": "76e9acd1-5d8d-49ba-8614-ffbf4ef95ba5",
+        "set_code": "xy11",
+        "name": "Steam Siege",
+        "game": "pokemon",
+        "printed_set_abbrev": "STS",
+        "printed_total": 114,
+        "domain": null,
+        "card_print_count": "116"
+      },
+      {
+        "id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+        "set_code": "bw1",
+        "name": "Black & White",
+        "game": "pokemon",
+        "printed_set_abbrev": "BLW",
+        "printed_total": 114,
+        "domain": null,
+        "card_print_count": "115"
+      },
+      {
+        "id": "1e872421-a1ba-4dc1-bfcf-5620f020ac67",
+        "set_code": "ex11",
+        "name": "Delta Species",
+        "game": "pokemon",
+        "printed_set_abbrev": "DS",
+        "printed_total": 113,
+        "domain": null,
+        "card_print_count": "114"
+      },
+      {
+        "id": "137f45e4-433d-4ba0-8dcf-5aae60ff5c9a",
+        "set_code": "neo4",
+        "name": "Neo Destiny",
+        "game": "pokemon",
+        "printed_set_abbrev": "N4",
+        "printed_total": 105,
+        "domain": null,
+        "card_print_count": "113"
+      },
+      {
+        "id": "a2d0da3d-a205-436f-82bb-368228a65adf",
+        "set_code": "xy12",
+        "name": "Evolutions",
+        "game": "pokemon",
+        "printed_set_abbrev": "EVO",
+        "printed_total": 108,
+        "domain": null,
+        "card_print_count": "113"
+      },
+      {
+        "id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+        "set_code": "bw5",
+        "name": "Dark Explorers",
+        "game": "pokemon",
+        "printed_set_abbrev": "DEX",
+        "printed_total": 108,
+        "domain": null,
+        "card_print_count": "111"
+      },
+      {
+        "id": "05c6454a-02e2-401e-a8f3-1a433c4d6748",
+        "set_code": "ex13",
+        "name": "Holon Phantoms",
+        "game": "pokemon",
+        "printed_set_abbrev": "HP",
+        "printed_total": 110,
+        "domain": null,
+        "card_print_count": "111"
+      },
+      {
+        "id": "08e3a703-b56c-4cc9-bba9-77375d30526d",
+        "set_code": "ex7",
+        "name": "Team Rocket Returns",
+        "game": "pokemon",
+        "printed_set_abbrev": "TRR",
+        "printed_total": 109,
+        "domain": null,
+        "card_print_count": "111"
+      },
+      {
+        "id": "bdc08ab5-06cc-4fc7-bc8b-d9d1d145c9b7",
+        "set_code": "neo1",
+        "name": "Neo Genesis",
+        "game": "pokemon",
+        "printed_set_abbrev": "N1",
+        "printed_total": 111,
+        "domain": null,
+        "card_print_count": "111"
+      },
+      {
+        "id": "1e2da55e-a5d6-463f-814e-3da6fd1fb6c4",
+        "set_code": "base6",
+        "name": "Legendary Collection",
+        "game": "pokemon",
+        "printed_set_abbrev": "LC",
+        "printed_total": 110,
+        "domain": null,
+        "card_print_count": "110"
+      },
+      {
+        "id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+        "set_code": "lc",
+        "name": "Legendary Collection",
+        "game": "pokemon",
+        "printed_set_abbrev": "LC",
+        "printed_total": 110,
+        "domain": null,
+        "card_print_count": "110"
+      },
+      {
+        "id": "e3dd9832-637b-4822-a309-cf58b43123e2",
+        "set_code": "ex1",
+        "name": "Ruby & Sapphire",
+        "game": "pokemon",
+        "printed_set_abbrev": "RS",
+        "printed_total": 109,
+        "domain": null,
+        "card_print_count": "109"
+      },
+      {
+        "id": "718c878e-280d-469e-bf69-c96070ac08b1",
+        "set_code": "ex16",
+        "name": "Power Keepers",
+        "game": "pokemon",
+        "printed_set_abbrev": "PK",
+        "printed_total": 108,
+        "domain": null,
+        "card_print_count": "108"
+      },
+      {
+        "id": "af56108b-3585-4f3f-8036-3960c9cf16c5",
+        "set_code": "ex8",
+        "name": "Deoxys",
+        "game": "pokemon",
+        "printed_set_abbrev": "DX",
+        "printed_total": 107,
+        "domain": null,
+        "card_print_count": "108"
+      },
+      {
+        "id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+        "set_code": "ex9",
+        "name": "Emerald",
+        "game": "pokemon",
+        "printed_set_abbrev": "EM",
+        "printed_total": 106,
+        "domain": null,
+        "card_print_count": "107"
+      },
+      {
+        "id": "4857a393-613a-4238-b2a4-443e88c44696",
+        "set_code": "dp4",
+        "name": "Great Encounters",
+        "game": "pokemon",
+        "printed_set_abbrev": "GE",
+        "printed_total": 106,
+        "domain": null,
+        "card_print_count": "106"
+      },
+      {
+        "id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+        "set_code": "A3a",
+        "name": "Extradimensional Crisis",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "domain": null,
+        "card_print_count": "103"
+      },
+      {
+        "id": "3c744438-4d61-49dd-94f5-d7032ef17db0",
+        "set_code": "bw4",
+        "name": "Next Destinies",
+        "game": "pokemon",
+        "printed_set_abbrev": "NXD",
+        "printed_total": 99,
+        "domain": null,
+        "card_print_count": "103"
+      },
+      {
+        "id": "27d9de8f-d55b-4ad7-ae10-938dec95e392",
+        "set_code": "hgss4",
+        "name": "HS—Triumphant",
+        "game": "pokemon",
+        "printed_set_abbrev": "TM",
+        "printed_total": 102,
+        "domain": null,
+        "card_print_count": "103"
+      },
+      {
+        "id": "fe8f46d4-c078-4734-8fbc-6a62feb326e5",
+        "set_code": "base1",
+        "name": "Base Set",
+        "game": "pokemon",
+        "printed_set_abbrev": "BS",
+        "printed_total": 102,
+        "domain": null,
+        "card_print_count": "102"
+      },
+      {
+        "id": "31a4671e-3a0e-4708-be98-60ffb6e56119",
+        "set_code": "bw3",
+        "name": "Noble Victories",
+        "game": "pokemon",
+        "printed_set_abbrev": "NVI",
+        "printed_total": 101,
+        "domain": null,
+        "card_print_count": "102"
+      },
+      {
+        "id": "f4b38c7b-2c57-4d56-8245-7a73a69d401c",
+        "set_code": "ex5",
+        "name": "Hidden Legends",
+        "game": "pokemon",
+        "printed_set_abbrev": "HL",
+        "printed_total": 101,
+        "domain": null,
+        "card_print_count": "102"
+      },
+      {
+        "id": "d73bcf8f-d74e-4787-9bc9-fca8295730ad",
+        "set_code": "ex15",
+        "name": "Dragon Frontiers",
+        "game": "pokemon",
+        "printed_set_abbrev": "DF",
+        "printed_total": 101,
+        "domain": null,
+        "card_print_count": "101"
+      },
+      {
+        "id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+        "set_code": "dp5",
+        "name": "Majestic Dawn",
+        "game": "pokemon",
+        "printed_set_abbrev": "MD",
+        "printed_total": 100,
+        "domain": null,
+        "card_print_count": "100"
+      },
+      {
+        "id": "dea77f92-50bb-4069-8665-b46576eda8dc",
+        "set_code": "ex14",
+        "name": "Crystal Guardians",
+        "game": "pokemon",
+        "printed_set_abbrev": "CG",
+        "printed_total": 100,
+        "domain": null,
+        "card_print_count": "100"
+      },
+      {
+        "id": "8929a764-af71-47c9-bf83-193b65610976",
+        "set_code": "ex2",
+        "name": "Sandstorm",
+        "game": "pokemon",
+        "printed_set_abbrev": "SS",
+        "printed_total": 100,
+        "domain": null,
+        "card_print_count": "100"
+      },
+      {
+        "id": "741be60f-301e-4c83-9846-b638123e092c",
+        "set_code": "ex3",
+        "name": "Dragon",
+        "game": "pokemon",
+        "printed_set_abbrev": "DR",
+        "printed_total": 97,
+        "domain": null,
+        "card_print_count": "100"
+      },
+      {
+        "id": "9d42f9e7-972c-458f-b770-aba7e6cb4111",
+        "set_code": "P-A",
+        "name": "Promos-A",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "domain": null,
+        "card_print_count": "100"
+      },
+      {
+        "id": "406a7484-f633-415c-a1ef-abd79db5833b",
+        "set_code": "sv06.5",
+        "name": "Shrouded Fable",
+        "game": "pokemon",
+        "printed_set_abbrev": "SFA",
+        "printed_total": 64,
+        "domain": null,
+        "card_print_count": "99"
+      },
+      {
+        "id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+        "set_code": "sv6pt5",
+        "name": "Shrouded Fable",
+        "game": "pokemon",
+        "printed_set_abbrev": "SFA",
+        "printed_total": 64,
+        "domain": null,
+        "card_print_count": "99"
+      },
+      {
+        "id": "b5aeca4a-0d90-408f-aafc-d6d5e4d20cb2",
+        "set_code": "bw2",
+        "name": "Emerging Powers",
+        "game": "pokemon",
+        "printed_set_abbrev": "EPO",
+        "printed_total": 98,
+        "domain": null,
+        "card_print_count": "98"
+      },
+      {
+        "id": "e8c08c11-2e00-4405-836b-d01eff3fe555",
+        "set_code": "ex4",
+        "name": "Team Magma vs Team Aqua",
+        "game": "pokemon",
+        "printed_set_abbrev": "MA",
+        "printed_total": 95,
+        "domain": null,
+        "card_print_count": "97"
+      },
+      {
+        "id": "9fc712eb-73ff-4b4c-a029-e1f33df8dfff",
+        "set_code": "hgss2",
+        "name": "HS—Unleashed",
+        "game": "pokemon",
+        "printed_set_abbrev": "UL",
+        "printed_total": 95,
+        "domain": null,
+        "card_print_count": "96"
+      },
+      {
+        "id": "873c52e6-f2a7-4846-8850-217e7b81c784",
+        "set_code": "ex12",
+        "name": "Legend Maker",
+        "game": "pokemon",
+        "printed_set_abbrev": "LM",
+        "printed_total": 92,
+        "domain": null,
+        "card_print_count": "93"
+      },
+      {
+        "id": "98152e28-0117-4abb-8c03-a89828d7c3c9",
+        "set_code": "hgss3",
+        "name": "HS—Undaunted",
+        "game": "pokemon",
+        "printed_set_abbrev": "UD",
+        "printed_total": 90,
+        "domain": null,
+        "card_print_count": "91"
+      },
+      {
+        "id": "324a7de5-650c-4f96-bdf9-36fae1d75997",
+        "set_code": "pgo",
+        "name": "Pokémon GO",
+        "game": "pokemon",
+        "printed_set_abbrev": "PGO",
+        "printed_total": 78,
+        "domain": null,
+        "card_print_count": "88"
+      },
+      {
+        "id": "f500a330-334c-405c-849a-479f5f117b40",
+        "set_code": "swsh10.5",
+        "name": "Pokémon GO",
+        "game": "pokemon",
+        "printed_set_abbrev": "PGO",
+        "printed_total": 78,
+        "domain": null,
+        "card_print_count": "88"
+      },
+      {
+        "id": "895c25c4-740f-4b64-8468-2e8e01562af3",
+        "set_code": "base5",
+        "name": "Team Rocket",
+        "game": "pokemon",
+        "printed_set_abbrev": "TR",
+        "printed_total": 82,
+        "domain": null,
+        "card_print_count": "83"
+      },
+      {
+        "id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+        "set_code": "np",
+        "name": "Nintendo Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-NP",
+        "printed_total": 40,
+        "domain": null,
+        "card_print_count": "80"
+      },
+      {
+        "id": "f672abd1-37b3-4d45-aa5d-14a38166d9b4",
+        "set_code": "sm7.5",
+        "name": "Dragon Majesty",
+        "game": "pokemon",
+        "printed_set_abbrev": "DRM",
+        "printed_total": 70,
+        "domain": null,
+        "card_print_count": "78"
+      },
+      {
+        "id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+        "set_code": "sm75",
+        "name": "Dragon Majesty",
+        "game": "pokemon",
+        "printed_set_abbrev": "DRM",
+        "printed_total": 70,
+        "domain": null,
+        "card_print_count": "78"
+      },
+      {
+        "id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+        "set_code": "cel25",
+        "name": "Celebrations",
+        "game": "pokemon",
+        "printed_set_abbrev": "CEL",
+        "printed_total": 25,
+        "domain": null,
+        "card_print_count": "76"
+      },
+      {
+        "id": "358580ba-948d-4633-9c5e-d6ae6557f145",
+        "set_code": "neo2",
+        "name": "Neo Discovery",
+        "game": "pokemon",
+        "printed_set_abbrev": "N2",
+        "printed_total": 75,
+        "domain": null,
+        "card_print_count": "75"
+      },
+      {
+        "id": "da2ed3c3-23d9-402f-8f87-b36635e4ea52",
+        "set_code": "swsh12pt5gg",
+        "name": "Crown Zenith Galarian Gallery",
+        "game": "pokemon",
+        "printed_set_abbrev": "CRZ",
+        "printed_total": 70,
+        "domain": null,
+        "card_print_count": "70"
+      },
+      {
+        "id": "fee37578-6800-46eb-8114-e268f9c1158f",
+        "set_code": "sm115",
+        "name": "Hidden Fates",
+        "game": "pokemon",
+        "printed_set_abbrev": "HIF",
+        "printed_total": 68,
+        "domain": null,
+        "card_print_count": "69"
+      },
+      {
+        "id": "fa881265-2216-496a-ab73-854cd28370ca",
+        "set_code": "dc1",
+        "name": "Double Crisis",
+        "game": "pokemon",
+        "printed_set_abbrev": "DCR",
+        "printed_total": 34,
+        "domain": null,
+        "card_print_count": "68"
+      },
+      {
+        "id": "cba5bd31-b861-45b5-9c12-c18a2afaa994",
+        "set_code": "neo3",
+        "name": "Neo Revelation",
+        "game": "pokemon",
+        "printed_set_abbrev": "N3",
+        "printed_total": 64,
+        "domain": null,
+        "card_print_count": "66"
+      },
+      {
+        "id": "9fe66ee9-9d5b-4aca-9f86-f3afe913eee7",
+        "set_code": "base2",
+        "name": "Jungle",
+        "game": "pokemon",
+        "printed_set_abbrev": "JU",
+        "printed_total": 64,
+        "domain": null,
+        "card_print_count": "64"
+      },
+      {
+        "id": "81ad5432-e869-4e35-9865-ead602a98079",
+        "set_code": "base3",
+        "name": "Fossil",
+        "game": "pokemon",
+        "printed_set_abbrev": "FO",
+        "printed_total": 62,
+        "domain": null,
+        "card_print_count": "62"
+      },
+      {
+        "id": "80b80cb4-6609-41fe-8d7b-15c433429e45",
+        "set_code": "tk-bw-e",
+        "name": "BW trainer Kit (Excadrill)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+        "set_code": "tk-bw-z",
+        "name": "BW trainer Kit (Zoroark)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "9bf207c2-aaca-4b7f-885f-8fe108e55b79",
+        "set_code": "tk-xy-b",
+        "name": "XY trainer Kit (Bisharp)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+        "set_code": "tk-xy-latia",
+        "name": "XY trainer Kit (Latias)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "6506163a-6046-4086-97a4-13f702bd6503",
+        "set_code": "tk-xy-latio",
+        "name": "XY trainer Kit (Latios)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "3e464f2c-d099-47b5-8f44-caa19c2a812c",
+        "set_code": "tk-xy-n",
+        "name": "XY trainer Kit (Noivern)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "36988564-89a6-4804-a600-f98b11f70c92",
+        "set_code": "tk-xy-p",
+        "name": "XY trainer Kit (Pikachu Libre)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "dca52b9b-8d8c-4ca9-8462-da648734db06",
+        "set_code": "tk-xy-su",
+        "name": "XY trainer Kit (Suicune)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "2c523cdb-a00e-4b31-880e-1fac250dcc3e",
+        "set_code": "tk-xy-sy",
+        "name": "XY trainer Kit (Sylveon)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+        "set_code": "tk-xy-w",
+        "name": "XY trainer Kit (Wigglytuff)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "60"
+      },
+      {
+        "id": "29a1b09d-d46c-49fc-a270-373c00f778b2",
+        "set_code": "dpp",
+        "name": "DP Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-DPP",
+        "printed_total": 56,
+        "domain": null,
+        "card_print_count": "56"
+      },
+      {
+        "id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+        "set_code": "basep",
+        "name": "Wizards Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR",
+        "printed_total": 53,
+        "domain": null,
+        "card_print_count": "53"
+      },
+      {
+        "id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+        "set_code": "xy0",
+        "name": "Kalos Starter Set",
+        "game": "pokemon",
+        "printed_set_abbrev": "KSS",
+        "printed_total": 39,
+        "domain": null,
+        "card_print_count": "39"
+      },
+      {
+        "id": "63e87275-5795-4ed0-918b-fbf62e5457ce",
+        "set_code": "tk-sm-r",
+        "name": "SM trainer Kit (Alolan Raichu)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "38"
+      },
+      {
+        "id": "35a381af-0a89-4982-9db9-3b091565ff2d",
+        "set_code": "tk-sm-l",
+        "name": "SM trainer Kit (Lycanroc)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "36"
+      },
+      {
+        "id": "f1adff7b-86f3-4176-87ac-66e03da2ebe4",
+        "set_code": "pop1",
+        "name": "POP Series 1",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "b754d3c1-6de2-4111-89d3-50a1e52cf2cd",
+        "set_code": "pop2",
+        "name": "POP Series 2",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "b34b238c-25c4-440b-831d-a54aa26cbcbc",
+        "set_code": "pop3",
+        "name": "POP Series 3",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "98819a28-03c4-40ba-b144-48fba1dc54c1",
+        "set_code": "pop4",
+        "name": "POP Series 4",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "23dbe4da-e3f9-4459-a999-fb6de879dba9",
+        "set_code": "pop5",
+        "name": "POP Series 5",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "a80f4713-0504-4227-967f-cb1b65593eaa",
+        "set_code": "pop6",
+        "name": "POP Series 6",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "e0b8c48d-0f91-42df-90c2-7c89d68a5341",
+        "set_code": "pop7",
+        "name": "POP Series 7",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "1a48c646-6073-4809-93b3-76c3d75c8cb4",
+        "set_code": "pop8",
+        "name": "POP Series 8",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "19e252cc-f337-4a0d-9407-dee251cf8d43",
+        "set_code": "pop9",
+        "name": "POP Series 9",
+        "game": "pokemon",
+        "printed_set_abbrev": "POP",
+        "printed_total": 17,
+        "domain": null,
+        "card_print_count": "34"
+      },
+      {
+        "id": "8ebc78f2-0d93-4cd4-bc51-fdfef0610147",
+        "set_code": "ru1",
+        "name": "Pokémon Rumble",
+        "game": "pokemon",
+        "printed_set_abbrev": "RU",
+        "printed_total": 16,
+        "domain": null,
+        "card_print_count": "32"
+      },
+      {
+        "id": "88644a6a-60cc-4c84-863d-178be298979f",
+        "set_code": "swsh10tg",
+        "name": "Astral Radiance Trainer Gallery",
+        "game": "pokemon",
+        "printed_set_abbrev": "ASR",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "30"
+      },
+      {
+        "id": "2aa194f0-a16d-4621-bc45-7cc103bdda6e",
+        "set_code": "swsh11tg",
+        "name": "Lost Origin Trainer Gallery",
+        "game": "pokemon",
+        "printed_set_abbrev": "LOR",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "30"
+      },
+      {
+        "id": "ac2e57e6-dc84-4801-8153-bde6ed614133",
+        "set_code": "swsh12tg",
+        "name": "Silver Tempest Trainer Gallery",
+        "game": "pokemon",
+        "printed_set_abbrev": "SIT",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "30"
+      },
+      {
+        "id": "e59f7b55-74fd-4180-be1c-496f70c8f0d6",
+        "set_code": "swsh9tg",
+        "name": "Brilliant Stars Trainer Gallery",
+        "game": "pokemon",
+        "printed_set_abbrev": "BRS",
+        "printed_total": 30,
+        "domain": null,
+        "card_print_count": "30"
+      },
+      {
+        "id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+        "set_code": "exu",
+        "name": "Unseen Forces Unown Collection",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 28,
+        "domain": null,
+        "card_print_count": "27"
+      },
+      {
+        "id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+        "set_code": "2021swsh",
+        "name": "Macdonald's Collection 2021",
+        "game": "pokemon",
+        "printed_set_abbrev": "MCD",
+        "printed_total": 25,
+        "domain": null,
+        "card_print_count": "25"
+      },
+      {
+        "id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+        "set_code": "cel25c",
+        "name": "Celebrations: Classic Collection",
+        "game": "pokemon",
+        "printed_set_abbrev": "CEL",
+        "printed_total": null,
+        "domain": null,
+        "card_print_count": "25"
+      },
+      {
+        "id": "26da979a-6233-4a52-851e-e18b789d85a8",
+        "set_code": "hgssp",
+        "name": "HGSS Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 25,
+        "domain": null,
+        "card_print_count": "25"
+      },
+      {
+        "id": "53102b1c-6c9d-44db-ba83-a3210be88e31",
+        "set_code": "hsp",
+        "name": "HGSS Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "PR-HS",
+        "printed_total": 25,
+        "domain": null,
+        "card_print_count": "25"
+      },
+      {
+        "id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+        "set_code": "mcd21",
+        "name": "McDonald's Collection 2021",
+        "game": "pokemon",
+        "printed_set_abbrev": "MCD",
+        "printed_total": 25,
+        "domain": null,
+        "card_print_count": "25"
+      },
+      {
+        "id": "39715cf1-33a0-4720-9473-ce37d38abeae",
+        "set_code": "tk-dp-m",
+        "name": "DP trainer Kit (Manaphy)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 12,
+        "domain": null,
+        "card_print_count": "24"
+      },
+      {
+        "id": "103c2168-373a-4264-98c0-77e18f01093f",
+        "set_code": "tk-ex-m",
+        "name": "EX trainer Kit 2 (Minun)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 12,
+        "domain": null,
+        "card_print_count": "24"
+      },
+      {
+        "id": "2e4e7ba4-93d3-4d35-9260-c5fcafa5edb9",
+        "set_code": "tk-ex-p",
+        "name": "EX trainer Kit 2 (Plusle)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 12,
+        "domain": null,
+        "card_print_count": "24"
+      },
+      {
+        "id": "1f77b2b9-b0ce-441c-8451-cb85173e0570",
+        "set_code": "tk-dp-l",
+        "name": "DP trainer Kit (Lucario)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 11,
+        "domain": null,
+        "card_print_count": "22"
+      },
+      {
+        "id": "bf991701-b1f8-42ff-b3b6-875f06b2cbf3",
+        "set_code": "dv1",
+        "name": "Dragon Vault",
+        "game": "pokemon",
+        "printed_set_abbrev": "DRV",
+        "printed_total": 20,
+        "domain": null,
+        "card_print_count": "21"
+      },
+      {
+        "id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "set_code": "mep",
+        "name": "MEP Black Star Promos",
+        "game": "pokemon",
+        "printed_set_abbrev": "MEP",
+        "printed_total": 33,
+        "domain": null,
+        "card_print_count": "20"
+      },
+      {
+        "id": "1e3387cd-3f84-47b6-a111-30c6e0e569e0",
+        "set_code": "tk-ex-latia",
+        "name": "EX trainer Kit (Latias)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 10,
+        "domain": null,
+        "card_print_count": "20"
+      },
+      {
+        "id": "e9237178-d047-48cd-876a-007aaa902a45",
+        "set_code": "tk-ex-latio",
+        "name": "EX trainer Kit (Latios)",
+        "game": "pokemon",
+        "printed_set_abbrev": "TK",
+        "printed_total": 10,
+        "domain": null,
+        "card_print_count": "20"
+      },
+      {
+        "id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Best of game",
+        "game": "pokemon",
+        "printed_set_abbrev": "BOG",
+        "printed_total": 9,
+        "domain": null,
+        "card_print_count": "18"
+      },
+      {
+        "id": "87167443-5cc1-4873-892d-ea12236f8141",
+        "set_code": "det1",
+        "name": "Detective Pikachu",
+        "game": "pokemon",
+        "printed_set_abbrev": "DET",
+        "printed_total": 18,
+        "domain": null,
+        "card_print_count": "18"
+      },
+      {
+        "id": "a85a9351-420f-4a52-95e2-bfd06a840ef5",
+        "set_code": "si1",
+        "name": "Southern Islands",
+        "game": "pokemon",
+        "printed_set_abbrev": "SI",
+        "printed_total": 18,
+        "domain": null,
+        "card_print_count": "18"
+      },
+      {
+        "id": "0a82bf6b-282a-4de7-a9e1-4b599ae23dda",
+        "set_code": "legacy_orphan",
+        "name": "Legacy Orphan (Quarantine)",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "domain": null,
+        "card_print_count": "16"
+      },
+      {
+        "id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "set_code": "sve",
+        "name": "Scarlet & Violet Energies",
+        "game": "pokemon",
+        "printed_set_abbrev": "SVE",
+        "printed_total": 8,
+        "domain": null,
+        "card_print_count": "16"
+      },
+      {
+        "id": "43d72346-6f9a-4ab7-9472-299321f70341",
+        "set_code": "mcd22",
+        "name": "McDonald's Collection 2022",
+        "game": "pokemon",
+        "printed_set_abbrev": "MCD",
+        "printed_total": 15,
+        "domain": null,
+        "card_print_count": "15"
+      },
+      {
+        "id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+        "set_code": "2011bw",
+        "name": "Macdonald's Collection 2011",
+        "game": "pokemon",
+        "printed_set_abbrev": "MCD",
+        "printed_total": 12,
+        "domain": null,
+        "card_print_count": "12"
+      }
+    ],
+    "ba_sets_present": false,
+    "ba_sets": [],
+    "tcg_pocket_sets_present": true,
+    "tcg_pocket_sets": [
+      {
+        "id": "33003417-c045-4fe2-9135-2b22bddafc74",
+        "set_code": "A1",
+        "name": "Genetic Apex",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 226,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A1",
+            "raw": {
+              "id": "A1",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A1/logo",
+              "name": "Genetic Apex",
+              "symbol": "https://assets.tcgdex.net/univ/tcgp/A1/symbol",
+              "cardCount": {
+                "total": 286,
+                "official": 226
+              }
+            },
+            "name": "Genetic Apex",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+        "set_code": "A1a",
+        "name": "Mythical Island",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 68,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A1a",
+            "raw": {
+              "id": "A1a",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A1a/logo",
+              "name": "Mythical Island",
+              "cardCount": {
+                "total": 86,
+                "official": 68
+              }
+            },
+            "name": "Mythical Island",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "83cdb2aa-b7bd-4935-b5be-180ba0b094ff",
+        "set_code": "A2",
+        "name": "Space-Time Smackdown",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 140,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A2",
+            "raw": {
+              "id": "A2",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A2/logo",
+              "name": "Space-Time Smackdown",
+              "cardCount": {
+                "total": 207,
+                "official": 140
+              }
+            },
+            "name": "Space-Time Smackdown",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "c58341d2-900f-40ec-898f-768d7b836229",
+        "set_code": "A2a",
+        "name": "Triumphant Light",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 75,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A2a",
+            "raw": {
+              "id": "A2a",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A2a/logo",
+              "name": "Triumphant Light",
+              "symbol": "https://assets.tcgdex.net/univ/tcgp/A2a/symbol",
+              "cardCount": {
+                "total": 96,
+                "official": 75
+              }
+            },
+            "name": "Triumphant Light",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "40623fdb-11f2-407a-b6c7-0b60cf543d70",
+        "set_code": "A2b",
+        "name": "Shining Revelry",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 72,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A2b",
+            "raw": {
+              "id": "A2b",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A2b/logo",
+              "name": "Shining Revelry",
+              "symbol": "https://assets.tcgdex.net/univ/tcgp/A2b/symbol",
+              "cardCount": {
+                "total": 111,
+                "official": 72
+              }
+            },
+            "name": "Shining Revelry",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "52a15d52-18a9-4e49-bd77-b69966285635",
+        "set_code": "A3",
+        "name": "Celestial Guardians",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 155,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A3",
+            "raw": {
+              "id": "A3",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo",
+              "name": "Celestial Guardians",
+              "cardCount": {
+                "total": 239,
+                "official": 155
+              }
+            },
+            "name": "Celestial Guardians",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "3c9357af-18e8-4bd4-b2d8-6a69b72f051b",
+        "set_code": "A3b",
+        "name": "Eevee Grove",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 69,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A3b",
+            "raw": {
+              "id": "A3b",
+              "name": "Eevee Grove",
+              "cardCount": {
+                "total": 107,
+                "official": 69
+              }
+            },
+            "name": "Eevee Grove",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "e3a888ee-42ab-4a49-b856-b485f16a4306",
+        "set_code": "A4",
+        "name": "Wisdom of Sea and Sky",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 161,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A4",
+            "raw": {
+              "id": "A4",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A4/logo",
+              "name": "Wisdom of Sea and Sky",
+              "cardCount": {
+                "total": 241,
+                "official": 161
+              }
+            },
+            "name": "Wisdom of Sea and Sky",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "a3e7cb46-2954-41b3-9d3e-691bacdcc3ab",
+        "set_code": "A4a",
+        "name": "Secluded Springs",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 71,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "A4a",
+            "raw": {
+              "id": "A4a",
+              "logo": "https://assets.tcgdex.net/en/tcgp/A4a/logo",
+              "name": "Secluded Springs",
+              "symbol": "https://assets.tcgdex.net/univ/tcgp/A4a/symbol",
+              "cardCount": {
+                "total": 105,
+                "official": 71
+              }
+            },
+            "name": "Secluded Springs",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      },
+      {
+        "id": "04f84c99-900c-412d-9c1e-69df6362d48d",
+        "set_code": "B1",
+        "name": "Mega Rising",
+        "game": "pokemon",
+        "printed_set_abbrev": null,
+        "printed_total": 226,
+        "source": {
+          "domain": "tcg_pocket",
+          "tcgdex": {
+            "id": "B1",
+            "raw": {
+              "id": "B1",
+              "logo": "https://assets.tcgdex.net/en/tcgp/B1/logo",
+              "name": "Mega Rising",
+              "symbol": "https://assets.tcgdex.net/univ/tcgp/B1/symbol",
+              "cardCount": {
+                "total": 331,
+                "official": 226
+              }
+            },
+            "name": "Mega Rising",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "digital_only": true,
+          "exclude_from_physical_pipelines": true
+        }
+      }
+    ]
+  },
+  "card_prints_shape": {
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": false,
+        "column_default": "gen_random_uuid()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "game_id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": false,
+        "column_default": "'b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5'::uuid",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "set_id",
+        "data_type": "uuid",
+        "udt_name": "uuid",
+        "is_nullable": false,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "name",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": false,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "number",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "variant_key",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": false,
+        "column_default": "''::text",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "set_code",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "column_name": "number_plain",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "ALWAYS",
+        "generation_expression": "\nCASE\n    WHEN (number IS NULL) THEN NULL::text\n    WHEN (number ~ '^[A-Za-z][0-9]+$'::text) THEN upper(number)\n    WHEN (number ~ '[0-9]'::text) THEN regexp_replace(regexp_replace(number, '/.*$'::text, ''::text), '[^0-9]'::text, ''::text, 'g'::text)\n    ELSE number\nEND"
+      },
+      {
+        "column_name": "gv_id",
+        "data_type": "text",
+        "udt_name": "text",
+        "is_nullable": true,
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      }
+    ],
+    "counts": {
+      "total_rows": "33998",
+      "set_code_present": "22208",
+      "number_present": "22240",
+      "gvid_present": "20412",
+      "variant_key_present": "1698"
+    }
+  }
+}

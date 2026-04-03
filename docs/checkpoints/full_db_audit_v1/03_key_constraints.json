@@ -1,0 +1,2124 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:14:13.117Z",
+  "target": "remote",
+  "constraints_by_table": {
+    "ai_decision_logs": [
+      {
+        "table_name": "ai_decision_logs",
+        "constraint_name": "ai_decision_logs_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "table_name": "ai_decision_logs",
+        "constraint_name": "ai_decision_logs_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "ai_decision_logs",
+        "constraint_name": "ai_decision_logs_raw_import_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (raw_import_id) REFERENCES raw_imports(id) ON DELETE SET NULL"
+      }
+    ],
+    "card_embeddings": [
+      {
+        "table_name": "card_embeddings",
+        "constraint_name": "card_embeddings_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_embeddings",
+        "constraint_name": "card_embeddings_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (card_print_id)"
+      }
+    ],
+    "card_interaction_group_states": [
+      {
+        "table_name": "card_interaction_group_states",
+        "constraint_name": "card_interaction_group_states_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_interaction_group_states",
+        "constraint_name": "card_interaction_group_states_user_card_counterpart_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (user_id, card_print_id, counterpart_user_id)"
+      },
+      {
+        "table_name": "card_interaction_group_states",
+        "constraint_name": "card_interaction_group_states_user_counterpart_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((user_id <> counterpart_user_id))"
+      }
+    ],
+    "card_interaction_outcomes": [
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((source_user_id <> target_user_id))"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_check1",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((((price_amount IS NULL) AND (price_currency IS NULL)) OR ((price_amount IS NOT NULL) AND (price_currency IS NOT NULL))))"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_executed_by_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (executed_by_user_id) REFERENCES auth.users(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_execution_event_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (execution_event_id) REFERENCES card_execution_events(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_latest_interaction_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (latest_interaction_id) REFERENCES card_interactions(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_outcome_type_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((outcome_type = ANY (ARRAY['sale'::text, 'trade'::text])))"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_price_amount_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((price_amount IS NULL) OR (price_amount >= (0)::numeric)))"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_price_currency_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((price_currency IS NULL) OR ((price_currency = upper(price_currency)) AND (char_length(price_currency) = 3))))"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_result_instance_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (result_instance_id) REFERENCES vault_item_instances(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_result_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (result_vault_item_id) REFERENCES vault_items(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_source_instance_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (source_instance_id) REFERENCES vault_item_instances(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_source_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (source_user_id) REFERENCES auth.users(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_source_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (source_vault_item_id) REFERENCES vault_items(id)"
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "constraint_name": "card_interaction_outcomes_target_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (target_user_id) REFERENCES auth.users(id)"
+      }
+    ],
+    "card_interactions": [
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_message_present_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((char_length(btrim(message)) >= 1) AND (char_length(btrim(message)) <= 2000)))"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_receiver_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (receiver_user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_sender_receiver_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((sender_user_id <> receiver_user_id))"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_sender_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (sender_user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_status_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((status = ANY (ARRAY['open'::text, 'closed'::text])))"
+      },
+      {
+        "table_name": "card_interactions",
+        "constraint_name": "card_interactions_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (vault_item_id) REFERENCES vault_items(id)"
+      }
+    ],
+    "card_price_observations": [
+      {
+        "table_name": "card_price_observations",
+        "constraint_name": "card_price_observations_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_price_observations",
+        "constraint_name": "card_price_observations_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_price_observations",
+        "constraint_name": "card_price_observations_source_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (source_id) REFERENCES price_sources(id)"
+      }
+    ],
+    "card_price_rollups": [
+      {
+        "table_name": "card_price_rollups",
+        "constraint_name": "card_price_rollups_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_price_rollups",
+        "constraint_name": "card_price_rollups_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (card_print_id)"
+      }
+    ],
+    "card_price_ticks": [
+      {
+        "table_name": "card_price_ticks",
+        "constraint_name": "card_price_ticks_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_price_ticks",
+        "constraint_name": "card_price_ticks_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_price_ticks",
+        "constraint_name": "card_price_ticks_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((source = ANY (ARRAY['tcgplayer'::text, 'cardmarket'::text])))"
+      }
+    ],
+    "card_prices": [
+      {
+        "table_name": "card_prices",
+        "constraint_name": "card_prices_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_prices",
+        "constraint_name": "card_prices_card_print_id_source_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (card_print_id, source)"
+      },
+      {
+        "table_name": "card_prices",
+        "constraint_name": "card_prices_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_prices",
+        "constraint_name": "card_prices_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((source = ANY (ARRAY['tcgplayer'::text, 'cardmarket'::text])))"
+      }
+    ],
+    "card_print_active_prices": [],
+    "card_print_file_paths": [
+      {
+        "table_name": "card_print_file_paths",
+        "constraint_name": "card_print_file_paths_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_print_file_paths",
+        "constraint_name": "card_print_file_paths_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "card_print_identity": [
+      {
+        "table_name": "card_print_identity",
+        "constraint_name": "card_print_identity_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_print_identity",
+        "constraint_name": "card_print_identity_identity_domain_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text])))"
+      },
+      {
+        "table_name": "card_print_identity",
+        "constraint_name": "card_print_identity_identity_payload_object_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((jsonb_typeof(identity_payload) = 'object'::text))"
+      },
+      {
+        "table_name": "card_print_identity",
+        "constraint_name": "card_print_identity_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "card_print_latest_price_curve": [],
+    "card_print_price_curves": [
+      {
+        "table_name": "card_print_price_curves",
+        "constraint_name": "card_print_price_curves_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_print_price_curves",
+        "constraint_name": "card_print_price_curves_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "card_print_traits": [
+      {
+        "table_name": "card_print_traits",
+        "constraint_name": "card_print_traits_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_print_traits",
+        "constraint_name": "card_print_traits_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "card_printings": [
+      {
+        "table_name": "card_printings",
+        "constraint_name": "card_printings_card_print_id_finish_key_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (card_print_id, finish_key)"
+      },
+      {
+        "table_name": "card_printings",
+        "constraint_name": "card_printings_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "table_name": "card_printings",
+        "constraint_name": "card_printings_finish_key_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (finish_key) REFERENCES finish_keys(key) ON DELETE RESTRICT"
+      },
+      {
+        "table_name": "card_printings",
+        "constraint_name": "card_printings_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "card_prints": [
+      {
+        "table_name": "card_prints",
+        "constraint_name": "card_prints_game_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "card_prints",
+        "constraint_name": "card_prints_image_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text]))))"
+      },
+      {
+        "table_name": "card_prints",
+        "constraint_name": "card_prints_image_status_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((image_status IS NULL) OR (image_status = ANY (ARRAY['ok'::text, 'placeholder'::text, 'missing'::text, 'user_uploaded'::text]))))"
+      },
+      {
+        "table_name": "card_prints",
+        "constraint_name": "card_prints_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_prints",
+        "constraint_name": "card_prints_set_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE SET NULL"
+      },
+      {
+        "table_name": "card_prints",
+        "constraint_name": "uq_card_prints_identity",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (game_id, set_id, number_plain, variant_key)"
+      }
+    ],
+    "card_signals": [
+      {
+        "table_name": "card_signals",
+        "constraint_name": "card_signals_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "card_signals",
+        "constraint_name": "card_signals_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "card_signals",
+        "constraint_name": "card_signals_signal_type_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((signal_type = ANY (ARRAY['view'::text, 'click'::text, 'wishlist'::text, 'interaction'::text])))"
+      },
+      {
+        "table_name": "card_signals",
+        "constraint_name": "card_signals_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      }
+    ],
+    "condition_snapshots": [
+      {
+        "table_name": "condition_snapshots",
+        "constraint_name": "condition_snapshots_gv_vi_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (gv_vi_id) REFERENCES vault_item_instances(gv_vi_id)"
+      },
+      {
+        "table_name": "condition_snapshots",
+        "constraint_name": "condition_snapshots_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "ebay_active_price_snapshots": [
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "constraint_name": "ebay_active_price_snapshots_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "constraint_name": "ebay_active_price_snapshots_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "ebay_active_prices_latest": [
+      {
+        "table_name": "ebay_active_prices_latest",
+        "constraint_name": "ebay_active_prices_latest_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "ebay_active_prices_latest",
+        "constraint_name": "ebay_active_prices_latest_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (card_print_id)"
+      }
+    ],
+    "external_discovery_candidates": [
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_candidate_bucket_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((candidate_bucket = ANY (ARRAY['CLEAN_CANON_CANDIDATE'::text, 'PRINTED_IDENTITY_REVIEW'::text])))"
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_match_status_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((match_status = ANY (ARRAY['UNMATCHED'::text, 'AMBIGUOUS'::text, 'RESOLVED'::text])))"
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_raw_import_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (raw_import_id) REFERENCES raw_imports(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "constraint_name": "external_discovery_candidates_resolution_shape_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((((match_status = 'RESOLVED'::text) AND (resolved_set_code IS NOT NULL) AND (card_print_id IS NOT NULL)) OR ((match_status = ANY (ARRAY['UNMATCHED'::text, 'AMBIGUOUS'::text])) AND (resolved_set_code IS NULL) AND (card_print_id IS NULL))))"
+      }
+    ],
+    "external_mappings": [
+      {
+        "table_name": "external_mappings",
+        "constraint_name": "external_mappings_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "external_mappings",
+        "constraint_name": "external_mappings_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "external_mappings",
+        "constraint_name": "external_mappings_source_external_id_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (source, external_id)"
+      }
+    ],
+    "games": [
+      {
+        "table_name": "games",
+        "constraint_name": "games_code_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (code)"
+      },
+      {
+        "table_name": "games",
+        "constraint_name": "games_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "games",
+        "constraint_name": "games_slug_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (slug)"
+      }
+    ],
+    "import_image_errors": [
+      {
+        "table_name": "import_image_errors",
+        "constraint_name": "import_image_errors_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "justtcg_identity_overrides": [
+      {
+        "table_name": "justtcg_identity_overrides",
+        "constraint_name": "justtcg_identity_overrides_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "constraint_name": "justtcg_identity_overrides_card_print_id_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (card_print_id)"
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "constraint_name": "justtcg_identity_overrides_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "justtcg_variant_price_snapshots": [
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "constraint_name": "justtcg_variant_price_snapshots_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "constraint_name": "justtcg_variant_price_snapshots_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "constraint_name": "justtcg_variant_price_snapshots_raw_payload_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((jsonb_typeof(raw_payload) = 'object'::text))"
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "constraint_name": "justtcg_variant_price_snapshots_variant_id_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(variant_id) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "constraint_name": "justtcg_variant_price_snapshots_variant_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (variant_id) REFERENCES justtcg_variants(variant_id)"
+      }
+    ],
+    "justtcg_variant_prices_latest": [
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_condition_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(condition) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_language_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((language IS NULL) OR (btrim(language) <> ''::text)))"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (variant_id)"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_printing_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(printing) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_variant_id_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(variant_id) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "constraint_name": "justtcg_variant_prices_latest_variant_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (variant_id) REFERENCES justtcg_variants(variant_id)"
+      }
+    ],
+    "justtcg_variants": [
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_condition_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(condition) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_language_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((language IS NULL) OR (btrim(language) <> ''::text)))"
+      },
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (variant_id)"
+      },
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_printing_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(printing) <> ''::text))"
+      },
+      {
+        "table_name": "justtcg_variants",
+        "constraint_name": "justtcg_variants_variant_id_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(variant_id) <> ''::text))"
+      }
+    ],
+    "listings": [
+      {
+        "table_name": "listings",
+        "constraint_name": "listings_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) NOT VALID"
+      },
+      {
+        "table_name": "listings",
+        "constraint_name": "listings_owner_id_users_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) NOT VALID"
+      },
+      {
+        "table_name": "listings",
+        "constraint_name": "listings_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "listings",
+        "constraint_name": "listings_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (vault_item_id) REFERENCES vault_items(id) NOT VALID"
+      }
+    ],
+    "pricing_jobs": [
+      {
+        "table_name": "pricing_jobs",
+        "constraint_name": "pricing_jobs_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "pricing_jobs",
+        "constraint_name": "pricing_jobs_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "pricing_observations": [
+      {
+        "table_name": "pricing_observations",
+        "constraint_name": "pricing_observations_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "table_name": "pricing_observations",
+        "constraint_name": "pricing_observations_classification_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((classification = ANY (ARRAY['accepted'::text, 'rejected'::text, 'staged'::text])))"
+      },
+      {
+        "table_name": "pricing_observations",
+        "constraint_name": "pricing_observations_condition_bucket_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((condition_bucket = ANY (ARRAY['nm'::text, 'lp'::text, 'mp'::text, 'hp'::text, 'dmg'::text])))"
+      },
+      {
+        "table_name": "pricing_observations",
+        "constraint_name": "pricing_observations_mapping_status_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((mapping_status = ANY (ARRAY['mapped'::text, 'unmapped'::text, 'ambiguous'::text])))"
+      },
+      {
+        "table_name": "pricing_observations",
+        "constraint_name": "pricing_observations_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "pricing_watch": [
+      {
+        "table_name": "pricing_watch",
+        "constraint_name": "pricing_watch_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "pricing_watch",
+        "constraint_name": "pricing_watch_card_print_reason_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (card_print_id, watch_reason)"
+      },
+      {
+        "table_name": "pricing_watch",
+        "constraint_name": "pricing_watch_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "raw_imports": [
+      {
+        "table_name": "raw_imports",
+        "constraint_name": "raw_imports_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "sets": [
+      {
+        "table_name": "sets",
+        "constraint_name": "sets_game_code_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (game, code)"
+      },
+      {
+        "table_name": "sets",
+        "constraint_name": "sets_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "sets",
+        "constraint_name": "sets_set_role_allowed_chk",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((set_role IS NULL) OR (set_role = ANY (ARRAY['expansion'::text, 'promotion_umbrella'::text, 'promo_single'::text, 'product_insert'::text, 'magazine'::text, 'tournament'::text]))))"
+      }
+    ],
+    "slab_certs": [
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_cert_number_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(cert_number) <> ''::text))"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_grader_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(grader) <> ''::text))"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_gv_slab_id_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (gv_slab_id)"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_gv_slab_id_present",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((gv_slab_id IS NOT NULL) AND (gv_slab_id <> ''::text)))"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_identity_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (normalized_grader, normalized_cert_number)"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_normalized_cert_number_present",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((normalized_cert_number IS NOT NULL) AND (normalized_cert_number <> ''::text)))"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_normalized_grader_present",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((normalized_grader IS NOT NULL) AND (normalized_grader <> ''::text)))"
+      },
+      {
+        "table_name": "slab_certs",
+        "constraint_name": "slab_certs_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "slab_provenance_events": [
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_currency_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((currency IS NULL) OR (btrim(currency) <> ''::text)))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_event_source_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((event_source IS NULL) OR (btrim(event_source) <> ''::text)))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_event_type_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((btrim(event_type) <> ''::text))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_price_nonnegative",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((price IS NULL) OR (price >= (0)::numeric)))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_slab_cert_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (slab_cert_id) REFERENCES slab_certs(id)"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_source_event_key_not_blank",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((source_event_key IS NULL) OR (btrim(source_event_key) <> ''::text)))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_source_identity_complete",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((source_event_key IS NULL) OR ((event_source IS NOT NULL) AND (btrim(event_source) <> ''::text))))"
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "constraint_name": "slab_provenance_events_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (vault_item_id) REFERENCES vault_items(id)"
+      }
+    ],
+    "user_card_photos": [
+      {
+        "table_name": "user_card_photos",
+        "constraint_name": "user_card_photos_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "table_name": "user_card_photos",
+        "constraint_name": "user_card_photos_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "v_card_contact_targets_v1": [],
+    "v_card_prices_usd": [],
+    "v_card_pricing_ui_v1": [],
+    "v_card_prints_web_v1": [],
+    "v_card_stream_v1": [],
+    "v_grookai_value_compare_v1_v2": [],
+    "v_grookai_value_v1": [],
+    "v_grookai_value_v1_1": [],
+    "v_grookai_value_v1_clean": [],
+    "v_grookai_value_v1_justtcg_bridge": [],
+    "v_grookai_value_v2": [],
+    "v_justtcg_display_summary_v1": [],
+    "v_justtcg_vs_ebay_classified_v1": [],
+    "v_justtcg_vs_ebay_pricing_v1": [],
+    "v_justtcg_vs_ebay_valid_v1": [],
+    "v_latest_price": [],
+    "v_latest_price_clean": [],
+    "v_pricing_observation_audit": [],
+    "v_pricing_observations_accepted": [],
+    "v_special_set_print_membership": [],
+    "v_ticker_24h": [],
+    "vault_item_instances": [
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_acquisition_cost_nonnegative",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((acquisition_cost IS NULL) OR (acquisition_cost >= (0)::numeric)))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_asking_price_amount_nonnegative",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((asking_price_amount IS NULL) OR (asking_price_amount >= (0)::numeric)))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_asking_price_currency_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((asking_price_currency IS NULL) OR ((asking_price_currency = upper(asking_price_currency)) AND (char_length(asking_price_currency) = 3))))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_card_print_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_gv_vi_id_key",
+        "constraint_type": "UNIQUE",
+        "definition": "UNIQUE (gv_vi_id)"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_gv_vi_id_normalized",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((gv_vi_id IS NULL) OR ((btrim(gv_vi_id) <> ''::text) AND (gv_vi_id = upper(btrim(gv_vi_id))))))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_identity_anchor_exactly_one",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((((card_print_id IS NOT NULL))::integer + ((slab_cert_id IS NOT NULL))::integer) = 1))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_image_back_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((image_back_source IS NULL) OR (image_back_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text]))))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_image_display_mode_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((image_display_mode = ANY (ARRAY['canonical'::text, 'uploaded'::text])))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_image_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text]))))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_intent_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((intent = ANY (ARRAY['hold'::text, 'trade'::text, 'sell'::text, 'showcase'::text])))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_legacy_vault_item_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (legacy_vault_item_id) REFERENCES vault_items(id)"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_market_price_nonnegative",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((market_price IS NULL) OR (market_price >= (0)::numeric)))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_pricing_mode_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((pricing_mode = ANY (ARRAY['market'::text, 'asking'::text])))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_pricing_mode_state_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((((pricing_mode = 'market'::text) AND (asking_price_amount IS NULL) AND (asking_price_currency IS NULL) AND (asking_price_note IS NULL)) OR ((pricing_mode = 'asking'::text) AND (asking_price_amount IS NOT NULL) AND (asking_price_currency IS NOT NULL))))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_slab_cert_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (slab_cert_id) REFERENCES slab_certs(id)"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_slab_rows_are_graded",
+        "constraint_type": "CHECK",
+        "definition": "CHECK (((slab_cert_id IS NULL) OR (is_graded = true)))"
+      },
+      {
+        "table_name": "vault_item_instances",
+        "constraint_name": "vault_item_instances_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      }
+    ],
+    "vault_items": [
+      {
+        "table_name": "vault_items",
+        "constraint_name": "fk_vault_items_card",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table_name": "vault_items",
+        "constraint_name": "vault_items_image_back_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((image_back_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text])))"
+      },
+      {
+        "table_name": "vault_items",
+        "constraint_name": "vault_items_image_source_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((image_source = ANY (ARRAY['user_photo'::text, 'official'::text, 'identity'::text])))"
+      },
+      {
+        "table_name": "vault_items",
+        "constraint_name": "vault_items_intent_check",
+        "constraint_type": "CHECK",
+        "definition": "CHECK ((intent = ANY (ARRAY['trade'::text, 'sell'::text, 'showcase'::text, 'hold'::text])))"
+      },
+      {
+        "table_name": "vault_items",
+        "constraint_name": "vault_items_pkey",
+        "constraint_type": "PRIMARY KEY",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table_name": "vault_items",
+        "constraint_name": "vault_items_user_id_fkey",
+        "constraint_type": "FOREIGN KEY",
+        "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      }
+    ]
+  },
+  "indexes_by_table": {
+    "ai_decision_logs": [
+      {
+        "tablename": "ai_decision_logs",
+        "indexname": "ai_decision_logs_card_print_id_idx",
+        "indexdef": "CREATE INDEX ai_decision_logs_card_print_id_idx ON public.ai_decision_logs USING btree (card_print_id)"
+      },
+      {
+        "tablename": "ai_decision_logs",
+        "indexname": "ai_decision_logs_created_at_idx",
+        "indexdef": "CREATE INDEX ai_decision_logs_created_at_idx ON public.ai_decision_logs USING btree (created_at)"
+      },
+      {
+        "tablename": "ai_decision_logs",
+        "indexname": "ai_decision_logs_pkey",
+        "indexdef": "CREATE UNIQUE INDEX ai_decision_logs_pkey ON public.ai_decision_logs USING btree (id)"
+      },
+      {
+        "tablename": "ai_decision_logs",
+        "indexname": "ai_decision_logs_raw_import_id_idx",
+        "indexdef": "CREATE INDEX ai_decision_logs_raw_import_id_idx ON public.ai_decision_logs USING btree (raw_import_id)"
+      }
+    ],
+    "card_embeddings": [
+      {
+        "tablename": "card_embeddings",
+        "indexname": "card_embeddings_model_idx",
+        "indexdef": "CREATE INDEX card_embeddings_model_idx ON public.card_embeddings USING btree (model)"
+      },
+      {
+        "tablename": "card_embeddings",
+        "indexname": "card_embeddings_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_embeddings_pkey ON public.card_embeddings USING btree (card_print_id)"
+      }
+    ],
+    "card_interaction_group_states": [
+      {
+        "tablename": "card_interaction_group_states",
+        "indexname": "card_interaction_group_states_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_interaction_group_states_pkey ON public.card_interaction_group_states USING btree (id)"
+      },
+      {
+        "tablename": "card_interaction_group_states",
+        "indexname": "card_interaction_group_states_user_card_counterpart_key",
+        "indexdef": "CREATE UNIQUE INDEX card_interaction_group_states_user_card_counterpart_key ON public.card_interaction_group_states USING btree (user_id, card_print_id, counterpart_user_id)"
+      },
+      {
+        "tablename": "card_interaction_group_states",
+        "indexname": "idx_card_interaction_group_states_user_closed_or_archived",
+        "indexdef": "CREATE INDEX idx_card_interaction_group_states_user_closed_or_archived ON public.card_interaction_group_states USING btree (user_id, latest_message_at DESC) WHERE ((archived_at IS NOT NULL) OR (closed_at IS NOT NULL))"
+      },
+      {
+        "tablename": "card_interaction_group_states",
+        "indexname": "idx_card_interaction_group_states_user_latest",
+        "indexdef": "CREATE INDEX idx_card_interaction_group_states_user_latest ON public.card_interaction_group_states USING btree (user_id, latest_message_at DESC)"
+      },
+      {
+        "tablename": "card_interaction_group_states",
+        "indexname": "idx_card_interaction_group_states_user_unread_active",
+        "indexdef": "CREATE INDEX idx_card_interaction_group_states_user_unread_active ON public.card_interaction_group_states USING btree (user_id, latest_message_at DESC) WHERE ((has_unread IS TRUE) AND (archived_at IS NULL) AND (closed_at IS NULL))"
+      }
+    ],
+    "card_interaction_outcomes": [
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "card_interaction_outcomes_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_interaction_outcomes_pkey ON public.card_interaction_outcomes USING btree (id)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "idx_outcome_card",
+        "indexdef": "CREATE INDEX idx_outcome_card ON public.card_interaction_outcomes USING btree (card_print_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "idx_outcome_event",
+        "indexdef": "CREATE INDEX idx_outcome_event ON public.card_interaction_outcomes USING btree (execution_event_id)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "idx_outcome_source_user",
+        "indexdef": "CREATE INDEX idx_outcome_source_user ON public.card_interaction_outcomes USING btree (source_user_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "idx_outcome_target_user",
+        "indexdef": "CREATE INDEX idx_outcome_target_user ON public.card_interaction_outcomes USING btree (target_user_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "uq_outcome_result_instance",
+        "indexdef": "CREATE UNIQUE INDEX uq_outcome_result_instance ON public.card_interaction_outcomes USING btree (result_instance_id)"
+      },
+      {
+        "tablename": "card_interaction_outcomes",
+        "indexname": "uq_outcome_source_instance",
+        "indexdef": "CREATE UNIQUE INDEX uq_outcome_source_instance ON public.card_interaction_outcomes USING btree (source_instance_id)"
+      }
+    ],
+    "card_interactions": [
+      {
+        "tablename": "card_interactions",
+        "indexname": "card_interactions_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_interactions_pkey ON public.card_interactions USING btree (id)"
+      },
+      {
+        "tablename": "card_interactions",
+        "indexname": "idx_card_interactions_card_print_created",
+        "indexdef": "CREATE INDEX idx_card_interactions_card_print_created ON public.card_interactions USING btree (card_print_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interactions",
+        "indexname": "idx_card_interactions_receiver_created",
+        "indexdef": "CREATE INDEX idx_card_interactions_receiver_created ON public.card_interactions USING btree (receiver_user_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interactions",
+        "indexname": "idx_card_interactions_sender_created",
+        "indexdef": "CREATE INDEX idx_card_interactions_sender_created ON public.card_interactions USING btree (sender_user_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_interactions",
+        "indexname": "idx_card_interactions_vault_item_created",
+        "indexdef": "CREATE INDEX idx_card_interactions_vault_item_created ON public.card_interactions USING btree (vault_item_id, created_at DESC)"
+      }
+    ],
+    "card_price_observations": [
+      {
+        "tablename": "card_price_observations",
+        "indexname": "card_price_observations_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_price_observations_pkey ON public.card_price_observations USING btree (id)"
+      },
+      {
+        "tablename": "card_price_observations",
+        "indexname": "cpo_card_time_idx",
+        "indexdef": "CREATE INDEX cpo_card_time_idx ON public.card_price_observations USING btree (card_print_id, observed_at DESC)"
+      },
+      {
+        "tablename": "card_price_observations",
+        "indexname": "cpo_source_idx",
+        "indexdef": "CREATE INDEX cpo_source_idx ON public.card_price_observations USING btree (source_id)"
+      }
+    ],
+    "card_price_rollups": [
+      {
+        "tablename": "card_price_rollups",
+        "indexname": "card_price_rollups_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_price_rollups_pkey ON public.card_price_rollups USING btree (card_print_id)"
+      }
+    ],
+    "card_price_ticks": [
+      {
+        "tablename": "card_price_ticks",
+        "indexname": "card_price_ticks_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_price_ticks_pkey ON public.card_price_ticks USING btree (id)"
+      },
+      {
+        "tablename": "card_price_ticks",
+        "indexname": "card_price_ticks_print_time_idx",
+        "indexdef": "CREATE INDEX card_price_ticks_print_time_idx ON public.card_price_ticks USING btree (card_print_id, captured_at DESC)"
+      }
+    ],
+    "card_prices": [
+      {
+        "tablename": "card_prices",
+        "indexname": "card_prices_card_print_id_source_key",
+        "indexdef": "CREATE UNIQUE INDEX card_prices_card_print_id_source_key ON public.card_prices USING btree (card_print_id, source)"
+      },
+      {
+        "tablename": "card_prices",
+        "indexname": "card_prices_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_prices_pkey ON public.card_prices USING btree (id)"
+      },
+      {
+        "tablename": "card_prices",
+        "indexname": "card_prices_print_source_idx",
+        "indexdef": "CREATE INDEX card_prices_print_source_idx ON public.card_prices USING btree (card_print_id, source)"
+      },
+      {
+        "tablename": "card_prices",
+        "indexname": "card_prices_updated_idx",
+        "indexdef": "CREATE INDEX card_prices_updated_idx ON public.card_prices USING btree (last_updated)"
+      },
+      {
+        "tablename": "card_prices",
+        "indexname": "idx_cp_last_updated",
+        "indexdef": "CREATE INDEX idx_cp_last_updated ON public.card_prices USING btree (last_updated DESC)"
+      },
+      {
+        "tablename": "card_prices",
+        "indexname": "idx_cp_print_time",
+        "indexdef": "CREATE INDEX idx_cp_print_time ON public.card_prices USING btree (card_print_id, last_updated DESC) INCLUDE (low, mid, high, currency, source)"
+      }
+    ],
+    "card_print_active_prices": [],
+    "card_print_file_paths": [
+      {
+        "tablename": "card_print_file_paths",
+        "indexname": "card_print_file_paths_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_print_file_paths_pkey ON public.card_print_file_paths USING btree (id)"
+      }
+    ],
+    "card_print_identity": [
+      {
+        "tablename": "card_print_identity",
+        "indexname": "card_print_identity_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_print_identity_pkey ON public.card_print_identity USING btree (id)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "idx_card_print_identity_card_print_id",
+        "indexdef": "CREATE INDEX idx_card_print_identity_card_print_id ON public.card_print_identity USING btree (card_print_id)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "idx_card_print_identity_domain_normalized_name_not_null",
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_normalized_name_not_null ON public.card_print_identity USING btree (identity_domain, normalized_printed_name) WHERE (normalized_printed_name IS NOT NULL)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "idx_card_print_identity_domain_set_code_number",
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_set_code_number ON public.card_print_identity USING btree (identity_domain, set_code_identity, printed_number)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "idx_card_print_identity_identity_domain",
+        "indexdef": "CREATE INDEX idx_card_print_identity_identity_domain ON public.card_print_identity USING btree (identity_domain)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "uq_card_print_identity_active_card_print_id",
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_card_print_id ON public.card_print_identity USING btree (card_print_id) WHERE (is_active = true)"
+      },
+      {
+        "tablename": "card_print_identity",
+        "indexname": "uq_card_print_identity_active_domain_hash",
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_domain_hash ON public.card_print_identity USING btree (identity_domain, identity_key_version, identity_key_hash) WHERE (is_active = true)"
+      }
+    ],
+    "card_print_latest_price_curve": [],
+    "card_print_price_curves": [
+      {
+        "tablename": "card_print_price_curves",
+        "indexname": "card_print_price_curves_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_print_price_curves_pkey ON public.card_print_price_curves USING btree (id)"
+      },
+      {
+        "tablename": "card_print_price_curves",
+        "indexname": "card_print_price_curves_print_time_idx",
+        "indexdef": "CREATE INDEX card_print_price_curves_print_time_idx ON public.card_print_price_curves USING btree (card_print_id, created_at DESC)"
+      }
+    ],
+    "card_print_traits": [
+      {
+        "tablename": "card_print_traits",
+        "indexname": "card_print_traits_card_print_id_idx",
+        "indexdef": "CREATE INDEX card_print_traits_card_print_id_idx ON public.card_print_traits USING btree (card_print_id)"
+      },
+      {
+        "tablename": "card_print_traits",
+        "indexname": "card_print_traits_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_print_traits_pkey ON public.card_print_traits USING btree (id)"
+      },
+      {
+        "tablename": "card_print_traits",
+        "indexname": "card_print_traits_trait_type_value_idx",
+        "indexdef": "CREATE INDEX card_print_traits_trait_type_value_idx ON public.card_print_traits USING btree (trait_type, trait_value)"
+      },
+      {
+        "tablename": "card_print_traits",
+        "indexname": "card_print_traits_unique_card_trait_source",
+        "indexdef": "CREATE UNIQUE INDEX card_print_traits_unique_card_trait_source ON public.card_print_traits USING btree (card_print_id, trait_type, trait_value, source)"
+      }
+    ],
+    "card_printings": [
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_card_print_id_finish_key_key",
+        "indexdef": "CREATE UNIQUE INDEX card_printings_card_print_id_finish_key_key ON public.card_printings USING btree (card_print_id, finish_key)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_printings_pkey ON public.card_printings USING btree (id)"
+      }
+    ],
+    "card_prints": [
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_gv_id_unique_idx",
+        "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_unique_idx ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_gv_id_uq",
+        "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_uq ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_name_ci",
+        "indexdef": "CREATE INDEX card_prints_name_ci ON public.card_prints USING btree (lower(name))"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_name_gin",
+        "indexdef": "CREATE INDEX card_prints_name_gin ON public.card_prints USING gin (to_tsvector('simple'::regconfig, COALESCE(name, ''::text)))"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_name_trgm_idx",
+        "indexdef": "CREATE INDEX card_prints_name_trgm_idx ON public.card_prints USING gin (lower(name) gin_trgm_ops)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_prints_pkey ON public.card_prints USING btree (id)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_print_identity_key_uq",
+        "indexdef": "CREATE UNIQUE INDEX card_prints_print_identity_key_uq ON public.card_prints USING btree (print_identity_key) WHERE (print_identity_key IS NOT NULL)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_set_code_ci",
+        "indexdef": "CREATE INDEX card_prints_set_code_ci ON public.card_prints USING btree (lower(set_code))"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_set_code_number_plain_idx",
+        "indexdef": "CREATE INDEX card_prints_set_code_number_plain_idx ON public.card_prints USING btree (set_code, number_plain)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_set_id_idx",
+        "indexdef": "CREATE INDEX card_prints_set_id_idx ON public.card_prints USING btree (set_id)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "card_prints_tcgplayer_id_idx",
+        "indexdef": "CREATE INDEX card_prints_tcgplayer_id_idx ON public.card_prints USING btree (tcgplayer_id)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "cp_setnum_idx",
+        "indexdef": "CREATE INDEX cp_setnum_idx ON public.card_prints USING btree (set_code, number)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "idx_card_prints_name",
+        "indexdef": "CREATE INDEX idx_card_prints_name ON public.card_prints USING btree (name)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "idx_card_prints_name_trgm",
+        "indexdef": "CREATE INDEX idx_card_prints_name_trgm ON public.card_prints USING gin (name gin_trgm_ops)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "idx_card_prints_set_no",
+        "indexdef": "CREATE INDEX idx_card_prints_set_no ON public.card_prints USING btree (set_id, number)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "idx_card_prints_setnum",
+        "indexdef": "CREATE INDEX idx_card_prints_setnum ON public.card_prints USING btree (set_code, number)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "idx_card_prints_setnumplain",
+        "indexdef": "CREATE INDEX idx_card_prints_setnumplain ON public.card_prints USING btree (set_code, number_plain)"
+      },
+      {
+        "tablename": "card_prints",
+        "indexname": "uq_card_prints_identity",
+        "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity ON public.card_prints USING btree (game_id, set_id, number_plain, variant_key)"
+      }
+    ],
+    "card_signals": [
+      {
+        "tablename": "card_signals",
+        "indexname": "card_signals_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_signals_pkey ON public.card_signals USING btree (id)"
+      },
+      {
+        "tablename": "card_signals",
+        "indexname": "idx_card_signals_card_print_created",
+        "indexdef": "CREATE INDEX idx_card_signals_card_print_created ON public.card_signals USING btree (card_print_id, created_at DESC)"
+      },
+      {
+        "tablename": "card_signals",
+        "indexname": "idx_card_signals_user_created",
+        "indexdef": "CREATE INDEX idx_card_signals_user_created ON public.card_signals USING btree (user_id, created_at DESC)"
+      }
+    ],
+    "condition_snapshots": [
+      {
+        "tablename": "condition_snapshots",
+        "indexname": "condition_snapshots_gv_vi_id_idx",
+        "indexdef": "CREATE INDEX condition_snapshots_gv_vi_id_idx ON public.condition_snapshots USING btree (gv_vi_id)"
+      },
+      {
+        "tablename": "condition_snapshots",
+        "indexname": "condition_snapshots_pkey",
+        "indexdef": "CREATE UNIQUE INDEX condition_snapshots_pkey ON public.condition_snapshots USING btree (id)"
+      }
+    ],
+    "ebay_active_price_snapshots": [
+      {
+        "tablename": "ebay_active_price_snapshots",
+        "indexname": "ebay_active_price_snapshots_pkey",
+        "indexdef": "CREATE UNIQUE INDEX ebay_active_price_snapshots_pkey ON public.ebay_active_price_snapshots USING btree (id)"
+      },
+      {
+        "tablename": "ebay_active_price_snapshots",
+        "indexname": "idx_eaps_card_print_time",
+        "indexdef": "CREATE INDEX idx_eaps_card_print_time ON public.ebay_active_price_snapshots USING btree (card_print_id, captured_at DESC)"
+      }
+    ],
+    "ebay_active_prices_latest": [
+      {
+        "tablename": "ebay_active_prices_latest",
+        "indexname": "ebay_active_prices_latest_pkey",
+        "indexdef": "CREATE UNIQUE INDEX ebay_active_prices_latest_pkey ON public.ebay_active_prices_latest USING btree (card_print_id)"
+      }
+    ],
+    "external_discovery_candidates": [
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "external_discovery_candidates_pkey",
+        "indexdef": "CREATE UNIQUE INDEX external_discovery_candidates_pkey ON public.external_discovery_candidates USING btree (id)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_bucket",
+        "indexdef": "CREATE INDEX idx_ext_disc_bucket ON public.external_discovery_candidates USING btree (candidate_bucket)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_card_print_id",
+        "indexdef": "CREATE INDEX idx_ext_disc_card_print_id ON public.external_discovery_candidates USING btree (card_print_id) WHERE (card_print_id IS NOT NULL)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_classifier_version",
+        "indexdef": "CREATE INDEX idx_ext_disc_classifier_version ON public.external_discovery_candidates USING btree (classifier_version)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_number_plain",
+        "indexdef": "CREATE INDEX idx_ext_disc_number_plain ON public.external_discovery_candidates USING btree (normalized_number_plain)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_raw_import",
+        "indexdef": "CREATE INDEX idx_ext_disc_raw_import ON public.external_discovery_candidates USING btree (raw_import_id)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_resolved_set_code",
+        "indexdef": "CREATE INDEX idx_ext_disc_resolved_set_code ON public.external_discovery_candidates USING btree (resolved_set_code) WHERE (resolved_set_code IS NOT NULL)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_set",
+        "indexdef": "CREATE INDEX idx_ext_disc_set ON public.external_discovery_candidates USING btree (set_id)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "idx_ext_disc_source",
+        "indexdef": "CREATE INDEX idx_ext_disc_source ON public.external_discovery_candidates USING btree (source)"
+      },
+      {
+        "tablename": "external_discovery_candidates",
+        "indexname": "ux_ext_disc_unique",
+        "indexdef": "CREATE UNIQUE INDEX ux_ext_disc_unique ON public.external_discovery_candidates USING btree (source, upstream_id, raw_import_id)"
+      }
+    ],
+    "external_mappings": [
+      {
+        "tablename": "external_mappings",
+        "indexname": "external_mappings_card_print_id_idx",
+        "indexdef": "CREATE INDEX external_mappings_card_print_id_idx ON public.external_mappings USING btree (card_print_id)"
+      },
+      {
+        "tablename": "external_mappings",
+        "indexname": "external_mappings_pkey",
+        "indexdef": "CREATE UNIQUE INDEX external_mappings_pkey ON public.external_mappings USING btree (id)"
+      },
+      {
+        "tablename": "external_mappings",
+        "indexname": "external_mappings_source_external_id_idx",
+        "indexdef": "CREATE INDEX external_mappings_source_external_id_idx ON public.external_mappings USING btree (source, external_id)"
+      },
+      {
+        "tablename": "external_mappings",
+        "indexname": "external_mappings_source_external_id_key",
+        "indexdef": "CREATE UNIQUE INDEX external_mappings_source_external_id_key ON public.external_mappings USING btree (source, external_id)"
+      },
+      {
+        "tablename": "external_mappings",
+        "indexname": "external_mappings_source_idx",
+        "indexdef": "CREATE INDEX external_mappings_source_idx ON public.external_mappings USING btree (source)"
+      }
+    ],
+    "games": [
+      {
+        "tablename": "games",
+        "indexname": "games_code_key",
+        "indexdef": "CREATE UNIQUE INDEX games_code_key ON public.games USING btree (code)"
+      },
+      {
+        "tablename": "games",
+        "indexname": "games_pkey",
+        "indexdef": "CREATE UNIQUE INDEX games_pkey ON public.games USING btree (id)"
+      },
+      {
+        "tablename": "games",
+        "indexname": "games_slug_key",
+        "indexdef": "CREATE UNIQUE INDEX games_slug_key ON public.games USING btree (slug)"
+      }
+    ],
+    "import_image_errors": [
+      {
+        "tablename": "import_image_errors",
+        "indexname": "import_image_errors_pkey",
+        "indexdef": "CREATE UNIQUE INDEX import_image_errors_pkey ON public.import_image_errors USING btree (id)"
+      }
+    ],
+    "justtcg_identity_overrides": [
+      {
+        "tablename": "justtcg_identity_overrides",
+        "indexname": "justtcg_identity_overrides_active_idx",
+        "indexdef": "CREATE INDEX justtcg_identity_overrides_active_idx ON public.justtcg_identity_overrides USING btree (active)"
+      },
+      {
+        "tablename": "justtcg_identity_overrides",
+        "indexname": "justtcg_identity_overrides_card_print_id_key",
+        "indexdef": "CREATE UNIQUE INDEX justtcg_identity_overrides_card_print_id_key ON public.justtcg_identity_overrides USING btree (card_print_id)"
+      },
+      {
+        "tablename": "justtcg_identity_overrides",
+        "indexname": "justtcg_identity_overrides_pkey",
+        "indexdef": "CREATE UNIQUE INDEX justtcg_identity_overrides_pkey ON public.justtcg_identity_overrides USING btree (id)"
+      }
+    ],
+    "justtcg_variant_price_snapshots": [
+      {
+        "tablename": "justtcg_variant_price_snapshots",
+        "indexname": "idx_justtcg_variant_price_snapshots_card_print_fetched_at",
+        "indexdef": "CREATE INDEX idx_justtcg_variant_price_snapshots_card_print_fetched_at ON public.justtcg_variant_price_snapshots USING btree (card_print_id, fetched_at DESC)"
+      },
+      {
+        "tablename": "justtcg_variant_price_snapshots",
+        "indexname": "idx_justtcg_variant_price_snapshots_latest_order",
+        "indexdef": "CREATE INDEX idx_justtcg_variant_price_snapshots_latest_order ON public.justtcg_variant_price_snapshots USING btree (variant_id, fetched_at DESC, created_at DESC, id DESC)"
+      },
+      {
+        "tablename": "justtcg_variant_price_snapshots",
+        "indexname": "idx_justtcg_variant_price_snapshots_variant_fetched_at",
+        "indexdef": "CREATE INDEX idx_justtcg_variant_price_snapshots_variant_fetched_at ON public.justtcg_variant_price_snapshots USING btree (variant_id, fetched_at DESC)"
+      },
+      {
+        "tablename": "justtcg_variant_price_snapshots",
+        "indexname": "justtcg_variant_price_snapshots_pkey",
+        "indexdef": "CREATE UNIQUE INDEX justtcg_variant_price_snapshots_pkey ON public.justtcg_variant_price_snapshots USING btree (id)"
+      }
+    ],
+    "justtcg_variant_prices_latest": [
+      {
+        "tablename": "justtcg_variant_prices_latest",
+        "indexname": "idx_justtcg_variant_prices_latest_card_print_id",
+        "indexdef": "CREATE INDEX idx_justtcg_variant_prices_latest_card_print_id ON public.justtcg_variant_prices_latest USING btree (card_print_id)"
+      },
+      {
+        "tablename": "justtcg_variant_prices_latest",
+        "indexname": "justtcg_variant_prices_latest_pkey",
+        "indexdef": "CREATE UNIQUE INDEX justtcg_variant_prices_latest_pkey ON public.justtcg_variant_prices_latest USING btree (variant_id)"
+      }
+    ],
+    "justtcg_variants": [
+      {
+        "tablename": "justtcg_variants",
+        "indexname": "idx_justtcg_variants_card_print_id",
+        "indexdef": "CREATE INDEX idx_justtcg_variants_card_print_id ON public.justtcg_variants USING btree (card_print_id)"
+      },
+      {
+        "tablename": "justtcg_variants",
+        "indexname": "justtcg_variants_pkey",
+        "indexdef": "CREATE UNIQUE INDEX justtcg_variants_pkey ON public.justtcg_variants USING btree (variant_id)"
+      }
+    ],
+    "listings": [
+      {
+        "tablename": "listings",
+        "indexname": "idx_listings_created_at",
+        "indexdef": "CREATE INDEX idx_listings_created_at ON public.listings USING btree (created_at)"
+      },
+      {
+        "tablename": "listings",
+        "indexname": "idx_listings_owner",
+        "indexdef": "CREATE INDEX idx_listings_owner ON public.listings USING btree (owner_id)"
+      },
+      {
+        "tablename": "listings",
+        "indexname": "idx_listings_status",
+        "indexdef": "CREATE INDEX idx_listings_status ON public.listings USING btree (status)"
+      },
+      {
+        "tablename": "listings",
+        "indexname": "listings_pkey",
+        "indexdef": "CREATE UNIQUE INDEX listings_pkey ON public.listings USING btree (id)"
+      }
+    ],
+    "pricing_jobs": [
+      {
+        "tablename": "pricing_jobs",
+        "indexname": "idx_pricing_jobs_status_priority",
+        "indexdef": "CREATE INDEX idx_pricing_jobs_status_priority ON public.pricing_jobs USING btree (status, priority, requested_at)"
+      },
+      {
+        "tablename": "pricing_jobs",
+        "indexname": "pricing_jobs_pkey",
+        "indexdef": "CREATE UNIQUE INDEX pricing_jobs_pkey ON public.pricing_jobs USING btree (id)"
+      },
+      {
+        "tablename": "pricing_jobs",
+        "indexname": "pricing_jobs_requester_user_id_idx",
+        "indexdef": "CREATE INDEX pricing_jobs_requester_user_id_idx ON public.pricing_jobs USING btree (requester_user_id)"
+      },
+      {
+        "tablename": "pricing_jobs",
+        "indexname": "pricing_jobs_status_priority_eligible_requested_idx",
+        "indexdef": "CREATE INDEX pricing_jobs_status_priority_eligible_requested_idx ON public.pricing_jobs USING btree (status, priority, next_eligible_at, requested_at)"
+      }
+    ],
+    "pricing_observations": [
+      {
+        "tablename": "pricing_observations",
+        "indexname": "idx_pricing_observations_card_print",
+        "indexdef": "CREATE INDEX idx_pricing_observations_card_print ON public.pricing_observations USING btree (card_print_id)"
+      },
+      {
+        "tablename": "pricing_observations",
+        "indexname": "idx_pricing_observations_classification",
+        "indexdef": "CREATE INDEX idx_pricing_observations_classification ON public.pricing_observations USING btree (classification)"
+      },
+      {
+        "tablename": "pricing_observations",
+        "indexname": "idx_pricing_observations_external",
+        "indexdef": "CREATE INDEX idx_pricing_observations_external ON public.pricing_observations USING btree (source, external_id)"
+      },
+      {
+        "tablename": "pricing_observations",
+        "indexname": "idx_pricing_observations_observed_at",
+        "indexdef": "CREATE INDEX idx_pricing_observations_observed_at ON public.pricing_observations USING btree (observed_at DESC)"
+      },
+      {
+        "tablename": "pricing_observations",
+        "indexname": "pricing_observations_pkey",
+        "indexdef": "CREATE UNIQUE INDEX pricing_observations_pkey ON public.pricing_observations USING btree (id)"
+      }
+    ],
+    "pricing_watch": [
+      {
+        "tablename": "pricing_watch",
+        "indexname": "pricing_watch_card_print_id_idx",
+        "indexdef": "CREATE INDEX pricing_watch_card_print_id_idx ON public.pricing_watch USING btree (card_print_id)"
+      },
+      {
+        "tablename": "pricing_watch",
+        "indexname": "pricing_watch_card_print_reason_key",
+        "indexdef": "CREATE UNIQUE INDEX pricing_watch_card_print_reason_key ON public.pricing_watch USING btree (card_print_id, watch_reason)"
+      },
+      {
+        "tablename": "pricing_watch",
+        "indexname": "pricing_watch_next_run_at_idx",
+        "indexdef": "CREATE INDEX pricing_watch_next_run_at_idx ON public.pricing_watch USING btree (next_run_at)"
+      },
+      {
+        "tablename": "pricing_watch",
+        "indexname": "pricing_watch_pkey",
+        "indexdef": "CREATE UNIQUE INDEX pricing_watch_pkey ON public.pricing_watch USING btree (id)"
+      },
+      {
+        "tablename": "pricing_watch",
+        "indexname": "pricing_watch_priority_next_run_idx",
+        "indexdef": "CREATE INDEX pricing_watch_priority_next_run_idx ON public.pricing_watch USING btree (priority DESC, next_run_at)"
+      }
+    ],
+    "raw_imports": [
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_ingested_at_idx",
+        "indexdef": "CREATE INDEX raw_imports_ingested_at_idx ON public.raw_imports USING btree (ingested_at)"
+      },
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_pkey",
+        "indexdef": "CREATE UNIQUE INDEX raw_imports_pkey ON public.raw_imports USING btree (id)"
+      },
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_status_idx",
+        "indexdef": "CREATE INDEX raw_imports_status_idx ON public.raw_imports USING btree (status)"
+      }
+    ],
+    "sets": [
+      {
+        "tablename": "sets",
+        "indexname": "idx_sets_code",
+        "indexdef": "CREATE INDEX idx_sets_code ON public.sets USING btree (code)"
+      },
+      {
+        "tablename": "sets",
+        "indexname": "idx_sets_set_role",
+        "indexdef": "CREATE INDEX idx_sets_set_role ON public.sets USING btree (set_role)"
+      },
+      {
+        "tablename": "sets",
+        "indexname": "sets_game_code_key",
+        "indexdef": "CREATE UNIQUE INDEX sets_game_code_key ON public.sets USING btree (game, code)"
+      },
+      {
+        "tablename": "sets",
+        "indexname": "sets_pkey",
+        "indexdef": "CREATE UNIQUE INDEX sets_pkey ON public.sets USING btree (id)"
+      },
+      {
+        "tablename": "sets",
+        "indexname": "sets_unique_game_code",
+        "indexdef": "CREATE UNIQUE INDEX sets_unique_game_code ON public.sets USING btree (game, code)"
+      },
+      {
+        "tablename": "sets",
+        "indexname": "uq_sets_code",
+        "indexdef": "CREATE UNIQUE INDEX uq_sets_code ON public.sets USING btree (code)"
+      }
+    ],
+    "slab_certs": [
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_card_print_id_idx",
+        "indexdef": "CREATE INDEX slab_certs_card_print_id_idx ON public.slab_certs USING btree (card_print_id)"
+      },
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_gv_slab_id_key",
+        "indexdef": "CREATE UNIQUE INDEX slab_certs_gv_slab_id_key ON public.slab_certs USING btree (gv_slab_id)"
+      },
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_identity_key",
+        "indexdef": "CREATE UNIQUE INDEX slab_certs_identity_key ON public.slab_certs USING btree (normalized_grader, normalized_cert_number)"
+      },
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_last_seen_at_idx",
+        "indexdef": "CREATE INDEX slab_certs_last_seen_at_idx ON public.slab_certs USING btree (last_seen_at)"
+      },
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_normalized_grader_grade_idx",
+        "indexdef": "CREATE INDEX slab_certs_normalized_grader_grade_idx ON public.slab_certs USING btree (normalized_grader, grade)"
+      },
+      {
+        "tablename": "slab_certs",
+        "indexname": "slab_certs_pkey",
+        "indexdef": "CREATE UNIQUE INDEX slab_certs_pkey ON public.slab_certs USING btree (id)"
+      }
+    ],
+    "slab_provenance_events": [
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_card_print_id_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_card_print_id_idx ON public.slab_provenance_events USING btree (card_print_id)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_event_source_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_event_source_idx ON public.slab_provenance_events USING btree (event_source)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_event_type_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_event_type_idx ON public.slab_provenance_events USING btree (event_type)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_pkey",
+        "indexdef": "CREATE UNIQUE INDEX slab_provenance_events_pkey ON public.slab_provenance_events USING btree (id)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_slab_cert_event_ts_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_slab_cert_event_ts_idx ON public.slab_provenance_events USING btree (slab_cert_id, event_ts DESC)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_slab_cert_id_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_slab_cert_id_idx ON public.slab_provenance_events USING btree (slab_cert_id)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_source_identity_key",
+        "indexdef": "CREATE UNIQUE INDEX slab_provenance_events_source_identity_key ON public.slab_provenance_events USING btree (slab_cert_id, event_source, source_event_key) WHERE (source_event_key IS NOT NULL)"
+      },
+      {
+        "tablename": "slab_provenance_events",
+        "indexname": "slab_provenance_events_vault_item_id_idx",
+        "indexdef": "CREATE INDEX slab_provenance_events_vault_item_id_idx ON public.slab_provenance_events USING btree (vault_item_id)"
+      }
+    ],
+    "user_card_photos": [
+      {
+        "tablename": "user_card_photos",
+        "indexname": "user_card_photos_pkey",
+        "indexdef": "CREATE UNIQUE INDEX user_card_photos_pkey ON public.user_card_photos USING btree (id)"
+      }
+    ],
+    "v_card_contact_targets_v1": [],
+    "v_card_prices_usd": [],
+    "v_card_pricing_ui_v1": [],
+    "v_card_prints_web_v1": [],
+    "v_card_stream_v1": [],
+    "v_grookai_value_compare_v1_v2": [],
+    "v_grookai_value_v1": [],
+    "v_grookai_value_v1_1": [],
+    "v_grookai_value_v1_clean": [],
+    "v_grookai_value_v1_justtcg_bridge": [],
+    "v_grookai_value_v2": [],
+    "v_justtcg_display_summary_v1": [],
+    "v_justtcg_vs_ebay_classified_v1": [],
+    "v_justtcg_vs_ebay_pricing_v1": [],
+    "v_justtcg_vs_ebay_valid_v1": [],
+    "v_latest_price": [],
+    "v_latest_price_clean": [],
+    "v_pricing_observation_audit": [],
+    "v_pricing_observations_accepted": [],
+    "v_special_set_print_membership": [],
+    "v_ticker_24h": [],
+    "vault_item_instances": [
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "idx_vault_item_instances_active_user_card_created",
+        "indexdef": "CREATE INDEX idx_vault_item_instances_active_user_card_created ON public.vault_item_instances USING btree (user_id, card_print_id, created_at DESC) WHERE (archived_at IS NULL)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "idx_vault_item_instances_anchor_archived_at",
+        "indexdef": "CREATE INDEX idx_vault_item_instances_anchor_archived_at ON public.vault_item_instances USING btree (legacy_vault_item_id, archived_at)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "idx_vault_item_instances_card_archived_at",
+        "indexdef": "CREATE INDEX idx_vault_item_instances_card_archived_at ON public.vault_item_instances USING btree (card_print_id, archived_at)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "idx_vault_item_instances_intent_archived_at",
+        "indexdef": "CREATE INDEX idx_vault_item_instances_intent_archived_at ON public.vault_item_instances USING btree (intent, archived_at)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_active_pricing_mode_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_active_pricing_mode_idx ON public.vault_item_instances USING btree (pricing_mode, archived_at) WHERE (archived_at IS NULL)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_active_user_created_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_active_user_created_idx ON public.vault_item_instances USING btree (user_id, created_at DESC) WHERE (archived_at IS NULL)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_archived_at_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_archived_at_idx ON public.vault_item_instances USING btree (archived_at)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_card_print_id_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_card_print_id_idx ON public.vault_item_instances USING btree (card_print_id)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_gv_vi_id_key",
+        "indexdef": "CREATE UNIQUE INDEX vault_item_instances_gv_vi_id_key ON public.vault_item_instances USING btree (gv_vi_id)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_legacy_vault_item_id_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_legacy_vault_item_id_idx ON public.vault_item_instances USING btree (legacy_vault_item_id)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_pkey",
+        "indexdef": "CREATE UNIQUE INDEX vault_item_instances_pkey ON public.vault_item_instances USING btree (id)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_slab_cert_id_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_slab_cert_id_idx ON public.vault_item_instances USING btree (slab_cert_id)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_user_archived_at_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_user_archived_at_idx ON public.vault_item_instances USING btree (user_id, archived_at)"
+      },
+      {
+        "tablename": "vault_item_instances",
+        "indexname": "vault_item_instances_user_id_idx",
+        "indexdef": "CREATE INDEX vault_item_instances_user_id_idx ON public.vault_item_instances USING btree (user_id)"
+      }
+    ],
+    "vault_items": [
+      {
+        "tablename": "vault_items",
+        "indexname": "idx_vault_items_active_user_created",
+        "indexdef": "CREATE INDEX idx_vault_items_active_user_created ON public.vault_items USING btree (user_id, created_at DESC) WHERE (archived_at IS NULL)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "idx_vault_items_intent_active",
+        "indexdef": "CREATE INDEX idx_vault_items_intent_active ON public.vault_items USING btree (intent) WHERE (archived_at IS NULL)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "idx_vault_items_user_archived_at",
+        "indexdef": "CREATE INDEX idx_vault_items_user_archived_at ON public.vault_items USING btree (user_id, archived_at)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "idx_vault_items_user_created",
+        "indexdef": "CREATE INDEX idx_vault_items_user_created ON public.vault_items USING btree (user_id, created_at DESC)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "idx_vault_items_user_name",
+        "indexdef": "CREATE INDEX idx_vault_items_user_name ON public.vault_items USING btree (user_id, name)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_card_id_idx",
+        "indexdef": "CREATE INDEX vault_items_card_id_idx ON public.vault_items USING btree (card_id)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_card_idx",
+        "indexdef": "CREATE INDEX vault_items_card_idx ON public.vault_items USING btree (card_id)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_created_idx",
+        "indexdef": "CREATE INDEX vault_items_created_idx ON public.vault_items USING btree (created_at DESC)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_gv_id_idx",
+        "indexdef": "CREATE INDEX vault_items_gv_id_idx ON public.vault_items USING btree (gv_id)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_pkey",
+        "indexdef": "CREATE UNIQUE INDEX vault_items_pkey ON public.vault_items USING btree (id)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_user_created_idx",
+        "indexdef": "CREATE INDEX vault_items_user_created_idx ON public.vault_items USING btree (user_id, created_at DESC)"
+      },
+      {
+        "tablename": "vault_items",
+        "indexname": "vault_items_user_idx",
+        "indexdef": "CREATE INDEX vault_items_user_idx ON public.vault_items USING btree (user_id)"
+      }
+    ]
+  },
+  "legacy_parent_uniqueness_present": true,
+  "active_identity_card_print_uniqueness_present": true,
+  "active_identity_hash_uniqueness_present": true,
+  "external_mappings_anchor": [
+    {
+      "column_name": "card_print_id",
+      "foreign_table_name": "card_prints",
+      "foreign_column_name": "id"
+    }
+  ]
+}

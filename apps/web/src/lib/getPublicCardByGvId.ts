@@ -4,7 +4,7 @@ import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
-import type { CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
+import type { ActiveCardPrintIdentity, CardDetail, CardPrinting, RelatedCardPrint } from "@/types/cards";
 
 type TraitRow = {
   hp: number | null;
@@ -20,6 +20,7 @@ type PublicCardRow = {
   name: string | null;
   number: string | null;
   number_plain: string | null;
+  identity_domain: string | null;
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
@@ -42,8 +43,18 @@ type PublicCardRow = {
       }[]
     | null;
   sets?:
-    | { name: string | null; printed_total: number | null; release_date: string | null }
-    | { name: string | null; printed_total: number | null; release_date: string | null }[]
+    | {
+        name: string | null;
+        printed_total: number | null;
+        printed_set_abbrev: string | null;
+        release_date: string | null;
+      }
+    | {
+        name: string | null;
+        printed_total: number | null;
+        printed_set_abbrev: string | null;
+        release_date: string | null;
+      }[]
     | null;
 };
 
@@ -75,7 +86,15 @@ type StaticParamRow = {
 type SetRow = {
   name: string | null;
   printed_total: number | null;
+  printed_set_abbrev: string | null;
   release_date: string | null;
+};
+
+type ActiveIdentityRow = {
+  identity_domain: string | null;
+  set_code_identity: string | null;
+  printed_number: string | null;
+  identity_key_version: string | null;
 };
 
 function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null) {
@@ -218,28 +237,104 @@ function createServerSupabase() {
 
 const getSetDetailsByCode = cache(async (setCode?: string | null) => {
   if (!setCode) {
-    return { name: undefined, printedTotal: undefined, releaseDate: undefined, releaseYear: undefined };
+    return {
+      name: undefined,
+      printedTotal: undefined,
+      printedSetAbbrev: undefined,
+      releaseDate: undefined,
+      releaseYear: undefined,
+    };
   }
 
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("sets")
-    .select("name,printed_total,release_date")
+    .select("name,printed_total,printed_set_abbrev,release_date")
     .eq("code", setCode)
     .maybeSingle();
 
   if (error || !data) {
-    return { name: undefined, printedTotal: undefined, releaseDate: undefined, releaseYear: undefined };
+    return {
+      name: undefined,
+      printedTotal: undefined,
+      printedSetAbbrev: undefined,
+      releaseDate: undefined,
+      releaseYear: undefined,
+    };
   }
 
   const row = data as SetRow;
   return {
     name: row.name ?? undefined,
     printedTotal: typeof row.printed_total === "number" ? row.printed_total : undefined,
+    printedSetAbbrev: row.printed_set_abbrev ?? undefined,
     releaseDate: row.release_date ?? undefined,
     releaseYear: getReleaseYear(row.release_date),
   };
 });
+
+async function getActiveIdentityByCardPrintId(
+  supabase: ReturnType<typeof createServerSupabase>,
+  cardPrintId?: string | null,
+  parentIdentityDomain?: string | null,
+): Promise<ActiveCardPrintIdentity | null> {
+  const normalizedCardPrintId = cardPrintId?.trim();
+  if (!normalizedCardPrintId) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from("card_print_identity")
+    .select("identity_domain,set_code_identity,printed_number,identity_key_version")
+    .eq("card_print_id", normalizedCardPrintId)
+    .eq("is_active", true)
+    .limit(2);
+
+  if (error) {
+    console.error("[card-detail] active identity read failed", {
+      cardPrintId: normalizedCardPrintId,
+      message: error.message,
+    });
+    return null;
+  }
+
+  const rows = (data ?? []) as ActiveIdentityRow[];
+  if (rows.length === 0) {
+    return null;
+  }
+
+  if (rows.length > 1) {
+    throw new Error(`MULTIPLE_ACTIVE_CARD_PRINT_IDENTITY_ROWS:${normalizedCardPrintId}:${rows.length}`);
+  }
+
+  const row = rows[0];
+  const activeIdentity =
+    row.identity_domain?.trim() &&
+    row.printed_number?.trim() &&
+    row.identity_key_version?.trim()
+      ? {
+          identity_domain: row.identity_domain.trim(),
+          set_code_identity: row.set_code_identity?.trim() || undefined,
+          printed_number: row.printed_number.trim(),
+          identity_key_version: row.identity_key_version.trim(),
+        }
+      : null;
+
+  if (
+    process.env.NODE_ENV !== "production" &&
+    activeIdentity &&
+    parentIdentityDomain?.trim() &&
+    activeIdentity.identity_domain !== parentIdentityDomain.trim()
+  ) {
+    console.warn("[card-detail] active identity domain mismatch", {
+      cardPrintId: normalizedCardPrintId,
+      parentIdentityDomain,
+      activeIdentityDomain: activeIdentity.identity_domain,
+    });
+  }
+
+  return activeIdentity;
+}
 
 async function getRelatedPrintsByName(
   supabase: ReturnType<typeof createServerSupabase>,
@@ -260,6 +355,7 @@ async function getRelatedPrintsByName(
         name,
         number,
         number_plain,
+        identity_domain,
         rarity,
         image_url,
         image_alt_url,
@@ -322,7 +418,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
           finish_key,
           finish_keys(label,sort_order)
         ),
-        sets(name,printed_total,release_date)
+        sets(name,printed_total,printed_set_abbrev,release_date)
       `,
     )
     .eq("gv_id", gv_id)
@@ -334,10 +430,11 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
 
   const row = data as PublicCardRow;
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const [fallbackSet, relatedPrints, imageUrl] = await Promise.all([
+  const [fallbackSet, relatedPrints, imageUrl, activeIdentity] = await Promise.all([
     getSetDetailsByCode(row.set_code),
     getRelatedPrintsByName(supabase, row.name, row.id),
     resolveCanonImageUrlV1(row),
+    getActiveIdentityByCardPrintId(supabase, row.id, row.identity_domain),
   ]);
   // Pricing authority note:
   // Current active engine = v_grookai_value_v1_1
@@ -350,6 +447,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;
+  const printedSetAbbrev = setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev;
   const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
 
   return {
@@ -358,8 +456,10 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     name: row.name ?? "Unknown",
     number: row.number ?? "",
     number_plain: row.number_plain ?? undefined,
+    printed_set_abbrev: printedSetAbbrev ?? undefined,
     set_name: setName,
     set_code: row.set_code ?? undefined,
+    active_identity: activeIdentity,
     rarity: row.rarity ?? undefined,
     image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),

@@ -1,0 +1,1078 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "CANON_PARENT_IDENTITY_REPAIR_AUDIT_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "scope": "Supported rows only: set_code IS NULL, number IS NULL, domain != tcg_pocket",
+  "target_count": 10620,
+  "set_code_recovery": {
+    "recoverable_set_code": 10620,
+    "missing_set_code": 0,
+    "failure_samples": [],
+    "authority": "public.sets.code via card_prints.set_id"
+  },
+  "number_recovery_sources": {
+    "external_mappings_meta_tcg_local_number": {
+      "recoverable_number": 0,
+      "missing_number": 10620,
+      "mapped_target_rows": 10620,
+      "target_rows_with_nonnull_meta": 0,
+      "target_rows_with_tcg_local_number_key": 0,
+      "target_rows_with_numeric_tcg_local_number": 0,
+      "sample_candidates": [],
+      "authority_rule": "Used only when em.meta->>'tcg_local_number' is present and purely numeric."
+    },
+    "card_printings": {
+      "recoverable_number": 0,
+      "missing_number": 10620,
+      "usable_number_field_present": false,
+      "schema_columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid"
+        },
+        {
+          "column_name": "card_print_id",
+          "data_type": "uuid"
+        },
+        {
+          "column_name": "finish_key",
+          "data_type": "text"
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone"
+        },
+        {
+          "column_name": "is_provisional",
+          "data_type": "boolean"
+        },
+        {
+          "column_name": "provenance_source",
+          "data_type": "text"
+        },
+        {
+          "column_name": "provenance_ref",
+          "data_type": "text"
+        },
+        {
+          "column_name": "created_by",
+          "data_type": "text"
+        }
+      ],
+      "note": "public.card_printings has no number-like field, so this surface provides no authoritative number recovery lane in the current schema."
+    }
+  },
+  "combined_recoverability": {
+    "fully_recoverable": 0,
+    "set_only": 10620,
+    "unrecoverable": 0
+  },
+  "collision_preview": [],
+  "sample_rows": [
+    {
+      "id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Alomomola",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "9f3878be-5c08-47ed-bf7c-101c052c9eca",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Audino",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "9ba3827c-f0fa-43c5-b73f-5f3a467d7bbf",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Blitzle",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "a7ad1fd2-2643-4593-92dd-e0e0d371b543",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Klink",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "49f0c8ad-582e-482f-bfad-e05f5a2968d7",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Maractus",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "a357528d-c789-416d-8b65-84edf7cacb9d",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Munna",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4f60627b-9f4e-4fa1-8d55-679ce918a26f",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Oshawott",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "f0eb8536-8933-46b0-aeaa-7db4a1c0c132",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Pidove",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c0b69108-a702-4566-b2eb-63adc5c9f27c",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Sandile",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "99555f58-22ae-44ce-a4b3-57a2e41635ac",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Snivy",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "8cac8dd1-d3ec-4a0c-bd75-e83ec8fa3936",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Tepig",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "1d8e4b66-4767-4a22-b211-7659dc622133",
+      "set_id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "recovered_set_code": "2011bw",
+      "set_name": "Macdonald's Collection 2011",
+      "name": "Zorua",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2011bw-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Axew",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4fe5e6a9-2247-49c6-8822-e7582455e423",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Dewott",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "9f3bcf93-0896-4a5f-911e-89cc7e5e18f0",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Drilbur",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "dd45ad38-2f37-4fcb-a70c-dd0ebc52f246",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Dwebble",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "0f859865-af3c-487d-8592-c0ae39462078",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Emolga",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "f00b72c6-080a-4f38-81ec-c9d23e7375ac",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Klang",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "044356ad-d7a1-4ad6-beac-db94aa88634e",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Pansage",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "6e717d9f-3e0c-4897-a7b5-b54dbed61d99",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Pignite",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "19cdd7e4-568f-4d14-93b9-1291dc40efeb",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Purrloin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "fe3cad3e-8df4-447a-98ee-964879d6518d",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Scraggy",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "701dfb15-46fb-4f58-9680-e1cb2ef9f646",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Servine",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "8702d170-65f2-4098-98d2-57cbfeb492b7",
+      "set_id": "c592059c-0338-46d4-bb47-69822c118727",
+      "recovered_set_code": "2012bw",
+      "set_name": "Macdonald's Collection 2012",
+      "name": "Woobat",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2012bw-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Bunnelby",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e8297a0c-0508-4fe5-be3f-8e46cfb4a0ae",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Chespin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "06fcb8e7-d3ce-4e0d-9080-ef8dff064eff",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Fennekin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "710db2b6-4909-4634-9bb0-107266c48f09",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Fletchling",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "ed6bd958-5f0f-479d-b481-6e610c1af644",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Froakie",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "d46097bc-81d0-433b-a2cf-961977543966",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Furfrou",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Honedge",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "f95fff58-042a-4136-904b-3c68dbd3fb71",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Inkay",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e633087f-c7b2-4ee6-baf3-ad7cbdb07d63",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e61898de-344f-401a-9764-12d7b969e716",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Snubbull",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "b3293af3-784e-4c0a-9bd7-afb72bfdeb27",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Swirlix",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+      "set_id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "recovered_set_code": "2014xy",
+      "set_name": "Macdonald's Collection 2014",
+      "name": "Weedle",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2014xy-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Electrike",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "6ae8ed03-50de-4009-8b86-fbb42082fba1",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Lotad",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "32b63f96-a503-4f55-b672-d6374089bd03",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Marill",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "dbbc7681-280e-4743-9c2a-5dfc2dcf3312",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Meditite",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "53b9be9e-10b5-4201-846f-82f5be3b92b4",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Mudkip",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "7e9f4397-0064-4d86-b65c-8a925aa36d4b",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "20332df3-d8a9-48bf-8d90-efa09b1883af",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Rhyhorn",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Skitty",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "d58afc61-aee8-4290-825e-375705559fbe",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Staryu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c96f409c-eab1-49f0-8066-a2ba8e56bddf",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Torchic",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Treecko",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "1920465e-6162-4c4c-8498-7f8a64430acc",
+      "set_id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "recovered_set_code": "2015xy",
+      "set_name": "Macdonald's Collection 2015",
+      "name": "Zigzagoon",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2015xy-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Dedenne",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "5b5e8a98-3045-4215-bdbb-b71ad7cd983a",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Eevee",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "790ace03-259c-4c70-8479-b44c66f435cf",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Fennekin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "94d7c47a-f08c-4858-a134-44ad7d15b6db",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Jigglypuff",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "81243d46-86fa-4ddf-8f0b-ca5ad15afdb4",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Magikarp",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "606a9302-49b1-411e-8a6f-a0c27480274d",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Meowth",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "9411a118-bc9b-4e6e-8e3c-fa2a5c332372",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c22186fe-93c3-46dd-8c33-baa5551e9da1",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Scraggy",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "f94a794f-2c23-4ce8-97cd-800e615ba2e4",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Togepi",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e93be155-a14f-4853-b698-143eb69951cb",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Torchic",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "fc4bbd03-8a9d-4835-b06f-0077a2976218",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Totodile",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+      "set_id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "recovered_set_code": "2016xy",
+      "set_name": "Macdonald's Collection 2016",
+      "name": "Vulpix",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2016xy-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Alolan Diglett",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "ad10f546-4242-4a7c-bb15-d6ed10cf3243",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Alolan Meowth",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "13b96cd7-2dea-48f2-811f-3d2b1a655e5a",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Cosmog",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c3b8ec93-904f-414a-8129-e6c9c994f29d",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Crabrawler",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "6f030f4c-a0f9-4e4e-aa12-d77f91d546f3",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Cutiefly",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "26695bc6-d4f9-4de0-b1d4-8deaa14d8872",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Grubbin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "480a8f04-d7fc-4fc4-a3fd-cab647d31b3e",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Litten",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "d540de24-0159-4e3f-9e3a-61d7101672a2",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "65c374ed-3913-4169-b8d3-eb334945dd41",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Pikipek",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "29acc985-2e21-450e-8ac2-dc5df8b2e47e",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Popplio",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c4630f0d-e009-4f58-b594-122b39fc43c1",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Rowlet",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "49da7416-8b7c-4df8-bb82-1385e21d4cff",
+      "set_id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "recovered_set_code": "2017sm",
+      "set_name": "Macdonald's Collection 2017",
+      "name": "Yungoos",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2017sm-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Chansey",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4ff69455-1d5d-4149-a659-17d6a1b04471",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Cubone",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "f8e275c1-2e2c-44be-b717-b8c280cf58c7",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Dratini",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "7b2d2f5e-d8c2-4a54-9346-9148de9658ab",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Eevee",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "af966963-8a44-4293-b1bf-dc63e0d6d678",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Growlithe",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "3c1ddaef-d7dd-4dba-a802-4febd948d311",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Horsea",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "01dc9dfe-9796-44aa-a164-3cf9e0cc56fa",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Machop",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "4eae2ae7-c269-4748-a904-7a3247f259b6",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Magnemite",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "37e56ffe-577a-4d5f-ac5e-cd67be631bc3",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "32cd523f-ff42-4c92-83e0-56e5b118fef6",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Porygon",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "05d756c8-0003-4580-b17b-0021b96a521e",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Psyduck",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "b42b34c4-88cf-4a15-82ab-d20da5e4cd06",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "recovered_set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "name": "Slowpoke",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2018sm-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Alolan Dugtrio",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-11",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "b9356a41-6877-4f33-9acb-3e93953a5b18",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Alolan Exeggutor",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-2",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "fe6983cb-f8f1-4f0f-94b3-f4d5c488b40d",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Alolan Meowth",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-10",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "3b2bf272-8eaa-4b0b-b083-da25d86c456c",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Alolan Sandshrew",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-4",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Caterpie",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "5570e14b-8d01-45c3-b05d-b466c622f3c4",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Eevee",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-12",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "6292805b-f96e-4fc3-b0c4-538e6a058ddc",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Gastly",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-7",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "ffb7d291-f1f7-426a-9d7c-40cf2091d10e",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Lapras",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-5",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "23c2a08b-cc3d-40ec-b167-40af4eef77cd",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Magmar",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-3",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e47cef36-3d67-42c4-a31c-f369501acd19",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Mankey",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-8",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "0dbc944b-f9bc-462b-b79d-0ac6171c59d9",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Onix",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "c42de07b-d646-4fad-ba55-3042513fe209",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "recovered_set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "name": "Pikachu",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2019sm-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "recovered_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "name": "Bulbasaur",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2021swsh-1",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "recovered_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "name": "Charmander",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2021swsh-9",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "recovered_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "name": "Chespin",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2021swsh-6",
+      "mapping_candidate_number": null
+    },
+    {
+      "id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "recovered_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "name": "Chikorita",
+      "mapping_source": "tcgdex",
+      "mapping_external_id": "2021swsh-2",
+      "mapping_candidate_number": null
+    }
+  ],
+  "summary": {
+    "set_code_recovery_answer": "Set code is fully recoverable for the supported target slice through public.sets.code.",
+    "number_recovery_answer": "No supported rows have a deterministic numeric number in external_mappings.meta.tcg_local_number, and card_printings provides no number field. Number is not recoverable from the audited authoritative lanes.",
+    "overall_repairability": "Supported null-parent rows are not repairable end-to-end from the audited authoritative fields. This audit found set-only recoverability, not full parent identity recovery."
+  }
+}

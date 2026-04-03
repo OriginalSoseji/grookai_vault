@@ -1,0 +1,592 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:15:28.602Z",
+  "target": "remote",
+  "total_rows": 77632,
+  "distinct_card_print_id_count": 33745,
+  "columns": [
+    {
+      "column_name": "id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": false,
+      "column_default": "gen_random_uuid()",
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "card_print_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": false,
+      "column_default": null,
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "finish_key",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": false,
+      "column_default": null,
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": false,
+      "column_default": "now()",
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "is_provisional",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": false,
+      "column_default": "false",
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "provenance_source",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": true,
+      "column_default": null,
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "provenance_ref",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": true,
+      "column_default": null,
+      "is_generated": "NEVER",
+      "generation_expression": null
+    },
+    {
+      "column_name": "created_by",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": true,
+      "column_default": null,
+      "is_generated": "NEVER",
+      "generation_expression": null
+    }
+  ],
+  "provenance_fields_present": [
+    "provenance_source",
+    "provenance_ref"
+  ],
+  "dedicated_printed_number_field_exists": false,
+  "dedicated_printed_set_field_exists": false,
+  "null_parent_referenced_rows": {
+    "referenced_rows": "11646"
+  },
+  "supported_null_parent_sample": [
+    {
+      "id": "482f83a0-94a5-4550-872c-d8abec1ab35e",
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T00:58:10.523Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-79",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "61be3444-843e-4066-8aa9-4c89aaf80041",
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T00:58:10.426Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-79",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "a611a2d4-7be2-4dd1-9afc-541269e73546",
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T00:58:10.619Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-79",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "017c7c2f-5716-4980-8ddd-a3425858f559",
+      "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T04:33:20.461Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "me01-091",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "e371af63-ae26-4fcb-9d69-74889c7ff831",
+      "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T04:33:20.358Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "me01-091",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "0300d703-0ae8-481c-8252-d0384f9011ff",
+      "card_print_id": "000dc9b5-d6cd-43e5-9986-ee18261802a4",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T04:18:02.498Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv10-005",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4618296f-3e4e-4368-b0b8-faf81b3c86b3",
+      "card_print_id": "000dc9b5-d6cd-43e5-9986-ee18261802a4",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T04:18:02.409Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv10-005",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "11e63497-0f15-42db-9851-da6f30076d73",
+      "card_print_id": "0017e5e6-1146-488b-9fd1-de545b0f563e",
+      "finish_key": "normal",
+      "created_at": "2026-03-26T23:37:07.304Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "pop8-16",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4883da7e-04da-4ac7-8b6a-8bad2dbff0c4",
+      "card_print_id": "0017e5e6-1146-488b-9fd1-de545b0f563e",
+      "finish_key": "holo",
+      "created_at": "2026-03-26T23:37:07.395Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "pop8-16",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "3faa1475-710f-4040-89a8-7bb6674fcce1",
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:47:20.779Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm2-11",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "651ee9dd-567d-4e0c-a89c-8e83aa7a3c02",
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:47:20.884Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm2-11",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "8f920959-238e-42e9-93fd-cab16201ec88",
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:47:20.572Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm2-11",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "59adc801-f800-48ee-9148-43ddff63434d",
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:26:46.772Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm12-21",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "6f2c6805-4959-4975-82d0-d2672c647051",
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:26:46.571Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm12-21",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "b17d0e0e-7c00-4c54-84b4-86d59dabfe8c",
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:26:46.676Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm12-21",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "42a108c3-aef3-45aa-a9fb-9ce88d50a979",
+      "card_print_id": "002f08d2-cbd8-436c-b7b3-9c7d2020b6d4",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T03:49:45.317Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv06-067",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "59edf623-dd9e-4caf-834a-e8bdc2e27ec1",
+      "card_print_id": "002f08d2-cbd8-436c-b7b3-9c7d2020b6d4",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T03:49:45.217Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv06-067",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "1cfc519f-e474-4a6f-8d97-12004b0b97a9",
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:00:21.005Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-109",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "e51dc7f5-c138-47e7-a1a7-58038c32a428",
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:00:21.217Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-109",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "eb0df467-dc9d-4bda-9ac0-321f416d54e7",
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:00:21.118Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy10-109",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "165b75e2-2d2d-47b8-8129-6ed259df5fd7",
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:15:05.483Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy7-35",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "d464ba50-cafb-4523-a279-9f7387f08b52",
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:15:05.583Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy7-35",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "e20d819f-34b3-4117-956a-26d5f4a76245",
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:15:05.673Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy7-35",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "15c7f524-50e0-4f5e-938f-d26914213e2f",
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T00:25:22.496Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "tk-bw-z-7",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "31da9c68-e3df-437a-993f-e3c74751d14b",
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T00:25:22.676Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "tk-bw-z-7",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4bbd8987-6f31-428a-8ad9-3e3206512212",
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T00:25:22.588Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "tk-bw-z-7",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "35abcc2e-70f4-4a4c-a67b-a52cc910a7c7",
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:57:21.078Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm5-17",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "d36506ae-8322-404f-b340-c8616e20719b",
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:57:21.262Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm5-17",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "d4140ab0-20ca-4cb9-aae9-443d52046c03",
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:57:21.167Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm5-17",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4c136536-acfc-412b-a713-fea369a53337",
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:37:54.819Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm10-174",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "4df002d5-3156-4f59-b15c-bbffd1e513c7",
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:37:54.909Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm10-174",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "ec9f07b6-0df3-4bf3-993c-368e2e42d89c",
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:37:54.718Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sm10-174",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "116b3ea1-79a0-4ea7-9f9b-592474e7d915",
+      "card_print_id": "0039a61b-98bf-49ba-89c0-b0945491e69f",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T04:23:12.335Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv10-105",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "267fed45-ba9f-48d8-9c2f-eff573b7b111",
+      "card_print_id": "0039a61b-98bf-49ba-89c0-b0945491e69f",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T04:23:12.239Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "sv10-105",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "3071103a-fc68-413e-b9a1-5d4d8dca9402",
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:14:27.138Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy6-110",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "66f966f5-e149-4203-a917-155ac547ce5c",
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:14:27.019Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy6-110",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "f5c0be98-b976-4ead-83e8-e5a4e9dd325a",
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:14:26.925Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "xy6-110",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "7de79873-7885-4d9e-bbea-89019ed66c2a",
+      "card_print_id": "003b88c3-816a-4194-b8d1-7a2977fb0eb2",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T03:09:51.282Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "swsh7-68",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "959fafa8-2ff8-4680-86f7-89ce576dfb2e",
+      "card_print_id": "003b88c3-816a-4194-b8d1-7a2977fb0eb2",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T03:09:51.191Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "swsh7-68",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "39f16ec7-fbc9-49f3-9941-9834e56b9519",
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T00:41:16.224Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bw9-58",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "7337f774-08cb-42a4-9818-c28a28c8e731",
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T00:41:16.022Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bw9-58",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "e4c757a3-7ad7-4a43-a2c0-4fac9ad853cb",
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T00:41:16.120Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bw9-58",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "46b32c6e-6d47-4489-8f92-2a2271b0d426",
+      "card_print_id": "0049167b-3f7b-4296-8fd5-4d42702a688a",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T01:23:21.640Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "g1-RC24",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "98e93816-2ab3-4183-a3ff-c0f3c77d68b4",
+      "card_print_id": "0049167b-3f7b-4296-8fd5-4d42702a688a",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T01:23:21.543Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "g1-RC24",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "9cbe3243-7215-4447-9563-6d0ba9c7f6c3",
+      "card_print_id": "0049167b-3f7b-4296-8fd5-4d42702a688a",
+      "finish_key": "normal",
+      "created_at": "2026-03-27T01:23:21.448Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "g1-RC24",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "192d7ddd-8fda-4ecb-a069-2638be1a930d",
+      "card_print_id": "004c81cf-4597-4262-9d6b-13f4f3fcfbd4",
+      "finish_key": "holo",
+      "created_at": "2026-03-27T02:43:40.692Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "swsh11-196",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "41b72815-2347-4b19-9397-ba6648dc1ffa",
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "finish_key": "normal",
+      "created_at": "2026-03-26T22:08:15.451Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bwp-BW04",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "ab6fbaa8-20ac-4716-9bef-c02248dd6959",
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "finish_key": "reverse",
+      "created_at": "2026-03-26T22:08:15.640Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bwp-BW04",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "ea641142-f1b4-4e19-8606-133decd35ce4",
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "finish_key": "holo",
+      "created_at": "2026-03-26T22:08:15.544Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "bwp-BW04",
+      "created_by": "printing_ingestion_v2"
+    },
+    {
+      "id": "34a472f2-5c9e-493e-be94-ae7630efb21c",
+      "card_print_id": "006ee906-bf8c-46dd-9e14-ac623ba3c596",
+      "finish_key": "reverse",
+      "created_at": "2026-03-27T04:32:51.137Z",
+      "is_provisional": false,
+      "provenance_source": "tcgdex",
+      "provenance_ref": "me01-061",
+      "created_by": "printing_ingestion_v2"
+    }
+  ]
+}

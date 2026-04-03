@@ -1,0 +1,398 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:15:28.602Z",
+  "target": "remote",
+  "counts": {
+    "set_code_null_only": "32",
+    "number_null_only": "0",
+    "both_null": "11758",
+    "any_missing": "11790",
+    "supported_both_null": "10620",
+    "excluded_noncanon_both_null": "1138"
+  },
+  "shape_breakdown": [
+    {
+      "has_game_id": true,
+      "has_set_id": true,
+      "has_name": true,
+      "has_gvid": false,
+      "row_count": "11758"
+    }
+  ],
+  "top_affected_sets": [
+    {
+      "set_id": "25a68e56-57fd-430e-a21a-3ec1ac2fcf19",
+      "joined_set_code": "me02.5",
+      "set_name": "Ascended Heroes",
+      "domain": "",
+      "row_count": "295"
+    },
+    {
+      "set_id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+      "joined_set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "domain": "",
+      "row_count": "271"
+    },
+    {
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "joined_set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "domain": "",
+      "row_count": "266"
+    },
+    {
+      "set_id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+      "joined_set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "domain": "",
+      "row_count": "252"
+    },
+    {
+      "set_id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+      "joined_set_code": "sv04.5",
+      "set_name": "Paldean Fates",
+      "domain": "",
+      "row_count": "245"
+    },
+    {
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "joined_set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "domain": "",
+      "row_count": "245"
+    },
+    {
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "joined_set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "domain": "",
+      "row_count": "244"
+    },
+    {
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "joined_set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "domain": "",
+      "row_count": "244"
+    },
+    {
+      "set_id": "e3a888ee-42ab-4a49-b856-b485f16a4306",
+      "joined_set_code": "A4",
+      "set_name": "Wisdom of Sea and Sky",
+      "domain": "tcg_pocket",
+      "row_count": "241"
+    },
+    {
+      "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+      "joined_set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "domain": "",
+      "row_count": "237"
+    },
+    {
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "joined_set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "domain": "",
+      "row_count": "236"
+    },
+    {
+      "set_id": "6958fc04-24e6-45ff-b729-b0119353f734",
+      "joined_set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "domain": "",
+      "row_count": "234"
+    },
+    {
+      "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+      "joined_set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "domain": "",
+      "row_count": "231"
+    },
+    {
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "joined_set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "domain": "",
+      "row_count": "230"
+    },
+    {
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "joined_set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "domain": "",
+      "row_count": "226"
+    },
+    {
+      "set_id": "52a15d52-18a9-4e49-bd77-b69966285635",
+      "joined_set_code": "A3",
+      "set_name": "Celestial Guardians",
+      "domain": "tcg_pocket",
+      "row_count": "214"
+    },
+    {
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "joined_set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "domain": "",
+      "row_count": "213"
+    },
+    {
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "joined_set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "domain": "",
+      "row_count": "207"
+    },
+    {
+      "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+      "joined_set_code": "swsh4.5",
+      "set_name": "Shining Fates",
+      "domain": "",
+      "row_count": "195"
+    },
+    {
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "joined_set_code": "sv09",
+      "set_name": "Journey Together",
+      "domain": "",
+      "row_count": "190"
+    },
+    {
+      "set_id": "83cdb2aa-b7bd-4935-b5be-180ba0b094ff",
+      "joined_set_code": "A2",
+      "set_name": "Space-Time Smackdown",
+      "domain": "tcg_pocket",
+      "row_count": "186"
+    },
+    {
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "joined_set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "domain": "",
+      "row_count": "183"
+    },
+    {
+      "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+      "joined_set_code": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "domain": "",
+      "row_count": "180"
+    },
+    {
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "joined_set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "domain": "",
+      "row_count": "175"
+    },
+    {
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "joined_set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "domain": "",
+      "row_count": "173"
+    },
+    {
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "joined_set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "domain": "",
+      "row_count": "169"
+    },
+    {
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "joined_set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "domain": "",
+      "row_count": "169"
+    },
+    {
+      "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+      "joined_set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "domain": "",
+      "row_count": "165"
+    },
+    {
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "joined_set_code": "me01",
+      "set_name": "Mega Evolution",
+      "domain": "",
+      "row_count": "164"
+    },
+    {
+      "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+      "joined_set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "domain": "",
+      "row_count": "152"
+    },
+    {
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "joined_set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "domain": "",
+      "row_count": "148"
+    },
+    {
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "joined_set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "domain": "",
+      "row_count": "146"
+    },
+    {
+      "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+      "joined_set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "domain": "",
+      "row_count": "145"
+    },
+    {
+      "set_id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+      "joined_set_code": "bw8",
+      "set_name": "Plasma Storm",
+      "domain": "",
+      "row_count": "138"
+    },
+    {
+      "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+      "joined_set_code": "pl1",
+      "set_name": "Platinum",
+      "domain": "",
+      "row_count": "133"
+    },
+    {
+      "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "joined_set_code": "xy10",
+      "set_name": "Fates Collide",
+      "domain": "",
+      "row_count": "129"
+    },
+    {
+      "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+      "joined_set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "domain": "",
+      "row_count": "126"
+    },
+    {
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "joined_set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "domain": "",
+      "row_count": "125"
+    },
+    {
+      "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+      "joined_set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "domain": "",
+      "row_count": "124"
+    },
+    {
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "joined_set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "domain": "",
+      "row_count": "122"
+    },
+    {
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "joined_set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "domain": "",
+      "row_count": "120"
+    },
+    {
+      "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+      "joined_set_code": "ex10",
+      "set_name": "Unseen Forces",
+      "domain": "",
+      "row_count": "117"
+    },
+    {
+      "set_id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+      "joined_set_code": "g1",
+      "set_name": "Generations",
+      "domain": "",
+      "row_count": "117"
+    },
+    {
+      "set_id": "f7c6de96-8e34-4c36-9efc-6848021ba6c0",
+      "joined_set_code": "xy3",
+      "set_name": "Furious Fists",
+      "domain": "",
+      "row_count": "114"
+    },
+    {
+      "set_id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+      "joined_set_code": "xy6",
+      "set_name": "Roaring Skies",
+      "domain": "",
+      "row_count": "112"
+    },
+    {
+      "set_id": "40623fdb-11f2-407a-b6c7-0b60cf543d70",
+      "joined_set_code": "A2b",
+      "set_name": "Shining Revelry",
+      "domain": "tcg_pocket",
+      "row_count": "111"
+    },
+    {
+      "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+      "joined_set_code": "pl4",
+      "set_name": "Arceus",
+      "domain": "",
+      "row_count": "111"
+    },
+    {
+      "set_id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+      "joined_set_code": "lc",
+      "set_name": "Legendary Collection",
+      "domain": "",
+      "row_count": "110"
+    },
+    {
+      "set_id": "10256f30-684c-4367-a89a-5a8678284c93",
+      "joined_set_code": "xy2",
+      "set_name": "Flashfire",
+      "domain": "",
+      "row_count": "110"
+    },
+    {
+      "set_id": "3c9357af-18e8-4bd4-b2d8-6a69b72f051b",
+      "joined_set_code": "A3b",
+      "set_name": "Eevee Grove",
+      "domain": "tcg_pocket",
+      "row_count": "107"
+    }
+  ],
+  "top_affected_domains": [
+    {
+      "domain": "",
+      "row_count": "10652"
+    },
+    {
+      "domain": "tcg_pocket",
+      "row_count": "1138"
+    }
+  ],
+  "downstream_reference_presence": {
+    "external_mappings": {
+      "referenced_rows": "11778"
+    },
+    "card_print_traits": {
+      "referenced_rows": "11758"
+    },
+    "card_printings": {
+      "referenced_rows": "11674"
+    },
+    "vault_items": {
+      "referenced_rows": 0
+    }
+  }
+}

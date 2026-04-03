@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "REMOTE_PGCRYPTO_REPAIR_V1",
+  "applied_migrations": [
+    "20260402100000",
+    "20260402100001"
+  ],
+  "missing_migrations": [
+    "20260402100002",
+    "20260402100003",
+    "20260402100004",
+    "20260402100005",
+    "20260402100006",
+    "20260402100007",
+    "20260402100008"
+  ],
+  "pgcrypto_present": true,
+  "pgcrypto_schema": "extensions",
+  "card_print_identity_exists": true,
+  "support_indexes_exist": true,
+  "hash_function_exists": false,
+  "remote_identity_row_count": 0,
+  "remote_ba_card_print_count": 0,
+  "remote_ba_identity_row_count": 0,
+  "no_remote_backfill_side_effect_detected": true,
+  "no_remote_ba_promotion_side_effect_detected": true,
+  "failure_reproduction": {
+    "migration_like_search_path": "",
+    "sqlstate": "42883",
+    "error": "function digest(text, unknown) does not exist",
+    "hint": "No function matches the given name and argument types. You might need to add explicit type casts."
+  },
+  "explainable_state": true,
+  "explanation": "Remote has pgcrypto installed in schema extensions. Migrations 20260402100000 and 20260402100001 are recorded as applied. Migration 20260402100002 is not applied, the support hash function is absent, and no identity/backfill or BA promotion rows exist remotely."
+}

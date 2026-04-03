@@ -20,6 +20,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
+import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
@@ -77,6 +78,7 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const card = await getPublicCardByGvId(params.gv_id);
   const siteOrigin = getSiteOrigin();
   if (!card) return { title: "Card not found | Grookai Vault" };
+  const displayIdentity = getDisplayPrintedIdentity(card);
   const metadataImageUrl =
     normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
 
@@ -85,7 +87,7 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const description = [
     `View card details for ${card.name}`,
     card.set_name ? `from ${card.set_name}` : undefined,
-    card.number ? `#${card.number}` : undefined,
+    displayIdentity.displayPrintedNumber ? `#${displayIdentity.displayPrintedNumber}` : undefined,
     "including finishes and collection info on Grookai Vault.",
   ]
     .filter((value): value is string => Boolean(value))
@@ -334,9 +336,15 @@ export default async function CardPage({
     ? buildPathWithCompareCards(`/sets/${encodeURIComponent(resolvedCard.set_code)}`, "", compareCards)
     : null;
   const illustratorName = typeof resolvedCard.artist === "string" ? resolvedCard.artist.trim() : "";
-  const printedTotal = formatPrintedTotal(resolvedCard.number, resolvedCard.printed_total);
-  const collectorNumberLine = resolvedCard.number
-    ? `#${resolvedCard.number}${printedTotal ? `/${printedTotal}` : ""}`
+  const displayIdentity = getDisplayPrintedIdentity(resolvedCard);
+  const printedTotal = formatPrintedTotal(displayIdentity.displayPrintedNumber ?? "", resolvedCard.printed_total);
+  const collectorIdentity = displayIdentity.displayPrintedNumber
+    ? `${displayIdentity.displayPrintedNumber}${printedTotal ? `/${printedTotal}` : ""}`
+    : null;
+  const collectorNumberLine = collectorIdentity
+    ? [displayIdentity.displayPrintedSetAbbrev, collectorIdentity]
+        .filter((value): value is string => Boolean(value))
+        .join(" ")
     : undefined;
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
@@ -347,7 +355,7 @@ export default async function CardPage({
     typeof resolvedCard.hp === "number" ? { label: "HP", value: String(resolvedCard.hp) } : null,
     typeof resolvedCard.national_dex === "number" ? { label: "Pokedex No.", value: `#${resolvedCard.national_dex}` } : null,
     illustratorName ? { label: "Illustrator", value: illustratorName } : null,
-    resolvedCard.number_plain && resolvedCard.number_plain !== resolvedCard.number
+    resolvedCard.number_plain && resolvedCard.number_plain !== (displayIdentity.displayPrintedNumber ?? "")
       ? { label: "Number Plain", value: resolvedCard.number_plain }
       : null,
   ].filter((item): item is DetailItem => item !== null);

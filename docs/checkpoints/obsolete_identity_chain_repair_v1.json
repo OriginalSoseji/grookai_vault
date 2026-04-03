@@ -1,0 +1,116 @@
+{
+  "audited_at": "2026-04-03T10:20:14.4103138-06:00",
+  "pending_migrations_before": [
+    {
+      "version": "20260402100005",
+      "filename": "20260402100005__card_print_identity_post_backfill_constraints.sql",
+      "in_scope": true
+    },
+    {
+      "version": "20260402100006",
+      "filename": "20260402100006__ba_set_registration_if_required.sql",
+      "in_scope": true
+    },
+    {
+      "version": "20260402100007",
+      "filename": "20260402100007__card_prints_drop_legacy_identity_constraint.sql",
+      "in_scope": true
+    },
+    {
+      "version": "20260402100008",
+      "filename": "20260402100008__games_seed_pokemon_for_card_print_fk.sql",
+      "in_scope": true
+    },
+    {
+      "version": "20260403133000",
+      "filename": "20260403133000__add_identity_domain_columns.sql",
+      "in_scope": false,
+      "note": "Baseline path migration; outside the audited obsolete-chain target range."
+    }
+  ],
+  "repaired_migrations": [
+    {
+      "version": "20260402100005",
+      "filename": "20260402100005__card_print_identity_post_backfill_constraints.sql",
+      "reason": "Clearly obsolete old-identity-chain post-backfill invariant migration. It assumes Phase 8 backfill already populated active card_print_identity rows for existing canon and fails on that abandoned rollout path."
+    }
+  ],
+  "still_pending_after": [
+    {
+      "version": "20260402100006",
+      "filename": "20260402100006__ba_set_registration_if_required.sql"
+    },
+    {
+      "version": "20260402100007",
+      "filename": "20260402100007__card_prints_drop_legacy_identity_constraint.sql"
+    },
+    {
+      "version": "20260402100008",
+      "filename": "20260402100008__games_seed_pokemon_for_card_print_fk.sql"
+    },
+    {
+      "version": "20260403133000",
+      "filename": "20260403133000__add_identity_domain_columns.sql"
+    }
+  ],
+  "classification": [
+    {
+      "version": "20260402100005",
+      "filename": "20260402100005__card_print_identity_post_backfill_constraints.sql",
+      "classification": "OBSOLETE_OLD_IDENTITY_CHAIN",
+      "reason": "Enforces post-backfill invariants that require active card_print_identity rows to already exist for the legacy canon surface. This is a direct dependency on the abandoned old identity rollout order.",
+      "depends_on_old_backfill": true,
+      "needed_for_baseline": false
+    },
+    {
+      "version": "20260402100006",
+      "filename": "20260402100006__ba_set_registration_if_required.sql",
+      "classification": "UNCERTAIN_STOP",
+      "reason": "Does not depend on the old backfill, but it is also not proven necessary for the declared baseline path. It seeds BA sets and source metadata that may interact with later governed domain treatment, so it cannot be safely skipped or safely asserted as baseline-required without a separate governance decision.",
+      "depends_on_old_backfill": false,
+      "needed_for_baseline": false
+    },
+    {
+      "version": "20260402100007",
+      "filename": "20260402100007__card_prints_drop_legacy_identity_constraint.sql",
+      "classification": "REQUIRED_FOR_BASELINE_PATH",
+      "reason": "Structural migration that removes legacy parent identity enforcement on card_prints. It does not depend on old backfill and remains compatible with the baseline path.",
+      "depends_on_old_backfill": false,
+      "needed_for_baseline": true
+    },
+    {
+      "version": "20260402100008",
+      "filename": "20260402100008__games_seed_pokemon_for_card_print_fk.sql",
+      "classification": "REQUIRED_FOR_BASELINE_PATH",
+      "reason": "Structural FK-support migration ensuring a canonical Pokemon games row exists. It does not depend on old backfill and remains compatible with the baseline path.",
+      "depends_on_old_backfill": false,
+      "needed_for_baseline": true
+    }
+  ],
+  "pending_migrations_after_repair": [
+    {
+      "version": "20260402100006",
+      "filename": "20260402100006__ba_set_registration_if_required.sql"
+    },
+    {
+      "version": "20260402100007",
+      "filename": "20260402100007__card_prints_drop_legacy_identity_constraint.sql"
+    },
+    {
+      "version": "20260402100008",
+      "filename": "20260402100008__games_seed_pokemon_for_card_print_fk.sql"
+    },
+    {
+      "version": "20260403133000",
+      "filename": "20260403133000__add_identity_domain_columns.sql"
+    }
+  ],
+  "final_decision": "STOP_UNCERTAIN_MIGRATION",
+  "exact_next_command": "NONE_SAFE_STOP_UNTIL_20260402100006_IS_GOVERNED",
+  "exact_remaining_pending_versions": [
+    "20260402100006",
+    "20260402100007",
+    "20260402100008",
+    "20260403133000"
+  ]
+}

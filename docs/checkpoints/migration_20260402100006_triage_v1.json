@@ -1,0 +1,56 @@
+{
+  "audited_at": "2026-04-03T10:41:28.7187748-06:00",
+  "current_pending_migrations": [
+    {
+      "version": "20260402100006",
+      "filename": "20260402100006__ba_set_registration_if_required.sql"
+    },
+    {
+      "version": "20260402100007",
+      "filename": "20260402100007__card_prints_drop_legacy_identity_constraint.sql"
+    },
+    {
+      "version": "20260402100008",
+      "filename": "20260402100008__games_seed_pokemon_for_card_print_fk.sql"
+    },
+    {
+      "version": "20260403133000",
+      "filename": "20260403133000__add_identity_domain_columns.sql"
+    }
+  ],
+  "target_migration_version": "20260402100006",
+  "target_migration_filename": "20260402100006__ba_set_registration_if_required.sql",
+  "purpose_summary": "Registers three Battle Academy release-container set rows in public.sets (ba-2020, ba-2022, ba-2024). If a target set code already exists, the migration validates game=name identity and raises if the existing row does not match the approved BA release container. If the set code does not exist, it inserts a new sets row with battle_academy metadata in source.",
+  "objects_touched": [
+    "public.sets rows keyed by code ba-2020",
+    "public.sets rows keyed by code ba-2022",
+    "public.sets rows keyed by code ba-2024"
+  ],
+  "tables_touched": [
+    "public.sets"
+  ],
+  "inserts_updates_deletes": {
+    "insert": true,
+    "update": false,
+    "delete": false,
+    "details": "Performs conditional INSERTs into public.sets; performs no UPDATEs and no DELETEs."
+  },
+  "whether_it_depends_on_ba_existing_remotely": false,
+  "whether_it_is_needed_before_baseline_domain_materialization": false,
+  "whether_it_is_safe_to_skip_if_ba_is_not_being_promoted_now": true,
+  "depends_on_old_ba_path": true,
+  "needed_for_baseline_path": false,
+  "remote_ba_state_relevance": "full_db_audit_v1/12_ba_surface.json shows remote BA sets present = false, remote BA card_prints = 0, and remote BA identity rows = 0. That means this migration prepares future BA presence only; it is not satisfying an already-live remote BA surface that baseline domain initialization must preserve.",
+  "evidence_lines": [
+    "Migration content inserts or validates only three BA set codes: ba-2020, ba-2022, ba-2024.",
+    "Migration touches only public.sets and writes battle_academy metadata into source.",
+    "Migration does not alter card_prints, card_print_identity, or any baseline-domain columns.",
+    "IDENTITY_DOMAIN_BASELINE_V1.md states the baseline applies only to existing rows.",
+    "IDENTITY_DOMAIN_BASELINE_V1.md excludes future explicitly governed domains from the blanket pokemon_eng_standard declaration.",
+    "full_db_audit_v1/12_ba_surface.json proves remote BA sets are absent and remote BA card_prints and BA identity rows are both 0.",
+    "BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V3.md and BATTLE_ACADEMY_FINAL_STATE_V1.md describe BA as a completed local rollout, not a current remote requirement."
+  ],
+  "final_classification": "OBSOLETE_OLD_IDENTITY_CHAIN",
+  "exact_reason": "This migration is BA-only set seeding for the abandoned pre-baseline BA rollout path. It is not required by 20260403133000__add_identity_domain_columns.sql, not required for baseline domain materialization on the existing remote legacy surface, and not required to preserve any current remote BA state because remote BA remains absent. Skipping it does not block baseline initialization for existing rows.",
+  "recommended_next_command": "supabase migration repair --status applied 20260402100006"
+}

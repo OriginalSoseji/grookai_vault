@@ -1,0 +1,251 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:14:13.117Z",
+  "target": "remote",
+  "row_counts": {
+    "ai_decision_logs": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "card_embeddings": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "card_interaction_group_states": {
+      "row_count": 54,
+      "distinct_card_print_id_count": 10
+    },
+    "card_interaction_outcomes": {
+      "row_count": 6,
+      "distinct_card_print_id_count": 6
+    },
+    "card_interactions": {
+      "row_count": 45,
+      "distinct_card_print_id_count": 10
+    },
+    "card_price_observations": {
+      "row_count": 322,
+      "distinct_card_print_id_count": 321
+    },
+    "card_price_rollups": {
+      "row_count": 321,
+      "distinct_card_print_id_count": 321
+    },
+    "card_price_ticks": {
+      "row_count": 1886,
+      "distinct_card_print_id_count": 1886
+    },
+    "card_prices": {
+      "row_count": 1886,
+      "distinct_card_print_id_count": 1886
+    },
+    "card_print_active_prices": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "card_print_file_paths": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "card_print_identity": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "card_print_latest_price_curve": {
+      "row_count": 1692,
+      "distinct_card_print_id_count": 1692
+    },
+    "card_print_price_curves": {
+      "row_count": 1818,
+      "distinct_card_print_id_count": 1692
+    },
+    "card_print_traits": {
+      "row_count": 29569,
+      "distinct_card_print_id_count": 25846
+    },
+    "card_printings": {
+      "row_count": 77632,
+      "distinct_card_print_id_count": 33745
+    },
+    "card_prints": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": null
+    },
+    "card_signals": {
+      "row_count": 38,
+      "distinct_card_print_id_count": 7
+    },
+    "condition_snapshots": {
+      "row_count": 38,
+      "distinct_card_print_id_count": 0
+    },
+    "ebay_active_price_snapshots": {
+      "row_count": 1832,
+      "distinct_card_print_id_count": 1692
+    },
+    "ebay_active_prices_latest": {
+      "row_count": 1692,
+      "distinct_card_print_id_count": 1692
+    },
+    "external_discovery_candidates": {
+      "row_count": 417,
+      "distinct_card_print_id_count": 76
+    },
+    "external_mappings": {
+      "row_count": 63562,
+      "distinct_card_print_id_count": 32092
+    },
+    "games": {
+      "row_count": 1,
+      "distinct_card_print_id_count": null
+    },
+    "import_image_errors": {
+      "row_count": 3307,
+      "distinct_card_print_id_count": 538
+    },
+    "justtcg_identity_overrides": {
+      "row_count": 10,
+      "distinct_card_print_id_count": 10
+    },
+    "justtcg_variant_price_snapshots": {
+      "row_count": 358304,
+      "distinct_card_print_id_count": 18975
+    },
+    "justtcg_variant_prices_latest": {
+      "row_count": 140541,
+      "distinct_card_print_id_count": 18975
+    },
+    "justtcg_variants": {
+      "row_count": 140541,
+      "distinct_card_print_id_count": 18975
+    },
+    "listings": {
+      "row_count": 7,
+      "distinct_card_print_id_count": 0
+    },
+    "pricing_jobs": {
+      "row_count": 2628,
+      "distinct_card_print_id_count": 2185
+    },
+    "pricing_observations": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "pricing_watch": {
+      "row_count": 262,
+      "distinct_card_print_id_count": 262
+    },
+    "raw_imports": {
+      "row_count": 45349,
+      "distinct_card_print_id_count": null
+    },
+    "sets": {
+      "row_count": 248,
+      "distinct_card_print_id_count": null
+    },
+    "slab_certs": {
+      "row_count": 10,
+      "distinct_card_print_id_count": 10
+    },
+    "slab_provenance_events": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "user_card_photos": {
+      "row_count": 22,
+      "distinct_card_print_id_count": 21
+    },
+    "v_card_contact_targets_v1": {
+      "row_count": 23,
+      "distinct_card_print_id_count": 9
+    },
+    "v_card_prices_usd": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_card_pricing_ui_v1": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_card_prints_web_v1": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_card_stream_v1": {
+      "row_count": 21,
+      "distinct_card_print_id_count": 9
+    },
+    "v_grookai_value_compare_v1_v2": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_grookai_value_v1": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_grookai_value_v1_1": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_grookai_value_v1_clean": {
+      "row_count": 19175,
+      "distinct_card_print_id_count": 19175
+    },
+    "v_grookai_value_v1_justtcg_bridge": {
+      "row_count": 19175,
+      "distinct_card_print_id_count": 19175
+    },
+    "v_grookai_value_v2": {
+      "row_count": 33998,
+      "distinct_card_print_id_count": 33998
+    },
+    "v_justtcg_display_summary_v1": {
+      "row_count": 18975,
+      "distinct_card_print_id_count": 18975
+    },
+    "v_justtcg_vs_ebay_classified_v1": {
+      "row_count": 19175,
+      "distinct_card_print_id_count": 19175
+    },
+    "v_justtcg_vs_ebay_pricing_v1": {
+      "row_count": 19175,
+      "distinct_card_print_id_count": 19175
+    },
+    "v_justtcg_vs_ebay_valid_v1": {
+      "row_count": 19175,
+      "distinct_card_print_id_count": 19175
+    },
+    "v_latest_price": {
+      "row_count": 1886,
+      "distinct_card_print_id_count": 1886
+    },
+    "v_latest_price_clean": {
+      "row_count": 1886,
+      "distinct_card_print_id_count": 1886
+    },
+    "v_pricing_observation_audit": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "v_pricing_observations_accepted": {
+      "row_count": 0,
+      "distinct_card_print_id_count": 0
+    },
+    "v_special_set_print_membership": {
+      "row_count": 525,
+      "distinct_card_print_id_count": 525
+    },
+    "v_ticker_24h": {
+      "row_count": 1886,
+      "distinct_card_print_id_count": 1886
+    },
+    "vault_item_instances": {
+      "row_count": 498,
+      "distinct_card_print_id_count": 249
+    },
+    "vault_items": {
+      "row_count": 300,
+      "distinct_card_print_id_count": null
+    }
+  }
+}

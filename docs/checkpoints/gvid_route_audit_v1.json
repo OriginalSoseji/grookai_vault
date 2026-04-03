@@ -1,0 +1,774 @@
+{
+  "generated_at": "2026-04-03T18:49:53.364Z",
+  "active_identity_rows": 10613,
+  "active_identity_with_gvid_count": 0,
+  "active_identity_without_gvid_count": 10613,
+  "overlap_active_identity_and_gvid_present_count": 0,
+  "duplicate_route_gvid_groups": [],
+  "duplicate_route_gvid_row_count": 0,
+  "reachable_via_current_route_count": 0,
+  "unreachable_with_gvid_count": 0,
+  "excluded_by_current_route_query_shape_count": 10613,
+  "sample_identity_rows": [
+    {
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "79",
+      "set_code_identity": "xy10"
+    },
+    {
+      "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "091",
+      "set_code_identity": "me01"
+    },
+    {
+      "card_print_id": "000dc9b5-d6cd-43e5-9986-ee18261802a4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "005",
+      "set_code_identity": "sv10"
+    },
+    {
+      "card_print_id": "0017e5e6-1146-488b-9fd1-de545b0f563e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "16",
+      "set_code_identity": "pop8"
+    },
+    {
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "11",
+      "set_code_identity": "sm2"
+    },
+    {
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "21",
+      "set_code_identity": "sm12"
+    },
+    {
+      "card_print_id": "002f08d2-cbd8-436c-b7b3-9c7d2020b6d4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "067",
+      "set_code_identity": "sv06"
+    },
+    {
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "109",
+      "set_code_identity": "xy10"
+    },
+    {
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "35",
+      "set_code_identity": "xy7"
+    },
+    {
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "7",
+      "set_code_identity": "tk-bw-z"
+    },
+    {
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "17",
+      "set_code_identity": "sm5"
+    },
+    {
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "174",
+      "set_code_identity": "sm10"
+    },
+    {
+      "card_print_id": "0039a61b-98bf-49ba-89c0-b0945491e69f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "105",
+      "set_code_identity": "sv10"
+    },
+    {
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "110",
+      "set_code_identity": "xy6"
+    },
+    {
+      "card_print_id": "003b88c3-816a-4194-b8d1-7a2977fb0eb2",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "68",
+      "set_code_identity": "swsh7"
+    },
+    {
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "58",
+      "set_code_identity": "bw9"
+    },
+    {
+      "card_print_id": "0049167b-3f7b-4296-8fd5-4d42702a688a",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "RC24",
+      "set_code_identity": "g1"
+    },
+    {
+      "card_print_id": "004c81cf-4597-4262-9d6b-13f4f3fcfbd4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "196",
+      "set_code_identity": "swsh11"
+    },
+    {
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "BW04",
+      "set_code_identity": "bwp"
+    },
+    {
+      "card_print_id": "006ee906-bf8c-46dd-9e14-ac623ba3c596",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "061",
+      "set_code_identity": "me01"
+    },
+    {
+      "card_print_id": "007863ec-b15d-403e-bc98-1dea00a0dd27",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "162",
+      "set_code_identity": "sv06"
+    },
+    {
+      "card_print_id": "007c91d0-6e49-4654-b88e-da105cd4bac9",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "052",
+      "set_code_identity": "me01"
+    },
+    {
+      "card_print_id": "007d373e-ad1b-4b77-92fa-a1a175c90bdd",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "87",
+      "set_code_identity": "swsh6"
+    },
+    {
+      "card_print_id": "00823918-abbd-4d7f-890b-e2a247d4e844",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "30",
+      "set_code_identity": "tk-xy-w"
+    },
+    {
+      "card_print_id": "00941df1-12b7-43a2-8203-9a1ba610b5fe",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "25",
+      "set_code_identity": "tk-xy-b"
+    },
+    {
+      "card_print_id": "009a9fa0-b458-42ad-b829-a22c051bfc45",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "54",
+      "set_code_identity": "g1"
+    },
+    {
+      "card_print_id": "009f3d9c-fa3f-45e2-857d-380170097806",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "94",
+      "set_code_identity": "xy9"
+    },
+    {
+      "card_print_id": "009fc047-4432-44b6-a683-e143c3d47ba3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "34",
+      "set_code_identity": "sm3.5"
+    },
+    {
+      "card_print_id": "009ff25c-7ccb-4095-ace1-f8f71c345cd3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "202",
+      "set_code_identity": "me02.5"
+    },
+    {
+      "card_print_id": "00abc94a-a004-4478-a740-f4a20dab1259",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "231",
+      "set_code_identity": "sv08"
+    },
+    {
+      "card_print_id": "00ae5fb2-7c67-40c5-868f-eebafc0f4a70",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "134",
+      "set_code_identity": "swsh11"
+    },
+    {
+      "card_print_id": "00b656e8-3341-411b-a735-f462d632c401",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "6",
+      "set_code_identity": "pl3"
+    },
+    {
+      "card_print_id": "00ba5834-2ebc-4409-ac3f-d7da40065cd2",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "13",
+      "set_code_identity": "sm6"
+    },
+    {
+      "card_print_id": "00c846c0-5b94-458b-aafd-24649ef5eb1f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "017",
+      "set_code_identity": "swsh12"
+    },
+    {
+      "card_print_id": "00e5478c-14c3-4f0b-9ab1-b7141e4ade16",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "034",
+      "set_code_identity": "swsh12.5"
+    },
+    {
+      "card_print_id": "00ebed35-ff88-4802-a237-f888a251488d",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "169",
+      "set_code_identity": "sv06"
+    },
+    {
+      "card_print_id": "00f0ee9d-96f0-40e0-bf4b-11f9c6b53d1b",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "117",
+      "set_code_identity": "sm4"
+    },
+    {
+      "card_print_id": "00f1611f-ccf7-4199-8144-2a4f24b100b1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "23",
+      "set_code_identity": "pl4"
+    },
+    {
+      "card_print_id": "00f50b62-1df4-4e4d-a633-144c8a5808e1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "2",
+      "set_code_identity": "swsh3.5"
+    },
+    {
+      "card_print_id": "00f52691-3e09-468b-8fd1-26056fa52ae1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "24",
+      "set_code_identity": "bw10"
+    },
+    {
+      "card_print_id": "00fd0536-b0e6-4aeb-83ae-12094acdcb43",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "74",
+      "set_code_identity": "sm4"
+    },
+    {
+      "card_print_id": "010317eb-a6b9-4be0-bdcc-0d4c9f25568d",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "70",
+      "set_code_identity": "xy8"
+    },
+    {
+      "card_print_id": "010a7e1d-f2ef-4ce0-9680-cd70808a864e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "188",
+      "set_code_identity": "sv09"
+    },
+    {
+      "card_print_id": "010c1313-047f-4b5b-a198-d07bdb2b8445",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "029",
+      "set_code_identity": "swsh12.5"
+    },
+    {
+      "card_print_id": "011ced67-805e-4cc8-8d97-fe609a60e449",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "213",
+      "set_code_identity": "sm10"
+    },
+    {
+      "card_print_id": "012d5223-4858-44aa-b3f9-2d8148285e95",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "77",
+      "set_code_identity": "sm7"
+    },
+    {
+      "card_print_id": "01324be9-639a-41e6-a7b6-768654a482cb",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "046",
+      "set_code_identity": "swsh12"
+    },
+    {
+      "card_print_id": "0136abca-d563-4a73-880d-9791c6023e61",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "125",
+      "set_code_identity": "sv09"
+    },
+    {
+      "card_print_id": "013acd15-8f06-4f9e-b508-89763b1d5db4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "3",
+      "set_code_identity": "sm7"
+    },
+    {
+      "card_print_id": "013dd796-36e4-42cb-ba9c-f3e0828f4b1e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "XY22",
+      "set_code_identity": "xyp"
+    }
+  ],
+  "sample_excluded_rows": [
+    {
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "79",
+      "set_code_identity": "xy10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "091",
+      "set_code_identity": "me01",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "000dc9b5-d6cd-43e5-9986-ee18261802a4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "005",
+      "set_code_identity": "sv10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0017e5e6-1146-488b-9fd1-de545b0f563e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "16",
+      "set_code_identity": "pop8",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "11",
+      "set_code_identity": "sm2",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "21",
+      "set_code_identity": "sm12",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "002f08d2-cbd8-436c-b7b3-9c7d2020b6d4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "067",
+      "set_code_identity": "sv06",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "109",
+      "set_code_identity": "xy10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "35",
+      "set_code_identity": "xy7",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "7",
+      "set_code_identity": "tk-bw-z",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "17",
+      "set_code_identity": "sm5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "174",
+      "set_code_identity": "sm10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0039a61b-98bf-49ba-89c0-b0945491e69f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "105",
+      "set_code_identity": "sv10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "110",
+      "set_code_identity": "xy6",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "003b88c3-816a-4194-b8d1-7a2977fb0eb2",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "68",
+      "set_code_identity": "swsh7",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "58",
+      "set_code_identity": "bw9",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0049167b-3f7b-4296-8fd5-4d42702a688a",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "RC24",
+      "set_code_identity": "g1",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "004c81cf-4597-4262-9d6b-13f4f3fcfbd4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "196",
+      "set_code_identity": "swsh11",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "BW04",
+      "set_code_identity": "bwp",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "006ee906-bf8c-46dd-9e14-ac623ba3c596",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "061",
+      "set_code_identity": "me01",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "007863ec-b15d-403e-bc98-1dea00a0dd27",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "162",
+      "set_code_identity": "sv06",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "007c91d0-6e49-4654-b88e-da105cd4bac9",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "052",
+      "set_code_identity": "me01",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "007d373e-ad1b-4b77-92fa-a1a175c90bdd",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "87",
+      "set_code_identity": "swsh6",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00823918-abbd-4d7f-890b-e2a247d4e844",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "30",
+      "set_code_identity": "tk-xy-w",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00941df1-12b7-43a2-8203-9a1ba610b5fe",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "25",
+      "set_code_identity": "tk-xy-b",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "009a9fa0-b458-42ad-b829-a22c051bfc45",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "54",
+      "set_code_identity": "g1",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "009f3d9c-fa3f-45e2-857d-380170097806",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "94",
+      "set_code_identity": "xy9",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "009fc047-4432-44b6-a683-e143c3d47ba3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "34",
+      "set_code_identity": "sm3.5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "009ff25c-7ccb-4095-ace1-f8f71c345cd3",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "202",
+      "set_code_identity": "me02.5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00abc94a-a004-4478-a740-f4a20dab1259",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "231",
+      "set_code_identity": "sv08",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00ae5fb2-7c67-40c5-868f-eebafc0f4a70",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "134",
+      "set_code_identity": "swsh11",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00b656e8-3341-411b-a735-f462d632c401",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "6",
+      "set_code_identity": "pl3",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00ba5834-2ebc-4409-ac3f-d7da40065cd2",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "13",
+      "set_code_identity": "sm6",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00c846c0-5b94-458b-aafd-24649ef5eb1f",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "017",
+      "set_code_identity": "swsh12",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00e5478c-14c3-4f0b-9ab1-b7141e4ade16",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "034",
+      "set_code_identity": "swsh12.5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00ebed35-ff88-4802-a237-f888a251488d",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "169",
+      "set_code_identity": "sv06",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00f0ee9d-96f0-40e0-bf4b-11f9c6b53d1b",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "117",
+      "set_code_identity": "sm4",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00f1611f-ccf7-4199-8144-2a4f24b100b1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "23",
+      "set_code_identity": "pl4",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00f50b62-1df4-4e4d-a633-144c8a5808e1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "2",
+      "set_code_identity": "swsh3.5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00f52691-3e09-468b-8fd1-26056fa52ae1",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "24",
+      "set_code_identity": "bw10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "00fd0536-b0e6-4aeb-83ae-12094acdcb43",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "74",
+      "set_code_identity": "sm4",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "010317eb-a6b9-4be0-bdcc-0d4c9f25568d",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "70",
+      "set_code_identity": "xy8",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "010a7e1d-f2ef-4ce0-9680-cd70808a864e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "188",
+      "set_code_identity": "sv09",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "010c1313-047f-4b5b-a198-d07bdb2b8445",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "029",
+      "set_code_identity": "swsh12.5",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "011ced67-805e-4cc8-8d97-fe609a60e449",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "213",
+      "set_code_identity": "sm10",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "012d5223-4858-44aa-b3f9-2d8148285e95",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "77",
+      "set_code_identity": "sm7",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "01324be9-639a-41e6-a7b6-768654a482cb",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "046",
+      "set_code_identity": "swsh12",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "0136abca-d563-4a73-880d-9791c6023e61",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "125",
+      "set_code_identity": "sv09",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "013acd15-8f06-4f9e-b508-89763b1d5db4",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "3",
+      "set_code_identity": "sm7",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    },
+    {
+      "card_print_id": "013dd796-36e4-42cb-ba9c-f3e0828f4b1e",
+      "gv_id": null,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_number": "XY22",
+      "set_code_identity": "xyp",
+      "exclusion_reason": "PARENT_GV_ID_NULL"
+    }
+  ],
+  "claim_outcome": "CLAIM_DISPROVED",
+  "current_query_behavior": {
+    "base_table": "public.card_prints",
+    "base_filter": "eq(gv_id, <route param>)",
+    "nested_identity_lookup": "separate optional read by card_print_id after parent row fetch",
+    "route_excludes_due_to_parent_missing_gvid": 10613,
+    "route_excludes_due_to_duplicate_gvid_collision": 0
+  }
+}

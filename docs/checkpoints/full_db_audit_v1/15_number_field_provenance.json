@@ -1,0 +1,1320 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:16:50.317Z",
+  "target": "remote",
+  "supported_null_parent_count": 10620,
+  "dedicated_stored_truth": {
+    "parent_fields_present": {
+      "set_code_present": 0,
+      "number_present": 0
+    },
+    "sets_fields": {
+      "rows_with_printed_set_abbrev": "10180",
+      "rows_with_printed_total": "10417",
+      "total_rows": "10620"
+    },
+    "mapping_meta_fields": {
+      "has_tcg_local_number": "0",
+      "has_local_number": "0",
+      "has_number": "0",
+      "has_printed_number": "0",
+      "has_card_number": "0",
+      "has_collector_number": "0",
+      "has_set_abbrev": "0",
+      "has_printed_set_abbrev": "0"
+    },
+    "traits_fields": {
+      "dedicated_printed_identity_columns": [],
+      "trait_keys_with_printed_identity_words": []
+    },
+    "printings_fields": {
+      "dedicated_printed_number_field_exists": false,
+      "dedicated_printed_set_field_exists": false
+    },
+    "linked_raw_payload_fields": {
+      "target_rows_with_linked_raw": "10620",
+      "linked_raw_count": "13470",
+      "target_rows_with_linked_number": "2850",
+      "target_rows_with_linked_localid": "0",
+      "target_rows_with_linked_printed_number": "0",
+      "target_rows_with_linked_collector_number": "0",
+      "target_rows_with_linked_set_abbrev": "0",
+      "target_rows_with_linked_printed_set_abbrev": "0"
+    }
+  },
+  "provenance_only_composite_carriers": {
+    "external_id_shapes_on_supported_null_parent": [
+      {
+        "external_id_shape": "ALPHANUMERIC",
+        "row_count": "10593"
+      },
+      {
+        "external_id_shape": "OTHER",
+        "row_count": "27"
+      }
+    ],
+    "external_id_samples": [
+      {
+        "card_print_id": "99555f58-22ae-44ce-a4b3-57a2e41635ac",
+        "name": "Snivy",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-1"
+      },
+      {
+        "card_print_id": "a7ad1fd2-2643-4593-92dd-e0e0d371b543",
+        "name": "Klink",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-10"
+      },
+      {
+        "card_print_id": "f0eb8536-8933-46b0-aeaa-7db4a1c0c132",
+        "name": "Pidove",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-11"
+      },
+      {
+        "card_print_id": "9f3878be-5c08-47ed-bf7c-101c052c9eca",
+        "name": "Audino",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-12"
+      },
+      {
+        "card_print_id": "49f0c8ad-582e-482f-bfad-e05f5a2968d7",
+        "name": "Maractus",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-2"
+      },
+      {
+        "card_print_id": "8cac8dd1-d3ec-4a0c-bd75-e83ec8fa3936",
+        "name": "Tepig",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-3"
+      },
+      {
+        "card_print_id": "4f60627b-9f4e-4fa1-8d55-679ce918a26f",
+        "name": "Oshawott",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-4"
+      },
+      {
+        "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+        "name": "Alomomola",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-5"
+      },
+      {
+        "card_print_id": "9ba3827c-f0fa-43c5-b73f-5f3a467d7bbf",
+        "name": "Blitzle",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-6"
+      },
+      {
+        "card_print_id": "a357528d-c789-416d-8b65-84edf7cacb9d",
+        "name": "Munna",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-7"
+      },
+      {
+        "card_print_id": "c0b69108-a702-4566-b2eb-63adc5c9f27c",
+        "name": "Sandile",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-8"
+      },
+      {
+        "card_print_id": "1d8e4b66-4767-4a22-b211-7659dc622133",
+        "name": "Zorua",
+        "joined_set_code": "2011bw",
+        "source": "tcgdex",
+        "external_id": "2011bw-9"
+      },
+      {
+        "card_print_id": "701dfb15-46fb-4f58-9680-e1cb2ef9f646",
+        "name": "Servine",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-1"
+      },
+      {
+        "card_print_id": "fe3cad3e-8df4-447a-98ee-964879d6518d",
+        "name": "Scraggy",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-10"
+      },
+      {
+        "card_print_id": "f00b72c6-080a-4f38-81ec-c9d23e7375ac",
+        "name": "Klang",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-11"
+      },
+      {
+        "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+        "name": "Axew",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-12"
+      },
+      {
+        "card_print_id": "044356ad-d7a1-4ad6-beac-db94aa88634e",
+        "name": "Pansage",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-2"
+      },
+      {
+        "card_print_id": "dd45ad38-2f37-4fcb-a70c-dd0ebc52f246",
+        "name": "Dwebble",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-3"
+      },
+      {
+        "card_print_id": "6e717d9f-3e0c-4897-a7b5-b54dbed61d99",
+        "name": "Pignite",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-4"
+      },
+      {
+        "card_print_id": "4fe5e6a9-2247-49c6-8822-e7582455e423",
+        "name": "Dewott",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-5"
+      },
+      {
+        "card_print_id": "0f859865-af3c-487d-8592-c0ae39462078",
+        "name": "Emolga",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-6"
+      },
+      {
+        "card_print_id": "8702d170-65f2-4098-98d2-57cbfeb492b7",
+        "name": "Woobat",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-7"
+      },
+      {
+        "card_print_id": "9f3bcf93-0896-4a5f-911e-89cc7e5e18f0",
+        "name": "Drilbur",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-8"
+      },
+      {
+        "card_print_id": "19cdd7e4-568f-4d14-93b9-1291dc40efeb",
+        "name": "Purrloin",
+        "joined_set_code": "2012bw",
+        "source": "tcgdex",
+        "external_id": "2012bw-9"
+      },
+      {
+        "card_print_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+        "name": "Weedle",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-1"
+      },
+      {
+        "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+        "name": "Bunnelby",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-10"
+      },
+      {
+        "card_print_id": "710db2b6-4909-4634-9bb0-107266c48f09",
+        "name": "Fletchling",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-11"
+      },
+      {
+        "card_print_id": "d46097bc-81d0-433b-a2cf-961977543966",
+        "name": "Furfrou",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-12"
+      },
+      {
+        "card_print_id": "e8297a0c-0508-4fe5-be3f-8e46cfb4a0ae",
+        "name": "Chespin",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-2"
+      },
+      {
+        "card_print_id": "06fcb8e7-d3ce-4e0d-9080-ef8dff064eff",
+        "name": "Fennekin",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-3"
+      },
+      {
+        "card_print_id": "ed6bd958-5f0f-479d-b481-6e610c1af644",
+        "name": "Froakie",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-4"
+      },
+      {
+        "card_print_id": "e633087f-c7b2-4ee6-baf3-ad7cbdb07d63",
+        "name": "Pikachu",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-5"
+      },
+      {
+        "card_print_id": "f95fff58-042a-4136-904b-3c68dbd3fb71",
+        "name": "Inkay",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-6"
+      },
+      {
+        "card_print_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+        "name": "Honedge",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-7"
+      },
+      {
+        "card_print_id": "e61898de-344f-401a-9764-12d7b969e716",
+        "name": "Snubbull",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-8"
+      },
+      {
+        "card_print_id": "b3293af3-784e-4c0a-9bd7-afb72bfdeb27",
+        "name": "Swirlix",
+        "joined_set_code": "2014xy",
+        "source": "tcgdex",
+        "external_id": "2014xy-9"
+      },
+      {
+        "card_print_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+        "name": "Treecko",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-1"
+      },
+      {
+        "card_print_id": "32b63f96-a503-4f55-b672-d6374089bd03",
+        "name": "Marill",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-10"
+      },
+      {
+        "card_print_id": "1920465e-6162-4c4c-8498-7f8a64430acc",
+        "name": "Zigzagoon",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-11"
+      },
+      {
+        "card_print_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+        "name": "Skitty",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-12"
+      },
+      {
+        "card_print_id": "6ae8ed03-50de-4009-8b86-fbb42082fba1",
+        "name": "Lotad",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-2"
+      },
+      {
+        "card_print_id": "c96f409c-eab1-49f0-8066-a2ba8e56bddf",
+        "name": "Torchic",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-3"
+      },
+      {
+        "card_print_id": "d58afc61-aee8-4290-825e-375705559fbe",
+        "name": "Staryu",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-4"
+      },
+      {
+        "card_print_id": "53b9be9e-10b5-4201-846f-82f5be3b92b4",
+        "name": "Mudkip",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-5"
+      },
+      {
+        "card_print_id": "7e9f4397-0064-4d86-b65c-8a925aa36d4b",
+        "name": "Pikachu",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-6"
+      },
+      {
+        "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+        "name": "Electrike",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-7"
+      },
+      {
+        "card_print_id": "20332df3-d8a9-48bf-8d90-efa09b1883af",
+        "name": "Rhyhorn",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-8"
+      },
+      {
+        "card_print_id": "dbbc7681-280e-4743-9c2a-5dfc2dcf3312",
+        "name": "Meditite",
+        "joined_set_code": "2015xy",
+        "source": "tcgdex",
+        "external_id": "2015xy-9"
+      },
+      {
+        "card_print_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+        "name": "Vulpix",
+        "joined_set_code": "2016xy",
+        "source": "tcgdex",
+        "external_id": "2016xy-1"
+      },
+      {
+        "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+        "name": "Dedenne",
+        "joined_set_code": "2016xy",
+        "source": "tcgdex",
+        "external_id": "2016xy-10"
+      }
+    ],
+    "provenance_ref_shapes_on_supported_null_parent": [
+      {
+        "provenance_ref_shape": "ALPHANUMERIC",
+        "row_count": "24707"
+      },
+      {
+        "provenance_ref_shape": "OTHER",
+        "row_count": "27"
+      }
+    ],
+    "provenance_ref_samples": [
+      {
+        "card_print_id": "99555f58-22ae-44ce-a4b3-57a2e41635ac",
+        "name": "Snivy",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-1"
+      },
+      {
+        "card_print_id": "a7ad1fd2-2643-4593-92dd-e0e0d371b543",
+        "name": "Klink",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-10"
+      },
+      {
+        "card_print_id": "f0eb8536-8933-46b0-aeaa-7db4a1c0c132",
+        "name": "Pidove",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-11"
+      },
+      {
+        "card_print_id": "9f3878be-5c08-47ed-bf7c-101c052c9eca",
+        "name": "Audino",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-12"
+      },
+      {
+        "card_print_id": "49f0c8ad-582e-482f-bfad-e05f5a2968d7",
+        "name": "Maractus",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-2"
+      },
+      {
+        "card_print_id": "8cac8dd1-d3ec-4a0c-bd75-e83ec8fa3936",
+        "name": "Tepig",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-3"
+      },
+      {
+        "card_print_id": "4f60627b-9f4e-4fa1-8d55-679ce918a26f",
+        "name": "Oshawott",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-4"
+      },
+      {
+        "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+        "name": "Alomomola",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-5"
+      },
+      {
+        "card_print_id": "9ba3827c-f0fa-43c5-b73f-5f3a467d7bbf",
+        "name": "Blitzle",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-6"
+      },
+      {
+        "card_print_id": "c0b69108-a702-4566-b2eb-63adc5c9f27c",
+        "name": "Sandile",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-8"
+      },
+      {
+        "card_print_id": "1d8e4b66-4767-4a22-b211-7659dc622133",
+        "name": "Zorua",
+        "joined_set_code": "2011bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2011bw-9"
+      },
+      {
+        "card_print_id": "701dfb15-46fb-4f58-9680-e1cb2ef9f646",
+        "name": "Servine",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-1"
+      },
+      {
+        "card_print_id": "044356ad-d7a1-4ad6-beac-db94aa88634e",
+        "name": "Pansage",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-2"
+      },
+      {
+        "card_print_id": "dd45ad38-2f37-4fcb-a70c-dd0ebc52f246",
+        "name": "Dwebble",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-3"
+      },
+      {
+        "card_print_id": "0f859865-af3c-487d-8592-c0ae39462078",
+        "name": "Emolga",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-6"
+      },
+      {
+        "card_print_id": "8702d170-65f2-4098-98d2-57cbfeb492b7",
+        "name": "Woobat",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-7"
+      },
+      {
+        "card_print_id": "9f3bcf93-0896-4a5f-911e-89cc7e5e18f0",
+        "name": "Drilbur",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-8"
+      },
+      {
+        "card_print_id": "19cdd7e4-568f-4d14-93b9-1291dc40efeb",
+        "name": "Purrloin",
+        "joined_set_code": "2012bw",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2012bw-9"
+      },
+      {
+        "card_print_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+        "name": "Weedle",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-1"
+      },
+      {
+        "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+        "name": "Bunnelby",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-10"
+      },
+      {
+        "card_print_id": "710db2b6-4909-4634-9bb0-107266c48f09",
+        "name": "Fletchling",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-11"
+      },
+      {
+        "card_print_id": "d46097bc-81d0-433b-a2cf-961977543966",
+        "name": "Furfrou",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-12"
+      },
+      {
+        "card_print_id": "e8297a0c-0508-4fe5-be3f-8e46cfb4a0ae",
+        "name": "Chespin",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-2"
+      },
+      {
+        "card_print_id": "06fcb8e7-d3ce-4e0d-9080-ef8dff064eff",
+        "name": "Fennekin",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-3"
+      },
+      {
+        "card_print_id": "ed6bd958-5f0f-479d-b481-6e610c1af644",
+        "name": "Froakie",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-4"
+      },
+      {
+        "card_print_id": "e633087f-c7b2-4ee6-baf3-ad7cbdb07d63",
+        "name": "Pikachu",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-5"
+      },
+      {
+        "card_print_id": "f95fff58-042a-4136-904b-3c68dbd3fb71",
+        "name": "Inkay",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-6"
+      },
+      {
+        "card_print_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+        "name": "Honedge",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-7"
+      },
+      {
+        "card_print_id": "e61898de-344f-401a-9764-12d7b969e716",
+        "name": "Snubbull",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-8"
+      },
+      {
+        "card_print_id": "b3293af3-784e-4c0a-9bd7-afb72bfdeb27",
+        "name": "Swirlix",
+        "joined_set_code": "2014xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2014xy-9"
+      },
+      {
+        "card_print_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+        "name": "Treecko",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-1"
+      },
+      {
+        "card_print_id": "32b63f96-a503-4f55-b672-d6374089bd03",
+        "name": "Marill",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-10"
+      },
+      {
+        "card_print_id": "1920465e-6162-4c4c-8498-7f8a64430acc",
+        "name": "Zigzagoon",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-11"
+      },
+      {
+        "card_print_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+        "name": "Skitty",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-12"
+      },
+      {
+        "card_print_id": "c96f409c-eab1-49f0-8066-a2ba8e56bddf",
+        "name": "Torchic",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-3"
+      },
+      {
+        "card_print_id": "d58afc61-aee8-4290-825e-375705559fbe",
+        "name": "Staryu",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-4"
+      },
+      {
+        "card_print_id": "53b9be9e-10b5-4201-846f-82f5be3b92b4",
+        "name": "Mudkip",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-5"
+      },
+      {
+        "card_print_id": "7e9f4397-0064-4d86-b65c-8a925aa36d4b",
+        "name": "Pikachu",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-6"
+      },
+      {
+        "card_print_id": "20332df3-d8a9-48bf-8d90-efa09b1883af",
+        "name": "Rhyhorn",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-8"
+      },
+      {
+        "card_print_id": "dbbc7681-280e-4743-9c2a-5dfc2dcf3312",
+        "name": "Meditite",
+        "joined_set_code": "2015xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2015xy-9"
+      },
+      {
+        "card_print_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+        "name": "Vulpix",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-1"
+      },
+      {
+        "card_print_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+        "name": "Vulpix",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-1"
+      },
+      {
+        "card_print_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+        "name": "Vulpix",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-1"
+      },
+      {
+        "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+        "name": "Dedenne",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-10"
+      },
+      {
+        "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+        "name": "Dedenne",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-10"
+      },
+      {
+        "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+        "name": "Dedenne",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-10"
+      },
+      {
+        "card_print_id": "606a9302-49b1-411e-8a6f-a0c27480274d",
+        "name": "Meowth",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-11"
+      },
+      {
+        "card_print_id": "606a9302-49b1-411e-8a6f-a0c27480274d",
+        "name": "Meowth",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-11"
+      },
+      {
+        "card_print_id": "606a9302-49b1-411e-8a6f-a0c27480274d",
+        "name": "Meowth",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-11"
+      },
+      {
+        "card_print_id": "5b5e8a98-3045-4215-bdbb-b71ad7cd983a",
+        "name": "Eevee",
+        "joined_set_code": "2016xy",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "2016xy-12"
+      }
+    ]
+  },
+  "symbolic_or_alphabetic_identity_cases": {
+    "mapping_external_id_no_digit_samples": [
+      {
+        "card_print_id": "0588dfe9-b12f-43ea-a7ed-c410f70f8c6e",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-!"
+      },
+      {
+        "card_print_id": "4eb26368-6fdc-4219-b5b9-16e1dae12bad",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-A"
+      },
+      {
+        "card_print_id": "d6f55561-4e4b-4bc4-bc09-966b980abe46",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-B"
+      },
+      {
+        "card_print_id": "ea466078-cf03-4ab6-881f-8a413b0f3ce2",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-C"
+      },
+      {
+        "card_print_id": "a72d1e0c-5648-4b1f-8f78-0b43b0a56200",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-D"
+      },
+      {
+        "card_print_id": "756294d0-f193-48ac-bb49-4871810181ed",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-E"
+      },
+      {
+        "card_print_id": "2fda4f0d-09d8-4837-a797-ed80976cefda",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-F"
+      },
+      {
+        "card_print_id": "c7991b37-de11-45c7-b90e-796dfb7252cf",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-G"
+      },
+      {
+        "card_print_id": "956c285a-27df-45c8-a0ca-a7bc70679222",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-H"
+      },
+      {
+        "card_print_id": "a229e365-b4d1-45e1-bc41-6f105e3e21f3",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-I"
+      },
+      {
+        "card_print_id": "4c7a66d9-9b12-4877-8537-2b1802405bee",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-J"
+      },
+      {
+        "card_print_id": "a0ed4616-9669-44cc-a1d8-63cfca01db5c",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-K"
+      },
+      {
+        "card_print_id": "d02d2d4d-b47e-4241-86cb-5acfa24014e7",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-L"
+      },
+      {
+        "card_print_id": "6e2c82ff-c8e3-4fd2-a1c5-beaa104e195d",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-M"
+      },
+      {
+        "card_print_id": "b8fe340b-c117-4e95-9dcc-1818b54155a9",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-N"
+      },
+      {
+        "card_print_id": "e01a8440-5eaf-4b03-bb51-529f2fdbed4a",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-O"
+      },
+      {
+        "card_print_id": "5742831f-79a1-4d39-a319-3aa85563772a",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-P"
+      },
+      {
+        "card_print_id": "27da26d9-aed8-4b43-a2aa-182398a16fce",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-Q"
+      },
+      {
+        "card_print_id": "7b8be830-f051-4a2f-a58d-1b7760b937ac",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-R"
+      },
+      {
+        "card_print_id": "b3b1ae80-45b4-4635-b304-df961a3f0b41",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-S"
+      },
+      {
+        "card_print_id": "97d46883-fca0-40f4-871d-5cd7c43a3cd4",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-T"
+      },
+      {
+        "card_print_id": "66b93c07-d3c0-4a57-9da8-82810a716481",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-U"
+      },
+      {
+        "card_print_id": "9854ddbb-5d51-4a76-97f4-c0beac68fd8f",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-V"
+      },
+      {
+        "card_print_id": "56cd0a93-b465-4df5-86c1-9cda8861ee0f",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-W"
+      },
+      {
+        "card_print_id": "48f570e0-93b2-42c4-b786-dd840b6f5034",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-X"
+      },
+      {
+        "card_print_id": "f538b1ed-8a05-407e-87d8-21a188cec82d",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-Y"
+      },
+      {
+        "card_print_id": "16f35a8a-1d54-4cf9-b010-830a155f6e29",
+        "name": "Unown",
+        "joined_set_code": "exu",
+        "source": "tcgdex",
+        "external_id": "exu-Z"
+      }
+    ],
+    "linked_raw_number_samples_with_symbols": [
+      {
+        "card_print_id": "b1f87a42-0de1-4a6b-b545-caa7316e7cbf",
+        "name": "N",
+        "joined_set_code": "xy10",
+        "raw_source": "pokemonapi",
+        "raw_number": "105a"
+      },
+      {
+        "card_print_id": "a98bcdca-746a-44a8-80c5-b8f7c2fd2dbd",
+        "name": "Shauna",
+        "joined_set_code": "xy10",
+        "raw_source": "pokemonapi",
+        "raw_number": "111a"
+      },
+      {
+        "card_print_id": "4989e84e-e3d0-4a5f-8cf0-cb7247c9a9a3",
+        "name": "M Manectric EX",
+        "joined_set_code": "xy4",
+        "raw_source": "pokemonapi",
+        "raw_number": "24a"
+      },
+      {
+        "card_print_id": "0eb4f292-c2d9-4a93-af1c-085a738216cd",
+        "name": "Regirock EX",
+        "joined_set_code": "xy10",
+        "raw_source": "pokemonapi",
+        "raw_number": "43a"
+      },
+      {
+        "card_print_id": "fef737a9-d111-4e59-bf7d-3b2ee90dedf1",
+        "name": "Zygarde EX",
+        "joined_set_code": "xy10",
+        "raw_source": "pokemonapi",
+        "raw_number": "54a"
+      },
+      {
+        "card_print_id": "c2135f7f-a760-4832-adcc-3cb257e7c041",
+        "name": "M Lucario EX",
+        "joined_set_code": "xy3",
+        "raw_source": "pokemonapi",
+        "raw_number": "55a"
+      },
+      {
+        "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+        "name": "Aegislash EX",
+        "joined_set_code": "xy4",
+        "raw_source": "pokemonapi",
+        "raw_number": "65a"
+      },
+      {
+        "card_print_id": "c396d2a2-eb85-416e-8db6-89bf89e76ba2",
+        "name": "Blacksmith",
+        "joined_set_code": "xy2",
+        "raw_source": "pokemonapi",
+        "raw_number": "88a"
+      },
+      {
+        "card_print_id": "47ad5468-4698-4743-8e58-ed7bce40cf83",
+        "name": "Rowlet",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM01"
+      },
+      {
+        "card_print_id": "05a69a24-8bb9-49f4-acfa-3eb5e7f865ca",
+        "name": "Litten",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM02"
+      },
+      {
+        "card_print_id": "595bd2a1-d74e-4e35-a92a-6088b08802ca",
+        "name": "Popplio",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM03"
+      },
+      {
+        "card_print_id": "a509999a-e9a3-46f5-8218-b15ee7f68727",
+        "name": "Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM04"
+      },
+      {
+        "card_print_id": "3f9de029-3d04-45b2-b822-f55eef1cdceb",
+        "name": "Snorlax GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM05"
+      },
+      {
+        "card_print_id": "f28a7a28-2bae-497a-ac14-5a13342e91c7",
+        "name": "Rockruff",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM06"
+      },
+      {
+        "card_print_id": "c97c7bb5-5edf-4ede-8be9-b0279a520ce6",
+        "name": "Pikipek",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM07"
+      },
+      {
+        "card_print_id": "88a1cb3c-f5a1-4be5-b52f-27b61c923605",
+        "name": "Litten",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM08"
+      },
+      {
+        "card_print_id": "8cae3e3e-7104-4bd1-bb68-37dde23a411d",
+        "name": "Togedemaru",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM09"
+      },
+      {
+        "card_print_id": "24b42e1b-cda8-41ae-992d-83f4ff9b11a9",
+        "name": "Shiinotic",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM10"
+      },
+      {
+        "card_print_id": "6440994e-ad1f-48dd-a4d2-ca04aa0dc3bb",
+        "name": "Lucario GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM100"
+      },
+      {
+        "card_print_id": "2e6454eb-6834-419c-8ad5-fcc09d680d6d",
+        "name": "Dawn Wings Necrozma GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM101"
+      },
+      {
+        "card_print_id": "48df241d-b5d3-427f-9e07-87b384b53bb0",
+        "name": "Dusk Mane Necrozma GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM102"
+      },
+      {
+        "card_print_id": "61c4f255-f151-4c5c-960e-7fe3be5fc784",
+        "name": "Lunala GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM103"
+      },
+      {
+        "card_print_id": "b7717470-74a3-4df5-96c9-31d2ca94e9c0",
+        "name": "Solgaleo GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM104"
+      },
+      {
+        "card_print_id": "bd87d9b9-83ba-4a11-a420-80c70d2005c2",
+        "name": "Lycanroc",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM105"
+      },
+      {
+        "card_print_id": "767e57b5-fde0-436a-8d9b-05f2cafe175c",
+        "name": "Dawn Wings Necrozma",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM106"
+      },
+      {
+        "card_print_id": "a006aad5-9b66-47f2-abb1-fbe46708f4d4",
+        "name": "Dusk Mane Necrozma",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM107"
+      },
+      {
+        "card_print_id": "5c9e2310-0204-483d-9cf8-5fd5f0575c23",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM108"
+      },
+      {
+        "card_print_id": "60453868-743f-4a86-823d-4cf08e3e45ad",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM109"
+      },
+      {
+        "card_print_id": "998abde5-1d6f-4511-a3da-516f0c66bfb2",
+        "name": "Bruxish",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM11"
+      },
+      {
+        "card_print_id": "8596c2ae-4e89-4f47-a218-35438c84ac9b",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM110"
+      },
+      {
+        "card_print_id": "441002b1-9418-4613-be5f-c96c2344b0d5",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM111"
+      },
+      {
+        "card_print_id": "c652fbf7-ed1b-4d39-9ea8-012c71feb30e",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM112"
+      },
+      {
+        "card_print_id": "524745db-c1e4-42bc-afcf-c5d07632e910",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM113"
+      },
+      {
+        "card_print_id": "7446ad8a-4c5f-4a45-b692-3e93e314fc89",
+        "name": "Ash's Pikachu",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM114"
+      },
+      {
+        "card_print_id": "d558631a-3f38-4417-a3e8-755863ddb0cc",
+        "name": "Pheromosa",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM115"
+      },
+      {
+        "card_print_id": "a70bcdb4-ddbc-46ae-b3d0-24cf055642ea",
+        "name": "Xurkitree",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM116"
+      },
+      {
+        "card_print_id": "bc1eeb4d-0d02-458c-bf98-3481d6c558d5",
+        "name": "Malamar",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM117"
+      },
+      {
+        "card_print_id": "17510a4b-d016-4360-affa-7c0c9d8af027",
+        "name": "Lycanroc",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM118"
+      },
+      {
+        "card_print_id": "f962b900-1a9e-498d-98dd-9d8afd233170",
+        "name": "Exeggcute",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM119"
+      },
+      {
+        "card_print_id": "673055d2-5009-410b-8da3-2fa5195aa213",
+        "name": "Passimian",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM12"
+      },
+      {
+        "card_print_id": "08f04fd1-d68c-4407-9672-22925535b2d5",
+        "name": "Rockruff",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM120"
+      },
+      {
+        "card_print_id": "3246be5d-ab4e-45bd-9fac-0ebc6d3b7a3c",
+        "name": "Raikou GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM121"
+      },
+      {
+        "card_print_id": "dbd497af-e3f3-4d52-be60-899e718c21f6",
+        "name": "Zygarde GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM122"
+      },
+      {
+        "card_print_id": "c40268fd-87a8-4c56-8734-93889a2a24cd",
+        "name": "Dawn Wings Necrozma",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM123"
+      },
+      {
+        "card_print_id": "fa95fd49-65b2-4831-94d3-017403524c05",
+        "name": "Dusk Mane Necrozma",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM124"
+      },
+      {
+        "card_print_id": "3f490e7b-d55d-4a50-bab7-09b7041199c0",
+        "name": "Naganadel GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM125"
+      },
+      {
+        "card_print_id": "609f4f5f-4e19-4d7a-9c56-f253c8265920",
+        "name": "Ultra Necrozma GX",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM126"
+      },
+      {
+        "card_print_id": "7578e077-a5f0-4d8d-87ee-d432e278a431",
+        "name": "Alolan Sandslash",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM127"
+      },
+      {
+        "card_print_id": "e81e7e66-d8a5-4362-be7c-1b928d111043",
+        "name": "Alolan Ninetales",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM128"
+      },
+      {
+        "card_print_id": "66d50c16-5fb2-4351-922d-ee5120b1a8cf",
+        "name": "Kyogre",
+        "joined_set_code": "smp",
+        "raw_source": "pokemonapi",
+        "raw_number": "SM129"
+      }
+    ]
+  },
+  "unresolved_truth": {
+    "supported_rows_without_direct_linked_raw_number": 7770,
+    "supported_rows_without_dedicated_printed_number_field": 10620
+  }
+}

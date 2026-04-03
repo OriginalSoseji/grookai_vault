@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-04-03T18:02:49.512Z",
+  "target_identity_domain": "pokemon_eng_standard",
+  "dry_run_row_count": 10613,
+  "inserted_count": 10613,
+  "skipped_existing_active_count": 0,
+  "failed_count": 0,
+  "first_failure": null,
+  "final_active_card_print_identity_row_count": 10613,
+  "invariant_results": {
+    "only_target_rows": true,
+    "zero_excluded_non_target_rows": true,
+    "no_duplicate_active_card_print_groups": true,
+    "no_duplicate_active_domain_hash_groups": true,
+    "all_printed_number_present": true,
+    "all_set_code_identity_present": true,
+    "all_identity_key_hash_present": true,
+    "no_target_rows_with_existing_active_identity": true,
+    "no_existing_active_hash_conflicts": true
+  }
+}

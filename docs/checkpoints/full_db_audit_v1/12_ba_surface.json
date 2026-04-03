@@ -1,0 +1,21 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:16:50.317Z",
+  "remote_target": true,
+  "remote": {
+    "ba_sets_present": false,
+    "ba_sets": [],
+    "ba_card_prints_count": 0,
+    "ba_card_print_identity_count": 0,
+    "ba_gvid_count": 0,
+    "ba_mapping_count": 0,
+    "active_ba_identity_duplicate_groups": []
+  },
+  "local_comparison": {
+    "ba_card_prints_count": 0,
+    "ba_card_print_identity_count": 0,
+    "ba_gvid_count": 0,
+    "ba_mapping_count": 0
+  },
+  "comparison_summary": "local_and_remote_match"
+}

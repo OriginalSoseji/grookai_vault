@@ -1,0 +1,1241 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "PRINTED_IDENTITY_AUDIT_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "scope": "Supported null-parent rows only; tcg_pocket excluded; no embedded-id parsing used.",
+  "target_count": 10620,
+  "sets_printed_identity_audit": {
+    "rows_with_printed_set_abbrev": 10180,
+    "rows_with_printed_total": 10417,
+    "total_rows": 10620,
+    "printed_set_symbol_url_column_present": false,
+    "symbol_url_column_present": true,
+    "note": "sets.printed_set_symbol_url does not exist in the current schema; sets.symbol_url exists but was not treated as a printed identity field."
+  },
+  "joined_sets_sample": [
+    {
+      "id": "25a68e56-57fd-430e-a21a-3ec1ac2fcf19",
+      "set_code": "me02.5",
+      "name": "Ascended Heroes",
+      "printed_set_abbrev": "ASC",
+      "printed_total": 217,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 295
+    },
+    {
+      "id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+      "set_code": "sm12",
+      "name": "Cosmic Eclipse",
+      "printed_set_abbrev": "CEC",
+      "printed_total": 236,
+      "symbol_url": "https://images.pokemontcg.io/sm12/symbol.png",
+      "domain": null,
+      "row_count": 271
+    },
+    {
+      "id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": "sv04",
+      "name": "Paradox Rift",
+      "printed_set_abbrev": "PAR",
+      "printed_total": 182,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 266
+    },
+    {
+      "id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+      "set_code": "sv08",
+      "name": "Surging Sparks",
+      "printed_set_abbrev": "SSP",
+      "printed_total": 191,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 252
+    },
+    {
+      "id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+      "set_code": "sv04.5",
+      "name": "Paldean Fates",
+      "printed_set_abbrev": "PAF",
+      "printed_total": 91,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 245
+    },
+    {
+      "id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": "swsh10",
+      "name": "Astral Radiance",
+      "printed_set_abbrev": "ASR",
+      "printed_total": 189,
+      "symbol_url": "https://images.pokemontcg.io/swsh10/symbol.png",
+      "domain": null,
+      "row_count": 245
+    },
+    {
+      "id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "set_code": "smp",
+      "name": "SM Black Star Promos",
+      "printed_set_abbrev": "PR-SM",
+      "printed_total": 248,
+      "symbol_url": "https://images.pokemontcg.io/smp/symbol.png",
+      "domain": null,
+      "row_count": 244
+    },
+    {
+      "id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "set_code": "sv10",
+      "name": "Destined Rivals",
+      "printed_set_abbrev": "DRI",
+      "printed_total": 182,
+      "symbol_url": "https://images.pokemontcg.io/sv10/symbol.png",
+      "domain": null,
+      "row_count": 244
+    },
+    {
+      "id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+      "set_code": "swsh7",
+      "name": "Evolving Skies",
+      "printed_set_abbrev": "EVS",
+      "printed_total": 203,
+      "symbol_url": "https://images.pokemontcg.io/swsh7/symbol.png",
+      "domain": null,
+      "row_count": 237
+    },
+    {
+      "id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "set_code": "sm8",
+      "name": "Lost Thunder",
+      "printed_set_abbrev": "LOT",
+      "printed_total": 214,
+      "symbol_url": "https://images.pokemontcg.io/sm8/symbol.png",
+      "domain": null,
+      "row_count": 236
+    },
+    {
+      "id": "6958fc04-24e6-45ff-b729-b0119353f734",
+      "set_code": "sm10",
+      "name": "Unbroken Bonds",
+      "printed_set_abbrev": "UNB",
+      "printed_total": 214,
+      "symbol_url": "https://images.pokemontcg.io/sm10/symbol.png",
+      "domain": null,
+      "row_count": 234
+    },
+    {
+      "id": "10dc128e-0d22-42c9-a981-74a46c780896",
+      "set_code": "swsh12",
+      "name": "Silver Tempest",
+      "printed_set_abbrev": "SIT",
+      "printed_total": 195,
+      "symbol_url": "https://images.pokemontcg.io/swsh12/symbol.png",
+      "domain": null,
+      "row_count": 231
+    },
+    {
+      "id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "set_code": "swsh12.5",
+      "name": "Crown Zenith",
+      "printed_set_abbrev": "CRZ",
+      "printed_total": 159,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 230
+    },
+    {
+      "id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "set_code": "sv06",
+      "name": "Twilight Masquerade",
+      "printed_set_abbrev": "TWM",
+      "printed_total": 167,
+      "symbol_url": "https://assets.tcgdex.net/univ/sv/sv06/symbol",
+      "domain": null,
+      "row_count": 226
+    },
+    {
+      "id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": "xyp",
+      "name": "XY Black Star Promos",
+      "printed_set_abbrev": "PR-XY",
+      "printed_total": 211,
+      "symbol_url": "https://images.pokemontcg.io/xyp/symbol.png",
+      "domain": null,
+      "row_count": 213
+    },
+    {
+      "id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "set_code": "swsh9",
+      "name": "Brilliant Stars",
+      "printed_set_abbrev": "BRS",
+      "printed_total": 172,
+      "symbol_url": "https://images.pokemontcg.io/swsh9/symbol.png",
+      "domain": null,
+      "row_count": 207
+    },
+    {
+      "id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+      "set_code": "swsh4.5",
+      "name": "Shining Fates",
+      "printed_set_abbrev": "SHF",
+      "printed_total": 72,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 195
+    },
+    {
+      "id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "set_code": "sv09",
+      "name": "Journey Together",
+      "printed_set_abbrev": "JTG",
+      "printed_total": 159,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 190
+    },
+    {
+      "id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "set_code": "sm7",
+      "name": "Celestial Storm",
+      "printed_set_abbrev": "CES",
+      "printed_total": 168,
+      "symbol_url": "https://images.pokemontcg.io/sm7/symbol.png",
+      "domain": null,
+      "row_count": 183
+    },
+    {
+      "id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+      "set_code": "sv08.5",
+      "name": "Prismatic Evolutions",
+      "printed_set_abbrev": null,
+      "printed_total": 131,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 180
+    },
+    {
+      "id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "set_code": "sv07",
+      "name": "Stellar Crown",
+      "printed_set_abbrev": "SCR",
+      "printed_total": 142,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 175
+    },
+    {
+      "id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "set_code": "sm5",
+      "name": "Ultra Prism",
+      "printed_set_abbrev": "UPR",
+      "printed_total": 156,
+      "symbol_url": "https://images.pokemontcg.io/sm5/symbol.png",
+      "domain": null,
+      "row_count": 173
+    },
+    {
+      "id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "set_code": "sm2",
+      "name": "Guardians Rising",
+      "printed_set_abbrev": "GRI",
+      "printed_total": 145,
+      "symbol_url": "https://images.pokemontcg.io/sm2/symbol.png",
+      "domain": null,
+      "row_count": 169
+    },
+    {
+      "id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "set_code": "sm3",
+      "name": "Burning Shadows",
+      "printed_set_abbrev": "BUS",
+      "printed_total": 147,
+      "symbol_url": "https://images.pokemontcg.io/sm3/symbol.png",
+      "domain": null,
+      "row_count": 169
+    },
+    {
+      "id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+      "set_code": "xy8",
+      "name": "BREAKthrough",
+      "printed_set_abbrev": "BKT",
+      "printed_total": 162,
+      "symbol_url": "https://images.pokemontcg.io/xy8/symbol.png",
+      "domain": null,
+      "row_count": 165
+    },
+    {
+      "id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "set_code": "me01",
+      "name": "Mega Evolution",
+      "printed_set_abbrev": "MEG",
+      "printed_total": 132,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 164
+    },
+    {
+      "id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+      "set_code": "pl3",
+      "name": "Supreme Victors",
+      "printed_set_abbrev": "SV",
+      "printed_total": 147,
+      "symbol_url": "https://images.pokemontcg.io/pl3/symbol.png",
+      "domain": null,
+      "row_count": 152
+    },
+    {
+      "id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "set_code": "swsh11",
+      "name": "Lost Origin",
+      "printed_set_abbrev": "LOR",
+      "printed_total": 196,
+      "symbol_url": "https://images.pokemontcg.io/swsh11/symbol.png",
+      "domain": null,
+      "row_count": 148
+    },
+    {
+      "id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "set_code": "sm6",
+      "name": "Forbidden Light",
+      "printed_set_abbrev": "FLI",
+      "printed_total": 131,
+      "symbol_url": "https://images.pokemontcg.io/sm6/symbol.png",
+      "domain": null,
+      "row_count": 146
+    },
+    {
+      "id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+      "set_code": "bw11",
+      "name": "Legendary Treasures",
+      "printed_set_abbrev": "LTR",
+      "printed_total": 113,
+      "symbol_url": "https://images.pokemontcg.io/bw11/symbol.png",
+      "domain": null,
+      "row_count": 140
+    },
+    {
+      "id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+      "set_code": "bw8",
+      "name": "Plasma Storm",
+      "printed_set_abbrev": "PLS",
+      "printed_total": 135,
+      "symbol_url": "https://images.pokemontcg.io/bw8/symbol.png",
+      "domain": null,
+      "row_count": 138
+    },
+    {
+      "id": "527ab611-6142-40e4-844b-0eb395007e7b",
+      "set_code": "pl1",
+      "name": "Platinum",
+      "printed_set_abbrev": "PL",
+      "printed_total": 127,
+      "symbol_url": "https://images.pokemontcg.io/pl1/symbol.png",
+      "domain": null,
+      "row_count": 133
+    },
+    {
+      "id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "set_code": "xy10",
+      "name": "Fates Collide",
+      "printed_set_abbrev": "FCO",
+      "printed_total": 124,
+      "symbol_url": "https://images.pokemontcg.io/xy10/symbol.png",
+      "domain": null,
+      "row_count": 129
+    },
+    {
+      "id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+      "set_code": "xy9",
+      "name": "BREAKpoint",
+      "printed_set_abbrev": "BKP",
+      "printed_total": 122,
+      "symbol_url": "https://images.pokemontcg.io/xy9/symbol.png",
+      "domain": null,
+      "row_count": 126
+    },
+    {
+      "id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "set_code": "sm4",
+      "name": "Crimson Invasion",
+      "printed_set_abbrev": "CIN",
+      "printed_total": 111,
+      "symbol_url": "https://images.pokemontcg.io/sm4/symbol.png",
+      "domain": null,
+      "row_count": 125
+    },
+    {
+      "id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+      "set_code": "xy4",
+      "name": "Phantom Forces",
+      "printed_set_abbrev": "PHF",
+      "printed_total": 119,
+      "symbol_url": "https://images.pokemontcg.io/xy4/symbol.png",
+      "domain": null,
+      "row_count": 124
+    },
+    {
+      "id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "set_code": "bw9",
+      "name": "Plasma Freeze",
+      "printed_set_abbrev": "PLF",
+      "printed_total": 116,
+      "symbol_url": "https://images.pokemontcg.io/bw9/symbol.png",
+      "domain": null,
+      "row_count": 122
+    },
+    {
+      "id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": "pl2",
+      "name": "Rising Rivals",
+      "printed_set_abbrev": "RR",
+      "printed_total": 111,
+      "symbol_url": "https://images.pokemontcg.io/pl2/symbol.png",
+      "domain": null,
+      "row_count": 120
+    },
+    {
+      "id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+      "set_code": "ex10",
+      "name": "Unseen Forces",
+      "printed_set_abbrev": "UF",
+      "printed_total": 115,
+      "symbol_url": "https://images.pokemontcg.io/ex10/symbol.png",
+      "domain": null,
+      "row_count": 117
+    },
+    {
+      "id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+      "set_code": "g1",
+      "name": "Generations",
+      "printed_set_abbrev": "GEN",
+      "printed_total": 83,
+      "symbol_url": "https://images.pokemontcg.io/g1/symbol.png",
+      "domain": null,
+      "row_count": 117
+    },
+    {
+      "id": "f7c6de96-8e34-4c36-9efc-6848021ba6c0",
+      "set_code": "xy3",
+      "name": "Furious Fists",
+      "printed_set_abbrev": "FFI",
+      "printed_total": 111,
+      "symbol_url": "https://images.pokemontcg.io/xy3/symbol.png",
+      "domain": null,
+      "row_count": 114
+    },
+    {
+      "id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+      "set_code": "xy6",
+      "name": "Roaring Skies",
+      "printed_set_abbrev": "ROS",
+      "printed_total": 108,
+      "symbol_url": "https://images.pokemontcg.io/xy6/symbol.png",
+      "domain": null,
+      "row_count": 112
+    },
+    {
+      "id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+      "set_code": "pl4",
+      "name": "Arceus",
+      "printed_set_abbrev": "AR",
+      "printed_total": 99,
+      "symbol_url": "https://images.pokemontcg.io/pl4/symbol.png",
+      "domain": null,
+      "row_count": 111
+    },
+    {
+      "id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+      "set_code": "lc",
+      "name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 110
+    },
+    {
+      "id": "10256f30-684c-4367-a89a-5a8678284c93",
+      "set_code": "xy2",
+      "name": "Flashfire",
+      "printed_set_abbrev": "FLF",
+      "printed_total": 106,
+      "symbol_url": "https://images.pokemontcg.io/xy2/symbol.png",
+      "domain": null,
+      "row_count": 110
+    },
+    {
+      "id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+      "set_code": "col1",
+      "name": "Call of Legends",
+      "printed_set_abbrev": "CL",
+      "printed_total": 95,
+      "symbol_url": "https://images.pokemontcg.io/col1/symbol.png",
+      "domain": null,
+      "row_count": 106
+    },
+    {
+      "id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+      "set_code": "dp7",
+      "name": "Stormfront",
+      "printed_set_abbrev": "SF",
+      "printed_total": 100,
+      "symbol_url": "https://images.pokemontcg.io/dp7/symbol.png",
+      "domain": null,
+      "row_count": 106
+    },
+    {
+      "id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+      "set_code": "bw10",
+      "name": "Plasma Blast",
+      "printed_set_abbrev": "PLB",
+      "printed_total": 101,
+      "symbol_url": "https://images.pokemontcg.io/bw10/symbol.png",
+      "domain": null,
+      "row_count": 105
+    },
+    {
+      "id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "set_code": "A3a",
+      "name": "Extradimensional Crisis",
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 103
+    },
+    {
+      "id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "set_code": "bwp",
+      "name": "BW Black Star Promos",
+      "printed_set_abbrev": "PR-BLW",
+      "printed_total": 101,
+      "symbol_url": "https://images.pokemontcg.io/bwp/symbol.png",
+      "domain": null,
+      "row_count": 101
+    },
+    {
+      "id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+      "set_code": "xy7",
+      "name": "Ancient Origins",
+      "printed_set_abbrev": "AOR",
+      "printed_total": 98,
+      "symbol_url": "https://images.pokemontcg.io/xy7/symbol.png",
+      "domain": null,
+      "row_count": 101
+    },
+    {
+      "id": "9d42f9e7-972c-458f-b770-aba7e6cb4111",
+      "set_code": "P-A",
+      "name": "Promos-A",
+      "printed_set_abbrev": null,
+      "printed_total": null,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 100
+    },
+    {
+      "id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "set_code": "sv02",
+      "name": "Paldea Evolved",
+      "printed_set_abbrev": "PAL",
+      "printed_total": 193,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 99
+    },
+    {
+      "id": "406a7484-f633-415c-a1ef-abd79db5833b",
+      "set_code": "sv06.5",
+      "name": "Shrouded Fable",
+      "printed_set_abbrev": "SFA",
+      "printed_total": 64,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 99
+    },
+    {
+      "id": "565f8f35-e3dc-4ad1-9696-1203fdebb5cd",
+      "set_code": "sma",
+      "name": "Hidden Fates Shiny Vault",
+      "printed_set_abbrev": "HIF",
+      "printed_total": 94,
+      "symbol_url": "https://images.pokemontcg.io/sma/symbol.png",
+      "domain": null,
+      "row_count": 94
+    },
+    {
+      "id": "f500a330-334c-405c-849a-479f5f117b40",
+      "set_code": "swsh10.5",
+      "name": "Pokémon GO",
+      "printed_set_abbrev": "PGO",
+      "printed_total": 78,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 88
+    },
+    {
+      "id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+      "set_code": "swsh8",
+      "name": "Fusion Strike",
+      "printed_set_abbrev": "FST",
+      "printed_total": 264,
+      "symbol_url": "https://images.pokemontcg.io/swsh8/symbol.png",
+      "domain": null,
+      "row_count": 84
+    },
+    {
+      "id": "d4f58a11-da4c-4a4c-b0d5-8f1f5313d8fd",
+      "set_code": "swsh3.5",
+      "name": "Champion's Path",
+      "printed_set_abbrev": "CPA",
+      "printed_total": 70,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 80
+    },
+    {
+      "id": "3c75028f-5798-4271-b390-ab040e76346c",
+      "set_code": "sm3.5",
+      "name": "Shining Legends",
+      "printed_set_abbrev": "SLG",
+      "printed_total": 78,
+      "symbol_url": "https://images.pokemontcg.io/sm35/symbol.png",
+      "domain": null,
+      "row_count": 78
+    },
+    {
+      "id": "f672abd1-37b3-4d45-aa5d-14a38166d9b4",
+      "set_code": "sm7.5",
+      "name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 78
+    },
+    {
+      "id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "printed_total": 215,
+      "symbol_url": "https://images.pokemontcg.io/svp/symbol.png",
+      "domain": null,
+      "row_count": 73
+    },
+    {
+      "id": "36779186-1b7c-41b2-8409-c6db6a2b0707",
+      "set_code": "sm11",
+      "name": "Unified Minds",
+      "printed_set_abbrev": "UNM",
+      "printed_total": 236,
+      "symbol_url": "https://images.pokemontcg.io/sm11/symbol.png",
+      "domain": null,
+      "row_count": 58
+    },
+    {
+      "id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+      "set_code": "cel25",
+      "name": "Celebrations",
+      "printed_set_abbrev": "CEL",
+      "printed_total": 25,
+      "symbol_url": "https://images.pokemontcg.io/cel25/symbol.png",
+      "domain": null,
+      "row_count": 51
+    },
+    {
+      "id": "7f616ea0-8f96-4250-bee3-c4293c629552",
+      "set_code": "ecard2",
+      "name": "Aquapolis",
+      "printed_set_abbrev": "AQ",
+      "printed_total": 147,
+      "symbol_url": "https://images.pokemontcg.io/ecard2/symbol.png",
+      "domain": null,
+      "row_count": 42
+    },
+    {
+      "id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+      "set_code": "np",
+      "name": "Nintendo Black Star Promos",
+      "printed_set_abbrev": "PR-NP",
+      "printed_total": 40,
+      "symbol_url": "https://images.pokemontcg.io/np/symbol.png",
+      "domain": null,
+      "row_count": 40
+    },
+    {
+      "id": "fa881265-2216-496a-ab73-854cd28370ca",
+      "set_code": "dc1",
+      "name": "Double Crisis",
+      "printed_set_abbrev": "DCR",
+      "printed_total": 34,
+      "symbol_url": "https://images.pokemontcg.io/dc1/symbol.png",
+      "domain": null,
+      "row_count": 34
+    },
+    {
+      "id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+      "set_code": "swsh6",
+      "name": "Chilling Reign",
+      "printed_set_abbrev": "CRE",
+      "printed_total": 198,
+      "symbol_url": "https://images.pokemontcg.io/swsh6/symbol.png",
+      "domain": null,
+      "row_count": 33
+    },
+    {
+      "id": "80b80cb4-6609-41fe-8d7b-15c433429e45",
+      "set_code": "tk-bw-e",
+      "name": "BW trainer Kit (Excadrill)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+      "set_code": "tk-bw-z",
+      "name": "BW trainer Kit (Zoroark)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "9bf207c2-aaca-4b7f-885f-8fe108e55b79",
+      "set_code": "tk-xy-b",
+      "name": "XY trainer Kit (Bisharp)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+      "set_code": "tk-xy-latia",
+      "name": "XY trainer Kit (Latias)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "6506163a-6046-4086-97a4-13f702bd6503",
+      "set_code": "tk-xy-latio",
+      "name": "XY trainer Kit (Latios)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "3e464f2c-d099-47b5-8f44-caa19c2a812c",
+      "set_code": "tk-xy-n",
+      "name": "XY trainer Kit (Noivern)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "36988564-89a6-4804-a600-f98b11f70c92",
+      "set_code": "tk-xy-p",
+      "name": "XY trainer Kit (Pikachu Libre)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "dca52b9b-8d8c-4ca9-8462-da648734db06",
+      "set_code": "tk-xy-su",
+      "name": "XY trainer Kit (Suicune)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "2c523cdb-a00e-4b31-880e-1fac250dcc3e",
+      "set_code": "tk-xy-sy",
+      "name": "XY trainer Kit (Sylveon)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+      "set_code": "tk-xy-w",
+      "name": "XY trainer Kit (Wigglytuff)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5",
+      "set_code": "ecard3",
+      "name": "Skyridge",
+      "printed_set_abbrev": "SK",
+      "printed_total": 144,
+      "symbol_url": "https://images.pokemontcg.io/ecard3/symbol.png",
+      "domain": null,
+      "row_count": 27
+    },
+    {
+      "id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+      "set_code": "exu",
+      "name": "Unseen Forces Unown Collection",
+      "printed_set_abbrev": null,
+      "printed_total": 28,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 27
+    },
+    {
+      "id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "set_code": "2021swsh",
+      "name": "Macdonald's Collection 2021",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 25,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 25
+    },
+    {
+      "id": "26da979a-6233-4a52-851e-e18b789d85a8",
+      "set_code": "hgssp",
+      "name": "HGSS Black Star Promos",
+      "printed_set_abbrev": null,
+      "printed_total": 25,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 25
+    },
+    {
+      "id": "63e87275-5795-4ed0-918b-fbf62e5457ce",
+      "set_code": "tk-sm-r",
+      "name": "SM trainer Kit (Alolan Raichu)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 19
+    },
+    {
+      "id": "35a381af-0a89-4982-9db9-3b091565ff2d",
+      "set_code": "tk-sm-l",
+      "name": "SM trainer Kit (Lycanroc)",
+      "printed_set_abbrev": "TK",
+      "printed_total": 30,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 18
+    },
+    {
+      "id": "f1adff7b-86f3-4176-87ac-66e03da2ebe4",
+      "set_code": "pop1",
+      "name": "POP Series 1",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop1/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "b754d3c1-6de2-4111-89d3-50a1e52cf2cd",
+      "set_code": "pop2",
+      "name": "POP Series 2",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop2/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "b34b238c-25c4-440b-831d-a54aa26cbcbc",
+      "set_code": "pop3",
+      "name": "POP Series 3",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop3/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "98819a28-03c4-40ba-b144-48fba1dc54c1",
+      "set_code": "pop4",
+      "name": "POP Series 4",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop4/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "23dbe4da-e3f9-4459-a999-fb6de879dba9",
+      "set_code": "pop5",
+      "name": "POP Series 5",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop5/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "a80f4713-0504-4227-967f-cb1b65593eaa",
+      "set_code": "pop6",
+      "name": "POP Series 6",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop6/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "e0b8c48d-0f91-42df-90c2-7c89d68a5341",
+      "set_code": "pop7",
+      "name": "POP Series 7",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop7/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "1a48c646-6073-4809-93b3-76c3d75c8cb4",
+      "set_code": "pop8",
+      "name": "POP Series 8",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop8/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "19e252cc-f337-4a0d-9407-dee251cf8d43",
+      "set_code": "pop9",
+      "name": "POP Series 9",
+      "printed_set_abbrev": "POP",
+      "printed_total": 17,
+      "symbol_url": "https://images.pokemontcg.io/pop9/symbol.png",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "id": "8ebc78f2-0d93-4cd4-bc51-fdfef0610147",
+      "set_code": "ru1",
+      "name": "Pokémon Rumble",
+      "printed_set_abbrev": "RU",
+      "printed_total": 16,
+      "symbol_url": "https://images.pokemontcg.io/ru1/symbol.png",
+      "domain": null,
+      "row_count": 16
+    },
+    {
+      "id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+      "set_code": "swsh1",
+      "name": "Sword & Shield",
+      "printed_set_abbrev": "SSH",
+      "printed_total": 202,
+      "symbol_url": "https://images.pokemontcg.io/swsh1/symbol.png",
+      "domain": null,
+      "row_count": 16
+    },
+    {
+      "id": "0e9076a4-d92e-4e6f-83a5-752dab19b07e",
+      "set_code": "2011bw",
+      "name": "Macdonald's Collection 2011",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    },
+    {
+      "id": "c592059c-0338-46d4-bb47-69822c118727",
+      "set_code": "2012bw",
+      "name": "Macdonald's Collection 2012",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    },
+    {
+      "id": "bce4be3d-b88e-455e-8434-98cae0ef0dd2",
+      "set_code": "2014xy",
+      "name": "Macdonald's Collection 2014",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    },
+    {
+      "id": "5a14311f-de7b-44d9-b180-d5580165dbb6",
+      "set_code": "2015xy",
+      "name": "Macdonald's Collection 2015",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    },
+    {
+      "id": "606bfe0c-4a7e-4b34-886e-c56f80e0abc5",
+      "set_code": "2016xy",
+      "name": "Macdonald's Collection 2016",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    },
+    {
+      "id": "9eb8c8be-41d0-4af1-a1ab-1b828fde077f",
+      "set_code": "2017sm",
+      "name": "Macdonald's Collection 2017",
+      "printed_set_abbrev": "MCD",
+      "printed_total": 12,
+      "symbol_url": null,
+      "domain": null,
+      "row_count": 12
+    }
+  ],
+  "mapping_meta_key_inventory": [],
+  "mapping_dedicated_field_presence": {
+    "has_tcg_local_number": 0,
+    "has_local_number": 0,
+    "has_number": 0,
+    "has_printed_number": 0,
+    "has_card_number": 0,
+    "has_collector_number": 0,
+    "has_set_abbrev": 0,
+    "has_printed_set_abbrev": 0
+  },
+  "traits_key_inventory": {
+    "storage_model": "trait_type row-based with supporting explicit columns",
+    "trait_type_counts": [
+      {
+        "trait_type": "pokemon:stats",
+        "key_count": 10620
+      }
+    ],
+    "schema_columns": [
+      {
+        "column_name": "id",
+        "data_type": "bigint"
+      },
+      {
+        "column_name": "card_print_id",
+        "data_type": "uuid"
+      },
+      {
+        "column_name": "trait_type",
+        "data_type": "text"
+      },
+      {
+        "column_name": "trait_value",
+        "data_type": "text"
+      },
+      {
+        "column_name": "source",
+        "data_type": "text"
+      },
+      {
+        "column_name": "confidence",
+        "data_type": "numeric"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone"
+      },
+      {
+        "column_name": "hp",
+        "data_type": "integer"
+      },
+      {
+        "column_name": "national_dex",
+        "data_type": "integer"
+      },
+      {
+        "column_name": "types",
+        "data_type": "ARRAY"
+      },
+      {
+        "column_name": "rarity",
+        "data_type": "text"
+      },
+      {
+        "column_name": "supertype",
+        "data_type": "text"
+      },
+      {
+        "column_name": "card_category",
+        "data_type": "text"
+      },
+      {
+        "column_name": "legacy_rarity",
+        "data_type": "text"
+      }
+    ]
+  },
+  "traits_printed_identity_presence": {
+    "dedicated_printed_number_field_present": false,
+    "dedicated_printed_set_abbrev_field_present": false,
+    "matching_trait_type_rows_for_printed_identity": [],
+    "note": "The audited target rows only exposed trait_type values such as pokemon:stats. No dedicated printed-number or printed-set-abbreviation field was found in card_print_traits."
+  },
+  "printings_printed_identity_presence": {
+    "has_printed_number": 0,
+    "has_printed_set_abbrev": 0,
+    "total_rows": 0,
+    "usable_printed_number_column_present": false,
+    "usable_printed_set_abbrev_column_present": false
+  },
+  "printings_schema_notes": {
+    "schema_columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid"
+      },
+      {
+        "column_name": "card_print_id",
+        "data_type": "uuid"
+      },
+      {
+        "column_name": "finish_key",
+        "data_type": "text"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone"
+      },
+      {
+        "column_name": "is_provisional",
+        "data_type": "boolean"
+      },
+      {
+        "column_name": "provenance_source",
+        "data_type": "text"
+      },
+      {
+        "column_name": "provenance_ref",
+        "data_type": "text"
+      },
+      {
+        "column_name": "created_by",
+        "data_type": "text"
+      }
+    ],
+    "note": "card_printings has no dedicated printed_number or printed_set_abbrev columns in the current schema."
+  },
+  "raw_import_printed_identity_presence": "NO_LINKED_RAW_IMPORT_IDS",
+  "forensic_printed_identity_provability_sample": [
+    {
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "919e6f37-ad8d-4d6d-8b63-dd124c94fd68",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "636f4312-1a44-4290-b412-736bf81e20d3",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "ec6eefdd-fd20-4708-8738-550ffe94b6ea",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+      "printed_set_abbrev_provable_from_dedicated_field": "YES",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "sets",
+      "exact_field_name": "sets.printed_set_abbrev",
+      "notes": "Printed set abbreviation is present on the joined set row. No dedicated stored printed-number field was found on sets, external_mappings.meta, traits, printings, or linked raw imports for this row."
+    },
+    {
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "printed_set_abbrev_provable_from_dedicated_field": "NO",
+      "printed_number_provable_from_dedicated_field": "NO",
+      "proving_surface": "none",
+      "exact_field_name": null,
+      "notes": "No dedicated stored printed set abbreviation or printed number field was found for this row in the audited surfaces. External mapping external_id exists but was not parsed."
+    }
+  ],
+  "printed_identity_recoverability_counts": {
+    "directly_recoverable_printed_identity": 0,
+    "partially_recoverable_printed_identity": 10180,
+    "not_currently_provable_from_stored_fields": 440,
+    "classification_basis": "A = printed_set_abbrev and printed_number both present in dedicated stored fields; B = printed_set_abbrev present but printed_number absent; C = printed_set_abbrev absent and printed_number absent."
+  },
+  "final_summary": {
+    "does_supported_surface_already_contain_dedicated_stored_printed_identity_fields": "PARTIAL",
+    "is_printed_set_abbreviation_available": "YES",
+    "is_printed_number_available_from_dedicated_fields": "NO",
+    "next_phase": "provenance/source audit",
+    "notes": "Joined sets provide printed_set_abbrev for most supported null-parent rows, but no audited dedicated field on sets, external_mappings.meta, card_print_traits, card_printings, or linked raw imports provides printed number. Deterministic repair from stored dedicated fields is not currently available."
+  }
+}

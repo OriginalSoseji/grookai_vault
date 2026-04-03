@@ -1,0 +1,1964 @@
+{
+  "generated_at": "2026-04-03T12:55:21.246Z",
+  "parsed_row_count": 10613,
+  "category_counts": {
+    "ready_available": 1230,
+    "blocked_available": 9383,
+    "excluded_available": 0,
+    "promo_special_available": 824,
+    "trainer_kit_available": 406
+  },
+  "ready_rows": [
+    {
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "name": "Darkness Energy",
+      "set_id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+      "set_code": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-bw-z-7",
+      "example_provenance_ref": "tk-bw-z-7",
+      "parsed_identity": "7",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "name": "Reshiram",
+      "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "printed_set_abbrev": "PR-BLW",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "bwp-BW04",
+      "example_provenance_ref": "bwp-BW04",
+      "parsed_identity": "BW04",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "BW Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-BLW",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "BW Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-BLW",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "00823918-abbd-4d7f-890b-e2a247d4e844",
+      "name": "Wigglytuff",
+      "set_id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+      "set_code": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-w-30",
+      "example_provenance_ref": "tk-xy-w-30",
+      "parsed_identity": "30",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "00941df1-12b7-43a2-8203-9a1ba610b5fe",
+      "name": "Potion",
+      "set_id": "9bf207c2-aaca-4b7f-885f-8fe108e55b79",
+      "set_code": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-b-25",
+      "example_provenance_ref": "tk-xy-b-25",
+      "parsed_identity": "25",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-b",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Bisharp)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-b",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Bisharp)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "013dd796-36e4-42cb-ba9c-f3e0828f4b1e",
+      "name": "Darkrai",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "printed_set_abbrev": "PR-XY",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xyp-XY22",
+      "example_provenance_ref": "xyp-XY22",
+      "parsed_identity": "XY22",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "017bfcbe-d9de-4fa1-b1bf-c9c34c2efef8",
+      "name": "Murkrow",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-021",
+      "example_provenance_ref": "svp-021",
+      "parsed_identity": "021",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+      "name": "Caterpie",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "printed_set_abbrev": "MCD",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "2019sm-1",
+      "example_provenance_ref": null,
+      "parsed_identity": "1",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01dbd447-78e7-4cdf-86a4-5d4520de8619",
+      "name": "Pawmot",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-006",
+      "example_provenance_ref": "svp-006",
+      "parsed_identity": "006",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01dc9dfe-9796-44aa-a164-3cf9e0cc56fa",
+      "name": "Machop",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "printed_set_abbrev": "MCD",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "2018sm-6",
+      "example_provenance_ref": "2018sm-6",
+      "parsed_identity": "6",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ]
+    },
+    {
+      "card_print_id": "021b1475-367f-4cc3-bf50-43b578331619",
+      "name": "Koraidon",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-014",
+      "example_provenance_ref": "svp-014",
+      "parsed_identity": "014",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "02873c41-6850-4a17-a354-086dfd032dad",
+      "name": "Magearna",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "printed_set_abbrev": "PR-XY",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xyp-XY186",
+      "example_provenance_ref": "xyp-XY186",
+      "parsed_identity": "XY186",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "028cdfe9-fa32-4d2e-8500-adcbe96aef9b",
+      "name": "Marshadow",
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "printed_set_abbrev": "PR-SM",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "smp-SM85",
+      "example_provenance_ref": "smp-SM85",
+      "parsed_identity": "SM85",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "03271884-716b-42a6-88fa-8b72be7f3380",
+      "name": "Great Ball",
+      "set_id": "63e87275-5795-4ed0-918b-fbf62e5457ce",
+      "set_code": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-sm-r-21",
+      "example_provenance_ref": "tk-sm-r-21",
+      "parsed_identity": "21",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-sm-r",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "SM trainer Kit (Alolan Raichu)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-sm-r",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "SM trainer Kit (Alolan Raichu)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "0359795b-01c6-4f6d-9fe2-42bc3aa72429",
+      "name": "Tapu Koko",
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "printed_set_abbrev": "PR-SM",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "smp-SM31",
+      "example_provenance_ref": "smp-SM31",
+      "parsed_identity": "SM31",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "035a264b-e84f-4646-9b1b-3a46320a8a54",
+      "name": "Water Energy",
+      "set_id": "dca52b9b-8d8c-4ca9-8462-da648734db06",
+      "set_code": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-su-1",
+      "example_provenance_ref": "tk-xy-su-1",
+      "parsed_identity": "1",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-su",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Suicune)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-su",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Suicune)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    }
+  ],
+  "blocked_rows": [
+    {
+      "card_print_id": "000236c4-cb6b-4cbc-86b6-1e5886c98ea3",
+      "name": "Lugia BREAK",
+      "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "printed_set_abbrev": "FCO",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xy10-79",
+      "example_provenance_ref": "xy10-79",
+      "parsed_identity": "79",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+      "name": "Shroodle",
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "printed_set_abbrev": "MEG",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "me01-091",
+      "example_provenance_ref": "me01-091",
+      "parsed_identity": "091",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "000dc9b5-d6cd-43e5-9986-ee18261802a4",
+      "name": "Shroomish",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "printed_set_abbrev": "DRI",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sv10-005",
+      "example_provenance_ref": "sv10-005",
+      "parsed_identity": "005",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0017e5e6-1146-488b-9fd1-de545b0f563e",
+      "name": "Riolu",
+      "set_id": "1a48c646-6073-4809-93b3-76c3d75c8cb4",
+      "set_code": "pop8",
+      "set_name": "POP Series 8",
+      "printed_set_abbrev": "POP",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "pop8-16",
+      "example_provenance_ref": "pop8-16",
+      "parsed_identity": "16",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "001c9d96-2e31-4f64-a8a9-91a595ce3f15",
+      "name": "Litwick",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "printed_set_abbrev": "GRI",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sm2-11",
+      "example_provenance_ref": "sm2-11",
+      "parsed_identity": "11",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "00256bbb-21bc-4f8c-81eb-fccd2ce48860",
+      "name": "Buzzwole",
+      "set_id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+      "set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "printed_set_abbrev": "CEC",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sm12-21",
+      "example_provenance_ref": "sm12-21",
+      "parsed_identity": "21",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "002f08d2-cbd8-436c-b7b3-9c7d2020b6d4",
+      "name": "Luxio",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "printed_set_abbrev": "TWM",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sv06-067",
+      "example_provenance_ref": "sv06-067",
+      "parsed_identity": "067",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "002f72a0-e876-4f2e-bc75-8f1fa6766a5a",
+      "name": "Random Receiver",
+      "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "set_code": "xy10",
+      "set_name": "Fates Collide",
+      "printed_set_abbrev": "FCO",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xy10-109",
+      "example_provenance_ref": "xy10-109",
+      "parsed_identity": "109",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0032bb52-1cdb-4a13-a699-6694bab0947b",
+      "name": "Golurk",
+      "set_id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+      "set_code": "xy7",
+      "set_name": "Ancient Origins",
+      "printed_set_abbrev": "AOR",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xy7-35",
+      "example_provenance_ref": "xy7-35",
+      "parsed_identity": "35",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "00340120-0834-4544-814e-7137f1a1f989",
+      "name": "Araquanid",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "printed_set_abbrev": "UPR",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sm5-17",
+      "example_provenance_ref": "sm5-17",
+      "parsed_identity": "17",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0035bdd0-3448-49a5-ac8f-620601c3e87f",
+      "name": "Giovanni’s Exile",
+      "set_id": "6958fc04-24e6-45ff-b729-b0119353f734",
+      "set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "printed_set_abbrev": "UNB",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sm10-174",
+      "example_provenance_ref": "sm10-174",
+      "parsed_identity": "174",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0039a61b-98bf-49ba-89c0-b0945491e69f",
+      "name": "Hippopotas",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "printed_set_abbrev": "DRI",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "sv10-105",
+      "example_provenance_ref": "sv10-105",
+      "parsed_identity": "105",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "003aeeae-9c73-44b0-986e-fa490472de4e",
+      "name": "VS Seeker",
+      "set_id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+      "set_code": "xy6",
+      "set_name": "Roaring Skies",
+      "printed_set_abbrev": "ROS",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xy6-110",
+      "example_provenance_ref": "xy6-110",
+      "parsed_identity": "110",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "003b88c3-816a-4194-b8d1-7a2977fb0eb2",
+      "name": "Woobat",
+      "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "printed_set_abbrev": "EVS",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "swsh7-68",
+      "example_provenance_ref": "swsh7-68",
+      "parsed_identity": "68",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    },
+    {
+      "card_print_id": "0048ce0a-8310-481a-a938-173b642d17c9",
+      "name": "Nidoking",
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "printed_set_abbrev": "PLF",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "bw9-58",
+      "example_provenance_ref": "bw9-58",
+      "parsed_identity": "58",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "BLOCKED_UNKNOWN_DOMAIN",
+      "classification_status": "BLOCKED_UNKNOWN_DOMAIN",
+      "evidence_basis": [],
+      "exact_evidence_used": []
+    }
+  ],
+  "excluded_rows": [],
+  "promo_special_rows": [
+    {
+      "card_print_id": "00694ef1-27fa-40e1-810f-858f39be72e3",
+      "name": "Reshiram",
+      "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "printed_set_abbrev": "PR-BLW",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "bwp-BW04",
+      "example_provenance_ref": "bwp-BW04",
+      "parsed_identity": "BW04",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "BW Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-BLW",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "BW Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-BLW",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "013dd796-36e4-42cb-ba9c-f3e0828f4b1e",
+      "name": "Darkrai",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "printed_set_abbrev": "PR-XY",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xyp-XY22",
+      "example_provenance_ref": "xyp-XY22",
+      "parsed_identity": "XY22",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "017bfcbe-d9de-4fa1-b1bf-c9c34c2efef8",
+      "name": "Murkrow",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-021",
+      "example_provenance_ref": "svp-021",
+      "parsed_identity": "021",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+      "name": "Caterpie",
+      "set_id": "ff85afbe-98e0-4ce4-8849-b7e51a8f2d73",
+      "set_code": "2019sm",
+      "set_name": "Macdonald's Collection 2019",
+      "printed_set_abbrev": "MCD",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "2019sm-1",
+      "example_provenance_ref": null,
+      "parsed_identity": "1",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01dbd447-78e7-4cdf-86a4-5d4520de8619",
+      "name": "Pawmot",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-006",
+      "example_provenance_ref": "svp-006",
+      "parsed_identity": "006",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01dc9dfe-9796-44aa-a164-3cf9e0cc56fa",
+      "name": "Machop",
+      "set_id": "b94958a4-4191-456b-96d4-3a0bb766f507",
+      "set_code": "2018sm",
+      "set_name": "Macdonald's Collection 2018",
+      "printed_set_abbrev": "MCD",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "2018sm-6",
+      "example_provenance_ref": "2018sm-6",
+      "parsed_identity": "6",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.set_role",
+          "value": "promotion_umbrella",
+          "reason": "explicit promotion umbrella set role"
+        }
+      ]
+    },
+    {
+      "card_print_id": "021b1475-367f-4cc3-bf50-43b578331619",
+      "name": "Koraidon",
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "printed_set_abbrev": "PR-SV",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "svp-014",
+      "example_provenance_ref": "svp-014",
+      "parsed_identity": "014",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "Scarlet & Violet Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SV",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "02873c41-6850-4a17-a354-086dfd032dad",
+      "name": "Magearna",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "printed_set_abbrev": "PR-XY",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "xyp-XY186",
+      "example_provenance_ref": "xyp-XY186",
+      "parsed_identity": "XY186",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "XY Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-XY",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "028cdfe9-fa32-4d2e-8500-adcbe96aef9b",
+      "name": "Marshadow",
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "printed_set_abbrev": "PR-SM",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "smp-SM85",
+      "example_provenance_ref": "smp-SM85",
+      "parsed_identity": "SM85",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "0359795b-01c6-4f6d-9fe2-42bc3aa72429",
+      "name": "Tapu Koko",
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "printed_set_abbrev": "PR-SM",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "smp-SM31",
+      "example_provenance_ref": "smp-SM31",
+      "parsed_identity": "SM31",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id",
+        "raw_number"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.name",
+          "value": "SM Black Star Promos",
+          "reason": "explicit Black Star Promos naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "PR-SM",
+          "reason": "explicit promo printed set abbreviation"
+        }
+      ]
+    }
+  ],
+  "trainer_kit_weird_code_rows": [
+    {
+      "card_print_id": "003381e1-baae-4f6c-8859-9334dac2fcac",
+      "name": "Darkness Energy",
+      "set_id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+      "set_code": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-bw-z-7",
+      "example_provenance_ref": "tk-bw-z-7",
+      "parsed_identity": "7",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "00823918-abbd-4d7f-890b-e2a247d4e844",
+      "name": "Wigglytuff",
+      "set_id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+      "set_code": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-w-30",
+      "example_provenance_ref": "tk-xy-w-30",
+      "parsed_identity": "30",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "00941df1-12b7-43a2-8203-9a1ba610b5fe",
+      "name": "Potion",
+      "set_id": "9bf207c2-aaca-4b7f-885f-8fe108e55b79",
+      "set_code": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-b-25",
+      "example_provenance_ref": "tk-xy-b-25",
+      "parsed_identity": "25",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-b",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Bisharp)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-b",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Bisharp)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "03271884-716b-42a6-88fa-8b72be7f3380",
+      "name": "Great Ball",
+      "set_id": "63e87275-5795-4ed0-918b-fbf62e5457ce",
+      "set_code": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-sm-r-21",
+      "example_provenance_ref": "tk-sm-r-21",
+      "parsed_identity": "21",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-sm-r",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "SM trainer Kit (Alolan Raichu)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-sm-r",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "SM trainer Kit (Alolan Raichu)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "035a264b-e84f-4646-9b1b-3a46320a8a54",
+      "name": "Water Energy",
+      "set_id": "dca52b9b-8d8c-4ca9-8462-da648734db06",
+      "set_code": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-su-1",
+      "example_provenance_ref": "tk-xy-su-1",
+      "parsed_identity": "1",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-su",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Suicune)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-su",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Suicune)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "03ef06cf-be29-4788-b69a-8549a211bdb8",
+      "name": "Pidgey",
+      "set_id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+      "set_code": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-w-29",
+      "example_provenance_ref": "tk-xy-w-29",
+      "parsed_identity": "29",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-w",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Wigglytuff)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "04dcb0f2-7ae1-4334-bcf3-1f6ea0db69d2",
+      "name": "Psychic Energy",
+      "set_id": "2e4e7ba4-93d3-4d35-9260-c5fcafa5edb9",
+      "set_code": "tk-ex-p",
+      "set_name": "EX trainer Kit 2 (Plusle)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-ex-p-12",
+      "example_provenance_ref": "tk-ex-p-12",
+      "parsed_identity": "12",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-ex-p",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "EX trainer Kit 2 (Plusle)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-ex-p",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "EX trainer Kit 2 (Plusle)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "06617aa1-8afc-4763-9f18-5d9e913a058e",
+      "name": "Starly",
+      "set_id": "1f77b2b9-b0ce-441c-8451-cb85173e0570",
+      "set_code": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-dp-l-7",
+      "example_provenance_ref": "tk-dp-l-7",
+      "parsed_identity": "7",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-dp-l",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "DP trainer Kit (Lucario)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-dp-l",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "DP trainer Kit (Lucario)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "071efb3a-32ef-4046-876d-2d72b76f3e12",
+      "name": "Latias",
+      "set_id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+      "set_code": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-xy-latia-14",
+      "example_provenance_ref": "tk-xy-latia-14",
+      "parsed_identity": "14",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-latia",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Latias)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-xy-latia",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "XY trainer Kit (Latias)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    },
+    {
+      "card_print_id": "07db258b-8b4a-490a-9377-bfee0bb63afe",
+      "name": "Darkness Energy",
+      "set_id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+      "set_code": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "printed_set_abbrev": "TK",
+      "source_domain": null,
+      "mapping_source": "tcgdex",
+      "example_external_id": "tk-bw-z-20",
+      "example_provenance_ref": "tk-bw-z-20",
+      "parsed_identity": "20",
+      "parse_source": "external_id",
+      "parsed_identity_sources": [
+        "external_id"
+      ],
+      "identity_domain_candidate": "pokemon_eng_special_print",
+      "classification_status": "READY_DOMAIN_CLASSIFIED",
+      "evidence_basis": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ],
+      "exact_evidence_used": [
+        {
+          "field": "sets.code",
+          "value": "tk-bw-z",
+          "reason": "explicit Trainer Kit set-code family"
+        },
+        {
+          "field": "sets.name",
+          "value": "BW trainer Kit (Zoroark)",
+          "reason": "explicit Trainer Kit naming"
+        },
+        {
+          "field": "sets.printed_set_abbrev",
+          "value": "TK",
+          "reason": "explicit Trainer Kit printed set abbreviation"
+        }
+      ]
+    }
+  ]
+}

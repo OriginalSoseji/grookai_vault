@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "REMOTE_PGCRYPTO_REPAIR_V1",
+  "push_succeeded": false,
+  "applied_migrations": [
+    "20260402100000",
+    "20260402100001",
+    "20260402100002",
+    "20260402100003"
+  ],
+  "missing_migrations": [
+    "20260402100004",
+    "20260402100005",
+    "20260402100006",
+    "20260402100007",
+    "20260402100008"
+  ],
+  "pgcrypto_present": true,
+  "card_print_identity_exists": true,
+  "hash_function_exists": true,
+  "remote_identity_row_count": 0,
+  "remote_ba_card_print_count": 0,
+  "remote_ba_identity_row_count": 0,
+  "remote_tcg_pocket_identity_row_count": 0,
+  "external_mappings_anchor_changed": false,
+  "gv_id_storage_changed": false,
+  "push_blocker": {
+    "migration": "20260402100004__card_print_identity_backfill.sql",
+    "sqlstate": "P0001",
+    "error": "card_print_identity backfill blocked: 10620 rows are not classifiable under Phase 8 approved domains; reasons=[{\"row_count\": 10620, \"block_reason\": \"MISSING_PRINTED_NUMBER\"}]"
+  },
+  "statement": "The pgcrypto/search-path repair succeeded and allowed 20260402100002 plus 20260402100003 to apply remotely. The remote rollout then stopped lawfully at a new backfill-classification blocker in 20260402100004."
+}

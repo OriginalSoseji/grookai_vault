@@ -1,0 +1,2554 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "NULL_PARENT_AUDIT_V1",
+  "source_surface": "remote_current_canon_read_only",
+  "null_parent_count": 11758,
+  "missing_number_count": 11790,
+  "sample_rows": [
+    {
+      "id": "a06df0a7-1f4e-4144-929f-6b6e0a9817a1",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+      "set_code": null,
+      "name": "_____'s Pikachu",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "369fa0c6-b03b-40f8-83b4-1ba59c93bb20",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": null,
+      "name": "Aaron's Collection",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "065eb731-65b2-4ebd-ab1a-e87afc0bf6fa",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "41a84304-4bf5-47e4-a733-fff2224300e4",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "5ca511db-2d5e-4fc6-b74b-4498c1239331",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "7a0034dc-d495-4423-8e54-dd43dc9eb4c9",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c58341d2-900f-40ec-898f-768d7b836229",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "912d1115-124a-4d90-8c96-2f69baa7cbc2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "9764de93-8ddf-4f91-9ef1-fe5289d35d07",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "83cdb2aa-b7bd-4935-b5be-180ba0b094ff",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "9f4e2a0f-ecc4-4670-bcae-0aa8a7e5503f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "b982f4ca-0fbb-4519-866a-00e2725018c2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "d21677bf-60b0-4c27-a0df-731983c8d016",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "da22b2f1-ae50-4f92-95ba-127dfba8652e",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "fe6d719a-7af2-485f-8a1f-a2fbb6f937ad",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "set_code": null,
+      "name": "Abomasnow",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "831ea01a-9756-44dd-ba5e-7d836b299200",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "40623fdb-11f2-407a-b6c7-0b60cf543d70",
+      "set_code": null,
+      "name": "Abra",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "d8288a16-8dfc-4b37-affa-bb64607ba28e",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "set_code": null,
+      "name": "Abra",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "dc34875d-6ccd-4568-9921-63d75593bc9c",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+      "set_code": null,
+      "name": "Abra",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "f73cbbb6-bf96-42b0-91b6-ab877974695d",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+      "set_code": null,
+      "name": "Abra",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "0a325e0b-5ebe-476b-b4a9-76f35ed3d709",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d4f58a11-da4c-4a4c-b0d5-8f1f5313d8fd",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "2457096b-3789-40e2-96f6-0ba3735e7f62",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "e3a888ee-42ab-4a49-b856-b485f16a4306",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "3c203018-7eec-4eed-927f-376fa584bd25",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "52a15d52-18a9-4e49-bd77-b69966285635",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "476792ee-cab4-4166-9f65-2a05b839d154",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "4ace4c3d-8a5b-4a4c-82dc-d8859ec9d835",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "563b588c-26db-4580-acdd-5310933e9d0c",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "5c170d09-80b3-4537-a8fa-00e300931c1b",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "7367eea1-5eb0-490f-81a9-42047f612ea8",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "7eaba265-9bcc-4db1-ac7a-4b68e83e8fe9",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "864da462-ade7-4f29-bd34-799faa4195c1",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "86cf8c13-b729-41d4-9a30-900a5e427eef",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "a0f5a612-7ea0-4977-a708-e79491851467",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "406a7484-f633-415c-a1ef-abd79db5833b",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "ccf08cbd-e840-4d42-983f-b3cb1c9694f8",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "set_code": null,
+      "name": "Absol",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "880bf738-91f8-44f0-9026-5517058e9cbe",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": null,
+      "name": "Absol EX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "250ad168-0274-4a31-a800-73b0301e5422",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+      "set_code": null,
+      "name": "Absol G",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+      "set_code": null,
+      "name": "Absol G",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "ecc81df3-ff07-42d2-a5e5-bc0ed81ec4b0",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "406a7484-f633-415c-a1ef-abd79db5833b",
+      "set_code": null,
+      "name": "Academy at Night",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "2c38ef0a-b96c-48db-9178-2cc62df1d506",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "f7c6de96-8e34-4c36-9efc-6848021ba6c0",
+      "set_code": null,
+      "name": "Accelgor",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "6f32ae81-42fa-4cad-b350-68c3e7d8b59f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+      "set_code": null,
+      "name": "Accelgor",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "a2c5c482-6b9f-4988-b8c4-0c6444fdc9a1",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+      "set_code": null,
+      "name": "Accelgor",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "f247790c-7493-4d29-bea6-754b049cc1da",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "set_code": null,
+      "name": "Accelgor",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "fecc8217-cd72-4daa-a480-de9929020eb8",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "set_code": null,
+      "name": "Accelgor",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "36145466-8dc7-4158-bb4e-fe7d3d98ddfd",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "set_code": null,
+      "name": "Accompanying Flute",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "68528d89-7424-4036-aa63-a4cdd8744e88",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+      "set_code": null,
+      "name": "Ace Trainer",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "7553b519-422a-4b87-8d76-06d1276a5f6f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "52a15d52-18a9-4e49-bd77-b69966285635",
+      "set_code": null,
+      "name": "Acerola",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "881a9cc3-0205-49ad-a70b-b2cb328cb7ea",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "set_code": null,
+      "name": "Acerola",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "f781c285-0252-464f-a252-d7f65b042505",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "set_code": null,
+      "name": "Acerola",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "1be64098-290f-4004-8acb-f180309ba246",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "25a68e56-57fd-430e-a21a-3ec1ac2fcf19",
+      "set_code": null,
+      "name": "Acerola's Mischief",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "213ce85e-768b-4d83-8fa3-657f821a1810",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "set_code": null,
+      "name": "Acerola's Mischief",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "4277e379-4b8d-41fc-b6a3-d184667e14ed",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "set_code": null,
+      "name": "Acerola's Mischief",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "c1d8ccfa-85d2-4bf7-861b-d5288e0f1deb",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "set_code": null,
+      "name": "Acerola's Mischief",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "6cf5476d-126b-4563-ab85-04986f8eb156",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "set_code": null,
+      "name": "Acerola's Premonition",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "dbfd9db2-dd68-44f1-92da-06e322ecf9a9",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "set_code": null,
+      "name": "Acerola's Premonition",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "868a5b87-e67b-4237-8896-f9477135374f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "set_code": null,
+      "name": "Acro Bike",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "a073b00d-ba2c-4e6f-9fc7-8cb932acf4ab",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+      "set_code": null,
+      "name": "Acro Bike",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "adc75045-97a6-4cfd-add8-3040c45ce687",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "6506163a-6046-4086-97a4-13f702bd6503",
+      "set_code": null,
+      "name": "Acro Bike",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "bb8bd63d-af25-4517-a9d2-a4a1aa130963",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "set_code": null,
+      "name": "Acro Bike",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "cd3c6a91-dd94-42ef-94ff-eb0e1f80fbe9",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+      "set_code": null,
+      "name": "Acro Bike",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "08b4e819-8c65-4e5e-bdc6-5db9d8cb4472",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c58341d2-900f-40ec-898f-768d7b836229",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "4aecb0da-1ee1-4366-89f7-db53ac4b32a4",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "4b30c56f-6e8a-4b1c-a4ec-517c15ee2354",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "c58341d2-900f-40ec-898f-768d7b836229",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "72e72d69-e6a1-47c3-a43d-9038e46a5bd2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "8e4b0bca-c9a6-41d4-be4c-6e60ad869c0f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "93c92af4-ca61-479f-9a5c-99937f032ce5",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "set_code": null,
+      "name": "Adaman",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "3a68e274-180d-4216-9242-19b5da2bfcb2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "set_code": null,
+      "name": "Adventure Bag",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "52f12707-3e0a-4a40-b5a8-8a15b70f0e46",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "set_code": null,
+      "name": "Adventure Bag",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "a9980d1b-47a6-4705-96ef-e56de17a92a9",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "set_code": null,
+      "name": "Adventurer's Discovery",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "ba725352-0423-4962-95b5-11bc6dbb2d06",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+      "set_code": null,
+      "name": "Adventurer's Discovery",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "47ae485b-2bb1-4954-ad96-5d8973a787f8",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": null,
+      "name": "Aegislash",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "51231dbc-9c88-4909-a745-62af962cac58",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+      "set_code": null,
+      "name": "Aegislash",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "725701db-cc58-4fea-9e6e-e7c1a45b716a",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": null,
+      "name": "Aegislash",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "e04560e1-0f75-48e3-9030-88ddfaaccac5",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "set_code": null,
+      "name": "Aegislash",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "9986d5f9-de55-4980-84e1-b1996fc8d7d3",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": null,
+      "name": "Aegislash ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "e41af040-c092-4735-a780-1f548386bcbc",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "set_code": null,
+      "name": "Aegislash ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "21840232-9191-4566-8e3e-046f74841288",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+      "set_code": null,
+      "name": "Aegislash EX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+      "set_code": null,
+      "name": "Aegislash EX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "3e75b6ef-18f5-4c10-852e-60351bb866f4",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "set_code": null,
+      "name": "Aerodactyl",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "ce3395b9-b37c-4bfc-a675-816c244434ad",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+      "set_code": null,
+      "name": "Aerodactyl",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "set_code": null,
+      "name": "Aerodactyl",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "0e915001-674c-46c4-9d05-f793b44ce60d",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+      "set_code": null,
+      "name": "Aerodactyl ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "1370621a-c89d-4700-be75-275b400e6fb5",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+      "set_code": null,
+      "name": "Aerodactyl ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "172c97ad-710e-41ca-b117-083505a8a9f5",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+      "set_code": null,
+      "name": "Aerodactyl ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "576946b5-8ab3-49c2-8d7b-eaa50e7f822d",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "set_code": null,
+      "name": "Aerodactyl ex",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "4f7b83ca-6291-4f21-bc09-add8bb57e266",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": null,
+      "name": "Aerodactyl EX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "e9be6840-f40e-42ab-937d-4f6a0a2e7556",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": null,
+      "name": "Aerodactyl GL",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "86c53fb1-6843-4210-a076-5079b7fdaa3b",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "36779186-1b7c-41b2-8409-c6db6a2b0707",
+      "set_code": null,
+      "name": "Aerodactyl GX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "c3b07f58-8f7c-482d-a17a-79762a726e0d",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "36779186-1b7c-41b2-8409-c6db6a2b0707",
+      "set_code": null,
+      "name": "Aerodactyl GX",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "1249a02b-daa7-459f-9ff6-e2a84a4cf668",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "set_code": null,
+      "name": "Aerodactyl Spirit Link",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "84e18ed4-71a3-4da0-bb29-142778d1af97",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "set_code": null,
+      "name": "Aerodactyl V",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "ff169139-9bf9-49e5-92b3-a18385ecdace",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "set_code": null,
+      "name": "Aerodactyl V",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "39aa5368-0715-46cf-b906-acecf9fc4666",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "set_code": null,
+      "name": "Aerodactyl VSTAR",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "03c66f84-6a8c-46b1-af27-368341257b91",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "565f8f35-e3dc-4ad1-9696-1203fdebb5cd",
+      "set_code": null,
+      "name": "Aether Foundation Employee",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "93d68875-5ec0-45c7-98f4-7e7551dbad6a",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "set_code": null,
+      "name": "Aether Foundation Employee",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "1ca0d3f5-ad88-4b5e-8ce3-78cc1637cb76",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "set_code": null,
+      "name": "Aether Paradise Conservation Area",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "c3a731dd-472b-4a95-918e-36c5c8ce73dc",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "565f8f35-e3dc-4ad1-9696-1203fdebb5cd",
+      "set_code": null,
+      "name": "Aether Paradise Conservation Area",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "19b8beb9-6a2e-4281-9ce9-7b8c7e98c205",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "1c44c4d1-23f8-4b8d-ae82-b7edd8105965",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "6958fc04-24e6-45ff-b729-b0119353f734",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "560fde08-0ef0-489d-b8f7-ee0d994cd070",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "6ce53784-efaf-40ab-94c3-99786cd401a6",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "c29745ed-991f-44ac-bca8-984cadda0b79",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "c44df605-03a4-45ba-bcc0-1dbec0019c97",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "d434ca66-ddec-4676-85fe-c949312fbcf0",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "set_code": null,
+      "name": "Aggron",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    },
+    {
+      "id": "a9eac4c5-a178-4b7c-9050-9d212f4933cf",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "set_code": null,
+      "name": "Aggron V",
+      "number": null,
+      "number_plain": null,
+      "variant_key": "",
+      "gv_id": null
+    }
+  ],
+  "shape_breakdown": [
+    {
+      "has_game_id": true,
+      "has_set_id": true,
+      "has_name": true,
+      "has_gv_id": false,
+      "row_count": 11758
+    }
+  ],
+  "set_resolution_breakdown": [
+    {
+      "set_id": "25a68e56-57fd-430e-a21a-3ec1ac2fcf19",
+      "joined_set_code": "me02.5",
+      "set_name": "Ascended Heroes",
+      "domain": null,
+      "row_count": 295
+    },
+    {
+      "set_id": "ba3e2934-838e-4776-b75f-b0ea052c98f8",
+      "joined_set_code": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "domain": null,
+      "row_count": 271
+    },
+    {
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "joined_set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "domain": null,
+      "row_count": 266
+    },
+    {
+      "set_id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+      "joined_set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "domain": null,
+      "row_count": 252
+    },
+    {
+      "set_id": "a5d23236-cf3b-4511-a982-f0d111c88154",
+      "joined_set_code": "sv04.5",
+      "set_name": "Paldean Fates",
+      "domain": null,
+      "row_count": 245
+    },
+    {
+      "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "joined_set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "domain": null,
+      "row_count": 245
+    },
+    {
+      "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+      "joined_set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "domain": null,
+      "row_count": 244
+    },
+    {
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "joined_set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "domain": null,
+      "row_count": 244
+    },
+    {
+      "set_id": "e3a888ee-42ab-4a49-b856-b485f16a4306",
+      "joined_set_code": "A4",
+      "set_name": "Wisdom of Sea and Sky",
+      "domain": "tcg_pocket",
+      "row_count": 241
+    },
+    {
+      "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+      "joined_set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "domain": null,
+      "row_count": 237
+    },
+    {
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "joined_set_code": "sm8",
+      "set_name": "Lost Thunder",
+      "domain": null,
+      "row_count": 236
+    },
+    {
+      "set_id": "6958fc04-24e6-45ff-b729-b0119353f734",
+      "joined_set_code": "sm10",
+      "set_name": "Unbroken Bonds",
+      "domain": null,
+      "row_count": 234
+    },
+    {
+      "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+      "joined_set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "domain": null,
+      "row_count": 231
+    },
+    {
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "joined_set_code": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "domain": null,
+      "row_count": 230
+    },
+    {
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "joined_set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "domain": null,
+      "row_count": 226
+    },
+    {
+      "set_id": "52a15d52-18a9-4e49-bd77-b69966285635",
+      "joined_set_code": "A3",
+      "set_name": "Celestial Guardians",
+      "domain": "tcg_pocket",
+      "row_count": 214
+    },
+    {
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "joined_set_code": "xyp",
+      "set_name": "XY Black Star Promos",
+      "domain": null,
+      "row_count": 213
+    },
+    {
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "joined_set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "domain": null,
+      "row_count": 207
+    },
+    {
+      "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+      "joined_set_code": "swsh4.5",
+      "set_name": "Shining Fates",
+      "domain": null,
+      "row_count": 195
+    },
+    {
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "joined_set_code": "sv09",
+      "set_name": "Journey Together",
+      "domain": null,
+      "row_count": 190
+    },
+    {
+      "set_id": "83cdb2aa-b7bd-4935-b5be-180ba0b094ff",
+      "joined_set_code": "A2",
+      "set_name": "Space-Time Smackdown",
+      "domain": "tcg_pocket",
+      "row_count": 186
+    },
+    {
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "joined_set_code": "sm7",
+      "set_name": "Celestial Storm",
+      "domain": null,
+      "row_count": 183
+    },
+    {
+      "set_id": "793968d5-d686-47fd-8a6a-7dc088d5a4ea",
+      "joined_set_code": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "domain": null,
+      "row_count": 180
+    },
+    {
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "joined_set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "domain": null,
+      "row_count": 175
+    },
+    {
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "joined_set_code": "sm5",
+      "set_name": "Ultra Prism",
+      "domain": null,
+      "row_count": 173
+    },
+    {
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "joined_set_code": "sm2",
+      "set_name": "Guardians Rising",
+      "domain": null,
+      "row_count": 169
+    },
+    {
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "joined_set_code": "sm3",
+      "set_name": "Burning Shadows",
+      "domain": null,
+      "row_count": 169
+    },
+    {
+      "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+      "joined_set_code": "xy8",
+      "set_name": "BREAKthrough",
+      "domain": null,
+      "row_count": 165
+    },
+    {
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "joined_set_code": "me01",
+      "set_name": "Mega Evolution",
+      "domain": null,
+      "row_count": 164
+    },
+    {
+      "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d",
+      "joined_set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "domain": null,
+      "row_count": 152
+    },
+    {
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "joined_set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "domain": null,
+      "row_count": 148
+    },
+    {
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "joined_set_code": "sm6",
+      "set_name": "Forbidden Light",
+      "domain": null,
+      "row_count": 146
+    },
+    {
+      "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+      "joined_set_code": "bw11",
+      "set_name": "Legendary Treasures",
+      "domain": null,
+      "row_count": 140
+    },
+    {
+      "set_id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+      "joined_set_code": "bw8",
+      "set_name": "Plasma Storm",
+      "domain": null,
+      "row_count": 138
+    },
+    {
+      "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+      "joined_set_code": "pl1",
+      "set_name": "Platinum",
+      "domain": null,
+      "row_count": 133
+    },
+    {
+      "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+      "joined_set_code": "xy10",
+      "set_name": "Fates Collide",
+      "domain": null,
+      "row_count": 129
+    },
+    {
+      "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+      "joined_set_code": "xy9",
+      "set_name": "BREAKpoint",
+      "domain": null,
+      "row_count": 126
+    },
+    {
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "joined_set_code": "sm4",
+      "set_name": "Crimson Invasion",
+      "domain": null,
+      "row_count": 125
+    },
+    {
+      "set_id": "0e1365e3-04d5-4300-9973-9696ae6b6fa4",
+      "joined_set_code": "xy4",
+      "set_name": "Phantom Forces",
+      "domain": null,
+      "row_count": 124
+    },
+    {
+      "set_id": "a18ad494-23b6-40dc-9bf5-721f5feb76a3",
+      "joined_set_code": "bw9",
+      "set_name": "Plasma Freeze",
+      "domain": null,
+      "row_count": 122
+    },
+    {
+      "set_id": "1b4f553a-f12c-4616-bead-ac5081865492",
+      "joined_set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "domain": null,
+      "row_count": 120
+    },
+    {
+      "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f",
+      "joined_set_code": "ex10",
+      "set_name": "Unseen Forces",
+      "domain": null,
+      "row_count": 117
+    },
+    {
+      "set_id": "12c27a1b-fd89-46d8-8ea9-a93014c3b439",
+      "joined_set_code": "g1",
+      "set_name": "Generations",
+      "domain": null,
+      "row_count": 117
+    },
+    {
+      "set_id": "f7c6de96-8e34-4c36-9efc-6848021ba6c0",
+      "joined_set_code": "xy3",
+      "set_name": "Furious Fists",
+      "domain": null,
+      "row_count": 114
+    },
+    {
+      "set_id": "c325efcd-9d01-4d5d-b7f4-11855b399b95",
+      "joined_set_code": "xy6",
+      "set_name": "Roaring Skies",
+      "domain": null,
+      "row_count": 112
+    },
+    {
+      "set_id": "40623fdb-11f2-407a-b6c7-0b60cf543d70",
+      "joined_set_code": "A2b",
+      "set_name": "Shining Revelry",
+      "domain": "tcg_pocket",
+      "row_count": 111
+    },
+    {
+      "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+      "joined_set_code": "pl4",
+      "set_name": "Arceus",
+      "domain": null,
+      "row_count": 111
+    },
+    {
+      "set_id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+      "joined_set_code": "lc",
+      "set_name": "Legendary Collection",
+      "domain": null,
+      "row_count": 110
+    },
+    {
+      "set_id": "10256f30-684c-4367-a89a-5a8678284c93",
+      "joined_set_code": "xy2",
+      "set_name": "Flashfire",
+      "domain": null,
+      "row_count": 110
+    },
+    {
+      "set_id": "3c9357af-18e8-4bd4-b2d8-6a69b72f051b",
+      "joined_set_code": "A3b",
+      "set_name": "Eevee Grove",
+      "domain": "tcg_pocket",
+      "row_count": 107
+    },
+    {
+      "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d",
+      "joined_set_code": "col1",
+      "set_name": "Call of Legends",
+      "domain": null,
+      "row_count": 106
+    },
+    {
+      "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+      "joined_set_code": "dp7",
+      "set_name": "Stormfront",
+      "domain": null,
+      "row_count": 106
+    },
+    {
+      "set_id": "a3e7cb46-2954-41b3-9d3e-691bacdcc3ab",
+      "joined_set_code": "A4a",
+      "set_name": "Secluded Springs",
+      "domain": "tcg_pocket",
+      "row_count": 105
+    },
+    {
+      "set_id": "a739c29e-eb6a-4421-8275-0c355968ebc0",
+      "joined_set_code": "bw10",
+      "set_name": "Plasma Blast",
+      "domain": null,
+      "row_count": 105
+    },
+    {
+      "set_id": "d825c399-aa4c-4a98-8290-df15df8c498d",
+      "joined_set_code": "A3a",
+      "set_name": "Extradimensional Crisis",
+      "domain": null,
+      "row_count": 103
+    },
+    {
+      "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+      "joined_set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "domain": null,
+      "row_count": 101
+    },
+    {
+      "set_id": "e5a95b51-a6b4-4c2e-8fda-88afecf2cff7",
+      "joined_set_code": "xy7",
+      "set_name": "Ancient Origins",
+      "domain": null,
+      "row_count": 101
+    },
+    {
+      "set_id": "9d42f9e7-972c-458f-b770-aba7e6cb4111",
+      "joined_set_code": "P-A",
+      "set_name": "Promos-A",
+      "domain": null,
+      "row_count": 100
+    },
+    {
+      "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "joined_set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "domain": null,
+      "row_count": 99
+    },
+    {
+      "set_id": "406a7484-f633-415c-a1ef-abd79db5833b",
+      "joined_set_code": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "domain": null,
+      "row_count": 99
+    },
+    {
+      "set_id": "c58341d2-900f-40ec-898f-768d7b836229",
+      "joined_set_code": "A2a",
+      "set_name": "Triumphant Light",
+      "domain": "tcg_pocket",
+      "row_count": 96
+    },
+    {
+      "set_id": "565f8f35-e3dc-4ad1-9696-1203fdebb5cd",
+      "joined_set_code": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "domain": null,
+      "row_count": 94
+    },
+    {
+      "set_id": "f500a330-334c-405c-849a-479f5f117b40",
+      "joined_set_code": "swsh10.5",
+      "set_name": "Pokémon GO",
+      "domain": null,
+      "row_count": 88
+    },
+    {
+      "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+      "joined_set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "domain": null,
+      "row_count": 84
+    },
+    {
+      "set_id": "d4f58a11-da4c-4a4c-b0d5-8f1f5313d8fd",
+      "joined_set_code": "swsh3.5",
+      "set_name": "Champion's Path",
+      "domain": null,
+      "row_count": 80
+    },
+    {
+      "set_id": "3c75028f-5798-4271-b390-ab040e76346c",
+      "joined_set_code": "sm3.5",
+      "set_name": "Shining Legends",
+      "domain": null,
+      "row_count": 78
+    },
+    {
+      "set_id": "f672abd1-37b3-4d45-aa5d-14a38166d9b4",
+      "joined_set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "domain": null,
+      "row_count": 78
+    },
+    {
+      "set_id": "6f9ad412-3846-4d2f-a4d2-b74e10564b05",
+      "joined_set_code": "A1a",
+      "set_name": "Mythical Island",
+      "domain": "tcg_pocket",
+      "row_count": 77
+    },
+    {
+      "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+      "joined_set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "domain": null,
+      "row_count": 73
+    },
+    {
+      "set_id": "36779186-1b7c-41b2-8409-c6db6a2b0707",
+      "joined_set_code": "sm11",
+      "set_name": "Unified Minds",
+      "domain": null,
+      "row_count": 58
+    },
+    {
+      "set_id": "928b540a-49ea-4eb5-8a21-21361dd7c709",
+      "joined_set_code": "cel25",
+      "set_name": "Celebrations",
+      "domain": null,
+      "row_count": 51
+    },
+    {
+      "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552",
+      "joined_set_code": "ecard2",
+      "set_name": "Aquapolis",
+      "domain": null,
+      "row_count": 42
+    },
+    {
+      "set_id": "a68e47d4-8c29-43d2-ade1-728cbefce64c",
+      "joined_set_code": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "domain": null,
+      "row_count": 40
+    },
+    {
+      "set_id": "fa881265-2216-496a-ab73-854cd28370ca",
+      "joined_set_code": "dc1",
+      "set_name": "Double Crisis",
+      "domain": null,
+      "row_count": 34
+    },
+    {
+      "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+      "joined_set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "domain": null,
+      "row_count": 33
+    },
+    {
+      "set_id": "80b80cb4-6609-41fe-8d7b-15c433429e45",
+      "joined_set_code": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "b7ac4bf6-15f4-42d6-bf81-b53671c630c0",
+      "joined_set_code": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "9bf207c2-aaca-4b7f-885f-8fe108e55b79",
+      "joined_set_code": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "159fab32-84d5-4f10-b869-3d4fb67dbe39",
+      "joined_set_code": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "6506163a-6046-4086-97a4-13f702bd6503",
+      "joined_set_code": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "3e464f2c-d099-47b5-8f44-caa19c2a812c",
+      "joined_set_code": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "36988564-89a6-4804-a600-f98b11f70c92",
+      "joined_set_code": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "dca52b9b-8d8c-4ca9-8462-da648734db06",
+      "joined_set_code": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "2c523cdb-a00e-4b31-880e-1fac250dcc3e",
+      "joined_set_code": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "e3ec3672-e798-42e6-bc5c-2898bd596995",
+      "joined_set_code": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "domain": null,
+      "row_count": 30
+    },
+    {
+      "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5",
+      "joined_set_code": "ecard3",
+      "set_name": "Skyridge",
+      "domain": null,
+      "row_count": 27
+    },
+    {
+      "set_id": "5cee03bf-3a29-49f8-a09e-33ed9228cf7d",
+      "joined_set_code": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "domain": null,
+      "row_count": 27
+    },
+    {
+      "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+      "joined_set_code": "2021swsh",
+      "set_name": "Macdonald's Collection 2021",
+      "domain": null,
+      "row_count": 25
+    },
+    {
+      "set_id": "26da979a-6233-4a52-851e-e18b789d85a8",
+      "joined_set_code": "hgssp",
+      "set_name": "HGSS Black Star Promos",
+      "domain": null,
+      "row_count": 25
+    },
+    {
+      "set_id": "63e87275-5795-4ed0-918b-fbf62e5457ce",
+      "joined_set_code": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "domain": null,
+      "row_count": 19
+    },
+    {
+      "set_id": "35a381af-0a89-4982-9db9-3b091565ff2d",
+      "joined_set_code": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "domain": null,
+      "row_count": 18
+    },
+    {
+      "set_id": "f1adff7b-86f3-4176-87ac-66e03da2ebe4",
+      "joined_set_code": "pop1",
+      "set_name": "POP Series 1",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "b754d3c1-6de2-4111-89d3-50a1e52cf2cd",
+      "joined_set_code": "pop2",
+      "set_name": "POP Series 2",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "b34b238c-25c4-440b-831d-a54aa26cbcbc",
+      "joined_set_code": "pop3",
+      "set_name": "POP Series 3",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "98819a28-03c4-40ba-b144-48fba1dc54c1",
+      "joined_set_code": "pop4",
+      "set_name": "POP Series 4",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "23dbe4da-e3f9-4459-a999-fb6de879dba9",
+      "joined_set_code": "pop5",
+      "set_name": "POP Series 5",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "a80f4713-0504-4227-967f-cb1b65593eaa",
+      "joined_set_code": "pop6",
+      "set_name": "POP Series 6",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "e0b8c48d-0f91-42df-90c2-7c89d68a5341",
+      "joined_set_code": "pop7",
+      "set_name": "POP Series 7",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "1a48c646-6073-4809-93b3-76c3d75c8cb4",
+      "joined_set_code": "pop8",
+      "set_name": "POP Series 8",
+      "domain": null,
+      "row_count": 17
+    },
+    {
+      "set_id": "19e252cc-f337-4a0d-9407-dee251cf8d43",
+      "joined_set_code": "pop9",
+      "set_name": "POP Series 9",
+      "domain": null,
+      "row_count": 17
+    }
+  ],
+  "name_state_breakdown": [
+    {
+      "name_state": "NAME_PRESENT",
+      "row_count": 11758
+    }
+  ],
+  "top_names": [
+    {
+      "name": "Pikachu",
+      "row_count": 73
+    },
+    {
+      "name": "Eevee",
+      "row_count": 46
+    },
+    {
+      "name": "Unown",
+      "row_count": 35
+    },
+    {
+      "name": "Riolu",
+      "row_count": 29
+    },
+    {
+      "name": "Potion",
+      "row_count": 28
+    },
+    {
+      "name": "Fighting Energy",
+      "row_count": 27
+    },
+    {
+      "name": "Fairy Energy",
+      "row_count": 25
+    },
+    {
+      "name": "Magnemite",
+      "row_count": 25
+    },
+    {
+      "name": "Darkness Energy",
+      "row_count": 24
+    },
+    {
+      "name": "Lucario",
+      "row_count": 23
+    },
+    {
+      "name": "Raichu",
+      "row_count": 23
+    },
+    {
+      "name": "Psychic Energy",
+      "row_count": 22
+    },
+    {
+      "name": "Snorlax",
+      "row_count": 22
+    },
+    {
+      "name": "Exeggcute",
+      "row_count": 20
+    },
+    {
+      "name": "Magneton",
+      "row_count": 20
+    },
+    {
+      "name": "Oricorio",
+      "row_count": 20
+    },
+    {
+      "name": "Shaymin",
+      "row_count": 20
+    },
+    {
+      "name": "Kirlia",
+      "row_count": 19
+    },
+    {
+      "name": "Lightning Energy",
+      "row_count": 19
+    },
+    {
+      "name": "Ralts",
+      "row_count": 19
+    },
+    {
+      "name": "Charmander",
+      "row_count": 18
+    },
+    {
+      "name": "Clefairy",
+      "row_count": 18
+    },
+    {
+      "name": "Gyarados",
+      "row_count": 18
+    },
+    {
+      "name": "Metal Energy",
+      "row_count": 18
+    },
+    {
+      "name": "Rotom",
+      "row_count": 18
+    },
+    {
+      "name": "Shinx",
+      "row_count": 18
+    },
+    {
+      "name": "Swablu",
+      "row_count": 18
+    },
+    {
+      "name": "Altaria",
+      "row_count": 17
+    },
+    {
+      "name": "Fletchling",
+      "row_count": 17
+    },
+    {
+      "name": "Latios",
+      "row_count": 17
+    },
+    {
+      "name": "Magikarp",
+      "row_count": 17
+    },
+    {
+      "name": "Piplup",
+      "row_count": 17
+    },
+    {
+      "name": "Rockruff",
+      "row_count": 17
+    },
+    {
+      "name": "Torchic",
+      "row_count": 17
+    },
+    {
+      "name": "Flareon",
+      "row_count": 16
+    },
+    {
+      "name": "Froakie",
+      "row_count": 16
+    },
+    {
+      "name": "Heatran",
+      "row_count": 16
+    },
+    {
+      "name": "Lycanroc",
+      "row_count": 16
+    },
+    {
+      "name": "Rowlet",
+      "row_count": 16
+    },
+    {
+      "name": "Slowpoke",
+      "row_count": 16
+    },
+    {
+      "name": "Spiritomb",
+      "row_count": 16
+    },
+    {
+      "name": "Tangela",
+      "row_count": 16
+    },
+    {
+      "name": "Tangrowth",
+      "row_count": 16
+    },
+    {
+      "name": "Treecko",
+      "row_count": 16
+    },
+    {
+      "name": "Vaporeon",
+      "row_count": 16
+    },
+    {
+      "name": "Water Energy",
+      "row_count": 16
+    },
+    {
+      "name": "Bronzong",
+      "row_count": 15
+    },
+    {
+      "name": "Charmeleon",
+      "row_count": 15
+    },
+    {
+      "name": "Clefable",
+      "row_count": 15
+    },
+    {
+      "name": "Dedenne",
+      "row_count": 15
+    },
+    {
+      "name": "Electabuzz",
+      "row_count": 15
+    },
+    {
+      "name": "Exeggutor",
+      "row_count": 15
+    },
+    {
+      "name": "Gastly",
+      "row_count": 15
+    },
+    {
+      "name": "Gible",
+      "row_count": 15
+    },
+    {
+      "name": "Houndoom",
+      "row_count": 15
+    },
+    {
+      "name": "Jolteon",
+      "row_count": 15
+    },
+    {
+      "name": "Lapras",
+      "row_count": 15
+    },
+    {
+      "name": "Luxio",
+      "row_count": 15
+    },
+    {
+      "name": "Meowth",
+      "row_count": 15
+    },
+    {
+      "name": "Misdreavus",
+      "row_count": 15
+    },
+    {
+      "name": "Murkrow",
+      "row_count": 15
+    },
+    {
+      "name": "Noibat",
+      "row_count": 15
+    },
+    {
+      "name": "Snorunt",
+      "row_count": 15
+    },
+    {
+      "name": "Arcanine",
+      "row_count": 14
+    },
+    {
+      "name": "Chimchar",
+      "row_count": 14
+    },
+    {
+      "name": "Drifloon",
+      "row_count": 14
+    },
+    {
+      "name": "Electrike",
+      "row_count": 14
+    },
+    {
+      "name": "Entei",
+      "row_count": 14
+    },
+    {
+      "name": "Growlithe",
+      "row_count": 14
+    },
+    {
+      "name": "Jynx",
+      "row_count": 14
+    },
+    {
+      "name": "Machop",
+      "row_count": 14
+    },
+    {
+      "name": "Magnezone",
+      "row_count": 14
+    },
+    {
+      "name": "Manaphy",
+      "row_count": 14
+    },
+    {
+      "name": "Mawile",
+      "row_count": 14
+    },
+    {
+      "name": "Mimikyu",
+      "row_count": 14
+    },
+    {
+      "name": "Ninetales",
+      "row_count": 14
+    },
+    {
+      "name": "Porygon",
+      "row_count": 14
+    },
+    {
+      "name": "Purrloin",
+      "row_count": 14
+    },
+    {
+      "name": "Sneasel",
+      "row_count": 14
+    },
+    {
+      "name": "Voltorb",
+      "row_count": 14
+    },
+    {
+      "name": "Vulpix",
+      "row_count": 14
+    },
+    {
+      "name": "Zorua",
+      "row_count": 14
+    },
+    {
+      "name": "Absol",
+      "row_count": 13
+    },
+    {
+      "name": "Arceus",
+      "row_count": 13
+    },
+    {
+      "name": "Articuno",
+      "row_count": 13
+    },
+    {
+      "name": "Bronzor",
+      "row_count": 13
+    },
+    {
+      "name": "Bulbasaur",
+      "row_count": 13
+    },
+    {
+      "name": "Croagunk",
+      "row_count": 13
+    },
+    {
+      "name": "Dusknoir",
+      "row_count": 13
+    },
+    {
+      "name": "Electrode",
+      "row_count": 13
+    },
+    {
+      "name": "Gengar",
+      "row_count": 13
+    },
+    {
+      "name": "Giratina",
+      "row_count": 13
+    },
+    {
+      "name": "Haunter",
+      "row_count": 13
+    },
+    {
+      "name": "Heliolisk",
+      "row_count": 13
+    },
+    {
+      "name": "Helioptile",
+      "row_count": 13
+    },
+    {
+      "name": "Jigglypuff",
+      "row_count": 13
+    },
+    {
+      "name": "Koffing",
+      "row_count": 13
+    },
+    {
+      "name": "Larvitar",
+      "row_count": 13
+    },
+    {
+      "name": "Litten",
+      "row_count": 13
+    },
+    {
+      "name": "Luxray",
+      "row_count": 13
+    }
+  ],
+  "reference_counts_by_surface": {
+    "non_zero_surfaces": [
+      {
+        "surface": "card_print_traits",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "external_mappings",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "v_card_pricing_ui_v1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_card_prints_web_v1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_grookai_value_v1_1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "card_printings",
+        "join_column": "card_print_id",
+        "referenced_rows": 11646,
+        "surface_type": "table_fk"
+      }
+    ],
+    "zero_count_surface_count": 37,
+    "total_surfaces_audited": 43,
+    "audited_surfaces": [
+      {
+        "surface": "ai_decision_logs",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "canon_warehouse_candidates",
+        "join_column": "promoted_card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_embeddings",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_interaction_outcomes",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_interactions",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_price_observations",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_price_rollups",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_price_ticks",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_prices",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_print_file_paths",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_print_identity",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_print_price_curves",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_print_traits",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_printings",
+        "join_column": "card_print_id",
+        "referenced_rows": 11646,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "card_signals",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "ebay_active_price_snapshots",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "ebay_active_prices_latest",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "external_discovery_candidates",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "external_mappings",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "identity_scan_selections",
+        "join_column": "selected_card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "justtcg_identity_overrides",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "justtcg_variant_price_snapshots",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "justtcg_variant_prices_latest",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "justtcg_variants",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "listings",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "market_prices",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "price_observations",
+        "join_column": "print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "prices",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "pricing_jobs",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "pricing_observations",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "pricing_watch",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "shared_cards",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "slab_certs",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "slab_provenance_events",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "user_card_photos",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "v_card_pricing_ui_v1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_card_prints_web_v1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_grookai_value_v1_1",
+        "join_column": "card_print_id",
+        "referenced_rows": 11758,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_latest_price",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "view"
+      },
+      {
+        "surface": "v_vault_items_web",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "view"
+      },
+      {
+        "surface": "vault_item_instances",
+        "join_column": "card_print_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "vault_items",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      },
+      {
+        "surface": "wishlist_items",
+        "join_column": "card_id",
+        "referenced_rows": 0,
+        "surface_type": "table_fk"
+      }
+    ]
+  },
+  "gvid_audit": {
+    "null_parent_with_gvid": 0,
+    "sample_rows": []
+  },
+  "provisional_classification_counts": [
+    {
+      "bucket": "REFERENCED_INCOMPLETE_PARENT",
+      "row_count": 10620
+    },
+    {
+      "bucket": "NONCANON_DOMAIN_INCOMPLETE",
+      "row_count": 1138
+    }
+  ],
+  "summary": {
+    "dominant_shape": "These are not blank stubs. Every null-parent row in this slice has game_id, set_id, and name populated, while set_code and number remain null. The supported-domain majority is best described as referenced incomplete parents with recoverable set linkage through set_id.",
+    "canonical_belonging_signal": "The surface is mixed. The 10620 supported-domain rows look like legacy CanonDB parents that remained structurally incomplete, while 1138 rows belong to explicitly excluded non-canonical tcg_pocket. As stored today, the whole null-parent surface is not healthy canonical inventory.",
+    "blast_radius_if_later_excluded_or_quarantined": "Blast radius appears high. All 11758 null-parent rows are already referenced by external_mappings and card_print_traits, and 11646 are also referenced by card_printings. Public/pricing views also surface all 11758 rows.",
+    "direct_answers": {
+      "are_they_mostly_orphan_stubs_partial_recoverable_or_referenced": "Mostly referenced incomplete parents. The supported slice resolves to real sets through set_id, and the remaining slice is explicitly non-canonical tcg_pocket.",
+      "do_they_appear_to_belong_in_canondb": "The supported slice likely belongs to legacy CanonDB history but is structurally incomplete; the tcg_pocket slice does not belong in CanonDB.",
+      "apparent_blast_radius": "High. Any later exclusion or quarantine would affect mappings, traits, card_printings, and multiple public/pricing views that currently resolve these parent ids."
+    }
+  }
+}

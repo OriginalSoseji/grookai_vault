@@ -1,0 +1,82 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:16:50.317Z",
+  "target": "remote",
+  "total_card_prints": {
+    "row_count": "2947"
+  },
+  "total_identity_rows": {
+    "row_count": "0"
+  },
+  "set_distribution": [
+    {
+      "set_code": "A4",
+      "name": "Wisdom of Sea and Sky",
+      "row_count": "482"
+    },
+    {
+      "set_code": "A3",
+      "name": "Celestial Guardians",
+      "row_count": "453"
+    },
+    {
+      "set_code": "A2",
+      "name": "Space-Time Smackdown",
+      "row_count": "393"
+    },
+    {
+      "set_code": "B1",
+      "name": "Mega Rising",
+      "row_count": "331"
+    },
+    {
+      "set_code": "A1",
+      "name": "Genetic Apex",
+      "row_count": "287"
+    },
+    {
+      "set_code": "A2b",
+      "name": "Shining Revelry",
+      "row_count": "222"
+    },
+    {
+      "set_code": "A3b",
+      "name": "Eevee Grove",
+      "row_count": "214"
+    },
+    {
+      "set_code": "A4a",
+      "name": "Secluded Springs",
+      "row_count": "210"
+    },
+    {
+      "set_code": "A2a",
+      "name": "Triumphant Light",
+      "row_count": "192"
+    },
+    {
+      "set_code": "A1a",
+      "name": "Mythical Island",
+      "row_count": "163"
+    }
+  ],
+  "gv_id_presence": {
+    "total_rows": "2947",
+    "rows_with_gvid": "0"
+  },
+  "downstream_references": {
+    "external_mappings": {
+      "referenced_rows": "1810"
+    },
+    "card_print_traits": {
+      "referenced_rows": "1809"
+    },
+    "card_printings": {
+      "referenced_rows": "2947"
+    },
+    "vault_items": {
+      "referenced_rows": 0
+    }
+  },
+  "exclusion_contract_honored": true
+}

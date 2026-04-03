@@ -1,0 +1,735 @@
+{
+  "phase": "FULL_DB_AUDIT_V1",
+  "audited_at": "2026-04-03T06:15:28.602Z",
+  "target": "remote",
+  "totals": {
+    "total_rows": "63562",
+    "distinct_card_print_ids": "32092"
+  },
+  "rows_by_source": [
+    {
+      "source": "tcgdex",
+      "row_count": "22417"
+    },
+    {
+      "source": "justtcg",
+      "row_count": "19212"
+    },
+    {
+      "source": "tcgplayer",
+      "row_count": "14103"
+    },
+    {
+      "source": "pokemonapi",
+      "row_count": "7830"
+    }
+  ],
+  "rows_by_source_and_active": [
+    {
+      "source": "justtcg",
+      "active": true,
+      "row_count": "19212"
+    },
+    {
+      "source": "pokemonapi",
+      "active": true,
+      "row_count": "7830"
+    },
+    {
+      "source": "tcgdex",
+      "active": true,
+      "row_count": "22417"
+    },
+    {
+      "source": "tcgplayer",
+      "active": true,
+      "row_count": "14103"
+    }
+  ],
+  "mapping_meta_key_inventory": [
+    {
+      "meta_key": "promoted_by",
+      "key_count": "33076"
+    },
+    {
+      "meta_key": "justtcg_number",
+      "key_count": "18974"
+    },
+    {
+      "meta_key": "justtcg_set_name",
+      "key_count": "18974"
+    },
+    {
+      "meta_key": "resolved_via",
+      "key_count": "18974"
+    },
+    {
+      "meta_key": "tcgdex_external_id",
+      "key_count": "14180"
+    },
+    {
+      "meta_key": "validated_variant_paths",
+      "key_count": "14180"
+    },
+    {
+      "meta_key": "tcgplayer_external_id",
+      "key_count": "14142"
+    },
+    {
+      "meta_key": "derived_from",
+      "key_count": "14102"
+    },
+    {
+      "meta_key": "justtcg_name",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "justtcg_rarity",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "justtcg_set_id",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "override_reason",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "set_alignment_method",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "set_alignment_status",
+      "key_count": "4832"
+    },
+    {
+      "meta_key": "justtcg_query_number_used",
+      "key_count": "4583"
+    },
+    {
+      "meta_key": "justtcg_query_variant_used",
+      "key_count": "4583"
+    },
+    {
+      "meta_key": "justtcg_query_variants_tried",
+      "key_count": "4583"
+    },
+    {
+      "meta_key": "set_id",
+      "key_count": "237"
+    },
+    {
+      "meta_key": "source_worker",
+      "key_count": "237"
+    },
+    {
+      "meta_key": "candidate_id",
+      "key_count": "184"
+    },
+    {
+      "meta_key": "classification",
+      "key_count": "184"
+    },
+    {
+      "meta_key": "normalized_name",
+      "key_count": "184"
+    },
+    {
+      "meta_key": "number_raw",
+      "key_count": "184"
+    },
+    {
+      "meta_key": "phase",
+      "key_count": "184"
+    },
+    {
+      "meta_key": "classifier_version",
+      "key_count": "53"
+    },
+    {
+      "meta_key": "manifest_version",
+      "key_count": "53"
+    },
+    {
+      "meta_key": "resolved_set_code",
+      "key_count": "53"
+    },
+    {
+      "meta_key": "staging_candidate_id",
+      "key_count": "53"
+    },
+    {
+      "meta_key": "version",
+      "key_count": "3"
+    },
+    {
+      "meta_key": "source",
+      "key_count": "2"
+    },
+    {
+      "meta_key": "note",
+      "key_count": "1"
+    },
+    {
+      "meta_key": "raw_import_id",
+      "key_count": "1"
+    },
+    {
+      "meta_key": "tcg_local_number",
+      "key_count": "1"
+    },
+    {
+      "meta_key": "tcgdex_raw_set_code",
+      "key_count": "1"
+    },
+    {
+      "meta_key": "tcgplayer_id",
+      "key_count": "1"
+    }
+  ],
+  "null_parent_dedicated_number_field_counts": {
+    "has_tcg_local_number": "0",
+    "has_local_number": "0",
+    "has_number": "0",
+    "has_printed_number": "0",
+    "has_card_number": "0",
+    "has_collector_number": "0",
+    "has_set_abbrev": "0",
+    "has_printed_set_abbrev": "0"
+  },
+  "external_id_format_by_source": [
+    {
+      "source": "justtcg",
+      "external_id_shape": "OTHER",
+      "row_count": "10101"
+    },
+    {
+      "source": "justtcg",
+      "external_id_shape": "ALPHANUMERIC",
+      "row_count": "9111"
+    },
+    {
+      "source": "pokemonapi",
+      "external_id_shape": "ALPHANUMERIC",
+      "row_count": "7830"
+    },
+    {
+      "source": "tcgdex",
+      "external_id_shape": "ALPHANUMERIC",
+      "row_count": "22390"
+    },
+    {
+      "source": "tcgdex",
+      "external_id_shape": "OTHER",
+      "row_count": "27"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id_shape": "PURE_NUMERIC",
+      "row_count": "14103"
+    }
+  ],
+  "supported_null_parent_samples": [
+    {
+      "card_print_id": "99555f58-22ae-44ce-a4b3-57a2e41635ac",
+      "name": "Snivy",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-1",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "a7ad1fd2-2643-4593-92dd-e0e0d371b543",
+      "name": "Klink",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-10",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "f0eb8536-8933-46b0-aeaa-7db4a1c0c132",
+      "name": "Pidove",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-11",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "9f3878be-5c08-47ed-bf7c-101c052c9eca",
+      "name": "Audino",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-12",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "49f0c8ad-582e-482f-bfad-e05f5a2968d7",
+      "name": "Maractus",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-2",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "8cac8dd1-d3ec-4a0c-bd75-e83ec8fa3936",
+      "name": "Tepig",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-3",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "4f60627b-9f4e-4fa1-8d55-679ce918a26f",
+      "name": "Oshawott",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-4",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "name": "Alomomola",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-5",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "9ba3827c-f0fa-43c5-b73f-5f3a467d7bbf",
+      "name": "Blitzle",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-6",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "a357528d-c789-416d-8b65-84edf7cacb9d",
+      "name": "Munna",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-7",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "c0b69108-a702-4566-b2eb-63adc5c9f27c",
+      "name": "Sandile",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-8",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "1d8e4b66-4767-4a22-b211-7659dc622133",
+      "name": "Zorua",
+      "joined_set_code": "2011bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2011bw-9",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "701dfb15-46fb-4f58-9680-e1cb2ef9f646",
+      "name": "Servine",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-1",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "fe3cad3e-8df4-447a-98ee-964879d6518d",
+      "name": "Scraggy",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-10",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "f00b72c6-080a-4f38-81ec-c9d23e7375ac",
+      "name": "Klang",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-11",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "name": "Axew",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-12",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "044356ad-d7a1-4ad6-beac-db94aa88634e",
+      "name": "Pansage",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-2",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "dd45ad38-2f37-4fcb-a70c-dd0ebc52f246",
+      "name": "Dwebble",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-3",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "6e717d9f-3e0c-4897-a7b5-b54dbed61d99",
+      "name": "Pignite",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-4",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "4fe5e6a9-2247-49c6-8822-e7582455e423",
+      "name": "Dewott",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-5",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "0f859865-af3c-487d-8592-c0ae39462078",
+      "name": "Emolga",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-6",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "8702d170-65f2-4098-98d2-57cbfeb492b7",
+      "name": "Woobat",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-7",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "9f3bcf93-0896-4a5f-911e-89cc7e5e18f0",
+      "name": "Drilbur",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-8",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "19cdd7e4-568f-4d14-93b9-1291dc40efeb",
+      "name": "Purrloin",
+      "joined_set_code": "2012bw",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2012bw-9",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+      "name": "Weedle",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-1",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "944592b2-a1a6-4918-b9ee-3213e02e481f",
+      "name": "Bunnelby",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-10",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "710db2b6-4909-4634-9bb0-107266c48f09",
+      "name": "Fletchling",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-11",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "d46097bc-81d0-433b-a2cf-961977543966",
+      "name": "Furfrou",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-12",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "e8297a0c-0508-4fe5-be3f-8e46cfb4a0ae",
+      "name": "Chespin",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-2",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "06fcb8e7-d3ce-4e0d-9080-ef8dff064eff",
+      "name": "Fennekin",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-3",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "ed6bd958-5f0f-479d-b481-6e610c1af644",
+      "name": "Froakie",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-4",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "e633087f-c7b2-4ee6-baf3-ad7cbdb07d63",
+      "name": "Pikachu",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-5",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "f95fff58-042a-4136-904b-3c68dbd3fb71",
+      "name": "Inkay",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-6",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+      "name": "Honedge",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-7",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "e61898de-344f-401a-9764-12d7b969e716",
+      "name": "Snubbull",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-8",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "b3293af3-784e-4c0a-9bd7-afb72bfdeb27",
+      "name": "Swirlix",
+      "joined_set_code": "2014xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2014xy-9",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+      "name": "Treecko",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-1",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "32b63f96-a503-4f55-b672-d6374089bd03",
+      "name": "Marill",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-10",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "1920465e-6162-4c4c-8498-7f8a64430acc",
+      "name": "Zigzagoon",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-11",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+      "name": "Skitty",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-12",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "6ae8ed03-50de-4009-8b86-fbb42082fba1",
+      "name": "Lotad",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-2",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "c96f409c-eab1-49f0-8066-a2ba8e56bddf",
+      "name": "Torchic",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-3",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "d58afc61-aee8-4290-825e-375705559fbe",
+      "name": "Staryu",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-4",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "53b9be9e-10b5-4201-846f-82f5be3b92b4",
+      "name": "Mudkip",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-5",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "7e9f4397-0064-4d86-b65c-8a925aa36d4b",
+      "name": "Pikachu",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-6",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+      "name": "Electrike",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-7",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "20332df3-d8a9-48bf-8d90-efa09b1883af",
+      "name": "Rhyhorn",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-8",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "dbbc7681-280e-4743-9c2a-5dfc2dcf3312",
+      "name": "Meditite",
+      "joined_set_code": "2015xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2015xy-9",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+      "name": "Vulpix",
+      "joined_set_code": "2016xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2016xy-1",
+      "active": true,
+      "meta": null
+    },
+    {
+      "card_print_id": "257f7c53-5ed0-44fa-b9a8-72beb63abf5d",
+      "name": "Dedenne",
+      "joined_set_code": "2016xy",
+      "domain": null,
+      "source": "tcgdex",
+      "external_id": "2016xy-10",
+      "active": true,
+      "meta": null
+    }
+  ]
+}
