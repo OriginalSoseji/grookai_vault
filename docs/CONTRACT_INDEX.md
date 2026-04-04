@@ -17,6 +17,9 @@ If a contract is missing from this index, it is not authoritative.
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
+| GV_ID_ASSIGNMENT_V1 | Frozen | docs/contracts/GV_ID_ASSIGNMENT_V1.md — Deterministic public `gv_id` assignment, base token rules, and preserved compact legacy forms for canonical `card_prints` |
+| GV_ID_VARIANT_SUFFIX_CONTRACT_V2 | Active | docs/contracts/GV_ID_VARIANT_SUFFIX_CONTRACT_V2.md — Extends `GV_ID_ASSIGNMENT_V1` with controlled suffix variants (`S`, `RH`, `PB`, `MB`) and explicit named identity descriptors for collision-safe printed physical identity |
+| IDENTITY_DOMAIN_BASELINE_V1 | Active | docs/contracts/IDENTITY_DOMAIN_BASELINE_V1.md — Founder-declared initialization baseline for existing legacy rows: `pokemon_eng_standard` by default, `tcg_pocket_excluded` for `tcg_pocket`, with proof-based classification still mandatory for future ingestion |
 | CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1 | Frozen | docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md — Active identity-subsystem authority for the final BA rollout: `card_prints` remains the stable canonical object and `gv_id` holder, while `card_print_identity` owns printed-identity uniqueness, domain-governed dimensions, and explicit exclusion/reporting of non-canonical domains such as `tcg_pocket` |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
 | PRODUCTION_READINESS_GATE_V1 | Active | docs/release/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |

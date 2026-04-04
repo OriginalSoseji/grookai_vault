@@ -1,0 +1,4352 @@
+{
+  "generated_at": "2026-04-03T22:45:20.844Z",
+  "mode": "apply",
+  "batch_size": 1000,
+  "backup_gate": {
+    "schema_dump_path": "C:\\grookai_vault\\backups\\collapse_phase1_preapply_schema.sql",
+    "schema_dump_exists": true,
+    "data_dump_path": "C:\\grookai_vault\\backups\\collapse_phase1_preapply_data.sql",
+    "data_dump_exists": true
+  },
+  "preconditions": {
+    "strict_old_lane_count": 10566,
+    "strict_ready_collapse_map_count": 7131,
+    "strict_ambiguous_old_count": 0,
+    "strict_reused_new_count": 0,
+    "digits_name_only_row_count": 31,
+    "digits_name_only_distinct_old_count": 30,
+    "still_unmatched_old_count": 3405,
+    "excluded_cel25_count": 47
+  },
+  "collapse_map_table": {
+    "existing_count": 7131,
+    "distinct_old_count": 7131,
+    "distinct_new_count": 7131,
+    "extra_rows": 0,
+    "missing_rows": 0
+  },
+  "fk_inventory_snapshot": [
+    {
+      "table_name": "ai_decision_logs",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "canon_warehouse_candidates",
+      "column_name": "promoted_card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_embeddings",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_interaction_outcomes",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_interactions",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_price_observations",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_price_rollups",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_price_ticks",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_prices",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_print_file_paths",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_print_identity",
+      "column_name": "card_print_id",
+      "row_count": 7131,
+      "supported_handler": true
+    },
+    {
+      "table_name": "card_print_price_curves",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "card_print_traits",
+      "column_name": "card_print_id",
+      "row_count": 7131,
+      "supported_handler": true
+    },
+    {
+      "table_name": "card_printings",
+      "column_name": "card_print_id",
+      "row_count": 17232,
+      "supported_handler": true
+    },
+    {
+      "table_name": "card_signals",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "ebay_active_price_snapshots",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "ebay_active_prices_latest",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "external_discovery_candidates",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "external_mappings",
+      "column_name": "card_print_id",
+      "row_count": 7131,
+      "supported_handler": true
+    },
+    {
+      "table_name": "identity_scan_selections",
+      "column_name": "selected_card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "justtcg_identity_overrides",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "justtcg_variant_price_snapshots",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "justtcg_variant_prices_latest",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "justtcg_variants",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "listings",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "market_prices",
+      "column_name": "card_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "price_observations",
+      "column_name": "print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "prices",
+      "column_name": "card_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "pricing_jobs",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "pricing_observations",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "pricing_watch",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "shared_cards",
+      "column_name": "card_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "slab_certs",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "slab_provenance_events",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "user_card_photos",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "vault_item_instances",
+      "column_name": "card_print_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "vault_items",
+      "column_name": "card_id",
+      "row_count": 0,
+      "supported_handler": false
+    },
+    {
+      "table_name": "wishlist_items",
+      "column_name": "card_id",
+      "row_count": 0,
+      "supported_handler": false
+    }
+  ],
+  "global_collision_summary": {
+    "external_mappings_conflicts": 0,
+    "card_print_traits_conflicts": 0,
+    "card_printings_finish_key_conflicts": 17231,
+    "card_print_identity_active_target_rows": 0,
+    "card_print_identity_any_target_rows": 0
+  },
+  "batches": [
+    {
+      "batch_number": 1,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2391,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2391,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2391,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 2,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2442,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2442,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2442,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 3,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2445,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2445,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2445,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 4,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2434,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2434,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2434,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 5,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2397,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2397,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2397,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 6,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2427,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2427,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2426,
+        "updated_printings": 1,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 7,
+      "batch_size": 1000,
+      "pre_counts": {
+        "batch_size": 1000,
+        "card_print_identity_rows": 1000,
+        "card_print_traits_rows": 1000,
+        "card_printings_rows": 2374,
+        "external_mappings_rows": 1000,
+        "batch_old_parent_rows": 1000
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 2374,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 1000,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 2374,
+        "updated_printings": 0,
+        "updated_traits": 1000,
+        "updated_external_mappings": 1000,
+        "updated_identity_rows": 1000,
+        "deleted_parent_rows": 1000
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    {
+      "batch_number": 8,
+      "batch_size": 131,
+      "pre_counts": {
+        "batch_size": 131,
+        "card_print_identity_rows": 131,
+        "card_print_traits_rows": 131,
+        "card_printings_rows": 322,
+        "external_mappings_rows": 131,
+        "batch_old_parent_rows": 131
+      },
+      "fk_counts_before": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 131,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 131,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 322,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 131,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "operations": {
+        "deleted_duplicate_printings": 322,
+        "updated_printings": 0,
+        "updated_traits": 131,
+        "updated_external_mappings": 131,
+        "updated_identity_rows": 131,
+        "deleted_parent_rows": 131
+      },
+      "remaining_old_fk_references_after_batch": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    }
+  ],
+  "post_validation": {
+    "summary": {
+      "remaining_old_parent_rows": 0,
+      "remaining_new_parent_rows": 7131,
+      "active_identity_total_count": 10613,
+      "active_identity_on_gvid_parents_count": 7131,
+      "active_identity_on_null_gvid_parents_count": 3482
+    },
+    "remaining_old_references": [
+      {
+        "table_name": "ai_decision_logs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "canon_warehouse_candidates",
+        "column_name": "promoted_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_embeddings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interactions",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_rollups",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_ticks",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_prices",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_file_paths",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_print_price_curves",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_signals",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "identity_scan_selections",
+        "column_name": "selected_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variants",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "listings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "market_prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "price_observations",
+        "column_name": "print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_jobs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_watch",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "shared_cards",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_certs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "user_card_photos",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_item_instances",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "wishlist_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      }
+    ]
+  },
+  "route_reachability_after_apply": {
+    "active_identity_rows": 10613,
+    "active_identity_with_gvid_count": 7131
+  },
+  "status": "apply_passed",
+  "first_failure": null
+}

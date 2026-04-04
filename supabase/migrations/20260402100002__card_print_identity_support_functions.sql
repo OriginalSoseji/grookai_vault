@@ -1,5 +1,7 @@
 begin;
 
+create extension if not exists pgcrypto with schema extensions;
+
 create or replace function public.card_print_identity_normalize_optional_text_v1(p_value text)
 returns text
 language sql
@@ -194,7 +196,7 @@ language sql
 immutable
 as $$
   select encode(
-    digest(
+    extensions.digest(
       public.card_print_identity_serialize_key_v1(
         p_identity_domain,
         p_identity_key_version,

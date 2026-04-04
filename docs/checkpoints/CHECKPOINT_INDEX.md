@@ -19,3 +19,4 @@
 - `BATTLE_ACADEMY_PHASE9B_GAME_FK_ALIGNMENT_V1` — `2026-04-02` — Historical unblock checkpoint aligning BA parent `game_id` to the canonical Pokemon game source
 - `BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V3` — `2026-04-02` — Authoritative final BA execution checkpoint: 328 parent rows, 328 active identity rows, verified uniqueness, domain isolation, and explicit idempotency
 - `BATTLE_ACADEMY_FINAL_STATE_V1` — `2026-04-02` — Final consolidation / handoff checkpoint for future BA resume and historical-proof preservation
+- `REMOTE_PGCRYPTO_REPAIR_V1` — `2026-04-02` — Operational repair checkpoint proving the remote `digest()` failure was a pgcrypto search-path issue, not missing history; `20260402100002` and `0003` were repaired/applied, then the rollout stopped lawfully at a new `20260402100004` backfill blocker

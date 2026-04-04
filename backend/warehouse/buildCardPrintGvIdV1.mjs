@@ -2,6 +2,17 @@ const BASE_PREFIX = 'GV-PK';
 const BASE_VARIANT_KEYS = new Set(['', 'base']);
 const SUFFIX_ONLY_VARIANT_KEYS = new Set(['A', 'B', 'CC']);
 const PREFIX_ONLY_VARIANT_KEYS = new Set(['RC', 'SH']);
+const CONTROLLED_SUFFIX_REGISTRY_V2 = new Map([
+  ['s', 'S'],
+  ['shiny', 'S'],
+  ['rh', 'RH'],
+  ['reverse', 'RH'],
+  ['reverseholo', 'RH'],
+  ['pb', 'PB'],
+  ['pokeball', 'PB'],
+  ['mb', 'MB'],
+  ['masterball', 'MB'],
+]);
 
 function normalizeTextOrNull(value) {
   if (value === null || value === undefined) {
@@ -40,6 +51,19 @@ function normalizeUpperAlnumToken(value) {
     .toUpperCase();
 }
 
+function normalizeLowerRegistryKey(value) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) {
+    return null;
+  }
+
+  return normalized
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^A-Za-z0-9]+/g, '')
+    .toLowerCase();
+}
+
 export function normalizeGvIdSuffixV1(variantKey) {
   const normalizedVariant = normalizeTextOrNull(variantKey);
   if (!normalizedVariant) {
@@ -47,6 +71,24 @@ export function normalizeGvIdSuffixV1(variantKey) {
   }
 
   return normalizeUpperHyphenToken(normalizedVariant);
+}
+
+export function resolveControlledGvIdSuffixV2(variantKey) {
+  const registryKey = normalizeLowerRegistryKey(variantKey);
+  if (!registryKey) {
+    return null;
+  }
+
+  return CONTROLLED_SUFFIX_REGISTRY_V2.get(registryKey) ?? null;
+}
+
+export function resolveGvIdExtensionTokenV2(variantKey) {
+  const controlledSuffix = resolveControlledGvIdSuffixV2(variantKey);
+  if (controlledSuffix) {
+    return controlledSuffix;
+  }
+
+  return normalizeGvIdSuffixV1(variantKey);
 }
 
 export function buildCardPrintGvIdV1(input = {}) {
@@ -84,7 +126,7 @@ export function buildCardPrintGvIdV1(input = {}) {
     return `${BASE_PREFIX}-${setToken}-${prefixToken}${rawNumberToken}${suffixToken}`;
   }
 
-  const suffixToken = normalizeGvIdSuffixV1(input.variantKey);
+  const suffixToken = resolveGvIdExtensionTokenV2(input.variantKey);
   if (!suffixToken) {
     throw new Error('gv_id_variant_suffix_missing');
   }
