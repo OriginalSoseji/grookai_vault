@@ -28,6 +28,7 @@ class CardDetailScreen extends StatefulWidget {
 }
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
+  static const double _sectionSpacing = 20;
   final supabase = Supabase.instance.client;
 
   Map<String, dynamic>? _priceData;
@@ -131,10 +132,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _priceError = 'Failed to load pricing';
       });
     } finally {
-      if (!mounted) return;
-      setState(() {
-        _priceLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _priceLoading = false;
+        });
+      }
     }
   }
 
@@ -157,7 +159,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
         final activeUpdatedAtRaw = data['active_price_updated_at'] as String?;
         final rawPriceTs = data['raw_price_ts'] as String?;
-        final freshnessRaw = rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
+        final freshnessRaw =
+            rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
         final freshnessTs = freshnessRaw != null
             ? DateTime.tryParse(freshnessRaw)
             : null;
@@ -196,7 +199,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       }
 
       final payload = response.data;
-      final status = payload is Map<String, dynamic> ? payload['status'] as String? : null;
+      final status = payload is Map<String, dynamic>
+          ? payload['status'] as String?
+          : null;
 
       var requestMessage = 'Live price requested. Check back after processing.';
       if (status == 'fresh') {
@@ -225,35 +230,34 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
   }
 
+  String _cleanText(String? value) => (value ?? '').trim();
+
+  String get _displayName {
+    final resolved = _cleanText(widget.name);
+    return resolved.isNotEmpty ? resolved : 'Card Detail';
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final name = widget.name ?? 'Card Detail';
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis),
+        title: Text(_displayName, maxLines: 1, overflow: TextOverflow.ellipsis),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildHeroImage(context),
-              const SizedBox(height: 16),
-              _buildTitleSection(theme, colorScheme),
-              const SizedBox(height: 12),
-              _buildMetaChips(theme, colorScheme),
-              const SizedBox(height: 20),
-              _buildPricingSection(theme, colorScheme),
-              const SizedBox(height: 20),
-              _buildDivider(theme),
-              const SizedBox(height: 16),
-              _buildInfoSection(theme, colorScheme),
-              const SizedBox(height: 24),
-              _buildActions(context, theme, colorScheme),
+              const SizedBox(height: _sectionSpacing),
+              _buildIdentitySection(theme, theme.colorScheme),
+              const SizedBox(height: _sectionSpacing),
+              _buildPricingSection(theme, theme.colorScheme),
+              const SizedBox(height: _sectionSpacing),
+              _buildActions(context, theme, theme.colorScheme),
             ],
           ),
         ),
@@ -267,91 +271,52 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final url = (widget.imageUrl ?? '').toString();
 
     return Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: colorScheme.surfaceVariant.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: const EdgeInsets.all(12),
-        child: AspectRatio(
-          aspectRatio: 3 / 4,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: url.isEmpty
-                ? Container(
-                    color: colorScheme.surfaceVariant,
-                    child: const Icon(Icons.style, size: 48),
-                  )
-                : Image.network(
-                    url,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: colorScheme.surfaceVariant,
-                      child: const Icon(Icons.broken_image, size: 48),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 280),
+        child: Container(
+          decoration: BoxDecoration(
+            color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: colorScheme.onSurface.withValues(alpha: 0.08),
+            ),
+          ),
+          padding: const EdgeInsets.all(16),
+          child: AspectRatio(
+            aspectRatio: 3 / 4,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: url.isEmpty
+                  ? Container(
+                      color: colorScheme.surfaceContainerHighest,
+                      child: const Icon(Icons.style, size: 48),
+                    )
+                  : Image.network(
+                      url,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: colorScheme.surfaceContainerHighest,
+                        child: const Icon(Icons.broken_image, size: 48),
+                      ),
                     ),
-                  ),
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTitleSection(ThemeData theme, ColorScheme colorScheme) {
-    final subtitleParts = <String>[];
-    final setName = widget.setName ?? '';
-    final num = widget.number ?? '';
-    if (setName.isNotEmpty) {
-      subtitleParts.add(setName);
-    }
-    if (num.isNotEmpty) {
-      subtitleParts.add('#$num');
-    }
-    final subtitle = subtitleParts.join(' • ');
+  Widget _buildIdentitySection(ThemeData theme, ColorScheme colorScheme) {
+    final setName = _cleanText(widget.setName);
+    final collectorNumber = _cleanText(widget.number);
+    final outwardId = _cleanText(widget.gvId);
+    final supportChips = _buildSupportChips(theme);
+    final identityChips = <Widget>[];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.name ?? 'Card Detail',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        if (subtitle.isNotEmpty) ...[
-          const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.7),
-            ),
-          ),
-        ],
-      ],
-    );
-  }
-
-  Widget _buildMetaChips(ThemeData theme, ColorScheme colorScheme) {
-    final chips = <Widget>[];
-    final setName = widget.setName ?? '';
-    final num = widget.number ?? '';
-    final qty = widget.quantity;
-    final condition = widget.condition;
-
-    if (setName.isNotEmpty) {
-      chips.add(
+    if (collectorNumber.isNotEmpty) {
+      identityChips.add(
         _buildChip(
-          label: setName,
-          icon: Icons.layers,
-          color: colorScheme.primary,
-          theme: theme,
-        ),
-      );
-    }
-
-    if (num.isNotEmpty) {
-      chips.add(
-        _buildChip(
-          label: '#$num',
+          label: 'Collector No. #$collectorNumber',
           icon: Icons.tag,
           color: colorScheme.secondary,
           theme: theme,
@@ -359,43 +324,48 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       );
     }
 
-    if (condition != null && condition.isNotEmpty) {
-      chips.add(
-        _buildChip(
-          label: 'Condition: $condition',
-          icon: Icons.grade,
-          color: Colors.teal,
-          theme: theme,
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _displayName,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            if (setName.isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text(
+                setName,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface.withValues(alpha: 0.76),
+                ),
+              ),
+            ],
+            if (identityChips.isNotEmpty) ...[
+              const SizedBox(height: 14),
+              Wrap(spacing: 8, runSpacing: 8, children: identityChips),
+            ],
+            const SizedBox(height: 14),
+            _buildIdentityValue(
+              label: outwardId.isNotEmpty ? 'GV-ID' : 'Card ID',
+              value: outwardId.isNotEmpty ? outwardId : widget.cardPrintId,
+              theme: theme,
+              colorScheme: colorScheme,
+            ),
+            if (supportChips.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Wrap(spacing: 8, runSpacing: 8, children: supportChips),
+            ],
+          ],
         ),
-      );
-    }
-
-    if (qty != null) {
-      chips.add(
-        _buildChip(
-          label: 'Qty: $qty',
-          icon: Icons.inventory_2,
-          color: Colors.orange,
-          theme: theme,
-        ),
-      );
-    }
-
-    final outwardId = (widget.gvId ?? '').trim();
-    chips.add(
-      _buildChip(
-        label: outwardId.isNotEmpty
-            ? 'GV: $outwardId'
-            : 'Card ID: ${widget.cardPrintId}',
-        icon: Icons.fingerprint,
-        color: colorScheme.onSurface.withOpacity(0.6),
-        theme: theme,
       ),
     );
-
-    if (chips.isEmpty) return const SizedBox.shrink();
-
-    return Wrap(spacing: 8, runSpacing: 8, children: chips);
   }
 
   Widget _buildChip({
@@ -407,9 +377,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withOpacity(0.8), width: 0.7),
+        border: Border.all(color: color.withValues(alpha: 0.8), width: 0.7),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -428,22 +398,59 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  Widget _buildInfoSection(ThemeData theme, ColorScheme colorScheme) {
+  List<Widget> _buildSupportChips(ThemeData theme) {
+    final chips = <Widget>[];
+    final condition = _cleanText(widget.condition);
+    final quantity = widget.quantity;
+
+    if (condition.isNotEmpty) {
+      chips.add(
+        _buildChip(
+          label: 'Condition: $condition',
+          icon: Icons.grade,
+          color: Colors.teal,
+          theme: theme,
+        ),
+      );
+    }
+
+    if (quantity != null) {
+      chips.add(
+        _buildChip(
+          label: 'Qty: $quantity',
+          icon: Icons.inventory_2,
+          color: Colors.orange,
+          theme: theme,
+        ),
+      );
+    }
+
+    return chips;
+  }
+
+  Widget _buildIdentityValue({
+    required String label,
+    required String value,
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Card details',
-          style: theme.textTheme.titleMedium?.copyWith(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w600,
+            letterSpacing: 0.6,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
         Text(
-          'This is a canonical print entry from your Grookai Vault catalog. '
-          'Future updates will show live market pricing, trend graphs, and condition-based value curves here.',
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: colorScheme.onSurface.withOpacity(0.8),
+          value,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: colorScheme.onSurface.withValues(alpha: 0.82),
           ),
         ),
       ],
@@ -453,8 +460,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Widget _buildPricingSection(ThemeData theme, ColorScheme colorScheme) {
     if (_priceLoading && _priceData == null) {
       return Card(
+        margin: EdgeInsets.zero,
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               const SizedBox(
@@ -472,8 +480,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     if (_priceError != null) {
       return Card(
+        margin: EdgeInsets.zero,
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(16),
           child: Text(
             _priceError!,
             style: theme.textTheme.bodySmall?.copyWith(
@@ -486,12 +495,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     if (_priceData == null) {
       return Card(
+        margin: EdgeInsets.zero,
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(16),
           child: Text(
             'No pricing data yet.',
             style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.7),
+              color: colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ),
@@ -523,7 +533,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return '\$${v.toStringAsFixed(2)} $currency';
     }
 
-    String _formatAge(DateTime ts) {
+    String formatAge(DateTime ts) {
       final age = DateTime.now().toUtc().difference(ts.toUtc());
       if (age.isNegative || age.inMinutes < 1) {
         return '0m ago';
@@ -541,18 +551,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     return Card(
+      margin: EdgeInsets.zero,
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'Pricing',
+              style: theme.textTheme.labelLarge?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.7),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 6),
             Text(
               'Grookai Value (Active Listings)',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -562,7 +581,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       Text(
                         'Grookai Value',
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withOpacity(0.7),
+                          color: colorScheme.onSurface.withValues(alpha: 0.7),
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -583,7 +602,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         Text(
                           'NM floor',
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurface.withOpacity(0.7),
+                            color: colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -603,7 +622,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               Text(
                 'LP median: ${formatMoney(lpMedian)}',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.8),
+                  color: colorScheme.onSurface.withValues(alpha: 0.8),
                 ),
               ),
             ],
@@ -612,7 +631,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               Text(
                 'Listings: $listingCount',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -621,16 +640,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               Text(
                 'Source: $rawPriceSource',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
             if (showUpdated) ...[
               const SizedBox(height: 2),
               Text(
-                'Updated: ${_formatAge(freshnessTs!)}',
+                'Updated: ${formatAge(freshnessTs)}',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -639,7 +658,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               Text(
                 'Confidence: ${(confidence * 100).toStringAsFixed(0)}%',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -673,7 +692,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               Text(
                 _livePriceRequestMessage!,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -683,40 +702,48 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  Widget _buildDivider(ThemeData theme) {
-    return Divider(
-      thickness: 0.7,
-      height: 1,
-      color: theme.colorScheme.onSurface.withOpacity(0.12),
-    );
-  }
-
   Widget _buildActions(
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
   ) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FilledButton.icon(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Future: Add to Vault / actions.')),
-            );
-          },
-          icon: const Icon(Icons.inventory_2),
-          label: const Text('Vault actions (coming soon)'),
+        Text(
+          'Actions',
+          style: theme.textTheme.labelLarge?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.7),
+            fontWeight: FontWeight.w600,
+          ),
         ),
-        const SizedBox(height: 8),
-        OutlinedButton.icon(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Future: Live pricing.')),
-            );
-          },
-          icon: const Icon(Icons.trending_up),
-          label: const Text('Get live price (coming soon)'),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: FilledButton.icon(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Add to Vault coming soon.')),
+                  );
+                },
+                icon: const Icon(Icons.inventory_2),
+                label: const Text('Add to Vault'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Share coming soon.')),
+                  );
+                },
+                icon: const Icon(Icons.share_outlined),
+                label: const Text('Share'),
+              ),
+            ),
+          ],
         ),
       ],
     );

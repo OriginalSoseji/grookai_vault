@@ -1335,6 +1335,9 @@ class HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                 builder: (_) => CardDetailScreen(
                                   cardPrintId: card.id,
+                                  gvId: (card.gvId ?? '').isEmpty
+                                      ? null
+                                      : card.gvId,
                                   name: card.name,
                                   setName: card.displaySet,
                                   number: card.displayNumber,
@@ -1394,6 +1397,7 @@ class HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (_) => CardDetailScreen(
                             cardPrintId: card.id,
+                            gvId: (card.gvId ?? '').isEmpty ? null : card.gvId,
                             name: card.name,
                             setName: card.displaySet,
                             number: card.displayNumber,
