@@ -10,6 +10,14 @@ import 'package:image_picker/image_picker.dart';
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'secrets.dart';
+import 'screens/compare/compare_screen.dart';
+import 'screens/network/network_screen.dart';
+import 'screens/public_collector/public_collector_screen.dart';
+import 'screens/sets/public_set_detail_screen.dart';
+import 'screens/sets/public_sets_screen.dart';
+import 'services/public/compare_service.dart';
+import 'services/public/public_collector_service.dart';
+import 'services/public/public_sets_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
@@ -42,8 +50,9 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
     ),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: colorScheme.surface,
-      indicatorColor: colorScheme.primary.withOpacity(0.18),
-      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      indicatorColor: colorScheme.primary.withOpacity(0.12),
+      height: 68,
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       iconTheme: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return IconThemeData(color: colorScheme.primary);
@@ -125,49 +134,131 @@ class _CatalogCardRow extends _CatalogRow {
   _CatalogCardRow(this.card);
 }
 
-class _TrendingHeaderBar extends StatelessWidget {
-  const _TrendingHeaderBar({super.key});
+class _ProductSurfaceCard extends StatelessWidget {
+  const _ProductSurfaceCard({
+    required this.child,
+    this.padding = const EdgeInsets.all(16),
+    this.emphasize = false,
+    super.key,
+  });
+
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final bool emphasize;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(
+          color: colorScheme.outline.withOpacity(emphasize ? 0.24 : 0.14),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withOpacity(emphasize ? 0.08 : 0.05),
+            blurRadius: emphasize ? 22 : 14,
+            offset: Offset(0, emphasize ? 10 : 6),
+          ),
+        ],
+      ),
+      padding: padding,
+      child: child,
+    );
+  }
+}
+
+class _ProductSectionHeading extends StatelessWidget {
+  const _ProductSectionHeading({
+    required this.title,
+    required this.description,
+    this.trailing,
+    super.key,
+  });
+
+  final String title;
+  final String description;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Icon(
-              Icons.trending_up,
-              size: 16,
-              color: colorScheme.primary,
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Today\'s trending cards',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.2,
                 ),
-                const SizedBox(height: 2),
+              ),
+              if (description.isNotEmpty) ...[
+                const SizedBox(height: 4),
                 Text(
-                  'Popular & high-interest prints right now.',
+                  description,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withOpacity(0.7),
+                    color: colorScheme.onSurface.withOpacity(0.72),
+                    height: 1.35,
                   ),
                 ),
               ],
+            ],
+          ),
+        ),
+        if (trailing != null) ...[const SizedBox(width: 12), trailing!],
+      ],
+    );
+  }
+}
+
+class _ProductEmptyState extends StatelessWidget {
+  const _ProductEmptyState({
+    required this.title,
+    required this.body,
+    super.key,
+  });
+
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      decoration: BoxDecoration(
+        color: colorScheme.primary.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withOpacity(0.14)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            body,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withOpacity(0.72),
+              height: 1.35,
             ),
           ),
         ],
@@ -551,11 +642,13 @@ class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final ValueChanged<String>? onSubmitted;
+  final EdgeInsetsGeometry padding;
 
   const _CatalogSearchField({
     required this.controller,
     required this.onChanged,
     this.onSubmitted,
+    this.padding = EdgeInsets.zero,
     super.key,
   });
 
@@ -565,11 +658,11 @@ class _CatalogSearchField extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+      padding: padding,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: colorScheme.surfaceVariant.withOpacity(0.7),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: TextField(
           controller: controller,
@@ -580,7 +673,8 @@ class _CatalogSearchField extends StatelessWidget {
             prefixIcon: Icon(Icons.search),
             hintText: 'Search by name, set, or number',
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 12),
+            isDense: true,
+            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
           ),
         ),
       ),
@@ -591,10 +685,12 @@ class _CatalogSearchField extends StatelessWidget {
 class _ResolverStatusBanner extends StatelessWidget {
   final CardSearchResolverMeta? meta;
   final String query;
+  final EdgeInsetsGeometry padding;
 
   const _ResolverStatusBanner({
     required this.meta,
     required this.query,
+    this.padding = const EdgeInsets.fromLTRB(12, 0, 12, 8),
     super.key,
   });
 
@@ -639,7 +735,7 @@ class _ResolverStatusBanner extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+      padding: padding,
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -681,11 +777,11 @@ class _CatalogSectionHeader extends StatelessWidget {
     final theme = Theme.of(context);
     final color = theme.colorScheme.onSurface.withOpacity(0.6);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 6),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 4),
       child: Text(
         title,
-        style: theme.textTheme.titleSmall?.copyWith(
-          fontWeight: FontWeight.w600,
+        style: theme.textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.w700,
           color: color,
           letterSpacing: 0.3,
         ),
@@ -718,18 +814,18 @@ class _CatalogCardTile extends StatelessWidget {
     final subtitle = subtitleParts.join(' | ');
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       child: Material(
         color: colorScheme.surfaceVariant.withOpacity(0.7),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         child: InkWell(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
           onTap: () {
             HapticFeedback.lightImpact();
             if (onTap != null) onTap!();
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Row(
               children: [
                 _thumb(card.displayImage),
@@ -747,14 +843,14 @@ class _CatalogCardTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (subtitle.isNotEmpty) ...[
-                        const SizedBox(height: 3),
+                        const SizedBox(height: 2),
                         Text(
                           subtitle,
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurface.withOpacity(0.7),
                           ),
                         ),
-                        const SizedBox(height: 6),
+                        const SizedBox(height: 4),
                         Wrap(
                           spacing: 6,
                           runSpacing: 4,
@@ -767,6 +863,8 @@ class _CatalogCardTile extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(width: 6),
+                _CompareToggleIconButton(gvId: card.gvId),
                 const Icon(Icons.chevron_right, size: 20),
               ],
             ),
@@ -790,6 +888,138 @@ class _CatalogCardTile extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) =>
             const CircleAvatar(radius: 22, child: Icon(Icons.broken_image)),
+      ),
+    );
+  }
+}
+
+class _CompareToggleIconButton extends StatelessWidget {
+  const _CompareToggleIconButton({required this.gvId});
+
+  final String? gvId;
+
+  @override
+  Widget build(BuildContext context) {
+    final normalizedGvId = normalizeCompareCardId(gvId ?? '');
+    if (normalizedGvId.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return ValueListenableBuilder<List<String>>(
+      valueListenable: CompareCardSelectionController.instance.listenable,
+      builder: (context, selectedIds, _) {
+        final isSelected = selectedIds.contains(normalizedGvId);
+
+        return IconButton(
+          tooltip: isSelected ? 'Remove from compare' : 'Add to compare',
+          icon: Icon(
+            isSelected
+                ? Icons.check_circle_rounded
+                : Icons.add_circle_outline_rounded,
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+          ),
+          onPressed: () {
+            if (!isSelected && selectedIds.length >= kMaxCompareCards) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Compare supports up to $kMaxCompareCards cards at a time.',
+                  ),
+                ),
+              );
+              return;
+            }
+
+            CompareCardSelectionController.instance.toggle(normalizedGvId);
+          },
+        );
+      },
+    );
+  }
+}
+
+class _ExploreSetRailTile extends StatelessWidget {
+  const _ExploreSetRailTile({required this.setInfo, required this.onTap});
+
+  final PublicSetSummary setInfo;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final metaParts = <String>[
+      if (setInfo.releaseYear != null) '${setInfo.releaseYear}',
+      if (setInfo.printedTotal != null) '${setInfo.printedTotal} cards',
+    ];
+
+    return SizedBox(
+      width: 164,
+      child: Material(
+        color: colorScheme.surfaceContainerHighest.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(22),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(22),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    setInfo.code,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.4,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  setInfo.name,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    height: 1.15,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  metaParts.isEmpty
+                      ? '${setInfo.cardCount} cards'
+                      : metaParts.join(' • '),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withOpacity(0.68),
+                    height: 1.35,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Open set',
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -869,25 +1099,114 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   final supabase = Supabase.instance.client;
-  int _index = 0; // 0 = Catalog, 2 = Vault; 1 reserved for Scan action
+  int _index =
+      0; // 0 = Explore, 1 = Wall, 3 = Network, 4 = Vault; 2 reserved for Scan
   final GlobalKey<HomePageState> _homeKey = GlobalKey();
+  final GlobalKey<_MyWallTabState> _wallKey = GlobalKey();
+  final GlobalKey<NetworkScreenState> _networkKey = GlobalKey();
   final GlobalKey<VaultPageState> _vaultKey = GlobalKey();
 
   Future<void> _signOut() async => supabase.auth.signOut();
 
+  Future<void> _openSets() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const PublicSetsScreen()));
+  }
+
+  Future<void> _openCompare() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const CompareScreen()));
+  }
+
   void _refreshCurrent() {
     if (_index == 0) {
       _homeKey.currentState?.reload();
-    } else {
+    } else if (_index == 1) {
+      _wallKey.currentState?.reload();
+    } else if (_index == 3) {
+      _networkKey.currentState?.reload();
+    } else if (_index == 4) {
       _vaultKey.currentState?.reload();
     }
   }
 
+  Future<String?> _showPublicCollectorSlugPrompt() async {
+    var draftSlug = '';
+    return showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Open Public Collector'),
+        content: TextField(
+          autofocus: true,
+          textInputAction: TextInputAction.go,
+          decoration: const InputDecoration(
+            labelText: 'Collector slug',
+            hintText: 'Enter /u/slug',
+          ),
+          onChanged: (value) {
+            draftSlug = value;
+          },
+          onSubmitted: (value) {
+            Navigator.of(dialogContext).pop(value.trim());
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(draftSlug.trim()),
+            child: const Text('Open'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _openPublicCollectorPrompt() async {
+    final navigator = Navigator.of(context);
+    final slug = await _showPublicCollectorSlugPrompt();
+
+    if (!context.mounted) {
+      return;
+    }
+
+    if (slug == null || slug.trim().isEmpty) {
+      return;
+    }
+
+    final normalizedSlug = slug.trim().toLowerCase();
+    await Future<void>.delayed(Duration.zero);
+    if (!context.mounted) {
+      return;
+    }
+
+    navigator.push(
+      MaterialPageRoute(
+        builder: (_) => PublicCollectorScreen(slug: normalizedSlug),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final titles = ['Catalog', 'Grookai Vault'];
-    final bodyIndex = _index == 0 ? 0 : 1;
-    final currentTitle = _index == 0 ? titles[0] : titles[1];
+    final bodyIndex = switch (_index) {
+      0 => 0,
+      1 => 1,
+      3 => 2,
+      4 => 3,
+      _ => 0,
+    };
+    final currentTitle = switch (_index) {
+      0 => 'Explore',
+      1 => 'My Wall',
+      3 => 'Network',
+      4 => 'Vault',
+      _ => 'Explore',
+    };
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -897,6 +1216,64 @@ class _AppShellState extends State<AppShell> {
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
         actions: [
+          if (_index == 0)
+            IconButton(
+              icon: const Icon(Icons.grid_view_rounded),
+              tooltip: 'Browse sets',
+              onPressed: _openSets,
+            ),
+          if (_index == 0)
+            ValueListenableBuilder<List<String>>(
+              valueListenable:
+                  CompareCardSelectionController.instance.listenable,
+              builder: (context, selectedIds, _) {
+                final compareCount = selectedIds.length;
+
+                return IconButton(
+                  tooltip: compareCount > 0
+                      ? 'Open compare ($compareCount selected)'
+                      : 'Open compare',
+                  onPressed: _openCompare,
+                  icon: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      const Icon(Icons.compare_arrows_rounded),
+                      if (compareCount > 0)
+                        Positioned(
+                          right: -8,
+                          top: -6,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: BorderRadius.circular(999),
+                            ),
+                            child: Text(
+                              '$compareCount',
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          if (_index == 1)
+            IconButton(
+              icon: const Icon(Icons.public),
+              tooltip: 'Open public collector',
+              onPressed: _openPublicCollectorPrompt,
+            ),
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: _refreshCurrent,
@@ -908,13 +1285,16 @@ class _AppShellState extends State<AppShell> {
         index: bodyIndex,
         children: [
           HomePage(key: _homeKey),
+          _MyWallTab(key: _wallKey, onOpenBySlug: _openPublicCollectorPrompt),
+          NetworkScreen(key: _networkKey),
           VaultPage(key: _vaultKey),
         ],
       ),
       bottomNavigationBar: NavigationBar(
+        height: 68,
         selectedIndex: _index,
         onDestinationSelected: (i) {
-          if (i == 1) {
+          if (i == 2) {
             Navigator.of(context)
                 .push<XFile?>(
                   MaterialPageRoute<XFile?>(
@@ -942,12 +1322,22 @@ class _AppShellState extends State<AppShell> {
           NavigationDestination(
             icon: Icon(Icons.search),
             selectedIcon: Icon(Icons.search),
-            label: 'Catalog',
+            label: 'Explore',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.public_outlined),
+            selectedIcon: Icon(Icons.public),
+            label: 'Wall',
           ),
           NavigationDestination(
             icon: Icon(Icons.camera_alt_outlined),
             selectedIcon: Icon(Icons.camera_alt),
             label: 'Scan',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.hub_outlined),
+            selectedIcon: Icon(Icons.hub),
+            label: 'Network',
           ),
           NavigationDestination(
             icon: Icon(Icons.inventory_2_outlined),
@@ -956,13 +1346,6 @@ class _AppShellState extends State<AppShell> {
           ),
         ],
       ),
-      floatingActionButton: _index == 2
-          ? FloatingActionButton.extended(
-              icon: const Icon(Icons.camera_alt),
-              label: const Text('Scan'),
-              onPressed: () => _vaultKey.currentState?.startIdentityScanFlow(),
-            )
-          : null,
     );
   }
 }
@@ -1094,9 +1477,12 @@ class HomePageState extends State<HomePage> {
   final _searchCtrl = TextEditingController();
   List<CardPrint> _results = const [];
   List<CardPrint> _trending = const [];
+  List<PublicSetSummary> _featuredSets = const [];
   CardSearchResolverMeta? _resolverMeta;
   bool _loading = false;
+  bool _setsLoading = false;
   String? _searchError;
+  String? _setsError;
   Timer? _debounce;
   _RarityFilter _rarityFilter = _RarityFilter.all;
 
@@ -1118,6 +1504,7 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _loadTrending();
+    _loadFeaturedSets();
     reload();
   }
 
@@ -1138,6 +1525,38 @@ class HomePageState extends State<HomePage> {
     setState(() {
       _trending = rows;
     });
+  }
+
+  Future<void> _loadFeaturedSets() async {
+    setState(() {
+      _setsLoading = true;
+      _setsError = null;
+    });
+
+    try {
+      final sets = await PublicSetsService.fetchFeaturedSets(client: supabase);
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _featuredSets = sets;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _setsError = error is Error ? error.toString() : 'Unable to load sets.';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _setsLoading = false;
+        });
+      }
+    }
   }
 
   Widget _buildRarityChip(_RarityFilter filter, String label) {
@@ -1239,6 +1658,115 @@ class HomePageState extends State<HomePage> {
     });
   }
 
+  Future<void> _openSetsScreen() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const PublicSetsScreen()));
+  }
+
+  Future<void> _openCompareScreen() async {
+    await Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const CompareScreen()));
+  }
+
+  Widget _buildCompareWorkspaceEntry(ThemeData theme) {
+    return ValueListenableBuilder<List<String>>(
+      valueListenable: CompareCardSelectionController.instance.listenable,
+      builder: (context, selectedIds, _) {
+        final compareCount = selectedIds.length;
+        if (compareCount == 0) {
+          return const SizedBox.shrink();
+        }
+
+        return _ProductSurfaceCard(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  '$compareCount card${compareCount == 1 ? '' : 's'} selected',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withOpacity(0.72),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: CompareCardSelectionController.instance.clear,
+                child: const Text('Clear'),
+              ),
+              FilledButton.icon(
+                onPressed: _openCompareScreen,
+                icon: const Icon(Icons.compare_arrows_rounded),
+                label: const Text('Compare'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildFeaturedSetsSurface(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              'Sets',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: _openSetsScreen,
+              child: const Text('View all'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        if (_setsLoading)
+          const _ProductEmptyState(
+            title: 'Loading sets',
+            body: 'Fetching the current public set browse surface.',
+          )
+        else if (_setsError != null)
+          _ProductEmptyState(title: 'Unable to load sets', body: _setsError!)
+        else if (_featuredSets.isEmpty)
+          const _ProductEmptyState(
+            title: 'No sets surfaced yet',
+            body: 'Public sets will appear here when the read returns results.',
+          )
+        else
+          SizedBox(
+            height: 156,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: _featuredSets.length,
+              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              itemBuilder: (context, index) {
+                final setInfo = _featuredSets[index];
+                return _ExploreSetRailTile(
+                  setInfo: setInfo,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            PublicSetDetailScreen(setCode: setInfo.code),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final trimmed = _searchCtrl.text.trim();
@@ -1247,58 +1775,101 @@ class HomePageState extends State<HomePage> {
     final cards = _applyRarityFilter(showingTrending ? _trending : _results);
     final showEmpty = !_loading && cards.isEmpty;
     final rows = _buildRows(cards);
+    final theme = Theme.of(context);
+    final resultCount = rows.whereType<_CatalogCardRow>().length;
+    final resultsTitle = showingTrending
+        ? 'Trending now'
+        : trimmed.isEmpty
+        ? 'Catalog'
+        : 'Results';
 
     return Column(
       children: [
-        _CatalogSearchField(
-          controller: _searchCtrl,
-          onChanged: _onQueryChanged,
-          onSubmitted: _runSearch,
-        ),
-        if (_searchError != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                _searchError!,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: Colors.red),
-              ),
-            ),
-          ),
-        _ResolverStatusBanner(meta: _resolverMeta, query: trimmed),
         Padding(
-          padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                _buildRarityChip(_RarityFilter.all, 'All'),
-                const SizedBox(width: 6),
-                _buildRarityChip(_RarityFilter.common, 'Common'),
-                const SizedBox(width: 6),
-                _buildRarityChip(_RarityFilter.uncommon, 'Uncommon'),
-                const SizedBox(width: 6),
-                _buildRarityChip(_RarityFilter.rare, 'Rare'),
-                const SizedBox(width: 6),
-                _buildRarityChip(_RarityFilter.ultra, 'Ultra / Secret'),
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          child: Column(
+            children: [
+              _CatalogSearchField(
+                controller: _searchCtrl,
+                onChanged: _onQueryChanged,
+                onSubmitted: _runSearch,
+              ),
+              if (_searchError != null) ...[
+                const SizedBox(height: 6),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    _searchError!,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
               ],
-            ),
+              _ResolverStatusBanner(
+                meta: _resolverMeta,
+                query: trimmed,
+                padding: const EdgeInsets.only(top: 8, bottom: 0),
+              ),
+              const SizedBox(height: 8),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildRarityChip(_RarityFilter.all, 'All'),
+                    const SizedBox(width: 6),
+                    _buildRarityChip(_RarityFilter.common, 'Common'),
+                    const SizedBox(width: 6),
+                    _buildRarityChip(_RarityFilter.uncommon, 'Uncommon'),
+                    const SizedBox(width: 6),
+                    _buildRarityChip(_RarityFilter.rare, 'Rare'),
+                    const SizedBox(width: 6),
+                    _buildRarityChip(_RarityFilter.ultra, 'Ultra / Secret'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
         if (_loading) const LinearProgressIndicator(minHeight: 2),
         Expanded(
           child: RefreshIndicator(
-            onRefresh: () => reload(),
+            onRefresh: () async {
+              await Future.wait([
+                reload(),
+                _loadTrending(),
+                _loadFeaturedSets(),
+              ]);
+            },
             child: CustomScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                if (showingTrending)
-                  SliverToBoxAdapter(
-                    child: _buildTrendingSection(Theme.of(context)),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                    child: Row(
+                      children: [
+                        Text(
+                          resultsTitle,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const Spacer(),
+                        if (resultCount > 0)
+                          Text(
+                            '$resultCount cards',
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.58,
+                              ),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
+                ),
                 if (_loading && _results.isEmpty && _trending.isEmpty)
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
@@ -1307,21 +1878,23 @@ class HomePageState extends State<HomePage> {
                     ),
                   )
                 else if (showEmpty)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Center(
-                        child: Text(
-                          'No results. Try another search term.',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
+                    sliver: SliverToBoxAdapter(
+                      child: _ProductEmptyState(
+                        title: trimmed.isEmpty
+                            ? 'No cards surfaced yet'
+                            : 'No results yet',
+                        body: trimmed.isEmpty
+                            ? 'Cards will appear here as the public explore catalog loads.'
+                            : 'Try another search term, set code, or collector number.',
                       ),
                     ),
                   )
                 else
                   SliverList.separated(
                     itemCount: rows.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 4),
+                    separatorBuilder: (_, __) => const SizedBox(height: 2),
                     itemBuilder: (context, index) {
                       final row = rows[index];
                       if (row is _CatalogHeaderRow) {
@@ -1340,7 +1913,13 @@ class HomePageState extends State<HomePage> {
                                       : card.gvId,
                                   name: card.name,
                                   setName: card.displaySet,
+                                  setCode: card.setCode.isEmpty
+                                      ? null
+                                      : card.setCode,
                                   number: card.displayNumber,
+                                  rarity: (card.rarity ?? '').isEmpty
+                                      ? null
+                                      : card.rarity,
                                   imageUrl: card.displayImage,
                                 ),
                               ),
@@ -1351,105 +1930,20 @@ class HomePageState extends State<HomePage> {
                       return const SizedBox.shrink();
                     },
                   ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  String _subtitle(CardPrint card) {
-    final parts = <String>[];
-    if (card.displaySet.isNotEmpty) parts.add(card.displaySet);
-    if (card.displayNumber.isNotEmpty) parts.add('#${card.displayNumber}');
-    if ((card.rarity ?? '').isNotEmpty) parts.add(card.rarity!);
-    return parts.join(' | ');
-  }
-
-  Widget _buildTrendingSection(ThemeData theme) {
-    if (_trending.isEmpty) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const _TrendingHeaderBar(),
-        const SizedBox(height: 4),
-        SizedBox(
-          height: 150,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            itemCount: _trending.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 10),
-            itemBuilder: (context, index) {
-              final card = _trending[index];
-
-              return AspectRatio(
-                aspectRatio: 3 / 4,
-                child: Material(
-                  color: theme.colorScheme.surfaceVariant.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(14),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(14),
-                    onTap: () {
-                      HapticFeedback.lightImpact();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => CardDetailScreen(
-                            cardPrintId: card.id,
-                            gvId: (card.gvId ?? '').isEmpty ? null : card.gvId,
-                            name: card.name,
-                            setName: card.displaySet,
-                            number: card.displayNumber,
-                            imageUrl: card.displayImage,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                (card.displayImage ?? '').toString(),
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                errorBuilder: (_, __, ___) =>
-                                    const Center(child: Icon(Icons.style)),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            card.name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            card.displaySet,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(
-                                0.7,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                  sliver: SliverToBoxAdapter(
+                    child: _buildCompareWorkspaceEntry(theme),
                   ),
                 ),
-              );
-            },
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
+                  sliver: SliverToBoxAdapter(
+                    child: _buildFeaturedSetsSurface(theme),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -1473,9 +1967,153 @@ class HomePageState extends State<HomePage> {
   }
 }
 
+class _MyWallTab extends StatefulWidget {
+  const _MyWallTab({required this.onOpenBySlug, super.key});
+
+  final Future<void> Function() onOpenBySlug;
+
+  @override
+  State<_MyWallTab> createState() => _MyWallTabState();
+}
+
+class _MyWallTabState extends State<_MyWallTab> {
+  final SupabaseClient _client = Supabase.instance.client;
+  bool _loading = true;
+  bool _loadFailed = false;
+  PublicCollectorEntryState _entryState =
+      PublicCollectorEntryState.missingProfile;
+  String? _slug;
+  int _contentVersion = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> reload() => _load();
+
+  Future<void> _load() async {
+    final userId = _client.auth.currentUser?.id ?? '';
+    if (mounted) {
+      setState(() {
+        _loading = true;
+        _loadFailed = false;
+      });
+    }
+
+    try {
+      final entry = await PublicCollectorService.resolveOwnEntry(
+        client: _client,
+        userId: userId,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _entryState = entry.state;
+        _slug = entry.slug;
+        _loading = false;
+        _loadFailed = false;
+        _contentVersion++;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _loading = false;
+        _loadFailed = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_loadFailed) {
+      return ListView(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+        children: [
+          _ProductEmptyState(
+            title: 'Unable to load My Wall',
+            body: 'Try again in a moment.',
+          ),
+        ],
+      );
+    }
+
+    if (_entryState == PublicCollectorEntryState.ready &&
+        _slug != null &&
+        _slug!.isNotEmpty) {
+      return PublicCollectorScreen(
+        key: ValueKey('my-wall-${_slug!}-$_contentVersion'),
+        slug: _slug!,
+        showAppBar: false,
+      );
+    }
+
+    final unavailableTitle =
+        _entryState == PublicCollectorEntryState.unavailable
+        ? 'My Wall is not public right now'
+        : 'My Wall is not ready yet';
+    final unavailableBody = _entryState == PublicCollectorEntryState.unavailable
+        ? 'Your public profile or vault sharing is turned off, so the public wall cannot be shown here.'
+        : 'Your account does not have a public collector slug yet.';
+
+    return RefreshIndicator(
+      onRefresh: _load,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+        children: [
+          _ProductSurfaceCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  unavailableTitle,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  unavailableBody,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withOpacity(0.72),
+                    height: 1.35,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: OutlinedButton(
+                    onPressed: widget.onOpenBySlug,
+                    child: const Text('Open by slug'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// ---------------------- VAULT PAGE (uses view + catalog picker) ----------------------
 class VaultPage extends StatefulWidget {
   const VaultPage({super.key});
+
   @override
   VaultPageState createState() => VaultPageState();
 }
@@ -1487,6 +2125,7 @@ class VaultPageState extends State<VaultPage> {
   List<Map<String, dynamic>> _items = const [];
   String _search = '';
   _SortBy _sortBy = _SortBy.newest;
+  _VaultStructuralView _view = _VaultStructuralView.all;
 
   @override
   void initState() {
@@ -1653,42 +2292,449 @@ class VaultPageState extends State<VaultPage> {
     await reload();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final filtered = _items.where((row) {
-      final name = (row['name'] ?? '').toString().toLowerCase();
-      final set = (row['set_name'] ?? '').toString().toLowerCase();
-      final q = _search.toLowerCase();
-      return name.contains(q) || set.contains(q);
-    }).toList();
+  List<Map<String, dynamic>> _sortedRows(List<Map<String, dynamic>> rows) {
+    final sorted = [...rows];
+
+    if (_sortBy == _SortBy.name) {
+      sorted.sort(
+        (a, b) => (a['name'] ?? '').toString().compareTo(
+          (b['name'] ?? '').toString(),
+        ),
+      );
+      return sorted;
+    }
 
     if (_sortBy == _SortBy.qty) {
-      filtered.sort(
+      sorted.sort(
         (a, b) => _ownedCountForRow(a).compareTo(_ownedCountForRow(b)),
+      );
+      return sorted;
+    }
+
+    sorted.sort((a, b) {
+      final aTs = DateTime.tryParse(
+        (a['created_at'] ?? '').toString(),
+      )?.millisecondsSinceEpoch;
+      final bTs = DateTime.tryParse(
+        (b['created_at'] ?? '').toString(),
+      )?.millisecondsSinceEpoch;
+      return (bTs ?? -1).compareTo(aTs ?? -1);
+    });
+    return sorted;
+  }
+
+  List<Map<String, dynamic>> _applySearch(List<Map<String, dynamic>> rows) {
+    final query = _search.trim().toLowerCase();
+    if (query.isEmpty) {
+      return rows;
+    }
+
+    return rows.where((row) {
+      final name = (row['name'] ?? '').toString().toLowerCase();
+      final setName = (row['set_name'] ?? '').toString().toLowerCase();
+      final setCode = (row['set_code'] ?? '').toString().toLowerCase();
+      final number = (row['number'] ?? '').toString().toLowerCase();
+      return name.contains(query) ||
+          setName.contains(query) ||
+          setCode.contains(query) ||
+          number.contains(query);
+    }).toList();
+  }
+
+  String _lastAddedLabel(List<Map<String, dynamic>> rows) {
+    final latest = rows
+        .map((row) => DateTime.tryParse((row['created_at'] ?? '').toString()))
+        .whereType<DateTime>()
+        .fold<DateTime?>(null, (current, value) {
+          if (current == null || value.isAfter(current)) {
+            return value;
+          }
+          return current;
+        });
+
+    if (latest == null) {
+      return 'No cards yet';
+    }
+
+    final age = DateTime.now().difference(latest);
+    if (age.inMinutes < 1) {
+      return 'just now';
+    }
+    if (age.inMinutes < 60) {
+      return '${age.inMinutes}m ago';
+    }
+    if (age.inHours < 24) {
+      return '${age.inHours}h ago';
+    }
+    if (age.inDays < 7) {
+      return '${age.inDays}d ago';
+    }
+
+    return '${latest.month}/${latest.day}/${latest.year}';
+  }
+
+  List<_VaultSetGroup> _groupRowsBySet(List<Map<String, dynamic>> rows) {
+    final buckets = <String, List<Map<String, dynamic>>>{};
+
+    for (final row in rows) {
+      final title = ((row['set_name'] ?? row['set_code']) ?? '')
+          .toString()
+          .trim();
+      final key = title.isEmpty ? 'Unknown set' : title;
+      buckets.putIfAbsent(key, () => <Map<String, dynamic>>[]).add(row);
+    }
+
+    return buckets.entries
+        .map((entry) => _VaultSetGroup(title: entry.key, rows: entry.value))
+        .toList()
+      ..sort((a, b) => a.title.compareTo(b.title));
+  }
+
+  Widget _buildVaultList(List<Map<String, dynamic>> rows) {
+    if (rows.isEmpty) {
+      return _ProductEmptyState(
+        title: 'No cards found in your vault',
+        body: _search.trim().isEmpty
+            ? 'Your structural vault shell is in place. Add cards or switch views to keep building it out.'
+            : 'Try a different search term or clear the current query.',
       );
     }
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-          child: Row(
+        for (var index = 0; index < rows.length; index++) ...[
+          _buildVaultTile(rows[index]),
+          if (index < rows.length - 1) const SizedBox(height: 8),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildVaultBySet(List<_VaultSetGroup> groups) {
+    if (groups.isEmpty) {
+      return const _ProductEmptyState(
+        title: 'No set groups yet',
+        body:
+            'Set grouping will appear here once matching rows are available for this view.',
+      );
+    }
+
+    return Column(
+      children: [
+        for (var index = 0; index < groups.length; index++) ...[
+          _ProductSurfaceCard(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _ProductSectionHeading(
+                  title: groups[index].title,
+                  description: 'Grouped vault rows for this set.',
+                  trailing: Text(
+                    '${groups[index].rows.length}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                _buildVaultList(groups[index].rows),
+              ],
+            ),
+          ),
+          if (index < groups.length - 1) const SizedBox(height: 12),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildVaultTile(Map<String, dynamic> row) {
+    final vaultItemId = _vaultItemIdForRow(row);
+    final name = (row['name'] ?? 'Item').toString();
+    final set = (row['set_name'] ?? '').toString();
+    final ownedCount = _ownedCountForRow(row);
+    final cond = (row['condition_label'] ?? 'NM').toString();
+    final gvId = (row['gv_id'] ?? '').toString();
+    final cardPrintId = (row['card_id'] ?? '').toString();
+
+    return _VaultItemTile(
+      row: row,
+      onScan: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) =>
+                ScanCaptureScreen(vaultItemId: vaultItemId, cardName: name),
+          ),
+        );
+      },
+      onIncrement: () => _incQty(row, 1),
+      onDecrement: () => _incQty(row, -1),
+      onDelete: () async {
+        final ok = await _confirmDelete(row);
+        if (ok) await reload();
+      },
+      onTap: cardPrintId.isEmpty
+          ? null
+          : () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => CardDetailScreen(
+                    cardPrintId: cardPrintId,
+                    gvId: gvId.isEmpty ? null : gvId,
+                    name: name,
+                    setName: set,
+                    number: (row['number'] ?? '').toString(),
+                    imageUrl: (row['photo_url'] ?? row['image_url']).toString(),
+                    quantity: ownedCount,
+                    condition: cond,
+                  ),
+                ),
+              );
+            },
+    );
+  }
+
+  Widget _buildRecentVaultStrip(List<Map<String, dynamic>> rows) {
+    if (rows.isEmpty) {
+      return const _ProductEmptyState(
+        title: 'No recently added items yet',
+        body: 'New additions will appear here after you scan or add cards.',
+      );
+    }
+
+    final recentRows = [...rows];
+    recentRows.sort((a, b) {
+      final aTs = DateTime.tryParse(
+        (a['created_at'] ?? '').toString(),
+      )?.millisecondsSinceEpoch;
+      final bTs = DateTime.tryParse(
+        (b['created_at'] ?? '').toString(),
+      )?.millisecondsSinceEpoch;
+      return (bTs ?? -1).compareTo(aTs ?? -1);
+    });
+
+    return SizedBox(
+      height: 170,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: recentRows.length.clamp(0, 10) as int,
+        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        itemBuilder: (context, index) {
+          final row = recentRows[index];
+          final cardPrintId = (row['card_id'] ?? '').toString();
+          final gvId = (row['gv_id'] ?? '').toString();
+          final name = (row['name'] ?? 'Item').toString();
+          final setName = ((row['set_name'] ?? row['set_code']) ?? '')
+              .toString()
+              .trim();
+          final imageUrl = (row['photo_url'] ?? row['image_url']).toString();
+
+          return SizedBox(
+            width: 140,
+            child: Material(
+              color: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest.withOpacity(0.45),
+              borderRadius: BorderRadius.circular(20),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: cardPrintId.isEmpty
+                    ? null
+                    : () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => CardDetailScreen(
+                              cardPrintId: cardPrintId,
+                              gvId: gvId.isEmpty ? null : gvId,
+                              name: name,
+                              setName: setName,
+                              number: (row['number'] ?? '').toString(),
+                              imageUrl: imageUrl,
+                              quantity: _ownedCountForRow(row),
+                              condition: (row['condition_label'] ?? 'NM')
+                                  .toString(),
+                            ),
+                          ),
+                        );
+                      },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(14),
+                          child: imageUrl.isEmpty
+                              ? Container(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.surfaceContainerHighest,
+                                  child: const Center(child: Icon(Icons.style)),
+                                )
+                              : Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  errorBuilder: (_, __, ___) => Container(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.surfaceContainerHighest,
+                                    child: const Center(
+                                      child: Icon(Icons.broken_image),
+                                    ),
+                                  ),
+                                ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        setName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.68),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildVaultViewChip(_VaultStructuralView view, String label) {
+    return ChoiceChip(
+      label: Text(label),
+      selected: _view == view,
+      onSelected: (_) {
+        setState(() {
+          _view = view;
+        });
+      },
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final sortedRows = _sortedRows(_items);
+    final searchedRows = _applySearch(sortedRows);
+    final duplicateRows = searchedRows
+        .where((row) => _ownedCountForRow(row) > 1)
+        .toList();
+    final recentRows = [...searchedRows]
+      ..sort((a, b) {
+        final aTs = DateTime.tryParse(
+          (a['created_at'] ?? '').toString(),
+        )?.millisecondsSinceEpoch;
+        final bTs = DateTime.tryParse(
+          (b['created_at'] ?? '').toString(),
+        )?.millisecondsSinceEpoch;
+        return (bTs ?? -1).compareTo(aTs ?? -1);
+      });
+    final bySetGroups = _groupRowsBySet(searchedRows);
+    final totalCards = _items.fold<int>(
+      0,
+      (sum, row) => sum + _ownedCountForRow(row),
+    );
+    final setCount = _items
+        .map(
+          (row) =>
+              ((row['set_name'] ?? row['set_code']) ?? '').toString().trim(),
+        )
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .length;
+
+    late final Widget vaultContent;
+    switch (_view) {
+      case _VaultStructuralView.all:
+        vaultContent = _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _buildVaultList(searchedRows);
+        break;
+      case _VaultStructuralView.duplicates:
+        vaultContent = _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _buildVaultList(duplicateRows);
+        break;
+      case _VaultStructuralView.recent:
+        vaultContent = _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _buildVaultList(recentRows);
+        break;
+      case _VaultStructuralView.bySet:
+        vaultContent = _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _buildVaultBySet(bySetGroups);
+        break;
+      case _VaultStructuralView.onWall:
+        vaultContent = const _ProductEmptyState(
+          title: 'No wall rows in Flutter yet',
+          body:
+              'The On Wall segment is part of the web vault structure and stays present here until later data wiring lands.',
+        );
+        break;
+      case _VaultStructuralView.pokemon:
+        vaultContent = const _ProductEmptyState(
+          title: 'Pokemon grouping is not wired yet',
+          body:
+              'The Pokemon vault segment is part of the web baseline and will be filled in after later Flutter data wiring.',
+        );
+        break;
+    }
+
+    return RefreshIndicator(
+      onRefresh: reload,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              Chip(label: Text('$totalCards cards')),
+              Chip(label: Text('${_items.length} unique')),
+              Chip(label: Text('$setCount sets')),
+              Chip(label: Text('Last added ${_lastAddedLabel(_items)}')),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
             children: [
               Expanded(
                 child: TextField(
                   decoration: const InputDecoration(
-                    hintText: 'Search cards or sets...',
+                    hintText: 'Search your vault...',
                     prefixIcon: Icon(Icons.search),
                   ),
-                  onChanged: (val) => setState(() => _search = val),
+                  onChanged: (value) => setState(() => _search = value),
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 10),
               PopupMenuButton<_SortBy>(
                 icon: const Icon(Icons.sort),
-                onSelected: (v) {
-                  setState(() => _sortBy = v);
-                  reload();
+                onSelected: (value) {
+                  setState(() => _sortBy = value);
                 },
                 itemBuilder: (_) => const [
                   PopupMenuItem(value: _SortBy.newest, child: Text('Newest')),
@@ -1701,69 +2747,46 @@ class VaultPageState extends State<VaultPage> {
               ),
             ],
           ),
-        ),
-        Expanded(
-          child: _loading
-              ? const Center(child: CircularProgressIndicator())
-              : filtered.isEmpty
-              ? const Center(child: Text('No items found.'))
-              : ListView.separated(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) {
-                    final row = filtered[index];
-                    final vaultItemId = _vaultItemIdForRow(row);
-                    final name = (row['name'] ?? 'Item').toString();
-                    final set = (row['set_name'] ?? '').toString();
-                    final ownedCount = _ownedCountForRow(row);
-                    final cond = (row['condition_label'] ?? 'NM').toString();
-                    final gvId = (row['gv_id'] ?? '').toString();
-                    final cardPrintId = (row['card_id'] ?? '').toString();
-
-                    return _VaultItemTile(
-                      row: row,
-                      onScan: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => ScanCaptureScreen(
-                              vaultItemId: vaultItemId,
-                              cardName: name,
-                            ),
-                          ),
-                        );
-                      },
-                      onIncrement: () => _incQty(row, 1),
-                      onDecrement: () => _incQty(row, -1),
-                      onDelete: () async {
-                        final ok = await _confirmDelete(row);
-                        if (ok) await reload();
-                      },
-                      onTap: cardPrintId.isEmpty
-                          ? null
-                          : () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => CardDetailScreen(
-                                    cardPrintId: cardPrintId,
-                                    gvId: gvId.isEmpty ? null : gvId,
-                                    name: name,
-                                    setName: set,
-                                    number: (row['number'] ?? '').toString(),
-                                    imageUrl:
-                                        (row['photo_url'] ?? row['image_url'])
-                                            .toString(),
-                                    quantity: ownedCount,
-                                    condition: cond,
-                                  ),
-                                ),
-                              );
-                            },
-                    );
-                  },
+          const SizedBox(height: 12),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _buildVaultViewChip(_VaultStructuralView.all, 'All Cards'),
+                const SizedBox(width: 8),
+                _buildVaultViewChip(_VaultStructuralView.onWall, 'On Wall'),
+                const SizedBox(width: 8),
+                _buildVaultViewChip(
+                  _VaultStructuralView.duplicates,
+                  'Duplicates',
                 ),
-        ),
-      ],
+                const SizedBox(width: 8),
+                _buildVaultViewChip(_VaultStructuralView.recent, 'Recent'),
+                const SizedBox(width: 8),
+                _buildVaultViewChip(_VaultStructuralView.bySet, 'By Set'),
+                const SizedBox(width: 8),
+                _buildVaultViewChip(_VaultStructuralView.pokemon, 'Pokemon'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          vaultContent,
+          const SizedBox(height: 18),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Recently Added',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 10),
+              _buildRecentVaultStrip(_items),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -1824,6 +2847,15 @@ class VaultPageState extends State<VaultPage> {
 }
 
 enum _SortBy { newest, name, qty }
+
+enum _VaultStructuralView { all, onWall, duplicates, recent, bySet, pokemon }
+
+class _VaultSetGroup {
+  const _VaultSetGroup({required this.title, required this.rows});
+
+  final String title;
+  final List<Map<String, dynamic>> rows;
+}
 
 int _ownedCountForRow(Map<String, dynamic> row) {
   final ownedCount = _intValue(row['owned_count']);
