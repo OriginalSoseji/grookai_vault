@@ -101,7 +101,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       }),
     ),
     cardTheme: CardThemeData(
-      color: colorScheme.surfaceVariant.withOpacity(0.8),
+      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.8),
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       margin: EdgeInsets.zero,
@@ -111,14 +111,14 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(
-          color: colorScheme.outline.withOpacity(0.4),
+          color: colorScheme.outline.withValues(alpha: 0.4),
           width: 1,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(
-          color: colorScheme.outline.withOpacity(0.4),
+          color: colorScheme.outline.withValues(alpha: 0.4),
           width: 1,
         ),
       ),
@@ -168,13 +168,10 @@ class _ProductSurfaceCard extends StatelessWidget {
   const _ProductSurfaceCard({
     required this.child,
     this.padding = const EdgeInsets.all(16),
-    this.emphasize = false,
-    super.key,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
-  final bool emphasize;
 
   @override
   Widget build(BuildContext context) {
@@ -184,14 +181,12 @@ class _ProductSurfaceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: colorScheme.outline.withOpacity(emphasize ? 0.24 : 0.14),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.shadow.withOpacity(emphasize ? 0.08 : 0.05),
-            blurRadius: emphasize ? 22 : 14,
-            offset: Offset(0, emphasize ? 10 : 6),
+            color: colorScheme.shadow.withValues(alpha: 0.05),
+            blurRadius: 14,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
@@ -206,7 +201,6 @@ class _ProductSectionHeading extends StatelessWidget {
     required this.title,
     required this.description,
     this.trailing,
-    super.key,
   });
 
   final String title;
@@ -237,7 +231,7 @@ class _ProductSectionHeading extends StatelessWidget {
                 Text(
                   description,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withOpacity(0.72),
+                    color: colorScheme.onSurface.withValues(alpha: 0.72),
                     height: 1.35,
                   ),
                 ),
@@ -252,11 +246,7 @@ class _ProductSectionHeading extends StatelessWidget {
 }
 
 class _ProductEmptyState extends StatelessWidget {
-  const _ProductEmptyState({
-    required this.title,
-    required this.body,
-    super.key,
-  });
+  const _ProductEmptyState({required this.title, required this.body});
 
   final String title;
   final String body;
@@ -270,9 +260,9 @@ class _ProductEmptyState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withOpacity(0.05),
+        color: colorScheme.primary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colorScheme.outline.withOpacity(0.14)),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -287,7 +277,7 @@ class _ProductEmptyState extends StatelessWidget {
           Text(
             body,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.72),
+              color: colorScheme.onSurface.withValues(alpha: 0.72),
               height: 1.35,
             ),
           ),
@@ -300,13 +290,15 @@ class _ProductEmptyState extends StatelessWidget {
 enum _RarityFilter { all, common, uncommon, rare, ultra }
 
 class _CatalogSkeletonTile extends StatelessWidget {
-  const _CatalogSkeletonTile({super.key});
+  const _CatalogSkeletonTile();
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final base = colorScheme.surfaceVariant.withOpacity(0.7);
-    final highlight = colorScheme.surfaceVariant.withOpacity(0.4);
+    final base = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
+    final highlight = colorScheme.surfaceContainerHighest.withValues(
+      alpha: 0.4,
+    );
 
     Widget bar({double width = 120, double height = 10}) {
       return Container(
@@ -359,14 +351,11 @@ class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final ValueChanged<String>? onSubmitted;
-  final EdgeInsetsGeometry padding;
 
   const _CatalogSearchField({
     required this.controller,
     required this.onChanged,
     this.onSubmitted,
-    this.padding = EdgeInsets.zero,
-    super.key,
   });
 
   @override
@@ -374,25 +363,22 @@ class _CatalogSearchField extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Padding(
-      padding: padding,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colorScheme.surfaceVariant.withOpacity(0.7),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: TextField(
-          controller: controller,
-          onChanged: onChanged,
-          onSubmitted: onSubmitted,
-          textInputAction: TextInputAction.search,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: 'Search by name, set, or number',
-            border: InputBorder.none,
-            isDense: true,
-            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-          ),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: TextField(
+        controller: controller,
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
+        textInputAction: TextInputAction.search,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.search),
+          hintText: 'Search by name, set, or number',
+          border: InputBorder.none,
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         ),
       ),
     );
@@ -408,7 +394,6 @@ class _ResolverStatusBanner extends StatelessWidget {
     required this.meta,
     required this.query,
     this.padding = const EdgeInsets.fromLTRB(12, 0, 12, 8),
-    super.key,
   });
 
   @override
@@ -430,22 +415,22 @@ class _ResolverStatusBanner extends StatelessWidget {
       case ResolverSearchState.strongMatch:
         return const SizedBox.shrink();
       case ResolverSearchState.ambiguousMatch:
-        background = Colors.amber.withOpacity(0.12);
-        border = Colors.amber.withOpacity(0.6);
+        background = Colors.amber.withValues(alpha: 0.12);
+        border = Colors.amber.withValues(alpha: 0.6);
         title = 'Multiple plausible matches';
         body =
             'This query is still ambiguous. Review the ranked cards instead of treating the top result as certain.';
         break;
       case ResolverSearchState.weakMatch:
-        background = colorScheme.surfaceVariant.withOpacity(0.7);
-        border = colorScheme.outline.withOpacity(0.35);
+        background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
+        border = colorScheme.outline.withValues(alpha: 0.35);
         title = 'Weak match';
         body =
             'These results are approximate. Add a set code, collector number, or promo code to strengthen the match.';
         break;
       case ResolverSearchState.noMatch:
-        background = colorScheme.surfaceVariant.withOpacity(0.7);
-        border = colorScheme.outline.withOpacity(0.35);
+        background = colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
+        border = colorScheme.outline.withValues(alpha: 0.35);
         title = 'No matching cards';
         body = 'No viable deterministic match was found for "$trimmed".';
         break;
@@ -474,7 +459,7 @@ class _ResolverStatusBanner extends StatelessWidget {
             Text(
               body,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withOpacity(0.75),
+                color: colorScheme.onSurface.withValues(alpha: 0.75),
               ),
             ),
           ],
@@ -488,12 +473,12 @@ class _CatalogSectionHeader extends StatelessWidget {
   final String title;
   final bool compact;
 
-  const _CatalogSectionHeader(this.title, {this.compact = false, super.key});
+  const _CatalogSectionHeader(this.title, {this.compact = false});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = theme.colorScheme.onSurface.withOpacity(0.6);
+    final color = theme.colorScheme.onSurface.withValues(alpha: 0.6);
     return Padding(
       padding: EdgeInsets.fromLTRB(16, compact ? 8 : 10, 16, compact ? 0 : 2),
       child: Text(
@@ -519,7 +504,6 @@ class _CatalogCardTile extends StatelessWidget {
     required this.viewMode,
     this.pricing,
     this.onTap,
-    super.key,
   });
 
   @override
@@ -555,7 +539,7 @@ class _CatalogCardTile extends StatelessWidget {
         vertical: compact ? 0.5 : 1,
       ),
       child: Material(
-        color: colorScheme.surfaceVariant.withOpacity(0.7),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(compact ? 12 : 14),
         child: InkWell(
           borderRadius: BorderRadius.circular(compact ? 12 : 14),
@@ -596,7 +580,7 @@ class _CatalogCardTile extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurface.withOpacity(0.7),
+                            color: colorScheme.onSurface.withValues(alpha: 0.7),
                             fontSize: compact ? 11.5 : null,
                           ),
                         ),
@@ -658,7 +642,7 @@ class _CatalogCardGridTile extends StatelessWidget {
     final subtitle = subtitleParts.join(' • ');
 
     return Material(
-      color: colorScheme.surfaceContainerHighest.withOpacity(0.38),
+      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.38),
       borderRadius: BorderRadius.circular(15),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),
@@ -682,7 +666,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                       top: 4,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: colorScheme.surface.withOpacity(0.9),
+                          color: colorScheme.surface.withValues(alpha: 0.9),
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: _CompareToggleIconButton(gvId: card.gvId),
@@ -708,7 +692,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurface.withOpacity(0.68),
+                    color: colorScheme.onSurface.withValues(alpha: 0.68),
                     fontSize: 10.4,
                   ),
                 ),
@@ -773,7 +757,9 @@ class _CompareToggleIconButton extends StatelessWidget {
             size: 17,
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                : Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
           ),
           onPressed: () {
             if (!isSelected && selectedIds.length >= kMaxCompareCards) {
@@ -813,7 +799,7 @@ class _ExploreSetRailTile extends StatelessWidget {
     return SizedBox(
       width: 164,
       child: Material(
-        color: colorScheme.surfaceContainerHighest.withOpacity(0.5),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(22),
         child: InkWell(
           borderRadius: BorderRadius.circular(22),
@@ -829,7 +815,7 @@ class _ExploreSetRailTile extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: colorScheme.primary.withOpacity(0.08),
+                    color: colorScheme.primary.withValues(alpha: 0.08),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
@@ -859,7 +845,7 @@ class _ExploreSetRailTile extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withOpacity(0.68),
+                    color: colorScheme.onSurface.withValues(alpha: 0.68),
                     height: 1.35,
                   ),
                 ),
@@ -892,7 +878,10 @@ Future<void> main() async {
     );
   }
 
-  print('[gv] supabase_url=$url');
+  assert(() {
+    debugPrint('[gv] supabase_url=$url');
+    return true;
+  }());
   await Supabase.initialize(url: url, anonKey: key);
   runApp(const MyApp());
 }
@@ -909,17 +898,41 @@ Future<void> _loadEnv() async {
   }
 }
 
-/// Root app with an auth gate: session -> AppShell, else -> LoginPage.
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GrookaiAppFrame extends StatelessWidget {
+  const GrookaiAppFrame({required this.home, super.key});
+
+  final Widget home;
+
   @override
   Widget build(BuildContext context) {
-    final supabase = Supabase.instance.client;
     final app = MaterialApp(
       title: 'Grookai Vault',
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
       themeMode: ThemeMode.system,
+      home: home,
+    );
+    if (!kDebugTouchLog) return app;
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: (e) {
+        debugPrint(
+          '[TOUCH] down x=${e.position.dx.toStringAsFixed(1)} y=${e.position.dy.toStringAsFixed(1)}',
+        );
+      },
+      child: app,
+    );
+  }
+}
+
+/// Root app with an auth gate: session -> AppShell, else -> LoginPage.
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final supabase = Supabase.instance.client;
+    return GrookaiAppFrame(
       home: StreamBuilder<AuthState>(
         stream: supabase.auth.onAuthStateChange,
         initialData: AuthState(
@@ -931,16 +944,6 @@ class MyApp extends StatelessWidget {
           return session == null ? const LoginPage() : const AppShell();
         },
       ),
-    );
-    if (!kDebugTouchLog) return app;
-    return Listener(
-      behavior: HitTestBehavior.translucent,
-      onPointerDown: (e) {
-        debugPrint(
-          '[TOUCH] down x=${e.position.dx.toStringAsFixed(1)} y=${e.position.dy.toStringAsFixed(1)}',
-        );
-      },
-      child: app,
     );
   }
 }
@@ -1083,13 +1086,13 @@ class HomePageState extends State<HomePage> {
     Color text;
 
     if (selected) {
-      bg = colorScheme.primary.withOpacity(0.12);
+      bg = colorScheme.primary.withValues(alpha: 0.12);
       border = colorScheme.primary;
       text = colorScheme.primary;
     } else {
-      bg = colorScheme.surfaceVariant.withOpacity(0.5);
+      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
       border = Colors.transparent;
-      text = colorScheme.onSurface.withOpacity(0.75);
+      text = colorScheme.onSurface.withValues(alpha: 0.75);
     }
 
     return ChoiceChip(
@@ -1270,7 +1273,7 @@ class HomePageState extends State<HomePage> {
     if (_viewMode != AppCardViewMode.grid) {
       return SliverList.separated(
         itemCount: rows.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 2),
+        separatorBuilder: (_, index) => const SizedBox(height: 2),
         itemBuilder: (context, index) {
           final row = rows[index];
           if (row is _CatalogHeaderRow) {
@@ -1326,7 +1329,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
                   '$compareCount card${compareCount == 1 ? '' : 's'} selected',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.72),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.72),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -1385,7 +1388,7 @@ class HomePageState extends State<HomePage> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: _featuredSets.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              separatorBuilder: (_, index) => const SizedBox(width: 12),
               itemBuilder: (context, index) {
                 final setInfo = _featuredSets[index];
                 return _ExploreSetRailTile(
@@ -1542,8 +1545,8 @@ class HomePageState extends State<HomePage> {
                           Text(
                             '$resultCount cards',
                             style: theme.textTheme.labelMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(
-                                0.58,
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.58,
                               ),
                               fontWeight: FontWeight.w600,
                             ),

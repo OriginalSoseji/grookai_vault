@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'screens/compare/compare_screen.dart';
+import 'screens/gvvi/public_gvvi_screen.dart';
+import 'screens/network/network_inbox_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
+import 'screens/vault/vault_gvvi_screen.dart';
 import 'services/public/compare_service.dart';
+import 'widgets/card_surface_artwork.dart';
+import 'widgets/contact_owner_button.dart';
 
 class CardDetailScreen extends StatefulWidget {
   final String cardPrintId;
@@ -16,6 +21,12 @@ class CardDetailScreen extends StatefulWidget {
   final String? imageUrl;
   final int? quantity;
   final String? condition;
+  final String? contactVaultItemId;
+  final String? contactOwnerDisplayName;
+  final String? contactOwnerUserId;
+  final String? contactIntent;
+  final String? exactCopyGvviId;
+  final String? exactCopyOwnerUserId;
 
   const CardDetailScreen({
     super.key,
@@ -29,6 +40,12 @@ class CardDetailScreen extends StatefulWidget {
     this.imageUrl,
     this.quantity,
     this.condition,
+    this.contactVaultItemId,
+    this.contactOwnerDisplayName,
+    this.contactOwnerUserId,
+    this.contactIntent,
+    this.exactCopyGvviId,
+    this.exactCopyOwnerUserId,
   });
 
   @override
@@ -36,81 +53,93 @@ class CardDetailScreen extends StatefulWidget {
 }
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
-  static const double _sectionSpacing = 14;
+  static const double _sectionSpacing = 6;
   final supabase = Supabase.instance.client;
 
+  Map<String, dynamic>? _cardContextData;
   Map<String, dynamic>? _priceData;
+  List<Map<String, dynamic>> _relatedVersions = const [];
   bool _priceLoading = false;
   String? _priceError;
-  bool _requestingLivePrice = false;
-  String? _livePriceRequestMessage;
-
-  int _ttlMinutesForListings(int listingCount) {
-    if (listingCount >= 40) return 30;
-    if (listingCount >= 15) return 120;
-    if (listingCount >= 5) return 360;
-    return 1440;
-  }
 
   @override
   void initState() {
     super.initState();
+    _loadCardContext();
     _loadPricing();
   }
 
-  Future<Map<String, dynamic>?> _fetchCanonicalRawPricing() async {
-    // Phase 1 canonical raw read contract:
-    // - raw price value/source/timestamp come from v_best_prices_all_gv_v1
-    // - optional freshness metadata and active-listing stats come from card_print_active_prices
-    final results = await Future.wait<dynamic>([
-      supabase
-          .from('v_best_prices_all_gv_v1')
-          .select('card_id,base_market,base_source,base_ts')
-          .eq('card_id', widget.cardPrintId)
-          .maybeSingle(),
-      supabase
-          .from('card_print_active_prices')
+  Future<void> _loadCardContext() async {
+    try {
+      final detailRow = await supabase
+          .from('card_prints')
           .select(
-            'card_print_id,nm_median,nm_floor,lp_median,listing_count,confidence,updated_at,last_snapshot_at',
+            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,set_code,sets(name,printed_total,release_date,printed_set_abbrev)',
           )
-          .eq('card_print_id', widget.cardPrintId)
-          .maybeSingle(),
-    ]);
+          .eq('id', widget.cardPrintId)
+          .maybeSingle();
 
-    final compatibilityRow = results[0] as Map<String, dynamic>?;
-    final activePriceRow = results[1] as Map<String, dynamic>?;
+      final contextData = detailRow == null
+          ? null
+          : Map<String, dynamic>.from(detailRow);
+      final contextName = _cleanText(contextData?['name']);
+      final resolvedName = contextName.isNotEmpty ? contextName : _displayName;
 
-    if (compatibilityRow == null && activePriceRow == null) {
+      List<Map<String, dynamic>> relatedRows = const [];
+      if (resolvedName.isNotEmpty) {
+        final response = await supabase
+            .from('card_prints')
+            .select(
+              'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,sets(name,release_date)',
+            )
+            .eq('name', resolvedName)
+            .neq('id', widget.cardPrintId)
+            .not('gv_id', 'is', null)
+            .order('set_code', ascending: true)
+            .order('number_plain', ascending: true, nullsFirst: false)
+            .order('number', ascending: true)
+            .limit(20);
+
+        relatedRows = (response as List<dynamic>)
+            .map((row) => Map<String, dynamic>.from(row as Map))
+            .where((row) => _cleanText(row['id']).isNotEmpty)
+            .toList();
+      }
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _cardContextData = contextData;
+        _relatedVersions = relatedRows;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _cardContextData = null;
+        _relatedVersions = const [];
+      });
+    }
+  }
+
+  Future<Map<String, dynamic>?> _fetchPricingUi() async {
+    final row = await supabase
+        .from('v_card_pricing_ui_v1')
+        .select(
+          'card_print_id,primary_price,primary_source,grookai_value,min_price,max_price,variant_count,ebay_median_price,ebay_listing_count',
+        )
+        .eq('card_print_id', widget.cardPrintId)
+        .maybeSingle();
+
+    if (row == null) {
       return null;
     }
 
-    final rawPrice = (compatibilityRow?['base_market'] as num?)?.toDouble();
-    final rawPriceSource = compatibilityRow?['base_source'] as String?;
-    final rawPriceTs = compatibilityRow?['base_ts'] as String?;
-    final activeUpdatedAt = activePriceRow?['updated_at'] as String?;
-    final lastSnapshotAt = activePriceRow?['last_snapshot_at'] as String?;
-
-    return {
-      'card_print_id': widget.cardPrintId,
-      'raw_price': rawPrice,
-      'raw_price_source': rawPrice != null ? rawPriceSource : null,
-      'raw_price_ts': rawPrice != null ? rawPriceTs : null,
-      'listing_count': activePriceRow?['listing_count'],
-      'confidence': activePriceRow?['confidence'],
-      'active_price_updated_at': activeUpdatedAt,
-      'last_snapshot_at': lastSnapshotAt,
-      // Compatibility aliases retained locally while the UI still uses Grookai
-      // Value copy and active-listing detail labels.
-      'latest_price': rawPrice,
-      'price_source': rawPrice != null ? rawPriceSource : null,
-      'updated_at': rawPrice != null ? rawPriceTs : null,
-      // Existing active-listing detail fields remain available so the current
-      // pricing card can keep its supporting context without changing the
-      // canonical raw-price seam.
-      'nm_median': activePriceRow?['nm_median'],
-      'nm_floor': activePriceRow?['nm_floor'],
-      'lp_median': activePriceRow?['lp_median'],
-    };
+    return Map<String, dynamic>.from(row);
   }
 
   Future<void> _loadPricing() async {
@@ -120,7 +149,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
 
     try {
-      final response = await _fetchCanonicalRawPricing();
+      final response = await _fetchPricingUi();
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
         _priceData = response;
@@ -148,96 +180,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
   }
 
-  Future<void> _requestLivePrice() async {
-    setState(() {
-      _requestingLivePrice = true;
-      _livePriceRequestMessage = null;
-    });
-
-    try {
-      final data = _priceData;
-      if (data != null) {
-        String formatAgeMinutes(int totalMinutes) {
-          if (totalMinutes < 60) return '${totalMinutes}m';
-          if (totalMinutes < 1440) return '${(totalMinutes / 60).floor()}h';
-          return '${(totalMinutes / 1440).floor()}d';
-        }
-
-        final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
-        final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
-        final activeUpdatedAtRaw = data['active_price_updated_at'] as String?;
-        final rawPriceTs = data['raw_price_ts'] as String?;
-        final freshnessRaw =
-            rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
-        final freshnessTs = freshnessRaw != null
-            ? DateTime.tryParse(freshnessRaw)
-            : null;
-
-        if (listingCount > 0 && freshnessTs != null) {
-          final rawAgeMinutes = DateTime.now()
-              .toUtc()
-              .difference(freshnessTs.toUtc())
-              .inMinutes;
-          final ageMinutes = rawAgeMinutes < 0 ? 0 : rawAgeMinutes;
-          final ttlMinutes = _ttlMinutesForListings(listingCount);
-          if (ageMinutes < ttlMinutes) {
-            final remainingMinutes = ttlMinutes - ageMinutes;
-            if (mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Live price is fresh (Updated ${formatAgeMinutes(ageMinutes)} ago). Next refresh in ~${formatAgeMinutes(remainingMinutes)}.',
-                  ),
-                ),
-              );
-            }
-            return;
-          }
-        }
-      }
-
-      final response = await supabase.functions.invoke(
-        'pricing-live-request',
-        body: {'card_print_id': widget.cardPrintId},
-      );
-      if (response.status < 200 || response.status >= 300) {
-        throw Exception(
-          'pricing-live-request failed: status=${response.status}, data=${response.data}',
-        );
-      }
-
-      final payload = response.data;
-      final status = payload is Map<String, dynamic>
-          ? payload['status'] as String?
-          : null;
-
-      var requestMessage = 'Live price requested. Check back after processing.';
-      if (status == 'fresh') {
-        requestMessage = 'Current Grookai Value is still fresh.';
-      } else if (status == 'already_queued') {
-        requestMessage = 'A live price refresh is already queued.';
-      } else if (status == 'cooldown') {
-        requestMessage = 'Live price was requested recently. Try again later.';
-      }
-
-      setState(() {
-        _livePriceRequestMessage = requestMessage;
-      });
-    } catch (e) {
-      // ignore: avoid_print
-      print('[pricing] live price insert failed: $e');
-      setState(() {
-        _livePriceRequestMessage = 'Failed to request live price.';
-      });
-    } finally {
-      if (mounted) {
-        setState(() {
-          _requestingLivePrice = false;
-        });
-      }
-    }
-  }
-
   String _cleanText(String? value) => (value ?? '').trim();
 
   String _formatRarity(String? value) {
@@ -258,8 +200,22 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   String get _displayName {
     final resolved = _cleanText(widget.name);
+    final contextName = _cleanText(_cardContextData?['name']);
+    if (contextName.isNotEmpty) {
+      return contextName;
+    }
     return resolved.isNotEmpty ? resolved : 'Card Detail';
   }
+
+  bool get _hasContactContext =>
+      _cleanText(widget.contactVaultItemId).isNotEmpty &&
+      _cleanText(widget.contactOwnerDisplayName).isNotEmpty;
+
+  bool get _hasVaultContext =>
+      widget.quantity != null || _cleanText(widget.condition).isNotEmpty;
+
+  bool get _hasExactCopyContext =>
+      _cleanText(widget.exactCopyGvviId).isNotEmpty;
 
   Future<void> _openCompareWorkspace() async {
     final normalizedGvId = normalizeCompareCardId(widget.gvId ?? '');
@@ -293,7 +249,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<void> _openSetDetail() async {
-    final setCode = _cleanText(widget.setCode);
+    final setCode = _resolvedSetCode;
     if (setCode.isEmpty) {
       return;
     }
@@ -305,11 +261,363 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Future<void> _openExactCopy() async {
+    final gvviId = _cleanText(widget.exactCopyGvviId);
+    if (gvviId.isEmpty) {
+      return;
+    }
+
+    final currentUserId = supabase.auth.currentUser?.id;
+    final isOwner =
+        currentUserId != null &&
+        currentUserId == _cleanText(widget.exactCopyOwnerUserId);
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => isOwner
+            ? VaultGvviScreen(gvviId: gvviId)
+            : PublicGvviScreen(gvviId: gvviId),
+      ),
+    );
+  }
+
+  Map<String, dynamic>? _extractRecord(dynamic rawValue) {
+    if (rawValue is List && rawValue.isNotEmpty && rawValue.first is Map) {
+      return Map<String, dynamic>.from(rawValue.first as Map);
+    }
+
+    if (rawValue is Map) {
+      return Map<String, dynamic>.from(rawValue);
+    }
+
+    return null;
+  }
+
+  String _bestImageUrl({dynamic primary, dynamic fallback}) {
+    final primaryText = _cleanText(primary?.toString());
+    if (primaryText.isNotEmpty) {
+      return primaryText;
+    }
+    return _cleanText(fallback?.toString());
+  }
+
+  String get _resolvedSetName {
+    final contextSet = _extractRecord(_cardContextData?['sets']);
+    final fromContext = _cleanText(contextSet?['name']);
+    if (fromContext.isNotEmpty) {
+      return fromContext;
+    }
+    return _cleanText(widget.setName);
+  }
+
+  String get _resolvedSetCode {
+    final fromContext = _cleanText(_cardContextData?['set_code']);
+    if (fromContext.isNotEmpty) {
+      return fromContext;
+    }
+    return _cleanText(widget.setCode);
+  }
+
+  String get _resolvedCollectorNumber {
+    final fromPlain = _cleanText(_cardContextData?['number_plain']);
+    if (fromPlain.isNotEmpty) {
+      return fromPlain;
+    }
+
+    final fromWidget = _cleanText(widget.number);
+    if (fromWidget.isNotEmpty) {
+      return fromWidget;
+    }
+
+    return _cleanText(_cardContextData?['number']);
+  }
+
+  String? get _collectorIdentityLine {
+    final setRecord = _extractRecord(_cardContextData?['sets']);
+    final printedTotal = setRecord?['printed_total'] is num
+        ? (setRecord!['printed_total'] as num).toInt()
+        : null;
+    final printedSetAbbrev = _cleanText(
+      setRecord?['printed_set_abbrev'],
+    ).toUpperCase();
+    final setPrefix = printedSetAbbrev.isNotEmpty
+        ? printedSetAbbrev
+        : _resolvedSetCode.toUpperCase();
+    final collectorNumber = _resolvedCollectorNumber;
+
+    final identityParts = <String>[
+      if (setPrefix.isNotEmpty) setPrefix,
+      if (collectorNumber.isNotEmpty)
+        printedTotal != null
+            ? '$collectorNumber/$printedTotal'
+            : '#$collectorNumber',
+    ];
+    if (identityParts.isEmpty) {
+      return null;
+    }
+    return identityParts.join(' ');
+  }
+
+  int get _relatedVersionDisplayCount {
+    final fromPricing = (_priceData?['variant_count'] as num?)?.toInt();
+    final fromLoaded = _relatedVersions.isEmpty
+        ? 0
+        : _relatedVersions.length + 1;
+    if (fromPricing == null) {
+      return fromLoaded;
+    }
+    return fromLoaded > fromPricing ? fromLoaded : fromPricing;
+  }
+
+  int? get _printedTotalInSet {
+    final setRecord = _extractRecord(_cardContextData?['sets']);
+    final printedTotal = setRecord?['printed_total'];
+    if (printedTotal is num) {
+      return printedTotal.toInt();
+    }
+    return null;
+  }
+
+  int? get _listingCount {
+    final rawValue = _priceData?['ebay_listing_count'];
+    if (rawValue is num) {
+      final value = rawValue.toInt();
+      return value > 0 ? value : null;
+    }
+    return null;
+  }
+
+  String? get _topMarketSignalLabel {
+    final listingCount = _listingCount;
+    if (listingCount == null) {
+      return null;
+    }
+    return '$listingCount listing${listingCount == 1 ? '' : 's'}';
+  }
+
+  String? _formatReleaseDateLabel(dynamic rawValue) {
+    final rawText = _cleanText(rawValue?.toString());
+    if (rawText.isEmpty) {
+      return null;
+    }
+
+    final parsed = DateTime.tryParse(rawText);
+    if (parsed == null) {
+      return rawText;
+    }
+
+    const months = <String>[
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    final month = months[parsed.month - 1];
+    return '$month ${parsed.day}, ${parsed.year}';
+  }
+
+  List<MapEntry<String, String>> _buildDetailEntries() {
+    final entries = <MapEntry<String, String>>[];
+    final illustrator = _cleanText(_cardContextData?['artist']);
+    final variantKey = _cleanText(_cardContextData?['variant_key']);
+    final setRecord = _extractRecord(_cardContextData?['sets']);
+    final printedTotal = setRecord?['printed_total'] is num
+        ? (setRecord!['printed_total'] as num).toInt()
+        : null;
+    final releaseDate = _formatReleaseDateLabel(setRecord?['release_date']);
+
+    if (illustrator.isNotEmpty) {
+      entries.add(MapEntry('Illustrator', illustrator));
+    }
+    if (variantKey.isNotEmpty && variantKey.toLowerCase() != 'base') {
+      entries.add(MapEntry('Variant', variantKey));
+    }
+    if (printedTotal != null) {
+      entries.add(MapEntry('Printed Total', '$printedTotal cards'));
+    }
+    if (releaseDate != null) {
+      entries.add(MapEntry('Release Date', releaseDate));
+    }
+
+    return entries;
+  }
+
+  Future<void> _openOtherVersions() async {
+    if (_relatedVersions.isEmpty) {
+      return;
+    }
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final versionsLabel = _relatedVersionDisplayCount.toString();
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Other Versions',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -0.3,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '$versionsLabel total prints with this card name.',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.72),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.58,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: _relatedVersions.length,
+                    separatorBuilder: (_, _) => const SizedBox(height: 8),
+                    itemBuilder: (context, index) {
+                      final row = _relatedVersions[index];
+                      final setRecord = _extractRecord(row['sets']);
+                      final setName = _cleanText(setRecord?['name']);
+                      final setCode = _cleanText(row['set_code']).toUpperCase();
+                      final number = _cleanText(row['number_plain']).isNotEmpty
+                          ? _cleanText(row['number_plain'])
+                          : _cleanText(row['number']);
+                      final rarity = _formatRarity(row['rarity']?.toString());
+                      final imageUrl = _bestImageUrl(
+                        primary: row['image_url'],
+                        fallback: row['image_alt_url'],
+                      );
+
+                      return Material(
+                        color: colorScheme.surface,
+                        borderRadius: BorderRadius.circular(18),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(18),
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(this.context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => CardDetailScreen(
+                                  cardPrintId: _cleanText(row['id']),
+                                  gvId: _cleanText(row['gv_id']),
+                                  name: _cleanText(row['name']),
+                                  setName: setName,
+                                  setCode: setCode,
+                                  number: number,
+                                  rarity: rarity,
+                                  imageUrl: imageUrl,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 58,
+                                  child: AspectRatio(
+                                    aspectRatio: 3 / 4,
+                                    child: CardSurfaceArtwork(
+                                      label: _cleanText(row['name']),
+                                      imageUrl: imageUrl,
+                                      borderRadius: 12,
+                                      padding: const EdgeInsets.all(4),
+                                      showZoomAffordance: imageUrl.isNotEmpty,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        setName.isNotEmpty
+                                            ? setName
+                                            : _cleanText(row['name']),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: theme.textTheme.titleSmall
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                      ),
+                                      const SizedBox(height: 3),
+                                      Text(
+                                        [
+                                          if (setCode.isNotEmpty) setCode,
+                                          if (number.isNotEmpty) '#$number',
+                                          if (rarity.isNotEmpty) rarity,
+                                        ].join(' • '),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: theme.textTheme.bodySmall
+                                            ?.copyWith(
+                                              color: colorScheme.onSurface
+                                                  .withValues(alpha: 0.68),
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.chevron_right_rounded,
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.42,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+    final sections = <Widget>[
+      _buildHeroImage(colorScheme),
+      _buildIdentitySection(theme, colorScheme),
+      _buildPricingSection(theme, colorScheme),
+      _buildActions(context, theme, colorScheme),
+      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
+      if (_buildDetailEntries().isNotEmpty)
+        _buildCardDetailsSection(theme, colorScheme),
+      if (_buildOwnershipChips(theme).isNotEmpty)
+        _buildOwnershipSection(theme, colorScheme),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -318,33 +626,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(16, 12, 16, 20 + bottomInset),
+          padding: EdgeInsets.fromLTRB(16, 8, 16, 18 + bottomInset),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildHeroImage(colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildIdentitySection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildPricingSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildActions(context, theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildPrintingsSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildCollectorNetworkSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildCardDetailsSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildOtherVersionsSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildSetContextSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildOwnershipSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildConditionSection(theme, colorScheme),
-              const SizedBox(height: _sectionSpacing),
-              _buildInSetSection(theme, colorScheme),
+              for (var index = 0; index < sections.length; index++) ...[
+                if (index > 0) const SizedBox(height: _sectionSpacing),
+                sections[index],
+              ],
             ],
           ),
         ),
@@ -357,43 +646,26 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 268),
+        constraints: const BoxConstraints(maxWidth: 236),
         child: Container(
           decoration: _surfaceDecoration(colorScheme, emphasize: true),
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(10),
           child: Container(
             decoration: BoxDecoration(
               color: colorScheme.surfaceContainerHighest.withValues(
                 alpha: 0.55,
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(14),
             ),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             child: AspectRatio(
               aspectRatio: 3 / 4,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: url.isEmpty
-                    ? Container(
-                        color: colorScheme.surfaceContainerHighest,
-                        child: Icon(
-                          Icons.style,
-                          size: 48,
-                          color: colorScheme.onSurfaceVariant,
-                        ),
-                      )
-                    : Image.network(
-                        url,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          color: colorScheme.surfaceContainerHighest,
-                          child: Icon(
-                            Icons.broken_image,
-                            size: 48,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
+              child: CardSurfaceArtwork(
+                label: _displayName,
+                imageUrl: url,
+                borderRadius: 12,
+                padding: const EdgeInsets.all(6),
+                showZoomAffordance: url.isNotEmpty,
               ),
             ),
           ),
@@ -403,19 +675,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Widget _buildIdentitySection(ThemeData theme, ColorScheme colorScheme) {
-    final setName = _cleanText(widget.setName);
-    final setCode = _cleanText(widget.setCode).toUpperCase();
-    final collectorNumber = _cleanText(widget.number);
-    final rarity = _formatRarity(widget.rarity);
-    final outwardId = _cleanText(widget.gvId);
-    final subtitleParts = <String>[];
+    final setName = _resolvedSetName;
+    final setCode = _resolvedSetCode.toUpperCase();
+    final collectorIdentity = _collectorIdentityLine;
+    final resolvedRarity = _cleanText(
+      (_cardContextData == null ? null : _cardContextData!['rarity'])
+          ?.toString(),
+    );
+    final rarity = _formatRarity(
+      resolvedRarity.isNotEmpty ? resolvedRarity : widget.rarity,
+    );
+    final relatedVersionCount = _relatedVersionDisplayCount;
+    final listingSignal = _topMarketSignalLabel;
+    final inSetLabel = _printedTotalInSet != null
+        ? 'In this set · ${_printedTotalInSet!} cards'
+        : 'In this set';
     final metadataBadges = <Widget>[
-      if (setCode.isNotEmpty)
-        _buildInfoChip(label: setCode, tint: colorScheme.primary, theme: theme),
-      if (collectorNumber.isNotEmpty)
+      if (_hasVaultContext)
         _buildInfoChip(
-          label: '#$collectorNumber',
-          tint: colorScheme.secondary,
+          label: 'In your vault',
+          icon: Icons.inventory_2_outlined,
+          tint: Colors.orange.shade800,
           theme: theme,
         ),
       if (rarity.isNotEmpty)
@@ -424,92 +704,105 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           tint: _rarityAccentColor(colorScheme, rarity),
           theme: theme,
         ),
+      if (listingSignal != null)
+        _buildInfoChip(
+          label: listingSignal,
+          icon: Icons.storefront_outlined,
+          tint: colorScheme.primary,
+          theme: theme,
+        ),
     ];
 
-    if (setName.isNotEmpty) {
-      subtitleParts.add(setName);
-    }
-    if (collectorNumber.isNotEmpty) {
-      subtitleParts.add('#$collectorNumber');
-    }
-
-    return _buildSurface(
-      colorScheme: colorScheme,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _displayName,
+          style: theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.6,
+            height: 1.04,
+          ),
+        ),
+        if (setName.isNotEmpty || _relatedVersions.isNotEmpty) ...[
+          const SizedBox(height: 9),
+          Wrap(
+            spacing: 10,
+            runSpacing: 8,
+            children: [
+              if (setName.isNotEmpty)
+                _buildPrimaryNavCue(
+                  eyebrow: 'Set',
+                  label: setName,
+                  supporting: inSetLabel,
+                  theme: theme,
+                  colorScheme: colorScheme,
+                  onTap: setCode.isNotEmpty ? _openSetDetail : null,
+                ),
+              if (_hasExactCopyContext)
+                _buildPrimaryNavCue(
+                  eyebrow: 'Exact copy',
+                  label: 'Open exact copy',
+                  supporting: _hasVaultContext
+                      ? 'Continue to this owned copy'
+                      : 'Continue to this specific copy',
+                  theme: theme,
+                  colorScheme: colorScheme,
+                  onTap: _openExactCopy,
+                ),
+              if (_relatedVersions.isNotEmpty)
+                _buildPrimaryNavCue(
+                  eyebrow: 'Card family',
+                  label: '$relatedVersionCount versions',
+                  supporting: 'Explore other prints',
+                  theme: theme,
+                  colorScheme: colorScheme,
+                  onTap: _openOtherVersions,
+                ),
+            ],
+          ),
+        ],
+        if (collectorIdentity != null) ...[
+          const SizedBox(height: 7),
           Text(
-            _displayName,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w800,
-              letterSpacing: -0.4,
-              height: 1.1,
+            collectorIdentity,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: colorScheme.onSurface.withValues(alpha: 0.72),
+              height: 1.15,
             ),
           ),
-          if (subtitleParts.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(
-              subtitleParts.join(' • '),
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: colorScheme.onSurface.withValues(alpha: 0.72),
-                height: 1.25,
-              ),
-            ),
-          ],
-          if (metadataBadges.isNotEmpty) ...[
-            const SizedBox(height: 10),
-            Wrap(spacing: 8, runSpacing: 8, children: metadataBadges),
-          ],
-          if (outwardId.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                outwardId,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.58),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
         ],
-      ),
+        if (metadataBadges.isNotEmpty) ...[
+          const SizedBox(height: 6),
+          Wrap(spacing: 8, runSpacing: 8, children: metadataBadges),
+        ],
+      ],
     );
   }
 
   Widget _buildOwnershipSection(ThemeData theme, ColorScheme colorScheme) {
     final ownershipChips = _buildOwnershipChips(theme);
+    if (ownershipChips.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return _buildSurface(
       colorScheme: colorScheme,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionLabel('Your Vault', theme, colorScheme),
-          const SizedBox(height: 10),
-          Text(
-            'Existing ownership',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            ownershipChips.isEmpty
-                ? 'Vault ownership for this card will appear here when the Flutter route is opened from a vault-backed context.'
-                : 'Condition and quantity already available on this card.',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.68),
-              height: 1.35,
-            ),
-          ),
-          if (ownershipChips.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            Wrap(spacing: 8, runSpacing: 8, children: ownershipChips),
-          ],
-        ],
-      ),
+      soft: true,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      child: Wrap(spacing: 8, runSpacing: 8, children: ownershipChips),
     );
+  }
+
+  Widget _buildInlineSection({
+    required Widget child,
+    EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
+      horizontal: 2,
+      vertical: 2,
+    ),
+  }) {
+    return Padding(padding: padding, child: child);
   }
 
   Widget _buildSurface({
@@ -517,9 +810,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     required Widget child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(14),
     bool emphasize = false,
+    bool soft = false,
   }) {
     return Container(
-      decoration: _surfaceDecoration(colorScheme, emphasize: emphasize),
+      decoration: _surfaceDecoration(
+        colorScheme,
+        emphasize: emphasize,
+        soft: soft,
+      ),
       padding: padding,
       child: child,
     );
@@ -528,20 +826,44 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   BoxDecoration _surfaceDecoration(
     ColorScheme colorScheme, {
     bool emphasize = false,
+    bool soft = false,
   }) {
     return BoxDecoration(
-      color: colorScheme.surface,
-      borderRadius: BorderRadius.circular(18),
+      color: soft
+          ? colorScheme.surfaceContainerLowest.withValues(alpha: 0.7)
+          : colorScheme.surface,
+      borderRadius: BorderRadius.circular(16),
       border: Border.all(
         color: colorScheme.outlineVariant.withValues(
-          alpha: emphasize ? 0.6 : 0.45,
+          alpha: emphasize
+              ? 0.6
+              : soft
+              ? 0.28
+              : 0.45,
         ),
       ),
       boxShadow: [
         BoxShadow(
-          color: colorScheme.shadow.withValues(alpha: emphasize ? 0.1 : 0.06),
-          blurRadius: emphasize ? 18 : 10,
-          offset: Offset(0, emphasize ? 8 : 4),
+          color: colorScheme.shadow.withValues(
+            alpha: emphasize
+                ? 0.1
+                : soft
+                ? 0.025
+                : 0.06,
+          ),
+          blurRadius: emphasize
+              ? 16
+              : soft
+              ? 4
+              : 8,
+          offset: Offset(
+            0,
+            emphasize
+                ? 7
+                : soft
+                ? 1
+                : 3,
+          ),
         ),
       ],
     );
@@ -556,7 +878,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       label.toUpperCase(),
       style: theme.textTheme.labelMedium?.copyWith(
         fontWeight: FontWeight.w700,
-        letterSpacing: 1.0,
+        letterSpacing: 0.8,
         color: colorScheme.onSurface.withValues(alpha: 0.58),
       ),
     );
@@ -569,8 +891,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     IconData? icon,
   }) {
     return Container(
-      constraints: const BoxConstraints(minHeight: 30),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      constraints: const BoxConstraints(minHeight: 28),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: tint.withValues(alpha: 0.11),
         borderRadius: BorderRadius.circular(999),
@@ -646,83 +968,133 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return chips;
   }
 
-  Widget _buildPlaceholderSection({
+  Widget _buildPrimaryNavCue({
+    required String eyebrow,
     required String label,
-    required String title,
-    required String body,
+    required String? supporting,
     required ThemeData theme,
     required ColorScheme colorScheme,
-    Widget? child,
+    required VoidCallback? onTap,
   }) {
-    return _buildSurface(
-      colorScheme: colorScheme,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionLabel(label, theme, colorScheme),
-          const SizedBox(height: 8),
+    final cueChild = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          eyebrow.toUpperCase(),
+          style: theme.textTheme.labelSmall?.copyWith(
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.75,
+            color: colorScheme.onSurface.withValues(alpha: 0.5),
+          ),
+        ),
+        const SizedBox(height: 3),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 220),
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: onTap == null
+                      ? colorScheme.onSurface
+                      : colorScheme.primary,
+                  height: 1.05,
+                ),
+              ),
+            ),
+            if (onTap != null) ...[
+              const SizedBox(width: 4),
+              Icon(
+                Icons.arrow_outward_rounded,
+                size: 15,
+                color: colorScheme.primary,
+              ),
+            ],
+          ],
+        ),
+        if (_cleanText(supporting).isNotEmpty) ...[
+          const SizedBox(height: 2),
           Text(
-            title,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
+            supporting!,
+            style: theme.textTheme.labelMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
             ),
           ),
-          const SizedBox(height: 4),
-          Text(
-            body,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.68),
-              height: 1.3,
-            ),
-          ),
-          if (child != null) ...[const SizedBox(height: 12), child],
         ],
+      ],
+    );
+
+    if (onTap == null) {
+      return cueChild;
+    }
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            color: colorScheme.primary.withValues(alpha: 0.045),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: colorScheme.primary.withValues(alpha: 0.12),
+            ),
+          ),
+          padding: const EdgeInsets.fromLTRB(10, 8, 12, 8),
+          child: cueChild,
+        ),
       ),
     );
   }
 
-  Widget _buildMetadataTile({
+  Widget _buildMetadataRow({
     required String label,
     required String value,
     required ThemeData theme,
     required ColorScheme colorScheme,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 104,
+          child: Text(
             label,
             style: theme.textTheme.labelMedium?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.62),
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 6),
-          Text(
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
             value,
-            style: theme.textTheme.titleSmall?.copyWith(
+            style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w700,
               height: 1.2,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  Widget _buildPrintingsSection(ThemeData theme, ColorScheme colorScheme) {
-    return _buildPlaceholderSection(
-      label: 'Printings',
-      title: 'Printing selector',
-      body: 'Alternate printings are not wired in Flutter yet.',
-      theme: theme,
-      colorScheme: colorScheme,
+  Widget _buildFlowDivider(ColorScheme colorScheme) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Divider(
+        height: 1,
+        thickness: 1,
+        color: colorScheme.outlineVariant.withValues(alpha: 0.24),
+      ),
     );
   }
 
@@ -730,146 +1102,82 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ThemeData theme,
     ColorScheme colorScheme,
   ) {
-    return _buildPlaceholderSection(
-      label: 'Collector Network',
-      title: 'Collector offers',
-      body: 'Collector offers will appear here once the network read is wired.',
-      theme: theme,
+    if (!_hasContactContext) {
+      return const SizedBox.shrink();
+    }
+
+    return _buildSurface(
       colorScheme: colorScheme,
+      soft: true,
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Collector Network', theme, colorScheme),
+          const SizedBox(height: 6),
+          Text(
+            _cleanText(widget.contactOwnerDisplayName),
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            'Card-specific messaging for this collector.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: ContactOwnerButton(
+                  vaultItemId: _cleanText(widget.contactVaultItemId),
+                  cardPrintId: widget.cardPrintId,
+                  ownerUserId: widget.contactOwnerUserId,
+                  ownerDisplayName: _cleanText(widget.contactOwnerDisplayName),
+                  cardName: _displayName,
+                  intent: widget.contactIntent,
+                ),
+              ),
+              const SizedBox(width: 8),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const NetworkInboxScreen(),
+                    ),
+                  );
+                },
+                child: const Text('Messages'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildCardDetailsSection(ThemeData theme, ColorScheme colorScheme) {
-    final detailTiles = <Widget>[
-      if (_cleanText(widget.setName).isNotEmpty)
-        _buildMetadataTile(
-          label: 'Set',
-          value: _cleanText(widget.setName),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (_cleanText(widget.setCode).isNotEmpty)
-        _buildMetadataTile(
-          label: 'Set Code',
-          value: _cleanText(widget.setCode).toUpperCase(),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (_cleanText(widget.number).isNotEmpty)
-        _buildMetadataTile(
-          label: 'Number',
-          value: _cleanText(widget.number),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (_formatRarity(widget.rarity).isNotEmpty)
-        _buildMetadataTile(
-          label: 'Rarity',
-          value: _formatRarity(widget.rarity),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      _buildMetadataTile(
-        label: 'Card ID',
-        value: widget.cardPrintId,
-        theme: theme,
-        colorScheme: colorScheme,
-      ),
-      if (_cleanText(widget.gvId).isNotEmpty)
-        _buildMetadataTile(
-          label: 'GV-ID',
-          value: _cleanText(widget.gvId),
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-    ];
+    final detailEntries = _buildDetailEntries();
+    if (detailEntries.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
-    return _buildPlaceholderSection(
-      label: 'Card Details',
-      title: 'Catalog details',
-      body: 'Identity and card traits surfaced from the current Flutter data.',
-      theme: theme,
-      colorScheme: colorScheme,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final halfWidth = (constraints.maxWidth - 12) / 2;
-          final tileWidth = halfWidth < 140 ? constraints.maxWidth : halfWidth;
-          return Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: detailTiles
-                .map((tile) => SizedBox(width: tileWidth, child: tile))
-                .toList(),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildOtherVersionsSection(ThemeData theme, ColorScheme colorScheme) {
-    return _buildPlaceholderSection(
-      label: 'Other Versions',
-      title: 'Other versions of this card',
-      body: 'Related prints will appear here after later catalog wiring.',
-      theme: theme,
-      colorScheme: colorScheme,
-    );
-  }
-
-  Widget _buildSetContextSection(ThemeData theme, ColorScheme colorScheme) {
-    final setName = _cleanText(widget.setName);
-    final setCode = _cleanText(widget.setCode).toUpperCase();
-    final tiles = <Widget>[
-      if (setName.isNotEmpty)
-        _buildMetadataTile(
-          label: 'Set Name',
-          value: setName,
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (setCode.isNotEmpty)
-        _buildMetadataTile(
-          label: 'Set Code',
-          value: setCode,
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-    ];
-
-    return _buildPlaceholderSection(
-      label: 'About This Set',
-      title: setName.isNotEmpty ? setName : 'Set context',
-      body: tiles.isEmpty
-          ? 'Set context will appear here once Flutter carries the broader set contract.'
-          : 'Context for this set.',
-      theme: theme,
-      colorScheme: colorScheme,
+    return _buildInlineSection(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (tiles.isNotEmpty)
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final halfWidth = (constraints.maxWidth - 12) / 2;
-                final tileWidth = halfWidth < 140
-                    ? constraints.maxWidth
-                    : halfWidth;
-                return Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: tiles
-                      .map((tile) => SizedBox(width: tileWidth, child: tile))
-                      .toList(),
-                );
-              },
-            ),
-          if (setCode.isNotEmpty) ...[
-            if (tiles.isNotEmpty) const SizedBox(height: 16),
-            OutlinedButton.icon(
-              onPressed: _openSetDetail,
-              style: _secondaryButtonStyle(theme, colorScheme),
-              icon: const Icon(Icons.grid_view_rounded),
-              label: Text(setName.isNotEmpty ? 'Browse $setCode' : 'Open set'),
+          _buildSectionLabel('Card Details', theme, colorScheme),
+          const SizedBox(height: 7),
+          for (var index = 0; index < detailEntries.length; index++) ...[
+            if (index > 0) _buildFlowDivider(colorScheme),
+            _buildMetadataRow(
+              label: detailEntries[index].key,
+              value: detailEntries[index].value,
+              theme: theme,
+              colorScheme: colorScheme,
             ),
           ],
         ],
@@ -877,43 +1185,29 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  Widget _buildConditionSection(ThemeData theme, ColorScheme colorScheme) {
-    return _buildPlaceholderSection(
-      label: 'Condition',
-      title: 'Condition snapshots',
-      body: 'Condition history is not wired in Flutter yet.',
-      theme: theme,
-      colorScheme: colorScheme,
-    );
-  }
-
-  Widget _buildInSetSection(ThemeData theme, ColorScheme colorScheme) {
-    return _buildPlaceholderSection(
-      label: 'In This Set',
-      title: 'Nearby cards',
-      body: 'Nearby cards from the same set will appear here later.',
-      theme: theme,
-      colorScheme: colorScheme,
-    );
-  }
-
   Widget _buildPricingSection(ThemeData theme, ColorScheme colorScheme) {
     if (_priceLoading && _priceData == null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        child: Row(
+      return _buildInlineSection(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            ),
-            const SizedBox(width: 12),
-            Text(
-              'Loading price…',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.78),
-              ),
+            _buildSectionLabel('Pricing', theme, colorScheme),
+            const SizedBox(height: 6),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Loading pricing…',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.78),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -921,276 +1215,253 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     if (_priceError != null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        child: Text(
-          _priceError!,
-          style: theme.textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+      return _buildInlineSection(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildSectionLabel('Pricing', theme, colorScheme),
+            const SizedBox(height: 4),
+            Text(
+              _priceError!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.error,
+              ),
+            ),
+            const SizedBox(height: 6),
+            TextButton.icon(
+              onPressed: _priceLoading ? null : _loadPricing,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                minimumSize: const Size(0, 30),
+              ),
+              icon: const Icon(Icons.refresh, size: 16),
+              label: const Text('Retry'),
+            ),
+          ],
         ),
       );
     }
 
     if (_priceData == null) {
-      return _buildSurface(
-        colorScheme: colorScheme,
-        child: Text(
-          'No pricing data yet.',
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.72),
-          ),
+      return _buildInlineSection(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildSectionLabel('Pricing', theme, colorScheme),
+            const SizedBox(height: 4),
+            Text(
+              'No pricing data available',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 1),
+            Text(
+              'Pricing for this card is not available yet.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+              ),
+            ),
+          ],
         ),
       );
     }
 
     final data = _priceData!;
-    final rawPrice = (data['raw_price'] as num?)?.toDouble();
-    final rawPriceSource = data['raw_price_source'] as String?;
-    final nmMedian = (data['nm_median'] ?? 0).toDouble();
-    final nmFloor = (data['nm_floor'] ?? 0).toDouble();
-    final lpMedian = data['lp_median'] != null
-        ? (data['lp_median'] as num).toDouble()
-        : null;
-    final listingCount = (data['listing_count'] as num?)?.toInt() ?? 0;
-    final confidence = data['confidence'] as num?;
-    final rawPriceTs = data['raw_price_ts'] as String?;
-    final activeUpdatedAtRaw = data['active_price_updated_at'] as String?;
-    final lastSnapshotAtRaw = data['last_snapshot_at'] as String?;
-    final freshnessRaw = rawPriceTs ?? activeUpdatedAtRaw ?? lastSnapshotAtRaw;
-    final freshnessTs = freshnessRaw != null
-        ? DateTime.tryParse(freshnessRaw)
-        : null;
-    final showListings = listingCount > 0;
-    final showUpdated = freshnessTs != null;
-    const currency = 'USD';
-    final metricTiles = <Widget>[
-      if (nmFloor > 0)
-        _buildPricingMetricTile(
-          label: 'NM floor',
-          value: _formatMoney(nmFloor, currency),
+    final primaryPrice = (data['primary_price'] as num?)?.toDouble();
+    final grookaiValue = (data['grookai_value'] as num?)?.toDouble();
+    final minPrice = (data['min_price'] as num?)?.toDouble();
+    final maxPrice = (data['max_price'] as num?)?.toDouble();
+    final ebayMedianPrice = (data['ebay_median_price'] as num?)?.toDouble();
+    final primaryValue = primaryPrice ?? grookaiValue;
+    final primaryLabel = primaryPrice != null ? 'Market' : 'Value';
+    final primarySource = _pricingSourceName(data['primary_source'] as String?);
+    final pricingFooterParts = <String>[
+      if (primarySource != null) primarySource,
+      if (_hasVaultContext) 'In your vault',
+    ];
+    final pricingContext = <Widget>[
+      if (minPrice != null)
+        _buildPricingMetricChip(
+          label: 'Low',
+          value: _formatMoney(minPrice),
           theme: theme,
           colorScheme: colorScheme,
         ),
-      if (lpMedian != null)
-        _buildPricingMetricTile(
-          label: 'LP median',
-          value: _formatMoney(lpMedian, currency),
+      if (primaryPrice != null)
+        _buildPricingMetricChip(
+          label: 'Mid',
+          value: _formatMoney(primaryPrice),
           theme: theme,
           colorScheme: colorScheme,
         ),
-      if (showListings)
-        _buildPricingMetricTile(
-          label: 'Listings',
-          value: '$listingCount',
+      if (maxPrice != null)
+        _buildPricingMetricChip(
+          label: 'High',
+          value: _formatMoney(maxPrice),
           theme: theme,
           colorScheme: colorScheme,
         ),
-      if (showUpdated)
-        _buildPricingMetricTile(
-          label: 'Updated',
-          value: _formatAge(freshnessTs),
+      if (grookaiValue != null && primaryPrice != null)
+        _buildPricingMetricChip(
+          label: 'Value',
+          value: _formatMoney(grookaiValue),
           theme: theme,
           colorScheme: colorScheme,
         ),
-      if (confidence != null)
-        _buildPricingMetricTile(
-          label: 'Confidence',
-          value: '${(confidence * 100).toStringAsFixed(0)}%',
-          theme: theme,
-          colorScheme: colorScheme,
-        ),
-      if (rawPriceSource != null && rawPriceSource.isNotEmpty)
-        _buildPricingMetricTile(
-          label: 'Source',
-          value: rawPriceSource,
+      if (ebayMedianPrice != null)
+        _buildPricingMetricChip(
+          label: 'eBay',
+          value: _formatMoney(ebayMedianPrice),
           theme: theme,
           colorScheme: colorScheme,
         ),
     ];
 
-    return _buildSurface(
-      colorScheme: colorScheme,
+    return _buildInlineSection(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Pricing', theme, colorScheme),
-          const SizedBox(height: 8),
-          Text(
-            'Latest price',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 10),
-          _buildPrimaryPriceValue(
-            value: rawPrice ?? nmMedian,
-            currency: currency,
-            theme: theme,
-            colorScheme: colorScheme,
-          ),
-          if (metricTiles.isNotEmpty) ...[
-            const SizedBox(height: 12),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final halfWidth = (constraints.maxWidth - 12) / 2;
-                final tileWidth = halfWidth < 140
-                    ? constraints.maxWidth
-                    : halfWidth;
-
-                return Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: metricTiles
-                      .map((tile) => SizedBox(width: tileWidth, child: tile))
-                      .toList(),
-                );
-              },
-            ),
-          ],
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              OutlinedButton.icon(
-                onPressed: _requestingLivePrice ? null : _requestLivePrice,
-                style: _secondaryButtonStyle(theme, colorScheme),
-                icon: _requestingLivePrice
-                    ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Icon(Icons.bolt),
-                label: const Text('Get live price'),
-              ),
-              OutlinedButton.icon(
-                onPressed: _priceLoading ? null : _loadPricing,
-                style: _secondaryButtonStyle(theme, colorScheme),
-                icon: const Icon(Icons.refresh),
-                label: const Text('Refresh'),
-              ),
-            ],
-          ),
-          if (_livePriceRequestMessage != null) ...[
-            const SizedBox(height: 6),
+          if (primaryValue == null) ...[
+            _buildSectionLabel('Pricing', theme, colorScheme),
+            const SizedBox(height: 4),
             Text(
-              _livePriceRequestMessage!,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.7),
-                height: 1.35,
+              'No pricing data available',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
               ),
             ),
+            const SizedBox(height: 1),
+            Text(
+              'Pricing for this card is not available yet.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+              ),
+            ),
+          ] else ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSectionLabel('Pricing', theme, colorScheme),
+                      const SizedBox(height: 3),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            _formatMoney(primaryValue),
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -0.55,
+                              height: 1.0,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 3),
+                            child: Text(
+                              primaryLabel,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.68,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (pricingFooterParts.isNotEmpty) ...[
+                        const SizedBox(height: 3),
+                        Text(
+                          pricingFooterParts.join(' • '),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.58,
+                            ),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                if (_priceLoading)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: colorScheme.primary,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            if (pricingContext.isNotEmpty) ...[
+              const SizedBox(height: 5),
+              Wrap(spacing: 6, runSpacing: 6, children: pricingContext),
+            ],
           ],
         ],
       ),
     );
   }
 
-  String _formatMoney(double value, String currency) {
-    return '\$${value.toStringAsFixed(2)} $currency';
-  }
-
-  String _formatAge(DateTime ts) {
-    final age = DateTime.now().toUtc().difference(ts.toUtc());
-    if (age.isNegative || age.inMinutes < 1) {
-      return '0m ago';
-    }
-    if (age.inMinutes < 60) {
-      return '${age.inMinutes}m ago';
-    }
-    if (age.inHours < 24) {
-      return '${age.inHours}h ago';
-    }
-    if (age.inHours < 48) {
-      return '1d ago';
-    }
-    return '${age.inDays}d ago';
-  }
-
-  Widget _buildPrimaryPriceValue({
-    required double value,
-    required String currency,
-    required ThemeData theme,
-    required ColorScheme colorScheme,
-  }) {
-    return Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-            text: '\$',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: colorScheme.onSurface.withValues(alpha: 0.72),
-            ),
-          ),
-          TextSpan(
-            text: value.toStringAsFixed(2),
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w800,
-              color: colorScheme.onSurface,
-              letterSpacing: -0.6,
-            ),
-          ),
-          TextSpan(
-            text: ' $currency',
-            style: theme.textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              color: colorScheme.onSurface.withValues(alpha: 0.62),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPricingMetricTile({
+  Widget _buildPricingMetricChip({
     required String label,
     required String value,
     required ThemeData theme,
     required ColorScheme colorScheme,
   }) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
-        borderRadius: BorderRadius.circular(14),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.32),
+        borderRadius: BorderRadius.circular(999),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: theme.textTheme.labelMedium?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.62),
-              fontWeight: FontWeight.w600,
-            ),
+      child: RichText(
+        text: TextSpan(
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.7),
+            height: 1.0,
           ),
-          const SizedBox(height: 6),
-          Text(
-            value,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-              height: 1.2,
+          children: [
+            TextSpan(
+              text: '$label ',
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
-          ),
-        ],
+            TextSpan(
+              text: value,
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                color: colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  ButtonStyle _secondaryButtonStyle(ThemeData theme, ColorScheme colorScheme) {
-    return OutlinedButton.styleFrom(
-      minimumSize: const Size(0, 40),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      side: BorderSide(
-        color: colorScheme.outlineVariant.withValues(alpha: 0.9),
-      ),
-      foregroundColor: colorScheme.onSurface,
-      textStyle: theme.textTheme.labelLarge?.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
-    );
+  String _formatMoney(double value) {
+    return '\$${value.toStringAsFixed(2)}';
+  }
+
+  String? _pricingSourceName(String? source) {
+    switch ((source ?? '').trim().toLowerCase()) {
+      case 'justtcg':
+        return 'JustTCG';
+      case 'ebay':
+        return 'eBay';
+      default:
+        return null;
+    }
   }
 
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {

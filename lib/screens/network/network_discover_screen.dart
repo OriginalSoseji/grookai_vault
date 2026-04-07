@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../public_collector/public_collector_screen.dart';
+import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../widgets/follow_collector_button.dart';
+import '../public_collector/public_collector_screen.dart';
 
 class NetworkDiscoverScreen extends StatefulWidget {
   const NetworkDiscoverScreen({super.key});
@@ -18,6 +20,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
   bool _loading = true;
   String? _error;
   List<PublicCollectorDiscoverRow> _collectors = const [];
+  Set<String> _followedCollectorIds = const <String>{};
   int _loadVersion = 0;
 
   @override
@@ -44,6 +47,14 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
         client: _client,
         query: _searchController.text,
       );
+      final viewerUserId = _client.auth.currentUser?.id ?? '';
+      final followedCollectorIds = viewerUserId.isEmpty
+          ? <String>{}
+          : await CollectorFollowService.fetchFollowStateMap(
+              client: _client,
+              followerUserId: viewerUserId,
+              followedUserIds: collectors.map((collector) => collector.userId),
+            );
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -51,6 +62,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
 
       setState(() {
         _collectors = collectors;
+        _followedCollectorIds = followedCollectorIds;
       });
     } catch (error) {
       if (!mounted || loadVersion != _loadVersion) {
@@ -77,9 +89,6 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
     final resultsTitle = trimmedQuery.isEmpty
         ? 'Collectors to revisit'
         : 'Collector results for "$trimmedQuery"';
-    final resultsDescription = trimmedQuery.isEmpty
-        ? 'Latest public collectors with shared vaults.'
-        : 'Matching public collectors.';
 
     return Scaffold(
       appBar: AppBar(
@@ -96,19 +105,18 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
         child: RefreshIndicator(
           onRefresh: _loadCollectors,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
+            padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: TextButton.icon(
+                child: TextButton(
                   onPressed: () => Navigator.of(context).maybePop(),
-                  icon: const Icon(Icons.view_stream_outlined),
-                  label: const Text('View card stream'),
+                  child: const Text('View card stream'),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(4),
                 child: Row(
                   children: [
                     Expanded(
@@ -118,7 +126,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                         onPressed: () => Navigator.of(context).maybePop(),
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 8),
                     const Expanded(
                       child: _DiscoverLaneButton(
                         label: 'Collectors',
@@ -128,46 +136,35 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.all(12),
+                child: Row(
                   children: [
-                    Text(
-                      'Find collectors',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.2,
+                    Expanded(
+                      child: TextField(
+                        controller: _searchController,
+                        textInputAction: TextInputAction.search,
+                        onSubmitted: (_) => _loadCollectors(),
+                        decoration: const InputDecoration(
+                          hintText: 'Search collectors or @username',
+                          prefixIcon: Icon(Icons.search),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(vertical: 12),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _searchController,
-                            textInputAction: TextInputAction.search,
-                            onSubmitted: (_) => _loadCollectors(),
-                            decoration: const InputDecoration(
-                              hintText: 'Search collectors or @username',
-                              prefixIcon: Icon(Icons.search),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        FilledButton(
-                          onPressed: _loadCollectors,
-                          child: const Text('Search'),
-                        ),
-                      ],
+                    const SizedBox(width: 8),
+                    FilledButton(
+                      onPressed: _loadCollectors,
+                      child: const Text('Go'),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(14),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -178,17 +175,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                         letterSpacing: -0.2,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      resultsDescription,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.onSurface.withValues(alpha: 0.72),
-                        height: 1.35,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 10),
                     if (_loading)
                       const Center(child: CircularProgressIndicator())
                     else if (_error != null)
@@ -213,9 +200,33 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                             index < _collectors.length;
                             index++
                           ) ...[
-                            _CollectorRowTile(collector: _collectors[index]),
+                            Builder(
+                              builder: (context) {
+                                final collector = _collectors[index];
+                                return _CollectorRowTile(
+                                  collector: collector,
+                                  isFollowing: _followedCollectorIds.contains(
+                                    collector.userId,
+                                  ),
+                                  onOpened: _loadCollectors,
+                                  onFollowChanged: (isFollowing) {
+                                    setState(() {
+                                      final nextIds = Set<String>.from(
+                                        _followedCollectorIds,
+                                      );
+                                      if (isFollowing) {
+                                        nextIds.add(collector.userId);
+                                      } else {
+                                        nextIds.remove(collector.userId);
+                                      }
+                                      _followedCollectorIds = nextIds;
+                                    });
+                                  },
+                                );
+                              },
+                            ),
                             if (index < _collectors.length - 1)
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 10),
                           ],
                         ],
                       ),
@@ -233,7 +244,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
 class _NetworkDiscoverSurfaceCard extends StatelessWidget {
   const _NetworkDiscoverSurfaceCard({
     required this.child,
-    this.padding = const EdgeInsets.all(18),
+    this.padding = const EdgeInsets.all(14),
   });
 
   final Widget child;
@@ -246,7 +257,7 @@ class _NetworkDiscoverSurfaceCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
       ),
       padding: padding,
@@ -283,9 +294,9 @@ class _DiscoverLaneButton extends StatelessWidget {
         disabledBackgroundColor: colorScheme.primary,
         disabledForegroundColor: colorScheme.onPrimary,
         elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: theme.textTheme.labelMedium?.copyWith(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        textStyle: theme.textTheme.labelSmall?.copyWith(
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -295,9 +306,17 @@ class _DiscoverLaneButton extends StatelessWidget {
 }
 
 class _CollectorRowTile extends StatelessWidget {
-  const _CollectorRowTile({required this.collector});
+  const _CollectorRowTile({
+    required this.collector,
+    required this.isFollowing,
+    required this.onOpened,
+    required this.onFollowChanged,
+  });
 
   final PublicCollectorDiscoverRow collector;
+  final bool isFollowing;
+  final VoidCallback onOpened;
+  final ValueChanged<bool> onFollowChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -311,18 +330,20 @@ class _CollectorRowTile extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => PublicCollectorScreen(slug: collector.slug),
-            ),
-          );
+          Navigator.of(context)
+              .push(
+                MaterialPageRoute<void>(
+                  builder: (_) => PublicCollectorScreen(slug: collector.slug),
+                ),
+              )
+              .then((_) => onOpened());
         },
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(10),
           child: Row(
             children: [
               _CollectorAvatar(collector: collector),
-              const SizedBox(width: 14),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -344,7 +365,7 @@ class _CollectorRowTile extends StatelessWidget {
                       ),
                     ),
                     if (metadata.isNotEmpty) ...[
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 4),
                       Text(
                         metadata,
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -355,10 +376,22 @@ class _CollectorRowTile extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 10),
-              Icon(
-                Icons.chevron_right_rounded,
-                color: colorScheme.onSurface.withValues(alpha: 0.38),
+              const SizedBox(width: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  FollowCollectorButton(
+                    collectorUserId: collector.userId,
+                    initialIsFollowing: isFollowing,
+                    variant: FollowCollectorButtonVariant.compact,
+                    onChanged: onFollowChanged,
+                  ),
+                  const SizedBox(height: 6),
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    color: colorScheme.onSurface.withValues(alpha: 0.38),
+                  ),
+                ],
               ),
             ],
           ),
@@ -409,10 +442,10 @@ class _CollectorAvatar extends StatelessWidget {
     final initials = _buildInitials();
 
     return Container(
-      width: 52,
-      height: 52,
+      width: 48,
+      height: 48,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(14),
         color: colorScheme.primaryContainer,
       ),
       clipBehavior: Clip.antiAlias,
@@ -473,10 +506,10 @@ class _DiscoverEmptyState extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
         color: colorScheme.primary.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(14),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
       ),
       child: Column(
