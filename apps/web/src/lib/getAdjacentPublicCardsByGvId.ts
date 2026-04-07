@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
@@ -105,17 +106,20 @@ async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCa
 
 export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise<AdjacentPublicCards> => {
   const supabase = createServerSupabase();
-  const { data: seedRow, error: seedError } = await supabase
+  const { data: seedRows, error: seedError } = await supabase
     .from("card_prints")
     .select("gv_id,set_code")
-    .eq("gv_id", gv_id)
-    .single();
+    .in("gv_id", getCompatiblePublicGvIdCandidates(gv_id))
+    .limit(2);
 
-  if (seedError || !seedRow) {
+  if (seedError || !seedRows) {
     return {};
   }
 
-  const currentCard = seedRow as CardNavigationSeedRow;
+  const currentCard = pickResolvedPublicGvIdRow(seedRows as CardNavigationSeedRow[], gv_id);
+  if (!currentCard) {
+    return {};
+  }
   if (!currentCard.set_code) {
     return {};
   }
@@ -138,7 +142,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
       return left.gv_id.localeCompare(right.gv_id);
     });
 
-  const currentIndex = orderedRows.findIndex((row) => row.gv_id === gv_id);
+  const currentIndex = orderedRows.findIndex((row) => row.gv_id === currentCard.gv_id);
   if (currentIndex === -1) {
     return {};
   }

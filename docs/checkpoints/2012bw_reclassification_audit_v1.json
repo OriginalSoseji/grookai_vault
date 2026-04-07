@@ -1,0 +1,278 @@
+{
+  "phase": "RECLASSIFICATION_AUDIT_FOR_2012BW_TO_MCD12_V1",
+  "generated_at": "2026-04-06T22:04:34.053Z",
+  "total_unresolved": 12,
+  "numeric_unresolved": 12,
+  "non_numeric_unresolved": 0,
+  "canonical_mcd12_total_rows": 12,
+  "mapping_candidate_count": 12,
+  "multiple_match_old_count": 0,
+  "reused_new_count": 0,
+  "unmatched_count": 0,
+  "same_number_same_name_count": 12,
+  "same_number_different_name_count": 0,
+  "canonical_namespace_match_count": 12,
+  "namespace_conflict_count": 0,
+  "final_classification": "OUTCOME A — DUPLICATE_COLLAPSE_TO_MCD12",
+  "next_phase_recommendation": "2012BW_ALIAS_COLLAPSE_TO_MCD12",
+  "canonical_mcd12_sample_rows": [
+    {
+      "id": "dfdb5d89-696c-4982-a392-ad082b20b3be",
+      "gv_id": "GV-PK-MCD-2012-1",
+      "name": "Servine",
+      "number": "1",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "6b97c77e-cbc6-4b66-9f4d-0ccaa14150bd",
+      "gv_id": "GV-PK-MCD-2012-2",
+      "name": "Pansage",
+      "number": "2",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "fd3cb50d-4715-47ea-a7df-6c102cb31e27",
+      "gv_id": "GV-PK-MCD-2012-3",
+      "name": "Dwebble",
+      "number": "3",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+      "gv_id": "GV-PK-MCD-2012-4",
+      "name": "Pignite",
+      "number": "4",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+      "gv_id": "GV-PK-MCD-2012-5",
+      "name": "Dewott",
+      "number": "5",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "e0c1a45e-b322-4d3d-8b42-966e03d5e1bc",
+      "gv_id": "GV-PK-MCD-2012-6",
+      "name": "Emolga",
+      "number": "6",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "d9eb1596-2c15-4109-8b0d-d965b49144b7",
+      "gv_id": "GV-PK-MCD-2012-7",
+      "name": "Woobat",
+      "number": "7",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "40cd5874-881d-426e-857e-c86ad8723cca",
+      "gv_id": "GV-PK-MCD-2012-8",
+      "name": "Drilbur",
+      "number": "8",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "5094eb31-bd74-4ace-bc28-3c9a52afeaa4",
+      "gv_id": "GV-PK-MCD-2012-9",
+      "name": "Purrloin",
+      "number": "9",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+      "gv_id": "GV-PK-MCD-2012-10",
+      "name": "Scraggy",
+      "number": "10",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+      "gv_id": "GV-PK-MCD-2012-11",
+      "name": "Klang",
+      "number": "11",
+      "set_code": "mcd12"
+    },
+    {
+      "id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+      "gv_id": "GV-PK-MCD-2012-12",
+      "name": "Axew",
+      "number": "12",
+      "set_code": "mcd12"
+    }
+  ],
+  "mapping_sample_rows": [
+    {
+      "old_id": "701dfb15-46fb-4f58-9680-e1cb2ef9f646",
+      "old_name": "Servine",
+      "printed_number": "1",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "dfdb5d89-696c-4982-a392-ad082b20b3be",
+      "new_name": "Servine",
+      "number": "1",
+      "gv_id": "GV-PK-MCD-2012-1",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "044356ad-d7a1-4ad6-beac-db94aa88634e",
+      "old_name": "Pansage",
+      "printed_number": "2",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "6b97c77e-cbc6-4b66-9f4d-0ccaa14150bd",
+      "new_name": "Pansage",
+      "number": "2",
+      "gv_id": "GV-PK-MCD-2012-2",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "dd45ad38-2f37-4fcb-a70c-dd0ebc52f246",
+      "old_name": "Dwebble",
+      "printed_number": "3",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "fd3cb50d-4715-47ea-a7df-6c102cb31e27",
+      "new_name": "Dwebble",
+      "number": "3",
+      "gv_id": "GV-PK-MCD-2012-3",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "6e717d9f-3e0c-4897-a7b5-b54dbed61d99",
+      "old_name": "Pignite",
+      "printed_number": "4",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "5a88f7e3-847b-4d39-94e1-1891ca9dcafe",
+      "new_name": "Pignite",
+      "number": "4",
+      "gv_id": "GV-PK-MCD-2012-4",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "4fe5e6a9-2247-49c6-8822-e7582455e423",
+      "old_name": "Dewott",
+      "printed_number": "5",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "d807f57c-6904-4710-9ab9-de53d9bb1dc4",
+      "new_name": "Dewott",
+      "number": "5",
+      "gv_id": "GV-PK-MCD-2012-5",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "0f859865-af3c-487d-8592-c0ae39462078",
+      "old_name": "Emolga",
+      "printed_number": "6",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "e0c1a45e-b322-4d3d-8b42-966e03d5e1bc",
+      "new_name": "Emolga",
+      "number": "6",
+      "gv_id": "GV-PK-MCD-2012-6",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "8702d170-65f2-4098-98d2-57cbfeb492b7",
+      "old_name": "Woobat",
+      "printed_number": "7",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "d9eb1596-2c15-4109-8b0d-d965b49144b7",
+      "new_name": "Woobat",
+      "number": "7",
+      "gv_id": "GV-PK-MCD-2012-7",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "9f3bcf93-0896-4a5f-911e-89cc7e5e18f0",
+      "old_name": "Drilbur",
+      "printed_number": "8",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "40cd5874-881d-426e-857e-c86ad8723cca",
+      "new_name": "Drilbur",
+      "number": "8",
+      "gv_id": "GV-PK-MCD-2012-8",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "19cdd7e4-568f-4d14-93b9-1291dc40efeb",
+      "old_name": "Purrloin",
+      "printed_number": "9",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "5094eb31-bd74-4ace-bc28-3c9a52afeaa4",
+      "new_name": "Purrloin",
+      "number": "9",
+      "gv_id": "GV-PK-MCD-2012-9",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "fe3cad3e-8df4-447a-98ee-964879d6518d",
+      "old_name": "Scraggy",
+      "printed_number": "10",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "353b9924-4d4e-44b4-b55c-a28a5a377cb2",
+      "new_name": "Scraggy",
+      "number": "10",
+      "gv_id": "GV-PK-MCD-2012-10",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "f00b72c6-080a-4f38-81ec-c9d23e7375ac",
+      "old_name": "Klang",
+      "printed_number": "11",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "d3b5a22a-f7fe-4088-9756-845e95ab3011",
+      "new_name": "Klang",
+      "number": "11",
+      "gv_id": "GV-PK-MCD-2012-11",
+      "set_code": "mcd12"
+    },
+    {
+      "old_id": "4950f92f-952d-4141-a527-b993d16e3d1b",
+      "old_name": "Axew",
+      "printed_number": "12",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "ba12910d-12b8-48ea-9623-d717bfb211d1",
+      "new_name": "Axew",
+      "number": "12",
+      "gv_id": "GV-PK-MCD-2012-12",
+      "set_code": "mcd12"
+    }
+  ],
+  "fk_readiness_snapshot": [
+    {
+      "table_name": "card_print_identity",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "card_print_traits",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "card_printings",
+      "column_name": "card_print_id",
+      "row_count": 7
+    },
+    {
+      "table_name": "external_mappings",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "vault_items",
+      "column_name": "card_id",
+      "row_count": 0
+    }
+  ],
+  "status": "completed"
+}

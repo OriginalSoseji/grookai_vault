@@ -1,0 +1,3128 @@
+{
+  "phase": "MCD_YEARLY_ALIAS_BATCH_COLLAPSE_V1",
+  "mode": "apply",
+  "generated_at": "2026-04-07T03:57:34.393Z",
+  "target_identity_domain": "pokemon_eng_standard",
+  "year_pairs": [
+    {
+      "alias_code": "2014xy",
+      "canonical_code": "mcd14",
+      "year_label": "2014"
+    },
+    {
+      "alias_code": "2015xy",
+      "canonical_code": "mcd15",
+      "year_label": "2015"
+    },
+    {
+      "alias_code": "2016xy",
+      "canonical_code": "mcd16",
+      "year_label": "2016"
+    },
+    {
+      "alias_code": "2017sm",
+      "canonical_code": "mcd17",
+      "year_label": "2017"
+    },
+    {
+      "alias_code": "2018sm",
+      "canonical_code": "mcd18",
+      "year_label": "2018"
+    },
+    {
+      "alias_code": "2019sm",
+      "canonical_code": "mcd19",
+      "year_label": "2019"
+    }
+  ],
+  "audit_results": [
+    {
+      "alias_code": "2014xy",
+      "canonical_code": "mcd14",
+      "year_label": "2014",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+          "new_id": "7df32558-45a4-41a6-817e-69119a056e96",
+          "old_name": "Weedle",
+          "new_name": "Weedle",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "weedle",
+          "normalized_name": "weedle",
+          "new_gv_id": "GV-PK-MCD-2014-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+          "new_id": "12a1417f-d734-4227-8dc6-43dc6cd0e3e8",
+          "old_name": "Honedge",
+          "new_name": "Honedge",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "honedge",
+          "normalized_name": "honedge",
+          "new_gv_id": "GV-PK-MCD-2014-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "d46097bc-81d0-433b-a2cf-961977543966",
+          "new_id": "8af64864-4adb-47b2-99d2-077f08f4ef25",
+          "old_name": "Furfrou",
+          "new_name": "Furfrou",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "furfrou",
+          "normalized_name": "furfrou",
+          "new_gv_id": "GV-PK-MCD-2014-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 12,
+        "printing_finish_conflict_count": 0,
+        "printing_mergeable_metadata_only_count": 0,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    },
+    {
+      "alias_code": "2015xy",
+      "canonical_code": "mcd15",
+      "year_label": "2015",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+          "new_id": "660b70e4-c52e-44bf-beb4-2efc1af977b6",
+          "old_name": "Treecko",
+          "new_name": "Treecko",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "treecko",
+          "normalized_name": "treecko",
+          "new_gv_id": "GV-PK-MCD-2015-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+          "new_id": "65906508-6468-4220-8939-d3dde51b0d0c",
+          "old_name": "Electrike",
+          "new_name": "Electrike",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "electrike",
+          "normalized_name": "electrike",
+          "new_gv_id": "GV-PK-MCD-2015-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+          "new_id": "21352bb8-e63b-4bae-93d3-5dde0dba008f",
+          "old_name": "Skitty",
+          "new_name": "Skitty",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "skitty",
+          "normalized_name": "skitty",
+          "new_gv_id": "GV-PK-MCD-2015-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 10,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 10,
+        "printing_finish_conflict_count": 1,
+        "printing_mergeable_metadata_only_count": 1,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    },
+    {
+      "alias_code": "2016xy",
+      "canonical_code": "mcd16",
+      "year_label": "2016",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+          "new_id": "9421a17d-0ef5-44f3-ac6f-2e9616f79a6d",
+          "old_name": "Vulpix",
+          "new_name": "Vulpix",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "vulpix",
+          "normalized_name": "vulpix",
+          "new_gv_id": "GV-PK-MCD-2016-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c22186fe-93c3-46dd-8c33-baa5551e9da1",
+          "new_id": "aea61ca5-8edd-4718-a786-a2408d5d89b3",
+          "old_name": "Scraggy",
+          "new_name": "Scraggy",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "scraggy",
+          "normalized_name": "scraggy",
+          "new_gv_id": "GV-PK-MCD-2016-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5b5e8a98-3045-4215-bdbb-b71ad7cd983a",
+          "new_id": "12fb37f4-cc29-4769-8307-318f2f14b99f",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2016-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 36,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 36,
+        "printing_finish_conflict_count": 12,
+        "printing_mergeable_metadata_only_count": 12,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    },
+    {
+      "alias_code": "2017sm",
+      "canonical_code": "mcd17",
+      "year_label": "2017",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4630f0d-e009-4f58-b594-122b39fc43c1",
+          "new_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+          "old_name": "Rowlet",
+          "new_name": "Rowlet",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "rowlet",
+          "normalized_name": "rowlet",
+          "new_gv_id": "GV-PK-MCD-2017-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c3b8ec93-904f-414a-8129-e6c9c994f29d",
+          "new_id": "c5891ba9-71fd-4394-8c34-aa1389eab1aa",
+          "old_name": "Crabrawler",
+          "new_name": "Crabrawler",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "crabrawler",
+          "normalized_name": "crabrawler",
+          "new_gv_id": "GV-PK-MCD-2017-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "49da7416-8b7c-4df8-bb82-1385e21d4cff",
+          "new_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+          "old_name": "Yungoos",
+          "new_name": "Yungoos",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "yungoos",
+          "normalized_name": "yungoos",
+          "new_gv_id": "GV-PK-MCD-2017-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 6,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 6,
+        "printing_finish_conflict_count": 0,
+        "printing_mergeable_metadata_only_count": 0,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    },
+    {
+      "alias_code": "2018sm",
+      "canonical_code": "mcd18",
+      "year_label": "2018",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "af966963-8a44-4293-b1bf-dc63e0d6d678",
+          "new_id": "c91a4d0b-4416-4227-959e-0dbc482a5079",
+          "old_name": "Growlithe",
+          "new_name": "Growlithe",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "growlithe",
+          "normalized_name": "growlithe",
+          "new_gv_id": "GV-PK-MCD-2018-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "4ff69455-1d5d-4149-a659-17d6a1b04471",
+          "new_id": "9d07b0c9-f6ef-4dc0-a3cf-43ffb1cb89a1",
+          "old_name": "Cubone",
+          "new_name": "Cubone",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "cubone",
+          "normalized_name": "cubone",
+          "new_gv_id": "GV-PK-MCD-2018-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "32cd523f-ff42-4c92-83e0-56e5b118fef6",
+          "new_id": "7f55c4f3-df38-4b91-86dd-fae964422cba",
+          "old_name": "Porygon",
+          "new_name": "Porygon",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "porygon",
+          "normalized_name": "porygon",
+          "new_gv_id": "GV-PK-MCD-2018-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 11,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 11,
+        "printing_finish_conflict_count": 0,
+        "printing_mergeable_metadata_only_count": 0,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    },
+    {
+      "alias_code": "2019sm",
+      "canonical_code": "mcd19",
+      "year_label": "2019",
+      "source_count": 12,
+      "numeric_count": 12,
+      "non_numeric_count": 0,
+      "target_count": 12,
+      "mapping_candidate_count": 12,
+      "map_count": 12,
+      "distinct_old_count": 12,
+      "distinct_new_count": 12,
+      "multiple_match_old_count": 0,
+      "reused_new_count": 0,
+      "unmatched_count": 0,
+      "same_number_same_name_count": 12,
+      "same_number_different_name_count": 0,
+      "canonical_namespace_match_count": 12,
+      "namespace_conflict_count": 0,
+      "target_any_identity_rows": 0,
+      "target_active_identity_rows": 0,
+      "apply_safe": true,
+      "block_reason": null,
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+          "new_id": "97d1f0f0-a38b-483f-ac9e-93cc1b322b01",
+          "old_name": "Caterpie",
+          "new_name": "Caterpie",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "caterpie",
+          "normalized_name": "caterpie",
+          "new_gv_id": "GV-PK-MCD-2019-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "6292805b-f96e-4fc3-b0c4-538e6a058ddc",
+          "new_id": "d629dcad-ed05-4495-bbf3-f0810a5d4ffc",
+          "old_name": "Gastly",
+          "new_name": "Gastly",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "gastly",
+          "normalized_name": "gastly",
+          "new_gv_id": "GV-PK-MCD-2019-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5570e14b-8d01-45c3-b05d-b466c622f3c4",
+          "new_id": "edc5ddb7-85e6-4d15-a40c-7ca66e5e297d",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2019-12"
+        }
+      },
+      "fk_inventory": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 4,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 12,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ],
+      "collision_summary": {
+        "old_trait_row_count": 12,
+        "trait_target_key_conflict_count": 0,
+        "trait_conflicting_non_identical_count": 0,
+        "old_printing_row_count": 4,
+        "printing_finish_conflict_count": 0,
+        "printing_mergeable_metadata_only_count": 0,
+        "printing_conflicting_non_identical_count": 0,
+        "old_external_mapping_row_count": 12,
+        "external_mapping_conflict_count": 0
+      }
+    }
+  ],
+  "audit_summary": {
+    "total_year_pairs": 6,
+    "apply_safe_year_count": 6,
+    "blocked_year_count": 0,
+    "combined_source_count": 72,
+    "combined_target_count": 72,
+    "combined_map_count": 72,
+    "combined_fk_counts": {
+      "card_print_identity": 72,
+      "card_print_traits": 72,
+      "card_printings": 79,
+      "external_mappings": 72,
+      "vault_items": 0
+    }
+  },
+  "backup_artifacts": {
+    "schema_path": "C:\\grookai_vault\\backups\\mcd_yearly_alias_batch_collapse_preapply_schema.sql",
+    "data_path": "C:\\grookai_vault\\backups\\mcd_yearly_alias_batch_collapse_preapply_data.sql",
+    "combined_fk_counts": [
+      {
+        "table_name": "ai_decision_logs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "canon_warehouse_candidates",
+        "column_name": "promoted_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_embeddings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interactions",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_rollups",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_ticks",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_prices",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_file_paths",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 72,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_print_price_curves",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 72,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 79,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_signals",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 72,
+        "supported_handler": true
+      },
+      {
+        "table_name": "identity_scan_selections",
+        "column_name": "selected_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variants",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "listings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "market_prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "price_observations",
+        "column_name": "print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_jobs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_watch",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "shared_cards",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_certs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "user_card_photos",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_item_instances",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "wishlist_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      }
+    ],
+    "table_row_counts": [
+      {
+        "table_name": "card_prints",
+        "row_count": 144
+      },
+      {
+        "table_name": "card_print_identity",
+        "row_count": 72
+      },
+      {
+        "table_name": "card_print_traits",
+        "row_count": 132
+      },
+      {
+        "table_name": "card_printings",
+        "row_count": 151
+      },
+      {
+        "table_name": "external_mappings",
+        "row_count": 260
+      },
+      {
+        "table_name": "vault_items",
+        "row_count": 0
+      }
+    ]
+  },
+  "applied_years": [
+    {
+      "alias_code": "2014xy",
+      "canonical_code": "mcd14",
+      "year_label": "2014",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 12,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 0,
+        "moved_unique_printings": 12,
+        "deleted_redundant_printings": 0,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+          "new_id": "7df32558-45a4-41a6-817e-69119a056e96",
+          "old_name": "Weedle",
+          "new_name": "Weedle",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "weedle",
+          "normalized_name": "weedle",
+          "new_gv_id": "GV-PK-MCD-2014-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+          "new_id": "12a1417f-d734-4227-8dc6-43dc6cd0e3e8",
+          "old_name": "Honedge",
+          "new_name": "Honedge",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "honedge",
+          "normalized_name": "honedge",
+          "new_gv_id": "GV-PK-MCD-2014-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "d46097bc-81d0-433b-a2cf-961977543966",
+          "new_id": "8af64864-4adb-47b2-99d2-077f08f4ef25",
+          "old_name": "Furfrou",
+          "new_name": "Furfrou",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "furfrou",
+          "normalized_name": "furfrou",
+          "new_gv_id": "GV-PK-MCD-2014-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "4bbf8383-1ee5-4595-9672-8f5257e7fa1a",
+          "new_id": "7df32558-45a4-41a6-817e-69119a056e96",
+          "old_name": "Weedle",
+          "new_name": "Weedle",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "weedle",
+          "normalized_name": "weedle",
+          "new_gv_id": "GV-PK-MCD-2014-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "0c592b65-02a4-4eac-a7e4-c57df2d7f905",
+          "new_id": "12a1417f-d734-4227-8dc6-43dc6cd0e3e8",
+          "old_name": "Honedge",
+          "new_name": "Honedge",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "honedge",
+          "normalized_name": "honedge",
+          "new_gv_id": "GV-PK-MCD-2014-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "d46097bc-81d0-433b-a2cf-961977543966",
+          "new_id": "8af64864-4adb-47b2-99d2-077f08f4ef25",
+          "old_name": "Furfrou",
+          "new_name": "Furfrou",
+          "old_set_code": null,
+          "new_set_code": "mcd14",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "furfrou",
+          "normalized_name": "furfrou",
+          "new_gv_id": "GV-PK-MCD-2014-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    },
+    {
+      "alias_code": "2015xy",
+      "canonical_code": "mcd15",
+      "year_label": "2015",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 10,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 1,
+        "moved_unique_printings": 9,
+        "deleted_redundant_printings": 1,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+          "new_id": "660b70e4-c52e-44bf-beb4-2efc1af977b6",
+          "old_name": "Treecko",
+          "new_name": "Treecko",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "treecko",
+          "normalized_name": "treecko",
+          "new_gv_id": "GV-PK-MCD-2015-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+          "new_id": "65906508-6468-4220-8939-d3dde51b0d0c",
+          "old_name": "Electrike",
+          "new_name": "Electrike",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "electrike",
+          "normalized_name": "electrike",
+          "new_gv_id": "GV-PK-MCD-2015-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+          "new_id": "21352bb8-e63b-4bae-93d3-5dde0dba008f",
+          "old_name": "Skitty",
+          "new_name": "Skitty",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "skitty",
+          "normalized_name": "skitty",
+          "new_gv_id": "GV-PK-MCD-2015-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4868bdb-8d6e-4707-906a-85778348c4e7",
+          "new_id": "660b70e4-c52e-44bf-beb4-2efc1af977b6",
+          "old_name": "Treecko",
+          "new_name": "Treecko",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "treecko",
+          "normalized_name": "treecko",
+          "new_gv_id": "GV-PK-MCD-2015-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "b14f2430-6afd-4b72-b852-64c98ebf1a3e",
+          "new_id": "65906508-6468-4220-8939-d3dde51b0d0c",
+          "old_name": "Electrike",
+          "new_name": "Electrike",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "electrike",
+          "normalized_name": "electrike",
+          "new_gv_id": "GV-PK-MCD-2015-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "95f99fe8-4ff5-4f28-ab77-0f0d10a8ab2f",
+          "new_id": "21352bb8-e63b-4bae-93d3-5dde0dba008f",
+          "old_name": "Skitty",
+          "new_name": "Skitty",
+          "old_set_code": null,
+          "new_set_code": "mcd15",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "skitty",
+          "normalized_name": "skitty",
+          "new_gv_id": "GV-PK-MCD-2015-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    },
+    {
+      "alias_code": "2016xy",
+      "canonical_code": "mcd16",
+      "year_label": "2016",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 36,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 12,
+        "moved_unique_printings": 24,
+        "deleted_redundant_printings": 12,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+          "new_id": "9421a17d-0ef5-44f3-ac6f-2e9616f79a6d",
+          "old_name": "Vulpix",
+          "new_name": "Vulpix",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "vulpix",
+          "normalized_name": "vulpix",
+          "new_gv_id": "GV-PK-MCD-2016-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c22186fe-93c3-46dd-8c33-baa5551e9da1",
+          "new_id": "aea61ca5-8edd-4718-a786-a2408d5d89b3",
+          "old_name": "Scraggy",
+          "new_name": "Scraggy",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "scraggy",
+          "normalized_name": "scraggy",
+          "new_gv_id": "GV-PK-MCD-2016-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5b5e8a98-3045-4215-bdbb-b71ad7cd983a",
+          "new_id": "12fb37f4-cc29-4769-8307-318f2f14b99f",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2016-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "39eaae3e-92df-41d2-b517-51185c5548f6",
+          "new_id": "9421a17d-0ef5-44f3-ac6f-2e9616f79a6d",
+          "old_name": "Vulpix",
+          "new_name": "Vulpix",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "vulpix",
+          "normalized_name": "vulpix",
+          "new_gv_id": "GV-PK-MCD-2016-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c22186fe-93c3-46dd-8c33-baa5551e9da1",
+          "new_id": "aea61ca5-8edd-4718-a786-a2408d5d89b3",
+          "old_name": "Scraggy",
+          "new_name": "Scraggy",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "scraggy",
+          "normalized_name": "scraggy",
+          "new_gv_id": "GV-PK-MCD-2016-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5b5e8a98-3045-4215-bdbb-b71ad7cd983a",
+          "new_id": "12fb37f4-cc29-4769-8307-318f2f14b99f",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd16",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2016-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    },
+    {
+      "alias_code": "2017sm",
+      "canonical_code": "mcd17",
+      "year_label": "2017",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 6,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 0,
+        "moved_unique_printings": 6,
+        "deleted_redundant_printings": 0,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4630f0d-e009-4f58-b594-122b39fc43c1",
+          "new_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+          "old_name": "Rowlet",
+          "new_name": "Rowlet",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "rowlet",
+          "normalized_name": "rowlet",
+          "new_gv_id": "GV-PK-MCD-2017-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c3b8ec93-904f-414a-8129-e6c9c994f29d",
+          "new_id": "c5891ba9-71fd-4394-8c34-aa1389eab1aa",
+          "old_name": "Crabrawler",
+          "new_name": "Crabrawler",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "crabrawler",
+          "normalized_name": "crabrawler",
+          "new_gv_id": "GV-PK-MCD-2017-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "49da7416-8b7c-4df8-bb82-1385e21d4cff",
+          "new_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+          "old_name": "Yungoos",
+          "new_name": "Yungoos",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "yungoos",
+          "normalized_name": "yungoos",
+          "new_gv_id": "GV-PK-MCD-2017-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "c4630f0d-e009-4f58-b594-122b39fc43c1",
+          "new_id": "2c5d16d6-8cdc-4035-a390-5098ca9c6194",
+          "old_name": "Rowlet",
+          "new_name": "Rowlet",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "rowlet",
+          "normalized_name": "rowlet",
+          "new_gv_id": "GV-PK-MCD-2017-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "c3b8ec93-904f-414a-8129-e6c9c994f29d",
+          "new_id": "c5891ba9-71fd-4394-8c34-aa1389eab1aa",
+          "old_name": "Crabrawler",
+          "new_name": "Crabrawler",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "crabrawler",
+          "normalized_name": "crabrawler",
+          "new_gv_id": "GV-PK-MCD-2017-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "49da7416-8b7c-4df8-bb82-1385e21d4cff",
+          "new_id": "abc1a7d0-5bc6-46f9-a2ef-76d156c9c719",
+          "old_name": "Yungoos",
+          "new_name": "Yungoos",
+          "old_set_code": null,
+          "new_set_code": "mcd17",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "yungoos",
+          "normalized_name": "yungoos",
+          "new_gv_id": "GV-PK-MCD-2017-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    },
+    {
+      "alias_code": "2018sm",
+      "canonical_code": "mcd18",
+      "year_label": "2018",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 11,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 0,
+        "moved_unique_printings": 11,
+        "deleted_redundant_printings": 0,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "af966963-8a44-4293-b1bf-dc63e0d6d678",
+          "new_id": "c91a4d0b-4416-4227-959e-0dbc482a5079",
+          "old_name": "Growlithe",
+          "new_name": "Growlithe",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "growlithe",
+          "normalized_name": "growlithe",
+          "new_gv_id": "GV-PK-MCD-2018-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "4ff69455-1d5d-4149-a659-17d6a1b04471",
+          "new_id": "9d07b0c9-f6ef-4dc0-a3cf-43ffb1cb89a1",
+          "old_name": "Cubone",
+          "new_name": "Cubone",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "cubone",
+          "normalized_name": "cubone",
+          "new_gv_id": "GV-PK-MCD-2018-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "32cd523f-ff42-4c92-83e0-56e5b118fef6",
+          "new_id": "7f55c4f3-df38-4b91-86dd-fae964422cba",
+          "old_name": "Porygon",
+          "new_name": "Porygon",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "porygon",
+          "normalized_name": "porygon",
+          "new_gv_id": "GV-PK-MCD-2018-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "af966963-8a44-4293-b1bf-dc63e0d6d678",
+          "new_id": "c91a4d0b-4416-4227-959e-0dbc482a5079",
+          "old_name": "Growlithe",
+          "new_name": "Growlithe",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "growlithe",
+          "normalized_name": "growlithe",
+          "new_gv_id": "GV-PK-MCD-2018-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "4ff69455-1d5d-4149-a659-17d6a1b04471",
+          "new_id": "9d07b0c9-f6ef-4dc0-a3cf-43ffb1cb89a1",
+          "old_name": "Cubone",
+          "new_name": "Cubone",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "cubone",
+          "normalized_name": "cubone",
+          "new_gv_id": "GV-PK-MCD-2018-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "32cd523f-ff42-4c92-83e0-56e5b118fef6",
+          "new_id": "7f55c4f3-df38-4b91-86dd-fae964422cba",
+          "old_name": "Porygon",
+          "new_name": "Porygon",
+          "old_set_code": null,
+          "new_set_code": "mcd18",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "porygon",
+          "normalized_name": "porygon",
+          "new_gv_id": "GV-PK-MCD-2018-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    },
+    {
+      "alias_code": "2019sm",
+      "canonical_code": "mcd19",
+      "year_label": "2019",
+      "status": "applied",
+      "collapsed_count": 12,
+      "deleted_old_parent_rows": 12,
+      "fk_before": {
+        "card_print_identity.card_print_id": 12,
+        "card_print_traits.card_print_id": 12,
+        "card_printings.card_print_id": 4,
+        "external_mappings.card_print_id": 12,
+        "vault_items.card_id": 0
+      },
+      "fk_after": {
+        "card_print_identity.card_print_id": 0,
+        "card_print_traits.card_print_id": 0,
+        "card_printings.card_print_id": 0,
+        "external_mappings.card_print_id": 0,
+        "vault_items.card_id": 0
+      },
+      "fk_movement_summary": {
+        "updated_identity_rows": 12,
+        "inserted_traits": 12,
+        "deleted_old_traits": 12,
+        "merged_printing_metadata_rows": 0,
+        "moved_unique_printings": 4,
+        "deleted_redundant_printings": 0,
+        "updated_external_mappings": 12,
+        "updated_vault_items": 0
+      },
+      "post_validation": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows_for_alias": 0,
+        "canonical_target_count": 12,
+        "target_gv_id_drift_count": 0,
+        "target_any_identity_rows": 12,
+        "target_active_identity_rows": 12,
+        "route_resolvable_target_rows": 12,
+        "active_identity_total_after": 10613,
+        "active_identity_total_before": 10613
+      },
+      "sample_rows_before": {
+        "first": {
+          "seq": 1,
+          "old_id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+          "new_id": "97d1f0f0-a38b-483f-ac9e-93cc1b322b01",
+          "old_name": "Caterpie",
+          "new_name": "Caterpie",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "caterpie",
+          "normalized_name": "caterpie",
+          "new_gv_id": "GV-PK-MCD-2019-1"
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "6292805b-f96e-4fc3-b0c4-538e6a058ddc",
+          "new_id": "d629dcad-ed05-4495-bbf3-f0810a5d4ffc",
+          "old_name": "Gastly",
+          "new_name": "Gastly",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "gastly",
+          "normalized_name": "gastly",
+          "new_gv_id": "GV-PK-MCD-2019-7"
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5570e14b-8d01-45c3-b05d-b466c622f3c4",
+          "new_id": "edc5ddb7-85e6-4d15-a40c-7ca66e5e297d",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2019-12"
+        }
+      },
+      "sample_rows_after": {
+        "first": {
+          "seq": 1,
+          "old_id": "01994aed-393f-4fdd-b6c7-0f914bf6b3b6",
+          "new_id": "97d1f0f0-a38b-483f-ac9e-93cc1b322b01",
+          "old_name": "Caterpie",
+          "new_name": "Caterpie",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "1",
+          "new_number": "1",
+          "old_number_normalized": "1",
+          "new_number_normalized": "1",
+          "normalized_printed_name": "caterpie",
+          "normalized_name": "caterpie",
+          "new_gv_id": "GV-PK-MCD-2019-1",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "middle": {
+          "seq": 7,
+          "old_id": "6292805b-f96e-4fc3-b0c4-538e6a058ddc",
+          "new_id": "d629dcad-ed05-4495-bbf3-f0810a5d4ffc",
+          "old_name": "Gastly",
+          "new_name": "Gastly",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "7",
+          "new_number": "7",
+          "old_number_normalized": "7",
+          "new_number_normalized": "7",
+          "normalized_printed_name": "gastly",
+          "normalized_name": "gastly",
+          "new_gv_id": "GV-PK-MCD-2019-7",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        },
+        "last": {
+          "seq": 12,
+          "old_id": "5570e14b-8d01-45c3-b05d-b466c622f3c4",
+          "new_id": "edc5ddb7-85e6-4d15-a40c-7ca66e5e297d",
+          "old_name": "Eevee",
+          "new_name": "Eevee",
+          "old_set_code": null,
+          "new_set_code": "mcd19",
+          "old_number": "12",
+          "new_number": "12",
+          "old_number_normalized": "12",
+          "new_number_normalized": "12",
+          "normalized_printed_name": "eevee",
+          "normalized_name": "eevee",
+          "new_gv_id": "GV-PK-MCD-2019-12",
+          "old_parent_still_exists": false,
+          "identity_row_count_on_new_parent": 1,
+          "active_identity_row_count_on_new_parent": 1
+        }
+      }
+    }
+  ],
+  "blocked_years": [],
+  "combined_fk_movement_summary": {
+    "card_print_identity": 72,
+    "card_print_traits": 72,
+    "card_printings": 92,
+    "external_mappings": 72,
+    "vault_items": 0
+  },
+  "status": "apply_passed"
+}

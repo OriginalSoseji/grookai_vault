@@ -1,0 +1,3836 @@
+{
+  "phase": "SWSH12_IDENTITY_AUDIT_V1",
+  "generated_at": "2026-04-05T07:09:27.979Z",
+  "target_set_code_identity": "swsh12",
+  "target_identity_domain": "pokemon_eng_standard",
+  "total_unresolved": 115,
+  "numeric_unresolved": 85,
+  "non_numeric_unresolved": 30,
+  "numeric_with_canonical_match": 0,
+  "numeric_without_canonical_match": 85,
+  "tg_with_swsh12_canonical_match": 0,
+  "tg_without_swsh12_canonical_match": 30,
+  "tg_with_swsh12tg_canonical_match": 30,
+  "tg_without_swsh12tg_canonical_match": 0,
+  "strict_numeric_overlap_count": 0,
+  "strict_tg_family_overlap_count": 30,
+  "unresolved_counts": {
+    "total_unresolved": 115,
+    "numeric_unresolved": 85,
+    "non_numeric_unresolved": 30
+  },
+  "numeric_lane_findings": {
+    "numeric_with_canonical_match_count": 0,
+    "numeric_without_canonical_match_count": 85,
+    "numeric_same_name_same_number_overlap_count": 0,
+    "numeric_normalized_digit_match_count": 85,
+    "numeric_normalized_digit_same_name_overlap_count": 85,
+    "numeric_duplicate_collapse_ready_count": 85,
+    "numeric_normalized_digit_multiple_match_count": 0,
+    "rows": [
+      {
+        "card_print_id": "e5c28b64-00d9-45a6-bd82-0f9927c683fb",
+        "unresolved_name": "Venomoth",
+        "printed_number": "002",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "f9f6fcbc-3ca2-449d-b0fd-59205bbbe302",
+        "unresolved_name": "Spinarak",
+        "printed_number": "003",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "c3dc01cf-650a-4ded-82e5-9265c685f9c7",
+        "unresolved_name": "Ariados",
+        "printed_number": "004",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "30c2ab7a-4d0a-448b-9e0f-50f5eb6aba97",
+        "unresolved_name": "Sunkern",
+        "printed_number": "005",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "d8bbddd8-3571-4f2f-a051-52c642ff818a",
+        "unresolved_name": "Serperior V",
+        "printed_number": "007",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "1c1d2aa4-7e64-4622-8309-7742afe6a2c4",
+        "unresolved_name": "Petilil",
+        "printed_number": "009",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "ac96df1b-0ac8-4ed5-949b-c721fae5061c",
+        "unresolved_name": "Hisuian Lilligant",
+        "printed_number": "010",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "9161ab70-9b50-49e7-98da-dd96e271e58f",
+        "unresolved_name": "Foongus",
+        "printed_number": "011",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e7fcc1d7-7a7f-4f02-b798-f417da47521a",
+        "unresolved_name": "Durant",
+        "printed_number": "013",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "72ea7e85-9321-4b8b-b53e-e2bef62745a3",
+        "unresolved_name": "Virizion",
+        "printed_number": "014",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "d696a2c8-b33b-4994-a0a0-873cfb0d1878",
+        "unresolved_name": "Chesnaught V",
+        "printed_number": "015",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "c6818344-e875-4d22-828a-fbb8f2c02892",
+        "unresolved_name": "Radiant Tsareena",
+        "printed_number": "016",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "00c846c0-5b94-458b-aafd-24649ef5eb1f",
+        "unresolved_name": "Vulpix",
+        "printed_number": "017",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a6048fa1-3f3d-4714-9c71-a4655eef142a",
+        "unresolved_name": "Ninetales",
+        "printed_number": "018",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "7d8657ad-7783-4eec-ada1-2a759f2e37af",
+        "unresolved_name": "Growlithe",
+        "printed_number": "019",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "05cdbfae-ecc5-45a2-b152-02db2e043973",
+        "unresolved_name": "Arcanine",
+        "printed_number": "020",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a2cd3025-3607-43a8-867c-18bedab1eadf",
+        "unresolved_name": "Ponyta",
+        "printed_number": "021",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "fa355167-59a7-45df-820c-e3b21823cc5c",
+        "unresolved_name": "Rapidash",
+        "printed_number": "022",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "b37db843-772c-4663-ac67-dcfda849adc9",
+        "unresolved_name": "Reshiram V",
+        "printed_number": "024",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "b92deb41-0c47-47bd-a1de-bff94e5a9b13",
+        "unresolved_name": "Braixen",
+        "printed_number": "026",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e14b82bb-c300-4813-8780-c6e521e65657",
+        "unresolved_name": "Delphox",
+        "printed_number": "027",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "463be5bc-4da5-4dee-8fec-ec1d482127c4",
+        "unresolved_name": "Fletchinder",
+        "printed_number": "028",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "3c3816bc-e337-42d5-9530-b66fef699911",
+        "unresolved_name": "Talonflame",
+        "printed_number": "029",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "d3344554-5e1c-45af-bad4-5c48c67c05ea",
+        "unresolved_name": "Litten",
+        "printed_number": "030",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a1542ea7-2578-41a1-ac4f-e74c9845a9df",
+        "unresolved_name": "Torracat",
+        "printed_number": "031",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a9e8bfc1-022e-4054-9c3f-dbebccc05d76",
+        "unresolved_name": "Incineroar",
+        "printed_number": "032",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "70cbab5a-98b4-4441-96fd-cfa55457a489",
+        "unresolved_name": "Alolan Vulpix V",
+        "printed_number": "033",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "4a9f5d32-3f9f-4e8d-b369-5208e8d5d187",
+        "unresolved_name": "Alolan Vulpix VSTAR",
+        "printed_number": "034",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "c4948a81-e7db-442c-8e9a-a224750b5112",
+        "unresolved_name": "Omastar V",
+        "printed_number": "035",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "d1d49056-689e-4b79-8b55-ad2411a3339a",
+        "unresolved_name": "Articuno",
+        "printed_number": "036",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "0ddf7ec2-df12-4333-b3e5-1c6e6da65779",
+        "unresolved_name": "Wailmer",
+        "printed_number": "037",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e3c05d82-09e3-426f-bcfd-786d832015b5",
+        "unresolved_name": "Wailord",
+        "printed_number": "038",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "68573a9d-2855-49b6-9e32-db05f8bc0cc5",
+        "unresolved_name": "Feebas",
+        "printed_number": "039",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "cd66d3bb-bce9-4da7-ab89-e67865281cb6",
+        "unresolved_name": "Milotic",
+        "printed_number": "040",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "32026b5d-005c-4570-8370-ae5432c2cfec",
+        "unresolved_name": "Snorunt",
+        "printed_number": "041",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "5269a19b-605e-4759-a1f9-7ce2741b4ae6",
+        "unresolved_name": "Glalie",
+        "printed_number": "042",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "1409e427-557e-4f22-8151-4cbeace296fb",
+        "unresolved_name": "Froslass",
+        "printed_number": "043",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "c6e87850-dc63-4eec-a5e8-93501df5ff50",
+        "unresolved_name": "Relicanth",
+        "printed_number": "044",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "f67560d2-6a9e-4b5a-a6de-954e828c3288",
+        "unresolved_name": "Phione",
+        "printed_number": "045",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "01324be9-639a-41e6-a7b6-768654a482cb",
+        "unresolved_name": "Keldeo",
+        "printed_number": "046",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "8b08afde-00a9-4614-ad3c-5bb1285e905f",
+        "unresolved_name": "Araquanid",
+        "printed_number": "048",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "87336661-2a46-4541-a2f4-b4cd61b21cde",
+        "unresolved_name": "Pikachu",
+        "printed_number": "049",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e48a0d37-d6d5-4ee4-a887-cf60507ca405",
+        "unresolved_name": "Raichu",
+        "printed_number": "050",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "2ec51a9f-0e4d-4e4b-993e-60607d8be781",
+        "unresolved_name": "Lanturn",
+        "printed_number": "052",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "2844ffdf-1b8a-47f3-bfa3-e28a4256a09a",
+        "unresolved_name": "Rotom",
+        "printed_number": "053",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "3e1d9a1b-294e-44a7-aef4-70f7f9de81ff",
+        "unresolved_name": "Emolga",
+        "printed_number": "054",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "af871e2a-e4bf-4e87-b8c2-437d192a320d",
+        "unresolved_name": "Stunfisk",
+        "printed_number": "055",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "9aa3621e-9a7a-4ff5-8d5e-993a0055c33b",
+        "unresolved_name": "Zeraora",
+        "printed_number": "056",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "9cce818c-1db8-4cd9-8b31-57e21b16d1b8",
+        "unresolved_name": "Regieleki V",
+        "printed_number": "057",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "ba07e596-4b76-4b3b-a539-8ea3adf60937",
+        "unresolved_name": "Regieleki VMAX",
+        "printed_number": "058",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e67603ac-78cf-41a6-97e9-a90e997dd9cb",
+        "unresolved_name": "Radiant Alakazam",
+        "printed_number": "059",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "867bc681-0ece-4e33-ba9c-1f709cc03cfa",
+        "unresolved_name": "Drowzee",
+        "printed_number": "060",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "cb57fa9a-f88d-4a7d-bc24-71bf3903f2ca",
+        "unresolved_name": "Hypno",
+        "printed_number": "061",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "ea3c9547-508d-403c-a853-46f6b5ab6e24",
+        "unresolved_name": "Jynx",
+        "printed_number": "062",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "08d6e5bc-1584-4feb-ae18-a1949abaa3f8",
+        "unresolved_name": "Mismagius",
+        "printed_number": "064",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "645b9671-3a00-4c9d-907c-81d923f8e0b8",
+        "unresolved_name": "Unown V",
+        "printed_number": "065",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "56e588b5-7e69-4acb-96ac-16a61e07cb13",
+        "unresolved_name": "Unown VSTAR",
+        "printed_number": "066",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a371f0a8-dbe7-436d-abc9-395745f78f15",
+        "unresolved_name": "Kirlia",
+        "printed_number": "068",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "7012dddc-870b-4732-9810-d42c1ecfd43c",
+        "unresolved_name": "Gardevoir",
+        "printed_number": "069",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "0e6d7404-166b-4fcb-8c69-e45820bc25f2",
+        "unresolved_name": "Mawile V",
+        "printed_number": "070",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "cddf6db1-39f5-4866-a700-e69608544dc5",
+        "unresolved_name": "Mawile VSTAR",
+        "printed_number": "071",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "ef6b0d5d-c82c-4c78-80f1-3d50dc69d0fc",
+        "unresolved_name": "Meditite",
+        "printed_number": "072",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "56bda7a9-6b86-4fb1-bccc-7c5b88cc092a",
+        "unresolved_name": "Medicham",
+        "printed_number": "073",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "26f50572-1ed4-43ef-8dab-4ed391649490",
+        "unresolved_name": "Chimecho",
+        "printed_number": "074",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "16055b85-ab28-40ed-b5fb-dbc3dbd98e3d",
+        "unresolved_name": "Sigilyph",
+        "printed_number": "075",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "dfc69457-9d20-4fec-9970-bbd0edb58db6",
+        "unresolved_name": "Duosion",
+        "printed_number": "077",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "5f6fb049-5b3e-4ea5-b4b0-ff8414891d07",
+        "unresolved_name": "Reuniclus",
+        "printed_number": "078",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "a41a3961-f8b7-4218-bb5a-db9a0469b475",
+        "unresolved_name": "Elgyem",
+        "printed_number": "079",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "edf1ee31-bc31-4bb2-b20f-1a28bb20469a",
+        "unresolved_name": "Espurr",
+        "printed_number": "081",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "73b0a8ac-20a0-4f5a-93f9-9fa7dfbbda55",
+        "unresolved_name": "Meowstic",
+        "printed_number": "082",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "db198d64-0945-4c51-83b8-20a52baf9c78",
+        "unresolved_name": "Slurpuff",
+        "printed_number": "084",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "e7f5ac91-47cd-45a3-860b-b7dfa493a72d",
+        "unresolved_name": "Dedenne",
+        "printed_number": "085",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "795179f8-a066-45dc-a332-1bad38825a9e",
+        "unresolved_name": "Indeedee",
+        "printed_number": "086",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "4c8fe61e-20bb-4c20-8d3b-41020b9241e1",
+        "unresolved_name": "Dreepy",
+        "printed_number": "087",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "2704570a-4110-497a-837d-c41c3b82072c",
+        "unresolved_name": "Drakloak",
+        "printed_number": "088",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "0d609c4d-1aef-4175-8a97-4b8c7df9599f",
+        "unresolved_name": "Dragapult",
+        "printed_number": "089",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "ddf009f5-38ef-4a1b-8bb8-7a4528b84460",
+        "unresolved_name": "Phanpy",
+        "printed_number": "091",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "6a921b2b-bddd-4a28-b5f6-3ae96a9667db",
+        "unresolved_name": "Donphan",
+        "printed_number": "092",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "47ada661-b505-4b37-a2f0-0dde3016557e",
+        "unresolved_name": "Baltoy",
+        "printed_number": "093",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "65a4c937-78aa-42de-bfef-245ae8ed4993",
+        "unresolved_name": "Claydol",
+        "printed_number": "094",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "27affdf3-c6aa-4759-81f2-aeae84151f60",
+        "unresolved_name": "Anorith",
+        "printed_number": "095",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "20e2cee1-a750-46b6-a868-4e9f29a30a38",
+        "unresolved_name": "Armaldo",
+        "printed_number": "096",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "c7f0e8b6-5528-48b4-8cb8-5771e4636242",
+        "unresolved_name": "Terrakion",
+        "printed_number": "097",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "bba9b4e9-e910-4eb5-af9c-fa7172e2e0bc",
+        "unresolved_name": "Hawlucha",
+        "printed_number": "098",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      },
+      {
+        "card_print_id": "82b17a96-bc51-4fe9-bd3f-ee39b708f977",
+        "unresolved_name": "Sandygast",
+        "printed_number": "099",
+        "normalized_digit_match_count": 1,
+        "normalized_digit_same_name_count": 1
+      }
+    ]
+  },
+  "non_numeric_tg_findings": {
+    "tg_with_swsh12_canonical_match_count": 0,
+    "tg_without_swsh12_canonical_match_count": 30,
+    "tg_same_name_same_number_overlap_count": 0
+  },
+  "family_lane_overlap_findings": {
+    "tg_with_swsh12tg_canonical_match_count": 30,
+    "tg_without_swsh12tg_canonical_match_count": 0,
+    "tg_with_swsh12tg_strict_same_name_same_number_overlap_count": 30,
+    "tg_with_swsh12tg_multiple_match_count": 0
+  },
+  "canonical_snapshot": {
+    "canonical_swsh12_total_rows": 215,
+    "canonical_swsh12_numeric_rows": 215,
+    "canonical_swsh12_non_numeric_rows": 0,
+    "canonical_swsh12tg_total_rows": 30,
+    "swsh12_numeric_samples": [
+      {
+        "id": "01010229-1529-4068-ae7b-fb9987909e6f",
+        "gv_id": "GV-PK-SIT-001",
+        "name": "Venonat",
+        "number": "001",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "32dd8072-a690-4cd9-ad6c-cd824eea4407",
+        "gv_id": "GV-PK-SIT-2",
+        "name": "Venomoth",
+        "number": "2",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "5ad75a58-e88e-4472-a832-cfe342c1cfe1",
+        "gv_id": "GV-PK-SIT-3",
+        "name": "Spinarak",
+        "number": "3",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "e5ef553c-a952-4bcf-aa74-14b7d948d19e",
+        "gv_id": "GV-PK-SIT-4",
+        "name": "Ariados",
+        "number": "4",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "8adf1b10-946d-4df1-abfa-0c86fe7ab01c",
+        "gv_id": "GV-PK-SIT-5",
+        "name": "Sunkern",
+        "number": "5",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "058fdb97-c2af-432c-9155-303429e7edde",
+        "gv_id": "GV-PK-SIT-006",
+        "name": "Sunflora",
+        "number": "006",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "74bfb8c2-4ff1-4c80-a7de-3724ef7facac",
+        "gv_id": "GV-PK-SIT-7",
+        "name": "Serperior V",
+        "number": "7",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "04b4e7e6-9779-40eb-8f59-e52b948fd8a8",
+        "gv_id": "GV-PK-SIT-008",
+        "name": "Serperior VSTAR",
+        "number": "008",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "ffb49d86-6f90-4d64-9696-221900878500",
+        "gv_id": "GV-PK-SIT-9",
+        "name": "Petilil",
+        "number": "9",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "d31a95ca-bdc3-43b7-ab47-0142c41b602e",
+        "gv_id": "GV-PK-SIT-10",
+        "name": "Hisuian Lilligant",
+        "number": "10",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "2797bc23-0726-43e0-a3bc-dbe29844123d",
+        "gv_id": "GV-PK-SIT-11",
+        "name": "Foongus",
+        "number": "11",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "06a0ecac-f5c0-455e-8d03-630fd4d89697",
+        "gv_id": "GV-PK-SIT-012",
+        "name": "Amoonguss",
+        "number": "012",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "fd5665d2-40cd-403b-899c-d13d4d57126b",
+        "gv_id": "GV-PK-SIT-13",
+        "name": "Durant",
+        "number": "13",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "268933a4-2ff0-4b51-b8a9-083b59c97b23",
+        "gv_id": "GV-PK-SIT-14",
+        "name": "Virizion",
+        "number": "14",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "6c7a87c3-ed50-43fb-abd6-aa75e686c020",
+        "gv_id": "GV-PK-SIT-15",
+        "name": "Chesnaught V",
+        "number": "15",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "0c5f5504-1619-46be-9972-c38802cb801d",
+        "gv_id": "GV-PK-SIT-16",
+        "name": "Radiant Tsareena",
+        "number": "16",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "d6d18845-846c-4da4-9191-7242bf70866b",
+        "gv_id": "GV-PK-SIT-17",
+        "name": "Vulpix",
+        "number": "17",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "acf04653-49c8-4734-9068-e35fdcd0c5d8",
+        "gv_id": "GV-PK-SIT-18",
+        "name": "Ninetales",
+        "number": "18",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "199bcc9b-a715-4a12-9d1b-464bd8edf3e9",
+        "gv_id": "GV-PK-SIT-19",
+        "name": "Growlithe",
+        "number": "19",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "84ee8fa8-d515-4b5c-a563-fe5779a6de6e",
+        "gv_id": "GV-PK-SIT-20",
+        "name": "Arcanine",
+        "number": "20",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "e7d01a75-db18-4525-8dff-8e58dcff90d4",
+        "gv_id": "GV-PK-SIT-21",
+        "name": "Ponyta",
+        "number": "21",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "ebf1b771-cc7d-430b-8adf-1f4a55d9b54d",
+        "gv_id": "GV-PK-SIT-22",
+        "name": "Rapidash",
+        "number": "22",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "18338e7f-dce4-45aa-af7f-7063c6725aca",
+        "gv_id": "GV-PK-SIT-023",
+        "name": "Victini",
+        "number": "023",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "54cbdfb5-480d-498b-9e37-ad0d8e042e54",
+        "gv_id": "GV-PK-SIT-24",
+        "name": "Reshiram V",
+        "number": "24",
+        "set_code": "swsh12"
+      },
+      {
+        "id": "0b905ca6-f3ea-4af0-9722-ac4554805db4",
+        "gv_id": "GV-PK-SIT-025",
+        "name": "Fennekin",
+        "number": "025",
+        "set_code": "swsh12"
+      }
+    ],
+    "swsh12_non_numeric_samples": [],
+    "swsh12tg_samples": [
+      {
+        "id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+        "gv_id": "GV-PK-SIT-TG01",
+        "name": "Braixen",
+        "number": "TG01",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "90498d40-3694-4255-a2af-f6f3abbadc30",
+        "gv_id": "GV-PK-SIT-TG02",
+        "name": "Milotic",
+        "number": "TG02",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "6f9318cb-ac06-488b-a5ab-95278d8b88c8",
+        "gv_id": "GV-PK-SIT-TG03",
+        "name": "Flaaffy",
+        "number": "TG03",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "25e3f169-6c31-4474-bd02-8eb0579200df",
+        "gv_id": "GV-PK-SIT-TG04",
+        "name": "Jynx",
+        "number": "TG04",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "fd6034fd-34a9-4c4c-a620-6e48ad9bab4a",
+        "gv_id": "GV-PK-SIT-TG05",
+        "name": "Gardevoir",
+        "number": "TG05",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "54bcae5b-af6b-40d0-8969-3661dff87925",
+        "gv_id": "GV-PK-SIT-TG06",
+        "name": "Malamar",
+        "number": "TG06",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "4eb962fc-985a-4516-ab62-3d843d09ae44",
+        "gv_id": "GV-PK-SIT-TG07",
+        "name": "Rockruff",
+        "number": "TG07",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "6c6f1720-88ae-4c83-abf2-41f4c3647464",
+        "gv_id": "GV-PK-SIT-TG08",
+        "name": "Passimian",
+        "number": "TG08",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "4d3db0ab-909c-42b8-bb16-3fc4f0d7e04c",
+        "gv_id": "GV-PK-SIT-TG09",
+        "name": "Druddigon",
+        "number": "TG09",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+        "gv_id": "GV-PK-SIT-TG10",
+        "name": "Smeargle",
+        "number": "TG10",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+        "gv_id": "GV-PK-SIT-TG11",
+        "name": "Altaria",
+        "number": "TG11",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "03465a8e-718d-4617-a59a-ee4ef528e3b1",
+        "gv_id": "GV-PK-SIT-TG12",
+        "name": "Kricketune V",
+        "number": "TG12",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+        "gv_id": "GV-PK-SIT-TG13",
+        "name": "Serperior V",
+        "number": "TG13",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "0bde11df-4013-4ed2-919d-0f011e63b7fd",
+        "gv_id": "GV-PK-SIT-TG14",
+        "name": "Blaziken V",
+        "number": "TG14",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "80a351f6-feb0-412c-bb22-6e425fb0a782",
+        "gv_id": "GV-PK-SIT-TG15",
+        "name": "Blaziken VMAX",
+        "number": "TG15",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "ec6aa693-3953-4766-81c4-0f2d81fbef37",
+        "gv_id": "GV-PK-SIT-TG16",
+        "name": "Zeraora V",
+        "number": "TG16",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "b2734e7a-a426-4ca2-a83d-3a272d7b1dfd",
+        "gv_id": "GV-PK-SIT-TG17",
+        "name": "Mawile V",
+        "number": "TG17",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "689153ec-d6f7-46e7-ace9-af6197f56477",
+        "gv_id": "GV-PK-SIT-TG18",
+        "name": "Corviknight V",
+        "number": "TG18",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "1995f9f5-1a8a-4204-8498-d901cf27e6ed",
+        "gv_id": "GV-PK-SIT-TG19",
+        "name": "Corviknight VMAX",
+        "number": "TG19",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "b4b7d603-9797-43f0-8e42-00cfe5c5bc62",
+        "gv_id": "GV-PK-SIT-TG20",
+        "name": "Rayquaza VMAX",
+        "number": "TG20",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "ce241241-2a2b-4c8c-8474-8b3aa6402e1d",
+        "gv_id": "GV-PK-SIT-TG21",
+        "name": "Duraludon VMAX",
+        "number": "TG21",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "36fdf3fa-4f83-4699-acec-50f0a014ca4f",
+        "gv_id": "GV-PK-SIT-TG22",
+        "name": "Blissey V",
+        "number": "TG22",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "a4dd65f9-42b9-4068-b4b3-0283af439d4e",
+        "gv_id": "GV-PK-SIT-TG23",
+        "name": "Friends in Galar",
+        "number": "TG23",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "5105ac7a-0bb7-4143-ad4e-c548ad9c2f67",
+        "gv_id": "GV-PK-SIT-TG24",
+        "name": "Gordie",
+        "number": "TG24",
+        "set_code": "swsh12tg"
+      },
+      {
+        "id": "a3423a9a-58a3-484e-bc71-791a7b8255eb",
+        "gv_id": "GV-PK-SIT-TG25",
+        "name": "Judge",
+        "number": "TG25",
+        "set_code": "swsh12tg"
+      }
+    ]
+  },
+  "strict_same_name_same_number_audit": {
+    "strict_numeric_overlap_count": 0,
+    "multiple_canonical_match_row_count": 0,
+    "zero_canonical_match_row_count": 115,
+    "canonical_match_but_different_name_row_count": 0,
+    "exact_rows": [
+      {
+        "lane": "non_numeric",
+        "card_print_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "unresolved_name": "Braixen",
+        "printed_number": "TG01",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "bfc81dc8-1b00-48a1-a93e-ea1836f78b52",
+        "unresolved_name": "Milotic",
+        "printed_number": "TG02",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "4e6cfae3-c3cc-4aa4-b012-9b70897d780d",
+        "unresolved_name": "Flaaffy",
+        "printed_number": "TG03",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "b156dcd6-06df-4ae6-884c-3f8b2b38daae",
+        "unresolved_name": "Jynx",
+        "printed_number": "TG04",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "e7ab0f45-c5df-4b34-ab29-ebb7b69faed1",
+        "unresolved_name": "Gardevoir",
+        "printed_number": "TG05",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "cf91adc0-d17f-434d-87fa-62acbc5905bb",
+        "unresolved_name": "Malamar",
+        "printed_number": "TG06",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "3581d6ce-e8c0-46fa-976c-8aaf97072127",
+        "unresolved_name": "Rockruff",
+        "printed_number": "TG07",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "95cc0737-b1d5-499a-916d-e8bbd1534edb",
+        "unresolved_name": "Passimian",
+        "printed_number": "TG08",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "914e7f15-317e-429d-8104-ee74e2d945be",
+        "unresolved_name": "Druddigon",
+        "printed_number": "TG09",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "aaca617e-fc99-49a8-9e41-ce380190829c",
+        "unresolved_name": "Smeargle",
+        "printed_number": "TG10",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "18363cbc-1225-4fe7-9793-9ba047b48a84",
+        "unresolved_name": "Altaria",
+        "printed_number": "TG11",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "49e9b578-be91-426f-8f68-d7276146c163",
+        "unresolved_name": "Kricketune V",
+        "printed_number": "TG12",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "0c01c635-fa26-42a7-b471-9cec46ccbd38",
+        "unresolved_name": "Serperior V",
+        "printed_number": "TG13",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "606a9fdb-d275-4236-ae2b-d8fcced1940c",
+        "unresolved_name": "Blaziken V",
+        "printed_number": "TG14",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "88490650-dcbb-4a11-86e4-e171c61d3d3b",
+        "unresolved_name": "Blaziken VMAX",
+        "printed_number": "TG15",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "38a210c1-8a6f-4573-b31a-7c3834fb04d0",
+        "unresolved_name": "Zeraora V",
+        "printed_number": "TG16",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "b4b3db2b-84f1-4151-866c-f291c1f4ced9",
+        "unresolved_name": "Mawile V",
+        "printed_number": "TG17",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "dc806a33-63bb-4b19-81b2-d6f871c1f908",
+        "unresolved_name": "Corviknight V",
+        "printed_number": "TG18",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "129ee1fb-28c5-4ffc-8bef-3e717b9eed09",
+        "unresolved_name": "Corviknight VMAX",
+        "printed_number": "TG19",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "337c5fc6-7fb2-4217-9de4-e15f92f9fa39",
+        "unresolved_name": "Rayquaza VMAX",
+        "printed_number": "TG20",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "6a9add54-dd91-4158-9c98-3fa7f82b4387",
+        "unresolved_name": "Duraludon VMAX",
+        "printed_number": "TG21",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "4984c5bf-1c71-44a3-9828-8d5f3daf2f82",
+        "unresolved_name": "Blissey V",
+        "printed_number": "TG22",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "432938cf-5582-491e-ae8e-7ece104021b7",
+        "unresolved_name": "Friends in Galar",
+        "printed_number": "TG23",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "9416751d-0313-4ba9-8ba1-57f3af0e6bbc",
+        "unresolved_name": "Gordie",
+        "printed_number": "TG24",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "71378e5e-8a01-4cc0-a339-6cb4958affee",
+        "unresolved_name": "Judge",
+        "printed_number": "TG25",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "c2f3800c-c953-4396-a7f7-5e998491dd5b",
+        "unresolved_name": "Professor Burnet",
+        "printed_number": "TG26",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "9cc0a549-cb2e-403a-bded-09ecb3f98f10",
+        "unresolved_name": "Raihan",
+        "printed_number": "TG27",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "3cc09b70-7540-4047-908c-9cbb5cb49a98",
+        "unresolved_name": "Sordward & Shielbert",
+        "printed_number": "TG28",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "9a4de11a-0096-495b-ac90-8bd3b186fdaf",
+        "unresolved_name": "Rayquaza VMAX",
+        "printed_number": "TG29",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "non_numeric",
+        "card_print_id": "f93c8303-2fbc-4625-98bd-0736c725306a",
+        "unresolved_name": "Duraludon VMAX",
+        "printed_number": "TG30",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e5c28b64-00d9-45a6-bd82-0f9927c683fb",
+        "unresolved_name": "Venomoth",
+        "printed_number": "002",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "f9f6fcbc-3ca2-449d-b0fd-59205bbbe302",
+        "unresolved_name": "Spinarak",
+        "printed_number": "003",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "c3dc01cf-650a-4ded-82e5-9265c685f9c7",
+        "unresolved_name": "Ariados",
+        "printed_number": "004",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "30c2ab7a-4d0a-448b-9e0f-50f5eb6aba97",
+        "unresolved_name": "Sunkern",
+        "printed_number": "005",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "d8bbddd8-3571-4f2f-a051-52c642ff818a",
+        "unresolved_name": "Serperior V",
+        "printed_number": "007",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "1c1d2aa4-7e64-4622-8309-7742afe6a2c4",
+        "unresolved_name": "Petilil",
+        "printed_number": "009",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "ac96df1b-0ac8-4ed5-949b-c721fae5061c",
+        "unresolved_name": "Hisuian Lilligant",
+        "printed_number": "010",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "9161ab70-9b50-49e7-98da-dd96e271e58f",
+        "unresolved_name": "Foongus",
+        "printed_number": "011",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e7fcc1d7-7a7f-4f02-b798-f417da47521a",
+        "unresolved_name": "Durant",
+        "printed_number": "013",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "72ea7e85-9321-4b8b-b53e-e2bef62745a3",
+        "unresolved_name": "Virizion",
+        "printed_number": "014",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "d696a2c8-b33b-4994-a0a0-873cfb0d1878",
+        "unresolved_name": "Chesnaught V",
+        "printed_number": "015",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "c6818344-e875-4d22-828a-fbb8f2c02892",
+        "unresolved_name": "Radiant Tsareena",
+        "printed_number": "016",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "00c846c0-5b94-458b-aafd-24649ef5eb1f",
+        "unresolved_name": "Vulpix",
+        "printed_number": "017",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a6048fa1-3f3d-4714-9c71-a4655eef142a",
+        "unresolved_name": "Ninetales",
+        "printed_number": "018",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "7d8657ad-7783-4eec-ada1-2a759f2e37af",
+        "unresolved_name": "Growlithe",
+        "printed_number": "019",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "05cdbfae-ecc5-45a2-b152-02db2e043973",
+        "unresolved_name": "Arcanine",
+        "printed_number": "020",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a2cd3025-3607-43a8-867c-18bedab1eadf",
+        "unresolved_name": "Ponyta",
+        "printed_number": "021",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "fa355167-59a7-45df-820c-e3b21823cc5c",
+        "unresolved_name": "Rapidash",
+        "printed_number": "022",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "b37db843-772c-4663-ac67-dcfda849adc9",
+        "unresolved_name": "Reshiram V",
+        "printed_number": "024",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "b92deb41-0c47-47bd-a1de-bff94e5a9b13",
+        "unresolved_name": "Braixen",
+        "printed_number": "026",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e14b82bb-c300-4813-8780-c6e521e65657",
+        "unresolved_name": "Delphox",
+        "printed_number": "027",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "463be5bc-4da5-4dee-8fec-ec1d482127c4",
+        "unresolved_name": "Fletchinder",
+        "printed_number": "028",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "3c3816bc-e337-42d5-9530-b66fef699911",
+        "unresolved_name": "Talonflame",
+        "printed_number": "029",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "d3344554-5e1c-45af-bad4-5c48c67c05ea",
+        "unresolved_name": "Litten",
+        "printed_number": "030",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a1542ea7-2578-41a1-ac4f-e74c9845a9df",
+        "unresolved_name": "Torracat",
+        "printed_number": "031",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a9e8bfc1-022e-4054-9c3f-dbebccc05d76",
+        "unresolved_name": "Incineroar",
+        "printed_number": "032",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "70cbab5a-98b4-4441-96fd-cfa55457a489",
+        "unresolved_name": "Alolan Vulpix V",
+        "printed_number": "033",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "4a9f5d32-3f9f-4e8d-b369-5208e8d5d187",
+        "unresolved_name": "Alolan Vulpix VSTAR",
+        "printed_number": "034",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "c4948a81-e7db-442c-8e9a-a224750b5112",
+        "unresolved_name": "Omastar V",
+        "printed_number": "035",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "d1d49056-689e-4b79-8b55-ad2411a3339a",
+        "unresolved_name": "Articuno",
+        "printed_number": "036",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "0ddf7ec2-df12-4333-b3e5-1c6e6da65779",
+        "unresolved_name": "Wailmer",
+        "printed_number": "037",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e3c05d82-09e3-426f-bcfd-786d832015b5",
+        "unresolved_name": "Wailord",
+        "printed_number": "038",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "68573a9d-2855-49b6-9e32-db05f8bc0cc5",
+        "unresolved_name": "Feebas",
+        "printed_number": "039",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "cd66d3bb-bce9-4da7-ab89-e67865281cb6",
+        "unresolved_name": "Milotic",
+        "printed_number": "040",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "32026b5d-005c-4570-8370-ae5432c2cfec",
+        "unresolved_name": "Snorunt",
+        "printed_number": "041",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "5269a19b-605e-4759-a1f9-7ce2741b4ae6",
+        "unresolved_name": "Glalie",
+        "printed_number": "042",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "1409e427-557e-4f22-8151-4cbeace296fb",
+        "unresolved_name": "Froslass",
+        "printed_number": "043",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "c6e87850-dc63-4eec-a5e8-93501df5ff50",
+        "unresolved_name": "Relicanth",
+        "printed_number": "044",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "f67560d2-6a9e-4b5a-a6de-954e828c3288",
+        "unresolved_name": "Phione",
+        "printed_number": "045",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "01324be9-639a-41e6-a7b6-768654a482cb",
+        "unresolved_name": "Keldeo",
+        "printed_number": "046",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "8b08afde-00a9-4614-ad3c-5bb1285e905f",
+        "unresolved_name": "Araquanid",
+        "printed_number": "048",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "87336661-2a46-4541-a2f4-b4cd61b21cde",
+        "unresolved_name": "Pikachu",
+        "printed_number": "049",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e48a0d37-d6d5-4ee4-a887-cf60507ca405",
+        "unresolved_name": "Raichu",
+        "printed_number": "050",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "2ec51a9f-0e4d-4e4b-993e-60607d8be781",
+        "unresolved_name": "Lanturn",
+        "printed_number": "052",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "2844ffdf-1b8a-47f3-bfa3-e28a4256a09a",
+        "unresolved_name": "Rotom",
+        "printed_number": "053",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "3e1d9a1b-294e-44a7-aef4-70f7f9de81ff",
+        "unresolved_name": "Emolga",
+        "printed_number": "054",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "af871e2a-e4bf-4e87-b8c2-437d192a320d",
+        "unresolved_name": "Stunfisk",
+        "printed_number": "055",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "9aa3621e-9a7a-4ff5-8d5e-993a0055c33b",
+        "unresolved_name": "Zeraora",
+        "printed_number": "056",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "9cce818c-1db8-4cd9-8b31-57e21b16d1b8",
+        "unresolved_name": "Regieleki V",
+        "printed_number": "057",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "ba07e596-4b76-4b3b-a539-8ea3adf60937",
+        "unresolved_name": "Regieleki VMAX",
+        "printed_number": "058",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e67603ac-78cf-41a6-97e9-a90e997dd9cb",
+        "unresolved_name": "Radiant Alakazam",
+        "printed_number": "059",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "867bc681-0ece-4e33-ba9c-1f709cc03cfa",
+        "unresolved_name": "Drowzee",
+        "printed_number": "060",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "cb57fa9a-f88d-4a7d-bc24-71bf3903f2ca",
+        "unresolved_name": "Hypno",
+        "printed_number": "061",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "ea3c9547-508d-403c-a853-46f6b5ab6e24",
+        "unresolved_name": "Jynx",
+        "printed_number": "062",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "08d6e5bc-1584-4feb-ae18-a1949abaa3f8",
+        "unresolved_name": "Mismagius",
+        "printed_number": "064",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "645b9671-3a00-4c9d-907c-81d923f8e0b8",
+        "unresolved_name": "Unown V",
+        "printed_number": "065",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "56e588b5-7e69-4acb-96ac-16a61e07cb13",
+        "unresolved_name": "Unown VSTAR",
+        "printed_number": "066",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a371f0a8-dbe7-436d-abc9-395745f78f15",
+        "unresolved_name": "Kirlia",
+        "printed_number": "068",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "7012dddc-870b-4732-9810-d42c1ecfd43c",
+        "unresolved_name": "Gardevoir",
+        "printed_number": "069",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "0e6d7404-166b-4fcb-8c69-e45820bc25f2",
+        "unresolved_name": "Mawile V",
+        "printed_number": "070",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "cddf6db1-39f5-4866-a700-e69608544dc5",
+        "unresolved_name": "Mawile VSTAR",
+        "printed_number": "071",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "ef6b0d5d-c82c-4c78-80f1-3d50dc69d0fc",
+        "unresolved_name": "Meditite",
+        "printed_number": "072",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "56bda7a9-6b86-4fb1-bccc-7c5b88cc092a",
+        "unresolved_name": "Medicham",
+        "printed_number": "073",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "26f50572-1ed4-43ef-8dab-4ed391649490",
+        "unresolved_name": "Chimecho",
+        "printed_number": "074",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "16055b85-ab28-40ed-b5fb-dbc3dbd98e3d",
+        "unresolved_name": "Sigilyph",
+        "printed_number": "075",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "dfc69457-9d20-4fec-9970-bbd0edb58db6",
+        "unresolved_name": "Duosion",
+        "printed_number": "077",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "5f6fb049-5b3e-4ea5-b4b0-ff8414891d07",
+        "unresolved_name": "Reuniclus",
+        "printed_number": "078",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "a41a3961-f8b7-4218-bb5a-db9a0469b475",
+        "unresolved_name": "Elgyem",
+        "printed_number": "079",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "edf1ee31-bc31-4bb2-b20f-1a28bb20469a",
+        "unresolved_name": "Espurr",
+        "printed_number": "081",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "73b0a8ac-20a0-4f5a-93f9-9fa7dfbbda55",
+        "unresolved_name": "Meowstic",
+        "printed_number": "082",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "db198d64-0945-4c51-83b8-20a52baf9c78",
+        "unresolved_name": "Slurpuff",
+        "printed_number": "084",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "e7f5ac91-47cd-45a3-860b-b7dfa493a72d",
+        "unresolved_name": "Dedenne",
+        "printed_number": "085",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "795179f8-a066-45dc-a332-1bad38825a9e",
+        "unresolved_name": "Indeedee",
+        "printed_number": "086",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "4c8fe61e-20bb-4c20-8d3b-41020b9241e1",
+        "unresolved_name": "Dreepy",
+        "printed_number": "087",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "2704570a-4110-497a-837d-c41c3b82072c",
+        "unresolved_name": "Drakloak",
+        "printed_number": "088",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "0d609c4d-1aef-4175-8a97-4b8c7df9599f",
+        "unresolved_name": "Dragapult",
+        "printed_number": "089",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "ddf009f5-38ef-4a1b-8bb8-7a4528b84460",
+        "unresolved_name": "Phanpy",
+        "printed_number": "091",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "6a921b2b-bddd-4a28-b5f6-3ae96a9667db",
+        "unresolved_name": "Donphan",
+        "printed_number": "092",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "47ada661-b505-4b37-a2f0-0dde3016557e",
+        "unresolved_name": "Baltoy",
+        "printed_number": "093",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "65a4c937-78aa-42de-bfef-245ae8ed4993",
+        "unresolved_name": "Claydol",
+        "printed_number": "094",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "27affdf3-c6aa-4759-81f2-aeae84151f60",
+        "unresolved_name": "Anorith",
+        "printed_number": "095",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "20e2cee1-a750-46b6-a868-4e9f29a30a38",
+        "unresolved_name": "Armaldo",
+        "printed_number": "096",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "c7f0e8b6-5528-48b4-8cb8-5771e4636242",
+        "unresolved_name": "Terrakion",
+        "printed_number": "097",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "bba9b4e9-e910-4eb5-af9c-fa7172e2e0bc",
+        "unresolved_name": "Hawlucha",
+        "printed_number": "098",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "lane": "numeric",
+        "card_print_id": "82b17a96-bc51-4fe9-bd3f-ee39b708f977",
+        "unresolved_name": "Sandygast",
+        "printed_number": "099",
+        "canonical_match_count": 0,
+        "strict_same_name_same_number_count": 0,
+        "canonical_match_different_name_count": 0
+      }
+    ],
+    "family_rows": [
+      {
+        "unresolved_card_print_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "unresolved_name": "Braixen",
+        "printed_number": "TG01",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "bfc81dc8-1b00-48a1-a93e-ea1836f78b52",
+        "unresolved_name": "Milotic",
+        "printed_number": "TG02",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "4e6cfae3-c3cc-4aa4-b012-9b70897d780d",
+        "unresolved_name": "Flaaffy",
+        "printed_number": "TG03",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "b156dcd6-06df-4ae6-884c-3f8b2b38daae",
+        "unresolved_name": "Jynx",
+        "printed_number": "TG04",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "e7ab0f45-c5df-4b34-ab29-ebb7b69faed1",
+        "unresolved_name": "Gardevoir",
+        "printed_number": "TG05",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "cf91adc0-d17f-434d-87fa-62acbc5905bb",
+        "unresolved_name": "Malamar",
+        "printed_number": "TG06",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "3581d6ce-e8c0-46fa-976c-8aaf97072127",
+        "unresolved_name": "Rockruff",
+        "printed_number": "TG07",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "95cc0737-b1d5-499a-916d-e8bbd1534edb",
+        "unresolved_name": "Passimian",
+        "printed_number": "TG08",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "914e7f15-317e-429d-8104-ee74e2d945be",
+        "unresolved_name": "Druddigon",
+        "printed_number": "TG09",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "aaca617e-fc99-49a8-9e41-ce380190829c",
+        "unresolved_name": "Smeargle",
+        "printed_number": "TG10",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "18363cbc-1225-4fe7-9793-9ba047b48a84",
+        "unresolved_name": "Altaria",
+        "printed_number": "TG11",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "49e9b578-be91-426f-8f68-d7276146c163",
+        "unresolved_name": "Kricketune V",
+        "printed_number": "TG12",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "0c01c635-fa26-42a7-b471-9cec46ccbd38",
+        "unresolved_name": "Serperior V",
+        "printed_number": "TG13",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "606a9fdb-d275-4236-ae2b-d8fcced1940c",
+        "unresolved_name": "Blaziken V",
+        "printed_number": "TG14",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "88490650-dcbb-4a11-86e4-e171c61d3d3b",
+        "unresolved_name": "Blaziken VMAX",
+        "printed_number": "TG15",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "38a210c1-8a6f-4573-b31a-7c3834fb04d0",
+        "unresolved_name": "Zeraora V",
+        "printed_number": "TG16",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "b4b3db2b-84f1-4151-866c-f291c1f4ced9",
+        "unresolved_name": "Mawile V",
+        "printed_number": "TG17",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "dc806a33-63bb-4b19-81b2-d6f871c1f908",
+        "unresolved_name": "Corviknight V",
+        "printed_number": "TG18",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "129ee1fb-28c5-4ffc-8bef-3e717b9eed09",
+        "unresolved_name": "Corviknight VMAX",
+        "printed_number": "TG19",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "337c5fc6-7fb2-4217-9de4-e15f92f9fa39",
+        "unresolved_name": "Rayquaza VMAX",
+        "printed_number": "TG20",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "6a9add54-dd91-4158-9c98-3fa7f82b4387",
+        "unresolved_name": "Duraludon VMAX",
+        "printed_number": "TG21",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "4984c5bf-1c71-44a3-9828-8d5f3daf2f82",
+        "unresolved_name": "Blissey V",
+        "printed_number": "TG22",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "432938cf-5582-491e-ae8e-7ece104021b7",
+        "unresolved_name": "Friends in Galar",
+        "printed_number": "TG23",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "9416751d-0313-4ba9-8ba1-57f3af0e6bbc",
+        "unresolved_name": "Gordie",
+        "printed_number": "TG24",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "71378e5e-8a01-4cc0-a339-6cb4958affee",
+        "unresolved_name": "Judge",
+        "printed_number": "TG25",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "c2f3800c-c953-4396-a7f7-5e998491dd5b",
+        "unresolved_name": "Professor Burnet",
+        "printed_number": "TG26",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "9cc0a549-cb2e-403a-bded-09ecb3f98f10",
+        "unresolved_name": "Raihan",
+        "printed_number": "TG27",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "3cc09b70-7540-4047-908c-9cbb5cb49a98",
+        "unresolved_name": "Sordward & Shielbert",
+        "printed_number": "TG28",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "9a4de11a-0096-495b-ac90-8bd3b186fdaf",
+        "unresolved_name": "Rayquaza VMAX",
+        "printed_number": "TG29",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      },
+      {
+        "unresolved_card_print_id": "f93c8303-2fbc-4625-98bd-0736c725306a",
+        "unresolved_name": "Duraludon VMAX",
+        "printed_number": "TG30",
+        "canonical_match_count": 1,
+        "strict_same_name_same_number_count": 1,
+        "canonical_match_different_name_count": 0
+      }
+    ]
+  },
+  "raw_family_evidence": {
+    "tcgdex_active_external_mapping_count": 30,
+    "tcgdex_raw_link_count": 30,
+    "all_non_numeric_rows_have_tcgdex_mapping": true,
+    "all_non_numeric_rows_have_tcgdex_raw_link": true,
+    "sample_rows": [
+      {
+        "card_print_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "name": "Braixen",
+        "printed_number": "TG01",
+        "external_id": "swsh12-TG01",
+        "raw_import_id": "21992",
+        "payload_local_id": "TG01",
+        "payload_set_id": "swsh12",
+        "payload_name": "Braixen"
+      },
+      {
+        "card_print_id": "bfc81dc8-1b00-48a1-a93e-ea1836f78b52",
+        "name": "Milotic",
+        "printed_number": "TG02",
+        "external_id": "swsh12-TG02",
+        "raw_import_id": "21995",
+        "payload_local_id": "TG02",
+        "payload_set_id": "swsh12",
+        "payload_name": "Milotic"
+      },
+      {
+        "card_print_id": "4e6cfae3-c3cc-4aa4-b012-9b70897d780d",
+        "name": "Flaaffy",
+        "printed_number": "TG03",
+        "external_id": "swsh12-TG03",
+        "raw_import_id": "21998",
+        "payload_local_id": "TG03",
+        "payload_set_id": "swsh12",
+        "payload_name": "Flaaffy"
+      },
+      {
+        "card_print_id": "b156dcd6-06df-4ae6-884c-3f8b2b38daae",
+        "name": "Jynx",
+        "printed_number": "TG04",
+        "external_id": "swsh12-TG04",
+        "raw_import_id": "22001",
+        "payload_local_id": "TG04",
+        "payload_set_id": "swsh12",
+        "payload_name": "Jynx"
+      },
+      {
+        "card_print_id": "e7ab0f45-c5df-4b34-ab29-ebb7b69faed1",
+        "name": "Gardevoir",
+        "printed_number": "TG05",
+        "external_id": "swsh12-TG05",
+        "raw_import_id": "22004",
+        "payload_local_id": "TG05",
+        "payload_set_id": "swsh12",
+        "payload_name": "Gardevoir"
+      },
+      {
+        "card_print_id": "cf91adc0-d17f-434d-87fa-62acbc5905bb",
+        "name": "Malamar",
+        "printed_number": "TG06",
+        "external_id": "swsh12-TG06",
+        "raw_import_id": "22007",
+        "payload_local_id": "TG06",
+        "payload_set_id": "swsh12",
+        "payload_name": "Malamar"
+      },
+      {
+        "card_print_id": "3581d6ce-e8c0-46fa-976c-8aaf97072127",
+        "name": "Rockruff",
+        "printed_number": "TG07",
+        "external_id": "swsh12-TG07",
+        "raw_import_id": "22010",
+        "payload_local_id": "TG07",
+        "payload_set_id": "swsh12",
+        "payload_name": "Rockruff"
+      },
+      {
+        "card_print_id": "95cc0737-b1d5-499a-916d-e8bbd1534edb",
+        "name": "Passimian",
+        "printed_number": "TG08",
+        "external_id": "swsh12-TG08",
+        "raw_import_id": "22013",
+        "payload_local_id": "TG08",
+        "payload_set_id": "swsh12",
+        "payload_name": "Passimian"
+      },
+      {
+        "card_print_id": "914e7f15-317e-429d-8104-ee74e2d945be",
+        "name": "Druddigon",
+        "printed_number": "TG09",
+        "external_id": "swsh12-TG09",
+        "raw_import_id": "22016",
+        "payload_local_id": "TG09",
+        "payload_set_id": "swsh12",
+        "payload_name": "Druddigon"
+      },
+      {
+        "card_print_id": "aaca617e-fc99-49a8-9e41-ce380190829c",
+        "name": "Smeargle",
+        "printed_number": "TG10",
+        "external_id": "swsh12-TG10",
+        "raw_import_id": "22019",
+        "payload_local_id": "TG10",
+        "payload_set_id": "swsh12",
+        "payload_name": "Smeargle"
+      },
+      {
+        "card_print_id": "18363cbc-1225-4fe7-9793-9ba047b48a84",
+        "name": "Altaria",
+        "printed_number": "TG11",
+        "external_id": "swsh12-TG11",
+        "raw_import_id": "22022",
+        "payload_local_id": "TG11",
+        "payload_set_id": "swsh12",
+        "payload_name": "Altaria"
+      },
+      {
+        "card_print_id": "49e9b578-be91-426f-8f68-d7276146c163",
+        "name": "Kricketune V",
+        "printed_number": "TG12",
+        "external_id": "swsh12-TG12",
+        "raw_import_id": "22025",
+        "payload_local_id": "TG12",
+        "payload_set_id": "swsh12",
+        "payload_name": "Kricketune V"
+      },
+      {
+        "card_print_id": "0c01c635-fa26-42a7-b471-9cec46ccbd38",
+        "name": "Serperior V",
+        "printed_number": "TG13",
+        "external_id": "swsh12-TG13",
+        "raw_import_id": "22028",
+        "payload_local_id": "TG13",
+        "payload_set_id": "swsh12",
+        "payload_name": "Serperior V"
+      },
+      {
+        "card_print_id": "606a9fdb-d275-4236-ae2b-d8fcced1940c",
+        "name": "Blaziken V",
+        "printed_number": "TG14",
+        "external_id": "swsh12-TG14",
+        "raw_import_id": "22031",
+        "payload_local_id": "TG14",
+        "payload_set_id": "swsh12",
+        "payload_name": "Blaziken V"
+      },
+      {
+        "card_print_id": "88490650-dcbb-4a11-86e4-e171c61d3d3b",
+        "name": "Blaziken VMAX",
+        "printed_number": "TG15",
+        "external_id": "swsh12-TG15",
+        "raw_import_id": "22034",
+        "payload_local_id": "TG15",
+        "payload_set_id": "swsh12",
+        "payload_name": "Blaziken VMAX"
+      }
+    ]
+  },
+  "swsh12tg_target_surface": {
+    "canonical_swsh12tg_count": 30,
+    "canonical_swsh12tg_with_active_identity_count": 0,
+    "canonical_swsh12tg_without_active_identity_count": 30,
+    "sample_rows": [
+      {
+        "card_print_id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+        "name": "Braixen",
+        "number": "TG01",
+        "gv_id": "GV-PK-SIT-TG01",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "90498d40-3694-4255-a2af-f6f3abbadc30",
+        "name": "Milotic",
+        "number": "TG02",
+        "gv_id": "GV-PK-SIT-TG02",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "6f9318cb-ac06-488b-a5ab-95278d8b88c8",
+        "name": "Flaaffy",
+        "number": "TG03",
+        "gv_id": "GV-PK-SIT-TG03",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "25e3f169-6c31-4474-bd02-8eb0579200df",
+        "name": "Jynx",
+        "number": "TG04",
+        "gv_id": "GV-PK-SIT-TG04",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "fd6034fd-34a9-4c4c-a620-6e48ad9bab4a",
+        "name": "Gardevoir",
+        "number": "TG05",
+        "gv_id": "GV-PK-SIT-TG05",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "54bcae5b-af6b-40d0-8969-3661dff87925",
+        "name": "Malamar",
+        "number": "TG06",
+        "gv_id": "GV-PK-SIT-TG06",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "4eb962fc-985a-4516-ab62-3d843d09ae44",
+        "name": "Rockruff",
+        "number": "TG07",
+        "gv_id": "GV-PK-SIT-TG07",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "6c6f1720-88ae-4c83-abf2-41f4c3647464",
+        "name": "Passimian",
+        "number": "TG08",
+        "gv_id": "GV-PK-SIT-TG08",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "4d3db0ab-909c-42b8-bb16-3fc4f0d7e04c",
+        "name": "Druddigon",
+        "number": "TG09",
+        "gv_id": "GV-PK-SIT-TG09",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+        "name": "Smeargle",
+        "number": "TG10",
+        "gv_id": "GV-PK-SIT-TG10",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+        "name": "Altaria",
+        "number": "TG11",
+        "gv_id": "GV-PK-SIT-TG11",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "03465a8e-718d-4617-a59a-ee4ef528e3b1",
+        "name": "Kricketune V",
+        "number": "TG12",
+        "gv_id": "GV-PK-SIT-TG12",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+        "name": "Serperior V",
+        "number": "TG13",
+        "gv_id": "GV-PK-SIT-TG13",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "0bde11df-4013-4ed2-919d-0f011e63b7fd",
+        "name": "Blaziken V",
+        "number": "TG14",
+        "gv_id": "GV-PK-SIT-TG14",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      },
+      {
+        "card_print_id": "80a351f6-feb0-412c-bb22-6e425fb0a782",
+        "name": "Blaziken VMAX",
+        "number": "TG15",
+        "gv_id": "GV-PK-SIT-TG15",
+        "set_code": "swsh12tg",
+        "card_print_identity_id": null,
+        "identity_domain": null,
+        "set_code_identity": null,
+        "printed_number": null
+      }
+    ]
+  },
+  "proposed_gvid_audit": {
+    "missing_printed_set_abbrev_count": 0,
+    "derivation_error_count": 0,
+    "numeric_live_gvid_collision_count": 0,
+    "non_numeric_live_gvid_collision_count": 30,
+    "numeric_collision_samples": [],
+    "non_numeric_collision_samples": [
+      {
+        "card_print_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "name": "Braixen",
+        "printed_number": "TG01",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG01",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+          "gv_id": "GV-PK-SIT-TG01",
+          "set_code": "swsh12tg",
+          "number": "TG01",
+          "name": "Braixen"
+        }
+      },
+      {
+        "card_print_id": "bfc81dc8-1b00-48a1-a93e-ea1836f78b52",
+        "name": "Milotic",
+        "printed_number": "TG02",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG02",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "90498d40-3694-4255-a2af-f6f3abbadc30",
+          "gv_id": "GV-PK-SIT-TG02",
+          "set_code": "swsh12tg",
+          "number": "TG02",
+          "name": "Milotic"
+        }
+      },
+      {
+        "card_print_id": "4e6cfae3-c3cc-4aa4-b012-9b70897d780d",
+        "name": "Flaaffy",
+        "printed_number": "TG03",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG03",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "6f9318cb-ac06-488b-a5ab-95278d8b88c8",
+          "gv_id": "GV-PK-SIT-TG03",
+          "set_code": "swsh12tg",
+          "number": "TG03",
+          "name": "Flaaffy"
+        }
+      },
+      {
+        "card_print_id": "b156dcd6-06df-4ae6-884c-3f8b2b38daae",
+        "name": "Jynx",
+        "printed_number": "TG04",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG04",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "25e3f169-6c31-4474-bd02-8eb0579200df",
+          "gv_id": "GV-PK-SIT-TG04",
+          "set_code": "swsh12tg",
+          "number": "TG04",
+          "name": "Jynx"
+        }
+      },
+      {
+        "card_print_id": "e7ab0f45-c5df-4b34-ab29-ebb7b69faed1",
+        "name": "Gardevoir",
+        "printed_number": "TG05",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG05",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "fd6034fd-34a9-4c4c-a620-6e48ad9bab4a",
+          "gv_id": "GV-PK-SIT-TG05",
+          "set_code": "swsh12tg",
+          "number": "TG05",
+          "name": "Gardevoir"
+        }
+      },
+      {
+        "card_print_id": "cf91adc0-d17f-434d-87fa-62acbc5905bb",
+        "name": "Malamar",
+        "printed_number": "TG06",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG06",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "54bcae5b-af6b-40d0-8969-3661dff87925",
+          "gv_id": "GV-PK-SIT-TG06",
+          "set_code": "swsh12tg",
+          "number": "TG06",
+          "name": "Malamar"
+        }
+      },
+      {
+        "card_print_id": "3581d6ce-e8c0-46fa-976c-8aaf97072127",
+        "name": "Rockruff",
+        "printed_number": "TG07",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG07",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "4eb962fc-985a-4516-ab62-3d843d09ae44",
+          "gv_id": "GV-PK-SIT-TG07",
+          "set_code": "swsh12tg",
+          "number": "TG07",
+          "name": "Rockruff"
+        }
+      },
+      {
+        "card_print_id": "95cc0737-b1d5-499a-916d-e8bbd1534edb",
+        "name": "Passimian",
+        "printed_number": "TG08",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG08",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "6c6f1720-88ae-4c83-abf2-41f4c3647464",
+          "gv_id": "GV-PK-SIT-TG08",
+          "set_code": "swsh12tg",
+          "number": "TG08",
+          "name": "Passimian"
+        }
+      },
+      {
+        "card_print_id": "914e7f15-317e-429d-8104-ee74e2d945be",
+        "name": "Druddigon",
+        "printed_number": "TG09",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG09",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "4d3db0ab-909c-42b8-bb16-3fc4f0d7e04c",
+          "gv_id": "GV-PK-SIT-TG09",
+          "set_code": "swsh12tg",
+          "number": "TG09",
+          "name": "Druddigon"
+        }
+      },
+      {
+        "card_print_id": "aaca617e-fc99-49a8-9e41-ce380190829c",
+        "name": "Smeargle",
+        "printed_number": "TG10",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG10",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "fc803367-66c2-4f22-9aef-60e4297fb6fb",
+          "gv_id": "GV-PK-SIT-TG10",
+          "set_code": "swsh12tg",
+          "number": "TG10",
+          "name": "Smeargle"
+        }
+      },
+      {
+        "card_print_id": "18363cbc-1225-4fe7-9793-9ba047b48a84",
+        "name": "Altaria",
+        "printed_number": "TG11",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG11",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "d485916c-634d-4e8b-b795-c16ac70553a2",
+          "gv_id": "GV-PK-SIT-TG11",
+          "set_code": "swsh12tg",
+          "number": "TG11",
+          "name": "Altaria"
+        }
+      },
+      {
+        "card_print_id": "49e9b578-be91-426f-8f68-d7276146c163",
+        "name": "Kricketune V",
+        "printed_number": "TG12",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG12",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "03465a8e-718d-4617-a59a-ee4ef528e3b1",
+          "gv_id": "GV-PK-SIT-TG12",
+          "set_code": "swsh12tg",
+          "number": "TG12",
+          "name": "Kricketune V"
+        }
+      },
+      {
+        "card_print_id": "0c01c635-fa26-42a7-b471-9cec46ccbd38",
+        "name": "Serperior V",
+        "printed_number": "TG13",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG13",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "1c0381f7-fbdc-44f6-b1a1-a83fa12b81b7",
+          "gv_id": "GV-PK-SIT-TG13",
+          "set_code": "swsh12tg",
+          "number": "TG13",
+          "name": "Serperior V"
+        }
+      },
+      {
+        "card_print_id": "606a9fdb-d275-4236-ae2b-d8fcced1940c",
+        "name": "Blaziken V",
+        "printed_number": "TG14",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG14",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "0bde11df-4013-4ed2-919d-0f011e63b7fd",
+          "gv_id": "GV-PK-SIT-TG14",
+          "set_code": "swsh12tg",
+          "number": "TG14",
+          "name": "Blaziken V"
+        }
+      },
+      {
+        "card_print_id": "88490650-dcbb-4a11-86e4-e171c61d3d3b",
+        "name": "Blaziken VMAX",
+        "printed_number": "TG15",
+        "printed_set_abbrev": "SIT",
+        "proposed_gv_id": "GV-PK-SIT-TG15",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "80a351f6-feb0-412c-bb22-6e425fb0a782",
+          "gv_id": "GV-PK-SIT-TG15",
+          "set_code": "swsh12tg",
+          "number": "TG15",
+          "name": "Blaziken VMAX"
+        }
+      }
+    ]
+  },
+  "final_classification": "OUTCOME D — MIXED EXECUTION",
+  "next_phase_recommendation": "Set-scoped mixed execution for swsh12: collapse the 85 zero-padded numeric duplicate parents onto canonical swsh12 base rows using normalized-digit plus normalized-name one-to-one proof, then family-realign the 30 TG rows onto the existing canonical swsh12tg parents that already own the TG-family namespace. Do not run numeric promotion and do not mint new swsh12 TG gv_id rows.",
+  "exact_next_execution_mode": "NUMERIC_DUPLICATE_COLLAPSE_BY_NORMALIZED_DIGITS + TG_FAMILY_REALIGNMENT_COLLAPSE_TO_SWSH12TG",
+  "autofix_gate": {
+    "passed": true,
+    "gate_checks": {
+      "expected_total_unresolved": true,
+      "expected_numeric_unresolved": true,
+      "expected_non_numeric_unresolved": true,
+      "canonical_swsh12_base_lane_only": true,
+      "canonical_swsh12tg_exists": true,
+      "numeric_exact_match_count_zero": true,
+      "numeric_duplicate_collapse_ready": true,
+      "numeric_multiple_match_count_zero": true,
+      "tg_not_in_base_lane": true,
+      "tg_in_family_lane": true,
+      "tg_family_strict_overlap_complete": true,
+      "tg_family_multiple_match_count_zero": true,
+      "strict_base_multiple_match_count_zero": true,
+      "strict_base_different_name_count_zero": true,
+      "strict_family_different_name_count_zero": true,
+      "raw_family_evidence_complete": true,
+      "family_target_identity_empty": true
+    },
+    "family_different_name_row_count": 0
+  },
+  "mode": "audit_and_autofix",
+  "dry_run": {
+    "phase": "SWSH12_MIXED_COLLAPSE_V1",
+    "mode": "dry-run",
+    "batch_size": 100,
+    "generated_at": "2026-04-05T07:09:11.168Z",
+    "target_identity_domain": "pokemon_eng_standard",
+    "source_set_code_identity": "swsh12",
+    "numeric_target_set_code": "swsh12",
+    "tg_target_set_code": "swsh12tg",
+    "preconditions": {
+      "total_unresolved": 115,
+      "numeric_unresolved": 85,
+      "tg_unresolved": 30,
+      "tg_tgxx_count": 30,
+      "numeric_map_count": 85,
+      "numeric_distinct_old_count": 85,
+      "numeric_distinct_new_count": 85,
+      "tg_map_count": 30,
+      "tg_distinct_old_count": 30,
+      "tg_distinct_new_count": 30,
+      "numeric_multiple_match_old_count": 0,
+      "numeric_reused_new_count": 0,
+      "tg_multiple_match_old_count": 0,
+      "tg_reused_new_count": 0,
+      "numeric_unmatched_count": 0,
+      "tg_unmatched_count": 0,
+      "combined_map_count": 115,
+      "combined_distinct_old_count": 115,
+      "combined_distinct_new_count": 115,
+      "numeric_target_any_identity_rows": 0,
+      "numeric_target_active_identity_rows": 0,
+      "tg_target_any_identity_rows": 0,
+      "tg_target_active_identity_rows": 0
+    },
+    "fk_inventory": [
+      {
+        "table_name": "ai_decision_logs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "canon_warehouse_candidates",
+        "column_name": "promoted_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_embeddings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interactions",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_rollups",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_ticks",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_prices",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_file_paths",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_print_price_curves",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 186,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_signals",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "identity_scan_selections",
+        "column_name": "selected_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variants",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "listings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "market_prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "price_observations",
+        "column_name": "print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_jobs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_watch",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "shared_cards",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_certs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "user_card_photos",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_item_instances",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "wishlist_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      }
+    ],
+    "collision_summary": {
+      "old_trait_row_count": 115,
+      "trait_target_key_conflict_count": 0,
+      "trait_conflicting_non_identical_count": 0,
+      "old_printing_row_count": 186,
+      "printing_finish_conflict_count": 169,
+      "printing_mergeable_metadata_only_count": 169,
+      "printing_conflicting_non_identical_count": 0,
+      "old_external_mapping_row_count": 115,
+      "external_mapping_conflict_count": 0,
+      "target_identity_row_count": 0
+    },
+    "canonical_counts_before": {
+      "canonical_numeric_target_count": 215,
+      "canonical_tg_target_count": 30
+    },
+    "sample_rows_before": {
+      "numeric": {
+        "lane": "numeric",
+        "old_id": "e5c28b64-00d9-45a6-bd82-0f9927c683fb",
+        "new_id": "32dd8072-a690-4cd9-ad6c-cd824eea4407",
+        "old_name": "Venomoth",
+        "new_name": "Venomoth",
+        "old_number": "002",
+        "new_number": "2",
+        "new_set_code": "swsh12",
+        "new_gv_id": "GV-PK-SIT-2"
+      },
+      "tg": {
+        "lane": "tg",
+        "old_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "new_id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+        "old_name": "Braixen",
+        "new_name": "Braixen",
+        "old_number": "TG01",
+        "new_number": "TG01",
+        "new_set_code": "swsh12tg",
+        "new_gv_id": "GV-PK-SIT-TG01"
+      }
+    },
+    "batches": [],
+    "fk_movement_summary": null,
+    "deleted_old_parent_rows": null,
+    "post_validation": null,
+    "sample_rows_after": null,
+    "status": "dry_run_passed"
+  },
+  "apply": {
+    "phase": "SWSH12_MIXED_COLLAPSE_V1",
+    "mode": "apply",
+    "batch_size": 100,
+    "generated_at": "2026-04-05T07:09:16.256Z",
+    "target_identity_domain": "pokemon_eng_standard",
+    "source_set_code_identity": "swsh12",
+    "numeric_target_set_code": "swsh12",
+    "tg_target_set_code": "swsh12tg",
+    "preconditions": {
+      "total_unresolved": 115,
+      "numeric_unresolved": 85,
+      "tg_unresolved": 30,
+      "tg_tgxx_count": 30,
+      "numeric_map_count": 85,
+      "numeric_distinct_old_count": 85,
+      "numeric_distinct_new_count": 85,
+      "tg_map_count": 30,
+      "tg_distinct_old_count": 30,
+      "tg_distinct_new_count": 30,
+      "numeric_multiple_match_old_count": 0,
+      "numeric_reused_new_count": 0,
+      "tg_multiple_match_old_count": 0,
+      "tg_reused_new_count": 0,
+      "numeric_unmatched_count": 0,
+      "tg_unmatched_count": 0,
+      "combined_map_count": 115,
+      "combined_distinct_old_count": 115,
+      "combined_distinct_new_count": 115,
+      "numeric_target_any_identity_rows": 0,
+      "numeric_target_active_identity_rows": 0,
+      "tg_target_any_identity_rows": 0,
+      "tg_target_active_identity_rows": 0
+    },
+    "fk_inventory": [
+      {
+        "table_name": "ai_decision_logs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "canon_warehouse_candidates",
+        "column_name": "promoted_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_embeddings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interaction_outcomes",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_interactions",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_rollups",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_price_ticks",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_prices",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_file_paths",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_print_price_curves",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 186,
+        "supported_handler": true
+      },
+      {
+        "table_name": "card_signals",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "ebay_active_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_discovery_candidates",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 115,
+        "supported_handler": true
+      },
+      {
+        "table_name": "identity_scan_selections",
+        "column_name": "selected_card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_identity_overrides",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "justtcg_variants",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "listings",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "market_prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "price_observations",
+        "column_name": "print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "prices",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_jobs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_observations",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "pricing_watch",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "shared_cards",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_certs",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "slab_provenance_events",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "user_card_photos",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_item_instances",
+        "column_name": "card_print_id",
+        "row_count": 0,
+        "supported_handler": false
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": true
+      },
+      {
+        "table_name": "wishlist_items",
+        "column_name": "card_id",
+        "row_count": 0,
+        "supported_handler": false
+      }
+    ],
+    "collision_summary": {
+      "old_trait_row_count": 115,
+      "trait_target_key_conflict_count": 0,
+      "trait_conflicting_non_identical_count": 0,
+      "old_printing_row_count": 186,
+      "printing_finish_conflict_count": 169,
+      "printing_mergeable_metadata_only_count": 169,
+      "printing_conflicting_non_identical_count": 0,
+      "old_external_mapping_row_count": 115,
+      "external_mapping_conflict_count": 0,
+      "target_identity_row_count": 0
+    },
+    "canonical_counts_before": {
+      "canonical_numeric_target_count": 215,
+      "canonical_tg_target_count": 30
+    },
+    "sample_rows_before": {
+      "numeric": {
+        "lane": "numeric",
+        "old_id": "e5c28b64-00d9-45a6-bd82-0f9927c683fb",
+        "new_id": "32dd8072-a690-4cd9-ad6c-cd824eea4407",
+        "old_name": "Venomoth",
+        "new_name": "Venomoth",
+        "old_number": "002",
+        "new_number": "2",
+        "new_set_code": "swsh12",
+        "new_gv_id": "GV-PK-SIT-2"
+      },
+      "tg": {
+        "lane": "tg",
+        "old_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "new_id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+        "old_name": "Braixen",
+        "new_name": "Braixen",
+        "old_number": "TG01",
+        "new_number": "TG01",
+        "new_set_code": "swsh12tg",
+        "new_gv_id": "GV-PK-SIT-TG01"
+      }
+    },
+    "batches": [
+      {
+        "batch_number": 1,
+        "start_seq": 1,
+        "batch_size": 100,
+        "fk_before": {
+          "card_print_identity.card_print_id": 100,
+          "card_print_traits.card_print_id": 100,
+          "card_printings.card_print_id": 171,
+          "external_mappings.card_print_id": 100,
+          "vault_items.card_id": 0
+        },
+        "operations": {
+          "updated_vault_items": 0,
+          "inserted_traits": 100,
+          "deleted_old_traits": 100,
+          "merged_printing_metadata_rows": 167,
+          "moved_unique_printings": 4,
+          "deleted_redundant_printings": 167,
+          "updated_external_mappings": 100,
+          "updated_identity_rows": 100
+        },
+        "fk_after": {
+          "card_print_identity.card_print_id": 0,
+          "card_print_traits.card_print_id": 0,
+          "card_printings.card_print_id": 0,
+          "external_mappings.card_print_id": 0,
+          "vault_items.card_id": 0
+        }
+      },
+      {
+        "batch_number": 2,
+        "start_seq": 101,
+        "batch_size": 15,
+        "fk_before": {
+          "card_print_identity.card_print_id": 15,
+          "card_print_traits.card_print_id": 15,
+          "card_printings.card_print_id": 15,
+          "external_mappings.card_print_id": 15,
+          "vault_items.card_id": 0
+        },
+        "operations": {
+          "updated_vault_items": 0,
+          "inserted_traits": 15,
+          "deleted_old_traits": 15,
+          "merged_printing_metadata_rows": 2,
+          "moved_unique_printings": 13,
+          "deleted_redundant_printings": 2,
+          "updated_external_mappings": 15,
+          "updated_identity_rows": 15
+        },
+        "fk_after": {
+          "card_print_identity.card_print_id": 0,
+          "card_print_traits.card_print_id": 0,
+          "card_printings.card_print_id": 0,
+          "external_mappings.card_print_id": 0,
+          "vault_items.card_id": 0
+        }
+      }
+    ],
+    "fk_movement_summary": {
+      "updated_vault_items": 0,
+      "inserted_traits": 115,
+      "deleted_old_traits": 115,
+      "merged_printing_metadata_rows": 169,
+      "moved_unique_printings": 17,
+      "deleted_redundant_printings": 169,
+      "updated_external_mappings": 115,
+      "updated_identity_rows": 115
+    },
+    "deleted_old_parent_rows": 115,
+    "post_validation": {
+      "summary": {
+        "remaining_old_parent_rows": 0,
+        "remaining_unresolved_null_gvid_rows": 0,
+        "canonical_numeric_target_count": 215,
+        "canonical_tg_target_count": 30,
+        "old_parent_rows_still_present": 0,
+        "numeric_active_identity_rows_on_targets": 85,
+        "tg_active_identity_rows_on_targets": 30
+      },
+      "remaining_old_references": [
+        {
+          "table_name": "ai_decision_logs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "canon_warehouse_candidates",
+          "column_name": "promoted_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_embeddings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interaction_outcomes",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_interactions",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_rollups",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_price_ticks",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_prices",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_file_paths",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_identity",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_print_price_curves",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "card_print_traits",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_printings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "card_signals",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "ebay_active_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_discovery_candidates",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "external_mappings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "identity_scan_selections",
+          "column_name": "selected_card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_identity_overrides",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_price_snapshots",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variant_prices_latest",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "justtcg_variants",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "listings",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "market_prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "price_observations",
+          "column_name": "print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "prices",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_jobs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_observations",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "pricing_watch",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "shared_cards",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_certs",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "slab_provenance_events",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "user_card_photos",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_item_instances",
+          "column_name": "card_print_id",
+          "row_count": 0,
+          "supported_handler": false
+        },
+        {
+          "table_name": "vault_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": true
+        },
+        {
+          "table_name": "wishlist_items",
+          "column_name": "card_id",
+          "row_count": 0,
+          "supported_handler": false
+        }
+      ]
+    },
+    "sample_rows_after": {
+      "numeric": {
+        "lane": "numeric",
+        "old_id": "e5c28b64-00d9-45a6-bd82-0f9927c683fb",
+        "new_id": "32dd8072-a690-4cd9-ad6c-cd824eea4407",
+        "old_name": "Venomoth",
+        "new_name": "Venomoth",
+        "old_number": "002",
+        "new_number": "2",
+        "new_set_code": "swsh12",
+        "new_gv_id": "GV-PK-SIT-2",
+        "old_parent_still_exists": false,
+        "identity_row_count_on_new_parent": 1,
+        "active_identity_row_count_on_new_parent": 1
+      },
+      "tg": {
+        "lane": "tg",
+        "old_id": "5f6107a8-83ae-4224-98cf-2a22af96f5ab",
+        "new_id": "08649ce2-4cfe-47a2-a7a6-a57f9f80bfeb",
+        "old_name": "Braixen",
+        "new_name": "Braixen",
+        "old_number": "TG01",
+        "new_number": "TG01",
+        "new_set_code": "swsh12tg",
+        "new_gv_id": "GV-PK-SIT-TG01",
+        "old_parent_still_exists": false,
+        "identity_row_count_on_new_parent": 1,
+        "active_identity_row_count_on_new_parent": 1
+      }
+    },
+    "status": "apply_passed"
+  },
+  "status": "autofix_applied"
+}

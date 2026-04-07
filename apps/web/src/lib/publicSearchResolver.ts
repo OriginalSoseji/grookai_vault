@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
+import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicSets } from "@/lib/publicSets";
 import {
   normalizeSetQuery,
@@ -654,15 +655,19 @@ export async function resolvePublicSearchPacketWithTiming(
       const { data, error } = await supabase
         .from("card_prints")
         .select("gv_id")
-        .eq("gv_id", directGvId)
-        .limit(1);
+        .in("gv_id", getCompatiblePublicGvIdCandidates(directGvId))
+        .limit(2);
 
       if (error) {
         throw new Error(error.message);
       }
 
-      if ((data ?? []).length === 1) {
-        return { kind: "card", gv_id: directGvId } satisfies ResolverResult;
+      const matchedRow = pickResolvedPublicGvIdRow(
+        (data ?? []) as Array<{ gv_id: string | null }>,
+        directGvId,
+      );
+      if (matchedRow?.gv_id) {
+        return { kind: "card", gv_id: matchedRow.gv_id } satisfies ResolverResult;
       }
 
       return { kind: "explore", query: parsedQuery.normalizedFallbackQuery } satisfies ResolverResult;

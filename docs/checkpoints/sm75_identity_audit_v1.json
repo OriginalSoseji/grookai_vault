@@ -1,0 +1,1866 @@
+{
+  "phase": "SM75_IDENTITY_AUDIT_V1",
+  "generated_at": "2026-04-06T05:41:45.712Z",
+  "target_set_code_identity": "sm7.5",
+  "target_identity_domain": "pokemon_eng_standard",
+  "conflicting_canonical_set_code": "sm75",
+  "total_unresolved": 78,
+  "numeric_unresolved": 78,
+  "non_numeric_unresolved": 0,
+  "canonical_base_count": 78,
+  "canonical_non_null_gvid_count": 78,
+  "same_name_same_number_overlap_count": 61,
+  "same_number_different_name_count": 17,
+  "same_name_different_number_count": 14,
+  "multiple_canonical_match_count": 0,
+  "zero_canonical_match_count": 0,
+  "proposed_gvid_collision_count": 78,
+  "collision_same_name_same_number_count": 61,
+  "collision_same_number_different_name_count": 17,
+  "printed_set_abbrev": "DRM",
+  "printed_set_abbrev_present": true,
+  "canonical_surface": {
+    "canonical_sm7p5_count": 0,
+    "canonical_sm7p5_non_null_gvid_count": 0,
+    "canonical_sm75_count": 78,
+    "canonical_sm75_non_null_gvid_count": 78,
+    "canonical_sm7p5_samples": [],
+    "canonical_sm75_samples": [
+      {
+        "id": "a592c487-4e07-4d38-963b-768dba841fee",
+        "gv_id": "GV-PK-DRM-1",
+        "name": "Charmander",
+        "number": "1",
+        "set_code": "sm75"
+      },
+      {
+        "id": "83b93330-8047-4a29-ad6c-063f6bf8a35f",
+        "gv_id": "GV-PK-DRM-2",
+        "name": "Charmeleon",
+        "number": "2",
+        "set_code": "sm75"
+      },
+      {
+        "id": "2eb90a80-2d50-43c7-b206-3bc1313a78df",
+        "gv_id": "GV-PK-DRM-3",
+        "name": "Charizard",
+        "number": "3",
+        "set_code": "sm75"
+      },
+      {
+        "id": "e1e8bdf4-058c-4dec-9c67-dc653645d2dd",
+        "gv_id": "GV-PK-DRM-4",
+        "name": "Torchic",
+        "number": "4",
+        "set_code": "sm75"
+      },
+      {
+        "id": "ee8618b8-4695-404f-8ac8-9f9bb064bd6c",
+        "gv_id": "GV-PK-DRM-5",
+        "name": "Combusken",
+        "number": "5",
+        "set_code": "sm75"
+      },
+      {
+        "id": "337792e9-75fa-4b7f-bb92-e9bb42da3b2e",
+        "gv_id": "GV-PK-DRM-6",
+        "name": "Blaziken",
+        "number": "6",
+        "set_code": "sm75"
+      },
+      {
+        "id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+        "gv_id": "GV-PK-DRM-7",
+        "name": "Victini ◇",
+        "number": "7",
+        "set_code": "sm75"
+      },
+      {
+        "id": "dc6594ec-abea-4bde-8544-0a28e9e45ae3",
+        "gv_id": "GV-PK-DRM-8",
+        "name": "Darumaka",
+        "number": "8",
+        "set_code": "sm75"
+      },
+      {
+        "id": "eea4a2a7-6d7e-4ae2-aaf7-99c07ce97f33",
+        "gv_id": "GV-PK-DRM-9",
+        "name": "Darmanitan",
+        "number": "9",
+        "set_code": "sm75"
+      },
+      {
+        "id": "f2a394f9-cb7e-4c10-825a-9a675d2295c2",
+        "gv_id": "GV-PK-DRM-10",
+        "name": "Heatmor",
+        "number": "10",
+        "set_code": "sm75"
+      },
+      {
+        "id": "906ae840-2dc7-47e5-93e8-1bb972ae82c3",
+        "gv_id": "GV-PK-DRM-11",
+        "name": "Reshiram-GX",
+        "number": "11",
+        "set_code": "sm75"
+      },
+      {
+        "id": "8031b0b0-e5e7-4f55-90d5-b93401f18e8c",
+        "gv_id": "GV-PK-DRM-12",
+        "name": "Litten",
+        "number": "12",
+        "set_code": "sm75"
+      },
+      {
+        "id": "3a98dee9-aff2-438b-af7b-fa86b42d16e1",
+        "gv_id": "GV-PK-DRM-13",
+        "name": "Salandit",
+        "number": "13",
+        "set_code": "sm75"
+      },
+      {
+        "id": "58f271a9-1f14-4228-aeb3-837c7afe9c83",
+        "gv_id": "GV-PK-DRM-14",
+        "name": "Salazzle",
+        "number": "14",
+        "set_code": "sm75"
+      },
+      {
+        "id": "9658304f-f6b6-4c98-83d3-4004072bd4d4",
+        "gv_id": "GV-PK-DRM-15",
+        "name": "Horsea",
+        "number": "15",
+        "set_code": "sm75"
+      },
+      {
+        "id": "99dc6d4d-1fb0-4975-8ec5-0fcb923f0489",
+        "gv_id": "GV-PK-DRM-16",
+        "name": "Horsea",
+        "number": "16",
+        "set_code": "sm75"
+      },
+      {
+        "id": "2fd89c5b-e221-4a6e-8a8e-c0d277bcef8a",
+        "gv_id": "GV-PK-DRM-17",
+        "name": "Seadra",
+        "number": "17",
+        "set_code": "sm75"
+      },
+      {
+        "id": "06fe2521-8ae3-4adf-82c8-fb98120c8352",
+        "gv_id": "GV-PK-DRM-18",
+        "name": "Kingdra-GX",
+        "number": "18",
+        "set_code": "sm75"
+      },
+      {
+        "id": "803345a6-a9eb-427e-bc9e-65f989bc27aa",
+        "gv_id": "GV-PK-DRM-19",
+        "name": "Magikarp",
+        "number": "19",
+        "set_code": "sm75"
+      },
+      {
+        "id": "277c8e89-27d6-4e76-909b-9e3688d5ab8d",
+        "gv_id": "GV-PK-DRM-20",
+        "name": "Gyarados",
+        "number": "20",
+        "set_code": "sm75"
+      },
+      {
+        "id": "c9ef66d3-2009-40b3-b707-365146799059",
+        "gv_id": "GV-PK-DRM-21",
+        "name": "Lapras",
+        "number": "21",
+        "set_code": "sm75"
+      },
+      {
+        "id": "c2a2d441-784a-4052-ab07-3ac106ae4cca",
+        "gv_id": "GV-PK-DRM-22",
+        "name": "Totodile",
+        "number": "22",
+        "set_code": "sm75"
+      },
+      {
+        "id": "0fbac7f4-c8b5-46e8-820e-2406adc1e3a9",
+        "gv_id": "GV-PK-DRM-23",
+        "name": "Croconaw",
+        "number": "23",
+        "set_code": "sm75"
+      },
+      {
+        "id": "a71a1c26-3828-4845-9d2e-ab1d88a3c1a4",
+        "gv_id": "GV-PK-DRM-24",
+        "name": "Feraligatr",
+        "number": "24",
+        "set_code": "sm75"
+      },
+      {
+        "id": "98e47490-e684-481c-a64d-38bf4652dd2c",
+        "gv_id": "GV-PK-DRM-25",
+        "name": "Wooper",
+        "number": "25",
+        "set_code": "sm75"
+      }
+    ]
+  },
+  "strict_overlap": {
+    "same_name_same_number_overlap_count": 61,
+    "same_number_different_name_count": 17,
+    "same_name_different_number_count": 14,
+    "multiple_canonical_match_count": 0,
+    "zero_canonical_match_count": 0,
+    "anomaly_rows": [
+      {
+        "card_print_id": "1c13d0b8-d7ba-421f-b0b9-de99d1b74571",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "11",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "fa5f9a6f-bcd0-488f-bf89-86fd55d60f88",
+        "unresolved_name": "Horsea",
+        "printed_number": "15",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "3c17cf60-b1cb-4ba0-b0bc-68228a5b562c",
+        "unresolved_name": "Horsea",
+        "printed_number": "16",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "837aceaa-6505-44da-a0d3-45787b6fdb57",
+        "unresolved_name": "Kingdra GX",
+        "printed_number": "18",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "92c8943d-6645-43b7-9388-cdd054a81737",
+        "unresolved_name": "Dratini",
+        "printed_number": "34",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "b67aa998-2ddb-4475-9a16-8165ff412155",
+        "unresolved_name": "Dratini",
+        "printed_number": "35",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "18de4791-c418-44d7-843f-ac29c09a902a",
+        "unresolved_name": "Dragonite GX",
+        "printed_number": "37",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "40690f8a-545c-46d1-a5b4-a7ebfb3d553c",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "41",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "10f6f444-2619-4e5f-b90b-3806d2ac7f52",
+        "unresolved_name": "Salamence GX",
+        "printed_number": "44",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "e5a2d3aa-43ea-4022-81c9-088f27e7f4a1",
+        "unresolved_name": "White Kyurem GX",
+        "printed_number": "48",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "f2af5316-fd4e-4054-917d-48406e2e11b2",
+        "unresolved_name": "Swablu",
+        "printed_number": "56",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "b4d5d693-2c99-42bc-aa6b-6ea17af7f07e",
+        "unresolved_name": "Swablu",
+        "printed_number": "57",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "edfd048c-3b22-4c6f-ab9a-cd680dd8cdab",
+        "unresolved_name": "Blaine’s Last Stand",
+        "printed_number": "58",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "65e7a4b6-31ac-4b62-b143-b0f1d643ff59",
+        "unresolved_name": "Dragon Talon",
+        "printed_number": "59",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "b5fe0b5c-7994-4cf6-9f0c-cb6ac68e9cbd",
+        "unresolved_name": "Fiery Flint",
+        "printed_number": "60",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "e0444b8c-b897-447c-97f9-9c7ac1e032c1",
+        "unresolved_name": "Switch Raft",
+        "printed_number": "62",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "b3d3583c-1aac-4c6e-a001-f0bd28c3fd3b",
+        "unresolved_name": "Zinnia",
+        "printed_number": "64",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "937753d5-2413-44a5-ab11-7899a6271e97",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "65",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "9e0c9f90-d04b-4c0e-9942-294250672ce5",
+        "unresolved_name": "Kingdra GX",
+        "printed_number": "66",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "80c463f3-7753-4373-ac98-83bdbdbd2355",
+        "unresolved_name": "Dragonite GX",
+        "printed_number": "67",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "3af6f496-1e7d-42c0-8d9c-f75cafe864b3",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "68",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "31e7364c-659d-44fb-a016-00a5fca4d78e",
+        "unresolved_name": "Blaine’s Last Stand",
+        "printed_number": "69",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "cdb323fe-ab04-45f3-9516-2811ea080c8d",
+        "unresolved_name": "Zinnia",
+        "printed_number": "70",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "784ba17a-fc1a-472f-a133-25a54ef71080",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "71",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "7ee8a1a3-d293-4f31-8091-1997301fe7c4",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "72",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "bf67b808-0f04-4eb5-9196-d8c710efbf5f",
+        "unresolved_name": "Salamence GX",
+        "printed_number": "73",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "8e0a73cb-4842-48a8-91bd-96b517a5f0e5",
+        "unresolved_name": "White Kyurem GX",
+        "printed_number": "74",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "33c31bf0-86b6-416b-9169-8880647d78d9",
+        "unresolved_name": "Dragon Talon",
+        "printed_number": "75",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "72905592-ef2e-4391-b702-a35e085b2c03",
+        "unresolved_name": "Fiery Flint",
+        "printed_number": "76",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "633d802e-344a-4ce1-8e96-797e581f91c4",
+        "unresolved_name": "Switch Raft",
+        "printed_number": "77",
+        "same_name_same_number_match_count": 1,
+        "same_number_different_name_match_count": 0,
+        "same_name_different_number_match_count": 1,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "1e84ef42-638a-47dd-9ae9-83ce5d29d362",
+        "unresolved_name": "Ultra Necrozma GX",
+        "printed_number": "78",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      }
+    ]
+  },
+  "canon_aware_overlap": {
+    "canon_aware_same_name_same_number_count": 78,
+    "canon_aware_multiple_match_count": 0,
+    "canon_aware_zero_match_count": 0,
+    "rows_not_proven": [],
+    "anomaly_repairs": [
+      {
+        "card_print_id": "1c13d0b8-d7ba-421f-b0b9-de99d1b74571",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "11",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "906ae840-2dc7-47e5-93e8-1bb972ae82c3",
+            "canonical_name": "Reshiram-GX",
+            "canonical_number": "11",
+            "canonical_gv_id": "GV-PK-DRM-11",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "837aceaa-6505-44da-a0d3-45787b6fdb57",
+        "unresolved_name": "Kingdra GX",
+        "printed_number": "18",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "06fe2521-8ae3-4adf-82c8-fb98120c8352",
+            "canonical_name": "Kingdra-GX",
+            "canonical_number": "18",
+            "canonical_gv_id": "GV-PK-DRM-18",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "18de4791-c418-44d7-843f-ac29c09a902a",
+        "unresolved_name": "Dragonite GX",
+        "printed_number": "37",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "12332915-5d05-467b-a3da-91039f010cb2",
+            "canonical_name": "Dragonite-GX",
+            "canonical_number": "37",
+            "canonical_gv_id": "GV-PK-DRM-37",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "40690f8a-545c-46d1-a5b4-a7ebfb3d553c",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "41",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "77d76145-4bca-4100-94fb-b6c6d2e691ce",
+            "canonical_name": "Altaria-GX",
+            "canonical_number": "41",
+            "canonical_gv_id": "GV-PK-DRM-41",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "10f6f444-2619-4e5f-b90b-3806d2ac7f52",
+        "unresolved_name": "Salamence GX",
+        "printed_number": "44",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "89d6e5d2-c79c-44b2-8e6f-b4ee17ee5e33",
+            "canonical_name": "Salamence-GX",
+            "canonical_number": "44",
+            "canonical_gv_id": "GV-PK-DRM-44",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "e5a2d3aa-43ea-4022-81c9-088f27e7f4a1",
+        "unresolved_name": "White Kyurem GX",
+        "printed_number": "48",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "8941e043-055c-4325-a50d-034de5dbdf91",
+            "canonical_name": "White Kyurem-GX",
+            "canonical_number": "48",
+            "canonical_gv_id": "GV-PK-DRM-48",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "edfd048c-3b22-4c6f-ab9a-cd680dd8cdab",
+        "unresolved_name": "Blaine’s Last Stand",
+        "printed_number": "58",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "3e21da76-2149-42f6-96e6-24d0ab58c709",
+            "canonical_name": "Blaine's Last Stand",
+            "canonical_number": "58",
+            "canonical_gv_id": "GV-PK-DRM-58",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "937753d5-2413-44a5-ab11-7899a6271e97",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "65",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "5d9acecb-ff22-41a5-9487-aaa99a1dd219",
+            "canonical_name": "Reshiram-GX",
+            "canonical_number": "65",
+            "canonical_gv_id": "GV-PK-DRM-65",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "9e0c9f90-d04b-4c0e-9942-294250672ce5",
+        "unresolved_name": "Kingdra GX",
+        "printed_number": "66",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "d2f9339d-6dac-4856-917c-0984a555865b",
+            "canonical_name": "Kingdra-GX",
+            "canonical_number": "66",
+            "canonical_gv_id": "GV-PK-DRM-66",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "80c463f3-7753-4373-ac98-83bdbdbd2355",
+        "unresolved_name": "Dragonite GX",
+        "printed_number": "67",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "ba07a02f-bef1-4305-8c25-f58a3045aa4d",
+            "canonical_name": "Dragonite-GX",
+            "canonical_number": "67",
+            "canonical_gv_id": "GV-PK-DRM-67",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "3af6f496-1e7d-42c0-8d9c-f75cafe864b3",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "68",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "f2427a9e-ac2b-47fe-a1b2-425bb5f89f96",
+            "canonical_name": "Altaria-GX",
+            "canonical_number": "68",
+            "canonical_gv_id": "GV-PK-DRM-68",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "31e7364c-659d-44fb-a016-00a5fca4d78e",
+        "unresolved_name": "Blaine’s Last Stand",
+        "printed_number": "69",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+            "canonical_name": "Blaine's Last Stand",
+            "canonical_number": "69",
+            "canonical_gv_id": "GV-PK-DRM-69",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "784ba17a-fc1a-472f-a133-25a54ef71080",
+        "unresolved_name": "Reshiram GX",
+        "printed_number": "71",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "1760df10-51dd-43ad-b512-0a96b91f0bd0",
+            "canonical_name": "Reshiram-GX",
+            "canonical_number": "71",
+            "canonical_gv_id": "GV-PK-DRM-71",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "7ee8a1a3-d293-4f31-8091-1997301fe7c4",
+        "unresolved_name": "Altaria GX",
+        "printed_number": "72",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "4b710d69-a24f-44d5-8228-63b1d53d9a1b",
+            "canonical_name": "Altaria-GX",
+            "canonical_number": "72",
+            "canonical_gv_id": "GV-PK-DRM-72",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "bf67b808-0f04-4eb5-9196-d8c710efbf5f",
+        "unresolved_name": "Salamence GX",
+        "printed_number": "73",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "fc111f26-481e-41cd-a7c4-7c1a41446c52",
+            "canonical_name": "Salamence-GX",
+            "canonical_number": "73",
+            "canonical_gv_id": "GV-PK-DRM-73",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "8e0a73cb-4842-48a8-91bd-96b517a5f0e5",
+        "unresolved_name": "White Kyurem GX",
+        "printed_number": "74",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "5ee92c7c-e77b-4b23-a094-9e094af09d93",
+            "canonical_name": "White Kyurem-GX",
+            "canonical_number": "74",
+            "canonical_gv_id": "GV-PK-DRM-74",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      },
+      {
+        "card_print_id": "1e84ef42-638a-47dd-9ae9-83ce5d29d362",
+        "unresolved_name": "Ultra Necrozma GX",
+        "printed_number": "78",
+        "exact_number_match_count": 1,
+        "canon_aware_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "a659e2ff-38b9-465e-a5d9-7930a49c297b",
+            "canonical_name": "Ultra Necrozma-GX",
+            "canonical_number": "78",
+            "canonical_gv_id": "GV-PK-DRM-78",
+            "canonical_set_code": "sm75"
+          }
+        ]
+      }
+    ]
+  },
+  "proposed_gvid_audit": {
+    "missing_printed_set_abbrev_count": 0,
+    "derivation_error_count": 0,
+    "proposed_gvid_collision_count": 78,
+    "collision_breakdown_by_target_set": {
+      "sm75": 78
+    },
+    "collision_same_name_same_number_count": 61,
+    "collision_same_number_different_name_count": 17,
+    "collision_samples": [
+      {
+        "card_print_id": "031eed6f-007d-49a4-bbc9-5cb93d43c189",
+        "name": "Charmander",
+        "printed_number": "1",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-1",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "a592c487-4e07-4d38-963b-768dba841fee",
+          "gv_id": "GV-PK-DRM-1",
+          "set_code": "sm75",
+          "number": "1",
+          "name": "Charmander"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "b22c9969-f6df-457b-a1c1-1452180fcbfb",
+        "name": "Charmeleon",
+        "printed_number": "2",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-2",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "83b93330-8047-4a29-ad6c-063f6bf8a35f",
+          "gv_id": "GV-PK-DRM-2",
+          "set_code": "sm75",
+          "number": "2",
+          "name": "Charmeleon"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "4811569c-9354-4224-b6df-5eed81bafa5a",
+        "name": "Charizard",
+        "printed_number": "3",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-3",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "2eb90a80-2d50-43c7-b206-3bc1313a78df",
+          "gv_id": "GV-PK-DRM-3",
+          "set_code": "sm75",
+          "number": "3",
+          "name": "Charizard"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "4e61ef2d-1019-46d8-b11a-e0cc73afb32e",
+        "name": "Torchic",
+        "printed_number": "4",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-4",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "e1e8bdf4-058c-4dec-9c67-dc653645d2dd",
+          "gv_id": "GV-PK-DRM-4",
+          "set_code": "sm75",
+          "number": "4",
+          "name": "Torchic"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "d2ace9f0-bfca-408c-93ee-3435cee40819",
+        "name": "Combusken",
+        "printed_number": "5",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-5",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "ee8618b8-4695-404f-8ac8-9f9bb064bd6c",
+          "gv_id": "GV-PK-DRM-5",
+          "set_code": "sm75",
+          "number": "5",
+          "name": "Combusken"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "940f6564-2ae5-4239-990d-93d4c0474103",
+        "name": "Blaziken",
+        "printed_number": "6",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-6",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "337792e9-75fa-4b7f-bb92-e9bb42da3b2e",
+          "gv_id": "GV-PK-DRM-6",
+          "set_code": "sm75",
+          "number": "6",
+          "name": "Blaziken"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "94202495-fbdd-4780-b9ad-e69500bdb39d",
+        "name": "Victini ◇",
+        "printed_number": "7",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-7",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+          "gv_id": "GV-PK-DRM-7",
+          "set_code": "sm75",
+          "number": "7",
+          "name": "Victini ◇"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "95af2fa1-8f68-4dc4-8960-1208ce76c199",
+        "name": "Darumaka",
+        "printed_number": "8",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-8",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "dc6594ec-abea-4bde-8544-0a28e9e45ae3",
+          "gv_id": "GV-PK-DRM-8",
+          "set_code": "sm75",
+          "number": "8",
+          "name": "Darumaka"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "a04877b5-97b2-4fde-9b10-42d5e96ed27a",
+        "name": "Darmanitan",
+        "printed_number": "9",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-9",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "eea4a2a7-6d7e-4ae2-aaf7-99c07ce97f33",
+          "gv_id": "GV-PK-DRM-9",
+          "set_code": "sm75",
+          "number": "9",
+          "name": "Darmanitan"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "8268c14d-59a3-4389-9470-81939fb09272",
+        "name": "Heatmor",
+        "printed_number": "10",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-10",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "f2a394f9-cb7e-4c10-825a-9a675d2295c2",
+          "gv_id": "GV-PK-DRM-10",
+          "set_code": "sm75",
+          "number": "10",
+          "name": "Heatmor"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "1c13d0b8-d7ba-421f-b0b9-de99d1b74571",
+        "name": "Reshiram GX",
+        "printed_number": "11",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-11",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "906ae840-2dc7-47e5-93e8-1bb972ae82c3",
+          "gv_id": "GV-PK-DRM-11",
+          "set_code": "sm75",
+          "number": "11",
+          "name": "Reshiram-GX"
+        },
+        "collision_is_same_name_same_number": false,
+        "collision_is_same_number_different_name": true
+      },
+      {
+        "card_print_id": "0925da25-9a99-437e-8df9-b557bb406249",
+        "name": "Litten",
+        "printed_number": "12",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-12",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "8031b0b0-e5e7-4f55-90d5-b93401f18e8c",
+          "gv_id": "GV-PK-DRM-12",
+          "set_code": "sm75",
+          "number": "12",
+          "name": "Litten"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "91b8b69e-7bf4-4d3f-9d9b-16200e03790f",
+        "name": "Salandit",
+        "printed_number": "13",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-13",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "3a98dee9-aff2-438b-af7b-fa86b42d16e1",
+          "gv_id": "GV-PK-DRM-13",
+          "set_code": "sm75",
+          "number": "13",
+          "name": "Salandit"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "87dcb72b-df34-4327-9c26-c0d5bb9a9fc5",
+        "name": "Salazzle",
+        "printed_number": "14",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-14",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "58f271a9-1f14-4228-aeb3-837c7afe9c83",
+          "gv_id": "GV-PK-DRM-14",
+          "set_code": "sm75",
+          "number": "14",
+          "name": "Salazzle"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "fa5f9a6f-bcd0-488f-bf89-86fd55d60f88",
+        "name": "Horsea",
+        "printed_number": "15",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-15",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "9658304f-f6b6-4c98-83d3-4004072bd4d4",
+          "gv_id": "GV-PK-DRM-15",
+          "set_code": "sm75",
+          "number": "15",
+          "name": "Horsea"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "3c17cf60-b1cb-4ba0-b0bc-68228a5b562c",
+        "name": "Horsea",
+        "printed_number": "16",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-16",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "99dc6d4d-1fb0-4975-8ec5-0fcb923f0489",
+          "gv_id": "GV-PK-DRM-16",
+          "set_code": "sm75",
+          "number": "16",
+          "name": "Horsea"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "16d223d4-10b3-48bf-bc99-1b88f8aa35f0",
+        "name": "Seadra",
+        "printed_number": "17",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-17",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "2fd89c5b-e221-4a6e-8a8e-c0d277bcef8a",
+          "gv_id": "GV-PK-DRM-17",
+          "set_code": "sm75",
+          "number": "17",
+          "name": "Seadra"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "837aceaa-6505-44da-a0d3-45787b6fdb57",
+        "name": "Kingdra GX",
+        "printed_number": "18",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-18",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "06fe2521-8ae3-4adf-82c8-fb98120c8352",
+          "gv_id": "GV-PK-DRM-18",
+          "set_code": "sm75",
+          "number": "18",
+          "name": "Kingdra-GX"
+        },
+        "collision_is_same_name_same_number": false,
+        "collision_is_same_number_different_name": true
+      },
+      {
+        "card_print_id": "bbfc6a03-d563-472f-b4c2-6865717cd402",
+        "name": "Magikarp",
+        "printed_number": "19",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-19",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "803345a6-a9eb-427e-bc9e-65f989bc27aa",
+          "gv_id": "GV-PK-DRM-19",
+          "set_code": "sm75",
+          "number": "19",
+          "name": "Magikarp"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "b9e065fe-afa0-4168-9aef-2b3208132b8d",
+        "name": "Gyarados",
+        "printed_number": "20",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-20",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "277c8e89-27d6-4e76-909b-9e3688d5ab8d",
+          "gv_id": "GV-PK-DRM-20",
+          "set_code": "sm75",
+          "number": "20",
+          "name": "Gyarados"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "494286c7-e702-44c2-af48-01996723a7e7",
+        "name": "Lapras",
+        "printed_number": "21",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-21",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "c9ef66d3-2009-40b3-b707-365146799059",
+          "gv_id": "GV-PK-DRM-21",
+          "set_code": "sm75",
+          "number": "21",
+          "name": "Lapras"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "4a694445-8664-4b7d-9e42-da4f592ad7d3",
+        "name": "Totodile",
+        "printed_number": "22",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-22",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "c2a2d441-784a-4052-ab07-3ac106ae4cca",
+          "gv_id": "GV-PK-DRM-22",
+          "set_code": "sm75",
+          "number": "22",
+          "name": "Totodile"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "0455e356-0108-4bfa-9bc9-15a27defebc3",
+        "name": "Croconaw",
+        "printed_number": "23",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-23",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "0fbac7f4-c8b5-46e8-820e-2406adc1e3a9",
+          "gv_id": "GV-PK-DRM-23",
+          "set_code": "sm75",
+          "number": "23",
+          "name": "Croconaw"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "454f75d7-5965-4743-a4af-7d13c780aa97",
+        "name": "Feraligatr",
+        "printed_number": "24",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-24",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "a71a1c26-3828-4845-9d2e-ab1d88a3c1a4",
+          "gv_id": "GV-PK-DRM-24",
+          "set_code": "sm75",
+          "number": "24",
+          "name": "Feraligatr"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "bccef0ee-6bb3-41f3-b6be-aa785c937cb6",
+        "name": "Wooper",
+        "printed_number": "25",
+        "printed_set_abbrev": "DRM",
+        "proposed_gv_id": "GV-PK-DRM-25",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "98e47490-e684-481c-a64d-38bf4652dd2c",
+          "gv_id": "GV-PK-DRM-25",
+          "set_code": "sm75",
+          "number": "25",
+          "name": "Wooper"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      }
+    ]
+  },
+  "printed_abbrev_validation": {
+    "printed_set_abbrev": "DRM",
+    "printed_set_abbrev_present": true,
+    "printed_total": 70,
+    "printed_total_present": true,
+    "shared_abbrev_set_codes": [
+      "sm7.5",
+      "sm75"
+    ],
+    "shared_with_another_live_canonical_set": true,
+    "shared_abbrev_explains_class_c": true,
+    "set_metadata_rows": [
+      {
+        "id": "f672abd1-37b3-4d45-aa5d-14a38166d9b4",
+        "code": "sm7.5",
+        "name": "Dragon Majesty",
+        "printed_set_abbrev": "DRM",
+        "printed_total": 70,
+        "source": {
+          "tcgdex": {
+            "id": "sm7.5",
+            "raw": {
+              "id": "sm7.5",
+              "name": "Dragon Majesty",
+              "cardCount": {
+                "total": 78,
+                "official": 70
+              }
+            },
+            "name": "Dragon Majesty",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          }
+        }
+      },
+      {
+        "id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+        "code": "sm75",
+        "name": "Dragon Majesty",
+        "printed_set_abbrev": "DRM",
+        "printed_total": 70,
+        "source": {
+          "pokemonapi": {
+            "id": "sm75",
+            "name": "Dragon Majesty",
+            "total": 80,
+            "images": {
+              "logo": "https://images.pokemontcg.io/sm75/logo.png",
+              "symbol": "https://images.pokemontcg.io/sm75/symbol.png"
+            },
+            "series": "Sun & Moon",
+            "ptcgoCode": "DRM",
+            "releaseDate": "2018/09/07",
+            "printedTotal": 70
+          }
+        }
+      }
+    ]
+  },
+  "raw_provenance_evidence": {
+    "unresolved_tcgdex_mapping_count": 78,
+    "unresolved_tcgdex_raw_link_count": 78,
+    "raw_set_ids": [
+      "sm7.5"
+    ],
+    "evidence_strength": "strong",
+    "supports_alias_family_realign_hypothesis": true,
+    "sample_rows": [
+      {
+        "card_print_id": "031eed6f-007d-49a4-bbc9-5cb93d43c189",
+        "name": "Charmander",
+        "printed_number": "1",
+        "external_id": "sm7.5-1",
+        "raw_import_id": "19383",
+        "raw_card_id": "sm7.5-1",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "1",
+        "raw_name": "Charmander"
+      },
+      {
+        "card_print_id": "b22c9969-f6df-457b-a1c1-1452180fcbfb",
+        "name": "Charmeleon",
+        "printed_number": "2",
+        "external_id": "sm7.5-2",
+        "raw_import_id": "19385",
+        "raw_card_id": "sm7.5-2",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "2",
+        "raw_name": "Charmeleon"
+      },
+      {
+        "card_print_id": "4811569c-9354-4224-b6df-5eed81bafa5a",
+        "name": "Charizard",
+        "printed_number": "3",
+        "external_id": "sm7.5-3",
+        "raw_import_id": "19387",
+        "raw_card_id": "sm7.5-3",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "3",
+        "raw_name": "Charizard"
+      },
+      {
+        "card_print_id": "4e61ef2d-1019-46d8-b11a-e0cc73afb32e",
+        "name": "Torchic",
+        "printed_number": "4",
+        "external_id": "sm7.5-4",
+        "raw_import_id": "19389",
+        "raw_card_id": "sm7.5-4",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "4",
+        "raw_name": "Torchic"
+      },
+      {
+        "card_print_id": "d2ace9f0-bfca-408c-93ee-3435cee40819",
+        "name": "Combusken",
+        "printed_number": "5",
+        "external_id": "sm7.5-5",
+        "raw_import_id": "19391",
+        "raw_card_id": "sm7.5-5",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "5",
+        "raw_name": "Combusken"
+      },
+      {
+        "card_print_id": "940f6564-2ae5-4239-990d-93d4c0474103",
+        "name": "Blaziken",
+        "printed_number": "6",
+        "external_id": "sm7.5-6",
+        "raw_import_id": "19393",
+        "raw_card_id": "sm7.5-6",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "6",
+        "raw_name": "Blaziken"
+      },
+      {
+        "card_print_id": "94202495-fbdd-4780-b9ad-e69500bdb39d",
+        "name": "Victini ◇",
+        "printed_number": "7",
+        "external_id": "sm7.5-7",
+        "raw_import_id": "19395",
+        "raw_card_id": "sm7.5-7",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "7",
+        "raw_name": "Victini ◇"
+      },
+      {
+        "card_print_id": "95af2fa1-8f68-4dc4-8960-1208ce76c199",
+        "name": "Darumaka",
+        "printed_number": "8",
+        "external_id": "sm7.5-8",
+        "raw_import_id": "19397",
+        "raw_card_id": "sm7.5-8",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "8",
+        "raw_name": "Darumaka"
+      },
+      {
+        "card_print_id": "a04877b5-97b2-4fde-9b10-42d5e96ed27a",
+        "name": "Darmanitan",
+        "printed_number": "9",
+        "external_id": "sm7.5-9",
+        "raw_import_id": "19399",
+        "raw_card_id": "sm7.5-9",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "9",
+        "raw_name": "Darmanitan"
+      },
+      {
+        "card_print_id": "8268c14d-59a3-4389-9470-81939fb09272",
+        "name": "Heatmor",
+        "printed_number": "10",
+        "external_id": "sm7.5-10",
+        "raw_import_id": "19401",
+        "raw_card_id": "sm7.5-10",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "10",
+        "raw_name": "Heatmor"
+      },
+      {
+        "card_print_id": "1c13d0b8-d7ba-421f-b0b9-de99d1b74571",
+        "name": "Reshiram GX",
+        "printed_number": "11",
+        "external_id": "sm7.5-11",
+        "raw_import_id": "19403",
+        "raw_card_id": "sm7.5-11",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "11",
+        "raw_name": "Reshiram GX"
+      },
+      {
+        "card_print_id": "0925da25-9a99-437e-8df9-b557bb406249",
+        "name": "Litten",
+        "printed_number": "12",
+        "external_id": "sm7.5-12",
+        "raw_import_id": "19405",
+        "raw_card_id": "sm7.5-12",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "12",
+        "raw_name": "Litten"
+      },
+      {
+        "card_print_id": "91b8b69e-7bf4-4d3f-9d9b-16200e03790f",
+        "name": "Salandit",
+        "printed_number": "13",
+        "external_id": "sm7.5-13",
+        "raw_import_id": "19407",
+        "raw_card_id": "sm7.5-13",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "13",
+        "raw_name": "Salandit"
+      },
+      {
+        "card_print_id": "87dcb72b-df34-4327-9c26-c0d5bb9a9fc5",
+        "name": "Salazzle",
+        "printed_number": "14",
+        "external_id": "sm7.5-14",
+        "raw_import_id": "19409",
+        "raw_card_id": "sm7.5-14",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "14",
+        "raw_name": "Salazzle"
+      },
+      {
+        "card_print_id": "fa5f9a6f-bcd0-488f-bf89-86fd55d60f88",
+        "name": "Horsea",
+        "printed_number": "15",
+        "external_id": "sm7.5-15",
+        "raw_import_id": "19411",
+        "raw_card_id": "sm7.5-15",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "15",
+        "raw_name": "Horsea"
+      },
+      {
+        "card_print_id": "3c17cf60-b1cb-4ba0-b0bc-68228a5b562c",
+        "name": "Horsea",
+        "printed_number": "16",
+        "external_id": "sm7.5-16",
+        "raw_import_id": "19413",
+        "raw_card_id": "sm7.5-16",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "16",
+        "raw_name": "Horsea"
+      },
+      {
+        "card_print_id": "16d223d4-10b3-48bf-bc99-1b88f8aa35f0",
+        "name": "Seadra",
+        "printed_number": "17",
+        "external_id": "sm7.5-17",
+        "raw_import_id": "19415",
+        "raw_card_id": "sm7.5-17",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "17",
+        "raw_name": "Seadra"
+      },
+      {
+        "card_print_id": "837aceaa-6505-44da-a0d3-45787b6fdb57",
+        "name": "Kingdra GX",
+        "printed_number": "18",
+        "external_id": "sm7.5-18",
+        "raw_import_id": "19417",
+        "raw_card_id": "sm7.5-18",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "18",
+        "raw_name": "Kingdra GX"
+      },
+      {
+        "card_print_id": "bbfc6a03-d563-472f-b4c2-6865717cd402",
+        "name": "Magikarp",
+        "printed_number": "19",
+        "external_id": "sm7.5-19",
+        "raw_import_id": "19419",
+        "raw_card_id": "sm7.5-19",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "19",
+        "raw_name": "Magikarp"
+      },
+      {
+        "card_print_id": "b9e065fe-afa0-4168-9aef-2b3208132b8d",
+        "name": "Gyarados",
+        "printed_number": "20",
+        "external_id": "sm7.5-20",
+        "raw_import_id": "19421",
+        "raw_card_id": "sm7.5-20",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "20",
+        "raw_name": "Gyarados"
+      },
+      {
+        "card_print_id": "494286c7-e702-44c2-af48-01996723a7e7",
+        "name": "Lapras",
+        "printed_number": "21",
+        "external_id": "sm7.5-21",
+        "raw_import_id": "19423",
+        "raw_card_id": "sm7.5-21",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "21",
+        "raw_name": "Lapras"
+      },
+      {
+        "card_print_id": "4a694445-8664-4b7d-9e42-da4f592ad7d3",
+        "name": "Totodile",
+        "printed_number": "22",
+        "external_id": "sm7.5-22",
+        "raw_import_id": "19425",
+        "raw_card_id": "sm7.5-22",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "22",
+        "raw_name": "Totodile"
+      },
+      {
+        "card_print_id": "0455e356-0108-4bfa-9bc9-15a27defebc3",
+        "name": "Croconaw",
+        "printed_number": "23",
+        "external_id": "sm7.5-23",
+        "raw_import_id": "19427",
+        "raw_card_id": "sm7.5-23",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "23",
+        "raw_name": "Croconaw"
+      },
+      {
+        "card_print_id": "454f75d7-5965-4743-a4af-7d13c780aa97",
+        "name": "Feraligatr",
+        "printed_number": "24",
+        "external_id": "sm7.5-24",
+        "raw_import_id": "19429",
+        "raw_card_id": "sm7.5-24",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "24",
+        "raw_name": "Feraligatr"
+      },
+      {
+        "card_print_id": "bccef0ee-6bb3-41f3-b6be-aa785c937cb6",
+        "name": "Wooper",
+        "printed_number": "25",
+        "external_id": "sm7.5-25",
+        "raw_import_id": "19431",
+        "raw_card_id": "sm7.5-25",
+        "raw_set_id": "sm7.5",
+        "raw_local_id": "25",
+        "raw_name": "Wooper"
+      }
+    ]
+  },
+  "unresolved_source_samples": [
+    {
+      "card_print_id": "031eed6f-007d-49a4-bbc9-5cb93d43c189",
+      "name": "Charmander",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "1",
+      "normalized_printed_name": "charmander",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "b22c9969-f6df-457b-a1c1-1452180fcbfb",
+      "name": "Charmeleon",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "2",
+      "normalized_printed_name": "charmeleon",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "4811569c-9354-4224-b6df-5eed81bafa5a",
+      "name": "Charizard",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "3",
+      "normalized_printed_name": "charizard",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "4e61ef2d-1019-46d8-b11a-e0cc73afb32e",
+      "name": "Torchic",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "4",
+      "normalized_printed_name": "torchic",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "d2ace9f0-bfca-408c-93ee-3435cee40819",
+      "name": "Combusken",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "5",
+      "normalized_printed_name": "combusken",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "940f6564-2ae5-4239-990d-93d4c0474103",
+      "name": "Blaziken",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "6",
+      "normalized_printed_name": "blaziken",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "94202495-fbdd-4780-b9ad-e69500bdb39d",
+      "name": "Victini ◇",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "7",
+      "normalized_printed_name": "victini ◇",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "95af2fa1-8f68-4dc4-8960-1208ce76c199",
+      "name": "Darumaka",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "8",
+      "normalized_printed_name": "darumaka",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "a04877b5-97b2-4fde-9b10-42d5e96ed27a",
+      "name": "Darmanitan",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "9",
+      "normalized_printed_name": "darmanitan",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "8268c14d-59a3-4389-9470-81939fb09272",
+      "name": "Heatmor",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "10",
+      "normalized_printed_name": "heatmor",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "1c13d0b8-d7ba-421f-b0b9-de99d1b74571",
+      "name": "Reshiram GX",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "11",
+      "normalized_printed_name": "reshiram gx",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "0925da25-9a99-437e-8df9-b557bb406249",
+      "name": "Litten",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "12",
+      "normalized_printed_name": "litten",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "91b8b69e-7bf4-4d3f-9d9b-16200e03790f",
+      "name": "Salandit",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "13",
+      "normalized_printed_name": "salandit",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "87dcb72b-df34-4327-9c26-c0d5bb9a9fc5",
+      "name": "Salazzle",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "14",
+      "normalized_printed_name": "salazzle",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "fa5f9a6f-bcd0-488f-bf89-86fd55d60f88",
+      "name": "Horsea",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "15",
+      "normalized_printed_name": "horsea",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "3c17cf60-b1cb-4ba0-b0bc-68228a5b562c",
+      "name": "Horsea",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "16",
+      "normalized_printed_name": "horsea",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "16d223d4-10b3-48bf-bc99-1b88f8aa35f0",
+      "name": "Seadra",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "17",
+      "normalized_printed_name": "seadra",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "837aceaa-6505-44da-a0d3-45787b6fdb57",
+      "name": "Kingdra GX",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "18",
+      "normalized_printed_name": "kingdra gx",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "bbfc6a03-d563-472f-b4c2-6865717cd402",
+      "name": "Magikarp",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "19",
+      "normalized_printed_name": "magikarp",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "b9e065fe-afa0-4168-9aef-2b3208132b8d",
+      "name": "Gyarados",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "20",
+      "normalized_printed_name": "gyarados",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "494286c7-e702-44c2-af48-01996723a7e7",
+      "name": "Lapras",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "21",
+      "normalized_printed_name": "lapras",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "4a694445-8664-4b7d-9e42-da4f592ad7d3",
+      "name": "Totodile",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "22",
+      "normalized_printed_name": "totodile",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "0455e356-0108-4bfa-9bc9-15a27defebc3",
+      "name": "Croconaw",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "23",
+      "normalized_printed_name": "croconaw",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "454f75d7-5965-4743-a4af-7d13c780aa97",
+      "name": "Feraligatr",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "24",
+      "normalized_printed_name": "feraligatr",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    },
+    {
+      "card_print_id": "bccef0ee-6bb3-41f3-b6be-aa785c937cb6",
+      "name": "Wooper",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "25",
+      "normalized_printed_name": "wooper",
+      "set_code": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "printed_set_abbrev": "DRM",
+      "printed_total": 70
+    }
+  ],
+  "final_classification": "OUTCOME C — FAMILY REALIGNMENT",
+  "next_phase_recommendation": "Set-scoped alias-family realignment for Dragon Majesty: collapse the 78 unresolved sm7.5 parents onto canonical sm75 parents that already own the live GV-PK-DRM-* namespace. Preserve canonical sm75 rows and existing gv_id values. Do not promote and do not mint new sm7.5 gv_id rows.",
+  "exact_next_execution_mode": "SM75_ALIAS_REALIGNMENT_COLLAPSE_TO_SM75",
+  "confirms_global_class_c": true
+}

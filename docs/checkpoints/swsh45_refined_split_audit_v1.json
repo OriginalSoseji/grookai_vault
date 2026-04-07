@@ -1,0 +1,531 @@
+{
+  "phase": "SWSH45_REFINED_SPLIT_AUDIT_V1",
+  "generated_at": "2026-04-07T04:25:30.764Z",
+  "total_unresolved": 124,
+  "numeric_unresolved": 2,
+  "sv_family_unresolved": 122,
+  "other_non_numeric_unresolved": 0,
+  "family_mapping_candidate_count": 122,
+  "family_multiple_match_old_count": 0,
+  "family_reused_new_count": 0,
+  "family_unmatched_count": 0,
+  "numeric_blocker_count": 2,
+  "final_classification": "OUTCOME A — SPLIT_EXECUTION",
+  "next_phase_recommendation": "Collapse the 122 SV-family rows from swsh4.5 onto canonical swsh45sv, and defer the 2 numeric blockers for dedicated name-level identity resolution on canonical swsh4.5.",
+  "exact_next_execution_mode": "SWSH45SV_FAMILY_COLLAPSE_TO_SWSH45SV_WITH_2_NUMERIC_BLOCKERS_DEFERRED",
+  "family_target_summary": {
+    "canonical_swsh45sv_total_rows": 122,
+    "canonical_swsh45sv_non_null_gvid_count": 122
+  },
+  "family_target_sample_rows": [
+    {
+      "id": "100fa20d-e065-45b6-ba50-736e58ccb722",
+      "gv_id": "GV-PK-SHF-SV001",
+      "name": "Rowlet",
+      "number": "SV001",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "30adf448-732f-415e-876f-7f8d6fbb6738",
+      "gv_id": "GV-PK-SHF-SV002",
+      "name": "Dartrix",
+      "number": "SV002",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "f5066c0d-370a-4108-870d-c2b8a630415e",
+      "gv_id": "GV-PK-SHF-SV003",
+      "name": "Decidueye",
+      "number": "SV003",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "2a43f6e5-162a-46b6-8c92-956def701262",
+      "gv_id": "GV-PK-SHF-SV004",
+      "name": "Grookey",
+      "number": "SV004",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "f27298fe-424a-45db-a996-a385d18d0d6b",
+      "gv_id": "GV-PK-SHF-SV005",
+      "name": "Thwackey",
+      "number": "SV005",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "0ae34aa0-4522-4a6e-9165-5674bc113879",
+      "gv_id": "GV-PK-SHF-SV006",
+      "name": "Rillaboom",
+      "number": "SV006",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "f26bcbc0-a14c-4dac-80ca-3ab0f81757a0",
+      "gv_id": "GV-PK-SHF-SV007",
+      "name": "Blipbug",
+      "number": "SV007",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "141e0169-1b4c-44b8-9231-e454097da9ef",
+      "gv_id": "GV-PK-SHF-SV008",
+      "name": "Dottler",
+      "number": "SV008",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "5cdcb0c2-2026-410b-af7d-b076984c2404",
+      "gv_id": "GV-PK-SHF-SV009",
+      "name": "Orbeetle",
+      "number": "SV009",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "d3879a22-d832-409c-a911-5a5d23dd7e98",
+      "gv_id": "GV-PK-SHF-SV010",
+      "name": "Gossifleur",
+      "number": "SV010",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "47a55e67-f2a8-4438-a2a5-e9a3846afe75",
+      "gv_id": "GV-PK-SHF-SV011",
+      "name": "Eldegoss",
+      "number": "SV011",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "c4f1185f-bb55-4a78-b536-429eb9b8b755",
+      "gv_id": "GV-PK-SHF-SV012",
+      "name": "Applin",
+      "number": "SV012",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "d17d4fd1-66d0-4041-8951-b18874c0d4a4",
+      "gv_id": "GV-PK-SHF-SV013",
+      "name": "Flapple",
+      "number": "SV013",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "28615ddf-767c-436f-9ddd-7f43a544600a",
+      "gv_id": "GV-PK-SHF-SV014",
+      "name": "Appletun",
+      "number": "SV014",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "103b74a9-162f-4249-823a-7b10d64e4873",
+      "gv_id": "GV-PK-SHF-SV015",
+      "name": "Scorbunny",
+      "number": "SV015",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "3ce7d2d7-fbf0-4459-ae61-ee907d827b1b",
+      "gv_id": "GV-PK-SHF-SV016",
+      "name": "Raboot",
+      "number": "SV016",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "d70d3540-80b8-40c3-ba8b-ad87870cd810",
+      "gv_id": "GV-PK-SHF-SV017",
+      "name": "Cinderace",
+      "number": "SV017",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "41b0c44e-1d4a-4ed2-a3a9-d0deb73f33f7",
+      "gv_id": "GV-PK-SHF-SV018",
+      "name": "Sizzlipede",
+      "number": "SV018",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "e8e558e1-35ed-4b4d-bc4a-5f130f6785f1",
+      "gv_id": "GV-PK-SHF-SV019",
+      "name": "Centiskorch",
+      "number": "SV019",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "5fc844bd-f6e8-41e5-8fd7-16178817ee54",
+      "gv_id": "GV-PK-SHF-SV020",
+      "name": "Galarian Mr. Mime",
+      "number": "SV020",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "99783d8e-adc7-4a77-a084-435cafbf6d50",
+      "gv_id": "GV-PK-SHF-SV021",
+      "name": "Galarian Mr. Rime",
+      "number": "SV021",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "89159e52-9060-4930-8961-c246dd1a8ab8",
+      "gv_id": "GV-PK-SHF-SV022",
+      "name": "Suicune",
+      "number": "SV022",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+      "gv_id": "GV-PK-SHF-SV023",
+      "name": "Galarian Darumaka",
+      "number": "SV023",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "d22a57db-e423-461b-9308-10cd87eebfb5",
+      "gv_id": "GV-PK-SHF-SV024",
+      "name": "Galarian Darmanitan",
+      "number": "SV024",
+      "set_code": "swsh45sv"
+    },
+    {
+      "id": "e9781b07-3165-4519-bd92-8069cf62c4c4",
+      "gv_id": "GV-PK-SHF-SV025",
+      "name": "Sobble",
+      "number": "SV025",
+      "set_code": "swsh45sv"
+    }
+  ],
+  "family_subset_mapping_results": {
+    "family_mapping_candidate_count": 122,
+    "family_distinct_old_count": 122,
+    "family_distinct_new_count": 122,
+    "family_multiple_match_old_count": 0,
+    "family_reused_new_count": 0,
+    "family_unmatched_count": 0,
+    "family_same_number_same_name_count": 122,
+    "family_same_number_different_name_count": 0
+  },
+  "family_subset_sample_rows": [
+    {
+      "old_id": "645dffbd-d204-4045-948d-e9e821b5f2fd",
+      "old_name": "Rowlet",
+      "printed_number": "SV001",
+      "new_id": "100fa20d-e065-45b6-ba50-736e58ccb722",
+      "new_name": "Rowlet",
+      "number": "SV001",
+      "gv_id": "GV-PK-SHF-SV001",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "40bfc2e6-03d7-438e-a798-73f8dd2d7ce0",
+      "old_name": "Dartrix",
+      "printed_number": "SV002",
+      "new_id": "30adf448-732f-415e-876f-7f8d6fbb6738",
+      "new_name": "Dartrix",
+      "number": "SV002",
+      "gv_id": "GV-PK-SHF-SV002",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "b8caa72a-d9f3-4fda-81db-1c2f243df2f7",
+      "old_name": "Decidueye",
+      "printed_number": "SV003",
+      "new_id": "f5066c0d-370a-4108-870d-c2b8a630415e",
+      "new_name": "Decidueye",
+      "number": "SV003",
+      "gv_id": "GV-PK-SHF-SV003",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "148486bf-7b9e-48ef-a8fb-629b9cf27bd7",
+      "old_name": "Grookey",
+      "printed_number": "SV004",
+      "new_id": "2a43f6e5-162a-46b6-8c92-956def701262",
+      "new_name": "Grookey",
+      "number": "SV004",
+      "gv_id": "GV-PK-SHF-SV004",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "f4c6b518-1738-4156-8de7-fa035633cddb",
+      "old_name": "Thwackey",
+      "printed_number": "SV005",
+      "new_id": "f27298fe-424a-45db-a996-a385d18d0d6b",
+      "new_name": "Thwackey",
+      "number": "SV005",
+      "gv_id": "GV-PK-SHF-SV005",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "d597d48f-607e-4a4a-a3bb-ea3172eee725",
+      "old_name": "Rillaboom",
+      "printed_number": "SV006",
+      "new_id": "0ae34aa0-4522-4a6e-9165-5674bc113879",
+      "new_name": "Rillaboom",
+      "number": "SV006",
+      "gv_id": "GV-PK-SHF-SV006",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "261e5a3d-e6a5-44ea-b183-3d7cbffba372",
+      "old_name": "Blipbug",
+      "printed_number": "SV007",
+      "new_id": "f26bcbc0-a14c-4dac-80ca-3ab0f81757a0",
+      "new_name": "Blipbug",
+      "number": "SV007",
+      "gv_id": "GV-PK-SHF-SV007",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "7a047666-52b1-456b-94b9-0de9d8db1cbc",
+      "old_name": "Dottler",
+      "printed_number": "SV008",
+      "new_id": "141e0169-1b4c-44b8-9231-e454097da9ef",
+      "new_name": "Dottler",
+      "number": "SV008",
+      "gv_id": "GV-PK-SHF-SV008",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "77144b69-f976-4dad-9e3b-691e5bf88138",
+      "old_name": "Orbeetle",
+      "printed_number": "SV009",
+      "new_id": "5cdcb0c2-2026-410b-af7d-b076984c2404",
+      "new_name": "Orbeetle",
+      "number": "SV009",
+      "gv_id": "GV-PK-SHF-SV009",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "958ddbf3-2eff-4bd1-a4c7-d6261b54d775",
+      "old_name": "Gossifleur",
+      "printed_number": "SV010",
+      "new_id": "d3879a22-d832-409c-a911-5a5d23dd7e98",
+      "new_name": "Gossifleur",
+      "number": "SV010",
+      "gv_id": "GV-PK-SHF-SV010",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "591ad3e4-36ff-4251-bd54-a793d23064d7",
+      "old_name": "Eldegoss",
+      "printed_number": "SV011",
+      "new_id": "47a55e67-f2a8-4438-a2a5-e9a3846afe75",
+      "new_name": "Eldegoss",
+      "number": "SV011",
+      "gv_id": "GV-PK-SHF-SV011",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "7a03bdff-7670-4f77-9627-75f59d9ba098",
+      "old_name": "Applin",
+      "printed_number": "SV012",
+      "new_id": "c4f1185f-bb55-4a78-b536-429eb9b8b755",
+      "new_name": "Applin",
+      "number": "SV012",
+      "gv_id": "GV-PK-SHF-SV012",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "9bce4376-3284-42f4-9da7-933f52481fdc",
+      "old_name": "Flapple",
+      "printed_number": "SV013",
+      "new_id": "d17d4fd1-66d0-4041-8951-b18874c0d4a4",
+      "new_name": "Flapple",
+      "number": "SV013",
+      "gv_id": "GV-PK-SHF-SV013",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "65fc7756-117f-4bde-abda-a1bd0b51eab7",
+      "old_name": "Appletun",
+      "printed_number": "SV014",
+      "new_id": "28615ddf-767c-436f-9ddd-7f43a544600a",
+      "new_name": "Appletun",
+      "number": "SV014",
+      "gv_id": "GV-PK-SHF-SV014",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "452969ea-7863-4b2c-9771-2e21f2b9909e",
+      "old_name": "Scorbunny",
+      "printed_number": "SV015",
+      "new_id": "103b74a9-162f-4249-823a-7b10d64e4873",
+      "new_name": "Scorbunny",
+      "number": "SV015",
+      "gv_id": "GV-PK-SHF-SV015",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "aef767b0-ab15-49ec-9c90-0c60dcea2005",
+      "old_name": "Raboot",
+      "printed_number": "SV016",
+      "new_id": "3ce7d2d7-fbf0-4459-ae61-ee907d827b1b",
+      "new_name": "Raboot",
+      "number": "SV016",
+      "gv_id": "GV-PK-SHF-SV016",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "2b2dfb4a-bad7-4042-97a1-a319f62f3a78",
+      "old_name": "Cinderace",
+      "printed_number": "SV017",
+      "new_id": "d70d3540-80b8-40c3-ba8b-ad87870cd810",
+      "new_name": "Cinderace",
+      "number": "SV017",
+      "gv_id": "GV-PK-SHF-SV017",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "341521de-55ad-4993-9dfd-c2936e4d796f",
+      "old_name": "Sizzlipede",
+      "printed_number": "SV018",
+      "new_id": "41b0c44e-1d4a-4ed2-a3a9-d0deb73f33f7",
+      "new_name": "Sizzlipede",
+      "number": "SV018",
+      "gv_id": "GV-PK-SHF-SV018",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "704a0e16-bf46-49ce-ad5c-962575511ab0",
+      "old_name": "Centiskorch",
+      "printed_number": "SV019",
+      "new_id": "e8e558e1-35ed-4b4d-bc4a-5f130f6785f1",
+      "new_name": "Centiskorch",
+      "number": "SV019",
+      "gv_id": "GV-PK-SHF-SV019",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "3948110e-b37e-494c-859d-4051b3b8fa2c",
+      "old_name": "Galarian Mr. Mime",
+      "printed_number": "SV020",
+      "new_id": "5fc844bd-f6e8-41e5-8fd7-16178817ee54",
+      "new_name": "Galarian Mr. Mime",
+      "number": "SV020",
+      "gv_id": "GV-PK-SHF-SV020",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "44367ea5-c941-4dcc-bba5-ff8e164ad632",
+      "old_name": "Galarian Mr. Rime",
+      "printed_number": "SV021",
+      "new_id": "99783d8e-adc7-4a77-a084-435cafbf6d50",
+      "new_name": "Galarian Mr. Rime",
+      "number": "SV021",
+      "gv_id": "GV-PK-SHF-SV021",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "884fd3d5-3de6-43a3-bb2a-7b405f692616",
+      "old_name": "Suicune",
+      "printed_number": "SV022",
+      "new_id": "89159e52-9060-4930-8961-c246dd1a8ab8",
+      "new_name": "Suicune",
+      "number": "SV022",
+      "gv_id": "GV-PK-SHF-SV022",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "10ceb5e8-ebab-429e-b0d5-2080b98fcb0d",
+      "old_name": "Galarian Darumaka",
+      "printed_number": "SV023",
+      "new_id": "e3c7f986-9967-4a6c-be4b-9145c6d72cf3",
+      "new_name": "Galarian Darumaka",
+      "number": "SV023",
+      "gv_id": "GV-PK-SHF-SV023",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "856d9b7d-e890-4b09-a905-70989c297b8f",
+      "old_name": "Galarian Darmanitan",
+      "printed_number": "SV024",
+      "new_id": "d22a57db-e423-461b-9308-10cd87eebfb5",
+      "new_name": "Galarian Darmanitan",
+      "number": "SV024",
+      "gv_id": "GV-PK-SHF-SV024",
+      "set_code": "swsh45sv"
+    },
+    {
+      "old_id": "f3e3344b-db00-473e-87ad-d4d025e9bf70",
+      "old_name": "Sobble",
+      "printed_number": "SV025",
+      "new_id": "e9781b07-3165-4519-bd92-8069cf62c4c4",
+      "new_name": "Sobble",
+      "number": "SV025",
+      "gv_id": "GV-PK-SHF-SV025",
+      "set_code": "swsh45sv"
+    }
+  ],
+  "numeric_blockers": [
+    {
+      "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+      "name": "Boss's Orders (Lysandre)",
+      "printed_number": "58",
+      "lawful_base_target_count": 0,
+      "lawful_family_target_count": 0,
+      "collision_types": [
+        "same_number_different_name"
+      ],
+      "candidate_canonical_rows": [
+        {
+          "candidate_card_print_id": "1adc8c40-9657-4152-b792-f2349c582981",
+          "candidate_name": "Boss's Orders",
+          "candidate_number": "58",
+          "candidate_gv_id": "GV-PK-SHF-58",
+          "candidate_set_code": "swsh4.5",
+          "collision_type": "same_number_different_name"
+        }
+      ],
+      "maps_anywhere_lawful": false
+    },
+    {
+      "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+      "name": "Professor's Research (Professor Juniper)",
+      "printed_number": "60",
+      "lawful_base_target_count": 0,
+      "lawful_family_target_count": 0,
+      "collision_types": [
+        "same_number_different_name"
+      ],
+      "candidate_canonical_rows": [
+        {
+          "candidate_card_print_id": "1d04ea71-3ba1-430c-a926-34e5764dc0c4",
+          "candidate_name": "Professor's Research",
+          "candidate_number": "60",
+          "candidate_gv_id": "GV-PK-SHF-60",
+          "candidate_set_code": "swsh4.5",
+          "collision_type": "same_number_different_name"
+        }
+      ],
+      "maps_anywhere_lawful": false
+    }
+  ],
+  "fk_readiness_summary": [
+    {
+      "table_name": "card_print_identity",
+      "column_name": "card_print_id",
+      "row_count": 122
+    },
+    {
+      "table_name": "card_print_traits",
+      "column_name": "card_print_id",
+      "row_count": 122
+    },
+    {
+      "table_name": "card_printings",
+      "column_name": "card_print_id",
+      "row_count": 366
+    },
+    {
+      "table_name": "external_mappings",
+      "column_name": "card_print_id",
+      "row_count": 122
+    },
+    {
+      "table_name": "vault_items",
+      "column_name": "card_id",
+      "row_count": 0
+    }
+  ],
+  "status": "completed"
+}

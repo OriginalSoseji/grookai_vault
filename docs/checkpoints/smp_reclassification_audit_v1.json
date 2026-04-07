@@ -1,0 +1,619 @@
+{
+  "phase": "SMP_RECLASSIFICATION_AUDIT_V1",
+  "generated_at": "2026-04-07T05:18:14.730Z",
+  "total_unresolved": 84,
+  "valid_promo_code_count": 84,
+  "invalid_promo_code_count": 0,
+  "canonical_smp_total_rows": 248,
+  "collapse_candidate_count": 84,
+  "multiple_match_old_count": 0,
+  "reused_new_count": 0,
+  "unmatched_count": 0,
+  "promotion_candidate_count": 0,
+  "promotion_internal_collision_count": 0,
+  "promotion_live_collision_count": 0,
+  "promotion_same_promo_conflict_count": 0,
+  "qualifier_review_count": 0,
+  "canonical_namespace_match_count": 0,
+  "namespace_conflict_count": 84,
+  "final_classification_counts": {
+    "COLLAPSE_SAFE": 84,
+    "PROMOTION_SAFE": 0,
+    "BLOCKED_CANONICAL_CONFLICT": 0,
+    "BLOCKED_INVALID_PROMO_CODE": 0,
+    "QUALIFIER_REVIEW": 0
+  },
+  "next_phase_recommendation": "SMP_ALIAS_COLLAPSE_TO_CANONICAL_SMP_V1",
+  "canonical_smp_target_summary": {
+    "canonical_smp_total_rows": 248,
+    "canonical_smp_non_null_gvid_count": 248
+  },
+  "canonical_smp_sample_rows": [
+    {
+      "id": "beedc951-bf46-46b2-90c3-6372a02adeff",
+      "gv_id": "GV-PK-PR-SM-SM01",
+      "name": "Rowlet",
+      "number": "SM01",
+      "set_code": "smp"
+    },
+    {
+      "id": "0ffa069c-e46e-466a-8c39-87c7611c05c6",
+      "gv_id": "GV-PK-PR-SM-SM02",
+      "name": "Litten",
+      "number": "SM02",
+      "set_code": "smp"
+    },
+    {
+      "id": "8705ea1b-267c-4909-a7d9-87c45da1f8aa",
+      "gv_id": "GV-PK-PR-SM-SM03",
+      "name": "Popplio",
+      "number": "SM03",
+      "set_code": "smp"
+    },
+    {
+      "id": "22422958-332b-4714-a1a7-6179f904d4a6",
+      "gv_id": "GV-PK-PR-SM-SM04",
+      "name": "Pikachu",
+      "number": "SM04",
+      "set_code": "smp"
+    },
+    {
+      "id": "17d1612c-97b7-45ec-bfc0-c79a58ee5d33",
+      "gv_id": "GV-PK-PR-SM-SM05",
+      "name": "Snorlax-GX",
+      "number": "SM05",
+      "set_code": "smp"
+    },
+    {
+      "id": "4b2e1a7b-817e-45fc-9ac5-0de5e6025c90",
+      "gv_id": "GV-PK-PR-SM-SM06",
+      "name": "Rockruff",
+      "number": "SM06",
+      "set_code": "smp"
+    },
+    {
+      "id": "5b049498-602a-4f34-837b-d078cae0d16c",
+      "gv_id": "GV-PK-PR-SM-SM07",
+      "name": "Pikipek",
+      "number": "SM07",
+      "set_code": "smp"
+    },
+    {
+      "id": "d6743b86-0ed1-4143-b8ae-1a99152e951a",
+      "gv_id": "GV-PK-PR-SM-SM08",
+      "name": "Litten",
+      "number": "SM08",
+      "set_code": "smp"
+    },
+    {
+      "id": "c58a7b67-41c0-403a-b2c8-e6e6c372d6bc",
+      "gv_id": "GV-PK-PR-SM-SM09",
+      "name": "Togedemaru",
+      "number": "SM09",
+      "set_code": "smp"
+    },
+    {
+      "id": "3286bd63-b4c4-4203-8755-072274dcee8c",
+      "gv_id": "GV-PK-PR-SM-SM10",
+      "name": "Shiinotic",
+      "number": "SM10",
+      "set_code": "smp"
+    },
+    {
+      "id": "22d4f536-5608-475b-a309-e41be49463aa",
+      "gv_id": "GV-PK-PR-SM-SM11",
+      "name": "Bruxish",
+      "number": "SM11",
+      "set_code": "smp"
+    },
+    {
+      "id": "935ef307-366c-44f4-9ed0-7e4a05351d70",
+      "gv_id": "GV-PK-PR-SM-SM12",
+      "name": "Passimian",
+      "number": "SM12",
+      "set_code": "smp"
+    },
+    {
+      "id": "d568bd63-1c6c-4ef0-a18e-6030e95f5fad",
+      "gv_id": "GV-PK-PR-SM-SM13",
+      "name": "Oranguru",
+      "number": "SM13",
+      "set_code": "smp"
+    },
+    {
+      "id": "81565500-e069-4427-bcf7-1c7756e57e55",
+      "gv_id": "GV-PK-PR-SM-SM14",
+      "name": "Lycanroc-GX",
+      "number": "SM14",
+      "set_code": "smp"
+    },
+    {
+      "id": "9ee849c3-8589-4cef-bdee-f877623b4c18",
+      "gv_id": "GV-PK-PR-SM-SM15",
+      "name": "Zygarde",
+      "number": "SM15",
+      "set_code": "smp"
+    },
+    {
+      "id": "46d0e60e-ad1a-4e37-a437-f81ee779b822",
+      "gv_id": "GV-PK-PR-SM-SM16",
+      "name": "Solgaleo-GX",
+      "number": "SM16",
+      "set_code": "smp"
+    },
+    {
+      "id": "057e6c7d-9b0b-4745-9a3b-eb1b1c7a2629",
+      "gv_id": "GV-PK-PR-SM-SM17",
+      "name": "Lunala-GX",
+      "number": "SM17",
+      "set_code": "smp"
+    },
+    {
+      "id": "64a375d5-671d-4dbc-8fd4-90cdbe31a973",
+      "gv_id": "GV-PK-PR-SM-SM18",
+      "name": "Alolan Sandslash",
+      "number": "SM18",
+      "set_code": "smp"
+    },
+    {
+      "id": "6830b78f-a39e-4913-bac4-4ead288420b3",
+      "gv_id": "GV-PK-PR-SM-SM19",
+      "name": "Oricorio",
+      "number": "SM19",
+      "set_code": "smp"
+    },
+    {
+      "id": "1d9ab8e2-4df7-4bd7-a83e-9a942d26cd13",
+      "gv_id": "GV-PK-PR-SM-SM20",
+      "name": "Mudsdale",
+      "number": "SM20",
+      "set_code": "smp"
+    },
+    {
+      "id": "bfe857c7-8688-4b11-b5bd-4af34ae78c9b",
+      "gv_id": "GV-PK-PR-SM-SM21",
+      "name": "Drampa",
+      "number": "SM21",
+      "set_code": "smp"
+    },
+    {
+      "id": "27e8e509-ecca-4d35-8846-5004d2a1f6a2",
+      "gv_id": "GV-PK-PR-SM-SM22",
+      "name": "Rowlet",
+      "number": "SM22",
+      "set_code": "smp"
+    },
+    {
+      "id": "44a078a9-3c56-4d7b-9a9a-e3e8f0f7625a",
+      "gv_id": "GV-PK-PR-SM-SM23",
+      "name": "Litten",
+      "number": "SM23",
+      "set_code": "smp"
+    },
+    {
+      "id": "ad1126b5-4449-4f99-9112-f6703f15fcb9",
+      "gv_id": "GV-PK-PR-SM-SM24",
+      "name": "Popplio",
+      "number": "SM24",
+      "set_code": "smp"
+    },
+    {
+      "id": "a56c4cca-a649-4cf1-b144-f7d074b3996a",
+      "gv_id": "GV-PK-PR-SM-SM25",
+      "name": "Lurantis",
+      "number": "SM25",
+      "set_code": "smp"
+    }
+  ],
+  "collapse_safe_subset_results": {
+    "collapse_candidate_count": 84,
+    "distinct_old_count": 84,
+    "distinct_new_count": 84,
+    "multiple_match_old_count": 0,
+    "reused_new_count": 0,
+    "unmatched_count": 0,
+    "same_promo_same_name_count": 84,
+    "same_promo_different_name_count": 0,
+    "db_same_promo_same_name_count": 0,
+    "db_same_promo_different_name_count": 84
+  },
+  "collapse_safe_sample_rows": [
+    {
+      "old_id": "3f9de029-3d04-45b2-b822-f55eef1cdceb",
+      "old_name": "Snorlax GX",
+      "printed_number": "SM05",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "snorlax gx",
+      "new_id": "17d1612c-97b7-45ec-bfc0-c79a58ee5d33",
+      "new_name": "Snorlax-GX",
+      "new_number": "SM05",
+      "new_gv_id": "GV-PK-PR-SM-SM05",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "3f70aae1-c93b-4b47-a0fb-456f2f8080e4",
+      "old_name": "Lycanroc GX",
+      "printed_number": "SM14",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "lycanroc gx",
+      "new_id": "81565500-e069-4427-bcf7-1c7756e57e55",
+      "new_name": "Lycanroc-GX",
+      "new_number": "SM14",
+      "new_gv_id": "GV-PK-PR-SM-SM14",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "5df3dc6e-d8f0-48ff-a27d-02a62fe556a5",
+      "old_name": "Solgaleo GX",
+      "printed_number": "SM16",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "solgaleo gx",
+      "new_id": "46d0e60e-ad1a-4e37-a437-f81ee779b822",
+      "new_name": "Solgaleo-GX",
+      "new_number": "SM16",
+      "new_gv_id": "GV-PK-PR-SM-SM16",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "094cdade-5081-44dd-a471-f243448769e7",
+      "old_name": "Lunala GX",
+      "printed_number": "SM17",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "lunala gx",
+      "new_id": "057e6c7d-9b0b-4745-9a3b-eb1b1c7a2629",
+      "new_name": "Lunala-GX",
+      "new_number": "SM17",
+      "new_gv_id": "GV-PK-PR-SM-SM17",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "0af9fd2a-ab61-4668-9871-639335c67692",
+      "old_name": "Tapu Bulu GX",
+      "printed_number": "SM32",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "tapu bulu gx",
+      "new_id": "88261cf7-4b71-48eb-8ea6-4a0b6c0370e9",
+      "new_name": "Tapu Bulu-GX",
+      "new_number": "SM32",
+      "new_gv_id": "GV-PK-PR-SM-SM32",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "75913dfe-1253-4fba-9ad2-c6cb2e96a010",
+      "old_name": "Tapu Koko GX",
+      "printed_number": "SM33",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "tapu koko gx",
+      "new_id": "205e2627-e4b2-416a-bb49-ba3dacb48518",
+      "new_name": "Tapu Koko-GX",
+      "new_number": "SM33",
+      "new_gv_id": "GV-PK-PR-SM-SM33",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "ba39319e-c435-42b7-88d8-c0a751805b2a",
+      "old_name": "Bewear GX",
+      "printed_number": "SM34",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "bewear gx",
+      "new_id": "21ee480d-57e0-4a08-a55a-ae0be5de8a58",
+      "new_name": "Bewear-GX",
+      "new_number": "SM34",
+      "new_gv_id": "GV-PK-PR-SM-SM34",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "bb38d61a-0273-4566-88e5-2a798f83d859",
+      "old_name": "Espeon GX",
+      "printed_number": "SM35",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "espeon gx",
+      "new_id": "2aade6d2-8456-4b26-8e91-17c94f8bfcf0",
+      "new_name": "Espeon-GX",
+      "new_number": "SM35",
+      "new_gv_id": "GV-PK-PR-SM-SM35",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "9127ec10-e9f9-44a9-8a58-61cc2f2deb82",
+      "old_name": "Umbreon GX",
+      "printed_number": "SM36",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "umbreon gx",
+      "new_id": "8479202f-314a-457a-952f-6fd9045aa63b",
+      "new_name": "Umbreon-GX",
+      "new_number": "SM36",
+      "new_gv_id": "GV-PK-PR-SM-SM36",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "62b475c6-392c-49f1-948c-e24195120094",
+      "old_name": "Decidueye GX",
+      "printed_number": "SM37",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "decidueye gx",
+      "new_id": "1c22d6a0-ccca-46ba-ad8e-9603fb82f622",
+      "new_name": "Decidueye-GX",
+      "new_number": "SM37",
+      "new_gv_id": "GV-PK-PR-SM-SM37",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "b6714a2f-061f-4416-9ff4-375b76663290",
+      "old_name": "Incineroar GX",
+      "printed_number": "SM38",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "incineroar gx",
+      "new_id": "d9fcde39-a8f1-4e88-a199-e8c8b0a3a598",
+      "new_name": "Incineroar-GX",
+      "new_number": "SM38",
+      "new_gv_id": "GV-PK-PR-SM-SM38",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "686a9638-3ac9-4833-aee0-2648f14194f7",
+      "old_name": "Primarina GX",
+      "printed_number": "SM39",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "primarina gx",
+      "new_id": "bde19371-30b9-4911-abe1-21515d83fc1f",
+      "new_name": "Primarina-GX",
+      "new_number": "SM39",
+      "new_gv_id": "GV-PK-PR-SM-SM39",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "954c2786-adfa-4107-9e51-d47c58c7568a",
+      "old_name": "Tapu Koko GX",
+      "printed_number": "SM50",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "tapu koko gx",
+      "new_id": "13f0a047-2f20-4ed5-a945-0fdc4cc715c0",
+      "new_name": "Tapu Koko-GX",
+      "new_number": "SM50",
+      "new_gv_id": "GV-PK-PR-SM-SM50",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "649b6b11-9f2d-4bf5-af3f-735d794ceb12",
+      "old_name": "Tsareena GX",
+      "printed_number": "SM56",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "tsareena gx",
+      "new_id": "6761db30-44a9-4306-bc5f-b0d56d4178ba",
+      "new_name": "Tsareena-GX",
+      "new_number": "SM56",
+      "new_gv_id": "GV-PK-PR-SM-SM56",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "6c354d5b-bd8d-46a5-83d1-18f5c287e62b",
+      "old_name": "Ho-Oh GX",
+      "printed_number": "SM57",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "ho-oh gx",
+      "new_id": "3f5364fe-f493-40c0-9737-8143a17f65da",
+      "new_name": "Ho-Oh-GX",
+      "new_number": "SM57",
+      "new_gv_id": "GV-PK-PR-SM-SM57",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "c6ea4ed8-d7cc-4eca-87a8-78baf5d202e1",
+      "old_name": "Necrozma GX",
+      "printed_number": "SM58",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "necrozma gx",
+      "new_id": "23d5cffa-97c5-4fa1-8214-81506d0ae794",
+      "new_name": "Necrozma-GX",
+      "new_number": "SM58",
+      "new_gv_id": "GV-PK-PR-SM-SM58",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "2eeacf19-2b95-4476-9dfa-4f0ee7091ea1",
+      "old_name": "Marshadow GX",
+      "printed_number": "SM59",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "marshadow gx",
+      "new_id": "7d2f8392-b34e-45bd-860f-2c0f2894285e",
+      "new_name": "Marshadow-GX",
+      "new_number": "SM59",
+      "new_gv_id": "GV-PK-PR-SM-SM59",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "b37facf4-8102-4540-99df-c6009c41113d",
+      "old_name": "Charizard GX",
+      "printed_number": "SM60",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "charizard gx",
+      "new_id": "12097966-0f77-4ced-aed9-ba9d50ae38e8",
+      "new_name": "Charizard-GX",
+      "new_number": "SM60",
+      "new_gv_id": "GV-PK-PR-SM-SM60",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "2d84b065-9a49-42d4-8d14-c467c91a2d3b",
+      "old_name": "Golisopod GX",
+      "printed_number": "SM62",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "golisopod gx",
+      "new_id": "f147ca6d-21e0-49f8-8e03-e350619b5d52",
+      "new_name": "Golisopod-GX",
+      "new_number": "SM62",
+      "new_gv_id": "GV-PK-PR-SM-SM62",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "a9c878ec-ffb1-40ef-b7c8-f11fc0e21ff1",
+      "old_name": "Salazzle GX",
+      "printed_number": "SM63",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "salazzle gx",
+      "new_id": "b20580cd-adea-48a9-ad12-781fc3080ad0",
+      "new_name": "Salazzle-GX",
+      "new_number": "SM63",
+      "new_gv_id": "GV-PK-PR-SM-SM63",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "2d9456d2-be92-4c19-becc-df2c4e4b4a62",
+      "old_name": "Pheromosa GX",
+      "printed_number": "SM66",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "pheromosa gx",
+      "new_id": "cbd5aefc-d135-445d-b2d7-237c84808579",
+      "new_name": "Pheromosa-GX",
+      "new_number": "SM66",
+      "new_gv_id": "GV-PK-PR-SM-SM66",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "965f093e-3742-4482-aaa0-e42d49b25f65",
+      "old_name": "Celesteela GX",
+      "printed_number": "SM67",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "celesteela gx",
+      "new_id": "2056d138-139c-4817-87ec-0e89226edcd2",
+      "new_name": "Celesteela-GX",
+      "new_number": "SM67",
+      "new_gv_id": "GV-PK-PR-SM-SM67",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "7e7af4b3-cb11-4b12-8c52-261c66026e82",
+      "old_name": "Xurkitree GX",
+      "printed_number": "SM68",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "xurkitree gx",
+      "new_id": "97453838-6c44-4078-b52c-03d58bb489cc",
+      "new_name": "Xurkitree-GX",
+      "new_number": "SM68",
+      "new_gv_id": "GV-PK-PR-SM-SM68",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "89440f33-fc10-46e9-ad11-2a0280113f92",
+      "old_name": "Buzzwole GX",
+      "printed_number": "SM69",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "buzzwole gx",
+      "new_id": "b8c845ce-611f-4873-9e57-bd4fb3838b54",
+      "new_name": "Buzzwole-GX",
+      "new_number": "SM69",
+      "new_gv_id": "GV-PK-PR-SM-SM69",
+      "new_set_code": "smp"
+    },
+    {
+      "old_id": "e61726a5-c80b-4cda-91e5-3becfb4bd324",
+      "old_name": "Kommo-o GX",
+      "printed_number": "SM71",
+      "variant_key": "",
+      "printed_set_abbrev": "PR-SM",
+      "db_normalized_name": "kommo-o gx",
+      "new_id": "d234a766-6211-4a0d-9e70-343b15c46afc",
+      "new_name": "Kommo-o-GX",
+      "new_number": "SM71",
+      "new_gv_id": "GV-PK-PR-SM-SM71",
+      "new_set_code": "smp"
+    }
+  ],
+  "promotion_safe_subset_results": {
+    "promotion_candidate_count": 0,
+    "promotion_internal_collision_count": 0,
+    "promotion_live_collision_count": 0,
+    "promotion_same_promo_conflict_count": 0
+  },
+  "promotion_safe_sample_rows": [],
+  "blocked_conflict_rows": [],
+  "qualifier_review_rows": [],
+  "invalid_promo_rows": [],
+  "namespace_audit_results": {
+    "canonical_namespace_match_count": 0,
+    "namespace_conflict_count": 84,
+    "canonical_smp_legacy_namespace_row_count": 248
+  },
+  "fk_readiness_snapshot": {
+    "collapse_safe_subset": [
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 84
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 84
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 252
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 84
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0
+      }
+    ],
+    "promotion_safe_subset": [
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0
+      }
+    ]
+  },
+  "status": "completed"
+}

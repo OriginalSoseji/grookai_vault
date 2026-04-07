@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
+import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -421,14 +422,17 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         sets(name,printed_total,printed_set_abbrev,release_date)
       `,
     )
-    .eq("gv_id", gv_id)
-    .single();
+    .in("gv_id", getCompatiblePublicGvIdCandidates(gv_id))
+    .limit(2);
 
   if (error || !data) {
     return null;
   }
 
-  const row = data as PublicCardRow;
+  const row = pickResolvedPublicGvIdRow(data as PublicCardRow[], gv_id);
+  if (!row) {
+    return null;
+  }
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const [fallbackSet, relatedPrints, imageUrl, activeIdentity] = await Promise.all([
     getSetDetailsByCode(row.set_code),

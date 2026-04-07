@@ -1,0 +1,1369 @@
+{
+  "phase": "LC_IDENTITY_AUDIT_V1",
+  "generated_at": "2026-04-05T22:21:20.353Z",
+  "target_set_code_identity": "lc",
+  "target_identity_domain": "pokemon_eng_standard",
+  "conflicting_canonical_set_code": "base6",
+  "total_unresolved": 110,
+  "numeric_unresolved": 110,
+  "non_numeric_unresolved": 0,
+  "canonical_base_count": 110,
+  "canonical_non_null_gvid_count": 110,
+  "same_name_same_number_overlap_count": 108,
+  "same_number_different_name_count": 2,
+  "same_name_different_number_count": 0,
+  "multiple_canonical_match_count": 0,
+  "zero_canonical_match_count": 0,
+  "proposed_gvid_collision_count": 110,
+  "collision_same_name_same_number_count": 108,
+  "collision_same_number_different_name_count": 2,
+  "printed_set_abbrev": "LC",
+  "printed_set_abbrev_present": true,
+  "canonical_surface": {
+    "canonical_lc_count": 0,
+    "canonical_lc_non_null_gvid_count": 0,
+    "canonical_base6_count": 110,
+    "canonical_base6_non_null_gvid_count": 110,
+    "canonical_lc_samples": [],
+    "canonical_base6_samples": [
+      {
+        "id": "fd852708-bb5d-4a35-8c1a-10756ed4747d",
+        "gv_id": "GV-PK-LC-1",
+        "name": "Alakazam",
+        "number": "1",
+        "set_code": "base6"
+      },
+      {
+        "id": "0c2945c5-28f7-41b8-bb86-1fd8ab38cd72",
+        "gv_id": "GV-PK-LC-2",
+        "name": "Articuno",
+        "number": "2",
+        "set_code": "base6"
+      },
+      {
+        "id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+        "gv_id": "GV-PK-LC-3",
+        "name": "Charizard",
+        "number": "3",
+        "set_code": "base6"
+      },
+      {
+        "id": "f443a31c-1740-4dde-9319-a779dd857646",
+        "gv_id": "GV-PK-LC-4",
+        "name": "Dark Blastoise",
+        "number": "4",
+        "set_code": "base6"
+      },
+      {
+        "id": "03151ac4-c239-438b-808e-c723454f2c4c",
+        "gv_id": "GV-PK-LC-5",
+        "name": "Dark Dragonite",
+        "number": "5",
+        "set_code": "base6"
+      },
+      {
+        "id": "bc9e4ac9-227c-4a4c-99d2-1ad83f8497e3",
+        "gv_id": "GV-PK-LC-6",
+        "name": "Dark Persian",
+        "number": "6",
+        "set_code": "base6"
+      },
+      {
+        "id": "554c3973-f5c2-41d4-9b0a-90779ca68ec8",
+        "gv_id": "GV-PK-LC-7",
+        "name": "Dark Raichu",
+        "number": "7",
+        "set_code": "base6"
+      },
+      {
+        "id": "fbf70f66-ef68-4b4c-95a4-fafe2da79520",
+        "gv_id": "GV-PK-LC-8",
+        "name": "Dark Slowbro",
+        "number": "8",
+        "set_code": "base6"
+      },
+      {
+        "id": "266c30a5-8630-4a0a-8407-db785ca1c848",
+        "gv_id": "GV-PK-LC-9",
+        "name": "Dark Vaporeon",
+        "number": "9",
+        "set_code": "base6"
+      },
+      {
+        "id": "49d498d4-c40c-4f57-b41c-2c2e87c13ce1",
+        "gv_id": "GV-PK-LC-10",
+        "name": "Flareon",
+        "number": "10",
+        "set_code": "base6"
+      },
+      {
+        "id": "be7b6873-636a-4d95-8507-7edca2659aea",
+        "gv_id": "GV-PK-LC-11",
+        "name": "Gengar",
+        "number": "11",
+        "set_code": "base6"
+      },
+      {
+        "id": "0c7cbb95-d352-4012-a50d-3ff95ef7706a",
+        "gv_id": "GV-PK-LC-12",
+        "name": "Gyarados",
+        "number": "12",
+        "set_code": "base6"
+      },
+      {
+        "id": "1d5b5cce-1150-4a3f-8b24-eaa9518037d2",
+        "gv_id": "GV-PK-LC-13",
+        "name": "Hitmonlee",
+        "number": "13",
+        "set_code": "base6"
+      },
+      {
+        "id": "b948b309-e60a-4adf-88ea-f83ef43e92ea",
+        "gv_id": "GV-PK-LC-14",
+        "name": "Jolteon",
+        "number": "14",
+        "set_code": "base6"
+      },
+      {
+        "id": "f158d8bc-69bf-4f26-ac34-c14c0acc3ad7",
+        "gv_id": "GV-PK-LC-15",
+        "name": "Machamp",
+        "number": "15",
+        "set_code": "base6"
+      },
+      {
+        "id": "f5a89565-79d5-44b5-befb-779556e3a4aa",
+        "gv_id": "GV-PK-LC-16",
+        "name": "Muk",
+        "number": "16",
+        "set_code": "base6"
+      },
+      {
+        "id": "0b9638e4-b778-4039-b189-14b50d8a8c87",
+        "gv_id": "GV-PK-LC-17",
+        "name": "Ninetales",
+        "number": "17",
+        "set_code": "base6"
+      },
+      {
+        "id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+        "gv_id": "GV-PK-LC-18",
+        "name": "Venusaur",
+        "number": "18",
+        "set_code": "base6"
+      },
+      {
+        "id": "4f5169b3-25cc-4ba0-a191-ab601bf8b1c8",
+        "gv_id": "GV-PK-LC-19",
+        "name": "Zapdos",
+        "number": "19",
+        "set_code": "base6"
+      },
+      {
+        "id": "a71d1607-d3f4-4d72-b135-af5c5fb5f2d3",
+        "gv_id": "GV-PK-LC-20",
+        "name": "Beedrill",
+        "number": "20",
+        "set_code": "base6"
+      },
+      {
+        "id": "f508366b-c319-42d8-b8e4-992578689dd8",
+        "gv_id": "GV-PK-LC-21",
+        "name": "Butterfree",
+        "number": "21",
+        "set_code": "base6"
+      },
+      {
+        "id": "66cf8395-e31a-4d88-a0c2-68c65d146c3a",
+        "gv_id": "GV-PK-LC-22",
+        "name": "Electrode",
+        "number": "22",
+        "set_code": "base6"
+      },
+      {
+        "id": "c3c44f38-1f85-4702-a1fa-89a83d1b57ca",
+        "gv_id": "GV-PK-LC-23",
+        "name": "Exeggutor",
+        "number": "23",
+        "set_code": "base6"
+      },
+      {
+        "id": "76961ad5-d424-4780-b584-c94c2be33431",
+        "gv_id": "GV-PK-LC-24",
+        "name": "Golem",
+        "number": "24",
+        "set_code": "base6"
+      },
+      {
+        "id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+        "gv_id": "GV-PK-LC-25",
+        "name": "Hypno",
+        "number": "25",
+        "set_code": "base6"
+      }
+    ]
+  },
+  "strict_overlap": {
+    "same_name_same_number_overlap_count": 108,
+    "same_number_different_name_count": 2,
+    "same_name_different_number_count": 0,
+    "multiple_canonical_match_count": 0,
+    "zero_canonical_match_count": 0,
+    "anomaly_rows": [
+      {
+        "card_print_id": "2862cf56-403e-4660-aae9-ced8dc3fe457",
+        "unresolved_name": "Nidoran♀",
+        "printed_number": "82",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      },
+      {
+        "card_print_id": "d0f217cc-7087-4bdd-be2c-6ed9279c0c19",
+        "unresolved_name": "Nidoran♂",
+        "printed_number": "83",
+        "same_name_same_number_match_count": 0,
+        "same_number_different_name_match_count": 1,
+        "same_name_different_number_match_count": 0,
+        "exact_number_match_count": 1
+      }
+    ]
+  },
+  "repo_normalized_overlap": {
+    "repo_normalized_same_name_same_number_count": 110,
+    "repo_multiple_match_count": 0,
+    "repo_zero_match_count": 0,
+    "rows_not_proven": [],
+    "anomaly_repairs": [
+      {
+        "card_print_id": "2862cf56-403e-4660-aae9-ced8dc3fe457",
+        "unresolved_name": "Nidoran♀",
+        "printed_number": "82",
+        "unresolved_repo_normalized_name": "nidoran",
+        "exact_number_match_count": 1,
+        "repo_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "ced4a7c4-34a4-4665-ad22-24d6db57eae2",
+            "canonical_name": "Nidoran ♀",
+            "canonical_number": "82",
+            "canonical_gv_id": "GV-PK-LC-82",
+            "canonical_set_code": "base6"
+          }
+        ]
+      },
+      {
+        "card_print_id": "d0f217cc-7087-4bdd-be2c-6ed9279c0c19",
+        "unresolved_name": "Nidoran♂",
+        "printed_number": "83",
+        "unresolved_repo_normalized_name": "nidoran",
+        "exact_number_match_count": 1,
+        "repo_same_name_same_number_match_count": 1,
+        "canonical_matches": [
+          {
+            "canonical_card_print_id": "7c92fb56-8a57-424e-b697-fedd39da0e73",
+            "canonical_name": "Nidoran ♂",
+            "canonical_number": "83",
+            "canonical_gv_id": "GV-PK-LC-83",
+            "canonical_set_code": "base6"
+          }
+        ]
+      }
+    ]
+  },
+  "proposed_gvid_audit": {
+    "missing_printed_set_abbrev_count": 0,
+    "derivation_error_count": 0,
+    "proposed_gvid_collision_count": 110,
+    "collision_breakdown_by_target_set": {
+      "base6": 110
+    },
+    "collision_same_name_same_number_count": 108,
+    "collision_same_number_different_name_count": 2,
+    "collision_samples": [
+      {
+        "card_print_id": "b7eb52a7-9218-40de-a8af-252ac11d2798",
+        "name": "Alakazam",
+        "printed_number": "1",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-1",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "fd852708-bb5d-4a35-8c1a-10756ed4747d",
+          "gv_id": "GV-PK-LC-1",
+          "set_code": "base6",
+          "number": "1",
+          "name": "Alakazam"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "61885896-0dbe-48ea-b9d3-32c831d1d596",
+        "name": "Articuno",
+        "printed_number": "2",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-2",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "0c2945c5-28f7-41b8-bb86-1fd8ab38cd72",
+          "gv_id": "GV-PK-LC-2",
+          "set_code": "base6",
+          "number": "2",
+          "name": "Articuno"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "7202d158-48cd-4207-a183-a3744a002e4c",
+        "name": "Charizard",
+        "printed_number": "3",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-3",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "6e180172-3fdb-4278-ad21-dfba4c400e3e",
+          "gv_id": "GV-PK-LC-3",
+          "set_code": "base6",
+          "number": "3",
+          "name": "Charizard"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "fb307238-df68-488b-81e3-6f029d41c0f0",
+        "name": "Dark Blastoise",
+        "printed_number": "4",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-4",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "f443a31c-1740-4dde-9319-a779dd857646",
+          "gv_id": "GV-PK-LC-4",
+          "set_code": "base6",
+          "number": "4",
+          "name": "Dark Blastoise"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "b3907563-b9af-48fb-a245-2935ba145d15",
+        "name": "Dark Dragonite",
+        "printed_number": "5",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-5",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "03151ac4-c239-438b-808e-c723454f2c4c",
+          "gv_id": "GV-PK-LC-5",
+          "set_code": "base6",
+          "number": "5",
+          "name": "Dark Dragonite"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "d9a8ff8a-1007-498d-8b0d-0b63a360fdec",
+        "name": "Dark Persian",
+        "printed_number": "6",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-6",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "bc9e4ac9-227c-4a4c-99d2-1ad83f8497e3",
+          "gv_id": "GV-PK-LC-6",
+          "set_code": "base6",
+          "number": "6",
+          "name": "Dark Persian"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "e700d886-1ec1-4fea-ae8c-a9192eefa8bb",
+        "name": "Dark Raichu",
+        "printed_number": "7",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-7",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "554c3973-f5c2-41d4-9b0a-90779ca68ec8",
+          "gv_id": "GV-PK-LC-7",
+          "set_code": "base6",
+          "number": "7",
+          "name": "Dark Raichu"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "5111da85-44b9-4496-9ac6-54a7f608139d",
+        "name": "Dark Slowbro",
+        "printed_number": "8",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-8",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "fbf70f66-ef68-4b4c-95a4-fafe2da79520",
+          "gv_id": "GV-PK-LC-8",
+          "set_code": "base6",
+          "number": "8",
+          "name": "Dark Slowbro"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "6fc9dbe8-1e7a-493d-ac98-fe2b87df07a1",
+        "name": "Dark Vaporeon",
+        "printed_number": "9",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-9",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "266c30a5-8630-4a0a-8407-db785ca1c848",
+          "gv_id": "GV-PK-LC-9",
+          "set_code": "base6",
+          "number": "9",
+          "name": "Dark Vaporeon"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "491589a4-2a78-4bbd-b497-9d394c49f00d",
+        "name": "Flareon",
+        "printed_number": "10",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-10",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "49d498d4-c40c-4f57-b41c-2c2e87c13ce1",
+          "gv_id": "GV-PK-LC-10",
+          "set_code": "base6",
+          "number": "10",
+          "name": "Flareon"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "04807eb1-efd0-4945-9719-648e86a5bda6",
+        "name": "Gengar",
+        "printed_number": "11",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-11",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "be7b6873-636a-4d95-8507-7edca2659aea",
+          "gv_id": "GV-PK-LC-11",
+          "set_code": "base6",
+          "number": "11",
+          "name": "Gengar"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "037a81b7-6a5c-4c33-8304-b488f24287b3",
+        "name": "Gyarados",
+        "printed_number": "12",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-12",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "0c7cbb95-d352-4012-a50d-3ff95ef7706a",
+          "gv_id": "GV-PK-LC-12",
+          "set_code": "base6",
+          "number": "12",
+          "name": "Gyarados"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "fbebec09-4995-46fa-8c60-4f2047b90832",
+        "name": "Hitmonlee",
+        "printed_number": "13",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-13",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "1d5b5cce-1150-4a3f-8b24-eaa9518037d2",
+          "gv_id": "GV-PK-LC-13",
+          "set_code": "base6",
+          "number": "13",
+          "name": "Hitmonlee"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "d09f07d0-78dd-4289-856d-a89fbb443229",
+        "name": "Jolteon",
+        "printed_number": "14",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-14",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "b948b309-e60a-4adf-88ea-f83ef43e92ea",
+          "gv_id": "GV-PK-LC-14",
+          "set_code": "base6",
+          "number": "14",
+          "name": "Jolteon"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "21322e0c-76c6-4e6f-9efb-f52f54c6da5b",
+        "name": "Machamp",
+        "printed_number": "15",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-15",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "f158d8bc-69bf-4f26-ac34-c14c0acc3ad7",
+          "gv_id": "GV-PK-LC-15",
+          "set_code": "base6",
+          "number": "15",
+          "name": "Machamp"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "1572d789-a46b-418c-af3b-dbed2fd7c38a",
+        "name": "Muk",
+        "printed_number": "16",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-16",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "f5a89565-79d5-44b5-befb-779556e3a4aa",
+          "gv_id": "GV-PK-LC-16",
+          "set_code": "base6",
+          "number": "16",
+          "name": "Muk"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "ca91fd49-53a4-43b6-aa38-042410afd243",
+        "name": "Ninetales",
+        "printed_number": "17",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-17",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "0b9638e4-b778-4039-b189-14b50d8a8c87",
+          "gv_id": "GV-PK-LC-17",
+          "set_code": "base6",
+          "number": "17",
+          "name": "Ninetales"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "84237ab2-d748-4590-b820-14e934cecfcb",
+        "name": "Venusaur",
+        "printed_number": "18",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-18",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "ee30af6c-dcb4-4e1d-870c-983e0ea208dd",
+          "gv_id": "GV-PK-LC-18",
+          "set_code": "base6",
+          "number": "18",
+          "name": "Venusaur"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "460df6b4-b8cd-447b-82eb-9dbdc3cbc328",
+        "name": "Zapdos",
+        "printed_number": "19",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-19",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "4f5169b3-25cc-4ba0-a191-ab601bf8b1c8",
+          "gv_id": "GV-PK-LC-19",
+          "set_code": "base6",
+          "number": "19",
+          "name": "Zapdos"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "5c9dbe30-dfde-4ece-ae6a-9d07327075c2",
+        "name": "Beedrill",
+        "printed_number": "20",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-20",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "a71d1607-d3f4-4d72-b135-af5c5fb5f2d3",
+          "gv_id": "GV-PK-LC-20",
+          "set_code": "base6",
+          "number": "20",
+          "name": "Beedrill"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "5bc5af10-e344-4446-9b1c-f011ea203378",
+        "name": "Butterfree",
+        "printed_number": "21",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-21",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "f508366b-c319-42d8-b8e4-992578689dd8",
+          "gv_id": "GV-PK-LC-21",
+          "set_code": "base6",
+          "number": "21",
+          "name": "Butterfree"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "40287002-2feb-4615-98ab-4a3d94e4ea0f",
+        "name": "Electrode",
+        "printed_number": "22",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-22",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "66cf8395-e31a-4d88-a0c2-68c65d146c3a",
+          "gv_id": "GV-PK-LC-22",
+          "set_code": "base6",
+          "number": "22",
+          "name": "Electrode"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "131bbe42-9bb5-48a1-982a-e3aa45b76acb",
+        "name": "Exeggutor",
+        "printed_number": "23",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-23",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "c3c44f38-1f85-4702-a1fa-89a83d1b57ca",
+          "gv_id": "GV-PK-LC-23",
+          "set_code": "base6",
+          "number": "23",
+          "name": "Exeggutor"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "9ac236bd-dcf9-4293-be08-7cb6a257e60f",
+        "name": "Golem",
+        "printed_number": "24",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-24",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "76961ad5-d424-4780-b584-c94c2be33431",
+          "gv_id": "GV-PK-LC-24",
+          "set_code": "base6",
+          "number": "24",
+          "name": "Golem"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      },
+      {
+        "card_print_id": "e5ec3451-20e2-4b59-a973-9588dbeb0522",
+        "name": "Hypno",
+        "printed_number": "25",
+        "printed_set_abbrev": "LC",
+        "proposed_gv_id": "GV-PK-LC-25",
+        "derivation_error": null,
+        "collides_with": {
+          "id": "603c3b92-a5e4-4790-84c1-e055c9a9c2ed",
+          "gv_id": "GV-PK-LC-25",
+          "set_code": "base6",
+          "number": "25",
+          "name": "Hypno"
+        },
+        "collision_is_same_name_same_number": true,
+        "collision_is_same_number_different_name": false
+      }
+    ]
+  },
+  "printed_abbrev_validation": {
+    "printed_set_abbrev": "LC",
+    "printed_set_abbrev_present": true,
+    "printed_total": 110,
+    "printed_total_present": true,
+    "shared_abbrev_set_codes": [
+      "base6",
+      "lc"
+    ],
+    "shared_with_another_live_canonical_set": true,
+    "shared_abbrev_explains_class_c": true,
+    "set_metadata_rows": [
+      {
+        "id": "1e2da55e-a5d6-463f-814e-3da6fd1fb6c4",
+        "code": "base6",
+        "name": "Legendary Collection",
+        "printed_set_abbrev": "LC",
+        "printed_total": 110,
+        "source": {
+          "pokemonapi": {
+            "id": "base6",
+            "name": "Legendary Collection",
+            "total": 110,
+            "images": {
+              "logo": "https://images.pokemontcg.io/base6/logo.png",
+              "symbol": "https://images.pokemontcg.io/base6/symbol.png"
+            },
+            "series": "Other",
+            "ptcgoCode": "LC",
+            "releaseDate": "2002/05/24",
+            "printedTotal": 110
+          }
+        }
+      },
+      {
+        "id": "92146da9-0a63-4878-89e9-4b98a839e1b1",
+        "code": "lc",
+        "name": "Legendary Collection",
+        "printed_set_abbrev": "LC",
+        "printed_total": 110,
+        "source": {
+          "tcgdex": {
+            "id": "lc",
+            "raw": {
+              "id": "lc",
+              "logo": "https://assets.tcgdex.net/en/lc/lc/logo",
+              "name": "Legendary Collection",
+              "symbol": "https://assets.tcgdex.net/univ/lc/lc/symbol",
+              "cardCount": {
+                "total": 110,
+                "official": 110
+              }
+            },
+            "name": "Legendary Collection",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          }
+        }
+      }
+    ]
+  },
+  "raw_provenance_evidence": {
+    "unresolved_tcgdex_mapping_count": 110,
+    "unresolved_tcgdex_raw_link_count": 110,
+    "raw_set_ids": [
+      "lc"
+    ],
+    "evidence_strength": "strong",
+    "supports_alias_family_realign_hypothesis": true,
+    "sample_rows": [
+      {
+        "card_print_id": "b7eb52a7-9218-40de-a8af-252ac11d2798",
+        "name": "Alakazam",
+        "printed_number": "1",
+        "external_id": "lc-1",
+        "raw_import_id": "8203",
+        "raw_card_id": "lc-1",
+        "raw_set_id": "lc",
+        "raw_local_id": "1",
+        "raw_name": "Alakazam"
+      },
+      {
+        "card_print_id": "61885896-0dbe-48ea-b9d3-32c831d1d596",
+        "name": "Articuno",
+        "printed_number": "2",
+        "external_id": "lc-2",
+        "raw_import_id": "8204",
+        "raw_card_id": "lc-2",
+        "raw_set_id": "lc",
+        "raw_local_id": "2",
+        "raw_name": "Articuno"
+      },
+      {
+        "card_print_id": "7202d158-48cd-4207-a183-a3744a002e4c",
+        "name": "Charizard",
+        "printed_number": "3",
+        "external_id": "lc-3",
+        "raw_import_id": "8205",
+        "raw_card_id": "lc-3",
+        "raw_set_id": "lc",
+        "raw_local_id": "3",
+        "raw_name": "Charizard"
+      },
+      {
+        "card_print_id": "fb307238-df68-488b-81e3-6f029d41c0f0",
+        "name": "Dark Blastoise",
+        "printed_number": "4",
+        "external_id": "lc-4",
+        "raw_import_id": "8206",
+        "raw_card_id": "lc-4",
+        "raw_set_id": "lc",
+        "raw_local_id": "4",
+        "raw_name": "Dark Blastoise"
+      },
+      {
+        "card_print_id": "b3907563-b9af-48fb-a245-2935ba145d15",
+        "name": "Dark Dragonite",
+        "printed_number": "5",
+        "external_id": "lc-5",
+        "raw_import_id": "8207",
+        "raw_card_id": "lc-5",
+        "raw_set_id": "lc",
+        "raw_local_id": "5",
+        "raw_name": "Dark Dragonite"
+      },
+      {
+        "card_print_id": "d9a8ff8a-1007-498d-8b0d-0b63a360fdec",
+        "name": "Dark Persian",
+        "printed_number": "6",
+        "external_id": "lc-6",
+        "raw_import_id": "8208",
+        "raw_card_id": "lc-6",
+        "raw_set_id": "lc",
+        "raw_local_id": "6",
+        "raw_name": "Dark Persian"
+      },
+      {
+        "card_print_id": "e700d886-1ec1-4fea-ae8c-a9192eefa8bb",
+        "name": "Dark Raichu",
+        "printed_number": "7",
+        "external_id": "lc-7",
+        "raw_import_id": "8209",
+        "raw_card_id": "lc-7",
+        "raw_set_id": "lc",
+        "raw_local_id": "7",
+        "raw_name": "Dark Raichu"
+      },
+      {
+        "card_print_id": "5111da85-44b9-4496-9ac6-54a7f608139d",
+        "name": "Dark Slowbro",
+        "printed_number": "8",
+        "external_id": "lc-8",
+        "raw_import_id": "8210",
+        "raw_card_id": "lc-8",
+        "raw_set_id": "lc",
+        "raw_local_id": "8",
+        "raw_name": "Dark Slowbro"
+      },
+      {
+        "card_print_id": "6fc9dbe8-1e7a-493d-ac98-fe2b87df07a1",
+        "name": "Dark Vaporeon",
+        "printed_number": "9",
+        "external_id": "lc-9",
+        "raw_import_id": "8211",
+        "raw_card_id": "lc-9",
+        "raw_set_id": "lc",
+        "raw_local_id": "9",
+        "raw_name": "Dark Vaporeon"
+      },
+      {
+        "card_print_id": "491589a4-2a78-4bbd-b497-9d394c49f00d",
+        "name": "Flareon",
+        "printed_number": "10",
+        "external_id": "lc-10",
+        "raw_import_id": "8212",
+        "raw_card_id": "lc-10",
+        "raw_set_id": "lc",
+        "raw_local_id": "10",
+        "raw_name": "Flareon"
+      },
+      {
+        "card_print_id": "04807eb1-efd0-4945-9719-648e86a5bda6",
+        "name": "Gengar",
+        "printed_number": "11",
+        "external_id": "lc-11",
+        "raw_import_id": "8213",
+        "raw_card_id": "lc-11",
+        "raw_set_id": "lc",
+        "raw_local_id": "11",
+        "raw_name": "Gengar"
+      },
+      {
+        "card_print_id": "037a81b7-6a5c-4c33-8304-b488f24287b3",
+        "name": "Gyarados",
+        "printed_number": "12",
+        "external_id": "lc-12",
+        "raw_import_id": "8214",
+        "raw_card_id": "lc-12",
+        "raw_set_id": "lc",
+        "raw_local_id": "12",
+        "raw_name": "Gyarados"
+      },
+      {
+        "card_print_id": "fbebec09-4995-46fa-8c60-4f2047b90832",
+        "name": "Hitmonlee",
+        "printed_number": "13",
+        "external_id": "lc-13",
+        "raw_import_id": "8215",
+        "raw_card_id": "lc-13",
+        "raw_set_id": "lc",
+        "raw_local_id": "13",
+        "raw_name": "Hitmonlee"
+      },
+      {
+        "card_print_id": "d09f07d0-78dd-4289-856d-a89fbb443229",
+        "name": "Jolteon",
+        "printed_number": "14",
+        "external_id": "lc-14",
+        "raw_import_id": "8216",
+        "raw_card_id": "lc-14",
+        "raw_set_id": "lc",
+        "raw_local_id": "14",
+        "raw_name": "Jolteon"
+      },
+      {
+        "card_print_id": "21322e0c-76c6-4e6f-9efb-f52f54c6da5b",
+        "name": "Machamp",
+        "printed_number": "15",
+        "external_id": "lc-15",
+        "raw_import_id": "8217",
+        "raw_card_id": "lc-15",
+        "raw_set_id": "lc",
+        "raw_local_id": "15",
+        "raw_name": "Machamp"
+      },
+      {
+        "card_print_id": "1572d789-a46b-418c-af3b-dbed2fd7c38a",
+        "name": "Muk",
+        "printed_number": "16",
+        "external_id": "lc-16",
+        "raw_import_id": "8218",
+        "raw_card_id": "lc-16",
+        "raw_set_id": "lc",
+        "raw_local_id": "16",
+        "raw_name": "Muk"
+      },
+      {
+        "card_print_id": "ca91fd49-53a4-43b6-aa38-042410afd243",
+        "name": "Ninetales",
+        "printed_number": "17",
+        "external_id": "lc-17",
+        "raw_import_id": "8219",
+        "raw_card_id": "lc-17",
+        "raw_set_id": "lc",
+        "raw_local_id": "17",
+        "raw_name": "Ninetales"
+      },
+      {
+        "card_print_id": "84237ab2-d748-4590-b820-14e934cecfcb",
+        "name": "Venusaur",
+        "printed_number": "18",
+        "external_id": "lc-18",
+        "raw_import_id": "8220",
+        "raw_card_id": "lc-18",
+        "raw_set_id": "lc",
+        "raw_local_id": "18",
+        "raw_name": "Venusaur"
+      },
+      {
+        "card_print_id": "460df6b4-b8cd-447b-82eb-9dbdc3cbc328",
+        "name": "Zapdos",
+        "printed_number": "19",
+        "external_id": "lc-19",
+        "raw_import_id": "8221",
+        "raw_card_id": "lc-19",
+        "raw_set_id": "lc",
+        "raw_local_id": "19",
+        "raw_name": "Zapdos"
+      },
+      {
+        "card_print_id": "5c9dbe30-dfde-4ece-ae6a-9d07327075c2",
+        "name": "Beedrill",
+        "printed_number": "20",
+        "external_id": "lc-20",
+        "raw_import_id": "8222",
+        "raw_card_id": "lc-20",
+        "raw_set_id": "lc",
+        "raw_local_id": "20",
+        "raw_name": "Beedrill"
+      },
+      {
+        "card_print_id": "5bc5af10-e344-4446-9b1c-f011ea203378",
+        "name": "Butterfree",
+        "printed_number": "21",
+        "external_id": "lc-21",
+        "raw_import_id": "8223",
+        "raw_card_id": "lc-21",
+        "raw_set_id": "lc",
+        "raw_local_id": "21",
+        "raw_name": "Butterfree"
+      },
+      {
+        "card_print_id": "40287002-2feb-4615-98ab-4a3d94e4ea0f",
+        "name": "Electrode",
+        "printed_number": "22",
+        "external_id": "lc-22",
+        "raw_import_id": "8224",
+        "raw_card_id": "lc-22",
+        "raw_set_id": "lc",
+        "raw_local_id": "22",
+        "raw_name": "Electrode"
+      },
+      {
+        "card_print_id": "131bbe42-9bb5-48a1-982a-e3aa45b76acb",
+        "name": "Exeggutor",
+        "printed_number": "23",
+        "external_id": "lc-23",
+        "raw_import_id": "8225",
+        "raw_card_id": "lc-23",
+        "raw_set_id": "lc",
+        "raw_local_id": "23",
+        "raw_name": "Exeggutor"
+      },
+      {
+        "card_print_id": "9ac236bd-dcf9-4293-be08-7cb6a257e60f",
+        "name": "Golem",
+        "printed_number": "24",
+        "external_id": "lc-24",
+        "raw_import_id": "8226",
+        "raw_card_id": "lc-24",
+        "raw_set_id": "lc",
+        "raw_local_id": "24",
+        "raw_name": "Golem"
+      },
+      {
+        "card_print_id": "e5ec3451-20e2-4b59-a973-9588dbeb0522",
+        "name": "Hypno",
+        "printed_number": "25",
+        "external_id": "lc-25",
+        "raw_import_id": "8227",
+        "raw_card_id": "lc-25",
+        "raw_set_id": "lc",
+        "raw_local_id": "25",
+        "raw_name": "Hypno"
+      }
+    ]
+  },
+  "unresolved_source_samples": [
+    {
+      "card_print_id": "b7eb52a7-9218-40de-a8af-252ac11d2798",
+      "name": "Alakazam",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "1",
+      "normalized_printed_name": "alakazam",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "61885896-0dbe-48ea-b9d3-32c831d1d596",
+      "name": "Articuno",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "2",
+      "normalized_printed_name": "articuno",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "7202d158-48cd-4207-a183-a3744a002e4c",
+      "name": "Charizard",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "3",
+      "normalized_printed_name": "charizard",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "fb307238-df68-488b-81e3-6f029d41c0f0",
+      "name": "Dark Blastoise",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "4",
+      "normalized_printed_name": "dark blastoise",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "b3907563-b9af-48fb-a245-2935ba145d15",
+      "name": "Dark Dragonite",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "5",
+      "normalized_printed_name": "dark dragonite",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "d9a8ff8a-1007-498d-8b0d-0b63a360fdec",
+      "name": "Dark Persian",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "6",
+      "normalized_printed_name": "dark persian",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "e700d886-1ec1-4fea-ae8c-a9192eefa8bb",
+      "name": "Dark Raichu",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "7",
+      "normalized_printed_name": "dark raichu",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "5111da85-44b9-4496-9ac6-54a7f608139d",
+      "name": "Dark Slowbro",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "8",
+      "normalized_printed_name": "dark slowbro",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "6fc9dbe8-1e7a-493d-ac98-fe2b87df07a1",
+      "name": "Dark Vaporeon",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "9",
+      "normalized_printed_name": "dark vaporeon",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "491589a4-2a78-4bbd-b497-9d394c49f00d",
+      "name": "Flareon",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "10",
+      "normalized_printed_name": "flareon",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "04807eb1-efd0-4945-9719-648e86a5bda6",
+      "name": "Gengar",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "11",
+      "normalized_printed_name": "gengar",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "037a81b7-6a5c-4c33-8304-b488f24287b3",
+      "name": "Gyarados",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "12",
+      "normalized_printed_name": "gyarados",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "fbebec09-4995-46fa-8c60-4f2047b90832",
+      "name": "Hitmonlee",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "13",
+      "normalized_printed_name": "hitmonlee",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "d09f07d0-78dd-4289-856d-a89fbb443229",
+      "name": "Jolteon",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "14",
+      "normalized_printed_name": "jolteon",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "21322e0c-76c6-4e6f-9efb-f52f54c6da5b",
+      "name": "Machamp",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "15",
+      "normalized_printed_name": "machamp",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "1572d789-a46b-418c-af3b-dbed2fd7c38a",
+      "name": "Muk",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "16",
+      "normalized_printed_name": "muk",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "ca91fd49-53a4-43b6-aa38-042410afd243",
+      "name": "Ninetales",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "17",
+      "normalized_printed_name": "ninetales",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "84237ab2-d748-4590-b820-14e934cecfcb",
+      "name": "Venusaur",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "18",
+      "normalized_printed_name": "venusaur",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "460df6b4-b8cd-447b-82eb-9dbdc3cbc328",
+      "name": "Zapdos",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "19",
+      "normalized_printed_name": "zapdos",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "5c9dbe30-dfde-4ece-ae6a-9d07327075c2",
+      "name": "Beedrill",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "20",
+      "normalized_printed_name": "beedrill",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "5bc5af10-e344-4446-9b1c-f011ea203378",
+      "name": "Butterfree",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "21",
+      "normalized_printed_name": "butterfree",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "40287002-2feb-4615-98ab-4a3d94e4ea0f",
+      "name": "Electrode",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "22",
+      "normalized_printed_name": "electrode",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "131bbe42-9bb5-48a1-982a-e3aa45b76acb",
+      "name": "Exeggutor",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "23",
+      "normalized_printed_name": "exeggutor",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "9ac236bd-dcf9-4293-be08-7cb6a257e60f",
+      "name": "Golem",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "24",
+      "normalized_printed_name": "golem",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    },
+    {
+      "card_print_id": "e5ec3451-20e2-4b59-a973-9588dbeb0522",
+      "name": "Hypno",
+      "parent_set_code": null,
+      "variant_key": "",
+      "printed_number": "25",
+      "normalized_printed_name": "hypno",
+      "set_code": "lc",
+      "set_name": "Legendary Collection",
+      "printed_set_abbrev": "LC",
+      "printed_total": 110
+    }
+  ],
+  "final_classification": "OUTCOME C — FAMILY REALIGNMENT",
+  "next_phase_recommendation": "Set-scoped alias-family realignment for Legendary Collection: collapse the 110 unresolved lc parents onto canonical base6 parents that already own the live GV-PK-LC-* namespace. Preserve canonical base6 rows and existing gv_id values. Do not promote and do not mint new lc gv_id rows.",
+  "exact_next_execution_mode": "LC_ALIAS_REALIGNMENT_COLLAPSE_TO_BASE6",
+  "confirms_global_class_c": true
+}

@@ -648,12 +648,16 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
 
   const setRow = setRows[0];
+  let namespaceDecision = null;
   const gvId = buildCardPrintGvIdV1({
     setCode: setRow.code,
     printedSetAbbrev: setRow.printed_set_abbrev,
     number: numberPlain,
     numberPlain,
     variantKey,
+    onNamespaceDecision(decision) {
+      namespaceDecision = decision;
+    },
   });
   const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain, variantKey);
   if (existingRows.length > 1) {
@@ -709,6 +713,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
         result_card_print_id: existingRow.id,
         variant_key: variantKey,
         gv_id: existingGvId ?? gvId,
+        gv_id_namespace_decision: namespaceDecision,
       },
       payload,
       candidate,
@@ -747,6 +752,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       card_name: cardName,
       variant_key: variantKey,
       gv_id: gvId,
+      gv_id_namespace_decision: namespaceDecision,
       tcgplayer_id: tcgplayerId,
       image_source: normalizedFrontImagePath ? 'identity' : null,
       image_path: normalizedFrontImagePath,

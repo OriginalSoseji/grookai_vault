@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +21,7 @@ import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
+import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
@@ -131,6 +132,9 @@ export default async function CardPage({
   const resolvedCard = card;
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
+  if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
+    permanentRedirect(buildCardHref(card.gv_id, compareCardsParam));
+  }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
   const resolvedCardImageSrc = normalizeCardImageUrl(resolvedCard.image_url) ?? undefined;
   const resolvedCardImageFallback = buildTcgDexImageUrl(resolvedCard.tcgdex_external_id);

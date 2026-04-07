@@ -1,0 +1,423 @@
+{
+  "phase": "ECARD3_RECLASSIFICATION_AUDIT_V1",
+  "generated_at": "2026-04-07T15:25:15.795Z",
+  "total_unresolved": 15,
+  "numeric_token_count": 4,
+  "holo_token_count": 11,
+  "invalid_token_count": 0,
+  "canonical_ecard3_total_rows": 171,
+  "canonical_numeric_count": 146,
+  "canonical_holo_count": 25,
+  "collapse_candidate_count": 0,
+  "multiple_match_old_count": 0,
+  "reused_new_count": 0,
+  "unmatched_count": 15,
+  "same_token_same_name_count": 0,
+  "same_token_different_name_count": 0,
+  "format_drift_candidate_count": 0,
+  "promotion_candidate_count": 15,
+  "promotion_internal_collision_count": 0,
+  "promotion_live_collision_count": 0,
+  "promotion_same_token_conflict_count": 0,
+  "qualifier_review_count": 0,
+  "canonical_namespace_match_count": 0,
+  "namespace_conflict_count": 0,
+  "final_classification_counts": {
+    "COLLAPSE_SAFE": 0,
+    "PROMOTION_SAFE": 15,
+    "BLOCKED_CANONICAL_CONFLICT": 0,
+    "BLOCKED_INVALID_TOKEN": 0,
+    "FORMAT_DRIFT_REVIEW": 0,
+    "QUALIFIER_REVIEW": 0
+  },
+  "next_phase_recommendation": "ECARD3_EXACT_TOKEN_PROMOTION_V1",
+  "canonical_ecard3_target_summary": {
+    "canonical_ecard3_total_rows": 171,
+    "canonical_numeric_count": 146,
+    "canonical_holo_count": 25
+  },
+  "canonical_ecard3_sample_rows": [
+    {
+      "id": "6c9932dd-bc88-4979-80b0-25c534b9f4d8",
+      "gv_id": "GV-PK-SK-1",
+      "name": "Aerodactyl",
+      "number": "1",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "57764dd1-3c0e-40b7-815c-7c1e25661383",
+      "gv_id": "GV-PK-SK-2",
+      "name": "Alakazam",
+      "number": "2",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "bb312c53-8d69-42e1-af3e-94e8e9ac5281",
+      "gv_id": "GV-PK-SK-3",
+      "name": "Arcanine",
+      "number": "3",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "246ab94b-926c-4d2d-857f-bb6b6b52e326",
+      "gv_id": "GV-PK-SK-5",
+      "name": "Beedrill",
+      "number": "5",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "8280eb72-e5a6-48cc-bf6a-4891b872e7bf",
+      "gv_id": "GV-PK-SK-7",
+      "name": "Dewgong",
+      "number": "7",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "253ca72d-764c-423d-a456-0eefc6c91c97",
+      "gv_id": "GV-PK-SK-10",
+      "name": "Gengar",
+      "number": "10",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "9fb852ee-8097-4c97-b35e-40d86317fdf1",
+      "gv_id": "GV-PK-SK-11",
+      "name": "Gyarados",
+      "number": "11",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "3b76338d-121d-4652-8c90-8b3582c5ece2",
+      "gv_id": "GV-PK-SK-12",
+      "name": "Houndoom",
+      "number": "12",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "94d0bc20-42c5-4a8a-a1ec-e62cf187062e",
+      "gv_id": "GV-PK-SK-13",
+      "name": "Jolteon",
+      "number": "13",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "406b8434-380b-442f-9f46-2d645cc1a8dc",
+      "gv_id": "GV-PK-SK-14",
+      "name": "Kabutops",
+      "number": "14",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "5764e07a-c746-4ee1-ac8a-0b687fca0128",
+      "gv_id": "GV-PK-SK-15",
+      "name": "Ledian",
+      "number": "15",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "0d854477-bc49-4af5-ab4a-51feee2326aa",
+      "gv_id": "GV-PK-SK-16",
+      "name": "Machamp",
+      "number": "16",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "01d1554e-c6bb-4972-bc56-fbc7d82de97e",
+      "gv_id": "GV-PK-SK-17",
+      "name": "Magcargo",
+      "number": "17",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "c3e228f2-4db5-46c9-b3d0-59dd2c75ecbe",
+      "gv_id": "GV-PK-SK-18",
+      "name": "Magcargo",
+      "number": "18",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "158d0a70-011a-4a2d-b64a-744cc0b4fb4a",
+      "gv_id": "GV-PK-SK-19",
+      "name": "Magneton",
+      "number": "19",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "4c768dc2-fcda-4d36-9fe6-05f374a01780",
+      "gv_id": "GV-PK-SK-20",
+      "name": "Magneton",
+      "number": "20",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "806dcb09-5e71-41cc-8bcf-5da84874eaf0",
+      "gv_id": "GV-PK-SK-21",
+      "name": "Moltres",
+      "number": "21",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "dac641c5-9dbd-497f-92fc-d7a5349c546a",
+      "gv_id": "GV-PK-SK-22",
+      "name": "Nidoqueen",
+      "number": "22",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "3757c019-1820-49b8-a50f-b8b01263170d",
+      "gv_id": "GV-PK-SK-23",
+      "name": "Omastar",
+      "number": "23",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "49d54851-be61-4b3b-8240-4c7c4b4f18c2",
+      "gv_id": "GV-PK-SK-24",
+      "name": "Piloswine",
+      "number": "24",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "c8401e17-49eb-410b-b852-566a58d7161b",
+      "gv_id": "GV-PK-SK-25",
+      "name": "Politoed",
+      "number": "25",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "93cb0b6b-0049-4e68-ba54-1c4a8cfa540a",
+      "gv_id": "GV-PK-SK-26",
+      "name": "Poliwrath",
+      "number": "26",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "744efa2b-74bf-4b33-95d9-8c791fe5c81e",
+      "gv_id": "GV-PK-SK-27",
+      "name": "Raichu",
+      "number": "27",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "f7e1ddbf-3f26-4e24-a00e-2858c0bda17d",
+      "gv_id": "GV-PK-SK-28",
+      "name": "Raikou",
+      "number": "28",
+      "set_code": "ecard3"
+    },
+    {
+      "id": "9e0a2068-b326-42ac-8d6c-fba1e238ef46",
+      "gv_id": "GV-PK-SK-29",
+      "name": "Rhydon",
+      "number": "29",
+      "set_code": "ecard3"
+    }
+  ],
+  "collapse_safe_subset_results": {
+    "collapse_candidate_count": 0,
+    "distinct_old_count": 0,
+    "distinct_new_count": 0,
+    "multiple_match_old_count": 0,
+    "reused_new_count": 0,
+    "unmatched_count": 15,
+    "same_token_same_name_count": 0,
+    "same_token_different_name_count": 0
+  },
+  "collapse_safe_sample_rows": [],
+  "promotion_safe_subset_results": {
+    "promotion_candidate_count": 15,
+    "promotion_internal_collision_count": 0,
+    "promotion_live_collision_count": 0,
+    "promotion_same_token_conflict_count": 0
+  },
+  "promotion_safe_sample_rows": [
+    {
+      "card_print_id": "d0270c83-13c1-4d2b-ae50-19830be9d134",
+      "name": "Articuno",
+      "printed_number": "4",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-4"
+    },
+    {
+      "card_print_id": "36a0af86-f863-4ff0-967c-285a67272dcb",
+      "name": "Crobat",
+      "printed_number": "6",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-6"
+    },
+    {
+      "card_print_id": "6406220f-4684-4f26-a52d-310db5eb5700",
+      "name": "Flareon",
+      "printed_number": "8",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-8"
+    },
+    {
+      "card_print_id": "982bd726-548f-4e0c-9a93-c1301af1342f",
+      "name": "Forretress",
+      "printed_number": "9",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-9"
+    },
+    {
+      "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+      "name": "Kabutops",
+      "printed_number": "H13",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H13"
+    },
+    {
+      "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+      "name": "Ledian",
+      "printed_number": "H14",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H14"
+    },
+    {
+      "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+      "name": "Magcargo",
+      "printed_number": "H16",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H16"
+    },
+    {
+      "card_print_id": "bb73d56c-c46f-4341-b4a1-825a10c2406b",
+      "name": "Magcargo",
+      "printed_number": "H17",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H17"
+    },
+    {
+      "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+      "name": "Magneton",
+      "printed_number": "H18",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H18"
+    },
+    {
+      "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+      "name": "Piloswine",
+      "printed_number": "H22",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H22"
+    },
+    {
+      "card_print_id": "b7c244c2-35bf-4dbd-836c-1341a777d65e",
+      "name": "Politoed",
+      "printed_number": "H23",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H23"
+    },
+    {
+      "card_print_id": "e99d7d18-af64-4d34-b62c-8a795f6da2c3",
+      "name": "Poliwrath",
+      "printed_number": "H24",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H24"
+    },
+    {
+      "card_print_id": "9a1cc452-e8b4-48bf-acc9-e592fe9cc521",
+      "name": "Rhydon",
+      "printed_number": "H27",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H27"
+    },
+    {
+      "card_print_id": "abcf71f3-edd8-4130-aaa3-b7fecada39e2",
+      "name": "Umbreon",
+      "printed_number": "H30",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H30"
+    },
+    {
+      "card_print_id": "7cbee94f-9f6a-441d-98e1-6a50da7f72d7",
+      "name": "Vaporeon",
+      "printed_number": "H31",
+      "variant_key": "",
+      "printed_set_abbrev": "SK",
+      "proposed_gv_id": "GV-PK-SK-H31"
+    }
+  ],
+  "format_drift_results": {
+    "format_drift_candidate_count": 0
+  },
+  "format_drift_sample_rows": [],
+  "blocked_conflict_rows": [],
+  "qualifier_review_rows": [],
+  "invalid_token_rows": [],
+  "namespace_audit_results": {
+    "canonical_namespace_match_count": 0,
+    "namespace_conflict_count": 0
+  },
+  "fk_readiness_snapshot": {
+    "collapse_safe_subset": [
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 0
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0
+      }
+    ],
+    "promotion_safe_subset": [
+      {
+        "table_name": "card_print_identity",
+        "column_name": "card_print_id",
+        "row_count": 15
+      },
+      {
+        "table_name": "card_print_traits",
+        "column_name": "card_print_id",
+        "row_count": 15
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "row_count": 19
+      },
+      {
+        "table_name": "external_mappings",
+        "column_name": "card_print_id",
+        "row_count": 15
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "row_count": 0
+      }
+    ]
+  },
+  "status": "completed"
+}

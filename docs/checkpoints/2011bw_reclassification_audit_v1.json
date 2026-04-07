@@ -1,0 +1,278 @@
+{
+  "phase": "RECLASSIFICATION_AUDIT_FOR_2011BW_TO_MCD11_V1",
+  "generated_at": "2026-04-06T20:22:39.619Z",
+  "total_unresolved": 12,
+  "numeric_unresolved": 12,
+  "non_numeric_unresolved": 0,
+  "canonical_mcd11_total_rows": 12,
+  "mapping_candidate_count": 12,
+  "multiple_match_old_count": 0,
+  "reused_new_count": 0,
+  "unmatched_count": 0,
+  "same_number_same_name_count": 12,
+  "same_number_different_name_count": 0,
+  "canonical_namespace_match_count": 12,
+  "namespace_conflict_count": 0,
+  "final_classification": "OUTCOME A — DUPLICATE_COLLAPSE_TO_MCD11",
+  "next_phase_recommendation": "2011BW_ALIAS_COLLAPSE_TO_MCD11",
+  "canonical_mcd11_sample_rows": [
+    {
+      "id": "e0fd3359-fbc5-47c3-9cba-a184f3d88bac",
+      "gv_id": "GV-PK-MCD-2011-1",
+      "name": "Snivy",
+      "number": "1",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "167088e0-05aa-4d44-b1c1-1d1b67b160cd",
+      "gv_id": "GV-PK-MCD-2011-2",
+      "name": "Maractus",
+      "number": "2",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "ca560f24-c889-42e9-97b8-dcacb0375740",
+      "gv_id": "GV-PK-MCD-2011-3",
+      "name": "Tepig",
+      "number": "3",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "07b71d50-8151-4292-ac49-5305766f9afa",
+      "gv_id": "GV-PK-MCD-2011-4",
+      "name": "Oshawott",
+      "number": "4",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "458b4747-9ec0-4997-9ac0-a1cf5e106ac0",
+      "gv_id": "GV-PK-MCD-2011-5",
+      "name": "Alomomola",
+      "number": "5",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "edecbecf-ea3a-4322-8ab1-62f09d972bb5",
+      "gv_id": "GV-PK-MCD-2011-6",
+      "name": "Blitzle",
+      "number": "6",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "5e9fef92-65af-41f8-a2cd-fc3f6342fc8c",
+      "gv_id": "GV-PK-MCD-2011-7",
+      "name": "Munna",
+      "number": "7",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "d6d724a7-078c-48aa-a042-1758c809d73a",
+      "gv_id": "GV-PK-MCD-2011-8",
+      "name": "Sandile",
+      "number": "8",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "5ed908b4-234b-498d-afa6-38a4977dfba0",
+      "gv_id": "GV-PK-MCD-2011-9",
+      "name": "Zorua",
+      "number": "9",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "4ef958c1-3e63-44ee-955d-b076b8e3d169",
+      "gv_id": "GV-PK-MCD-2011-10",
+      "name": "Klink",
+      "number": "10",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "6a45bd78-12fb-4bd2-b64d-9ab0f964be3d",
+      "gv_id": "GV-PK-MCD-2011-11",
+      "name": "Pidove",
+      "number": "11",
+      "set_code": "mcd11"
+    },
+    {
+      "id": "fe281cd0-3005-4c95-b7e7-555aa783a7ba",
+      "gv_id": "GV-PK-MCD-2011-12",
+      "name": "Audino",
+      "number": "12",
+      "set_code": "mcd11"
+    }
+  ],
+  "mapping_sample_rows": [
+    {
+      "old_id": "99555f58-22ae-44ce-a4b3-57a2e41635ac",
+      "old_name": "Snivy",
+      "printed_number": "1",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "e0fd3359-fbc5-47c3-9cba-a184f3d88bac",
+      "new_name": "Snivy",
+      "number": "1",
+      "gv_id": "GV-PK-MCD-2011-1",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "49f0c8ad-582e-482f-bfad-e05f5a2968d7",
+      "old_name": "Maractus",
+      "printed_number": "2",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "167088e0-05aa-4d44-b1c1-1d1b67b160cd",
+      "new_name": "Maractus",
+      "number": "2",
+      "gv_id": "GV-PK-MCD-2011-2",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "8cac8dd1-d3ec-4a0c-bd75-e83ec8fa3936",
+      "old_name": "Tepig",
+      "printed_number": "3",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "ca560f24-c889-42e9-97b8-dcacb0375740",
+      "new_name": "Tepig",
+      "number": "3",
+      "gv_id": "GV-PK-MCD-2011-3",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "4f60627b-9f4e-4fa1-8d55-679ce918a26f",
+      "old_name": "Oshawott",
+      "printed_number": "4",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "07b71d50-8151-4292-ac49-5305766f9afa",
+      "new_name": "Oshawott",
+      "number": "4",
+      "gv_id": "GV-PK-MCD-2011-4",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "21fa9139-031a-4f30-834c-072c43b14957",
+      "old_name": "Alomomola",
+      "printed_number": "5",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "458b4747-9ec0-4997-9ac0-a1cf5e106ac0",
+      "new_name": "Alomomola",
+      "number": "5",
+      "gv_id": "GV-PK-MCD-2011-5",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "9ba3827c-f0fa-43c5-b73f-5f3a467d7bbf",
+      "old_name": "Blitzle",
+      "printed_number": "6",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "edecbecf-ea3a-4322-8ab1-62f09d972bb5",
+      "new_name": "Blitzle",
+      "number": "6",
+      "gv_id": "GV-PK-MCD-2011-6",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "a357528d-c789-416d-8b65-84edf7cacb9d",
+      "old_name": "Munna",
+      "printed_number": "7",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "5e9fef92-65af-41f8-a2cd-fc3f6342fc8c",
+      "new_name": "Munna",
+      "number": "7",
+      "gv_id": "GV-PK-MCD-2011-7",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "c0b69108-a702-4566-b2eb-63adc5c9f27c",
+      "old_name": "Sandile",
+      "printed_number": "8",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "d6d724a7-078c-48aa-a042-1758c809d73a",
+      "new_name": "Sandile",
+      "number": "8",
+      "gv_id": "GV-PK-MCD-2011-8",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "1d8e4b66-4767-4a22-b211-7659dc622133",
+      "old_name": "Zorua",
+      "printed_number": "9",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "5ed908b4-234b-498d-afa6-38a4977dfba0",
+      "new_name": "Zorua",
+      "number": "9",
+      "gv_id": "GV-PK-MCD-2011-9",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "a7ad1fd2-2643-4593-92dd-e0e0d371b543",
+      "old_name": "Klink",
+      "printed_number": "10",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "4ef958c1-3e63-44ee-955d-b076b8e3d169",
+      "new_name": "Klink",
+      "number": "10",
+      "gv_id": "GV-PK-MCD-2011-10",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "f0eb8536-8933-46b0-aeaa-7db4a1c0c132",
+      "old_name": "Pidove",
+      "printed_number": "11",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "6a45bd78-12fb-4bd2-b64d-9ab0f964be3d",
+      "new_name": "Pidove",
+      "number": "11",
+      "gv_id": "GV-PK-MCD-2011-11",
+      "set_code": "mcd11"
+    },
+    {
+      "old_id": "9f3878be-5c08-47ed-bf7c-101c052c9eca",
+      "old_name": "Audino",
+      "printed_number": "12",
+      "variant_key": "",
+      "printed_set_abbrev": "MCD",
+      "new_id": "fe281cd0-3005-4c95-b7e7-555aa783a7ba",
+      "new_name": "Audino",
+      "number": "12",
+      "gv_id": "GV-PK-MCD-2011-12",
+      "set_code": "mcd11"
+    }
+  ],
+  "fk_readiness_snapshot": [
+    {
+      "table_name": "card_print_identity",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "card_print_traits",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "card_printings",
+      "column_name": "card_print_id",
+      "row_count": 11
+    },
+    {
+      "table_name": "external_mappings",
+      "column_name": "card_print_id",
+      "row_count": 12
+    },
+    {
+      "table_name": "vault_items",
+      "column_name": "card_id",
+      "row_count": 0
+    }
+  ],
+  "status": "completed"
+}

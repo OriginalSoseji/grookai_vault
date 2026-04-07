@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
@@ -77,6 +78,10 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
     return [] as ComparePublicCard[];
   }
 
+  const queryIds = Array.from(
+    new Set(normalizedIds.flatMap((gvId) => getCompatiblePublicGvIdCandidates(gvId))),
+  );
+
   const supabase = createServerComponentClient();
   const { data, error } = await supabase
     .from("card_prints")
@@ -98,7 +103,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
         sets(name,release_date)
       `,
     )
-    .in("gv_id", normalizedIds);
+    .in("gv_id", queryIds);
 
   if (error) {
     throw error;
@@ -108,16 +113,13 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
   const pricesByCardId = await getPublicPricingByCardIds(supabase, cardIds);
 
-  const rowsByGvId = new Map(
-    rows
-      .filter((row): row is PublicCompareCardRow & { gv_id: string } => Boolean(row.gv_id))
-      .map((row) => [row.gv_id, row]),
-  );
-
   const cards: ComparePublicCard[] = [];
 
   for (const gvId of normalizedIds) {
-    const row = rowsByGvId.get(gvId);
+    const row = pickResolvedPublicGvIdRow(
+      rows.filter((candidate): candidate is PublicCompareCardRow & { gv_id: string } => Boolean(candidate.gv_id)),
+      gvId,
+    );
     if (!row) {
       continue;
     }

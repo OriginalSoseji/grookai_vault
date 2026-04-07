@@ -103,12 +103,16 @@ async function findConflictingRow(client, gvId, cardPrintId) {
 }
 
 async function assignOne(client, row, apply) {
+  let namespaceDecision = null;
   const plannedGvId = buildCardPrintGvIdV1({
     setCode: row.set_code,
     printedSetAbbrev: row.printed_set_abbrev,
     number: row.number,
     numberPlain: row.number_plain,
     variantKey: row.variant_key,
+    onNamespaceDecision(decision) {
+      namespaceDecision = decision;
+    },
   });
 
   const conflictingRow = await findConflictingRow(client, plannedGvId, row.id);
@@ -118,6 +122,7 @@ async function assignOne(client, row, apply) {
       status: 'blocked',
       reason: 'gv_id_collision',
       planned_gv_id: plannedGvId,
+      namespace_decision: namespaceDecision,
       conflicting_card_print_id: conflictingRow.id,
     };
   }
@@ -127,6 +132,7 @@ async function assignOne(client, row, apply) {
       id: row.id,
       status: 'dry_run',
       planned_gv_id: plannedGvId,
+      namespace_decision: namespaceDecision,
     };
   }
 
@@ -153,6 +159,7 @@ async function assignOne(client, row, apply) {
         status: 'skipped',
         reason: 'already_assigned',
         gv_id: current.gv_id,
+        namespace_decision: namespaceDecision,
       };
     }
 
@@ -161,6 +168,7 @@ async function assignOne(client, row, apply) {
       status: 'blocked',
       reason: 'assignment_update_failed',
       planned_gv_id: plannedGvId,
+      namespace_decision: namespaceDecision,
     };
   }
 
@@ -168,6 +176,7 @@ async function assignOne(client, row, apply) {
     id: row.id,
     status: 'applied',
     gv_id: updateResult.rows[0].gv_id,
+    namespace_decision: namespaceDecision,
   };
 }
 

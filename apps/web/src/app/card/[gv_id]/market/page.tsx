@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import MarketHistoryChart from "@/components/pricing/MarketHistoryChart";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
+import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import {
   CARD_MARKET_ANALYSIS_DURATIONS,
@@ -88,6 +89,14 @@ export default async function MarketAnalysisPage({
   const card = await getPublicCardByGvId(params.gv_id);
   if (!card) {
     notFound();
+  }
+  if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
+    const nextUrl = new URLSearchParams();
+    if (searchParams?.duration) {
+      nextUrl.set("duration", searchParams.duration);
+    }
+    const canonicalPath = `/card/${encodeURIComponent(card.gv_id)}/market`;
+    redirect(nextUrl.toString() ? `${canonicalPath}?${nextUrl.toString()}` : canonicalPath);
   }
 
   const model = await getCardMarketAnalysisModel(card.id, searchParams?.duration);
