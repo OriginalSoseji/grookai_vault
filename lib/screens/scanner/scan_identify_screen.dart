@@ -187,7 +187,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
               height: 88,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: theme.colorScheme.surfaceVariant,
+                color: theme.colorScheme.surfaceContainerHighest,
               ),
               child: _front == null
                   ? const Icon(Icons.photo_camera, size: 32)
@@ -222,7 +222,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
 
     return ListView.separated(
       itemCount: _candidates.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
+      separatorBuilder: (_, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         final cand = _candidates[index];
         final selected = _selectedIndex == index;
@@ -234,7 +234,9 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         return Card(
           color: selected
               ? theme.colorScheme.primaryContainer
-              : theme.colorScheme.surfaceVariant.withOpacity(0.7),
+              : theme.colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.7,
+                ),
           child: ListTile(
             leading: imageUrl.isEmpty
                 ? const CircleAvatar(child: Icon(Icons.style))
@@ -245,7 +247,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
+                      errorBuilder: (context, error, stackTrace) =>
                           const CircleAvatar(child: Icon(Icons.broken_image)),
                     ),
                   ),

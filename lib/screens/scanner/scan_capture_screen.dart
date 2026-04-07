@@ -12,6 +12,7 @@ import 'condition_camera_screen.dart';
 import 'quad_adjust_screen.dart';
 
 enum _ScanStatus { idle, uploading, saving, success }
+
 enum _AnalysisState { idle, analyzing, complete, failed, timeout }
 
 class ScanCaptureScreen extends StatefulWidget {
@@ -37,7 +38,6 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
   _ScanStatus _status = _ScanStatus.idle;
   String? _error;
   String? _snapshotId;
-  String? _activeSnapshotId;
   bool _submitting = false;
   bool _confirmCorrectCard = false;
   _AnalysisState _analysisState = _AnalysisState.idle;
@@ -140,7 +140,6 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
       setState(() {
         _snapshotId = id;
-        _activeSnapshotId = id;
         _status = _ScanStatus.success;
         _analysisState = _AnalysisState.analyzing;
       });
@@ -163,9 +162,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
   void _snack(String msg) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg)),
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 
   Future<void> _pollForAnalysis(String snapshotId) async {
@@ -198,7 +195,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
           final analysisStatus = scanQuality is Map
               ? (scanQuality['analysis_status'] ?? '').toString()
               : '';
-          final okFlag = scanQuality is Map ? (scanQuality['ok'] == true) : false;
+          final okFlag = scanQuality is Map
+              ? (scanQuality['ok'] == true)
+              : false;
 
           if (analysisVersion == 'v2_centering' &&
               (analysisStatus == 'ok' || okFlag)) {
@@ -220,10 +219,13 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
             return;
           }
           final measurements = row['measurements'];
-          final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+          final fingerprint = measurements is Map
+              ? measurements['fingerprint']
+              : null;
           final match = fingerprint is Map ? fingerprint['match'] : null;
-          final decision =
-              match is Map ? (match['decision']?.toString() ?? '') : '';
+          final decision = match is Map
+              ? (match['decision']?.toString() ?? '')
+              : '';
           if (decision == 'uncertain') {
             if (!mounted) return;
             setState(() {
@@ -266,17 +268,20 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
         _matchCardRow = null;
       });
     } finally {
-      if (!mounted) return;
-      setState(() {
-        _matchCardLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _matchCardLoading = false;
+        });
+      }
     }
   }
 
   Future<void> _loadHistory() async {
     setState(() => _historyLoading = true);
     try {
-      final rows = await _service.fetchSnapshotsForVaultItem(widget.vaultItemId);
+      final rows = await _service.fetchSnapshotsForVaultItem(
+        widget.vaultItemId,
+      );
       if (mounted) {
         setState(() {
           _history = rows;
@@ -296,7 +301,6 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
       debugPrint('[DEBUG] setActiveSnapshot: $snapshotId');
     }
     setState(() {
-      _activeSnapshotId = snapshotId;
       _snapshotId = snapshotId;
       _analysisState = _AnalysisState.analyzing;
       _analysisRow = null;
@@ -328,16 +332,13 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               height: 88,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Theme.of(context).colorScheme.surfaceVariant,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
               ),
               child: file == null
                   ? const Icon(Icons.photo_camera, size: 32)
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.file(
-                        File(file.path),
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.file(File(file.path), fit: BoxFit.cover),
                     ),
             ),
             const SizedBox(width: 12),
@@ -345,19 +346,15 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    label,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  Text(label, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 6),
                   Text(
                     file == null ? 'Required' : 'Captured',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withOpacity(0.7),
-                        ),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.7),
+                    ),
                   ),
                 ],
               ),
@@ -390,18 +387,16 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
       _ScanStatus.uploading => 'Uploading images...',
       _ScanStatus.saving => 'Saving snapshot...',
       _ScanStatus.success => switch (_analysisState) {
-          _AnalysisState.analyzing => 'Analyzing...',
-          _AnalysisState.complete => 'Analysis complete',
-          _AnalysisState.failed => 'Analysis failed',
-          _AnalysisState.timeout => 'Still analyzing...',
-          _ => 'Analyzing...',
-        },
+        _AnalysisState.analyzing => 'Analyzing...',
+        _AnalysisState.complete => 'Analysis complete',
+        _AnalysisState.failed => 'Analysis failed',
+        _AnalysisState.timeout => 'Still analyzing...',
+        _ => 'Analyzing...',
+      },
     };
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBar(title: Text(title)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -419,7 +414,7 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 Text(
                   'Vault Item: ${widget.vaultItemId}',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -428,18 +423,18 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                   style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
-              _buildTile(
-                label: 'Front photo',
-                file: _front,
-                onCapture: () => _captureWithCamera('front'),
-                onUpload: () => _pickFromGallery('front'),
-              ),
-              _buildTile(
-                label: 'Back photo',
-                file: _back,
-                onCapture: () => _captureWithCamera('back'),
-                onUpload: () => _pickFromGallery('back'),
-              ),
+                _buildTile(
+                  label: 'Front photo',
+                  file: _front,
+                  onCapture: () => _captureWithCamera('front'),
+                  onUpload: () => _pickFromGallery('front'),
+                ),
+                _buildTile(
+                  label: 'Back photo',
+                  file: _back,
+                  onCapture: () => _captureWithCamera('back'),
+                  onUpload: () => _pickFromGallery('back'),
+                ),
                 const SizedBox(height: 12),
                 if (_error != null)
                   Padding(
@@ -475,23 +470,28 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
                   value: _confirmCorrectCard,
-                  onChanged: _submitting || _status == _ScanStatus.uploading || _status == _ScanStatus.saving
+                  onChanged:
+                      _submitting ||
+                          _status == _ScanStatus.uploading ||
+                          _status == _ScanStatus.saving
                       ? null
                       : (v) => setState(() => _confirmCorrectCard = v ?? false),
-                  title: const Text('I confirm I am scanning the card shown above.'),
+                  title: const Text(
+                    'I confirm I am scanning the card shown above.',
+                  ),
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
                 FilledButton(
                   onPressed: _submitting
                       ? null
                       : _status == _ScanStatus.success
-                          ? () => Navigator.of(context).pop()
-                          : (_front != null &&
-                                  _back != null &&
-                                  _confirmCorrectCard &&
-                                  _status == _ScanStatus.idle
-                              ? _startUpload
-                              : null),
+                      ? () => Navigator.of(context).pop()
+                      : (_front != null &&
+                                _back != null &&
+                                _confirmCorrectCard &&
+                                _status == _ScanStatus.idle
+                            ? _startUpload
+                            : null),
                   child: Text(
                     _status == _ScanStatus.success ? 'Done' : 'Upload & Save',
                   ),
@@ -511,14 +511,17 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                   _buildAnalysisSummary(theme),
                 if (_analysisRow != null) _buildFingerprintMatchReview(theme),
                 if (_analysisRow != null) _buildMatchedCardTile(theme),
-                if (_analysisState == _AnalysisState.failed && _analysisRow != null)
+                if (_analysisState == _AnalysisState.failed &&
+                    _analysisRow != null)
                   _buildFailureActions(theme),
                 if (_analysisState == _AnalysisState.failed)
                   FilledButton.tonal(
                     onPressed: _snapshotId == null
                         ? null
                         : () {
-                            setState(() => _analysisState = _AnalysisState.analyzing);
+                            setState(
+                              () => _analysisState = _AnalysisState.analyzing,
+                            );
                             unawaited(_pollForAnalysis(_snapshotId!));
                           },
                     child: const Text('Retry analysis'),
@@ -528,7 +531,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                     onPressed: _snapshotId == null
                         ? null
                         : () {
-                            setState(() => _analysisState = _AnalysisState.analyzing);
+                            setState(
+                              () => _analysisState = _AnalysisState.analyzing,
+                            );
                             unawaited(_pollForAnalysis(_snapshotId!));
                           },
                     child: const Text('Refresh'),
@@ -552,17 +557,21 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
     String fmt(num? v) => v == null ? '—' : v.toStringAsFixed(3);
     final scanQuality = _analysisRow?['scan_quality'] as Map?;
-    final failureReason =
-        scanQuality != null ? (scanQuality['failure_reason'] ?? '') : '';
-    final analysisStatus =
-        scanQuality != null ? (scanQuality['analysis_status'] ?? '') : '';
+    final failureReason = scanQuality != null
+        ? (scanQuality['failure_reason'] ?? '')
+        : '';
+    final analysisStatus = scanQuality != null
+        ? (scanQuality['analysis_status'] ?? '')
+        : '';
     final centeringV3 = _analysisRow?['measurements'] is Map
         ? (_analysisRow!['measurements']['centering_v3'] as Map?)
         : null;
-    final overallValid =
-        centeringV3 is Map ? (centeringV3['overall']?['is_valid'] == true) : null;
+    final overallValid = centeringV3 is Map
+        ? (centeringV3['overall']?['is_valid'] == true)
+        : null;
     final confidence = (_analysisRow?['confidence'] as num?)?.toDouble();
-    _showAdjustCorners = (analysisStatus == 'failed') || (overallValid == false);
+    _showAdjustCorners =
+        (analysisStatus == 'failed') || (overallValid == false);
 
     return Card(
       child: Padding(
@@ -601,13 +610,13 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                   ],
                 ),
               ),
-            if (analysisStatus.isNotEmpty)
-              Text('Status: $analysisStatus'),
+            if (analysisStatus.isNotEmpty) Text('Status: $analysisStatus'),
             if ((failureReason as String).isNotEmpty)
               Text(
                 'Failure: $failureReason',
-                style: theme.textTheme.bodySmall
-                    ?.copyWith(color: theme.colorScheme.error),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.error,
+                ),
               ),
             if (confidence != null)
               Text('Confidence: ${(confidence * 100).toStringAsFixed(1)}%'),
@@ -619,7 +628,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
   Widget _buildFingerprintMatchReview(ThemeData theme) {
     final measurements = _analysisRow?['measurements'];
-    final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+    final fingerprint = measurements is Map
+        ? measurements['fingerprint']
+        : null;
     final match = fingerprint is Map ? fingerprint['match'] : null;
     if (match is! Map) return const SizedBox.shrink();
     final decision = match['decision']?.toString() ?? '';
@@ -632,8 +643,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     final statusText = _fingerprintUserDecision == null
         ? null
         : (_fingerprintUserDecision == 'same'
-            ? 'User confirmed same'
-            : 'User confirmed different');
+              ? 'User confirmed same'
+              : 'User confirmed different');
 
     return Card(
       child: Padding(
@@ -647,16 +658,14 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 const SizedBox(width: 8),
                 Text(
                   'Likely same card',
-                  style: theme.textTheme.titleMedium
-                      ?.copyWith(fontWeight: FontWeight.w700),
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 4),
-            Text(
-              '$scorePct% confidence',
-              style: theme.textTheme.bodyMedium,
-            ),
+            Text('$scorePct% confidence', style: theme.textTheme.bodyMedium),
             if (bestCandidateSnapshotId.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 4),
@@ -673,10 +682,10 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                     onPressed: _fingerprintReviewSubmitting
                         ? null
                         : () => _submitFingerprintMatchReview(
-                              isSame: true,
-                              score: score,
-                              bestCandidateSnapshotId: bestCandidateSnapshotId,
-                            ),
+                            isSame: true,
+                            score: score,
+                            bestCandidateSnapshotId: bestCandidateSnapshotId,
+                          ),
                     child: const Text('Confirm same'),
                   ),
                 ),
@@ -686,10 +695,10 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                     onPressed: _fingerprintReviewSubmitting
                         ? null
                         : () => _submitFingerprintMatchReview(
-                              isSame: false,
-                              score: score,
-                              bestCandidateSnapshotId: bestCandidateSnapshotId,
-                            ),
+                            isSame: false,
+                            score: score,
+                            bestCandidateSnapshotId: bestCandidateSnapshotId,
+                          ),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: theme.colorScheme.error,
                     ),
@@ -718,8 +727,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
                   statusText,
-                  style: theme.textTheme.bodyMedium
-                      ?.copyWith(color: theme.colorScheme.primary),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
               ),
           ],
@@ -730,22 +740,22 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
   Widget _buildMatchedCardTile(ThemeData theme) {
     final measurements = _analysisRow?['measurements'];
-    final fingerprint = measurements is Map ? measurements['fingerprint'] : null;
+    final fingerprint = measurements is Map
+        ? measurements['fingerprint']
+        : null;
     final match = fingerprint is Map ? fingerprint['match'] : null;
     final decision =
         (match is Map ? match['decision']?.toString() : null) ??
-            _matchCardRow?['decision']?.toString() ??
-            '';
+        _matchCardRow?['decision']?.toString() ??
+        '';
     if (decision != 'uncertain') return const SizedBox.shrink();
 
     final analysisKey = (_analysisRow?['analysis_key'] ?? '').toString();
     final cardPrintId =
         _matchCardRow?['best_candidate_card_print_id']?.toString() ?? '';
     final cardName = _matchCardRow?['best_candidate_name']?.toString() ?? '';
-    final setCode =
-        _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
-    final number =
-        _matchCardRow?['best_candidate_number']?.toString() ?? '';
+    final setCode = _matchCardRow?['best_candidate_set_code']?.toString() ?? '';
+    final number = _matchCardRow?['best_candidate_number']?.toString() ?? '';
     final imageUrl =
         _matchCardRow?['best_candidate_image_best']?.toString() ?? '';
 
@@ -777,8 +787,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
             children: [
               Text(
                 'Match found but card unavailable',
-                style: theme.textTheme.titleMedium
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               if (analysisKey.isNotEmpty)
                 Padding(
@@ -804,7 +815,8 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                   width: 48,
                   height: 64,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const Icon(Icons.image),
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.image),
                 ),
               )
             : const Icon(Icons.image),
@@ -831,8 +843,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
 
   Widget _buildFailureActions(ThemeData theme) {
     final scanQuality = _analysisRow?['scan_quality'] as Map?;
-    final failureReason =
-        scanQuality != null ? (scanQuality['failure_reason'] ?? '') : '';
+    final failureReason = scanQuality != null
+        ? (scanQuality['failure_reason'] ?? '')
+        : '';
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -863,7 +876,9 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                 child: FilledButton.icon(
                   onPressed: _snapshotId == null ? null : _openAdjustCorners,
                   icon: const Icon(Icons.crop),
-                  label: Text(_rerunRequested ? 'Re-running…' : 'Adjust corners'),
+                  label: Text(
+                    _rerunRequested ? 'Re-running…' : 'Adjust corners',
+                  ),
                 ),
               ),
           ],
@@ -884,8 +899,10 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
       return;
     }
     final analysisKey = (_analysisRow?['analysis_key'] ?? '').toString();
-    final analysisVersion = (_analysisRow?['analysis_version'] ?? '').toString();
-    final snapshotId = (_analysisRow?['snapshot_id'] ?? _snapshotId ?? '').toString();
+    final analysisVersion = (_analysisRow?['analysis_version'] ?? '')
+        .toString();
+    final snapshotId = (_analysisRow?['snapshot_id'] ?? _snapshotId ?? '')
+        .toString();
     if (analysisKey.isEmpty || analysisVersion.isEmpty || snapshotId.isEmpty) {
       _snack('Missing analysis data');
       return;
@@ -895,25 +912,28 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
       _fingerprintReviewSubmitting = true;
     });
     try {
-      await supabase.rpc('admin_fingerprint_event_insert_v1', params: {
-        'p_user_id': user.id,
-        'p_analysis_key': analysisKey,
-        'p_event_type': isSame
-            ? 'fingerprint_match_user_confirmed_same'
-            : 'fingerprint_match_user_confirmed_different',
-        'p_snapshot_id': snapshotId,
-        'p_fingerprint_key': null,
-        'p_vault_item_id': null,
-        'p_event_metadata': {
-          'decision': isSame ? 'confirm_same' : 'confirm_different',
-          'score_0_1': score,
-          'score_pct': (score * 100).round(),
-          'analysis_version': analysisVersion,
-          'analysis_key': analysisKey,
-          'best_candidate_snapshot_id': bestCandidateSnapshotId,
-          'source': 'ui_review',
+      await supabase.rpc(
+        'admin_fingerprint_event_insert_v1',
+        params: {
+          'p_user_id': user.id,
+          'p_analysis_key': analysisKey,
+          'p_event_type': isSame
+              ? 'fingerprint_match_user_confirmed_same'
+              : 'fingerprint_match_user_confirmed_different',
+          'p_snapshot_id': snapshotId,
+          'p_fingerprint_key': null,
+          'p_vault_item_id': null,
+          'p_event_metadata': {
+            'decision': isSame ? 'confirm_same' : 'confirm_different',
+            'score_0_1': score,
+            'score_pct': (score * 100).round(),
+            'analysis_version': analysisVersion,
+            'analysis_key': analysisKey,
+            'best_candidate_snapshot_id': bestCandidateSnapshotId,
+            'source': 'ui_review',
+          },
         },
-      });
+      );
       if (!mounted) return;
       setState(() {
         _fingerprintUserDecision = isSame ? 'same' : 'different';
@@ -922,10 +942,11 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
     } catch (e) {
       _snack('Save failed: $e');
     } finally {
-      if (!mounted) return;
-      setState(() {
-        _fingerprintReviewSubmitting = false;
-      });
+      if (mounted) {
+        setState(() {
+          _fingerprintReviewSubmitting = false;
+        });
+      }
     }
   }
 
@@ -984,27 +1005,30 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
             else if (_history.isEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  'No scans yet.',
-                  style: theme.textTheme.bodySmall,
-                ),
+                child: Text('No scans yet.', style: theme.textTheme.bodySmall),
               )
             else
               Column(
                 children: _history.take(10).map((row) {
                   final id = row['snapshot_id']?.toString() ?? '';
                   final createdAt = row['created_at']?.toString() ?? '';
-                  final analysisStatus = row['analysis_status']?.toString() ?? '';
+                  final analysisStatus =
+                      row['analysis_status']?.toString() ?? '';
                   final failureReason = row['failure_reason']?.toString() ?? '';
                   final confidence = (row['confidence'] as num?)?.toDouble();
-                  final statusLabel = (analysisStatus == 'ok' || row['analysis_ok'] == true)
+                  final statusLabel =
+                      (analysisStatus == 'ok' || row['analysis_ok'] == true)
                       ? 'OK'
-                      : (analysisStatus == 'failed' ? 'FAILED' : (analysisStatus.isEmpty ? 'PENDING' : analysisStatus.toUpperCase()));
+                      : (analysisStatus == 'failed'
+                            ? 'FAILED'
+                            : (analysisStatus.isEmpty
+                                  ? 'PENDING'
+                                  : analysisStatus.toUpperCase()));
                   final statusColor = statusLabel == 'OK'
                       ? theme.colorScheme.primary
                       : statusLabel == 'FAILED'
-                          ? theme.colorScheme.error
-                          : theme.colorScheme.outline;
+                      ? theme.colorScheme.error
+                      : theme.colorScheme.outline;
                   return ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text(
@@ -1017,14 +1041,19 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
                               decoration: BoxDecoration(
-                                color: statusColor.withOpacity(0.1),
+                                color: statusColor.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
                                 statusLabel,
-                                style: theme.textTheme.labelSmall?.copyWith(color: statusColor),
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: statusColor,
+                                ),
                               ),
                             ),
                             if (confidence != null) ...[
@@ -1039,14 +1068,18 @@ class _ScanCaptureScreenState extends State<ScanCaptureScreen> {
                         if (failureReason.isNotEmpty)
                           Text(
                             'Failure: $failureReason',
-                            style: theme.textTheme.labelSmall
-                                ?.copyWith(color: theme.colorScheme.error),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: theme.colorScheme.error,
+                            ),
                           ),
                         if (id.isNotEmpty)
                           Text(
                             'ID: $id',
-                            style: theme.textTheme.labelSmall
-                                ?.copyWith(color: theme.colorScheme.onSurface.withOpacity(0.6)),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.6,
+                              ),
+                            ),
                           ),
                       ],
                     ),
