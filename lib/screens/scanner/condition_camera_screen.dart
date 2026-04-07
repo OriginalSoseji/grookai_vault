@@ -13,11 +13,7 @@ class ConditionCameraScreen extends StatefulWidget {
   final String title;
   final String? hintText;
 
-  const ConditionCameraScreen({
-    super.key,
-    required this.title,
-    this.hintText,
-  });
+  const ConditionCameraScreen({super.key, required this.title, this.hintText});
 
   @override
   State<ConditionCameraScreen> createState() => _ConditionCameraScreenState();
@@ -29,7 +25,6 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   Future<void>? _initFuture;
   bool _takingPicture = false;
   StreamSubscription<AccelerometerEvent>? _accelSub;
-  double _tiltMagnitude = 0;
   OverlayMode _overlayMode = OverlayMode.neutral;
   String _liveStatus = 'Align card inside frame';
   DateTime _lastQuadUpdate = DateTime.fromMillisecondsSinceEpoch(0);
@@ -164,16 +159,18 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         final rawPoints = quad['points_norm'];
         if (rawPoints is List && rawPoints.length == 4) {
           points = rawPoints
-              .map((p) => Offset(
-                    (p as List)[0].toDouble(),
-                    (p as List)[1].toDouble(),
-                  ))
+              .map(_normalizedOffsetFromRawPoint)
+              .whereType<Offset>()
               .toList();
+          if (points.length != 4) {
+            points = null;
+          }
         }
       }
 
       if (points != null) {
-        if (mounted && (_quadPoints != points || _overlayMode != OverlayMode.ready)) {
+        if (mounted &&
+            (_quadPoints != points || _overlayMode != OverlayMode.ready)) {
           setState(() {
             _quadPoints = points;
             _overlayMode = OverlayMode.ready;
@@ -190,27 +187,30 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         }
       }
       if (kDebugMode) {
-        debugPrint('[quad] detected=${points != null} overlayMode=$_overlayMode canShoot=$_canShoot');
+        debugPrint(
+          '[quad] detected=${points != null} overlayMode=$_overlayMode canShoot=$_canShoot',
+        );
       }
     });
   }
 
   @override
   void dispose() {
-    _controller?.dispose();
+    final controller = _controller;
+    _controller = null;
+    _streaming = false;
     _accelSub?.cancel();
-    if (_controller?.value.isStreamingImages == true) {
-      _controller?.stopImageStream();
-    }
+    unawaited(controller?.dispose());
     super.dispose();
   }
 
   Future<void> _takePicture() async {
-    if (_controller == null) {
+    final controller = _controller;
+    if (controller == null) {
       debugPrint('[SHUTTER] takePicture blocked: controller=null');
       return;
     }
-    if (!_controller!.value.isInitialized) {
+    if (!controller.value.isInitialized) {
       debugPrint('[SHUTTER] takePicture blocked: controller not initialized');
       return;
     }
@@ -221,13 +221,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     setState(() {
       _takingPicture = true;
     });
+    final wasStreaming = controller.value.isStreamingImages;
     try {
-      final file = await _controller!.takePicture();
+      if (wasStreaming) {
+        await controller.stopImageStream();
+        _streaming = false;
+      }
+      final file = await controller.takePicture();
       if (!mounted) return;
       Navigator.of(context).pop(file);
     } catch (e, st) {
       debugPrint('[SHUTTER] takePicture ERROR: $e');
       debugPrint('$st');
+      if (wasStreaming && mounted) {
+        _startStream();
+      }
       setState(() {
         _takingPicture = false;
       });
@@ -236,12 +244,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   void _startSensors() {
-    _accelSub = accelerometerEvents.listen((event) {
+    _accelSub = accelerometerEventStream().listen((event) {
       final now = DateTime.now();
       if (now.difference(_lastAccelUpdate).inMilliseconds < 100) return;
       _lastAccelUpdate = now;
       final mag = math.sqrt(event.x * event.x + event.y * event.y);
-      _tiltMagnitude = mag;
       OverlayMode nextMode = OverlayMode.neutral;
       String nextStatus = widget.hintText ?? 'Align card inside frame';
       if (mag < 2.0) {
@@ -288,15 +295,18 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                   if (snap.connectionState != ConnectionState.done) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  if (_controller == null || !_controller!.value.isInitialized) {
+                  if (_controller == null ||
+                      !_controller!.value.isInitialized) {
                     return const Center(child: Text('Camera not available'));
                   }
                   return LayoutBuilder(
                     builder: (context, constraints) {
                       final paddingH = 16.0;
                       final paddingV = 24.0;
-                      final available =
-                          Size(constraints.maxWidth, constraints.maxHeight);
+                      final available = Size(
+                        constraints.maxWidth,
+                        constraints.maxHeight,
+                      );
                       final guideWidth = available.width - paddingH * 2;
                       final guideHeight = guideWidth / 0.716;
                       double finalGuideHeight = guideHeight;
@@ -307,8 +317,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                       }
                       final left = (available.width - finalGuideWidth) / 2;
                       final top = (available.height - finalGuideHeight) / 2;
-                      final guideRect =
-                          Rect.fromLTWH(left, top, finalGuideWidth, finalGuideHeight);
+                      final guideRect = Rect.fromLTWH(
+                        left,
+                        top,
+                        finalGuideWidth,
+                        finalGuideHeight,
+                      );
                       return GestureDetector(
                         key: _previewAreaKey,
                         behavior: HitTestBehavior.translucent,
@@ -346,7 +360,9 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
               child: GestureDetector(
                 onTap: _canShoot
                     ? () async {
-                        debugPrint('[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}');
+                        debugPrint(
+                          '[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}',
+                        );
                         await _takePicture();
                       }
                     : null,
@@ -356,19 +372,25 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _takingPicture
-                        ? theme.colorScheme.primary.withOpacity(0.3)
+                        ? theme.colorScheme.primary.withValues(alpha: 0.3)
                         : _canShoot
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.primary.withOpacity(0.4),
+                        ? theme.colorScheme.primary
+                        : theme.colorScheme.primary.withValues(alpha: 0.4),
                     boxShadow: [
                       BoxShadow(
-                        color: theme.colorScheme.primary.withOpacity(0.25),
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.25,
+                        ),
                         blurRadius: 12,
                         spreadRadius: 2,
                       ),
                     ],
                   ),
-                  child: const Icon(Icons.circle, color: Colors.white, size: 28),
+                  child: const Icon(
+                    Icons.circle,
+                    color: Colors.white,
+                    size: 28,
+                  ),
                 ),
               ),
             ),
@@ -376,5 +398,17 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         ),
       ),
     );
+  }
+
+  Offset? _normalizedOffsetFromRawPoint(dynamic rawPoint) {
+    if (rawPoint is! List || rawPoint.length < 2) {
+      return null;
+    }
+    final x = rawPoint[0];
+    final y = rawPoint[1];
+    if (x is! num || y is! num) {
+      return null;
+    }
+    return Offset(x.toDouble(), y.toDouble());
   }
 }

@@ -25,8 +25,6 @@ class _QuadAdjustScreenState extends State<QuadAdjustScreen> {
   final _service = ConditionScanService();
   bool _loading = true;
   String? _error;
-  Map<String, dynamic>? _snapshot;
-  Map<String, dynamic>? _analysis;
   String _activeFace = 'front';
   String? _frontUrl;
   String? _backUrl;
@@ -49,29 +47,39 @@ class _QuadAdjustScreenState extends State<QuadAdjustScreen> {
     try {
       final snap = await _service.fetchSnapshot(widget.snapshotId);
       final analysis =
-          widget.initialAnalysis ?? await _service.fetchLatestAnalysis(widget.snapshotId);
+          widget.initialAnalysis ??
+          await _service.fetchLatestAnalysis(widget.snapshotId);
       if (snap == null) throw Exception('Snapshot not found');
 
       final images = Map<String, dynamic>.from(snap['images'] ?? {});
       final bucket = images['bucket']?.toString() ?? '';
-      final frontPath = images['front'] is Map ? images['front']['path']?.toString() : null;
-      final backPath = images['back'] is Map ? images['back']['path']?.toString() : null;
+      final frontPath = images['front'] is Map
+          ? images['front']['path']?.toString()
+          : null;
+      final backPath = images['back'] is Map
+          ? images['back']['path']?.toString()
+          : null;
 
       if (bucket.isEmpty || frontPath == null || backPath == null) {
         throw Exception('Snapshot is missing image paths');
       }
 
       final storage = Supabase.instance.client.storage;
-      final frontUrl = await storage.from(bucket).createSignedUrl(frontPath, 300);
+      final frontUrl = await storage
+          .from(bucket)
+          .createSignedUrl(frontPath, 300);
       final backUrl = await storage.from(bucket).createSignedUrl(backPath, 300);
 
-      final Map<String, dynamic> analysisMap =
-          analysis == null ? <String, dynamic>{} : Map<String, dynamic>.from(analysis);
+      final Map<String, dynamic> analysisMap = analysis == null
+          ? <String, dynamic>{}
+          : Map<String, dynamic>.from(analysis);
       final Map<String, dynamic> measurements =
           analysisMap['measurements'] is Map
-              ? Map<String, dynamic>.from(analysisMap['measurements'] as Map)
-              : <String, dynamic>{};
-      final centering = Map<String, dynamic>.from(measurements['centering'] ?? {});
+          ? Map<String, dynamic>.from(analysisMap['measurements'] as Map)
+          : <String, dynamic>{};
+      final centering = Map<String, dynamic>.from(
+        measurements['centering'] ?? {},
+      );
       final evidence = Map<String, dynamic>.from(centering['evidence'] ?? {});
       final raw = Map<String, dynamic>.from(centering['raw'] ?? {});
       final normSize = Map<String, dynamic>.from(raw['normalized_size'] ?? {});
@@ -81,8 +89,6 @@ class _QuadAdjustScreenState extends State<QuadAdjustScreen> {
       _backAspect = _frontAspect;
 
       setState(() {
-        _snapshot = snap;
-        _analysis = analysis;
         _frontUrl = frontUrl;
         _backUrl = backUrl;
         _quads['front'] = _initialQuadForFace(
@@ -115,10 +121,8 @@ class _QuadAdjustScreenState extends State<QuadAdjustScreen> {
     final existing = quadV1[face];
     if (existing is Map && existing['points_norm'] is List) {
       final pts = (existing['points_norm'] as List)
-          .map((p) => Offset(
-                (p as List)[0].toDouble(),
-                (p as List)[1].toDouble(),
-              ))
+          .map(_normalizedOffsetFromRawPoint)
+          .whereType<Offset>()
           .toList();
       if (pts.length == 4) return pts;
     }
@@ -189,67 +193,68 @@ class _QuadAdjustScreenState extends State<QuadAdjustScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Crop & Align'),
-      ),
+      appBar: AppBar(title: const Text('Crop & Align')),
       body: SafeArea(
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : _error != null
-                ? Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        _error!,
-                        style: theme.textTheme.bodyMedium
-                            ?.copyWith(color: colorScheme.error),
-                        textAlign: TextAlign.center,
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    _error!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.error,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'Drag the corners to match the card edges. Save to re-run centering.',
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                    const SizedBox(height: 12),
+                    SegmentedButton<String>(
+                      segments: const [
+                        ButtonSegment(value: 'front', label: Text('Front')),
+                        ButtonSegment(value: 'back', label: Text('Back')),
+                      ],
+                      selected: {_activeFace},
+                      onSelectionChanged: (values) {
+                        setState(() => _activeFace = values.first);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: _buildEditorForFace(
+                        face: _activeFace,
+                        url: _activeFace == 'front' ? _frontUrl : _backUrl,
+                        aspect: _activeFace == 'front'
+                            ? _frontAspect
+                            : _backAspect,
                       ),
                     ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'Drag the corners to match the card edges. Save to re-run centering.',
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 12),
-                        SegmentedButton<String>(
-                          segments: const [
-                            ButtonSegment(value: 'front', label: Text('Front')),
-                            ButtonSegment(value: 'back', label: Text('Back')),
-                          ],
-                          selected: {_activeFace},
-                          onSelectionChanged: (values) {
-                            setState(() => _activeFace = values.first);
-                          },
-                        ),
-                        const SizedBox(height: 12),
-                        Expanded(
-                          child: _buildEditorForFace(
-                            face: _activeFace,
-                            url: _activeFace == 'front' ? _frontUrl : _backUrl,
-                            aspect: _activeFace == 'front' ? _frontAspect : _backAspect,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        FilledButton.icon(
-                          onPressed: _loading ? null : _saveAndRerun,
-                          icon: const Icon(Icons.save),
-                          label: const Text('Save & Re-run'),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Snapshot: ${widget.snapshotId}',
-                          style: theme.textTheme.labelSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                    const SizedBox(height: 12),
+                    FilledButton.icon(
+                      onPressed: _loading ? null : _saveAndRerun,
+                      icon: const Icon(Icons.save),
+                      label: const Text('Save & Re-run'),
                     ),
-                  ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Snapshot: ${widget.snapshotId}',
+                      style: theme.textTheme.labelSmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }
@@ -337,21 +342,17 @@ class _QuadEditorState extends State<QuadEditor> {
                     child: Image.network(
                       widget.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
-                        color: theme.colorScheme.surfaceVariant,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: theme.colorScheme.surfaceContainerHighest,
                         child: const Icon(Icons.broken_image),
                       ),
                     ),
                   ),
                 ),
                 Positioned.fill(
-                  child: CustomPaint(
-                    painter: _QuadPainter(points: _points),
-                  ),
+                  child: CustomPaint(painter: _QuadPainter(points: _points)),
                 ),
-                Positioned.fill(
-                  child: _buildHandles(Size(width, height)),
-                ),
+                Positioned.fill(child: _buildHandles(Size(width, height))),
               ],
             ),
           ),
@@ -379,7 +380,11 @@ class _QuadEditorState extends State<QuadEditor> {
                 border: Border.all(color: Colors.blueAccent, width: 2),
                 shape: BoxShape.circle,
                 boxShadow: const [
-                  BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2)),
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
                 ],
               ),
             ),
@@ -403,7 +408,7 @@ class _QuadPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     final paintFill = Paint()
-      ..color = Colors.blueAccent.withOpacity(0.1)
+      ..color = Colors.blueAccent.withValues(alpha: 0.1)
       ..style = PaintingStyle.fill;
 
     final path = Path();
@@ -425,4 +430,16 @@ class _QuadPainter extends CustomPainter {
   bool shouldRepaint(covariant _QuadPainter oldDelegate) {
     return oldDelegate.points != points;
   }
+}
+
+Offset? _normalizedOffsetFromRawPoint(dynamic rawPoint) {
+  if (rawPoint is! List || rawPoint.length < 2) {
+    return null;
+  }
+  final x = rawPoint[0];
+  final y = rawPoint[1];
+  if (x is! num || y is! num) {
+    return null;
+  }
+  return Offset(x.toDouble(), y.toDouble());
 }

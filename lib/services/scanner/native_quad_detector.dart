@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
@@ -33,7 +32,10 @@ class NativeQuadDetector {
         'uvPixelStride': uPlane.bytesPerPixel ?? 1,
       };
 
-      final res = await _channel.invokeMethod<dynamic>('detectQuadYuv420', args);
+      final res = await _channel.invokeMethod<dynamic>(
+        'detectQuadYuv420',
+        args,
+      );
       if (res == null) return null;
       if (res is Map) {
         return Map<String, dynamic>.from(res);

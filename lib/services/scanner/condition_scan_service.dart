@@ -31,7 +31,7 @@ class UploadPlan {
 
 class ConditionScanService {
   ConditionScanService({SupabaseClient? client})
-      : _client = client ?? Supabase.instance.client;
+    : _client = client ?? Supabase.instance.client;
 
   final SupabaseClient _client;
 
@@ -77,8 +77,9 @@ class ConditionScanService {
         uploads[slot] = SignedUpload(path: path, signedUrl: signedUrl);
       }
 
-      final contentType =
-          (notes['content_type'] ?? 'image/jpeg').toString().trim();
+      final contentType = (notes['content_type'] ?? 'image/jpeg')
+          .toString()
+          .trim();
       final method = (notes['method'] ?? 'PUT').toString().toUpperCase();
 
       return UploadPlan(
@@ -131,11 +132,7 @@ class ConditionScanService {
 
     return {
       'bucket': plan.bucket,
-      'paths': {
-        'front': frontPath,
-        'back': backPath,
-        'corners': corners,
-      },
+      'paths': {'front': frontPath, 'back': backPath, 'corners': corners},
       'front': {'path': frontPath},
       'back': {'path': backPath},
       'corners': corners,
@@ -148,14 +145,11 @@ class ConditionScanService {
   }) async {
     final response = await _client.rpc(
       'condition_snapshots_insert_v1',
-      params: {
-        'p_vault_item_id': vaultItemId,
-        'p_images': imagesJson,
-      },
+      params: {'p_vault_item_id': vaultItemId, 'p_images': imagesJson},
     );
 
     final id = response.toString();
-    if (id == null || id.isEmpty) {
+    if (id.isEmpty) {
       throw Exception('Snapshot finalize returned empty id');
     }
 
@@ -175,17 +169,14 @@ class ConditionScanService {
       final preferred = await _client
           .from('condition_snapshot_analyses')
           .select(
-              'snapshot_id, created_at, analysis_version, analysis_key, scan_quality, confidence, measurements, defects')
+            'snapshot_id, created_at, analysis_version, analysis_key, scan_quality, confidence, measurements, defects',
+          )
           .eq('snapshot_id', snapshotId)
           .eq('analysis_version', 'v2_centering')
           .order('created_at', ascending: false)
           .limit(1)
           .maybeSingle();
-      if (preferred != null) {
-        data = preferred is Map<String, dynamic>
-            ? preferred
-            : Map<String, dynamic>.from(preferred as Map);
-      }
+      data = _mapOrNull(preferred);
     } catch (_) {
       // ignore and fallback
     }
@@ -196,17 +187,14 @@ class ConditionScanService {
         final fallback = await _client
             .from('condition_snapshot_analyses')
             .select(
-                'snapshot_id, created_at, analysis_version, analysis_key, scan_quality, confidence, measurements, defects')
+              'snapshot_id, created_at, analysis_version, analysis_key, scan_quality, confidence, measurements, defects',
+            )
             .eq('snapshot_id', snapshotId)
             .neq('analysis_version', 'v_user_quad_v1')
             .order('created_at', ascending: false)
             .limit(1)
             .maybeSingle();
-        if (fallback != null) {
-          data = fallback is Map<String, dynamic>
-              ? fallback
-              : Map<String, dynamic>.from(fallback as Map);
-        }
+        data = _mapOrNull(fallback);
       } catch (_) {
         // ignore
       }
@@ -214,14 +202,16 @@ class ConditionScanService {
 
     if (kDebugMode) {
       debugPrint(
-          '[DEBUG] preferredAnalysis snapshot=$snapshotId version=${data?['analysis_version']} conf=${data?['confidence']}');
+        '[DEBUG] preferredAnalysis snapshot=$snapshotId version=${data?['analysis_version']} conf=${data?['confidence']}',
+      );
     }
 
     return data;
   }
 
   Future<List<Map<String, dynamic>>> fetchSnapshotsForVaultItem(
-      String vaultItemId) async {
+    String vaultItemId,
+  ) async {
     final rows = await _client
         .from('condition_snapshots')
         .select('id, created_at')
@@ -229,11 +219,12 @@ class ConditionScanService {
         .order('created_at', ascending: false)
         .limit(20);
 
-    if (rows is! List) return const [];
+    final snapshotRows = (rows as List)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList(growable: false);
 
     final List<Map<String, dynamic>> out = [];
-    for (final raw in rows) {
-      if (raw is! Map) continue;
+    for (final raw in snapshotRows) {
       final snapId = (raw['id'] ?? '').toString();
       if (snapId.isEmpty) continue;
       Map<String, dynamic>? latest;
@@ -243,11 +234,13 @@ class ConditionScanService {
         latest = null;
       }
       final scanQuality = latest?['scan_quality'] as Map?;
-      final analysisStatus =
-          scanQuality is Map ? (scanQuality['analysis_status'] ?? '') : '';
+      final analysisStatus = scanQuality is Map
+          ? (scanQuality['analysis_status'] ?? '')
+          : '';
       final okFlag = scanQuality is Map ? (scanQuality['ok'] == true) : false;
-      final failureReason =
-          scanQuality is Map ? (scanQuality['failure_reason'] ?? '') : '';
+      final failureReason = scanQuality is Map
+          ? (scanQuality['failure_reason'] ?? '')
+          : '';
       final confidence = (latest?['confidence'] as num?)?.toDouble();
       out.add({
         'snapshot_id': snapId,
@@ -269,27 +262,23 @@ class ConditionScanService {
         .eq('id', snapshotId)
         .maybeSingle();
 
-    if (data == null) return null;
-    if (data is Map<String, dynamic>) return data;
-    if (data is Map) return Map<String, dynamic>.from(data);
-    throw Exception('snapshot fetch bad shape: ${data.runtimeType}');
+    return _mapOrNull(data);
   }
 
   Future<Map<String, dynamic>?> fetchMatchCardForSnapshot(
-      String snapshotId) async {
+    String snapshotId,
+  ) async {
     final row = await _client
         .from('v_condition_snapshot_analyses_match_card_v1')
         .select(
-            'analysis_snapshot_id, analysis_key, analysis_version, decision, best_candidate_card_print_id, best_candidate_name, best_candidate_set_code, best_candidate_number, best_candidate_image_best')
+          'analysis_snapshot_id, analysis_key, analysis_version, decision, best_candidate_card_print_id, best_candidate_name, best_candidate_set_code, best_candidate_number, best_candidate_image_best',
+        )
         .eq('analysis_snapshot_id', snapshotId)
         .order('analysis_created_at', ascending: false)
         .limit(1)
         .maybeSingle();
 
-    if (row == null) return null;
-    if (row is Map<String, dynamic>) return row;
-    if (row is Map) return Map<String, dynamic>.from(row);
-    throw Exception('match card fetch bad shape: ${row.runtimeType}');
+    return _mapOrNull(row);
   }
 
   Future<void> saveQuadOverride({
@@ -324,7 +313,8 @@ class ConditionScanService {
 
     await _client
         .from('condition_snapshots')
-        .update({'images': images}).eq('id', snapshotId);
+        .update({'images': images})
+        .eq('id', snapshotId);
   }
 
   Future<String> insertUserQuadAnalysis({
@@ -428,8 +418,14 @@ class ConditionScanService {
         .limit(1)
         .maybeSingle();
 
-    if (data == null) return null;
-    if (data is Map && data['status'] != null) return data['status'].toString();
-    return null;
+    final job = _mapOrNull(data);
+    return job?['status']?.toString();
+  }
+
+  Map<String, dynamic>? _mapOrNull(Object? value) {
+    if (value == null) {
+      return null;
+    }
+    return Map<String, dynamic>.from(value as Map);
   }
 }
