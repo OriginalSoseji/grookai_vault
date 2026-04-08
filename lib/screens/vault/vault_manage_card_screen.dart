@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../widgets/card_surface_price.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'vault_gvvi_screen.dart';
+
+enum _ManageCardPriceMode { grookai, myPrice, hidden }
 
 class VaultManageCardScreen extends StatefulWidget {
   const VaultManageCardScreen({
@@ -39,13 +44,18 @@ class VaultManageCardScreen extends StatefulWidget {
 class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
   final SupabaseClient _client = Supabase.instance.client;
   final TextEditingController _publicNoteController = TextEditingController();
+  final TextEditingController _manualPriceController = TextEditingController();
 
   VaultManageCardData? _data;
+  CardSurfacePricingData? _pricing;
   bool _loading = true;
   bool _shareSaving = false;
   bool _noteSaving = false;
+  bool _priceSaving = false;
+  _ManageCardPriceMode _selectedPriceMode = _ManageCardPriceMode.grookai;
   String? _error;
   String? _statusMessage;
+  String? _priceError;
 
   @override
   void initState() {
@@ -56,6 +66,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
   @override
   void dispose() {
     _publicNoteController.dispose();
+    _manualPriceController.dispose();
     super.dispose();
   }
 
@@ -80,14 +91,20 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
         fallbackNumber: widget.number,
         fallbackImageUrl: widget.imageUrl,
       );
+      final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+        client: _client,
+        cardPrintIds: <String>[widget.cardPrintId],
+      );
+      final pricing = pricingById[widget.cardPrintId];
 
       if (!mounted) {
         return;
       }
 
-      _publicNoteController.text = data.publicNote ?? '';
+      _applyLoadedState(data, pricing);
       setState(() {
         _data = data;
+        _pricing = pricing;
         _loading = false;
       });
     } catch (error) {
@@ -146,12 +163,17 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
           wallCategory: nextShared ? data.wallCategory : null,
           publicNote: nextShared ? data.publicNote : null,
           publicSlug: data.publicSlug,
+          priceDisplayMode: nextShared ? data.priceDisplayMode : null,
+          primarySharedGvviId: data.primarySharedGvviId,
+          askingPriceAmount: data.askingPriceAmount,
+          askingPriceCurrency: data.askingPriceCurrency,
           publicProfileEnabled: data.publicProfileEnabled,
           vaultSharingEnabled: data.vaultSharingEnabled,
           copies: data.copies,
         );
         if (!nextShared) {
           _publicNoteController.clear();
+          _priceError = null;
         }
         _statusMessage = nextShared ? 'Added to wall.' : 'Removed from wall.';
       });
@@ -206,6 +228,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
           wallCategory: nextCategory,
           publicNote: data.publicNote,
           publicSlug: data.publicSlug,
+          priceDisplayMode: data.priceDisplayMode,
+          primarySharedGvviId: data.primarySharedGvviId,
+          askingPriceAmount: data.askingPriceAmount,
+          askingPriceCurrency: data.askingPriceCurrency,
           publicProfileEnabled: data.publicProfileEnabled,
           vaultSharingEnabled: data.vaultSharingEnabled,
           copies: data.copies,
@@ -262,6 +288,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
           wallCategory: data.wallCategory,
           publicNote: nextNote,
           publicSlug: data.publicSlug,
+          priceDisplayMode: data.priceDisplayMode,
+          primarySharedGvviId: data.primarySharedGvviId,
+          askingPriceAmount: data.askingPriceAmount,
+          askingPriceCurrency: data.askingPriceCurrency,
           publicProfileEnabled: data.publicProfileEnabled,
           vaultSharingEnabled: data.vaultSharingEnabled,
           copies: data.copies,
@@ -282,6 +312,151 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
         });
       }
     }
+  }
+
+  void _applyLoadedState(
+    VaultManageCardData data,
+    CardSurfacePricingData? pricing,
+  ) {
+    _publicNoteController.text = data.publicNote ?? '';
+    _manualPriceController.text = _formatManualPrice(data.askingPriceAmount);
+    _selectedPriceMode = switch (data.priceDisplayMode) {
+      'my_price' => _ManageCardPriceMode.myPrice,
+      'hidden' => _ManageCardPriceMode.hidden,
+      _ => _ManageCardPriceMode.grookai,
+    };
+    _priceError = null;
+    _pricing = pricing;
+  }
+
+  Future<void> _savePriceDisplay() async {
+    final data = _data;
+    if (data == null || !data.isShared || _priceSaving) {
+      return;
+    }
+
+    final persistedMode = switch (_selectedPriceMode) {
+      _ManageCardPriceMode.grookai => 'grookai',
+      _ManageCardPriceMode.myPrice => 'my_price',
+      _ManageCardPriceMode.hidden => 'hidden',
+    };
+    final askingPriceAmount = _selectedPriceMode == _ManageCardPriceMode.myPrice
+        ? _parseManualPrice(_manualPriceController.text)
+        : null;
+
+    if (_selectedPriceMode == _ManageCardPriceMode.myPrice &&
+        askingPriceAmount == null) {
+      setState(() {
+        _priceError = 'Enter a valid price to use My Price.';
+      });
+      return;
+    }
+
+    setState(() {
+      _priceSaving = true;
+      _priceError = null;
+      _statusMessage = null;
+    });
+
+    try {
+      final result = await VaultCardService.saveSharedCardPriceDisplay(
+        client: _client,
+        cardPrintId: data.cardPrintId,
+        priceDisplayMode: persistedMode,
+        primarySharedGvviId: data.primarySharedGvviId,
+        askingPriceAmount: askingPriceAmount,
+        askingPriceCurrency: 'USD',
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _data = VaultManageCardData(
+          vaultItemId: data.vaultItemId,
+          cardPrintId: data.cardPrintId,
+          gvId: data.gvId,
+          name: data.name,
+          setName: data.setName,
+          setCode: data.setCode,
+          number: data.number,
+          rarity: data.rarity,
+          imageUrl: data.imageUrl,
+          totalCopies: data.totalCopies,
+          rawCount: data.rawCount,
+          slabCount: data.slabCount,
+          inPlayCount: data.inPlayCount,
+          isShared: data.isShared,
+          wallCategory: data.wallCategory,
+          publicNote: data.publicNote,
+          publicSlug: data.publicSlug,
+          priceDisplayMode: result.priceDisplayMode,
+          primarySharedGvviId: data.primarySharedGvviId,
+          askingPriceAmount: result.askingPriceAmount ?? data.askingPriceAmount,
+          askingPriceCurrency:
+              result.askingPriceCurrency ?? data.askingPriceCurrency,
+          publicProfileEnabled: data.publicProfileEnabled,
+          vaultSharingEnabled: data.vaultSharingEnabled,
+          copies: data.copies,
+        );
+        if (result.askingPriceAmount != null) {
+          _manualPriceController.text = _formatManualPrice(
+            result.askingPriceAmount,
+          );
+        }
+        _statusMessage = 'Price display saved.';
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    } finally {
+      if (mounted) {
+        setState(() {
+          _priceSaving = false;
+        });
+      }
+    }
+  }
+
+  String _formatManualPrice(double? amount) {
+    if (amount == null || !amount.isFinite) {
+      return '';
+    }
+    return amount.toStringAsFixed(2);
+  }
+
+  double? _parseManualPrice(String value) {
+    final normalized = value.replaceAll(RegExp(r'[^0-9.]'), '').trim();
+    if (normalized.isEmpty) {
+      return null;
+    }
+    final parsed = double.tryParse(normalized);
+    if (parsed == null || !parsed.isFinite || parsed < 0) {
+      return null;
+    }
+    return double.parse(parsed.toStringAsFixed(2));
+  }
+
+  String _selectedPriceModeValue() {
+    return switch (_selectedPriceMode) {
+      _ManageCardPriceMode.grookai => 'grookai',
+      _ManageCardPriceMode.myPrice => 'my_price',
+      _ManageCardPriceMode.hidden => 'hidden',
+    };
+  }
+
+  bool _moneyEquals(double? left, double? right) {
+    if (left == null && right == null) {
+      return true;
+    }
+    if (left == null || right == null) {
+      return false;
+    }
+    return (left - right).abs() < 0.005;
   }
 
   void _showStatus(String message) {
@@ -397,6 +572,27 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
       data.setName,
       if ((data.number ?? '').isNotEmpty) '#${data.number}',
     ];
+    final manualPreviewPrice =
+        _selectedPriceMode == _ManageCardPriceMode.myPrice
+        ? _parseManualPrice(_manualPriceController.text)
+        : null;
+    final hasGrookaiPrice = _pricing?.visibleValue != null;
+    final heroPricePill = switch (_selectedPriceMode) {
+      _ManageCardPriceMode.grookai when hasGrookaiPrice => CardSurfacePricePill(
+        pricing: _pricing,
+        size: CardSurfacePriceSize.list,
+        mode: CardSurfacePriceMode.grookai,
+      ),
+      _ManageCardPriceMode.myPrice when manualPreviewPrice != null =>
+        CardSurfacePricePill(
+          size: CardSurfacePriceSize.list,
+          mode: CardSurfacePriceMode.manual,
+          manualPrice: manualPreviewPrice,
+          manualCurrency: data.askingPriceCurrency ?? 'USD',
+        ),
+      _ => null,
+    };
+    final hasPublicNote = (data.publicNote ?? '').trim().isNotEmpty;
 
     return _ManageSurface(
       emphasize: true,
@@ -435,18 +631,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    if ((data.setCode ?? '').isNotEmpty ||
-                        (data.rarity ?? '').isNotEmpty) ...[
+                    if ((data.rarity ?? '').isNotEmpty) ...[
                       const SizedBox(height: 8),
                       Wrap(
                         spacing: 6,
                         runSpacing: 6,
                         children: [
-                          if ((data.setCode ?? '').isNotEmpty)
-                            _MetaChip(
-                              label: data.setCode!,
-                              tone: colorScheme.primary,
-                            ),
                           if ((data.rarity ?? '').isNotEmpty)
                             _MetaChip(
                               label: _formatRarity(data.rarity!),
@@ -460,6 +650,30 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
               ),
             ],
           ),
+          if (heroPricePill != null || hasPublicNote) ...[
+            const SizedBox(height: 14),
+            if (heroPricePill != null) ...[
+              Text(
+                'Wall card price',
+                style: theme.textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Align(alignment: Alignment.centerLeft, child: heroPricePill),
+            ],
+            if (hasPublicNote) ...[
+              const SizedBox(height: 10),
+              Text(
+                data.publicNote!.trim(),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.74),
+                  fontStyle: FontStyle.italic,
+                  height: 1.35,
+                ),
+              ),
+            ],
+          ],
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
@@ -532,8 +746,21 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
     ColorScheme colorScheme,
     VaultManageCardData data,
   ) {
+    final currentMode = _selectedPriceModeValue();
+    final persistedMode =
+        normalizeSharedCardPriceDisplayMode(data.priceDisplayMode) ?? 'grookai';
+    final manualPrice = _selectedPriceMode == _ManageCardPriceMode.myPrice
+        ? _parseManualPrice(_manualPriceController.text)
+        : null;
     final noteChanged =
         _publicNoteController.text.trim() != (data.publicNote ?? '');
+    final canUseManualPrice = (data.primarySharedGvviId ?? '')
+        .trim()
+        .isNotEmpty;
+    final priceChanged =
+        currentMode != persistedMode ||
+        (currentMode == 'my_price' &&
+            !_moneyEquals(manualPrice, data.askingPriceAmount));
 
     return _ManageSurface(
       child: Column(
@@ -597,8 +824,113 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
               alignLabelWithHint: true,
             ),
           ),
+          const SizedBox(height: 18),
+          Text(
+            'Price Display',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Choose whether the wall card shows Grookai pricing, your own asking price, or no price.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              height: 1.3,
+            ),
+          ),
           const SizedBox(height: 10),
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              ChoiceChip(
+                label: const Text('Use Grookai Price'),
+                selected: _selectedPriceMode == _ManageCardPriceMode.grookai,
+                onSelected: data.isShared
+                    ? (_) {
+                        setState(() {
+                          _selectedPriceMode = _ManageCardPriceMode.grookai;
+                          _priceError = null;
+                        });
+                      }
+                    : null,
+              ),
+              ChoiceChip(
+                label: const Text('Use My Price'),
+                selected: _selectedPriceMode == _ManageCardPriceMode.myPrice,
+                onSelected: data.isShared && canUseManualPrice
+                    ? (_) {
+                        setState(() {
+                          _selectedPriceMode = _ManageCardPriceMode.myPrice;
+                          _priceError = null;
+                        });
+                      }
+                    : null,
+              ),
+              ChoiceChip(
+                label: const Text('Hide Price'),
+                selected: _selectedPriceMode == _ManageCardPriceMode.hidden,
+                onSelected: data.isShared
+                    ? (_) {
+                        setState(() {
+                          _selectedPriceMode = _ManageCardPriceMode.hidden;
+                          _priceError = null;
+                        });
+                      }
+                    : null,
+              ),
+            ],
+          ),
+          if (_selectedPriceMode == _ManageCardPriceMode.myPrice) ...[
+            const SizedBox(height: 12),
+            TextField(
+              controller: _manualPriceController,
+              enabled: data.isShared && canUseManualPrice && !_priceSaving,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              textInputAction: TextInputAction.done,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+              ],
+              onChanged: (_) {
+                if (mounted) {
+                  setState(() {
+                    _priceError = null;
+                  });
+                }
+              },
+              decoration: InputDecoration(
+                labelText: 'Your Price',
+                hintText: '0.00',
+                prefixText: '\$',
+                errorText: _priceError,
+              ),
+            ),
+          ] else if (_priceError != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              _priceError!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.error,
+              ),
+            ),
+          ],
+          if (!canUseManualPrice) ...[
+            const SizedBox(height: 8),
+            Text(
+              'My Price becomes available once this card has an exact copy to anchor the asking price.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+                height: 1.3,
+              ),
+            ),
+          ],
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
             children: [
               FilledButton(
                 onPressed: data.isShared && !_noteSaving && noteChanged
@@ -612,19 +944,34 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen> {
                       )
                     : const Text('Save note'),
               ),
-              if (_statusMessage != null) ...[
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    _statusMessage!,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.68),
-                    ),
-                  ),
-                ),
-              ],
+              FilledButton.tonal(
+                onPressed:
+                    data.isShared &&
+                        !_priceSaving &&
+                        priceChanged &&
+                        (_selectedPriceMode != _ManageCardPriceMode.myPrice ||
+                            manualPrice != null)
+                    ? _savePriceDisplay
+                    : null,
+                child: _priceSaving
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Text('Save price'),
+              ),
             ],
           ),
+          if (_statusMessage != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              _statusMessage!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+              ),
+            ),
+          ],
         ],
       ),
     );

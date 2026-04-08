@@ -1,0 +1,5 @@
+  "CFBundleDisplayName" => "Grookai Vault"
+  "CFBundleIdentifier" => "$(PRODUCT_BUNDLE_IDENTIFIER)"
+  "NSCameraUsageDescription" => "Grookai Vault uses the camera so you can scan and capture trading cards."
+  "NSPhotoLibraryAddUsageDescription" => "Grookai Vault saves card images to your photo library when you choose to export them."
+  "NSPhotoLibraryUsageDescription" => "Grookai Vault uses your photo library so you can select card images to add to your vault."

@@ -1,0 +1,17 @@
+lib/card_detail_screen.dart
+lib/main.dart
+lib/screens/identity_scan/identity_scan_screen.dart
+lib/screens/identity_scan/identity_scanner_ui_mapper.dart
+lib/screens/scanner/condition_camera_screen.dart
+lib/screens/scanner/quad_adjust_screen.dart
+lib/screens/scanner/scan_capture_screen.dart
+lib/services/identity/identity_scan_service.dart
+lib/services/scanner/condition_scan_service.dart
+lib/services/scanner/native_quad_detector.dart
+lib/services/vault/vault_card_service.dart
+lib/widgets/scanner/identity_scanner_bottom_panel.dart
+lib/widgets/scanner/identity_scanner_overlay.dart
+ios/Runner/Info.plist
+ios/Runner.xcodeproj/project.pbxproj
+pubspec.yaml
+pubspec.lock

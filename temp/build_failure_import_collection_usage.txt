@@ -1,0 +1,6 @@
+lib/screens/account/import_collection_screen.dart:11:class ImportCollectionScreen extends StatefulWidget {
+lib/screens/account/import_collection_screen.dart:12:  const ImportCollectionScreen({super.key});
+lib/screens/account/import_collection_screen.dart:15:  State<ImportCollectionScreen> createState() => _ImportCollectionScreenState();
+lib/screens/account/import_collection_screen.dart:18:class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
+lib/screens/account/account_screen.dart:8:import 'import_collection_screen.dart';
+lib/screens/account/account_screen.dart:314:      MaterialPageRoute<void>(builder: (_) => const ImportCollectionScreen()),

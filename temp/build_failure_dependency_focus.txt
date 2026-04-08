@@ -1,0 +1,41 @@
+pubspec.yaml:37:  supabase_flutter: ^2.10.0
+pubspec.yaml:40:  image_picker: ^1.0.7
+pubspec.yaml:41:  camera: ^0.12.0+1
+pubspec.lock:4:  app_links:
+pubspec.lock:7:      name: app_links
+pubspec.lock:12:  app_links_linux:
+pubspec.lock:15:      name: app_links_linux
+pubspec.lock:20:  app_links_platform_interface:
+pubspec.lock:23:      name: app_links_platform_interface
+pubspec.lock:28:  app_links_web:
+pubspec.lock:31:      name: app_links_web
+pubspec.lock:52:  camera:
+pubspec.lock:55:      name: camera
+pubspec.lock:60:  camera_android_camerax:
+pubspec.lock:63:      name: camera_android_camerax
+pubspec.lock:68:  camera_avfoundation:
+pubspec.lock:71:      name: camera_avfoundation
+pubspec.lock:76:  camera_platform_interface:
+pubspec.lock:79:      name: camera_platform_interface
+pubspec.lock:84:  camera_web:
+pubspec.lock:87:      name: camera_web
+pubspec.lock:275:  image_picker:
+pubspec.lock:278:      name: image_picker
+pubspec.lock:283:  image_picker_android:
+pubspec.lock:286:      name: image_picker_android
+pubspec.lock:291:  image_picker_for_web:
+pubspec.lock:294:      name: image_picker_for_web
+pubspec.lock:299:  image_picker_ios:
+pubspec.lock:302:      name: image_picker_ios
+pubspec.lock:307:  image_picker_linux:
+pubspec.lock:310:      name: image_picker_linux
+pubspec.lock:315:  image_picker_macos:
+pubspec.lock:318:      name: image_picker_macos
+pubspec.lock:323:  image_picker_platform_interface:
+pubspec.lock:326:      name: image_picker_platform_interface
+pubspec.lock:331:  image_picker_windows:
+pubspec.lock:334:      name: image_picker_windows
+pubspec.lock:648:  supabase:
+pubspec.lock:651:      name: supabase
+pubspec.lock:656:  supabase_flutter:
+pubspec.lock:659:      name: supabase_flutter

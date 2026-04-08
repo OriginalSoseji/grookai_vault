@@ -4,32 +4,45 @@ import '../services/public/card_surface_pricing_service.dart';
 
 enum CardSurfacePriceSize { grid, list, dense }
 
+enum CardSurfacePriceMode { automatic, grookai, manual, hidden }
+
 class CardSurfacePricePill extends StatelessWidget {
   const CardSurfacePricePill({
-    required this.pricing,
+    this.pricing,
     this.size = CardSurfacePriceSize.dense,
+    this.mode = CardSurfacePriceMode.automatic,
+    this.manualPrice,
+    this.manualCurrency,
     super.key,
   });
 
   final CardSurfacePricingData? pricing;
   final CardSurfacePriceSize size;
+  final CardSurfacePriceMode mode;
+  final double? manualPrice;
+  final String? manualCurrency;
 
   @override
   Widget build(BuildContext context) {
     final resolvedPricing = pricing;
-    final value = resolvedPricing?.visibleValue;
-    if (resolvedPricing == null || value == null) {
+    final value = switch (mode) {
+      CardSurfacePriceMode.automatic => resolvedPricing?.visibleValue,
+      CardSurfacePriceMode.grookai => resolvedPricing?.visibleValue,
+      CardSurfacePriceMode.manual => manualPrice,
+      CardSurfacePriceMode.hidden => null,
+    };
+    if (mode == CardSurfacePriceMode.hidden) {
       return const SizedBox.shrink();
     }
 
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final metrics = switch (size) {
-      CardSurfacePriceSize.grid => (horizontal: 6.5, vertical: 3.5, font: 10.4),
-      CardSurfacePriceSize.list => (horizontal: 7.0, vertical: 4.0, font: 10.9),
+      CardSurfacePriceSize.grid => (horizontal: 7.0, vertical: 4.0, font: 10.6),
+      CardSurfacePriceSize.list => (horizontal: 7.5, vertical: 4.5, font: 10.9),
       CardSurfacePriceSize.dense => (
-        horizontal: 6.0,
-        vertical: 3.0,
+        horizontal: 6.5,
+        vertical: 3.5,
         font: 10.2,
       ),
     };
@@ -40,14 +53,16 @@ class CardSurfacePricePill extends StatelessWidget {
         vertical: metrics.vertical,
       ),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: 0.06),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.72),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.14)),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
       ),
       child: Text(
-        '${resolvedPricing.compactLabel} ${formatCardSurfaceUsd(value)}',
+        value == null
+            ? '—'
+            : formatCardSurfaceMoney(value, currency: manualCurrency),
         style: theme.textTheme.labelSmall?.copyWith(
-          color: colorScheme.primary,
+          color: colorScheme.onSurface.withValues(alpha: 0.84),
           fontWeight: FontWeight.w700,
           fontSize: metrics.font,
           height: 1.0,
@@ -57,7 +72,7 @@ class CardSurfacePricePill extends StatelessWidget {
   }
 }
 
-String formatCardSurfaceUsd(double value) {
+String formatCardSurfaceMoney(double value, {String? currency}) {
   if (!value.isFinite) {
     return '—';
   }
@@ -70,9 +85,11 @@ String formatCardSurfaceUsd(double value) {
   final whole = parts.first;
   final fractional = parts.length > 1 ? parts.last : null;
   final wholeWithSeparators = _withThousandsSeparators(whole);
+  final normalizedCurrency = (currency ?? 'USD').trim().toUpperCase();
+  final symbol = normalizedCurrency == 'USD' ? r'$' : '$normalizedCurrency ';
   final formatted = fractional == null
-      ? '\$$wholeWithSeparators'
-      : '\$$wholeWithSeparators.$fractional';
+      ? '$symbol$wholeWithSeparators'
+      : '$symbol$wholeWithSeparators.$fractional';
 
   return isNegative ? '-$formatted' : formatted;
 }

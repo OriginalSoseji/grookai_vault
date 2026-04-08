@@ -1,0 +1,20 @@
+HTTP/2 200 
+date: Wed, 08 Apr 2026 18:17:13 GMT
+content-type: application/json; charset=utf-8
+content-length: 97
+server: cloudflare
+content-range: 0-0/*
+cf-ray: 9e9344809ddeb815-DFW
+cf-cache-status: DYNAMIC
+content-location: /shared_cards?limit=1&select=card_id%2Cpublic_note%2Cprice_display_mode
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-content-type-options: nosniff
+content-profile: public
+sb-gateway-version: 1
+sb-project-ref: ycdxbpibncqcchqiihfz
+sb-request-id: 019d6e50-0c6a-7077-ae3c-2490412a0bd4
+x-envoy-attempt-count: 1
+x-envoy-upstream-service-time: 5
+set-cookie: __cf_bm=9tVKQ43Ihc4Pii9n_IN71.npH2gIUUXQRFfYxojWLnM-1775672233-1.0.1.1-gDnllZa05a3VhmrlcdXLCNyFuO..IMHcq7WvQbkiOf0eEKgIW04B_UoVFuYaCdjV9GUCmqZkhn99u1LUilt9S5YRzpaj7ezZIrkwgrEcsNk; path=/; expires=Wed, 08-Apr-26 18:47:13 GMT; domain=.supabase.co; HttpOnly; Secure; SameSite=None
+alt-svc: h3=":443"; ma=86400
+

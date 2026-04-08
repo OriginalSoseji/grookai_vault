@@ -1,0 +1,120 @@
+                          #1      asFileUri (package:vm/kernel_front_end.dart:1038)
+                          #2      writeDepfile (package:vm/kernel_front_end.dart:1201)
+                          <asynchronous suspension>
+                          #3      FrontendCompiler.compile (package:frontend_server/frontend_server.dart:751)
+                          <asynchronous suspension>
+                          #4      starter (package:frontend_server/starter.dart:102)
+                          <asynchronous suspension>
+                          #5      main (file:///Volumes/Work/s/w/ir/x/w/sdk/pkg/frontend_server/bin/frontend_server_starter.dart:13)
+                          <asynchronous suspension>
+
+               [   +1 ms] Target kernel_snapshot_program failed: Exception
+                          #0      KernelSnapshot.build (package:flutter_tools/src/build_system/targets/common.dart:289:7)
+                          <asynchronous suspension>
+                          #1      _BuildInstance._invokeInternal (package:flutter_tools/src/build_system/build_system.dart:937:9)
+                          <asynchronous suspension>
+                          #2      Future.wait.<anonymous closure> (dart:async/future.dart:546:21)
+                          <asynchronous suspension>
+                          #3      _BuildInstance.invokeTarget (package:flutter_tools/src/build_system/build_system.dart:875:32)
+                          <asynchronous suspension>
+                          #4      FlutterBuildSystem.build (package:flutter_tools/src/build_system/build_system.dart:684:16)
+                          <asynchronous suspension>
+                          #5      AssembleCommand.runCommand (package:flutter_tools/src/commands/assemble.dart:365:32)
+                          <asynchronous suspension>
+                          #6      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1590:27)
+                          <asynchronous suspension>
+                          #7      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #8      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+                          <asynchronous suspension>
+                          #9      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:496:9)
+                          <asynchronous suspension>
+                          #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #11     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+                          <asynchronous suspension>
+                          #12     FlutterCommandRunner.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:307:33)
+                          <asynchronous suspension>
+                          #13     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:104:11)
+                          <asynchronous suspension>
+                          #14     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #15     main (package:flutter_tools/executable.dart:103:3)
+                          <asynchronous suspension>
+
+               [   +5 ms] 
+                          #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+                          #1      AssembleCommand.runCommand (package:flutter_tools/src/commands/assemble.dart:383:7)
+                          <asynchronous suspension>
+                          #2      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1590:27)
+                          <asynchronous suspension>
+                          #3      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #4      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+                          <asynchronous suspension>
+                          #5      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:496:9)
+                          <asynchronous suspension>
+                          #6      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #7      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+                          <asynchronous suspension>
+                          #8      FlutterCommandRunner.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:307:33)
+                          <asynchronous suspension>
+                          #9      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:104:11)
+                          <asynchronous suspension>
+                          #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+                          <asynchronous suspension>
+                          #11     main (package:flutter_tools/executable.dart:103:3)
+                          <asynchronous suspension>
+               Failed to package /Users/cesarcabral/grookai_vault.
+               Command PhaseScriptExecution failed with a nonzero exit code
+
+
+               Result bundle written to path:
+               	/var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/temporary_xcresult_bundle
+
+
+[   +7 ms] Could not build the application for the simulator.
+[   +1 ms] Error launching application on iPhone 17 Pro.
+[        ] "flutter run" took 13,203ms.
+[   +6 ms] executing: sw_vers -productName
+[  +11 ms] Exit code 0 from: sw_vers -productName
+[        ] macOS
+[        ] executing: sw_vers -productVersion
+[  +11 ms] Exit code 0 from: sw_vers -productVersion
+[        ] 26.3
+[        ] executing: sw_vers -buildVersion
+[   +9 ms] Exit code 0 from: sw_vers -buildVersion
+[        ] 25D2125
+[        ] executing: uname -m
+[   +3 ms] Exit code 0 from: uname -m
+[        ] arm64
+[  +19 ms] 
+           #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+           #1      RunCommand.runCommand (package:flutter_tools/src/commands/run.dart:910:9)
+           <asynchronous suspension>
+           #2      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1590:27)
+           <asynchronous suspension>
+           #3      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #4      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+           <asynchronous suspension>
+           #5      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:496:9)
+           <asynchronous suspension>
+           #6      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #7      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:431:5)
+           <asynchronous suspension>
+           #8      FlutterCommandRunner.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:307:33)
+           <asynchronous suspension>
+           #9      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:104:11)
+           <asynchronous suspension>
+           #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+           <asynchronous suspension>
+           #11     main (package:flutter_tools/executable.dart:103:3)
+           <asynchronous suspension>
+
+
+[        ] Running 3 shutdown hooks
+[   +1 ms] Shutdown hooks complete
+[  +56 ms] exiting with code 1

@@ -1,0 +1,9 @@
+lib/main.dart
+lib/main_shell.dart
+lib/main_vault.dart
+lib/widgets/app_shell_metrics.dart
+lib/widgets/card_surface_artwork.dart
+lib/widgets/card_surface_price.dart
+lib/widgets/card_view_mode.dart
+lib/widgets/contact_owner_button.dart
+lib/widgets/follow_collector_button.dart

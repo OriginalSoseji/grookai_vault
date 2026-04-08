@@ -1,0 +1,133 @@
+lib/main_shell.dart:15:  wall(navIndex: 1, stackIndex: 1, title: 'My Wall'),
+lib/main_shell.dart:48:  final GlobalKey<_MyWallTabState> _wallKey = GlobalKey();
+lib/main_shell.dart:60:      _MyWallTab(
+lib/main_shell.dart:356:              label: 'Wall',
+lib/main_shell.dart:500:class _MyWallTab extends StatefulWidget {
+lib/main_shell.dart:501:  const _MyWallTab({
+lib/main_shell.dart:511:  State<_MyWallTab> createState() => _MyWallTabState();
+lib/main_shell.dart:514:class _MyWallTabState extends State<_MyWallTab> {
+lib/main_shell.dart:585:            title: 'Unable to load My Wall',
+lib/main_shell.dart:604:        ? 'My Wall is not public right now'
+lib/main_shell.dart:605:        : 'My Wall is not ready yet';
+lib/main_vault.dart:759:  List<Map<String, dynamic>> _filterOnWallRows(
+lib/main_vault.dart:1130:    final onWallRows = _filterOnWallRows(searchedRows);
+lib/main_vault.dart:1173:      case _VaultStructuralView.onWall:
+lib/main_vault.dart:1176:            : onWallRows.isNotEmpty
+lib/main_vault.dart:1177:            ? _buildVaultCards(onWallRows)
+lib/main_vault.dart:1295:                      _buildVaultViewChip(_VaultStructuralView.onWall, 'Wall'),
+lib/main_vault.dart:1387:enum _VaultStructuralView { all, onWall, duplicates, recent, bySet, pokemon }
+lib/screens/network/network_discover_screen.dart:208:                                  isFollowing: _followedCollectorIds.contains(
+lib/screens/network/network_discover_screen.dart:212:                                  onFollowChanged: (isFollowing) {
+lib/screens/network/network_discover_screen.dart:217:                                      if (isFollowing) {
+lib/screens/network/network_discover_screen.dart:311:    required this.isFollowing,
+lib/screens/network/network_discover_screen.dart:317:  final bool isFollowing;
+lib/screens/network/network_discover_screen.dart:385:                    initialIsFollowing: isFollowing,
+lib/screens/gvvi/public_gvvi_screen.dart:208:        return 'Showcase';
+lib/screens/network/network_screen.dart:187:                    label: 'Showcase',
+lib/screens/public_collector/public_collector_screen.dart:47:  bool _isFollowing = false;
+lib/screens/public_collector/public_collector_screen.dart:65:      _isFollowing = false;
+lib/screens/public_collector/public_collector_screen.dart:94:        _isFollowing = initialFollowState;
+lib/screens/public_collector/public_collector_screen.dart:109:  void _handleFollowChanged(bool isFollowing) {
+lib/screens/public_collector/public_collector_screen.dart:114:        _isFollowing = isFollowing;
+lib/screens/public_collector/public_collector_screen.dart:120:      _isFollowing = isFollowing;
+lib/screens/public_collector/public_collector_screen.dart:121:      _followerCountOverride = isFollowing
+lib/screens/public_collector/public_collector_screen.dart:209:            title: 'No public Wall content yet',
+lib/screens/public_collector/public_collector_screen.dart:211:                'This collector has a public profile, but there is no public Wall content to show yet.',
+lib/screens/public_collector/public_collector_screen.dart:223:                initialIsFollowing: _isFollowing,
+lib/screens/public_collector/public_collector_screen.dart:231:              body: 'This collector does not have any public Wall content yet.',
+lib/screens/public_collector/public_collector_screen.dart:241:        return _PublicCollectorWallLayout(
+lib/screens/public_collector/public_collector_screen.dart:248:            initialIsFollowing: _isFollowing,
+lib/screens/public_collector/public_collector_screen.dart:271:class _PublicCollectorWallLayout extends StatelessWidget {
+lib/screens/public_collector/public_collector_screen.dart:272:  const _PublicCollectorWallLayout({
+lib/screens/public_collector/public_collector_screen.dart:398:          _FeaturedWallSection(
+lib/screens/public_collector/public_collector_screen.dart:488:            label: 'In Play',
+lib/screens/public_collector/public_collector_screen.dart:612:                      label: '$followerCount Followers',
+lib/screens/public_collector/public_collector_screen.dart:620:                                      PublicCollectorFollowersScreen(
+lib/screens/public_collector/public_collector_screen.dart:628:                      label: '${profile.followingCount} Following',
+lib/screens/public_collector/public_collector_screen.dart:636:                                      PublicCollectorFollowingScreen(
+lib/screens/public_collector/public_collector_screen.dart:765:class PublicCollectorFollowersScreen extends StatelessWidget {
+lib/screens/public_collector/public_collector_screen.dart:766:  const PublicCollectorFollowersScreen({required this.slug, super.key});
+lib/screens/public_collector/public_collector_screen.dart:779:class PublicCollectorFollowingScreen extends StatelessWidget {
+lib/screens/public_collector/public_collector_screen.dart:780:  const PublicCollectorFollowingScreen({required this.slug, super.key});
+lib/screens/public_collector/public_collector_screen.dart:816:  bool _isFollowingProfile = false;
+lib/screens/public_collector/public_collector_screen.dart:821:  bool get _isFollowers => widget.kind == _CollectorRelationshipKind.followers;
+lib/screens/public_collector/public_collector_screen.dart:837:      _isFollowingProfile = false;
+lib/screens/public_collector/public_collector_screen.dart:858:      final collectors = _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:863:          : await PublicCollectorService.fetchFollowingCollectors(
+lib/screens/public_collector/public_collector_screen.dart:875:      final isFollowingProfile =
+lib/screens/public_collector/public_collector_screen.dart:892:        _isFollowingProfile = isFollowingProfile;
+lib/screens/public_collector/public_collector_screen.dart:907:  void _handleProfileFollowChanged(bool isFollowing) {
+lib/screens/public_collector/public_collector_screen.dart:915:      _isFollowingProfile = isFollowing;
+lib/screens/public_collector/public_collector_screen.dart:916:      _followerCountOverride = isFollowing
+lib/screens/public_collector/public_collector_screen.dart:922:  void _handleCollectorFollowChanged(String userId, bool isFollowing) {
+lib/screens/public_collector/public_collector_screen.dart:925:      if (isFollowing) {
+lib/screens/public_collector/public_collector_screen.dart:938:        title: Text(_isFollowers ? 'Followers' : 'Following'),
+lib/screens/public_collector/public_collector_screen.dart:955:          icon: _isFollowers ? Icons.group_rounded : Icons.person_add_alt_1,
+lib/screens/public_collector/public_collector_screen.dart:956:          title: _isFollowers ? 'Loading followers' : 'Loading following',
+lib/screens/public_collector/public_collector_screen.dart:957:          body: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:978:          title: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:981:          body: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1001:              currentRoute: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1004:              description: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1010:                initialIsFollowing: _isFollowingProfile,
+lib/screens/public_collector/public_collector_screen.dart:1017:              title: _isFollowers ? 'Followers' : 'Following',
+lib/screens/public_collector/public_collector_screen.dart:1018:              body: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1036:                icon: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1039:                title: _isFollowers ? 'No followers yet' : 'No follows yet',
+lib/screens/public_collector/public_collector_screen.dart:1040:                body: _isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1055:                            isFollowers: _isFollowers,
+lib/screens/public_collector/public_collector_screen.dart:1057:                          isFollowing: _followedCollectorIds.contains(
+lib/screens/public_collector/public_collector_screen.dart:1061:                          onFollowChanged: (isFollowing) =>
+lib/screens/public_collector/public_collector_screen.dart:1064:                                isFollowing,
+lib/screens/public_collector/public_collector_screen.dart:1397:    required this.isFollowing,
+lib/screens/public_collector/public_collector_screen.dart:1404:  final bool isFollowing;
+lib/screens/public_collector/public_collector_screen.dart:1471:                    initialIsFollowing: isFollowing,
+lib/screens/public_collector/public_collector_screen.dart:1547:  required bool isFollowers,
+lib/screens/public_collector/public_collector_screen.dart:1550:    return isFollowers ? 'Following recently' : 'Recently followed';
+lib/screens/public_collector/public_collector_screen.dart:1556:  return isFollowers
+lib/screens/public_collector/public_collector_screen.dart:1557:      ? 'Following since $month/$day/$year'
+lib/screens/public_collector/public_collector_screen.dart:1576:class _FeaturedWallSection extends StatelessWidget {
+lib/screens/public_collector/public_collector_screen.dart:1577:  const _FeaturedWallSection({
+lib/screens/public_collector/public_collector_screen.dart:1589:    return _WallSectionCard(
+lib/screens/public_collector/public_collector_screen.dart:1590:      title: 'In Play',
+lib/screens/public_collector/public_collector_screen.dart:1619:    return _WallSectionCard(
+lib/screens/public_collector/public_collector_screen.dart:1635:class _WallSectionCard extends StatelessWidget {
+lib/screens/public_collector/public_collector_screen.dart:1636:  const _WallSectionCard({
+lib/screens/public_collector/public_collector_screen.dart:2324:      return 'Showcase';
+lib/screens/public_collector/public_collector_screen.dart:2581:                  'Public Wall',
+lib/screens/account/following_screen.dart:7:class FollowingScreen extends StatefulWidget {
+lib/screens/account/following_screen.dart:8:  const FollowingScreen({super.key});
+lib/screens/account/following_screen.dart:11:  State<FollowingScreen> createState() => _FollowingScreenState();
+lib/screens/account/following_screen.dart:14:class _FollowingScreenState extends State<FollowingScreen> {
+lib/screens/account/following_screen.dart:19:  List<FollowingCollector> _collectors = const [];
+lib/screens/account/following_screen.dart:43:      final collectors = await FollowingService.fetchFollowingCollectors(
+lib/screens/account/following_screen.dart:71:        title: const Text('Following'),
+lib/screens/account/following_screen.dart:86:              _FollowingSurface(
+lib/screens/account/following_screen.dart:117:                _FollowingSurface(
+lib/screens/account/following_screen.dart:118:                  child: _FollowingEmptyState(
+lib/screens/account/following_screen.dart:124:                _FollowingSurface(
+lib/screens/account/following_screen.dart:125:                  child: const _FollowingEmptyState(
+lib/screens/account/following_screen.dart:132:                _FollowingSurface(
+lib/screens/account/following_screen.dart:141:                        _FollowingCollectorTile(
+lib/screens/account/following_screen.dart:159:class _FollowingSurface extends StatelessWidget {
+lib/screens/account/following_screen.dart:160:  const _FollowingSurface({
+lib/screens/account/following_screen.dart:183:class _FollowingCollectorTile extends StatelessWidget {
+lib/screens/account/following_screen.dart:184:  const _FollowingCollectorTile({
+lib/screens/account/following_screen.dart:189:  final FollowingCollector collector;
+lib/screens/account/following_screen.dart:215:              _FollowingAvatar(collector: collector),
+lib/screens/account/following_screen.dart:268:class _FollowingAvatar extends StatelessWidget {
+lib/screens/account/following_screen.dart:269:  const _FollowingAvatar({required this.collector});
+lib/screens/account/following_screen.dart:271:  final FollowingCollector collector;
+lib/screens/account/following_screen.dart:318:class _FollowingEmptyState extends StatelessWidget {
+lib/screens/account/following_screen.dart:319:  const _FollowingEmptyState({required this.title, required this.body});
+lib/screens/account/account_screen.dart:306:  Future<void> _openFollowing() async {
+lib/screens/account/account_screen.dart:309:    ).push(MaterialPageRoute<void>(builder: (_) => const FollowingScreen()));
+lib/screens/account/account_screen.dart:429:                            'Allow your shared collection and in-play cards to appear on your Wall.',
+lib/screens/account/account_screen.dart:516:                        title: 'My Wall',
+lib/screens/account/account_screen.dart:551:                        title: 'Following',
+lib/screens/account/account_screen.dart:553:                        onTap: _openFollowing,
+lib/screens/account/account_screen.dart:607:        return 'Your Wall is live and reachable from the signed-in home surface.';
+lib/screens/account/account_screen.dart:609:        return 'Turn on both your public profile and vault sharing to expose your Wall publicly.';
+lib/screens/account/account_screen.dart:611:        return 'Create a public slug and display name to bring your Wall online.';
+lib/screens/account/account_screen.dart:621:      return 'Public Wall is currently disabled';
+lib/screens/account/account_screen.dart:623:    return 'Public Wall setup still needed';

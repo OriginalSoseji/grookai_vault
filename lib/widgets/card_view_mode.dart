@@ -78,30 +78,35 @@ class SharedCardViewModeButton extends StatelessWidget {
           )
           .toList(),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
-          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
-          borderRadius: BorderRadius.circular(12),
+          color: colorScheme.surface.withValues(alpha: 0.88),
+          borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.16),
+            color: colorScheme.outline.withValues(alpha: 0.10),
           ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(value.icon, size: 16, color: colorScheme.primary),
-            const SizedBox(width: 5),
+            Icon(
+              value.icon,
+              size: 16,
+              color: colorScheme.onSurface.withValues(alpha: 0.72),
+            ),
+            const SizedBox(width: 6),
             Text(
               value.label,
-              style: Theme.of(
-                context,
-              ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: colorScheme.onSurface.withValues(alpha: 0.84),
+              ),
             ),
-            const SizedBox(width: 3),
+            const SizedBox(width: 4),
             Icon(
               Icons.unfold_more_rounded,
               size: 15,
-              color: colorScheme.onSurface.withValues(alpha: 0.6),
+              color: colorScheme.onSurface.withValues(alpha: 0.48),
             ),
           ],
         ),

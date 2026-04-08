@@ -1,0 +1,89 @@
+/Users/cesarcabral/grookai_vault
+ M .flutter-plugins-dependencies
+ M ios/Podfile
+ M ios/Podfile.lock
+ M ios/Runner.xcodeproj/project.pbxproj
+MM ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+D  ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png
+ M ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png
+A  ios/Runner/Assets.xcassets/AppIcon.appiconset/grookai-logo-512.png
+ M ios/Runner/Info.plist
+ M lib/screens/public_collector/public_collector_screen.dart
+ M lib/screens/vault/vault_manage_card_screen.dart
+ M lib/services/public/public_collector_service.dart
+ M lib/services/vault/vault_card_service.dart
+ M lib/widgets/card_surface_artwork.dart
+ M lib/widgets/card_surface_price.dart
+ M lib/widgets/card_view_mode.dart
+ M pubspec.lock
+ M pubspec.yaml
+?? apps/web/src/app/auth/mobile-handoff/
+?? assets/
+?? docs/checkpoints/FILE_PICKER_DEPENDENCY_REPAIR_V1.md
+?? docs/checkpoints/IOS_SIMULATOR_BUILD_FAILURE_AUDIT_V1.md
+?? docs/checkpoints/SHARED_CARDS_PRICE_DISPLAY_MODE_MIGRATION_APPLY_V1.md
+?? docs/checkpoints/WALL_SHELL_RECOVERY_V1.md
+?? flutter_launcher_icons.yaml
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-50x50@1x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-50x50@2x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-57x57@1x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-57x57@2x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-72x72@1x.png
+?? ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-72x72@2x.png
+?? lib/dev/
+?? lib/screens/identity_scan/identity_scanner_ui_mapper.dart
+?? lib/widgets/scanner/identity_scanner_bottom_panel.dart
+?? lib/widgets/scanner/identity_scanner_overlay.dart
+?? scripts/ensure_ios_permissions.mjs
+?? scripts/fix_ios_permissions.mjs
+?? supabase/migrations/20260408113000_add_shared_cards_price_display_mode_v1.sql
+?? temp/build_failure_Info_plist.txt
+?? temp/build_failure_Podfile.txt
+?? temp/build_failure_account_routes.txt
+?? temp/build_failure_account_screen_part1.txt
+?? temp/build_failure_bundle_id_focus.txt
+?? temp/build_failure_dependency_focus.txt
+?? temp/build_failure_file_picker_refs.txt
+?? temp/build_failure_import_collection_screen_part1.txt
+?? temp/build_failure_import_collection_usage.txt
+?? temp/build_failure_info_key_focus.txt
+?? temp/build_failure_ios_generated_registrant.txt
+?? temp/build_failure_macos_generated_registrant.txt
+?? temp/build_failure_project_pbxproj_part1.txt
+?? temp/build_failure_project_pbxproj_part2.txt
+?? temp/build_failure_pubspec.txt
+?? temp/build_failure_pubspec_lock_part1.txt
+?? temp/build_failure_repo_context.txt
+?? temp/flutter_ios_simulator_build_error_index.txt
+?? temp/flutter_ios_simulator_build_error_window.txt
+?? temp/flutter_ios_simulator_build_tail.txt
+?? temp/migration_file_list.txt
+?? temp/migration_target_backup_20260408_094907/
+?? temp/my_wall_polish_v1.png
+?? temp/price_consistency_fix_wall_after.png
+?? temp/public_wall_price_mode_headers.txt
+?? temp/public_wall_price_mode_headers_after.txt
+?? temp/public_wall_price_mode_query.json
+?? temp/public_wall_price_mode_query_after.json
+?? temp/shared_cards_columns.txt
+?? temp/shared_cards_price_display_mode_wall_after.png
+?? temp/wall_shell_restore_backup_20260408_101412/
+?? temp/wall_shell_restore_file_list.txt
+?? temp/wall_shell_restore_head_vs_commit_diff.txt
+?? temp/wall_shell_restore_label_check.txt
+?? temp_candidate_images.txt
+?? temp_repo_images.txt

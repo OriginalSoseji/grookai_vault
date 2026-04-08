@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../services/account/account_profile_service.dart';
+import '../../services/public/public_collector_service.dart';
+import 'following_screen.dart';
+import 'import_collection_screen.dart';
+import 'submit_missing_card_screen.dart';
+
+enum AccountHubAction { wall, vault, network, sets, messages, signOut }
+
+class AccountScreen extends StatefulWidget {
+  const AccountScreen({super.key});
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  final SupabaseClient _client = Supabase.instance.client;
+  final ImagePicker _imagePicker = ImagePicker();
+  final TextEditingController _displayNameController = TextEditingController();
+  final TextEditingController _slugController = TextEditingController();
+
+  bool _loading = true;
+  bool _saving = false;
+  String? _error;
+  String? _statusMessage;
+  bool _statusIsSuccess = true;
+  Map<String, String> _fieldErrors = const {};
+  ProfileMediaKind? _busyMediaKind;
+
+  AccountProfileData? _profile;
+  bool _publicProfileEnabled = false;
+  bool _vaultSharingEnabled = false;
+  String? _avatarPath;
+  String? _bannerPath;
+  PublicCollectorEntryState _wallState =
+      PublicCollectorEntryState.missingProfile;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  @override
+  void dispose() {
+    _displayNameController.dispose();
+    _slugController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+
+    try {
+      final profile = await AccountProfileService.loadCurrentProfile(
+        client: _client,
+      );
+      final wallEntry = await PublicCollectorService.resolveOwnEntry(
+        client: _client,
+        userId: profile.userId,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      _hydrateProfile(profile, wallEntry.state);
+      setState(() {
+        _loading = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _loading = false;
+        _error = error is Error ? error.toString() : 'Unable to load account.';
+      });
+    }
+  }
+
+  void _hydrateProfile(
+    AccountProfileData profile,
+    PublicCollectorEntryState wallState,
+  ) {
+    _profile = profile;
+    _wallState = wallState;
+    _displayNameController.text = profile.displayName;
+    _slugController.text = profile.slug;
+    _publicProfileEnabled = profile.publicProfileEnabled;
+    _vaultSharingEnabled = profile.vaultSharingEnabled;
+    _avatarPath = profile.avatarPath;
+    _bannerPath = profile.bannerPath;
+  }
+
+  AccountProfileData? _buildDraft() {
+    final profile = _profile;
+    if (profile == null) {
+      return null;
+    }
+
+    return profile.copyWith(
+      displayName: _displayNameController.text,
+      slug: _slugController.text,
+      publicProfileEnabled: _publicProfileEnabled,
+      vaultSharingEnabled: _vaultSharingEnabled,
+      avatarPath: _avatarPath,
+      bannerPath: _bannerPath,
+    );
+  }
+
+  void _setStatus(String message, {required bool success}) {

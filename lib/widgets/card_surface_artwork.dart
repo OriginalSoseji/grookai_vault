@@ -8,8 +8,8 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.imageUrl,
     this.width,
     this.height,
-    this.borderRadius = 14,
-    this.padding = const EdgeInsets.all(3),
+    this.borderRadius = 16,
+    this.padding = const EdgeInsets.all(2.5),
     this.backgroundColor,
     this.enableTapToZoom = true,
     this.showZoomAffordance = false,
@@ -37,9 +37,16 @@ class CardSurfaceArtwork extends StatelessWidget {
       decoration: BoxDecoration(
         color:
             backgroundColor ??
-            colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+            colorScheme.surfaceContainerLow.withValues(alpha: 0.82),
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.06)),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.035),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(
@@ -122,8 +129,8 @@ class _ArtworkFallback extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.6),
-            fontWeight: FontWeight.w700,
+            color: colorScheme.onSurface.withValues(alpha: 0.56),
+            fontWeight: FontWeight.w600,
             height: 1.2,
           ),
         ),

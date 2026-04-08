@@ -1,0 +1,120 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../services/import/collection_import_service.dart';
+
+enum _ImportPreviewFilter { all, matched, needsReview }
+
+class ImportCollectionScreen extends StatefulWidget {
+  const ImportCollectionScreen({super.key});
+
+  @override
+  State<ImportCollectionScreen> createState() => _ImportCollectionScreenState();
+}
+
+class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
+  final SupabaseClient _client = Supabase.instance.client;
+
+  String? _fileName;
+  bool _matching = false;
+  bool _importing = false;
+  String? _error;
+  CollectionImportPreview? _preview;
+  CollectionImportResult? _result;
+  _ImportPreviewFilter _filter = _ImportPreviewFilter.all;
+
+  Future<void> _pickCsv() async {
+    setState(() {
+      _matching = true;
+      _error = null;
+      _preview = null;
+      _result = null;
+      _filter = _ImportPreviewFilter.all;
+    });
+
+    try {
+      final picked = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: const ['csv'],
+        withData: true,
+      );
+
+      if (picked == null || picked.files.isEmpty) {
+        if (!mounted) {
+          return;
+        }
+        setState(() {
+          _matching = false;
+        });
+        return;
+      }
+
+      final file = picked.files.first;
+      final bytes =
+          file.bytes ??
+          (file.path == null ? null : await File(file.path!).readAsBytes());
+
+      if (bytes == null) {
+        throw Exception('The selected file could not be read.');
+      }
+
+      final csvText = CollectionImportService.decodeCsvBytes(bytes);
+      final preview = await CollectionImportService.buildPreview(
+        client: _client,
+        csvText: csvText,
+      );
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _fileName = file.name;
+        _preview = preview;
+        _matching = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _matching = false;
+        _error = error is Error ? error.toString() : error.toString();
+      });
+    }
+  }
+
+  Future<void> _import() async {
+    final preview = _preview;
+    if (preview == null || _importing) {
+      return;
+    }
+
+    setState(() {
+      _importing = true;
+      _error = null;
+    });
+
+    try {
+      final result = await CollectionImportService.importPreview(
+        client: _client,
+        preview: preview,
+      );
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _result = result;
+        _importing = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _importing = false;
+        _error = error is Error ? error.toString() : error.toString();

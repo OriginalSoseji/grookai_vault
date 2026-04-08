@@ -1,0 +1,146 @@
+404:               CLANG_MODULES_BUILD_SESSION_FILE = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation
+432:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneOSCodeSignContext
+587:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-dalwihmujvqzujbhbvgyhwvkmusb/Build/Intermediates.noindex/GeneratedModuleMaps-iphoneos
+695:               MODULES_FOLDER_PATH = Runner.app/Modules
+696:               MODULE_CACHE_DIR = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex
+2040:               CLANG_MODULES_BUILD_SESSION_FILE = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation
+2068:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+2221:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-dalwihmujvqzujbhbvgyhwvkmusb/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator
+2327:               MODULES_FOLDER_PATH = Runner.app/Modules
+2328:               MODULE_CACHE_DIR = /Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex
+2649:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+2679:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+2826:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+2935:               MODULES_FOLDER_PATH = app_links.framework/Modules
+3239:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+3269:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+3409:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+3515:               MODULES_FOLDER_PATH = app_links_ios_privacy.bundle/Modules
+3811:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+3841:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+3988:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+4097:               MODULES_FOLDER_PATH = camera_avfoundation.framework/Modules
+4401:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+4431:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+4570:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+4677:               MODULES_FOLDER_PATH = camera_avfoundation_privacy.bundle/Modules
+4975:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+5004:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+5126:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+5489:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+5519:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+5666:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+5775:               MODULES_FOLDER_PATH = image_picker_ios.framework/Modules
+6078:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+6108:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+6247:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+6353:               MODULES_FOLDER_PATH = image_picker_ios_privacy.bundle/Modules
+6648:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+6678:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+6825:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+6934:               MODULES_FOLDER_PATH = path_provider_foundation.framework/Modules
+7238:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+7268:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+7407:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+7514:               MODULES_FOLDER_PATH = path_provider_foundation_privacy.bundle/Modules
+7810:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+7840:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+7986:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+8095:               MODULES_FOLDER_PATH = Pods_Runner.framework/Modules
+8397:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+8427:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+8573:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+8682:               MODULES_FOLDER_PATH = Pods_RunnerTests.framework/Modules
+8982:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+9012:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+9159:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+9268:               MODULES_FOLDER_PATH = sensors_plus.framework/Modules
+9572:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+9602:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+9742:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+9848:               MODULES_FOLDER_PATH = sensors_plus_privacy.bundle/Modules
+10144:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+10174:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+10321:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+10430:               MODULES_FOLDER_PATH = shared_preferences_foundation.framework/Modules
+10734:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+10764:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+10903:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+11010:               MODULES_FOLDER_PATH = shared_preferences_foundation_privacy.bundle/Modules
+11306:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+11336:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+11483:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+11592:               MODULES_FOLDER_PATH = url_launcher_ios.framework/Modules
+11896:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+11926:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+12065:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+12172:               MODULES_FOLDER_PATH = url_launcher_ios_privacy.bundle/Modules
+12468:               CLANG_MODULES_BUILD_SESSION_FILE = /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/C/org.llvm.clang/ModuleCache.noindex/Session.modulevalidation
+12498:               CODE_SIGN_CONTEXT_CLASS = XCiPhoneSimulatorCodeSignContext
+12645:               GENERATED_MODULEMAP_DIR = /Users/cesarcabral/grookai_vault/build/ios/GeneratedModuleMaps-iphonesimulator
+12754:               MODULES_FOLDER_PATH = app_links.framework/Modules
+13157:[        ] executing: [/Users/cesarcabral/grookai_vault/ios/] /usr/bin/arch -arm64e xcrun xcodebuild -configuration Debug VERBOSE_SCRIPT_LOGGING=YES -allowProvisioningUpdates -allowProvisioningDeviceRegistration -workspace Runner.xcworkspace -scheme Runner BUILD_DIR=/Users/cesarcabral/grookai_vault/build/ios -sdk iphonesimulator -destination id=B8D3C72A-14B9-4E7C-A42F-AB0C848E42FD SCRIPT_OUTPUT_STREAM_FILE=/var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/pipe_to_stdout -resultBundlePath /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/temporary_xcresult_bundle -resultBundleVersion 3 FLUTTER_SUPPRESS_ANALYTICS=true COMPILER_INDEX_STORE_ENABLE=NO
+13367:               /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -configuration Debug VERBOSE_SCRIPT_LOGGING=YES -allowProvisioningUpdates -allowProvisioningDeviceRegistration -workspace Runner.xcworkspace -scheme Runner BUILD_DIR=/Users/cesarcabral/grookai_vault/build/ios -sdk iphonesimulator -destination id=B8D3C72A-14B9-4E7C-A42F-AB0C848E42FD SCRIPT_OUTPUT_STREAM_FILE=/var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/pipe_to_stdout -resultBundlePath /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/temporary_xcresult_bundle -resultBundleVersion 3 FLUTTER_SUPPRESS_ANALYTICS=true COMPILER_INDEX_STORE_ENABLE=NO
+13441:           GatherProvisioningInputs
+13501:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Binary/url_launcher_ios normal x86_64 (in target 'url_launcher_ios' from project 'Pods')
+13505:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/sensors_plus.build/Objects-normal/x86_64/Binary/sensors_plus normal x86_64 (in target 'sensors_plus' from project 'Pods')
+13509:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/path_provider_foundation.build/Objects-normal/x86_64/Binary/path_provider_foundation normal x86_64 (in target 'path_provider_foundation' from project 'Pods')
+13513:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/shared_preferences_foundation.build/Objects-normal/arm64/Binary/shared_preferences_foundation normal arm64 (in target 'shared_preferences_foundation' from project 'Pods')
+13521:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/camera_avfoundation.build/Objects-normal/x86_64/Binary/camera_avfoundation normal x86_64 (in target 'camera_avfoundation' from project 'Pods')
+13537:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/app_links.build/Objects-normal/x86_64/Binary/app_links normal x86_64 (in target 'app_links' from project 'Pods')
+13549:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/image_picker_ios.build/Objects-normal/arm64/Binary/image_picker_ios normal arm64 (in target 'image_picker_ios' from project 'Pods')
+13557:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/arm64/Binary/url_launcher_ios normal arm64 (in target 'url_launcher_ios' from project 'Pods')
+13561:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/sensors_plus.build/Objects-normal/arm64/Binary/sensors_plus normal arm64 (in target 'sensors_plus' from project 'Pods')
+13565:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/path_provider_foundation.build/Objects-normal/arm64/Binary/path_provider_foundation normal arm64 (in target 'path_provider_foundation' from project 'Pods')
+13569:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/camera_avfoundation.build/Objects-normal/arm64/Binary/camera_avfoundation normal arm64 (in target 'camera_avfoundation' from project 'Pods')
+13573:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/app_links.build/Objects-normal/arm64/Binary/app_links normal arm64 (in target 'app_links' from project 'Pods')
+13577:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/image_picker_ios.build/Objects-normal/x86_64/Binary/image_picker_ios normal x86_64 (in target 'image_picker_ios' from project 'Pods')
+13581:           Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/shared_preferences_foundation.build/Objects-normal/x86_64/Binary/shared_preferences_foundation normal x86_64 (in target 'shared_preferences_foundation' from project 'Pods')
+13639:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/url_launcher_ios/url_launcher_ios.framework (in target 'url_launcher_ios' from project 'Pods')
+13662:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/app_links/app_links.framework (in target 'app_links' from project 'Pods')
+13669:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework (in target 'path_provider_foundation' from project 'Pods')
+13676:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/sensors_plus/sensors_plus.framework (in target 'sensors_plus' from project 'Pods')
+13683:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/camera_avfoundation/camera_avfoundation.framework (in target 'camera_avfoundation' from project 'Pods')
+13698:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/image_picker_ios/image_picker_ios.framework (in target 'image_picker_ios' from project 'Pods')
+13719:           CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework (in target 'shared_preferences_foundation' from project 'Pods')
+13798:               export CLANG_MODULES_BUILD_SESSION_FILE\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation
+13826:               export CODE_SIGN_CONTEXT_CLASS\=XCiPhoneSimulatorCodeSignContext
+13986:               export GENERATED_MODULEMAP_DIR\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator
+14093:               export MODULES_FOLDER_PATH\=Runner.app/Modules
+14094:               export MODULE_CACHE_DIR\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex
+14453:                      FileSystemException(uri=org-dartlang-untranslatable-uri:package%3Afile_picker%2Ffile_picker.dart; message=StandardFileSystem only supports file:* and data:* URIs)
+14465:           [   +1 ms] Target kernel_snapshot_program failed: Exception
+14571:[   +2 ms] Failed to build iOS app
+14572:[        ] Error output from Xcode build:
+14585:                   /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -configuration Debug VERBOSE_SCRIPT_LOGGING=YES -allowProvisioningUpdates -allowProvisioningDeviceRegistration -workspace Runner.xcworkspace -scheme Runner BUILD_DIR=/Users/cesarcabral/grookai_vault/build/ios -sdk iphonesimulator -destination id=B8D3C72A-14B9-4E7C-A42F-AB0C848E42FD SCRIPT_OUTPUT_STREAM_FILE=/var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/pipe_to_stdout -resultBundlePath /var/folders/11/w3mt1k5s5b97vzx4lrjbjrkh0000gn/T/flutter_tools.qgV2t8/flutter_ios_build_temp_dirtjzjok/temporary_xcresult_bundle -resultBundleVersion 3 FLUTTER_SUPPRESS_ANALYTICS=true COMPILER_INDEX_STORE_ENABLE=NO
+14659:               GatherProvisioningInputs
+14719:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/x86_64/Binary/url_launcher_ios normal x86_64 (in target 'url_launcher_ios' from project 'Pods')
+14723:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/sensors_plus.build/Objects-normal/x86_64/Binary/sensors_plus normal x86_64 (in target 'sensors_plus' from project 'Pods')
+14727:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/path_provider_foundation.build/Objects-normal/x86_64/Binary/path_provider_foundation normal x86_64 (in target 'path_provider_foundation' from project 'Pods')
+14731:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/shared_preferences_foundation.build/Objects-normal/arm64/Binary/shared_preferences_foundation normal arm64 (in target 'shared_preferences_foundation' from project 'Pods')
+14739:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/camera_avfoundation.build/Objects-normal/x86_64/Binary/camera_avfoundation normal x86_64 (in target 'camera_avfoundation' from project 'Pods')
+14755:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/app_links.build/Objects-normal/x86_64/Binary/app_links normal x86_64 (in target 'app_links' from project 'Pods')
+14767:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/image_picker_ios.build/Objects-normal/arm64/Binary/image_picker_ios normal arm64 (in target 'image_picker_ios' from project 'Pods')
+14775:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/url_launcher_ios.build/Objects-normal/arm64/Binary/url_launcher_ios normal arm64 (in target 'url_launcher_ios' from project 'Pods')
+14779:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/sensors_plus.build/Objects-normal/arm64/Binary/sensors_plus normal arm64 (in target 'sensors_plus' from project 'Pods')
+14783:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/path_provider_foundation.build/Objects-normal/arm64/Binary/path_provider_foundation normal arm64 (in target 'path_provider_foundation' from project 'Pods')
+14787:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/camera_avfoundation.build/Objects-normal/arm64/Binary/camera_avfoundation normal arm64 (in target 'camera_avfoundation' from project 'Pods')
+14791:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/app_links.build/Objects-normal/arm64/Binary/app_links normal arm64 (in target 'app_links' from project 'Pods')
+14795:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/image_picker_ios.build/Objects-normal/x86_64/Binary/image_picker_ios normal x86_64 (in target 'image_picker_ios' from project 'Pods')
+14799:               Ld /Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/shared_preferences_foundation.build/Objects-normal/x86_64/Binary/shared_preferences_foundation normal x86_64 (in target 'shared_preferences_foundation' from project 'Pods')
+14857:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/url_launcher_ios/url_launcher_ios.framework (in target 'url_launcher_ios' from project 'Pods')
+14880:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/app_links/app_links.framework (in target 'app_links' from project 'Pods')
+14887:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/path_provider_foundation/path_provider_foundation.framework (in target 'path_provider_foundation' from project 'Pods')
+14894:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/sensors_plus/sensors_plus.framework (in target 'sensors_plus' from project 'Pods')
+14901:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/camera_avfoundation/camera_avfoundation.framework (in target 'camera_avfoundation' from project 'Pods')
+14916:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/image_picker_ios/image_picker_ios.framework (in target 'image_picker_ios' from project 'Pods')
+14937:               CodeSign /Users/cesarcabral/grookai_vault/build/ios/Debug-iphonesimulator/shared_preferences_foundation/shared_preferences_foundation.framework (in target 'shared_preferences_foundation' from project 'Pods')
+15016:                   export CLANG_MODULES_BUILD_SESSION_FILE\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation
+15044:                   export CODE_SIGN_CONTEXT_CLASS\=XCiPhoneSimulatorCodeSignContext
+15204:                   export GENERATED_MODULEMAP_DIR\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/Runner-daoxpgckraxdmocejhugvvgstbbq/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator
+15311:                   export MODULES_FOLDER_PATH\=Runner.app/Modules
+15312:                   export MODULE_CACHE_DIR\=/Users/cesarcabral/Library/Developer/Xcode/DerivedData/ModuleCache.noindex
+15671:                          FileSystemException(uri=org-dartlang-untranslatable-uri:package%3Afile_picker%2Ffile_picker.dart; message=StandardFileSystem only supports file:* and data:* URIs)
+15683:               [   +1 ms] Target kernel_snapshot_program failed: Exception
+15749:[   +7 ms] Could not build the application for the simulator.
+15750:[   +1 ms] Error launching application on iPhone 17 Pro.

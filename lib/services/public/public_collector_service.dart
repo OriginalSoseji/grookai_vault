@@ -74,6 +74,10 @@ class PublicCollectorCard {
     this.conditionLabel,
     this.intent,
     this.pricing,
+    this.priceDisplayMode,
+    this.askingPriceAmount,
+    this.askingPriceCurrency,
+    this.publicNote,
     this.inPlayCopies = const <PublicCollectorCopy>[],
   });
 
@@ -90,7 +94,31 @@ class PublicCollectorCard {
   final String? conditionLabel;
   final String? intent;
   final CardSurfacePricingData? pricing;
+  final String? priceDisplayMode;
+  final double? askingPriceAmount;
+  final String? askingPriceCurrency;
+  final String? publicNote;
   final List<PublicCollectorCopy> inPlayCopies;
+}
+
+class _PublicCollectorWallCardSettings {
+  const _PublicCollectorWallCardSettings({
+    this.publicNote,
+    this.priceDisplayMode,
+  });
+
+  final String? publicNote;
+  final String? priceDisplayMode;
+}
+
+class _PublicCollectorManualPrice {
+  const _PublicCollectorManualPrice({
+    this.askingPriceAmount,
+    this.askingPriceCurrency,
+  });
+
+  final double? askingPriceAmount;
+  final String? askingPriceCurrency;
 }
 
 class PublicCollectorCopy {
@@ -445,7 +473,7 @@ class PublicCollectorService {
   }) async {
     final sharedRows = await client
         .from('shared_cards')
-        .select('card_id,gv_id')
+        .select('card_id,gv_id,public_note,price_display_mode')
         .eq('user_id', userId)
         .eq('is_shared', true)
         .order('gv_id', ascending: true);
@@ -456,6 +484,10 @@ class PublicCollectorService {
           (row) => (
             cardPrintId: _cleanText(row['card_id']),
             gvId: _cleanText(row['gv_id']),
+            publicNote: _normalizeOptionalText(row['public_note']),
+            priceDisplayMode: _normalizePriceDisplayMode(
+              row['price_display_mode'],
+            ),
           ),
         )
         .where((row) => row.cardPrintId.isNotEmpty && row.gvId.isNotEmpty)
@@ -473,7 +505,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,rarity,image_url,image_alt_url',
+            'id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,set:sets(name)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -490,6 +522,14 @@ class PublicCollectorService {
     final cardPrintRows = results[0] as List<dynamic>;
     final pricingById = results[1] as Map<String, CardSurfacePricingData>;
     final gvviByCardId = results[2] as Map<String, String>;
+    final manualPriceByGvviId = await _fetchPublicManualPricesByGvviId(
+      client: client,
+      gvviIds: normalizedRows
+          .where((row) => row.priceDisplayMode == 'my_price')
+          .map((row) => gvviByCardId[row.cardPrintId])
+          .whereType<String>()
+          .toList(),
+    );
 
     final cardPrintById = <String, Map<String, dynamic>>{};
     for (final rawRow in cardPrintRows) {
@@ -515,13 +555,21 @@ class PublicCollectorService {
             return null;
           }
 
+          final primaryGvviId = gvviByCardId[row.cardPrintId];
+          final manualPrice = primaryGvviId == null
+              ? null
+              : manualPriceByGvviId[primaryGvviId];
+
           return PublicCollectorCard(
             cardPrintId: row.cardPrintId,
             gvId: gvId,
             name: _cleanText(cardPrint['name']).isNotEmpty
                 ? _cleanText(cardPrint['name'])
                 : 'Unknown card',
-            gvviId: gvviByCardId[row.cardPrintId],
+            gvviId: primaryGvviId,
+            setName: _normalizeOptionalText(
+              (cardPrint['set'] as Map?)?['name'],
+            ),
             setCode: _normalizeOptionalText(cardPrint['set_code']),
             number: _cleanText(cardPrint['number']).isNotEmpty
                 ? _cleanText(cardPrint['number'])
@@ -532,6 +580,10 @@ class PublicCollectorService {
               fallback: cardPrint['image_alt_url'],
             ),
             pricing: pricingById[row.cardPrintId],
+            priceDisplayMode: row.priceDisplayMode,
+            askingPriceAmount: manualPrice?.askingPriceAmount,
+            askingPriceCurrency: manualPrice?.askingPriceCurrency,
+            publicNote: row.publicNote,
           );
         })
         .whereType<PublicCollectorCard>()
@@ -585,12 +637,37 @@ class PublicCollectorService {
         ownerUserIds: <String>[ownerUserId],
         cardPrintIds: cardPrintIds,
       ),
+      _fetchSharedCardWallSettingsByCardId(
+        client: client,
+        ownerUserId: ownerUserId,
+        cardPrintIds: cardPrintIds,
+      ),
+      _fetchPrimarySharedGvviByCardId(
+        client: client,
+        ownerUserId: ownerUserId,
+        cardPrintIds: cardPrintIds,
+      ),
     ]);
 
     final cardPrintRows = results[0] as List<dynamic>;
     final pricingById = results[1] as Map<String, CardSurfacePricingData>;
     final copiesByCardPrintId =
         results[2] as Map<String, List<PublicCollectorCopy>>;
+    final wallSettingsByCardPrintId =
+        results[3] as Map<String, _PublicCollectorWallCardSettings>;
+    final primarySharedGvviByCardPrintId = results[4] as Map<String, String>;
+    final manualPriceByGvviId = await _fetchPublicManualPricesByGvviId(
+      client: client,
+      gvviIds: cardPrintIds
+          .where(
+            (cardPrintId) =>
+                wallSettingsByCardPrintId[cardPrintId]?.priceDisplayMode ==
+                'my_price',
+          )
+          .map((cardPrintId) => primarySharedGvviByCardPrintId[cardPrintId])
+          .whereType<String>()
+          .toList(),
+    );
 
     final cardPrintById = <String, Map<String, dynamic>>{};
     for (final rawRow in cardPrintRows) {
@@ -606,14 +683,11 @@ class PublicCollectorService {
       final gvId = _cleanText(row['gv_id']);
       final cardPrint = cardPrintById[cardPrintId];
       final copies = copiesByCardPrintId[cardPrintId] ?? const [];
-      String? primaryGvviId;
-      for (final copy in copies) {
-        final gvviId = _normalizeOptionalText(copy.gvviId);
-        if (gvviId != null) {
-          primaryGvviId = gvviId;
-          break;
-        }
-      }
+      final wallSettings = wallSettingsByCardPrintId[cardPrintId];
+      final primaryGvviId = primarySharedGvviByCardPrintId[cardPrintId];
+      final manualPrice = primaryGvviId == null
+          ? null
+          : manualPriceByGvviId[primaryGvviId];
 
       return PublicCollectorCard(
         cardPrintId: cardPrintId,
@@ -636,9 +710,51 @@ class PublicCollectorService {
         conditionLabel: _normalizeOptionalText(row['condition_label']),
         intent: _normalizePublicIntent(row['intent']),
         pricing: pricingById[cardPrintId],
+        priceDisplayMode: wallSettings?.priceDisplayMode,
+        askingPriceAmount: manualPrice?.askingPriceAmount,
+        askingPriceCurrency: manualPrice?.askingPriceCurrency,
+        publicNote: wallSettings?.publicNote,
         inPlayCopies: copies,
       );
     }).toList();
+  }
+
+  static Future<Map<String, _PublicCollectorWallCardSettings>>
+  _fetchSharedCardWallSettingsByCardId({
+    required SupabaseClient client,
+    required String ownerUserId,
+    required List<String> cardPrintIds,
+  }) async {
+    final normalizedOwnerUserId = _cleanText(ownerUserId);
+    final normalizedCardIds = cardPrintIds
+        .map(_cleanText)
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    if (normalizedOwnerUserId.isEmpty || normalizedCardIds.isEmpty) {
+      return const <String, _PublicCollectorWallCardSettings>{};
+    }
+
+    final rows = await client
+        .from('shared_cards')
+        .select('card_id,public_note,price_display_mode')
+        .eq('user_id', normalizedOwnerUserId)
+        .eq('is_shared', true)
+        .inFilter('card_id', normalizedCardIds);
+
+    final out = <String, _PublicCollectorWallCardSettings>{};
+    for (final raw in rows as List<dynamic>) {
+      final row = Map<String, dynamic>.from(raw as Map);
+      final cardPrintId = _cleanText(row['card_id']);
+      if (cardPrintId.isEmpty) {
+        continue;
+      }
+      out[cardPrintId] = _PublicCollectorWallCardSettings(
+        publicNote: _normalizeOptionalText(row['public_note']),
+        priceDisplayMode: _normalizePriceDisplayMode(row['price_display_mode']),
+      );
+    }
+    return out;
   }
 
   static Future<Map<String, String>> _fetchPrimarySharedGvviByCardId({
@@ -760,6 +876,62 @@ class PublicCollectorService {
     } catch (_) {
       return const <String, List<PublicCollectorCopy>>{};
     }
+  }
+
+  static Future<Map<String, _PublicCollectorManualPrice>>
+  _fetchPublicManualPricesByGvviId({
+    required SupabaseClient client,
+    required List<String> gvviIds,
+  }) async {
+    final normalizedGvviIds = gvviIds
+        .map(_cleanText)
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    if (normalizedGvviIds.isEmpty) {
+      return const <String, _PublicCollectorManualPrice>{};
+    }
+
+    final entries = await Future.wait(
+      normalizedGvviIds.map((gvviId) async {
+        try {
+          final raw = await client.rpc(
+            'public_vault_instance_detail_v1',
+            params: {'p_gv_vi_id': gvviId},
+          );
+          if (raw is! Map) {
+            return null;
+          }
+          final data = Map<String, dynamic>.from(raw);
+          if (_normalizePricingMode(data['pricing_mode']) != 'asking') {
+            return null;
+          }
+          final amount = _toMoney(data['asking_price_amount']);
+          if (amount == null) {
+            return null;
+          }
+          return MapEntry(
+            gvviId,
+            _PublicCollectorManualPrice(
+              askingPriceAmount: amount,
+              askingPriceCurrency: _normalizeCurrency(
+                data['asking_price_currency'],
+              ),
+            ),
+          );
+        } catch (_) {
+          return null;
+        }
+      }),
+    );
+
+    final out = <String, _PublicCollectorManualPrice>{};
+    for (final entry in entries) {
+      if (entry != null) {
+        out[entry.key] = entry.value;
+      }
+    }
+    return out;
   }
 
   static Future<({int followingCount, int followerCount})> _loadFollowCounts({
@@ -899,6 +1071,52 @@ class PublicCollectorService {
       default:
         return null;
     }
+  }
+
+  static String? _normalizePriceDisplayMode(dynamic value) {
+    switch (_cleanText(value).toLowerCase()) {
+      case 'grookai':
+        return 'grookai';
+      case 'my_price':
+        return 'my_price';
+      case 'hidden':
+        return 'hidden';
+      default:
+        return null;
+    }
+  }
+
+  static String? _normalizePricingMode(dynamic value) {
+    switch (_cleanText(value).toLowerCase()) {
+      case 'market':
+        return 'market';
+      case 'asking':
+        return 'asking';
+      default:
+        return null;
+    }
+  }
+
+  static double? _toMoney(dynamic value) {
+    if (value is num) {
+      final normalized = value.toDouble();
+      return normalized.isFinite
+          ? double.parse(normalized.toStringAsFixed(2))
+          : null;
+    }
+    final parsed = double.tryParse(_cleanText(value));
+    if (parsed == null || !parsed.isFinite) {
+      return null;
+    }
+    return double.parse(parsed.toStringAsFixed(2));
+  }
+
+  static String? _normalizeCurrency(dynamic value) {
+    final normalized = _cleanText(value).toUpperCase();
+    if (normalized.length != 3) {
+      return null;
+    }
+    return normalized;
   }
 
   static String? _bestPublicImageUrl({

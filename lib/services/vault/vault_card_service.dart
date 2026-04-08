@@ -54,6 +54,8 @@ const List<WallCategoryOption> kWallCategoryOptions = [
   WallCategoryOption(value: 'other', label: 'Other'),
 ];
 
+enum SharedCardPriceDisplayMode { grookai, myPrice, hidden }
+
 String? normalizeWallCategory(String? value) {
   switch ((value ?? '').trim().toLowerCase()) {
     case 'grails':
@@ -79,6 +81,29 @@ String? normalizeWallCategory(String? value) {
     default:
       return null;
   }
+}
+
+String? normalizeSharedCardPriceDisplayMode(dynamic value) {
+  switch ((value ?? '').toString().trim().toLowerCase()) {
+    case 'grookai':
+      return 'grookai';
+    case 'my_price':
+      return 'my_price';
+    case 'hidden':
+      return 'hidden';
+    default:
+      return null;
+  }
+}
+
+class VaultManageCardPricing {
+  const VaultManageCardPricing({
+    this.askingPriceAmount,
+    this.askingPriceCurrency,
+  });
+
+  final double? askingPriceAmount;
+  final String? askingPriceCurrency;
 }
 
 class VaultManageCardCopy {
@@ -156,6 +181,10 @@ class VaultManageCardData {
     this.wallCategory,
     this.publicNote,
     this.publicSlug,
+    this.priceDisplayMode,
+    this.primarySharedGvviId,
+    this.askingPriceAmount,
+    this.askingPriceCurrency,
   });
 
   final String vaultItemId;
@@ -175,6 +204,10 @@ class VaultManageCardData {
   final String? wallCategory;
   final String? publicNote;
   final String? publicSlug;
+  final String? priceDisplayMode;
+  final String? primarySharedGvviId;
+  final double? askingPriceAmount;
+  final String? askingPriceCurrency;
   final bool publicProfileEnabled;
   final bool vaultSharingEnabled;
   final List<VaultManageCardCopy> copies;
@@ -459,6 +492,18 @@ class VaultCardService {
       cardPrintId: cardPrintId,
       gvId: resolvedGvId,
     );
+    final primarySharedGvviId = await _resolvePrimarySharedGvvi(
+      client: client,
+      ownerUserId: userId,
+      cardPrintId: cardPrintId,
+      copies: copyRows,
+      fallbackGvviId: fallbackGvviId,
+    );
+    final pricing = await _loadPrivateInstancePricing(
+      client: client,
+      userId: userId,
+      gvviId: primarySharedGvviId,
+    );
 
     final totalCopies = copyRows.isNotEmpty
         ? copyRows.length
@@ -500,6 +545,12 @@ class VaultCardService {
       ),
       publicNote: _trimmedOrNull(sharedRow?['public_note']),
       publicSlug: _trimmedOrNull(profileRow?['slug']),
+      priceDisplayMode: normalizeSharedCardPriceDisplayMode(
+        sharedRow?['price_display_mode'],
+      ),
+      primarySharedGvviId: primarySharedGvviId,
+      askingPriceAmount: pricing?.askingPriceAmount,
+      askingPriceCurrency: pricing?.askingPriceCurrency,
       publicProfileEnabled: profileRow?['public_profile_enabled'] == true,
       vaultSharingEnabled: profileRow?['vault_sharing_enabled'] == true,
       copies: copyRows,
@@ -624,6 +675,92 @@ class VaultCardService {
     return nextPublicNote;
   }
 
+  static Future<
+    ({
+      String? priceDisplayMode,
+      double? askingPriceAmount,
+      String? askingPriceCurrency,
+    })
+  >
+  saveSharedCardPriceDisplay({
+    required SupabaseClient client,
+    required String cardPrintId,
+    required String priceDisplayMode,
+    String? primarySharedGvviId,
+    double? askingPriceAmount,
+    String? askingPriceCurrency,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    final nextMode = normalizeSharedCardPriceDisplayMode(priceDisplayMode);
+    if (nextMode == null) {
+      throw Exception('Invalid price display mode.');
+    }
+
+    final sharedRow = await client
+        .from('shared_cards')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('card_id', cardPrintId)
+        .maybeSingle();
+
+    if (sharedRow == null) {
+      throw Exception(
+        'Add this card to your wall before choosing how price is shown.',
+      );
+    }
+
+    await client
+        .from('shared_cards')
+        .update({'price_display_mode': nextMode})
+        .eq('user_id', userId)
+        .eq('card_id', cardPrintId);
+
+    if (nextMode != 'my_price') {
+      return (
+        priceDisplayMode: nextMode,
+        askingPriceAmount: null,
+        askingPriceCurrency: null,
+      );
+    }
+
+    final normalizedGvviId = _trimmedOrNull(primarySharedGvviId);
+    final normalizedAmount = _toMoney(askingPriceAmount);
+    final normalizedCurrency = _normalizeCurrency(askingPriceCurrency) ?? 'USD';
+    if (normalizedGvviId == null || normalizedAmount == null) {
+      throw Exception('My Price requires a valid amount on an exact copy.');
+    }
+
+    final updated = await client
+        .from('vault_item_instances')
+        .update({
+          'pricing_mode': 'asking',
+          'asking_price_amount': normalizedAmount,
+          'asking_price_currency': normalizedCurrency,
+        })
+        .eq('user_id', userId)
+        .eq('gv_vi_id', normalizedGvviId)
+        .filter('archived_at', 'is', null)
+        .select('asking_price_amount,asking_price_currency')
+        .maybeSingle();
+
+    if (updated == null) {
+      throw Exception('Pricing could not be saved.');
+    }
+
+    return (
+      priceDisplayMode: nextMode,
+      askingPriceAmount:
+          _toMoney(updated['asking_price_amount']) ?? normalizedAmount,
+      askingPriceCurrency:
+          _normalizeCurrency(updated['asking_price_currency']) ??
+          normalizedCurrency,
+    );
+  }
+
   static Future<Map<String, dynamic>?> _loadSharedCardRow({
     required SupabaseClient client,
     required String userId,
@@ -632,7 +769,7 @@ class VaultCardService {
   }) async {
     final byCardId = await client
         .from('shared_cards')
-        .select('is_shared,wall_category,public_note')
+        .select('is_shared,wall_category,public_note,price_display_mode')
         .eq('user_id', userId)
         .eq('card_id', cardPrintId)
         .maybeSingle();
@@ -648,7 +785,7 @@ class VaultCardService {
 
     final byGvId = await client
         .from('shared_cards')
-        .select('is_shared,wall_category,public_note')
+        .select('is_shared,wall_category,public_note,price_display_mode')
         .eq('user_id', userId)
         .eq('gv_id', normalizedGvId)
         .maybeSingle();
@@ -705,11 +842,95 @@ class VaultCardService {
     final row = Map<String, dynamic>.from(rawData as Map);
     return VaultManageCardCopy.fromJson(row);
   }
+
+  static Future<String?> _resolvePrimarySharedGvvi({
+    required SupabaseClient client,
+    required String ownerUserId,
+    required String cardPrintId,
+    required List<VaultManageCardCopy> copies,
+    String? fallbackGvviId,
+  }) async {
+    try {
+      final rows = await client.rpc(
+        'public_shared_card_primary_gvvi_v1',
+        params: {
+          'p_owner_user_id': ownerUserId,
+          'p_card_print_ids': <String>[cardPrintId],
+        },
+      );
+      if (rows is List && rows.isNotEmpty) {
+        final row = Map<String, dynamic>.from(rows.first as Map);
+        final gvviId = _trimmedOrNull(row['gv_vi_id']);
+        if (gvviId != null) {
+          return gvviId;
+        }
+      }
+    } catch (_) {}
+
+    for (final copy in copies) {
+      final gvviId = _trimmedOrNull(copy.gvviId);
+      if (gvviId != null) {
+        return gvviId;
+      }
+    }
+
+    return _trimmedOrNull(fallbackGvviId);
+  }
+
+  static Future<VaultManageCardPricing?> _loadPrivateInstancePricing({
+    required SupabaseClient client,
+    required String userId,
+    required String? gvviId,
+  }) async {
+    final normalizedGvviId = _trimmedOrNull(gvviId);
+    if (normalizedGvviId == null) {
+      return null;
+    }
+
+    final row = await client
+        .from('vault_item_instances')
+        .select('asking_price_amount,asking_price_currency')
+        .eq('user_id', userId)
+        .eq('gv_vi_id', normalizedGvviId)
+        .filter('archived_at', 'is', null)
+        .maybeSingle();
+
+    if (row == null) {
+      return null;
+    }
+
+    return VaultManageCardPricing(
+      askingPriceAmount: _toMoney(row['asking_price_amount']),
+      askingPriceCurrency: _normalizeCurrency(row['asking_price_currency']),
+    );
+  }
 }
 
 String? _trimmedOrNull(dynamic value) {
   final normalized = value?.toString().trim() ?? '';
   return normalized.isEmpty ? null : normalized;
+}
+
+String? _normalizeCurrency(dynamic value) {
+  final normalized = (value ?? '').toString().trim().toUpperCase();
+  if (normalized.length != 3 || RegExp(r'[^A-Z]').hasMatch(normalized)) {
+    return null;
+  }
+  return normalized;
+}
+
+double? _toMoney(dynamic value) {
+  if (value is num) {
+    final normalized = value.toDouble();
+    return normalized.isFinite && normalized >= 0
+        ? double.parse(normalized.toStringAsFixed(2))
+        : null;
+  }
+  final parsed = double.tryParse((value ?? '').toString().trim());
+  if (parsed == null || !parsed.isFinite || parsed < 0) {
+    return null;
+  }
+  return double.parse(parsed.toStringAsFixed(2));
 }
 
 String _normalizeVaultIntent(dynamic value) {

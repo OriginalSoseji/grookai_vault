@@ -367,7 +367,7 @@ class _PublicCollectorSegmentedContentState
           followerCountOverride: widget.followerCountOverride,
           action: widget.headerAction,
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 10),
         Row(
           children: [
             Expanded(
@@ -382,7 +382,7 @@ class _PublicCollectorSegmentedContentState
                 inPlayCount: widget.inPlayCards.length,
               ),
             ),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             SharedCardViewModeButton(
               value: _viewMode,
               onChanged: (mode) {
@@ -393,7 +393,7 @@ class _PublicCollectorSegmentedContentState
             ),
           ],
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 10),
         if (_activeSegment == _CollectorSegment.inPlay)
           _FeaturedWallSection(
             profile: widget.profile,
@@ -449,15 +449,15 @@ class _CollectorSegmentControl extends StatelessWidget {
           onPressed: () => onChanged(segment),
           style: FilledButton.styleFrom(
             backgroundColor: selected
-                ? colorScheme.primary
-                : colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+                ? colorScheme.primaryContainer.withValues(alpha: 0.9)
+                : Colors.transparent,
             foregroundColor: selected
-                ? colorScheme.onPrimary
-                : colorScheme.onSurface,
+                ? colorScheme.onPrimaryContainer
+                : colorScheme.onSurface.withValues(alpha: 0.72),
             elevation: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(13),
             ),
             textStyle: theme.textTheme.labelSmall?.copyWith(
               fontWeight: FontWeight.w700,
@@ -471,9 +471,9 @@ class _CollectorSegmentControl extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: colorScheme.surface,
+        color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: Row(
         children: [
@@ -509,7 +509,7 @@ class _CollectorScaffoldBody extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(color: colorScheme.surface),
         child: ListView(
-          padding: EdgeInsets.fromLTRB(12, 6, 12, bottomPadding),
+          padding: EdgeInsets.fromLTRB(14, 10, 14, bottomPadding),
           children: [child],
         ),
       ),
@@ -539,60 +539,60 @@ class _PublicCollectorHeader extends StatelessWidget {
     final followerCount = followerCountOverride ?? profile.followerCount;
 
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 15),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.12)),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.08),
-            colorScheme.primaryContainer.withValues(alpha: 0.28),
-          ],
-        ),
+        color: colorScheme.surfaceContainerLow.withValues(alpha: 0.94),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.035),
+            blurRadius: 22,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _AvatarBadge(profile: profile),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   profile.displayName,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w800,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
                     letterSpacing: -0.3,
-                    height: 1.05,
+                    height: 1.0,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: 6),
                 _IdentityChip(
                   icon: Icons.alternate_email_rounded,
                   label: '/u/${profile.slug}',
                   maxWidth: 220,
                 ),
                 if ((description ?? '').trim().isNotEmpty) ...[
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 10),
                   Text(
                     description!.trim(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.72),
-                      height: 1.3,
+                      color: colorScheme.onSurface.withValues(alpha: 0.7),
+                      height: 1.38,
                     ),
                   ),
                 ],
-                const SizedBox(height: 6),
+                const SizedBox(height: 12),
                 Wrap(
-                  spacing: 6,
-                  runSpacing: 6,
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     _CollectorRouteChip(
                       label: 'Profile',
@@ -645,7 +645,7 @@ class _PublicCollectorHeader extends StatelessWidget {
               ],
             ),
           ),
-          if (action != null) ...[const SizedBox(width: 8), action!],
+          if (action != null) ...[const SizedBox(width: 10), action!],
         ],
       ),
     );
@@ -673,28 +673,28 @@ class _CollectorRouteChip extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: selected
             ? colorScheme.surface
-            : colorScheme.surface.withValues(alpha: 0.55),
+            : colorScheme.surface.withValues(alpha: 0.42),
         foregroundColor: selected
             ? colorScheme.primary
-            : colorScheme.onSurface.withValues(alpha: 0.76),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            : colorScheme.onSurface.withValues(alpha: 0.68),
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
         minimumSize: Size.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
         side: BorderSide(
           color: selected
-              ? colorScheme.primary.withValues(alpha: 0.18)
-              : colorScheme.outline.withValues(alpha: 0.10),
+              ? colorScheme.primary.withValues(alpha: 0.14)
+              : colorScheme.outline.withValues(alpha: 0.08),
         ),
       ),
       child: Text(
         label,
         style: theme.textTheme.labelSmall?.copyWith(
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w600,
           color: selected
               ? colorScheme.primary
-              : colorScheme.onSurface.withValues(alpha: 0.76),
+              : colorScheme.onSurface.withValues(alpha: 0.68),
         ),
       ),
     );
@@ -1720,8 +1720,9 @@ class _PublicCardCollection extends StatelessWidget {
     if (viewMode == AppCardViewMode.grid) {
       final columns = resolveSharedCardGridColumns(
         context,
-        horizontalPadding: 24,
-        minTileWidth: 96,
+        horizontalPadding: 28,
+        minTileWidth: 102,
+        spacing: 10,
       );
       return GridView.builder(
         shrinkWrap: true,
@@ -1729,9 +1730,9 @@ class _PublicCardCollection extends StatelessWidget {
         itemCount: cards.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: columns,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          childAspectRatio: 0.69,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 0.66,
         ),
         itemBuilder: (context, index) => _PublicCardGridTile(
           ownerUserId: ownerUserId,
@@ -1779,7 +1780,7 @@ class _PublicCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final metaParts = [
-      card.setName ?? card.setCode,
+      card.setName,
       card.number != '—' ? '#${card.number}' : null,
       card.rarity,
     ].whereType<String>().toList();
@@ -1787,7 +1788,7 @@ class _PublicCardTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         onTap: () => _openPublicCollectorCard(
           context,
           ownerUserId: ownerUserId,
@@ -1797,59 +1798,74 @@ class _PublicCardTile extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: colorScheme.primary.withValues(alpha: 0.03),
-            borderRadius: BorderRadius.circular(14),
+            color: colorScheme.surfaceContainerLow.withValues(alpha: 0.82),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.10),
+              color: colorScheme.outline.withValues(alpha: 0.08),
             ),
           ),
-          padding: EdgeInsets.all(compact ? 7 : 8),
+          padding: EdgeInsets.all(compact ? 10 : 12),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _PublicCardArtwork(card: card, compact: compact),
-              SizedBox(width: compact ? 7 : 8),
+              SizedBox(width: compact ? 10 : 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       card.name,
-                      maxLines: compact ? 1 : 2,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style:
                           (compact
-                                  ? theme.textTheme.bodySmall
+                                  ? theme.textTheme.labelLarge
                                   : theme.textTheme.titleMedium)
                               ?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                height: 1.15,
+                                height: 1.14,
+                                letterSpacing: -0.1,
                               ),
                     ),
                     if (metaParts.isNotEmpty) ...[
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 5),
                       Text(
                         metaParts.join(' • '),
                         maxLines: compact ? 1 : 2,
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.72),
-                          height: 1.35,
-                          fontSize: compact ? 11.5 : null,
+                          color: colorScheme.onSurface.withValues(alpha: 0.6),
+                          height: 1.34,
+                          fontSize: compact ? 11.3 : 12.1,
                         ),
                       ),
                     ],
-                    if (card.pricing?.hasVisibleValue == true) ...[
-                      SizedBox(height: compact ? 5 : 6),
-                      CardSurfacePricePill(
-                        pricing: card.pricing,
+                    if ((card.publicNote ?? '').trim().isNotEmpty) ...[
+                      SizedBox(height: compact ? 5 : 7),
+                      Text(
+                        card.publicNote!.trim(),
+                        maxLines: compact ? 1 : 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.64),
+                          fontStyle: FontStyle.italic,
+                          height: 1.35,
+                          fontSize: compact ? 11.1 : 11.8,
+                        ),
+                      ),
+                    ],
+                    if (_shouldShowPublicCardPrice(card)) ...[
+                      SizedBox(height: compact ? 7 : 9),
+                      _buildPublicCardPricePill(
+                        card,
                         size: compact
                             ? CardSurfacePriceSize.dense
                             : CardSurfacePriceSize.list,
                       ),
                     ],
                     if (card.intent != null || card.conditionLabel != null) ...[
-                      SizedBox(height: compact ? 5 : 6),
+                      SizedBox(height: compact ? 7 : 8),
                       Wrap(
                         spacing: 6,
                         runSpacing: 6,
@@ -1868,7 +1884,7 @@ class _PublicCardTile extends StatelessWidget {
                       ),
                     ],
                     if (enableContact && _canContactCard(card)) ...[
-                      SizedBox(height: compact ? 5 : 6),
+                      SizedBox(height: compact ? 7 : 8),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: ContactOwnerButton(
@@ -1885,7 +1901,7 @@ class _PublicCardTile extends StatelessWidget {
                       ),
                     ],
                     if (enableContact && card.inPlayCopies.length > 1) ...[
-                      SizedBox(height: compact ? 4 : 6),
+                      SizedBox(height: compact ? 5 : 7),
                       TextButton(
                         onPressed: () => _showPublicCollectorCopiesSheet(
                           context,
@@ -1910,24 +1926,14 @@ class _PublicCardTile extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: compact ? 4 : 6),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'View',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: colorScheme.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Icon(
-                    Icons.chevron_right_rounded,
-                    color: colorScheme.onSurface.withValues(alpha: 0.38),
-                  ),
-                ],
+              const SizedBox(width: 8),
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  size: 20,
+                  color: colorScheme.onSurface.withValues(alpha: 0.28),
+                ),
               ),
             ],
           ),
@@ -1948,10 +1954,10 @@ class _PublicCardArtwork extends StatelessWidget {
     return CardSurfaceArtwork(
       label: card.name,
       imageUrl: card.imageUrl,
-      width: compact ? 56 : 64,
-      height: compact ? 78 : 90,
-      borderRadius: 12,
-      padding: const EdgeInsets.all(4),
+      width: compact ? 58 : 68,
+      height: compact ? 80 : 96,
+      borderRadius: 14,
+      padding: const EdgeInsets.all(3),
     );
   }
 }
@@ -1974,15 +1980,15 @@ class _PublicCardGridTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final subtitle = [
-      card.setCode ?? card.setName,
+      card.setName,
       card.number != '—' ? '#${card.number}' : null,
     ].whereType<String>().join(' • ');
 
     return Material(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
-      borderRadius: BorderRadius.circular(15),
+      color: colorScheme.surfaceContainerLow.withValues(alpha: 0.82),
+      borderRadius: BorderRadius.circular(18),
       child: InkWell(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(18),
         onTap: () => _openPublicCollectorCard(
           context,
           ownerUserId: ownerUserId,
@@ -1991,7 +1997,7 @@ class _PublicCardGridTile extends StatelessWidget {
           enableContact: enableContact,
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(7, 7, 7, 6),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2002,8 +2008,8 @@ class _PublicCardGridTile extends StatelessWidget {
                       child: CardSurfaceArtwork(
                         label: card.name,
                         imageUrl: card.imageUrl,
-                        borderRadius: 12,
-                        padding: const EdgeInsets.all(2.5),
+                        borderRadius: 14,
+                        padding: const EdgeInsets.all(2),
                       ),
                     ),
                     if (card.intent != null)
@@ -2018,37 +2024,52 @@ class _PublicCardGridTile extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 9),
               Text(
                 card.name,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.labelMedium?.copyWith(
+                style: theme.textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  height: 1.05,
+                  height: 1.08,
+                  letterSpacing: -0.1,
                 ),
               ),
               if (subtitle.isNotEmpty) ...[
-                const SizedBox(height: 2),
+                const SizedBox(height: 4),
                 Text(
                   subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.68),
-                    fontSize: 10.4,
+                    color: colorScheme.onSurface.withValues(alpha: 0.58),
+                    fontSize: 10.5,
                   ),
                 ),
               ],
-              if (card.pricing?.hasVisibleValue == true) ...[
-                const SizedBox(height: 4),
-                CardSurfacePricePill(
-                  pricing: card.pricing,
+              if ((card.publicNote ?? '').trim().isNotEmpty) ...[
+                const SizedBox(height: 6),
+                Text(
+                  card.publicNote!.trim(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.63),
+                    fontStyle: FontStyle.italic,
+                    fontSize: 10.3,
+                    height: 1.32,
+                  ),
+                ),
+              ],
+              if (_shouldShowPublicCardPrice(card)) ...[
+                const SizedBox(height: 8),
+                _buildPublicCardPricePill(
+                  card,
                   size: CardSurfacePriceSize.grid,
                 ),
               ],
               if (enableContact && _canContactCard(card)) ...[
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: ContactOwnerButton(
@@ -2105,6 +2126,41 @@ void _openPublicCollectorExactCopy(
           ? VaultGvviScreen(gvviId: gvviId)
           : PublicGvviScreen(gvviId: gvviId),
     ),
+  );
+}
+
+bool _shouldShowPublicCardPrice(PublicCollectorCard card) {
+  return _resolvePublicCardPriceMode(card) != CardSurfacePriceMode.hidden;
+}
+
+CardSurfacePriceMode _resolvePublicCardPriceMode(PublicCollectorCard card) {
+  switch ((card.priceDisplayMode ?? '').trim().toLowerCase()) {
+    case 'hidden':
+      return CardSurfacePriceMode.hidden;
+    case 'my_price':
+      return CardSurfacePriceMode.manual;
+    case 'grookai':
+      return CardSurfacePriceMode.grookai;
+    default:
+      return CardSurfacePriceMode.grookai;
+  }
+}
+
+Widget _buildPublicCardPricePill(
+  PublicCollectorCard card, {
+  required CardSurfacePriceSize size,
+}) {
+  final mode = _resolvePublicCardPriceMode(card);
+  if (mode == CardSurfacePriceMode.hidden) {
+    return const SizedBox.shrink();
+  }
+
+  return CardSurfacePricePill(
+    pricing: card.pricing,
+    size: size,
+    mode: mode,
+    manualPrice: card.askingPriceAmount,
+    manualCurrency: card.askingPriceCurrency,
   );
 }
 
@@ -2354,29 +2410,29 @@ class _TileBadge extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final colors = switch (tone) {
       _BadgeTone.trade => (
-        background: const Color(0xFFE9F9EF),
-        border: const Color(0xFFB8E3C5),
-        foreground: const Color(0xFF17653A),
+        background: const Color(0xFFF2F8F3),
+        border: const Color(0xFFD7E8DA),
+        foreground: const Color(0xFF4C6F58),
       ),
       _BadgeTone.sell => (
-        background: const Color(0xFFEAF4FF),
-        border: const Color(0xFFB8D6F8),
-        foreground: const Color(0xFF1E5A94),
+        background: const Color(0xFFF2F6FB),
+        border: const Color(0xFFD9E4F1),
+        foreground: const Color(0xFF546B86),
       ),
       _BadgeTone.showcase => (
-        background: const Color(0xFFFEF3E6),
-        border: const Color(0xFFF4D2A3),
-        foreground: const Color(0xFF93591E),
+        background: const Color(0xFFFBF4EA),
+        border: const Color(0xFFEDDCC1),
+        foreground: const Color(0xFF7D6752),
       ),
       _BadgeTone.neutral => (
-        background: colorScheme.surface,
-        border: colorScheme.outline.withValues(alpha: 0.14),
-        foreground: colorScheme.onSurface.withValues(alpha: 0.72),
+        background: colorScheme.surface.withValues(alpha: 0.88),
+        border: colorScheme.outline.withValues(alpha: 0.10),
+        foreground: colorScheme.onSurface.withValues(alpha: 0.66),
       ),
     };
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
         color: colors.background,
         borderRadius: BorderRadius.circular(999),
@@ -2386,7 +2442,8 @@ class _TileBadge extends StatelessWidget {
         label,
         style: theme.textTheme.labelSmall?.copyWith(
           color: colors.foreground,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w600,
+          fontSize: 10.6,
         ),
       ),
     );
@@ -2406,26 +2463,26 @@ class _AvatarBadge extends StatelessWidget {
     final avatarUrl = profile.avatarUrl;
 
     return Container(
-      width: 48,
-      height: 48,
+      width: 52,
+      height: 52,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        color: colorScheme.surface.withValues(alpha: 0.72),
+        borderRadius: BorderRadius.circular(16),
+        color: colorScheme.surface.withValues(alpha: 0.78),
         border: Border.all(
-          color: colorScheme.onSurface.withValues(alpha: 0.08),
+          color: colorScheme.onSurface.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.05),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            color: colorScheme.shadow.withValues(alpha: 0.04),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(2.5),
+        padding: const EdgeInsets.all(3),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(11),
+          borderRadius: BorderRadius.circular(13),
           child: DecoratedBox(
             decoration: BoxDecoration(color: colorScheme.primaryContainer),
             child: avatarUrl == null
@@ -2486,18 +2543,22 @@ class _IdentityChip extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final chip = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
       decoration: BoxDecoration(
-        color: colorScheme.surface.withValues(alpha: 0.8),
+        color: colorScheme.surface.withValues(alpha: 0.66),
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
-          color: colorScheme.onSurface.withValues(alpha: 0.10),
+          color: colorScheme.onSurface.withValues(alpha: 0.08),
         ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Icon(icon, size: 14, color: colorScheme.primary),
+          Icon(
+            icon,
+            size: 14,
+            color: colorScheme.onSurface.withValues(alpha: 0.56),
+          ),
           const SizedBox(width: 5),
           Flexible(
             child: Text(
@@ -2505,9 +2566,9 @@ class _IdentityChip extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.labelMedium?.copyWith(
-                color: colorScheme.onSurface,
-                fontWeight: FontWeight.w700,
-                fontSize: 11.8,
+                color: colorScheme.onSurface.withValues(alpha: 0.74),
+                fontWeight: FontWeight.w600,
+                fontSize: 11.5,
               ),
             ),
           ),
