@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../public_collector/public_collector_screen.dart';
+import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../widgets/follow_collector_button.dart';
+import '../public_collector/public_collector_screen.dart';
 
 class NetworkDiscoverScreen extends StatefulWidget {
   const NetworkDiscoverScreen({super.key});
@@ -18,6 +20,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
   bool _loading = true;
   String? _error;
   List<PublicCollectorDiscoverRow> _collectors = const [];
+  Set<String> _followedCollectorIds = const <String>{};
   int _loadVersion = 0;
 
   @override
@@ -44,6 +47,14 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
         client: _client,
         query: _searchController.text,
       );
+      final viewerUserId = _client.auth.currentUser?.id ?? '';
+      final followedCollectorIds = viewerUserId.isEmpty
+          ? <String>{}
+          : await CollectorFollowService.fetchFollowStateMap(
+              client: _client,
+              followerUserId: viewerUserId,
+              followedUserIds: collectors.map((collector) => collector.userId),
+            );
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -51,6 +62,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
 
       setState(() {
         _collectors = collectors;
+        _followedCollectorIds = followedCollectorIds;
       });
     } catch (error) {
       if (!mounted || loadVersion != _loadVersion) {
@@ -73,17 +85,16 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final trimmedQuery = _searchController.text.trim();
     final resultsTitle = trimmedQuery.isEmpty
-        ? 'Collectors to revisit'
+        ? 'Collectors to explore'
         : 'Collector results for "$trimmedQuery"';
-    final resultsDescription = trimmedQuery.isEmpty
-        ? 'Latest public collectors with shared vaults.'
-        : 'Matching public collectors.';
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Network'),
+        title: const Text('Collectors'),
         actions: [
           IconButton(
             tooltip: 'Reload',
@@ -92,99 +103,116 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: _loadCollectors,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton.icon(
-                  onPressed: () => Navigator.of(context).maybePop(),
-                  icon: const Icon(Icons.view_stream_outlined),
-                  label: const Text('View card stream'),
-                ),
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              colorScheme.surface.withValues(alpha: 0.995),
+              colorScheme.surfaceContainerLowest.withValues(alpha: 0.955),
+              colorScheme.surface.withValues(alpha: 0.99),
+            ],
+          ),
+        ),
+        child: Stack(
+          children: [
+            const Positioned(
+              top: -72,
+              left: -44,
+              child: _DiscoverAtmosphereOrb(
+                width: 220,
+                height: 220,
+                opacity: 0.18,
               ),
-              const SizedBox(height: 8),
-              _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(6),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _DiscoverLaneButton(
-                        label: 'Cards',
-                        selected: false,
-                        onPressed: () => Navigator.of(context).maybePop(),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    const Expanded(
-                      child: _DiscoverLaneButton(
-                        label: 'Collectors',
-                        selected: true,
-                      ),
-                    ),
-                  ],
-                ),
+            ),
+            Positioned(
+              top: 120,
+              right: -42,
+              child: _DiscoverAtmosphereOrb(
+                width: 190,
+                height: 190,
+                opacity: 0.10,
+                color: colorScheme.secondaryContainer,
               ),
-              const SizedBox(height: 10),
-              _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            SafeArea(
+              child: RefreshIndicator(
+                onRefresh: _loadCollectors,
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 20),
                   children: [
                     Text(
-                      'Find collectors',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.2,
+                      'Find collectors worth following and cards worth opening next.',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        height: 1.35,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _searchController,
-                            textInputAction: TextInputAction.search,
-                            onSubmitted: (_) => _loadCollectors(),
-                            decoration: const InputDecoration(
-                              hintText: 'Search collectors or @username',
-                              prefixIcon: Icon(Icons.search),
+                    const SizedBox(height: 14),
+                    _NetworkDiscoverSurfaceCard(
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _searchController,
+                              textInputAction: TextInputAction.search,
+                              onSubmitted: (_) => _loadCollectors(),
+                              decoration: InputDecoration(
+                                hintText: 'Search collectors or @username',
+                                hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.44,
+                                  ),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.54,
+                                  ),
+                                ),
+                                isDense: true,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                border: InputBorder.none,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        FilledButton(
-                          onPressed: _loadCollectors,
-                          child: const Text('Search'),
-                        ),
-                      ],
+                          const SizedBox(width: 8),
+                          TextButton(
+                            onPressed: _loadCollectors,
+                            style: TextButton.styleFrom(
+                              foregroundColor: colorScheme.onSurface.withValues(
+                                alpha: 0.78,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 8,
+                              ),
+                              visualDensity: VisualDensity.compact,
+                            ),
+                            child: const Text('Search'),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              _NetworkDiscoverSurfaceCard(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                    const SizedBox(height: 18),
                     Text(
                       resultsTitle,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.2,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.45,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      resultsDescription,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.onSurface.withValues(alpha: 0.72),
+                      trimmedQuery.isEmpty
+                          ? 'Collectors with public profiles and shared cards.'
+                          : 'Tap a collector to open their wall.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.52),
                         height: 1.35,
                       ),
                     ),
@@ -213,17 +241,41 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
                             index < _collectors.length;
                             index++
                           ) ...[
-                            _CollectorRowTile(collector: _collectors[index]),
+                            Builder(
+                              builder: (context) {
+                                final collector = _collectors[index];
+                                return _CollectorRowTile(
+                                  collector: collector,
+                                  isFollowing: _followedCollectorIds.contains(
+                                    collector.userId,
+                                  ),
+                                  onOpened: _loadCollectors,
+                                  onFollowChanged: (isFollowing) {
+                                    setState(() {
+                                      final nextIds = Set<String>.from(
+                                        _followedCollectorIds,
+                                      );
+                                      if (isFollowing) {
+                                        nextIds.add(collector.userId);
+                                      } else {
+                                        nextIds.remove(collector.userId);
+                                      }
+                                      _followedCollectorIds = nextIds;
+                                    });
+                                  },
+                                );
+                              },
+                            ),
                             if (index < _collectors.length - 1)
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 10),
                           ],
                         ],
                       ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -233,7 +285,7 @@ class _NetworkDiscoverScreenState extends State<NetworkDiscoverScreen> {
 class _NetworkDiscoverSurfaceCard extends StatelessWidget {
   const _NetworkDiscoverSurfaceCard({
     required this.child,
-    this.padding = const EdgeInsets.all(18),
+    this.padding = const EdgeInsets.all(14),
   });
 
   final Widget child;
@@ -245,9 +297,16 @@ class _NetworkDiscoverSurfaceCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.surface.withValues(alpha: 0.995),
+            colorScheme.surfaceContainerLowest.withValues(alpha: 0.965),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
       ),
       padding: padding,
       child: child,
@@ -255,49 +314,18 @@ class _NetworkDiscoverSurfaceCard extends StatelessWidget {
   }
 }
 
-class _DiscoverLaneButton extends StatelessWidget {
-  const _DiscoverLaneButton({
-    required this.label,
-    required this.selected,
-    this.onPressed,
+class _CollectorRowTile extends StatelessWidget {
+  const _CollectorRowTile({
+    required this.collector,
+    required this.isFollowing,
+    required this.onOpened,
+    required this.onFollowChanged,
   });
 
-  final String label;
-  final bool selected;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return FilledButton(
-      onPressed: selected ? null : onPressed,
-      style: FilledButton.styleFrom(
-        backgroundColor: selected
-            ? colorScheme.primary
-            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
-        foregroundColor: selected
-            ? colorScheme.onPrimary
-            : colorScheme.onSurface,
-        disabledBackgroundColor: colorScheme.primary,
-        disabledForegroundColor: colorScheme.onPrimary,
-        elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: theme.textTheme.labelMedium?.copyWith(
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-      child: Text(label),
-    );
-  }
-}
-
-class _CollectorRowTile extends StatelessWidget {
-  const _CollectorRowTile({required this.collector});
-
   final PublicCollectorDiscoverRow collector;
+  final bool isFollowing;
+  final VoidCallback onOpened;
+  final ValueChanged<bool> onFollowChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -305,62 +333,101 @@ class _CollectorRowTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final metadata = _formatJoinedAt(collector.createdAt);
 
-    return Material(
-      color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.38),
-      borderRadius: BorderRadius.circular(18),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => PublicCollectorScreen(slug: collector.slug),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              _CollectorAvatar(collector: collector),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      collector.displayName,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '@${collector.slug}',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    if (metadata.isNotEmpty) ...[
-                      const SizedBox(height: 6),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.surface.withValues(alpha: 0.995),
+            colorScheme.surfaceContainerLowest.withValues(alpha: 0.965),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.shadow.withValues(alpha: 0.016),
+            blurRadius: 18,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            Navigator.of(context)
+                .push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => PublicCollectorScreen(slug: collector.slug),
+                  ),
+                )
+                .then((_) => onOpened());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              children: [
+                _CollectorAvatar(collector: collector),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        metadata,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.68),
+                        collector.displayName,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.2,
                         ),
                       ),
+                      const SizedBox(height: 3),
+                      Text(
+                        '@${collector.slug}',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.56),
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.1,
+                        ),
+                      ),
+                      if (metadata.isNotEmpty) ...[
+                        const SizedBox(height: 5),
+                        Text(
+                          metadata,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.54,
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FollowCollectorButton(
+                      collectorUserId: collector.userId,
+                      initialIsFollowing: isFollowing,
+                      variant: FollowCollectorButtonVariant.compact,
+                      onChanged: onFollowChanged,
+                    ),
+                    const SizedBox(height: 6),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      size: 18,
+                      color: colorScheme.onSurface.withValues(alpha: 0.30),
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(width: 10),
-              Icon(
-                Icons.chevron_right_rounded,
-                color: colorScheme.onSurface.withValues(alpha: 0.38),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -409,11 +476,11 @@ class _CollectorAvatar extends StatelessWidget {
     final initials = _buildInitials();
 
     return Container(
-      width: 52,
-      height: 52,
+      width: 46,
+      height: 46,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(15),
+        color: colorScheme.primaryContainer.withValues(alpha: 0.72),
       ),
       clipBehavior: Clip.antiAlias,
       child: avatarUrl == null
@@ -473,11 +540,11 @@ class _DiscoverEmptyState extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+        color: colorScheme.primary.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -497,6 +564,43 @@ class _DiscoverEmptyState extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _DiscoverAtmosphereOrb extends StatelessWidget {
+  const _DiscoverAtmosphereOrb({
+    required this.width,
+    required this.height,
+    required this.opacity,
+    this.color,
+  });
+
+  final double width;
+  final double height;
+  final double opacity;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return IgnorePointer(
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: RadialGradient(
+            colors: [
+              (color ?? colorScheme.primaryContainer).withValues(
+                alpha: opacity,
+              ),
+              Colors.transparent,
+            ],
+          ),
+        ),
       ),
     );
   }
