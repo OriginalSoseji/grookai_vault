@@ -35,7 +35,7 @@ class IdentityScanPollResult {
 
 class IdentityScanService {
   IdentityScanService({SupabaseClient? client})
-      : _client = client ?? Supabase.instance.client;
+    : _client = client ?? Supabase.instance.client;
 
   final SupabaseClient _client;
 
@@ -55,18 +55,28 @@ class IdentityScanService {
     // Upload front image to condition-scans bucket
     String uploadedPath;
     try {
-      uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
+      uploadedPath = await _client.storage
+          .from('identity-scans')
+          .uploadBinary(
             path,
             bytes,
-            fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: false),
+            fileOptions: const FileOptions(
+              contentType: 'image/jpeg',
+              upsert: false,
+            ),
           );
     } on StorageException catch (e) {
       path = _newPath(user.id);
       try {
-        uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
+        uploadedPath = await _client.storage
+            .from('identity-scans')
+            .uploadBinary(
               path,
               bytes,
-              fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
+              fileOptions: const FileOptions(
+                contentType: 'image/jpeg',
+                upsert: true,
+              ),
             );
       } on StorageException catch (retryErr) {
         throw Exception('upload_failed:${retryErr.message}');
@@ -74,10 +84,15 @@ class IdentityScanService {
     } catch (e) {
       path = _newPath(user.id);
       try {
-        uploadedPath = await _client.storage.from('identity-scans').uploadBinary(
+        uploadedPath = await _client.storage
+            .from('identity-scans')
+            .uploadBinary(
               path,
               bytes,
-              fileOptions: const FileOptions(contentType: 'image/jpeg', upsert: true),
+              fileOptions: const FileOptions(
+                contentType: 'image/jpeg',
+                upsert: true,
+              ),
             );
       } catch (retryErr) {
         throw Exception('upload_failed:$retryErr');
@@ -156,8 +171,12 @@ class IdentityScanService {
       final rr = Map<String, dynamic>.from(resultRow as Map);
       status = (rr['status'] ?? status).toString();
       error = rr['error']?.toString() ?? error;
-      candidates = rr['candidates'] is List ? List.from(rr['candidates'] as List) : candidates;
-      signals = rr['signals'] is Map ? Map<String, dynamic>.from(rr['signals'] as Map) : null;
+      candidates = rr['candidates'] is List
+          ? List.from(rr['candidates'] as List)
+          : candidates;
+      signals = rr['signals'] is Map
+          ? Map<String, dynamic>.from(rr['signals'] as Map)
+          : null;
     }
 
     return IdentityScanPollResult(

@@ -1,8 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../models/ownership_state.dart';
+import '../../services/navigation/grookai_web_route_service.dart';
+import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../widgets/card_surface_artwork.dart';
+import '../../widgets/card_surface_price.dart';
+import '../gvvi/public_gvvi_screen.dart';
+import '../network/network_inbox_screen.dart';
+import 'public_collector_relationship_screen.dart';
 
 enum PublicCollectorViewState {
   loading,
@@ -33,9 +45,31 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
   final SupabaseClient _client = Supabase.instance.client;
   PublicCollectorViewState _viewState = PublicCollectorViewState.loading;
   PublicCollectorSurfaceResult? _result;
+  bool _followStateLoading = false;
+  bool _followActionBusy = false;
+  bool _isFollowing = false;
   int _loadVersion = 0;
 
   String get _normalizedSlug => widget.slug.trim().toLowerCase();
+  String get _viewerUserId => (_client.auth.currentUser?.id ?? '').trim();
+
+  bool _isSelfProfile(PublicCollectorProfile? profile) {
+    if (profile == null) {
+      return false;
+    }
+    final viewerUserId = _viewerUserId;
+    final viewedUserId = profile.userId.trim();
+    return viewerUserId.isNotEmpty &&
+        viewedUserId.isNotEmpty &&
+        viewerUserId == viewedUserId;
+  }
+
+  bool _shouldShowFollowAction(PublicCollectorProfile? profile) {
+    if (profile == null) {
+      return false;
+    }
+    return profile.userId.trim().isNotEmpty && !_isSelfProfile(profile);
+  }
 
   @override
   void initState() {
@@ -49,6 +83,9 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
     setState(() {
       _viewState = PublicCollectorViewState.loading;
       _result = null;
+      _followStateLoading = false;
+      _followActionBusy = false;
+      _isFollowing = false;
     });
 
     try {
@@ -65,6 +102,11 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         _result = result;
         _viewState = _mapResultToState(result);
       });
+
+      final profile = result.profile;
+      if (profile != null) {
+        unawaited(_loadFollowState(profile: profile, loadVersion: loadVersion));
+      }
     } catch (_) {
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -92,6 +134,184 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
     }
   }
 
+  Future<void> _loadFollowState({
+    required PublicCollectorProfile profile,
+    required int loadVersion,
+  }) async {
+    if (!_shouldShowFollowAction(profile)) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
+      setState(() {
+        _followStateLoading = false;
+        _isFollowing = false;
+      });
+      return;
+    }
+
+    final viewerUserId = _viewerUserId;
+    if (viewerUserId.isEmpty) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
+      setState(() {
+        _followStateLoading = false;
+        _isFollowing = false;
+      });
+      return;
+    }
+
+    if (mounted && loadVersion == _loadVersion) {
+      setState(() {
+        _followStateLoading = true;
+      });
+    }
+
+    try {
+      final isFollowing = await CollectorFollowService.fetchFollowState(
+        client: _client,
+        followerUserId: viewerUserId,
+        followedUserId: profile.userId,
+      );
+
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
+      setState(() {
+        _followStateLoading = false;
+        _isFollowing = isFollowing;
+      });
+    } catch (_) {
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
+      setState(() {
+        _followStateLoading = false;
+        _isFollowing = false;
+      });
+    }
+  }
+
+  Future<void> _handleFollowAction() async {
+    final result = _result;
+    final profile = result?.profile;
+    if (profile == null ||
+        !_shouldShowFollowAction(profile) ||
+        _followActionBusy) {
+      return;
+    }
+
+    setState(() {
+      _followActionBusy = true;
+    });
+
+    try {
+      final toggleResult = _isFollowing
+          ? await CollectorFollowService.unfollowCollector(
+              client: _client,
+              followedUserId: profile.userId,
+            )
+          : await CollectorFollowService.followCollector(
+              client: _client,
+              followedUserId: profile.userId,
+            );
+
+      if (!mounted) {
+        return;
+      }
+
+      if (!toggleResult.ok) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(toggleResult.message)));
+        setState(() {
+          _followActionBusy = false;
+        });
+        return;
+      }
+
+      setState(() {
+        _isFollowing = toggleResult.isFollowing;
+      });
+
+      await _refreshProfileRelationshipState(
+        profile: profile,
+        followState: toggleResult.isFollowing,
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Follow state could not be updated right now.'),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _followActionBusy = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _refreshProfileRelationshipState({
+    required PublicCollectorProfile profile,
+    required bool followState,
+  }) async {
+    try {
+      final refreshedProfile =
+          await PublicCollectorService.loadPublicProfileBySlug(
+            client: _client,
+            slug: profile.slug,
+          );
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _isFollowing = followState;
+        if (refreshedProfile != null && _result != null) {
+          _result = _resultWithRefreshedProfile(_result!, refreshedProfile);
+        }
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _isFollowing = followState;
+      });
+    }
+  }
+
+  PublicCollectorSurfaceResult _resultWithRefreshedProfile(
+    PublicCollectorSurfaceResult current,
+    PublicCollectorProfile refreshedProfile,
+  ) {
+    switch (current.state) {
+      case PublicCollectorSurfaceState.empty:
+        return PublicCollectorSurfaceResult.empty(refreshedProfile);
+      case PublicCollectorSurfaceState.success:
+        return PublicCollectorSurfaceResult.success(
+          profile: refreshedProfile,
+          collectionCards: current.collectionCards,
+          inPlayCards: current.inPlayCards,
+        );
+      case PublicCollectorSurfaceState.notFound:
+      case PublicCollectorSurfaceState.unavailable:
+        return current;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -110,6 +330,17 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           ),
         ),
         actions: [
+          IconButton(
+            tooltip: 'Messages',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const NetworkInboxScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.mail_outline_rounded),
+          ),
           IconButton(
             tooltip: 'Reload',
             onPressed: _load,
@@ -163,7 +394,14 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _PublicCollectorHeader(profile: result!.profile!),
+            _PublicCollectorHeader(
+              profile: result!.profile!,
+              showFollowAction: _shouldShowFollowAction(result.profile),
+              isFollowing: _isFollowing,
+              followStateLoading: _followStateLoading,
+              followActionBusy: _followActionBusy,
+              onFollowPressed: _handleFollowAction,
+            ),
             const SizedBox(height: 12),
             const _StateCard(
               icon: Icons.inbox_rounded,
@@ -182,6 +420,11 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           profile: profile,
           collectionCards: result.collectionCards,
           inPlayCards: result.inPlayCards,
+          showFollowAction: _shouldShowFollowAction(profile),
+          isFollowing: _isFollowing,
+          followStateLoading: _followStateLoading,
+          followActionBusy: _followActionBusy,
+          onFollowPressed: _handleFollowAction,
         );
       case PublicCollectorViewState.failure:
         return _failureCard();
@@ -207,11 +450,21 @@ class _PublicCollectorWallLayout extends StatelessWidget {
     required this.profile,
     required this.collectionCards,
     required this.inPlayCards,
+    required this.showFollowAction,
+    required this.isFollowing,
+    required this.followStateLoading,
+    required this.followActionBusy,
+    required this.onFollowPressed,
   });
 
   final PublicCollectorProfile profile;
   final List<PublicCollectorCard> collectionCards;
   final List<PublicCollectorCard> inPlayCards;
+  final bool showFollowAction;
+  final bool isFollowing;
+  final bool followStateLoading;
+  final bool followActionBusy;
+  final Future<void> Function() onFollowPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -219,6 +472,11 @@ class _PublicCollectorWallLayout extends StatelessWidget {
       profile: profile,
       collectionCards: collectionCards,
       inPlayCards: inPlayCards,
+      showFollowAction: showFollowAction,
+      isFollowing: isFollowing,
+      followStateLoading: followStateLoading,
+      followActionBusy: followActionBusy,
+      onFollowPressed: onFollowPressed,
     );
   }
 }
@@ -228,11 +486,21 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
     required this.profile,
     required this.collectionCards,
     required this.inPlayCards,
+    required this.showFollowAction,
+    required this.isFollowing,
+    required this.followStateLoading,
+    required this.followActionBusy,
+    required this.onFollowPressed,
   });
 
   final PublicCollectorProfile profile;
   final List<PublicCollectorCard> collectionCards;
   final List<PublicCollectorCard> inPlayCards;
+  final bool showFollowAction;
+  final bool isFollowing;
+  final bool followStateLoading;
+  final bool followActionBusy;
+  final Future<void> Function() onFollowPressed;
 
   @override
   State<_PublicCollectorSegmentedContent> createState() =>
@@ -241,7 +509,23 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
 
 class _PublicCollectorSegmentedContentState
     extends State<_PublicCollectorSegmentedContent> {
+  final OwnershipResolverAdapter _ownershipAdapter =
+      OwnershipResolverAdapter.instance;
   late _CollectorSegment _activeSegment;
+  Map<String, OwnershipState> _viewerOwnershipByCardPrintId =
+      const <String, OwnershipState>{};
+  int _ownershipPrimeVersion = 0;
+
+  String get _viewerUserId =>
+      (Supabase.instance.client.auth.currentUser?.id ?? '').trim();
+
+  bool get _isViewingOwnPublicSurface {
+    final viewerUserId = _viewerUserId;
+    final ownerUserId = widget.profile.userId.trim();
+    return viewerUserId.isNotEmpty &&
+        ownerUserId.isNotEmpty &&
+        viewerUserId == ownerUserId;
+  }
 
   @override
   void initState() {
@@ -249,6 +533,77 @@ class _PublicCollectorSegmentedContentState
     _activeSegment = widget.inPlayCards.isNotEmpty
         ? _CollectorSegment.inPlay
         : _CollectorSegment.collection;
+    unawaited(_primeViewerOwnership());
+  }
+
+  @override
+  void didUpdateWidget(covariant _PublicCollectorSegmentedContent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.profile.userId != widget.profile.userId ||
+        !_sameCardSet(oldWidget.collectionCards, widget.collectionCards) ||
+        !_sameCardSet(oldWidget.inPlayCards, widget.inPlayCards)) {
+      unawaited(_primeViewerOwnership());
+    }
+  }
+
+  Future<void> _primeViewerOwnership() async {
+    final requestVersion = ++_ownershipPrimeVersion;
+    if (_viewerUserId.isEmpty || _isViewingOwnPublicSurface) {
+      if (mounted) {
+        setState(() {
+          _viewerOwnershipByCardPrintId = const <String, OwnershipState>{};
+        });
+      }
+      return;
+    }
+
+    final cardPrintIds = [
+      ...widget.collectionCards.map((card) => card.cardPrintId),
+      ...widget.inPlayCards.map((card) => card.cardPrintId),
+    ];
+
+    try {
+      await _ownershipAdapter.primeBatch(cardPrintIds);
+      if (!mounted || requestVersion != _ownershipPrimeVersion) {
+        return;
+      }
+      setState(() {
+        _viewerOwnershipByCardPrintId = _ownershipAdapter.snapshotForIds(
+          cardPrintIds,
+        );
+      });
+    } catch (error) {
+      debugPrint(
+        'PERFORMANCE_P6_PUBLIC_COLLECTOR_SYNC_OWNERSHIP_CLOSEOUT prime failed: $error',
+      );
+    }
+  }
+
+  bool _sameCardSet(
+    List<PublicCollectorCard> left,
+    List<PublicCollectorCard> right,
+  ) {
+    if (identical(left, right)) {
+      return true;
+    }
+    if (left.length != right.length) {
+      return false;
+    }
+    for (var index = 0; index < left.length; index += 1) {
+      if (left[index].cardPrintId != right[index].cardPrintId) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  OwnershipState? _viewerOwnershipStateForCard(PublicCollectorCard card) {
+    if (_viewerUserId.isEmpty || _isViewingOwnPublicSurface) {
+      return null;
+    }
+    final normalizedCardPrintId = card.cardPrintId.trim();
+    return _viewerOwnershipByCardPrintId[normalizedCardPrintId] ??
+        _ownershipAdapter.peek(normalizedCardPrintId);
   }
 
   @override
@@ -256,8 +611,15 @@ class _PublicCollectorSegmentedContentState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _PublicCollectorHeader(profile: widget.profile),
-        const SizedBox(height: 12),
+        _PublicCollectorHeader(
+          profile: widget.profile,
+          showFollowAction: widget.showFollowAction,
+          isFollowing: widget.isFollowing,
+          followStateLoading: widget.followStateLoading,
+          followActionBusy: widget.followActionBusy,
+          onFollowPressed: widget.onFollowPressed,
+        ),
+        const SizedBox(height: 8),
         _CollectorSegmentControl(
           activeSegment: _activeSegment,
           onChanged: (segment) {
@@ -268,11 +630,17 @@ class _PublicCollectorSegmentedContentState
           collectionCount: widget.collectionCards.length,
           inPlayCount: widget.inPlayCards.length,
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         if (_activeSegment == _CollectorSegment.inPlay)
-          _FeaturedWallSection(cards: widget.inPlayCards)
+          _FeaturedWallSection(
+            cards: widget.inPlayCards,
+            viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
+          )
         else
-          _PublicCollectionSection(cards: widget.collectionCards),
+          _PublicCollectionSection(
+            cards: widget.collectionCards,
+            viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
+          ),
       ],
     );
   }
@@ -309,14 +677,14 @@ class _CollectorSegmentControl extends StatelessWidget {
           style: FilledButton.styleFrom(
             backgroundColor: selected
                 ? colorScheme.primary
-                : colorScheme.surfaceContainerHighest.withValues(alpha: 0.55),
+                : colorScheme.surface.withValues(alpha: 0.58),
             foregroundColor: selected
                 ? colorScheme.onPrimary
                 : colorScheme.onSurface,
             elevation: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(999),
             ),
             textStyle: theme.textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.w700,
@@ -328,11 +696,11 @@ class _CollectorSegmentControl extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: Row(
         children: [
@@ -341,7 +709,7 @@ class _CollectorSegmentControl extends StatelessWidget {
             label: 'Collection',
             count: collectionCount,
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 6),
           segmentButton(
             segment: _CollectorSegment.inPlay,
             label: 'In Play',
@@ -366,7 +734,7 @@ class _CollectorScaffoldBody extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(color: colorScheme.surface),
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
+          padding: const EdgeInsets.fromLTRB(10, 8, 10, 18),
           children: [child],
         ),
       ),
@@ -375,70 +743,225 @@ class _CollectorScaffoldBody extends StatelessWidget {
 }
 
 class _PublicCollectorHeader extends StatelessWidget {
-  const _PublicCollectorHeader({required this.profile});
+  const _PublicCollectorHeader({
+    required this.profile,
+    required this.showFollowAction,
+    required this.isFollowing,
+    required this.followStateLoading,
+    required this.followActionBusy,
+    required this.onFollowPressed,
+  });
 
   final PublicCollectorProfile profile;
+  final bool showFollowAction;
+  final bool isFollowing;
+  final bool followStateLoading;
+  final bool followActionBusy;
+  final Future<void> Function() onFollowPressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayName = profile.displayName.trim().isEmpty
+        ? (profile.slug.trim().isEmpty ? 'Public collector' : profile.slug)
+        : profile.displayName.trim();
+    final slugLabel = profile.slug.trim().isEmpty
+        ? 'Grookai collector'
+        : '/u/${profile.slug}';
+    final shareUri = profile.slug.trim().isEmpty
+        ? null
+        : GrookaiWebRouteService.buildUri('/u/${profile.slug}');
 
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.04),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
+        borderRadius: BorderRadius.circular(22),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colorScheme.primary.withValues(alpha: 0.06),
+            colorScheme.primaryContainer.withValues(alpha: 0.26),
+          ],
+        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.10)),
+      ),
+      padding: const EdgeInsets.fromLTRB(12, 11, 12, 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _AvatarBadge(profile: profile),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  displayName,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -0.45,
+                    height: 1.0,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  slugLabel,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.64),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (showFollowAction) ...[
+                  const SizedBox(height: 10),
+                  _ProfileFollowButton(
+                    // FOLLOW_ACTION_V1
+                    // Public collector profiles expose Follow / Following using the existing relationship system.
+                    isFollowing: isFollowing,
+                    loading: followStateLoading || followActionBusy,
+                    onPressed: onFollowPressed,
+                  ),
+                ],
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    _ProfileStatChip(
+                      icon: Icons.group_outlined,
+                      label: '${profile.followerCount} followers',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => PublicCollectorRelationshipScreen(
+                              profile: profile,
+                              mode: PublicCollectorRelationshipMode.followers,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    _ProfileStatChip(
+                      icon: Icons.people_alt_outlined,
+                      label: '${profile.followingCount} following',
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => PublicCollectorRelationshipScreen(
+                              profile: profile,
+                              mode: PublicCollectorRelationshipMode.following,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          if (shareUri != null)
+            IconButton(
+              tooltip: 'Share profile',
+              visualDensity: VisualDensity.compact,
+              padding: const EdgeInsets.all(8),
+              style: IconButton.styleFrom(
+                foregroundColor: colorScheme.onSurface,
+                backgroundColor: colorScheme.surface.withValues(alpha: 0.78),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  side: BorderSide(
+                    color: colorScheme.outline.withValues(alpha: 0.10),
+                  ),
+                ),
+              ),
+              onPressed: () async {
+                await Clipboard.setData(
+                  ClipboardData(text: shareUri.toString()),
+                );
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Profile link copied to clipboard.'),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.share_outlined, size: 18),
+            ),
         ],
       ),
-      padding: const EdgeInsets.all(14),
-      child: Container(
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              colorScheme.primary.withValues(alpha: 0.10),
-              colorScheme.primaryContainer.withValues(alpha: 0.44),
-            ],
+    );
+  }
+}
+
+class _ProfileFollowButton extends StatelessWidget {
+  const _ProfileFollowButton({
+    required this.isFollowing,
+    required this.loading,
+    required this.onPressed,
+  });
+
+  final bool isFollowing;
+  final bool loading;
+  final Future<void> Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final label = isFollowing ? 'Following' : 'Follow';
+    final foregroundColor = isFollowing
+        ? colorScheme.onSurface.withValues(alpha: 0.84)
+        : colorScheme.onPrimary;
+    final backgroundColor = isFollowing
+        ? colorScheme.surface.withValues(alpha: 0.78)
+        : colorScheme.primary;
+    final borderColor = isFollowing
+        ? colorScheme.outline.withValues(alpha: 0.10)
+        : colorScheme.primary.withValues(alpha: 0.18);
+
+    return SizedBox(
+      height: 40,
+      child: FilledButton(
+        onPressed: loading ? null : () => unawaited(onPressed()),
+        style: FilledButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+            side: BorderSide(color: borderColor),
+          ),
+          textStyle: theme.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w700,
           ),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            _AvatarBadge(profile: profile),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    profile.displayName,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: -0.4,
-                      height: 1.05,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8),
-                  _IdentityChip(
-                    icon: Icons.alternate_email_rounded,
-                    label: '/u/${profile.slug}',
-                    maxWidth: 220,
-                  ),
-                ],
+            if (loading)
+              SizedBox(
+                width: 14,
+                height: 14,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(foregroundColor),
+                ),
+              )
+            else
+              Icon(
+                isFollowing
+                    ? Icons.check_rounded
+                    : Icons.person_add_alt_1_rounded,
+                size: 16,
               ),
-            ),
+            const SizedBox(width: 8),
+            Text(label),
           ],
         ),
       ),
@@ -447,47 +970,59 @@ class _PublicCollectorHeader extends StatelessWidget {
 }
 
 class _FeaturedWallSection extends StatelessWidget {
-  const _FeaturedWallSection({required this.cards});
+  const _FeaturedWallSection({
+    required this.cards,
+    required this.viewerOwnershipStateForCard,
+  });
 
   final List<PublicCollectorCard> cards;
+  final OwnershipState? Function(PublicCollectorCard card)
+  viewerOwnershipStateForCard;
 
   @override
   Widget build(BuildContext context) {
     return _WallSectionCard(
       title: 'In Play',
-      description: 'Trade, sell, or showcase cards.',
       emptyMessage: cards.isEmpty ? 'No cards in play' : null,
-      child: cards.isEmpty ? null : _PublicCardTileList(cards: cards),
+      child: cards.isEmpty
+          ? null
+          : _PublicCardTileList(
+              cards: cards,
+              viewerOwnershipStateForCard: viewerOwnershipStateForCard,
+            ),
     );
   }
 }
 
 class _PublicCollectionSection extends StatelessWidget {
-  const _PublicCollectionSection({required this.cards});
+  const _PublicCollectionSection({
+    required this.cards,
+    required this.viewerOwnershipStateForCard,
+  });
 
   final List<PublicCollectorCard> cards;
+  final OwnershipState? Function(PublicCollectorCard card)
+  viewerOwnershipStateForCard;
 
   @override
   Widget build(BuildContext context) {
     return _WallSectionCard(
       title: 'Collection',
-      description: 'Public cards on this wall.',
       emptyMessage: cards.isEmpty ? 'No public cards yet' : null,
-      child: cards.isEmpty ? null : _PublicCardTileList(cards: cards),
+      child: cards.isEmpty
+          ? null
+          : _PublicCardTileList(
+              cards: cards,
+              viewerOwnershipStateForCard: viewerOwnershipStateForCard,
+            ),
     );
   }
 }
 
 class _WallSectionCard extends StatelessWidget {
-  const _WallSectionCard({
-    required this.title,
-    required this.description,
-    this.emptyMessage,
-    this.child,
-  });
+  const _WallSectionCard({required this.title, this.emptyMessage, this.child});
 
   final String title;
-  final String description;
   final String? emptyMessage;
   final Widget? child;
 
@@ -496,55 +1031,38 @@ class _WallSectionCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    if (child != null) {
+      return child!;
+    }
+
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              letterSpacing: -0.2,
+          Icon(
+            title == 'In Play'
+                ? Icons.local_offer_outlined
+                : Icons.collections_outlined,
+            size: 16,
+            color: colorScheme.onSurface.withValues(alpha: 0.54),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              emptyMessage ?? '$title is empty.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.68),
+                fontWeight: FontWeight.w600,
+                height: 1.28,
+              ),
             ),
           ),
-          if (description.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(
-              description,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.72),
-                height: 1.35,
-              ),
-            ),
-          ],
-          if (child != null) ...[const SizedBox(height: 12), child!],
-          if (emptyMessage != null) ...[
-            const SizedBox(height: 12),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-              decoration: BoxDecoration(
-                color: colorScheme.primary.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: colorScheme.outline.withValues(alpha: 0.14),
-                ),
-              ),
-              child: Text(
-                emptyMessage!,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.72),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
         ],
       ),
     );
@@ -552,27 +1070,54 @@ class _WallSectionCard extends StatelessWidget {
 }
 
 class _PublicCardTileList extends StatelessWidget {
-  const _PublicCardTileList({required this.cards});
+  const _PublicCardTileList({
+    required this.cards,
+    required this.viewerOwnershipStateForCard,
+  });
 
   final List<PublicCollectorCard> cards;
+  final OwnershipState? Function(PublicCollectorCard card)
+  viewerOwnershipStateForCard;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (var index = 0; index < cards.length; index++) ...[
-          _PublicCardTile(card: cards[index]),
-          if (index < cards.length - 1) const SizedBox(height: 12),
-        ],
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 900
+            ? 4
+            : constraints.maxWidth >= 620
+            ? 3
+            : constraints.maxWidth >= 260
+            ? 2
+            : 1;
+        const spacing = 6.0;
+        final width =
+            (constraints.maxWidth - (spacing * (columns - 1))) / columns;
+
+        return Wrap(
+          spacing: spacing,
+          runSpacing: spacing,
+          children: [
+            for (final card in cards)
+              SizedBox(
+                width: width,
+                child: _PublicCardTile(
+                  card: card,
+                  ownershipState: viewerOwnershipStateForCard(card),
+                ),
+              ),
+          ],
+        );
+      },
     );
   }
 }
 
 class _PublicCardTile extends StatelessWidget {
-  const _PublicCardTile({required this.card});
+  const _PublicCardTile({required this.card, this.ownershipState});
 
   final PublicCollectorCard card;
+  final OwnershipState? ownershipState;
 
   @override
   Widget build(BuildContext context) {
@@ -589,103 +1134,119 @@ class _PublicCardTile extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(22),
         onTap: () {
+          final gvviId = (card.gvviId ?? '').trim();
           Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (_) => CardDetailScreen(
-                cardPrintId: card.cardPrintId,
-                gvId: card.gvId,
-                name: card.name,
-                setName: card.setName,
-                setCode: card.setCode,
-                number: card.number,
-                rarity: card.rarity,
-                imageUrl: card.imageUrl,
-              ),
+              builder: (_) => gvviId.isNotEmpty
+                  ? PublicGvviScreen(gvviId: gvviId)
+                  : CardDetailScreen(
+                      cardPrintId: card.cardPrintId,
+                      gvId: card.gvId,
+                      name: card.name,
+                      setName: card.setName,
+                      setCode: card.setCode,
+                      number: card.number,
+                      rarity: card.rarity,
+                      imageUrl: card.imageUrl,
+                    ),
             ),
           );
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: colorScheme.primary.withValues(alpha: 0.04),
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 0.69,
+              child: CardSurfaceArtwork(
+                label: card.name,
+                imageUrl: card.imageUrl,
+                borderRadius: 22,
+                padding: const EdgeInsets.all(1.5),
+                backgroundColor: colorScheme.surfaceContainerLow.withValues(
+                  alpha: 0.52,
+                ),
+              ),
             ),
-          ),
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _PublicCardArtwork(card: card),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      card.name,
-                      maxLines: 2,
+            const SizedBox(height: 6),
+            SizedBox(
+              height: 40,
+              child: Text(
+                card.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  height: 1.04,
+                  letterSpacing: -0.3,
+                ),
+              ),
+            ),
+            const SizedBox(height: 3),
+            SizedBox(
+              height: 22,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        height: 1.15,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.60),
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.02,
                       ),
                     ),
-                    if (metaParts.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        metaParts.join(' • '),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.72),
-                          height: 1.35,
-                        ),
+                  ),
+                  const SizedBox(width: 6),
+                  _buildPricePill(card),
+                ],
+              ),
+            ),
+            const SizedBox(height: 5),
+            SizedBox(
+              height: 22,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: [
+                    if (card.intent != null)
+                      _TileBadge(
+                        label: _intentLabel(card.intent!),
+                        tone: _intentTone(card.intent!),
+                      )
+                    else
+                      const _TileBadge(
+                        label: 'Collection',
+                        tone: _BadgeTone.neutral,
                       ),
-                    ],
-                    if (card.intent != null || card.conditionLabel != null) ...[
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          if (card.intent != null)
-                            _TileBadge(
-                              label: _intentLabel(card.intent!),
-                              tone: _intentTone(card.intent!),
-                            ),
-                          if (card.conditionLabel != null)
-                            _TileBadge(
-                              label: card.conditionLabel!,
-                              tone: _BadgeTone.neutral,
-                            ),
-                        ],
+                    if (card.conditionLabel != null)
+                      _TileBadge(
+                        label: card.conditionLabel!,
+                        tone: _BadgeTone.neutral,
                       ),
-                    ],
                   ],
                 ),
               ),
-              const SizedBox(width: 10),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'View card',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: colorScheme.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Icon(
-                    Icons.chevron_right_rounded,
-                    color: colorScheme.onSurface.withValues(alpha: 0.38),
-                  ),
-                ],
+            ),
+            if (ownershipState != null) ...[
+              const SizedBox(height: 4),
+              // PERFORMANCE_P6_PUBLIC_COLLECTOR_SYNC_OWNERSHIP_CLOSEOUT
+              // Public collector ownership hints render from precomputed snapshot state only.
+              // OWNERSHIP_P1_PUBLIC_BRIDGE_V1
+              // Public-owner truth is primary.
+              // Viewer-owned awareness is secondary and must not override the owner's card context.
+              SizedBox(
+                height: 18,
+                child: _PublicViewerOwnershipHint(
+                  ownershipState: ownershipState!,
+                ),
               ),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -716,53 +1277,54 @@ class _PublicCardTile extends StatelessWidget {
         return _BadgeTone.neutral;
     }
   }
+
+  Widget _buildPricePill(PublicCollectorCard card) {
+    final displayMode = (card.priceDisplayMode ?? '').trim().toLowerCase();
+    if (displayMode == 'hidden') {
+      return const _PricePlaceholderPill(label: 'Private');
+    }
+
+    return CardSurfacePricePill(
+      pricing: card.pricing,
+      size: CardSurfacePriceSize.grid,
+      mode: displayMode == 'my_price'
+          ? CardSurfacePriceMode.manual
+          : CardSurfacePriceMode.automatic,
+      manualPrice: card.askingPriceAmount,
+      manualCurrency: card.askingPriceCurrency,
+    );
+  }
 }
 
-class _PublicCardArtwork extends StatelessWidget {
-  const _PublicCardArtwork({required this.card});
+class _PublicViewerOwnershipHint extends StatelessWidget {
+  const _PublicViewerOwnershipHint({required this.ownershipState});
 
-  final PublicCollectorCard card;
+  final OwnershipState ownershipState;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    if (!ownershipState.owned) {
+      return const SizedBox.shrink();
+    }
 
-    return Container(
-      width: 68,
-      height: 92,
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.12)),
+    final label = ownershipState.ownedCount > 1
+        ? '${ownershipState.ownedCount} copies in your vault'
+        : 'In Vault';
+
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        label,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: colorScheme.onSurface.withValues(alpha: 0.54),
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.02,
+        ),
       ),
-      clipBehavior: Clip.antiAlias,
-      child: card.imageUrl == null
-          ? Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  card.name,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.64),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            )
-          : Image.network(
-              card.imageUrl!,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Center(
-                child: Icon(
-                  Icons.style_outlined,
-                  color: colorScheme.onSurface.withValues(alpha: 0.34),
-                ),
-              ),
-            ),
     );
   }
 }
@@ -781,29 +1343,29 @@ class _TileBadge extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final colors = switch (tone) {
       _BadgeTone.trade => (
-        background: const Color(0xFFE9F9EF),
-        border: const Color(0xFFB8E3C5),
-        foreground: const Color(0xFF17653A),
+        background: const Color(0xFFF2FAF5),
+        border: const Color(0xFFD8ECDC),
+        foreground: const Color(0xFF2F6B48),
       ),
       _BadgeTone.sell => (
-        background: const Color(0xFFEAF4FF),
-        border: const Color(0xFFB8D6F8),
-        foreground: const Color(0xFF1E5A94),
+        background: const Color(0xFFF3F7FD),
+        border: const Color(0xFFD7E4F4),
+        foreground: const Color(0xFF45658A),
       ),
       _BadgeTone.showcase => (
-        background: const Color(0xFFFEF3E6),
-        border: const Color(0xFFF4D2A3),
-        foreground: const Color(0xFF93591E),
+        background: const Color(0xFFFFF6EA),
+        border: const Color(0xFFF0DFC1),
+        foreground: const Color(0xFF8A6535),
       ),
       _BadgeTone.neutral => (
-        background: colorScheme.surface,
-        border: colorScheme.outline.withValues(alpha: 0.14),
-        foreground: colorScheme.onSurface.withValues(alpha: 0.72),
+        background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+        border: colorScheme.outline.withValues(alpha: 0.08),
+        foreground: colorScheme.onSurface.withValues(alpha: 0.64),
       ),
     };
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
       decoration: BoxDecoration(
         color: colors.background,
         borderRadius: BorderRadius.circular(999),
@@ -811,9 +1373,89 @@ class _TileBadge extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: theme.textTheme.labelMedium?.copyWith(
+        style: theme.textTheme.labelSmall?.copyWith(
           color: colors.foreground,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w600,
+          height: 1.0,
+        ),
+      ),
+    );
+  }
+}
+
+class _PricePlaceholderPill extends StatelessWidget {
+  const _PricePlaceholderPill({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3.5),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.38),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Text(
+        label,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: colorScheme.onSurface.withValues(alpha: 0.62),
+          fontWeight: FontWeight.w600,
+          height: 1.0,
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileStatChip extends StatelessWidget {
+  const _ProfileStatChip({required this.icon, required this.label, this.onTap});
+
+  final IconData icon;
+  final String label;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(999),
+        onTap: onTap,
+        child: Ink(
+          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
+          decoration: BoxDecoration(
+            color: colorScheme.surface.withValues(alpha: 0.72),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: colorScheme.onSurface.withValues(alpha: 0.06),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: colorScheme.primary.withValues(alpha: 0.82),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: colorScheme.onSurface.withValues(alpha: 0.72),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -833,26 +1475,26 @@ class _AvatarBadge extends StatelessWidget {
     final avatarUrl = profile.avatarUrl;
 
     return Container(
-      width: 68,
-      height: 68,
+      width: 56,
+      height: 56,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        color: colorScheme.surface.withValues(alpha: 0.72),
+        borderRadius: BorderRadius.circular(18),
+        color: colorScheme.surface.withValues(alpha: 0.62),
         border: Border.all(
-          color: colorScheme.onSurface.withValues(alpha: 0.08),
+          color: colorScheme.onSurface.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.08),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
+            color: colorScheme.shadow.withValues(alpha: 0.04),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(4),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(14),
           child: DecoratedBox(
             decoration: BoxDecoration(color: colorScheme.primaryContainer),
             child: avatarUrl == null
@@ -897,58 +1539,6 @@ class _AvatarBadge extends StatelessWidget {
     }
 
     return slug.isEmpty ? 'GV' : slug.substring(0, 1).toUpperCase();
-  }
-}
-
-class _IdentityChip extends StatelessWidget {
-  const _IdentityChip({required this.icon, required this.label, this.maxWidth});
-
-  final IconData icon;
-  final String label;
-  final double? maxWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    final chip = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-      decoration: BoxDecoration(
-        color: colorScheme.surface.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(
-          color: colorScheme.onSurface.withValues(alpha: 0.10),
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Icon(icon, size: 16, color: colorScheme.primary),
-          const SizedBox(width: 8),
-          Flexible(
-            child: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelLarge?.copyWith(
-                color: colorScheme.onSurface,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-
-    if (maxWidth == null) {
-      return chip;
-    }
-
-    return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: maxWidth!),
-      child: chip,
-    );
   }
 }
 

@@ -49,6 +49,15 @@ function mergeJson(base, patch) {
   return out;
 }
 
+function normalizeHeroImageUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  const trimmed = url.trim();
+  if (!trimmed) return null;
+  if (/\.(png)(\?.*)?$/i.test(trimmed)) return trimmed;
+  if (/\.(webp|jpe?g)(\?.*)?$/i.test(trimmed)) return null;
+  return `${trimmed}.png`;
+}
+
 async function markRawImport(supabase, id, status) {
   await supabase
     .from('raw_imports')
@@ -93,7 +102,7 @@ async function resolveSet(supabase, payload) {
   if (codes.length > 0) {
     const { data, error } = await supabase
       .from('sets')
-      .select('id, code, name, release_date, logo_url, symbol_url, source')
+      .select('id, code, name, release_date, logo_url, symbol_url, hero_image_url, hero_image_source, source')
       .eq('game', 'pokemon')
       .in('code', codes);
     if (error) throw error;
@@ -103,7 +112,7 @@ async function resolveSet(supabase, payload) {
   if (candidates.length === 0 && externalId) {
     const { data, error } = await supabase
       .from('sets')
-      .select('id, code, name, release_date, logo_url, symbol_url, source')
+      .select('id, code, name, release_date, logo_url, symbol_url, hero_image_url, hero_image_source, source')
       .eq('game', 'pokemon')
       .eq('source->pokemonapi->>id', externalId);
     if (error) throw error;
@@ -140,6 +149,7 @@ async function upsertSet(supabase, raw) {
   }
 
   const releaseDate = toDateOnly(payload.releaseDate);
+  const heroImageUrl = normalizeHeroImageUrl(payload.images?.logo ?? null);
   const pokemonSource = {
     id: externalId,
     name: payload.name,
@@ -161,6 +171,10 @@ async function upsertSet(supabase, raw) {
     }
     if (payload.images?.symbol && (!current.symbol_url || current.symbol_url.trim() === '')) {
       updates.symbol_url = payload.images.symbol;
+    }
+    if (heroImageUrl && (!current.hero_image_url || current.hero_image_url.trim() === '')) {
+      updates.hero_image_url = heroImageUrl;
+      updates.hero_image_source = 'pokemontcgapi';
     }
     updates.source = mergeJson(current.source, { pokemonapi: pokemonSource });
     if (Object.keys(updates).length > 0) {
@@ -184,6 +198,8 @@ async function upsertSet(supabase, raw) {
     release_date: releaseDate,
     logo_url: payload.images?.logo ?? null,
     symbol_url: payload.images?.symbol ?? null,
+    hero_image_url: heroImageUrl,
+    hero_image_source: heroImageUrl ? 'pokemontcgapi' : null,
     source: { pokemonapi: pokemonSource },
   };
 

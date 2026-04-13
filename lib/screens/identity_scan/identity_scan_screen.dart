@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../card_detail_screen.dart';
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
-import '../scanner/condition_camera_screen.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
 
@@ -78,20 +76,28 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
   }
 
   Future<void> _captureAndIdentify() async {
-    final file = await Navigator.of(context).push<XFile?>(
-      MaterialPageRoute(
-        builder: (_) => const ConditionCameraScreen(
-          title: 'Scan Card',
-          hintText: 'Align card inside the frame',
-        ),
-      ),
-    );
-    if (file != null) {
+    try {
+      final file = await _picker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 92,
+      );
+      if (file == null) {
+        return;
+      }
+
       setState(() {
         _front = file;
         _error = null;
       });
       await _startScan();
+    } catch (e) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _error = 'Camera unavailable on this device. Try Gallery instead.';
+      });
+      _snack('Camera unavailable. Try Gallery instead.');
     }
   }
 
@@ -243,10 +249,6 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _snack('Please sign in.');
         return;
       }
-      final identity = await VaultCardService.resolveCanonicalCard(
-        client: Supabase.instance.client,
-        cardId: cardId,
-      );
       await VaultCardService.addOrIncrementVaultItem(
         client: Supabase.instance.client,
         userId: userId,
@@ -258,24 +260,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         fallbackImageUrl: (cand['image_url'] ?? '').toString(),
       );
       if (!mounted) return;
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => CardDetailScreen(
-            cardPrintId: identity.cardId,
-            gvId: identity.gvId,
-            name: identity.name.isEmpty
-                ? (cand['name'] ?? '').toString()
-                : identity.name,
-            setName: identity.setName.isEmpty
-                ? (cand['set_code'] ?? '').toString()
-                : identity.setName,
-            number: (identity.number ?? '').isEmpty
-                ? (cand['number'] ?? '').toString()
-                : identity.number,
-            imageUrl: identity.imageUrl ?? (cand['image_url'] ?? '').toString(),
-          ),
-        ),
-      );
+      _snack('Added to Vault.');
     } catch (e) {
       _snack('Add to Vault failed: $e');
     } finally {

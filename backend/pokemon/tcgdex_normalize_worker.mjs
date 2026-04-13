@@ -80,6 +80,15 @@ function mergeJson(base, patch) {
   return out;
 }
 
+function normalizeHeroImageUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  const trimmed = url.trim();
+  if (!trimmed) return null;
+  if (/\.(png)(\?.*)?$/i.test(trimmed)) return trimmed;
+  if (/\.(webp|jpe?g)(\?.*)?$/i.test(trimmed)) return null;
+  return `${trimmed}.png`;
+}
+
 async function markRawImport(supabase, id, status, options) {
   if (options.dryRun) {
     console.log(`[tcgdex][normalize][dry-run] would mark raw_import ${id} as ${status}`);
@@ -152,7 +161,7 @@ async function resolveSetCandidates(supabase, payload) {
   if (codes.length > 0) {
     const { data, error } = await supabase
       .from('sets')
-      .select('id, code, name, release_date, logo_url, symbol_url, source')
+      .select('id, code, name, release_date, logo_url, symbol_url, hero_image_url, hero_image_source, source')
       .eq('game', 'pokemon')
       .in('code', codes);
     if (error) throw error;
@@ -162,7 +171,7 @@ async function resolveSetCandidates(supabase, payload) {
   if (externalId) {
     const { data, error } = await supabase
       .from('sets')
-      .select('id, code, name, release_date, logo_url, symbol_url, source')
+      .select('id, code, name, release_date, logo_url, symbol_url, hero_image_url, hero_image_source, source')
       .eq('game', 'pokemon')
       .eq('source->tcgdex->>id', externalId);
     if (error) throw error;
@@ -201,6 +210,10 @@ function extractSetLogos(setData) {
   };
 }
 
+function extractSetHeroImageUrl(setData) {
+  return normalizeHeroImageUrl(setData?.logo ?? setData?.images?.logo ?? null);
+}
+
 async function upsertSet(supabase, raw, options) {
   const payload = raw.payload || {};
   const setData = payload.set || payload;
@@ -226,6 +239,7 @@ async function upsertSet(supabase, raw, options) {
     toDateOnly(setData?.releasedAt) ||
     toDateOnly(setData?.release_date);
   const logos = extractSetLogos(setData);
+  const heroImageUrl = extractSetHeroImageUrl(setData);
   const sourcePatch = { tcgdex: buildTcgdexSetSource(setData, externalId) };
   // NOTE: TCGdex set external ids currently live under sets.source.tcgdex.
   // If we later standardize set-level external_mappings, hook the upsert here.
@@ -242,6 +256,10 @@ async function upsertSet(supabase, raw, options) {
     }
     if (logos.symbol && (!current.symbol_url || current.symbol_url.trim() === '')) {
       updates.symbol_url = logos.symbol;
+    }
+    if (heroImageUrl && (!current.hero_image_url || current.hero_image_url.trim() === '')) {
+      updates.hero_image_url = heroImageUrl;
+      updates.hero_image_source = 'tcgdex';
     }
 
     if (options.dryRun) {
@@ -286,6 +304,8 @@ async function upsertSet(supabase, raw, options) {
     release_date: releaseDate,
     logo_url: logos.logo ?? null,
     symbol_url: logos.symbol ?? null,
+    hero_image_url: heroImageUrl,
+    hero_image_source: heroImageUrl ? 'tcgdex' : null,
     source: sourcePatch,
   };
 

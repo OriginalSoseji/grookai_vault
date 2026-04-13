@@ -39,12 +39,12 @@ class ConditionCaptureOverlay extends StatelessWidget {
               ),
             ),
           ),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: MediaQuery.of(context).padding.top + 12,
-          child: Center(
-            child: AnimatedSwitcher(
+          Positioned(
+            left: 0,
+            right: 0,
+            top: MediaQuery.of(context).padding.top + 12,
+            child: Center(
+              child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 180),
                 transitionBuilder: (child, animation) => ScaleTransition(
                   scale: animation,
@@ -52,8 +52,10 @@ class ConditionCaptureOverlay extends StatelessWidget {
                 ),
                 child: Container(
                   key: ValueKey(statusText),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.surface.withOpacity(0.72),
                     borderRadius: BorderRadius.circular(999),
@@ -108,8 +110,12 @@ class _OverlayPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final scrimPaint = Paint()..color = colorScheme.onSurface.withOpacity(0.4);
     final clearPaint = Paint()..blendMode = BlendMode.clear;
-    final overlay = Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
-    final guideRRect = RRect.fromRectAndRadius(guideRect, const Radius.circular(24));
+    final overlay = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
+    final guideRRect = RRect.fromRectAndRadius(
+      guideRect,
+      const Radius.circular(24),
+    );
     overlay.addRRect(guideRRect);
     overlay.fillType = PathFillType.evenOdd;
     canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());
@@ -120,7 +126,8 @@ class _OverlayPainter extends CustomPainter {
     final borderColor = switch (mode) {
       OverlayMode.ready => colorScheme.primary,
       OverlayMode.warn => colorScheme.error.withOpacity(0.9),
-      _ => isReady ? colorScheme.primary : colorScheme.onSurface.withOpacity(0.8),
+      _ =>
+        isReady ? colorScheme.primary : colorScheme.onSurface.withOpacity(0.8),
     };
     final borderPaint = Paint()
       ..color = borderColor
@@ -129,7 +136,9 @@ class _OverlayPainter extends CustomPainter {
     canvas.drawRRect(guideRRect, borderPaint);
 
     final tickPaint = Paint()
-      ..color = isReady ? colorScheme.primary : colorScheme.onSurface.withOpacity(0.9)
+      ..color = isReady
+          ? colorScheme.primary
+          : colorScheme.onSurface.withOpacity(0.9)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -156,8 +165,16 @@ class _OverlayPainter extends CustomPainter {
     final crossPaint = Paint()
       ..color = colorScheme.onSurface.withOpacity(0.8)
       ..strokeWidth = 1.6;
-    canvas.drawLine(center + const Offset(-6, 0), center + const Offset(6, 0), crossPaint);
-    canvas.drawLine(center + const Offset(0, -6), center + const Offset(0, 6), crossPaint);
+    canvas.drawLine(
+      center + const Offset(-6, 0),
+      center + const Offset(6, 0),
+      crossPaint,
+    );
+    canvas.drawLine(
+      center + const Offset(0, -6),
+      center + const Offset(0, 6),
+      crossPaint,
+    );
 
     if (quadPointsNorm != null && quadPointsNorm!.length == 4) {
       final quadPaint = Paint()

@@ -1,15 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../models/ownership_state.dart';
 import '../../services/network/network_stream_service.dart';
+import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../widgets/app_shell_metrics.dart';
-import '../../widgets/card_view_mode.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
 import '../gvvi/public_gvvi_screen.dart';
+import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_gvvi_screen.dart';
-import 'network_discover_screen.dart';
 
 class NetworkScreen extends StatefulWidget {
   const NetworkScreen({super.key});
@@ -19,63 +22,217 @@ class NetworkScreen extends StatefulWidget {
 }
 
 class NetworkScreenState extends State<NetworkScreen> {
-  final SupabaseClient _client = Supabase.instance.client;
+  static const bool _kNetworkOwnershipDiagnostics = false;
 
+  final SupabaseClient _client = Supabase.instance.client;
+  final ScrollController _scrollController = ScrollController();
+  final OwnershipResolverAdapter _ownershipAdapter =
+      OwnershipResolverAdapter.instance;
+  static const int _networkInitialPageSize = 12;
+  static const int _networkNextPageSize = 24;
+  static const int _networkInitialOwnershipPrimeRowCount = 6;
+
+  NetworkFeedMode _feedMode = NetworkFeedMode.collectors;
   String? _intent;
-  AppCardViewMode _viewMode = AppCardViewMode.comfortableList;
   bool _loading = true;
+  bool _loadingMore = false;
+  bool _hasMore = true;
   String? _error;
+  NetworkStreamEmptyState _emptyState = NetworkStreamEmptyState.none;
   List<NetworkStreamRow> _rows = const <NetworkStreamRow>[];
+  Map<String, OwnershipState> _ownershipStatesByCardPrintId =
+      const <String, OwnershipState>{};
   int _loadVersion = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadRows();
+    _scrollController.addListener(_handleScroll);
+    _loadRows(resetSession: true);
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_handleScroll)
+      ..dispose();
+    super.dispose();
   }
 
   void reload() {
-    _loadRows();
+    _loadRows(resetSession: true);
   }
 
-  Future<void> _loadRows() async {
+  void _handleScroll() {
+    if (!_scrollController.hasClients ||
+        _loading ||
+        _loadingMore ||
+        !_hasMore) {
+      return;
+    }
+
+    final position = _scrollController.position;
+    if (position.pixels >= position.maxScrollExtent - 420) {
+      _loadRows(append: true);
+    }
+  }
+
+  Future<void> _loadRows({
+    bool resetSession = false,
+    bool append = false,
+  }) async {
     final loadVersion = ++_loadVersion;
+    final pageSize = append ? _networkNextPageSize : _networkInitialPageSize;
     setState(() {
-      _loading = true;
-      _error = null;
+      if (append) {
+        _loadingMore = true;
+      } else {
+        _loading = true;
+        _error = null;
+        _hasMore = true;
+      }
     });
 
     try {
-      final rows = await NetworkStreamService.fetchRows(
+      final page = await NetworkStreamService.fetchRows(
         client: _client,
+        mode: _feedMode,
         intent: _intent,
         excludeUserId: _client.auth.currentUser?.id,
+        viewerUserId: _client.auth.currentUser?.id,
+        limit: pageSize,
+        resetSession: resetSession,
       );
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 
+      final pageCardPrintIds = _cardPrintIdsForRows(page.rows);
+      final immediateOwnershipIds = append
+          ? pageCardPrintIds
+          : _cardPrintIdsForRows(
+              page.rows.take(_networkInitialOwnershipPrimeRowCount),
+            );
+      final deferredOwnershipIds = append
+          ? const <String>[]
+          : pageCardPrintIds
+                .where((id) => !immediateOwnershipIds.contains(id))
+                .toList(growable: false);
+      Map<String, OwnershipState> pageOwnershipStates =
+          const <String, OwnershipState>{};
+      if (immediateOwnershipIds.isNotEmpty) {
+        try {
+          await _ownershipAdapter.primeBatch(immediateOwnershipIds);
+          pageOwnershipStates = _ownershipAdapter.snapshotForIds(
+            pageCardPrintIds,
+          );
+        } catch (error) {
+          _debugOwnershipPrime('immediate prime failed: $error');
+        }
+      }
+
+      if (!mounted || loadVersion != _loadVersion) {
+        return;
+      }
+
       setState(() {
-        _rows = rows;
+        _rows = append ? [..._rows, ...page.rows] : page.rows;
+        _ownershipStatesByCardPrintId = append
+            ? <String, OwnershipState>{
+                ..._ownershipStatesByCardPrintId,
+                ...pageOwnershipStates,
+              }
+            : pageOwnershipStates;
+        if (!append) {
+          _emptyState = page.emptyState;
+        }
+        _hasMore = page.hasMore;
+        if (append) {
+          _loadingMore = false;
+        } else {
+          _loading = false;
+        }
       });
+
+      if (!append && deferredOwnershipIds.isNotEmpty) {
+        // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1
+        // Paint the first viewport after priming only the immediately visible
+        // ownership hints, then hydrate the rest of the first page in the
+        // background so first open feels lighter.
+        unawaited(
+          _primeDeferredOwnership(
+            cardPrintIds: deferredOwnershipIds,
+            loadVersion: loadVersion,
+          ),
+        );
+      }
     } catch (error) {
       if (!mounted || loadVersion != _loadVersion) {
         return;
       }
 
       setState(() {
-        _error = error is Error
-            ? error.toString()
-            : 'Unable to load the collector network.';
-      });
-    } finally {
-      if (mounted && loadVersion == _loadVersion) {
-        setState(() {
+        if (append) {
+          _hasMore = false;
+          _loadingMore = false;
+        } else {
+          _error = error is Error
+              ? error.toString()
+              : 'Unable to load the collector network.';
+          _emptyState = NetworkStreamEmptyState.none;
+          _hasMore = false;
           _loading = false;
-        });
-      }
+        }
+      });
     }
+  }
+
+  Future<void> _primeDeferredOwnership({
+    required Iterable<String> cardPrintIds,
+    required int loadVersion,
+  }) async {
+    final pendingIds = cardPrintIds
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (pendingIds.isEmpty) {
+      return;
+    }
+
+    try {
+      await _ownershipAdapter.primeBatch(pendingIds);
+    } catch (error) {
+      _debugOwnershipPrime('deferred prime failed: $error');
+      return;
+    }
+
+    if (!mounted || loadVersion != _loadVersion) {
+      return;
+    }
+
+    final deferredStates = _ownershipAdapter.snapshotForIds(pendingIds);
+    if (deferredStates.isEmpty) {
+      return;
+    }
+
+    setState(() {
+      _ownershipStatesByCardPrintId = <String, OwnershipState>{
+        ..._ownershipStatesByCardPrintId,
+        ...deferredStates,
+      };
+    });
+  }
+
+  void _debugOwnershipPrime(String message) {
+    if (!_kNetworkOwnershipDiagnostics) {
+      return;
+    }
+    assert(() {
+      debugPrint('NETWORK_OWNERSHIP $message');
+      return true;
+    }());
   }
 
   Future<void> _setIntent(String? intent) async {
@@ -86,7 +243,20 @@ class NetworkScreenState extends State<NetworkScreen> {
     setState(() {
       _intent = intent;
     });
-    await _loadRows();
+    await _loadRows(resetSession: true);
+  }
+
+  Future<void> _setFeedMode(NetworkFeedMode mode) async {
+    if (_feedMode == mode) {
+      return;
+    }
+
+    setState(() {
+      _feedMode = mode;
+      _error = null;
+      _emptyState = NetworkStreamEmptyState.none;
+    });
+    await _loadRows(resetSession: true);
   }
 
   @override
@@ -130,105 +300,80 @@ class NetworkScreenState extends State<NetworkScreen> {
           SafeArea(
             bottom: false,
             child: RefreshIndicator(
-              onRefresh: _loadRows,
-              child: ListView(
-                padding: EdgeInsets.only(
-                  bottom: shellContentBottomPadding(context, extra: 8),
+              onRefresh: () => _loadRows(resetSession: true),
+              child: CustomScrollView(
+                controller: _scrollController,
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Network',
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.65,
-                            ),
-                          ),
-                        ),
-                        TextButton.icon(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => const NetworkDiscoverScreen(),
-                              ),
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            foregroundColor: colorScheme.onSurface.withValues(
-                              alpha: 0.62,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 6,
-                            ),
-                            visualDensity: VisualDensity.compact,
-                          ),
-                          icon: const Icon(Icons.people_alt_outlined, size: 16),
-                          label: const Text('Collectors'),
-                        ),
-                      ],
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                cacheExtent: 960,
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                      child: _NetworkFeedModeToggle(
+                        value: _feedMode,
+                        onChanged: (mode) {
+                          unawaited(_setFeedMode(mode));
+                        },
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                _IntentChip(
-                                  label: 'All',
-                                  selected: _intent == null,
-                                  onPressed: () => _setIntent(null),
-                                ),
-                                const SizedBox(width: 8),
-                                _IntentChip(
-                                  label: 'Trade',
-                                  selected: _intent == 'trade',
-                                  onPressed: () => _setIntent('trade'),
-                                ),
-                                const SizedBox(width: 8),
-                                _IntentChip(
-                                  label: 'Sell',
-                                  selected: _intent == 'sell',
-                                  onPressed: () => _setIntent('sell'),
-                                ),
-                                const SizedBox(width: 8),
-                                _IntentChip(
-                                  label: 'Showcase',
-                                  selected: _intent == 'showcase',
-                                  onPressed: () => _setIntent('showcase'),
-                                ),
-                              ],
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            _IntentChip(
+                              label: 'All',
+                              selected: _intent == null,
+                              onPressed: () => _setIntent(null),
                             ),
-                          ),
+                            const SizedBox(width: 8),
+                            _IntentChip(
+                              label: 'Trade',
+                              selected: _intent == 'trade',
+                              onPressed: () => _setIntent('trade'),
+                            ),
+                            const SizedBox(width: 8),
+                            _IntentChip(
+                              label: 'Sell',
+                              selected: _intent == 'sell',
+                              onPressed: () => _setIntent('sell'),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 8),
-                        _NetworkViewModeToggle(
-                          value: _viewMode,
-                          onChanged: (mode) {
-                            setState(() {
-                              _viewMode = mode;
-                            });
-                          },
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  _NetworkContentSection(
-                    intent: _intent,
-                    viewMode: _viewMode,
+                  const SliverToBoxAdapter(child: SizedBox(height: 6)),
+                  // PERFORMANCE_P1_NETWORK_LAZY_RENDER
+                  // Uses lazy sliver rendering so Network feed scales without
+                  // eager whole-page builds in grid or list modes.
+                  _NetworkContentSliver(
+                    feedMode: _feedMode,
                     rows: _rows,
+                    ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
                     loading: _loading,
                     error: _error,
-                    onRetry: _loadRows,
+                    emptyState: _emptyState,
+                    onRetry: () => _loadRows(resetSession: true),
+                  ),
+                  if (_loadingMore)
+                    const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                    ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: shellContentBottomPadding(context, extra: 8),
+                    ),
                   ),
                 ],
               ),
@@ -238,127 +383,145 @@ class NetworkScreenState extends State<NetworkScreen> {
       ),
     );
   }
+
+  List<String> _cardPrintIdsForRows(Iterable<NetworkStreamRow> rows) {
+    return rows
+        .map((row) => row.cardPrintId.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+  }
 }
 
-class _NetworkContentSection extends StatelessWidget {
-  const _NetworkContentSection({
-    required this.intent,
-    required this.viewMode,
+class _NetworkContentSliver extends StatelessWidget {
+  const _NetworkContentSliver({
+    required this.feedMode,
     required this.rows,
+    required this.ownershipStatesByCardPrintId,
     required this.loading,
     required this.error,
+    required this.emptyState,
     required this.onRetry,
   });
 
-  final String? intent;
-  final AppCardViewMode viewMode;
+  final NetworkFeedMode feedMode;
   final List<NetworkStreamRow> rows;
+  final Map<String, OwnershipState> ownershipStatesByCardPrintId;
   final bool loading;
   final String? error;
+  final NetworkStreamEmptyState emptyState;
   final Future<void> Function() onRetry;
 
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      return const Padding(
-        padding: EdgeInsets.symmetric(vertical: 28),
-        child: Center(child: CircularProgressIndicator()),
+      return const SliverToBoxAdapter(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 28),
+          child: Center(child: CircularProgressIndicator()),
+        ),
       );
     }
 
     if (error != null) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _NetworkEmptyState(
-              title: 'Unable to load the card stream',
-              body: error!,
-            ),
-            const SizedBox(height: 10),
-            FilledButton.tonal(onPressed: onRetry, child: const Text('Retry')),
-          ],
+      return SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        sliver: SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _NetworkEmptyState(
+                title: 'Unable to load the card stream',
+                body: error!,
+              ),
+              const SizedBox(height: 10),
+              FilledButton.tonal(
+                onPressed: onRetry,
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
         ),
       );
     }
 
     if (rows.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: _NetworkEmptyState(
-          title: 'No cards available right now',
+      final emptyCopy = switch (emptyState) {
+        NetworkStreamEmptyState.noFollowedCollectors => (
+          title: 'No followed collectors yet',
+          body: 'Follow collectors to make this view come alive.',
+        ),
+        NetworkStreamEmptyState.noFollowedCards => (
+          title: 'Nothing from followed collectors right now',
           body:
-              'Collectors will appear here when they mark cards for trade, sale, or showcase.',
+              'When followed collectors post trade, sell, or showcase cards, they will show up here.',
+        ),
+        NetworkStreamEmptyState.none =>
+          feedMode == NetworkFeedMode.following
+              ? (
+                  title: 'Nothing from followed collectors right now',
+                  body:
+                      'When followed collectors post trade, sell, or showcase cards, they will show up here.',
+                )
+              : (
+                  title: 'No cards available right now',
+                  body:
+                      'Collectors will appear here when they mark cards for trade, sale, or showcase.',
+                ),
+      };
+
+      return SliverPadding(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        sliver: SliverToBoxAdapter(
+          child: _NetworkEmptyState(
+            title: emptyCopy.title,
+            body: emptyCopy.body,
+          ),
         ),
       );
     }
 
-    return _NetworkStreamResults(rows: rows, viewMode: viewMode);
+    return _NetworkStreamResultsSliver(
+      rows: rows,
+      ownershipStatesByCardPrintId: ownershipStatesByCardPrintId,
+    );
   }
 }
 
-class _NetworkStreamResults extends StatelessWidget {
-  const _NetworkStreamResults({required this.rows, required this.viewMode});
+class _NetworkStreamResultsSliver extends StatelessWidget {
+  const _NetworkStreamResultsSliver({
+    required this.rows,
+    required this.ownershipStatesByCardPrintId,
+  });
 
   final List<NetworkStreamRow> rows;
-  final AppCardViewMode viewMode;
+  final Map<String, OwnershipState> ownershipStatesByCardPrintId;
 
   @override
   Widget build(BuildContext context) {
-    switch (viewMode) {
-      case AppCardViewMode.grid:
-        return LayoutBuilder(
-          builder: (context, constraints) {
-            final crossAxisCount = constraints.maxWidth >= 820 ? 3 : 2;
-            const spacing = 10.0;
-            final tileWidth =
-                (constraints.maxWidth - 16 - (spacing * (crossAxisCount - 1))) /
-                crossAxisCount;
+    const spacing = 6.0;
+    final childCount = rows.isEmpty ? 0 : rows.length * 2 - 1;
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Wrap(
-                spacing: spacing,
-                runSpacing: spacing,
-                children: [
-                  for (final row in rows)
-                    SizedBox(
-                      width: tileWidth,
-                      child: _buildCard(
-                        context,
-                        row,
-                        layout: NetworkInteractionCardLayout.grid,
-                      ),
-                    ),
-                ],
-              ),
-            );
-          },
-        );
-      case AppCardViewMode.compactList:
-      case AppCardViewMode.comfortableList:
-        return Column(
-          children: [
-            for (var index = 0; index < rows.length; index++) ...[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: _buildCard(
-                  context,
-                  rows[index],
-                  layout: viewMode == AppCardViewMode.compactList
-                      ? NetworkInteractionCardLayout.compactFeed
-                      : NetworkInteractionCardLayout.feed,
-                ),
-              ),
-              if (index < rows.length - 1)
-                SizedBox(
-                  height: viewMode == AppCardViewMode.compactList ? 6 : 8,
-                ),
-            ],
-          ],
-        );
-    }
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          if (index.isOdd) {
+            return const SizedBox(height: spacing);
+          }
+          final rowIndex = index ~/ 2;
+          // FEED_CHIP_REMOVAL_V1
+          // Removed redundant lower-row view controls so the Feed screen keeps
+          // only real content filters and always renders in the default
+          // comfortable/feed card layout.
+          return _buildCard(
+            context,
+            rows[rowIndex],
+            layout: NetworkInteractionCardLayout.feed,
+          );
+        }, childCount: childCount),
+      ),
+    );
   }
 
   Widget _buildCard(
@@ -366,15 +529,34 @@ class _NetworkStreamResults extends StatelessWidget {
     NetworkStreamRow row, {
     required NetworkInteractionCardLayout layout,
   }) {
+    final ownershipState = ownershipStatesByCardPrintId[row.cardPrintId.trim()];
     final directContact = _groupedContactAnchor(row);
     final hook = _buildHookData(row);
-    final primaryIntentLabel = NetworkStreamService.getPrimaryIntentLabel(row);
     final primaryActionLabel = NetworkStreamService.getPrimaryContactLabel(row);
     final metadata = [
       row.setName,
       if (row.number != '—') '#${row.number}',
     ].where((value) => value.trim().isNotEmpty).join(' • ');
     final supportText = _buildSupportText(row);
+    final normalizedCollectorSlug = row.ownerSlug.trim().toLowerCase();
+    final topContext = row.isDiscoverySource
+        ? _NetworkDiscoveryContext(
+            sourceLabel: row.sourceLabel ?? 'Canonical DB',
+            markerLabel: row.sourceType == NetworkStreamSourceType.dbHighEnd
+                ? 'High-end'
+                : 'Explore',
+          )
+        : _NetworkCollectorContext(
+            displayName: row.ownerDisplayName,
+            timestampLabel: NetworkStreamService.formatCreatedAtShort(
+              row.createdAt,
+            ),
+            intentLabel: NetworkStreamService.getPrimaryIntentLabel(row),
+          );
+    final topContextOnPressed =
+        row.isDiscoverySource || normalizedCollectorSlug.isEmpty
+        ? null
+        : () => _openCollectorProfile(context, normalizedCollectorSlug);
 
     return NetworkInteractionCard(
       title: row.name,
@@ -385,26 +567,12 @@ class _NetworkStreamResults extends StatelessWidget {
       onPressed: () =>
           _openNetworkPrimaryDestination(context, row, directContact),
       heroHook: hook == null ? null : _NetworkHookBadge(data: hook),
-      topContext: _NetworkCollectorContext(
-        displayName: row.ownerDisplayName,
-        timestampLabel: NetworkStreamService.formatCreatedAtShort(
-          row.createdAt,
-        ),
-        intentLabel: primaryIntentLabel,
+      topContext: topContext,
+      onTopContextPressed: topContextOnPressed,
+      supportingInfo: _NetworkSupportingInfo(
+        supportText: supportText,
+        ownershipState: ownershipState,
       ),
-      supportingInfo: supportText == null
-          ? null
-          : Text(
-              supportText,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onSurface.withValues(alpha: 0.56),
-                fontWeight: FontWeight.w500,
-                fontSize: 12.3,
-                height: 1.3,
-              ),
-            ),
       actionBar: _NetworkActionBar(
         row: row,
         directContact: directContact,
@@ -418,8 +586,37 @@ class _NetworkStreamResults extends StatelessWidget {
     );
   }
 
+  Future<void> _openCollectorProfile(BuildContext context, String slug) async {
+    final normalizedSlug = slug.trim().toLowerCase();
+    if (normalizedSlug.isEmpty) {
+      return;
+    }
+
+    // COLLECTOR_SEARCH_IDENTITY_TAP_V1
+    // Search result collector identity opens the full public collector
+    // profile.
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PublicCollectorScreen(slug: normalizedSlug),
+      ),
+    );
+  }
+
   String? _buildSupportText(NetworkStreamRow row) {
     final values = <String>[];
+    final visiblePrice = row.pricing?.visibleValue;
+
+    if (row.isDiscoverySource) {
+      if (visiblePrice != null) {
+        values.add(_formatPrice(visiblePrice));
+      }
+      final rarity = (row.rarity ?? '').trim();
+      if (rarity.isNotEmpty) {
+        values.add(rarity);
+      }
+      return values.isEmpty ? 'Canonical discovery card' : values.join(' • ');
+    }
+
     final ownershipSummary = NetworkStreamService.getOwnershipSummary(row);
     final normalizedOwnership = ownershipSummary.trim().toLowerCase();
     if (row.isGraded ||
@@ -432,7 +629,6 @@ class _NetworkStreamResults extends StatelessWidget {
       }
     }
 
-    final visiblePrice = row.pricing?.visibleValue;
     if (visiblePrice != null) {
       values.add(_formatPrice(visiblePrice));
     }
@@ -451,6 +647,21 @@ class _NetworkStreamResults extends StatelessWidget {
   }
 
   _NetworkHookData? _buildHookData(NetworkStreamRow row) {
+    if (row.sourceType == NetworkStreamSourceType.dbHighEnd) {
+      return const _NetworkHookData(
+        label: 'High-end pick',
+        icon: Icons.workspace_premium_rounded,
+        highlighted: true,
+      );
+    }
+
+    if (row.sourceType == NetworkStreamSourceType.dbRandomExplore) {
+      return const _NetworkHookData(
+        label: 'Explore pick',
+        icon: Icons.auto_awesome_outlined,
+      );
+    }
+
     if (row.isGraded) {
       return _NetworkHookData(
         label: NetworkStreamService.getOwnershipSummary(row),
@@ -506,6 +717,130 @@ class _NetworkStreamResults extends StatelessWidget {
   }
 }
 
+class _NetworkSupportingInfo extends StatelessWidget {
+  const _NetworkSupportingInfo({
+    required this.supportText,
+    required this.ownershipState,
+  });
+
+  final String? supportText;
+  final OwnershipState? ownershipState;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final children = <Widget>[
+      if ((supportText ?? '').trim().isNotEmpty)
+        Text(
+          supportText!,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.56),
+            fontWeight: FontWeight.w500,
+            fontSize: 12.3,
+            height: 1.3,
+          ),
+        ),
+      if (ownershipState?.owned == true)
+        Padding(
+          padding: EdgeInsets.only(
+            top: (supportText ?? '').trim().isEmpty ? 0 : 4,
+          ),
+          child: Text(
+            ownershipState!.ownedCount > 1
+                ? '${ownershipState!.ownedCount} copies'
+                : 'In Vault',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.04,
+            ),
+          ),
+        ),
+    ];
+
+    if (children.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: children,
+    );
+  }
+}
+
+class _NetworkDiscoveryContext extends StatelessWidget {
+  const _NetworkDiscoveryContext({
+    required this.sourceLabel,
+    required this.markerLabel,
+  });
+
+  final String sourceLabel;
+  final String markerLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 26,
+          height: 26,
+          decoration: BoxDecoration(
+            color: colorScheme.primary.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: colorScheme.primary.withValues(alpha: 0.10),
+            ),
+          ),
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.auto_awesome_rounded,
+            size: 14,
+            color: colorScheme.primary.withValues(alpha: 0.84),
+          ),
+        ),
+        const SizedBox(width: 9),
+        Expanded(
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Grookai Discovery',
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: colorScheme.onSurface.withValues(alpha: 0.80),
+                    letterSpacing: -0.04,
+                  ),
+                ),
+                if (sourceLabel.trim().isNotEmpty)
+                  TextSpan(
+                    text: '  •  $sourceLabel',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.48),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+              ],
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        const SizedBox(width: 8),
+        _NetworkIntentMarker(label: markerLabel),
+      ],
+    );
+  }
+}
+
 class _NetworkCollectorContext extends StatelessWidget {
   const _NetworkCollectorContext({
     required this.displayName,
@@ -526,8 +861,8 @@ class _NetworkCollectorContext extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 24,
-          height: 24,
+          width: 26,
+          height: 26,
           decoration: BoxDecoration(
             color: colorScheme.primary.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(999),
@@ -588,21 +923,55 @@ class _NetworkIntentMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final normalized = label.trim().toLowerCase();
+    final tone = switch (normalized) {
+      'trade' => (
+        background: const Color(0xFFE9F9EF),
+        border: const Color(0xFFB8E3C5),
+        foreground: const Color(0xFF17653A),
+        icon: Icons.sync_alt_rounded,
+      ),
+      'sell' => (
+        background: const Color(0xFFEAF4FF),
+        border: const Color(0xFFB8D6F8),
+        foreground: const Color(0xFF1E5A94),
+        icon: Icons.sell_outlined,
+      ),
+      'showcase' => (
+        background: const Color(0xFFFEF3E6),
+        border: const Color(0xFFF4D2A3),
+        foreground: const Color(0xFF93591E),
+        icon: Icons.auto_awesome_outlined,
+      ),
+      _ => (
+        background: colorScheme.primary.withValues(alpha: 0.06),
+        border: colorScheme.primary.withValues(alpha: 0.10),
+        foreground: colorScheme.onSurface.withValues(alpha: 0.64),
+        icon: Icons.style_outlined,
+      ),
+    };
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: 0.06),
+        color: tone.background,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.10)),
+        border: Border.all(color: tone.border),
       ),
-      child: Text(
-        label,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-          color: colorScheme.onSurface.withValues(alpha: 0.64),
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.12,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(tone.icon, size: 13, color: tone.foreground),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: tone.foreground,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.08,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -734,6 +1103,7 @@ class _NetworkActionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final actions = <Widget>[];
     final usesGenericContactLabel = primaryActionLabel == 'Contact owner';
+    final usesAboutLabel = primaryActionLabel == 'Ask about this card';
 
     if (directContact != null) {
       actions.add(
@@ -752,7 +1122,10 @@ class _NetworkActionBar extends StatelessWidget {
           ),
         ),
       );
-      if (!usesGenericContactLabel) {
+      if (!usesGenericContactLabel && !usesAboutLabel) {
+        // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1
+        // Keep only one messaging CTA when the primary label already lands on
+        // the generic card-question conversation flow.
         actions.add(
           _NetworkSecondaryContactAction(
             vaultItemId: directContact!.vaultItemId,
@@ -780,7 +1153,7 @@ class _NetworkActionBar extends StatelessWidget {
       actions.add(
         _NetworkActionLink(
           icon: Icons.open_in_new_rounded,
-          label: 'View details',
+          label: row.isDiscoverySource ? 'Open card' : 'View details',
           onPressed: onViewDetails,
         ),
       );
@@ -948,6 +1321,13 @@ class _NetworkContactAnchor {
 }
 
 _NetworkContactAnchor? _groupedContactAnchor(NetworkStreamRow row) {
+  // NETWORK_FEED_DISCOVERY_CRASH_FIX_V1
+  // Discovery rows use canonical card context only and must not synthesize
+  // collector contact actions from placeholder vault or owner fields.
+  if (row.isDiscoverySource) {
+    return null;
+  }
+
   final copyVaultItemIds = row.inPlayCopies
       .map((copy) => copy.vaultItemId.trim())
       .where((value) => value.isNotEmpty)
@@ -1008,6 +1388,7 @@ void _openNetworkPrimaryDestination(
   NetworkStreamRow row,
   _NetworkContactAnchor? directContact,
 ) {
+  NetworkStreamService.recordInteraction(row, event: 'open');
   final exactCopy = _primaryExactCopy(row);
   if (exactCopy != null) {
     _openExactCopy(context, row, exactCopy);
@@ -1166,30 +1547,47 @@ class _NetworkCopiesSheet extends StatelessWidget {
   }
 }
 
-class _NetworkViewModeToggle extends StatelessWidget {
-  const _NetworkViewModeToggle({required this.value, required this.onChanged});
+class _NetworkFeedModeToggle extends StatelessWidget {
+  const _NetworkFeedModeToggle({required this.value, required this.onChanged});
 
-  final AppCardViewMode value;
-  final ValueChanged<AppCardViewMode> onChanged;
-
-  static const _modes = <AppCardViewMode>[
-    AppCardViewMode.comfortableList,
-    AppCardViewMode.compactList,
-  ];
+  final NetworkFeedMode value;
+  final ValueChanged<NetworkFeedMode> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        for (final mode in _modes)
-          _NetworkViewModeChip(
-            mode: mode,
-            selected: value == mode,
-            onPressed: () => onChanged(mode),
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: colorScheme.surface.withValues(alpha: 0.72),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: _NetworkFeedModeChip(
+              // FEED_MODE_ROW_V1
+              // Top-level feed mode switch: broad collectors feed vs
+              // followed-collectors-only feed.
+              label: 'Collectors',
+              icon: Icons.people_alt_outlined,
+              selected: value == NetworkFeedMode.collectors,
+              onPressed: () => onChanged(NetworkFeedMode.collectors),
+            ),
           ),
-      ],
+          const SizedBox(width: 6),
+          Expanded(
+            child: _NetworkFeedModeChip(
+              label: 'Following',
+              icon: Icons.favorite_border_rounded,
+              selected: value == NetworkFeedMode.following,
+              onPressed: () => onChanged(NetworkFeedMode.following),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1231,65 +1629,68 @@ class _NetworkAtmosphereOrb extends StatelessWidget {
   }
 }
 
-class _NetworkViewModeChip extends StatelessWidget {
-  const _NetworkViewModeChip({
-    required this.mode,
+class _NetworkFeedModeChip extends StatelessWidget {
+  const _NetworkFeedModeChip({
+    required this.label,
+    required this.icon,
     required this.selected,
     required this.onPressed,
   });
 
-  final AppCardViewMode mode;
+  final String label;
+  final IconData icon;
   final bool selected;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final label = switch (mode) {
-      AppCardViewMode.comfortableList => 'Feed',
-      AppCardViewMode.compactList => 'Compact',
-      AppCardViewMode.grid => 'Grid',
-    };
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular(18),
         onTap: selected ? null : onPressed,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: BoxDecoration(
             color: selected
-                ? colorScheme.onSurface.withValues(alpha: 0.075)
+                ? colorScheme.primary.withValues(alpha: 0.10)
                 : Colors.transparent,
-            borderRadius: BorderRadius.circular(999),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
               color: selected
-                  ? colorScheme.onSurface.withValues(alpha: 0.08)
-                  : colorScheme.outline.withValues(alpha: 0.04),
+                  ? colorScheme.primary.withValues(alpha: 0.12)
+                  : Colors.transparent,
             ),
           ),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Icon(
-                mode.icon,
-                size: 15,
+                icon,
+                size: 16,
                 color: selected
-                    ? colorScheme.onSurface.withValues(alpha: 0.84)
-                    : colorScheme.onSurface.withValues(alpha: 0.52),
+                    ? colorScheme.primary.withValues(alpha: 0.86)
+                    : colorScheme.onSurface.withValues(alpha: 0.56),
               ),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: selected
-                      ? colorScheme.onSurface.withValues(alpha: 0.86)
-                      : colorScheme.onSurface.withValues(alpha: 0.58),
-                  letterSpacing: 0.1,
+              const SizedBox(width: 7),
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: selected
+                        ? colorScheme.primary.withValues(alpha: 0.86)
+                        : colorScheme.onSurface.withValues(alpha: 0.68),
+                    letterSpacing: 0.05,
+                  ),
                 ),
               ),
             ],
@@ -1380,27 +1781,52 @@ class _NetworkEmptyState extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       decoration: BoxDecoration(
         color: colorScheme.primary.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.14)),
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: colorScheme.outline.withValues(alpha: 0.12),
+              ),
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.view_carousel_outlined,
+              size: 18,
+              color: colorScheme.primary,
             ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            body,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.72),
-              height: 1.35,
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  body,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.72),
+                    height: 1.35,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
