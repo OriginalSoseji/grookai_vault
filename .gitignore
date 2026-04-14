@@ -136,3 +136,5 @@ grookai_logo_assets/
 # Local tools / scripts
 tools/
 backups/
+
+temp/
