@@ -1,0 +1,239 @@
+WALL TABS SYSTEM V1
+
+Purpose
+
+Replace the weak In Play wall concept with a stronger public wall model:
+- Collection
+- Featured
+- Custom tabs with plan-based limits
+
+Current Model Audit
+- wall screen owner:
+  - Mobile: `lib/screens/public_collector/public_collector_screen.dart`
+  - Mobile data: `lib/services/public/public_collector_service.dart`
+  - Web route: `apps/web/src/app/u/[slug]/page.tsx`
+  - Web profile body: `apps/web/src/components/public/PublicCollectorProfileContent.tsx`
+- public profile owner:
+  - `public_profiles` + `shared_cards`
+- current tab model:
+  - Fixed `Collection` + fixed `In Play`
+  - No custom tabs
+- current In Play source of truth:
+  - `vault_item_instances.intent` projected through `public.v_card_stream_v1`
+  - Public profile reads grouped discoverable cards from `v_card_stream_v1`
+- current card-assignment source:
+  - `Collection` comes from `shared_cards` rows where `is_shared = true`
+  - Current curation is only a single nullable `shared_cards.wall_category`
+  - One grouped card can only carry one category
+- current subscription/vendor gating:
+  - No proven plan/vendor/custom-tab gating found in scoped mobile/web/schema paths
+- current risks/limitations:
+  - `In Play` is driven by market/discoverable intent, not curation
+  - `Collection` and `In Play` come from different sources, so the wall is split-brain
+  - `wall_category` is legacy single-value labeling, not real multi-tab membership
+  - Cards cannot belong to multiple curated shelves
+  - Current category list mixes collector taste, marketplace state, and slab taxonomy
+
+New IA Contract
+- fixed tabs:
+  - `Collection`
+    - always present
+    - system-generated
+    - system truth for all publicly visible collection items
+    - default public wall tab
+  - `Featured`
+    - always present
+    - manually curated
+    - public “best of me” shelf
+    - replaces `In Play` as the curated second tab
+- custom tabs:
+  - user-created
+  - manually named
+  - manually populated
+  - public by default
+  - reorderable among custom tabs only
+  - can be renamed
+  - can be deleted
+  - can be hidden, but hidden tabs still count toward limits
+- plan limits:
+  - Free: 3 custom tabs
+  - Paid subscriber: 10 custom tabs
+  - Vendor: 20 custom tabs
+- counting rules:
+  - `Collection` and `Featured` do not count against limits
+  - Only custom tabs count
+  - Hidden custom tabs count
+- visibility rules:
+  - Fixed tabs are always part of the wall model
+  - Custom tabs default to public
+  - Hidden custom tabs are owner-visible but not publicly rendered
+- order rules:
+  - Fixed order at top: `Collection`, then `Featured`
+  - Custom tabs appear after fixed tabs
+  - Custom tabs are user-reorderable
+
+Card Assignment Contract
+- Collection membership:
+  - derived from public/shared collection truth
+  - not manually assigned as a tab membership
+  - every card visible on the wall belongs to `Collection`
+- Featured membership:
+  - manual membership
+  - applies to grouped public cards, not exact-copy records
+  - only valid for cards already in `Collection`
+- Custom tab membership:
+  - manual membership
+  - applies to grouped public cards, not exact-copy records
+  - only valid for cards already in `Collection`
+- multi-membership:
+  - yes
+  - a card may belong to `Featured` and multiple custom tabs at once
+- removal semantics:
+  - removing from `Featured` removes only `Featured` membership
+  - removing from a custom tab removes only that tab membership
+  - removing a card from `Collection` / wall visibility removes all dependent `Featured` + custom memberships
+- ownership/public-state separation:
+  - tab membership is presentation/curation only
+  - tab membership must not mutate ownership, discoverability, price mode, or sell/trade/showcase intent
+
+In Play Replacement Contract
+- In Play status after migration:
+  - retired as a wall/public-profile tab
+  - no longer a first-class wall segment
+- Featured meaning:
+  - curated shelf chosen by the collector
+  - not synonymous with “for sale,” “for trade,” or “in play”
+- relation to sell/trade/showcase intents:
+  - intent remains separate card metadata
+  - intent continues to power discovery/feed/contact behavior
+  - intent badges may still appear on cards, but tabs are not intent filters
+- what survives:
+  - sell / trade / showcase intent
+  - discoverable exact-copy/feed behavior
+  - public `Collection`
+- what dies:
+  - `In Play` as a wall tab
+  - `In Play` as the public profile’s main curated shelf concept
+
+Required UX Flows
+- create:
+  - from Wall customization / tab manager
+  - owner creates custom tab if under plan limit
+- rename:
+  - from tab manager or tab overflow
+- reorder:
+  - drag custom tabs only
+  - fixed tabs stay pinned
+- add/remove cards:
+  - primary entry point: `Manage Card`
+  - secondary entry point: Wall tab management UI
+  - GVVI should route back to `Manage Card`, not become the primary tab-assignment surface
+  - assign to `Featured` and custom tabs via multi-select
+  - removing membership never removes the card from `Collection`
+- upgrade limit behavior:
+  - if over plan limit, creating new custom tabs is blocked
+  - over-limit tabs stay present but lock behavior applies
+- best entry points:
+  - owner wall/customization screen for tab creation/reorder/delete
+  - `Manage Card` for grouped-card membership assignment
+
+Data Model Direction
+- likely entities:
+  - `wall_tabs`
+  - `wall_tab_memberships`
+- likely ownership keys:
+  - `wall_tabs.owner_user_id`
+  - `wall_tab_memberships.tab_id`
+  - membership should target grouped public card identity, ideally `shared_cards.id` or `(owner_user_id, card_id)` compatibility
+- likely membership model:
+  - many-to-many between tabs and grouped public cards
+  - `Collection` remains derived and should not require explicit membership rows
+  - `Featured` and custom tabs use explicit memberships
+- likely ordering model:
+  - `wall_tabs.order_index` for custom-tab order
+  - fixed tabs pinned ahead of custom tabs
+  - optional `wall_tab_memberships.position` for future manual card ordering within `Featured`/custom tabs
+- likely migration-support fields:
+  - `wall_tabs.type` (`system_collection`, `system_featured`, `custom`)
+  - `wall_tabs.system_key` for fixed tabs
+  - `wall_tabs.migration_source`
+  - `wall_tabs.locked_reason`
+  - optional `legacy_wall_category`
+- likely enforcement layer:
+  - app/service layer or RPC-backed service
+  - not present today
+  - must consult subscription/vendor entitlements once such source exists
+
+Migration Plan
+- current data source:
+  - `Collection` source: `shared_cards.is_shared = true`
+  - `In Play` source: `v_card_stream_v1`
+  - legacy curation source: `shared_cards.wall_category`
+- automatic mapping:
+  - existing `Collection` remains unchanged
+  - existing `In Play` cards seed `Featured`
+  - existing non-null `wall_category` values seed custom tabs because they are the only current curation signal worth preserving
+- fallback behavior:
+  - if a user has no `In Play` cards, `Featured` starts empty
+  - if a user has no `wall_category` data, no custom tabs are migrated
+- risks:
+  - migrated wall categories may create awkward tabs like `For Sale`, `Trades`, or slab-company tabs
+  - migrated custom-tab count may exceed new plan limit
+- user-facing implications:
+  - no public collection loss
+  - `In Play` shelf becomes `Featured`
+  - existing category curation is preserved as custom tabs instead of being dropped
+
+Plan Limit Contract
+- free:
+  - 3 custom tabs
+- paid:
+  - 10 custom tabs
+- vendor:
+  - 20 custom tabs
+- downgrade behavior:
+  - no custom tabs are deleted automatically
+  - first N custom tabs by current order remain active/editable
+  - tabs beyond the new limit become locked
+- lock/read-only behavior:
+  - locked tabs remain publicly visible
+  - locked tabs keep existing memberships
+  - locked tabs cannot receive new card assignments or be renamed until within limit or upgraded
+  - owner may still delete locked tabs
+  - owner may reorder custom tabs so a different set of tabs occupies the active first N slots
+- future monetization hooks:
+  - higher custom-tab caps
+  - draft/private tabs
+  - richer featured/custom-tab card ordering
+
+Risks
+- risk:
+  - confusion between tab membership and sell/trade/showcase intent
+  - why it matters:
+    - current model already blurs these concepts
+  - mitigation:
+    - keep intent badges/actions separate from tab placement
+- risk:
+  - too many public tabs in the profile header
+  - why it matters:
+    - profile UI can become crowded quickly
+  - mitigation:
+    - fixed tabs first, horizontal scroll/overflow for custom tabs, strong tab caps
+- risk:
+  - migrated legacy categories may feel messy or duplicative
+  - why it matters:
+    - current categories mix curation, commerce, and slab taxonomy
+  - mitigation:
+    - mark migrated tabs as editable and let owners rename/delete/consolidate them
+- risk:
+  - card assignment UX becomes too deep
+  - why it matters:
+    - adding/removing memberships from multiple surfaces can feel fragmented
+  - mitigation:
+    - make `Manage Card` the primary grouped-card assignment surface
+- risk:
+  - over-limit migrations/downgrades create confusing locked states
+  - why it matters:
+    - users need a path forward without losing curation
+  - mitigation:
+    - keep locked tabs visible, deletable, and reorderable into active slots

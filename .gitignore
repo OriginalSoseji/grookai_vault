@@ -106,7 +106,12 @@ tmp_schema_local.sql
 *.xlsx
 *.webp
 *_report.md
-apps/web/src/app/api/
+apps/web/src/app/api/*
+!apps/web/src/app/api/slabs/
+apps/web/src/app/api/slabs/*
+!apps/web/src/app/api/slabs/upgrade/
+apps/web/src/app/api/slabs/upgrade/*
+!apps/web/src/app/api/slabs/upgrade/route.ts
 
 # temp / logs
 *.log

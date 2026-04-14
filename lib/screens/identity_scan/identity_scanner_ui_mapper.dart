@@ -16,7 +16,6 @@ class ScannerLocalFallbackState {
     required this.isLiveCamera,
     required this.isProcessingCapture,
     required this.cardDetected,
-    this.isLocked = false,
     this.guidanceText,
   });
 
@@ -24,7 +23,6 @@ class ScannerLocalFallbackState {
   final bool isLiveCamera;
   final bool isProcessingCapture;
   final bool cardDetected;
-  final bool isLocked;
   final String? guidanceText;
 }
 
@@ -208,16 +206,6 @@ class IdentityScannerUiMapper {
       }
     }
 
-    if (local.guidanceText != null) {
-      return ScannerPresentationState(
-        state: ScannerUiState.guidance,
-        eyebrow: 'Scanner',
-        title: local.guidanceText!,
-        subtitle: 'Stay centered in the frame for the quickest read.',
-        guidance: local.guidanceText,
-      );
-    }
-
     if (!local.cameraReady) {
       return const ScannerPresentationState(
         state: ScannerUiState.idle,
@@ -227,13 +215,13 @@ class IdentityScannerUiMapper {
       );
     }
 
-    if (local.isLocked) {
-      return const ScannerPresentationState(
-        state: ScannerUiState.locked,
-        eyebrow: 'Locked on card',
-        title: 'Reading the print',
-        subtitle: 'Stay steady while Grookai confirms the card.',
-        isLocked: true,
+    if (local.guidanceText != null) {
+      return ScannerPresentationState(
+        state: ScannerUiState.guidance,
+        eyebrow: 'Scanner',
+        title: local.guidanceText!,
+        subtitle: 'Stay centered in the frame for the quickest read.',
+        guidance: local.guidanceText,
       );
     }
 

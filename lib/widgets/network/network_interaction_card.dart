@@ -10,6 +10,7 @@ class NetworkInteractionCard extends StatelessWidget {
     this.imageUrl,
     this.metadata,
     this.topContext,
+    this.onTopContextPressed,
     this.heroHook,
     this.supportingInfo,
     this.actionBar,
@@ -23,6 +24,7 @@ class NetworkInteractionCard extends StatelessWidget {
   final String? imageUrl;
   final String? metadata;
   final Widget? topContext;
+  final VoidCallback? onTopContextPressed;
   final Widget? heroHook;
   final Widget? supportingInfo;
   final Widget? actionBar;
@@ -35,10 +37,10 @@ class NetworkInteractionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final radius = BorderRadius.circular(_isGrid ? 24 : 28);
-    final sidePadding = _isGrid ? 0.0 : (_isCompactFeed ? 10.0 : 0.0);
-    final aspectRatio = _isGrid ? 0.74 : (_isCompactFeed ? 0.80 : 0.715);
-    final contentHorizontalPadding = _isGrid ? 2.0 : 2.0;
+    final radius = BorderRadius.circular(_isGrid ? 22 : 26);
+    final sidePadding = _isGrid ? 0.0 : (_isCompactFeed ? 4.0 : 0.0);
+    final aspectRatio = _isGrid ? 0.71 : (_isCompactFeed ? 0.78 : 0.68);
+    final contentHorizontalPadding = _isGrid ? 1.0 : 0.0;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sidePadding),
@@ -50,9 +52,18 @@ class NetworkInteractionCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: contentHorizontalPadding,
               ),
-              child: topContext!,
+              child: onTopContextPressed == null
+                  ? topContext!
+                  : Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: onTopContextPressed,
+                        child: topContext!,
+                      ),
+                    ),
             ),
-            SizedBox(height: _isGrid ? 6 : 7),
+            SizedBox(height: _isGrid ? 5 : 6),
           ],
           Material(
             color: Colors.transparent,
@@ -92,8 +103,8 @@ class NetworkInteractionCard extends StatelessWidget {
                             ),
                             if (heroHook != null)
                               Positioned(
-                                top: _isGrid ? 10 : 12,
-                                left: _isGrid ? 10 : 12,
+                                top: _isGrid ? 8 : 10,
+                                left: _isGrid ? 8 : 10,
                                 child: heroHook!,
                               ),
                           ],
@@ -101,7 +112,7 @@ class NetworkInteractionCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: _isGrid ? 7 : 8),
+                  SizedBox(height: _isGrid ? 6 : 7),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: contentHorizontalPadding,
@@ -116,9 +127,9 @@ class NetworkInteractionCard extends StatelessWidget {
                           style: theme.textTheme.titleLarge?.copyWith(
                             color: colorScheme.onSurface,
                             fontWeight: FontWeight.w800,
-                            height: 1.04,
+                            height: 1.03,
                             letterSpacing: -0.42,
-                            fontSize: _isGrid ? 18.5 : 23,
+                            fontSize: _isGrid ? 17.8 : 21.5,
                           ),
                         ),
                         if ((metadata ?? '').trim().isNotEmpty) ...[
@@ -133,21 +144,21 @@ class NetworkInteractionCard extends StatelessWidget {
                               ),
                               fontWeight: FontWeight.w500,
                               letterSpacing: 0.05,
-                              fontSize: _isGrid ? 12 : 13,
-                              height: 1.34,
+                              fontSize: _isGrid ? 11.8 : 12.6,
+                              height: 1.28,
                             ),
                           ),
                         ],
                         if (supportingInfo != null) ...[
-                          const SizedBox(height: 4),
+                          const SizedBox(height: 3),
                           DefaultTextStyle.merge(
                             style:
                                 theme.textTheme.bodySmall?.copyWith(
                                   color: colorScheme.onSurface.withValues(
-                                    alpha: 0.52,
+                                    alpha: 0.56,
                                   ),
                                   fontWeight: FontWeight.w500,
-                                  height: 1.3,
+                                  height: 1.26,
                                 ) ??
                                 const TextStyle(),
                             child: supportingInfo!,
@@ -161,7 +172,7 @@ class NetworkInteractionCard extends StatelessWidget {
             ),
           ),
           if (actionBar != null) ...[
-            SizedBox(height: _isGrid ? 5 : 6),
+            SizedBox(height: _isGrid ? 4 : 5),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: contentHorizontalPadding,
@@ -188,16 +199,32 @@ class _NetworkPosterArtwork extends StatelessWidget {
       return _NetworkPosterFallback(label: label);
     }
 
-    return DecoratedBox(
-      decoration: const BoxDecoration(color: Colors.black),
-      child: Image.network(
-        imageUrl!,
-        fit: BoxFit.cover,
-        alignment: Alignment.center,
-        filterQuality: FilterQuality.medium,
-        errorBuilder: (context, error, stackTrace) =>
-            _NetworkPosterFallback(label: label),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+        final cacheWidth =
+            ((constraints.maxWidth * devicePixelRatio).round().clamp(1, 4096)
+                    as num)
+                .toInt();
+        final cacheHeight =
+            ((constraints.maxHeight * devicePixelRatio).round().clamp(1, 4096)
+                    as num)
+                .toInt();
+
+        return DecoratedBox(
+          decoration: const BoxDecoration(color: Colors.black),
+          child: Image.network(
+            imageUrl!,
+            fit: BoxFit.cover,
+            alignment: Alignment.center,
+            cacheWidth: cacheWidth,
+            cacheHeight: cacheHeight,
+            filterQuality: FilterQuality.low,
+            errorBuilder: (context, error, stackTrace) =>
+                _NetworkPosterFallback(label: label),
+          ),
+        );
+      },
     );
   }
 }

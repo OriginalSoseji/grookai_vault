@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../models/ownership_state.dart';
+import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../widgets/ownership/ownership_signal.dart';
 
 class ScanIdentifyScreen extends StatefulWidget {
   const ScanIdentifyScreen({super.key});
@@ -16,6 +19,10 @@ class ScanIdentifyScreen extends StatefulWidget {
 class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
   final _picker = ImagePicker();
   final supabase = Supabase.instance.client;
+  final OwnershipResolverAdapter _ownershipAdapter =
+      OwnershipResolverAdapter.instance;
+  Map<String, OwnershipState> _ownershipByCardPrintId =
+      <String, OwnershipState>{};
 
   XFile? _front;
   bool _loading = false;
@@ -34,6 +41,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
     setState(() {
       _front = picked;
       _candidates = const [];
+      _ownershipByCardPrintId = <String, OwnershipState>{};
       _selectedIndex = null;
       _error = null;
     });
@@ -48,6 +56,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
       _loading = true;
       _error = null;
       _candidates = const [];
+      _ownershipByCardPrintId = <String, OwnershipState>{};
       _selectedIndex = null;
     });
 
@@ -63,8 +72,14 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
           (data['candidates'] as List).whereType<Map>(),
         );
       }
+      final ownershipByCardPrintId = await _primeOwnership(
+        candidates.map(
+          (candidate) => (candidate['card_print_id'] ?? '').toString(),
+        ),
+      );
       setState(() {
         _candidates = candidates;
+        _ownershipByCardPrintId = ownershipByCardPrintId;
       });
       if (candidates.isEmpty) {
         _snack('No matches yet. This feature is not fully implemented.');
@@ -72,6 +87,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
     } catch (e) {
       setState(() {
         _error = e.toString();
+        _ownershipByCardPrintId = <String, OwnershipState>{};
       });
       _snack('Identify failed: $e');
     } finally {
@@ -130,6 +146,43 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
   void _snack(String msg) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  Future<Map<String, OwnershipState>> _primeOwnership(
+    Iterable<String> cardPrintIds,
+  ) async {
+    final userId = (supabase.auth.currentUser?.id ?? '').trim();
+    if (userId.isEmpty) {
+      return <String, OwnershipState>{};
+    }
+
+    final normalizedIds = cardPrintIds
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    if (normalizedIds.isEmpty) {
+      return <String, OwnershipState>{};
+    }
+
+    // PERFORMANCE_P4_SCANNER_SYNC_OWNERSHIP
+    // Scanner result ownership is rendered from precomputed snapshot state.
+    try {
+      await _ownershipAdapter.primeBatch(normalizedIds);
+    } catch (error) {
+      debugPrint('Scanner ownership prime failed: $error');
+    }
+    return _ownershipAdapter.snapshotForIds(normalizedIds);
+  }
+
+  OwnershipState? _ownershipStateForCandidate(Map<String, dynamic> candidate) {
+    final userId = (supabase.auth.currentUser?.id ?? '').trim();
+    final cardPrintId = (candidate['card_print_id'] ?? '').toString().trim();
+    if (userId.isEmpty || cardPrintId.isEmpty) {
+      return null;
+    }
+    return _ownershipByCardPrintId[cardPrintId] ??
+        _ownershipAdapter.peek(cardPrintId);
   }
 
   @override
@@ -230,6 +283,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         final name = (cand['name'] ?? 'Card').toString();
         final setName = (cand['set'] ?? '').toString();
         final imageUrl = (cand['image_url'] ?? '').toString();
+        final ownershipState = _ownershipStateForCandidate(cand);
 
         return Card(
           color: selected
@@ -252,10 +306,27 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
                     ),
                   ),
             title: Text(name),
-            subtitle: Text(
-              setName.isEmpty
-                  ? 'Confidence: $confidence'
-                  : '$setName • $confidence',
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  setName.isEmpty
+                      ? 'Confidence: $confidence'
+                      : '$setName • $confidence',
+                ),
+                const SizedBox(height: 2),
+                OwnershipSignal(
+                  ownershipState: ownershipState,
+                  textStyle: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.60),
+                    fontWeight: FontWeight.w700,
+                  ),
+                  labelBuilder: (state) => state.ownedCount > 1
+                      ? '${state.ownedCount} copies in your vault'
+                      : 'In your vault',
+                ),
+              ],
             ),
             trailing: selected
                 ? const Icon(Icons.check_circle, color: Colors.green)

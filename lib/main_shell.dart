@@ -373,7 +373,18 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
-    await _pushPage<void>(const IdentityScanScreen());
+    final file = await _pushPage<XFile?>(
+      const ConditionCameraScreen(
+        title: 'Scan Card',
+        hintText: 'Align card inside the frame',
+      ),
+    );
+
+    if (!mounted || file == null) {
+      return;
+    }
+
+    await _pushPage<void>(IdentityScanScreen(initialFrontFile: file));
   }
 
   IconButton _appBarActionButton({

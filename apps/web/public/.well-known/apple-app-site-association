@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "DUADT25J5V.com.cesar.grookaivault",
+        "paths": [
+          "/card/*",
+          "/u/*",
+          "/set/*",
+          "/sets/*"
+        ]
+      }
+    ]
+  }
+}
