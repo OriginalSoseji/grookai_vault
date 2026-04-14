@@ -30,6 +30,7 @@ class PublicSetCard {
     required this.gvId,
     required this.name,
     required this.number,
+    this.variantKey,
     this.rarity,
     this.imageUrl,
     this.pricing,
@@ -39,6 +40,7 @@ class PublicSetCard {
   final String gvId;
   final String name;
   final String number;
+  final String? variantKey;
   final String? rarity;
   final String? imageUrl;
   final CardSurfacePricingData? pricing;
@@ -182,7 +184,7 @@ class PublicSetsService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,number,number_plain,rarity,image_url,image_alt_url',
+          'id,gv_id,name,number,number_plain,variant_key,rarity,image_url,image_alt_url',
         )
         .eq('set_code', normalizedCode)
         .not('gv_id', 'is', null)
@@ -224,6 +226,7 @@ class PublicSetsService {
                 ? 'Unknown card'
                 : _cleanText(row['name']),
             number: displayNumber,
+            variantKey: _normalizeOptionalText(row['variant_key']),
             rarity: _normalizeOptionalText(row['rarity']),
             imageUrl: _bestImageUrl(
               primary: row['image_url'],

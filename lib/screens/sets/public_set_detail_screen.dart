@@ -137,7 +137,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     final galleryItems = detail.cards
         .map(
           (card) => CardZoomGalleryItem(
-            label: '#${card.number} • ${card.name}',
+            label: '#${card.number} • ${_setCardGalleryLabel(card)}',
             imageUrl: card.imageUrl,
           ),
         )
@@ -296,6 +296,40 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   }
 }
 
+String? _setCardVariantLabel(PublicSetCard card) {
+  final raw = (card.variantKey ?? '').trim();
+  if (raw.isEmpty || raw.toLowerCase() == 'base') {
+    return null;
+  }
+
+  switch (raw.toLowerCase()) {
+    case 'pokemon_together_stamp':
+      return 'Pokémon Together Stamp';
+    default:
+      return raw
+          .split(RegExp(r'[_\s-]+'))
+          .where((segment) => segment.isNotEmpty)
+          .map((segment) {
+            final lower = segment.toLowerCase();
+            if (lower.length <= 2) {
+              return lower.toUpperCase();
+            }
+            return '${lower[0].toUpperCase()}${lower.substring(1)}';
+          })
+          .join(' ');
+  }
+}
+
+String _setCardArtworkLabel(PublicSetCard card) {
+  final variantLabel = _setCardVariantLabel(card);
+  return variantLabel == null ? card.name : '${card.name}\n$variantLabel';
+}
+
+String _setCardGalleryLabel(PublicSetCard card) {
+  final variantLabel = _setCardVariantLabel(card);
+  return variantLabel == null ? card.name : '${card.name} • $variantLabel';
+}
+
 class _SetDetailSurfaceCard extends StatelessWidget {
   const _SetDetailSurfaceCard({required this.child});
 
@@ -335,6 +369,7 @@ class _SetCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final compare = CompareCardSelectionController.instance;
+    final variantLabel = _setCardVariantLabel(card);
     final subtitleParts = <String>[
       '#${card.number}',
       if ((card.rarity ?? '').isNotEmpty) card.rarity!,
@@ -393,6 +428,19 @@ class _SetCardTile extends StatelessWidget {
                                 height: 1.08,
                               ),
                     ),
+                    if (variantLabel != null) ...[
+                      SizedBox(height: compact ? 3 : 4),
+                      Text(
+                        variantLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: colorScheme.primary.withValues(alpha: 0.90),
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.1,
+                        ),
+                      ),
+                    ],
                     SizedBox(height: compact ? 4 : 5),
                     SizedBox(
                       height: 18,
@@ -489,7 +537,7 @@ class _SetCardArtwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardSurfaceArtwork(
-      label: card.name,
+      label: _setCardArtworkLabel(card),
       imageUrl: card.imageUrl,
       width: compact ? 68 : 86,
       height: compact ? 94 : 118,
@@ -515,6 +563,7 @@ class _SetCardGridTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final compare = CompareCardSelectionController.instance;
+    final variantLabel = _setCardVariantLabel(card);
 
     return Material(
       color: Colors.transparent,
@@ -546,7 +595,7 @@ class _SetCardGridTile extends StatelessWidget {
                       // SET_BIG_MODE_PREV_NEXT_V1
                       // Fullscreen set viewer now preserves current browse
                       // ordering and supports previous/next swipe navigation.
-                      label: card.name,
+                      label: _setCardArtworkLabel(card),
                       imageUrl: card.imageUrl,
                       borderRadius: 18,
                       padding: const EdgeInsets.all(1.5),
@@ -555,6 +604,44 @@ class _SetCardGridTile extends StatelessWidget {
                       onTapToZoom: onOpenViewer,
                     ),
                   ),
+                  if (variantLabel != null)
+                    Positioned(
+                      left: 5,
+                      top: 5,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 106),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: colorScheme.surface.withValues(alpha: 0.90),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: colorScheme.primary.withValues(
+                                alpha: 0.18,
+                              ),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 7,
+                              vertical: 5,
+                            ),
+                            child: Text(
+                              variantLabel,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: colorScheme.primary.withValues(
+                                      alpha: 0.92,
+                                    ),
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.05,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   Positioned(
                     right: 5,
                     top: 5,
