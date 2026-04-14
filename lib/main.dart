@@ -24,7 +24,6 @@ import 'services/public/public_collector_service.dart';
 import 'services/public/public_sets_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'screens/scanner/scan_capture_screen.dart';
-import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
