@@ -25,6 +25,7 @@ import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
 import 'services/network/card_engagement_service.dart';
+import 'services/network/smart_feed_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
@@ -1925,6 +1926,7 @@ class HomePageState extends State<HomePage> {
   Map<String, CardSurfacePricingData> _trendingPricing = const {};
   CardSearchResolverMeta? _resolverMeta;
   bool _loading = false;
+  bool _loadingCuratedLanding = false;
   bool _hasMoreVisibleResults = false;
   bool _isHydratingMoreResults = false;
   String? _searchError;
@@ -2140,26 +2142,42 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> _loadTrending() async {
-    final rows = await CardPrintRepository.fetchTrending(client: supabase);
-    var pricing = const <String, CardSurfacePricingData>{};
-    try {
-      pricing = await CardSurfacePricingService.fetchByCardPrintIds(
-        client: supabase,
-        cardPrintIds: rows.map((card) => card.id),
-      );
-    } catch (_) {
-      pricing = const <String, CardSurfacePricingData>{};
+    if (mounted) {
+      setState(() {
+        _loadingCuratedLanding = true;
+      });
     }
-    final ownershipStates = await _primeCatalogOwnershipStates(rows);
-    if (!mounted) return;
-    setState(() {
-      _trending = rows;
-      _trendingPricing = pricing;
-      _catalogOwnershipByCardPrintId = <String, OwnershipState>{
-        ..._catalogOwnershipByCardPrintId,
-        ...ownershipStates,
-      };
-    });
+    try {
+      final feed = await SmartFeedService.load(client: supabase);
+      final rows = feed.cards;
+      var pricing = const <String, CardSurfacePricingData>{};
+      try {
+        pricing = await CardSurfacePricingService.fetchByCardPrintIds(
+          client: supabase,
+          cardPrintIds: rows.map((card) => card.id),
+        );
+      } catch (_) {
+        pricing = const <String, CardSurfacePricingData>{};
+      }
+      final ownershipStates = await _primeCatalogOwnershipStates(rows);
+      if (!mounted) return;
+      setState(() {
+        _trending = rows;
+        _trendingPricing = pricing;
+        _catalogOwnershipByCardPrintId = <String, OwnershipState>{
+          ..._catalogOwnershipByCardPrintId,
+          ...ownershipStates,
+        };
+        _loadingCuratedLanding = false;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _loadingCuratedLanding = false;
+      });
+    }
   }
 
   Widget _buildRarityChip(_RarityFilter filter, String label) {
@@ -3107,6 +3125,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final trimmed = _searchCtrl.text.trim();
     final showingCuratedLanding = _shouldShowCuratedLanding(trimmed);
+    final isCatalogLoading = _loading || _loadingCuratedLanding;
     final totalSearchResults = _applyRarityFilter(_results);
     final visibleSearchResults = _visibleResults;
     final cards = showingCuratedLanding
@@ -3116,7 +3135,7 @@ class HomePageState extends State<HomePage> {
         ? cards.length
         : totalSearchResults.length;
     final visibleResultCount = cards.length;
-    final showEmpty = !_loading && totalResultCount == 0;
+    final showEmpty = !isCatalogLoading && totalResultCount == 0;
     final theme = Theme.of(context);
     final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
@@ -3198,7 +3217,7 @@ class HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        if (_loading) const LinearProgressIndicator(minHeight: 2),
+        if (isCatalogLoading) const LinearProgressIndicator(minHeight: 2),
         Expanded(
           child: RefreshIndicator(
             onRefresh: () async {

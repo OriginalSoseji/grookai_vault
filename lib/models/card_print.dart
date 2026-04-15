@@ -837,6 +837,82 @@ class CardPrintRepository {
 
     return trending;
   }
+
+  static Future<List<CardPrint>> fetchByIds({
+    required SupabaseClient client,
+    required Iterable<String> ids,
+  }) async {
+    final normalizedIds = ids
+        .map((id) => id.trim())
+        .where((id) => id.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedIds.isEmpty) {
+      return const <CardPrint>[];
+    }
+
+    final data = await client
+        .from('card_prints')
+        .select(_cardPrintSelect)
+        .inFilter('id', normalizedIds);
+
+    final cardsById = <String, CardPrint>{};
+    for (final row in data as List<dynamic>) {
+      final card = CardPrint.fromJson(row as Map<String, dynamic>);
+      if (card.id.isNotEmpty) {
+        cardsById[card.id] = card;
+      }
+    }
+
+    return normalizedIds
+        .map((id) => cardsById[id])
+        .whereType<CardPrint>()
+        .toList(growable: false);
+  }
+
+  static Future<List<CardPrint>> fetchByNameLike({
+    required SupabaseClient client,
+    required String name,
+    int limit = 12,
+  }) async {
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) {
+      return const <CardPrint>[];
+    }
+
+    final data = await client
+        .from('card_prints')
+        .select(_cardPrintSelect)
+        .ilike('name', '%$trimmed%')
+        .order('name', ascending: true)
+        .limit(limit.clamp(1, 200));
+
+    return (data as List<dynamic>)
+        .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
+        .toList(growable: false);
+  }
+
+  static Future<List<CardPrint>> fetchBySetCode({
+    required SupabaseClient client,
+    required String setCode,
+    int limit = 12,
+  }) async {
+    final normalizedSetCode = setCode.trim();
+    if (normalizedSetCode.isEmpty) {
+      return const <CardPrint>[];
+    }
+
+    final data = await client
+        .from('card_prints')
+        .select(_cardPrintSelect)
+        .eq('set_code', normalizedSetCode)
+        .order('name', ascending: true)
+        .limit(limit.clamp(1, 200));
+
+    return (data as List<dynamic>)
+        .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
+        .toList(growable: false);
+  }
 }
 
 class _TokenizedQuery {
