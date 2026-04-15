@@ -22,6 +22,7 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
+import 'screens/scanner/condition_camera_screen.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
@@ -1860,6 +1861,7 @@ class _MyAppState extends State<MyApp> {
     final supabase = Supabase.instance.client;
     final app = MaterialApp(
       title: 'Grookai Vault',
+      debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
       themeMode: ThemeMode.system,

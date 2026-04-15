@@ -374,7 +374,7 @@ class _AppShellState extends State<AppShell> {
 
   Future<void> _startScanFlow() async {
     final file = await _pushPage<XFile?>(
-      const ConditionCameraScreen(
+      ConditionCameraScreen(
         title: 'Scan Card',
         hintText: 'Align card inside the frame',
       ),
@@ -1027,68 +1027,82 @@ class _LoginPageState extends State<LoginPage> {
     final scheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: Stack(
-          children: [
-            const _LoginBackgroundAura(),
-            SafeArea(
-              child: LayoutBuilder(
-                builder: (context, constraints) => SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(20, 18, 20, 20 + bottomInset),
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight - 38,
-                    ),
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 440),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _buildHero(scheme, textTheme),
-                            const SizedBox(height: 34),
-                            // MOBILE_LOGIN_GOOGLE_REDESIGN_V1
-                            // The mobile auth entry is a branded first-impression surface with Google as the primary sign-in path.
-                            _buildGoogleButton(),
-                            const SizedBox(height: 14),
-                            _buildEmailEntryButton(scheme),
-                            _buildEmailForm(scheme, textTheme),
-                            if (_loginError != null) ...[
+    const overlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+    );
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: overlayStyle,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          body: Stack(
+            children: [
+              const _LoginBackgroundAura(),
+              SafeArea(
+                child: LayoutBuilder(
+                  builder: (context, constraints) => SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(20, 18, 20, 20 + bottomInset),
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: (constraints.maxHeight - 38).clamp(
+                          0.0,
+                          double.infinity,
+                        ),
+                      ),
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 440),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildHero(scheme, textTheme),
+                              const SizedBox(height: 34),
+                              // MOBILE_LOGIN_GOOGLE_REDESIGN_V1
+                              // The mobile auth entry is a branded first-impression surface with Google as the primary sign-in path.
+                              _buildGoogleButton(),
                               const SizedBox(height: 14),
+                              _buildEmailEntryButton(scheme),
+                              _buildEmailForm(scheme, textTheme),
+                              if (_loginError != null) ...[
+                                const SizedBox(height: 14),
+                                Text(
+                                  _loginError!,
+                                  textAlign: TextAlign.center,
+                                  style: textTheme.bodySmall?.copyWith(
+                                    color: scheme.error,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                              const SizedBox(height: 22),
                               Text(
-                                _loginError!,
+                                'Use one Grookai identity across your vault, wall, and collector feed.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
-                                  color: scheme.error,
-                                  fontWeight: FontWeight.w600,
+                                  color: scheme.onSurface.withValues(alpha: 0.54),
+                                  height: 1.35,
                                 ),
                               ),
                             ],
-                            const SizedBox(height: 22),
-                            Text(
-                              'Use one Grookai identity across your vault, wall, and collector feed.',
-                              textAlign: TextAlign.center,
-                              style: textTheme.bodySmall?.copyWith(
-                                color: scheme.onSurface.withValues(alpha: 0.54),
-                                height: 1.35,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
