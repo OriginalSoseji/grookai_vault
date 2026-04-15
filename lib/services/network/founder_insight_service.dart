@@ -2,6 +2,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const String _kFounderEmail = 'ccabrl@gmail.com';
 const String _kFounderSignalsFunction = 'founder-market-signals-v1';
+const String _kFounderSignalDrilldownFunction =
+    'founder-market-signal-drilldown-v1';
 
 enum FounderInsightRowType { card, set }
 
@@ -143,6 +145,7 @@ class FounderInsightCardRow {
 
 class FounderInsightSetRow {
   const FounderInsightSetRow({
+    required this.setId,
     required this.setCode,
     required this.setName,
     required this.score,
@@ -150,6 +153,7 @@ class FounderInsightSetRow {
     required this.signalBreakdown,
   });
 
+  final String? setId;
   final String? setCode;
   final String? setName;
   final int score;
@@ -158,11 +162,273 @@ class FounderInsightSetRow {
 
   factory FounderInsightSetRow.fromJson(Map<String, dynamic> json) {
     return FounderInsightSetRow(
+      setId: _nullableString(json['set_id']),
       setCode: _nullableString(json['set_code']),
       setName: _nullableString(json['set_name']),
       score: _parseInt(json['score']),
       reason: json['reason']?.toString() ?? '',
       signalBreakdown: _parseBreakdown(json['signal_breakdown']),
+    );
+  }
+}
+
+class FounderSignalCardIdentity {
+  const FounderSignalCardIdentity({
+    required this.cardPrintId,
+    required this.gvId,
+    required this.name,
+    required this.setId,
+    required this.setCode,
+    required this.setName,
+    required this.number,
+    required this.imageUrl,
+    required this.imageAltUrl,
+  });
+
+  final String cardPrintId;
+  final String? gvId;
+  final String name;
+  final String? setId;
+  final String? setCode;
+  final String? setName;
+  final String? number;
+  final String? imageUrl;
+  final String? imageAltUrl;
+
+  String? get preferredImageUrl => imageUrl ?? imageAltUrl;
+
+  factory FounderSignalCardIdentity.fromJson(Map<String, dynamic> json) {
+    return FounderSignalCardIdentity(
+      cardPrintId: json['card_print_id']?.toString() ?? '',
+      gvId: _nullableString(json['gv_id']),
+      name: json['name']?.toString() ?? 'Unknown card',
+      setId: _nullableString(json['set_id']),
+      setCode: _nullableString(json['set_code']),
+      setName: _nullableString(json['set_name']),
+      number: _nullableString(json['number']),
+      imageUrl: _nullableString(json['image_url']),
+      imageAltUrl: _nullableString(json['image_alt_url']),
+    );
+  }
+}
+
+class FounderSignalSetIdentity {
+  const FounderSignalSetIdentity({
+    required this.setId,
+    required this.setCode,
+    required this.setName,
+  });
+
+  final String? setId;
+  final String? setCode;
+  final String? setName;
+
+  factory FounderSignalSetIdentity.fromJson(Map<String, dynamic> json) {
+    return FounderSignalSetIdentity(
+      setId: _nullableString(json['set_id']),
+      setCode: _nullableString(json['set_code']),
+      setName: _nullableString(json['set_name']),
+    );
+  }
+}
+
+class FounderSignalMetricWindow {
+  const FounderSignalMetricWindow({
+    required this.opens,
+    required this.adds,
+    required this.comments,
+    required this.wantOn,
+  });
+
+  final int opens;
+  final int adds;
+  final int comments;
+  final int wantOn;
+
+  int get total => opens + adds + comments + wantOn;
+
+  factory FounderSignalMetricWindow.fromJson(
+    Map<String, dynamic> json, {
+    required String suffix,
+  }) {
+    return FounderSignalMetricWindow(
+      opens: _parseInt(json['opens_$suffix']),
+      adds: _parseInt(json['adds_$suffix']),
+      comments: _parseInt(json['comments_$suffix']),
+      wantOn: _parseInt(json['want_on_$suffix']),
+    );
+  }
+}
+
+class FounderSignalMetricDeltas {
+  const FounderSignalMetricDeltas({
+    required this.opens,
+    required this.adds,
+    required this.comments,
+    required this.want,
+  });
+
+  final int opens;
+  final int adds;
+  final int comments;
+  final int want;
+
+  factory FounderSignalMetricDeltas.fromJson(Map<String, dynamic> json) {
+    return FounderSignalMetricDeltas(
+      opens: _parseInt(json['opens_delta']),
+      adds: _parseInt(json['adds_delta']),
+      comments: _parseInt(json['comments_delta']),
+      want: _parseInt(json['want_delta']),
+    );
+  }
+}
+
+class FounderCardSignalCurrentState {
+  const FounderCardSignalCurrentState({
+    required this.activeWants,
+    required this.activeOwners,
+    required this.demandSupplyGap,
+  });
+
+  final int activeWants;
+  final int activeOwners;
+  final int demandSupplyGap;
+
+  factory FounderCardSignalCurrentState.fromJson(Map<String, dynamic> json) {
+    return FounderCardSignalCurrentState(
+      activeWants: _parseInt(json['active_wants']),
+      activeOwners: _parseInt(json['active_owners']),
+      demandSupplyGap: _parseInt(json['demand_supply_gap']),
+    );
+  }
+}
+
+class FounderSetSignalCurrentState {
+  const FounderSetSignalCurrentState({
+    required this.activeWants,
+    required this.cardsWithSignal,
+  });
+
+  final int activeWants;
+  final int cardsWithSignal;
+
+  factory FounderSetSignalCurrentState.fromJson(Map<String, dynamic> json) {
+    return FounderSetSignalCurrentState(
+      activeWants: _parseInt(json['active_wants']),
+      cardsWithSignal: _parseInt(json['cards_with_signal']),
+    );
+  }
+}
+
+class FounderCardSignalDrilldown {
+  const FounderCardSignalDrilldown({
+    required this.generatedAt,
+    required this.card,
+    required this.current,
+    required this.metrics7d,
+    required this.metrics30d,
+    required this.previous7d,
+    required this.deltas,
+    required this.summaryLines,
+  });
+
+  final DateTime? generatedAt;
+  final FounderSignalCardIdentity card;
+  final FounderCardSignalCurrentState current;
+  final FounderSignalMetricWindow metrics7d;
+  final FounderSignalMetricWindow metrics30d;
+  final FounderSignalMetricWindow previous7d;
+  final FounderSignalMetricDeltas deltas;
+  final List<String> summaryLines;
+
+  factory FounderCardSignalDrilldown.fromJson(Map<String, dynamic> json) {
+    return FounderCardSignalDrilldown(
+      generatedAt: _parseDateTime(json['generated_at']),
+      card: FounderSignalCardIdentity.fromJson(
+        Map<String, dynamic>.from((json['card'] as Map?) ?? const {}),
+      ),
+      current: FounderCardSignalCurrentState.fromJson(
+        Map<String, dynamic>.from((json['current'] as Map?) ?? const {}),
+      ),
+      metrics7d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['metrics_7d'] as Map?) ?? const {}),
+        suffix: '7d',
+      ),
+      metrics30d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['metrics_30d'] as Map?) ?? const {}),
+        suffix: '30d',
+      ),
+      previous7d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['previous_7d'] as Map?) ?? const {}),
+        suffix: 'previous_7d',
+      ),
+      deltas: FounderSignalMetricDeltas.fromJson(
+        Map<String, dynamic>.from((json['deltas'] as Map?) ?? const {}),
+      ),
+      summaryLines: _parseStringList(json['summary_lines']),
+    );
+  }
+}
+
+class FounderSetSignalDrilldown {
+  const FounderSetSignalDrilldown({
+    required this.generatedAt,
+    required this.set,
+    required this.current,
+    required this.metrics7d,
+    required this.metrics30d,
+    required this.previous7d,
+    required this.deltas,
+    required this.topCards,
+    required this.summaryLines,
+  });
+
+  final DateTime? generatedAt;
+  final FounderSignalSetIdentity set;
+  final FounderSetSignalCurrentState current;
+  final FounderSignalMetricWindow metrics7d;
+  final FounderSignalMetricWindow metrics30d;
+  final FounderSignalMetricWindow previous7d;
+  final FounderSignalMetricDeltas deltas;
+  final List<FounderInsightCardRow> topCards;
+  final List<String> summaryLines;
+
+  factory FounderSetSignalDrilldown.fromJson(Map<String, dynamic> json) {
+    final rawTopCards = json['top_cards'];
+    return FounderSetSignalDrilldown(
+      generatedAt: _parseDateTime(json['generated_at']),
+      set: FounderSignalSetIdentity.fromJson(
+        Map<String, dynamic>.from((json['set'] as Map?) ?? const {}),
+      ),
+      current: FounderSetSignalCurrentState.fromJson(
+        Map<String, dynamic>.from((json['current'] as Map?) ?? const {}),
+      ),
+      metrics7d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['metrics_7d'] as Map?) ?? const {}),
+        suffix: '7d',
+      ),
+      metrics30d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['metrics_30d'] as Map?) ?? const {}),
+        suffix: '30d',
+      ),
+      previous7d: FounderSignalMetricWindow.fromJson(
+        Map<String, dynamic>.from((json['previous_7d'] as Map?) ?? const {}),
+        suffix: 'previous_7d',
+      ),
+      deltas: FounderSignalMetricDeltas.fromJson(
+        Map<String, dynamic>.from((json['deltas'] as Map?) ?? const {}),
+      ),
+      topCards: rawTopCards is List
+          ? rawTopCards
+                .whereType<Map>()
+                .map(
+                  (row) => FounderInsightCardRow.fromJson(
+                    Map<String, dynamic>.from(row),
+                  ),
+                )
+                .toList(growable: false)
+          : const <FounderInsightCardRow>[],
+      summaryLines: _parseStringList(json['summary_lines']),
     );
   }
 }
@@ -176,6 +442,43 @@ class FounderInsightService {
   }
 
   static Future<FounderInsightBundle> load({SupabaseClient? client}) async {
+    final data = await _invokeFounderJsonFunction(
+      functionName: _kFounderSignalsFunction,
+      client: client,
+      body: const <String, dynamic>{},
+    );
+    return FounderInsightBundle.fromJson(data);
+  }
+
+  static Future<FounderCardSignalDrilldown> fetchCardDrilldown(
+    String cardPrintId, {
+    SupabaseClient? client,
+  }) async {
+    final data = await _invokeFounderJsonFunction(
+      functionName: _kFounderSignalDrilldownFunction,
+      client: client,
+      body: <String, dynamic>{'kind': 'card', 'card_print_id': cardPrintId},
+    );
+    return FounderCardSignalDrilldown.fromJson(data);
+  }
+
+  static Future<FounderSetSignalDrilldown> fetchSetDrilldown(
+    String setCode, {
+    SupabaseClient? client,
+  }) async {
+    final data = await _invokeFounderJsonFunction(
+      functionName: _kFounderSignalDrilldownFunction,
+      client: client,
+      body: <String, dynamic>{'kind': 'set', 'set_code': setCode},
+    );
+    return FounderSetSignalDrilldown.fromJson(data);
+  }
+
+  static Future<Map<String, dynamic>> _invokeFounderJsonFunction({
+    required String functionName,
+    required Map<String, dynamic> body,
+    SupabaseClient? client,
+  }) async {
     final sb = client ?? Supabase.instance.client;
     final user = sb.auth.currentUser;
 
@@ -188,10 +491,7 @@ class FounderInsightService {
       );
     }
 
-    final response = await sb.functions.invoke(
-      _kFounderSignalsFunction,
-      body: const <String, dynamic>{},
-    );
+    final response = await sb.functions.invoke(functionName, body: body);
 
     if (response.status < 200 || response.status >= 300) {
       throw Exception(
@@ -205,7 +505,7 @@ class FounderInsightService {
       throw Exception('Vendor tools are unavailable right now.');
     }
 
-    return FounderInsightBundle.fromJson(Map<String, dynamic>.from(data));
+    return Map<String, dynamic>.from(data);
   }
 
   static String? _extractError(dynamic data) {
@@ -266,4 +566,15 @@ Map<String, int> _parseBreakdown(dynamic value) {
     breakdown[key] = _parseInt(entry.value);
   }
   return breakdown;
+}
+
+List<String> _parseStringList(dynamic value) {
+  if (value is! List) {
+    return const <String>[];
+  }
+
+  return value
+      .map((entry) => entry?.toString().trim() ?? '')
+      .where((entry) => entry.isNotEmpty)
+      .toList(growable: false);
 }

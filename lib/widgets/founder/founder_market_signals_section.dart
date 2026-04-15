@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/founder/founder_card_signal_detail_screen.dart';
+import '../../screens/founder/founder_set_signal_detail_screen.dart';
 import '../../services/network/founder_insight_service.dart';
 
 class FounderMarketSignalsSection extends StatelessWidget {
@@ -96,6 +98,17 @@ class _FounderSignalSectionCard extends StatelessWidget {
                   _FounderSetRowCard(
                     rank: index + 1,
                     row: section.setRows[index],
+                    onTap: (section.setRows[index].setCode ?? '').isEmpty
+                        ? null
+                        : () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => FounderSetSignalDetailScreen(
+                                  previewRow: section.setRows[index],
+                                ),
+                              ),
+                            );
+                          },
                   ),
                 ],
               ],
@@ -112,6 +125,15 @@ class _FounderSignalSectionCard extends StatelessWidget {
                   _FounderCardRowCard(
                     rank: index + 1,
                     row: section.cardRows[index],
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => FounderCardSignalDetailScreen(
+                            previewRow: section.cardRows[index],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ],
@@ -123,10 +145,15 @@ class _FounderSignalSectionCard extends StatelessWidget {
 }
 
 class _FounderCardRowCard extends StatelessWidget {
-  const _FounderCardRowCard({required this.rank, required this.row});
+  const _FounderCardRowCard({
+    required this.rank,
+    required this.row,
+    this.onTap,
+  });
 
   final int rank;
   final FounderInsightCardRow row;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -137,73 +164,97 @@ class _FounderCardRowCard extends StatelessWidget {
       if (row.number != null) '#${row.number!}',
     ].join('  ');
 
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _RankBadge(rank: rank),
-          const SizedBox(width: 10),
-          _CardArtwork(url: row.preferredImageUrl),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  row.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                if ((row.setName ?? '').isNotEmpty || setMeta.isNotEmpty) ...[
-                  const SizedBox(height: 2),
-                  Text(
-                    [
-                      if ((row.setName ?? '').isNotEmpty) row.setName!,
-                      if (setMeta.isNotEmpty) setMeta,
-                    ].join('  '),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.66),
-                    ),
-                  ),
-                ],
-                if (row.reason.isNotEmpty) ...[
-                  const SizedBox(height: 6),
-                  Text(
-                    row.reason,
-                    style: theme.textTheme.bodySmall?.copyWith(height: 1.35),
-                  ),
-                ],
-                if (row.signalBreakdown.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  _BreakdownWrap(breakdown: row.signalBreakdown),
-                ],
-              ],
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: colorScheme.outline.withValues(alpha: 0.08),
             ),
           ),
-          const SizedBox(width: 8),
-          _ScoreBadge(label: 'Score', value: row.score),
-        ],
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _RankBadge(rank: rank),
+              const SizedBox(width: 10),
+              _CardArtwork(url: row.preferredImageUrl),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      row.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    if ((row.setName ?? '').isNotEmpty ||
+                        setMeta.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        [
+                          if ((row.setName ?? '').isNotEmpty) row.setName!,
+                          if (setMeta.isNotEmpty) setMeta,
+                        ].join('  '),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.66),
+                        ),
+                      ),
+                    ],
+                    if (row.reason.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        row.reason,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          height: 1.35,
+                        ),
+                      ),
+                    ],
+                    if (row.signalBreakdown.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      _BreakdownWrap(breakdown: row.signalBreakdown),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Column(
+                children: [
+                  _ScoreBadge(label: 'Score', value: row.score),
+                  if (onTap != null) ...[
+                    const SizedBox(height: 6),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      color: colorScheme.onSurface.withValues(alpha: 0.34),
+                    ),
+                  ],
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
 
 class _FounderSetRowCard extends StatelessWidget {
-  const _FounderSetRowCard({required this.rank, required this.row});
+  const _FounderSetRowCard({required this.rank, required this.row, this.onTap});
 
   final int rank;
   final FounderInsightSetRow row;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -211,74 +262,96 @@ class _FounderSetRowCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final setLabel = row.setCode?.toUpperCase() ?? 'SET';
 
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _RankBadge(rank: rank),
-          const SizedBox(width: 10),
-          Container(
-            width: 52,
-            height: 52,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Text(
-              setLabel,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w800,
-                color: colorScheme.primary,
-              ),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: colorScheme.outline.withValues(alpha: 0.08),
             ),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  row.setName ?? 'Unknown set',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _RankBadge(rank: rank),
+              const SizedBox(width: 10),
+              Container(
+                width: 52,
+                height: 52,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Text(
+                  setLabel,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w800,
+                    color: colorScheme.primary,
                   ),
                 ),
-                if ((row.setCode ?? '').isNotEmpty) ...[
-                  const SizedBox(height: 2),
-                  Text(
-                    row.setCode!.toUpperCase(),
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.66),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      row.setName ?? 'Unknown set',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
+                    if ((row.setCode ?? '').isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        row.setCode!.toUpperCase(),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.66),
+                        ),
+                      ),
+                    ],
+                    if (row.reason.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        row.reason,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          height: 1.35,
+                        ),
+                      ),
+                    ],
+                    if (row.signalBreakdown.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      _BreakdownWrap(breakdown: row.signalBreakdown),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Column(
+                children: [
+                  _ScoreBadge(label: 'Score', value: row.score),
+                  if (onTap != null) ...[
+                    const SizedBox(height: 6),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      color: colorScheme.onSurface.withValues(alpha: 0.34),
+                    ),
+                  ],
                 ],
-                if (row.reason.isNotEmpty) ...[
-                  const SizedBox(height: 6),
-                  Text(
-                    row.reason,
-                    style: theme.textTheme.bodySmall?.copyWith(height: 1.35),
-                  ),
-                ],
-                if (row.signalBreakdown.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  _BreakdownWrap(breakdown: row.signalBreakdown),
-                ],
-              ],
-            ),
+              ),
+            ],
           ),
-          const SizedBox(width: 8),
-          _ScoreBadge(label: 'Score', value: row.score),
-        ],
+        ),
       ),
     );
   }
