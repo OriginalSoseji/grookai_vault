@@ -14,6 +14,8 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+type AccountTab = "profile" | "vendor-tools";
+
 type PublicProfileRow = {
   slug: string | null;
   display_name: string | null;
@@ -23,7 +25,41 @@ type PublicProfileRow = {
   banner_path: string | null;
 };
 
-export default async function AccountPage() {
+type AccountPageProps = {
+  searchParams?: {
+    tab?: string | string[];
+  };
+};
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function normalizeTabParam(value: string | string[] | undefined) {
+  if (Array.isArray(value)) {
+    return value[0] ?? undefined;
+  }
+  return value;
+}
+
+function resolveAccountTab(
+  requestedTab: string | undefined,
+  showFounderSignals: boolean,
+): AccountTab {
+  if (showFounderSignals && requestedTab === "vendor-tools") {
+    return "vendor-tools";
+  }
+
+  return "profile";
+}
+
+function getAccountTabHref(tab: AccountTab) {
+  return `/account?tab=${encodeURIComponent(tab)}`;
+}
+
+export default async function AccountPage({
+  searchParams,
+}: AccountPageProps) {
   const supabase = createServerComponentClient();
   const {
     data: { user },
@@ -49,10 +85,30 @@ export default async function AccountPage() {
     bannerPath: profileRow?.banner_path ?? null,
   };
   const showFounderSignals = isFounderUser(user);
+  const activeTab = resolveAccountTab(
+    normalizeTabParam(searchParams?.tab),
+    showFounderSignals,
+  );
+  const tabOptions: Array<{ value: AccountTab; label: string; href: string }> = [
+    {
+      value: "profile",
+      label: "Profile",
+      href: getAccountTabHref("profile"),
+    },
+    ...(showFounderSignals
+      ? [
+          {
+            value: "vendor-tools" as const,
+            label: "Vendor Tools",
+            href: getAccountTabHref("vendor-tools"),
+          },
+        ]
+      : []),
+  ];
   let founderSignals: FounderInsightBundle | null = null;
   let founderSignalsError: string | null = null;
 
-  if (showFounderSignals) {
+  if (showFounderSignals && activeTab === "vendor-tools") {
     try {
       const admin = createServerAdminClient();
       founderSignals = await getFounderMarketSignals(admin);
@@ -126,26 +182,102 @@ export default async function AccountPage() {
         </div>
       </section>
 
-      <PublicProfileSettingsForm
-        initialValues={initialProfileValues}
-        hasExistingProfile={Boolean(profileRow)}
-        userId={user.id}
-        loadError={profileError?.message ?? null}
-      />
+      <section className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm">
+        <nav aria-label="Account sections" className="flex flex-wrap gap-2">
+          {tabOptions.map((option) => {
+            const active = option.value === activeTab;
+            return (
+              <Link
+                key={option.value}
+                href={option.href}
+                className={cx(
+                  "min-w-0 flex-1 rounded-full px-4 py-2.5 text-center text-sm font-medium transition sm:flex-none",
+                  active
+                    ? "bg-slate-950 text-white shadow-sm"
+                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900",
+                )}
+                aria-current={active ? "page" : undefined}
+              >
+                {option.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </section>
 
-      {showFounderSignals ? (
+      {activeTab === "profile" ? (
+        <>
+          <PublicProfileSettingsForm
+            initialValues={initialProfileValues}
+            hasExistingProfile={Boolean(profileRow)}
+            userId={user.id}
+            loadError={profileError?.message ?? null}
+          />
+
+          <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
+                <p className="max-w-2xl text-sm leading-7 text-slate-600">
+                  Join the Grookai collector community. Discuss cards, report data issues, and help shape Grookai.
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href="https://discord.gg/Cqax8URsM3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                >
+                  <span>Join Grookai Discord</span>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 16 16"
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 4h6v6" />
+                    <path d="M10.5 5.5 4.5 11.5" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
+                <p className="text-sm leading-7 text-slate-600">Bring your collection into Grookai from a supported export.</p>
+              </div>
+
+              <div>
+                <Link
+                  href="/vault/import"
+                  className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                >
+                  Import Collection
+                </Link>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
         <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-              Private Founder Module
+              Vendor Tools
             </p>
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
               Founder Signals
             </h2>
             <p className="max-w-3xl text-sm leading-7 text-slate-600">
-              Your private market-intelligence panel. All sections stay
-              aggregated, card-anchored, and visible only on this founder
-              account.
+              Private founder market signals built from live collector behavior.
             </p>
           </div>
 
@@ -167,60 +299,7 @@ export default async function AccountPage() {
             </div>
           )}
         </section>
-      ) : null}
-
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="space-y-4">
-          <div className="space-y-1">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
-            <p className="max-w-2xl text-sm leading-7 text-slate-600">
-              Join the Grookai collector community. Discuss cards, report data issues, and help shape Grookai.
-            </p>
-          </div>
-
-          <div>
-            <a
-              href="https://discord.gg/Cqax8URsM3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-            >
-              <span>Join Grookai Discord</span>
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M6 4h6v6" />
-                <path d="M10.5 5.5 4.5 11.5" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="space-y-4">
-          <div className="space-y-1">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
-            <p className="text-sm leading-7 text-slate-600">Bring your collection into Grookai from a supported export.</p>
-          </div>
-
-          <div>
-            <Link
-              href="/vault/import"
-              className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-            >
-              Import Collection
-            </Link>
-          </div>
-        </div>
-      </section>
+      )}
     </div>
   );
 }
