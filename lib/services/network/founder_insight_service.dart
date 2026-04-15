@@ -110,6 +110,7 @@ class FounderInsightCardRow {
     required this.score,
     required this.reason,
     required this.signalBreakdown,
+    required this.recommendation,
   });
 
   final String cardPrintId;
@@ -123,6 +124,7 @@ class FounderInsightCardRow {
   final int score;
   final String reason;
   final Map<String, int> signalBreakdown;
+  final String? recommendation;
 
   String? get preferredImageUrl => imageUrl ?? imageAltUrl;
 
@@ -138,7 +140,10 @@ class FounderInsightCardRow {
       imageAltUrl: _nullableString(json['image_alt_url']),
       score: _parseInt(json['score']),
       reason: json['reason']?.toString() ?? '',
-      signalBreakdown: _parseBreakdown(json['signal_breakdown']),
+      signalBreakdown: _parseBreakdown(
+        json['signal_breakdown'] ?? json['breakdown'],
+      ),
+      recommendation: _nullableString(json['recommendation']),
     );
   }
 }
@@ -329,6 +334,8 @@ class FounderCardSignalDrilldown {
     required this.metrics30d,
     required this.previous7d,
     required this.deltas,
+    required this.recommendation,
+    required this.insightSummary,
     required this.summaryLines,
   });
 
@@ -339,6 +346,8 @@ class FounderCardSignalDrilldown {
   final FounderSignalMetricWindow metrics30d;
   final FounderSignalMetricWindow previous7d;
   final FounderSignalMetricDeltas deltas;
+  final String? recommendation;
+  final List<String> insightSummary;
   final List<String> summaryLines;
 
   factory FounderCardSignalDrilldown.fromJson(Map<String, dynamic> json) {
@@ -365,6 +374,8 @@ class FounderCardSignalDrilldown {
       deltas: FounderSignalMetricDeltas.fromJson(
         Map<String, dynamic>.from((json['deltas'] as Map?) ?? const {}),
       ),
+      recommendation: _nullableString(json['recommendation']),
+      insightSummary: _parseStringList(json['insight_summary']),
       summaryLines: _parseStringList(json['summary_lines']),
     );
   }
@@ -379,7 +390,7 @@ class FounderSetSignalDrilldown {
     required this.metrics30d,
     required this.previous7d,
     required this.deltas,
-    required this.topCards,
+    required this.topDrivers,
     required this.summaryLines,
   });
 
@@ -390,11 +401,11 @@ class FounderSetSignalDrilldown {
   final FounderSignalMetricWindow metrics30d;
   final FounderSignalMetricWindow previous7d;
   final FounderSignalMetricDeltas deltas;
-  final List<FounderInsightCardRow> topCards;
+  final List<FounderInsightCardRow> topDrivers;
   final List<String> summaryLines;
 
   factory FounderSetSignalDrilldown.fromJson(Map<String, dynamic> json) {
-    final rawTopCards = json['top_cards'];
+    final rawTopDrivers = json['top_drivers'] ?? json['top_cards'];
     return FounderSetSignalDrilldown(
       generatedAt: _parseDateTime(json['generated_at']),
       set: FounderSignalSetIdentity.fromJson(
@@ -418,8 +429,8 @@ class FounderSetSignalDrilldown {
       deltas: FounderSignalMetricDeltas.fromJson(
         Map<String, dynamic>.from((json['deltas'] as Map?) ?? const {}),
       ),
-      topCards: rawTopCards is List
-          ? rawTopCards
+      topDrivers: rawTopDrivers is List
+          ? rawTopDrivers
                 .whereType<Map>()
                 .map(
                   (row) => FounderInsightCardRow.fromJson(

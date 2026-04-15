@@ -100,6 +100,56 @@ class _FounderCardSignalDetailScreenState
                 )
               else if (detail != null) ...[
                 _FounderSectionCard(
+                  title: 'Why This Card Matters',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ...((detail.insightSummary.isNotEmpty
+                              ? detail.insightSummary
+                              : detail.summaryLines.take(2))
+                          .map((line) => _FounderSummaryLine(text: line))),
+                      if (detail.recommendation == 'understocked') ...[
+                        const SizedBox(height: 4),
+                        const _FounderRecommendationBanner(
+                          text:
+                              'Likely understocked based on current demand vs visible ownership.',
+                        ),
+                      ],
+                      const SizedBox(height: 8),
+                      Text(
+                        'Signal Breakdown',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _FounderValuePill(
+                            label: 'Wants',
+                            value: '${detail.current.activeWants}',
+                          ),
+                          _FounderValuePill(
+                            label: 'Opens (7d)',
+                            value: '${detail.metrics7d.opens}',
+                          ),
+                          _FounderValuePill(
+                            label: 'Adds (7d)',
+                            value: '${detail.metrics7d.adds}',
+                          ),
+                          _FounderValuePill(
+                            label: 'Comments (7d)',
+                            value: '${detail.metrics7d.comments}',
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                _FounderSectionCard(
                   title: 'Current Demand vs Supply',
                   child: Wrap(
                     spacing: 8,
@@ -182,7 +232,7 @@ class _FounderCardSignalDetailScreenState
                 ),
                 const SizedBox(height: 12),
                 _FounderSectionCard(
-                  title: 'Why This Matters',
+                  title: 'Trend Notes',
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: detail.summaryLines
@@ -447,19 +497,56 @@ class _FounderDeltaBadge extends StatelessWidget {
         : colorScheme.onSurface.withValues(alpha: 0.72);
 
     return Container(
-      width: 68,
+      width: 82,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
       decoration: BoxDecoration(
         color: background,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
-        _signed(value),
+        _deltaLabel(value),
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.labelLarge?.copyWith(
           fontWeight: FontWeight.w800,
           color: foreground,
         ),
+      ),
+    );
+  }
+}
+
+class _FounderRecommendationBanner extends StatelessWidget {
+  const _FounderRecommendationBanner({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: colorScheme.primary.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.12)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.inventory_2_outlined, color: colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -611,4 +698,14 @@ String _signed(int value) {
     return '+$value';
   }
   return '$value';
+}
+
+String _deltaLabel(int value) {
+  if (value > 0) {
+    return 'Up $value';
+  }
+  if (value < 0) {
+    return 'Down ${value.abs()}';
+  }
+  return 'Flat';
 }

@@ -3,8 +3,10 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.81.1";
 const PAGE_SIZE = 1000;
 const CARD_BATCH_SIZE = 150;
 const HOT_CARD_LIMIT = 5;
+const TOP_DRIVER_LIMIT = 5;
 const SEVEN_DAY_MS = 7 * 24 * 60 * 60 * 1000;
 const THIRTY_DAY_MS = 30 * 24 * 60 * 60 * 1000;
+const UNDERSTOCKED_WANT_THRESHOLD = 1;
 
 type AdminClient = ReturnType<typeof createClient>;
 type FeedEventType = "open_detail" | "add_to_vault" | "want_on";
@@ -83,6 +85,27 @@ export type FounderDrilldownCardSummary = {
   score: number;
   reason: string;
   signal_breakdown: Record<string, number>;
+  recommendation: string | null;
+};
+
+export type FounderSetDriverSummary = {
+  card_print_id: string;
+  gv_id: string | null;
+  name: string;
+  set_code: string | null;
+  set_name: string | null;
+  number: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
+  score: number;
+  reason: string;
+  breakdown: {
+    want: number;
+    open: number;
+    add: number;
+    comments: number;
+  };
+  recommendation: string | null;
 };
 
 export type FounderCardSignalDrilldown = {
@@ -128,6 +151,8 @@ export type FounderCardSignalDrilldown = {
     comments_delta: number;
     want_delta: number;
   };
+  recommendation: string | null;
+  insight_summary: string[];
   summary_lines: string[];
 };
 
@@ -167,6 +192,7 @@ export type FounderSetSignalDrilldown = {
     comments_delta: number;
     want_delta: number;
   };
+  top_drivers: FounderSetDriverSummary[];
   top_cards: FounderDrilldownCardSummary[];
   summary_lines: string[];
 };
@@ -204,6 +230,7 @@ export async function loadFounderCardSignalDrilldown(
   );
   const deltas = buildMetricDeltas(metrics7d, previous7d);
   const demandGap = activeWantCount - activeOwnerCount;
+  const recommendation = buildCardRecommendation(activeWantCount, activeOwnerCount);
 
   return {
     generated_at: new Date().toISOString(),
@@ -248,6 +275,15 @@ export async function loadFounderCardSignalDrilldown(
       comments_delta: deltas.comments,
       want_delta: deltas.wantOn,
     },
+    recommendation,
+    insight_summary: buildCardInsightSummary({
+      activeWantCount,
+      activeOwnerCount,
+      demandGap,
+      metrics7d,
+      deltas,
+      recommendation,
+    }),
     summary_lines: buildCardSummaryLines({
       activeWantCount,
       activeOwnerCount,
@@ -288,7 +324,7 @@ export async function loadFounderSetSignalDrilldown(
   const metrics7d = emptyMetricWindow();
   const metrics30d = emptyMetricWindow();
   const previous7d = emptyMetricWindow();
-  const topCards = cards.map((card) => {
+  const scoredCards = cards.map((card) => {
     const eventMetrics = eventMetricsByCard.get(card.id) ?? emptyMetricWindows();
     const commentMetrics = commentMetricsByCard.get(card.id) ?? emptyMetricWindows();
     const sevenDay = mergeMetricWindows(
@@ -309,13 +345,19 @@ export async function loadFounderSetSignalDrilldown(
     addMetricWindow(previous7d, previous);
 
     const activeWants = wantCounts.get(card.id) ?? 0;
-    const score = activeWants * 2 + sevenDay.wantOn * 2 + sevenDay.opens +
-      sevenDay.adds * 2 + sevenDay.comments;
+    const recommendation = buildCardRecommendation(activeWants, 0);
+    const score = driverScore(activeWants, sevenDay);
 
     return {
       card,
       score,
-      reason: buildTopCardReason(activeWants, sevenDay),
+      reason: buildTopDriverReason(activeWants, sevenDay),
+      breakdown: {
+        want: activeWants,
+        open: sevenDay.opens,
+        add: sevenDay.adds,
+        comments: sevenDay.comments,
+      },
       signalBreakdown: {
         wantsCurrent: activeWants,
         opens7d: sevenDay.opens,
@@ -323,13 +365,33 @@ export async function loadFounderSetSignalDrilldown(
         comments7d: sevenDay.comments,
         wantOn7d: sevenDay.wantOn,
       },
+      recommendation,
     };
   }).filter((entry) => entry.score > 0)
     .sort(
       (left, right) =>
         right.score - left.score ||
         left.card.name.localeCompare(right.card.name),
-    )
+    );
+
+  const topDrivers = scoredCards
+    .slice(0, TOP_DRIVER_LIMIT)
+    .map<FounderSetDriverSummary>((entry) => ({
+      card_print_id: entry.card.id,
+      gv_id: entry.card.gvId,
+      name: entry.card.name,
+      set_code: entry.card.setCode,
+      set_name: entry.card.setName,
+      number: entry.card.number,
+      image_url: entry.card.imageUrl,
+      image_alt_url: entry.card.imageAltUrl,
+      score: entry.score,
+      reason: entry.reason,
+      breakdown: entry.breakdown,
+      recommendation: entry.recommendation,
+    }));
+
+  const topCards = scoredCards
     .slice(0, HOT_CARD_LIMIT)
     .map<FounderDrilldownCardSummary>((entry) => ({
       card_print_id: entry.card.id,
@@ -343,6 +405,7 @@ export async function loadFounderSetSignalDrilldown(
       score: entry.score,
       reason: entry.reason,
       signal_breakdown: entry.signalBreakdown,
+      recommendation: entry.recommendation,
     }));
 
   const setCardSignalCount = new Set<string>([
@@ -390,11 +453,12 @@ export async function loadFounderSetSignalDrilldown(
       comments_delta: deltas.comments,
       want_delta: deltas.wantOn,
     },
+    top_drivers: topDrivers,
     top_cards: topCards,
     summary_lines: buildSetSummaryLines({
       activeWants,
       cardsWithSignal: setCardSignalCount,
-      topCards,
+      topDrivers,
       metrics7d,
       previous7d,
       deltas,
@@ -806,16 +870,60 @@ function buildCardSummaryLines(input: {
   metrics7d: MetricWindow;
 }) {
   return [
-    demandGapSummary(input.demandGap, input.activeWantCount, input.activeOwnerCount),
+    demandGapSummary(
+      input.demandGap,
+      input.activeWantCount,
+      input.activeOwnerCount,
+    ),
     trendSummary("Opens", input.deltas.opens, input.metrics7d.opens),
     trendSummary("Want activity", input.deltas.wantOn, input.metrics7d.wantOn),
   ];
 }
 
+function buildCardInsightSummary(input: {
+  activeWantCount: number;
+  activeOwnerCount: number;
+  demandGap: number;
+  metrics7d: MetricWindow;
+  deltas: {
+    opens: number;
+    adds: number;
+    comments: number;
+    wantOn: number;
+  };
+  recommendation: string | null;
+}) {
+  const summary: string[] = [];
+
+  if (input.recommendation === "understocked") {
+    summary.push("High demand with limited visible supply.");
+  } else if (input.activeWantCount > 0 && input.activeOwnerCount > 0) {
+    summary.push("Demand is active and visible ownership is starting to build.");
+  } else if (input.metrics7d.adds > 0) {
+    summary.push("This card is actively entering collections.");
+  } else {
+    summary.push("Collector interest is present, but supply is still forming.");
+  }
+
+  if (input.deltas.opens > 0 || input.metrics7d.opens >= 3) {
+    summary.push("Rising collector attention this week.");
+  } else if (input.metrics7d.adds > 0) {
+    summary.push("Collectors are converting attention into ownership.");
+  } else if (input.metrics7d.comments > 0) {
+    summary.push("Collectors are talking about this card right now.");
+  } else if (input.deltas.wantOn > 0) {
+    summary.push("Want activity is increasing this week.");
+  } else {
+    summary.push("Demand is holding steady week over week.");
+  }
+
+  return summary.slice(0, 2);
+}
+
 function buildSetSummaryLines(input: {
   activeWants: number;
   cardsWithSignal: number;
-  topCards: FounderDrilldownCardSummary[];
+  topDrivers: FounderSetDriverSummary[];
   metrics7d: MetricWindow;
   previous7d: MetricWindow;
   deltas: {
@@ -825,7 +933,7 @@ function buildSetSummaryLines(input: {
     wantOn: number;
   };
 }) {
-  const strongestNames = input.topCards.slice(0, 3).map((row) => row.name);
+  const strongestNames = input.topDrivers.slice(0, 3).map((row) => row.name);
   const currentScore = momentumScore(input.metrics7d);
   const previousScore = momentumScore(input.previous7d);
 
@@ -842,38 +950,52 @@ function buildSetSummaryLines(input: {
   ];
 }
 
-function buildTopCardReason(activeWants: number, metrics7d: MetricWindow) {
+function buildTopDriverReason(activeWants: number, metrics7d: MetricWindow) {
   const parts = [
-    activeWants > 0 ? `${activeWants} current ${pluralize(activeWants, "want")}` : null,
-    metrics7d.wantOn > 0 ? `${metrics7d.wantOn} recent ${pluralize(metrics7d.wantOn, "want_on", "want_on")}` : null,
+    activeWants > 0 ? `${activeWants} ${pluralize(activeWants, "want")}` : null,
     metrics7d.opens > 0 ? `${metrics7d.opens} ${pluralize(metrics7d.opens, "open")}` : null,
     metrics7d.adds > 0 ? `${metrics7d.adds} ${pluralize(metrics7d.adds, "add")}` : null,
-    metrics7d.comments > 0 ? `${metrics7d.comments} ${pluralize(metrics7d.comments, "discussion")}` : null,
+    metrics7d.comments > 0 ? `${metrics7d.comments} ${pluralize(metrics7d.comments, "comment")}` : null,
   ].filter((value): value is string => value != null);
 
   return parts.isNotEmpty
-    ? `${parts.join(", ")} in the last 7 days`
+    ? parts.join(" · ")
     : "Not enough recent signal yet";
 }
 
 function demandGapSummary(demandGap: number, activeWants: number, activeOwners: number) {
   if (demandGap > 0) {
-    return `Demand exceeds visible ownership by ${demandGap}.`;
+    return `${demandGap} more ${pluralize(demandGap, "collector")} want this card than visibly own it.`;
   }
   if (demandGap < 0) {
-    return `Visible ownership exceeds current Want by ${Math.abs(demandGap)} (${activeWants} wants vs ${activeOwners} owners).`;
+    return `Visible ownership exceeds demand by ${Math.abs(demandGap)} (${activeWants} wants vs ${activeOwners} owners).`;
   }
   return "Current Want and visible ownership are balanced.";
 }
 
 function trendSummary(label: string, delta: number, currentValue: number) {
   if (delta > 0) {
-    return `${label} up ${delta} vs previous 7 days (${currentValue} in the last 7 days).`;
+    return `${label} up ${delta} vs last week (${currentValue} in the last 7 days).`;
   }
   if (delta < 0) {
-    return `${label} down ${Math.abs(delta)} vs previous 7 days (${currentValue} in the last 7 days).`;
+    return `${label} down ${Math.abs(delta)} vs last week (${currentValue} in the last 7 days).`;
   }
   return `${label} is flat week over week (${currentValue} in the last 7 days).`;
+}
+
+function buildCardRecommendation(activeWantCount: number, activeOwnerCount: number) {
+  if (
+    activeWantCount > activeOwnerCount &&
+    activeWantCount >= UNDERSTOCKED_WANT_THRESHOLD
+  ) {
+    return "understocked";
+  }
+  return null;
+}
+
+function driverScore(activeWants: number, metrics7d: MetricWindow) {
+  return activeWants * 3 + metrics7d.wantOn * 2 + metrics7d.opens +
+    metrics7d.adds * 2 + metrics7d.comments;
 }
 
 function momentumScore(metrics: MetricWindow) {

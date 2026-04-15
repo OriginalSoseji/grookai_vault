@@ -183,8 +183,8 @@ class _FounderSetSignalDetailScreenState
                 ),
                 const SizedBox(height: 12),
                 _FounderSetSectionCard(
-                  title: 'Strongest Cards in This Set',
-                  child: detail.topCards.isEmpty
+                  title: 'Top Drivers in This Set',
+                  child: detail.topDrivers.isEmpty
                       ? Text(
                           'Not enough recent signal yet.',
                           style: Theme.of(context).textTheme.bodyMedium,
@@ -193,18 +193,19 @@ class _FounderSetSignalDetailScreenState
                           children: [
                             for (
                               var index = 0;
-                              index < detail.topCards.length;
+                              index < detail.topDrivers.length;
                               index++
                             ) ...[
                               if (index > 0) const SizedBox(height: 10),
                               _FounderSetTopCardRow(
-                                row: detail.topCards[index],
+                                row: detail.topDrivers[index],
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute<void>(
                                       builder: (_) =>
                                           FounderCardSignalDetailScreen(
-                                            previewRow: detail.topCards[index],
+                                            previewRow:
+                                                detail.topDrivers[index],
                                           ),
                                     ),
                                   );
@@ -521,6 +522,7 @@ class _FounderSetTopCardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final breakdownText = _topDriverBreakdownText(row);
 
     return Material(
       color: Colors.transparent,
@@ -573,11 +575,19 @@ class _FounderSetTopCardRow extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      row.reason,
+                      breakdownText.isNotEmpty ? breakdownText : row.reason,
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(height: 1.35),
                     ),
+                    if (row.recommendation == 'understocked') ...[
+                      const SizedBox(height: 6),
+                      _FounderSetValuePill(
+                        label: 'Bring',
+                        value: 'Understocked',
+                        emphasize: true,
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -659,4 +669,30 @@ String _setSigned(int value) {
     return '+$value';
   }
   return '$value';
+}
+
+String _topDriverBreakdownText(FounderInsightCardRow row) {
+  final wants =
+      row.signalBreakdown['want'] ?? row.signalBreakdown['wantsCurrent'] ?? 0;
+  final opens =
+      row.signalBreakdown['open'] ?? row.signalBreakdown['opens7d'] ?? 0;
+  final adds = row.signalBreakdown['add'] ?? row.signalBreakdown['adds7d'] ?? 0;
+  final comments =
+      row.signalBreakdown['comments'] ?? row.signalBreakdown['comments7d'] ?? 0;
+
+  final parts = <String>[];
+  if (wants > 0) {
+    parts.add('$wants ${wants == 1 ? 'want' : 'wants'}');
+  }
+  if (opens > 0) {
+    parts.add('$opens ${opens == 1 ? 'open' : 'opens'}');
+  }
+  if (adds > 0) {
+    parts.add('$adds ${adds == 1 ? 'add' : 'adds'}');
+  }
+  if (comments > 0) {
+    parts.add('$comments ${comments == 1 ? 'comment' : 'comments'}');
+  }
+
+  return parts.join(' · ');
 }
