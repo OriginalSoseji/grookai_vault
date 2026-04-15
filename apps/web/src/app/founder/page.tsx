@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
 import PublicCardImage from "@/components/PublicCardImage";
+import {
+  getFounderMarketSignals,
+  type FounderInsightBundle,
+} from "@/lib/founder/getFounderMarketSignals";
 import {
   getFounderPricingOpsSummary,
   type FounderPricingOpsSummary,
@@ -686,6 +691,16 @@ export default async function FounderPage() {
   }
 
   const pricingOps = await getFounderPricingOpsSummary(admin);
+  let marketSignals: FounderInsightBundle | null = null;
+  let marketSignalsError: string | null = null;
+  try {
+    marketSignals = await getFounderMarketSignals(admin);
+  } catch (error) {
+    marketSignalsError =
+      error instanceof Error
+        ? error.message
+        : "Unknown founder market-signal error";
+  }
   const sevenDaysAgoIso = daysAgoDate(7).toISOString();
   let vaultRows: NormalizedVaultRow[] = [];
   let vaultAnalyticsError: string | null = null;
@@ -807,6 +822,14 @@ export default async function FounderPage() {
 
       {telemetryError ? (
         <EmptyPanel message={`Telemetry analytics could not be loaded right now: ${telemetryError.message}`} />
+      ) : null}
+
+      {marketSignalsError ? (
+        <EmptyPanel
+          message={`Market signals could not be loaded right now: ${marketSignalsError}`}
+        />
+      ) : marketSignals ? (
+        <FounderMarketSignalsSection insights={marketSignals} />
       ) : null}
 
       <PricingOpsSection pricingOps={pricingOps} />
