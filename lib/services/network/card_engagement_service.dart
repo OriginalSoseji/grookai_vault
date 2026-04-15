@@ -124,11 +124,18 @@ class CardEngagementService {
     required String cardPrintId,
     required String eventType,
     String? surface,
+    int? position,
+    String? sourceBucket,
     Map<String, dynamic>? metadata,
   }) async {
     final userId = _clean(client.auth.currentUser?.id);
     final normalizedCardPrintId = _clean(cardPrintId);
     final normalizedEventType = _clean(eventType);
+    final normalizedSurface = _clean(surface);
+    final normalizedSourceBucket = _clean(sourceBucket);
+    final normalizedPosition = position != null && position >= 0
+        ? position
+        : null;
     if (userId.isEmpty ||
         normalizedCardPrintId.isEmpty ||
         normalizedEventType.isEmpty) {
@@ -139,9 +146,31 @@ class CardEngagementService {
       'user_id': userId,
       'card_print_id': normalizedCardPrintId,
       'event_type': normalizedEventType,
-      if (_clean(surface).isNotEmpty) 'surface': _clean(surface),
+      if (normalizedSurface.isNotEmpty) 'surface': normalizedSurface,
+      if (normalizedSourceBucket.isNotEmpty)
+        'source_bucket': normalizedSourceBucket,
+      if (normalizedPosition != null) 'position': normalizedPosition,
       'metadata': _normalizedMetadata(metadata),
     });
+  }
+
+  static Future<void> recordImpression({
+    required SupabaseClient client,
+    required String cardPrintId,
+    String surface = 'feed',
+    int? position,
+    String? sourceBucket,
+    Map<String, dynamic>? metadata,
+  }) {
+    return recordFeedEvent(
+      client: client,
+      cardPrintId: cardPrintId,
+      eventType: 'impression',
+      surface: surface,
+      position: position,
+      sourceBucket: sourceBucket,
+      metadata: metadata,
+    );
   }
 
   static Future<List<CardCommentEntry>> fetchComments({

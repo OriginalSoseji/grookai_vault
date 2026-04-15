@@ -9,6 +9,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
@@ -53,6 +54,9 @@ const Duration _kDrawerOpenDuration = Duration(milliseconds: 280);
 const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
+const Duration _kFeedImpressionGateWindow = Duration(minutes: 3);
+const Duration _kFeedImpressionSkipLogWindow = Duration(seconds: 12);
+const double _kFeedImpressionVisibilityThreshold = 0.55;
 const double _kWallMatchGridSpacing = 6;
 const double _kWallMatchGridOuterPadding = 10;
 const double _kWallMatchArtworkAspectRatio = 0.69;
@@ -596,6 +600,7 @@ class _CatalogCardTile extends StatelessWidget {
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
   final VoidCallback? onTap;
+  final VoidCallback? onImpressionCandidate;
   final AppCardViewMode viewMode;
 
   const _CatalogCardTile({
@@ -604,6 +609,7 @@ class _CatalogCardTile extends StatelessWidget {
     required this.ownershipState,
     this.pricing,
     this.onTap,
+    this.onImpressionCandidate,
   });
 
   @override
@@ -633,77 +639,81 @@ class _CatalogCardTile extends StatelessWidget {
     final thumbWidth = compact ? 44.0 : 50.0;
     final thumbHeight = compact ? 62.0 : 72.0;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: compact ? 10 : 10,
-        vertical: compact ? 2 : 3,
-      ),
-      child: _PressScaleInkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(compact ? 16 : 18),
-        pressedScale: compact ? 0.982 : 0.978,
-        child: Material(
-          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.24),
+    return _CatalogFeedImpressionObserver(
+      cardId: card.id,
+      onImpressionCandidate: onImpressionCandidate,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? 10 : 10,
+          vertical: compact ? 2 : 3,
+        ),
+        child: _PressScaleInkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(compact ? 16 : 18),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: compact ? 8 : 8,
-              vertical: compact ? 6 : 8,
-            ),
-            child: Row(
-              children: [
-                _thumb(card.displayImage, thumbWidth, thumbHeight),
-                SizedBox(width: compact ? 7 : 8),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        card.name,
-                        style:
-                            (compact
-                                    ? theme.textTheme.bodySmall
-                                    : theme.textTheme.bodyMedium)
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.1,
-                                ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      if (subtitle.isNotEmpty) ...[
-                        SizedBox(height: compact ? 0 : 1),
+          pressedScale: compact ? 0.982 : 0.978,
+          child: Material(
+            color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.24),
+            borderRadius: BorderRadius.circular(compact ? 16 : 18),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: compact ? 8 : 8,
+                vertical: compact ? 6 : 8,
+              ),
+              child: Row(
+                children: [
+                  _thumb(card.displayImage, thumbWidth, thumbHeight),
+                  SizedBox(width: compact ? 7 : 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Text(
-                          subtitle,
+                          card.name,
+                          style:
+                              (compact
+                                      ? theme.textTheme.bodySmall
+                                      : theme.textTheme.bodyMedium)
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.1,
+                                  ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: colorScheme.onSurface.withValues(
-                              alpha: 0.58,
+                        ),
+                        if (subtitle.isNotEmpty) ...[
+                          SizedBox(height: compact ? 0 : 1),
+                          Text(
+                            subtitle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.58,
+                              ),
+                              fontSize: compact ? 11.5 : null,
                             ),
-                            fontSize: compact ? 11.5 : null,
                           ),
+                        ],
+                        if (pricing?.hasVisibleValue == true) ...[
+                          SizedBox(height: compact ? 4 : 5),
+                          Opacity(
+                            opacity: 0.86,
+                            child: CardSurfacePricePill(
+                              pricing: pricing,
+                              size: compact
+                                  ? CardSurfacePriceSize.dense
+                                  : CardSurfacePriceSize.list,
+                            ),
+                          ),
+                        ],
+                        _CatalogOwnershipSummaryLine(
+                          ownershipState: ownershipState,
                         ),
                       ],
-                      if (pricing?.hasVisibleValue == true) ...[
-                        SizedBox(height: compact ? 4 : 5),
-                        Opacity(
-                          opacity: 0.86,
-                          child: CardSurfacePricePill(
-                            pricing: pricing,
-                            size: compact
-                                ? CardSurfacePriceSize.dense
-                                : CardSurfacePriceSize.list,
-                          ),
-                        ),
-                      ],
-                      _CatalogOwnershipSummaryLine(
-                        ownershipState: ownershipState,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -724,18 +734,51 @@ class _CatalogCardTile extends StatelessWidget {
   }
 }
 
+class _CatalogFeedImpressionObserver extends StatelessWidget {
+  const _CatalogFeedImpressionObserver({
+    required this.cardId,
+    required this.child,
+    this.onImpressionCandidate,
+  });
+
+  final String cardId;
+  final Widget child;
+  final VoidCallback? onImpressionCandidate;
+
+  @override
+  Widget build(BuildContext context) {
+    final callback = onImpressionCandidate;
+    final normalizedCardId = cardId.trim();
+    if (callback == null || normalizedCardId.isEmpty) {
+      return child;
+    }
+
+    return VisibilityDetector(
+      key: ValueKey<String>('catalog-feed-impression-$normalizedCardId'),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction >= _kFeedImpressionVisibilityThreshold) {
+          callback();
+        }
+      },
+      child: child,
+    );
+  }
+}
+
 class _CatalogCardGridTile extends StatelessWidget {
   const _CatalogCardGridTile({
     required this.card,
     required this.onTap,
     required this.ownershipState,
     this.pricing,
+    this.onImpressionCandidate,
   });
 
   final CardPrint card;
   final VoidCallback onTap;
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
+  final VoidCallback? onImpressionCandidate;
 
   @override
   Widget build(BuildContext context) {
@@ -750,72 +793,76 @@ class _CatalogCardGridTile extends StatelessWidget {
     ];
     final subtitle = subtitleParts.join(' • ');
 
-    return Material(
-      color: Colors.transparent,
-      child: _PressScaleInkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(22),
-        pressedScale: 0.972,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AspectRatio(
-              aspectRatio: _kWallMatchArtworkAspectRatio,
-              child: _CatalogGridArtwork(card: card),
-            ),
-            const SizedBox(height: 6),
-            SizedBox(
-              height: _kWallMatchTitleHeight,
-              child: Text(
-                card.name,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  height: 1.04,
-                  letterSpacing: -0.3,
+    return _CatalogFeedImpressionObserver(
+      cardId: card.id,
+      onImpressionCandidate: onImpressionCandidate,
+      child: Material(
+        color: Colors.transparent,
+        child: _PressScaleInkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(22),
+          pressedScale: 0.972,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              AspectRatio(
+                aspectRatio: _kWallMatchArtworkAspectRatio,
+                child: _CatalogGridArtwork(card: card),
+              ),
+              const SizedBox(height: 6),
+              SizedBox(
+                height: _kWallMatchTitleHeight,
+                child: Text(
+                  card.name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    height: 1.04,
+                    letterSpacing: -0.3,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 3),
-            SizedBox(
-              height: _kWallMatchMetaHeight,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Text(
-                      subtitle.isEmpty ? 'Card' : subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.60),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.02,
+              const SizedBox(height: 3),
+              SizedBox(
+                height: _kWallMatchMetaHeight,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        subtitle.isEmpty ? 'Card' : subtitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.60),
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.02,
+                        ),
                       ),
                     ),
-                  ),
-                  if (pricing?.hasVisibleValue == true) ...[
-                    const SizedBox(width: 6),
-                    CardSurfacePricePill(
-                      pricing: pricing,
-                      size: CardSurfacePriceSize.grid,
-                    ),
+                    if (pricing?.hasVisibleValue == true) ...[
+                      const SizedBox(width: 6),
+                      CardSurfacePricePill(
+                        pricing: pricing,
+                        size: CardSurfacePriceSize.grid,
+                      ),
+                    ],
                   ],
-                ],
-              ),
-            ),
-            SizedBox(
-              height: _kWallMatchBottomRhythmHeight,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: _CatalogOwnershipSummaryLine(
-                  ownershipState: ownershipState,
-                  grid: true,
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: _kWallMatchBottomRhythmHeight,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: _CatalogOwnershipSummaryLine(
+                    ownershipState: ownershipState,
+                    grid: true,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1925,6 +1972,10 @@ class HomePageState extends State<HomePage> {
   Map<String, CardSurfacePricingData> _resultPricing = const {};
   Map<String, CardSurfacePricingData> _trendingPricing = const {};
   CardSearchResolverMeta? _resolverMeta;
+  final Map<String, DateTime> _feedImpressionWriteGateByCardId =
+      <String, DateTime>{};
+  final Map<String, DateTime> _feedImpressionSkipLogByCardId =
+      <String, DateTime>{};
   bool _loading = false;
   bool _loadingCuratedLanding = false;
   bool _hasMoreVisibleResults = false;
@@ -2937,15 +2988,27 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildCatalogCard(CardPrint card) {
+  Widget _buildCatalogCardWithContext(
+    CardPrint card, {
+    bool enableFeedImpressionTracking = false,
+    int? feedPosition,
+  }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
     final ownershipState = _catalogOwnershipStateForCard(card.id);
+    final onImpressionCandidate =
+        enableFeedImpressionTracking && feedPosition != null
+        ? () => _recordFeedImpressionIfEligible(
+            card: card,
+            position: feedPosition,
+          )
+        : null;
     if (_viewMode == AppCardViewMode.grid) {
       return _CatalogCardGridTile(
         card: card,
         pricing: pricing,
         ownershipState: ownershipState,
         onTap: () => _openSearchCardActionHub(card),
+        onImpressionCandidate: onImpressionCandidate,
       );
     }
 
@@ -2955,13 +3018,21 @@ class HomePageState extends State<HomePage> {
       ownershipState: ownershipState,
       viewMode: _viewMode,
       onTap: () => _openSearchCardActionHub(card),
+      onImpressionCandidate: onImpressionCandidate,
     );
   }
 
   Widget _buildCatalogResultsSliver(
     List<CardPrint> cards,
-    List<_CatalogRow> rows,
-  ) {
+    List<_CatalogRow> rows, {
+    bool trackFeedImpressions = false,
+  }) {
+    final feedPositionByCardId = trackFeedImpressions
+        ? <String, int>{
+            for (var index = 0; index < cards.length; index++)
+              cards[index].id.trim(): index,
+          }
+        : const <String, int>{};
     if (_viewMode != AppCardViewMode.grid) {
       return SliverList.separated(
         itemCount: rows.length,
@@ -2974,7 +3045,11 @@ class HomePageState extends State<HomePage> {
               compact: _viewMode == AppCardViewMode.compactList,
             );
           } else if (row is _CatalogCardRow) {
-            return _buildCatalogCard(row.card);
+            return _buildCatalogCardWithContext(
+              row.card,
+              enableFeedImpressionTracking: trackFeedImpressions,
+              feedPosition: feedPositionByCardId[row.card.id.trim()],
+            );
           }
           return const SizedBox.shrink();
         },
@@ -2992,7 +3067,11 @@ class HomePageState extends State<HomePage> {
       ),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
-          (context, index) => _buildCatalogCard(cards[index]),
+          (context, index) => _buildCatalogCardWithContext(
+            cards[index],
+            enableFeedImpressionTracking: trackFeedImpressions,
+            feedPosition: index,
+          ),
           childCount: cards.length,
           addAutomaticKeepAlives: false,
         ),
@@ -3003,6 +3082,68 @@ class HomePageState extends State<HomePage> {
           childAspectRatio: _kWallMatchGridChildAspectRatio,
         ),
       ),
+    );
+  }
+
+  void _pruneFeedImpressionGates(DateTime now) {
+    _feedImpressionWriteGateByCardId.removeWhere(
+      (_, value) => now.difference(value) >= _kFeedImpressionGateWindow,
+    );
+    _feedImpressionSkipLogByCardId.removeWhere(
+      (_, value) => now.difference(value) >= _kFeedImpressionGateWindow,
+    );
+  }
+
+  void _debugFeedImpression(String message) {
+    if (!kDebugMode) {
+      return;
+    }
+    debugPrint('[feed-impression] $message');
+  }
+
+  void _recordFeedImpressionIfEligible({
+    required CardPrint card,
+    required int position,
+  }) {
+    final normalizedCardId = card.id.trim();
+    if (normalizedCardId.isEmpty) {
+      return;
+    }
+
+    final now = DateTime.now();
+    _pruneFeedImpressionGates(now);
+
+    final lastWrittenAt = _feedImpressionWriteGateByCardId[normalizedCardId];
+    if (lastWrittenAt != null) {
+      final age = now.difference(lastWrittenAt);
+      if (age < _kFeedImpressionGateWindow) {
+        final lastSkipLogAt = _feedImpressionSkipLogByCardId[normalizedCardId];
+        if (lastSkipLogAt == null ||
+            now.difference(lastSkipLogAt) >= _kFeedImpressionSkipLogWindow) {
+          _feedImpressionSkipLogByCardId[normalizedCardId] = now;
+          _debugFeedImpression(
+            'skip id=$normalizedCardId name="${card.name}" pos=$position age=${age.inSeconds}s',
+          );
+        }
+        return;
+      }
+    }
+
+    _feedImpressionWriteGateByCardId[normalizedCardId] = now;
+    _debugFeedImpression(
+      'write id=$normalizedCardId name="${card.name}" pos=$position',
+    );
+    unawaited(
+      CardEngagementService.recordImpression(
+        client: supabase,
+        cardPrintId: normalizedCardId,
+        surface: 'feed',
+        position: position,
+      ).catchError((error) {
+        _debugFeedImpression(
+          'error id=$normalizedCardId pos=$position error=$error',
+        );
+      }),
     );
   }
 
@@ -3273,7 +3414,11 @@ class HomePageState extends State<HomePage> {
                     ),
                   )
                 else
-                  _buildCatalogResultsSliver(cards, rows),
+                  _buildCatalogResultsSliver(
+                    cards,
+                    rows,
+                    trackFeedImpressions: showingCuratedLanding,
+                  ),
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
                   sliver: SliverToBoxAdapter(

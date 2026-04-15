@@ -29,6 +29,7 @@ class SmartFeedService {
     'want_on',
   };
   static const Set<String> _trackedEventTypes = <String>{
+    'impression',
     'open_detail',
     'share',
     'add_to_vault',
@@ -60,6 +61,7 @@ class SmartFeedService {
         wantedCount: 0,
         positiveEventCount: 0,
         suppressionCount: 0,
+        impressionSuppressionCount: 0,
         selectedCards: fallbackResult.cards,
       );
       return fallbackResult;
@@ -76,7 +78,7 @@ class SmartFeedService {
             .limit(_kWantLimit),
         client
             .from('card_feed_events')
-            .select('card_print_id,event_type,created_at')
+            .select('card_print_id,event_type,created_at,surface')
             .eq('user_id', userId)
             .inFilter('event_type', _trackedEventTypes.toList(growable: false))
             .order('created_at', ascending: false)
@@ -106,6 +108,7 @@ class SmartFeedService {
           wantedCount: context.wantedCardIds.length,
           positiveEventCount: context.positiveEventCardIds.length,
           suppressionCount: context.recentlyOpenedCardIds.length,
+          impressionSuppressionCount: context.impressionCountByCardId.length,
           selectedCards: fallbackResult.cards,
         );
         return fallbackResult;
@@ -117,6 +120,13 @@ class SmartFeedService {
         fallbackCards: fallbackCards,
       );
       final rankedCandidates = _rankCandidates(candidates, context);
+      final impressionSuppressionCount = rankedCandidates
+          .where(
+            (candidate) => context.impressionCountByCardId.containsKey(
+              candidate.card.id.trim(),
+            ),
+          )
+          .length;
       final selectedCandidates = _selectDiverseCandidates(
         rankedCandidates,
         normalizedLimit,
@@ -128,6 +138,7 @@ class SmartFeedService {
           wantedCount: context.wantedCardIds.length,
           positiveEventCount: context.positiveEventCardIds.length,
           suppressionCount: context.recentlyOpenedCardIds.length,
+          impressionSuppressionCount: impressionSuppressionCount,
           selectedCards: fallbackResult.cards,
         );
         return fallbackResult;
@@ -142,6 +153,7 @@ class SmartFeedService {
         wantedCount: context.wantedCardIds.length,
         positiveEventCount: context.positiveEventCardIds.length,
         suppressionCount: context.recentlyOpenedCardIds.length,
+        impressionSuppressionCount: impressionSuppressionCount,
         selectedCards: selectedCards,
       );
       return SmartFeedLoadResult(cards: selectedCards, usedFallback: false);
@@ -177,10 +189,14 @@ class SmartFeedService {
     final eventCountByCardId = <String, int>{};
     final positiveEventCountByCardId = <String, int>{};
     final openCountByCardId = <String, int>{};
+    final impressionCountByCardId = <String, int>{};
     final recentOpenRankByCardId = <String, int>{};
+    final recentImpressionRankByCardId = <String, int>{};
     final recentlyOpenedCardIds = <String>[];
+    final recentlyImpressedCardIds = <String>[];
 
     var openRank = 0;
+    var impressionRank = 0;
     for (final row in eventRows) {
       eventCountByCardId.update(
         row.cardPrintId,
@@ -203,6 +219,17 @@ class SmartFeedService {
         if (!recentOpenRankByCardId.containsKey(row.cardPrintId)) {
           recentOpenRankByCardId[row.cardPrintId] = openRank++;
           recentlyOpenedCardIds.add(row.cardPrintId);
+        }
+      }
+      if (row.isFeedImpression) {
+        impressionCountByCardId.update(
+          row.cardPrintId,
+          (count) => count + 1,
+          ifAbsent: () => 1,
+        );
+        if (!recentImpressionRankByCardId.containsKey(row.cardPrintId)) {
+          recentImpressionRankByCardId[row.cardPrintId] = impressionRank++;
+          recentlyImpressedCardIds.add(row.cardPrintId);
         }
       }
     }
@@ -236,10 +263,13 @@ class SmartFeedService {
       positiveEventSetCodes: _normalizedSetCodes(positiveCards),
       wantOffCardIds: wantOffCardIds,
       recentlyOpenedCardIds: recentlyOpenedCardIds.toSet(),
+      recentlyImpressedCardIds: recentlyImpressedCardIds.toSet(),
       recentOpenRankByCardId: recentOpenRankByCardId,
+      recentImpressionRankByCardId: recentImpressionRankByCardId,
       eventCountByCardId: eventCountByCardId,
       positiveEventCountByCardId: positiveEventCountByCardId,
       openCountByCardId: openCountByCardId,
+      impressionCountByCardId: impressionCountByCardId,
     );
   }
 
@@ -381,6 +411,9 @@ class SmartFeedService {
     final normalizedId = card.id.trim();
     final normalizedName = _normalizeName(card.name);
     final normalizedSetCode = _normalizeSetCode(card.setCode);
+    final positiveEventCount =
+        context.positiveEventCountByCardId[normalizedId] ?? 0;
+    final impressionCount = context.impressionCountByCardId[normalizedId] ?? 0;
 
     final exactWanted =
         context.wantedCardIds.contains(normalizedId) &&
@@ -405,8 +438,7 @@ class SmartFeedService {
       addScore('positive-set', 6);
     }
 
-    final positiveEventCount = context.positiveEventCountByCardId[normalizedId];
-    if (positiveEventCount != null && positiveEventCount > 0) {
+    if (positiveEventCount > 0) {
       addScore('positive-repeat', positiveEventCount.clamp(1, 3) * 3);
     }
 
@@ -416,9 +448,7 @@ class SmartFeedService {
     }
 
     final openRank = context.recentOpenRankByCardId[normalizedId];
-    if (openRank == null) {
-      addScore('freshness', 4);
-    } else {
+    if (openRank != null) {
       addScore('recent-open', -30);
       final recencyPenalty = openRank < 12 ? (12 - openRank).toDouble() : 0.0;
       if (recencyPenalty > 0) {
@@ -429,6 +459,34 @@ class SmartFeedService {
     final openCount = context.openCountByCardId[normalizedId] ?? 0;
     if (openCount > 1) {
       addScore('repeat-open', -8 * (openCount - 1).toDouble());
+    }
+
+    if (impressionCount > 0) {
+      var impressionPenalty = 0.0;
+      if (impressionCount == 1) {
+        impressionPenalty = -4;
+      } else if (impressionCount <= 3) {
+        impressionPenalty = -10;
+      } else {
+        impressionPenalty = -16;
+      }
+
+      final impressionRank = context.recentImpressionRankByCardId[normalizedId];
+      if (impressionRank != null && impressionRank < 16) {
+        impressionPenalty -= (16 - impressionRank) * 0.35;
+      }
+
+      if (positiveEventCount > 0) {
+        impressionPenalty *= 0.45;
+      }
+
+      addScore('impression-fatigue', impressionPenalty);
+    }
+
+    if (openRank == null && impressionCount == 0) {
+      addScore('freshness', 6);
+    } else if (openRank == null && impressionCount <= 1) {
+      addScore('freshness', 2);
     }
 
     if (context.wantOffCardIds.contains(normalizedId)) {
@@ -608,6 +666,7 @@ class SmartFeedService {
     required int wantedCount,
     required int positiveEventCount,
     required int suppressionCount,
+    required int impressionSuppressionCount,
     required List<CardPrint> selectedCards,
   }) {
     if (!kDebugMode) {
@@ -624,6 +683,7 @@ class SmartFeedService {
       'wanted=$wantedCount '
       'positive=$positiveEventCount '
       'suppressed=$suppressionCount '
+      'impression_suppressed=$impressionSuppressionCount '
       'candidates=$candidateCount '
       'final=${selectedCards.length} '
       'top=$topNames',
@@ -643,10 +703,13 @@ class _SmartFeedContext {
     required this.positiveEventSetCodes,
     required this.wantOffCardIds,
     required this.recentlyOpenedCardIds,
+    required this.recentlyImpressedCardIds,
     required this.recentOpenRankByCardId,
+    required this.recentImpressionRankByCardId,
     required this.eventCountByCardId,
     required this.positiveEventCountByCardId,
     required this.openCountByCardId,
+    required this.impressionCountByCardId,
   });
 
   final List<CardPrint> wantedCards;
@@ -659,15 +722,19 @@ class _SmartFeedContext {
   final Set<String> positiveEventSetCodes;
   final Set<String> wantOffCardIds;
   final Set<String> recentlyOpenedCardIds;
+  final Set<String> recentlyImpressedCardIds;
   final Map<String, int> recentOpenRankByCardId;
+  final Map<String, int> recentImpressionRankByCardId;
   final Map<String, int> eventCountByCardId;
   final Map<String, int> positiveEventCountByCardId;
   final Map<String, int> openCountByCardId;
+  final Map<String, int> impressionCountByCardId;
 
   bool get hasSignals =>
       wantedCardIds.isNotEmpty ||
       positiveEventCardIds.isNotEmpty ||
-      recentlyOpenedCardIds.isNotEmpty;
+      recentlyOpenedCardIds.isNotEmpty ||
+      recentlyImpressedCardIds.isNotEmpty;
 }
 
 enum _SmartFeedCandidateSource {
@@ -705,23 +772,34 @@ class _SmartFeedEventRow {
   const _SmartFeedEventRow({
     required this.cardPrintId,
     required this.eventType,
+    this.surface,
     this.createdAt,
   });
 
   final String cardPrintId;
   final String eventType;
+  final String? surface;
   final DateTime? createdAt;
+
+  bool get isFeedImpression =>
+      eventType == 'impression' && (surface == null || surface == 'feed');
 
   factory _SmartFeedEventRow.fromRow(Map<dynamic, dynamic> row) {
     return _SmartFeedEventRow(
       cardPrintId: _clean(row['card_print_id']),
       eventType: _clean(row['event_type']).toLowerCase(),
+      surface: _optionalClean(row['surface'])?.toLowerCase(),
       createdAt: DateTime.tryParse(_clean(row['created_at'])),
     );
   }
 }
 
 String _clean(dynamic value) => (value ?? '').toString().trim();
+
+String? _optionalClean(dynamic value) {
+  final text = _clean(value);
+  return text.isEmpty ? null : text;
+}
 
 String _normalizeName(String value) => value.trim().toLowerCase();
 
