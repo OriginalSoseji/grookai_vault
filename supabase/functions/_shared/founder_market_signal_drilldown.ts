@@ -4,6 +4,7 @@ const PAGE_SIZE = 1000;
 const CARD_BATCH_SIZE = 150;
 const HOT_CARD_LIMIT = 5;
 const TOP_DRIVER_LIMIT = 5;
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 const SEVEN_DAY_MS = 7 * 24 * 60 * 60 * 1000;
 const THIRTY_DAY_MS = 30 * 24 * 60 * 60 * 1000;
 const UNDERSTOCKED_WANT_THRESHOLD = 1;
@@ -151,6 +152,9 @@ export type FounderCardSignalDrilldown = {
     comments_delta: number;
     want_delta: number;
   };
+  confidence: "high" | "medium" | "low";
+  trend_speed: "fast" | "rising" | "cooling" | "flat";
+  spike: boolean;
   recommendation: string | null;
   insight_summary: string[];
   summary_lines: string[];
@@ -230,6 +234,12 @@ export async function loadFounderCardSignalDrilldown(
   );
   const deltas = buildMetricDeltas(metrics7d, previous7d);
   const demandGap = activeWantCount - activeOwnerCount;
+  const totalSignals = activeWantCount + metrics7d.opens + metrics7d.adds +
+    metrics7d.comments;
+  const confidence = computeConfidence(totalSignals);
+  const trendSpeed = computeTrendSpeed(deltas.opens + deltas.wantOn);
+  const opens24h = countOpensLast24h(eventRows, now, card.id);
+  const spike = metrics7d.opens > 0 && opens24h > metrics7d.opens * 0.4;
   const recommendation = buildCardRecommendation(activeWantCount, activeOwnerCount);
 
   return {
@@ -275,6 +285,9 @@ export async function loadFounderCardSignalDrilldown(
       comments_delta: deltas.comments,
       want_delta: deltas.wantOn,
     },
+    confidence,
+    trend_speed: trendSpeed,
+    spike,
     recommendation,
     insight_summary: buildCardInsightSummary({
       activeWantCount,
@@ -282,6 +295,9 @@ export async function loadFounderCardSignalDrilldown(
       demandGap,
       metrics7d,
       deltas,
+      confidence,
+      trendSpeed,
+      spike,
       recommendation,
     }),
     summary_lines: buildCardSummaryLines({
@@ -891,6 +907,9 @@ function buildCardInsightSummary(input: {
     comments: number;
     wantOn: number;
   };
+  confidence: "high" | "medium" | "low";
+  trendSpeed: "fast" | "rising" | "cooling" | "flat";
+  spike: boolean;
   recommendation: string | null;
 }) {
   const summary: string[] = [];
@@ -905,17 +924,7 @@ function buildCardInsightSummary(input: {
     summary.push("Collector interest is present, but supply is still forming.");
   }
 
-  if (input.deltas.opens > 0 || input.metrics7d.opens >= 3) {
-    summary.push("Rising collector attention this week.");
-  } else if (input.metrics7d.adds > 0) {
-    summary.push("Collectors are converting attention into ownership.");
-  } else if (input.metrics7d.comments > 0) {
-    summary.push("Collectors are talking about this card right now.");
-  } else if (input.deltas.wantOn > 0) {
-    summary.push("Want activity is increasing this week.");
-  } else {
-    summary.push("Demand is holding steady week over week.");
-  }
+  summary.push(trendSpeedSummary(input.trendSpeed));
 
   return summary.slice(0, 2);
 }
@@ -983,6 +992,44 @@ function trendSummary(label: string, delta: number, currentValue: number) {
   return `${label} is flat week over week (${currentValue} in the last 7 days).`;
 }
 
+function trendSpeedSummary(speed: "fast" | "rising" | "cooling" | "flat") {
+  switch (speed) {
+    case "fast":
+      return "Rising fast this week.";
+    case "rising":
+      return "Rising this week.";
+    case "cooling":
+      return "Cooling off this week.";
+    default:
+      return "Demand holding steady this week.";
+  }
+}
+
+function computeConfidence(totalSignals: number): "high" | "medium" | "low" {
+  if (totalSignals >= 20) {
+    return "high";
+  }
+  if (totalSignals >= 8) {
+    return "medium";
+  }
+  return "low";
+}
+
+function computeTrendSpeed(
+  delta: number,
+): "fast" | "rising" | "cooling" | "flat" {
+  if (delta >= 6) {
+    return "fast";
+  }
+  if (delta >= 2) {
+    return "rising";
+  }
+  if (delta <= -3) {
+    return "cooling";
+  }
+  return "flat";
+}
+
 function buildCardRecommendation(activeWantCount: number, activeOwnerCount: number) {
   if (
     activeWantCount > activeOwnerCount &&
@@ -996,6 +1043,28 @@ function buildCardRecommendation(activeWantCount: number, activeOwnerCount: numb
 function driverScore(activeWants: number, metrics7d: MetricWindow) {
   return activeWants * 3 + metrics7d.wantOn * 2 + metrics7d.opens +
     metrics7d.adds * 2 + metrics7d.comments;
+}
+
+function countOpensLast24h(rows: FeedEventRow[], now: number, cardPrintId: string) {
+  let count = 0;
+
+  for (const row of rows) {
+    if (row.card_print_id !== cardPrintId || row.event_type !== "open_detail") {
+      continue;
+    }
+
+    const createdAt = parseTimestamp(row.created_at);
+    if (createdAt == null) {
+      continue;
+    }
+
+    const ageMs = now - createdAt;
+    if (ageMs >= 0 && ageMs <= ONE_DAY_MS) {
+      count += 1;
+    }
+  }
+
+  return count;
 }
 
 function momentumScore(metrics: MetricWindow) {

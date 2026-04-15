@@ -108,11 +108,35 @@ class _FounderCardSignalDetailScreenState
                               ? detail.insightSummary
                               : detail.summaryLines.take(2))
                           .map((line) => _FounderSummaryLine(text: line))),
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _FounderStatusTag(
+                            label: 'Confidence',
+                            value: _confidenceLabel(detail.confidence),
+                            tone: _confidenceTone(detail.confidence),
+                          ),
+                          _FounderStatusTag(
+                            label: 'Trend',
+                            value: _trendSpeedLabel(detail.trendSpeed),
+                            tone: _trendTone(detail.trendSpeed),
+                          ),
+                        ],
+                      ),
                       if (detail.recommendation == 'understocked') ...[
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 10),
                         const _FounderRecommendationBanner(
                           text:
                               'Likely understocked based on current demand vs visible ownership.',
+                        ),
+                      ],
+                      if (detail.spike) ...[
+                        const SizedBox(height: 10),
+                        const _FounderSignalBanner(
+                          icon: Icons.flash_on_rounded,
+                          text: 'Sudden spike in interest',
                         ),
                       ],
                       const SizedBox(height: 8),
@@ -552,6 +576,89 @@ class _FounderRecommendationBanner extends StatelessWidget {
   }
 }
 
+class _FounderSignalBanner extends StatelessWidget {
+  const _FounderSignalBanner({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.amber.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.amber.withValues(alpha: 0.24)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: Colors.amber.shade800),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface,
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FounderStatusTag extends StatelessWidget {
+  const _FounderStatusTag({
+    required this.label,
+    required this.value,
+    required this.tone,
+  });
+
+  final String label;
+  final String value;
+  final _FounderStatusTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = _statusToneColors(context, tone);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: colors.background,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: RichText(
+        text: TextSpan(
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: colors.foreground,
+            fontWeight: FontWeight.w700,
+          ),
+          children: [
+            TextSpan(
+              text: '$label: ',
+              style: TextStyle(
+                color: colors.foreground.withValues(alpha: 0.82),
+              ),
+            ),
+            TextSpan(text: value),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+enum _FounderStatusTone { neutral, positive, caution, muted }
+
 class _FounderValuePill extends StatelessWidget {
   const _FounderValuePill({
     required this.label,
@@ -708,4 +815,81 @@ String _deltaLabel(int value) {
     return 'Down ${value.abs()}';
   }
   return 'Flat';
+}
+
+String _confidenceLabel(String confidence) {
+  switch (confidence) {
+    case 'high':
+      return 'High';
+    case 'medium':
+      return 'Medium';
+    default:
+      return 'Low';
+  }
+}
+
+String _trendSpeedLabel(String trendSpeed) {
+  switch (trendSpeed) {
+    case 'fast':
+      return 'Rising fast';
+    case 'rising':
+      return 'Rising';
+    case 'cooling':
+      return 'Cooling off';
+    default:
+      return 'Flat';
+  }
+}
+
+_FounderStatusTone _confidenceTone(String confidence) {
+  switch (confidence) {
+    case 'high':
+      return _FounderStatusTone.positive;
+    case 'medium':
+      return _FounderStatusTone.caution;
+    default:
+      return _FounderStatusTone.muted;
+  }
+}
+
+_FounderStatusTone _trendTone(String trendSpeed) {
+  switch (trendSpeed) {
+    case 'fast':
+    case 'rising':
+      return _FounderStatusTone.positive;
+    case 'cooling':
+      return _FounderStatusTone.caution;
+    default:
+      return _FounderStatusTone.muted;
+  }
+}
+
+({Color background, Color foreground}) _statusToneColors(
+  BuildContext context,
+  _FounderStatusTone tone,
+) {
+  final colorScheme = Theme.of(context).colorScheme;
+
+  switch (tone) {
+    case _FounderStatusTone.positive:
+      return (
+        background: Colors.green.withValues(alpha: 0.12),
+        foreground: Colors.green.shade800,
+      );
+    case _FounderStatusTone.caution:
+      return (
+        background: Colors.amber.withValues(alpha: 0.16),
+        foreground: Colors.amber.shade900,
+      );
+    case _FounderStatusTone.muted:
+      return (
+        background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.52),
+        foreground: colorScheme.onSurface.withValues(alpha: 0.72),
+      );
+    case _FounderStatusTone.neutral:
+      return (
+        background: colorScheme.primary.withValues(alpha: 0.1),
+        foreground: colorScheme.primary,
+      );
+  }
 }

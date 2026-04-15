@@ -334,6 +334,9 @@ class FounderCardSignalDrilldown {
     required this.metrics30d,
     required this.previous7d,
     required this.deltas,
+    required this.confidence,
+    required this.trendSpeed,
+    required this.spike,
     required this.recommendation,
     required this.insightSummary,
     required this.summaryLines,
@@ -346,6 +349,9 @@ class FounderCardSignalDrilldown {
   final FounderSignalMetricWindow metrics30d;
   final FounderSignalMetricWindow previous7d;
   final FounderSignalMetricDeltas deltas;
+  final String confidence;
+  final String trendSpeed;
+  final bool spike;
   final String? recommendation;
   final List<String> insightSummary;
   final List<String> summaryLines;
@@ -374,6 +380,9 @@ class FounderCardSignalDrilldown {
       deltas: FounderSignalMetricDeltas.fromJson(
         Map<String, dynamic>.from((json['deltas'] as Map?) ?? const {}),
       ),
+      confidence: _nullableString(json['confidence']) ?? 'low',
+      trendSpeed: _nullableString(json['trend_speed']) ?? 'flat',
+      spike: json['spike'] == true,
       recommendation: _nullableString(json['recommendation']),
       insightSummary: _parseStringList(json['insight_summary']),
       summaryLines: _parseStringList(json['summary_lines']),
