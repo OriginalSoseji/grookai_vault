@@ -1,14 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/account/account_profile_service.dart';
+import '../../services/network/founder_insight_service.dart';
 import '../../services/public/public_collector_service.dart';
+import '../../widgets/founder/founder_market_signals_section.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
 
 enum AccountHubAction { wall, vault, network, sets, messages, signOut }
+
+enum _AccountSegment { profile, vendorTools }
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -30,6 +36,10 @@ class _AccountScreenState extends State<AccountScreen> {
   bool _statusIsSuccess = true;
   Map<String, String> _fieldErrors = const {};
   ProfileMediaKind? _busyMediaKind;
+  _AccountSegment _activeSegment = _AccountSegment.profile;
+  bool _founderInsightsLoading = false;
+  String? _founderInsightsError;
+  FounderInsightBundle? _founderInsights;
 
   AccountProfileData? _profile;
   bool _publicProfileEnabled = false;
@@ -73,6 +83,9 @@ class _AccountScreenState extends State<AccountScreen> {
 
       _hydrateProfile(profile, wallEntry.state);
       setState(() {
+        if (!_isFounderUser && _activeSegment == _AccountSegment.vendorTools) {
+          _activeSegment = _AccountSegment.profile;
+        }
         _loading = false;
       });
     } catch (error) {
@@ -86,6 +99,9 @@ class _AccountScreenState extends State<AccountScreen> {
       });
     }
   }
+
+  bool get _isFounderUser =>
+      FounderInsightService.isFounderUser(_client.auth.currentUser);
 
   void _hydrateProfile(
     AccountProfileData profile,
@@ -321,6 +337,66 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
+  Future<void> _refreshCurrentSegment() async {
+    await _load();
+    if (_isFounderUser && _activeSegment == _AccountSegment.vendorTools) {
+      await _loadFounderInsights(force: true);
+    }
+  }
+
+  void _selectSegment(_AccountSegment segment) {
+    if (segment == _activeSegment) {
+      return;
+    }
+
+    setState(() {
+      _activeSegment = segment;
+    });
+
+    if (segment == _AccountSegment.vendorTools) {
+      unawaited(_loadFounderInsights());
+    }
+  }
+
+  Future<void> _loadFounderInsights({bool force = false}) async {
+    if (!_isFounderUser) {
+      return;
+    }
+    if (_founderInsightsLoading) {
+      return;
+    }
+    if (!force && _founderInsights != null) {
+      return;
+    }
+
+    setState(() {
+      _founderInsightsLoading = true;
+      _founderInsightsError = null;
+    });
+
+    try {
+      final bundle = await FounderInsightService.load(client: _client);
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _founderInsights = bundle;
+        _founderInsightsLoading = false;
+      });
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _founderInsightsLoading = false;
+        _founderInsightsError =
+            'Vendor tools are unavailable right now. Try again in a moment.';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final profile = _profile;
@@ -333,14 +409,14 @@ class _AccountScreenState extends State<AccountScreen> {
         actions: [
           IconButton(
             tooltip: 'Reload',
-            onPressed: _load,
+            onPressed: _refreshCurrentSegment,
             icon: const Icon(Icons.refresh_rounded),
           ),
         ],
       ),
       body: SafeArea(
         child: RefreshIndicator(
-          onRefresh: _load,
+          onRefresh: _refreshCurrentSegment,
           child: ListView(
             padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
             children: [
@@ -369,236 +445,360 @@ class _AccountScreenState extends State<AccountScreen> {
                   vaultSharingEnabled: _vaultSharingEnabled,
                 ),
                 const SizedBox(height: 12),
-                _AccountSurface(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Public profile settings',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        _wallStatusCopy(),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.72),
-                          height: 1.35,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      TextField(
-                        controller: _displayNameController,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: 'Display name',
-                          errorText: _fieldErrors['displayName'],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: _slugController,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          labelText: 'Profile URL',
-                          prefixText: '/u/',
-                          errorText: _fieldErrors['slug'],
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      _ToggleField(
-                        label: 'Public profile',
-                        description:
-                            'Expose your collector identity at a public /u/slug page.',
-                        checked: _publicProfileEnabled,
-                        onChanged: (value) {
-                          setState(() {
-                            _publicProfileEnabled = value;
-                            if (!value) {
-                              _vaultSharingEnabled = false;
-                            }
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      _ToggleField(
-                        label: 'Vault sharing',
-                        description:
-                            'Allow your shared collection and in-play cards to appear on your Wall.',
-                        checked: _vaultSharingEnabled,
-                        disabled: !_publicProfileEnabled,
-                        onChanged: (value) {
-                          setState(() {
-                            _vaultSharingEnabled = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                      _ProfileMediaCard(
-                        title: 'Profile photo',
-                        description:
-                            'Upload or replace the avatar shown on your public collector page.',
-                        previewUrl: avatarUrl,
-                        busy: _busyMediaKind == ProfileMediaKind.avatar,
-                        onPick: () => _pickMedia(ProfileMediaKind.avatar),
-                        onRemove: _avatarPath == null
-                            ? null
-                            : () => _removeMedia(ProfileMediaKind.avatar),
-                        fallbackLabel: _initialsFor(
-                          _displayNameController.text,
-                          profile.email,
-                        ),
-                        compact: true,
-                      ),
-                      const SizedBox(height: 10),
-                      _ProfileMediaCard(
-                        title: 'Banner image',
-                        description:
-                            'Set the banner used behind your public collector identity.',
-                        previewUrl: bannerUrl,
-                        busy: _busyMediaKind == ProfileMediaKind.banner,
-                        onPick: () => _pickMedia(ProfileMediaKind.banner),
-                        onRemove: _bannerPath == null
-                            ? null
-                            : () => _removeMedia(ProfileMediaKind.banner),
-                        fallbackLabel: 'No banner yet',
-                      ),
-                      if (_fieldErrors['form'] != null) ...[
-                        const SizedBox(height: 10),
-                        Text(
-                          _fieldErrors['form']!,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                        ),
-                      ],
-                      if (_statusMessage != null) ...[
-                        const SizedBox(height: 10),
-                        _StatusBanner(
-                          message: _statusMessage!,
-                          success: _statusIsSuccess,
-                        ),
-                      ],
-                      const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: FilledButton.icon(
-                          onPressed: _saving ? null : _save,
-                          icon: Icon(
-                            _saving
-                                ? Icons.hourglass_top_rounded
-                                : Icons.save_outlined,
-                          ),
-                          label: Text(
-                            _saving ? 'Saving...' : 'Save profile settings',
-                          ),
-                        ),
-                      ),
-                    ],
+                if (_isFounderUser) ...[
+                  _AccountSegmentControl(
+                    activeSegment: _activeSegment,
+                    onChanged: _selectSegment,
                   ),
-                ),
-                const SizedBox(height: 12),
-                _AccountSurface(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Quick links',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 10),
-                      _AccountLinkTile(
-                        icon: Icons.public_rounded,
-                        title: 'My Wall',
-                        subtitle: _wallLinkSubtitle(),
-                        onTap: () =>
-                            Navigator.pop(context, AccountHubAction.wall),
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.inventory_2_outlined,
-                        title: 'Vault',
-                        subtitle: 'Open your private collection',
-                        onTap: () =>
-                            Navigator.pop(context, AccountHubAction.vault),
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.hub_outlined,
-                        title: 'Network',
-                        subtitle: 'Browse the collector network',
-                        onTap: () =>
-                            Navigator.pop(context, AccountHubAction.network),
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.mail_outline_rounded,
-                        title: 'Messages',
-                        subtitle: 'Open card-specific collector conversations',
-                        onTap: () =>
-                            Navigator.pop(context, AccountHubAction.messages),
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.grid_view_rounded,
-                        title: 'Browse sets',
-                        subtitle: 'Jump into set browsing',
-                        onTap: () =>
-                            Navigator.pop(context, AccountHubAction.sets),
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.people_alt_outlined,
-                        title: 'Following',
-                        subtitle: 'Collectors you want to revisit',
-                        onTap: _openFollowing,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                _AccountSurface(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Collection tools',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 10),
-                      _AccountLinkTile(
-                        icon: Icons.upload_file_outlined,
-                        title: 'Import Collection',
-                        subtitle: 'Import a Collectr CSV into your vault',
-                        onTap: _openImportCollection,
-                      ),
-                      _AccountLinkTile(
-                        icon: Icons.outbox_outlined,
-                        title: 'Submit Missing Card',
-                        subtitle: 'Send a native warehouse submission',
-                        onTap: _openSubmitMissingCard,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                _AccountSurface(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: FilledButton.icon(
-                      onPressed: () =>
-                          Navigator.pop(context, AccountHubAction.signOut),
-                      icon: const Icon(Icons.logout_rounded),
-                      label: const Text('Sign out'),
-                    ),
-                  ),
-                ),
+                  const SizedBox(height: 12),
+                ],
+                ...(_activeSegment == _AccountSegment.vendorTools
+                    ? _buildVendorToolsContent(context)
+                    : _buildProfileContent(
+                        context,
+                        profile: profile,
+                        avatarUrl: avatarUrl,
+                        bannerUrl: bannerUrl,
+                      )),
               ],
             ],
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> _buildProfileContent(
+    BuildContext context, {
+    required AccountProfileData profile,
+    required String? avatarUrl,
+    required String? bannerUrl,
+  }) {
+    return [
+      _AccountSurface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Public profile settings',
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              _wallStatusCopy(),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.72),
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _displayNameController,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: 'Display name',
+                errorText: _fieldErrors['displayName'],
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _slugController,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                labelText: 'Profile URL',
+                prefixText: '/u/',
+                errorText: _fieldErrors['slug'],
+              ),
+            ),
+            const SizedBox(height: 12),
+            _ToggleField(
+              label: 'Public profile',
+              description:
+                  'Expose your collector identity at a public /u/slug page.',
+              checked: _publicProfileEnabled,
+              onChanged: (value) {
+                setState(() {
+                  _publicProfileEnabled = value;
+                  if (!value) {
+                    _vaultSharingEnabled = false;
+                  }
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+            _ToggleField(
+              label: 'Vault sharing',
+              description:
+                  'Allow your shared collection and in-play cards to appear on your Wall.',
+              checked: _vaultSharingEnabled,
+              disabled: !_publicProfileEnabled,
+              onChanged: (value) {
+                setState(() {
+                  _vaultSharingEnabled = value;
+                });
+              },
+            ),
+            const SizedBox(height: 12),
+            _ProfileMediaCard(
+              title: 'Profile photo',
+              description:
+                  'Upload or replace the avatar shown on your public collector page.',
+              previewUrl: avatarUrl,
+              busy: _busyMediaKind == ProfileMediaKind.avatar,
+              onPick: () => _pickMedia(ProfileMediaKind.avatar),
+              onRemove: _avatarPath == null
+                  ? null
+                  : () => _removeMedia(ProfileMediaKind.avatar),
+              fallbackLabel: _initialsFor(
+                _displayNameController.text,
+                profile.email,
+              ),
+              compact: true,
+            ),
+            const SizedBox(height: 10),
+            _ProfileMediaCard(
+              title: 'Banner image',
+              description:
+                  'Set the banner used behind your public collector identity.',
+              previewUrl: bannerUrl,
+              busy: _busyMediaKind == ProfileMediaKind.banner,
+              onPick: () => _pickMedia(ProfileMediaKind.banner),
+              onRemove: _bannerPath == null
+                  ? null
+                  : () => _removeMedia(ProfileMediaKind.banner),
+              fallbackLabel: 'No banner yet',
+            ),
+            if (_fieldErrors['form'] != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                _fieldErrors['form']!,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.error,
+                ),
+              ),
+            ],
+            if (_statusMessage != null) ...[
+              const SizedBox(height: 10),
+              _StatusBanner(
+                message: _statusMessage!,
+                success: _statusIsSuccess,
+              ),
+            ],
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FilledButton.icon(
+                onPressed: _saving ? null : _save,
+                icon: Icon(
+                  _saving ? Icons.hourglass_top_rounded : Icons.save_outlined,
+                ),
+                label: Text(_saving ? 'Saving...' : 'Save profile settings'),
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      _AccountSurface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Quick links',
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 10),
+            _AccountLinkTile(
+              icon: Icons.public_rounded,
+              title: 'My Wall',
+              subtitle: _wallLinkSubtitle(),
+              onTap: () => Navigator.pop(context, AccountHubAction.wall),
+            ),
+            _AccountLinkTile(
+              icon: Icons.inventory_2_outlined,
+              title: 'Vault',
+              subtitle: 'Open your private collection',
+              onTap: () => Navigator.pop(context, AccountHubAction.vault),
+            ),
+            _AccountLinkTile(
+              icon: Icons.hub_outlined,
+              title: 'Network',
+              subtitle: 'Browse the collector network',
+              onTap: () => Navigator.pop(context, AccountHubAction.network),
+            ),
+            _AccountLinkTile(
+              icon: Icons.mail_outline_rounded,
+              title: 'Messages',
+              subtitle: 'Open card-specific collector conversations',
+              onTap: () => Navigator.pop(context, AccountHubAction.messages),
+            ),
+            _AccountLinkTile(
+              icon: Icons.grid_view_rounded,
+              title: 'Browse sets',
+              subtitle: 'Jump into set browsing',
+              onTap: () => Navigator.pop(context, AccountHubAction.sets),
+            ),
+            _AccountLinkTile(
+              icon: Icons.people_alt_outlined,
+              title: 'Following',
+              subtitle: 'Collectors you want to revisit',
+              onTap: _openFollowing,
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      _AccountSurface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Collection tools',
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 10),
+            _AccountLinkTile(
+              icon: Icons.upload_file_outlined,
+              title: 'Import Collection',
+              subtitle: 'Import a Collectr CSV into your vault',
+              onTap: _openImportCollection,
+            ),
+            _AccountLinkTile(
+              icon: Icons.outbox_outlined,
+              title: 'Submit Missing Card',
+              subtitle: 'Send a native warehouse submission',
+              onTap: _openSubmitMissingCard,
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 12),
+      _AccountSurface(
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.icon(
+            onPressed: () => Navigator.pop(context, AccountHubAction.signOut),
+            icon: const Icon(Icons.logout_rounded),
+            label: const Text('Sign out'),
+          ),
+        ),
+      ),
+    ];
+  }
+
+  List<Widget> _buildVendorToolsContent(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    Widget child;
+    if (_founderInsightsLoading) {
+      child = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const LinearProgressIndicator(minHeight: 3),
+          const SizedBox(height: 12),
+          Text(
+            'Loading founder market signals...',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'This pulls the private founder bundle from the privileged market-signals endpoint.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              height: 1.35,
+            ),
+          ),
+        ],
+      );
+    } else if (_founderInsightsError != null) {
+      child = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _AccountEmptyState(
+            title: 'Unable to load Vendor Tools',
+            body: _founderInsightsError!,
+          ),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            onPressed: () => _loadFounderInsights(force: true),
+            icon: const Icon(Icons.refresh_rounded),
+            label: const Text('Retry'),
+          ),
+        ],
+      );
+    } else if (_founderInsights != null) {
+      child = FounderMarketSignalsSection(bundle: _founderInsights!);
+    } else {
+      child = const _AccountEmptyState(
+        title: 'Vendor Tools are ready',
+        body: 'Pull to refresh or tap reload to fetch founder market signals.',
+      );
+    }
+
+    return [
+      _AccountSurface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Vendor Tools',
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Private founder market signals built from live collector behavior.',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurface.withValues(alpha: 0.7),
+                          height: 1.35,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  tooltip: 'Refresh vendor tools',
+                  onPressed: _founderInsightsLoading
+                      ? null
+                      : () => _loadFounderInsights(force: true),
+                  icon: const Icon(Icons.refresh_rounded),
+                ),
+              ],
+            ),
+            if (_founderInsights?.generatedAt != null) ...[
+              const SizedBox(height: 4),
+              Text(
+                'Updated ${_formatGeneratedAt(context, _founderInsights!.generatedAt!)}',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.58),
+                ),
+              ),
+            ],
+            const SizedBox(height: 12),
+            child,
+          ],
+        ),
+      ),
+    ];
   }
 
   String _wallStatusCopy() {
@@ -635,6 +835,79 @@ class _AccountScreenState extends State<AccountScreen> {
       return 'GV';
     }
     return tokens.map((token) => token.substring(0, 1).toUpperCase()).join();
+  }
+
+  String _formatGeneratedAt(BuildContext context, DateTime timestamp) {
+    final local = timestamp.toLocal();
+    final localizations = MaterialLocalizations.of(context);
+    final day = localizations.formatShortDate(local);
+    final time = localizations.formatTimeOfDay(TimeOfDay.fromDateTime(local));
+    return '$day at $time';
+  }
+}
+
+class _AccountSegmentControl extends StatelessWidget {
+  const _AccountSegmentControl({
+    required this.activeSegment,
+    required this.onChanged,
+  });
+
+  final _AccountSegment activeSegment;
+  final ValueChanged<_AccountSegment> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    Widget segmentButton({
+      required _AccountSegment segment,
+      required String label,
+    }) {
+      final selected = activeSegment == segment;
+
+      return Expanded(
+        child: FilledButton(
+          onPressed: () => onChanged(segment),
+          style: FilledButton.styleFrom(
+            backgroundColor: selected
+                ? colorScheme.primary
+                : colorScheme.surface.withValues(alpha: 0.58),
+            foregroundColor: selected
+                ? colorScheme.onPrimary
+                : colorScheme.onSurface,
+            elevation: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(999),
+            ),
+            textStyle: theme.textTheme.labelMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          child: Text(label),
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
+      ),
+      child: Row(
+        children: [
+          segmentButton(segment: _AccountSegment.profile, label: 'Profile'),
+          const SizedBox(width: 6),
+          segmentButton(
+            segment: _AccountSegment.vendorTools,
+            label: 'Vendor Tools',
+          ),
+        ],
+      ),
+    );
   }
 }
 

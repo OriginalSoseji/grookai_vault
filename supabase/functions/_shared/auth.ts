@@ -68,6 +68,15 @@ export async function requireUser(req: Request): Promise<{
   sb: ReturnType<typeof createClient>;
   userId: string;
 }> {
+  const auth = await requireAuthUser(req);
+  return { sb: auth.sb, userId: auth.userId };
+}
+
+export async function requireAuthUser(req: Request): Promise<{
+  sb: ReturnType<typeof createClient>;
+  userId: string;
+  userEmail: string | null;
+}> {
   const env = readAuthEnv();
   if (!env) throw Object.assign(new Error("server_misconfigured"), { code: "server_misconfigured" });
 
@@ -85,5 +94,9 @@ export async function requireUser(req: Request): Promise<{
     },
   });
 
-  return { sb, userId: userData.user.id };
+  return {
+    sb,
+    userId: userData.user.id,
+    userEmail: userData.user.email ?? null,
+  };
 }
