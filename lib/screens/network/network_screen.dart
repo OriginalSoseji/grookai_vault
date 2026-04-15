@@ -1359,6 +1359,7 @@ void _openCardDetail(
     MaterialPageRoute<void>(
       builder: (_) => CardDetailScreen(
         cardPrintId: row.cardPrintId,
+        entrySurface: 'network_feed',
         gvId: row.gvId,
         name: row.name,
         setName: row.setName,

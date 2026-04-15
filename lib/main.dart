@@ -23,6 +23,7 @@ import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
+import 'services/network/card_engagement_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
@@ -2293,6 +2294,19 @@ class HomePageState extends State<HomePage> {
               return;
             }
 
+            try {
+              await CardEngagementService.recordFeedEvent(
+                client: supabase,
+                cardPrintId: card.id,
+                eventType: 'add_to_vault',
+                surface: 'search_action_hub',
+                metadata: <String, dynamic>{
+                  if (gvid.isNotEmpty) 'gv_id': gvid,
+                  'destination': 'vault',
+                },
+              );
+            } catch (_) {}
+
             if (!sheetContext.mounted) {
               return;
             }
@@ -2399,6 +2413,16 @@ class HomePageState extends State<HomePage> {
             try {
               await SharePlus.instance.share(
                 ShareParams(uri: shareUri, subject: card.name),
+              );
+              await CardEngagementService.recordFeedEvent(
+                client: supabase,
+                cardPrintId: card.id,
+                eventType: 'share',
+                surface: 'search_action_hub',
+                metadata: <String, dynamic>{
+                  if (gvid.isNotEmpty) 'gv_id': gvid,
+                  'destination': 'system_share',
+                },
               );
             } catch (_) {
               if (!mounted || !sheetContext.mounted) {
@@ -2772,6 +2796,7 @@ class HomePageState extends State<HomePage> {
       MaterialPageRoute<void>(
         builder: (_) => CardDetailScreen(
           cardPrintId: card.id,
+          entrySurface: 'search',
           gvId: (card.gvId ?? '').isEmpty ? null : card.gvId,
           name: card.name,
           setName: card.displaySet,

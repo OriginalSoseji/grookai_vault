@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'models/ownership_state.dart';
@@ -9,6 +12,8 @@ import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
+import 'services/navigation/grookai_web_route_service.dart';
+import 'services/network/card_engagement_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -34,6 +39,7 @@ class CardDetailScreen extends StatefulWidget {
   final String? contactIntent;
   final String? exactCopyGvviId;
   final String? exactCopyOwnerUserId;
+  final String? entrySurface;
 
   const CardDetailScreen({
     super.key,
@@ -53,6 +59,7 @@ class CardDetailScreen extends StatefulWidget {
     this.contactIntent,
     this.exactCopyGvviId,
     this.exactCopyOwnerUserId,
+    this.entrySurface,
   });
 
   @override
@@ -76,8 +83,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   int? _managedOwnedCount;
   bool _canOpenPublicPage = false;
   bool _addingToVault = false;
+  bool _wantLoading = false;
+  bool _didRecordOpenDetail = false;
   Map<String, OwnershipState> _relatedVersionOwnershipByCardPrintId =
       <String, OwnershipState>{};
+  CardWantState _wantState = const CardWantState();
 
   @override
   void initState() {
@@ -86,6 +96,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     _loadPricing();
     _loadActionContext();
     _loadOwnershipState();
+    _loadWantState();
+    unawaited(_recordOpenDetailEvent());
   }
 
   Future<void> _loadOwnershipState({bool refresh = false}) async {
@@ -120,6 +132,40 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _ownershipLoading = false;
       });
     }
+  }
+
+  Future<void> _loadWantState() async {
+    try {
+      final wantState = await CardEngagementService.loadWantState(
+        client: supabase,
+        cardPrintId: widget.cardPrintId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _wantState = wantState;
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _recordOpenDetailEvent() async {
+    if (_didRecordOpenDetail) {
+      return;
+    }
+    _didRecordOpenDetail = true;
+    try {
+      await CardEngagementService.recordFeedEvent(
+        client: supabase,
+        cardPrintId: widget.cardPrintId,
+        eventType: 'open_detail',
+        surface: _entrySurface,
+        metadata: <String, dynamic>{
+          if (_cleanText(widget.gvId).isNotEmpty)
+            'gv_id': _cleanText(widget.gvId),
+        },
+      );
+    } catch (_) {}
   }
 
   Future<void> _loadCardContext() async {
@@ -563,14 +609,128 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Future<void> _toggleWant() async {
+    if (_wantLoading) {
+      return;
+    }
+
+    final userId = supabase.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign in to save wanted cards.')),
+      );
+      return;
+    }
+
+    setState(() {
+      _wantLoading = true;
+    });
+
+    try {
+      final nextWantState = await CardEngagementService.setWant(
+        client: supabase,
+        cardPrintId: widget.cardPrintId,
+        want: !_wantState.want,
+        surface: _entrySurface,
+        metadata: <String, dynamic>{
+          if (_cleanText(widget.gvId).isNotEmpty)
+            'gv_id': _cleanText(widget.gvId),
+        },
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _wantState = nextWantState;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            nextWantState.want
+                ? 'Saved to wanted cards.'
+                : 'Removed from wanted cards.',
+          ),
+          duration: const Duration(milliseconds: 1400),
+        ),
+      );
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.toString().replaceFirst('Exception: ', '')),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _wantLoading = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _shareCard() async {
+    final gvId = _cleanText(widget.gvId);
+    if (gvId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Unable to share this card right now.')),
+      );
+      return;
+    }
+
+    final shareUri = GrookaiWebRouteService.buildUri(
+      '/card/${Uri.encodeComponent(gvId)}',
+    );
+
+    try {
+      await SharePlus.instance.share(
+        ShareParams(uri: shareUri, subject: _displayName),
+      );
+      if (!mounted) {
+        return;
+      }
+      await CardEngagementService.recordFeedEvent(
+        client: supabase,
+        cardPrintId: widget.cardPrintId,
+        eventType: 'share',
+        surface: _entrySurface,
+        metadata: <String, dynamic>{'destination': 'system_share'},
+      );
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Unable to share this card right now.')),
+      );
+    }
+  }
+
+  Future<void> _openCommentsSheet() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (_) => _CardCommentsSheet(
+        cardPrintId: widget.cardPrintId,
+        cardName: _displayName,
+      ),
+    );
+  }
+
   Future<void> _addToVault() async {
     if (_addingToVault) {
       return;
     }
 
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
+      messenger.showSnackBar(
         const SnackBar(content: Text('Sign in to add cards to your vault.')),
       );
       return;
@@ -601,7 +761,24 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         throw Exception('Exact copy could not be created.');
       }
 
-      await Navigator.of(context).pushReplacement(
+      try {
+        await CardEngagementService.recordFeedEvent(
+          client: supabase,
+          cardPrintId: widget.cardPrintId,
+          eventType: 'add_to_vault',
+          surface: _entrySurface,
+          metadata: <String, dynamic>{
+            if (_cleanText(widget.gvId).isNotEmpty)
+              'gv_id': _cleanText(widget.gvId),
+          },
+        );
+      } catch (_) {}
+
+      if (!mounted) {
+        return;
+      }
+
+      await navigator.pushReplacement(
         MaterialPageRoute<void>(
           builder: (_) => VaultGvviScreen(gvviId: gvviId),
         ),
@@ -610,7 +787,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       if (!mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
+      messenger.showSnackBar(
         SnackBar(
           content: Text(error.toString().replaceFirst('Exception: ', '')),
         ),
@@ -673,6 +850,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
 
     return _cleanText(_cardContextData?['number']);
+  }
+
+  String get _entrySurface {
+    final value = _cleanText(widget.entrySurface);
+    return value.isEmpty ? 'card_detail' : value;
   }
 
   String? get _collectorIdentityLine {
@@ -1091,6 +1273,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           label: 'In your vault',
           icon: Icons.inventory_2_outlined,
           tint: Colors.orange.shade800,
+          theme: theme,
+        ),
+      if (_wantState.want)
+        _buildInfoChip(
+          label: 'Wanted',
+          icon: Icons.favorite_rounded,
+          tint: Colors.red.shade500,
           theme: theme,
         ),
       if (rarity.isNotEmpty)
@@ -1929,6 +2118,28 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  ButtonStyle _accentActionButtonStyle(
+    ThemeData theme,
+    ColorScheme colorScheme, {
+    required bool active,
+  }) {
+    final tint = active ? Colors.red.shade500 : colorScheme.primary;
+    return OutlinedButton.styleFrom(
+      minimumSize: const Size.fromHeight(44),
+      backgroundColor: active ? tint.withValues(alpha: 0.1) : null,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      side: BorderSide(
+        color: active
+            ? tint.withValues(alpha: 0.4)
+            : colorScheme.outlineVariant.withValues(alpha: 0.9),
+      ),
+      foregroundColor: active ? tint : colorScheme.onSurface,
+      textStyle: theme.textTheme.labelLarge?.copyWith(
+        fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+
   Widget _buildActions(
     BuildContext context,
     ThemeData theme,
@@ -1976,6 +2187,38 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     final actions = <Widget>[
       primaryOwnershipAction,
+      OutlinedButton.icon(
+        onPressed: _wantLoading ? null : _toggleWant,
+        style: _accentActionButtonStyle(
+          theme,
+          colorScheme,
+          active: _wantState.want,
+        ),
+        icon: _wantLoading
+            ? const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            : Icon(
+                _wantState.want
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
+              ),
+        label: Text(_wantState.want ? 'Wanted' : 'Want this card'),
+      ),
+      OutlinedButton.icon(
+        onPressed: _openCommentsSheet,
+        style: _secondaryActionButtonStyle(theme, colorScheme),
+        icon: const Icon(Icons.mode_comment_outlined),
+        label: const Text('Comments'),
+      ),
+      OutlinedButton.icon(
+        onPressed: _shareCard,
+        style: _secondaryActionButtonStyle(theme, colorScheme),
+        icon: const Icon(Icons.share_outlined),
+        label: const Text('Share'),
+      ),
       if ((_ownershipState?.owned ?? false) &&
           ownershipAction != OwnershipAction.addAnotherCopy)
         OutlinedButton.icon(
@@ -2051,6 +2294,326 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           const SizedBox(height: 8),
           Wrap(spacing: 8, runSpacing: 8, children: actions),
         ],
+      ),
+    );
+  }
+}
+
+class _CardCommentsSheet extends StatefulWidget {
+  const _CardCommentsSheet({required this.cardPrintId, required this.cardName});
+
+  final String cardPrintId;
+  final String cardName;
+
+  @override
+  State<_CardCommentsSheet> createState() => _CardCommentsSheetState();
+}
+
+class _CardCommentsSheetState extends State<_CardCommentsSheet> {
+  final SupabaseClient _supabase = Supabase.instance.client;
+  final TextEditingController _bodyController = TextEditingController();
+
+  List<CardCommentEntry> _comments = const <CardCommentEntry>[];
+  bool _loading = true;
+  bool _submitting = false;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_loadComments());
+  }
+
+  @override
+  void dispose() {
+    _bodyController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadComments() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+
+    try {
+      final comments = await CardEngagementService.fetchComments(
+        client: _supabase,
+        cardPrintId: widget.cardPrintId,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _comments = comments;
+        _loading = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _loading = false;
+        _error = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<void> _submitComment() async {
+    final message = _bodyController.text.trim();
+    if (_submitting || message.isEmpty) {
+      return;
+    }
+
+    setState(() {
+      _submitting = true;
+      _error = null;
+    });
+
+    try {
+      final entry = await CardEngagementService.addComment(
+        client: _supabase,
+        cardPrintId: widget.cardPrintId,
+        body: message,
+      );
+      if (!mounted) {
+        return;
+      }
+      _bodyController.clear();
+      setState(() {
+        _comments = <CardCommentEntry>[entry, ..._comments];
+        _submitting = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _submitting = false;
+        _error = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
+    final currentUserId = _supabase.auth.currentUser?.id;
+    final canComment = (currentUserId ?? '').trim().isNotEmpty;
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: bottomInset),
+      child: SizedBox(
+        height: MediaQuery.sizeOf(context).height * 0.72,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Comments',
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.4,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    widget.cardName,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.66),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: _loading
+                  ? const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : _error != null
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          _error!,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.error,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    )
+                  : _comments.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
+                        child: Text(
+                          'Start the first comment on this card.',
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.62,
+                            ),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    )
+                  : ListView.separated(
+                      padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
+                      itemCount: _comments.length,
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 10),
+                      itemBuilder: (context, index) {
+                        final entry = _comments[index];
+                        final ownedByViewer = entry.isOwnedBy(currentUserId);
+                        final accent = ownedByViewer
+                            ? colorScheme.primary
+                            : colorScheme.secondary;
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: colorScheme.surfaceContainerLowest,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: colorScheme.outlineVariant.withValues(
+                                alpha: 0.34,
+                              ),
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    ownedByViewer ? 'You' : 'Collector',
+                                    style: theme.textTheme.labelLarge?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      color: accent,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    CardEngagementService.formatRelativeTime(
+                                      entry.createdAt,
+                                    ),
+                                    style: theme.textTheme.labelMedium
+                                        ?.copyWith(
+                                          color: colorScheme.onSurface
+                                              .withValues(alpha: 0.54),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  if ((entry.intentType ?? '').isNotEmpty) ...[
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: accent.withValues(alpha: 0.1),
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        entry.intentType!.toUpperCase(),
+                                        style: theme.textTheme.labelSmall
+                                            ?.copyWith(
+                                              color: accent,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                entry.body,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  height: 1.35,
+                                  color: colorScheme.onSurface,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.24),
+                  ),
+                ),
+              ),
+              padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    controller: _bodyController,
+                    minLines: 1,
+                    maxLines: 4,
+                    enabled: canComment && !_submitting,
+                    textInputAction: TextInputAction.newline,
+                    decoration: InputDecoration(
+                      hintText: canComment
+                          ? 'Comment on this card'
+                          : 'Sign in to comment',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Comments stay attached to this card.',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.58,
+                            ),
+                            height: 1.3,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      FilledButton.icon(
+                        onPressed: canComment && !_submitting
+                            ? _submitComment
+                            : null,
+                        icon: _submitting
+                            ? const SizedBox(
+                                width: 14,
+                                height: 14,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.send_rounded),
+                        label: Text(_submitting ? 'Posting...' : 'Post'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
