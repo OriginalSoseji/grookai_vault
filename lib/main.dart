@@ -36,6 +36,7 @@ import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
+import 'services/identity/display_identity.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
@@ -622,6 +623,7 @@ class _CatalogCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final compact = viewMode == AppCardViewMode.compactList;
+    final displayIdentity = resolveCardPrintDisplayIdentity(card);
 
     final subtitleParts = <String>[];
     if (compact) {
@@ -679,7 +681,7 @@ class _CatalogCardTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            card.name,
+                            displayIdentity.displayName,
                             style:
                                 (compact
                                         ? theme.textTheme.bodySmall
@@ -734,8 +736,9 @@ class _CatalogCardTile extends StatelessWidget {
   }
 
   Widget _thumb(String? url, double width, double height) {
+    final displayIdentity = resolveCardPrintDisplayIdentity(card);
     return CardSurfaceArtwork(
-      label: card.name,
+      label: displayIdentity.displayName,
       imageUrl: url,
       width: width,
       height: height,
@@ -888,6 +891,7 @@ class _CatalogCardGridTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayIdentity = resolveCardPrintDisplayIdentity(card);
     final subtitleParts = <String>[
       if (card.displaySet.isNotEmpty)
         card.displaySet
@@ -920,7 +924,7 @@ class _CatalogCardGridTile extends StatelessWidget {
                 SizedBox(
                   height: _kWallMatchTitleHeight,
                   child: Text(
-                    card.name,
+                    displayIdentity.displayName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleMedium?.copyWith(
@@ -987,9 +991,10 @@ class _CatalogGridArtwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final displayIdentity = resolveCardPrintDisplayIdentity(card);
 
     return CardSurfaceArtwork(
-      label: card.name,
+      label: displayIdentity.displayName,
       imageUrl: card.displayImage,
       borderRadius: 22,
       padding: const EdgeInsets.all(1.5),
@@ -1287,6 +1292,7 @@ class _SearchResultActionSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayIdentity = resolveCardPrintDisplayIdentity(card);
     final action = _effectiveOwnershipAction(ownershipState);
     final ownedCount = ownershipState?.ownedCount ?? 0;
     final interactionLocked =
@@ -1337,7 +1343,7 @@ class _SearchResultActionSheet extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 3 / 4,
                   child: CardSurfaceArtwork(
-                    label: card.name,
+                    label: displayIdentity.displayName,
                     imageUrl: card.displayImage,
                     borderRadius: 24,
                     padding: const EdgeInsets.all(6),
@@ -1347,7 +1353,7 @@ class _SearchResultActionSheet extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              card.name,
+              displayIdentity.displayName,
               textAlign: TextAlign.center,
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w700,
@@ -2712,7 +2718,10 @@ class HomePageState extends State<HomePage> {
 
             try {
               await SharePlus.instance.share(
-                ShareParams(uri: shareUri, subject: card.name),
+                ShareParams(
+                  uri: shareUri,
+                  subject: resolveCardPrintDisplayIdentity(card).displayName,
+                ),
               );
               await CardEngagementService.recordFeedEvent(
                 client: supabase,

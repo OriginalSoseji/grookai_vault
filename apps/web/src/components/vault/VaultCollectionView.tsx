@@ -15,6 +15,7 @@ import { formatVaultCurrency } from "@/components/vault/VaultCardPrimitives";
 import { VaultMobileToolbar } from "@/components/vault/VaultMobileToolbar";
 import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
@@ -23,6 +24,7 @@ export type RecentCardData = {
   id: string;
   gv_id: string;
   name: string;
+  display_name: string;
   set_code: string;
   set_name: string;
   number: string;
@@ -806,13 +808,13 @@ export function VaultCollectionView({
                 key={item.id}
                 className="min-w-[220px] max-w-[220px] flex-none rounded-[1.5rem] border-slate-200/80 bg-white/95 shadow-[0_20px_42px_-34px_rgba(15,23,42,0.28)]"
                 imageSrc={item.image_url}
-                imageAlt={item.name}
+                imageAlt={item.display_name}
                 imageHref={`/card/${item.gv_id}`}
-                imageFallbackLabel={item.name}
+                imageFallbackLabel={item.display_name}
                 imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
                 title={
                   <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
-                    {item.name}
+                    {item.display_name}
                   </Link>
                 }
                 subtitle={

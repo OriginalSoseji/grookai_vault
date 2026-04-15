@@ -4,6 +4,7 @@ import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
 type NetworkStreamCardProps = {
   row: CardStreamRow;
@@ -45,6 +46,14 @@ function getIntentSummary(row: CardStreamRow) {
 }
 
 export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentPath }: NetworkStreamCardProps) {
+  const displayIdentity = resolveDisplayIdentity({
+    name: row.name,
+    variant_key: row.variantKey,
+    printed_identity_modifier: row.printedIdentityModifier,
+    set_identity_model: row.setIdentityModel,
+    set_code: row.setCode,
+    number: row.number === "—" ? null : row.number,
+  });
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const ownerHref = `/u/${row.ownerSlug}`;
   const canContactOwner = viewerUserId !== row.ownerUserId;
@@ -64,10 +73,10 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
         >
           <PublicCardImage
             src={row.imageUrl ?? undefined}
-            alt={row.name}
+            alt={displayIdentity.display_name}
             imageClassName="aspect-[3/4] w-[140px] rounded-[1rem] border border-slate-200 bg-slate-50 object-contain p-2"
             fallbackClassName="flex aspect-[3/4] w-[140px] items-center justify-center rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
-            fallbackLabel={row.name}
+            fallbackLabel={displayIdentity.display_name}
           />
         </Link>
 
@@ -89,7 +98,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
           <div className="space-y-2">
             <Link href={singleCopyHref} className="block">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950 transition hover:text-slate-700">
-                {row.name}
+                {displayIdentity.display_name}
               </h2>
             </Link>
             <p className="text-sm text-slate-600">
@@ -115,7 +124,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                 ownerUserId={row.ownerUserId}
                 viewerUserId={viewerUserId}
                 ownerDisplayName={row.ownerDisplayName}
-                cardName={row.name}
+                cardName={displayIdentity.display_name}
                 intent={groupedContactAnchor.intent}
                 buttonLabel={groupedContactAnchor.intent ? undefined : "Contact owner"}
                 isAuthenticated={isAuthenticated}
@@ -161,7 +170,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                           ownerUserId={row.ownerUserId}
                           viewerUserId={viewerUserId}
                           ownerDisplayName={row.ownerDisplayName}
-                          cardName={row.name}
+                          cardName={displayIdentity.display_name}
                           intent={copy.intent}
                           buttonLabel={row.inPlayCopies.length > 1 ? "Contact about this copy" : undefined}
                           isAuthenticated={isAuthenticated}

@@ -5,6 +5,7 @@ import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 
 type ExploreCardDetailsRowProps = {
@@ -15,6 +16,7 @@ type ExploreCardDetailsRowProps = {
 };
 
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref }: ExploreCardDetailsRowProps) {
+  const displayIdentity = resolveDisplayIdentity(card);
   const variantLabels = getVariantLabels(card, 3);
 
   return (
@@ -23,13 +25,16 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
         <div className="flex min-w-0 items-center gap-3">
           <PublicCardImage
             src={card.image_url}
-            alt={card.name}
+            alt={displayIdentity.display_name}
             imageClassName="h-14 w-10 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-14 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
           />
           <div className="min-w-0">
-            <Link href={href} className="block truncate text-sm font-semibold text-slate-900 hover:underline">
-              {card.name}
+            <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline">
+              <span className="block truncate">{displayIdentity.base_name}</span>
+              {displayIdentity.suffix ? (
+                <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+              ) : null}
             </Link>
             <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.gv_id}</p>
           </div>

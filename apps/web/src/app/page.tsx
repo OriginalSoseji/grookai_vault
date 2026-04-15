@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { createClient } from "@supabase/supabase-js";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
@@ -11,15 +12,27 @@ const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
 type FeaturedCardRow = {
   gv_id: string | null;
   name: string | null;
+  set_code: string | null;
+  number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  sets?:
+    | {
+        identity_model: string | null;
+      }
+    | {
+        identity_model: string | null;
+      }[]
+    | null;
 };
 
 type FeaturedCard = {
   gv_id: string;
-  name: string;
+  display_name: string;
   image_url?: string;
 };
 
@@ -40,7 +53,9 @@ async function getFeaturedCardByName(
 ): Promise<FeaturedCard> {
   const { data } = await supabase
     .from("card_prints")
-    .select("gv_id,name,image_url,image_alt_url,image_source,image_path")
+    .select(
+      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,sets(identity_model)",
+    )
     .eq("name", name)
     .order("gv_id")
     .limit(12);
@@ -57,10 +72,19 @@ async function getFeaturedCardByName(
   const bestRow = resolvedRows.find(
     (entry) => typeof entry.row.gv_id === "string" && Boolean(entry.resolvedImageUrl),
   );
+  const bestSet = Array.isArray(bestRow?.row.sets) ? bestRow?.row.sets[0] : bestRow?.row.sets;
+  const displayIdentity = resolveDisplayIdentity({
+    name: bestRow?.row.name ?? name,
+    variant_key: bestRow?.row.variant_key ?? null,
+    printed_identity_modifier: bestRow?.row.printed_identity_modifier ?? null,
+    set_identity_model: bestSet?.identity_model ?? null,
+    set_code: bestRow?.row.set_code ?? "",
+    number: bestRow?.row.number ?? null,
+  });
 
   return {
     gv_id: bestRow?.row.gv_id ?? `featured-${name.toLowerCase()}`,
-    name,
+    display_name: displayIdentity.display_name,
     image_url: bestRow?.resolvedImageUrl ?? undefined,
   };
 }
@@ -129,10 +153,10 @@ export default async function HomePage() {
               <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
                 <PublicCardImage
                   src={leftCard.image_url}
-                  alt={leftCard.name}
+                  alt={leftCard.display_name}
                   imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={leftCard.name}
+                  fallbackLabel={leftCard.display_name}
                 />
               </div>
             </Link>
@@ -144,10 +168,10 @@ export default async function HomePage() {
               <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-3 shadow-xl shadow-slate-300/60">
                 <PublicCardImage
                   src={centerCard.image_url}
-                  alt={centerCard.name}
+                  alt={centerCard.display_name}
                   imageClassName="aspect-[3/4] w-full rounded-[1.1rem] bg-slate-50 object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1.1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                  fallbackLabel={centerCard.name}
+                  fallbackLabel={centerCard.display_name}
                 />
               </div>
             </Link>
@@ -159,10 +183,10 @@ export default async function HomePage() {
               <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-md shadow-slate-200/70">
                 <PublicCardImage
                   src={rightCard.image_url}
-                  alt={rightCard.name}
+                  alt={rightCard.display_name}
                   imageClassName="aspect-[3/4] w-full rounded-[1rem] bg-slate-50 object-contain"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[1rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={rightCard.name}
+                  fallbackLabel={rightCard.display_name}
                 />
               </div>
             </Link>

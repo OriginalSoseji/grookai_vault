@@ -9,6 +9,7 @@ import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity } from "@/hooks/useViewDensity";
 import { getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
 import {
@@ -276,6 +277,7 @@ export function PublicCollectorProfileContent({
 
           <div className={getPokemonCardCollectionGridClassName(density)}>
             {inPlayCards.map((card) => {
+              const displayIdentity = resolveDisplayIdentity(card);
               const supportBadge = getInPlaySupportBadge(card);
               const ownershipSummary = getInPlayOwnershipSummary(card);
               const intentBadges = getIntentBadgeLabels(card);
@@ -289,9 +291,9 @@ export function PublicCollectorProfileContent({
                   density={density}
                   imageSrc={card.image_url}
                   imageFallbackSrc={card.canonical_image_url}
-                  imageAlt={card.name}
+                  imageAlt={displayIdentity.display_name}
                   imageHref={exactCopyHref}
-                  imageFallbackLabel={card.name}
+                  imageFallbackLabel={displayIdentity.display_name}
                   imageOverlay={
                     <>
                       <div className="flex min-w-0 flex-wrap gap-1.5">
@@ -315,7 +317,7 @@ export function PublicCollectorProfileContent({
                   }
                   title={
                     <Link href={exactCopyHref} className="line-clamp-2 block transition hover:text-slate-700">
-                      {card.name}
+                      {displayIdentity.display_name}
                     </Link>
                   }
                   subtitle={
@@ -381,7 +383,7 @@ export function PublicCollectorProfileContent({
                                       ownerUserId={collectorUserId}
                                       viewerUserId={viewerUserId}
                                       ownerDisplayName={collectorDisplayName}
-                                      cardName={card.name}
+                                      cardName={displayIdentity.display_name}
                                       intent={copy.intent}
                                       isAuthenticated={isAuthenticated}
                                       loginHref={loginHref}
@@ -403,7 +405,7 @@ export function PublicCollectorProfileContent({
                           ownerUserId={collectorUserId}
                           viewerUserId={viewerUserId}
                           ownerDisplayName={collectorDisplayName}
-                          cardName={card.name}
+                          cardName={displayIdentity.display_name}
                           intent={groupedContactAnchor.intent}
                           isAuthenticated={isAuthenticated}
                           loginHref={loginHref}

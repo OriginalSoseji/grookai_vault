@@ -49,6 +49,10 @@ export type PublicSetCard = {
   gv_id: string;
   name: string;
   number: string;
+  set_code?: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   rarity?: string;
   image_url?: string;
 };

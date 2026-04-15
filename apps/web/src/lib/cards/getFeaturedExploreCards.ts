@@ -4,6 +4,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
 type FeaturedExploreCardRow = {
   gv_id: string | null;
@@ -11,6 +12,8 @@ type FeaturedExploreCardRow = {
   number: string | null;
   rarity: string | null;
   set_code: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   image_source: string | null;
@@ -18,9 +21,11 @@ type FeaturedExploreCardRow = {
   sets:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -28,10 +33,14 @@ type FeaturedExploreCardRow = {
 export type FeaturedExploreCard = {
   gv_id: string;
   name: string;
+  display_name: string;
   number: string;
   rarity?: string;
   set_code?: string;
   set_name?: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   image_url?: string;
 };
 
@@ -45,14 +54,27 @@ async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null |
 
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const imageUrl = await resolveCanonImageUrlV1(row);
+  const name = row.name?.trim() || "Unknown";
+  const displayIdentity = resolveDisplayIdentity({
+    name,
+    variant_key: row.variant_key?.trim() || null,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || null,
+    set_identity_model: setRecord?.identity_model?.trim() || null,
+    set_code: row.set_code?.trim() || "",
+    number: row.number?.trim() || null,
+  });
 
   return {
     gv_id: row.gv_id,
-    name: row.name?.trim() || "Unknown",
+    name,
+    display_name: displayIdentity.display_name,
     number: row.number?.trim() || "",
     rarity: row.rarity?.trim() || undefined,
     set_code: row.set_code?.trim() || undefined,
     set_name: setRecord?.name?.trim() || undefined,
+    variant_key: row.variant_key?.trim() || undefined,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+    set_identity_model: setRecord?.identity_model?.trim() || undefined,
     image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
   } satisfies FeaturedExploreCard;
 }
@@ -78,7 +100,7 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
   const supabase = createServerComponentClient();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,set_code,image_url,image_alt_url,image_source,image_path,sets(name)")
+    .select("gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,sets(name,identity_model)")
     .ilike("rarity", "%Special Illustration Rare%")
     .order("gv_id", { ascending: true })
     .range(offset, offset + windowSize - 1);

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getPublicWallCardHref, type PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   getWallCategoryLabel,
@@ -43,6 +44,7 @@ function FeaturedWallCard({
   viewerUserId?: string | null;
   ownerUserId?: string | null;
 }) {
+  const displayIdentity = resolveDisplayIdentity(card);
   const wallCategoryLabel = getWallCategoryLabel(card.wall_category);
   const mixedSummary = getMixedOwnershipSummary(card);
   const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
@@ -58,10 +60,10 @@ function FeaturedWallCard({
             <PublicCardImage
               src={card.image_url}
               fallbackSrc={card.canonical_image_url}
-              alt={card.name}
+              alt={displayIdentity.display_name}
               imageClassName="aspect-[3/4] w-full object-contain bg-slate-50 p-5 transition duration-200 group-hover:scale-[1.02]"
               fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-              fallbackLabel={card.name}
+              fallbackLabel={displayIdentity.display_name}
             />
           </div>
         </div>
@@ -69,7 +71,9 @@ function FeaturedWallCard({
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="space-y-2">
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">Featured Wall</p>
-              <h3 className="line-clamp-2 text-2xl font-semibold tracking-tight text-slate-950">{card.name}</h3>
+              <h3 className="line-clamp-2 text-2xl font-semibold tracking-tight text-slate-950">
+                {displayIdentity.display_name}
+              </h3>
               <p className="text-sm text-slate-600">
                 {[card.set_name, card.number !== "—" ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ")}
               </p>
@@ -112,10 +116,10 @@ function FeaturedWallCard({
               </div>
               <PublicCardImage
                 src={card.back_image_url}
-                alt={`${card.name} back`}
+                alt={`${displayIdentity.display_name} back`}
                 imageClassName="aspect-[3/4] w-full bg-slate-50 object-contain p-4"
                 fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-4 text-center text-sm text-slate-500"
-                fallbackLabel={`${card.name} back`}
+                fallbackLabel={`${displayIdentity.display_name} back`}
               />
             </div>
           ) : null}

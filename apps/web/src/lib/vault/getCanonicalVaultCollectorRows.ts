@@ -59,6 +59,9 @@ export type CanonicalVaultCollectorRow = {
   card_id: string;
   gv_id: string;
   name: string;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  set_identity_model: string | null;
   set_code: string;
   set_name: string;
   number: string;
@@ -148,6 +151,8 @@ type CardPrintMetadataRow = {
   id: string;
   gv_id: string | null;
   name: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   set_code: string | null;
   number: string | null;
   image_url: string | null;
@@ -157,9 +162,11 @@ type CardPrintMetadataRow = {
   sets:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -466,7 +473,7 @@ async function fetchCardMetadataById(cardPrintIds: string[]) {
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name)")
+      .select("id,gv_id,name,variant_key,printed_identity_modifier,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name,identity_model)")
       .in("id", ids);
 
     if (error) {
@@ -747,6 +754,9 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       card_id: cardPrintId,
       gv_id: card?.gv_id?.trim() || representativeBucket.gv_id?.trim() || "",
       name: card?.name?.trim() || representativeBucket.name?.trim() || "Unknown card",
+      variant_key: card?.variant_key?.trim() || null,
+      printed_identity_modifier: card?.printed_identity_modifier?.trim() || null,
+      set_identity_model: setRecord?.identity_model?.trim() || null,
       set_code: card?.set_code?.trim() || "",
       set_name:
         setRecord?.name?.trim() || representativeBucket.set_name?.trim() || card?.set_code?.trim() || "Unknown set",

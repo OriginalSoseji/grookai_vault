@@ -11,6 +11,7 @@ import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
 import type { ExploreViewMode } from "@/lib/exploreViewModes";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
 const POPULAR_POKEMON = [
   "Pikachu",
@@ -77,6 +78,15 @@ export default function ExploreDiscoverySections({
   notableSets,
   currentView,
 }: ExploreDiscoverySectionsProps) {
+  const getDisplayName = (card: FeaturedExploreCard) =>
+    resolveDisplayIdentity({
+      name: card.name,
+      variant_key: card.variant_key ?? null,
+      printed_identity_modifier: card.printed_identity_modifier ?? null,
+      set_identity_model: card.set_identity_model ?? null,
+      set_code: card.set_code ?? "",
+      number: card.number,
+    }).display_name;
   const spotlightCard = featuredCards[0] ?? null;
   const railCards = featuredCards.slice(1, 7);
   const gridCards = [...featuredCards.slice(7), ...featuredCards.slice(1, 7)].slice(0, 4);
@@ -99,13 +109,13 @@ export default function ExploreDiscoverySections({
                 <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white/90 shadow-sm">
                   <PublicCardImage
                     src={spotlightCard.image_url}
-                    alt={spotlightCard.name}
+                    alt={spotlightCard.display_name}
                     imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3"
                     fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   />
                 </div>
                 <div className="space-y-0.5">
-                  <p className="text-[1.15rem] font-semibold tracking-tight text-slate-950">{spotlightCard.name}</p>
+                  <p className="text-[1.15rem] font-semibold tracking-tight text-slate-950">{spotlightCard.display_name}</p>
                   <p className="text-[13px] leading-5 text-slate-600">{buildCardMetaLine(spotlightCard)}</p>
                 </div>
               </Link>
@@ -138,13 +148,13 @@ export default function ExploreDiscoverySections({
                       <div className="rounded-[0.9rem] border border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-2.5">
                         <PublicCardImage
                           src={card.image_url}
-                          alt={card.name}
+                          alt={card.display_name}
                           imageClassName="aspect-[3/4] w-full object-contain"
                           fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
                         />
                       </div>
                       <div className="space-y-0.5">
-                        <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.name}</p>
+                        <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.display_name}</p>
                         <p className="line-clamp-2 text-[11px] leading-[1.125rem] text-slate-500">{buildCardMetaLine(card)}</p>
                       </div>
                     </Link>
@@ -167,14 +177,14 @@ export default function ExploreDiscoverySections({
                   key={card.gv_id}
                   density="compact"
                   imageSrc={card.image_url}
-                  imageAlt={card.name}
+                  imageAlt={card.display_name}
                   imageHref={buildCardHref(card.gv_id, compareCards)}
                   title={
                     <Link
                       href={buildCardHref(card.gv_id, compareCards)}
                       className="line-clamp-2 block transition hover:text-slate-700"
                     >
-                      {card.name}
+                      {card.display_name}
                     </Link>
                   }
                   subtitle={<span className="line-clamp-2 block text-[11px] leading-[1.125rem]">{buildCardMetaLine(card)}</span>}
@@ -273,14 +283,14 @@ export default function ExploreDiscoverySections({
                   key={card.gv_id}
                   utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
                   imageSrc={card.image_url}
-                  imageAlt={card.name}
+                  imageAlt={getDisplayName(card)}
                   imageHref={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
                   title={
                     <Link
                       href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
                       className="block truncate transition hover:text-slate-700"
                     >
-                      {card.name}
+                      {getDisplayName(card)}
                     </Link>
                   }
                   subtitle={<span className="block truncate">{card.set_name ?? card.set_code ?? "Unknown set"}</span>}

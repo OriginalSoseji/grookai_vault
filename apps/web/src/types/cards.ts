@@ -49,6 +49,8 @@ export interface RelatedCardPrint extends CardSummary {
   number_plain?: string;
   set_code?: string;
   variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   variants?: import("@/lib/cards/variantPresentation").VariantFlags;
 }
 
@@ -65,6 +67,8 @@ export interface CardDetail extends CardSummary {
   supertype?: string;
   card_category?: string;
   variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   variants?: import("@/lib/cards/variantPresentation").VariantFlags;
   printings?: CardPrinting[];
   display_printings?: CardPrinting[];

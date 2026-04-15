@@ -34,14 +34,18 @@ type CardMetadataRow = {
   name: string | null;
   set_code: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   sets:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -93,6 +97,9 @@ export type FounderInsightCard = {
   setCode: string | null;
   setName: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  set_identity_model: string | null;
   imageUrl: string | null;
   imageAltUrl: string | null;
 };
@@ -558,7 +565,9 @@ async function fetchCardMetadataByIds(
   for (const batch of chunkArray(ids, 150)) {
     const { data, error } = await admin
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
+      .select(
+        "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+      )
       .in("id", batch);
 
     if (error) {
@@ -577,6 +586,9 @@ async function fetchCardMetadataByIds(
         setCode: row.set_code?.trim() || null,
         setName: getSetName(row.sets),
         number: row.number?.trim() || null,
+        variant_key: row.variant_key?.trim() || null,
+        printed_identity_modifier: row.printed_identity_modifier?.trim() || null,
+        set_identity_model: getSetIdentityModel(row.sets),
         imageUrl: row.image_url?.trim() || null,
         imageAltUrl: row.image_alt_url?.trim() || null,
       });
@@ -797,6 +809,27 @@ function getSetName(value: CardMetadataRow["sets"]): string | null {
   if (value && typeof value.name === "string" && value.name.trim().length > 0) {
     return value.name.trim();
   }
+  return null;
+}
+
+function getSetIdentityModel(value: CardMetadataRow["sets"]): string | null {
+  if (Array.isArray(value)) {
+    const first = value.find(
+      (entry) =>
+        typeof entry?.identity_model === "string" &&
+        entry.identity_model.trim().length > 0,
+    );
+    return first?.identity_model?.trim() ?? null;
+  }
+
+  if (
+    value &&
+    typeof value.identity_model === "string" &&
+    value.identity_model.trim().length > 0
+  ) {
+    return value.identity_model.trim();
+  }
+
   return null;
 }
 

@@ -36,6 +36,20 @@ type CardStreamSourceRow = {
   image_url: string | null;
 };
 
+type CardStreamIdentityRow = {
+  id: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  sets:
+    | {
+        identity_model: string | null;
+      }
+    | {
+        identity_model: string | null;
+      }[]
+    | null;
+};
+
 type CardStreamCopySourceRow = {
   id: string;
   gv_vi_id: string | null;
@@ -99,6 +113,9 @@ export type CardStreamRow = {
   setCode: string;
   setName: string;
   number: string;
+  variantKey: string | null;
+  printedIdentityModifier: string | null;
+  setIdentityModel: string | null;
   imageUrl: string | null;
   inPlayCopies: CardStreamCopy[];
 };
@@ -137,7 +154,10 @@ function buildGroupKey(ownerUserId: string, cardPrintId: string) {
   return `${ownerUserId}:${cardPrintId}`;
 }
 
-function normalizeRow(row: CardStreamSourceRow): CardStreamRow | null {
+function normalizeRow(
+  row: CardStreamSourceRow,
+  identityByCardPrintId: Map<string, CardStreamIdentityRow>,
+): CardStreamRow | null {
   const vaultItemId = normalizeOptionalText(row.vault_item_id);
   const ownerUserId = normalizeOptionalText(row.owner_user_id);
   const ownerSlug = normalizeOptionalText(row.owner_slug);
@@ -151,6 +171,8 @@ function normalizeRow(row: CardStreamSourceRow): CardStreamRow | null {
   }
 
   const inPlayCount = Math.max(1, row.in_play_count ?? row.quantity ?? 1);
+  const identityRow = identityByCardPrintId.get(cardPrintId);
+  const setRecord = Array.isArray(identityRow?.sets) ? identityRow.sets[0] : identityRow?.sets;
 
   return {
     vaultItemId,
@@ -177,9 +199,39 @@ function normalizeRow(row: CardStreamSourceRow): CardStreamRow | null {
     setCode: normalizeOptionalText(row.set_code) ?? "Unknown set",
     setName: normalizeOptionalText(row.set_name) ?? normalizeOptionalText(row.set_code) ?? "Unknown set",
     number: normalizeOptionalText(row.number) ?? "—",
+    variantKey: normalizeOptionalText(identityRow?.variant_key),
+    printedIdentityModifier: normalizeOptionalText(identityRow?.printed_identity_modifier),
+    setIdentityModel: normalizeOptionalText(setRecord?.identity_model),
     imageUrl: getBestPublicCardImageUrl(row.image_url) ?? normalizeOptionalText(row.image_url),
     inPlayCopies: [],
   };
+}
+
+async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
+  const client = createServerComponentClient();
+  const normalizedIds = Array.from(new Set(cardPrintIds.map((value) => normalizeOptionalText(value)).filter((value): value is string => Boolean(value))));
+  const identityByCardPrintId = new Map<string, CardStreamIdentityRow>();
+
+  for (let index = 0; index < normalizedIds.length; index += 500) {
+    const batch = normalizedIds.slice(index, index + 500);
+    const { data, error } = await client
+      .from("card_prints")
+      .select("id,variant_key,printed_identity_modifier,sets(identity_model)")
+      .in("id", batch);
+
+    if (error) {
+      throw new Error(`[network:stream] card identity lookup failed: ${error.message}`);
+    }
+
+    for (const row of (data ?? []) as CardStreamIdentityRow[]) {
+      const id = normalizeOptionalText(row.id);
+      if (id) {
+        identityByCardPrintId.set(id, row);
+      }
+    }
+  }
+
+  return identityByCardPrintId;
 }
 
 async function fetchInPlayCopies(rows: CardStreamRow[]) {
@@ -319,7 +371,15 @@ export async function getCardStreamRows({
     throw new Error(`[network:stream] card stream query failed: ${error.message}`);
   }
 
-  const rows = ((data ?? []) as CardStreamSourceRow[]).map(normalizeRow).filter((row): row is CardStreamRow => row !== null);
+  const sourceRows = (data ?? []) as CardStreamSourceRow[];
+  const identityByCardPrintId = await fetchCardStreamIdentityMap(
+    sourceRows
+      .map((row) => row.card_print_id)
+      .filter((value): value is string => typeof value === "string" && value.trim().length > 0),
+  );
+  const rows = sourceRows
+    .map((row) => normalizeRow(row, identityByCardPrintId))
+    .filter((row): row is CardStreamRow => row !== null);
   const copiesByGroupKey = await fetchInPlayCopies(rows);
 
   return rows.map((row) => ({

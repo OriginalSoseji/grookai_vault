@@ -23,6 +23,9 @@ export type PublicWallCard = {
   gv_id: string;
   gv_vi_id?: string;
   name: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   set_code?: string;
   set_name?: string;
   number: string;

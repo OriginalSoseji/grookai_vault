@@ -53,8 +53,12 @@ class CardPrint {
     this.setName,
     this.number,
     this.numberPlain,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     this.rarity,
     this.imageUrl,
+    this.externalIds,
   });
 
   final String id;
@@ -64,8 +68,12 @@ class CardPrint {
   final String? setName;
   final String? number;
   final String? numberPlain;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? rarity;
   final String? imageUrl;
+  final Map<String, String?>? externalIds;
 
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
@@ -74,6 +82,12 @@ class CardPrint {
 
   factory CardPrint.fromJson(Map<String, dynamic> json) {
     final set = json['set'] as Map<String, dynamic>?;
+    final rawExternalIds = json['external_ids'];
+    final externalIds = rawExternalIds is Map
+        ? rawExternalIds.map(
+            (key, value) => MapEntry(key.toString(), value?.toString()),
+          )
+        : null;
     return CardPrint(
       id: (json['id'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
@@ -84,8 +98,14 @@ class CardPrint {
           : json['set_name']?.toString(),
       number: json['number']?.toString(),
       numberPlain: json['number_plain']?.toString(),
+      variantKey: json['variant_key']?.toString(),
+      printedIdentityModifier: json['printed_identity_modifier']?.toString(),
+      setIdentityModel: set != null
+          ? set['identity_model']?.toString()
+          : json['set_identity_model']?.toString(),
       rarity: json['rarity']?.toString(),
       imageUrl: json['image_url']?.toString(),
+      externalIds: externalIds,
     );
   }
 }
@@ -186,7 +206,7 @@ class CardPrintSearchResult {
 }
 
 const _cardPrintSelect =
-    'id,gv_id,name,number,number_plain,rarity,set_code,image_url,image_alt_url,set:sets(name,code)';
+    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,external_ids,set:sets(name,code,identity_model)';
 
 class CardPrintRepository {
   static Future<CardPrintSearchResult> searchCardPrintsResolved({

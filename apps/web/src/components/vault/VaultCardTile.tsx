@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -49,6 +50,9 @@ export type VaultCardData = {
   card_id: string;
   gv_id: string;
   name: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   set_code: string;
   set_name: string;
   number: string;
@@ -141,6 +145,7 @@ export function VaultCardTile({
   isExpanded,
   onExpansionToggle,
 }: VaultCardTileProps) {
+  const displayIdentity = resolveDisplayIdentity(item);
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
@@ -287,9 +292,9 @@ export function VaultCardTile({
       className="h-full rounded-[1.6rem] border-slate-200/80 bg-white/95 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)]"
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
-      imageAlt={item.name}
+      imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
-      imageFallbackLabel={item.name}
+      imageFallbackLabel={displayIdentity.display_name}
       imageClassName={[
         tileDensity === "large" ? "max-w-[260px]" : undefined,
         "drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]",
@@ -297,8 +302,11 @@ export function VaultCardTile({
         .filter(Boolean)
         .join(" ")}
       title={
-        <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
-          {item.name}
+        <Link href={`/card/${item.gv_id}`} className="block transition hover:text-slate-700">
+          <span className="block line-clamp-2">{displayIdentity.base_name}</span>
+          {displayIdentity.suffix ? (
+            <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+          ) : null}
         </Link>
       }
       subtitle={

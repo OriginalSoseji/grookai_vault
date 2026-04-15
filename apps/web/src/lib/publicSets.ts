@@ -30,11 +30,22 @@ type PublicSetCardRow = {
   gv_id: string | null;
   name: string | null;
   number: string | null;
+  set_code: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  sets:
+    | {
+        identity_model: string | null;
+      }
+    | {
+        identity_model: string | null;
+      }[]
+    | null;
 };
 
 function createServerSupabase() {
@@ -215,7 +226,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,image_url,image_alt_url,image_source,image_path")
+    .select("gv_id,name,number,set_code,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,sets(identity_model)")
     .eq("set_code", normalizedCode)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
@@ -230,15 +241,23 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
     .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id));
 
   return Promise.all(
-    rows.map(async (row) => ({
-      gv_id: row.gv_id,
-      name: row.name ?? "Unknown",
-      number: row.number ?? "",
-      rarity: row.rarity ?? undefined,
-      image_url:
-        (await resolveCanonImageUrlV1(row)) ??
-        getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
-    })),
+    rows.map(async (row) => {
+      const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+
+      return {
+        gv_id: row.gv_id,
+        name: row.name ?? "Unknown",
+        number: row.number ?? "",
+        set_code: row.set_code?.trim() || undefined,
+        variant_key: row.variant_key?.trim() || undefined,
+        printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+        set_identity_model: setRecord?.identity_model?.trim() || undefined,
+        rarity: row.rarity ?? undefined,
+        image_url:
+          (await resolveCanonImageUrlV1(row)) ??
+          getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      };
+    }),
   );
 }
 

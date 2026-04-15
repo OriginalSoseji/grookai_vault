@@ -3,6 +3,7 @@
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import {
   formatVaultCopyDate,
@@ -77,6 +78,7 @@ function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
 }
 
 function MobileGridCard({ item }: { item: VaultCardData }) {
+  const displayIdentity = resolveDisplayIdentity(item);
   const cardValue = formatVaultCardValue(item.effective_price);
   const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
@@ -90,13 +92,13 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       className="h-full rounded-[1.5rem] border-slate-200/80 bg-white/95 shadow-[0_20px_40px_-34px_rgba(15,23,42,0.28)]"
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
-      imageAlt={item.name}
+      imageAlt={displayIdentity.display_name}
       imageHref={`/card/${item.gv_id}`}
-      imageFallbackLabel={item.name}
+      imageFallbackLabel={displayIdentity.display_name}
       imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
       title={
         <Link href={`/card/${item.gv_id}`} className="line-clamp-2 block transition hover:text-slate-700">
-          {item.name}
+          {displayIdentity.display_name}
         </Link>
       }
       subtitle={<span className="line-clamp-2 block">{getVaultCardMetaLine(item)}</span>}
@@ -121,6 +123,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
 }
 
 function MobileCompactRow({ item }: { item: VaultCardData }) {
+  const displayIdentity = resolveDisplayIdentity(item);
   const cardValue = formatVaultCardValue(item.effective_price);
   const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
@@ -137,16 +140,16 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
         <PublicCardImage
           src={item.image_url}
           fallbackSrc={item.canonical_image_url}
-          alt={item.name}
+          alt={displayIdentity.display_name}
           imageClassName="h-full w-full object-contain p-1.5"
           fallbackClassName="flex h-full w-full items-center justify-center bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-          fallbackLabel={item.name}
+          fallbackLabel={displayIdentity.display_name}
         />
       </div>
       <div className="min-w-0 flex-1 space-y-2">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 space-y-1">
-            <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{item.name}</p>
+            <p className="line-clamp-2 text-sm font-semibold leading-5 text-slate-950">{displayIdentity.display_name}</p>
             <p className="line-clamp-1 text-xs text-slate-500">{getVaultCardMetaLine(item)}</p>
             <VaultPrimaryStateBadge item={item} size="sm" />
           </div>
@@ -172,6 +175,7 @@ function MobileDetailRow({
 }: Omit<VaultMobileCommonProps, "items" | "mode"> & { item: VaultCardData }) {
   const rowKey = getRowKey(item);
   const isExpanded = expandedCardId === rowKey;
+  const displayIdentity = resolveDisplayIdentity(item);
   const intentMixSummary = formatIntentMixSummary(item);
   const manageCardHref = `/vault/card/${encodeURIComponent(item.card_id)}`;
   const cardValue = formatVaultCardValue(item.effective_price);
@@ -199,10 +203,10 @@ function MobileDetailRow({
             <PublicCardImage
               src={item.image_url}
               fallbackSrc={item.canonical_image_url}
-              alt={item.name}
+              alt={displayIdentity.display_name}
               imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_16px_28px_rgba(15,23,42,0.14)]"
               fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-2 text-center text-[10px] text-slate-500"
-              fallbackLabel={item.name}
+              fallbackLabel={displayIdentity.display_name}
             />
           </Link>
 
@@ -210,7 +214,9 @@ function MobileDetailRow({
             <div className="space-y-2">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <Link href={`/card/${item.gv_id}`} className="min-w-0 flex-1">
-                  <h3 className="line-clamp-2 text-lg font-semibold tracking-tight text-slate-950">{item.name}</h3>
+                  <h3 className="line-clamp-2 text-lg font-semibold tracking-tight text-slate-950">
+                    {displayIdentity.display_name}
+                  </h3>
                 </Link>
                 {cardValue ? <p className="text-base font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
               </div>

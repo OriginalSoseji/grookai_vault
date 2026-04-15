@@ -8,6 +8,7 @@ import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
@@ -210,6 +211,14 @@ export default function CompareWorkspace({
 
       <section className={`grid gap-6 ${gridClassName}`}>
         {cards.map((card) => {
+          const displayIdentity = resolveDisplayIdentity({
+            name: card.name,
+            variant_key: card.variant_key ?? null,
+            printed_identity_modifier: card.printed_identity_modifier ?? null,
+            set_identity_model: card.set_identity_model ?? null,
+            set_code: card.set_code ?? "",
+            number: card.number,
+          });
           const isReference = card.gv_id === referenceCard.gv_id;
           const variantLabels = getVariantLabels(card, 3);
           const remainingCards = cards.filter((candidate) => candidate.gv_id !== card.gv_id).map((candidate) => candidate.gv_id);
@@ -230,7 +239,7 @@ export default function CompareWorkspace({
                         Reference
                       </span>
                     ) : null}
-                    <p className="truncate text-lg font-semibold text-slate-950">{card.name}</p>
+                    <p className="truncate text-lg font-semibold text-slate-950">{displayIdentity.display_name}</p>
                     <p className="text-sm text-slate-600">{card.set_name ?? "Unknown set"}</p>
                     {canViewPricing ? (
                       <VisiblePrice value={card.raw_price} size="list" />
@@ -270,7 +279,7 @@ export default function CompareWorkspace({
                 <div className="rounded-[12px] bg-slate-50 p-4">
                   <CardZoomModal
                     src={card.image_url}
-                    alt={card.name}
+                    alt={displayIdentity.display_name}
                     imageClassName="aspect-[3/4] w-full rounded-[12px] object-contain"
                     fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[12px] bg-slate-100 px-4 text-center text-sm text-slate-500"
                   />
@@ -296,6 +305,14 @@ export default function CompareWorkspace({
                   Attribute
                 </th>
                 {cards.map((card) => {
+                  const displayIdentity = resolveDisplayIdentity({
+                    name: card.name,
+                    variant_key: card.variant_key ?? null,
+                    printed_identity_modifier: card.printed_identity_modifier ?? null,
+                    set_identity_model: card.set_identity_model ?? null,
+                    set_code: card.set_code ?? "",
+                    number: card.number,
+                  });
                   const isReference = card.gv_id === referenceCard.gv_id;
                   return (
                     <th
@@ -305,7 +322,7 @@ export default function CompareWorkspace({
                       }`}
                     >
                       <div className="space-y-1">
-                        <p className="truncate">{card.name}</p>
+                        <p className="truncate">{displayIdentity.display_name}</p>
                         <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
                       </div>
                     </th>

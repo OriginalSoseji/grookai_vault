@@ -14,6 +14,8 @@ export type ComparePublicCard = {
   name: string;
   set_name?: string;
   set_code?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   number: string;
   rarity?: string;
   release_year?: number;
@@ -45,15 +47,18 @@ type PublicCompareCardRow = {
   image_source: string | null;
   image_path: string | null;
   variant_key: string | null;
+  printed_identity_modifier: string | null;
   variants: VariantFlags;
   sets:
     | {
         name: string | null;
         release_date: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
         release_date: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -94,13 +99,14 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
         rarity,
         artist,
         variant_key,
+        printed_identity_modifier,
         variants,
         image_url,
         image_alt_url,
         image_source,
         image_path,
         id,
-        sets(name,release_date)
+        sets(name,release_date,identity_model)
       `,
     )
     .in("gv_id", queryIds);
@@ -133,6 +139,8 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       name: row.name?.trim() || "Unknown",
       set_name: setRecord?.name?.trim() || undefined,
       set_code: row.set_code?.trim() || undefined,
+      printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+      set_identity_model: setRecord?.identity_model?.trim() || undefined,
       number: row.number?.trim() || "",
       rarity: row.rarity?.trim() || undefined,
       release_year: getReleaseYear(setRecord?.release_date),

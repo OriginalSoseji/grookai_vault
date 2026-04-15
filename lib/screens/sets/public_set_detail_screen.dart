@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -297,27 +298,12 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
 }
 
 String? _setCardVariantLabel(PublicSetCard card) {
-  final raw = (card.variantKey ?? '').trim();
-  if (raw.isEmpty || raw.toLowerCase() == 'base') {
-    return null;
-  }
-
-  switch (raw.toLowerCase()) {
-    case 'pokemon_together_stamp':
-      return 'Pokémon Together Stamp';
-    default:
-      return raw
-          .split(RegExp(r'[_\s-]+'))
-          .where((segment) => segment.isNotEmpty)
-          .map((segment) {
-            final lower = segment.toLowerCase();
-            if (lower.length <= 2) {
-              return lower.toUpperCase();
-            }
-            return '${lower[0].toUpperCase()}${lower.substring(1)}';
-          })
-          .join(' ');
-  }
+  return resolveDisplayIdentityFromFields(
+    name: card.name,
+    variantKey: card.variantKey,
+    printedIdentityModifier: card.printedIdentityModifier,
+    setIdentityModel: card.setIdentityModel,
+  ).suffix;
 }
 
 String _setCardArtworkLabel(PublicSetCard card) {

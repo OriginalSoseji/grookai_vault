@@ -12,6 +12,7 @@ import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
+import 'services/identity/display_identity.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/public/compare_service.dart';
@@ -173,7 +174,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final detailRow = await supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,set_code,sets(name,printed_total,release_date,printed_set_abbrev)',
+            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
           )
           .eq('id', widget.cardPrintId)
           .maybeSingle();
@@ -189,7 +190,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         final response = await supabase
             .from('card_prints')
             .select(
-              'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,sets(name,release_date)',
+              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,release_date,identity_model)',
             )
             .eq('name', resolvedName)
             .neq('id', widget.cardPrintId)
@@ -421,6 +422,22 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
     return resolved.isNotEmpty ? resolved : 'Card Detail';
   }
+
+  ResolvedDisplayIdentity get _displayIdentity {
+    final setRecord = _extractRecord(_cardContextData?['sets']);
+    return resolveDisplayIdentityFromFields(
+      name: _displayName,
+      variantKey: _cleanText(_cardContextData?['variant_key']),
+      printedIdentityModifier: _cleanText(
+        _cardContextData?['printed_identity_modifier'],
+      ),
+      setIdentityModel: _cleanText(setRecord?['identity_model']),
+      setCode: _resolvedSetCode,
+      number: _resolvedCollectorNumber,
+    );
+  }
+
+  String get _displayTitle => _displayIdentity.displayName;
 
   bool get _hasContactContext =>
       _cleanText(widget.contactVaultItemId).isNotEmpty &&
@@ -686,7 +703,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     try {
       await SharePlus.instance.share(
-        ShareParams(uri: shareUri, subject: _displayName),
+        ShareParams(uri: shareUri, subject: _displayTitle),
       );
       if (!mounted) {
         return;
@@ -716,7 +733,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       isScrollControlled: true,
       builder: (_) => _CardCommentsSheet(
         cardPrintId: widget.cardPrintId,
-        cardName: _displayName,
+        cardName: _displayTitle,
       ),
     );
   }
@@ -953,6 +970,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final entries = <MapEntry<String, String>>[];
     final illustrator = _cleanText(_cardContextData?['artist']);
     final variantKey = _cleanText(_cardContextData?['variant_key']);
+    final printedIdentityModifier = _cleanText(
+      _cardContextData?['printed_identity_modifier'],
+    );
     final setRecord = _extractRecord(_cardContextData?['sets']);
     final printedTotal = setRecord?['printed_total'] is num
         ? (setRecord!['printed_total'] as num).toInt()
@@ -963,7 +983,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       entries.add(MapEntry('Illustrator', illustrator));
     }
     if (variantKey.isNotEmpty && variantKey.toLowerCase() != 'base') {
-      entries.add(MapEntry('Variant', variantKey));
+      entries.add(
+        MapEntry('Variant', formatVariantKey(variantKey) ?? variantKey),
+      );
+    }
+    if (printedIdentityModifier.isNotEmpty) {
+      entries.add(
+        MapEntry(
+          'Printed Identity',
+          formatPrintedIdentityModifier(printedIdentityModifier) ??
+              printedIdentityModifier,
+        ),
+      );
     }
     if (printedTotal != null) {
       entries.add(MapEntry('Printed Total', '$printedTotal cards'));
@@ -1021,6 +1052,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       final row = _relatedVersions[index];
                       final cardPrintId = _cleanText(row['id']);
                       final setRecord = _extractRecord(row['sets']);
+                      final displayIdentity = resolveDisplayIdentityFromFields(
+                        name: _cleanText(row['name']),
+                        variantKey: _cleanText(row['variant_key']),
+                        printedIdentityModifier: _cleanText(
+                          row['printed_identity_modifier'],
+                        ),
+                        setIdentityModel: _cleanText(
+                          setRecord?['identity_model'],
+                        ),
+                        setCode: _cleanText(row['set_code']),
+                        number: _cleanText(row['number']),
+                      );
                       final setName = _cleanText(setRecord?['name']);
                       final setCode = _cleanText(row['set_code']).toUpperCase();
                       final number = _cleanText(row['number_plain']).isNotEmpty
@@ -1066,7 +1109,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                   child: AspectRatio(
                                     aspectRatio: 3 / 4,
                                     child: CardSurfaceArtwork(
-                                      label: _cleanText(row['name']),
+                                      label: displayIdentity.displayName,
                                       imageUrl: imageUrl,
                                       borderRadius: 12,
                                       padding: const EdgeInsets.all(4),
@@ -1081,9 +1124,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        setName.isNotEmpty
-                                            ? setName
-                                            : _cleanText(row['name']),
+                                        displayIdentity.displayName,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: theme.textTheme.titleSmall
@@ -1094,6 +1135,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                       const SizedBox(height: 3),
                                       Text(
                                         [
+                                          if (setName.isNotEmpty) setName,
                                           if (setCode.isNotEmpty) setCode,
                                           if (number.isNotEmpty) '#$number',
                                           if (rarity.isNotEmpty) rarity,
@@ -1170,7 +1212,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_displayName, maxLines: 1, overflow: TextOverflow.ellipsis),
+        title: Text(
+          _displayTitle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: SafeArea(
         bottom: false,
@@ -1238,7 +1284,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             child: AspectRatio(
               aspectRatio: 3 / 4,
               child: CardSurfaceArtwork(
-                label: _displayName,
+                label: _displayTitle,
                 imageUrl: url,
                 borderRadius: 16,
                 padding: const EdgeInsets.all(4),
@@ -1301,7 +1347,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _displayName,
+          _displayTitle,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.6,
@@ -1750,7 +1796,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   cardPrintId: widget.cardPrintId,
                   ownerUserId: widget.contactOwnerUserId,
                   ownerDisplayName: _cleanText(widget.contactOwnerDisplayName),
-                  cardName: _displayName,
+                  cardName: _displayTitle,
                   intent: widget.contactIntent,
                 ),
               ),

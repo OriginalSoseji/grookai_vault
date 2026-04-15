@@ -9,6 +9,7 @@ import InteractionGroupReadMarker from "@/components/network/InteractionGroupRea
 import InteractionGroupReplyForm from "@/components/network/InteractionGroupReplyForm";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   getUserCardInteractionGroups,
   type UserCardInteractionGroup,
@@ -217,6 +218,14 @@ function InteractionGroupCard({
 }) {
   const pillLabel = getConversationPill(group);
   const latestMessage = getLatestMessage(group);
+  const displayIdentity = resolveDisplayIdentity({
+    name: group.card.name,
+    variant_key: group.card.variant_key ?? null,
+    printed_identity_modifier: group.card.printed_identity_modifier ?? null,
+    set_identity_model: group.card.set_identity_model ?? null,
+    set_code: group.card.setCode,
+    number: group.card.number,
+  });
   const hasExecutionActions = group.ownedSourceInstances.length > 0 || Boolean(group.latestOutcome);
   const hasSecondaryActions = hasExecutionActions || group.conversationState === "inbox";
   const secondarySummaryLabel = group.latestOutcome ? "Card actions • outcome recorded" : "Card actions";
@@ -235,10 +244,10 @@ function InteractionGroupCard({
         <Link href={`/card/${group.card.gvId}`} className="mx-auto w-[96px] shrink-0 sm:mx-0">
           <PublicCardImage
             src={group.card.imageUrl ?? undefined}
-            alt={group.card.name}
+            alt={displayIdentity.display_name}
             imageClassName="aspect-[3/4] w-full rounded-[0.9rem] border border-slate-200 bg-slate-50 object-contain p-1.5"
             fallbackClassName="flex aspect-[3/4] w-full items-center justify-center rounded-[0.9rem] border border-slate-200 bg-slate-100 px-2 text-center text-[10px] text-slate-500"
-            fallbackLabel={group.card.name}
+            fallbackLabel={displayIdentity.display_name}
           />
         </Link>
         <div className="min-w-0 flex-1 space-y-4">
@@ -261,7 +270,7 @@ function InteractionGroupCard({
                 With {group.counterpartDisplayName}
               </p>
               <Link href={`/card/${group.card.gvId}`} className="block">
-                <h2 className="text-xl font-semibold tracking-tight text-slate-950">{group.card.name}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-slate-950">{displayIdentity.display_name}</h2>
               </Link>
               <p className="text-sm text-slate-600">
                 {[group.card.setName || group.card.setCode, group.card.number !== "—" ? `#${group.card.number}` : undefined]
@@ -319,7 +328,7 @@ function InteractionGroupCard({
                 <InteractionGroupExecutionPanel
                   latestInteractionId={group.latestInteractionId}
                   counterpartDisplayName={group.counterpartDisplayName}
-                  cardName={group.card.name}
+                  cardName={displayIdentity.display_name}
                   currentPath={currentPath}
                   ownedSourceInstances={group.ownedSourceInstances}
                   latestOutcome={group.latestOutcome}
@@ -370,6 +379,16 @@ export default async function NetworkInboxPage({
   const filteredCard = currentCardFilter
     ? groups.find((group) => group.card.cardPrintId === currentCardFilter)?.card ?? null
     : null;
+  const filteredCardDisplayName = filteredCard
+    ? resolveDisplayIdentity({
+        name: filteredCard.name,
+        variant_key: filteredCard.variant_key ?? null,
+        printed_identity_modifier: filteredCard.printed_identity_modifier ?? null,
+        set_identity_model: filteredCard.set_identity_model ?? null,
+        set_code: filteredCard.setCode,
+        number: filteredCard.number,
+      }).display_name
+    : null;
   const autoReadTargets =
     currentView === "inbox"
       ? visibleGroups
@@ -411,12 +430,12 @@ export default async function NetworkInboxPage({
         <SectionHeader
           title={
             filteredCard
-              ? `${viewCopy.title} for ${filteredCard.name}`
+              ? `${viewCopy.title} for ${filteredCardDisplayName}`
               : viewCopy.title
           }
           description={
             filteredCard
-              ? `Messages tied to ${filteredCard.name}.`
+              ? `Messages tied to ${filteredCardDisplayName}.`
               : viewCopy.description
           }
           actions={

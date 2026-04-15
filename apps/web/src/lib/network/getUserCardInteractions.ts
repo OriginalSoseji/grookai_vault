@@ -22,14 +22,18 @@ type CardPrintSourceRow = {
   name: string | null;
   set_code: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   sets:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -88,15 +92,18 @@ export type UserCardInteractionRow = {
   counterpartUserId: string;
   counterpartSlug: string | null;
   counterpartDisplayName: string;
-  card: {
-    cardPrintId: string;
-    gvId: string;
-    name: string;
-    setCode: string;
-    setName: string;
-    number: string;
-    imageUrl: string | null;
-  };
+    card: {
+      cardPrintId: string;
+      gvId: string;
+      name: string;
+      variant_key?: string;
+      printed_identity_modifier?: string;
+      set_identity_model?: string;
+      setCode: string;
+      setName: string;
+      number: string;
+      imageUrl: string | null;
+    };
 };
 
 export type UserCardInteractionGroupState = "inbox" | "closed" | "archived";
@@ -141,6 +148,9 @@ export type UserCardInteractionGroup = {
     cardPrintId: string;
     gvId: string;
     name: string;
+    variant_key?: string;
+    printed_identity_modifier?: string;
+    set_identity_model?: string;
     setCode: string;
     setName: string;
     number: string;
@@ -286,7 +296,9 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     cardPrintIds.length > 0
       ? client
           .from("card_prints")
-          .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
+          .select(
+            "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+          )
           .in("id", cardPrintIds)
       : Promise.resolve({ data: [], error: null }),
     counterpartUserIds.length > 0
@@ -383,6 +395,9 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
           cardPrintId,
           gvId: normalizeOptionalText(card.gv_id) ?? cardPrintId,
           name: normalizeOptionalText(card.name) ?? "Unknown card",
+          variant_key: normalizeOptionalText(card.variant_key) ?? undefined,
+          printed_identity_modifier: normalizeOptionalText(card.printed_identity_modifier) ?? undefined,
+          set_identity_model: normalizeOptionalText(setRecord?.identity_model) ?? undefined,
           setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
           setName:
             normalizeOptionalText(setRecord?.name) ??

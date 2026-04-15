@@ -83,6 +83,7 @@ type CardPrintLookupRow = {
   printed_set_abbrev?: string | null;
   external_ids?: { tcgdex?: string | null } | null;
   variant_key?: string | null;
+  printed_identity_modifier?: string | null;
   variants?: VariantFlags;
 };
 
@@ -100,6 +101,7 @@ type SetMetadataLookupRow = {
   name: string | null;
   printed_total: number | null;
   release_date: string | null;
+  identity_model: string | null;
 };
 
 type SortMode = "relevance" | "newest" | "oldest";
@@ -110,6 +112,7 @@ type PublicSetMetadata = {
   printed_total?: number;
   release_date?: string;
   release_year?: number;
+  identity_model?: string;
 };
 
 type IntentLookupRow = {
@@ -546,6 +549,7 @@ async function buildExploreRows(
         release_date: setMetadata?.release_date,
         release_year: setMetadata?.release_year,
         set_code: row.set_code ?? undefined,
+        set_identity_model: setMetadata?.identity_model,
         printed_set_abbrev: row.printed_set_abbrev ?? undefined,
         tcgdex_set_id: tcgdexSetId,
         raw_price: pricingByCardId.get(row.id)?.raw_price ?? undefined,
@@ -559,6 +563,7 @@ async function buildExploreRows(
         active_price_updated_at: pricingByCardId.get(row.id)?.active_price_updated_at ?? undefined,
         last_snapshot_at: pricingByCardId.get(row.id)?.last_snapshot_at ?? undefined,
         variant_key: row.variant_key?.trim() || undefined,
+        printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
         variants: row.variants ?? undefined,
       };
     }),
@@ -1543,7 +1548,7 @@ async function fetchExactCardRows(
 ) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const normalizedExpectedSetCodes = normalizeExpectedSetCodes(expectedSetCodes);
   const hasExpectedSetScope = normalizedExpectedSetCodes.length > 0;
 
@@ -1608,7 +1613,7 @@ async function fetchExactCardRows(
 async function fetchCardRowsBySetCode(setCode: string) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -1625,7 +1630,7 @@ async function fetchCardRowsBySetCode(setCode: string) {
 async function fetchCardRowsByIllustrator(illustrator: string) {
   const supabase = createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -1668,7 +1673,7 @@ async function fetchCardRowsByReleaseYear(year: number) {
   }
 
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,variants";
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
@@ -1688,7 +1693,10 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 
   const supabase = createServerComponentClient();
-  const { data, error } = await supabase.from("sets").select("code,name,printed_total,release_date").in("code", setCodes);
+  const { data, error } = await supabase
+    .from("sets")
+    .select("code,name,printed_total,release_date,identity_model")
+    .in("code", setCodes);
   if (error) {
     throw new Error(error.message);
   }
@@ -1704,6 +1712,7 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
           printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
           release_date: row.release_date ?? undefined,
           release_year: getReleaseYear(row.release_date),
+          identity_model: row.identity_model ?? undefined,
         },
       ]),
   );

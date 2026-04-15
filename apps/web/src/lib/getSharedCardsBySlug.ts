@@ -90,14 +90,18 @@ type CardPrintRow = {
   set_code: string | null;
   number: string | null;
   rarity: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   sets?:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -631,7 +635,9 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
-    .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
+    .select(
+      "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+    )
     .in(
       "id",
       sharedRows.map((row) => row.card_id),
@@ -664,6 +670,9 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         gv_id: row.gv_id,
         gv_vi_id: representativeSharedInstance?.gvviId ?? undefined,
         name: cardPrint.name?.trim() || "Unknown card",
+        variant_key: cardPrint.variant_key?.trim() || undefined,
+        printed_identity_modifier: cardPrint.printed_identity_modifier?.trim() || undefined,
+        set_identity_model: setRecord?.identity_model?.trim() || undefined,
         set_code: cardPrint.set_code?.trim() || undefined,
         set_name: setRecord?.name?.trim() || undefined,
         number: cardPrint.number?.trim() || "—",
@@ -795,7 +804,9 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
   const [cardPrintsResponse, sharedResponse, discoverableCopiesByCardId] = await Promise.all([
     supabase
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)")
+      .select(
+        "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+      )
       .in("id", cardPrintIds),
     supabase
       .from("shared_cards")
@@ -846,6 +857,9 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       card_print_id: row.cardPrintId,
       gv_id: row.gvId,
       name: row.name ?? normalizeOptionalText(cardPrint?.name) ?? "Unknown card",
+      variant_key: normalizeOptionalText(cardPrint?.variant_key) ?? undefined,
+      printed_identity_modifier: normalizeOptionalText(cardPrint?.printed_identity_modifier) ?? undefined,
+      set_identity_model: normalizeOptionalText(setRecord?.identity_model) ?? undefined,
       set_code: row.setCode ?? normalizeOptionalText(cardPrint?.set_code) ?? undefined,
       set_name:
         row.setName ??

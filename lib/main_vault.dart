@@ -30,6 +30,14 @@ class _VaultItemTile extends StatelessWidget {
 
     final id = (row['id'] ?? '').toString();
     final name = (row['name'] ?? 'Item').toString();
+    final displayIdentity = resolveDisplayIdentityFromFields(
+      name: name,
+      variantKey: row['variant_key']?.toString(),
+      printedIdentityModifier: row['printed_identity_modifier']?.toString(),
+      setIdentityModel: row['set_identity_model']?.toString(),
+      setCode: row['set_code']?.toString(),
+      number: row['number']?.toString(),
+    );
     final set = (row['set_name'] ?? '').toString();
     final ownedCount = _ownedCountForRow(row);
     final cond = (row['condition_label'] ?? 'NM').toString();
@@ -70,7 +78,7 @@ class _VaultItemTile extends StatelessWidget {
 
     Widget thumb() {
       return CardSurfaceArtwork(
-        label: name,
+        label: displayIdentity.displayName,
         imageUrl: imgUrl,
         width: compact ? 40 : 46,
         height: compact ? 56 : 64,
@@ -143,7 +151,7 @@ class _VaultItemTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          name,
+                          displayIdentity.displayName,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             height: 1.1,
@@ -988,6 +996,15 @@ class VaultPageState extends State<VaultPage> {
           final row = recentRows[index];
           final cardPrintId = (row['card_id'] ?? '').toString();
           final name = (row['name'] ?? 'Item').toString();
+          final displayIdentity = resolveDisplayIdentityFromFields(
+            name: name,
+            variantKey: row['variant_key']?.toString(),
+            printedIdentityModifier: row['printed_identity_modifier']
+                ?.toString(),
+            setIdentityModel: row['set_identity_model']?.toString(),
+            setCode: row['set_code']?.toString(),
+            number: row['number']?.toString(),
+          );
           final setName = ((row['set_name'] ?? row['set_code']) ?? '')
               .toString()
               .trim();
@@ -1014,7 +1031,7 @@ class VaultPageState extends State<VaultPage> {
                       Expanded(
                         child: Center(
                           child: CardSurfaceArtwork(
-                            label: name,
+                            label: displayIdentity.displayName,
                             imageUrl: imageUrl,
                             width: 88,
                             height: 118,
@@ -1025,7 +1042,7 @@ class VaultPageState extends State<VaultPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        name,
+                        displayIdentity.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(

@@ -20,6 +20,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
 import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
@@ -80,13 +81,14 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
   const siteOrigin = getSiteOrigin();
   if (!card) return { title: "Card not found | Grookai Vault" };
   const displayIdentity = getDisplayPrintedIdentity(card);
+  const displayName = resolveDisplayIdentity(card).display_name;
   const metadataImageUrl =
     normalizeCardImageUrl(card.image_url) ?? buildTcgDexImageUrl(card.tcgdex_external_id);
 
-  const titleParts = [card.name, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
+  const titleParts = [displayName, card.set_name, card.gv_id].filter((value): value is string => Boolean(value));
   const title = `${titleParts.join(" • ")} | Grookai Vault`;
   const description = [
-    `View card details for ${card.name}`,
+    `View card details for ${displayName}`,
     card.set_name ? `from ${card.set_name}` : undefined,
     displayIdentity.displayPrintedNumber ? `#${displayIdentity.displayPrintedNumber}` : undefined,
     "including finishes and collection info on Grookai Vault.",
@@ -103,7 +105,7 @@ export async function generateMetadata({ params }: { params: { gv_id: string } }
       description,
       type: "website",
       url: siteOrigin ? `${siteOrigin}/card/${card.gv_id}` : undefined,
-      images: metadataImageUrl ? [{ url: metadataImageUrl, alt: card.name }] : undefined,
+      images: metadataImageUrl ? [{ url: metadataImageUrl, alt: displayName }] : undefined,
     },
     twitter: {
       card: metadataImageUrl ? "summary_large_image" : "summary",
@@ -130,6 +132,7 @@ export default async function CardPage({
   if (!card) notFound();
 
   const resolvedCard = card;
+  const resolvedDisplayIdentity = resolveDisplayIdentity(resolvedCard);
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const compareCardsParam = buildCompareCardsParam(compareCards);
   if (normalizeRequestedPublicGvId(params.gv_id) !== normalizeRequestedPublicGvId(card.gv_id)) {
@@ -432,7 +435,7 @@ export default async function CardPage({
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
-              alt={resolvedCard.name}
+              alt={resolvedDisplayIdentity.display_name}
               imageClassName="w-full cursor-zoom-in object-contain"
               fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
             />
@@ -451,7 +454,12 @@ export default async function CardPage({
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">{resolvedCard.name}</h1>
+              <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+                {resolvedDisplayIdentity.base_name}
+              </h1>
+              {resolvedDisplayIdentity.suffix ? (
+                <p className="text-sm font-medium text-slate-500 sm:text-base">{resolvedDisplayIdentity.suffix}</p>
+              ) : null}
               {(setName || setCodeLabel) ? (
                 <div className="flex flex-wrap items-center gap-3 text-lg text-slate-700">
                   {setName ? (
@@ -520,7 +528,7 @@ export default async function CardPage({
               />
 
               <div className="flex flex-wrap items-center gap-3">
-                {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedCard.name} /> : null}
+                {user ? <AddSlabCardAction action={createSlabAction} cardName={resolvedDisplayIdentity.display_name} /> : null}
                 <CompareCardButton gvId={resolvedCard.gv_id} />
                 <ShareCardButton gvId={resolvedCard.gv_id} />
               </div>
@@ -588,7 +596,7 @@ export default async function CardPage({
                       ownerUserId={offer.ownerUserId}
                       viewerUserId={user?.id ?? null}
                       ownerDisplayName={offer.ownerDisplayName}
-                      cardName={resolvedCard.name}
+                      cardName={resolvedDisplayIdentity.display_name}
                       intent={groupedContactAnchor.intent}
                       buttonLabel={groupedContactAnchor.intent ? undefined : "Contact owner"}
                       isAuthenticated={Boolean(user)}
@@ -636,7 +644,7 @@ export default async function CardPage({
                                 ownerUserId={offer.ownerUserId}
                                 viewerUserId={user?.id ?? null}
                                 ownerDisplayName={offer.ownerDisplayName}
-                                cardName={resolvedCard.name}
+                                cardName={resolvedDisplayIdentity.display_name}
                                 intent={copy.intent}
                                 buttonLabel="Contact about this copy"
                                 isAuthenticated={Boolean(user)}
@@ -687,6 +695,7 @@ export default async function CardPage({
           </div>
           <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {relatedPrints.map((relatedCard) => {
+              const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
               const relatedVariantLabels = getVariantLabels(relatedCard, 2);
               const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
               const relatedCardImageSrc = normalizeCardImageUrl(relatedCard.image_url) ?? undefined;
@@ -701,7 +710,7 @@ export default async function CardPage({
                     <PublicCardImage
                       src={relatedCardImageSrc}
                       fallbackSrc={relatedCardImageFallback ?? undefined}
-                      alt={relatedCard.name}
+                      alt={relatedDisplayIdentity.display_name}
                       imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
                       fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
                     />
@@ -714,9 +723,16 @@ export default async function CardPage({
                         ) : null}
                         {relatedCard.rarity ? <span className="text-[11px] text-slate-500">{relatedCard.rarity}</span> : null}
                       </div>
-                      <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
-                        {relatedCard.set_name ?? relatedCard.name}
-                      </p>
+                      <div className="space-y-0.5">
+                        <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
+                          {relatedDisplayIdentity.base_name}
+                        </p>
+                        {relatedDisplayIdentity.suffix ? (
+                          <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
+                            {relatedDisplayIdentity.suffix}
+                          </p>
+                        ) : null}
+                      </div>
                       {relatedCard.number ? <p className="text-[12px] text-slate-600">#{relatedCard.number}</p> : null}
                       {relatedVariantLabels.length > 0 ? (
                         <div className="flex flex-wrap gap-1">
@@ -835,6 +851,7 @@ export default async function CardPage({
               (() => {
                 const previousCardImageSrc = normalizeCardImageUrl(adjacentCards.previous?.image_url) ?? undefined;
                 const previousCardImageFallback = buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id);
+                const previousDisplayIdentity = resolveDisplayIdentity(adjacentCards.previous);
                 return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.previous.gv_id}`, "", compareCards)}
@@ -843,13 +860,13 @@ export default async function CardPage({
                 <PublicCardImage
                   src={previousCardImageSrc}
                   fallbackSrc={previousCardImageFallback ?? undefined}
-                  alt={adjacentCards.previous.name}
+                  alt={previousDisplayIdentity.display_name}
                   imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                   fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
                 />
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">← Previous</p>
-                  <p className="truncate text-sm font-medium text-slate-900">{adjacentCards.previous.name}</p>
+                  <p className="truncate text-sm font-medium text-slate-900">{previousDisplayIdentity.display_name}</p>
                   <p className="text-xs text-slate-600">#{adjacentCards.previous.number}</p>
                 </div>
               </Link>
@@ -863,6 +880,7 @@ export default async function CardPage({
               (() => {
                 const nextCardImageSrc = normalizeCardImageUrl(adjacentCards.next?.image_url) ?? undefined;
                 const nextCardImageFallback = buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id);
+                const nextDisplayIdentity = resolveDisplayIdentity(adjacentCards.next);
                 return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.next.gv_id}`, "", compareCards)}
@@ -871,13 +889,13 @@ export default async function CardPage({
                 <PublicCardImage
                   src={nextCardImageSrc}
                   fallbackSrc={nextCardImageFallback ?? undefined}
-                  alt={adjacentCards.next.name}
+                  alt={nextDisplayIdentity.display_name}
                   imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
                   fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
                 />
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Next →</p>
-                  <p className="truncate text-sm font-medium text-slate-900">{adjacentCards.next.name}</p>
+                  <p className="truncate text-sm font-medium text-slate-900">{nextDisplayIdentity.display_name}</p>
                   <p className="text-xs text-slate-600">#{adjacentCards.next.number}</p>
                 </div>
               </Link>

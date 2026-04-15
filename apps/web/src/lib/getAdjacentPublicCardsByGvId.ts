@@ -12,19 +12,34 @@ type CardNavigationSeedRow = {
 type CardNavigationRow = {
   gv_id: string | null;
   name: string | null;
+  set_code: string | null;
   number: string | null;
   number_plain: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
   external_ids?: { tcgdex?: string | null } | null;
+  sets?:
+    | {
+        identity_model: string | null;
+      }
+    | {
+        identity_model: string | null;
+      }[]
+    | null;
 };
 
 export type AdjacentPublicCard = {
   gv_id: string;
   name: string;
+  set_code?: string;
+  set_identity_model?: string;
   number: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
   image_url?: string;
   tcgdex_external_id?: string;
 };
@@ -94,11 +109,16 @@ async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCa
   if (!row?.gv_id) return undefined;
 
   const imageUrl = await resolveCanonImageUrlV1(row);
+  const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
 
   return {
     gv_id: row.gv_id,
     name: row.name ?? "Unknown",
+    set_code: row.set_code?.trim() || undefined,
+    set_identity_model: setRecord?.identity_model?.trim() || undefined,
     number: row.number ?? "",
+    variant_key: row.variant_key?.trim() || undefined,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
     image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
   };
@@ -126,7 +146,9 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
 
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,number_plain,image_url,image_alt_url,image_source,image_path,external_ids")
+    .select(
+      "gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,external_ids,sets(identity_model)",
+    )
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);
 

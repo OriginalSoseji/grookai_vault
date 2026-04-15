@@ -3,6 +3,7 @@
 import Link from "next/link";
 import PokemonCardGridTile, { PokemonCardGridBadge } from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import {
   getPublicWallCardHref,
@@ -47,6 +48,7 @@ export function PublicCollectionGrid({
             const ownedCount = card.owned_count ?? 0;
             const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
             const gvviId = getPublicWallCardPrimaryGvviId(card);
+            const displayIdentity = resolveDisplayIdentity(card);
 
             return (
               <PokemonCardGridTile
@@ -54,9 +56,9 @@ export function PublicCollectionGrid({
                 density={density}
                 imageSrc={card.image_url}
                 imageFallbackSrc={card.canonical_image_url}
-                imageAlt={card.name}
+                imageAlt={displayIdentity.display_name}
                 imageHref={cardHref}
-                imageFallbackLabel={card.name}
+                imageFallbackLabel={displayIdentity.display_name}
                 imageOverlay={
                   <>
                     <div className="flex min-w-0 flex-wrap gap-1.5">
@@ -68,7 +70,7 @@ export function PublicCollectionGrid({
                 }
                 title={
                   <Link href={cardHref} className="line-clamp-2 block transition hover:text-slate-700">
-                    {card.name}
+                    {displayIdentity.display_name}
                   </Link>
                 }
                 subtitle={

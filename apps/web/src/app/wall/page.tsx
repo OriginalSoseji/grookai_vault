@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -24,11 +25,34 @@ type WallCard = {
   id: string;
   gv_id: string;
   name: string;
+  display_name: string;
+  variant_key?: string;
+  printed_identity_modifier?: string;
+  set_identity_model?: string;
   set_code: string;
   set_name: string;
   number: string;
   created_at: string | null;
   image_url?: string;
+};
+
+type WallIdentityRow = {
+  gv_id: string | null;
+  name: string | null;
+  set_code: string | null;
+  number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  sets?:
+    | {
+        name: string | null;
+        identity_model: string | null;
+      }
+    | {
+        name: string | null;
+        identity_model: string | null;
+      }[]
+    | null;
 };
 
 function formatTimeAgo(value: string | null) {
@@ -58,19 +82,69 @@ function formatTimeAgo(value: string | null) {
   });
 }
 
-function normalizeFeed(rows: WallFeedRow[] | null | undefined): WallCard[] {
+async function getWallIdentityByGvId(
+  supabase: ReturnType<typeof createServerComponentClient>,
+  gvIds: string[],
+) {
+  const normalizedIds = Array.from(new Set(gvIds.map((value) => value.trim()).filter(Boolean)));
+  if (normalizedIds.length === 0) {
+    return new Map<string, WallIdentityRow>();
+  }
+
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(
+      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,sets(name,identity_model)",
+    )
+    .in("gv_id", normalizedIds);
+
+  if (error || !data) {
+    return new Map<string, WallIdentityRow>();
+  }
+
+  return new Map(
+    (data as WallIdentityRow[])
+      .filter((row): row is WallIdentityRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
+      .map((row) => [row.gv_id, row]),
+  );
+}
+
+function normalizeFeed(
+  rows: WallFeedRow[] | null | undefined,
+  identityByGvId: Map<string, WallIdentityRow>,
+): WallCard[] {
   return (rows ?? [])
     .filter((row): row is WallFeedRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
-    .map((row) => ({
-      id: row.id,
-      gv_id: row.gv_id,
-      name: row.name?.trim() || "Unknown card",
-      set_code: row.set_code?.trim() || "Unknown set",
-      set_name: row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
-      number: row.number?.trim() || "—",
-      created_at: row.created_at,
-      image_url: getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
-    }));
+    .map((row) => {
+      const identityRow = identityByGvId.get(row.gv_id);
+      const setRecord = Array.isArray(identityRow?.sets) ? identityRow?.sets[0] : identityRow?.sets;
+      const name = identityRow?.name?.trim() || row.name?.trim() || "Unknown card";
+      const setCode = identityRow?.set_code?.trim() || row.set_code?.trim() || "Unknown set";
+      const number = identityRow?.number?.trim() || row.number?.trim() || "—";
+      const displayIdentity = resolveDisplayIdentity({
+        name,
+        variant_key: identityRow?.variant_key ?? null,
+        printed_identity_modifier: identityRow?.printed_identity_modifier ?? null,
+        set_identity_model: setRecord?.identity_model ?? null,
+        set_code: setCode,
+        number,
+      });
+
+      return {
+        id: row.id,
+        gv_id: row.gv_id,
+        name,
+        display_name: displayIdentity.display_name,
+        variant_key: identityRow?.variant_key?.trim() || undefined,
+        printed_identity_modifier: identityRow?.printed_identity_modifier?.trim() || undefined,
+        set_identity_model: setRecord?.identity_model?.trim() || undefined,
+        set_code: setCode,
+        set_name: setRecord?.name?.trim() || row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
+        number,
+        created_at: row.created_at,
+        image_url: getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
+      };
+    });
 }
 
 export default async function WallPage() {
@@ -90,7 +164,13 @@ export default async function WallPage() {
     .limit(50)
     .order("created_at", { ascending: false });
 
-  const feed = normalizeFeed((data ?? null) as WallFeedRow[] | null);
+  const identityByGvId = await getWallIdentityByGvId(
+    supabase,
+    ((data ?? []) as WallFeedRow[])
+      .map((row) => row.gv_id)
+      .filter((value): value is string => typeof value === "string" && value.length > 0),
+  );
+  const feed = normalizeFeed((data ?? null) as WallFeedRow[] | null, identityByGvId);
 
   return (
     <div className="space-y-8 py-8">
@@ -130,14 +210,14 @@ export default async function WallPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 <PublicCardImage
                   src={item.image_url}
-                  alt={item.name}
+                  alt={item.display_name}
                   imageClassName="h-40 w-28 rounded-[1.25rem] border border-slate-200 bg-slate-50 object-contain p-2"
                   fallbackClassName="flex h-40 w-28 items-center justify-center rounded-[1.25rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={item.name}
+                  fallbackLabel={item.display_name}
                 />
                 <div className="min-w-0 flex-1 space-y-3">
                   <div className="space-y-1">
-                    <h2 className="text-2xl font-medium tracking-tight text-slate-950">{item.name}</h2>
+                    <h2 className="text-2xl font-medium tracking-tight text-slate-950">{item.display_name}</h2>
                     <p className="text-sm text-slate-600">
                       {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
                     </p>

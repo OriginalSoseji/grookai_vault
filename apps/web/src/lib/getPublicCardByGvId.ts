@@ -30,6 +30,7 @@ type PublicCardRow = {
   artist: string | null;
   set_code: string | null;
   variant_key: string | null;
+  printed_identity_modifier: string | null;
   variants: VariantFlags;
   external_ids?: { tcgdex?: string | null } | null;
   card_print_traits?: TraitRow | TraitRow[] | null;
@@ -49,12 +50,14 @@ type PublicCardRow = {
         printed_total: number | null;
         printed_set_abbrev: string | null;
         release_date: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
         printed_total: number | null;
         printed_set_abbrev: string | null;
         release_date: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -72,11 +75,12 @@ type RelatedCardRow = {
   image_path: string | null;
   set_code: string | null;
   variant_key: string | null;
+  printed_identity_modifier: string | null;
   variants: VariantFlags;
   external_ids?: { tcgdex?: string | null } | null;
   sets?:
-    | { name: string | null; release_date: string | null }
-    | { name: string | null; release_date: string | null }[]
+    | { name: string | null; release_date: string | null; identity_model: string | null }
+    | { name: string | null; release_date: string | null; identity_model: string | null }[]
     | null;
 };
 
@@ -217,6 +221,8 @@ async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrin
       release_date: setRecord?.release_date ?? undefined,
       release_year: getReleaseYear(setRecord?.release_date),
       variant_key: row.variant_key?.trim() || undefined,
+      printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+      set_identity_model: setRecord?.identity_model?.trim() || undefined,
       variants: row.variants ?? undefined,
     });
   }
@@ -365,8 +371,9 @@ async function getRelatedPrintsByName(
         external_ids,
         set_code,
         variant_key,
+        printed_identity_modifier,
         variants,
-        sets(name,release_date)
+        sets(name,release_date,identity_model)
       `,
     )
     .eq("name", normalizedName)
@@ -406,6 +413,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         external_ids,
         set_code,
         variant_key,
+        printed_identity_modifier,
         variants,
         card_print_traits(
           hp,
@@ -419,7 +427,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
           finish_key,
           finish_keys(label,sort_order)
         ),
-        sets(name,printed_total,printed_set_abbrev,release_date)
+        sets(name,printed_total,printed_set_abbrev,release_date,identity_model)
       `,
     )
     .in("gv_id", getCompatiblePublicGvIdCandidates(gv_id))
@@ -487,6 +495,8 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     supertype: traitRecord?.supertype ?? undefined,
     card_category: traitRecord?.card_category ?? undefined,
     variant_key: row.variant_key?.trim() || undefined,
+    printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
+    set_identity_model: setRecord?.identity_model?.trim() || undefined,
     variants: row.variants ?? undefined,
     printings,
     display_printings: resolveDisplayPrintings(row, printings),

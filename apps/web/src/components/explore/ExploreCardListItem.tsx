@@ -5,6 +5,7 @@ import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 
 type ExploreCardListItemProps = {
@@ -15,6 +16,7 @@ type ExploreCardListItemProps = {
 };
 
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref }: ExploreCardListItemProps) {
+  const displayIdentity = resolveDisplayIdentity(card);
   const variantLabels = getVariantLabels(card, 2);
 
   return (
@@ -23,14 +25,19 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
         <Link href={href} className="flex min-w-0 flex-1 items-start gap-4">
           <PublicCardImage
             src={card.image_url}
-            alt={card.name}
+            alt={displayIdentity.display_name}
             imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
           />
           <div className="flex min-w-0 flex-1 items-start justify-between gap-4 pt-1">
             <div className="min-w-0 space-y-2">
               <div className="space-y-1">
-                <span className="block truncate text-lg font-medium text-slate-950 hover:underline">{card.name}</span>
+                <span className="block truncate text-lg font-medium text-slate-950 hover:underline">
+                  {displayIdentity.base_name}
+                </span>
+                {displayIdentity.suffix ? (
+                  <span className="block truncate text-sm font-medium text-slate-500">{displayIdentity.suffix}</span>
+                ) : null}
                 <p className="text-sm text-slate-600">
                   {[card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—"}
                 </p>

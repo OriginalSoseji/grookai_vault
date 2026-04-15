@@ -7,6 +7,7 @@ import type {
   FounderInsightSetRow,
   FounderInsightSetSection,
 } from "@/lib/founder/getFounderMarketSignals";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 
 export default function FounderMarketSignalsSection({
@@ -132,6 +133,14 @@ function FounderSignalRow({
     row.card.imageUrl,
     row.card.imageAltUrl,
   );
+  const displayIdentity = resolveDisplayIdentity({
+    name: row.card.name,
+    variant_key: row.card.variant_key,
+    printed_identity_modifier: row.card.printed_identity_modifier,
+    set_identity_model: row.card.set_identity_model,
+    set_code: row.card.setCode ?? "",
+    number: row.card.number,
+  });
   const metadata = [
     row.card.setName ?? row.card.setCode,
     row.card.number ? `#${row.card.number}` : undefined,
@@ -145,15 +154,15 @@ function FounderSignalRow({
       </div>
       <PublicCardImage
         src={imageUrl}
-        alt={row.card.name}
+        alt={displayIdentity.display_name}
         imageClassName="h-24 w-16 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
         fallbackClassName="flex h-24 w-16 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-        fallbackLabel={row.card.name}
+        fallbackLabel={displayIdentity.display_name}
       />
       <div className="min-w-0 flex-1 space-y-2">
         <div className="space-y-1">
           <p className="truncate text-base font-medium text-slate-950">
-            {row.card.name}
+            {displayIdentity.display_name}
           </p>
           <p className="text-sm text-slate-600">{metadata || "Card signal"}</p>
           {row.card.gvId ? (

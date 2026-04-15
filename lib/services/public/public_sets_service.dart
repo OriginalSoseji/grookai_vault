@@ -31,6 +31,8 @@ class PublicSetCard {
     required this.name,
     required this.number,
     this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     this.rarity,
     this.imageUrl,
     this.pricing,
@@ -41,6 +43,8 @@ class PublicSetCard {
   final String name;
   final String number;
   final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? rarity;
   final String? imageUrl;
   final CardSurfacePricingData? pricing;
@@ -184,7 +188,7 @@ class PublicSetsService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,number,number_plain,variant_key,rarity,image_url,image_alt_url',
+          'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,sets(identity_model)',
         )
         .eq('set_code', normalizedCode)
         .not('gv_id', 'is', null)
@@ -219,6 +223,13 @@ class PublicSetsService {
                     ? _cleanText(row['number'])
                     : '—');
 
+          final setRecord =
+              row['sets'] is List && (row['sets'] as List).isNotEmpty
+              ? Map<String, dynamic>.from((row['sets'] as List).first as Map)
+              : row['sets'] is Map
+              ? Map<String, dynamic>.from(row['sets'] as Map)
+              : null;
+
           return PublicSetCard(
             cardPrintId: cardPrintId,
             gvId: gvId,
@@ -227,6 +238,12 @@ class PublicSetsService {
                 : _cleanText(row['name']),
             number: displayNumber,
             variantKey: _normalizeOptionalText(row['variant_key']),
+            printedIdentityModifier: _normalizeOptionalText(
+              row['printed_identity_modifier'],
+            ),
+            setIdentityModel: _normalizeOptionalText(
+              setRecord?['identity_model'],
+            ),
             rarity: _normalizeOptionalText(row['rarity']),
             imageUrl: _bestImageUrl(
               primary: row['image_url'],

@@ -7,6 +7,7 @@ import VaultManageCardSettingsPanel from "@/components/vault/VaultManageCardSett
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCardValue,
   formatVaultCopyDate,
@@ -72,6 +73,7 @@ export default async function VaultManageCardPage({
     inPlayCount: item.in_play_count,
     activeMessageCount: item.active_message_count,
   });
+  const displayIdentity = resolveDisplayIdentity(item);
 
   return (
     <>
@@ -108,10 +110,10 @@ export default async function VaultManageCardPage({
                 <PublicCardImage
                   src={item.image_url}
                   fallbackSrc={item.canonical_image_url}
-                  alt={item.name}
+                  alt={displayIdentity.display_name}
                   imageClassName="aspect-[3/4] w-full object-contain drop-shadow-[0_18px_32px_rgba(15,23,42,0.14)]"
                   fallbackClassName="flex aspect-[3/4] w-full items-center justify-center bg-slate-100 px-3 text-center text-sm text-slate-500"
-                  fallbackLabel={item.name}
+                  fallbackLabel={displayIdentity.display_name}
                 />
               </div>
 
@@ -121,7 +123,9 @@ export default async function VaultManageCardPage({
                     <div className="min-w-0 space-y-2">
                       <VaultPrimaryStateBadge item={item} />
                       <div className="space-y-1">
-                        <h1 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-[2rem]">{item.name}</h1>
+                        <h1 className="text-2xl font-semibold tracking-tight text-slate-950 md:text-[2rem]">
+                          {displayIdentity.display_name}
+                        </h1>
                         <p className="text-sm text-slate-500">
                           {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
                             .filter(Boolean)
