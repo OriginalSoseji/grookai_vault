@@ -2167,6 +2167,15 @@ class HomePageState extends State<HomePage> {
         client: supabase,
         options: CardSearchOptions(query: trimmed),
       );
+      if (!mounted || requestVersion != _searchRequestVersion) {
+        return;
+      }
+      setState(() {
+        _results = resolved.rows;
+        _resultPricing = const <String, CardSurfacePricingData>{};
+        _resolverMeta = resolved.meta;
+        _searchError = null;
+      });
       var pricing = const <String, CardSurfacePricingData>{};
       try {
         pricing = await CardSurfacePricingService.fetchByCardPrintIds(
@@ -2181,14 +2190,11 @@ class HomePageState extends State<HomePage> {
         return;
       }
       setState(() {
-        _results = resolved.rows;
         _resultPricing = pricing;
         _catalogOwnershipByCardPrintId = <String, OwnershipState>{
           ..._catalogOwnershipByCardPrintId,
           ...ownershipStates,
         };
-        _resolverMeta = resolved.meta;
-        _searchError = null;
       });
     } catch (error) {
       if (!mounted || requestVersion != _searchRequestVersion) {
