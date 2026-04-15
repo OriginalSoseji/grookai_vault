@@ -1,5 +1,6 @@
 // lib/main.dart
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
@@ -49,6 +50,8 @@ const Duration _kMicroReleaseDuration = Duration(milliseconds: 172);
 const Duration _kActionFeedbackDuration = Duration(milliseconds: 320);
 const Duration _kDrawerOpenDuration = Duration(milliseconds: 280);
 const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
+const int _kSearchInitialBatchSize = 24;
+const int _kSearchFollowupBatchSize = 24;
 const double _kWallMatchGridSpacing = 6;
 const double _kWallMatchGridOuterPadding = 10;
 const double _kWallMatchArtworkAspectRatio = 0.69;
@@ -834,6 +837,8 @@ class _CatalogGridArtwork extends StatelessWidget {
       padding: const EdgeInsets.all(1.5),
       backgroundColor: colorScheme.surfaceContainerLow.withValues(alpha: 0.52),
       enableTapToZoom: false,
+      showShadow: false,
+      filterQuality: FilterQuality.none,
     );
   }
 }
@@ -1912,6 +1917,7 @@ class HomePageState extends State<HomePage> {
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
   final _searchCtrl = TextEditingController();
   List<CardPrint> _results = const [];
+  List<CardPrint> _visibleResults = const [];
   List<CardPrint> _trending = const [];
   Map<String, OwnershipState> _catalogOwnershipByCardPrintId =
       const <String, OwnershipState>{};
@@ -1919,12 +1925,77 @@ class HomePageState extends State<HomePage> {
   Map<String, CardSurfacePricingData> _trendingPricing = const {};
   CardSearchResolverMeta? _resolverMeta;
   bool _loading = false;
+  bool _hasMoreVisibleResults = false;
+  bool _isHydratingMoreResults = false;
   String? _searchError;
   Timer? _debounce;
   int _searchRequestVersion = 0;
   _RarityFilter _rarityFilter = _RarityFilter.all;
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
+
+  List<CardPrint> _takeSearchResultBatch(List<CardPrint> cards, int limit) {
+    if (cards.length <= limit) {
+      return List<CardPrint>.of(cards, growable: false);
+    }
+    return cards.sublist(0, limit);
+  }
+
+  void _scheduleVisibleSearchResultHydration({
+    required List<CardPrint> filteredResults,
+    required int requestVersion,
+  }) {
+    if (filteredResults.length <= _visibleResults.length) {
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _appendVisibleSearchResults(
+        filteredResults: filteredResults,
+        requestVersion: requestVersion,
+      );
+    });
+  }
+
+  void _appendVisibleSearchResults({
+    required List<CardPrint> filteredResults,
+    required int requestVersion,
+  }) {
+    if (!mounted || requestVersion != _searchRequestVersion) {
+      return;
+    }
+
+    final currentVisibleCount = _visibleResults.length;
+    if (currentVisibleCount >= filteredResults.length) {
+      if (_hasMoreVisibleResults || _isHydratingMoreResults) {
+        setState(() {
+          _hasMoreVisibleResults = false;
+          _isHydratingMoreResults = false;
+        });
+      }
+      return;
+    }
+
+    final nextVisibleCount = math.min(
+      currentVisibleCount + _kSearchFollowupBatchSize,
+      filteredResults.length,
+    );
+
+    setState(() {
+      _visibleResults = filteredResults.sublist(0, nextVisibleCount);
+      _hasMoreVisibleResults = nextVisibleCount < filteredResults.length;
+      _isHydratingMoreResults = nextVisibleCount < filteredResults.length;
+    });
+
+    if (nextVisibleCount < filteredResults.length) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _appendVisibleSearchResults(
+          filteredResults: filteredResults,
+          requestVersion: requestVersion,
+        );
+      });
+    }
+  }
 
   bool _shouldShowCuratedLanding([String? query]) {
     final trimmed = (query ?? _searchCtrl.text).trim();
@@ -1936,8 +2007,11 @@ class HomePageState extends State<HomePage> {
     _debounce?.cancel();
     setState(() {
       _results = const [];
+      _visibleResults = const [];
       _resultPricing = const {};
       _resolverMeta = null;
+      _hasMoreVisibleResults = false;
+      _isHydratingMoreResults = false;
       _searchError = null;
       _loading = false;
     });
@@ -2125,8 +2199,12 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  List<CardPrint> _applyRarityFilter(List<CardPrint> cards) {
-    if (_rarityFilter == _RarityFilter.all) return cards;
+  List<CardPrint> _applyRarityFilter(
+    List<CardPrint> cards, {
+    _RarityFilter? filter,
+  }) {
+    final activeFilter = filter ?? _rarityFilter;
+    if (activeFilter == _RarityFilter.all) return cards;
 
     bool matchesRarity(String? rarity, _RarityFilter filter) {
       final raw = (rarity ?? '').toLowerCase();
@@ -2149,7 +2227,7 @@ class HomePageState extends State<HomePage> {
     }
 
     return cards
-        .where((card) => matchesRarity(card.rarity, _rarityFilter))
+        .where((card) => matchesRarity(card.rarity, activeFilter))
         .toList();
   }
 
@@ -2170,12 +2248,29 @@ class HomePageState extends State<HomePage> {
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
+      final filteredResults = _applyRarityFilter(resolved.rows);
+      final initialVisibleResults = _takeSearchResultBatch(
+        filteredResults,
+        _kSearchInitialBatchSize,
+      );
+      final hasMoreVisibleResults =
+          filteredResults.length > initialVisibleResults.length;
       setState(() {
         _results = resolved.rows;
+        _visibleResults = initialVisibleResults;
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
+        _hasMoreVisibleResults = hasMoreVisibleResults;
+        _isHydratingMoreResults = hasMoreVisibleResults;
         _searchError = null;
+        _loading = false;
       });
+      if (hasMoreVisibleResults) {
+        _scheduleVisibleSearchResultHydration(
+          filteredResults: filteredResults,
+          requestVersion: requestVersion,
+        );
+      }
       var pricing = const <String, CardSurfacePricingData>{};
       try {
         pricing = await CardSurfacePricingService.fetchByCardPrintIds(
@@ -2202,14 +2297,14 @@ class HomePageState extends State<HomePage> {
       }
       setState(() {
         _results = const [];
+        _visibleResults = const [];
         _resultPricing = const {};
         _resolverMeta = null;
+        _hasMoreVisibleResults = false;
+        _isHydratingMoreResults = false;
         _searchError = error is Error ? error.toString() : 'Search failed.';
+        _loading = false;
       });
-    } finally {
-      if (mounted && requestVersion == _searchRequestVersion) {
-        setState(() => _loading = false);
-      }
     }
   }
 
@@ -2229,11 +2324,20 @@ class HomePageState extends State<HomePage> {
       return;
     }
 
+    final currentQuery = _searchCtrl.text;
+    final filteredCurrentResults = _applyRarityFilter(_results, filter: filter);
+    final nextVisibleResults = _takeSearchResultBatch(
+      filteredCurrentResults,
+      _kSearchInitialBatchSize,
+    );
     setState(() {
       _rarityFilter = filter;
+      _visibleResults = nextVisibleResults;
+      _hasMoreVisibleResults =
+          filteredCurrentResults.length > nextVisibleResults.length;
+      _isHydratingMoreResults = false;
     });
 
-    final currentQuery = _searchCtrl.text;
     if (currentQuery.trim().isEmpty && filter == _RarityFilter.all) {
       _resetCuratedLandingState();
       return;
@@ -2872,6 +2976,7 @@ class HomePageState extends State<HomePage> {
         delegate: SliverChildBuilderDelegate(
           (context, index) => _buildCatalogCard(cards[index]),
           childCount: cards.length,
+          addAutomaticKeepAlives: false,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: columns,
@@ -2925,6 +3030,7 @@ class HomePageState extends State<HomePage> {
     ThemeData theme, {
     required bool showingCuratedLanding,
     required int resultCount,
+    required int visibleCount,
     required String trimmed,
   }) {
     final colorScheme = theme.colorScheme;
@@ -2934,6 +3040,10 @@ class HomePageState extends State<HomePage> {
         ? 'Search results'
         : 'Cards';
     final subtitle = trimmed.isNotEmpty ? '"$trimmed"' : null;
+    final progressLabel =
+        !showingCuratedLanding && visibleCount > 0 && visibleCount < resultCount
+        ? 'Showing $visibleCount of $resultCount'
+        : null;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -2955,6 +3065,16 @@ class HomePageState extends State<HomePage> {
                   subtitle,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.58),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+              if (progressLabel != null) ...[
+                const SizedBox(height: 2),
+                Text(
+                  progressLabel,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.52),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -2987,12 +3107,17 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final trimmed = _searchCtrl.text.trim();
     final showingCuratedLanding = _shouldShowCuratedLanding(trimmed);
-    final cards = _applyRarityFilter(
-      showingCuratedLanding ? _trending : _results,
-    );
-    final showEmpty = !_loading && cards.isEmpty;
+    final totalSearchResults = _applyRarityFilter(_results);
+    final visibleSearchResults = _visibleResults;
+    final cards = showingCuratedLanding
+        ? _applyRarityFilter(_trending)
+        : visibleSearchResults;
+    final totalResultCount = showingCuratedLanding
+        ? cards.length
+        : totalSearchResults.length;
+    final visibleResultCount = cards.length;
+    final showEmpty = !_loading && totalResultCount == 0;
     final theme = Theme.of(context);
-    final resultCount = cards.length;
     final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
         : _buildRows(cards);
@@ -3084,7 +3209,7 @@ class HomePageState extends State<HomePage> {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              cacheExtent: 960,
+              cacheExtent: showingCuratedLanding ? 960 : 520,
               slivers: [
                 SliverToBoxAdapter(
                   child: Padding(
@@ -3092,7 +3217,8 @@ class HomePageState extends State<HomePage> {
                     child: _buildResultsLeadIn(
                       theme,
                       showingCuratedLanding: showingCuratedLanding,
-                      resultCount: resultCount,
+                      resultCount: totalResultCount,
+                      visibleCount: visibleResultCount,
                       trimmed: trimmed,
                     ),
                   ),

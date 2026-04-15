@@ -15,6 +15,8 @@ class CardSurfaceArtwork extends StatelessWidget {
     this.backgroundColor,
     this.enableTapToZoom = true,
     this.showZoomAffordance = false,
+    this.showShadow = true,
+    this.filterQuality = FilterQuality.low,
     this.onTapToZoom,
     super.key,
   });
@@ -28,6 +30,8 @@ class CardSurfaceArtwork extends StatelessWidget {
   final Color? backgroundColor;
   final bool enableTapToZoom;
   final bool showZoomAffordance;
+  final bool showShadow;
+  final FilterQuality filterQuality;
   final VoidCallback? onTapToZoom;
 
   bool get _hasImage => (imageUrl ?? '').trim().isNotEmpty;
@@ -44,13 +48,15 @@ class CardSurfaceArtwork extends StatelessWidget {
             colorScheme.surfaceContainerLow.withValues(alpha: 0.72),
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.02),
-            blurRadius: 12,
-            offset: const Offset(0, 6),
-          ),
-        ],
+        boxShadow: showShadow
+            ? [
+                BoxShadow(
+                  color: colorScheme.shadow.withValues(alpha: 0.02),
+                  blurRadius: 12,
+                  offset: const Offset(0, 6),
+                ),
+              ]
+            : const [],
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(
@@ -77,7 +83,7 @@ class CardSurfaceArtwork extends StatelessWidget {
                           alignment: Alignment.center,
                           cacheWidth: cacheWidth,
                           cacheHeight: cacheHeight,
-                          filterQuality: FilterQuality.low,
+                          filterQuality: filterQuality,
                           errorBuilder: (context, error, stackTrace) =>
                               _ArtworkFallback(label: label, compact: compact),
                         )
