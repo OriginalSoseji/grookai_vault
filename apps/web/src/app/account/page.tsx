@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
+import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
+import {
+  getFounderMarketSignals,
+  type FounderInsightBundle,
+} from "@/lib/founder/getFounderMarketSignals";
+import { isFounderUser } from "@/lib/founder/requireFounderAccess";
 import type { PublicProfileSettingsValues } from "@/lib/publicProfileSettings";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -41,6 +48,21 @@ export default async function AccountPage() {
     avatarPath: profileRow?.avatar_path ?? null,
     bannerPath: profileRow?.banner_path ?? null,
   };
+  const showFounderSignals = isFounderUser(user);
+  let founderSignals: FounderInsightBundle | null = null;
+  let founderSignalsError: string | null = null;
+
+  if (showFounderSignals) {
+    try {
+      const admin = createServerAdminClient();
+      founderSignals = await getFounderMarketSignals(admin);
+    } catch (error) {
+      founderSignalsError =
+        error instanceof Error
+          ? error.message
+          : "Unknown founder market-signal error";
+    }
+  }
 
   return (
     <div className="space-y-8 py-8">
@@ -110,6 +132,42 @@ export default async function AccountPage() {
         userId={user.id}
         loadError={profileError?.message ?? null}
       />
+
+      {showFounderSignals ? (
+        <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+              Private Founder Module
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+              Founder Signals
+            </h2>
+            <p className="max-w-3xl text-sm leading-7 text-slate-600">
+              Your private market-intelligence panel. All sections stay
+              aggregated, card-anchored, and visible only on this founder
+              account.
+            </p>
+          </div>
+
+          {founderSignalsError ? (
+            <div className="mt-6 rounded-[1.25rem] border border-rose-200 bg-rose-50 px-4 py-4 text-sm leading-7 text-rose-700">
+              Founder Signals are unavailable right now: {founderSignalsError}
+            </div>
+          ) : founderSignals ? (
+            <div className="mt-6">
+              <FounderMarketSignalsSection
+                insights={founderSignals}
+                showHeader={false}
+              />
+            </div>
+          ) : (
+            <div className="mt-6 rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-600">
+              Founder Signals will appear here once the aggregated market
+              insight service is available.
+            </div>
+          )}
+        </section>
+      ) : null}
 
       <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="space-y-4">
