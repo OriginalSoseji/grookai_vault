@@ -3,11 +3,38 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/card_print.dart';
 
-class SmartFeedLoadResult {
-  const SmartFeedLoadResult({required this.cards, required this.usedFallback});
+class SmartFeedCandidateDebug {
+  const SmartFeedCandidateDebug({
+    required this.score,
+    required this.boosts,
+    required this.suppressions,
+    required this.source,
+  });
 
-  final List<CardPrint> cards;
+  final double score;
+  final List<String> boosts;
+  final List<String> suppressions;
+  final String source;
+}
+
+class SmartFeedCandidate {
+  const SmartFeedCandidate({required this.card, this.debug});
+
+  final CardPrint card;
+  final SmartFeedCandidateDebug? debug;
+}
+
+class SmartFeedLoadResult {
+  const SmartFeedLoadResult({
+    required this.candidates,
+    required this.usedFallback,
+  });
+
+  final List<SmartFeedCandidate> candidates;
   final bool usedFallback;
+
+  List<CardPrint> get cards =>
+      candidates.map((candidate) => candidate.card).toList(growable: false);
 }
 
 class SmartFeedService {
@@ -21,6 +48,7 @@ class SmartFeedService {
   static const int _kSetSeedLimit = 3;
   static const int _kNameCandidateLimit = 16;
   static const int _kSetCandidateLimit = 12;
+  static const bool _kSmartFeedDebugDataEnabled = kDebugMode;
 
   static const Set<String> _positiveEventTypes = <String>{
     'open_detail',
@@ -49,7 +77,9 @@ class SmartFeedService {
       ),
     );
     final fallbackResult = SmartFeedLoadResult(
-      cards: _takeCards(fallbackCards, normalizedLimit),
+      candidates: _buildFallbackCandidates(
+        _takeCards(fallbackCards, normalizedLimit),
+      ),
       usedFallback: true,
     );
 
@@ -147,6 +177,9 @@ class SmartFeedService {
       final selectedCards = selectedCandidates
           .map((candidate) => candidate.card)
           .toList(growable: false);
+      final selectedPublicCandidates = selectedCandidates
+          .map(_toPublicCandidate)
+          .toList(growable: false);
       _debugSummary(
         usedFallback: false,
         candidateCount: rankedCandidates.length,
@@ -156,7 +189,10 @@ class SmartFeedService {
         impressionSuppressionCount: impressionSuppressionCount,
         selectedCards: selectedCards,
       );
-      return SmartFeedLoadResult(cards: selectedCards, usedFallback: false);
+      return SmartFeedLoadResult(
+        candidates: selectedPublicCandidates,
+        usedFallback: false,
+      );
     } catch (error) {
       if (kDebugMode) {
         debugPrint('[smart-feed] falling back to static feed: $error');
@@ -391,6 +427,63 @@ class SmartFeedService {
     return candidates;
   }
 
+  static List<SmartFeedCandidate> _buildFallbackCandidates(
+    List<CardPrint> cards,
+  ) {
+    return cards
+        .map(
+          (card) => SmartFeedCandidate(
+            card: card,
+            debug: _kSmartFeedDebugDataEnabled
+                ? const SmartFeedCandidateDebug(
+                    score: 0,
+                    boosts: <String>[],
+                    suppressions: <String>[],
+                    source: 'fallback',
+                  )
+                : null,
+          ),
+        )
+        .toList(growable: false);
+  }
+
+  static SmartFeedCandidate _toPublicCandidate(_SmartFeedCandidate candidate) {
+    return SmartFeedCandidate(
+      card: candidate.card,
+      debug: _kSmartFeedDebugDataEnabled
+          ? _buildCandidateDebug(candidate)
+          : null,
+    );
+  }
+
+  static SmartFeedCandidateDebug _buildCandidateDebug(
+    _SmartFeedCandidate candidate,
+  ) {
+    final nonSourceEntries =
+        candidate.scoreBreakdown.entries
+            .where((entry) => !_sourceReasonKeys.contains(entry.key))
+            .toList(growable: false)
+          ..sort((a, b) => b.value.abs().compareTo(a.value.abs()));
+
+    final boosts = nonSourceEntries
+        .where((entry) => entry.value > 0)
+        .take(4)
+        .map((entry) => _formatDebugSignal(entry.key, entry.value))
+        .toList(growable: false);
+    final suppressions = nonSourceEntries
+        .where((entry) => entry.value < 0)
+        .take(4)
+        .map((entry) => _formatDebugSignal(entry.key, entry.value))
+        .toList(growable: false);
+
+    return SmartFeedCandidateDebug(
+      score: candidate.score,
+      boosts: boosts,
+      suppressions: suppressions,
+      source: _sourceLabel(_primarySource(candidate.sources)),
+    );
+  }
+
   static double _scoreCandidate(
     _SmartFeedCandidate candidate,
     _SmartFeedContext context,
@@ -576,6 +669,63 @@ class SmartFeedService {
     }
   }
 
+  static _SmartFeedCandidateSource _primarySource(
+    Set<_SmartFeedCandidateSource> sources,
+  ) {
+    for (final source in _sourcePriority) {
+      if (sources.contains(source)) {
+        return source;
+      }
+    }
+    return _SmartFeedCandidateSource.fallback;
+  }
+
+  static String _sourceLabel(_SmartFeedCandidateSource source) {
+    switch (source) {
+      case _SmartFeedCandidateSource.exactWanted:
+        return 'wanted_exact';
+      case _SmartFeedCandidateSource.exactPositive:
+        return 'positive_exact';
+      case _SmartFeedCandidateSource.wantedName:
+        return 'wanted_name';
+      case _SmartFeedCandidateSource.positiveName:
+        return 'positive_name';
+      case _SmartFeedCandidateSource.setAffinity:
+        return 'set_affinity';
+      case _SmartFeedCandidateSource.fallback:
+        return 'fallback';
+    }
+  }
+
+  static String _formatDebugSignal(String reason, double delta) {
+    final label = switch (reason) {
+      'wanted-id' => 'wanted',
+      'wanted-name' => 'wanted_name',
+      'wanted-set' => 'wanted_set',
+      'positive-id' => 'positive_card',
+      'positive-name' => 'positive_name',
+      'positive-set' => 'positive_set',
+      'positive-repeat' => 'repeat_positive',
+      'rarity' => 'rarity',
+      'freshness' => 'fresh',
+      'recent-open' => 'recent_open',
+      'recent-open-recency' => 'open_recency',
+      'repeat-open' => 'repeat_open',
+      'impression-fatigue' => 'impression_fatigue',
+      'want-off' => 'want_off',
+      _ => reason,
+    };
+    return '$label(${_formatScoreDelta(delta)})';
+  }
+
+  static String _formatScoreDelta(double delta) {
+    final magnitude = delta.abs();
+    final fixed = magnitude >= 10
+        ? magnitude.toStringAsFixed(0)
+        : magnitude.toStringAsFixed(1);
+    return delta < 0 ? '-$fixed' : '+$fixed';
+  }
+
   static double _rarityBoost(String? rarity) {
     final normalized = _clean(rarity).toLowerCase();
     if (normalized.contains('secret')) {
@@ -745,6 +895,25 @@ enum _SmartFeedCandidateSource {
   setAffinity,
   fallback,
 }
+
+const Set<String> _sourceReasonKeys = <String>{
+  'exactWanted',
+  'exactPositive',
+  'wantedName',
+  'positiveName',
+  'setAffinity',
+  'fallback',
+};
+
+const List<_SmartFeedCandidateSource> _sourcePriority =
+    <_SmartFeedCandidateSource>[
+      _SmartFeedCandidateSource.exactWanted,
+      _SmartFeedCandidateSource.exactPositive,
+      _SmartFeedCandidateSource.wantedName,
+      _SmartFeedCandidateSource.positiveName,
+      _SmartFeedCandidateSource.setAffinity,
+      _SmartFeedCandidateSource.fallback,
+    ];
 
 class _SmartFeedCandidate {
   _SmartFeedCandidate({

@@ -45,6 +45,7 @@ part 'main_shell.dart';
 part 'main_vault.dart';
 
 const bool kDebugTouchLog = false;
+const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
 const Duration _kMicroPressDownDuration = Duration(milliseconds: 96);
@@ -601,6 +602,8 @@ class _CatalogCardTile extends StatelessWidget {
   final OwnershipState? ownershipState;
   final VoidCallback? onTap;
   final VoidCallback? onImpressionCandidate;
+  final SmartFeedCandidateDebug? feedDebug;
+  final bool showFeedDebugOverlay;
   final AppCardViewMode viewMode;
 
   const _CatalogCardTile({
@@ -610,6 +613,8 @@ class _CatalogCardTile extends StatelessWidget {
     this.pricing,
     this.onTap,
     this.onImpressionCandidate,
+    this.feedDebug,
+    this.showFeedDebugOverlay = false,
   });
 
   @override
@@ -642,77 +647,84 @@ class _CatalogCardTile extends StatelessWidget {
     return _CatalogFeedImpressionObserver(
       cardId: card.id,
       onImpressionCandidate: onImpressionCandidate,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: compact ? 10 : 10,
-          vertical: compact ? 2 : 3,
-        ),
-        child: _PressScaleInkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(compact ? 16 : 18),
-          pressedScale: compact ? 0.982 : 0.978,
-          child: Material(
-            color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.24),
+      child: _CatalogFeedDebugOverlay(
+        debug: feedDebug,
+        enabled: showFeedDebugOverlay,
+        compact: compact,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: compact ? 10 : 10,
+            vertical: compact ? 2 : 3,
+          ),
+          child: _PressScaleInkWell(
+            onTap: onTap,
             borderRadius: BorderRadius.circular(compact ? 16 : 18),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: compact ? 8 : 8,
-                vertical: compact ? 6 : 8,
+            pressedScale: compact ? 0.982 : 0.978,
+            child: Material(
+              color: colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.24,
               ),
-              child: Row(
-                children: [
-                  _thumb(card.displayImage, thumbWidth, thumbHeight),
-                  SizedBox(width: compact ? 7 : 8),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          card.name,
-                          style:
-                              (compact
-                                      ? theme.textTheme.bodySmall
-                                      : theme.textTheme.bodyMedium)
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.1,
-                                  ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        if (subtitle.isNotEmpty) ...[
-                          SizedBox(height: compact ? 0 : 1),
+              borderRadius: BorderRadius.circular(compact ? 16 : 18),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 8 : 8,
+                  vertical: compact ? 6 : 8,
+                ),
+                child: Row(
+                  children: [
+                    _thumb(card.displayImage, thumbWidth, thumbHeight),
+                    SizedBox(width: compact ? 7 : 8),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text(
-                            subtitle,
+                            card.name,
+                            style:
+                                (compact
+                                        ? theme.textTheme.bodySmall
+                                        : theme.textTheme.bodyMedium)
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.1,
+                                    ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: colorScheme.onSurface.withValues(
-                                alpha: 0.58,
+                          ),
+                          if (subtitle.isNotEmpty) ...[
+                            SizedBox(height: compact ? 0 : 1),
+                            Text(
+                              subtitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.58,
+                                ),
+                                fontSize: compact ? 11.5 : null,
                               ),
-                              fontSize: compact ? 11.5 : null,
                             ),
+                          ],
+                          if (pricing?.hasVisibleValue == true) ...[
+                            SizedBox(height: compact ? 4 : 5),
+                            Opacity(
+                              opacity: 0.86,
+                              child: CardSurfacePricePill(
+                                pricing: pricing,
+                                size: compact
+                                    ? CardSurfacePriceSize.dense
+                                    : CardSurfacePriceSize.list,
+                              ),
+                            ),
+                          ],
+                          _CatalogOwnershipSummaryLine(
+                            ownershipState: ownershipState,
                           ),
                         ],
-                        if (pricing?.hasVisibleValue == true) ...[
-                          SizedBox(height: compact ? 4 : 5),
-                          Opacity(
-                            opacity: 0.86,
-                            child: CardSurfacePricePill(
-                              pricing: pricing,
-                              size: compact
-                                  ? CardSurfacePriceSize.dense
-                                  : CardSurfacePriceSize.list,
-                            ),
-                          ),
-                        ],
-                        _CatalogOwnershipSummaryLine(
-                          ownershipState: ownershipState,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -765,6 +777,94 @@ class _CatalogFeedImpressionObserver extends StatelessWidget {
   }
 }
 
+class _CatalogFeedDebugOverlay extends StatelessWidget {
+  const _CatalogFeedDebugOverlay({
+    required this.child,
+    this.debug,
+    this.enabled = false,
+    this.compact = false,
+  });
+
+  final Widget child;
+  final SmartFeedCandidateDebug? debug;
+  final bool enabled;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!kDebugMode || !kFeedDebugOverlay || !enabled || debug == null) {
+      return child;
+    }
+
+    final textTheme = Theme.of(context).textTheme;
+    final overlayTextStyle =
+        (compact ? textTheme.labelSmall : textTheme.bodySmall)?.copyWith(
+          color: Colors.white,
+          fontSize: compact ? 9.2 : 9.6,
+          fontWeight: FontWeight.w600,
+          height: 1.12,
+        ) ??
+        TextStyle(
+          color: Colors.white,
+          fontSize: compact ? 9.2 : 9.6,
+          fontWeight: FontWeight.w600,
+          height: 1.12,
+        );
+
+    Widget overlayText(String text, {int maxLines = 2}) {
+      return Text(text, maxLines: maxLines, overflow: TextOverflow.ellipsis);
+    }
+
+    return Stack(
+      children: [
+        child,
+        Positioned(
+          top: compact ? 7 : 8,
+          left: compact ? 14 : 10,
+          right: compact ? 14 : 10,
+          child: IgnorePointer(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 220),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.76),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 5,
+                    ),
+                    child: DefaultTextStyle(
+                      style: overlayTextStyle,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          overlayText(
+                            'score ${debug!.score.toStringAsFixed(1)} | ${debug!.source}',
+                            maxLines: 1,
+                          ),
+                          if (debug!.boosts.isNotEmpty)
+                            overlayText('+ ${debug!.boosts.join(', ')}'),
+                          if (debug!.suppressions.isNotEmpty)
+                            overlayText('- ${debug!.suppressions.join(', ')}'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _CatalogCardGridTile extends StatelessWidget {
   const _CatalogCardGridTile({
     required this.card,
@@ -772,6 +872,8 @@ class _CatalogCardGridTile extends StatelessWidget {
     required this.ownershipState,
     this.pricing,
     this.onImpressionCandidate,
+    this.feedDebug,
+    this.showFeedDebugOverlay = false,
   });
 
   final CardPrint card;
@@ -779,6 +881,8 @@ class _CatalogCardGridTile extends StatelessWidget {
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
   final VoidCallback? onImpressionCandidate;
+  final SmartFeedCandidateDebug? feedDebug;
+  final bool showFeedDebugOverlay;
 
   @override
   Widget build(BuildContext context) {
@@ -796,72 +900,78 @@ class _CatalogCardGridTile extends StatelessWidget {
     return _CatalogFeedImpressionObserver(
       cardId: card.id,
       onImpressionCandidate: onImpressionCandidate,
-      child: Material(
-        color: Colors.transparent,
-        child: _PressScaleInkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(22),
-          pressedScale: 0.972,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              AspectRatio(
-                aspectRatio: _kWallMatchArtworkAspectRatio,
-                child: _CatalogGridArtwork(card: card),
-              ),
-              const SizedBox(height: 6),
-              SizedBox(
-                height: _kWallMatchTitleHeight,
-                child: Text(
-                  card.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    height: 1.04,
-                    letterSpacing: -0.3,
+      child: _CatalogFeedDebugOverlay(
+        debug: feedDebug,
+        enabled: showFeedDebugOverlay,
+        child: Material(
+          color: Colors.transparent,
+          child: _PressScaleInkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(22),
+            pressedScale: 0.972,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                AspectRatio(
+                  aspectRatio: _kWallMatchArtworkAspectRatio,
+                  child: _CatalogGridArtwork(card: card),
+                ),
+                const SizedBox(height: 6),
+                SizedBox(
+                  height: _kWallMatchTitleHeight,
+                  child: Text(
+                    card.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      height: 1.04,
+                      letterSpacing: -0.3,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 3),
-              SizedBox(
-                height: _kWallMatchMetaHeight,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        subtitle.isEmpty ? 'Card' : subtitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.60),
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.02,
+                const SizedBox(height: 3),
+                SizedBox(
+                  height: _kWallMatchMetaHeight,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          subtitle.isEmpty ? 'Card' : subtitle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.60,
+                            ),
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.02,
+                          ),
                         ),
                       ),
-                    ),
-                    if (pricing?.hasVisibleValue == true) ...[
-                      const SizedBox(width: 6),
-                      CardSurfacePricePill(
-                        pricing: pricing,
-                        size: CardSurfacePriceSize.grid,
-                      ),
+                      if (pricing?.hasVisibleValue == true) ...[
+                        const SizedBox(width: 6),
+                        CardSurfacePricePill(
+                          pricing: pricing,
+                          size: CardSurfacePriceSize.grid,
+                        ),
+                      ],
                     ],
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: _kWallMatchBottomRhythmHeight,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: _CatalogOwnershipSummaryLine(
-                    ownershipState: ownershipState,
-                    grid: true,
                   ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: _kWallMatchBottomRhythmHeight,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _CatalogOwnershipSummaryLine(
+                      ownershipState: ownershipState,
+                      grid: true,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1971,6 +2081,8 @@ class HomePageState extends State<HomePage> {
       const <String, OwnershipState>{};
   Map<String, CardSurfacePricingData> _resultPricing = const {};
   Map<String, CardSurfacePricingData> _trendingPricing = const {};
+  Map<String, SmartFeedCandidateDebug> _trendingDebugByCardId =
+      const <String, SmartFeedCandidateDebug>{};
   CardSearchResolverMeta? _resolverMeta;
   final Map<String, DateTime> _feedImpressionWriteGateByCardId =
       <String, DateTime>{};
@@ -1986,6 +2098,7 @@ class HomePageState extends State<HomePage> {
   _RarityFilter _rarityFilter = _RarityFilter.all;
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
+  bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
 
   List<CardPrint> _takeSearchResultBatch(List<CardPrint> cards, int limit) {
     if (cards.length <= limit) {
@@ -2201,6 +2314,13 @@ class HomePageState extends State<HomePage> {
     try {
       final feed = await SmartFeedService.load(client: supabase);
       final rows = feed.cards;
+      final debugByCardId = kDebugMode && kFeedDebugOverlay
+          ? <String, SmartFeedCandidateDebug>{
+              for (final candidate in feed.candidates)
+                if (candidate.debug != null)
+                  candidate.card.id.trim(): candidate.debug!,
+            }
+          : const <String, SmartFeedCandidateDebug>{};
       var pricing = const <String, CardSurfacePricingData>{};
       try {
         pricing = await CardSurfacePricingService.fetchByCardPrintIds(
@@ -2215,6 +2335,7 @@ class HomePageState extends State<HomePage> {
       setState(() {
         _trending = rows;
         _trendingPricing = pricing;
+        _trendingDebugByCardId = debugByCardId;
         _catalogOwnershipByCardPrintId = <String, OwnershipState>{
           ..._catalogOwnershipByCardPrintId,
           ...ownershipStates,
@@ -2992,6 +3113,8 @@ class HomePageState extends State<HomePage> {
     CardPrint card, {
     bool enableFeedImpressionTracking = false,
     int? feedPosition,
+    SmartFeedCandidateDebug? feedDebug,
+    bool showFeedDebugOverlay = false,
   }) {
     final pricing = _resultPricing[card.id] ?? _trendingPricing[card.id];
     final ownershipState = _catalogOwnershipStateForCard(card.id);
@@ -3009,6 +3132,8 @@ class HomePageState extends State<HomePage> {
         ownershipState: ownershipState,
         onTap: () => _openSearchCardActionHub(card),
         onImpressionCandidate: onImpressionCandidate,
+        feedDebug: feedDebug,
+        showFeedDebugOverlay: showFeedDebugOverlay,
       );
     }
 
@@ -3019,6 +3144,8 @@ class HomePageState extends State<HomePage> {
       viewMode: _viewMode,
       onTap: () => _openSearchCardActionHub(card),
       onImpressionCandidate: onImpressionCandidate,
+      feedDebug: feedDebug,
+      showFeedDebugOverlay: showFeedDebugOverlay,
     );
   }
 
@@ -3026,6 +3153,7 @@ class HomePageState extends State<HomePage> {
     List<CardPrint> cards,
     List<_CatalogRow> rows, {
     bool trackFeedImpressions = false,
+    bool showFeedDebugOverlay = false,
   }) {
     final feedPositionByCardId = trackFeedImpressions
         ? <String, int>{
@@ -3049,6 +3177,8 @@ class HomePageState extends State<HomePage> {
               row.card,
               enableFeedImpressionTracking: trackFeedImpressions,
               feedPosition: feedPositionByCardId[row.card.id.trim()],
+              feedDebug: _trendingDebugByCardId[row.card.id.trim()],
+              showFeedDebugOverlay: showFeedDebugOverlay,
             );
           }
           return const SizedBox.shrink();
@@ -3071,6 +3201,8 @@ class HomePageState extends State<HomePage> {
             cards[index],
             enableFeedImpressionTracking: trackFeedImpressions,
             feedPosition: index,
+            feedDebug: _trendingDebugByCardId[cards[index].id.trim()],
+            showFeedDebugOverlay: showFeedDebugOverlay,
           ),
           childCount: cards.length,
           addAutomaticKeepAlives: false,
@@ -3191,6 +3323,8 @@ class HomePageState extends State<HomePage> {
     required int resultCount,
     required int visibleCount,
     required String trimmed,
+    required bool showFeedDebugToggle,
+    required bool showFeedDebugOverlay,
   }) {
     final colorScheme = theme.colorScheme;
     final title = showingCuratedLanding
@@ -3241,22 +3375,64 @@ class HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        if (resultCount > 0)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest.withValues(
-                alpha: 0.24,
-              ),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Text(
-              '$resultCount cards',
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.56),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+        if (resultCount > 0 || showFeedDebugToggle)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (resultCount > 0)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 9,
+                    vertical: 5,
+                  ),
+                  decoration: BoxDecoration(
+                    color: colorScheme.surfaceContainerHighest.withValues(
+                      alpha: 0.24,
+                    ),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    '$resultCount cards',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.56),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              if (showFeedDebugToggle) ...[
+                const SizedBox(width: 8),
+                IconButton.filledTonal(
+                  tooltip: showFeedDebugOverlay
+                      ? 'Hide feed debug overlay'
+                      : 'Show feed debug overlay',
+                  onPressed: () {
+                    setState(() {
+                      _showFeedDebugOverlay = !_showFeedDebugOverlay;
+                    });
+                  },
+                  icon: Icon(
+                    showFeedDebugOverlay
+                        ? Icons.bug_report_rounded
+                        : Icons.bug_report_outlined,
+                    size: 18,
+                  ),
+                  style: IconButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    padding: const EdgeInsets.all(8),
+                    minimumSize: const Size(34, 34),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    backgroundColor: showFeedDebugOverlay
+                        ? colorScheme.primary.withValues(alpha: 0.18)
+                        : colorScheme.surfaceContainerHighest.withValues(
+                            alpha: 0.32,
+                          ),
+                    foregroundColor: showFeedDebugOverlay
+                        ? colorScheme.primary
+                        : colorScheme.onSurface.withValues(alpha: 0.64),
+                  ),
+                ),
+              ],
+            ],
           ),
       ],
     );
@@ -3380,6 +3556,15 @@ class HomePageState extends State<HomePage> {
                       resultCount: totalResultCount,
                       visibleCount: visibleResultCount,
                       trimmed: trimmed,
+                      showFeedDebugToggle:
+                          showingCuratedLanding &&
+                          kDebugMode &&
+                          kFeedDebugOverlay,
+                      showFeedDebugOverlay:
+                          showingCuratedLanding &&
+                          kDebugMode &&
+                          kFeedDebugOverlay &&
+                          _showFeedDebugOverlay,
                     ),
                   ),
                 ),
@@ -3418,6 +3603,11 @@ class HomePageState extends State<HomePage> {
                     cards,
                     rows,
                     trackFeedImpressions: showingCuratedLanding,
+                    showFeedDebugOverlay:
+                        showingCuratedLanding &&
+                        kDebugMode &&
+                        kFeedDebugOverlay &&
+                        _showFeedDebugOverlay,
                   ),
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
