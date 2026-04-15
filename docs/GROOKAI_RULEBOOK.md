@@ -93,9 +93,15 @@ Before any L2/L3 audit or implementation:
 - Publishable key only in frontend/Edge; service-role only in backend/CI. Never embed secrets in Flutter.
 
 ## 6. Schema / Canonical Identity Contract
-- Card prints are canonical: UUID-only `card_prints.id`; identity = `(set_id, number_plain, variant_key)`.
+- Card prints are canonical: UUID-only `card_prints.id`.
+- Set-level identity behavior is explicit:
+  - `public.sets.identity_model = 'standard' | 'reprint_anthology'`
+- Standard sets enforce number / printed-identity-modifier / variant uniqueness.
+- Reprint anthology sets enforce number + `print_identity_key` uniqueness and must not rely on raw `(set_id, number_plain)` uniqueness.
 - All child tables reference `card_prints.id uuid`; no duplicates; set_id non-null in production.
-- Source: `docs/contracts/GV_SCHEMA_CONTRACT_V1.md`.
+- Sources:
+  - `docs/contracts/GV_SCHEMA_CONTRACT_V1.md`
+  - `docs/checkpoints/identity/reprint_anthology_identity_model_v1.md`
 
 ## 7. Ingestion Pipeline Contract
 - All external data flows: `raw_imports → normalization → mapping_conflicts → external_mappings → card_prints`.

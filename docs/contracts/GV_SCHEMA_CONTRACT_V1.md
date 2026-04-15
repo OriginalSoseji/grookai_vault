@@ -19,6 +19,7 @@ Represents official trading card sets.
 - `game` (text)
 - `code` (text)
 - `name` (text)
+- `identity_model` (text, not null, default `standard`)
 - `release_date` (date)
 - `source` (text)
 - `logo_url` (text)
@@ -31,6 +32,7 @@ Represents official trading card sets.
 
 **Constraints**
 - `UNIQUE (game, code)`
+- `identity_model IN ('standard', 'reprint_anthology')`
 - `id` is the only FK target for other tables
 
 ---
@@ -39,15 +41,23 @@ Represents official trading card sets.
 
 Represents individual printings of a card.
 
-**Canonical Identity**
+**Declared Identity Behavior**
 - `set_id` (uuid → sets.id)
+- `set_identity_model` (text, denormalized from `sets.identity_model`)
 - `number_plain` (text)
 - `variant_key` (text, nullable; treat '' as “base”)
+- `printed_identity_modifier` (text, nullable)
+- `print_identity_key` (text, required for `reprint_anthology`)
 
-**Unique Identity Constraint**
+**Unique Identity Constraints**
 
+For `standard` sets:
 
-UNIQUE (set_id, number_plain, coalesce(variant_key, ''))
+UNIQUE (set_id, number_plain, coalesce(printed_identity_modifier, ''), coalesce(variant_key, ''))
+
+For `reprint_anthology` sets:
+
+UNIQUE (set_id, number_plain, print_identity_key, coalesce(variant_key, ''))
 
 
 **Core Columns**
@@ -58,6 +68,7 @@ UNIQUE (set_id, number_plain, coalesce(variant_key, ''))
 - `number`
 - `number_plain`
 - `variant_key`
+- `set_identity_model`
 - `rarity`
 - `image_url`, `image_alt_url`
 - `image_source`
@@ -70,7 +81,7 @@ UNIQUE (set_id, number_plain, coalesce(variant_key, ''))
 
 **Metadata & AI Columns**
 - `created_at`, `updated_at`, `last_synced_at`
-- `print_identity_key` (unique when not null)
+- `print_identity_key`
 - `ai_metadata`
 - `image_hash`
 - `data_quality_flags`
@@ -79,11 +90,13 @@ UNIQUE (set_id, number_plain, coalesce(variant_key, ''))
 - `(set_id)`
 - `(set_code, number_plain)`
 - `(tcgplayer_id)`
-- `print_identity_key` unique when not null
+- partial unique identity indexes for `standard` and `reprint_anthology`
 
 **Rules**
 - `id` is UUID and canonical.
-- `(set_id, number_plain, variant_key)` is the true identity.
+- set identity behavior is declared by `sets.identity_model`.
+- `standard` sets use number / printed-identity-modifier / variant uniqueness.
+- `reprint_anthology` sets must not rely on `(set_id, number_plain)` uniqueness and instead require `print_identity_key`.
 - No duplicates.
 - `set_id` must be non-null for production prints.
 
@@ -125,7 +138,7 @@ Early TCG batch is non-authoritative.
 
 1. `card_prints.id` is UUID and canonical.
 2. All `card_print_id` FKs must be UUID.
-3. Print identity = `(set_id, number_plain, variant_key)`.
+3. Print identity follows the owning set's declared `identity_model`.
 4. No duplicates.
 5. No production `set_id IS NULL`.
 6. Old experimental data is non-authoritative.
