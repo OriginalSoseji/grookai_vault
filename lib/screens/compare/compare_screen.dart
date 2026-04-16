@@ -3,9 +3,21 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../widgets/ownership/ownership_signal.dart';
+
+ResolvedDisplayIdentity _compareDisplayIdentity(ComparePublicCard card) {
+  return resolveDisplayIdentityFromFields(
+    name: card.name,
+    variantKey: card.variantKey,
+    printedIdentityModifier: card.printedIdentityModifier,
+    setIdentityModel: card.setIdentityModel,
+    setCode: card.setCode,
+    number: card.number == '—' ? null : card.number,
+  );
+}
 
 class CompareScreen extends StatefulWidget {
   const CompareScreen({super.key});
@@ -278,7 +290,11 @@ class _CompareScreenState extends State<CompareScreen> {
               dataRowMaxHeight: 70,
               columns: [
                 const DataColumn(label: Text('Attribute')),
-                ...cards.map((card) => DataColumn(label: Text(card.name))),
+                ...cards.map(
+                  (card) => DataColumn(
+                    label: Text(_compareDisplayIdentity(card).displayName),
+                  ),
+                ),
               ],
               rows: visibleRows.map((row) {
                 return DataRow(
@@ -562,6 +578,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
         final card = cards[index];
         final isReference = card.gvId == referenceGvId;
         final ownershipState = ownershipStateForCard(card);
+        final displayIdentity = _compareDisplayIdentity(card);
 
         return _CompareSurfaceCard(
           padding: const EdgeInsets.all(14),
@@ -643,7 +660,7 @@ class _CompareCardPreviewGrid extends StatelessWidget {
                   ),
                 ),
               Text(
-                card.name,
+                displayIdentity.displayName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(

@@ -92,6 +92,8 @@ class ComparePublicCard {
     this.rawPriceSource,
     this.rawPriceTimestamp,
     this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
   });
 
   final String id;
@@ -108,6 +110,8 @@ class ComparePublicCard {
   final String? rawPriceSource;
   final String? rawPriceTimestamp;
   final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
 
   String? get variantLabel {
     final key = (variantKey ?? '').trim();
@@ -139,7 +143,7 @@ class PublicCompareService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,artist,image_url,image_alt_url,variant_key,sets(name,release_date)',
+          'id,gv_id,name,set_code,number,rarity,artist,image_url,image_alt_url,variant_key,printed_identity_modifier,sets(name,release_date,identity_model)',
         )
         .inFilter('gv_id', normalizedIds);
 
@@ -212,6 +216,12 @@ class PublicCompareService {
             rawPriceSource: _normalizeOptionalText(priceRow?['base_source']),
             rawPriceTimestamp: _normalizeOptionalText(priceRow?['base_ts']),
             variantKey: _normalizeOptionalText(row['variant_key']),
+            printedIdentityModifier: _normalizeOptionalText(
+              row['printed_identity_modifier'],
+            ),
+            setIdentityModel: _normalizeOptionalText(
+              setRecord?['identity_model'],
+            ),
           );
         })
         .whereType<ComparePublicCard>()

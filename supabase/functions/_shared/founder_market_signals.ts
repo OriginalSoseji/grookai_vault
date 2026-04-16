@@ -32,14 +32,18 @@ type CardMetadataRow = {
   name: string | null;
   set_code: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   sets:
     | {
         name: string | null;
+        identity_model: string | null;
       }
     | {
         name: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -85,6 +89,9 @@ type CardSignal = {
   setCode: string | null;
   setName: string | null;
   number: string | null;
+  variantKey: string | null;
+  printedIdentityModifier: string | null;
+  setIdentityModel: string | null;
   imageUrl: string | null;
   imageAltUrl: string | null;
 };
@@ -97,6 +104,9 @@ export type FounderMarketSignalCardRow = {
   set_code: string | null;
   set_name: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  set_identity_model: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   score: number;
@@ -373,6 +383,9 @@ function buildCardRow(
     set_code: card.setCode,
     set_name: card.setName,
     number: card.number,
+    variant_key: card.variantKey,
+    printed_identity_modifier: card.printedIdentityModifier,
+    set_identity_model: card.setIdentityModel,
     image_url: card.imageUrl,
     image_alt_url: card.imageAltUrl,
     score,
@@ -580,7 +593,9 @@ async function fetchCardMetadataByIds(
   for (const batch of chunkArray(ids, 150)) {
     const { data, error } = await admin
       .from("card_prints")
-      .select("id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)")
+      .select(
+        "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+      )
       .in("id", batch);
 
     if (error) {
@@ -601,6 +616,10 @@ async function fetchCardMetadataByIds(
         setCode: row.set_code?.trim() || null,
         setName: getSetName(row.sets),
         number: row.number?.trim() || null,
+        variantKey: row.variant_key?.trim() || null,
+        printedIdentityModifier:
+          row.printed_identity_modifier?.trim() || null,
+        setIdentityModel: getSetIdentityModel(row.sets),
         imageUrl: row.image_url?.trim() || null,
         imageAltUrl: row.image_alt_url?.trim() || null,
       });
@@ -824,6 +843,25 @@ function getSetName(value: CardMetadataRow["sets"]): string | null {
   }
   if (value && typeof value.name === "string" && value.name.trim().length > 0) {
     return value.name.trim();
+  }
+  return null;
+}
+
+function getSetIdentityModel(value: CardMetadataRow["sets"]): string | null {
+  if (Array.isArray(value)) {
+    const first = value.find(
+      (entry) =>
+        typeof entry?.identity_model === "string" &&
+        entry.identity_model.trim().length > 0,
+    );
+    return first?.identity_model?.trim() ?? null;
+  }
+  if (
+    value &&
+    typeof value.identity_model === "string" &&
+    value.identity_model.trim().length > 0
+  ) {
+    return value.identity_model.trim();
   }
   return null;
 }

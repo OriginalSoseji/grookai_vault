@@ -9,6 +9,9 @@ class VaultCardIdentity {
     required this.setName,
     this.number,
     this.imageUrl,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
   });
 
   final String cardId;
@@ -17,6 +20,9 @@ class VaultCardIdentity {
   final String setName;
   final String? number;
   final String? imageUrl;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
 
   factory VaultCardIdentity.fromJson(Map<String, dynamic> json) {
     final set = json['set'] as Map<String, dynamic>?;
@@ -30,6 +36,11 @@ class VaultCardIdentity {
       setName: setName,
       number: json['number_plain']?.toString() ?? json['number']?.toString(),
       imageUrl: imageUrl == null || imageUrl.isEmpty ? null : imageUrl,
+      variantKey: _trimmedOrNull(json['variant_key']),
+      printedIdentityModifier: _trimmedOrNull(
+        json['printed_identity_modifier'],
+      ),
+      setIdentityModel: _trimmedOrNull(set?['identity_model']),
     );
   }
 }
@@ -229,6 +240,9 @@ class VaultManageCardData {
     this.number,
     this.rarity,
     this.imageUrl,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     this.wallCategory,
     this.publicNote,
     this.publicSlug,
@@ -247,6 +261,9 @@ class VaultManageCardData {
   final String? number;
   final String? rarity;
   final String? imageUrl;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final int totalCopies;
   final int rawCount;
   final int slabCount;
@@ -313,7 +330,7 @@ class VaultOwnedCardAnchor {
 
 class VaultCardService {
   static const _canonicalSelect =
-      'id,gv_id,name,set_code,number,number_plain,image_url,image_alt_url,set:sets(name,code)';
+      'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(name,code,identity_model)';
   static const _wallGuardMessage =
       'Enable your public profile and vault sharing before adding cards to your wall.';
 
@@ -711,6 +728,11 @@ class VaultCardService {
       number: number,
       rarity: _trimmedOrNull(canonicalRow?['rarity']),
       imageUrl: imageUrl,
+      variantKey: _trimmedOrNull(identity?.variantKey),
+      printedIdentityModifier: _trimmedOrNull(
+        identity?.printedIdentityModifier,
+      ),
+      setIdentityModel: _trimmedOrNull(identity?.setIdentityModel),
       totalCopies: totalCopies,
       rawCount: rawCount < 0 ? 0 : rawCount,
       slabCount: slabCount,

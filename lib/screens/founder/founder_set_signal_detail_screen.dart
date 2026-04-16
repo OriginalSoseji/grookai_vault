@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
 import 'founder_card_signal_detail_screen.dart';
 
@@ -522,6 +523,14 @@ class _FounderSetTopCardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final displayName = resolveDisplayIdentityFromFields(
+      name: row.name,
+      variantKey: row.variantKey,
+      printedIdentityModifier: row.printedIdentityModifier,
+      setIdentityModel: row.setIdentityModel,
+      setCode: row.setCode,
+      number: row.number,
+    ).displayName;
     final breakdownText = _topDriverBreakdownText(row);
 
     return Material(
@@ -566,7 +575,7 @@ class _FounderSetTopCardRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      row.name,
+                      displayName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(

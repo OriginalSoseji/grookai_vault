@@ -69,6 +69,9 @@ class NetworkStreamRow {
     required this.setCode,
     required this.setName,
     required this.number,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     this.sourceLabel,
     this.rarity,
     this.intent,
@@ -110,6 +113,9 @@ class NetworkStreamRow {
   final String setCode;
   final String setName;
   final String number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? sourceLabel;
   final String? rarity;
   final String? imageUrl;
@@ -130,6 +136,9 @@ class NetworkStreamRow {
     NetworkStreamSourceType? sourceType,
     String? sourceLabel,
     String? rarity,
+    String? variantKey,
+    String? printedIdentityModifier,
+    String? setIdentityModel,
     List<NetworkStreamCopy>? inPlayCopies,
     CardSurfacePricingData? pricing,
     int? listingCount,
@@ -161,6 +170,10 @@ class NetworkStreamRow {
       setCode: setCode,
       setName: setName,
       number: number,
+      variantKey: variantKey ?? this.variantKey,
+      printedIdentityModifier:
+          printedIdentityModifier ?? this.printedIdentityModifier,
+      setIdentityModel: setIdentityModel ?? this.setIdentityModel,
       sourceLabel: sourceLabel ?? this.sourceLabel,
       rarity: rarity ?? this.rarity,
       imageUrl: imageUrl,
@@ -208,6 +221,20 @@ class _NetworkTasteSignal {
   final String priceBand;
   final NetworkStreamSourceType sourceType;
   final String event;
+}
+
+class _NetworkCardIdentity {
+  const _NetworkCardIdentity({
+    required this.cardPrintId,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
+  });
+
+  final String cardPrintId;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
 }
 
 class _NetworkFeedSession {
@@ -1112,8 +1139,55 @@ class NetworkStreamService {
           _nullable(row['set_code']) ??
           'Unknown set',
       number: _nullable(row['number']) ?? '—',
+      variantKey: null,
+      printedIdentityModifier: null,
+      setIdentityModel: null,
       imageUrl: _httpUrl(row['image_url']),
     );
+  }
+
+  static Future<Map<String, _NetworkCardIdentity>> _fetchCardIdentityMap({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final normalizedIds = cardPrintIds
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    if (normalizedIds.isEmpty) {
+      return const <String, _NetworkCardIdentity>{};
+    }
+
+    try {
+      final rows = await client
+          .from('card_prints')
+          .select(
+            'id,variant_key,printed_identity_modifier,sets(identity_model)',
+          )
+          .inFilter('id', normalizedIds);
+
+      final out = <String, _NetworkCardIdentity>{};
+      for (final raw in rows as List<dynamic>) {
+        final row = Map<String, dynamic>.from(raw as Map);
+        final cardPrintId = _nullable(row['id']);
+        if (cardPrintId == null) {
+          continue;
+        }
+
+        final setRecord = _recordFrom(row['sets']);
+        out[cardPrintId] = _NetworkCardIdentity(
+          cardPrintId: cardPrintId,
+          variantKey: _nullable(row['variant_key']),
+          printedIdentityModifier: _nullable(row['printed_identity_modifier']),
+          setIdentityModel: _nullable(setRecord?['identity_model']),
+        );
+      }
+
+      return out;
+    } catch (_) {
+      return const <String, _NetworkCardIdentity>{};
+    }
   }
 
   static Future<List<NetworkStreamRow>> _enrichCollectorRows({
@@ -1126,6 +1200,10 @@ class NetworkStreamService {
 
     final results = await Future.wait<dynamic>([
       _fetchInPlayCopies(client: client, rows: rows),
+      _fetchCardIdentityMap(
+        client: client,
+        cardPrintIds: rows.map((row) => row.cardPrintId),
+      ),
       CardSurfacePricingService.fetchByCardPrintIds(
         client: client,
         cardPrintIds: rows.map((row) => row.cardPrintId),
@@ -1137,20 +1215,24 @@ class NetworkStreamService {
     ]);
 
     final copiesByGroup = results[0] as Map<String, List<NetworkStreamCopy>>;
-    final pricingById = results[1] as Map<String, CardSurfacePricingData>;
-    final listingCountById = results[2] as Map<String, int>;
+    final identityByCardPrintId =
+        results[1] as Map<String, _NetworkCardIdentity>;
+    final pricingById = results[2] as Map<String, CardSurfacePricingData>;
+    final listingCountById = results[3] as Map<String, int>;
 
-    return rows
-        .map(
-          (row) => row.copyWith(
-            inPlayCopies:
-                copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
-                const <NetworkStreamCopy>[],
-            pricing: pricingById[row.cardPrintId],
-            listingCount: listingCountById[row.cardPrintId],
-          ),
-        )
-        .toList();
+    return rows.map((row) {
+      final identity = identityByCardPrintId[row.cardPrintId];
+      return row.copyWith(
+        variantKey: identity?.variantKey,
+        printedIdentityModifier: identity?.printedIdentityModifier,
+        setIdentityModel: identity?.setIdentityModel,
+        inPlayCopies:
+            copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
+            const <NetworkStreamCopy>[],
+        pricing: pricingById[row.cardPrintId],
+        listingCount: listingCountById[row.cardPrintId],
+      );
+    }).toList();
   }
 
   static Future<List<NetworkStreamRow>> _fetchDiscoveryRows({
@@ -1238,7 +1320,7 @@ class NetworkStreamService {
     final cardRows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)',
+          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)',
         )
         .inFilter('id', rotatedIds);
 
@@ -1282,7 +1364,7 @@ class NetworkStreamService {
     final rawRows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,sets(name)',
+          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)',
         )
         .order('name', ascending: true)
         .limit(240);
@@ -1405,6 +1487,9 @@ class NetworkStreamService {
           _nullable(cardRow['set_code']) ??
           'Unknown set',
       number: _nullable(cardRow['number']) ?? '—',
+      variantKey: _nullable(cardRow['variant_key']),
+      printedIdentityModifier: _nullable(cardRow['printed_identity_modifier']),
+      setIdentityModel: _nullable(setRecord?['identity_model']),
       rarity: _nullable(cardRow['rarity']),
       imageUrl:
           _httpUrl(cardRow['image_url']) ?? _httpUrl(cardRow['image_alt_url']),

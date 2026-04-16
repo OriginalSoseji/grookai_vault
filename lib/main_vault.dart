@@ -271,6 +271,14 @@ class _VaultGridTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final name = (row['name'] ?? 'Item').toString();
+    final displayIdentity = resolveDisplayIdentityFromFields(
+      name: name,
+      variantKey: row['variant_key']?.toString(),
+      printedIdentityModifier: row['printed_identity_modifier']?.toString(),
+      setIdentityModel: row['set_identity_model']?.toString(),
+      setCode: row['set_code']?.toString(),
+      number: row['number']?.toString(),
+    );
     final setCode = ((row['set_code'] ?? row['set_name']) ?? '')
         .toString()
         .trim();
@@ -305,7 +313,10 @@ class _VaultGridTile extends StatelessWidget {
                 children: [
                   AspectRatio(
                     aspectRatio: 0.69,
-                    child: _VaultGridArtwork(imageUrl: imageUrl, name: name),
+                    child: _VaultGridArtwork(
+                      imageUrl: imageUrl,
+                      name: displayIdentity.displayName,
+                    ),
                   ),
                   Positioned(
                     right: 4,
@@ -368,7 +379,7 @@ class _VaultGridTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    name,
+                    displayIdentity.displayName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.labelMedium?.copyWith(
@@ -653,7 +664,7 @@ class VaultPageState extends State<VaultPage> {
           children: [
             ListTile(
               leading: _thumb(picked.displayImage),
-              title: Text(picked.name),
+              title: Text(resolveDisplayName(picked)),
               subtitle: Text(subtitle.isEmpty ? picked.displaySet : subtitle),
             ),
             TextField(

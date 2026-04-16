@@ -20,6 +20,8 @@ type CardMetadataRow = {
   set_id: string | null;
   set_code: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   set:
@@ -27,11 +29,13 @@ type CardMetadataRow = {
         id: string | null;
         name: string | null;
         code: string | null;
+        identity_model: string | null;
       }
     | {
         id: string | null;
         name: string | null;
         code: string | null;
+        identity_model: string | null;
       }[]
     | null;
 };
@@ -63,6 +67,9 @@ type CardSignal = {
   setCode: string | null;
   setName: string | null;
   number: string | null;
+  variantKey: string | null;
+  printedIdentityModifier: string | null;
+  setIdentityModel: string | null;
   imageUrl: string | null;
   imageAltUrl: string | null;
 };
@@ -81,6 +88,9 @@ export type FounderDrilldownCardSummary = {
   set_code: string | null;
   set_name: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  set_identity_model: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   score: number;
@@ -96,6 +106,9 @@ export type FounderSetDriverSummary = {
   set_code: string | null;
   set_name: string | null;
   number: string | null;
+  variant_key: string | null;
+  printed_identity_modifier: string | null;
+  set_identity_model: string | null;
   image_url: string | null;
   image_alt_url: string | null;
   score: number;
@@ -120,6 +133,9 @@ export type FounderCardSignalDrilldown = {
     set_code: string | null;
     set_name: string | null;
     number: string | null;
+    variant_key: string | null;
+    printed_identity_modifier: string | null;
+    set_identity_model: string | null;
     image_url: string | null;
     image_alt_url: string | null;
   };
@@ -253,6 +269,9 @@ export async function loadFounderCardSignalDrilldown(
       set_code: card.setCode,
       set_name: card.setName,
       number: card.number,
+      variant_key: card.variantKey,
+      printed_identity_modifier: card.printedIdentityModifier,
+      set_identity_model: card.setIdentityModel,
       image_url: card.imageUrl,
       image_alt_url: card.imageAltUrl,
     },
@@ -399,6 +418,9 @@ export async function loadFounderSetSignalDrilldown(
       set_code: entry.card.setCode,
       set_name: entry.card.setName,
       number: entry.card.number,
+      variant_key: entry.card.variantKey,
+      printed_identity_modifier: entry.card.printedIdentityModifier,
+      set_identity_model: entry.card.setIdentityModel,
       image_url: entry.card.imageUrl,
       image_alt_url: entry.card.imageAltUrl,
       score: entry.score,
@@ -416,6 +438,9 @@ export async function loadFounderSetSignalDrilldown(
       set_code: entry.card.setCode,
       set_name: entry.card.setName,
       number: entry.card.number,
+      variant_key: entry.card.variantKey,
+      printed_identity_modifier: entry.card.printedIdentityModifier,
+      set_identity_model: entry.card.setIdentityModel,
       image_url: entry.card.imageUrl,
       image_alt_url: entry.card.imageAltUrl,
       score: entry.score,
@@ -489,7 +514,7 @@ async function fetchCardMetadata(
   const { data, error } = await admin
     .from("card_prints")
     .select(
-      "id,gv_id,name,set_id,set_code,number,image_url,image_alt_url,set:sets(id,name,code)",
+      "id,gv_id,name,set_id,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(id,name,code,identity_model)",
     )
     .eq("id", cardPrintId)
     .maybeSingle();
@@ -510,7 +535,7 @@ async function fetchCardsForSetCode(admin: AdminClient, setCode: string) {
     const { data, error } = await admin
       .from("card_prints")
       .select(
-        "id,gv_id,name,set_id,set_code,number,image_url,image_alt_url,set:sets(id,name,code)",
+        "id,gv_id,name,set_id,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(id,name,code,identity_model)",
       )
       .eq("set_code", setCode)
       .range(from, to);
@@ -691,6 +716,9 @@ function mapCardMetadataRow(row: CardMetadataRow): CardSignal | null {
     setCode: row.set_code?.trim() || set?.code || null,
     setName: set?.name || null,
     number: row.number?.trim() || null,
+    variantKey: row.variant_key?.trim() || null,
+    printedIdentityModifier: row.printed_identity_modifier?.trim() || null,
+    setIdentityModel: set?.identityModel || null,
     imageUrl: row.image_url?.trim() || null,
     imageAltUrl: row.image_alt_url?.trim() || null,
   };
@@ -698,17 +726,24 @@ function mapCardMetadataRow(row: CardMetadataRow): CardSignal | null {
 
 function normalizeSetRelation(
   value: CardMetadataRow["set"],
-): { id: string | null; code: string | null; name: string | null } | null {
+): {
+  id: string | null;
+  code: string | null;
+  name: string | null;
+  identityModel: string | null;
+} | null {
   if (Array.isArray(value)) {
     const first = value.find((entry) =>
       typeof entry?.id === "string" || typeof entry?.name === "string" ||
-      typeof entry?.code === "string"
+      typeof entry?.code === "string" ||
+      typeof entry?.identity_model === "string"
     );
     return first
       ? {
         id: first.id?.trim() || null,
         code: first.code?.trim() || null,
         name: first.name?.trim() || null,
+        identityModel: first.identity_model?.trim() || null,
       }
       : null;
   }
@@ -717,6 +752,7 @@ function normalizeSetRelation(
       id: value.id?.trim() || null,
       code: value.code?.trim() || null,
       name: value.name?.trim() || null,
+      identityModel: value.identity_model?.trim() || null,
     };
   }
   return null;

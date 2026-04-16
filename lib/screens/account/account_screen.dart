@@ -384,7 +384,7 @@ class _AccountScreenState extends State<AccountScreen> {
         _founderInsights = bundle;
         _founderInsightsLoading = false;
       });
-    } catch (_) {
+    } catch (error) {
       if (!mounted) {
         return;
       }

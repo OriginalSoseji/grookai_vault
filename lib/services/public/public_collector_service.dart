@@ -73,6 +73,9 @@ class PublicCollectorCard {
     this.imageUrl,
     this.conditionLabel,
     this.intent,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     this.pricing,
     this.priceDisplayMode,
     this.askingPriceAmount,
@@ -93,6 +96,9 @@ class PublicCollectorCard {
   final String? imageUrl;
   final String? conditionLabel;
   final String? intent;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final CardSurfacePricingData? pricing;
   final String? priceDisplayMode;
   final double? askingPriceAmount;
@@ -616,7 +622,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,rarity,image_url,image_alt_url,set:sets(name)',
+            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(name,identity_model)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -686,6 +692,13 @@ class PublicCollectorService {
                 ? _cleanText(cardPrint['number'])
                 : '—',
             rarity: _normalizeOptionalText(cardPrint['rarity']),
+            variantKey: _normalizeOptionalText(cardPrint['variant_key']),
+            printedIdentityModifier: _normalizeOptionalText(
+              cardPrint['printed_identity_modifier'],
+            ),
+            setIdentityModel: _normalizeOptionalText(
+              (cardPrint['set'] as Map?)?['identity_model'],
+            ),
             imageUrl: _bestPublicImageUrl(
               primary: cardPrint['image_url'],
               fallback: cardPrint['image_alt_url'],
@@ -737,7 +750,9 @@ class PublicCollectorService {
     final results = await Future.wait<dynamic>([
       client
           .from('card_prints')
-          .select('id,rarity,image_url,image_alt_url')
+          .select(
+            'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(identity_model)',
+          )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
         client: client,
@@ -814,6 +829,13 @@ class PublicCollectorService {
             ? _cleanText(row['number'])
             : '—',
         rarity: _normalizeOptionalText(cardPrint?['rarity']),
+        variantKey: _normalizeOptionalText(cardPrint?['variant_key']),
+        printedIdentityModifier: _normalizeOptionalText(
+          cardPrint?['printed_identity_modifier'],
+        ),
+        setIdentityModel: _normalizeOptionalText(
+          (cardPrint?['set'] as Map?)?['identity_model'],
+        ),
         imageUrl: _bestPublicImageUrl(
           primary: row['image_url'] ?? cardPrint?['image_url'],
           fallback: cardPrint?['image_alt_url'],

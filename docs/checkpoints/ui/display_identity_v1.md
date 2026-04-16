@@ -32,3 +32,22 @@
 - Runtime proof succeeded on both web and Flutter, so stale builds are no longer the active blocker.
 - The primary bug was DTO shape loss in the web explore/search path, where identity fields were not surviving to the resolver.
 - The remaining work in this pass is to remove raw-name title render paths on web surfaces and complete the adjacent/related DTO tails so resolver coverage is consistent.
+
+## Flutter Coverage Pass
+
+- The Flutter resolver is already implemented and matches the current Display Identity V1 rule order.
+- Partial Flutter surfaces are already migrated, including the main catalog/search/feed tiles and set-detail helper paths that already carry identity fields.
+- This pass audited the remaining raw-name render paths to enforce consistent resolver usage across the app.
+- The first true blocker is founder-only mobile signal content: the current founder mobile DTOs and privileged founder endpoint payload do not expose `variant_key`, `printed_identity_modifier`, or `set_identity_model`, so those founder rows cannot be upgraded to truthful Display Identity V1 output within a Flutter-only scope.
+
+## Flutter Non-Founder Coverage Pass
+
+- Founder surfaces are intentionally excluded in this pass because their current mobile payloads do not carry the resolver inputs needed for truthful Display Identity V1 output.
+- This pass is limited to collector-facing Flutter surfaces and completes non-founder title coverage only.
+- Founder display-identity coverage remains a separate follow-up, blocked on founder payload shape rather than collector UI wiring.
+
+## Founder Payload Extension Pass
+
+- Founder Flutter display-identity coverage was previously blocked because the privileged founder payload omitted `variant_key`, `printed_identity_modifier`, and `set_identity_model`.
+- This pass is intentionally limited to founder backend payload shaping, founder service DTO transport, and founder UI title renders that can now consume the existing resolver truthfully.
+- Founder UI patching happens only after payload proof confirms those resolver fields survive the founder backend path into Flutter.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../screens/founder/founder_card_signal_detail_screen.dart';
 import '../../screens/founder/founder_set_signal_detail_screen.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
 
 class FounderMarketSignalsSection extends StatelessWidget {
@@ -159,6 +160,14 @@ class _FounderCardRowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayName = resolveDisplayIdentityFromFields(
+      name: row.name,
+      variantKey: row.variantKey,
+      printedIdentityModifier: row.printedIdentityModifier,
+      setIdentityModel: row.setIdentityModel,
+      setCode: row.setCode,
+      number: row.number,
+    ).displayName;
     final setMeta = [
       if (row.setCode != null) row.setCode!,
       if (row.number != null) '#${row.number!}',
@@ -190,7 +199,7 @@ class _FounderCardRowCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      row.name,
+                      displayName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleSmall?.copyWith(

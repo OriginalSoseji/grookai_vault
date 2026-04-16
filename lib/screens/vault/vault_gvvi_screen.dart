@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -12,6 +13,28 @@ import '../../widgets/card_surface_artwork.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import 'slab_upgrade_screen.dart';
 import 'vault_manage_card_screen.dart';
+
+ResolvedDisplayIdentity _gvviDisplayIdentity(VaultGvviData data) {
+  return resolveDisplayIdentityFromFields(
+    name: data.cardName,
+    variantKey: data.variantKey,
+    printedIdentityModifier: data.printedIdentityModifier,
+    setIdentityModel: data.setIdentityModel,
+    setCode: data.setCode,
+    number: data.number == '—' ? null : data.number,
+  );
+}
+
+ResolvedDisplayIdentity _gvviRelatedDisplayIdentity(_GvviRelatedPrint print) {
+  return resolveDisplayIdentityFromFields(
+    name: print.name,
+    variantKey: print.variantKey,
+    printedIdentityModifier: print.printedIdentityModifier,
+    setIdentityModel: print.setIdentityModel,
+    setCode: print.setCode,
+    number: print.number.isEmpty ? null : print.number,
+  );
+}
 
 class VaultGvviScreen extends StatefulWidget {
   const VaultGvviScreen({
@@ -103,7 +126,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       final rows = await _client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,sets(name,release_date)',
+            'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,release_date,identity_model)',
           )
           .eq('name', cardName)
           .neq('id', cardPrintId)
@@ -135,6 +158,16 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                   ? _cleanText(row['number_plain'])
                   : _cleanText(row['number']),
               rarity: _cleanText(row['rarity']),
+              variantKey: _cleanText(row['variant_key']).isEmpty
+                  ? null
+                  : _cleanText(row['variant_key']),
+              printedIdentityModifier:
+                  _cleanText(row['printed_identity_modifier']).isEmpty
+                  ? null
+                  : _cleanText(row['printed_identity_modifier']),
+              setIdentityModel: _cleanText(setRecord?['identity_model']).isEmpty
+                  ? null
+                  : _cleanText(setRecord?['identity_model']),
               imageUrl: _bestImageUrl(
                 primary: row['image_url'],
                 fallback: row['image_alt_url'],
@@ -841,6 +874,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final stacked = constraints.maxWidth < 520;
+        final displayIdentity = _gvviDisplayIdentity(data);
         final heroArt = Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(
@@ -850,7 +884,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 3 / 4,
               child: CardSurfaceArtwork(
-                label: data.cardName,
+                label: displayIdentity.displayName,
                 imageUrl: data.primaryImageUrl ?? data.fallbackImageUrl,
                 borderRadius: 24,
                 padding: const EdgeInsets.all(6),
@@ -876,7 +910,7 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              data.cardName,
+              displayIdentity.displayName,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.55,
@@ -1926,6 +1960,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayIdentity = _gvviRelatedDisplayIdentity(print);
     final secondaryLabel = [
       if (print.setCode.isNotEmpty) print.setCode,
       if (print.number.isNotEmpty) '#${print.number}',
@@ -1944,7 +1979,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 3 / 4,
                 child: CardSurfaceArtwork(
-                  label: print.name,
+                  label: displayIdentity.displayName,
                   imageUrl: print.imageUrl,
                   borderRadius: 16,
                   padding: const EdgeInsets.all(4),
@@ -1954,7 +1989,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 secondaryLabel.isEmpty
-                    ? (print.setName.isNotEmpty ? print.setName : print.name)
+                    ? displayIdentity.displayName
                     : secondaryLabel,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -2046,6 +2081,9 @@ class _GvviRelatedPrint {
     required this.setCode,
     required this.number,
     required this.rarity,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     required this.imageUrl,
   });
 
@@ -2056,5 +2094,8 @@ class _GvviRelatedPrint {
   final String setCode;
   final String number;
   final String rarity;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? imageUrl;
 }

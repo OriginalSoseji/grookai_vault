@@ -1,9 +1,9 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 const String _kFounderEmail = 'ccabrl@gmail.com';
-const String _kFounderSignalsFunction = 'founder-market-signals-v1';
+const String _kFounderSignalsFunction = 'founder-market-signals-mobile-v1';
 const String _kFounderSignalDrilldownFunction =
-    'founder-market-signal-drilldown-v1';
+    'founder-signal-drill-mobile-v1';
 
 enum FounderInsightRowType { card, set }
 
@@ -105,6 +105,9 @@ class FounderInsightCardRow {
     required this.setCode,
     required this.setName,
     required this.number,
+    required this.variantKey,
+    required this.printedIdentityModifier,
+    required this.setIdentityModel,
     required this.imageUrl,
     required this.imageAltUrl,
     required this.score,
@@ -119,6 +122,9 @@ class FounderInsightCardRow {
   final String? setCode;
   final String? setName;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? imageUrl;
   final String? imageAltUrl;
   final int score;
@@ -136,6 +142,11 @@ class FounderInsightCardRow {
       setCode: _nullableString(json['set_code']),
       setName: _nullableString(json['set_name']),
       number: _nullableString(json['number']),
+      variantKey: _nullableString(json['variant_key']),
+      printedIdentityModifier: _nullableString(
+        json['printed_identity_modifier'],
+      ),
+      setIdentityModel: _nullableString(json['set_identity_model']),
       imageUrl: _nullableString(json['image_url']),
       imageAltUrl: _nullableString(json['image_alt_url']),
       score: _parseInt(json['score']),
@@ -186,6 +197,9 @@ class FounderSignalCardIdentity {
     required this.setCode,
     required this.setName,
     required this.number,
+    required this.variantKey,
+    required this.printedIdentityModifier,
+    required this.setIdentityModel,
     required this.imageUrl,
     required this.imageAltUrl,
   });
@@ -197,6 +211,9 @@ class FounderSignalCardIdentity {
   final String? setCode;
   final String? setName;
   final String? number;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? imageUrl;
   final String? imageAltUrl;
 
@@ -211,6 +228,11 @@ class FounderSignalCardIdentity {
       setCode: _nullableString(json['set_code']),
       setName: _nullableString(json['set_name']),
       number: _nullableString(json['number']),
+      variantKey: _nullableString(json['variant_key']),
+      printedIdentityModifier: _nullableString(
+        json['printed_identity_modifier'],
+      ),
+      setIdentityModel: _nullableString(json['set_identity_model']),
       imageUrl: _nullableString(json['image_url']),
       imageAltUrl: _nullableString(json['image_alt_url']),
     );
@@ -500,9 +522,10 @@ class FounderInsightService {
     SupabaseClient? client,
   }) async {
     final sb = client ?? Supabase.instance.client;
+    final session = sb.auth.currentSession;
     final user = sb.auth.currentUser;
 
-    if (user == null) {
+    if (user == null || session == null || session.accessToken.isEmpty) {
       throw Exception('Sign in to use Vendor Tools.');
     }
     if (!isFounderUser(user)) {
@@ -512,20 +535,18 @@ class FounderInsightService {
     }
 
     final response = await sb.functions.invoke(functionName, body: body);
+    final data = _coerceJsonMap(response.data);
 
     if (response.status < 200 || response.status >= 300) {
       throw Exception(
-        _extractError(response.data) ??
+        _extractError(data) ??
             'Vendor tools are unavailable right now.',
       );
     }
-
-    final data = response.data;
-    if (data is! Map) {
+    if (data.isEmpty) {
       throw Exception('Vendor tools are unavailable right now.');
     }
-
-    return Map<String, dynamic>.from(data);
+    return data;
   }
 
   static String? _extractError(dynamic data) {
@@ -541,6 +562,19 @@ class FounderInsightService {
     }
     return null;
   }
+}
+
+Map<String, dynamic> _coerceJsonMap(dynamic body) {
+  if (body == null) {
+    return const <String, dynamic>{};
+  }
+  if (body is Map<String, dynamic>) {
+    return body;
+  }
+  if (body is Map) {
+    return Map<String, dynamic>.from(body);
+  }
+  return const <String, dynamic>{};
 }
 
 FounderInsightRowType _parseRowType(String? value) {

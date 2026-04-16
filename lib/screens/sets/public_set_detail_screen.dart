@@ -297,23 +297,25 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
   }
 }
 
-String? _setCardVariantLabel(PublicSetCard card) {
+ResolvedDisplayIdentity _setCardDisplayIdentity(PublicSetCard card) {
   return resolveDisplayIdentityFromFields(
     name: card.name,
     variantKey: card.variantKey,
     printedIdentityModifier: card.printedIdentityModifier,
     setIdentityModel: card.setIdentityModel,
-  ).suffix;
+  );
+}
+
+String? _setCardVariantLabel(PublicSetCard card) {
+  return _setCardDisplayIdentity(card).suffix;
 }
 
 String _setCardArtworkLabel(PublicSetCard card) {
-  final variantLabel = _setCardVariantLabel(card);
-  return variantLabel == null ? card.name : '${card.name}\n$variantLabel';
+  return _setCardDisplayIdentity(card).displayName;
 }
 
 String _setCardGalleryLabel(PublicSetCard card) {
-  final variantLabel = _setCardVariantLabel(card);
-  return variantLabel == null ? card.name : '${card.name} • $variantLabel';
+  return _setCardDisplayIdentity(card).displayName;
 }
 
 class _SetDetailSurfaceCard extends StatelessWidget {
@@ -355,6 +357,7 @@ class _SetCardTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final compare = CompareCardSelectionController.instance;
+    final displayIdentity = _setCardDisplayIdentity(card);
     final variantLabel = _setCardVariantLabel(card);
     final subtitleParts = <String>[
       '#${card.number}',
@@ -402,7 +405,7 @@ class _SetCardTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      card.name,
+                      displayIdentity.baseName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../services/identity/display_identity.dart';
 import '../../services/network/founder_insight_service.dart';
 
 class FounderCardSignalDetailScreen extends StatefulWidget {
@@ -56,7 +57,17 @@ class _FounderCardSignalDetailScreenState
   Widget build(BuildContext context) {
     final detail = _drilldown;
     final identity = detail?.card;
-    final title = identity?.name ?? widget.previewRow.name;
+    final title = resolveDisplayIdentityFromFields(
+      name: identity?.name ?? widget.previewRow.name,
+      variantKey: identity?.variantKey ?? widget.previewRow.variantKey,
+      printedIdentityModifier:
+          identity?.printedIdentityModifier ??
+          widget.previewRow.printedIdentityModifier,
+      setIdentityModel:
+          identity?.setIdentityModel ?? widget.previewRow.setIdentityModel,
+      setCode: identity?.setCode ?? widget.previewRow.setCode,
+      number: identity?.number ?? widget.previewRow.number,
+    ).displayName;
 
     return Scaffold(
       appBar: AppBar(

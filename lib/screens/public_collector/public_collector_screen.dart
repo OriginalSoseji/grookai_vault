@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/public/public_collector_service.dart';
@@ -15,6 +16,19 @@ import '../../widgets/card_surface_price.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
 import 'public_collector_relationship_screen.dart';
+
+ResolvedDisplayIdentity _publicCollectorDisplayIdentity(
+  PublicCollectorCard card,
+) {
+  return resolveDisplayIdentityFromFields(
+    name: card.name,
+    variantKey: card.variantKey,
+    printedIdentityModifier: card.printedIdentityModifier,
+    setIdentityModel: card.setIdentityModel,
+    setCode: card.setCode,
+    number: card.number == '—' ? null : card.number,
+  );
+}
 
 enum PublicCollectorViewState {
   loading,
@@ -1123,6 +1137,7 @@ class _PublicCardTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final displayIdentity = _publicCollectorDisplayIdentity(card);
     final metaParts = [
       card.setName ?? card.setCode,
       card.number != '—' ? '#${card.number}' : null,
@@ -1158,7 +1173,7 @@ class _PublicCardTile extends StatelessWidget {
             AspectRatio(
               aspectRatio: 0.69,
               child: CardSurfaceArtwork(
-                label: card.name,
+                label: displayIdentity.displayName,
                 imageUrl: card.imageUrl,
                 borderRadius: 22,
                 padding: const EdgeInsets.all(1.5),
@@ -1171,7 +1186,7 @@ class _PublicCardTile extends StatelessWidget {
             SizedBox(
               height: 40,
               child: Text(
-                card.name,
+                displayIdentity.displayName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.titleMedium?.copyWith(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -13,6 +14,20 @@ import '../../widgets/network/network_interaction_card.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_gvvi_screen.dart';
+
+ResolvedDisplayIdentity _networkDisplayIdentity(NetworkStreamRow row) {
+  return resolveDisplayIdentityFromFields(
+    name: row.name,
+    variantKey: row.variantKey,
+    printedIdentityModifier: row.printedIdentityModifier,
+    setIdentityModel: row.setIdentityModel,
+    setCode: row.setCode,
+    number: row.number == '—' ? null : row.number,
+  );
+}
+
+String _networkDisplayName(NetworkStreamRow row) =>
+    _networkDisplayIdentity(row).displayName;
 
 class NetworkScreen extends StatefulWidget {
   const NetworkScreen({super.key});
@@ -537,6 +552,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
       row.setName,
       if (row.number != '—') '#${row.number}',
     ].where((value) => value.trim().isNotEmpty).join(' • ');
+    final displayName = _networkDisplayName(row);
     final supportText = _buildSupportText(row);
     final normalizedCollectorSlug = row.ownerSlug.trim().toLowerCase();
     final topContext = row.isDiscoverySource
@@ -559,8 +575,8 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
         : () => _openCollectorProfile(context, normalizedCollectorSlug);
 
     return NetworkInteractionCard(
-      title: row.name,
-      imageLabel: row.name,
+      title: displayName,
+      imageLabel: displayName,
       imageUrl: row.imageUrl,
       metadata: metadata,
       layout: layout,
@@ -1113,7 +1129,7 @@ class _NetworkActionBar extends StatelessWidget {
             cardPrintId: row.cardPrintId,
             ownerUserId: row.ownerUserId,
             ownerDisplayName: row.ownerDisplayName,
-            cardName: row.name,
+            cardName: _networkDisplayName(row),
             intent: directContact!.intent,
             buttonLabel: usesGenericContactLabel
                 ? 'Ask about this card'
@@ -1132,7 +1148,7 @@ class _NetworkActionBar extends StatelessWidget {
             cardPrintId: row.cardPrintId,
             ownerUserId: row.ownerUserId,
             ownerDisplayName: row.ownerDisplayName,
-            cardName: row.name,
+            cardName: _networkDisplayName(row),
             intent: directContact!.intent,
             label: 'Ask about this card',
           ),
@@ -1446,7 +1462,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              row.name,
+              _networkDisplayName(row),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.3,
@@ -1517,7 +1533,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
                           cardPrintId: row.cardPrintId,
                           ownerUserId: row.ownerUserId,
                           ownerDisplayName: row.ownerDisplayName,
-                          cardName: row.name,
+                          cardName: _networkDisplayName(row),
                           intent: copy.intent,
                           variant: ContactOwnerButtonVariant.outlined,
                         ),

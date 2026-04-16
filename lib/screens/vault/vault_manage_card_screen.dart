@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../services/identity/display_identity.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
@@ -10,6 +11,17 @@ import '../../widgets/card_surface_price.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
 import 'vault_gvvi_screen.dart';
+
+ResolvedDisplayIdentity _manageCardDisplayIdentity(VaultManageCardData data) {
+  return resolveDisplayIdentityFromFields(
+    name: data.name,
+    variantKey: data.variantKey,
+    printedIdentityModifier: data.printedIdentityModifier,
+    setIdentityModel: data.setIdentityModel,
+    setCode: data.setCode,
+    number: data.number,
+  );
+}
 
 enum _ManageCardPriceMode { grookai, myPrice, hidden }
 
@@ -175,6 +187,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
@@ -241,6 +256,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
@@ -302,6 +320,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
@@ -406,6 +427,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
@@ -479,6 +503,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           number: data.number,
           rarity: data.rarity,
           imageUrl: data.imageUrl,
+          variantKey: data.variantKey,
+          printedIdentityModifier: data.printedIdentityModifier,
+          setIdentityModel: data.setIdentityModel,
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
@@ -815,6 +842,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       data.setName,
       if ((data.number ?? '').isNotEmpty) '#${data.number}',
     ];
+    final displayIdentity = _manageCardDisplayIdentity(data);
     final heroPrice = _pricing?.visibleValue == null
         ? null
         : CardSurfacePricePill(
@@ -841,7 +869,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           ),
           const SizedBox(height: 8),
           Text(
-            data.name,
+            displayIdentity.displayName,
             textAlign: TextAlign.center,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,

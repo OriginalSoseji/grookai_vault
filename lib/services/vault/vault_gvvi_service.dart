@@ -136,6 +136,9 @@ class VaultGvviData {
     required this.intent,
     required this.isGraded,
     required this.isArchived,
+    this.variantKey,
+    this.printedIdentityModifier,
+    this.setIdentityModel,
     required this.pricingMode,
     required this.isSharedOnWall,
     required this.publicProfileEnabled,
@@ -175,6 +178,9 @@ class VaultGvviData {
   final String intent;
   final bool isGraded;
   final bool isArchived;
+  final String? variantKey;
+  final String? printedIdentityModifier;
+  final String? setIdentityModel;
   final String? imageUrl;
   final String? frontImageUrl;
   final String? backImageUrl;
@@ -247,6 +253,9 @@ class VaultGvviData {
       intent: intent,
       isGraded: isGraded,
       isArchived: isArchived,
+      variantKey: variantKey,
+      printedIdentityModifier: printedIdentityModifier,
+      setIdentityModel: setIdentityModel,
       imageUrl: imageUrl,
       frontImageUrl: clearFrontImageUrl
           ? null
@@ -286,6 +295,46 @@ class VaultGvviData {
 class VaultGvviService {
   static const String mediaBucket = 'user-card-images';
   static const int mediaMaxBytes = 10 * 1024 * 1024;
+
+  static Future<
+    ({
+      String? variantKey,
+      String? printedIdentityModifier,
+      String? setIdentityModel,
+    })?
+  >
+  _fetchCardIdentity({
+    required SupabaseClient client,
+    required String cardPrintId,
+  }) async {
+    final normalizedCardPrintId = _clean(cardPrintId);
+    if (normalizedCardPrintId.isEmpty) {
+      return null;
+    }
+
+    try {
+      final row = await client
+          .from('card_prints')
+          .select('variant_key,printed_identity_modifier,sets(identity_model)')
+          .eq('id', normalizedCardPrintId)
+          .maybeSingle();
+      if (row == null) {
+        return null;
+      }
+
+      final normalizedRow = Map<String, dynamic>.from(row as Map);
+      final setRecord = _extractRecord(normalizedRow['sets']);
+      return (
+        variantKey: _nullable(normalizedRow['variant_key']),
+        printedIdentityModifier: _nullable(
+          normalizedRow['printed_identity_modifier'],
+        ),
+        setIdentityModel: _nullable(setRecord?['identity_model']),
+      );
+    } catch (_) {
+      return null;
+    }
+  }
 
   static Future<PublicGvviData?> loadPublic({
     required SupabaseClient client,
@@ -393,6 +442,10 @@ class VaultGvviService {
       client: client,
       cardPrintIds: [cardPrintId],
     );
+    final identity = await _fetchCardIdentity(
+      client: client,
+      cardPrintId: cardPrintId,
+    );
     final pricing = pricingById[cardPrintId];
     final isArchived = data['archived_at'] != null;
     final outcomeRows = (data['outcomes'] as List<dynamic>? ?? const []);
@@ -412,6 +465,9 @@ class VaultGvviService {
       intent: _normalizeIntent(data['intent']),
       isGraded: _nullable(data['cert_number']) != null,
       isArchived: isArchived,
+      variantKey: identity?.variantKey,
+      printedIdentityModifier: identity?.printedIdentityModifier,
+      setIdentityModel: identity?.setIdentityModel,
       imageUrl: _bestPublicImageUrl(
         primary: data['card_image_url'],
         fallback: data['card_image_alt_url'],
@@ -641,6 +697,19 @@ class NumberFormatWrapper {
 }
 
 String _clean(dynamic value) => (value ?? '').toString().trim();
+
+Map<String, dynamic>? _extractRecord(dynamic value) {
+  if (value is Map<String, dynamic>) {
+    return value;
+  }
+  if (value is Map) {
+    return Map<String, dynamic>.from(value);
+  }
+  if (value is List && value.isNotEmpty && value.first is Map) {
+    return Map<String, dynamic>.from(value.first as Map);
+  }
+  return null;
+}
 
 String? _nullable(dynamic value) {
   final normalized = _clean(value);
