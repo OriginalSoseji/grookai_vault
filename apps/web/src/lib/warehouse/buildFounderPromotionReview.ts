@@ -1,9 +1,15 @@
 import "server-only";
 
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getBestPublicCardImageUrl, isUsablePublicImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { buildWarehouseStagingPayload } from "@/lib/founder/buildWarehouseStagingPayload";
+import {
+  extractPerfectOrderVariantIdentityFromPayload,
+  validatePerfectOrderVariantIdentity,
+} from "@/lib/warehouse/perfectOrderVariantIdentity";
+import { normalizeVariantKey, sameVariantKey } from "@/lib/warehouse/normalizeVariantKey";
 
 type JsonRecord = Record<string, unknown>;
 type AdminClient = ReturnType<typeof createServerAdminClient>;
@@ -96,6 +102,9 @@ type CanonCardPrintRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
 };
 
 type CanonCardPrintingRow = {
@@ -157,6 +166,13 @@ export type FounderPromotionReviewModel = {
   decisionSummary: string;
   preview: {
     imageUrl: string | null;
+    exactImageUrl: string | null;
+    representativeImageUrl: string | null;
+    imageStatus: string | null;
+    imageNote: string | null;
+    displayImageUrl: string | null;
+    displayImageKind: "exact" | "representative" | "missing";
+    imageSource: string | null;
     imageOriginLabel: string | null;
     frontEvidenceUrl: string | null;
     backEvidenceUrl: string | null;
@@ -548,7 +564,7 @@ async function fetchCardPrintById(admin: AdminClient, cardPrintId: string | null
 
   const { data, error } = await admin
     .from("card_prints")
-    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path")
+    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note")
     .eq("id", normalizedCardPrintId)
     .maybeSingle();
 
@@ -578,10 +594,15 @@ async function fetchCardPrintingById(admin: AdminClient, cardPrintingId: string 
   return (data as CanonCardPrintingRow | null) ?? null;
 }
 
-async function fetchExistingCardPrints(admin: AdminClient, setId: string, numberPlain: string) {
+async function fetchExistingCardPrints(
+  admin: AdminClient,
+  setId: string,
+  numberPlain: string,
+  variantKey: string | null,
+) {
   const { data, error } = await admin
     .from("card_prints")
-    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path")
+    .select("id,set_id,set_code,name,number,number_plain,variant_key,tcgplayer_id,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note")
     .eq("set_id", setId)
     .or(`number_plain.eq.${numberPlain},number.eq.${numberPlain}`)
     .limit(10);
@@ -591,7 +612,7 @@ async function fetchExistingCardPrints(admin: AdminClient, setId: string, number
   }
 
   return (((data ?? []) as CanonCardPrintRow[]) ?? []).filter(
-    (row) => normalizeTextOrNull(row.variant_key) === null,
+    (row) => sameVariantKey(row.variant_key, variantKey),
   );
 }
 
@@ -630,6 +651,15 @@ async function fetchFinishKey(admin: AdminClient, finishKey: string | null) {
 }
 
 function buildBaseRows(detail: PromotionReviewInput, stageStatusLabel: string) {
+  const reviewOnlyStage = Boolean(
+    detail.currentStagingRow &&
+    (
+      detail.candidate.current_review_hold_reason === "FOUNDER_APPROVAL_REQUIRED" ||
+      !normalizeTextOrNull(detail.currentStagingRow.founder_approved_by_user_id) ||
+      !normalizeTextOrNull(detail.currentStagingRow.founder_approved_at)
+    ),
+  );
+
   return [
     buildPlanRow(
       "external_mappings",
@@ -650,13 +680,19 @@ function buildBaseRows(detail: PromotionReviewInput, stageStatusLabel: string) {
       detail.currentStagingRow ? "REUSE" : "NONE",
       "Staging row",
       detail.currentStagingRow
-        ? `Executor will reuse the current staging row in ${stageStatusLabel}.`
+        ? reviewOnlyStage
+          ? `A review-only staging package exists in ${stageStatusLabel}. Executor remains blocked until founder approval is explicit.`
+          : `Executor will reuse the current staging row in ${stageStatusLabel}.`
         : "No staging row exists yet. Founder approval must stage this candidate before execution.",
       detail.currentStagingRow?.id ?? null,
       detail.currentStagingRow
         ? [
             { label: "execution_status", value: detail.currentStagingRow.execution_status },
             { label: "staged_at", value: detail.currentStagingRow.staged_at },
+            {
+              label: "founder_approval",
+              value: reviewOnlyStage ? "pending explicit founder approval" : "explicit founder approval recorded",
+            },
           ]
         : [],
     ),
@@ -895,6 +931,13 @@ function buildUnavailableReview(detail: PromotionReviewInput, reason: string | n
     decisionSummary: unresolved.founder_explanation,
     preview: {
       imageUrl: frontEvidenceUrl,
+      exactImageUrl: null,
+      representativeImageUrl: null,
+      imageStatus: null,
+      imageNote: null,
+      displayImageUrl: frontEvidenceUrl,
+      displayImageKind: frontEvidenceUrl ? "representative" : "missing",
+      imageSource: null,
       imageOriginLabel: frontEvidenceUrl ? "Warehouse front evidence" : null,
       frontEvidenceUrl,
       backEvidenceUrl,
@@ -986,6 +1029,8 @@ export async function buildFounderPromotionReview(
   const setCode = extractSetCode(payload);
   const cardName = extractCardName(payload);
   const numberPlain = extractPrintedNumberPlain(payload);
+  const variantIdentity = extractPerfectOrderVariantIdentityFromPayload(payload);
+  const desiredVariantKey = normalizeVariantKey(variantIdentity?.variant_key);
   const finishKey = extractResolvedFinishKey(payload);
   const tcgplayerId = normalizeTextOrNull(asRecord(payload.candidate_summary)?.tcgplayer_id);
   const matchedCardPrintId = extractMatchedCardPrintId(payload);
@@ -1030,6 +1075,7 @@ export async function buildFounderPromotionReview(
     normalizeTextOrNull(visibleHints?.printed_number_plain);
   const variantLabel = humanizeToken(parentCardPrint?.variant_key);
   const previewImageFromCanon = await resolveCanonImageUrlV1(parentCardPrint);
+  const previewCanonImageFields = await resolveCardImageFieldsV1(parentCardPrint);
 
   let previewImageUrl: string | null = null;
   let imageOriginLabel: string | null = null;
@@ -1047,7 +1093,61 @@ export async function buildFounderPromotionReview(
   let unresolvedNextActions: string[] = [];
 
   if (actionType === "CREATE_CARD_PRINT") {
-    if (!setCode || !cardName || !numberPlain) {
+    const variantIdentityValidation = validatePerfectOrderVariantIdentity(
+      variantIdentity,
+      desiredVariantKey,
+    );
+
+    if (!variantIdentityValidation.ok) {
+      decisionSummary = "Promotion is unresolved because this collision-resolved parent row still lacks a lawful variant identity label.";
+      writePlanSummary = "CREATE_CARD_PRINT remains blocked until the Perfect Order collision group carries a deterministic variant_key and illustration category.";
+      rows = [
+        buildPlanRow(
+          "card_prints",
+          "UNRESOLVED",
+          "Card print",
+          variantIdentityValidation.reason ?? "variant identity unresolved",
+          null,
+        ),
+        buildPlanRow(
+          "card_printings",
+          "NONE",
+          "Card printing",
+          "This action path does not create a child printing.",
+          null,
+        ),
+        buildPlanRow(
+          "image_fields",
+          "NONE",
+          "Image fields",
+          "Promotion Executor V1 does not attach canon image fields during CREATE_CARD_PRINT.",
+          null,
+        ),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        unresolved_reason: "variant_identity_unresolved",
+        missing_fields: variantIdentityValidation.missingRequirements,
+        mutation: {
+          set_code: setCode,
+          number: numberPlain,
+          variant_key: normalizeTextOrNull(variantIdentity?.variant_key),
+          name: cardName,
+          illustration_category: normalizeTextOrNull(variantIdentity?.illustration_category),
+        },
+      };
+      unresolvedReasonCode = "variant_identity_unresolved";
+      unresolvedMissingFields = variantIdentityValidation.missingRequirements;
+      unresolvedNextActions = [
+        "Confirm the illustration-category identity for this Perfect Order collision group.",
+        "Only stage promotion after the candidate carries a deterministic variant_key.",
+      ];
+      comparisonSummary = variantIdentityValidation.reason ?? "Variant identity is unresolved.";
+      delta = ["This collision group cannot promote until the variant identity is explicit and deterministic."];
+      previewImageUrl = frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = frontEvidenceUrl ? "Warehouse front evidence" : previewImageFromCanon ? "Existing canon image" : null;
+    } else if (!setCode || !cardName || !numberPlain) {
       const missingFields = [
         !setCode ? "set code" : null,
         !cardName ? "card name" : null,
@@ -1141,7 +1241,12 @@ export async function buildFounderPromotionReview(
       imageOriginLabel = frontEvidenceUrl ? "Warehouse front evidence" : previewImageFromCanon ? "Existing canon image" : null;
     } else {
       const setTarget = setRows[0];
-      const existingRows = await fetchExistingCardPrints(admin, setTarget.id, numberPlain);
+      const existingRows = await fetchExistingCardPrints(
+        admin,
+        setTarget.id,
+        numberPlain,
+        desiredVariantKey,
+      );
       const existingRow = existingRows[0] ?? null;
 
       if (existingRows.length > 1) {
@@ -1287,6 +1392,7 @@ export async function buildFounderPromotionReview(
             [
               { label: "set_code", value: setTarget.code },
               { label: "number_plain", value: numberPlain },
+              { label: "variant_key", value: desiredVariantKey },
               { label: "name", value: cardName },
               { label: "tcgplayer_id", value: tcgplayerId },
             ],
@@ -1302,6 +1408,7 @@ export async function buildFounderPromotionReview(
           target_card_print_id: existingRow.id,
           set_code: setTarget.code,
           number_plain: numberPlain,
+          variant_key: desiredVariantKey,
           card_name: cardName,
         };
         comparisonSummary = "This candidate does not introduce a new parent canonical row. Canon already has the resolved card.";
@@ -1325,9 +1432,10 @@ export async function buildFounderPromotionReview(
             [
               { label: "set_code", value: setTarget.code },
               { label: "number", value: numberPlain },
-              { label: "variant_key", value: "" },
+              { label: "variant_key", value: desiredVariantKey },
               { label: "name", value: cardName },
               { label: "rarity", value: extractRarityHint(payload) },
+              { label: "illustration_category", value: normalizeTextOrNull(variantIdentity?.illustration_category) },
               { label: "tcgplayer_id", value: tcgplayerId },
             ],
           ),
@@ -1342,9 +1450,10 @@ export async function buildFounderPromotionReview(
           mutation: {
             set_code: setTarget.code,
             number: numberPlain,
-            variant_key: "",
+            variant_key: desiredVariantKey,
             name: cardName,
             rarity: extractRarityHint(payload),
+            illustration_category: normalizeTextOrNull(variantIdentity?.illustration_category),
             tcgplayer_id: tcgplayerId,
           },
         };
@@ -1734,6 +1843,13 @@ export async function buildFounderPromotionReview(
     decisionSummary,
     preview: {
       imageUrl: previewImageUrl,
+      exactImageUrl: previewCanonImageFields.image_url,
+      representativeImageUrl: previewCanonImageFields.representative_image_url,
+      imageStatus: previewCanonImageFields.image_status,
+      imageNote: previewCanonImageFields.image_note,
+      displayImageUrl: previewCanonImageFields.display_image_url,
+      displayImageKind: previewCanonImageFields.display_image_kind,
+      imageSource: previewCanonImageFields.image_source,
       imageOriginLabel,
       frontEvidenceUrl,
       backEvidenceUrl,

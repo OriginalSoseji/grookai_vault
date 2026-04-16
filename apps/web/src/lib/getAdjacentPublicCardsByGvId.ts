@@ -1,8 +1,7 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 
 type CardNavigationSeedRow = {
   gv_id: string | null;
@@ -21,6 +20,9 @@ type CardNavigationRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   external_ids?: { tcgdex?: string | null } | null;
   sets?:
     | {
@@ -41,6 +43,12 @@ export type AdjacentPublicCard = {
   variant_key?: string;
   printed_identity_modifier?: string;
   image_url?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
+  display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing";
   tcgdex_external_id?: string;
 };
 
@@ -108,7 +116,7 @@ function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null
 async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCard | undefined> {
   if (!row?.gv_id) return undefined;
 
-  const imageUrl = await resolveCanonImageUrlV1(row);
+  const imageFields = await resolveCardImageFieldsV1(row);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
 
   return {
@@ -119,7 +127,13 @@ async function toAdjacentCard(row?: CardNavigationRow): Promise<AdjacentPublicCa
     number: row.number ?? "",
     variant_key: row.variant_key?.trim() || undefined,
     printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
-    image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+    image_url: imageFields.image_url ?? undefined,
+    representative_image_url: imageFields.representative_image_url ?? undefined,
+    image_status: imageFields.image_status ?? undefined,
+    image_note: imageFields.image_note ?? undefined,
+    image_source: imageFields.image_source ?? undefined,
+    display_image_url: imageFields.display_image_url ?? undefined,
+    display_image_kind: imageFields.display_image_kind,
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
   };
 }
@@ -147,7 +161,7 @@ export const getAdjacentPublicCardsByGvId = cache(async (gv_id: string): Promise
   const { data: setRows, error: setError } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,external_ids,sets(identity_model)",
+      "gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,external_ids,sets(identity_model)",
     )
     .eq("set_code", currentCard.set_code)
     .not("gv_id", "is", null);

@@ -1,5 +1,6 @@
 import '../env.mjs';
 import { Client } from 'pg';
+import { derivePerfectOrderVariantIdentity } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
 
 const PHASE = 'CONTROLLED_GROWTH_INGESTION_PIPELINE_V1';
 const WORKER_VERSION = 'CONTROLLED_GROWTH_INGESTION_PIPELINE_V1';
@@ -398,15 +399,23 @@ function determineCanonGate(rowSurface) {
   if (
     rowSurface.number.reviewToken ||
     rowSurface.name.hasParentheticalModifier ||
-    rowSurface.setMapping.status !== 'unique'
+    rowSurface.setMapping.status !== 'unique' ||
+    (
+      rowSurface.variantIdentity?.applies &&
+      rowSurface.variantIdentity.status !== 'RESOLVED_BY_VARIANT_KEY'
+    )
   ) {
     return {
       bucket: 'PRINTED_IDENTITY_REVIEW',
-      reason: rowSurface.setMapping.status !== 'unique'
-        ? `set_mapping_${rowSurface.setMapping.status}`
-        : rowSurface.name.hasParentheticalModifier
-          ? 'parenthetical_modifier'
-          : `token_lane_${rowSurface.number.tokenLane}`,
+      reason:
+        rowSurface.variantIdentity?.applies &&
+        rowSurface.variantIdentity.status !== 'RESOLVED_BY_VARIANT_KEY'
+          ? 'perfect_order_variant_identity_unresolved'
+          : rowSurface.setMapping.status !== 'unique'
+            ? `set_mapping_${rowSurface.setMapping.status}`
+            : rowSurface.name.hasParentheticalModifier
+              ? 'parenthetical_modifier'
+              : `token_lane_${rowSurface.number.tokenLane}`,
     };
   }
 
@@ -441,6 +450,17 @@ function buildClassificationRecord(rawRow, context) {
 
   const number = normalizeCollectorToken(rawNumber);
   const name = normalizeRawNameSurface(rawName, number);
+  const variantIdentity = derivePerfectOrderVariantIdentity({
+    sourceSetId: rawSetId,
+    numberPlain: number.extractedNumberPlain,
+    normalizedNameKey: name.normalizedNameKey,
+    rawRarity,
+    upstreamId,
+  });
+  const effectiveVariantKey =
+    variantIdentity?.status === 'RESOLVED_BY_VARIANT_KEY'
+      ? variantIdentity.variant_key
+      : number.inferredVariantKey;
   const mappingRows = context.setMappingsBySourceSet.get(rawSetId) ?? [];
   const setMapping = buildCandidateSetMappingSummary(mappingRows);
 
@@ -456,6 +476,7 @@ function buildClassificationRecord(rawRow, context) {
     rawRarity,
     number,
     name,
+    variantIdentity,
     setMapping,
     nonCanonicalReason: !upstreamId || !rawSetId ? 'missing_upstream_identity' : null,
   };
@@ -478,7 +499,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -517,7 +539,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -557,7 +580,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -593,7 +617,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -630,7 +655,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -662,7 +688,7 @@ function buildClassificationRecord(rawRow, context) {
             mappedSetId,
             name.normalizedNameKey,
             number.extractedNumberPlain,
-            number.inferredVariantKey,
+            effectiveVariantKey,
           ),
         ) ?? []
       : [];
@@ -681,7 +707,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -692,7 +719,10 @@ function buildClassificationRecord(rawRow, context) {
       classification: 'MATCHED',
       match_status: 'RESOLVED',
       confidence_score: 0.96,
-      classification_reason: 'strict_same_set_identity_match',
+      classification_reason:
+        variantIdentity?.status === 'RESOLVED_BY_VARIANT_KEY'
+          ? 'strict_same_set_identity_match_with_variant_key'
+          : 'strict_same_set_identity_match',
       matched_via: 'strict_identity',
       has_slash_number: number.hasSlashNumber,
       has_alpha_suffix_number: number.hasAlphaSuffixNumber,
@@ -723,7 +753,8 @@ function buildClassificationRecord(rawRow, context) {
       normalized_name_key: name.normalizedNameKey,
       normalized_number: number.normalizedNumber,
       extracted_number_plain: number.extractedNumberPlain,
-      inferred_variant_key: number.inferredVariantKey,
+      inferred_variant_key: effectiveVariantKey,
+      variant_identity: variantIdentity,
       candidate_set_mapping: candidateSetMapping,
       candidate_set_mapping_status: setMapping.status,
       candidate_set_codes: candidateSetCodes,
@@ -758,7 +789,8 @@ function buildClassificationRecord(rawRow, context) {
     normalized_name_key: name.normalizedNameKey,
     normalized_number: number.normalizedNumber,
     extracted_number_plain: number.extractedNumberPlain,
-    inferred_variant_key: number.inferredVariantKey,
+    inferred_variant_key: effectiveVariantKey,
+    variant_identity: variantIdentity,
     candidate_set_mapping: candidateSetMapping,
     candidate_set_mapping_status: setMapping.status,
     candidate_set_codes: candidateSetCodes,
@@ -769,7 +801,10 @@ function buildClassificationRecord(rawRow, context) {
     classification: 'PROMOTION_CANDIDATE',
     match_status: 'UNMATCHED',
     confidence_score: 0.72,
-    classification_reason: 'no_same_set_canonical_match_on_clean_surface',
+    classification_reason:
+      variantIdentity?.status === 'RESOLVED_BY_VARIANT_KEY'
+        ? 'perfect_order_variant_identity_resolved'
+        : 'no_same_set_canonical_match_on_clean_surface',
     matched_via: null,
     has_slash_number: number.hasSlashNumber,
     has_alpha_suffix_number: number.hasAlphaSuffixNumber,
@@ -793,6 +828,7 @@ function buildStagePayload(classification) {
       normalized_number: classification.normalized_number,
       extracted_number_plain: classification.extracted_number_plain,
       inferred_variant_key: classification.inferred_variant_key,
+      variant_identity: classification.variant_identity ?? null,
       classification_reason: classification.classification_reason,
       matched_via: classification.matched_via,
       source_phase: PHASE,

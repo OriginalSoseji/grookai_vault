@@ -330,7 +330,7 @@ class VaultOwnedCardAnchor {
 
 class VaultCardService {
   static const _canonicalSelect =
-      'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(name,code,identity_model)';
+      'id,gv_id,name,set_code,number,number_plain,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,set:sets(name,code,identity_model)';
   static const _wallGuardMessage =
       'Enable your public profile and vault sharing before adding cards to your wall.';
 

@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PublicCardImage from "@/components/PublicCardImage";
 import WarehouseFounderActionPanel from "@/components/founder/WarehouseFounderActionPanel";
 import WarehouseStagingExecutionPanel from "@/components/founder/WarehouseStagingExecutionPanel";
@@ -25,6 +26,7 @@ import {
   getFounderWarehouseCandidateById,
   type FounderWarehouseEvidenceDetailRow,
 } from "@/lib/warehouse/getFounderWarehouseCandidateById";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -491,7 +493,19 @@ export default async function FounderWarehouseCandidatePage({
     metadataExtraction,
     promotionImageNormalization,
   });
-  const canApprove = candidate.state === "REVIEW_READY";
+  const previewImagePresentation = resolveCardImagePresentation({
+    display_image_kind: founderPresentation.preview.displayImageKind,
+    image_status: founderPresentation.preview.imageStatus,
+    image_note: founderPresentation.preview.imageNote,
+  });
+  const reviewOnlyStaged =
+    candidate.state === "STAGED_FOR_PROMOTION" &&
+    (
+      candidate.current_review_hold_reason === "FOUNDER_APPROVAL_REQUIRED" ||
+      !currentStagingRow?.founder_approved_by_user_id ||
+      !currentStagingRow?.founder_approved_at
+    );
+  const canApprove = candidate.state === "REVIEW_READY" || reviewOnlyStaged;
   const canStage =
     candidate.state === "APPROVED_BY_FOUNDER" &&
     interpreterPackage?.status === "READY" &&
@@ -570,7 +584,12 @@ export default async function FounderWarehouseCandidatePage({
             { label: "Hold reason", value: candidate.current_review_hold_reason ?? interpreterPackage?.reason_code ?? "—" },
             { label: "Created", value: formatTimestamp(candidate.created_at) },
             { label: "Updated", value: formatTimestamp(candidate.updated_at) },
-            { label: "Founder approved at", value: formatTimestamp(candidate.founder_approved_at) },
+            {
+              label: "Founder approved at",
+              value: reviewOnlyStaged
+                ? "Pending explicit founder approval"
+                : formatTimestamp(candidate.founder_approved_at),
+            },
             { label: "Promoted at", value: formatTimestamp(candidate.promoted_at) },
             { label: "Notes", value: candidate.notes },
           ]}
@@ -644,7 +663,11 @@ export default async function FounderWarehouseCandidatePage({
           <div className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50 px-5 py-5">
             <PublicCardImage
               src={founderPresentation.preview.imageUrl ?? undefined}
-              alt={founderPresentation.preview.displayName ?? "Promotion preview"}
+              alt={getCardImageAltText(founderPresentation.preview.displayName ?? "Promotion preview", {
+                display_image_kind: founderPresentation.preview.displayImageKind,
+                image_status: founderPresentation.preview.imageStatus,
+                image_note: founderPresentation.preview.imageNote,
+              })}
               imageClassName="mx-auto aspect-[3/4] h-auto w-full max-w-[320px] rounded-[1.25rem] border border-slate-200 bg-white object-contain p-2"
               fallbackClassName="mx-auto flex aspect-[3/4] w-full max-w-[320px] items-center justify-center rounded-[1.25rem] border border-dashed border-slate-300 bg-white px-6 text-center text-sm text-slate-500"
               fallbackLabel="No preview image is safely available yet."
@@ -653,6 +676,12 @@ export default async function FounderWarehouseCandidatePage({
               <WarehouseBadge value={founderPresentation.preview.candidateTypeLabel} tone="default" />
               {promotionWritePlanOutcome ? (
                 <WarehouseBadge value={promotionWritePlanOutcome} />
+              ) : null}
+              {previewImagePresentation.compactBadgeLabel ? (
+                <CardImageTruthBadge
+                  label={previewImagePresentation.compactBadgeLabel}
+                  emphasis={previewImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                />
               ) : null}
             </div>
             <DefinitionGrid
@@ -668,6 +697,11 @@ export default async function FounderWarehouseCandidatePage({
                 { label: "Preview source", value: founderPresentation.preview.imageOriginLabel ?? "—" },
               ]}
             />
+            {previewImagePresentation.detailNote ? (
+              <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-6 text-amber-950">
+                {previewImagePresentation.detailNote}
+              </div>
+            ) : null}
             {founderPresentation.preview.unresolvedReason ? (
               <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-6 text-amber-900">
                 {founderPresentation.preview.unresolvedReason}
@@ -773,7 +807,12 @@ export default async function FounderWarehouseCandidatePage({
               <DefinitionGrid
                 items={[
                   { label: "Candidate state", value: candidate.state },
-                  { label: "Founder approved at", value: formatTimestamp(candidate.founder_approved_at) },
+                  {
+                    label: "Founder approved at",
+                    value: reviewOnlyStaged
+                      ? "Pending explicit founder approval"
+                      : formatTimestamp(candidate.founder_approved_at),
+                  },
                   {
                     label: "Current staging row",
                     value: currentStagingRow ? (
@@ -1114,7 +1153,18 @@ export default async function FounderWarehouseCandidatePage({
                       </div>
                       <DefinitionGrid
                         items={[
-                          { label: "Founder approved at", value: formatTimestamp(stagingRow.founder_approved_at) },
+                          {
+                            label: "Founder approved at",
+                            value:
+                              candidate.current_staging_id === stagingRow.id &&
+                              (
+                                candidate.current_review_hold_reason === "FOUNDER_APPROVAL_REQUIRED" ||
+                                !stagingRow.founder_approved_by_user_id ||
+                                !stagingRow.founder_approved_at
+                              )
+                                ? "Pending explicit founder approval"
+                                : formatTimestamp(stagingRow.founder_approved_at),
+                          },
                           { label: "Attempts", value: String(stagingRow.execution_attempts) },
                           { label: "Last attempted at", value: formatTimestamp(stagingRow.last_attempted_at) },
                           { label: "Executed at", value: formatTimestamp(stagingRow.executed_at) },

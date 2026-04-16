@@ -17,6 +17,7 @@
 import "server-only";
 
 import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import {
@@ -84,6 +85,12 @@ export type CanonicalVaultCollectorRow = {
   pricing_updated_at: string | null;
   image_url: string | null;
   canonical_image_url: string | null;
+  canonical_representative_image_url: string | null;
+  canonical_image_status: string | null;
+  canonical_image_note: string | null;
+  canonical_image_source: string | null;
+  canonical_display_image_url: string | null;
+  canonical_display_image_kind: "exact" | "representative" | "missing";
   created_at: string | null;
   is_slab: boolean;
   grader: string | null;
@@ -159,6 +166,9 @@ type CardPrintMetadataRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         name: string | null;
@@ -473,7 +483,7 @@ async function fetchCardMetadataById(cardPrintIds: string[]) {
   for (const ids of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await adminClient
       .from("card_prints")
-      .select("id,gv_id,name,variant_key,printed_identity_modifier,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name,identity_model)")
+      .select("id,gv_id,name,variant_key,printed_identity_modifier,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
       .in("id", ids);
 
     if (error) {
@@ -732,9 +742,10 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
     const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
-    const resolvedCanonicalImageUrl = card ? await resolveCanonImageUrlV1(card) : null;
+    const exactCanonicalImageUrl = card ? await resolveCanonImageUrlV1(card) : null;
+    const canonicalImageFields = card ? await resolveCardImageFieldsV1(card) : null;
     const canonicalImageUrl =
-      resolvedCanonicalImageUrl ??
+      exactCanonicalImageUrl ??
       getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
       getBestPublicCardImageUrl(price?.image_url) ??
       null;
@@ -789,6 +800,12 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
       }),
       image_url: preferredImageUrl ?? canonicalImageUrl,
       canonical_image_url: canonicalImageUrl,
+      canonical_representative_image_url: canonicalImageFields?.representative_image_url ?? null,
+      canonical_image_status: canonicalImageFields?.image_status ?? null,
+      canonical_image_note: canonicalImageFields?.image_note ?? null,
+      canonical_image_source: canonicalImageFields?.image_source ?? null,
+      canonical_display_image_url: canonicalImageFields?.display_image_url ?? null,
+      canonical_display_image_kind: canonicalImageFields?.display_image_kind ?? "missing",
       created_at: aggregate.latestCreatedAt ?? representativeBucket.created_at ?? null,
       is_slab: aggregate.slabCount > 0,
       grader: primarySlab?.grader ?? null,

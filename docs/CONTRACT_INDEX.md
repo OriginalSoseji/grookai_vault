@@ -22,6 +22,7 @@ If a contract is missing from this index, it is not authoritative.
 | IDENTITY_DOMAIN_BASELINE_V1 | Active | docs/contracts/IDENTITY_DOMAIN_BASELINE_V1.md — Founder-declared initialization baseline for existing legacy rows: `pokemon_eng_standard` by default, `tcg_pocket_excluded` for `tcg_pocket`, with proof-based classification still mandatory for future ingestion |
 | CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1 | Frozen | docs/contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md — Active identity-subsystem authority for the final BA rollout: `card_prints` remains the stable canonical object and `gv_id` holder, while `card_print_identity` owns printed-identity uniqueness, domain-governed dimensions, and explicit exclusion/reporting of non-canonical domains such as `tcg_pocket` |
 | REPRINT_ANTHOLOGY_SET_CONTRACT_V1 | Active | docs/checkpoints/identity/reprint_anthology_identity_model_v1.md — Declares explicit set-level identity models (`standard`, `reprint_anthology`) so lawful anthology same-number reuse is governed in schema instead of hidden set-code carve-outs |
+| PERFECT_ORDER_VARIANT_IDENTITY_RULE_V1 | Active | docs/contracts/PERFECT_ORDER_VARIANT_IDENTITY_RULE_V1.md — Same-name same-number identity-bearing rarity/illustration collisions must remain separate canonical rows, distinguished by deterministic `variant_key` and surfaced through derived display labels rather than canonical name mutation |
 | PT_VS_DOT_CANONICAL_RULE_V1 | Frozen | Enforces pt-based canonical set codes for subset expansions |
 | PRODUCTION_READINESS_GATE_V1 | Active | docs/release/PRODUCTION_READINESS_GATE_V1.md — Grookai Method production-ready DONE gate (LOCKED) |
 | DOCUMENTATION_SYSTEM_V1 | Active | docs/contracts/DOCUMENTATION_SYSTEM_V1.md — Official documentation buckets, naming, and governance rules |
@@ -54,6 +55,8 @@ If a contract is missing from this index, it is not authoritative.
 | IDENTITY_FIRST_IMAGE_COVERAGE_V1 | Active | Image coverage follows identity, not ingestion |
 | IMAGE_BACKFILL_CONTRACT_V1 | Active | Controlled, tiered image backfill rules |
 | IDENTITY_IMAGE_SYSTEM_V1_5 | Active | Canonical identity image generation and ownership |
+| SOURCE_IMAGE_ENRICHMENT_V1 | Active | docs/contracts/SOURCE_IMAGE_ENRICHMENT_V1.md — One-set, exact-match-first source-backed image enrichment. Must fail closed on ambiguous identity groups and never overwrite exact truth with guessed imagery |
+| REPRESENTATIVE_IMAGE_CONTRACT_V1 | Active | docs/contracts/REPRESENTATIVE_IMAGE_CONTRACT_V1.md — Governs exact vs representative imagery. Representative images must remain distinct from exact images in storage and UI, and may be used only as transparent, replaceable fallback |
 | USER_PHOTO_NORMALIZATION_PIPELINE_V1 | Planned | Backend normalization of user-uploaded images |
 
 ---

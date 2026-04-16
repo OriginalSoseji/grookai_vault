@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import ShareCardButton from "@/components/ShareCardButton";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -92,6 +94,7 @@ export default function PublicSetCardGrid({
       <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
         {cards.map((card, index) => {
           const displayIdentity = resolveDisplayIdentity(card);
+          const imagePresentation = resolveCardImagePresentation(card);
           const setLabel = setCode.toUpperCase();
           const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
             identitySubtitle: displayIdentity.suffix,
@@ -102,10 +105,18 @@ export default function PublicSetCardGrid({
             <PokemonCardGridTile
               key={card.gv_id}
               utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-              imageSrc={card.image_url}
-              imageAlt={displayIdentity.display_name}
+              imageSrc={card.display_image_url ?? card.image_url}
+              imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
               imageHref={buildCardHref(card.gv_id)}
               imageLoading={index < 12 ? "eager" : "lazy"}
+              imageOverlay={
+                imagePresentation.compactBadgeLabel ? (
+                  <CardImageTruthBadge
+                    label={imagePresentation.compactBadgeLabel}
+                    emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                  />
+                ) : null
+              }
               title={
                 <Link href={buildCardHref(card.gv_id)} className="block transition hover:text-slate-700">
                   <span className="block truncate">{displayIdentity.base_name}</span>

@@ -1,8 +1,7 @@
 import "server-only";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
@@ -18,6 +17,9 @@ type FeaturedExploreCardRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         name: string | null;
@@ -42,6 +44,12 @@ export type FeaturedExploreCard = {
   printed_identity_modifier?: string;
   set_identity_model?: string;
   image_url?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
+  display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing";
 };
 
 const FEATURED_EXPLORE_CARD_COUNT = 10;
@@ -53,7 +61,7 @@ async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null |
   }
 
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-  const imageUrl = await resolveCanonImageUrlV1(row);
+  const imageFields = await resolveCardImageFieldsV1(row);
   const name = row.name?.trim() || "Unknown";
   const displayIdentity = resolveDisplayIdentity({
     name,
@@ -75,7 +83,13 @@ async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null |
     variant_key: row.variant_key?.trim() || undefined,
     printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
     set_identity_model: setRecord?.identity_model?.trim() || undefined,
-    image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ?? undefined,
+    image_url: imageFields.image_url ?? undefined,
+    representative_image_url: imageFields.representative_image_url ?? undefined,
+    image_status: imageFields.image_status ?? undefined,
+    image_note: imageFields.image_note ?? undefined,
+    image_source: imageFields.image_source ?? undefined,
+    display_image_url: imageFields.display_image_url ?? undefined,
+    display_image_kind: imageFields.display_image_kind,
   } satisfies FeaturedExploreCard;
 }
 
@@ -100,7 +114,7 @@ async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: num
   const supabase = createServerComponentClient();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,sets(name,identity_model)")
+    .select("gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
     .ilike("rarity", "%Special Illustration Rare%")
     .order("gv_id", { ascending: true })
     .range(offset, offset + windowSize - 1);

@@ -1,6 +1,12 @@
 import '../env.mjs';
 
 import pg from 'pg';
+import { validatePerfectOrderVariantIdentityForPromotion } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
+import {
+  buildSourceBackedInterpreterPackage,
+  getSourceBackedIdentity,
+  normalizeVariantKey,
+} from './source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
 
@@ -115,10 +121,6 @@ function toLowerSnakeCase(value) {
     .toLowerCase();
 }
 
-function normalizeVariantKey(value) {
-  return normalizeTextOrNull(value) ?? '';
-}
-
 function asRecord(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     return null;
@@ -174,8 +176,8 @@ function buildComparableStagePayload(payload) {
     candidate_summary: candidateSummary
       ? {
           ...candidateSummary,
-          state: 'APPROVED_BY_FOUNDER',
-          current_review_hold_reason: null,
+          state: normalizeTextOrNull(candidateSummary.state),
+          current_review_hold_reason: normalizeTextOrNull(candidateSummary.current_review_hold_reason),
         }
       : null,
     founder_approval: asRecord(normalizedPayload.founder_approval) ?? null,
@@ -341,7 +343,7 @@ function buildFrozenIdentity(writePlan, metadataExtraction) {
 }
 
 function freezeCandidateStateForPayload(candidateState) {
-  return candidateState === 'STAGED_FOR_PROMOTION' ? 'APPROVED_BY_FOUNDER' : candidateState;
+  return candidateState;
 }
 
 async function fetchCandidateRow(client, candidateId) {
@@ -364,6 +366,8 @@ async function fetchCandidateRow(client, candidateId) {
         interpreter_resolved_finish_key,
         needs_promotion_review,
         proposed_action_type,
+        claimed_identity_payload,
+        reference_hints_payload,
         founder_approved_by_user_id,
         founder_approved_at,
         founder_approval_notes,
@@ -472,7 +476,45 @@ async function fetchSetRowsByCode(client, setCode) {
   return rows;
 }
 
+async function fetchCardPrintBySetCodeIdentity(client, setCode, numberPlain, variantKey) {
+  const normalizedSetCode = normalizeLowerOrNull(setCode);
+  const normalizedNumberPlain = normalizeTextOrNull(numberPlain);
+  const normalizedVariantKey = normalizeVariantKey(variantKey);
+  if (!normalizedSetCode || !normalizedNumberPlain) {
+    return [];
+  }
+
+  const { rows } = await client.query(
+    `
+      select
+        id,
+        set_id,
+        set_code,
+        name,
+        number,
+        number_plain,
+        variant_key,
+        gv_id,
+        tcgplayer_id,
+        image_url,
+        image_alt_url
+      from public.card_prints
+      where lower(set_code) = $1
+        and number_plain = $2
+        and (
+          (variant_key is null and $3::text is null)
+          or variant_key = $3::text
+        )
+      limit 2
+    `,
+    [normalizedSetCode, normalizedNumberPlain, normalizedVariantKey],
+  );
+
+  return rows;
+}
+
 async function fetchCardPrintByIdentity(client, setId, numberPlain, variantKey) {
+  const normalizedVariantKey = normalizeVariantKey(variantKey);
   const { rows } = await client.query(
     `
       select
@@ -489,11 +531,14 @@ async function fetchCardPrintByIdentity(client, setId, numberPlain, variantKey) 
       from public.card_prints
       where set_id = $1
         and number_plain = $2
-        and coalesce(variant_key, '') = $3
+        and (
+          (variant_key is null and $3::text is null)
+          or variant_key = $3::text
+        )
       order by id asc
       limit 2
     `,
-    [setId, numberPlain, normalizeVariantKey(variantKey)],
+    [setId, numberPlain, normalizedVariantKey],
   );
   return rows;
 }
@@ -548,19 +593,40 @@ async function fetchCardPrintingByCardPrintAndFinish(client, cardPrintId, finish
 }
 
 async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtraction, interpreterPackage, normalizationPackage }) {
-  if (!interpreterPackage) {
+  const sourceBackedIdentity = getSourceBackedIdentity(candidate);
+  const effectiveInterpreterPackage =
+    interpreterPackage ??
+    (
+      sourceBackedIdentity.is_bridge_candidate
+        ? buildSourceBackedInterpreterPackage({
+            candidate,
+            classificationPackage: {
+              proposed_action_type: candidate.proposed_action_type,
+            },
+          })
+        : null
+    );
+
+  if (!effectiveInterpreterPackage) {
     return buildBlockedWritePlan('Interpreter package is required before staging.', ['Interpreter package']);
   }
 
-  if (normalizeTextOrNull(interpreterPackage.status) !== 'READY') {
+  if (normalizeTextOrNull(effectiveInterpreterPackage.status) !== 'READY') {
     return buildBlockedWritePlan(
-      normalizeTextOrNull(interpreterPackage.founder_explanation) ?? 'Interpreter package is not READY.',
-      asArray(interpreterPackage.missing_fields),
+      normalizeTextOrNull(effectiveInterpreterPackage.founder_explanation) ?? 'Interpreter package is not READY.',
+      asArray(effectiveInterpreterPackage.missing_fields),
     );
   }
 
+  const proposedAction =
+    normalizeTextOrNull(effectiveInterpreterPackage.proposed_action) ??
+    normalizeTextOrNull(candidate.proposed_action_type);
+  const sourceBackedCreateCardPrint =
+    sourceBackedIdentity.auto_ready &&
+    proposedAction === 'CREATE_CARD_PRINT';
+
   const normalizationStatus = normalizeTextOrNull(normalizationPackage?.status);
-  if (normalizationStatus !== 'READY') {
+  if (normalizationStatus !== 'READY' && !sourceBackedCreateCardPrint) {
     return buildBlockedWritePlan('Normalization asset is not READY for staging.', ['Normalization package']);
   }
 
@@ -571,12 +637,12 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
   const printedNumber = normalizeTextOrNull(identity?.printed_number) ?? normalizeTextOrNull(identity?.number);
   const numberPlain = normalizeNumberPlain(printedNumber);
   const variantKey =
-    normalizeTextOrNull(interpreterPackage?.canon_context?.variant_key) ??
-    normalizePrintedModifierVariantKey(printedModifier) ??
-    '';
-  const proposedAction =
-    normalizeTextOrNull(interpreterPackage.proposed_action) ??
-    normalizeTextOrNull(candidate.proposed_action_type);
+    normalizeVariantKey(effectiveInterpreterPackage?.canon_context?.variant_key) ??
+    normalizeVariantKey(normalizePrintedModifierVariantKey(printedModifier));
+  const variantIdentityValidation = validatePerfectOrderVariantIdentityForPromotion(
+    effectiveInterpreterPackage?.variant_identity ?? null,
+    variantKey,
+  );
 
   if (!setCode || !name || !numberPlain) {
     return buildBlockedWritePlan('Missing required identity fields (set, name, number).', [
@@ -586,10 +652,74 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
     ]);
   }
 
+  if (!variantIdentityValidation.ok) {
+    return buildBlockedWritePlan(
+      variantIdentityValidation.reason ?? 'Collision-resolved promotion target requires a deterministic variant_key.',
+      variantIdentityValidation.missing_requirements,
+    );
+  }
+
   if (proposedAction === 'CREATE_CARD_PRINT') {
     const setRows = await fetchSetRowsByCode(client, setCode);
     if (setRows.length !== 1) {
-      return buildBlockedWritePlan('UNKNOWN_SET', ['Valid set_code required before staging']);
+      if (!sourceBackedCreateCardPrint) {
+        return buildBlockedWritePlan('UNKNOWN_SET', ['Valid set_code required before staging']);
+      }
+
+      const existingRows = await fetchCardPrintBySetCodeIdentity(client, setCode, numberPlain, variantKey);
+      if (existingRows.length > 1) {
+        return buildBlockedWritePlan('AMBIGUOUS_TARGET', ['Single canonical target required before staging']);
+      }
+      if (existingRows.length === 1) {
+        const existing = existingRows[0];
+        if (normalizeNameKey(existing.name) === normalizeNameKey(name)) {
+          return buildBlockedWritePlan(
+            'CREATE_CARD_PRINT is inconsistent because the exact canonical identity already exists.',
+            ['No exact canonical identity may exist for CREATE_CARD_PRINT'],
+          );
+        }
+        return buildBlockedWritePlan('AMBIGUOUS_TARGET', ['Conflicting canonical identity already exists']);
+      }
+
+      const payload = {
+        set_id: null,
+        set_code: setCode,
+        name,
+        number: printedNumber ?? numberPlain,
+        number_plain: numberPlain,
+        variant_key: variantKey,
+        rarity: null,
+        tcgplayer_id: normalizeTextOrNull(candidate.tcgplayer_id),
+        image_url: null,
+        image_alt_url: null,
+      };
+
+      return {
+        status: 'READY',
+        reason:
+          'Source-backed CREATE_CARD_PRINT is ready to stage without a normalization asset. Canon set bootstrap is still required before executor apply.',
+        actions: {
+          card_prints: {
+            action: 'CREATE',
+            target_id: null,
+            payload,
+            reason: 'Source-backed bridge identity is deterministic and no exact canonical identity exists for this set_code, number, and variant.',
+          },
+          card_printings: buildEmptyAction('Source-backed parent creation does not create a child printing.'),
+          external_mappings: buildEmptyAction('Promotion Executor V1 does not write external_mappings.'),
+          image_fields: buildEmptyAction('No normalized promotion asset is required for source-backed CREATE_CARD_PRINT staging.'),
+        },
+        preview: {
+          before: null,
+          after: {
+            card_prints: payload,
+            card_printings: null,
+            external_mappings: null,
+            image_fields: null,
+          },
+        },
+        missing_requirements: [],
+      };
     }
 
     const existingRows = await fetchCardPrintByIdentity(client, setRows[0].id, numberPlain, variantKey);
@@ -795,7 +925,17 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
   ]);
 }
 
-function buildFrozenPayload({ candidate, evidenceRows, latestNormalizedPackage, latestClassificationPackage, metadataExtraction, interpreterPackage, normalizationPackage, writePlan, stagedAt }) {
+function buildFrozenPayload({
+  candidate,
+  evidenceRows,
+  latestNormalizedPackage,
+  latestClassificationPackage,
+  metadataExtraction,
+  interpreterPackage,
+  normalizationPackage,
+  writePlan,
+  stagedAt,
+}) {
   const frozenIdentity = buildFrozenIdentity(writePlan, metadataExtraction);
   const approvedActionType = inferApprovedActionType(writePlan);
   return {
@@ -853,11 +993,15 @@ function buildFrozenPayload({ candidate, evidenceRows, latestNormalizedPackage, 
       created_at: stagedAt,
       created_by: candidate.founder_approved_by_user_id,
       staged_via: WORKER_NAME,
+      approval_mode: 'MANUAL',
     },
   };
 }
 
 function canBuildStagingPayload(artifact, writePlan) {
+  const sourceBackedCreateCardPrint =
+    getSourceBackedIdentity(artifact?.candidate).is_bridge_candidate &&
+    inferApprovedActionType(writePlan) === 'CREATE_CARD_PRINT';
   return Boolean(
     artifact?.candidate &&
       normalizeTextOrNull(artifact.candidate.founder_approved_by_user_id) &&
@@ -865,7 +1009,10 @@ function canBuildStagingPayload(artifact, writePlan) {
       artifact.latestMetadataExtractionPackage?.normalized_metadata_package &&
       artifact.latestInterpreterPackage?.value &&
       normalizeTextOrNull(artifact.latestInterpreterPackage?.value?.status) === 'READY' &&
-      normalizeTextOrNull(artifact.latestNormalizationPackage?.promotion_image_normalization_package?.status) === 'READY' &&
+      (
+        normalizeTextOrNull(artifact.latestNormalizationPackage?.promotion_image_normalization_package?.status) === 'READY' ||
+        sourceBackedCreateCardPrint
+      ) &&
       writePlan?.status === 'READY',
   );
 }
@@ -941,10 +1088,14 @@ function validateArtifacts(artifact, writePlan) {
       missing: uniqueText(asArray(artifact.latestInterpreterPackage?.value?.missing_fields)),
     };
   }
+  const approvedActionType = inferApprovedActionType(writePlan);
   const normalizationStatus = normalizeTextOrNull(
     artifact.latestNormalizationPackage?.promotion_image_normalization_package?.status,
   );
-  if (normalizationStatus !== 'READY') {
+  const sourceBackedCreateCardPrint =
+    getSourceBackedIdentity(candidate).is_bridge_candidate &&
+    approvedActionType === 'CREATE_CARD_PRINT';
+  if (normalizationStatus !== 'READY' && !sourceBackedCreateCardPrint) {
     return {
       ok: false,
       reason: `normalization_not_ready:${normalizationStatus ?? 'null'}`,
@@ -958,7 +1109,6 @@ function validateArtifacts(artifact, writePlan) {
       missing: uniqueText(writePlan?.missing_requirements ?? ['READY promotion write plan']),
     };
   }
-  const approvedActionType = inferApprovedActionType(writePlan);
   if (!approvedActionType || !STAGEABLE_ACTION_TYPES.has(approvedActionType)) {
     return {
       ok: false,
@@ -967,7 +1117,7 @@ function validateArtifacts(artifact, writePlan) {
     };
   }
 
-  return { ok: true, approvedActionType };
+  return { ok: true, approvedActionType, sourceBackedCreateCardPrint };
 }
 
 async function insertStageEvent(client, payload) {
@@ -997,6 +1147,37 @@ async function insertStageEvent(client, payload) {
         approved_action_type: payload.approvedActionType,
         write_plan_snapshot: payload.writePlan,
         normalization_asset_paths: payload.normalizationAsset,
+      }),
+    ],
+  );
+}
+
+async function insertWarehouseEvent(client, payload) {
+  await client.query(
+    `
+      insert into public.canon_warehouse_candidate_events (
+        candidate_id,
+        event_type,
+        action,
+        previous_state,
+        next_state,
+        actor_user_id,
+        actor_type,
+        metadata,
+        created_at
+      )
+      values ($1, $2, $3, $4, $5, null, 'SYSTEM', $6::jsonb, now())
+    `,
+    [
+      payload.candidateId,
+      payload.eventType,
+      payload.action,
+      payload.previousState,
+      payload.nextState,
+      JSON.stringify({
+        worker: WORKER_NAME,
+        system_note: payload.notes ?? null,
+        ...payload.metadata,
       }),
     ],
   );

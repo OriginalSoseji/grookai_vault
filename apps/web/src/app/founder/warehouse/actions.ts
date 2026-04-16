@@ -74,6 +74,47 @@ function normalizeOptionalText(value: FormDataEntryValue | string | null | undef
   return normalized.length > 0 ? normalized : null;
 }
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  return value as Record<string, unknown>;
+}
+
+function buildApprovedReviewOnlyFrozenPayload(params: {
+  frozenPayload: unknown;
+  actorUserId: string;
+  approvedAt: string;
+  note: string | null;
+}) {
+  const stagedPayload = asRecord(params.frozenPayload) ?? {};
+  const founderApproval = {
+    ...(asRecord(stagedPayload.founder_approval) ?? {}),
+    founder_approved_by_user_id: params.actorUserId,
+    founder_approved_at: params.approvedAt,
+    founder_approval_notes: params.note,
+  };
+  const candidateSummary = {
+    ...(asRecord(stagedPayload.candidate_summary) ?? {}),
+    state: "STAGED_FOR_PROMOTION",
+    current_review_hold_reason: null,
+  };
+  const stagedContext = {
+    ...(asRecord(stagedPayload.staged_context) ?? {}),
+    approval_mode: "MANUAL",
+    staged_at: params.approvedAt,
+    created_at: params.approvedAt,
+    created_by: params.actorUserId,
+  };
+
+  return {
+    ...stagedPayload,
+    founder_approval: founderApproval,
+    candidate_summary: candidateSummary,
+    staged_context: stagedContext,
+  };
+}
+
 function parseOperation(value: FormDataEntryValue | null): FounderWarehouseOperation | null {
   if (typeof value !== "string") {
     return null;
@@ -135,6 +176,22 @@ function getActionLabel(action: FounderWarehouseOperation) {
     default:
       return action;
   }
+}
+
+function isReviewOnlyStagedCandidate(detail: Awaited<ReturnType<typeof getFounderWarehouseCandidateById>>) {
+  const candidate = detail.candidate;
+  const currentStagingRow = detail.currentStagingRow;
+
+  return Boolean(
+    candidate &&
+      currentStagingRow &&
+      candidate.state === "STAGED_FOR_PROMOTION" &&
+      (
+        candidate.current_review_hold_reason === "FOUNDER_APPROVAL_REQUIRED" ||
+        !currentStagingRow.founder_approved_by_user_id ||
+        !currentStagingRow.founder_approved_at
+      ),
+  );
 }
 
 function resolveRepoRoot() {
@@ -293,14 +350,110 @@ export async function runFounderWarehouseAction(
 
   try {
     if (action === "approve") {
-      if (!APPROVAL_ALLOWED_STATES.has(candidate.state)) {
+      const reviewOnlyStaged = isReviewOnlyStagedCandidate(detail);
+      if (!APPROVAL_ALLOWED_STATES.has(candidate.state) && !reviewOnlyStaged) {
         return {
           ok: false,
           submissionKey,
           action,
           candidateId,
           errorCode: "INVALID_STATE",
-          message: `Approve is only allowed from REVIEW_READY. Current state is ${candidate.state}.`,
+          message: `Approve is only allowed from REVIEW_READY${detail.currentStagingRow ? " or review-only staged rows" : ""}. Current state is ${candidate.state}.`,
+        };
+      }
+
+      if (reviewOnlyStaged && detail.currentStagingRow) {
+        const nextFrozenPayload = buildApprovedReviewOnlyFrozenPayload({
+          frozenPayload: detail.currentStagingRow.frozen_payload,
+          actorUserId,
+          approvedAt: now,
+          note,
+        });
+
+        const { data: insertedStage, error: insertStageError } = await admin
+          .from("canon_warehouse_promotion_staging")
+          .insert({
+            candidate_id: candidateId,
+            approved_action_type: detail.currentStagingRow.approved_action_type,
+            frozen_payload: nextFrozenPayload,
+            founder_approved_by_user_id: actorUserId,
+            founder_approved_at: now,
+            staged_by_user_id: actorUserId,
+            staged_at: now,
+            execution_status: "PENDING",
+            execution_attempts: 0,
+            last_error: null,
+          })
+          .select("id")
+          .maybeSingle();
+
+        if (insertStageError) {
+          throw insertStageError;
+        }
+        if (!insertedStage?.id) {
+          throw new Error("staging_insert_failed");
+        }
+
+        const { data: approvedCandidate, error: candidateError } = await admin
+          .from("canon_warehouse_candidates")
+          .update({
+            founder_approved_by_user_id: actorUserId,
+            founder_approved_at: now,
+            founder_approval_notes: note,
+            current_review_hold_reason: null,
+            current_staging_id: insertedStage.id,
+          })
+          .eq("id", candidateId)
+          .eq("state", "STAGED_FOR_PROMOTION")
+          .select("id")
+          .maybeSingle();
+
+        if (candidateError) {
+          await admin.from("canon_warehouse_promotion_staging").delete().eq("id", insertedStage.id);
+          throw candidateError;
+        }
+        if (!approvedCandidate?.id) {
+          await admin.from("canon_warehouse_promotion_staging").delete().eq("id", insertedStage.id);
+          throw new Error("illegal_candidate_state_transition");
+        }
+
+        const { error: supersedeStageError } = await admin
+          .from("canon_warehouse_promotion_staging")
+          .update({
+            execution_status: "FAILED",
+            last_error: "superseded_by_founder_approval_restage",
+          })
+          .eq("id", detail.currentStagingRow.id)
+          .eq("candidate_id", candidateId);
+
+        if (supersedeStageError) {
+          throw supersedeStageError;
+        }
+
+        await appendWarehouseEvent({
+          candidateId,
+          stagingId: insertedStage.id,
+          eventType: "FOUNDER_APPROVED",
+          action: "APPROVE",
+          previousState: "STAGED_FOR_PROMOTION",
+          nextState: "STAGED_FOR_PROMOTION",
+          actorUserId,
+          metadata: {
+            founder_note: note,
+            approval_scope: "review_only_staging",
+            previous_staging_id: detail.currentStagingRow.id,
+            current_staging_id: insertedStage.id,
+          },
+        });
+
+        revalidateWarehouseFounderPaths(candidateId);
+        return {
+          ok: true,
+          submissionKey,
+          action,
+          candidateId,
+          stagingId: insertedStage.id,
+          message: "Review-only staging package approved. A new executable staging row is now linked and remains founder-controlled.",
         };
       }
 

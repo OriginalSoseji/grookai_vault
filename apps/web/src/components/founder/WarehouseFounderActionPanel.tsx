@@ -57,7 +57,9 @@ function SubmitButton({
 function getConfirmMessage(action: ActionName, candidateState: string) {
   switch (action) {
     case "approve":
-      return "Approve this candidate and move it into the founder-approved state?";
+      return candidateState === "STAGED_FOR_PROMOTION"
+        ? "Approve this review-only staging package and unlock executor eligibility for the current staging row?"
+        : "Approve this candidate and move it into the founder-approved state?";
     case "stage":
       return "Create a frozen staging row for this approved candidate? This does not execute promotion.";
     default:
@@ -101,7 +103,7 @@ export default function WarehouseFounderActionPanel({
   const availableActions = useMemo(() => {
     const actions = [];
 
-    if (candidateState === "REVIEW_READY" && canApprove) {
+    if ((candidateState === "REVIEW_READY" || candidateState === "STAGED_FOR_PROMOTION") && canApprove) {
       actions.push({ action: "approve" as const, label: "Approve", tone: "success" as const });
     }
 
@@ -131,7 +133,7 @@ export default function WarehouseFounderActionPanel({
   const readOnlyMessage =
     candidateState === "PROMOTED"
       ? "Promotion already succeeded. Founder mutation controls are now read-only."
-      : candidateState === "STAGED_FOR_PROMOTION"
+      : candidateState === "STAGED_FOR_PROMOTION" && !canApprove
         ? "This candidate is already staged. Execute it from the staging control below."
         : candidateState === "APPROVED_BY_FOUNDER" && !canStage
           ? stageBlockedReason ?? "Stage remains blocked until interpreter, write plan, and normalization are all READY."
@@ -157,7 +159,7 @@ export default function WarehouseFounderActionPanel({
       <form action={formAction} onSubmit={handleSubmit} className="space-y-4">
         <input type="hidden" name="candidate_id" value={candidateId} />
 
-        {candidateState === "REVIEW_READY" ? (
+        {candidateState === "REVIEW_READY" || (candidateState === "STAGED_FOR_PROMOTION" && canApprove) ? (
           <label className="block space-y-2">
             <span className="text-sm font-medium text-slate-800">Founder approval note</span>
             <textarea

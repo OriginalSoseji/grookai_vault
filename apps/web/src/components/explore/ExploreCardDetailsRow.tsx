@@ -1,10 +1,12 @@
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -26,14 +28,15 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 3);
+  const imagePresentation = resolveCardImagePresentation(card);
 
   return (
     <tr className="border-b border-slate-100 last:border-b-0">
       <td className="px-4 py-3">
         <div className="flex min-w-0 items-center gap-3">
           <PublicCardImage
-            src={card.image_url}
-            alt={displayIdentity.display_name}
+            src={card.display_image_url ?? card.image_url}
+            alt={getCardImageAltText(displayIdentity.display_name, card)}
             imageClassName="h-14 w-10 rounded-lg border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-14 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
           />
@@ -45,6 +48,14 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               ) : null}
             </Link>
             <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+            {imagePresentation.compactBadgeLabel ? (
+              <div className="mt-1">
+                <CardImageTruthBadge
+                  label={imagePresentation.compactBadgeLabel}
+                  emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </td>

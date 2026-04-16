@@ -1,10 +1,12 @@
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -26,14 +28,15 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 2);
+  const imagePresentation = resolveCardImagePresentation(card);
 
   return (
     <li className="rounded-[16px] border border-slate-200 bg-white px-4 py-4 shadow-sm transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-4">
         <Link href={href} className="flex min-w-0 flex-1 items-start gap-4">
           <PublicCardImage
-            src={card.image_url}
-            alt={displayIdentity.display_name}
+            src={card.display_image_url ?? card.image_url}
+            alt={getCardImageAltText(displayIdentity.display_name, card)}
             imageClassName="h-28 w-20 rounded-xl border border-slate-200 bg-slate-50 object-contain p-1"
             fallbackClassName="flex h-28 w-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-2 text-center text-[11px] text-slate-500"
           />
@@ -48,6 +51,12 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 ) : null}
                 <p className="text-sm text-slate-600">{setLabel}</p>
               </div>
+              {imagePresentation.compactBadgeLabel ? (
+                <CardImageTruthBadge
+                  label={imagePresentation.compactBadgeLabel}
+                  emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                />
+              ) : null}
               {variantLabels.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
                   {variantLabels.map((label) => (

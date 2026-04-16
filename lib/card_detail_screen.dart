@@ -13,6 +13,7 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'services/identity/display_identity.dart';
+import 'services/identity/image_presentation.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/public/compare_service.dart';
@@ -174,7 +175,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final detailRow = await supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
+            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
           )
           .eq('id', widget.cardPrintId)
           .maybeSingle();
@@ -190,7 +191,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         final response = await supabase
             .from('card_prints')
             .select(
-              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,release_date,identity_model)',
+              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
             )
             .eq('name', resolvedName)
             .neq('id', widget.cardPrintId)
@@ -838,6 +839,33 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return _cleanText(fallback?.toString());
   }
 
+  ResolvedImagePresentation _resolveImagePresentationFromRecord(
+    Map<String, dynamic>? row,
+  ) {
+    return resolveImagePresentationFromFields(
+      imageUrl: _bestImageUrl(
+        primary: row?['image_url'],
+        fallback: row?['image_alt_url'],
+      ),
+      representativeImageUrl: _cleanText(
+        row?['representative_image_url']?.toString(),
+      ),
+      imageStatus: _cleanText(row?['image_status']?.toString()),
+      imageNote: _cleanText(row?['image_note']?.toString()),
+    );
+  }
+
+  ResolvedImagePresentation get _cardImagePresentation {
+    final presentation = _resolveImagePresentationFromRecord(_cardContextData);
+    if ((presentation.displayImageUrl ?? '').isNotEmpty) {
+      return presentation;
+    }
+
+    return resolveImagePresentationFromFields(
+      imageUrl: _cleanText(widget.imageUrl),
+    );
+  }
+
   String get _resolvedSetName {
     final contextSet = _extractRecord(_cardContextData?['sets']);
     final fromContext = _cleanText(contextSet?['name']);
@@ -1070,10 +1098,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                           ? _cleanText(row['number_plain'])
                           : _cleanText(row['number']);
                       final rarity = _formatRarity(row['rarity']?.toString());
-                      final imageUrl = _bestImageUrl(
-                        primary: row['image_url'],
-                        fallback: row['image_alt_url'],
-                      );
+                      final imagePresentation =
+                          _resolveImagePresentationFromRecord(row);
+                      final imageUrl = imagePresentation.displayImageUrl ?? '';
                       final ownershipState = _relatedVersionOwnershipState(
                         cardPrintId,
                       );
@@ -1148,6 +1175,18 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                                   .withValues(alpha: 0.68),
                                             ),
                                       ),
+                                      if (imagePresentation.compactBadgeLabel !=
+                                          null) ...[
+                                        const SizedBox(height: 6),
+                                        _buildImageStatusBadge(
+                                          theme: theme,
+                                          colorScheme: colorScheme,
+                                          label:
+                                              imagePresentation.compactBadgeLabel!,
+                                          strong: imagePresentation
+                                              .isCollisionRepresentative,
+                                        ),
+                                      ],
                                     ],
                                   ),
                                 ),
@@ -1238,6 +1277,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Widget _buildHeroPanel(ThemeData theme, ColorScheme colorScheme) {
     final ownershipSection = _buildOwnershipSection(theme);
+    final imagePresentation = _cardImagePresentation;
 
     return _buildSurface(
       colorScheme: colorScheme,
@@ -1247,6 +1287,42 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildHeroImage(colorScheme),
+          if (imagePresentation.compactBadgeLabel != null) ...[
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.center,
+              child: _buildImageStatusBadge(
+                theme: theme,
+                colorScheme: colorScheme,
+                label: imagePresentation.detailBadgeLabel ??
+                    imagePresentation.compactBadgeLabel!,
+                strong: imagePresentation.isCollisionRepresentative,
+              ),
+            ),
+          ],
+          if (imagePresentation.detailNote != null) ...[
+            const SizedBox(height: 10),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: colorScheme.tertiaryContainer.withValues(alpha: 0.58),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: colorScheme.tertiary.withValues(alpha: 0.20),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+                child: Text(
+                  imagePresentation.detailNote!,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onTertiaryContainer,
+                    height: 1.35,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ],
           const SizedBox(height: 16),
           _buildIdentitySection(theme, colorScheme),
           if (ownershipSection != null) ...[
@@ -1259,7 +1335,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Widget _buildHeroImage(ColorScheme colorScheme) {
-    final url = (widget.imageUrl ?? '').toString();
+    final url = _cardImagePresentation.displayImageUrl ?? '';
 
     return Center(
       child: ConstrainedBox(
@@ -1291,6 +1367,42 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 showZoomAffordance: url.isNotEmpty,
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImageStatusBadge({
+    required ThemeData theme,
+    required ColorScheme colorScheme,
+    required String label,
+    required bool strong,
+  }) {
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.94)
+        : colorScheme.surface.withValues(alpha: 0.96);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
           ),
         ),
       ),

@@ -55,6 +55,12 @@ export type PublicSetCard = {
   set_identity_model?: string;
   rarity?: string;
   image_url?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
+  display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing";
 };
 
 export type PublicSetDetail = PublicSetSummary & {

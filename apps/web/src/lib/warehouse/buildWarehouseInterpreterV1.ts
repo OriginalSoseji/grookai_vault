@@ -10,6 +10,10 @@ import {
   isReadyStampPrintedModifier,
   normalizePrintedModifierVariantKey,
 } from "@/lib/warehouse/printedIdentityModel";
+import {
+  extractPerfectOrderVariantIdentityFromClassificationPackage,
+  type PerfectOrderVariantIdentity,
+} from "@/lib/warehouse/perfectOrderVariantIdentity";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -101,6 +105,7 @@ export type WarehouseInterpreterPackage = {
   missing_fields: string[];
   evidence_gaps: string[];
   next_actions: string[];
+  variant_identity: PerfectOrderVariantIdentity | null;
   raw_reason_code?: string | null;
 };
 
@@ -211,6 +216,9 @@ function buildCanonContext(input: WarehouseInterpreterInput) {
   const extractionIdentity = getExtractionIdentity(latestMetadataExtractionPackage);
   const extractionPrintedModifier = getExtractionPrintedModifier(latestMetadataExtractionPackage);
   const stampVariantKey = normalizePrintedModifierVariantKey(extractionPrintedModifier);
+  const variantIdentity = extractPerfectOrderVariantIdentityFromClassificationPackage(
+    input.latestClassificationPackage,
+  );
 
   const matchedCardPrintId =
     normalizeTextOrNull(input.promotionReview?.references.matchedCardPrintId) ??
@@ -237,7 +245,10 @@ function buildCanonContext(input: WarehouseInterpreterInput) {
       normalizeTextOrNull(visibleHints?.printed_number) ??
       normalizeTextOrNull(visibleHints?.printed_number_plain) ??
       normalizeTextOrNull(extractionIdentity?.number),
-    variant_key: normalizeTextOrNull(rawMutation?.variant_key) ?? stampVariantKey,
+    variant_key:
+      normalizeTextOrNull(rawMutation?.variant_key) ??
+      normalizeTextOrNull(variantIdentity?.variant_key) ??
+      stampVariantKey,
     finish_key:
       normalizeTextOrNull(input.promotionReview?.references.finishKey) ??
       normalizeTextOrNull(input.candidate.interpreter_resolved_finish_key),
@@ -354,6 +365,9 @@ function buildReadyPackage(
   proposedAction: WarehouseInterpreterPackage["proposed_action"],
   confidence: WarehouseInterpreterConfidence,
 ): WarehouseInterpreterPackage {
+  const variantIdentity = extractPerfectOrderVariantIdentityFromClassificationPackage(
+    input.latestClassificationPackage,
+  );
   const evidenceGaps = uniqueText([
     ...asStringArray(input.latestNormalizedPackage?.evidence_gaps),
     ...asStringArray(asRecord(input.latestClassificationPackage?.metadata_documentation)?.unresolved_fields),
@@ -372,6 +386,7 @@ function buildReadyPackage(
     proposed_action: proposedAction,
     missing_fields: [],
     evidence_gaps: evidenceGaps,
+    variant_identity: variantIdentity,
     next_actions:
       proposedAction === "NO_OP"
         ? [
@@ -379,7 +394,8 @@ function buildReadyPackage(
             "Archive or reject it after founder review if the submission adds no new canon value.",
           ]
         : [
-            "Founder may approve and stage this candidate if the write plan matches the intended canon change.",
+            "Founder approval remains explicit and intentional before any executable staging can proceed.",
+            "Stage this candidate only after founder approval if the write plan matches the intended canon change.",
           ],
     raw_reason_code:
       normalizeTextOrNull(input.latestClassificationPackage?.interpreter_reason_code) ??
@@ -477,6 +493,9 @@ export function buildWarehouseInterpreterV1(
 ): WarehouseInterpreterPackage {
   const latestMetadataExtractionPackage = input.latestMetadataExtractionPackage ?? null;
   const canonContext = buildCanonContext(input);
+  const variantIdentity = extractPerfectOrderVariantIdentityFromClassificationPackage(
+    input.latestClassificationPackage,
+  );
   const noteModifierClaim = noteClaimsPrintedModifier(input.candidate.notes);
   const hasFrontEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "front");
   const hasBackEvidence = input.evidenceRows.some((row) => normalizeLowerOrNull(row.evidence_slot) === "back");
@@ -562,6 +581,7 @@ export function buildWarehouseInterpreterV1(
       proposed_action: "CREATE_CARD_PRINT",
       missing_fields: [],
       evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+      variant_identity: variantIdentity,
       next_actions: [
         "Founder may approve and stage this candidate as a new canonical row.",
         `Promotion should create a new card_prints row with variant_key ${stampedVariantKey}.`,
@@ -634,6 +654,7 @@ export function buildWarehouseInterpreterV1(
         ...missingFieldsBase,
       ]),
       evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+      variant_identity: variantIdentity,
       next_actions: [
         `Confirm whether ${modifierSummary} represents a real canonical identity delta.`,
         "Only stage the candidate after the modifier-backed identity can be represented lawfully in canon.",
@@ -663,6 +684,7 @@ export function buildWarehouseInterpreterV1(
       proposed_action: null,
       missing_fields: uniqueText(["Structured identity delta", ...missingFieldsBase]),
       evidence_gaps: evidenceGapsBase,
+      variant_identity: variantIdentity,
       next_actions: [
         "Review the evidence to confirm whether the notes describe a real printed modifier or stamp.",
         "Only stage this candidate after the identity delta is explicit and reviewable.",
@@ -684,6 +706,7 @@ export function buildWarehouseInterpreterV1(
       proposed_action: null,
       missing_fields: uniqueText([...missingFieldsBase]),
       evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+      variant_identity: variantIdentity,
       next_actions: unresolved.next_actions,
       raw_reason_code: unresolved.raw_reason_code,
     };
@@ -702,6 +725,7 @@ export function buildWarehouseInterpreterV1(
       proposed_action: null,
       missing_fields: blockedFromClassification.missingFields,
       evidence_gaps: evidenceGapsBase,
+      variant_identity: variantIdentity,
       next_actions: blockedFromClassification.nextActions,
       raw_reason_code: blockedFromClassification.rawReasonCode,
     };
@@ -730,6 +754,7 @@ export function buildWarehouseInterpreterV1(
         "Lawful promotion action",
       ]),
       evidence_gaps: evidenceGapsBase,
+      variant_identity: variantIdentity,
       next_actions: [
         ...(extractionStatus
           ? [
@@ -755,6 +780,7 @@ export function buildWarehouseInterpreterV1(
     proposed_action: null,
     missing_fields: missingFieldsBase,
     evidence_gaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+    variant_identity: variantIdentity,
     next_actions: [
       "Review the current evidence and classification output manually.",
       "Only stage after the promotion action is explicit and lawful.",

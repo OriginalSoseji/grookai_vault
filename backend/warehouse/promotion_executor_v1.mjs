@@ -2,6 +2,8 @@ import '../env.mjs';
 
 import pg from 'pg';
 import { buildCardPrintGvIdV1 } from './buildCardPrintGvIdV1.mjs';
+import { validatePerfectOrderVariantIdentityForPromotion } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
+import { normalizeVariantKey } from './source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
 
@@ -155,6 +157,10 @@ function getClassificationPackage(payload) {
   return asRecord(payload?.latest_classification_package) ?? null;
 }
 
+function getLatestInterpreterPackage(payload) {
+  return asRecord(payload?.latest_interpreter_package) ?? null;
+}
+
 function getMetadataExtractionPackage(payload) {
   return asRecord(payload?.latest_metadata_extraction_package) ?? null;
 }
@@ -257,9 +263,8 @@ function extractVariantKey(payload) {
   const plannedCardPrint = asRecord(writePlan?.preview?.after?.card_prints);
 
   return (
-    normalizeTextOrNull(plannedCardPrint?.variant_key) ||
-    normalizeTextOrNull(frozenIdentity?.variant_key) ||
-    ''
+    normalizeVariantKey(plannedCardPrint?.variant_key) ||
+    normalizeVariantKey(frozenIdentity?.variant_key)
   );
 }
 
@@ -335,10 +340,25 @@ function buildPreflightFailure(stage, candidate, error) {
 
 async function fetchPendingStageIds(client, limit) {
   const sql = `
-    select id
-    from public.canon_warehouse_promotion_staging
-    where execution_status = 'PENDING'
-    order by staged_at asc, id asc
+    select s.id
+    from public.canon_warehouse_promotion_staging s
+    join public.canon_warehouse_candidates c
+      on c.id = s.candidate_id
+    where s.execution_status = 'PENDING'
+      and c.state = 'STAGED_FOR_PROMOTION'
+      and c.current_staging_id = s.id
+      and c.founder_approved_by_user_id is not null
+      and c.founder_approved_at is not null
+      and s.founder_approved_by_user_id is not null
+      and s.founder_approved_at is not null
+      and exists (
+        select 1
+        from public.canon_warehouse_candidate_events e
+        where e.candidate_id = c.id
+          and e.event_type = 'FOUNDER_APPROVED'
+          and e.actor_type = 'FOUNDER'
+      )
+    order by s.staged_at asc, s.id asc
     limit $1
   `;
   const { rows } = await client.query(sql, [limit]);
@@ -414,7 +434,8 @@ async function fetchSetByCode(client, setCode) {
   return rows;
 }
 
-async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = '') {
+async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = null) {
+  const normalizedVariantKey = normalizeVariantKey(variantKey);
   const sql = `
     select
       id,
@@ -432,7 +453,10 @@ async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = 
       image_alt_url
     from public.card_prints
     where set_id = $1
-      and coalesce(variant_key, '') = $3
+      and (
+        (variant_key is null and $3::text is null)
+        or variant_key = $3::text
+      )
       and (
         number_plain = $2
         or number = $2
@@ -440,8 +464,25 @@ async function fetchExistingCardPrints(client, setId, numberPlain, variantKey = 
     order by id asc
     limit 2
   `;
-  const { rows } = await client.query(sql, [setId, numberPlain, normalizeTextOrNull(variantKey) ?? '']);
+  const { rows } = await client.query(sql, [setId, numberPlain, normalizedVariantKey]);
   return rows;
+}
+
+async function hasExplicitFounderApproval(client, candidateId) {
+  const { rows } = await client.query(
+    `
+      select exists (
+        select 1
+        from public.canon_warehouse_candidate_events
+        where candidate_id = $1
+          and event_type = 'FOUNDER_APPROVED'
+          and actor_type = 'FOUNDER'
+      ) as has_explicit_founder_approval
+    `,
+    [candidateId],
+  );
+
+  return rows[0]?.has_explicit_founder_approval === true;
 }
 
 async function fetchCardPrintById(client, cardPrintId) {
@@ -599,6 +640,15 @@ async function buildExecutionPlan(client, stage, candidate) {
     throw new ExecutorError('founder_approval_missing_in_payload');
   }
   if (
+    !normalizeTextOrNull(candidate.founder_approved_by_user_id) ||
+    !normalizeTextOrNull(candidate.founder_approved_at)
+  ) {
+    throw new ExecutorError('founder_approval_missing_on_candidate');
+  }
+  if (!(await hasExplicitFounderApproval(client, candidate.id))) {
+    throw new ExecutorError('explicit_founder_approval_missing');
+  }
+  if (
     candidate.promotion_result_type !== null ||
     candidate.promoted_card_print_id !== null ||
     candidate.promoted_card_printing_id !== null ||
@@ -628,6 +678,10 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   const cardName = extractCardName(payload);
   const numberPlain = extractPrintedNumberPlain(payload);
   const variantKey = extractVariantKey(payload);
+  const variantIdentityValidation = validatePerfectOrderVariantIdentityForPromotion(
+    getLatestInterpreterPackage(payload)?.variant_identity ?? null,
+    variantKey,
+  );
   const rarity = extractRarityHint(payload);
   const tcgplayerId = normalizeTextOrNull(payload?.candidate_summary?.tcgplayer_id);
   const normalizedFrontImagePath = extractNormalizedFrontImagePath(payload);
@@ -640,6 +694,12 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
   if (!numberPlain) {
     throw new ExecutorError('printed_number_missing_from_payload');
+  }
+  if (!variantIdentityValidation.ok) {
+    throw new ExecutorError('variant_identity_unresolved', stage.id, {
+      reason: variantIdentityValidation.reason,
+      missing_requirements: variantIdentityValidation.missing_requirements,
+    });
   }
 
   const setRows = await fetchSetByCode(client, setCode);

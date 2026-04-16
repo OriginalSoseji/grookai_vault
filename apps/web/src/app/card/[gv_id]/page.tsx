@@ -19,6 +19,7 @@ import AddToVaultCardAction, { type AddToVaultActionResult } from "@/components/
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
 import {
   resolveDisplayIdentity,
@@ -27,6 +28,7 @@ import {
 import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
 import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -142,8 +144,11 @@ export default async function CardPage({
     permanentRedirect(buildCardHref(card.gv_id, compareCardsParam));
   }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
-  const resolvedCardImageSrc = normalizeCardImageUrl(resolvedCard.image_url) ?? undefined;
-  const resolvedCardImageFallback = buildTcgDexImageUrl(resolvedCard.tcgdex_external_id);
+  const resolvedCardImagePresentation = resolveCardImagePresentation(resolvedCard);
+  const resolvedCardImageSrc =
+    normalizeCardImageUrl(resolvedCard.display_image_url ?? resolvedCard.image_url) ?? undefined;
+  const resolvedCardImageFallback =
+    resolvedCard.display_image_kind === "exact" ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id) : null;
 
   async function addToVaultAction(
     _previousState: AddToVaultActionResult | null,
@@ -443,10 +448,23 @@ export default async function CardPage({
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
-              alt={resolvedDisplayIdentity.display_name}
+              alt={getCardImageAltText(resolvedDisplayIdentity.display_name, resolvedCard)}
               imageClassName="w-full cursor-zoom-in object-contain"
               fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
             />
+            {resolvedCardImagePresentation.compactBadgeLabel ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                <CardImageTruthBadge
+                  label={resolvedCardImagePresentation.detailBadgeLabel ?? resolvedCardImagePresentation.compactBadgeLabel}
+                  emphasis={resolvedCardImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                />
+              </div>
+            ) : null}
+            {resolvedCardImagePresentation.detailNote ? (
+              <p className="mt-3 rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
+                {resolvedCardImagePresentation.detailNote}
+              </p>
+            ) : null}
           </div>
 
           <div className="space-y-5">
@@ -711,8 +729,13 @@ export default async function CardPage({
                 visibleSetLabel: relatedSetLabel,
               });
               const relatedVariantLabels = getVariantLabels(relatedCard, 2);
-              const relatedCardImageSrc = normalizeCardImageUrl(relatedCard.image_url) ?? undefined;
-              const relatedCardImageFallback = buildTcgDexImageUrl(relatedCard.tcgdex_external_id);
+              const relatedImagePresentation = resolveCardImagePresentation(relatedCard);
+              const relatedCardImageSrc =
+                normalizeCardImageUrl(relatedCard.display_image_url ?? relatedCard.image_url) ?? undefined;
+              const relatedCardImageFallback =
+                relatedCard.display_image_kind === "exact"
+                  ? buildTcgDexImageUrl(relatedCard.tcgdex_external_id)
+                  : null;
               return (
                 <Link
                   key={relatedCard.gv_id}
@@ -720,13 +743,21 @@ export default async function CardPage({
                   className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
                 >
                   <div className="flex gap-3 md:flex-col md:items-start">
-                    <PublicCardImage
-                      src={relatedCardImageSrc}
-                      fallbackSrc={relatedCardImageFallback ?? undefined}
-                      alt={relatedDisplayIdentity.display_name}
-                      imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
-                      fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
-                    />
+                    <div className="space-y-2">
+                      <PublicCardImage
+                        src={relatedCardImageSrc}
+                        fallbackSrc={relatedCardImageFallback ?? undefined}
+                        alt={getCardImageAltText(relatedDisplayIdentity.display_name, relatedCard)}
+                        imageClassName="h-20 w-14 rounded-[12px] border border-slate-200 bg-white object-contain p-1 shadow-sm md:h-[104px] md:w-[74px]"
+                        fallbackClassName="flex h-20 w-14 items-center justify-center rounded-[12px] border border-slate-200 bg-white px-2 text-center text-[10px] text-slate-500 md:h-[104px] md:w-[74px]"
+                      />
+                      {relatedImagePresentation.compactBadgeLabel ? (
+                        <CardImageTruthBadge
+                          label={relatedImagePresentation.compactBadgeLabel}
+                          emphasis={relatedImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                        />
+                      ) : null}
+                    </div>
                     <div className="min-w-0 space-y-1.5">
                       <div className="flex flex-wrap items-center gap-1.5">
                         {relatedSetCodeLabel ? (
@@ -862,21 +893,35 @@ export default async function CardPage({
           <div className="grid gap-3 sm:grid-cols-2">
             {adjacentCards.previous ? (
               (() => {
-                const previousCardImageSrc = normalizeCardImageUrl(adjacentCards.previous?.image_url) ?? undefined;
-                const previousCardImageFallback = buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id);
+                const previousImagePresentation = resolveCardImagePresentation(adjacentCards.previous);
+                const previousCardImageSrc =
+                  normalizeCardImageUrl(adjacentCards.previous?.display_image_url ?? adjacentCards.previous?.image_url) ??
+                  undefined;
+                const previousCardImageFallback =
+                  adjacentCards.previous?.display_image_kind === "exact"
+                    ? buildTcgDexImageUrl(adjacentCards.previous?.tcgdex_external_id)
+                    : null;
                 const previousDisplayIdentity = resolveDisplayIdentity(adjacentCards.previous);
                 return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.previous.gv_id}`, "", compareCards)}
                 className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
               >
-                <PublicCardImage
-                  src={previousCardImageSrc}
-                  fallbackSrc={previousCardImageFallback ?? undefined}
-                  alt={previousDisplayIdentity.display_name}
-                  imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
-                  fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-                />
+                <div className="space-y-2">
+                  <PublicCardImage
+                    src={previousCardImageSrc}
+                    fallbackSrc={previousCardImageFallback ?? undefined}
+                    alt={getCardImageAltText(previousDisplayIdentity.display_name, adjacentCards.previous)}
+                    imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+                    fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                  />
+                  {previousImagePresentation.compactBadgeLabel ? (
+                    <CardImageTruthBadge
+                      label={previousImagePresentation.compactBadgeLabel}
+                      emphasis={previousImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                    />
+                  ) : null}
+                </div>
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">← Previous</p>
                   <p className="truncate text-sm font-medium text-slate-900">{previousDisplayIdentity.display_name}</p>
@@ -891,21 +936,35 @@ export default async function CardPage({
 
             {adjacentCards.next ? (
               (() => {
-                const nextCardImageSrc = normalizeCardImageUrl(adjacentCards.next?.image_url) ?? undefined;
-                const nextCardImageFallback = buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id);
+                const nextImagePresentation = resolveCardImagePresentation(adjacentCards.next);
+                const nextCardImageSrc =
+                  normalizeCardImageUrl(adjacentCards.next?.display_image_url ?? adjacentCards.next?.image_url) ??
+                  undefined;
+                const nextCardImageFallback =
+                  adjacentCards.next?.display_image_kind === "exact"
+                    ? buildTcgDexImageUrl(adjacentCards.next?.tcgdex_external_id)
+                    : null;
                 const nextDisplayIdentity = resolveDisplayIdentity(adjacentCards.next);
                 return (
               <Link
                 href={buildPathWithCompareCards(`/card/${adjacentCards.next.gv_id}`, "", compareCards)}
                 className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-all duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
               >
-                <PublicCardImage
-                  src={nextCardImageSrc}
-                  fallbackSrc={nextCardImageFallback ?? undefined}
-                  alt={nextDisplayIdentity.display_name}
-                  imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
-                  fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
-                />
+                <div className="space-y-2">
+                  <PublicCardImage
+                    src={nextCardImageSrc}
+                    fallbackSrc={nextCardImageFallback ?? undefined}
+                    alt={getCardImageAltText(nextDisplayIdentity.display_name, adjacentCards.next)}
+                    imageClassName="h-16 w-12 rounded-lg border border-slate-200 bg-white object-contain p-1"
+                    fallbackClassName="flex h-16 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-1 text-center text-[10px] text-slate-500"
+                  />
+                  {nextImagePresentation.compactBadgeLabel ? (
+                    <CardImageTruthBadge
+                      label={nextImagePresentation.compactBadgeLabel}
+                      emphasis={nextImagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                    />
+                  ) : null}
+                </div>
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Next →</p>
                   <p className="truncate text-sm font-medium text-slate-900">{nextDisplayIdentity.display_name}</p>

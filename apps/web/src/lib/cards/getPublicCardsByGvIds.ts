@@ -1,8 +1,7 @@
 import "server-only";
 
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
@@ -21,6 +20,12 @@ export type ComparePublicCard = {
   release_year?: number;
   artist?: string;
   image_url?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
+  display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing";
   raw_price?: number;
   raw_price_source?: string;
   raw_price_ts?: string;
@@ -46,6 +51,9 @@ type PublicCompareCardRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
   variants: VariantFlags;
@@ -105,6 +113,9 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
         image_alt_url,
         image_source,
         image_path,
+        representative_image_url,
+        image_status,
+        image_note,
         id,
         sets(name,release_date,identity_model)
       `,
@@ -131,7 +142,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
     }
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
-    const imageUrl = await resolveCanonImageUrlV1(row);
+    const imageFields = await resolveCardImageFieldsV1(row);
 
     cards.push({
       id: row.id ?? row.gv_id,
@@ -145,7 +156,13 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
       rarity: row.rarity?.trim() || undefined,
       release_year: getReleaseYear(setRecord?.release_date),
       artist: row.artist?.trim() || undefined,
-      image_url: imageUrl ?? getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+      image_url: imageFields.image_url ?? undefined,
+      representative_image_url: imageFields.representative_image_url ?? undefined,
+      image_status: imageFields.image_status ?? undefined,
+      image_note: imageFields.image_note ?? undefined,
+      image_source: imageFields.image_source ?? undefined,
+      display_image_url: imageFields.display_image_url ?? undefined,
+      display_image_kind: imageFields.display_image_kind,
       raw_price: row.id ? pricesByCardId.get(row.id)?.raw_price : undefined,
       raw_price_source: row.id ? pricesByCardId.get(row.id)?.raw_price_source : undefined,
       raw_price_ts: row.id ? pricesByCardId.get(row.id)?.raw_price_ts : undefined,

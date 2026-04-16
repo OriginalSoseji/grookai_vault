@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import {
   POKEMON_CARD_DISCOVERY_COMPACT_GRID_CLASSNAME,
@@ -9,6 +10,7 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { ExploreViewMode } from "@/lib/exploreViewModes";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
@@ -107,12 +109,27 @@ export default function ExploreDiscoverySections({
               </div>
               <Link href={buildCardHref(spotlightCard.gv_id, compareCards)} className="block space-y-2.5">
                 <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white/90 shadow-sm">
-                  <PublicCardImage
-                    src={spotlightCard.image_url}
-                    alt={spotlightCard.display_name}
-                    imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3"
-                    fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                  />
+                  {(() => {
+                    const imagePresentation = resolveCardImagePresentation(spotlightCard);
+                    return (
+                      <div className="space-y-2 p-0">
+                        <PublicCardImage
+                          src={spotlightCard.display_image_url ?? spotlightCard.image_url}
+                          alt={getCardImageAltText(spotlightCard.display_name, spotlightCard)}
+                          imageClassName="aspect-[3/4] w-full object-contain bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-3"
+                          fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[1rem] bg-slate-100 px-4 text-center text-sm text-slate-500"
+                        />
+                        {imagePresentation.compactBadgeLabel ? (
+                          <div className="px-3 pb-3">
+                            <CardImageTruthBadge
+                              label={imagePresentation.compactBadgeLabel}
+                              emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-[1.15rem] font-semibold tracking-tight text-slate-950">{spotlightCard.display_name}</p>
@@ -146,12 +163,25 @@ export default function ExploreDiscoverySections({
                   >
                     <Link href={buildCardHref(card.gv_id, compareCards)} className="block space-y-1.5 p-2.5">
                       <div className="rounded-[0.9rem] border border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-2.5">
-                        <PublicCardImage
-                          src={card.image_url}
-                          alt={card.display_name}
-                          imageClassName="aspect-[3/4] w-full object-contain"
-                          fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                        />
+                        {(() => {
+                          const imagePresentation = resolveCardImagePresentation(card);
+                          return (
+                            <div className="space-y-2">
+                              <PublicCardImage
+                                src={card.display_image_url ?? card.image_url}
+                                alt={getCardImageAltText(card.display_name, card)}
+                                imageClassName="aspect-[3/4] w-full object-contain"
+                                fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[0.9rem] bg-slate-100 px-3 text-center text-xs text-slate-500"
+                              />
+                              {imagePresentation.compactBadgeLabel ? (
+                                <CardImageTruthBadge
+                                  label={imagePresentation.compactBadgeLabel}
+                                  emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                                />
+                              ) : null}
+                            </div>
+                          );
+                        })()}
                       </div>
                       <div className="space-y-0.5">
                         <p className="line-clamp-2 text-sm font-semibold text-slate-950">{card.display_name}</p>
@@ -173,12 +203,23 @@ export default function ExploreDiscoverySections({
             />
             <div className={POKEMON_CARD_DISCOVERY_COMPACT_GRID_CLASSNAME}>
               {gridCards.map((card) => (
+                (() => {
+                  const imagePresentation = resolveCardImagePresentation(card);
+                  return (
                 <PokemonCardGridTile
                   key={card.gv_id}
                   density="compact"
-                  imageSrc={card.image_url}
-                  imageAlt={card.display_name}
+                  imageSrc={card.display_image_url ?? card.image_url}
+                  imageAlt={getCardImageAltText(card.display_name, card)}
                   imageHref={buildCardHref(card.gv_id, compareCards)}
+                  imageOverlay={
+                    imagePresentation.compactBadgeLabel ? (
+                      <CardImageTruthBadge
+                        label={imagePresentation.compactBadgeLabel}
+                        emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                      />
+                    ) : null
+                  }
                   title={
                     <Link
                       href={buildCardHref(card.gv_id, compareCards)}
@@ -189,6 +230,8 @@ export default function ExploreDiscoverySections({
                   }
                   subtitle={<span className="line-clamp-2 block text-[11px] leading-[1.125rem]">{buildCardMetaLine(card)}</span>}
                 />
+                  );
+                })()
               ))}
             </div>
           </section>
@@ -279,12 +322,23 @@ export default function ExploreDiscoverySections({
           {featuredCards.length > 0 ? (
             <div className={POKEMON_CARD_DISCOVERY_GRID_CLASSNAME}>
               {featuredCards.map((card) => (
+                (() => {
+                  const imagePresentation = resolveCardImagePresentation(card);
+                  return (
                 <PokemonCardGridTile
                   key={card.gv_id}
                   utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-                  imageSrc={card.image_url}
-                  imageAlt={getDisplayName(card)}
+                  imageSrc={card.display_image_url ?? card.image_url}
+                  imageAlt={getCardImageAltText(getDisplayName(card), card)}
                   imageHref={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+                  imageOverlay={
+                    imagePresentation.compactBadgeLabel ? (
+                      <CardImageTruthBadge
+                        label={imagePresentation.compactBadgeLabel}
+                        emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+                      />
+                    ) : null
+                  }
                   title={
                     <Link
                       href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
@@ -299,6 +353,8 @@ export default function ExploreDiscoverySections({
                   }
                   footer={<span>{card.gv_id}</span>}
                 />
+                  );
+                })()
               ))}
             </div>
           ) : (

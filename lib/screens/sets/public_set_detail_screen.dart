@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
+import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/public/public_sets_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -139,7 +140,7 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
         .map(
           (card) => CardZoomGalleryItem(
             label: '#${card.number} • ${_setCardGalleryLabel(card)}',
-            imageUrl: card.imageUrl,
+            imageUrl: card.displayImageUrl,
           ),
         )
         .toList(growable: false);
@@ -318,6 +319,59 @@ String _setCardGalleryLabel(PublicSetCard card) {
   return _setCardDisplayIdentity(card).displayName;
 }
 
+ResolvedImagePresentation _setCardImagePresentation(PublicSetCard card) {
+  return resolveImagePresentationFromFields(
+    imageUrl: card.imageUrl,
+    representativeImageUrl: card.representativeImageUrl,
+    displayImageUrl: card.displayImageUrl,
+    displayImageKind: card.displayImageKind,
+    imageStatus: card.imageStatus,
+    imageNote: card.imageNote,
+  );
+}
+
+class _ImageStatusBadge extends StatelessWidget {
+  const _ImageStatusBadge({required this.label, this.strong = false});
+
+  final String label;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final backgroundColor = strong
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.92)
+        : colorScheme.surface.withValues(alpha: 0.94);
+    final borderColor = strong
+        ? colorScheme.tertiary.withValues(alpha: 0.22)
+        : colorScheme.outline.withValues(alpha: 0.12);
+    final textColor = strong
+        ? colorScheme.onTertiaryContainer
+        : colorScheme.onSurface.withValues(alpha: 0.78);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _SetDetailSurfaceCard extends StatelessWidget {
   const _SetDetailSurfaceCard({required this.child});
 
@@ -358,6 +412,7 @@ class _SetCardTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final compare = CompareCardSelectionController.instance;
     final displayIdentity = _setCardDisplayIdentity(card);
+    final imagePresentation = _setCardImagePresentation(card);
     final variantLabel = _setCardVariantLabel(card);
     final subtitleParts = <String>[
       '#${card.number}',
@@ -377,7 +432,7 @@ class _SetCardTile extends StatelessWidget {
                 name: card.name,
                 number: card.number,
                 rarity: card.rarity,
-                imageUrl: card.imageUrl,
+                imageUrl: card.displayImageUrl,
               ),
             ),
           );
@@ -444,6 +499,13 @@ class _SetCardTile extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (imagePresentation.compactBadgeLabel != null) ...[
+                      SizedBox(height: compact ? 5 : 6),
+                      _ImageStatusBadge(
+                        label: imagePresentation.compactBadgeLabel!,
+                        strong: imagePresentation.isCollisionRepresentative,
+                      ),
+                    ],
                     SizedBox(height: compact ? 5 : 6),
                     SizedBox(
                       height: 22,
@@ -527,7 +589,7 @@ class _SetCardArtwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardSurfaceArtwork(
       label: _setCardArtworkLabel(card),
-      imageUrl: card.imageUrl,
+      imageUrl: card.displayImageUrl,
       width: compact ? 68 : 86,
       height: compact ? 94 : 118,
       borderRadius: 18,
@@ -553,6 +615,7 @@ class _SetCardGridTile extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final compare = CompareCardSelectionController.instance;
     final variantLabel = _setCardVariantLabel(card);
+    final imagePresentation = _setCardImagePresentation(card);
 
     return Material(
       color: Colors.transparent,
@@ -568,7 +631,7 @@ class _SetCardGridTile extends StatelessWidget {
                 name: card.name,
                 number: card.number,
                 rarity: card.rarity,
-                imageUrl: card.imageUrl,
+                imageUrl: card.displayImageUrl,
               ),
             ),
           );
@@ -585,7 +648,7 @@ class _SetCardGridTile extends StatelessWidget {
                       // Fullscreen set viewer now preserves current browse
                       // ordering and supports previous/next swipe navigation.
                       label: _setCardArtworkLabel(card),
-                      imageUrl: card.imageUrl,
+                      imageUrl: card.displayImageUrl,
                       borderRadius: 18,
                       padding: const EdgeInsets.all(1.5),
                       backgroundColor: colorScheme.surfaceContainerLow
@@ -695,6 +758,18 @@ class _SetCardGridTile extends StatelessWidget {
                           : 'In Vault',
                     ),
                   ),
+                  if (imagePresentation.compactBadgeLabel != null)
+                    Positioned(
+                      right: 5,
+                      bottom: 5,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 118),
+                        child: _ImageStatusBadge(
+                          label: imagePresentation.compactBadgeLabel!,
+                          strong: imagePresentation.isCollisionRepresentative,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

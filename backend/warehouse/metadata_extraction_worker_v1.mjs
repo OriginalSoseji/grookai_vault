@@ -5,6 +5,11 @@ import pg from 'pg';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { parseCollectorNumberV1 } from '../identity/parseCollectorNumberV1.mjs';
 import { runBufferedExtractionV1 } from './extraction_audit/extraction_audit_runner_v1.mjs';
+import {
+  buildSourceBackedMetadataExtractionPackages,
+  getSourceBackedIdentity,
+  EXTERNAL_DISCOVERY_BRIDGE_SOURCE,
+} from './source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
 
@@ -583,18 +588,28 @@ async function fetchCandidateIds(pool, limit) {
     )
     select c.id
     from public.canon_warehouse_candidates c
-    join latest_evidence le
+    left join latest_evidence le
       on le.candidate_id = c.id
-     and le.has_front = true
     left join latest_extraction lx
       on lx.candidate_id = c.id
     where c.state = any($1::text[])
-      and (lx.created_at is null or lx.created_at < le.latest_evidence_at)
-    order by le.latest_evidence_at asc nulls first, c.created_at asc, c.id asc
-    limit $3
+      and (
+        (coalesce(le.has_front, false) = true and (lx.created_at is null or lx.created_at < le.latest_evidence_at))
+        or (
+          c.reference_hints_payload->>'bridge_source' = $3
+          and (lx.created_at is null or lx.created_at < c.updated_at)
+        )
+      )
+    order by coalesce(le.latest_evidence_at, c.updated_at) asc nulls first, c.created_at asc, c.id asc
+    limit $4
   `;
 
-  const { rows } = await pool.query(sql, [ACTIVE_CANDIDATE_STATES, Array.from(EXTRACTION_EVENT_TYPES), limit]);
+  const { rows } = await pool.query(sql, [
+    ACTIVE_CANDIDATE_STATES,
+    EXTERNAL_DISCOVERY_BRIDGE_SOURCE,
+    Array.from(EXTRACTION_EVENT_TYPES),
+    limit,
+  ]);
   return rows.map((row) => row.id);
 }
 
@@ -608,6 +623,8 @@ async function fetchCandidateArtifacts(connection, candidateId) {
           submission_intent,
           notes,
           tcgplayer_id,
+          claimed_identity_payload,
+          reference_hints_payload,
           current_staging_id,
           created_at,
           updated_at
@@ -840,6 +857,66 @@ async function processCandidate(pool, supabase, candidateId, opts) {
       return {
         status: 'skipped',
         reason: 'candidate_not_found',
+      };
+    }
+
+    const sourceBackedIdentity = getSourceBackedIdentity(artifact.candidate);
+    if (sourceBackedIdentity.is_bridge_candidate) {
+      const { rawPackage, normalizedPackage } = buildSourceBackedMetadataExtractionPackages({
+        candidate: artifact.candidate,
+        evidenceRows: artifact.evidenceRows,
+        scanResults: artifact.latestScanResults,
+      });
+
+      const duplicate =
+        artifact.latestExtraction &&
+        sameJson(artifact.latestExtraction.raw_extraction_package, rawPackage) &&
+        sameJson(artifact.latestExtraction.normalized_metadata_package, normalizedPackage);
+
+      const summary = {
+        candidate_id: artifact.candidate.id,
+        state: artifact.candidate.state,
+        submission_intent: artifact.candidate.submission_intent,
+        extraction_status: normalizedPackage.status,
+        extraction_confidence: normalizedPackage.confidence,
+        extracted_name: normalizedPackage.identity.name,
+        extracted_number: normalizedPackage.identity.printed_number,
+        extracted_set_code: normalizedPackage.identity.set_code,
+        duplicate,
+      };
+
+      if (opts.dryRun) {
+        log('dry_run_candidate_plan', {
+          ...summary,
+          raw_extraction_package: rawPackage,
+          normalized_metadata_package: normalizedPackage,
+        });
+        return {
+          status: duplicate ? 'dry_run_duplicate' : 'dry_run',
+          ...summary,
+          raw_package: rawPackage,
+          normalized_package: normalizedPackage,
+        };
+      }
+
+      if (duplicate) {
+        return {
+          status: 'skipped',
+          reason: 'identical_extraction_exists',
+          ...summary,
+        };
+      }
+
+      const terminalEventType = await persistExtractionEvents(connection, {
+        candidate: artifact.candidate,
+        rawPackage,
+        normalizedPackage,
+      });
+
+      return {
+        status: 'applied',
+        ...summary,
+        terminal_event_type: terminalEventType,
       };
     }
 

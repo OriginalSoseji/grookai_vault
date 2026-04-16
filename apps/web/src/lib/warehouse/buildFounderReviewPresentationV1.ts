@@ -14,6 +14,9 @@ export type FounderReviewPresentationV1 = {
   preview: {
     imageUrl: string | null;
     imageOriginLabel: string | null;
+    displayImageKind: "exact" | "representative" | "missing";
+    imageStatus: string | null;
+    imageNote: string | null;
     displayName: string | null;
     setDisplay: string | null;
     printedNumber: string | null;
@@ -253,6 +256,7 @@ export function buildFounderReviewPresentationV1({
     normalizeTextOrNull(normalizationPreviewUrls?.normalized_front_url) ??
     normalizeTextOrNull(writePlanAfterCardPrint?.image_url) ??
     normalizeTextOrNull(writePlanAfterCardPrint?.image_alt_url) ??
+    promotionReview?.preview.displayImageUrl ??
     promotionReview?.preview.imageUrl ??
     promotionReview?.preview.frontEvidenceUrl ??
     null;
@@ -270,6 +274,9 @@ export function buildFounderReviewPresentationV1({
     preview: {
       imageUrl: previewImageUrl,
       imageOriginLabel: previewImageOriginLabel,
+      displayImageKind: promotionReview?.preview.displayImageKind ?? (previewImageUrl ? "representative" : "missing"),
+      imageStatus: promotionReview?.preview.imageStatus ?? null,
+      imageNote: promotionReview?.preview.imageNote ?? null,
       displayName:
         normalizeTextOrNull(writePlanAfterCardPrint?.name) ??
         normalizeTextOrNull(metadataExtractionIdentity?.name) ??

@@ -16,6 +16,7 @@ class CardSearchOptions {
     this.sort = 'name',
     this.setCode,
     this.number,
+    this.identityFilter,
   });
 
   final String query;
@@ -24,6 +25,7 @@ class CardSearchOptions {
   final String sort;
   final String? setCode;
   final String? number;
+  final String? identityFilter;
 
   CardSearchOptions copyWith({
     String? query,
@@ -32,6 +34,7 @@ class CardSearchOptions {
     String? sort,
     String? setCode,
     String? number,
+    String? identityFilter,
   }) {
     return CardSearchOptions(
       query: query ?? this.query,
@@ -40,6 +43,7 @@ class CardSearchOptions {
       sort: sort ?? this.sort,
       setCode: setCode ?? this.setCode,
       number: number ?? this.number,
+      identityFilter: identityFilter ?? this.identityFilter,
     );
   }
 }
@@ -58,6 +62,12 @@ class CardPrint {
     this.setIdentityModel,
     this.rarity,
     this.imageUrl,
+    this.representativeImageUrl,
+    this.imageStatus,
+    this.imageNote,
+    this.imageSource,
+    this.displayImageUrl,
+    this.displayImageKind,
     this.externalIds,
   });
 
@@ -73,6 +83,12 @@ class CardPrint {
   final String? setIdentityModel;
   final String? rarity;
   final String? imageUrl;
+  final String? representativeImageUrl;
+  final String? imageStatus;
+  final String? imageNote;
+  final String? imageSource;
+  final String? displayImageUrl;
+  final String? displayImageKind;
   final Map<String, String?>? externalIds;
 
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
@@ -105,6 +121,12 @@ class CardPrint {
           : json['set_identity_model']?.toString(),
       rarity: json['rarity']?.toString(),
       imageUrl: json['image_url']?.toString(),
+      representativeImageUrl: json['representative_image_url']?.toString(),
+      imageStatus: json['image_status']?.toString(),
+      imageNote: json['image_note']?.toString(),
+      imageSource: json['image_source']?.toString(),
+      displayImageUrl: json['display_image_url']?.toString(),
+      displayImageKind: json['display_image_kind']?.toString(),
       externalIds: externalIds,
     );
   }
@@ -206,7 +228,7 @@ class CardPrintSearchResult {
 }
 
 const _cardPrintSelect =
-    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,external_ids,set:sets(name,code,identity_model)';
+    'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,set_code,image_url,image_alt_url,image_source,representative_image_url,image_status,image_note,external_ids,set:sets(name,code,identity_model)';
 
 class CardPrintRepository {
   static Future<CardPrintSearchResult> searchCardPrintsResolved({
@@ -216,8 +238,9 @@ class CardPrintRepository {
     int searchLimit = 500,
   }) async {
     final trimmed = options.query.trim();
+    final identityFilter = _normalizeIdentityFilter(options.identityFilter);
 
-    if (trimmed.isEmpty) {
+    if (trimmed.isEmpty && identityFilter == null) {
       final rows = await searchCardPrints(
         client: client,
         options: options,
@@ -236,8 +259,10 @@ class CardPrintRepository {
         .resolve('/api/resolver/search')
         .replace(
           queryParameters: {
-            'q': trimmed,
             'limit': options.limit.clamp(1, searchLimit).toString(),
+            if (trimmed.isNotEmpty) 'q': trimmed,
+            if (identityFilter != null && trimmed.isEmpty)
+              'identity': identityFilter,
           },
         );
 
@@ -268,7 +293,9 @@ class CardPrintRepository {
 
     rows = _filterByRarity(rows, options.rarity);
 
-    final meta = metaJson is Map<String, dynamic>
+    final meta = trimmed.isEmpty
+        ? null
+        : metaJson is Map<String, dynamic>
         ? CardSearchResolverMeta.fromJson(metaJson)
         : null;
 
@@ -577,6 +604,28 @@ class CardPrintRepository {
     }
 
     return _TokenizedQuery(rawTokens: rawTokens, lowerTokens: lowerTokens);
+  }
+
+  static String? _normalizeIdentityFilter(String? value) {
+    final normalized = (value ?? '').trim().toLowerCase().replaceAll(
+      RegExp(r'[_\s-]+'),
+      '_',
+    );
+    if (normalized.isEmpty || normalized == 'all') {
+      return null;
+    }
+
+    const supported = <String>{
+      'alternate_art',
+      'classic_collection',
+      'pokemon_together_stamp',
+      'trainer_gallery',
+      'radiant_collection',
+      'prerelease',
+      'staff',
+    };
+
+    return supported.contains(normalized) ? normalized : null;
   }
 
   static String _rawNumberDigits(String input) {

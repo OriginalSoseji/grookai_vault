@@ -2,8 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   SET_INTENT_ALIAS_MAP,
   normalizePublicSetFilter,
@@ -38,6 +37,9 @@ type PublicSetCardRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         identity_model: string | null;
@@ -226,7 +228,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,set_code,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,sets(identity_model)")
+    .select("gv_id,name,number,set_code,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)")
     .eq("set_code", normalizedCode)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
@@ -243,6 +245,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   return Promise.all(
     rows.map(async (row) => {
       const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+      const imageFields = await resolveCardImageFieldsV1(row);
 
       return {
         gv_id: row.gv_id,
@@ -253,9 +256,13 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
         printed_identity_modifier: row.printed_identity_modifier?.trim() || undefined,
         set_identity_model: setRecord?.identity_model?.trim() || undefined,
         rarity: row.rarity ?? undefined,
-        image_url:
-          (await resolveCanonImageUrlV1(row)) ??
-          getBestPublicCardImageUrl(row.image_url, row.image_alt_url),
+        image_url: imageFields.image_url ?? undefined,
+        representative_image_url: imageFields.representative_image_url ?? undefined,
+        image_status: imageFields.image_status ?? undefined,
+        image_note: imageFields.image_note ?? undefined,
+        image_source: imageFields.image_source ?? undefined,
+        display_image_url: imageFields.display_image_url ?? undefined,
+        display_image_kind: imageFields.display_image_kind,
       };
     }),
   );

@@ -1,11 +1,13 @@
 import { isUsablePublicImageUrl } from "../publicCardImage";
 import { createServerAdminClient } from "../supabase/admin";
 import type { WarehouseInterpreterPackage } from "./buildWarehouseInterpreterV1";
+import { validatePerfectOrderVariantIdentity } from "./perfectOrderVariantIdentity";
 import {
   asPrintedModifierRecord,
   getPrintedModifierLabel,
   normalizePrintedModifierVariantKey,
 } from "./printedIdentityModel";
+import { normalizeVariantKey, sameVariantKey } from "./normalizeVariantKey";
 
 type JsonRecord = Record<string, unknown>;
 type AdminClient = ReturnType<typeof createServerAdminClient>;
@@ -154,10 +156,6 @@ function normalizeNumberPlain(value: unknown) {
   return digits.length > 0 ? digits : null;
 }
 
-function normalizeVariantKey(value: unknown) {
-  return normalizeTextOrNull(value) ?? "";
-}
-
 function buildEmptyAction(reason?: string | null): WriteAction {
   return {
     action: "NONE",
@@ -302,7 +300,7 @@ async function resolveCardPrintMatches(
         normalizeNameKey(row.name) === normalizedName &&
         normalizeLowerOrNull(row.set_code) === normalizedSetCode &&
         normalizeNumberPlain(row.number_plain ?? row.number) === normalizedNumber &&
-        normalizeVariantKey(row.variant_key) === normalizedVariantKey,
+        sameVariantKey(row.variant_key, normalizedVariantKey),
     );
 
   return exactMatches;
@@ -384,8 +382,7 @@ function deriveVariantKey(
   }
 
   if (interpreterPackage.decision === "NEW_CANONICAL_REQUIRED") {
-    // Base parent rows in current canon contracts use the empty variant key.
-    return "";
+    return null;
   }
 
   return null;
@@ -427,11 +424,23 @@ export async function buildPromotionWritePlanV1({
   const printedModifier = getPrintedModifier(metadataExtraction);
   const printedModifierLabel = getPrintedModifierLabel(printedModifier);
   const desiredVariantKey = deriveVariantKey(interpreterPackage, printedModifier);
+  const variantIdentityValidation = validatePerfectOrderVariantIdentity(
+    interpreterPackage.variant_identity,
+    desiredVariantKey,
+  );
 
   if (interpreterPackage.status !== "READY") {
     return buildBlockedPlan(interpreterPackage.founder_explanation, [
       ...interpreterPackage.missing_fields,
     ]);
+  }
+
+  if (!variantIdentityValidation.ok) {
+    return buildBlockedPlan(
+      variantIdentityValidation.reason ??
+        "Collision-resolved promotion target requires a deterministic variant_key.",
+      variantIdentityValidation.missingRequirements,
+    );
   }
 
   const normalizedMetadata = getNormalizedMetadataPackage(metadataExtraction);

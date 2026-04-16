@@ -43,6 +43,12 @@ export interface CardSummary {
   updated_at?: string;
   active_price_updated_at?: string;
   last_snapshot_at?: string;
+  representative_image_url?: string;
+  image_status?: string;
+  image_note?: string;
+  image_source?: string;
+  display_image_url?: string;
+  display_image_kind?: "exact" | "representative" | "missing";
 }
 
 export interface RelatedCardPrint extends CardSummary {

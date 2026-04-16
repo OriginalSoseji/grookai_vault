@@ -1,9 +1,11 @@
 import Link from "next/link";
+import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
+import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
@@ -26,6 +28,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 2);
+  const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
   const metaLine = [card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
@@ -34,9 +37,17 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
     <PokemonCardGridTile
       density={density}
       utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-      imageSrc={card.image_url}
-      imageAlt={displayIdentity.display_name}
+      imageSrc={card.display_image_url ?? card.image_url}
+      imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
       imageHref={href}
+      imageOverlay={
+        imagePresentation.compactBadgeLabel ? (
+          <CardImageTruthBadge
+            label={imagePresentation.compactBadgeLabel}
+            emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
+          />
+        ) : null
+      }
       title={
         <Link href={href} className="block transition hover:text-slate-700">
           <span className="block truncate">{displayIdentity.base_name}</span>

@@ -6,6 +6,11 @@ import {
   VERSION_FINISH_DECISIONS,
   interpretVersionVsFinish,
 } from '../printing/version_finish_interpreter_v1.mjs';
+import {
+  buildSourceBackedInterpreterPackage,
+  buildSourceBackedMetadataExtractionPackages,
+  getSourceBackedIdentity,
+} from './source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
 
@@ -197,6 +202,89 @@ function pushUnique(list, value) {
   }
 }
 
+function asRecord(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+  return value;
+}
+
+function extractCandidateIdentityHints(candidate) {
+  const claimed = asRecord(candidate?.claimed_identity_payload);
+  const reference = asRecord(candidate?.reference_hints_payload);
+
+  return {
+    card_name:
+      normalizeTextOrNull(claimed?.card_name) ??
+      normalizeTextOrNull(claimed?.name) ??
+      normalizeTextOrNull(reference?.card_name) ??
+      normalizeTextOrNull(reference?.name),
+    printed_number:
+      normalizeTextOrNull(claimed?.printed_number) ??
+      normalizeTextOrNull(claimed?.number) ??
+      normalizeTextOrNull(reference?.printed_number) ??
+      normalizeTextOrNull(reference?.number),
+    set_hint:
+      normalizeTextOrNull(claimed?.set_hint) ??
+      normalizeTextOrNull(claimed?.set_code) ??
+      normalizeTextOrNull(reference?.set_hint) ??
+      normalizeTextOrNull(reference?.set_code),
+    rarity_hint:
+      normalizeTextOrNull(claimed?.rarity_hint) ??
+      normalizeTextOrNull(claimed?.rarity) ??
+      normalizeTextOrNull(reference?.rarity_hint) ??
+      normalizeTextOrNull(reference?.rarity),
+  };
+}
+
+function extractCandidateVariantIdentity(candidate) {
+  const claimed = asRecord(candidate?.claimed_identity_payload);
+  const reference = asRecord(candidate?.reference_hints_payload);
+  const claimedVariant = asRecord(claimed?.variant_identity);
+  const referenceVariant = asRecord(reference?.variant_identity);
+  const source = claimedVariant ?? referenceVariant;
+
+  const rule =
+    normalizeTextOrNull(source?.rule) ??
+    normalizeTextOrNull(claimed?.variant_identity_rule) ??
+    normalizeTextOrNull(reference?.variant_identity_rule);
+  const status =
+    normalizeTextOrNull(source?.status) ??
+    normalizeTextOrNull(claimed?.variant_identity_status) ??
+    normalizeTextOrNull(reference?.variant_identity_status);
+  const variantKey =
+    normalizeTextOrNull(source?.variant_key) ??
+    normalizeTextOrNull(claimed?.variant_key) ??
+    normalizeTextOrNull(reference?.variant_key);
+  const illustrationCategory =
+    normalizeTextOrNull(source?.illustration_category) ??
+    normalizeTextOrNull(claimed?.illustration_category) ??
+    normalizeTextOrNull(reference?.illustration_category);
+  const collisionGroupKey =
+    normalizeTextOrNull(source?.collision_group_key) ??
+    normalizeTextOrNull(claimed?.collision_group_key) ??
+    normalizeTextOrNull(reference?.collision_group_key);
+  const collisionResolutionReason =
+    normalizeTextOrNull(source?.collision_resolution_reason) ??
+    normalizeTextOrNull(claimed?.collision_resolution_reason) ??
+    normalizeTextOrNull(reference?.collision_resolution_reason);
+  const sourceEvidence = asRecord(source?.source_evidence);
+
+  if (!rule && !status && !variantKey && !illustrationCategory && !collisionGroupKey) {
+    return null;
+  }
+
+  return {
+    rule,
+    status,
+    variant_key: variantKey,
+    illustration_category: illustrationCategory,
+    collision_group_key: collisionGroupKey,
+    collision_resolution_reason: collisionResolutionReason,
+    source_evidence: sourceEvidence,
+  };
+}
+
 function buildSourceSummary(evidenceRows, derived) {
   const evidenceKinds = uniqueSortedStrings(evidenceRows.map((row) => row.evidence_kind));
   return {
@@ -206,6 +294,9 @@ function buildSourceSummary(evidenceRows, derived) {
     has_condition_snapshot: derived.conditionSnapshots.length > 0,
     has_identity_scan_event: derived.scanEvents.length > 0,
     has_identity_scan_results: derived.latestScanResults.length > 0,
+    has_source_backed_identity: derived.sourceBackedIdentity?.is_complete === true,
+    source_type: derived.sourceBackedIdentity?.source_type ?? null,
+    bridge_source: derived.sourceBackedIdentity?.bridge_source ?? null,
     evidence_kinds: evidenceKinds,
   };
 }
@@ -216,6 +307,7 @@ function chooseNormalizationStatus(sourceSummary, unresolvedFields, blockingReas
   }
 
   const strongIdentitySurface =
+    sourceSummary.has_source_backed_identity ||
     sourceSummary.has_front_image ||
     sourceSummary.has_identity_snapshot ||
     sourceSummary.has_condition_snapshot ||
@@ -343,8 +435,10 @@ function summarizeConditionScanQuality(snapshot) {
 function buildUnresolvedFields(visibleIdentityHints, sourceSummary) {
   const unresolved = [];
 
-  if (!sourceSummary.has_front_image) pushUnique(unresolved, 'front_image');
-  if (!sourceSummary.has_back_image) pushUnique(unresolved, 'back_image');
+  if (!sourceSummary.has_source_backed_identity) {
+    if (!sourceSummary.has_front_image) pushUnique(unresolved, 'front_image');
+    if (!sourceSummary.has_back_image) pushUnique(unresolved, 'back_image');
+  }
 
   if (!normalizeTextOrNull(visibleIdentityHints.card_name)) pushUnique(unresolved, 'card_name');
   if (!normalizeTextOrNull(visibleIdentityHints.printed_number)) pushUnique(unresolved, 'printed_number');
@@ -641,10 +735,11 @@ async function resolveCardPrintBySearch(client, hints) {
       name,
       set_code,
       number,
-      number_plain,
+      number_digits as number_plain,
       rarity,
       image_url,
-      print_identity_key
+      null::text as print_identity_key,
+      null::text as variant_key
     from public.search_card_prints_v1($1, $2, $3, $4, $5)
   `;
   const { rows } = await client.query(sql, [name, setCode, printedNumber, 10, 0]);
@@ -938,19 +1033,32 @@ async function buildPackages(client, artifact) {
 
   const exactTcgplayer = await resolveCardPrintByTcgplayerId(client, candidate.tcgplayer_id);
   const exactConditionMatch = conditionSnapshotCardPrints.length === 1 ? conditionSnapshotCardPrints[0] : null;
+  const claimedIdentityHints = extractCandidateIdentityHints(candidate);
+  const candidateVariantIdentity = extractCandidateVariantIdentity(candidate);
+  const sourceBackedIdentity = getSourceBackedIdentity(candidate);
 
-  const provisionalSetHint = selectSetHint(scanResolverCandidates, exactConditionMatch ?? exactTcgplayer.rows[0] ?? null);
-  const provisionalRarityHint = selectRarityHint(exactConditionMatch ?? exactTcgplayer.rows[0] ?? null, scanResolverCandidates);
+  const provisionalSetHint =
+    selectSetHint(scanResolverCandidates, exactConditionMatch ?? exactTcgplayer.rows[0] ?? null) ??
+    claimedIdentityHints.set_hint;
+  const provisionalRarityHint =
+    selectRarityHint(exactConditionMatch ?? exactTcgplayer.rows[0] ?? null, scanResolverCandidates) ??
+    claimedIdentityHints.rarity_hint ??
+    candidateVariantIdentity?.illustration_category ??
+    null;
   const finishSignals = deriveFinishSignals(candidate, { card_name: bestScanHint?.name ?? null });
 
   const visibleIdentityHints = {
-    card_name: bestScanHint?.name ?? null,
-    printed_number: normalizePrintedNumber(bestScanHint?.printed_number),
-    printed_number_plain: normalizeNumberPlain(bestScanHint?.printed_number),
+    card_name: bestScanHint?.name ?? claimedIdentityHints.card_name ?? null,
+    printed_number: normalizePrintedNumber(bestScanHint?.printed_number ?? claimedIdentityHints.printed_number),
+    printed_number_plain: normalizeNumberPlain(bestScanHint?.printed_number ?? claimedIdentityHints.printed_number),
     set_hint: provisionalSetHint,
     set_symbol_hint: selectSetSymbolHint(scanResolverCandidates),
     finish_hint: finishSignals.finishHint,
     rarity_hint: provisionalRarityHint,
+    variant_key: candidateVariantIdentity?.variant_key ?? null,
+    illustration_category: candidateVariantIdentity?.illustration_category ?? null,
+    variant_identity_rule: candidateVariantIdentity?.rule ?? null,
+    variant_identity_status: candidateVariantIdentity?.status ?? null,
     supertype_hint: null,
     subtype_hints: [],
     language_hint: null,
@@ -963,10 +1071,12 @@ async function buildPackages(client, artifact) {
     conditionSnapshots,
     scanEvents,
     latestScanResults,
+    sourceBackedIdentity,
   });
 
   const blockingReasons = [];
   if (
+    !sourceBackedIdentity.is_complete &&
     !sourceSummary.has_front_image &&
     sourceSummary.has_identity_scan_results === false &&
     sourceSummary.has_identity_snapshot === false &&
@@ -974,8 +1084,11 @@ async function buildPackages(client, artifact) {
   ) {
     pushUnique(blockingReasons, 'no_front_identity_surface');
   }
-  if (sourceSummary.evidence_kinds.length === 0) {
+  if (!sourceBackedIdentity.is_complete && sourceSummary.evidence_kinds.length === 0) {
     pushUnique(blockingReasons, 'no_evidence_rows');
+  }
+  if (sourceBackedIdentity.variant_missing) {
+    pushUnique(blockingReasons, 'variant_key_required_for_collision_group');
   }
 
   const unresolvedFields = buildUnresolvedFields(visibleIdentityHints, sourceSummary);
@@ -1184,14 +1297,16 @@ async function buildPackages(client, artifact) {
   }
 
   if (finishInterpretation.decision === VERSION_FINISH_DECISIONS.BLOCKED) {
-    pushUnique(ambiguityNotes, finishInterpretation.reasonCode);
-    if (classificationStatus === 'CLASSIFIED_READY' && proposedActionType !== 'ENRICH_CANON_IMAGE') {
-      pushUnique(ambiguityNotes, 'finish_interpretation_blocked');
-    } else if (classificationStatus !== 'CLASSIFIED_READY') {
-      interpreterReasonCode = finishInterpretation.reasonCode;
-      interpreterExplanation = finishInterpretation.explanation;
-      proposedActionType = 'REVIEW_REQUIRED';
-      needsPromotionReview = true;
+    if (!sourceBackedIdentity.is_complete) {
+      pushUnique(ambiguityNotes, finishInterpretation.reasonCode);
+      if (classificationStatus === 'CLASSIFIED_READY' && proposedActionType !== 'ENRICH_CANON_IMAGE') {
+        pushUnique(ambiguityNotes, 'finish_interpretation_blocked');
+      } else if (classificationStatus !== 'CLASSIFIED_READY') {
+        interpreterReasonCode = finishInterpretation.reasonCode;
+        interpreterExplanation = finishInterpretation.explanation;
+        proposedActionType = 'REVIEW_REQUIRED';
+        needsPromotionReview = true;
+      }
     }
   }
 
@@ -1214,6 +1329,20 @@ async function buildPackages(client, artifact) {
     pushUnique(ambiguityNotes, 'LOW_RESOLVER_CONFIDENCE');
   } else if (classificationStatus !== 'CLASSIFIED_READY') {
     currentReviewHoldReason = `${classificationStatus}:${interpreterReasonCode}`;
+  }
+
+  const sourceBackedRequiresFounderReview =
+    sourceBackedIdentity.is_bridge_candidate &&
+    classificationStatus === 'CLASSIFIED_READY' &&
+    proposedActionType === 'CREATE_CARD_PRINT';
+
+  if (
+    sourceBackedRequiresFounderReview &&
+    !currentReviewHoldReason &&
+    ambiguityNotes.length === 0 &&
+    !lowConfidenceResolverMatch
+  ) {
+    currentReviewHoldReason = 'FOUNDER_APPROVAL_REQUIRED';
   }
 
   const shouldQueueReview =
@@ -1239,7 +1368,12 @@ async function buildPackages(client, artifact) {
         submission_intent: candidate.submission_intent,
         tcgplayer_id: normalizeTextOrNull(candidate.tcgplayer_id),
         visible_identity_hints: visibleIdentityHints,
+        variant_identity: candidateVariantIdentity,
+        claimed_identity_payload: asRecord(candidate.claimed_identity_payload),
+        reference_hints_payload: asRecord(candidate.reference_hints_payload),
         source_summary: sourceSummary,
+        source_type: sourceBackedIdentity.source_type,
+        bridge_source: sourceBackedIdentity.bridge_source,
         normalized_image_refs: normalizedImageRefs,
         exact_condition_snapshot_card_print_id: exactConditionMatch?.id ?? null,
         scan_result_candidate_ids: scanResolverCandidates.map((row) => row.id),
@@ -1257,6 +1391,22 @@ async function buildPackages(client, artifact) {
     : shouldQueueReview
       ? 'REVIEW_READY'
       : 'CLASSIFIED';
+
+  const sourceBackedMetadata =
+    sourceBackedIdentity.is_bridge_candidate
+      ? buildSourceBackedMetadataExtractionPackages({
+          candidate,
+          evidenceRows,
+          scanResults: latestScanResults,
+        })
+      : null;
+  const sourceBackedInterpreterPackage =
+    sourceBackedIdentity.is_bridge_candidate
+      ? buildSourceBackedInterpreterPackage({
+          candidate,
+          classificationPackage,
+        })
+      : null;
 
   const candidateSummary = {
     state: terminalState,
@@ -1344,6 +1494,9 @@ async function buildPackages(client, artifact) {
       metadata: {
         normalized_package: normalizedPackage,
         classification_package: classificationPackage,
+        raw_extraction_package: sourceBackedMetadata?.rawPackage ?? null,
+        normalized_metadata_package: sourceBackedMetadata?.normalizedPackage ?? null,
+        interpreter_package: sourceBackedInterpreterPackage,
       },
     });
 
@@ -1467,10 +1620,10 @@ async function applyWritePlan(pool, buildResult) {
             interpreter_decision = coalesce($3, interpreter_decision),
             interpreter_reason_code = coalesce($4, interpreter_reason_code),
             interpreter_explanation = coalesce($5, interpreter_explanation),
-            interpreter_resolved_finish_key = case when $6 is null then interpreter_resolved_finish_key else $6 end,
+            interpreter_resolved_finish_key = case when $6::text is null then interpreter_resolved_finish_key else $6::text end,
             needs_promotion_review = coalesce($7, needs_promotion_review),
-            proposed_action_type = case when $8 is null then proposed_action_type else $8 end,
-            current_review_hold_reason = $9
+            proposed_action_type = case when $8::text is null then proposed_action_type else $8::text end,
+            current_review_hold_reason = $9::text
           where id = $1
         `;
         await connection.query(sql, [
