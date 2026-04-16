@@ -8,7 +8,10 @@ import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCa
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
 import ShareCardButton from "@/components/ShareCardButton";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets.shared";
 
@@ -89,6 +92,11 @@ export default function PublicSetCardGrid({
       <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
         {cards.map((card, index) => {
           const displayIdentity = resolveDisplayIdentity(card);
+          const setLabel = setCode.toUpperCase();
+          const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+            identitySubtitle: displayIdentity.suffix,
+            visibleSetLabel: setLabel,
+          });
 
           return (
             <PokemonCardGridTile
@@ -101,12 +109,12 @@ export default function PublicSetCardGrid({
               title={
                 <Link href={buildCardHref(card.gv_id)} className="block transition hover:text-slate-700">
                   <span className="block truncate">{displayIdentity.base_name}</span>
-                  {displayIdentity.suffix ? (
-                    <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+                  {identitySubtitle ? (
+                    <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
                   ) : null}
                 </Link>
               }
-              subtitle={<span className="block truncate">{setCode.toUpperCase()}</span>}
+              subtitle={<span className="block truncate">{setLabel}</span>}
               meta={<span>{card.number ? `#${card.number}` : "—"}</span>}
               footer={
                 <div className="flex items-center justify-between gap-3">

@@ -20,7 +20,10 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import { getDisplayPrintedIdentity } from "@/lib/cards/getDisplayPrintedIdentity";
 import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { normalizeCardImageUrl } from "@/lib/cards/normalizeCardImageUrl";
@@ -339,6 +342,11 @@ export default async function CardPage({
 
   const setName = typeof resolvedCard.set_name === "string" ? resolvedCard.set_name.trim() : "";
   const setCodeLabel = resolvedCard.set_code?.trim().toUpperCase();
+  const setContextLabel = [setName || null, setCodeLabel || null].filter(Boolean).join(" • ");
+  const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+    identitySubtitle: resolvedDisplayIdentity.suffix,
+    visibleSetLabel: setContextLabel,
+  });
   const setHref = resolvedCard.set_code
     ? buildPathWithCompareCards(`/sets/${encodeURIComponent(resolvedCard.set_code)}`, "", compareCards)
     : null;
@@ -457,8 +465,8 @@ export default async function CardPage({
               <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
                 {resolvedDisplayIdentity.base_name}
               </h1>
-              {resolvedDisplayIdentity.suffix ? (
-                <p className="text-sm font-medium text-slate-500 sm:text-base">{resolvedDisplayIdentity.suffix}</p>
+              {identitySubtitle ? (
+                <p className="text-sm font-medium text-slate-500 sm:text-base">{identitySubtitle}</p>
               ) : null}
               {(setName || setCodeLabel) ? (
                 <div className="flex flex-wrap items-center gap-3 text-lg text-slate-700">
@@ -696,8 +704,13 @@ export default async function CardPage({
           <div className="flex gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {relatedPrints.map((relatedCard) => {
               const relatedDisplayIdentity = resolveDisplayIdentity(relatedCard);
-              const relatedVariantLabels = getVariantLabels(relatedCard, 2);
               const relatedSetCodeLabel = relatedCard.set_code?.trim().toUpperCase();
+              const relatedSetLabel = relatedCard.set_name?.trim() || relatedSetCodeLabel || null;
+              const relatedIdentitySubtitle = resolveDisplayIdentitySubtitleForContext({
+                identitySubtitle: relatedDisplayIdentity.suffix,
+                visibleSetLabel: relatedSetLabel,
+              });
+              const relatedVariantLabels = getVariantLabels(relatedCard, 2);
               const relatedCardImageSrc = normalizeCardImageUrl(relatedCard.image_url) ?? undefined;
               const relatedCardImageFallback = buildTcgDexImageUrl(relatedCard.tcgdex_external_id);
               return (
@@ -727,9 +740,9 @@ export default async function CardPage({
                         <p className="line-clamp-2 text-[13px] font-semibold leading-5 text-slate-900">
                           {relatedDisplayIdentity.base_name}
                         </p>
-                        {relatedDisplayIdentity.suffix ? (
+                        {relatedIdentitySubtitle ? (
                           <p className="line-clamp-1 text-[11px] font-medium text-slate-500">
-                            {relatedDisplayIdentity.suffix}
+                            {relatedIdentitySubtitle}
                           </p>
                         ) : null}
                       </div>

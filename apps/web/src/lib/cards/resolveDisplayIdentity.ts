@@ -14,6 +14,19 @@ export type ResolvedDisplayIdentity = {
   suffix: string | null;
 };
 
+const DUPLICATE_MEANING_IDENTITY_SUBTITLE_ALLOWLIST = new Set([
+  "classic collection",
+]);
+
+const NEVER_SUPPRESS_DUPLICATE_MEANING_SUBTITLES = new Set([
+  "pokémon together stamp",
+  "alternate art",
+  "trainer gallery",
+  "radiant collection",
+  "prerelease",
+  "staff",
+]);
+
 const VARIANT_KEY_MAP: Record<string, string> = {
   pokemon_together_stamp: "Pokémon Together Stamp",
   prerelease: "Prerelease",
@@ -32,6 +45,20 @@ const NON_MEANINGFUL_VARIANT_KEYS = new Set(["", "base", "default", "normal", "s
 
 function normalizeToken(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+}
+
+function normalizeDisplayMeaning(value?: string | null) {
+  return (value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isLetterOrSymbolIdentity(value?: string | null) {
+  const normalized = (value ?? "").trim();
+  return /^[\p{L}\p{N}★☆]$/u.test(normalized);
 }
 
 function toTitleCaseToken(token: string) {
@@ -111,4 +138,39 @@ export function resolveDisplayIdentity(card: Partial<CardPrint> & { name?: strin
     base_name,
     suffix,
   };
+}
+
+export function resolveDisplayIdentitySubtitleForContext({
+  identitySubtitle,
+  visibleSetLabel,
+}: {
+  identitySubtitle?: string | null;
+  visibleSetLabel?: string | null;
+}) {
+  if (!identitySubtitle) {
+    return null;
+  }
+
+  const normalizedSubtitle = normalizeDisplayMeaning(identitySubtitle);
+  if (!normalizedSubtitle) {
+    return identitySubtitle;
+  }
+
+  if (
+    NEVER_SUPPRESS_DUPLICATE_MEANING_SUBTITLES.has(normalizedSubtitle) ||
+    isLetterOrSymbolIdentity(identitySubtitle)
+  ) {
+    return identitySubtitle;
+  }
+
+  if (!DUPLICATE_MEANING_IDENTITY_SUBTITLE_ALLOWLIST.has(normalizedSubtitle)) {
+    return identitySubtitle;
+  }
+
+  const normalizedSetLabel = normalizeDisplayMeaning(visibleSetLabel);
+  if (!normalizedSetLabel) {
+    return identitySubtitle;
+  }
+
+  return normalizedSetLabel.includes(normalizedSubtitle) ? null : identitySubtitle;
 }

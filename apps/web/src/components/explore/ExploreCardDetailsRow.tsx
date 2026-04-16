@@ -5,7 +5,10 @@ import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 
 type ExploreCardDetailsRowProps = {
@@ -17,6 +20,11 @@ type ExploreCardDetailsRowProps = {
 
 export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref }: ExploreCardDetailsRowProps) {
   const displayIdentity = resolveDisplayIdentity(card);
+  const setLabel = card.set_name ?? "Unknown set";
+  const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+    identitySubtitle: displayIdentity.suffix,
+    visibleSetLabel: setLabel,
+  });
   const variantLabels = getVariantLabels(card, 3);
 
   return (
@@ -32,15 +40,15 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
           <div className="min-w-0">
             <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline">
               <span className="block truncate">{displayIdentity.base_name}</span>
-              {displayIdentity.suffix ? (
-                <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+              {identitySubtitle ? (
+                <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
               ) : null}
             </Link>
             <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.gv_id}</p>
           </div>
         </div>
       </td>
-      <td className="px-4 py-3 text-sm text-slate-700">{card.set_name ?? "Unknown set"}</td>
+      <td className="px-4 py-3 text-sm text-slate-700">{setLabel}</td>
       <td className="px-4 py-3 text-sm text-slate-700">{card.number ? `#${card.number}` : "—"}</td>
       <td className="px-4 py-3 text-sm text-slate-700">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">

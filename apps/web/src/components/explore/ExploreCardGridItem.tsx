@@ -4,7 +4,10 @@ import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 
@@ -17,6 +20,11 @@ type ExploreCardGridItemProps = {
 
 export default function ExploreCardGridItem({ card, href, mode, canViewPricing }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
+  const setLabel = card.set_name ?? "Unknown set";
+  const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+    identitySubtitle: displayIdentity.suffix,
+    visibleSetLabel: setLabel,
+  });
   const variantLabels = getVariantLabels(card, 2);
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
@@ -32,12 +40,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
       title={
         <Link href={href} className="block transition hover:text-slate-700">
           <span className="block truncate">{displayIdentity.base_name}</span>
-          {displayIdentity.suffix ? (
-            <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+          {identitySubtitle ? (
+            <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
           ) : null}
         </Link>
       }
-      subtitle={<span className="block truncate">{card.set_name ?? "Unknown set"}</span>}
+      subtitle={<span className="block truncate">{setLabel}</span>}
       badges={
         <>
           {variantLabels.map((label) => (

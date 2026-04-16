@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -146,6 +149,13 @@ export function VaultCardTile({
   onExpansionToggle,
 }: VaultCardTileProps) {
   const displayIdentity = resolveDisplayIdentity(item);
+  const setLabel = [item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined]
+    .filter(Boolean)
+    .join(" • ");
+  const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+    identitySubtitle: displayIdentity.suffix,
+    visibleSetLabel: setLabel,
+  });
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
@@ -304,15 +314,13 @@ export function VaultCardTile({
       title={
         <Link href={`/card/${item.gv_id}`} className="block transition hover:text-slate-700">
           <span className="block line-clamp-2">{displayIdentity.base_name}</span>
-          {displayIdentity.suffix ? (
-            <span className="block truncate text-xs font-medium text-slate-500">{displayIdentity.suffix}</span>
+          {identitySubtitle ? (
+            <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
           ) : null}
         </Link>
       }
       subtitle={
-        <span className="line-clamp-1 block">
-          {[item.set_name || item.set_code, item.number !== "—" ? `#${item.number}` : undefined].filter(Boolean).join(" • ")}
-        </span>
+        <span className="line-clamp-1 block">{setLabel}</span>
       }
       badges={<VaultPrimaryStateBadge item={item} />}
       meta={secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined}

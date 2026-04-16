@@ -51,3 +51,10 @@
 - Founder Flutter display-identity coverage was previously blocked because the privileged founder payload omitted `variant_key`, `printed_identity_modifier`, and `set_identity_model`.
 - This pass is intentionally limited to founder backend payload shaping, founder service DTO transport, and founder UI title renders that can now consume the existing resolver truthfully.
 - Founder UI patching happens only after payload proof confirms those resolver fields survive the founder backend path into Flutter.
+
+## Duplicate Meaning Suppression Rule
+
+- Identity subtitle remains the default presentation behavior.
+- Suppression applies only when the subtitle duplicates visible set context in the same rendered card stack.
+- This is a narrow presentation refinement only; it does not change resolver truth, canonical identity, or suffix generation.
+- V1 suppression is explicitly allowlisted to `Classic Collection` only.

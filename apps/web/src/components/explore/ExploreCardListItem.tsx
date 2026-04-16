@@ -5,7 +5,10 @@ import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
-import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import {
+  resolveDisplayIdentity,
+  resolveDisplayIdentitySubtitleForContext,
+} from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 
 type ExploreCardListItemProps = {
@@ -17,6 +20,11 @@ type ExploreCardListItemProps = {
 
 export default function ExploreCardListItem({ card, href, canViewPricing, signInHref }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
+  const setLabel = [card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
+  const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
+    identitySubtitle: displayIdentity.suffix,
+    visibleSetLabel: setLabel,
+  });
   const variantLabels = getVariantLabels(card, 2);
 
   return (
@@ -35,12 +43,10 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 <span className="block truncate text-lg font-medium text-slate-950 hover:underline">
                   {displayIdentity.base_name}
                 </span>
-                {displayIdentity.suffix ? (
-                  <span className="block truncate text-sm font-medium text-slate-500">{displayIdentity.suffix}</span>
+                {identitySubtitle ? (
+                  <span className="block truncate text-sm font-medium text-slate-500">{identitySubtitle}</span>
                 ) : null}
-                <p className="text-sm text-slate-600">
-                  {[card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—"}
-                </p>
+                <p className="text-sm text-slate-600">{setLabel}</p>
               </div>
               {variantLabels.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
