@@ -4,6 +4,15 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  buildIdentityFilterCounts,
+  getIdentityFilterLabel,
+  IDENTITY_FILTER_OPTIONS,
+  isIdentityFilterActive,
+  matchesIdentityFilter,
+  normalizeIdentityFilterKey,
+  type IdentityFilterKey,
+} from "@/lib/cards/identitySearch";
 import CompareTray from "@/components/compare/CompareTray";
 import {
   POKEMON_CARD_BROWSE_GRID_CLASSNAME,
@@ -14,8 +23,14 @@ import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
-import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
-import { normalizeExploreViewMode, type ExploreViewMode } from "@/lib/exploreViewModes";
+import {
+  buildPathWithCompareCards,
+  normalizeCompareCardsParam,
+} from "@/lib/compareCards";
+import {
+  normalizeExploreViewMode,
+  type ExploreViewMode,
+} from "@/lib/exploreViewModes";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 
 type ExploreRow = ExploreResultCard;
@@ -50,6 +65,10 @@ function parseReleaseYear(value?: string | null) {
 
 function normalizeFreeTextQuery(value: string) {
   return value.trim().replace(/\s+/g, " ");
+}
+
+function parseIdentityFilter(value: string | null): IdentityFilterKey {
+  return normalizeIdentityFilterKey(value);
 }
 
 function getResolverSummary(meta: ResolverMeta | null) {
@@ -103,7 +122,10 @@ type ExplorePageClientProps = {
   canViewPricing: boolean;
 };
 
-export default function ExplorePageClient({ discoveryContent = null, canViewPricing }: ExplorePageClientProps) {
+export default function ExplorePageClient({
+  discoveryContent = null,
+  canViewPricing,
+}: ExplorePageClientProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -111,11 +133,23 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
   const exactSetCode = normalizeSetCode(searchParams.get("set"));
   const exactReleaseYear = parseReleaseYear(searchParams.get("year"));
   const exactIllustrator = (searchParams.get("illustrator") ?? "").trim() || "";
+  const identityFilter = parseIdentityFilter(searchParams.get("identity"));
   const viewMode = parseViewMode(searchParams.get("view"));
   const sortMode = parseSortMode(searchParams.get("sort"));
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const normalizedQuery = normalizeFreeTextQuery(q);
-  const isDiscoveryMode = !normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator;
+  const shouldServerFilterByIdentity =
+    isIdentityFilterActive(identityFilter) &&
+    !normalizedQuery &&
+    !exactSetCode &&
+    !exactReleaseYear &&
+    !exactIllustrator;
+  const isDiscoveryMode =
+    !normalizedQuery &&
+    !exactSetCode &&
+    !exactReleaseYear &&
+    !exactIllustrator &&
+    !isIdentityFilterActive(identityFilter);
   const [rows, setRows] = useState<ExploreRow[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [loading, setLoading] = useState(false);
@@ -125,7 +159,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
     const controller = new AbortController();
 
     const load = async () => {
-      if (!normalizedQuery && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
+      if (
+        !normalizedQuery &&
+        !exactSetCode &&
+        !exactReleaseYear &&
+        !exactIllustrator &&
+        !isIdentityFilterActive(identityFilter)
+      ) {
         setRows([]);
         setResolverMeta(null);
         setError(null);
@@ -159,10 +199,17 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
           params.set("illustrator", exactIllustrator);
         }
 
-        const response = await fetch(`/api/resolver/search?${params.toString()}`, {
-          signal: controller.signal,
-          cache: "no-store",
-        });
+        if (shouldServerFilterByIdentity) {
+          params.set("identity", identityFilter);
+        }
+
+        const response = await fetch(
+          `/api/resolver/search?${params.toString()}`,
+          {
+            signal: controller.signal,
+            cache: "no-store",
+          },
+        );
 
         const payload = (await response.json()) as {
           ok: boolean;
@@ -179,7 +226,9 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
         setResolverMeta(payload.meta ?? null);
       } catch (searchError) {
         if (controller.signal.aborted) return;
-        setError(searchError instanceof Error ? searchError.message : "Search failed.");
+        setError(
+          searchError instanceof Error ? searchError.message : "Search failed.",
+        );
         setRows([]);
         setResolverMeta(null);
       } finally {
@@ -194,12 +243,23 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
     return () => {
       controller.abort();
     };
-  }, [q, normalizedQuery, sortMode, exactSetCode, exactReleaseYear, exactIllustrator]);
+  }, [
+    q,
+    normalizedQuery,
+    sortMode,
+    exactSetCode,
+    exactReleaseYear,
+    exactIllustrator,
+    identityFilter,
+    shouldServerFilterByIdentity,
+  ]);
 
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("view", nextViewMode);
-    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
     router.replace(nextUrl, { scroll: false });
   };
 
@@ -212,29 +272,72 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
       params.set("sort", nextSortMode);
     }
 
-    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
     router.replace(nextUrl, { scroll: false });
   };
 
-  const buildCardHref = (gvId: string) => buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
-  const currentPath = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
+  const commitIdentityFilter = (nextFilter: IdentityFilterKey) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (nextFilter === "all") {
+      params.delete("identity");
+    } else {
+      params.set("identity", nextFilter);
+    }
+
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
+  const buildCardHref = (gvId: string) =>
+    buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+  const currentPath = searchParams.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
-  const resolverSummary = getResolverSummary(resolverMeta);
+  const displayRows =
+    shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
+      ? rows
+      : rows.filter((row) => matchesIdentityFilter(row, identityFilter));
+  const identityFilterCounts = buildIdentityFilterCounts(rows);
+  const visibleIdentityFilters = IDENTITY_FILTER_OPTIONS.filter(
+    (option) =>
+      option.key === "all" ||
+      identityFilterCounts[option.key] > 0 ||
+      option.key === identityFilter,
+  );
+  const resolverSummary = normalizedQuery
+    ? getResolverSummary(resolverMeta)
+    : null;
   const emptyState = (
     <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
-      {resolverMeta?.resolverState === "NO_MATCH"
+      {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
         ? `No matching cards found for "${normalizedQuery}". Try adding a set code, collector number, or promo code.`
-        : "No results yet."}
+        : isIdentityFilterActive(identityFilter)
+          ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found for this search.`
+          : "No results yet."}
     </div>
   );
 
   return (
-    <div className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}>
+    <div
+      className={`space-y-4 md:space-y-5 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
+    >
       <div className="space-y-2 md:space-y-2.5">
         <div className="space-y-1 md:hidden">
-          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Discover</p>
-          <h1 className="text-[1.65rem] font-semibold tracking-tight text-slate-950">Discover cards</h1>
-          <p className="text-[13px] leading-5 text-slate-600">Track your cards. Discover more. Showcase your collection.</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+            Discover
+          </p>
+          <h1 className="text-[1.65rem] font-semibold tracking-tight text-slate-950">
+            Discover cards
+          </h1>
+          <p className="text-[13px] leading-5 text-slate-600">
+            Track your cards. Discover more. Showcase your collection.
+          </p>
           <div className="flex flex-wrap gap-2 pt-px">
             <Link
               href={buildPathWithCompareCards("/sets", "", compareCards)}
@@ -243,7 +346,11 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
               Browse Sets
             </Link>
             <Link
-              href={buildPathWithCompareCards("/explore", "q=Pikachu", compareCards)}
+              href={buildPathWithCompareCards(
+                "/explore",
+                "q=Pikachu",
+                compareCards,
+              )}
               className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
             >
               Browse Pokémon
@@ -252,10 +359,15 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
         </div>
 
         <div className="hidden space-y-2 md:block">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Public Explorer</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Explore cards</h1>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
+            Public Explorer
+          </p>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">
+            Explore cards
+          </h1>
           <p className="max-w-2xl text-sm leading-7 text-slate-600">
-            Discover iconic cards, standout artwork, and notable sets collectors are chasing.
+            Discover iconic cards, standout artwork, and notable sets collectors
+            are chasing.
           </p>
         </div>
       </div>
@@ -267,21 +379,29 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
           {discoveryContent}
           <CompareTray
             cards={compareCards}
-            addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
+            addHref={buildPathWithCompareCards(
+              pathname,
+              searchParams.toString(),
+              compareCards,
+            )}
           />
         </>
       ) : (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
             <p className="text-sm text-slate-600">
-              {rows.length > 0 ? `${rows.length} result${rows.length === 1 ? "" : "s"}` : "Results"}
+              {displayRows.length > 0
+                ? `${displayRows.length} result${displayRows.length === 1 ? "" : "s"}`
+                : "Results"}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <label className="flex items-center gap-2 text-sm text-slate-600">
                 <span>Sort</span>
                 <select
                   value={sortMode}
-                  onChange={(event) => commitSortMode(event.target.value as SortMode)}
+                  onChange={(event) =>
+                    commitSortMode(event.target.value as SortMode)
+                  }
                   className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                 >
                   <option value="relevance">Relevance</option>
@@ -289,20 +409,58 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                   <option value="oldest">Oldest first</option>
                 </select>
               </label>
-              <ExploreViewModeToggle value={viewMode} onChange={commitViewMode} />
+              <ExploreViewModeToggle
+                value={viewMode}
+                onChange={commitViewMode}
+              />
             </div>
           </div>
 
+          {visibleIdentityFilters.length > 1 ? (
+            <div className="flex flex-wrap gap-2 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
+              {visibleIdentityFilters.map((option) => {
+                const selected = identityFilter === option.key;
+                const count = identityFilterCounts[option.key];
+
+                return (
+                  <button
+                    key={option.key}
+                    type="button"
+                    onClick={() => commitIdentityFilter(option.key)}
+                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                      selected
+                        ? "border-slate-900 bg-slate-900 text-white"
+                        : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
+                    }`}
+                  >
+                    <span>{option.label}</span>
+                    {count > 0 ? (
+                      <span
+                        className={`text-[11px] ${selected ? "text-white/80" : "text-slate-500"}`}
+                      >
+                        {count}
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+          ) : null}
+
           {resolverSummary ? (
-            <div className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}>
-              <p className="font-medium text-slate-900">{resolverSummary.title}</p>
+            <div
+              className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}
+            >
+              <p className="font-medium text-slate-900">
+                {resolverSummary.title}
+              </p>
               <p className="mt-1 text-slate-600">{resolverSummary.body}</p>
             </div>
           ) : null}
 
           {viewMode === "list" ? (
             <ul className="space-y-3">
-              {rows.map((row) => (
+              {displayRows.map((row) => (
                 <ExploreCardListItem
                   key={row.id}
                   card={row}
@@ -311,13 +469,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                   signInHref={pricingSignInHref}
                 />
               ))}
-              {rows.length === 0 && !loading && <li>{emptyState}</li>}
+              {displayRows.length === 0 && !loading && <li>{emptyState}</li>}
             </ul>
           ) : viewMode === "details" ? (
             <div className="space-y-3">
               <div className="md:hidden">
                 <ul className="space-y-3">
-                  {rows.map((row) => (
+                  {displayRows.map((row) => (
                     <ExploreCardListItem
                       key={row.id}
                       card={row}
@@ -326,7 +484,9 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                       signInHref={pricingSignInHref}
                     />
                   ))}
-                  {rows.length === 0 && !loading && <li>{emptyState}</li>}
+                  {displayRows.length === 0 && !loading && (
+                    <li>{emptyState}</li>
+                  )}
                 </ul>
               </div>
               <div className="hidden overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-sm md:block">
@@ -334,17 +494,31 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                   <table className="min-w-full border-separate border-spacing-0">
                     <thead className="sticky top-0 z-10">
                       <tr className="bg-slate-50">
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Card</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Set</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Number</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Rarity</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Variant</th>
-                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Grookai Value</th>
-                        <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Compare</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Card
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Set
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Number
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Rarity
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Variant
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Grookai Value
+                        </th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          Compare
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {rows.map((row) => (
+                      {displayRows.map((row) => (
                         <ExploreCardDetailsRow
                           key={row.id}
                           card={row}
@@ -356,12 +530,14 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                     </tbody>
                   </table>
                 </div>
-                {rows.length === 0 && !loading ? <div className="p-4">{emptyState}</div> : null}
+                {displayRows.length === 0 && !loading ? (
+                  <div className="p-4">{emptyState}</div>
+                ) : null}
               </div>
             </div>
           ) : viewMode === "thumb-lg" ? (
             <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
-              {rows.map((row) => (
+              {displayRows.map((row) => (
                 <ExploreCardGridItem
                   key={row.id}
                   card={row}
@@ -370,11 +546,13 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                   canViewPricing={canViewPricing}
                 />
               ))}
-              {rows.length === 0 && !loading ? <div className="sm:col-span-2 xl:col-span-3">{emptyState}</div> : null}
+              {displayRows.length === 0 && !loading ? (
+                <div className="sm:col-span-2 xl:col-span-3">{emptyState}</div>
+              ) : null}
             </div>
           ) : (
             <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
-              {rows.map((row) => (
+              {displayRows.map((row) => (
                 <ExploreCardGridItem
                   key={row.id}
                   card={row}
@@ -383,19 +561,29 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
                   canViewPricing={canViewPricing}
                 />
               ))}
-              {rows.length === 0 && !loading ? <div className="sm:col-span-2 xl:col-span-4">{emptyState}</div> : null}
+              {displayRows.length === 0 && !loading ? (
+                <div className="sm:col-span-2 xl:col-span-4">{emptyState}</div>
+              ) : null}
             </div>
           )}
         </div>
       )}
 
-      {!isDiscoveryMode && rows.length > 0 && canViewPricing && viewMode === "details" ? (
+      {!isDiscoveryMode &&
+      displayRows.length > 0 &&
+      canViewPricing &&
+      viewMode === "details" ? (
         <div className="text-xs text-slate-500 md:hidden">
           Beta market estimate.
         </div>
       ) : null}
 
-      {!isDiscoveryMode && rows.length > 0 && canViewPricing && (viewMode === "thumb" || viewMode === "thumb-lg" || viewMode === "list") ? (
+      {!isDiscoveryMode &&
+      displayRows.length > 0 &&
+      canViewPricing &&
+      (viewMode === "thumb" ||
+        viewMode === "thumb-lg" ||
+        viewMode === "list") ? (
         <div className="hidden text-xs text-slate-500 sm:block">
           Beta market estimate. Derived from active listings and market data.
         </div>
@@ -404,7 +592,11 @@ export default function ExplorePageClient({ discoveryContent = null, canViewPric
       {!isDiscoveryMode ? (
         <CompareTray
           cards={compareCards}
-          addHref={buildPathWithCompareCards(pathname, searchParams.toString(), compareCards)}
+          addHref={buildPathWithCompareCards(
+            pathname,
+            searchParams.toString(),
+            compareCards,
+          )}
         />
       ) : null}
     </div>

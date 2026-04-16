@@ -37,6 +37,7 @@ import 'services/vault/ownership_resolver_adapter.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'services/identity/display_identity.dart';
+import 'services/identity/identity_search.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
@@ -2102,6 +2103,7 @@ class HomePageState extends State<HomePage> {
   Timer? _debounce;
   int _searchRequestVersion = 0;
   _RarityFilter _rarityFilter = _RarityFilter.all;
+  String _identityFilter = kIdentityFilterAll;
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
@@ -2171,7 +2173,9 @@ class HomePageState extends State<HomePage> {
 
   bool _shouldShowCuratedLanding([String? query]) {
     final trimmed = (query ?? _searchCtrl.text).trim();
-    return trimmed.isEmpty && _rarityFilter == _RarityFilter.all;
+    return trimmed.isEmpty &&
+        _rarityFilter == _RarityFilter.all &&
+        !isIdentityFilterActive(_identityFilter);
   }
 
   void _resetCuratedLandingState() {
@@ -2395,6 +2399,43 @@ class HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildIdentityChip(IdentityFilterOption option, {required int count}) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final bool selected = _identityFilter == option.key;
+
+    Color bg;
+    Color border;
+    Color text;
+
+    if (selected) {
+      bg = colorScheme.primary.withValues(alpha: 0.10);
+      border = colorScheme.primary;
+      text = colorScheme.primary;
+    } else {
+      bg = colorScheme.surfaceContainerHighest.withValues(alpha: 0.28);
+      border = Colors.transparent;
+      text = colorScheme.onSurface.withValues(alpha: 0.68);
+    }
+
+    return ChoiceChip(
+      label: Text(
+        count > 0 ? '${option.label} ($count)' : option.label,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: text,
+          fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+        ),
+      ),
+      selected: selected,
+      onSelected: (_) => _handleIdentityFilterChanged(option.key),
+      selectedColor: bg,
+      backgroundColor: bg,
+      side: BorderSide(color: border, width: selected ? 1.0 : 0.0),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
+    );
+  }
+
   List<CardPrint> _applyRarityFilter(
     List<CardPrint> cards, {
     _RarityFilter? filter,
@@ -2427,6 +2468,25 @@ class HomePageState extends State<HomePage> {
         .toList();
   }
 
+  List<CardPrint> _applyCatalogFilters(
+    List<CardPrint> cards, {
+    _RarityFilter? rarityFilter,
+    String? identityFilter,
+  }) {
+    final activeIdentityFilter = normalizeIdentityFilterKey(
+      identityFilter ?? _identityFilter,
+    );
+    final identityFiltered = activeIdentityFilter == kIdentityFilterAll
+        ? cards
+        : cards
+              .where(
+                (card) => matchesIdentityFilter(card, activeIdentityFilter),
+              )
+              .toList(growable: false);
+
+    return _applyRarityFilter(identityFiltered, filter: rarityFilter);
+  }
+
   Future<void> _runSearch(String query) async {
     final trimmed = query.trim();
     if (_shouldShowCuratedLanding(trimmed)) {
@@ -2439,12 +2499,15 @@ class HomePageState extends State<HomePage> {
     try {
       final resolved = await CardPrintRepository.searchCardPrintsResolved(
         client: supabase,
-        options: CardSearchOptions(query: trimmed),
+        options: CardSearchOptions(
+          query: trimmed,
+          identityFilter: _identityFilter,
+        ),
       );
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
-      final filteredResults = _applyRarityFilter(resolved.rows);
+      final filteredResults = _applyCatalogFilters(resolved.rows);
       final initialVisibleResults = _takeSearchResultBatch(
         filteredResults,
         _kSearchInitialBatchSize,
@@ -2521,7 +2584,10 @@ class HomePageState extends State<HomePage> {
     }
 
     final currentQuery = _searchCtrl.text;
-    final filteredCurrentResults = _applyRarityFilter(_results, filter: filter);
+    final filteredCurrentResults = _applyCatalogFilters(
+      _results,
+      rarityFilter: filter,
+    );
     final nextVisibleResults = _takeSearchResultBatch(
       filteredCurrentResults,
       _kSearchInitialBatchSize,
@@ -2534,7 +2600,43 @@ class HomePageState extends State<HomePage> {
       _isHydratingMoreResults = false;
     });
 
-    if (currentQuery.trim().isEmpty && filter == _RarityFilter.all) {
+    if (currentQuery.trim().isEmpty &&
+        filter == _RarityFilter.all &&
+        _identityFilter == kIdentityFilterAll) {
+      _resetCuratedLandingState();
+      return;
+    }
+
+    _runSearch(currentQuery);
+  }
+
+  void _handleIdentityFilterChanged(String filterKey) {
+    final normalizedFilter = normalizeIdentityFilterKey(filterKey);
+    if (_identityFilter == normalizedFilter) {
+      return;
+    }
+
+    final currentQuery = _searchCtrl.text;
+    final filteredCurrentResults = _applyCatalogFilters(
+      _results,
+      identityFilter: normalizedFilter,
+    );
+    final nextVisibleResults = _takeSearchResultBatch(
+      filteredCurrentResults,
+      _kSearchInitialBatchSize,
+    );
+
+    setState(() {
+      _identityFilter = normalizedFilter;
+      _visibleResults = nextVisibleResults;
+      _hasMoreVisibleResults =
+          filteredCurrentResults.length > nextVisibleResults.length;
+      _isHydratingMoreResults = false;
+    });
+
+    if (currentQuery.trim().isEmpty &&
+        normalizedFilter == kIdentityFilterAll &&
+        _rarityFilter == _RarityFilter.all) {
       _resetCuratedLandingState();
       return;
     }
@@ -3452,10 +3554,10 @@ class HomePageState extends State<HomePage> {
     final trimmed = _searchCtrl.text.trim();
     final showingCuratedLanding = _shouldShowCuratedLanding(trimmed);
     final isCatalogLoading = _loading || _loadingCuratedLanding;
-    final totalSearchResults = _applyRarityFilter(_results);
+    final totalSearchResults = _applyCatalogFilters(_results);
     final visibleSearchResults = _visibleResults;
     final cards = showingCuratedLanding
-        ? _applyRarityFilter(_trending)
+        ? _applyCatalogFilters(_trending)
         : visibleSearchResults;
     final totalResultCount = showingCuratedLanding
         ? cards.length
@@ -3463,6 +3565,18 @@ class HomePageState extends State<HomePage> {
     final visibleResultCount = cards.length;
     final showEmpty = !isCatalogLoading && totalResultCount == 0;
     final theme = Theme.of(context);
+    final identityFilterCounts = buildIdentityFilterCounts(
+      showingCuratedLanding ? _trending : _results,
+    );
+    final visibleIdentityFilters = kIdentityFilterOptions
+        .where((option) {
+          if (option.key == kIdentityFilterAll) {
+            return true;
+          }
+          return (identityFilterCounts[option.key] ?? 0) > 0 ||
+              option.key == _identityFilter;
+        })
+        .toList(growable: false);
     final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
         : _buildRows(cards);
@@ -3524,6 +3638,28 @@ class HomePageState extends State<HomePage> {
                 ],
               ),
               const SizedBox(height: 8),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    for (
+                      var index = 0;
+                      index < visibleIdentityFilters.length;
+                      index++
+                    ) ...[
+                      if (index > 0) const SizedBox(width: 6),
+                      _buildIdentityChip(
+                        visibleIdentityFilters[index],
+                        count:
+                            identityFilterCounts[visibleIdentityFilters[index]
+                                .key] ??
+                            0,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: 6),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(

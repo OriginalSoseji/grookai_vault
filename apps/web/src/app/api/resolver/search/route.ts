@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 
 function parseSortMode(value: string | null) {
@@ -34,9 +35,10 @@ export async function GET(request: NextRequest) {
   const exactSetCode = normalizeSetCode(request.nextUrl.searchParams.get("set"));
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"));
+  const identityFilter = normalizeIdentityFilterKey(request.nextUrl.searchParams.get("identity"));
   const sortMode = parseSortMode(request.nextUrl.searchParams.get("sort"));
 
-  if (!query && !exactSetCode && !exactReleaseYear && !exactIllustrator) {
+  if (!query && !exactSetCode && !exactReleaseYear && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
       {
         ok: false,
@@ -53,6 +55,7 @@ export async function GET(request: NextRequest) {
       exactSetCode,
       exactReleaseYear,
       exactIllustrator,
+      identityFilter,
     });
 
     return NextResponse.json({
