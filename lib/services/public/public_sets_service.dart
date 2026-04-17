@@ -309,19 +309,10 @@ class PublicSetsService {
     required String query,
     required PublicSetFilter filter,
   }) {
-    final normalizedQuery = _normalizeName(query);
-    var filtered = sets.where((setInfo) {
-      if (normalizedQuery.isEmpty) {
-        return true;
-      }
-
-      final haystack = [
-        _normalizeName(setInfo.name),
-        setInfo.code.toLowerCase(),
-        (setInfo.printedSetAbbrev ?? '').toLowerCase(),
-      ].join(' ');
-      return haystack.contains(normalizedQuery);
-    }).toList();
+    final queryTokens = _normalizeSearchTokens(query);
+    var filtered = sets
+        .where((setInfo) => _matchesSearchTokens(setInfo, queryTokens))
+        .toList();
 
     switch (filter) {
       case PublicSetFilter.all:
@@ -454,6 +445,37 @@ class PublicSetsService {
   static String? _setSortDate(Map<String, dynamic> row) {
     return _normalizeOptionalText(row['release_date']) ??
         _normalizeOptionalText(row['created_at']);
+  }
+
+  static List<String> _normalizeSearchTokens(String query) {
+    final normalizedQuery = _normalizeName(query);
+    if (normalizedQuery.isEmpty) {
+      return const <String>[];
+    }
+
+    return normalizedQuery
+        .split(RegExp(r'\s+'))
+        .map((token) => token.trim())
+        .where((token) => token.isNotEmpty)
+        .toList(growable: false);
+  }
+
+  static bool _matchesSearchTokens(
+    PublicSetSummary setInfo,
+    List<String> tokens,
+  ) {
+    if (tokens.isEmpty) {
+      return true;
+    }
+
+    final haystacks = <String>[
+      _normalizeName(setInfo.name),
+      _normalizeCode(setInfo.code),
+    ];
+
+    return tokens.every(
+      (token) => haystacks.any((value) => value.contains(token)),
+    );
   }
 
   static DateTime? _parseSortDate(String? value) {

@@ -47,6 +47,13 @@ export type PublicSetSummary = {
   normalized_printed_set_abbrev?: string;
 };
 
+type PublicSetSearchCandidate = {
+  name?: string | null;
+  code?: string | null;
+  normalized_name?: string;
+  normalized_code?: string;
+};
+
 export type PublicSetCard = {
   gv_id: string;
   name: string;
@@ -98,6 +105,26 @@ export function normalizeSetQuery(value: string) {
 
 export function tokenizeSetWords(value?: string | null) {
   return normalizeSetQuery(value ?? "").match(/[a-z0-9]+/g) ?? [];
+}
+
+export function normalizeSetSearchQuery(value: string) {
+  return tokenizeSetWords(value);
+}
+
+export function matchesPublicSetSearch(
+  setInfo: PublicSetSearchCandidate,
+  tokens: string[],
+) {
+  if (tokens.length === 0) {
+    return true;
+  }
+
+  const haystacks = [
+    setInfo.normalized_name ?? normalizeSetQuery(setInfo.name ?? ""),
+    setInfo.normalized_code ?? normalizeSetQuery(setInfo.code ?? ""),
+  ];
+
+  return tokens.every((token) => haystacks.some((value) => value.includes(token)));
 }
 
 export function normalizePublicSetFilter(value?: string | null): PublicSetFilter {

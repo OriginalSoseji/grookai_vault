@@ -5,8 +5,9 @@ import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
 import {
-  SET_INTENT_ALIAS_MAP,
+  matchesPublicSetSearch,
   normalizePublicSetFilter,
+  normalizeSetSearchQuery,
   normalizeSetQuery,
   tokenizeSetWords,
   type PublicSetCard,
@@ -60,20 +61,6 @@ function createServerSupabase() {
 
 function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
-}
-
-function uniqueValues(values: string[]) {
-  return Array.from(new Set(values.filter(Boolean)));
-}
-
-function buildSetSearchText(
-  setInfo: Pick<PublicSetSummary, "normalized_name" | "normalized_code" | "normalized_printed_set_abbrev">,
-) {
-  return uniqueValues([
-    setInfo.normalized_name,
-    setInfo.normalized_code,
-    setInfo.normalized_printed_set_abbrev ?? "",
-  ]).join(" ");
 }
 
 function getReleaseYear(releaseDate?: string | null) {
@@ -302,28 +289,12 @@ export async function getPublicSetDetail(setCode: string): Promise<PublicSetDeta
 }
 
 export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
-  const normalizedQuery = normalizeSetQuery(rawQuery);
-  if (!normalizedQuery) {
+  const queryTokens = normalizeSetSearchQuery(rawQuery);
+  if (queryTokens.length === 0) {
     return sets;
   }
 
-  const queryTokens = tokenizeSetWords(normalizedQuery);
-
-  return sets.filter((setInfo) => {
-    const searchText = buildSetSearchText(setInfo);
-
-    if (searchText.includes(normalizedQuery)) {
-      return true;
-    }
-
-    if (queryTokens.length > 0 && queryTokens.every((token) => searchText.includes(token))) {
-      return true;
-    }
-
-    return Object.entries(SET_INTENT_ALIAS_MAP).some(([alias, codes]) => {
-      return normalizeSetQuery(alias).includes(normalizedQuery) && codes.includes(setInfo.code);
-    });
-  });
+  return sets.filter((setInfo) => matchesPublicSetSearch(setInfo, queryTokens));
 }
 
 function isSpecialSet(setInfo: PublicSetSummary) {

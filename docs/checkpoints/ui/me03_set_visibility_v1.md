@@ -37,6 +37,30 @@ Two concrete blockers were found.
    - Current repo config authority is `SUPABASE_URL` plus `SUPABASE_PUBLISHABLE_KEY` via `apps/web/src/lib/supabase/config.ts`.
    - Under the current local env contract, that made the web public set read surface brittle.
 
+## Search Blocker Found
+
+The actual set-search entrypoints were local catalog filters, not the global resolver:
+
+- Web:
+  - `apps/web/src/app/sets/page.tsx`
+  - `apps/web/src/lib/publicSets.ts`
+  - `apps/web/src/lib/publicSets.shared.ts`
+- App:
+  - `lib/screens/sets/public_sets_screen.dart`
+  - `lib/services/public/public_sets_service.dart`
+
+Repo evidence:
+
+- Web `/sets` fetches the full catalog through `getPublicSets()` and then filters it with `filterPublicSets(...)`.
+- App public sets search fetches the full catalog through `PublicSetsService.fetchSets(...)`, stores it in `_sets`, then applies `filterAndSortSets(...)`.
+
+The concrete search bug was that the local matching rules had drifted:
+
+- Web had an extra custom code/search-text path that was not the same bounded contract used by app.
+- App used a whole-query haystack substring check instead of the intended every-token match across `name` and `code`.
+
+That made the search behavior inconsistent across web and app, even though `me03` was already present in the fetched set list on both surfaces.
+
 ## Exact Surfaces Patched
 
 - `apps/web/src/lib/publicSets.shared.ts`
@@ -49,6 +73,29 @@ Patched behavior:
 - used that fallback for default catalog ordering
 - used that fallback for `newest` / `oldest` sorting
 - aligned the web server-side public sets reader with the shared Supabase config helper
+- added one mirrored local set-search contract across web and app
+
+Search patch files:
+
+- `apps/web/src/lib/publicSets.shared.ts`
+- `apps/web/src/lib/publicSets.ts`
+- `lib/services/public/public_sets_service.dart`
+
+Final search matching rule:
+
+- trim input
+- lowercase input
+- split on whitespace
+- ignore empty tokens
+- searchable fields are `name` and `code`
+- a set matches only when every token matches at least one searchable field by partial substring
+
+Examples:
+
+- `me03` -> matches by `code`
+- `perfect` -> matches by `name`
+- `perfect order` -> both tokens match `name`
+- `order` -> matches by `name`
 
 ## Why me03 Was Hidden
 
@@ -117,6 +164,27 @@ Service-level proof after patch:
   - `cardCount = 130`
   - `displayImageUrl = representative_image_url`
   - `displayImageKind = representative`
+- fetched set list contains `me03` before search filtering
+- app local search now returns `Perfect Order` for:
+  - `me03`
+  - `perfect`
+
+### Search Verification
+
+Web local `/sets` search proof:
+
+- `/sets?q=me03` returned `200` and rendered `Perfect Order`
+- `/sets?q=perfect` returned `200` and rendered `Perfect Order`
+- `/sets?q=Perfect%20Order` returned `200` and rendered `Perfect Order`
+- `/sets?q=order` returned `200` and rendered `Perfect Order`
+
+App local catalog-search proof:
+
+- `fetchSets(...)` includes `me03` in the fetched set list before query filtering
+- mirrored app search rule returns `Perfect Order` for:
+  - `me03`
+  - `perfect`
+  - `perfect order`
 
 ### Explore / Discovery
 
@@ -126,3 +194,5 @@ Service-level proof after patch:
 ## Invariant
 
 Valid canonical sets must not be hidden solely because imagery is representative.
+
+Canonical visible sets must also be searchable by both `code` and `name` on local catalog search surfaces.
