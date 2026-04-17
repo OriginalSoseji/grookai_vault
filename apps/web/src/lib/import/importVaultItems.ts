@@ -5,6 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/normalizeRow";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
 import { resolveActiveVaultAnchor, type ActiveVaultAnchor } from "@/lib/vault/resolveActiveVaultAnchor";
 import type { ImportVaultItemsResult, MatchResult } from "@/types/import";
@@ -163,8 +164,11 @@ export async function importVaultItemsForUser({
   userId,
   rows,
 }: ImportVaultItemsExecutionParams): Promise<ImportVaultItemsResult> {
+  const normalizedUserId = userId.trim();
+  await assertAuthenticatedVaultUser(client, normalizedUserId);
+
   console.info("vault.import.begin", {
-    userId,
+    userId: normalizedUserId,
     itemCount: rows.length,
   });
 
@@ -181,7 +185,7 @@ export async function importVaultItemsForUser({
   }
 
   const existingOwnedCounts = await fetchExistingOwnedCounts(
-    userId,
+    normalizedUserId,
     aggregatedRows.map((row) => row.cardId),
   );
   const reconciledRows = reconcileAggregatedRows(aggregatedRows, existingOwnedCounts);
@@ -202,7 +206,7 @@ export async function importVaultItemsForUser({
     }
 
     console.info("vault.import.item", {
-      userId,
+      userId: normalizedUserId,
       cardPrintId: row.cardId,
       quantity,
     });
@@ -210,7 +214,7 @@ export async function importVaultItemsForUser({
     try {
       const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
         client,
-        userId,
+        userId: normalizedUserId,
         cardId: row.cardId,
         createData: {
           gvId: row.gvId,
@@ -224,7 +228,7 @@ export async function importVaultItemsForUser({
         },
       });
 
-      await createCanonicalImportInstances(adminClient, userId, {
+      await createCanonicalImportInstances(adminClient, normalizedUserId, {
         ...row,
         quantityToImport: quantity,
       }, anchor.id);
@@ -237,7 +241,7 @@ export async function importVaultItemsForUser({
         }, anchor, insertedAnchorId);
       } catch (error) {
         console.error("vault.import.bucket_mirror_failed", {
-          userId,
+          userId: normalizedUserId,
           cardPrintId: row.cardId,
           quantity,
           error,
@@ -245,7 +249,7 @@ export async function importVaultItemsForUser({
       }
     } catch (error) {
       console.error("vault.import.instance_create_failed", {
-        userId,
+        userId: normalizedUserId,
         cardPrintId: row.cardId,
         quantity,
         error,

@@ -2,7 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizePsaGradeValue } from "@/lib/slabs/normalizePsaGrade";
+import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 import { verifyPsaCert } from "@/lib/slabs/psaVerificationAdapter";
 
 export type CreateSlabInstanceInput = {
@@ -300,6 +302,9 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     };
   }
 
+  const client = createServerComponentClient();
+  await assertAuthenticatedVaultUser(client, userId);
+
   const verification = await verifyPsaCert(certNumber);
   if (!verification.verified || !verification.grade || verification.grader !== "PSA") {
     return mapVerificationFailure(verification.error_code);
@@ -334,7 +339,7 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
     return slabCertResult;
   }
 
-  const { data: existingInstanceRow, error: existingInstanceError } = await adminClient
+  const { data: existingInstanceRow, error: existingInstanceError } = await client
     .from("vault_item_instances")
     .select("id")
     .eq("user_id", userId)
@@ -361,7 +366,7 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
 
   const gradeLabel = `PSA ${verification.grade}`;
   const now = new Date().toISOString();
-  const { data: insertedAnchorRow, error: anchorError } = await adminClient
+  const { data: insertedAnchorRow, error: anchorError } = await client
     .from("vault_items")
     .insert({
       user_id: userId,
@@ -415,7 +420,7 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
 
   if (instanceError) {
     console.error("SLAB CREATE ERROR [admin_vault_instance_create_v1]", instanceError);
-    await adminClient
+    await client
       .from("vault_items")
       .update({
         qty: 0,

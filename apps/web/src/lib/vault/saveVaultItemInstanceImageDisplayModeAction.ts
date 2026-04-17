@@ -70,14 +70,16 @@ export async function saveVaultItemInstanceImageDisplayModeAction(
   }
 
   const admin = createServerAdminClient();
-  const { data: instanceData, error: instanceError } = await admin
+  const { data: instanceData, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,gv_vi_id,card_print_id")
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
   const instance = (instanceData ?? null) as InstanceRow | null;
-  if (instanceError || !instance || instance.user_id !== user.id || instance.archived_at !== null) {
+  if (instanceError || !instance) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -85,12 +87,14 @@ export async function saveVaultItemInstanceImageDisplayModeAction(
     };
   }
 
-  const { data, error } = await admin
+  const { data, error } = await client
     .from("vault_item_instances")
     .update({
       image_display_mode: imageDisplayMode,
     })
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .select("id,image_display_mode,gv_vi_id,card_print_id")
     .maybeSingle();
 

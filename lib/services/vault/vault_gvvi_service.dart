@@ -433,6 +433,9 @@ class VaultGvviService {
     }
 
     final data = Map<String, dynamic>.from(rawData as Map);
+    if (data['archived_at'] != null) {
+      return null;
+    }
     final cardPrintId = _nullable(data['card_print_id']);
     if (cardPrintId == null) {
       return null;

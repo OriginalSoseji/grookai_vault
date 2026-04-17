@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   isOwnedVaultInstanceMediaPath,
@@ -55,14 +54,15 @@ export async function saveVaultItemInstanceMediaAction(
     };
   }
 
-  const admin = createServerAdminClient();
-  const { data: instance, error: instanceError } = await admin
+  const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,gv_vi_id")
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
-  if (instanceError || !instance || instance.user_id !== user.id || instance.archived_at !== null) {
+  if (instanceError || !instance) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -86,13 +86,15 @@ export async function saveVaultItemInstanceMediaAction(
   const imageField = input.side === "front" ? "image_url" : "image_back_url";
   const sourceField = input.side === "front" ? "image_source" : "image_back_source";
 
-  const { data, error } = await admin
+  const { data, error } = await client
     .from("vault_item_instances")
     .update({
       [imageField]: input.storagePath,
       [sourceField]: input.storagePath ? "user_photo" : null,
     })
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .select("id,gv_vi_id")
     .maybeSingle();
 

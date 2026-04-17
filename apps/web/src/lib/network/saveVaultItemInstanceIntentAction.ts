@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 
@@ -48,14 +47,15 @@ export async function saveVaultItemInstanceIntentAction(
     };
   }
 
-  const admin = createServerAdminClient();
-  const { data: instance, error: instanceError } = await admin
+  const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,intent")
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
-  if (instanceError || !instance || instance.user_id !== user.id || instance.archived_at !== null) {
+  if (instanceError || !instance) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -63,12 +63,14 @@ export async function saveVaultItemInstanceIntentAction(
     };
   }
 
-  const { data, error } = await admin
+  const { data, error } = await client
     .from("vault_item_instances")
     .update({
       intent: nextIntent,
     })
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .select("id,intent,gv_vi_id")
     .maybeSingle();
 

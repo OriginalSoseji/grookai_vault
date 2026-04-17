@@ -209,7 +209,8 @@ export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItem
     supabase
       .from("shared_cards")
       .select("card_id,gv_id,is_shared,wall_category,public_note")
-      .eq("user_id", userId),
+      .eq("user_id", userId)
+      .eq("is_shared", true),
     supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", userId).maybeSingle(),
   ]);
 

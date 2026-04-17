@@ -2,6 +2,7 @@ import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 
 export type VaultQuantityChange =
   | {
@@ -261,13 +262,22 @@ async function countActiveInstancesForCard({
 }
 
 export async function updateVaultItemQuantity(change: VaultQuantityChange): Promise<UpdateVaultItemQuantityResult> {
+  const normalizedUserId = change.userId.trim();
+  await assertAuthenticatedVaultUser(change.client, normalizedUserId);
+
+  const normalizedItemId = change.itemId.trim();
+  const normalizedChange = {
+    ...change,
+    userId: normalizedUserId,
+    itemId: normalizedItemId,
+  } as VaultQuantityChange;
   const actionLabel = change.type === "increment" ? "increment" : "decrement";
 
-  const { data: row, error: readError } = await change.client
+  const { data: row, error: readError } = await normalizedChange.client
     .from("vault_items")
     .select("id,card_id,gv_id,condition_label,name,set_name,photo_url")
-    .eq("id", change.itemId)
-    .eq("user_id", change.userId)
+    .eq("id", normalizedChange.itemId)
+    .eq("user_id", normalizedChange.userId)
     .is("archived_at", null)
     .maybeSingle();
 
@@ -277,14 +287,14 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
 
   if (!row) {
     console.info("[vault:qty]", {
-      user_id: change.userId,
-      item_id: change.itemId,
+      user_id: normalizedChange.userId,
+      item_id: normalizedChange.itemId,
       action: "remove",
     });
 
     return {
       status: "removed",
-      itemId: change.itemId,
+      itemId: normalizedChange.itemId,
     };
   }
 
@@ -292,7 +302,7 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
   if (!currentRow) {
     return {
       status: "removed",
-      itemId: change.itemId,
+      itemId: normalizedChange.itemId,
     };
   }
 
@@ -302,15 +312,15 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
   }
 
   if (change.type === "decrement") {
-    const archivedInstance = await archiveRawVaultInstance(change, cardPrintId);
+    const archivedInstance = await archiveRawVaultInstance(normalizedChange, cardPrintId);
     const counts = await countActiveInstancesForCard({
-      userId: change.userId,
+      userId: normalizedChange.userId,
       cardPrintId,
     });
 
     console.info("[vault:qty]", {
-      user_id: change.userId,
-      item_id: change.itemId,
+      user_id: normalizedChange.userId,
+      item_id: normalizedChange.itemId,
       gv_id: currentRow.gv_id,
       action: actionLabel,
       quantity: counts.totalCount,
@@ -322,26 +332,26 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
     if (counts.totalCount <= 0) {
       return {
         status: "removed",
-        itemId: change.itemId,
+        itemId: normalizedChange.itemId,
       };
     }
 
     return {
       status: "decremented",
-      itemId: change.itemId,
+      itemId: normalizedChange.itemId,
       quantity: counts.totalCount,
     };
   }
 
-  const createdInstance = await createVaultInstanceForIncrement(change, currentRow);
+  const createdInstance = await createVaultInstanceForIncrement(normalizedChange, currentRow);
   const counts = await countActiveInstancesForCard({
-    userId: change.userId,
+    userId: normalizedChange.userId,
     cardPrintId,
   });
 
   console.info("[vault:qty]", {
-    user_id: change.userId,
-    item_id: change.itemId,
+    user_id: normalizedChange.userId,
+    item_id: normalizedChange.itemId,
     gv_id: currentRow.gv_id,
     action: actionLabel,
     quantity: counts.totalCount,
@@ -352,7 +362,7 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
 
   return {
     status: change.type === "increment" ? "incremented" : "decremented",
-    itemId: change.itemId,
+    itemId: normalizedChange.itemId,
     quantity: counts.totalCount,
   };
 }

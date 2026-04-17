@@ -2,6 +2,7 @@ import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 import { resolveActiveVaultAnchor, type ActiveVaultAnchor } from "@/lib/vault/resolveActiveVaultAnchor";
 
 type AddCardToVaultParams = {
@@ -87,11 +88,11 @@ export async function addCardToVault({
   setName,
   imageUrl,
 }: AddCardToVaultParams): Promise<AddCardToVaultResult> {
-  if (!userId?.trim()) {
-    throw new Error("GVVI create failed: missing authenticated user id.");
-  }
+  const normalizedUserId = userId.trim();
+  await assertAuthenticatedVaultUser(client, normalizedUserId);
 
-  if (!cardPrintId?.trim()) {
+  const normalizedCardPrintId = cardPrintId.trim();
+  if (!normalizedCardPrintId) {
     throw new Error("GVVI create failed: missing cardPrintId.");
   }
 
@@ -101,8 +102,8 @@ export async function addCardToVault({
   const adminClient = createServerAdminClient();
   const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
     client,
-    userId,
-    cardId: cardPrintId,
+    userId: normalizedUserId,
+    cardId: normalizedCardPrintId,
     createData: {
       gvId,
       quantity: 1,
@@ -113,8 +114,8 @@ export async function addCardToVault({
     },
   });
   const rpcArgs = {
-    p_user_id: userId,
-    p_card_print_id: cardPrintId,
+    p_user_id: normalizedUserId,
+    p_card_print_id: normalizedCardPrintId,
     p_legacy_vault_item_id: anchor.id,
     p_condition_label: "NM",
     p_name: normalizedName,
@@ -123,8 +124,8 @@ export async function addCardToVault({
   };
 
   console.info("vault.addCardToVault.begin", {
-    userId,
-    cardPrintId,
+    userId: normalizedUserId,
+    cardPrintId: normalizedCardPrintId,
     canonicalClient: "server_admin_client",
     mirrorClient: "authenticated_server_client",
     rpcArgs,
@@ -138,13 +139,13 @@ export async function addCardToVault({
         .from("vault_items")
         .update({ qty: 0, archived_at: new Date().toISOString() })
         .eq("id", anchor.id)
-        .eq("user_id", userId)
+        .eq("user_id", normalizedUserId)
         .is("archived_at", null);
     }
 
     console.error("vault.addCardToVault.instance_rpc_failed", {
-      userId,
-      cardPrintId,
+      userId: normalizedUserId,
+      cardPrintId: normalizedCardPrintId,
       error: instanceError,
     });
     throw new Error(`GVVI create failed: ${instanceError.message}`);
@@ -157,9 +158,9 @@ export async function addCardToVault({
   }
 
   console.info("[vault:add]", {
-    user_id: userId,
+    user_id: normalizedUserId,
     gv_id: gvId,
-    card_print_id: cardPrintId,
+    card_print_id: normalizedCardPrintId,
     gv_vi_id: createdRow.gv_vi_id,
     action: "instance_create",
   });
@@ -174,8 +175,8 @@ export async function addCardToVault({
     });
   } catch (mirrorError) {
     console.error("vault.addCardToVault.bucket_mirror_failed", {
-      userId,
-      cardPrintId,
+      userId: normalizedUserId,
+      cardPrintId: normalizedCardPrintId,
       gvvi_id: createdRow.gv_vi_id ?? null,
       error: mirrorError,
     });

@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 const ALLOWED_CONDITIONS = new Set(["NM", "LP", "MP", "HP", "DMG"]);
@@ -55,14 +54,15 @@ export async function saveVaultItemInstanceConditionAction(
     };
   }
 
-  const admin = createServerAdminClient();
-  const { data: instance, error: instanceError } = await admin
+  const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,slab_cert_id,condition_label,gv_vi_id")
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
-  if (instanceError || !instance || instance.user_id !== user.id || instance.archived_at !== null) {
+  if (instanceError || !instance) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -89,12 +89,14 @@ export async function saveVaultItemInstanceConditionAction(
     };
   }
 
-  const { data, error } = await admin
+  const { data, error } = await client
     .from("vault_item_instances")
     .update({
       condition_label: nextCondition,
     })
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .select("id,condition_label,gv_vi_id")
     .maybeSingle();
 

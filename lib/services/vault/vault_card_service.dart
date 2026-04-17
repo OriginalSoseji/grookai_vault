@@ -1110,6 +1110,9 @@ class VaultCardService {
     }
 
     final row = Map<String, dynamic>.from(rawData as Map);
+    if (row['archived_at'] != null) {
+      return null;
+    }
     return VaultManageCardCopy.fromJson(row);
   }
 

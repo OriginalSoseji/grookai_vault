@@ -183,6 +183,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
       "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,image_display_mode,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
+    .is("archived_at", null)
     .maybeSingle();
 
   if (instanceError || !instanceData) {

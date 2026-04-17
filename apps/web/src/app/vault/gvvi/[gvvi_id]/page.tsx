@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
@@ -14,7 +15,6 @@ import {
 } from "@/lib/network/getOwnedCardMessageSummaries";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
-import { createServerComponentClient } from "@/lib/supabase/server";
 import { getVaultInstanceByGvvi, type VaultInstanceOutcome } from "@/lib/vault/getVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 
@@ -71,14 +71,7 @@ export default async function VaultInstancePage({
 }: {
   params: { gvvi_id: string };
 }) {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect(`/login?next=${encodeURIComponent(`/vault/gvvi/${params.gvvi_id}`)}`);
-  }
+  const { user } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
 
   const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id);
   if (!detail) {

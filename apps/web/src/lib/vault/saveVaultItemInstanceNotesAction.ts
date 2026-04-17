@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export type SaveVaultItemInstanceNotesInput = {
@@ -55,14 +54,15 @@ export async function saveVaultItemInstanceNotesAction(
     };
   }
 
-  const admin = createServerAdminClient();
-  const { data: instance, error: instanceError } = await admin
+  const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,notes,gv_vi_id")
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .maybeSingle();
 
-  if (instanceError || !instance || instance.user_id !== user.id || instance.archived_at !== null) {
+  if (instanceError || !instance) {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -81,12 +81,14 @@ export async function saveVaultItemInstanceNotesAction(
     };
   }
 
-  const { data, error } = await admin
+  const { data, error } = await client
     .from("vault_item_instances")
     .update({
       notes: nextNotes,
     })
     .eq("id", normalizedInstanceId)
+    .eq("user_id", user.id)
+    .is("archived_at", null)
     .select("id,notes,gv_vi_id")
     .maybeSingle();
 
