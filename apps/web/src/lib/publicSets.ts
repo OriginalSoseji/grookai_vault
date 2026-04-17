@@ -66,6 +66,16 @@ function uniqueValues(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
+function buildSetSearchText(
+  setInfo: Pick<PublicSetSummary, "normalized_name" | "normalized_code" | "normalized_printed_set_abbrev">,
+) {
+  return uniqueValues([
+    setInfo.normalized_name,
+    setInfo.normalized_code,
+    setInfo.normalized_printed_set_abbrev ?? "",
+  ]).join(" ");
+}
+
 function getReleaseYear(releaseDate?: string | null) {
   if (!releaseDate) {
     return undefined;
@@ -185,6 +195,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       sort_date: getSetSortDate(row),
       release_year: getReleaseYear(row.release_date),
       card_count: cardCountBySetCode.get(code) ?? 0,
+      normalized_code: normalizeSetCode(code),
       normalized_name: normalizedName,
       normalized_tokens: tokenizeSetWords(row.name),
       normalized_printed_set_abbrev: normalizeSetQuery(row.printed_set_abbrev ?? ""),
@@ -299,14 +310,13 @@ export function filterPublicSets(sets: PublicSetSummary[], rawQuery: string) {
   const queryTokens = tokenizeSetWords(normalizedQuery);
 
   return sets.filter((setInfo) => {
-    if (
-      setInfo.normalized_name.includes(normalizedQuery) ||
-      normalizeSetCode(setInfo.code) === normalizedQuery
-    ) {
+    const searchText = buildSetSearchText(setInfo);
+
+    if (searchText.includes(normalizedQuery)) {
       return true;
     }
 
-    if (queryTokens.length > 0 && queryTokens.every((token) => setInfo.normalized_tokens.includes(token))) {
+    if (queryTokens.length > 0 && queryTokens.every((token) => searchText.includes(token))) {
       return true;
     }
 

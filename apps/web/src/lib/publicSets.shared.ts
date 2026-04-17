@@ -41,6 +41,7 @@ export type PublicSetSummary = {
   sort_date?: string;
   release_year?: number;
   card_count: number;
+  normalized_code: string;
   normalized_name: string;
   normalized_tokens: string[];
   normalized_printed_set_abbrev?: string;
