@@ -2,7 +2,7 @@ import "server-only";
 
 import { redirect } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 
 export const FOUNDER_EMAIL = "ccabrl@gmail.com";
 
@@ -11,20 +11,12 @@ export function isFounderUser(user: Pick<User, "email"> | null | undefined) {
 }
 
 export async function getFounderAuthUser() {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { user } = await requireServerUser("/founder");
   return user;
 }
 
 export async function requireFounderAccess(nextPath: string) {
-  const user = await getFounderAuthUser();
-
-  if (!user) {
-    redirect(`/login?next=${encodeURIComponent(nextPath)}`);
-  }
+  const { user } = await requireServerUser(nextPath);
 
   if (!isFounderUser(user)) {
     redirect("/");

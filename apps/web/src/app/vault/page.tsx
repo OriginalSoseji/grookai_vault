@@ -1,6 +1,6 @@
-import Link from "next/link";
-import GoogleSignInButton from "@/components/GoogleSignInButton";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import {
   VaultCollectionView,
   type RecentCardData,
@@ -8,7 +8,6 @@ import {
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
-import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   buildVaultValueSummary,
   getOwnerVaultItems,
@@ -50,7 +49,7 @@ type RecentIdentityRow = {
 };
 
 async function getRecentIdentityByGvId(
-  supabase: ReturnType<typeof createServerComponentClient>,
+  supabase: SupabaseClient,
   gvIds: string[],
 ) {
   const normalizedIds = Array.from(new Set(gvIds.map((value) => value.trim()).filter(Boolean)));
@@ -112,37 +111,7 @@ function normalizeRecentItems(
 }
 
 export default async function VaultPage() {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return (
-      <div className="flex min-h-[70vh] items-center justify-center py-10">
-        <section className="w-full max-w-2xl space-y-10 text-center">
-          <div className="space-y-5">
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your vault. Ready when you are.</h1>
-            <p className="text-base leading-7 text-slate-600">Sign in to see the cards you own in one clear place.</p>
-          </div>
-
-          <div className="rounded-[2rem] border border-slate-200 bg-white px-8 py-8 shadow-sm">
-            <div className="space-y-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Vault Access</p>
-              <p className="text-sm leading-7 text-slate-600">Sign in to view and manage your personal collection.</p>
-              <div className="flex justify-center pt-2">
-                <GoogleSignInButton
-                  label="Sign in with Google"
-                  nextPath="/vault"
-                  className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  }
+  const { supabase, user } = await requireServerUser("/vault");
 
   const [
     { data: recentData, error: recentError },

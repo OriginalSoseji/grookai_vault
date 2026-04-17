@@ -1,5 +1,4 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../secrets.dart';
 
@@ -57,25 +56,6 @@ class GrookaiWebRouteService {
     return Uri.parse('$base$normalizedPath');
   }
 
-  static Uri buildAuthenticatedUri(String path, Session session) {
-    final handoffUri = buildUri('/auth/mobile-handoff');
-    final refreshToken = session.refreshToken;
-
-    if (refreshToken == null || refreshToken.isEmpty) {
-      return buildUri(path);
-    }
-
-    final fragment = Uri(
-      queryParameters: {
-        'access_token': session.accessToken,
-        'refresh_token': refreshToken,
-        'next': normalizePath(path),
-      },
-    ).query;
-
-    return handoffUri.replace(fragment: fragment);
-  }
-
   static Future<bool> _launchUri(Uri uri) async {
     final openedInApp = await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
     if (openedInApp) {
@@ -90,12 +70,7 @@ class GrookaiWebRouteService {
   }
 
   static Future<bool> openAuthenticatedPath(String path) async {
-    final session = Supabase.instance.client.auth.currentSession;
-    if (session == null) {
-      return openPath(path);
-    }
-
-    return _launchUri(buildAuthenticatedUri(path, session));
+    return openPath(path);
   }
 
   static GrookaiCanonicalRoute? parseCanonicalUri(Uri? uri) {

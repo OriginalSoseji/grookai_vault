@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { getFollowingCollectors } from "@/lib/follows/getFollowingCollectors";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -36,14 +35,7 @@ function getInitials(displayName: string) {
 }
 
 export default async function FollowingPage() {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login?next=/following");
-  }
+  const { user } = await requireServerUser("/following");
 
   const followedCollectors = await getFollowingCollectors(user.id);
 

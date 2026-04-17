@@ -1,9 +1,9 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -83,7 +83,7 @@ function formatTimeAgo(value: string | null) {
 }
 
 async function getWallIdentityByGvId(
-  supabase: ReturnType<typeof createServerComponentClient>,
+  supabase: SupabaseClient,
   gvIds: string[],
 ) {
   const normalizedIds = Array.from(new Set(gvIds.map((value) => value.trim()).filter(Boolean)));
@@ -148,14 +148,7 @@ function normalizeFeed(
 }
 
 export default async function WallPage() {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login?next=%2Fwall");
-  }
+  const { supabase, user } = await requireServerUser("/wall");
 
   const { data, error } = await supabase
     .from("v_recently_added")

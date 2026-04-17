@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import PublicCardImage from "@/components/PublicCardImage";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import InteractionGroupControls from "@/components/network/InteractionGroupControls";
@@ -15,7 +15,6 @@ import {
   type UserCardInteractionGroup,
   type UserCardInteractionInboxView,
 } from "@/lib/network/getUserCardInteractions";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -357,14 +356,7 @@ export default async function NetworkInboxPage({
 }: {
   searchParams?: { view?: string | string[]; card?: string | string[] };
 }) {
-  const client = createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
-
-  if (!user) {
-    redirect("/login?next=/network/inbox");
-  }
+  const { user } = await requireServerUser("/network/inbox");
 
   const currentView = normalizeInboxView(searchParams?.view);
   const currentCardFilter = normalizeCardFilter(searchParams?.card);

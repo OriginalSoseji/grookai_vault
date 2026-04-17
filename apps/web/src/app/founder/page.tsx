@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
 import PublicCardImage from "@/components/PublicCardImage";
+import { requireFounderAccess } from "@/lib/founder/requireFounderAccess";
 import {
   getFounderMarketSignals,
   type FounderInsightBundle,
@@ -12,11 +12,9 @@ import {
 } from "@/lib/founder/getPricingOpsSummary";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-const FOUNDER_EMAIL = "ccabrl@gmail.com";
 
 type VaultAnalyticsRow = {
   id: string;
@@ -676,19 +674,8 @@ function EmptyPanel({ message }: { message: string }) {
 }
 
 export default async function FounderPage() {
-  const supabase = createServerComponentClient();
   const admin = createServerAdminClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect(`/login?next=${encodeURIComponent("/founder")}`);
-  }
-
-  if (!user.email || user.email.toLowerCase() !== FOUNDER_EMAIL.toLowerCase()) {
-    redirect("/");
-  }
+  await requireFounderAccess("/founder");
 
   const pricingOps = await getFounderPricingOpsSummary(admin);
   let marketSignals: FounderInsightBundle | null = null;

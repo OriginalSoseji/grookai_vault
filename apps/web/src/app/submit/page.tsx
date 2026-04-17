@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import WarehouseSubmissionForm from "@/components/warehouse/WarehouseSubmissionForm";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -18,14 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SubmitPage() {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login?next=/submit");
-  }
+  const { user } = await requireServerUser("/submit");
 
   return (
     <div className="space-y-8 py-6 md:py-8">

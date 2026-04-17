@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
+import { requireServerUser } from "@/lib/auth/requireServerUser";
 import {
   getFounderMarketSignals,
   type FounderInsightBundle,
@@ -9,7 +9,6 @@ import {
 import { isFounderUser } from "@/lib/founder/requireFounderAccess";
 import type { PublicProfileSettingsValues } from "@/lib/publicProfileSettings";
 import { createServerAdminClient } from "@/lib/supabase/admin";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -60,14 +59,7 @@ function getAccountTabHref(tab: AccountTab) {
 export default async function AccountPage({
   searchParams,
 }: AccountPageProps) {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login?next=/account");
-  }
+  const { supabase, user } = await requireServerUser("/account");
 
   const { data: profile, error: profileError } = await supabase
     .from("public_profiles")
