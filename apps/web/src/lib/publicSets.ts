@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getSupabaseServerConfig } from "@/lib/supabase/config";
 import {
   SET_INTENT_ALIAS_MAP,
   normalizePublicSetFilter,
@@ -19,6 +20,7 @@ type SetRow = {
   printed_set_abbrev: string | null;
   printed_total: number | null;
   release_date: string | null;
+  created_at: string | null;
 };
 
 type SetCodeRow = {
@@ -51,14 +53,9 @@ type PublicSetCardRow = {
 };
 
 function createServerSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const { url, publishableKey } = getSupabaseServerConfig();
 
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createClient(url, publishableKey);
 }
 
 function normalizeSetCode(value?: string | null) {
@@ -81,6 +78,18 @@ function getReleaseYear(releaseDate?: string | null) {
 
   const parsedYear = Number(match[1]);
   return Number.isFinite(parsedYear) ? parsedYear : undefined;
+}
+
+function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
+  return row.release_date ?? row.created_at ?? undefined;
+}
+
+function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
+  if (!setInfo.sort_date) {
+    return Number.NaN;
+  }
+
+  return Date.parse(setInfo.sort_date);
 }
 
 function scoreSetCandidate(
@@ -143,7 +152,7 @@ async function fetchAllCanonicalSetCodes(supabase: ReturnType<typeof createServe
 export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   const supabase = createServerSupabase();
   const [{ data: setRows, error: setError }, setCodeRows] = await Promise.all([
-    supabase.from("sets").select("code,name,printed_set_abbrev,printed_total,release_date"),
+    supabase.from("sets").select("code,name,printed_set_abbrev,printed_total,release_date,created_at"),
     fetchAllCanonicalSetCodes(supabase),
   ]);
 
@@ -173,6 +182,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
       printed_set_abbrev: row.printed_set_abbrev?.trim().toUpperCase() || undefined,
       printed_total: typeof row.printed_total === "number" ? row.printed_total : undefined,
       release_date: row.release_date ?? undefined,
+      sort_date: getSetSortDate(row),
       release_year: getReleaseYear(row.release_date),
       card_count: cardCountBySetCode.get(code) ?? 0,
       normalized_name: normalizedName,
@@ -192,8 +202,8 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
   return [...canonicalSetsByName.values()]
     .filter((setInfo) => setInfo.card_count > 0)
     .sort((left, right) => {
-      const leftDate = left.release_date ? Date.parse(left.release_date) : Number.NaN;
-      const rightDate = right.release_date ? Date.parse(right.release_date) : Number.NaN;
+      const leftDate = parseSetSortTimestamp(left);
+      const rightDate = parseSetSortTimestamp(right);
       const leftHasDate = Number.isFinite(leftDate);
       const rightHasDate = Number.isFinite(rightDate);
 
@@ -329,22 +339,34 @@ function compareByName(left: PublicSetSummary, right: PublicSetSummary) {
 }
 
 function compareByReleaseYearDesc(left: PublicSetSummary, right: PublicSetSummary) {
-  const leftYear = typeof left.release_year === "number" ? left.release_year : Number.NEGATIVE_INFINITY;
-  const rightYear = typeof right.release_year === "number" ? right.release_year : Number.NEGATIVE_INFINITY;
+  const leftDate = parseSetSortTimestamp(left);
+  const rightDate = parseSetSortTimestamp(right);
+  const leftHasDate = Number.isFinite(leftDate);
+  const rightHasDate = Number.isFinite(rightDate);
 
-  if (leftYear !== rightYear) {
-    return rightYear - leftYear;
+  if (leftHasDate && rightHasDate && leftDate !== rightDate) {
+    return rightDate - leftDate;
+  }
+
+  if (leftHasDate !== rightHasDate) {
+    return leftHasDate ? -1 : 1;
   }
 
   return compareByName(left, right);
 }
 
 function compareByReleaseYearAsc(left: PublicSetSummary, right: PublicSetSummary) {
-  const leftYear = typeof left.release_year === "number" ? left.release_year : Number.POSITIVE_INFINITY;
-  const rightYear = typeof right.release_year === "number" ? right.release_year : Number.POSITIVE_INFINITY;
+  const leftDate = parseSetSortTimestamp(left);
+  const rightDate = parseSetSortTimestamp(right);
+  const leftHasDate = Number.isFinite(leftDate);
+  const rightHasDate = Number.isFinite(rightDate);
 
-  if (leftYear !== rightYear) {
-    return leftYear - rightYear;
+  if (leftHasDate && rightHasDate && leftDate !== rightDate) {
+    return leftDate - rightDate;
+  }
+
+  if (leftHasDate !== rightHasDate) {
+    return leftHasDate ? -1 : 1;
   }
 
   return compareByName(left, right);

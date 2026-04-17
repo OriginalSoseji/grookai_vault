@@ -11,6 +11,7 @@ class PublicSetSummary {
     this.printedSetAbbrev,
     this.printedTotal,
     this.releaseDate,
+    this.sortDate,
     this.releaseYear,
   });
 
@@ -21,6 +22,7 @@ class PublicSetSummary {
   final String? printedSetAbbrev;
   final int? printedTotal;
   final String? releaseDate;
+  final String? sortDate;
   final int? releaseYear;
 }
 
@@ -77,7 +79,7 @@ class PublicSetsService {
       client
           .from('sets')
           .select(
-            'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date',
+            'code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
           ),
       _fetchAllCanonicalSetCodes(client),
     ]);
@@ -116,6 +118,7 @@ class PublicSetsService {
             ? (row['printed_total'] as num).toInt()
             : null,
         releaseDate: _normalizeOptionalText(row['release_date']),
+        sortDate: _setSortDate(row),
         releaseYear: _parseReleaseYear(row['release_date']),
         cardCount: cardCountByCode[code] ?? 0,
       );
@@ -132,12 +135,8 @@ class PublicSetsService {
         .toList();
 
     sets.sort((left, right) {
-      final leftDate = left.releaseDate != null
-          ? DateTime.tryParse(left.releaseDate!)
-          : null;
-      final rightDate = right.releaseDate != null
-          ? DateTime.tryParse(right.releaseDate!)
-          : null;
+      final leftDate = _parseSortDate(left.sortDate);
+      final rightDate = _parseSortDate(right.sortDate);
 
       if (leftDate != null && rightDate != null && leftDate != rightDate) {
         return rightDate.compareTo(leftDate);
@@ -350,12 +349,8 @@ class PublicSetsService {
         break;
       case PublicSetFilter.newest:
         filtered.sort((left, right) {
-          final leftDate = left.releaseDate != null
-              ? DateTime.tryParse(left.releaseDate!)
-              : null;
-          final rightDate = right.releaseDate != null
-              ? DateTime.tryParse(right.releaseDate!)
-              : null;
+          final leftDate = _parseSortDate(left.sortDate);
+          final rightDate = _parseSortDate(right.sortDate);
           if (leftDate == null && rightDate == null) {
             return 0;
           }
@@ -370,12 +365,8 @@ class PublicSetsService {
         break;
       case PublicSetFilter.oldest:
         filtered.sort((left, right) {
-          final leftDate = left.releaseDate != null
-              ? DateTime.tryParse(left.releaseDate!)
-              : null;
-          final rightDate = right.releaseDate != null
-              ? DateTime.tryParse(right.releaseDate!)
-              : null;
+          final leftDate = _parseSortDate(left.sortDate);
+          final rightDate = _parseSortDate(right.sortDate);
           if (leftDate == null && rightDate == null) {
             return 0;
           }
@@ -458,6 +449,19 @@ class PublicSetsService {
     }
 
     return int.tryParse(match.group(1)!);
+  }
+
+  static String? _setSortDate(Map<String, dynamic> row) {
+    return _normalizeOptionalText(row['release_date']) ??
+        _normalizeOptionalText(row['created_at']);
+  }
+
+  static DateTime? _parseSortDate(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return null;
+    }
+
+    return DateTime.tryParse(value.trim());
   }
 
   static String? _bestImageUrl({
