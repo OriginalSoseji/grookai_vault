@@ -719,8 +719,9 @@ class PublicCollectorService {
   }) async {
     final rawRows = await client
         .from('v_card_stream_v1')
+        // LOCK: Stream rows are compatibility input; display images resolve after card_prints enrichment.
         .select(
-          'vault_item_id,card_print_id,intent,condition_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind',
+          'vault_item_id,card_print_id,intent,condition_label,created_at,gv_id,name,set_code,set_name,number,image_url',
         )
         .eq('owner_slug', ownerSlug)
         .order('created_at', ascending: false)

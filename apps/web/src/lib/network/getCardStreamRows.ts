@@ -38,8 +38,8 @@ type CardStreamSourceRow = {
   set_name: string | null;
   number: string | null;
   image_url: string | null;
-  display_image_url: string | null;
-  display_image_kind: CardDisplayImageKind | null;
+  display_image_url?: string | null;
+  display_image_kind?: CardDisplayImageKind | null;
 };
 
 type CardStreamIdentityRow = {
@@ -387,8 +387,9 @@ export async function getCardStreamRows({
 
   let query = client
     .from("v_card_stream_v1")
+    // LOCK: Stream rows are compatibility input; display image precedence is applied after card_prints enrichment.
     .select(
-      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
+      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
     )
     .order("created_at", { ascending: false })
     .order("vault_item_id", { ascending: false })

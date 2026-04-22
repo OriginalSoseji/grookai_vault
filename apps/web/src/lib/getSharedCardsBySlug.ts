@@ -65,8 +65,8 @@ type CollectorInPlayStreamRow = {
   set_name: string | null;
   number: string | null;
   image_url: string | null;
-  display_image_url: string | null;
-  display_image_kind: string | null;
+  display_image_url?: string | null;
+  display_image_kind?: string | null;
 };
 
 type InPlayCardState = {
@@ -751,8 +751,9 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
   const { data: streamRows, error: streamError } = await supabase
     .from("v_card_stream_v1")
+    // LOCK: Stream rows are compatibility input; display image precedence is applied after card_prints enrichment.
     .select(
-      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
+      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
     )
     .eq("owner_slug", normalizedSlug)
     .order("created_at", { ascending: false })
