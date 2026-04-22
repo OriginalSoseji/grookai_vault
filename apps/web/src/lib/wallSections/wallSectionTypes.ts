@@ -45,6 +45,27 @@ export type WallSectionsSettingsModel = Readonly<{
   loadError: string | null;
 }>;
 
+export type OwnerWallSectionMembership = Readonly<{
+  id: string;
+  name: string;
+  position: number;
+  is_active: boolean;
+  is_public: boolean;
+  is_member: boolean;
+}>;
+
+export type OwnerWallSectionMembershipModel = Readonly<{
+  instanceId: string;
+  sections: OwnerWallSectionMembership[];
+  loadError: string | null;
+}>;
+
+export type WallSectionMembershipActionResult = {
+  ok: boolean;
+  message: string;
+  sections?: OwnerWallSectionMembership[];
+};
+
 export const WALL_SECTION_LIMIT_MESSAGE = "You've reached the section limit for your plan.";
 export const WALL_SECTION_STORED_LIMIT_MESSAGE = "You can store up to 20 sections.";
 
@@ -117,4 +138,16 @@ export function canActivateWallSection(input: {
   }
 
   return input.activeCount < input.activeLimit;
+}
+
+export function normalizeWallSectionId(value: unknown): string {
+  return String(value ?? "").trim();
+}
+
+export function normalizeVaultItemInstanceId(value: unknown): string {
+  return String(value ?? "").trim();
+}
+
+export function isWallSectionSystemId(value: string): boolean {
+  return normalizeWallSectionId(value).toLowerCase() === "wall";
 }

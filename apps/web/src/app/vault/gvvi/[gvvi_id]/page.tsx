@@ -8,6 +8,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
+import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
 import {
   buildOwnedCardMessagesHref,
@@ -17,6 +18,7 @@ import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import { getVaultInstanceByGvvi, type VaultInstanceOutcome } from "@/lib/vault/getVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
+import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -90,6 +92,7 @@ export default async function VaultInstancePage({
     uploadedImageUrl: detail.frontImageUrl,
     canonicalImageUrl: detail.imageUrl,
   });
+  const sectionMembershipModel = await getOwnerWallSectionMemberships(user.id, detail.instanceId);
   let messageSummary:
     | {
         activeCount: number;
@@ -325,6 +328,11 @@ export default async function VaultInstancePage({
             initialImageDisplayMode={detail.imageDisplayMode}
             isActive={isActive}
             isGraded={detail.isGraded}
+          />
+
+          <VaultInstanceSectionMembershipCard
+            model={sectionMembershipModel}
+            isActive={isActive}
           />
 
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
