@@ -1,0 +1,731 @@
+{
+  "generated_at": "2026-04-18T02:30:52.684Z",
+  "source_artifact": "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.json",
+  "blocked_row_count": 7,
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo",
+      "source_candidate_id": "d7bb74eb-8423-4e58-8091-a0b792cc4393",
+      "candidate_name": "Arcanine - 12/99 (Prerelease)",
+      "printed_number": "12/99",
+      "proposed_variant_key": "prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "c1e18472-03a6-4ea6-8960-4b1a26325d33",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Arcanine - 12/99 (Prerelease)",
+        "number_raw": "12/99",
+        "normalized_name": "Arcanine",
+        "normalized_number_plain": "12",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Zorua",
+        "number": "BW12",
+        "number_plain": "12",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW12",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-promos-zorua-bw12-promo",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Zorua - BW12",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "BW12",
+              "justtcg_rarity": "Promo",
+              "justtcg_set_id": "black-and-white-promos-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Black and White Promos",
+              "set_alignment_method": "manual_family_override",
+              "set_alignment_status": "manual_helper_override"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW12",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "set_code": "bw4",
+        "set_name": "Next Destinies",
+        "name": "Arcanine",
+        "number": "12",
+        "number_plain": "12",
+        "variant_key": "",
+        "gv_id": "GV-PK-NXD-12",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-next-destinies-arcanine-12-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "12/99",
+              "justtcg_set_name": "Next Destinies",
+              "tcgplayer_external_id": "83588"
+            }
+          },
+          {
+            "source": "pokemonapi",
+            "external_id": "bw4-12",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw4-12",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "83588",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw4-12",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw4",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-staff-promo",
+      "source_candidate_id": "edc8302a-d30b-4525-9ffc-f1a15df06042",
+      "candidate_name": "Arcanine - 12/99 (Prerelease) [Staff]",
+      "printed_number": "12/99",
+      "proposed_variant_key": "staff_prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "9585caad-3630-4c0f-8c66-10f171c32ef4",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Arcanine - 12/99 (Prerelease) [Staff]",
+        "number_raw": "12/99",
+        "normalized_name": "Arcanine - 12/99 (Prerelease) [Staff]",
+        "normalized_number_plain": "12",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Zorua",
+        "number": "BW12",
+        "number_plain": "12",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW12",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-promos-zorua-bw12-promo",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Zorua - BW12",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "BW12",
+              "justtcg_rarity": "Promo",
+              "justtcg_set_id": "black-and-white-promos-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Black and White Promos",
+              "set_alignment_method": "manual_family_override",
+              "set_alignment_status": "manual_helper_override"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW12",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "set_code": "bw4",
+        "set_name": "Next Destinies",
+        "name": "Arcanine",
+        "number": "12",
+        "number_plain": "12",
+        "variant_key": "",
+        "gv_id": "GV-PK-NXD-12",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-next-destinies-arcanine-12-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "12/99",
+              "justtcg_set_name": "Next Destinies",
+              "tcgplayer_external_id": "83588"
+            }
+          },
+          {
+            "source": "pokemonapi",
+            "external_id": "bw4-12",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw4-12",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "83588",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw4-12",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw4",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-promo",
+      "source_candidate_id": "e7dd8c96-a1ee-4473-b689-04dcc490dd48",
+      "candidate_name": "Darmanitan - 25/114 (Prerelease)",
+      "printed_number": "25/114",
+      "proposed_variant_key": "prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "d0989109-835f-4a84-a0d6-00798c747566",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Darmanitan - 25/114 (Prerelease)",
+        "number_raw": "25/114",
+        "normalized_name": "Darmanitan",
+        "normalized_number_plain": "25",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Scraggy",
+        "number": "BW25",
+        "number_plain": "25",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW25",
+        "external_mappings": [
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW25",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "name": "Darmanitan",
+        "number": "25",
+        "number_plain": "25",
+        "variant_key": "",
+        "gv_id": "GV-PK-BLW-25",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-darmanitan-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "25/114",
+              "justtcg_set_name": "Black and White",
+              "tcgplayer_external_id": "84713"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw1-25",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "84713",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw1-25",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw1",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-staff-promo",
+      "source_candidate_id": "65775940-b052-4800-a978-5f0713459bd0",
+      "candidate_name": "Darmanitan - 25/114 (Prerelease) [Staff]",
+      "printed_number": "25/114",
+      "proposed_variant_key": "staff_prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "fa306e3d-4825-446c-a2dd-eb2e29920757",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Darmanitan - 25/114 (Prerelease) [Staff]",
+        "number_raw": "25/114",
+        "normalized_name": "Darmanitan - 25/114 (Prerelease) [Staff]",
+        "normalized_number_plain": "25",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Scraggy",
+        "number": "BW25",
+        "number_plain": "25",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW25",
+        "external_mappings": [
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW25",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "set_code": "bw1",
+        "set_name": "Black & White",
+        "name": "Darmanitan",
+        "number": "25",
+        "number_plain": "25",
+        "variant_key": "",
+        "gv_id": "GV-PK-BLW-25",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-darmanitan-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "25/114",
+              "justtcg_set_name": "Black and White",
+              "tcgplayer_external_id": "84713"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw1-25",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "84713",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw1-25",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw1",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 5,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-promo",
+      "source_candidate_id": "79ce3c6a-ee4b-4324-95b1-cd9defa3a362",
+      "candidate_name": "Victini - 43/101 (Prerelease)",
+      "printed_number": "43/101",
+      "proposed_variant_key": "prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "1b0577e6-ea47-4240-b76f-bf7eae023e96",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Victini - 43/101 (Prerelease)",
+        "number_raw": "43/101",
+        "normalized_name": "Victini",
+        "normalized_number_plain": "43",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Landorus",
+        "number": "BW43",
+        "number_plain": "43",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW43",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-promos-landorus-bw43-promo",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Landorus - BW43",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "BW43",
+              "justtcg_rarity": "Promo",
+              "justtcg_set_id": "black-and-white-promos-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Black and White Promos",
+              "set_alignment_method": "manual_family_override",
+              "set_alignment_status": "manual_helper_override"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW43",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "set_code": "bw3",
+        "set_name": "Noble Victories",
+        "name": "Victini",
+        "number": "43",
+        "number_plain": "43",
+        "variant_key": "",
+        "gv_id": "GV-PK-NVI-43",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-noble-victories-victini-43-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "43/101",
+              "justtcg_set_name": "Noble Victories",
+              "tcgplayer_external_id": "90345"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw3-43",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "90345",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw3-43",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw3",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 6,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-staff-promo",
+      "source_candidate_id": "a2dccbf7-db39-4a1c-8d18-caba0b41d83a",
+      "candidate_name": "Victini - 43/101 (Prerelease) [Staff]",
+      "printed_number": "43/101",
+      "proposed_variant_key": "staff_prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "af9f6e67-e493-4fa5-8b69-20f8be8cd805",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Victini - 43/101 (Prerelease) [Staff]",
+        "number_raw": "43/101",
+        "normalized_name": "Victini - 43/101 (Prerelease) [Staff]",
+        "normalized_number_plain": "43",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Landorus",
+        "number": "BW43",
+        "number_plain": "43",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW43",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-black-and-white-promos-landorus-bw43-promo",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+              "justtcg_name": "Landorus - BW43",
+              "resolved_via": "justtcg_direct_structure_exact",
+              "justtcg_number": "BW43",
+              "justtcg_rarity": "Promo",
+              "justtcg_set_id": "black-and-white-promos-pokemon",
+              "override_reason": null,
+              "justtcg_set_name": "Black and White Promos",
+              "set_alignment_method": "manual_family_override",
+              "set_alignment_status": "manual_helper_override"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW43",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "set_code": "bw3",
+        "set_name": "Noble Victories",
+        "name": "Victini",
+        "number": "43",
+        "number_plain": "43",
+        "variant_key": "",
+        "gv_id": "GV-PK-NVI-43",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-noble-victories-victini-43-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "43/101",
+              "justtcg_set_name": "Noble Victories",
+              "tcgplayer_external_id": "90345"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw3-43",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "90345",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw3-43",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw3",
+        "wrong_family_match": true
+      }
+    },
+    {
+      "batch_index": 7,
+      "source": "justtcg",
+      "source_set_family": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+      "source_candidate_id": "6f2f3f75-36d9-4589-aa4f-799b46462ef3",
+      "candidate_name": "Gigalith - 53/98 (Prerelease)",
+      "printed_number": "53/98",
+      "proposed_variant_key": "prerelease_stamp",
+      "blocker_type": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "source_row_identity": {
+        "external_discovery_candidate_id": "ab69d34f-12b7-4fe1-ab51-fba51b2890f2",
+        "set_id": "black-and-white-promos-pokemon",
+        "resolved_set_code": null,
+        "name_raw": "Gigalith - 53/98 (Prerelease)",
+        "number_raw": "53/98",
+        "normalized_name": "Gigalith",
+        "normalized_number_plain": "53",
+        "payload_set_name": "Black and White Promos",
+        "payload_set_external_id": "black-and-white-promos-pokemon"
+      },
+      "conflicting_existing_canon_row": {
+        "id": "1d89261d-4cf6-40a1-a049-58e9e6112904",
+        "set_code": "bwp",
+        "set_name": "BW Black Star Promos",
+        "name": "Flygon",
+        "number": "BW53",
+        "number_plain": "53",
+        "variant_key": "",
+        "gv_id": "GV-PK-PR-BLW-BW53",
+        "external_mappings": [
+          {
+            "source": "tcgdex",
+            "external_id": "bwp-BW53",
+            "active": true,
+            "meta": null
+          }
+        ]
+      },
+      "underlying_base_row": {
+        "id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611",
+        "set_code": "bw2",
+        "set_name": "Emerging Powers",
+        "name": "Gigalith",
+        "number": "53",
+        "number_plain": "53",
+        "variant_key": "",
+        "gv_id": "GV-PK-EPO-53",
+        "external_mappings": [
+          {
+            "source": "justtcg",
+            "external_id": "pokemon-emerging-powers-gigalith-rare",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgplayer_to_justtcg_mapping_v1",
+              "resolved_via": "tcgplayerId",
+              "justtcg_number": "53/98",
+              "justtcg_set_name": "Emerging Powers",
+              "tcgplayer_external_id": "85705"
+            }
+          },
+          {
+            "source": "tcgdex",
+            "external_id": "bw2-53",
+            "active": true,
+            "meta": null
+          },
+          {
+            "source": "tcgplayer",
+            "external_id": "85705",
+            "active": true,
+            "meta": {
+              "promoted_by": "promote_tcgdex_tcgplayer_bridge_v1",
+              "derived_from": "tcgdex_pricing_productId",
+              "tcgdex_external_id": "bw2-53",
+              "validated_variant_paths": [
+                "pricing.tcgplayer.normal.productId",
+                "pricing.tcgplayer.reverse-holofoil.productId"
+              ]
+            }
+          }
+        ]
+      },
+      "root_cause_classification": "SET_FAMILY_ROUTING_REPAIR_REQUIRED",
+      "root_cause_proof": {
+        "declared_source_family_set_code": "bwp",
+        "source_printed_number_is_slash_number": true,
+        "conflicting_slot_set_code": "bwp",
+        "underlying_base_set_code": "bw2",
+        "wrong_family_match": true
+      }
+    }
+  ]
+}

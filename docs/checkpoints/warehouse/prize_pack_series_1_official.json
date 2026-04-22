@@ -1,0 +1,657 @@
+{
+  "source_name": "Pokemon.com Prize Pack Series One official checklist",
+  "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+  "evidence_tier": "TIER_1",
+  "imported_at": "2026-04-21T03:53:14.810010+00:00",
+  "status": "official_pdf_local_import",
+  "entries": [
+    {
+      "name": "Alcremie V",
+      "printed_number": "022"
+    },
+    {
+      "name": "Alcremie VMAX",
+      "printed_number": "023"
+    },
+    {
+      "name": "Altaria",
+      "printed_number": "049"
+    },
+    {
+      "name": "Altaria",
+      "printed_number": "106"
+    },
+    {
+      "name": "Blaziken V",
+      "printed_number": "020"
+    },
+    {
+      "name": "Blaziken VMAX",
+      "printed_number": "021"
+    },
+    {
+      "name": "Blissey V",
+      "printed_number": "119"
+    },
+    {
+      "name": "Bronzong",
+      "printed_number": "102"
+    },
+    {
+      "name": "Bunnelby",
+      "printed_number": "150"
+    },
+    {
+      "name": "Charizard",
+      "printed_number": "025"
+    },
+    {
+      "name": "Charizard V",
+      "printed_number": "019"
+    },
+    {
+      "name": "Charizard VMAX",
+      "printed_number": "020"
+    },
+    {
+      "name": "Cherrim",
+      "printed_number": "008"
+    },
+    {
+      "name": "Cinccino",
+      "printed_number": "147"
+    },
+    {
+      "name": "Cinderace",
+      "printed_number": "034"
+    },
+    {
+      "name": "Corviknight V",
+      "printed_number": "109"
+    },
+    {
+      "name": "Corviknight VMAX",
+      "printed_number": "110"
+    },
+    {
+      "name": "Cresselia",
+      "printed_number": "064"
+    },
+    {
+      "name": "Crobat",
+      "printed_number": "091"
+    },
+    {
+      "name": "Crobat V",
+      "printed_number": "104"
+    },
+    {
+      "name": "Decidueye",
+      "printed_number": "013"
+    },
+    {
+      "name": "Dedenne",
+      "printed_number": "078"
+    },
+    {
+      "name": "Dialga",
+      "printed_number": "112"
+    },
+    {
+      "name": "Drizzile",
+      "printed_number": "056"
+    },
+    {
+      "name": "Duraludon V",
+      "printed_number": "122"
+    },
+    {
+      "name": "Duraludon VMAX",
+      "printed_number": "123"
+    },
+    {
+      "name": "Eldegoss",
+      "printed_number": "016"
+    },
+    {
+      "name": "Eldegoss V",
+      "printed_number": "019"
+    },
+    {
+      "name": "Empoleon V",
+      "printed_number": "040"
+    },
+    {
+      "name": "Espeon V",
+      "printed_number": "064"
+    },
+    {
+      "name": "Espeon VMAX",
+      "printed_number": "065"
+    },
+    {
+      "name": "Eternatus V",
+      "printed_number": "116"
+    },
+    {
+      "name": "Eternatus VMAX",
+      "printed_number": "117"
+    },
+    {
+      "name": "Falinks",
+      "printed_number": "109"
+    },
+    {
+      "name": "Flaaffy",
+      "printed_number": "055"
+    },
+    {
+      "name": "Flareon V",
+      "printed_number": "SWSH149"
+    },
+    {
+      "name": "Flareon VMAX",
+      "printed_number": "018"
+    },
+    {
+      "name": "Froslass",
+      "printed_number": "036"
+    },
+    {
+      "name": "Frosmoth",
+      "printed_number": "064"
+    },
+    {
+      "name": "Galarian Articuno",
+      "printed_number": "063"
+    },
+    {
+      "name": "Galarian Articuno V",
+      "printed_number": "058"
+    },
+    {
+      "name": "Galarian Moltres",
+      "printed_number": "093"
+    },
+    {
+      "name": "Galarian Moltres V",
+      "printed_number": "097"
+    },
+    {
+      "name": "Galarian Mr. Rime",
+      "printed_number": "036"
+    },
+    {
+      "name": "Galarian Rapidash V",
+      "printed_number": "SWSH111"
+    },
+    {
+      "name": "Galarian Weezing",
+      "printed_number": "113"
+    },
+    {
+      "name": "Galarian Zapdos",
+      "printed_number": "082"
+    },
+    {
+      "name": "Galarian Zapdos V",
+      "printed_number": "080"
+    },
+    {
+      "name": "Galarian Zigzagoon",
+      "printed_number": "117"
+    },
+    {
+      "name": "Gardevoir",
+      "printed_number": "061"
+    },
+    {
+      "name": "Glaceon V",
+      "printed_number": "040"
+    },
+    {
+      "name": "Glaceon VMAX",
+      "printed_number": "041"
+    },
+    {
+      "name": "Hoopa",
+      "printed_number": "111"
+    },
+    {
+      "name": "Houndoom",
+      "printed_number": "096"
+    },
+    {
+      "name": "Ice Rider Calyrex V",
+      "printed_number": "045"
+    },
+    {
+      "name": "Ice Rider Calyrex VMAX",
+      "printed_number": "046"
+    },
+    {
+      "name": "Inteleon",
+      "printed_number": "043"
+    },
+    {
+      "name": "Inteleon",
+      "printed_number": "058"
+    },
+    {
+      "name": "Jolteon V",
+      "printed_number": "SWSH151"
+    },
+    {
+      "name": "Jolteon VMAX",
+      "printed_number": "051"
+    },
+    {
+      "name": "Kricketune V",
+      "printed_number": "006"
+    },
+    {
+      "name": "Kyurem",
+      "printed_number": "116"
+    },
+    {
+      "name": "Leafeon V",
+      "printed_number": "007"
+    },
+    {
+      "name": "Leafeon VMAX",
+      "printed_number": "008"
+    },
+    {
+      "name": "Lycanroc",
+      "printed_number": "087"
+    },
+    {
+      "name": "Malamar",
+      "printed_number": "070"
+    },
+    {
+      "name": "Octillery",
+      "printed_number": "037"
+    },
+    {
+      "name": "Oranguru",
+      "printed_number": "148"
+    },
+    {
+      "name": "Orbeetle",
+      "printed_number": "065"
+    },
+    {
+      "name": "Passimian",
+      "printed_number": "088"
+    },
+    {
+      "name": "Pikachu V",
+      "printed_number": "043"
+    },
+    {
+      "name": "Pikachu VMAX",
+      "printed_number": "044"
+    },
+    {
+      "name": "Polteageist",
+      "printed_number": "083"
+    },
+    {
+      "name": "Pumpkaboo",
+      "printed_number": "076"
+    },
+    {
+      "name": "Rapid Strike Urshifu V",
+      "printed_number": "087"
+    },
+    {
+      "name": "Rapid Strike Urshifu VMAX",
+      "printed_number": "088"
+    },
+    {
+      "name": "Rayquaza V",
+      "printed_number": "110"
+    },
+    {
+      "name": "Rayquaza VMAX",
+      "printed_number": "111"
+    },
+    {
+      "name": "Regidrago",
+      "printed_number": "124"
+    },
+    {
+      "name": "Regieleki",
+      "printed_number": "060"
+    },
+    {
+      "name": "Rillaboom",
+      "printed_number": "014"
+    },
+    {
+      "name": "Shadow Rider Calyrex V",
+      "printed_number": "074"
+    },
+    {
+      "name": "Shadow Rider Calyrex VMAX",
+      "printed_number": "075"
+    },
+    {
+      "name": "Single Strike Urshifu",
+      "printed_number": "108"
+    },
+    {
+      "name": "Single Strike Urshifu V",
+      "printed_number": "085"
+    },
+    {
+      "name": "Single Strike Urshifu VMAX",
+      "printed_number": "086"
+    },
+    {
+      "name": "Smeargle",
+      "printed_number": "128"
+    },
+    {
+      "name": "Snorlax",
+      "printed_number": "131"
+    },
+    {
+      "name": "Spiritomb",
+      "printed_number": "103"
+    },
+    {
+      "name": "Suicune V",
+      "printed_number": "031"
+    },
+    {
+      "name": "Sylveon V",
+      "printed_number": "074"
+    },
+    {
+      "name": "Sylveon VMAX",
+      "printed_number": "075"
+    },
+    {
+      "name": "Togekiss V",
+      "printed_number": "140"
+    },
+    {
+      "name": "Togekiss VMAX",
+      "printed_number": "141"
+    },
+    {
+      "name": "Tyranitar V",
+      "printed_number": "097"
+    },
+    {
+      "name": "Umbreon V",
+      "printed_number": "094"
+    },
+    {
+      "name": "Umbreon VMAX",
+      "printed_number": "095"
+    },
+    {
+      "name": "Vaporeon V",
+      "printed_number": "SWSH150"
+    },
+    {
+      "name": "Vaporeon VMAX",
+      "printed_number": "030"
+    },
+    {
+      "name": "Victini V",
+      "printed_number": "025"
+    },
+    {
+      "name": "Victini VMAX",
+      "printed_number": "022"
+    },
+    {
+      "name": "Whimsicott",
+      "printed_number": "076"
+    },
+    {
+      "name": "Zacian V",
+      "printed_number": "138"
+    },
+    {
+      "name": "Zamazenta V",
+      "printed_number": "139"
+    },
+    {
+      "name": "Zeraora V",
+      "printed_number": "053"
+    },
+    {
+      "name": "Zoroark",
+      "printed_number": "103"
+    },
+    {
+      "name": "Air Balloon",
+      "printed_number": "156"
+    },
+    {
+      "name": "Avery",
+      "printed_number": "130"
+    },
+    {
+      "name": "Big Charm",
+      "printed_number": "158"
+    },
+    {
+      "name": "Big Parasol",
+      "printed_number": "157"
+    },
+    {
+      "name": "Bird Keeper",
+      "printed_number": "159"
+    },
+    {
+      "name": "Boost Shake",
+      "printed_number": "142"
+    },
+    {
+      "name": "Boss’s Orders (Lysandre)",
+      "printed_number": "058"
+    },
+    {
+      "name": "Bruno",
+      "printed_number": "121"
+    },
+    {
+      "name": "Capacious Bucket",
+      "printed_number": "156"
+    },
+    {
+      "name": "Cape of Toughness",
+      "printed_number": "160"
+    },
+    {
+      "name": "Cheryl",
+      "printed_number": "123"
+    },
+    {
+      "name": "Copycat",
+      "printed_number": "143"
+    },
+    {
+      "name": "Crushing Hammer",
+      "printed_number": "159"
+    },
+    {
+      "name": "Crystal Cave",
+      "printed_number": "144"
+    },
+    {
+      "name": "Dream Ball",
+      "printed_number": "146"
+    },
+    {
+      "name": "Echoing Horn",
+      "printed_number": "136"
+    },
+    {
+      "name": "Energy Switch",
+      "printed_number": "162"
+    },
+    {
+      "name": "Escape Rope",
+      "printed_number": "125"
+    },
+    {
+      "name": "Evolution Incense",
+      "printed_number": "163"
+    },
+    {
+      "name": "Exp. Share",
+      "printed_number": "126"
+    },
+    {
+      "name": "Fan of Waves",
+      "printed_number": "127"
+    },
+    {
+      "name": "Fog Crystal",
+      "printed_number": "140"
+    },
+    {
+      "name": "Great Ball",
+      "printed_number": "164"
+    },
+    {
+      "name": "Klara",
+      "printed_number": "145"
+    },
+    {
+      "name": "Korrina’s Focus",
+      "printed_number": "128"
+    },
+    {
+      "name": "Level Ball",
+      "printed_number": "129"
+    },
+    {
+      "name": "Marnie",
+      "printed_number": "169"
+    },
+    {
+      "name": "Melony",
+      "printed_number": "146"
+    },
+    {
+      "name": "Metal Saucer",
+      "printed_number": "170"
+    },
+    {
+      "name": "Nessa",
+      "printed_number": "157"
+    },
+    {
+      "name": "Ordinary Rod",
+      "printed_number": "171"
+    },
+    {
+      "name": "Path to the Peak",
+      "printed_number": "148"
+    },
+    {
+      "name": "Peonia",
+      "printed_number": "149"
+    },
+    {
+      "name": "Peony",
+      "printed_number": "150"
+    },
+    {
+      "name": "Phoebe",
+      "printed_number": "130"
+    },
+    {
+      "name": "Professor’s Research (Professor Juniper)",
+      "printed_number": "060"
+    },
+    {
+      "name": "Quick Ball",
+      "printed_number": "179"
+    },
+    {
+      "name": "Raihan",
+      "printed_number": "152"
+    },
+    {
+      "name": "Rare Candy",
+      "printed_number": "180"
+    },
+    {
+      "name": "Rescue Carrier",
+      "printed_number": "154"
+    },
+    {
+      "name": "Scoop Up Net",
+      "printed_number": "165"
+    },
+    {
+      "name": "Stormy Mountains",
+      "printed_number": "161"
+    },
+    {
+      "name": "Switch",
+      "printed_number": "183"
+    },
+    {
+      "name": "Tool Jammer",
+      "printed_number": "136"
+    },
+    {
+      "name": "Tower of Darkness",
+      "printed_number": "137"
+    },
+    {
+      "name": "Tower of Waters",
+      "printed_number": "138"
+    },
+    {
+      "name": "Turbo Patch",
+      "printed_number": "172"
+    },
+    {
+      "name": "Urn of Vitality",
+      "printed_number": "139"
+    },
+    {
+      "name": "Zinnia’s Resolve",
+      "printed_number": "164"
+    },
+    {
+      "name": "Aurora Energy",
+      "printed_number": "186"
+    },
+    {
+      "name": "Capture Energy",
+      "printed_number": "171"
+    },
+    {
+      "name": "Impact Energy",
+      "printed_number": "157"
+    },
+    {
+      "name": "Rapid Strike Energy",
+      "printed_number": "140"
+    },
+    {
+      "name": "Single Strike Energy",
+      "printed_number": "141"
+    },
+    {
+      "name": "Spiral Energy",
+      "printed_number": "159"
+    },
+    {
+      "name": "Twin Energy",
+      "printed_number": "174"
+    }
+  ]
+}

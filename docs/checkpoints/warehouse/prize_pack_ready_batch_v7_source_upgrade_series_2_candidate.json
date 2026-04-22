@@ -1,0 +1,2199 @@
+{
+  "generated_at": "2026-04-21T17:45:17.295Z",
+  "workflow": "PRIZE_PACK_SERIES_2_SOURCE_UPGRADE_FALLBACK_V1",
+  "status": "READY_BATCH_CANDIDATE",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.json",
+    "docs/checkpoints/warehouse/prize_pack_series_2_official.json"
+  ],
+  "selection_summary": {
+    "row_count": 22,
+    "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+    "variant_key": "play_pokemon_stamp",
+    "target_origin": "SERIES_2_OFFICIAL_SOURCE_FALLBACK_ACQUISITION_V1",
+    "confirmed_series_coverage": [
+      2
+    ]
+  },
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-oricorio-rare",
+      "source_candidate_id": null,
+      "name": "Oricorio",
+      "candidate_name": "Oricorio",
+      "printed_number": "042/264",
+      "number_plain": "42",
+      "normalized_number_plain": "42",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Oricorio",
+            "printed_number": "042",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Oricorio::042/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-42",
+      "base_route": "GV-PK-FST-42",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-42",
+        "base_route": "GV-PK-FST-42",
+        "unique_base_route": true,
+        "base_card_name": "Oricorio"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-42",
+          "base_route": "GV-PK-FST-42"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Oricorio",
+            "printed_number": "042",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Inteleon V",
+      "candidate_name": "Inteleon V",
+      "printed_number": "078/264",
+      "number_plain": "78",
+      "normalized_number_plain": "78",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Inteleon V",
+            "printed_number": "078",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Inteleon V::078/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-78",
+      "base_route": "GV-PK-FST-78",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-78",
+        "base_route": "GV-PK-FST-78",
+        "unique_base_route": true,
+        "base_card_name": "Inteleon V"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-78",
+          "base_route": "GV-PK-FST-78"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Inteleon V",
+            "printed_number": "078",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Inteleon VMAX",
+      "candidate_name": "Inteleon VMAX",
+      "printed_number": "079/264",
+      "number_plain": "79",
+      "normalized_number_plain": "79",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Inteleon VMAX",
+            "printed_number": "079",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Inteleon VMAX::079/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-79",
+      "base_route": "GV-PK-FST-79",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-79",
+        "base_route": "GV-PK-FST-79",
+        "unique_base_route": true,
+        "base_card_name": "Inteleon VMAX"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-79",
+          "base_route": "GV-PK-FST-79"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Inteleon VMAX",
+            "printed_number": "079",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boltund-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Boltund V",
+      "candidate_name": "Boltund V",
+      "printed_number": "103/264",
+      "number_plain": "103",
+      "normalized_number_plain": "103",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Boltund V",
+            "printed_number": "103",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Boltund V::103/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-103",
+      "base_route": "GV-PK-FST-103",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-103",
+        "base_route": "GV-PK-FST-103",
+        "unique_base_route": true,
+        "base_card_name": "Boltund V"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-103",
+          "base_route": "GV-PK-FST-103"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Boltund V",
+            "printed_number": "103",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 5,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boltund-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Boltund VMAX",
+      "candidate_name": "Boltund VMAX",
+      "printed_number": "104/264",
+      "number_plain": "104",
+      "normalized_number_plain": "104",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Boltund VMAX",
+            "printed_number": "104",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Boltund VMAX::104/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-104",
+      "base_route": "GV-PK-FST-104",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-104",
+        "base_route": "GV-PK-FST-104",
+        "unique_base_route": true,
+        "base_card_name": "Boltund VMAX"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-104",
+          "base_route": "GV-PK-FST-104"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Boltund VMAX",
+            "printed_number": "104",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 6,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mew-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Mew V",
+      "candidate_name": "Mew V",
+      "printed_number": "113/264",
+      "number_plain": "113",
+      "normalized_number_plain": "113",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Mew V",
+            "printed_number": "113",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Mew V::113/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-113",
+      "base_route": "GV-PK-FST-113",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-113",
+        "base_route": "GV-PK-FST-113",
+        "unique_base_route": true,
+        "base_card_name": "Mew V"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-113",
+          "base_route": "GV-PK-FST-113"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Mew V",
+            "printed_number": "113",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 7,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mew-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Mew VMAX",
+      "candidate_name": "Mew VMAX",
+      "printed_number": "114/264",
+      "number_plain": "114",
+      "normalized_number_plain": "114",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Mew VMAX",
+            "printed_number": "114",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Mew VMAX::114/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-114",
+      "base_route": "GV-PK-FST-114",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-114",
+        "base_route": "GV-PK-FST-114",
+        "unique_base_route": true,
+        "base_card_name": "Mew VMAX"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-114",
+          "base_route": "GV-PK-FST-114"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Mew VMAX",
+            "printed_number": "114",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 8,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-meloetta-rare",
+      "source_candidate_id": null,
+      "name": "Meloetta",
+      "candidate_name": "Meloetta",
+      "printed_number": "124/264",
+      "number_plain": "124",
+      "normalized_number_plain": "124",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Meloetta",
+            "printed_number": "124",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Meloetta::124/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-124",
+      "base_route": "GV-PK-FST-124",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-124",
+        "base_route": "GV-PK-FST-124",
+        "unique_base_route": true,
+        "base_card_name": "Meloetta"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-124",
+          "base_route": "GV-PK-FST-124"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Meloetta",
+            "printed_number": "124",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 9,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gengar-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Gengar V",
+      "candidate_name": "Gengar V",
+      "printed_number": "156/264",
+      "number_plain": "156",
+      "normalized_number_plain": "156",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Gengar V",
+            "printed_number": "156",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Gengar V::156/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-156",
+      "base_route": "GV-PK-FST-156",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-156",
+        "base_route": "GV-PK-FST-156",
+        "unique_base_route": true,
+        "base_card_name": "Gengar V"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-156",
+          "base_route": "GV-PK-FST-156"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Gengar V",
+            "printed_number": "156",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 10,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gengar-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Gengar VMAX",
+      "candidate_name": "Gengar VMAX",
+      "printed_number": "157/264",
+      "number_plain": "157",
+      "normalized_number_plain": "157",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Gengar VMAX",
+            "printed_number": "157",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Gengar VMAX::157/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-157",
+      "base_route": "GV-PK-FST-157",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-157",
+        "base_route": "GV-PK-FST-157",
+        "unique_base_route": true,
+        "base_card_name": "Gengar VMAX"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-157",
+          "base_route": "GV-PK-FST-157"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Gengar VMAX",
+            "printed_number": "157",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 11,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Genesect V",
+      "candidate_name": "Genesect V",
+      "printed_number": "185/264",
+      "number_plain": "185",
+      "normalized_number_plain": "185",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Genesect V",
+            "printed_number": "185",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Genesect V::185/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-185",
+      "base_route": "GV-PK-FST-185",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-185",
+        "base_route": "GV-PK-FST-185",
+        "unique_base_route": true,
+        "base_card_name": "Genesect V"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-185",
+          "base_route": "GV-PK-FST-185"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Genesect V",
+            "printed_number": "185",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 12,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-latias-rare",
+      "source_candidate_id": null,
+      "name": "Latias",
+      "candidate_name": "Latias",
+      "printed_number": "193/264",
+      "number_plain": "193",
+      "normalized_number_plain": "193",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Latias",
+            "printed_number": "193",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Latias::193/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-193",
+      "base_route": "GV-PK-FST-193",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-193",
+        "base_route": "GV-PK-FST-193",
+        "unique_base_route": true,
+        "base_card_name": "Latias"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-193",
+          "base_route": "GV-PK-FST-193"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Latias",
+            "printed_number": "193",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 13,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-latios-rare",
+      "source_candidate_id": null,
+      "name": "Latios",
+      "candidate_name": "Latios",
+      "printed_number": "194/264",
+      "number_plain": "194",
+      "normalized_number_plain": "194",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Latios",
+            "printed_number": "194",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Latios::194/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-194",
+      "base_route": "GV-PK-FST-194",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-194",
+        "base_route": "GV-PK-FST-194",
+        "unique_base_route": true,
+        "base_card_name": "Latios"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-194",
+          "base_route": "GV-PK-FST-194"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Latios",
+            "printed_number": "194",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 14,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dunsparce-uncommon",
+      "source_candidate_id": null,
+      "name": "Dunsparce",
+      "candidate_name": "Dunsparce",
+      "printed_number": "207/264",
+      "number_plain": "207",
+      "normalized_number_plain": "207",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Dunsparce",
+            "printed_number": "207",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Dunsparce::207/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-207",
+      "base_route": "GV-PK-FST-207",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-207",
+        "base_route": "GV-PK-FST-207",
+        "unique_base_route": true,
+        "base_card_name": "Dunsparce"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-207",
+          "base_route": "GV-PK-FST-207"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Dunsparce",
+            "printed_number": "207",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 15,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-adventurer-s-discovery-uncommon",
+      "source_candidate_id": null,
+      "name": "Adventurer's Discovery",
+      "candidate_name": "Adventurer's Discovery",
+      "printed_number": "224/264",
+      "number_plain": "224",
+      "normalized_number_plain": "224",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Adventurer’s Discovery",
+            "printed_number": "224",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Adventurer's Discovery::224/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-224",
+      "base_route": "GV-PK-FST-224",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-224",
+        "base_route": "GV-PK-FST-224",
+        "unique_base_route": true,
+        "base_card_name": "Adventurer's Discovery"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-224",
+          "base_route": "GV-PK-FST-224"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Adventurer’s Discovery",
+            "printed_number": "224",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 16,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-battle-vip-pass-uncommon",
+      "source_candidate_id": null,
+      "name": "Battle VIP Pass",
+      "candidate_name": "Battle VIP Pass",
+      "printed_number": "225/264",
+      "number_plain": "225",
+      "normalized_number_plain": "225",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Battle VIP Pass",
+            "printed_number": "225",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Battle VIP Pass::225/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-225",
+      "base_route": "GV-PK-FST-225",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-225",
+        "base_route": "GV-PK-FST-225",
+        "unique_base_route": true,
+        "base_card_name": "Battle VIP Pass"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-225",
+          "base_route": "GV-PK-FST-225"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Battle VIP Pass",
+            "printed_number": "225",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 17,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cram-o-matic-uncommon",
+      "source_candidate_id": null,
+      "name": "Cram-o-matic",
+      "candidate_name": "Cram-o-matic",
+      "printed_number": "229/264",
+      "number_plain": "229",
+      "normalized_number_plain": "229",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Cram-o-matic",
+            "printed_number": "229",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Cram-o-matic::229/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-229",
+      "base_route": "GV-PK-FST-229",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-229",
+        "base_route": "GV-PK-FST-229",
+        "unique_base_route": true,
+        "base_card_name": "Cram-o-matic"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-229",
+          "base_route": "GV-PK-FST-229"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Cram-o-matic",
+            "printed_number": "229",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 18,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-elesa-s-sparkle-uncommon",
+      "source_candidate_id": null,
+      "name": "Elesa's Sparkle",
+      "candidate_name": "Elesa's Sparkle",
+      "printed_number": "233/264",
+      "number_plain": "233",
+      "normalized_number_plain": "233",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Elesa’s Sparkle",
+            "printed_number": "233",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Elesa's Sparkle::233/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-233",
+      "base_route": "GV-PK-FST-233",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-233",
+        "base_route": "GV-PK-FST-233",
+        "unique_base_route": true,
+        "base_card_name": "Elesa's Sparkle"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-233",
+          "base_route": "GV-PK-FST-233"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Elesa’s Sparkle",
+            "printed_number": "233",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 19,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-power-tablet-uncommon",
+      "source_candidate_id": null,
+      "name": "Power Tablet",
+      "candidate_name": "Power Tablet",
+      "printed_number": "236/264",
+      "number_plain": "236",
+      "normalized_number_plain": "236",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Power Tablet",
+            "printed_number": "236",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Power Tablet::236/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-236",
+      "base_route": "GV-PK-FST-236",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-236",
+        "base_route": "GV-PK-FST-236",
+        "unique_base_route": true,
+        "base_card_name": "Power Tablet"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-236",
+          "base_route": "GV-PK-FST-236"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Power Tablet",
+            "printed_number": "236",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 20,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-fusion-strike-energy-uncommon",
+      "source_candidate_id": null,
+      "name": "Fusion Strike Energy",
+      "candidate_name": "Fusion Strike Energy",
+      "printed_number": "244/264",
+      "number_plain": "244",
+      "normalized_number_plain": "244",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Fusion Strike Energy",
+            "printed_number": "244",
+            "set_code": "FST"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh8",
+      "effective_set_code": "swsh8",
+      "effective_routed_set_code": "swsh8",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swsh8::Fusion Strike Energy::244/264::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-FST-244",
+      "base_route": "GV-PK-FST-244",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-FST-244",
+        "base_route": "GV-PK-FST-244",
+        "unique_base_route": true,
+        "base_card_name": "Fusion Strike Energy"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-FST-244",
+          "base_route": "GV-PK-FST-244"
+        },
+        "effective_routed_set_code": "swsh8",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Fusion Strike Energy",
+            "printed_number": "244",
+            "set_code": "FST"
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 21,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-leafeon-vstar-promo",
+      "source_candidate_id": null,
+      "name": "Leafeon VSTAR",
+      "candidate_name": "Leafeon VSTAR",
+      "printed_number": "SWSH195",
+      "number_plain": "195",
+      "normalized_number_plain": "195",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Leafeon VSTAR",
+            "printed_number": "SWSH195",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swshp",
+      "effective_set_code": "swshp",
+      "effective_routed_set_code": "swshp",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swshp::Leafeon VSTAR::SWSH195::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SW-SWSH195",
+      "base_route": "GV-PK-PR-SW-SWSH195",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SW-SWSH195",
+        "base_route": "GV-PK-PR-SW-SWSH195",
+        "unique_base_route": true,
+        "base_card_name": "Leafeon VSTAR"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PR-SW-SWSH195",
+          "base_route": "GV-PK-PR-SW-SWSH195"
+        },
+        "effective_routed_set_code": "swshp",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Leafeon VSTAR",
+            "printed_number": "SWSH195",
+            "set_code": null
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 22,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vstar-promo",
+      "source_candidate_id": null,
+      "name": "Glaceon VSTAR",
+      "candidate_name": "Glaceon VSTAR",
+      "printed_number": "SWSH197",
+      "number_plain": "197",
+      "normalized_number_plain": "197",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v7_source_upgrade_series_2": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Glaceon VSTAR",
+            "printed_number": "SWSH197",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swshp",
+      "effective_set_code": "swshp",
+      "effective_routed_set_code": "swshp",
+      "effective_set_name": null,
+      "effective_routed_set_name": null,
+      "canonical_queue_key": "swshp::Glaceon VSTAR::SWSH197::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SW-SWSH197",
+      "base_route": "GV-PK-PR-SW-SWSH197",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SW-SWSH197",
+        "base_route": "GV-PK-PR-SW-SWSH197",
+        "unique_base_route": true,
+        "base_card_name": "Glaceon VSTAR"
+      },
+      "reference_hints_payload": {
+        "provenance": "official_series_2_fallback_import",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PR-SW-SWSH197",
+          "base_route": "GV-PK-PR-SW-SWSH197"
+        },
+        "effective_routed_set_code": "swshp",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "source_upgrade_provenance": {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import_via_archive_official_url_capture",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "archive_capture_timestamp": "20251006052846",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+          "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+          "matched_entry": {
+            "name": "Glaceon VSTAR",
+            "printed_number": "SWSH197",
+            "set_code": null
+          }
+        }
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "official_series_2_single_series_match_via_archive_official_url_capture",
+      "source_upgrade_series_2_status": "tier_upgraded_to_tier_1",
+      "final_reason": "Matched the locally imported official Prize Pack Series 2 checklist for the same base name, printed number, and official set token; no Series 1 official match was present, so the generic Play! Pokemon stamp resolves to one deterministic canonical stamped identity."
+    }
+  ],
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V7_SOURCE_UPGRADE_SERIES_2"
+}

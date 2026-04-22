@@ -1,0 +1,2553 @@
+{
+  "generated_at": "2026-04-18T23:27:38.300Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+  "note": "Bounded source fixture for Prize Pack evidence v2. Series 4-6 use JustInBasil structured set lists. Series 7-8 use official checklist PDFs.",
+  "evidence_tiers": [
+    {
+      "id": "TIER_1",
+      "summary": "Official Play! Pokemon gallery pages, official card lists, and official checklist PDFs."
+    },
+    {
+      "id": "TIER_2",
+      "summary": "Trusted structured aggregators with card-level numbering, including JustInBasil-style set lists."
+    },
+    {
+      "id": "TIER_3",
+      "summary": "Community corroboration such as multiple independent listings or bounded compare audits."
+    },
+    {
+      "id": "TIER_4",
+      "summary": "Weak evidence: single source, inconsistent naming, or no external checklist corroboration."
+    }
+  ],
+  "series_sources": [
+    {
+      "series": 4,
+      "source_name": "JustInBasil Prize Pack Series 4 Set List",
+      "source_type": "justinbasil_set_list",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4",
+      "evidence_tier": "TIER_2",
+      "entries": [
+        {
+          "name": "Archeops",
+          "set_token": "SIT",
+          "number_plain": "147",
+          "raw_line": "S Archeops SIT 147"
+        },
+        {
+          "name": "Armarouge",
+          "set_token": "SVI",
+          "number_plain": "41",
+          "raw_line": "S Armarouge SVI 41"
+        },
+        {
+          "name": "Baxcalibur",
+          "set_token": "PAL",
+          "number_plain": "60",
+          "raw_line": "S Baxcalibur PAL 60"
+        },
+        {
+          "name": "Charizard ex",
+          "set_token": "OBF",
+          "number_plain": "125",
+          "raw_line": "H Charizard ex OBF 125"
+        },
+        {
+          "name": "Chien-Pao ex",
+          "set_token": "PAL",
+          "number_plain": "61",
+          "raw_line": "H Chien-Pao ex PAL 61"
+        },
+        {
+          "name": "Claydol",
+          "set_token": "OBF",
+          "number_plain": "95",
+          "raw_line": "S Claydol OBF 95"
+        },
+        {
+          "name": "Dedenne ex",
+          "set_token": "PAL",
+          "number_plain": "93",
+          "raw_line": "H Dedenne ex PAL 93"
+        },
+        {
+          "name": "Dragonite",
+          "set_token": "SIT",
+          "number_plain": "131",
+          "raw_line": "S Dragonite SIT 131"
+        },
+        {
+          "name": "Drifloon",
+          "set_token": "SVI",
+          "number_plain": "89",
+          "raw_line": "H Drifloon SVI 89"
+        },
+        {
+          "name": "Forretress ex",
+          "set_token": "PAL",
+          "number_plain": "5",
+          "raw_line": "H Forretress ex PAL 5"
+        },
+        {
+          "name": "Gardevoir ex",
+          "set_token": "SVI",
+          "number_plain": "86",
+          "raw_line": "H Gardevoir ex SVI 86"
+        },
+        {
+          "name": "Giratina V",
+          "set_token": "LOR",
+          "number_plain": "130",
+          "raw_line": "H Giratina V LOR 130"
+        },
+        {
+          "name": "Giratina VSTAR",
+          "set_token": "LOR",
+          "number_plain": "131",
+          "raw_line": "H Giratina VSTAR LOR 131"
+        },
+        {
+          "name": "Hisuian Goodra V",
+          "set_token": "LOR",
+          "number_plain": "135",
+          "raw_line": "H Hisuian Goodra V LOR 135"
+        },
+        {
+          "name": "Hisuian Goodra VSTAR",
+          "set_token": "LOR",
+          "number_plain": "136",
+          "raw_line": "H Hisuian Goodra VSTAR LOR 136"
+        },
+        {
+          "name": "Kirlia",
+          "set_token": "SIT",
+          "number_plain": "68",
+          "raw_line": "S, H Kirlia SIT 68"
+        },
+        {
+          "name": "Klefki",
+          "set_token": "SVI",
+          "number_plain": "96",
+          "raw_line": "S, H Klefki SVI 96"
+        },
+        {
+          "name": "Koraidon ex",
+          "set_token": "SVI",
+          "number_plain": "125",
+          "raw_line": "H Koraidon ex SVI 125"
+        },
+        {
+          "name": "Kyogre",
+          "set_token": "CRZ",
+          "number_plain": "36",
+          "raw_line": "H Kyogre CRZ 36"
+        },
+        {
+          "name": "Lugia V",
+          "set_token": "SIT",
+          "number_plain": "138",
+          "raw_line": "H Lugia V SIT 138"
+        },
+        {
+          "name": "Lugia VSTAR",
+          "set_token": "SIT",
+          "number_plain": "139",
+          "raw_line": "H Lugia VSTAR SIT 139"
+        },
+        {
+          "name": "Lunatone",
+          "set_token": "OBF",
+          "number_plain": "92",
+          "raw_line": "S Lunatone OBF 92"
+        },
+        {
+          "name": "Luxray",
+          "set_token": "PAL",
+          "number_plain": "71",
+          "raw_line": "S Luxray PAL 71"
+        },
+        {
+          "name": "Meowscarada ex",
+          "set_token": "PAL",
+          "number_plain": "15",
+          "raw_line": "H Meowscarada ex PAL 15"
+        },
+        {
+          "name": "Mimikyu",
+          "set_token": "PAL",
+          "number_plain": "97",
+          "raw_line": "S Mimikyu PAL 97"
+        },
+        {
+          "name": "Miraidon ex",
+          "set_token": null,
+          "number_plain": "81",
+          "raw_line": "H Miraidon ex 81"
+        },
+        {
+          "name": "Noivern ex",
+          "set_token": "PAL",
+          "number_plain": "153",
+          "raw_line": "H Noivern ex PAL 153"
+        },
+        {
+          "name": "Pelipper",
+          "set_token": "PAL",
+          "number_plain": "159",
+          "raw_line": "S Pelipper PAL 159"
+        },
+        {
+          "name": "Pidgeot ex",
+          "set_token": "OBF",
+          "number_plain": "164",
+          "raw_line": "H Pidgeot ex OBF 164"
+        },
+        {
+          "name": "Quaquaval",
+          "set_token": "SVI",
+          "number_plain": "54",
+          "raw_line": "S Quaquaval SVI 54"
+        },
+        {
+          "name": "Regidrago V",
+          "set_token": "SIT",
+          "number_plain": "135",
+          "raw_line": "H Regidrago V SIT 135"
+        },
+        {
+          "name": "Regidrago VSTAR",
+          "set_token": "SIT",
+          "number_plain": "136",
+          "raw_line": "H Regidrago VSTAR SIT 136"
+        },
+        {
+          "name": "Regieleki V",
+          "set_token": "SIT",
+          "number_plain": "57",
+          "raw_line": "H Regieleki V SIT 57"
+        },
+        {
+          "name": "Regieleki VMAX",
+          "set_token": "SIT",
+          "number_plain": "58",
+          "raw_line": "H Regieleki VMAX SIT 58"
+        },
+        {
+          "name": "Revavroom",
+          "set_token": "SVI",
+          "number_plain": "142",
+          "raw_line": "S Revavroom SVI 142"
+        },
+        {
+          "name": "Skeledirge ex",
+          "set_token": "PAL",
+          "number_plain": "37",
+          "raw_line": "H Skeledirge ex PAL 37"
+        },
+        {
+          "name": "Spiritomb",
+          "set_token": "PAL",
+          "number_plain": "89",
+          "raw_line": "H Spiritomb PAL 89"
+        },
+        {
+          "name": "Squawkabilly ex",
+          "set_token": "PAL",
+          "number_plain": "169",
+          "raw_line": "H Squawkabilly ex PAL 169"
+        },
+        {
+          "name": "Ting-Lu ex",
+          "set_token": "PAL",
+          "number_plain": "127",
+          "raw_line": "H Ting-Lu ex PAL 127"
+        },
+        {
+          "name": "Toedscruel ex",
+          "set_token": "OBF",
+          "number_plain": "22",
+          "raw_line": "H Toedscruel ex OBF 22"
+        },
+        {
+          "name": "Tyranitar ex",
+          "set_token": "OBF",
+          "number_plain": "66",
+          "raw_line": "H Tyranitar ex OBF 66"
+        },
+        {
+          "name": "Wailord",
+          "set_token": "SIT",
+          "number_plain": "38",
+          "raw_line": "H Wailord SIT 38"
+        },
+        {
+          "name": "Arezu",
+          "set_token": "LOR",
+          "number_plain": "153",
+          "raw_line": "S Arezu LOR 153"
+        },
+        {
+          "name": "Artazon",
+          "set_token": "PAL",
+          "number_plain": "171",
+          "raw_line": "S, H Artazon PAL 171"
+        },
+        {
+          "name": "Arven",
+          "set_token": "SVI",
+          "number_plain": "166",
+          "raw_line": "S, H Arven SVI 166"
+        },
+        {
+          "name": "Beach Court",
+          "set_token": "SVI",
+          "number_plain": "167",
+          "raw_line": "S, H Beach Court SVI 167"
+        },
+        {
+          "name": "Boss's Orders",
+          "set_token": "PAL",
+          "number_plain": "172",
+          "raw_line": "S, H Boss's Orders PAL 172"
+        },
+        {
+          "name": "Bravery Charm",
+          "set_token": "PAL",
+          "number_plain": "173",
+          "raw_line": "S, H Bravery Charm PAL 173"
+        },
+        {
+          "name": "Capturing Aroma",
+          "set_token": "SIT",
+          "number_plain": "153",
+          "raw_line": "S, H Capturing Aroma SIT 153"
+        },
+        {
+          "name": "Clavell",
+          "set_token": "PAL",
+          "number_plain": "177",
+          "raw_line": "H Clavell PAL 177"
+        },
+        {
+          "name": "Defiance Band",
+          "set_token": "SVI",
+          "number_plain": "169",
+          "raw_line": "S Defiance Band SVI 169"
+        },
+        {
+          "name": "Electric Generator",
+          "set_token": "SVI",
+          "number_plain": "170",
+          "raw_line": "S, H Electric Generator SVI 170"
+        },
+        {
+          "name": "Emergency Jelly",
+          "set_token": "SIT",
+          "number_plain": "155",
+          "raw_line": "S Emergency Jelly SIT 155"
+        },
+        {
+          "name": "Fighting Au Lait",
+          "set_token": "PAL",
+          "number_plain": "181",
+          "raw_line": "S Fighting Au Lait PAL 181"
+        },
+        {
+          "name": "Forest Seal Stone",
+          "set_token": "SIT",
+          "number_plain": "156",
+          "raw_line": "S Forest Seal Stone SIT 156"
+        },
+        {
+          "name": "Iono",
+          "set_token": "PAL",
+          "number_plain": "185",
+          "raw_line": "S, H Iono PAL 185"
+        },
+        {
+          "name": "Jacq",
+          "set_token": "SVI",
+          "number_plain": "175",
+          "raw_line": "H Jacq SVI 175"
+        },
+        {
+          "name": "Judge",
+          "set_token": "SVI",
+          "number_plain": "176",
+          "raw_line": "H Judge SVI 176"
+        },
+        {
+          "name": "Letter of Encouragement",
+          "set_token": "OBF",
+          "number_plain": "189",
+          "raw_line": "S Letter of Encouragement OBF 189"
+        },
+        {
+          "name": "Lost City",
+          "set_token": "LOR",
+          "number_plain": "161",
+          "raw_line": "H Lost City LOR 161"
+        },
+        {
+          "name": "Lost Vacuum",
+          "set_token": "CRZ",
+          "number_plain": "135",
+          "raw_line": "S, H Lost Vacuum CRZ 135"
+        },
+        {
+          "name": "Nest Ball",
+          "set_token": "SVI",
+          "number_plain": "181",
+          "raw_line": "S, H Nest Ball SVI 181"
+        },
+        {
+          "name": "Pal Pad",
+          "set_token": "SVI",
+          "number_plain": "182",
+          "raw_line": "H Pal Pad SVI 182"
+        },
+        {
+          "name": "Penny",
+          "set_token": "SVI",
+          "number_plain": "183",
+          "raw_line": "S Penny SVI 183"
+        },
+        {
+          "name": "Professor's Research",
+          "set_token": "SVI",
+          "number_plain": "189",
+          "raw_line": "S Professor's Research SVI 189"
+        },
+        {
+          "name": "Professor's Research",
+          "set_token": "SVI",
+          "number_plain": "190",
+          "raw_line": "S Professor's Research SVI 190"
+        },
+        {
+          "name": "Rare Candy",
+          "set_token": "SVI",
+          "number_plain": "191",
+          "raw_line": "H Rare Candy SVI 191"
+        },
+        {
+          "name": "Sky Seal Stone",
+          "set_token": "CRZ",
+          "number_plain": "143",
+          "raw_line": "S Sky Seal Stone CRZ 143"
+        },
+        {
+          "name": "Super Rod",
+          "set_token": "PAL",
+          "number_plain": "188",
+          "raw_line": "S, H Super Rod PAL 188"
+        },
+        {
+          "name": "Superior Energy Retrieval",
+          "set_token": "PAL",
+          "number_plain": "189",
+          "raw_line": "S, H Superior Energy Retrieval PAL 189"
+        },
+        {
+          "name": "Switch",
+          "set_token": "SVI",
+          "number_plain": "194",
+          "raw_line": "H Switch SVI 194"
+        },
+        {
+          "name": "Trekking Shoes",
+          "set_token": "CRZ",
+          "number_plain": "145",
+          "raw_line": "S, H Trekking Shoes CRZ 145"
+        },
+        {
+          "name": "Ultra Ball",
+          "set_token": "CRZ",
+          "number_plain": "146",
+          "raw_line": "S, H Ultra Ball CRZ 146"
+        },
+        {
+          "name": "Ultra Ball",
+          "set_token": "SVI",
+          "number_plain": "196",
+          "raw_line": "S, H Ultra Ball SVI 196"
+        },
+        {
+          "name": "Worker",
+          "set_token": "SIT",
+          "number_plain": "167",
+          "raw_line": "H Worker SIT 167"
+        },
+        {
+          "name": "Jet Energy",
+          "set_token": "PAL",
+          "number_plain": "190",
+          "raw_line": "S, H Jet Energy PAL 190"
+        },
+        {
+          "name": "Luminous Energy",
+          "set_token": "PAL",
+          "number_plain": "191",
+          "raw_line": "S, H Luminous Energy PAL 191"
+        },
+        {
+          "name": "Reversal Energy",
+          "set_token": "PAL",
+          "number_plain": "192",
+          "raw_line": "S, H Reversal Energy PAL 192"
+        },
+        {
+          "name": "Basic Grass Energy",
+          "set_token": "SVE",
+          "number_plain": "1",
+          "raw_line": "S, H Basic Grass Energy SVE 1"
+        },
+        {
+          "name": "Basic Fire Energy",
+          "set_token": "SVI",
+          "number_plain": "2",
+          "raw_line": "S, H Basic Fire Energy SVI 2"
+        },
+        {
+          "name": "Basic Water Energy",
+          "set_token": "SVE",
+          "number_plain": "3",
+          "raw_line": "S, H Basic Water Energy SVE 3"
+        },
+        {
+          "name": "Basic Lightning Energy",
+          "set_token": "SVE",
+          "number_plain": "4",
+          "raw_line": "S, H Basic Lightning Energy SVE 4"
+        },
+        {
+          "name": "Basic Psychic Energy",
+          "set_token": "SVE",
+          "number_plain": "5",
+          "raw_line": "S, H Basic Psychic Energy SVE 5"
+        },
+        {
+          "name": "Basic Fighting Energy",
+          "set_token": "SVI",
+          "number_plain": "6",
+          "raw_line": "S, H Basic Fighting Energy SVI 6"
+        },
+        {
+          "name": "Basic Darkness Energy",
+          "set_token": "SVI",
+          "number_plain": "7",
+          "raw_line": "S, H Basic Darkness Energy SVI 7"
+        },
+        {
+          "name": "Basic Metal Energy",
+          "set_token": "SVI",
+          "number_plain": "8",
+          "raw_line": "S, H Basic Metal Energy SVI 8"
+        }
+      ]
+    },
+    {
+      "series": 5,
+      "source_name": "JustInBasil Prize Pack Series 5 Set List",
+      "source_type": "justinbasil_set_list",
+      "source_url": "https://www.justinbasil.com/set-lists/pps5",
+      "evidence_tier": "TIER_2",
+      "entries": [
+        {
+          "name": "Baxcalibur",
+          "set_token": "PAL",
+          "number_plain": "60",
+          "raw_line": "S Baxcalibur PAL 60"
+        },
+        {
+          "name": "Brambleghast",
+          "set_token": "TEF",
+          "number_plain": "21",
+          "raw_line": "S Brambleghast TEF 21"
+        },
+        {
+          "name": "Brute Bonnet",
+          "set_token": "PAR",
+          "number_plain": "123",
+          "raw_line": "S Brute Bonnet PAR 123"
+        },
+        {
+          "name": "Charizard ex",
+          "set_token": "OBF",
+          "number_plain": "125",
+          "raw_line": "H Charizard ex OBF 125"
+        },
+        {
+          "name": "Chien-Pao ex",
+          "set_token": "PAL",
+          "number_plain": "61",
+          "raw_line": "H Chien-Pao ex PAL 61"
+        },
+        {
+          "name": "Dodrio",
+          "set_token": "MEW",
+          "number_plain": "85",
+          "raw_line": "H Dodrio MEW 85"
+        },
+        {
+          "name": "Farigiraf ex",
+          "set_token": "TEF",
+          "number_plain": "108",
+          "raw_line": "H Farigiraf ex TEF 108"
+        },
+        {
+          "name": "Feraligatr",
+          "set_token": "TEF",
+          "number_plain": "41",
+          "raw_line": "S Feraligatr TEF 41"
+        },
+        {
+          "name": "Flutter Mane",
+          "set_token": "TEF",
+          "number_plain": "78",
+          "raw_line": "S Flutter Mane TEF 78"
+        },
+        {
+          "name": "Forretress ex",
+          "set_token": "PAL",
+          "number_plain": "5",
+          "raw_line": "H Forretress ex PAL 5"
+        },
+        {
+          "name": "Garchomp ex",
+          "set_token": "PAR",
+          "number_plain": "38",
+          "raw_line": "H Garchomp ex PAR 38"
+        },
+        {
+          "name": "Gardevoir ex",
+          "set_token": "SVI",
+          "number_plain": "86",
+          "raw_line": "H Gardevoir ex SVI 86"
+        },
+        {
+          "name": "Garganacl",
+          "set_token": "PAR",
+          "number_plain": "104",
+          "raw_line": "S Garganacl PAR 104"
+        },
+        {
+          "name": "Gholdengo ex",
+          "set_token": "PAR",
+          "number_plain": "139",
+          "raw_line": "H Gholdengo ex PAR 139"
+        },
+        {
+          "name": "Groudon",
+          "set_token": "PAR",
+          "number_plain": "93",
+          "raw_line": "S Groudon PAR 93"
+        },
+        {
+          "name": "Iron Crown ex",
+          "set_token": "TEF",
+          "number_plain": "81",
+          "raw_line": "H Iron Crown ex TEF 81"
+        },
+        {
+          "name": "Iron Hands ex",
+          "set_token": "PAR",
+          "number_plain": "70",
+          "raw_line": "H Iron Hands ex PAR 70"
+        },
+        {
+          "name": "Iron Valiant",
+          "set_token": "PAR",
+          "number_plain": "89",
+          "raw_line": "H Iron Valiant PAR 89"
+        },
+        {
+          "name": "Jirachi",
+          "set_token": "PAR",
+          "number_plain": "126",
+          "raw_line": "H Jirachi PAR 126"
+        },
+        {
+          "name": "Koraidon",
+          "set_token": "TEF",
+          "number_plain": "119",
+          "raw_line": "S Koraidon TEF 119"
+        },
+        {
+          "name": "Mew ex",
+          "set_token": "MEW",
+          "number_plain": "151",
+          "raw_line": "H Mew ex MEW 151"
+        },
+        {
+          "name": "Mewtwo ex",
+          "set_token": "PAR",
+          "number_plain": "58",
+          "raw_line": "H Mewtwo ex PAR 58"
+        },
+        {
+          "name": "Miraidon",
+          "set_token": "TEF",
+          "number_plain": "121",
+          "raw_line": "S Miraidon TEF 121"
+        },
+        {
+          "name": "Miraidon ex",
+          "set_token": null,
+          "number_plain": "81",
+          "raw_line": "H Miraidon ex 81"
+        },
+        {
+          "name": "Morpeko",
+          "set_token": "PAR",
+          "number_plain": "121",
+          "raw_line": "H Morpeko PAR 121"
+        },
+        {
+          "name": "Pidgeot ex",
+          "set_token": "OBF",
+          "number_plain": "164",
+          "raw_line": "H Pidgeot ex OBF 164"
+        },
+        {
+          "name": "Rabsca",
+          "set_token": "TEF",
+          "number_plain": "24",
+          "raw_line": "S Rabsca TEF 24"
+        },
+        {
+          "name": "Raging Bolt ex",
+          "set_token": "TEF",
+          "number_plain": "123",
+          "raw_line": "H Raging Bolt ex TEF 123"
+        },
+        {
+          "name": "Roaring Moon",
+          "set_token": "TEF",
+          "number_plain": "109",
+          "raw_line": "H Roaring Moon TEF 109"
+        },
+        {
+          "name": "Roaring Moon ex",
+          "set_token": "PAR",
+          "number_plain": "124",
+          "raw_line": "H Roaring Moon ex PAR 124"
+        },
+        {
+          "name": "Sandy Shocks ex",
+          "set_token": "PAR",
+          "number_plain": "108",
+          "raw_line": "H Sandy Shocks ex PAR 108"
+        },
+        {
+          "name": "Skeledirge ex",
+          "set_token": "PAR",
+          "number_plain": "137",
+          "raw_line": "H Skeledirge ex PAR 137"
+        },
+        {
+          "name": "Squawkabilly ex",
+          "set_token": "PAL",
+          "number_plain": "169",
+          "raw_line": "H Squawkabilly ex PAL 169"
+        },
+        {
+          "name": "Torterra ex",
+          "set_token": "TEF",
+          "number_plain": "12",
+          "raw_line": "H Torterra ex TEF 12"
+        },
+        {
+          "name": "Xatu",
+          "set_token": "PAR",
+          "number_plain": "72",
+          "raw_line": "S Xatu PAR 72"
+        },
+        {
+          "name": "Ancient Booster Energy Capsule",
+          "set_token": "PAR",
+          "number_plain": "159",
+          "raw_line": "S, H Ancient Booster Energy Capsule PAR 159"
+        },
+        {
+          "name": "Arven",
+          "set_token": "SVI",
+          "number_plain": "166",
+          "raw_line": "S, H Arven SVI 166"
+        },
+        {
+          "name": "Atticus",
+          "set_token": "PAF",
+          "number_plain": "77",
+          "raw_line": "S Atticus PAF 77"
+        },
+        {
+          "name": "Awakening Drum",
+          "set_token": "TEF",
+          "number_plain": "141",
+          "raw_line": "H Awakening Drum TEF 141"
+        },
+        {
+          "name": "Boss's Orders",
+          "set_token": "PAL",
+          "number_plain": "172",
+          "raw_line": "S, H Boss's Orders PAL 172"
+        },
+        {
+          "name": "Buddy-Buddy Poffin",
+          "set_token": "TEF",
+          "number_plain": "144",
+          "raw_line": "S, H Buddy-Buddy Poffin TEF 144"
+        },
+        {
+          "name": "Ciphermaniac's Codebreaking",
+          "set_token": "TEF",
+          "number_plain": "145",
+          "raw_line": "S, H Ciphermaniac's Codebreaking TEF 145"
+        },
+        {
+          "name": "Counter Catcher",
+          "set_token": "PAR",
+          "number_plain": "160",
+          "raw_line": "S, H Counter Catcher PAR 160"
+        },
+        {
+          "name": "Earthen Vessel",
+          "set_token": "PAR",
+          "number_plain": "163",
+          "raw_line": "S, H Earthen Vessel PAR 163"
+        },
+        {
+          "name": "Explorer's Guidance",
+          "set_token": "TEF",
+          "number_plain": "147",
+          "raw_line": "H Explorer's Guidance TEF 147"
+        },
+        {
+          "name": "Full Metal Lab",
+          "set_token": "TEF",
+          "number_plain": "148",
+          "raw_line": "H Full Metal Lab TEF 148"
+        },
+        {
+          "name": "Future Booster Energy Capsule",
+          "set_token": "PAR",
+          "number_plain": "164",
+          "raw_line": "S, H Future Booster Energy Capsule PAR 164"
+        },
+        {
+          "name": "Heavy Baton",
+          "set_token": "TEF",
+          "number_plain": "151",
+          "raw_line": "S Heavy Baton TEF 151"
+        },
+        {
+          "name": "Hero's Cape",
+          "set_token": "TEF",
+          "number_plain": "152",
+          "raw_line": "H Hero's Cape TEF 152"
+        },
+        {
+          "name": "Iono",
+          "set_token": "PAL",
+          "number_plain": "185",
+          "raw_line": "S, H Iono PAL 185"
+        },
+        {
+          "name": "Judge",
+          "set_token": "SVI",
+          "number_plain": "176",
+          "raw_line": "H Judge SVI 176"
+        },
+        {
+          "name": "Luxurious Cape",
+          "set_token": "PAR",
+          "number_plain": "166",
+          "raw_line": "S Luxurious Cape PAR 166"
+        },
+        {
+          "name": "Maximum Belt",
+          "set_token": "TEF",
+          "number_plain": "154",
+          "raw_line": "H Maximum Belt TEF 154"
+        },
+        {
+          "name": "Mela",
+          "set_token": "PAR",
+          "number_plain": "167",
+          "raw_line": "S Mela PAR 167"
+        },
+        {
+          "name": "Moonlit Hill",
+          "set_token": "PAF",
+          "number_plain": "81",
+          "raw_line": "H Moonlit Hill PAF 81"
+        },
+        {
+          "name": "Morty's Conviction",
+          "set_token": "TEF",
+          "number_plain": "155",
+          "raw_line": "S Morty's Conviction TEF 155"
+        },
+        {
+          "name": "Nest Ball",
+          "set_token": "SVI",
+          "number_plain": "181",
+          "raw_line": "S, H Nest Ball SVI 181"
+        },
+        {
+          "name": "Perilous Jungle",
+          "set_token": "TEF",
+          "number_plain": "156",
+          "raw_line": "H Perilous Jungle TEF 156"
+        },
+        {
+          "name": "Prime Catcher",
+          "set_token": "TEF",
+          "number_plain": "157",
+          "raw_line": "H Prime Catcher TEF 157"
+        },
+        {
+          "name": "Professor Sada's Vitality",
+          "set_token": "PAR",
+          "number_plain": "170",
+          "raw_line": "S, H Professor Sada's Vitality PAR 170"
+        },
+        {
+          "name": "Professor Turo's Scenario",
+          "set_token": "PAR",
+          "number_plain": "171",
+          "raw_line": "S, H Professor Turo's Scenario PAR 171"
+        },
+        {
+          "name": "Professor's Research",
+          "set_token": "SVI",
+          "number_plain": "189",
+          "raw_line": "S Professor's Research SVI 189"
+        },
+        {
+          "name": "Professor's Research",
+          "set_token": "SVI",
+          "number_plain": "190",
+          "raw_line": "S Professor's Research SVI 190"
+        },
+        {
+          "name": "Rare Candy",
+          "set_token": "SVI",
+          "number_plain": "191",
+          "raw_line": "H Rare Candy SVI 191"
+        },
+        {
+          "name": "Reboot Pod",
+          "set_token": "TEF",
+          "number_plain": "158",
+          "raw_line": "H Reboot Pod TEF 158"
+        },
+        {
+          "name": "Rescue Board",
+          "set_token": "TEF",
+          "number_plain": "159",
+          "raw_line": "S, H Rescue Board TEF 159"
+        },
+        {
+          "name": "Salvatore",
+          "set_token": "TEF",
+          "number_plain": "160",
+          "raw_line": "S Salvatore TEF 160"
+        },
+        {
+          "name": "Super Rod",
+          "set_token": "PAL",
+          "number_plain": "188",
+          "raw_line": "S, H Super Rod PAL 188"
+        },
+        {
+          "name": "Switch",
+          "set_token": "SVI",
+          "number_plain": "194",
+          "raw_line": "H Switch SVI 194"
+        },
+        {
+          "name": "Technical Machine: Devolution",
+          "set_token": "PAR",
+          "number_plain": "177",
+          "raw_line": "H Technical Machine: Devolution PAR 177"
+        },
+        {
+          "name": "Technical Machine: Evolution",
+          "set_token": "PAR",
+          "number_plain": "178",
+          "raw_line": "H Technical Machine: Evolution PAR 178"
+        },
+        {
+          "name": "Techno Radar",
+          "set_token": "PAR",
+          "number_plain": "180",
+          "raw_line": "S, H Techno Radar PAR 180"
+        },
+        {
+          "name": "Tulip",
+          "set_token": "PAR",
+          "number_plain": "181",
+          "raw_line": "S Tulip PAR 181"
+        },
+        {
+          "name": "Ultra Ball",
+          "set_token": "SVI",
+          "number_plain": "196",
+          "raw_line": "S, H Ultra Ball SVI 196"
+        },
+        {
+          "name": "Jet Energy",
+          "set_token": "PAL",
+          "number_plain": "190",
+          "raw_line": "S, H Jet Energy PAL 190"
+        },
+        {
+          "name": "Mist Energy",
+          "set_token": "TEF",
+          "number_plain": "161",
+          "raw_line": "S, H Mist Energy TEF 161"
+        },
+        {
+          "name": "Neo Upper Energy",
+          "set_token": "TEF",
+          "number_plain": "162",
+          "raw_line": "H Neo Upper Energy TEF 162"
+        },
+        {
+          "name": "Reversal Energy",
+          "set_token": "PAL",
+          "number_plain": "192",
+          "raw_line": "S, H Reversal Energy PAL 192"
+        },
+        {
+          "name": "Basic Grass Energy",
+          "set_token": "SVE",
+          "number_plain": "1",
+          "raw_line": "S, H Basic Grass Energy SVE 1"
+        },
+        {
+          "name": "Basic Fire Energy",
+          "set_token": "SVI",
+          "number_plain": "2",
+          "raw_line": "S, H Basic Fire Energy SVI 2"
+        },
+        {
+          "name": "Basic Water Energy",
+          "set_token": "SVE",
+          "number_plain": "3",
+          "raw_line": "S, H Basic Water Energy SVE 3"
+        },
+        {
+          "name": "Basic Lightning Energy",
+          "set_token": "SVE",
+          "number_plain": "4",
+          "raw_line": "S, H Basic Lightning Energy SVE 4"
+        },
+        {
+          "name": "Basic Psychic Energy",
+          "set_token": "SVE",
+          "number_plain": "5",
+          "raw_line": "S, H Basic Psychic Energy SVE 5"
+        },
+        {
+          "name": "Basic Fighting Energy",
+          "set_token": "SVI",
+          "number_plain": "6",
+          "raw_line": "S, H Basic Fighting Energy SVI 6"
+        },
+        {
+          "name": "Basic Darkness Energy",
+          "set_token": "SVI",
+          "number_plain": "7",
+          "raw_line": "S, H Basic Darkness Energy SVI 7"
+        },
+        {
+          "name": "Basic Metal Energy",
+          "set_token": "SVI",
+          "number_plain": "8",
+          "raw_line": "S, H Basic Metal Energy SVI 8"
+        }
+      ]
+    },
+    {
+      "series": 6,
+      "source_name": "JustInBasil Prize Pack Series 6 Set List",
+      "source_type": "justinbasil_set_list",
+      "source_url": "https://www.justinbasil.com/set-lists/pps6",
+      "evidence_tier": "TIER_2",
+      "entries": [
+        {
+          "name": "Archaludon",
+          "set_token": "SCR",
+          "number_plain": "107",
+          "raw_line": "S, H Archaludon SCR 107"
+        },
+        {
+          "name": "Bloodmoon Ursaluna",
+          "set_token": "TWM",
+          "number_plain": "141",
+          "raw_line": "H Bloodmoon Ursaluna TWM 141"
+        },
+        {
+          "name": "Bouffalant",
+          "set_token": "SCR",
+          "number_plain": "119",
+          "raw_line": "S, H Bouffalant SCR 119"
+        },
+        {
+          "name": "Charizard ex",
+          "set_token": "OBF",
+          "number_plain": "125",
+          "raw_line": "H Charizard ex OBF 125"
+        },
+        {
+          "name": "Copperajah",
+          "set_token": "SFA",
+          "number_plain": "42",
+          "raw_line": "H Copperajah SFA 42"
+        },
+        {
+          "name": "Cornerstone Mask Ogerpon ex",
+          "set_token": "TWM",
+          "number_plain": "112",
+          "raw_line": "H Cornerstone Mask Ogerpon ex WM 112"
+        },
+        {
+          "name": "Ditto",
+          "set_token": "MEW",
+          "number_plain": "132",
+          "raw_line": "H Ditto MEW 132"
+        },
+        {
+          "name": "Dragapult ex",
+          "set_token": "TWM",
+          "number_plain": "130",
+          "raw_line": "H Dragapult ex TWM 130"
+        },
+        {
+          "name": "Drakloak",
+          "set_token": "TWM",
+          "number_plain": "129",
+          "raw_line": "H Drakloak TWM 129"
+        },
+        {
+          "name": "Fan Rotom",
+          "set_token": "SCR",
+          "number_plain": "118",
+          "raw_line": "H Fan Rotom SCR 118"
+        },
+        {
+          "name": "Farigiraf",
+          "set_token": "TWM",
+          "number_plain": "84",
+          "raw_line": "S Farigiraf TWM 84"
+        },
+        {
+          "name": "Fezandipiti",
+          "set_token": "TWM",
+          "number_plain": "96",
+          "raw_line": "S Fezandipiti TWM 96"
+        },
+        {
+          "name": "Fezandipiti ex",
+          "set_token": "SFA",
+          "number_plain": "38",
+          "raw_line": "H Fezandipiti ex SFA 38"
+        },
+        {
+          "name": "Froslass",
+          "set_token": "TWM",
+          "number_plain": "53",
+          "raw_line": "S Froslass TWM 53"
+        },
+        {
+          "name": "Galvantula",
+          "set_token": "SFA",
+          "number_plain": "2",
+          "raw_line": "H Galvantula SFA 2"
+        },
+        {
+          "name": "Galvantula ex",
+          "set_token": "SCR",
+          "number_plain": "51",
+          "raw_line": "H Galvantula ex SCR 51"
+        },
+        {
+          "name": "Genesect",
+          "set_token": "SFA",
+          "number_plain": "40",
+          "raw_line": "H Genesect SFA 40"
+        },
+        {
+          "name": "Great Tusk",
+          "set_token": "TEF",
+          "number_plain": "97",
+          "raw_line": "S Great Tusk TEF 97"
+        },
+        {
+          "name": "Hearthflame Mask Ogerpon ex",
+          "set_token": "TWM",
+          "number_plain": "40",
+          "raw_line": "H Hearthflame Mask Ogerpon ex TWM 40"
+        },
+        {
+          "name": "Heatran",
+          "set_token": "TWM",
+          "number_plain": "123",
+          "raw_line": "H Heatran TWM 123"
+        },
+        {
+          "name": "Infernape",
+          "set_token": "TWM",
+          "number_plain": "33",
+          "raw_line": "S Infernape TWM 33"
+        },
+        {
+          "name": "Iron Boulder",
+          "set_token": "SCR",
+          "number_plain": "71",
+          "raw_line": "S, H Iron Boulder SCR 71"
+        },
+        {
+          "name": "Iron Crown ex",
+          "set_token": "TEF",
+          "number_plain": "81",
+          "raw_line": "H Iron Crown ex TEF 81"
+        },
+        {
+          "name": "Iron Hands ex",
+          "set_token": "PAR",
+          "number_plain": "70",
+          "raw_line": "H Iron Hands ex PAR 70"
+        },
+        {
+          "name": "Iron Thorns ex",
+          "set_token": "TWM",
+          "number_plain": "77",
+          "raw_line": "H Iron Thorns ex TWM 77"
+        },
+        {
+          "name": "Koraidon",
+          "set_token": "TEF",
+          "number_plain": "119",
+          "raw_line": "S Koraidon TEF 119"
+        },
+        {
+          "name": "Ledian",
+          "set_token": "SCR",
+          "number_plain": "3",
+          "raw_line": "S Ledian SCR 3"
+        },
+        {
+          "name": "Metang",
+          "set_token": "TEF",
+          "number_plain": "114",
+          "raw_line": "H Metang TEF 114"
+        },
+        {
+          "name": "Mew ex",
+          "set_token": "MEW",
+          "number_plain": "151",
+          "raw_line": "H Mew ex MEW 151"
+        },
+        {
+          "name": "Miraidon",
+          "set_token": "TEF",
+          "number_plain": "121",
+          "raw_line": "S Miraidon TEF 121"
+        },
+        {
+          "name": "Morpeko",
+          "set_token": "PAR",
+          "number_plain": "121",
+          "raw_line": "S Morpeko PAR 121"
+        },
+        {
+          "name": "Morpeko",
+          "set_token": "TWM",
+          "number_plain": "72",
+          "raw_line": "S Morpeko TWM 72"
+        },
+        {
+          "name": "Munkidori",
+          "set_token": "TWM",
+          "number_plain": "95",
+          "raw_line": "S Munkidori TWM 95"
+        },
+        {
+          "name": "Munkidori ex",
+          "set_token": "SFA",
+          "number_plain": "37",
+          "raw_line": "H Munkidori ex SFA 37"
+        },
+        {
+          "name": "Noctowl",
+          "set_token": "SCR",
+          "number_plain": "115",
+          "raw_line": "S, H Noctowl SCR 115"
+        },
+        {
+          "name": "Okidogi",
+          "set_token": "TWM",
+          "number_plain": "111",
+          "raw_line": "S Okidogi TWM 111"
+        },
+        {
+          "name": "Okidogi ex",
+          "set_token": "SFA",
+          "number_plain": "36",
+          "raw_line": "H Okidogi ex SFA 36"
+        },
+        {
+          "name": "Pecharunt ex",
+          "set_token": "SFA",
+          "number_plain": "39",
+          "raw_line": "H Pecharunt ex SFA 39"
+        },
+        {
+          "name": "Pidgeot ex",
+          "set_token": "OBF",
+          "number_plain": "164",
+          "raw_line": "H Pidgeot ex OBF 164"
+        },
+        {
+          "name": "Raging Bolt",
+          "set_token": "SCR",
+          "number_plain": "111",
+          "raw_line": "S Raging Bolt SCR 111"
+        },
+        {
+          "name": "Raging Bolt ex",
+          "set_token": "TWF",
+          "number_plain": "123",
+          "raw_line": "H Raging Bolt ex TWF 123"
+        },
+        {
+          "name": "Roaring Moon",
+          "set_token": "TEF",
+          "number_plain": "109",
+          "raw_line": "S Roaring Moon TEF 109"
+        },
+        {
+          "name": "Roaring Moon ex",
+          "set_token": "PAR",
+          "number_plain": "124",
+          "raw_line": "H Roaring Moon ex PAR 124"
+        },
+        {
+          "name": "Tatsugiri",
+          "set_token": "TWM",
+          "number_plain": "131",
+          "raw_line": "S Tatsugiri TWM 131"
+        },
+        {
+          "name": "Teal Mask Ogerpon ex",
+          "set_token": "TWM",
+          "number_plain": "25",
+          "raw_line": "H Teal Mask Ogerpon ex TWM 25"
+        },
+        {
+          "name": "Terapagos ex",
+          "set_token": "SCR",
+          "number_plain": "128",
+          "raw_line": "H Terapagos ex SCR 128"
+        },
+        {
+          "name": "Wellspring Mask Ogerpon ex",
+          "set_token": "TWM",
+          "number_plain": "64",
+          "raw_line": "H Wellspring Mask Ogerpon ex TWM 64"
+        },
+        {
+          "name": "Basic Grass Energy",
+          "set_token": "SVE",
+          "number_plain": "9",
+          "raw_line": "S, H Basic Grass Energy SVE 9"
+        },
+        {
+          "name": "Basic Fire Energy",
+          "set_token": "SVI",
+          "number_plain": "10",
+          "raw_line": "S, H Basic Fire Energy SVI 10"
+        },
+        {
+          "name": "Basic Water Energy",
+          "set_token": "SVE",
+          "number_plain": "11",
+          "raw_line": "S, H Basic Water Energy SVE 11"
+        },
+        {
+          "name": "Basic Lightning Energy",
+          "set_token": "SVE",
+          "number_plain": "12",
+          "raw_line": "S, H Basic Lightning Energy SVE 12"
+        },
+        {
+          "name": "Basic Psychic Energy",
+          "set_token": "SVE",
+          "number_plain": "13",
+          "raw_line": "S, H Basic Psychic Energy SVE 13"
+        },
+        {
+          "name": "Basic Fighting Energy",
+          "set_token": "SVI",
+          "number_plain": "14",
+          "raw_line": "S, H Basic Fighting Energy SVI 14"
+        },
+        {
+          "name": "Basic Darkness Energy",
+          "set_token": "SVI",
+          "number_plain": "15",
+          "raw_line": "S, H Basic Darkness Energy SVI 15"
+        },
+        {
+          "name": "Basic Metal Energy",
+          "set_token": "SVI",
+          "number_plain": "16",
+          "raw_line": "S, H Basic Metal Energy SVI 16"
+        }
+      ]
+    },
+    {
+      "series": 7,
+      "source_name": "Play! Pokemon Prize Pack Series 7 official checklist",
+      "source_type": "official_checklist_pdf",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf",
+      "evidence_tier": "TIER_1",
+      "entries": [
+        {
+          "name": "Archaludon",
+          "set_token": "SCR",
+          "number_plain": "107",
+          "raw_line": "Archaludon SCR 107 ■"
+        },
+        {
+          "name": "Archaludon ex",
+          "set_token": "SSP",
+          "number_plain": "130",
+          "raw_line": "Archaludon ex SSP 130 ■"
+        },
+        {
+          "name": "Azumarill",
+          "set_token": "SSP",
+          "number_plain": "74",
+          "raw_line": "Azumarill SSP 074 ■"
+        },
+        {
+          "name": "Blissey ex",
+          "set_token": "TWM",
+          "number_plain": "134",
+          "raw_line": "Blissey ex TWM 134 ■"
+        },
+        {
+          "name": "Bloodmoon Ursaluna ex",
+          "set_token": "TWM",
+          "number_plain": "141",
+          "raw_line": "Bloodmoon Ursaluna ex TWM 141 ■"
+        },
+        {
+          "name": "Bouffalant",
+          "set_token": "SCR",
+          "number_plain": "119",
+          "raw_line": "Bouffalant SCR 119 ■"
+        },
+        {
+          "name": "Budew",
+          "set_token": "PRE",
+          "number_plain": "4",
+          "raw_line": "Budew PRE 004 ■ ■"
+        },
+        {
+          "name": "Ceruledge ex",
+          "set_token": "SSP",
+          "number_plain": "36",
+          "raw_line": "Ceruledge ex SSP 036 ■"
+        },
+        {
+          "name": "Conkeldurr",
+          "set_token": "TWM",
+          "number_plain": "105",
+          "raw_line": "Conkeldurr TWM 105 ■"
+        },
+        {
+          "name": "Drilbur",
+          "set_token": "TEF",
+          "number_plain": "85",
+          "raw_line": "Drilbur TEF 085 ■"
+        },
+        {
+          "name": "Dudunsparce",
+          "set_token": "TEF",
+          "number_plain": "129",
+          "raw_line": "Dudunsparce TEF 129 ■"
+        },
+        {
+          "name": "Dusclops",
+          "set_token": "SHF",
+          "number_plain": "19",
+          "raw_line": "Dusclops SHF 019 ■ ■"
+        },
+        {
+          "name": "Dusknoir",
+          "set_token": "SHF",
+          "number_plain": "20",
+          "raw_line": "Dusknoir SHF 020 ■ ■"
+        },
+        {
+          "name": "Eevee",
+          "set_token": "SSP",
+          "number_plain": "143",
+          "raw_line": "Eevee SSP 143 ■"
+        },
+        {
+          "name": "Eevee ex",
+          "set_token": "PRE",
+          "number_plain": "75",
+          "raw_line": "Eevee ex PRE 075 ■"
+        },
+        {
+          "name": "Espeon ex",
+          "set_token": "PRE",
+          "number_plain": "34",
+          "raw_line": "Espeon ex PRE 034 ■"
+        },
+        {
+          "name": "Fan Rotom",
+          "set_token": "SCR",
+          "number_plain": "118",
+          "raw_line": "Fan Rotom SCR 118 ■"
+        },
+        {
+          "name": "Fezandipiti ex",
+          "set_token": "SHF",
+          "number_plain": "38",
+          "raw_line": "Fezandipiti ex SHF 038 ■"
+        },
+        {
+          "name": "Flareon ex",
+          "set_token": "PRE",
+          "number_plain": "14",
+          "raw_line": "Flareon ex PRE 014 ■"
+        },
+        {
+          "name": "Froslass",
+          "set_token": "TWM",
+          "number_plain": "53",
+          "raw_line": "Froslass TWM 053 ■"
+        },
+        {
+          "name": "Galvantula",
+          "set_token": "SHF",
+          "number_plain": "2",
+          "raw_line": "Galvantula SHF 002 ■"
+        },
+        {
+          "name": "Gastrodon",
+          "set_token": "SSP",
+          "number_plain": "107",
+          "raw_line": "Gastrodon SSP 107 ■"
+        },
+        {
+          "name": "Glaceon ex",
+          "set_token": "PRE",
+          "number_plain": "26",
+          "raw_line": "Glaceon ex PRE 026 ■"
+        },
+        {
+          "name": "Greninja ex",
+          "set_token": "TWM",
+          "number_plain": "106",
+          "raw_line": "Greninja ex TWM 106 ■"
+        },
+        {
+          "name": "Ho-Oh",
+          "set_token": "SSP",
+          "number_plain": "19",
+          "raw_line": "Ho-Oh SSP 019 ■"
+        },
+        {
+          "name": "Hop’s Dubwool",
+          "set_token": "JTG",
+          "number_plain": "136",
+          "raw_line": "Hop’s Dubwool JTG 136 ■"
+        },
+        {
+          "name": "Hop’s Snorlax",
+          "set_token": "JTG",
+          "number_plain": "117",
+          "raw_line": "Hop’s Snorlax JTG 117 ■"
+        },
+        {
+          "name": "Hop’s Zacian ex",
+          "set_token": "JTG",
+          "number_plain": "111",
+          "raw_line": "Hop’s Zacian ex JTG 111 ■"
+        },
+        {
+          "name": "Iono’s Bellibolt ex",
+          "set_token": "JTG",
+          "number_plain": "53",
+          "raw_line": "Iono’s Bellibolt ex JTG 053 ■"
+        },
+        {
+          "name": "Iono’s Kilowattrel",
+          "set_token": "JTG",
+          "number_plain": "55",
+          "raw_line": "Iono’s Kilowattrel JTG 055 ■"
+        },
+        {
+          "name": "Iono’s Voltorb",
+          "set_token": "JTG",
+          "number_plain": "47",
+          "raw_line": "Iono’s Voltorb JTG 047 ■"
+        },
+        {
+          "name": "Iron Thorns ex",
+          "set_token": "TWM",
+          "number_plain": "77",
+          "raw_line": "Iron Thorns ex TWM 077 ■"
+        },
+        {
+          "name": "Jolteon ex",
+          "set_token": "PRE",
+          "number_plain": "30",
+          "raw_line": "Jolteon ex PRE 030 ■"
+        },
+        {
+          "name": "Joltik",
+          "set_token": "SCR",
+          "number_plain": "50",
+          "raw_line": "Joltik SCR 050 ■"
+        },
+        {
+          "name": "Latias ex",
+          "set_token": "SSP",
+          "number_plain": "76",
+          "raw_line": "Latias ex SSP 076 ■"
+        },
+        {
+          "name": "Leafeon ex",
+          "set_token": "PRE",
+          "number_plain": "6",
+          "raw_line": "Leafeon ex PRE 006 ■"
+        },
+        {
+          "name": "Lillie’s Clefairy ex",
+          "set_token": "JTG",
+          "number_plain": "56",
+          "raw_line": "Lillie’s Clefairy ex JTG 056 ■"
+        },
+        {
+          "name": "Lillie’s Ribombee",
+          "set_token": "JTG",
+          "number_plain": "67",
+          "raw_line": "Lillie’s Ribombee JTG 067 ■ ■"
+        },
+        {
+          "name": "Magneton",
+          "set_token": "SSP",
+          "number_plain": "59",
+          "raw_line": "Magneton SSP 059 ■"
+        },
+        {
+          "name": "Mamoswine ex",
+          "set_token": "JTG",
+          "number_plain": "79",
+          "raw_line": "Mamoswine ex JTG 079 ■"
+        },
+        {
+          "name": "Metang",
+          "set_token": "TEF",
+          "number_plain": "114",
+          "raw_line": "Metang TEF 114 ■"
+        },
+        {
+          "name": "Munkidori",
+          "set_token": "TWM",
+          "number_plain": "95",
+          "raw_line": "Munkidori TWM 095 ■"
+        },
+        {
+          "name": "Noctowl",
+          "set_token": "SCR",
+          "number_plain": "115",
+          "raw_line": "Noctowl SCR 115 ■ ■"
+        },
+        {
+          "name": "N’s Darmanitan",
+          "set_token": "JTG",
+          "number_plain": "27",
+          "raw_line": "N’s Darmanitan JTG 027 ■"
+        },
+        {
+          "name": "N’s Reshiram",
+          "set_token": "JTG",
+          "number_plain": "116",
+          "raw_line": "N’s Reshiram JTG 116 ■"
+        },
+        {
+          "name": "N’s Zoroark ex",
+          "set_token": "JTG",
+          "number_plain": "98",
+          "raw_line": "N’s Zoroark ex JTG 098 ■"
+        },
+        {
+          "name": "Pikachu ex",
+          "set_token": "SSP",
+          "number_plain": "57",
+          "raw_line": "Pikachu ex SSP 057 ■"
+        },
+        {
+          "name": "Rabsca",
+          "set_token": "TEF",
+          "number_plain": "24",
+          "raw_line": "Rabsca TEF 024 ■"
+        },
+        {
+          "name": "Regigigas",
+          "set_token": "PRE",
+          "number_plain": "86",
+          "raw_line": "Regigigas PRE 086 ■"
+        },
+        {
+          "name": "Sylveon ex",
+          "set_token": "SSP",
+          "number_plain": "86",
+          "raw_line": "Sylveon ex SSP 086 ■"
+        },
+        {
+          "name": "Tapu Koko",
+          "set_token": "SSP",
+          "number_plain": "65",
+          "raw_line": "Tapu Koko SSP 065 ■"
+        },
+        {
+          "name": "Tatsugiri",
+          "set_token": "TWM",
+          "number_plain": "131",
+          "raw_line": "Tatsugiri TWM 131 ■"
+        },
+        {
+          "name": "Teal Mask Ogerpon ex",
+          "set_token": "TWM",
+          "number_plain": "25",
+          "raw_line": "Teal Mask Ogerpon ex TWM 025 ■"
+        },
+        {
+          "name": "Terapagos",
+          "set_token": "SSP",
+          "number_plain": "161",
+          "raw_line": "Terapagos SSP 161 ■"
+        },
+        {
+          "name": "Terapagos ex",
+          "set_token": "SCR",
+          "number_plain": "128",
+          "raw_line": "Terapagos ex SCR 128 ■"
+        },
+        {
+          "name": "Tyranitar",
+          "set_token": "JTG",
+          "number_plain": "95",
+          "raw_line": "Tyranitar JTG 095 ■"
+        },
+        {
+          "name": "Umbreon ex",
+          "set_token": "PRE",
+          "number_plain": "60",
+          "raw_line": "Umbreon ex PRE 060 ■"
+        },
+        {
+          "name": "Vaporeon ex",
+          "set_token": "PRE",
+          "number_plain": "23",
+          "raw_line": "Vaporeon ex PRE 023 ■"
+        },
+        {
+          "name": "Area Zero Underdepths",
+          "set_token": "SCR",
+          "number_plain": "131",
+          "raw_line": "Area Zero Underdepths SCR 131 ■ ■"
+        },
+        {
+          "name": "Bianca’s Devotion",
+          "set_token": "TEF",
+          "number_plain": "142",
+          "raw_line": "Bianca’s Devotion TEF 142 ■"
+        },
+        {
+          "name": "Briar",
+          "set_token": "SCR",
+          "number_plain": "132",
+          "raw_line": "Briar SCR 132 ■"
+        },
+        {
+          "name": "Brilliant Blender",
+          "set_token": "SSP",
+          "number_plain": "164",
+          "raw_line": "Brilliant Blender SSP 164 ■"
+        },
+        {
+          "name": "Brock’s Scouting",
+          "set_token": "JTG",
+          "number_plain": "146",
+          "raw_line": "Brock’s Scouting JTG 146 ■"
+        },
+        {
+          "name": "Buddy-Buddy Poffin",
+          "set_token": "TEF",
+          "number_plain": "144",
+          "raw_line": "Buddy-Buddy Poffin TEF 144 ■ ■"
+        },
+        {
+          "name": "Bug Catching Set",
+          "set_token": "TWM",
+          "number_plain": "143",
+          "raw_line": "Bug Catching Set TWM 143 ■"
+        },
+        {
+          "name": "Carmine",
+          "set_token": "TWM",
+          "number_plain": "145",
+          "raw_line": "Carmine TWM 145 ■"
+        },
+        {
+          "name": "Colress’s Tenacity",
+          "set_token": "SHF",
+          "number_plain": "57",
+          "raw_line": "Colress’s Tenacity SHF 057 ■ ■"
+        },
+        {
+          "name": "Counter Gain",
+          "set_token": "SSP",
+          "number_plain": "169",
+          "raw_line": "Counter Gain SSP 169 ■"
+        },
+        {
+          "name": "Crispin",
+          "set_token": "SCR",
+          "number_plain": "133",
+          "raw_line": "Crispin SCR 133 ■ ■"
+        },
+        {
+          "name": "Enhanced Hammer",
+          "set_token": "TWM",
+          "number_plain": "148",
+          "raw_line": "Enhanced Hammer TWM 148 ■"
+        },
+        {
+          "name": "Glass Trumpet",
+          "set_token": "SCR",
+          "number_plain": "135",
+          "raw_line": "Glass Trumpet SCR 135 ■ ■"
+        },
+        {
+          "name": "Gravity Mountain",
+          "set_token": "SSP",
+          "number_plain": "177",
+          "raw_line": "Gravity Mountain SSP 177 ■"
+        },
+        {
+          "name": "Hop’s Bag",
+          "set_token": "JTG",
+          "number_plain": "147",
+          "raw_line": "Hop’s Bag JTG 147 ■"
+        },
+        {
+          "name": "Hop’s Choice Band",
+          "set_token": "JTG",
+          "number_plain": "148",
+          "raw_line": "Hop’s Choice Band JTG 148 ■"
+        },
+        {
+          "name": "Iris’s Fighting Spirit",
+          "set_token": "JTG",
+          "number_plain": "149",
+          "raw_line": "Iris’s Fighting Spirit JTG 149 ■"
+        },
+        {
+          "name": "Jamming Tower",
+          "set_token": "TWM",
+          "number_plain": "153",
+          "raw_line": "Jamming Tower TWM 153 ■"
+        },
+        {
+          "name": "Levincia",
+          "set_token": "JTG",
+          "number_plain": "150",
+          "raw_line": "Levincia JTG 150 ■ ■"
+        },
+        {
+          "name": "Lillie’s Pearl",
+          "set_token": "JTG",
+          "number_plain": "151",
+          "raw_line": "Lillie’s Pearl JTG 151 ■"
+        },
+        {
+          "name": "Max Rod",
+          "set_token": "PRE",
+          "number_plain": "116",
+          "raw_line": "Max Rod PRE 116 ■"
+        },
+        {
+          "name": "Night Stretcher",
+          "set_token": "SHF",
+          "number_plain": "61",
+          "raw_line": "Night Stretcher SHF 061 ■ ■"
+        },
+        {
+          "name": "N’s Castle",
+          "set_token": "JTG",
+          "number_plain": "152",
+          "raw_line": "N’s Castle JTG 152 ■"
+        },
+        {
+          "name": "N’s PP Up",
+          "set_token": "JTG",
+          "number_plain": "153",
+          "raw_line": "N’s PP Up JTG 153 ■ ■"
+        },
+        {
+          "name": "Postwick",
+          "set_token": "JTG",
+          "number_plain": "154",
+          "raw_line": "Postwick JTG 154 ■"
+        },
+        {
+          "name": "Powerglass",
+          "set_token": "SHF",
+          "number_plain": "63",
+          "raw_line": "Powerglass SHF 063 ■ ■"
+        },
+        {
+          "name": "Prime Catcher",
+          "set_token": "TEF",
+          "number_plain": "157",
+          "raw_line": "Prime Catcher TEF 157 ■"
+        },
+        {
+          "name": "Scramble Switch",
+          "set_token": "SSP",
+          "number_plain": "186",
+          "raw_line": "Scramble Switch SSP 186 ■"
+        },
+        {
+          "name": "Sparkling Crystal",
+          "set_token": "SCR",
+          "number_plain": "142",
+          "raw_line": "Sparkling Crystal SCR 142 ■"
+        },
+        {
+          "name": "Tera Orb",
+          "set_token": "SSP",
+          "number_plain": "189",
+          "raw_line": "Tera Orb SSP 189 ■"
+        },
+        {
+          "name": "Basic Grass Energy",
+          "set_token": "SVE",
+          "number_plain": "9",
+          "raw_line": "Basic Grass Energy SVE 009 ■ ■"
+        },
+        {
+          "name": "Basic Fire Energy",
+          "set_token": "SVE",
+          "number_plain": "10",
+          "raw_line": "Basic Fire Energy SVE 010 ■ ■"
+        },
+        {
+          "name": "Basic Water Energy",
+          "set_token": "SVE",
+          "number_plain": "11",
+          "raw_line": "Basic Water Energy SVE 011 ■ ■"
+        },
+        {
+          "name": "Basic Lightning Energy",
+          "set_token": "SVE",
+          "number_plain": "12",
+          "raw_line": "Basic Lightning Energy SVE 012 ■ ■"
+        },
+        {
+          "name": "Basic Psychic Energy",
+          "set_token": "SVE",
+          "number_plain": "13",
+          "raw_line": "Basic Psychic Energy SVE 013 ■ ■"
+        },
+        {
+          "name": "Basic Fighting Energy",
+          "set_token": "SVE",
+          "number_plain": "14",
+          "raw_line": "Basic Fighting Energy SVE 014 ■ ■"
+        },
+        {
+          "name": "Basic Darkness Energy",
+          "set_token": "SVE",
+          "number_plain": "15",
+          "raw_line": "Basic Darkness Energy SVE 015 ■ ■"
+        },
+        {
+          "name": "Basic Metal Energy",
+          "set_token": "SVE",
+          "number_plain": "16",
+          "raw_line": "Basic Metal Energy SVE 016 ■ ■"
+        }
+      ]
+    },
+    {
+      "series": 8,
+      "source_name": "Play! Pokemon Prize Pack Series 8 official checklist",
+      "source_type": "official_checklist_pdf",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf",
+      "evidence_tier": "TIER_1",
+      "entries": [
+        {
+          "name": "Archaludon",
+          "set_token": "SCR",
+          "number_plain": "107",
+          "raw_line": "Archaludon SCR 107 ■"
+        },
+        {
+          "name": "Arven’s Mabosstiff ex",
+          "set_token": "DRI",
+          "number_plain": "139",
+          "raw_line": "Arven’s Mabosstiff ex DRI 139 ■"
+        },
+        {
+          "name": "Budew",
+          "set_token": "PRE",
+          "number_plain": "4",
+          "raw_line": "Budew PRE 004 ■"
+        },
+        {
+          "name": "Cinderace",
+          "set_token": "MEG",
+          "number_plain": "28",
+          "raw_line": "Cinderace MEG 028 ■ ■"
+        },
+        {
+          "name": "Conkeldurr",
+          "set_token": "BLK",
+          "number_plain": "49",
+          "raw_line": "Conkeldurr BLK 049 ■"
+        },
+        {
+          "name": "Cynthia’s Gabite",
+          "set_token": "DRI",
+          "number_plain": "103",
+          "raw_line": "Cynthia’s Gabite DRI 103 ■"
+        },
+        {
+          "name": "Cynthia’s Garchomp ex",
+          "set_token": "DRI",
+          "number_plain": "104",
+          "raw_line": "Cynthia’s Garchomp ex DRI 104 ■"
+        },
+        {
+          "name": "Cynthia’s Roserade",
+          "set_token": "DRI",
+          "number_plain": "8",
+          "raw_line": "Cynthia’s Roserade DRI 008 ■ ■"
+        },
+        {
+          "name": "Eelektrik",
+          "set_token": "BLK",
+          "number_plain": "31",
+          "raw_line": "Eelektrik BLK 031 ■"
+        },
+        {
+          "name": "Emboar",
+          "set_token": "WHT",
+          "number_plain": "13",
+          "raw_line": "Emboar WHT 013 ■ ■"
+        },
+        {
+          "name": "Ethan’s Ho-Oh ex",
+          "set_token": "DRI",
+          "number_plain": "39",
+          "raw_line": "Ethan’s Ho-Oh ex DRI 039 ■"
+        },
+        {
+          "name": "Ethan’s Magcargo",
+          "set_token": "DRI",
+          "number_plain": "36",
+          "raw_line": "Ethan’s Magcargo DRI 036 ■"
+        },
+        {
+          "name": "Ethan’s Quilava",
+          "set_token": "DRI",
+          "number_plain": "33",
+          "raw_line": "Ethan’s Quilava DRI 033 ■"
+        },
+        {
+          "name": "Ethan’s Typhlosion",
+          "set_token": "DRI",
+          "number_plain": "34",
+          "raw_line": "Ethan’s Typhlosion DRI 034 ■"
+        },
+        {
+          "name": "Genesect ex",
+          "set_token": "BLK",
+          "number_plain": "67",
+          "raw_line": "Genesect ex BLK 067 ■"
+        },
+        {
+          "name": "Hariyama",
+          "set_token": "MEG",
+          "number_plain": "73",
+          "raw_line": "Hariyama MEG 073 ■"
+        },
+        {
+          "name": "Hop’s Dubwool",
+          "set_token": "JTG",
+          "number_plain": "136",
+          "raw_line": "Hop’s Dubwool JTG 136 ■ ■"
+        },
+        {
+          "name": "Hop’s Snorlax",
+          "set_token": "JTG",
+          "number_plain": "117",
+          "raw_line": "Hop’s Snorlax JTG 117 ■ ■"
+        },
+        {
+          "name": "Hop’s Zacian ex",
+          "set_token": "JTG",
+          "number_plain": "111",
+          "raw_line": "Hop’s Zacian ex JTG 111 ■"
+        },
+        {
+          "name": "Iono’s Bellibolt ex",
+          "set_token": "JTG",
+          "number_plain": "53",
+          "raw_line": "Iono’s Bellibolt ex JTG 053 ■"
+        },
+        {
+          "name": "Iono’s Kilowattrel",
+          "set_token": "JTG",
+          "number_plain": "55",
+          "raw_line": "Iono’s Kilowattrel JTG 055 ■"
+        },
+        {
+          "name": "Iono’s Voltorb",
+          "set_token": "JTG",
+          "number_plain": "47",
+          "raw_line": "Iono’s Voltorb JTG 047 ■"
+        },
+        {
+          "name": "Kyurem ex",
+          "set_token": "BLK",
+          "number_plain": "28",
+          "raw_line": "Kyurem ex BLK 028 ■"
+        },
+        {
+          "name": "Latios",
+          "set_token": "MEG",
+          "number_plain": "101",
+          "raw_line": "Latios MEG 101 ■"
+        },
+        {
+          "name": "Lillie’s Clefairy ex",
+          "set_token": "JTG",
+          "number_plain": "56",
+          "raw_line": "Lillie’s Clefairy ex JTG 056 ■"
+        },
+        {
+          "name": "Lillie’s Ribombee",
+          "set_token": "JTG",
+          "number_plain": "67",
+          "raw_line": "Lillie’s Ribombee JTG 067 ■ ■"
+        },
+        {
+          "name": "Lunatone",
+          "set_token": "MEG",
+          "number_plain": "74",
+          "raw_line": "Lunatone MEG 074 ■ ■"
+        },
+        {
+          "name": "Mega Abomasnow ex",
+          "set_token": "MEG",
+          "number_plain": "36",
+          "raw_line": "Mega Abomasnow ex MEG 036 ■"
+        },
+        {
+          "name": "Mega Absol ex",
+          "set_token": "MEG",
+          "number_plain": "86",
+          "raw_line": "Mega Absol ex MEG 086 ■"
+        },
+        {
+          "name": "Mega Camerupt ex",
+          "set_token": "MEG",
+          "number_plain": "22",
+          "raw_line": "Mega Camerupt ex MEG 022 ■"
+        },
+        {
+          "name": "Mega Gardevoir ex",
+          "set_token": "MEG",
+          "number_plain": "60",
+          "raw_line": "Mega Gardevoir ex MEG 060 ■"
+        },
+        {
+          "name": "Mega Kangaskhan ex",
+          "set_token": "MEG",
+          "number_plain": "104",
+          "raw_line": "Mega Kangaskhan ex MEG 104 ■"
+        },
+        {
+          "name": "Mega Latias ex",
+          "set_token": "MEG",
+          "number_plain": "100",
+          "raw_line": "Mega Latias ex MEG 100 ■"
+        },
+        {
+          "name": "Mega Lucario ex",
+          "set_token": "MEG",
+          "number_plain": "77",
+          "raw_line": "Mega Lucario ex MEG 077 ■"
+        },
+        {
+          "name": "Mega Manectric ex",
+          "set_token": "MEG",
+          "number_plain": "50",
+          "raw_line": "Mega Manectric ex MEG 050 ■"
+        },
+        {
+          "name": "Mega Mawile ex",
+          "set_token": "MEG",
+          "number_plain": "94",
+          "raw_line": "Mega Mawile ex MEG 094 ■"
+        },
+        {
+          "name": "Mega Venusaur ex",
+          "set_token": "MEG",
+          "number_plain": "3",
+          "raw_line": "Mega Venusaur ex MEG 003 ■"
+        },
+        {
+          "name": "N’s Darmanitan",
+          "set_token": "JTG",
+          "number_plain": "27",
+          "raw_line": "N’s Darmanitan JTG 027 ■"
+        },
+        {
+          "name": "N’s Reshiram",
+          "set_token": "JTG",
+          "number_plain": "116",
+          "raw_line": "N’s Reshiram JTG 116 ■ ■"
+        },
+        {
+          "name": "N’s Zoroark ex",
+          "set_token": "JTG",
+          "number_plain": "98",
+          "raw_line": "N’s Zoroark ex JTG 098 ■"
+        },
+        {
+          "name": "Reshiram ex",
+          "set_token": "WHT",
+          "number_plain": "20",
+          "raw_line": "Reshiram ex WHT 020 ■"
+        },
+        {
+          "name": "Shaymin",
+          "set_token": "DRI",
+          "number_plain": "10",
+          "raw_line": "Shaymin DRI 010 ■"
+        },
+        {
+          "name": "Solrock",
+          "set_token": "MEG",
+          "number_plain": "75",
+          "raw_line": "Solrock MEG 075 ■ ■"
+        },
+        {
+          "name": "Team Rocket’s Crobat ex",
+          "set_token": "DRI",
+          "number_plain": "122",
+          "raw_line": "Team Rocket’s Crobat ex DRI 122 ■"
+        },
+        {
+          "name": "Team Rocket’s Mewtwo ex",
+          "set_token": "DRI",
+          "number_plain": "81",
+          "raw_line": "Team Rocket’s Mewtwo ex DRI 081 ■"
+        },
+        {
+          "name": "Team Rocket’s Nidoking ex",
+          "set_token": "DRI",
+          "number_plain": "119",
+          "raw_line": "Team Rocket’s Nidoking ex DRI 119 ■"
+        },
+        {
+          "name": "Team Rocket’s Spidops",
+          "set_token": "DRI",
+          "number_plain": "20",
+          "raw_line": "Team Rocket’s Spidops DRI 020 ■ ■"
+        },
+        {
+          "name": "Yanmega ex",
+          "set_token": "DRI",
+          "number_plain": "3",
+          "raw_line": "Yanmega ex DRI 003 ■"
+        },
+        {
+          "name": "Zekrom ex",
+          "set_token": "BLK",
+          "number_plain": "34",
+          "raw_line": "Zekrom ex BLK 034 ■"
+        },
+        {
+          "name": "Air Balloon",
+          "set_token": "BLK",
+          "number_plain": "79",
+          "raw_line": "Air Balloon BLK 079 ■"
+        },
+        {
+          "name": "Boss’s Orders",
+          "set_token": "MEG",
+          "number_plain": "114",
+          "raw_line": "Boss’s Orders MEG 114 ■"
+        },
+        {
+          "name": "Brilliant Blender",
+          "set_token": "SSP",
+          "number_plain": "164",
+          "raw_line": "Brilliant Blender SSP 164 ■"
+        },
+        {
+          "name": "Cynthia’s Power Weight",
+          "set_token": "DRI",
+          "number_plain": "162",
+          "raw_line": "Cynthia’s Power Weight DRI 162 ■"
+        },
+        {
+          "name": "Energy Search Pro",
+          "set_token": "SSP",
+          "number_plain": "176",
+          "raw_line": "Energy Search Pro SSP 176 ■"
+        },
+        {
+          "name": "Ethan’s Adventure",
+          "set_token": "DRI",
+          "number_plain": "165",
+          "raw_line": "Ethan’s Adventure DRI 165 ■ ■"
+        },
+        {
+          "name": "Fighting Gong",
+          "set_token": "MEG",
+          "number_plain": "116",
+          "raw_line": "Fighting Gong MEG 116 ■ ■"
+        },
+        {
+          "name": "Forest of Vitality",
+          "set_token": "MEG",
+          "number_plain": "117",
+          "raw_line": "Forest of Vitality MEG 117 ■ ■"
+        },
+        {
+          "name": "Hop’s Choice Band",
+          "set_token": "JTG",
+          "number_plain": "148",
+          "raw_line": "Hop’s Choice Band JTG 148 ■"
+        },
+        {
+          "name": "Iron Defender",
+          "set_token": "MEG",
+          "number_plain": "118",
+          "raw_line": "Iron Defender MEG 118 ■ ■"
+        },
+        {
+          "name": "Levincia",
+          "set_token": "JTG",
+          "number_plain": "150",
+          "raw_line": "Levincia JTG 150 ■ ■"
+        },
+        {
+          "name": "Lillie’s Determination",
+          "set_token": "MEG",
+          "number_plain": "119",
+          "raw_line": "Lillie’s Determination MEG 119 ■ ■"
+        },
+        {
+          "name": "Lillie’s Pearl",
+          "set_token": "JTG",
+          "number_plain": "151",
+          "raw_line": "Lillie’s Pearl JTG 151 ■"
+        },
+        {
+          "name": "Max Rod",
+          "set_token": "PRE",
+          "number_plain": "116",
+          "raw_line": "Max Rod PRE 116 ■"
+        },
+        {
+          "name": "Mega Signal",
+          "set_token": "MEG",
+          "number_plain": "121",
+          "raw_line": "Mega Signal MEG 121 ■ ■"
+        },
+        {
+          "name": "Mystery Garden",
+          "set_token": "MEG",
+          "number_plain": "122",
+          "raw_line": "Mystery Garden MEG 122 ■ ■"
+        },
+        {
+          "name": "N’s PP Up",
+          "set_token": "JTG",
+          "number_plain": "153",
+          "raw_line": "N’s PP Up JTG 153 ■ ■"
+        },
+        {
+          "name": "Postwick",
+          "set_token": "JTG",
+          "number_plain": "154",
+          "raw_line": "Postwick JTG 154 ■"
+        },
+        {
+          "name": "Precious Trolley",
+          "set_token": "SSP",
+          "number_plain": "185",
+          "raw_line": "Precious Trolley SSP 185 ■"
+        },
+        {
+          "name": "Premium Power Pro",
+          "set_token": "MEG",
+          "number_plain": "124",
+          "raw_line": "Premium Power Pro MEG 124 ■ ■"
+        },
+        {
+          "name": "Risky Ruins",
+          "set_token": "MEG",
+          "number_plain": "127",
+          "raw_line": "Risky Ruins MEG 127 ■"
+        },
+        {
+          "name": "Sparkling Crystal",
+          "set_token": "PRE",
+          "number_plain": "129",
+          "raw_line": "Sparkling Crystal PRE 129 ■"
+        },
+        {
+          "name": "Strange Timepiece",
+          "set_token": "MEG",
+          "number_plain": "128",
+          "raw_line": "Strange Timepiece MEG 128 ■"
+        },
+        {
+          "name": "Surfing Beach",
+          "set_token": "MEG",
+          "number_plain": "129",
+          "raw_line": "Surfing Beach MEG 129 ■"
+        },
+        {
+          "name": "Team Rocket’s Archer",
+          "set_token": "DRI",
+          "number_plain": "170",
+          "raw_line": "Team Rocket’s Archer DRI 170 ■"
+        },
+        {
+          "name": "Team Rocket’s Ariana",
+          "set_token": "DRI",
+          "number_plain": "171",
+          "raw_line": "Team Rocket’s Ariana DRI 171 ■"
+        },
+        {
+          "name": "Team Rocket’s Energy",
+          "set_token": "DRI",
+          "number_plain": "182",
+          "raw_line": "Team Rocket’s Energy DRI 182 ■"
+        },
+        {
+          "name": "Team Rocket’s Factory",
+          "set_token": "DRI",
+          "number_plain": "173",
+          "raw_line": "Team Rocket’s Factory DRI 173 ■"
+        },
+        {
+          "name": "Team Rocket’s Giovanni",
+          "set_token": "DRI",
+          "number_plain": "174",
+          "raw_line": "Team Rocket’s Giovanni DRI 174 ■"
+        },
+        {
+          "name": "Team Rocket’s Petrel",
+          "set_token": "DRI",
+          "number_plain": "176",
+          "raw_line": "Team Rocket’s Petrel DRI 176 ■"
+        },
+        {
+          "name": "Team Rocket’s Proton",
+          "set_token": "DRI",
+          "number_plain": "177",
+          "raw_line": "Team Rocket’s Proton DRI 177 ■"
+        },
+        {
+          "name": "Team Rocket’s Transceiver",
+          "set_token": "DRI",
+          "number_plain": "178",
+          "raw_line": "Team Rocket’s Transceiver DRI 178 ■"
+        },
+        {
+          "name": "Wally’s Compassion",
+          "set_token": "MEG",
+          "number_plain": "132",
+          "raw_line": "Wally’s Compassion MEG 132 ■"
+        },
+        {
+          "name": "Basic Darkness Energy",
+          "set_token": "MEE",
+          "number_plain": "7",
+          "raw_line": "Basic Darkness Energy MEE 007 ■ ■"
+        },
+        {
+          "name": "Basic Fighting Energy",
+          "set_token": "MEE",
+          "number_plain": "6",
+          "raw_line": "Basic Fighting Energy MEE 006 ■ ■"
+        },
+        {
+          "name": "Basic Fire Energy",
+          "set_token": "MEE",
+          "number_plain": "2",
+          "raw_line": "Basic Fire Energy MEE 002 ■ ■"
+        },
+        {
+          "name": "Basic Grass Energy",
+          "set_token": "MEE",
+          "number_plain": "1",
+          "raw_line": "Basic Grass Energy MEE 001 ■ ■"
+        },
+        {
+          "name": "Basic Lightning Energy",
+          "set_token": "MEE",
+          "number_plain": "4",
+          "raw_line": "Basic Lightning Energy MEE 004 ■ ■"
+        },
+        {
+          "name": "Basic Metal Energy",
+          "set_token": "MEE",
+          "number_plain": "8",
+          "raw_line": "Basic Metal Energy MEE 008 ■ ■"
+        },
+        {
+          "name": "Basic Psychic Energy",
+          "set_token": "MEE",
+          "number_plain": "5",
+          "raw_line": "Basic Psychic Energy MEE 005 ■ ■"
+        },
+        {
+          "name": "Basic Water Energy",
+          "set_token": "MEE",
+          "number_plain": "3",
+          "raw_line": "Basic Water Energy MEE 003 ■ ■"
+        }
+      ]
+    }
+  ],
+  "temporal_gate_notes": [
+    "Series 4-8 are fully covered in this fixture.",
+    "Rows whose base set first became eligible in Series 4 or later can be evaluated for uniqueness without guessing.",
+    "Rows whose base set could have appeared in Series 1-3 remain partial-coverage unless separately evidenced."
+  ]
+}

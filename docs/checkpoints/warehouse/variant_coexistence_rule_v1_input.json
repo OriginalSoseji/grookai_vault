@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-04-18T22:39:18.483Z",
+  "workflow": "VARIANT_COEXISTENCE_RULE_V1",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+  "blocked_rows": [
+    {
+      "source": "justtcg",
+      "source_set": "Prize Pack Series Cards",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-reshiram-ex-double-rare",
+      "warehouse_candidate_id": "e6983551-ad7e-4aa4-b641-863006a4ee1a",
+      "candidate_name": "Reshiram ex",
+      "printed_number": "020/086",
+      "number_plain": "20",
+      "effective_set_code": "sv10.5w",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "current_blocker_type": "MULTIPLE_SAME_NAME_SLOT_ROWS",
+      "current_slot_audit_output": {
+        "identity_audit_status": "AMBIGUOUS",
+        "identity_resolution": "BLOCK_AMBIGUOUS",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "interpreter_reason_code": "MULTIPLE_SAME_NAME_SLOT_ROWS"
+      },
+      "existing_slot_rows": [
+        {
+          "role": "base_row",
+          "card_print_id": "928a3a4e-7c9e-463d-af00-94eb9043daa2",
+          "gv_id": "GV-PK-WHT-020",
+          "variant_key": null
+        },
+        {
+          "role": "set_name_stamp_row",
+          "card_print_id": "270c5dd4-1783-48fe-88a6-b5b13ef47644",
+          "gv_id": "GV-PK-WHT-020-WHITE-FLARE-STAMP",
+          "variant_key": "white_flare_stamp"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set": "Prize Pack Series Cards",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zekrom-ex-double-rare",
+      "warehouse_candidate_id": "7209e21c-05e6-4fae-9904-91bcb177047c",
+      "candidate_name": "Zekrom ex",
+      "printed_number": "034/086",
+      "number_plain": "34",
+      "effective_set_code": "sv10.5b",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "current_blocker_type": "MULTIPLE_SAME_NAME_SLOT_ROWS",
+      "current_slot_audit_output": {
+        "identity_audit_status": "AMBIGUOUS",
+        "identity_resolution": "BLOCK_AMBIGUOUS",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "interpreter_reason_code": "MULTIPLE_SAME_NAME_SLOT_ROWS"
+      },
+      "existing_slot_rows": [
+        {
+          "role": "base_row",
+          "card_print_id": "fb628e26-d01d-4788-abc8-aeb0f718bccc",
+          "gv_id": "GV-PK-BLK-034",
+          "variant_key": null
+        },
+        {
+          "role": "set_name_stamp_row",
+          "card_print_id": "0fd2df5f-a69b-4019-ae90-20f06d27260b",
+          "gv_id": "GV-PK-BLK-034-BLACK-BOLT-STAMP",
+          "variant_key": "black_bolt_stamp"
+        }
+      ]
+    }
+  ]
+}

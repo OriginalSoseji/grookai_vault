@@ -1,0 +1,901 @@
+{
+  "generated_at": "2026-04-20T18:45:03.374Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED",
+  "selection_summary": {
+    "id": "ACCESSIBLE_SERIES_5_6_LATE_SV_SINGLE_HITS",
+    "label": "Accessible Series 5-6 Late Scarlet & Violet Single-Hit Window",
+    "row_count": 11,
+    "set_code_counts": {
+      "sv03": 1,
+      "sv04": 3,
+      "sv06": 5,
+      "sv07": 1,
+      "sv6pt5": 1
+    },
+    "excluded_blocked_by_official_acquisition_count": 21
+  },
+  "shared_question": "Across currently accessible Prize Pack Series 5 and Series 6 sources, does this late Scarlet & Violet family-only row appear in exactly one corroborated series or in more than one, without depending on blocked official acquisition?",
+  "evidence_sources_used": [
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-town-store-common",
+      "candidate_name": "Town Store",
+      "printed_number": "196/197",
+      "normalized_number_plain": "196",
+      "base_gv_id": "GV-PK-OBF-196",
+      "base_route": "GV-PK-OBF-196",
+      "base_card_print_id": null,
+      "base_card_name": "Town Store",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "secondary_evidence_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 4,
+      "effective_set_code": "sv03",
+      "effective_set_name": "Obsidian Flames",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-town-store-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "Bulbapedia compare audit",
+          "source_type": "bulbapedia_compare",
+          "evidence_tier": "TIER_3",
+          "source_reference": "docs/checkpoints/warehouse/prize_pack_evidence_v1.json",
+          "note": "Community corroboration carried forward from v1."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv03-196",
+        "google_search_url": "https://www.google.com/search?q=Town%20Store%20196%2F197%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Town%20Store%20196%2F197%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolobsidian flames.png|x18px|link=obsidian flames (tcg)]] 196/197|g|{{tcg id|obsidian flames|town store|196}}|stadium||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-iron-valiant-ex-double-rare",
+      "candidate_name": "Iron Valiant ex",
+      "printed_number": "089/182",
+      "normalized_number_plain": "089",
+      "base_gv_id": "GV-PK-PAR-89",
+      "base_route": "GV-PK-PAR-89",
+      "base_card_print_id": null,
+      "base_card_name": "Iron Valiant ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 5,
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-iron-valiant-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv04-089",
+        "google_search_url": "https://www.google.com/search?q=Iron%20Valiant%20ex%20089%2F182%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Iron%20Valiant%20ex%20089%2F182%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolparadox rift.png|x18px|link=paradox rift (tcg)]] 089/182|g|[[iron valiant ex (paradox rift 89)|iron valiant]]{{ex}}|psychic||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-blindside-uncommon",
+      "candidate_name": "Technical Machine: Blindside",
+      "printed_number": "176/182",
+      "normalized_number_plain": "176",
+      "base_gv_id": "GV-PK-PAR-176",
+      "base_route": "GV-PK-PAR-176",
+      "base_card_print_id": null,
+      "base_card_name": "Technical Machine: Blindside",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 5,
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-technical-machine-blindside-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv04-176",
+        "google_search_url": "https://www.google.com/search?q=Technical%20Machine%3A%20Blindside%20176%2F182%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Technical%20Machine%3A%20Blindside%20176%2F182%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolparadox rift.png|x18px|link=paradox rift (tcg)]] 176/182|g|{{tcg id|paradox rift|technical machine: blindside|176}}|pokemon tool||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-turbo-energize-uncommon",
+      "candidate_name": "Technical Machine: Turbo Energize",
+      "printed_number": "179/182",
+      "normalized_number_plain": "179",
+      "base_gv_id": "GV-PK-PAR-179",
+      "base_route": "GV-PK-PAR-179",
+      "base_card_print_id": null,
+      "base_card_name": "Technical Machine: Turbo Energize",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 5,
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-technical-machine-turbo-energize-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv04-179",
+        "google_search_url": "https://www.google.com/search?q=Technical%20Machine%3A%20Turbo%20Energize%20179%2F182%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Technical%20Machine%3A%20Turbo%20Energize%20179%2F182%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolparadox rift.png|x18px|link=paradox rift (tcg)]] 179/182|g|{{tcg id|paradox rift|technical machine: turbo energize|179}}|pokemon tool||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hyper-aroma-ace-spec-rare",
+      "candidate_name": "Hyper Aroma",
+      "printed_number": "152/167",
+      "normalized_number_plain": "152",
+      "base_gv_id": "GV-PK-TWM-152",
+      "base_route": "GV-PK-TWM-152",
+      "base_card_print_id": null,
+      "base_card_name": "Hyper Aroma",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-hyper-aroma-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv06-152",
+        "google_search_url": "https://www.google.com/search?q=Hyper%20Aroma%20152%2F167%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Hyper%20Aroma%20152%2F167%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltwilight masquerade.png|x18px|link=twilight masquerade (tcg)]] 152/167|h|{{tcg id|twilight masquerade|hyper aroma|152}}|item||ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ogre-s-mask-uncommon",
+      "candidate_name": "Ogre's Mask",
+      "printed_number": "159/167",
+      "normalized_number_plain": "159",
+      "base_gv_id": "GV-PK-TWM-159",
+      "base_route": "GV-PK-TWM-159",
+      "base_card_print_id": null,
+      "base_card_name": "Ogre's Mask",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ogre-s-mask-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv06-159",
+        "google_search_url": "https://www.google.com/search?q=Ogre's%20Mask%20159%2F167%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Ogre's%20Mask%20159%2F167%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltwilight masquerade.png|x18px|link=twilight masquerade (tcg)]] 159/167|h|{{tcg id|twilight masquerade|ogre's mask|159}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-scoop-up-cyclone-ace-spec-rare",
+      "candidate_name": "Scoop Up Cyclone",
+      "printed_number": "162/167",
+      "normalized_number_plain": "162",
+      "base_gv_id": "GV-PK-TWM-162",
+      "base_route": "GV-PK-TWM-162",
+      "base_card_print_id": null,
+      "base_card_name": "Scoop Up Cyclone",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-scoop-up-cyclone-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv06-162",
+        "google_search_url": "https://www.google.com/search?q=Scoop%20Up%20Cyclone%20162%2F167%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Scoop%20Up%20Cyclone%20162%2F167%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltwilight masquerade.png|x18px|link=twilight masquerade (tcg)]] 162/167|h|{{tcg id|twilight masquerade|scoop up cyclone|162}}|item||ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-survival-brace-ace-spec-rare",
+      "candidate_name": "Survival Brace",
+      "printed_number": "164/167",
+      "normalized_number_plain": "164",
+      "base_gv_id": "GV-PK-TWM-164",
+      "base_route": "GV-PK-TWM-164",
+      "base_card_print_id": null,
+      "base_card_name": "Survival Brace",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-survival-brace-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv06-164",
+        "google_search_url": "https://www.google.com/search?q=Survival%20Brace%20164%2F167%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Survival%20Brace%20164%2F167%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltwilight masquerade.png|x18px|link=twilight masquerade (tcg)]] 164/167|h|{{tcg id|twilight masquerade|survival brace|164}}|item||ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-legacy-energy-ace-spec-rare",
+      "candidate_name": "Legacy Energy",
+      "printed_number": "167/167",
+      "normalized_number_plain": "167",
+      "base_gv_id": "GV-PK-TWM-167",
+      "base_route": "GV-PK-TWM-167",
+      "base_card_print_id": null,
+      "base_card_name": "Legacy Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-legacy-energy-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv06-167",
+        "google_search_url": "https://www.google.com/search?q=Legacy%20Energy%20167%2F167%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Legacy%20Energy%20167%2F167%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltwilight masquerade.png|x18px|link=twilight masquerade (tcg)]] 167/167|h|{{tcg id|twilight masquerade|legacy energy|167}}|energy||ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-grand-tree-ace-spec-rare",
+      "candidate_name": "Grand Tree",
+      "printed_number": "136/142",
+      "normalized_number_plain": "136",
+      "base_gv_id": "GV-PK-SCR-136",
+      "base_route": "GV-PK-SCR-136",
+      "base_card_print_id": null,
+      "base_card_name": "Grand Tree",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv07",
+      "effective_set_name": "Stellar Crown",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-grand-tree-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv07-136",
+        "google_search_url": "https://www.google.com/search?q=Grand%20Tree%20136%2F142%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Grand%20Tree%20136%2F142%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolstellar crown.png|x18px|link=stellar crown (tcg)]] 136/142|h|{{tcg id|stellar crown|grand tree|136}}|stadium||ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-janine-s-secret-art-uncommon",
+      "candidate_name": "Janine's Secret Art",
+      "printed_number": "059/064",
+      "normalized_number_plain": "059",
+      "base_gv_id": "GV-PK-SFA-59",
+      "base_route": "GV-PK-SFA-59",
+      "base_card_print_id": null,
+      "base_card_name": "Janine's Secret Art",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 6,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-janine-s-secret-art-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv6pt5-059",
+        "google_search_url": "https://www.google.com/search?q=Janine's%20Secret%20Art%20059%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Janine's%20Secret%20Art%20059%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6
+      ],
+      "evidence_sources_used_for_v10_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 059/064|h|{{tcg id|shrouded fable|janine's secret art|59}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v10_nonblocked_series_5_6",
+      "final_reason": "Accessible Series 5-6 evidence places this row in exactly one corroborated Prize Pack series, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    }
+  ]
+}

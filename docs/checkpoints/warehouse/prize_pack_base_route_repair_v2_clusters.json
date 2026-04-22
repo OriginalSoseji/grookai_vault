@@ -1,0 +1,500 @@
+{
+  "generated_at": "2026-04-20T17:30:28.573Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v2.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v3.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v4.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v5.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked.json"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "ANNOTATED_ALIAS_OF_PREVIOUSLY_ADJUDICATED_IDENTITY",
+      "row_count": 7,
+      "shared_ambiguity_question": "After stripping JustTCG source-side annotations, does this row collapse onto a Prize Pack identity already adjudicated elsewhere in the artifact chain?",
+      "candidate_route_patterns": [
+        "Inline Series marker suffix",
+        "Inline Duplicate/Wrong Image suffix",
+        "MEE energy code suffix"
+      ],
+      "rows": [
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-fezandipiti-ex-038-064-series-7-double-rare",
+          "candidate_name": "Fezandipiti ex - 038/064 (Series 7)",
+          "printed_number": "038/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-38",
+            "base_name": "Fezandipiti ex",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "38",
+            "number_plain": "38"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-colress-s-tenacity-057-064-duplicate-uncommon",
+          "candidate_name": "Colress's Tenacity - 057/064 (Duplicate)",
+          "printed_number": "057/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-57",
+            "base_name": "Colress's Tenacity",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "57",
+            "number_plain": "57"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-grass-energy-mee001-common",
+          "candidate_name": "Basic Grass Energy - MEE001",
+          "printed_number": "1",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-1",
+            "base_name": "Basic Grass Energy",
+            "effective_set_code": "sve",
+            "printed_number": "1",
+            "number_plain": "1"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-terapagos-ex-128-142-series-7-double-rare",
+          "candidate_name": "Terapagos ex - 128/142 (Series 7)",
+          "printed_number": "128/142",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SCR-128",
+            "base_name": "Terapagos ex",
+            "effective_set_code": "sv07",
+            "printed_number": "128",
+            "number_plain": "128"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-water-energy-mee003-common",
+          "candidate_name": "Basic Water Energy - MEE003",
+          "printed_number": "3",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-3",
+            "base_name": "Basic Water Energy",
+            "effective_set_code": "sve",
+            "printed_number": "3",
+            "number_plain": "3"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-lightning-energy-mee004-common",
+          "candidate_name": "Basic Lightning Energy - MEE004",
+          "printed_number": "4",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-4",
+            "base_name": "Basic Lightning Energy",
+            "effective_set_code": "sve",
+            "printed_number": "4",
+            "number_plain": "4"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-psychic-energy-mee005-common",
+          "candidate_name": "Basic Psychic Energy - MEE005",
+          "printed_number": "5",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-5",
+            "base_name": "Basic Psychic Energy",
+            "effective_set_code": "sve",
+            "printed_number": "5",
+            "number_plain": "5"
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "row_count": 12,
+      "shared_ambiguity_question": "Which canon base row owns this annotated name+number pair after stripping non-identity source annotations, and does any independent Prize Pack evidence remain after that cleanup?",
+      "candidate_route_patterns": [
+        "Trailing collector number parentheses",
+        "Professor subtitle parentheses",
+        "MEE energy code suffix without prior adjudication"
+      ],
+      "rows": [
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+          "candidate_name": "Wormadam (010)",
+          "printed_number": "010/172",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-BRS-10",
+            "base_name": "Wormadam",
+            "effective_set_code": "swsh9",
+            "printed_number": "10",
+            "number_plain": "10"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-inteleon-43-rare",
+          "candidate_name": "Inteleon (43)",
+          "printed_number": "043/198",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-CRE-43",
+            "base_name": "Inteleon",
+            "effective_set_code": "swsh6",
+            "printed_number": "43",
+            "number_plain": "43"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+          "candidate_name": "Inteleon (058)",
+          "printed_number": "058/202",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SSH-58",
+            "base_name": "Inteleon",
+            "effective_set_code": "swsh1",
+            "printed_number": "58",
+            "number_plain": "58"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare",
+          "candidate_name": "Professor's Research (Professor Juniper)",
+          "printed_number": "060/072",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SHF-60",
+            "base_name": "Professor's Research",
+            "effective_set_code": "swsh4.5",
+            "printed_number": "60",
+            "number_plain": "60"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+          "candidate_name": "Wormadam (077)",
+          "printed_number": "077/172",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-BRS-77",
+            "base_name": "Wormadam",
+            "effective_set_code": "swsh9",
+            "printed_number": "77",
+            "number_plain": "77"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+          "candidate_name": "Wormadam (098)",
+          "printed_number": "098/172",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-BRS-98",
+            "base_name": "Wormadam",
+            "effective_set_code": "swsh9",
+            "printed_number": "98",
+            "number_plain": "98"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+          "candidate_name": "Raging Bolt ex - 123/162 (Wrong Image)",
+          "printed_number": "123/162",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-TEF-123",
+            "base_name": "Raging Bolt ex",
+            "effective_set_code": "sv05",
+            "printed_number": "123",
+            "number_plain": "123"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-fire-energy-mee002-common",
+          "candidate_name": "Basic Fire Energy - MEE002",
+          "printed_number": "2",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-2",
+            "base_name": "Basic Fire Energy",
+            "effective_set_code": "sve",
+            "printed_number": "2",
+            "number_plain": "2"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+          "candidate_name": "Altaria - 49/73",
+          "printed_number": "49/73",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-CPA-49",
+            "base_name": "Altaria",
+            "effective_set_code": "swsh3.5",
+            "printed_number": "49",
+            "number_plain": "49"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-fighting-energy-mee006-common",
+          "candidate_name": "Basic Fighting Energy - MEE006",
+          "printed_number": "6",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-6",
+            "base_name": "Basic Fighting Energy",
+            "effective_set_code": "sve",
+            "printed_number": "6",
+            "number_plain": "6"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-darkness-energy-mee007-common",
+          "candidate_name": "Basic Darkness Energy - MEE007",
+          "printed_number": "7",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-7",
+            "base_name": "Basic Darkness Energy",
+            "effective_set_code": "sve",
+            "printed_number": "7",
+            "number_plain": "7"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-basic-metal-energy-mee008-common",
+          "candidate_name": "Basic Metal Energy - MEE008",
+          "printed_number": "8",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVE-8",
+            "base_name": "Basic Metal Energy",
+            "effective_set_code": "sve",
+            "printed_number": "8",
+            "number_plain": "8"
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "row_count": 13,
+      "shared_ambiguity_question": "Does the exact name+printed-number pair already determine one lawful canon base route even without extra source-name cleanup?",
+      "candidate_route_patterns": [
+        "Exact name match",
+        "Exact slash-number match",
+        "No source annotation"
+      ],
+      "rows": [
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-galvantula-uncommon",
+          "candidate_name": "Galvantula",
+          "printed_number": "002/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-2",
+            "base_name": "Galvantula",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "2",
+            "number_plain": "2"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+          "candidate_name": "Rillaboom",
+          "printed_number": "014/072",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SSH-14",
+            "base_name": "Rillaboom",
+            "effective_set_code": "swsh1",
+            "printed_number": "14",
+            "number_plain": "14"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+          "candidate_name": "Alcremie V",
+          "printed_number": "022/073",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-CPA-22",
+            "base_name": "Alcremie V",
+            "effective_set_code": "swsh3.5",
+            "printed_number": "22",
+            "number_plain": "22"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-genesect-uncommon",
+          "candidate_name": "Genesect",
+          "printed_number": "040/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-40",
+            "base_name": "Genesect",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "40",
+            "number_plain": "40"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-copperajah-rare",
+          "candidate_name": "Copperajah",
+          "printed_number": "042/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-42",
+            "base_name": "Copperajah",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "42",
+            "number_plain": "42"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+          "candidate_name": "Binding Mochi",
+          "printed_number": "055/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-55",
+            "base_name": "Binding Mochi",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "55",
+            "number_plain": "55"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+          "candidate_name": "Neutralization Zone",
+          "printed_number": "060/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-60",
+            "base_name": "Neutralization Zone",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "60",
+            "number_plain": "60"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+          "candidate_name": "Night Stretcher",
+          "printed_number": "061/064",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SFA-61",
+            "base_name": "Night Stretcher",
+            "effective_set_code": "sv6pt5",
+            "printed_number": "61",
+            "number_plain": "61"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-atticus-uncommon",
+          "candidate_name": "Atticus",
+          "printed_number": "077/091",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-PAF-77-S",
+            "base_name": "Atticus",
+            "effective_set_code": "sv4pt5",
+            "printed_number": "77",
+            "number_plain": "77"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+          "candidate_name": "Moonlit Hill",
+          "printed_number": "081/091",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-PAF-81-S",
+            "base_name": "Moonlit Hill",
+            "effective_set_code": "sv4pt5",
+            "printed_number": "81",
+            "number_plain": "81"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+          "candidate_name": "Technical Machine: Crisis Punch",
+          "printed_number": "090/091",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-PAF-90-S",
+            "base_name": "Technical Machine: Crisis Punch",
+            "effective_set_code": "sv4pt5",
+            "printed_number": "90",
+            "number_plain": "90"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+          "candidate_name": "Pokegear 3.0",
+          "printed_number": "186/198",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-SVI-186",
+            "base_name": "Pokégear 3.0",
+            "effective_set_code": "sv01",
+            "printed_number": "186",
+            "number_plain": "186"
+          }
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+          "candidate_name": "Alcremie VMAX",
+          "printed_number": "23/73",
+          "route_resolution_preview": {
+            "base_gv_id": "GV-PK-CPA-23",
+            "base_name": "Alcremie VMAX",
+            "effective_set_code": "swsh3.5",
+            "printed_number": "23",
+            "number_plain": "23"
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "row_count": 5,
+      "shared_ambiguity_question": "When the only exact name+number canon target is an alt-art row, is there a lawful plain-base route or does the ambiguity reflect an illustration-layer collision?",
+      "candidate_route_patterns": [
+        "Exact printed number resolves only to alt-art slot",
+        "Same-name family exists at other numbers"
+      ],
+      "rows": [
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vmax-ultra-rare",
+          "candidate_name": "Glaceon VMAX",
+          "printed_number": "041/203",
+          "route_resolution_preview": null
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-sylveon-v-ultra-rare",
+          "candidate_name": "Sylveon V",
+          "printed_number": "074/203",
+          "route_resolution_preview": null
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-umbreon-vmax-ultra-rare",
+          "candidate_name": "Umbreon VMAX",
+          "printed_number": "095/203",
+          "route_resolution_preview": null
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-rayquaza-vmax-ultra-rare",
+          "candidate_name": "Rayquaza VMAX",
+          "printed_number": "111/203",
+          "route_resolution_preview": null
+        },
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-duraludon-v-ultra-rare",
+          "candidate_name": "Duraludon V",
+          "printed_number": "122/203",
+          "route_resolution_preview": null
+        }
+      ]
+    },
+    {
+      "cluster_name": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+      "row_count": 1,
+      "shared_ambiguity_question": "Does the source row point to a lawful plain-base canon route, or only to a different special-identity family that already carries non-empty variant semantics?",
+      "candidate_route_patterns": [
+        "Exact number route lands on non-empty variant_key",
+        "No plain-base same-number owner"
+      ],
+      "rows": [
+        {
+          "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+          "candidate_name": "Team Rocket's Mewtwo ex",
+          "printed_number": "079/217",
+          "route_resolution_preview": null
+        }
+      ]
+    }
+  ]
+}

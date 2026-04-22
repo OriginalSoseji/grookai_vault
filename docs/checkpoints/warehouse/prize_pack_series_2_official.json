@@ -1,0 +1,746 @@
+{
+  "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+  "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+  "evidence_tier": "TIER_1",
+  "imported_at": "2026-04-21T17:43:58.302820+00:00",
+  "status": "official_pdf_local_import",
+  "entries": [
+    {
+      "name": "Altaria",
+      "printed_number": "106",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Arceus V",
+      "printed_number": "122",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Arceus VSTAR",
+      "printed_number": "123",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Bibarel",
+      "printed_number": "121",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Blissey V",
+      "printed_number": "119",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Boltund V",
+      "printed_number": "103",
+      "set_code": "FST"
+    },
+    {
+      "name": "Boltund VMAX",
+      "printed_number": "104",
+      "set_code": "FST"
+    },
+    {
+      "name": "Bronzong",
+      "printed_number": "102",
+      "set_code": "BST"
+    },
+    {
+      "name": "Charizard V",
+      "printed_number": "017",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Charizard VSTAR",
+      "printed_number": "018",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Cherrim",
+      "printed_number": "008",
+      "set_code": "BST"
+    },
+    {
+      "name": "Cresselia",
+      "printed_number": "064",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Dunsparce",
+      "printed_number": "207",
+      "set_code": "FST"
+    },
+    {
+      "name": "Duraludon V",
+      "printed_number": "122",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Duraludon VMAX",
+      "printed_number": "123",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Dusknoir",
+      "printed_number": "062",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Eiscue",
+      "printed_number": "044",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Entei V",
+      "printed_number": "022",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Espeon V",
+      "printed_number": "064",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Espeon VMAX",
+      "printed_number": "065",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Flaaffy",
+      "printed_number": "055",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Flareon V",
+      "printed_number": "SWSH149"
+    },
+    {
+      "name": "Flareon VMAX",
+      "printed_number": "018",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Galarian Articuno",
+      "printed_number": "063",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Galarian Articuno V",
+      "printed_number": "058",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Galarian Moltres",
+      "printed_number": "093",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Galarian Moltres V",
+      "printed_number": "097",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Galarian Rapidash V",
+      "printed_number": "SWSH111"
+    },
+    {
+      "name": "Galarian Zapdos",
+      "printed_number": "082",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Galarian Zapdos V",
+      "printed_number": "080",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Garchomp",
+      "printed_number": "109",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Genesect V",
+      "printed_number": "185",
+      "set_code": "FST"
+    },
+    {
+      "name": "Gengar V",
+      "printed_number": "156",
+      "set_code": "FST"
+    },
+    {
+      "name": "Gengar VMAX",
+      "printed_number": "157",
+      "set_code": "FST"
+    },
+    {
+      "name": "Glaceon V",
+      "printed_number": "040",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Glaceon VMAX",
+      "printed_number": "041",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Glaceon VSTAR",
+      "printed_number": "SWSH197"
+    },
+    {
+      "name": "Grotle",
+      "printed_number": "007",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Honchkrow V",
+      "printed_number": "088",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Houndoom",
+      "printed_number": "096",
+      "set_code": "BST"
+    },
+    {
+      "name": "Ice Rider Calyrex V",
+      "printed_number": "045",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Ice Rider Calyrex VMAX",
+      "printed_number": "046",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Inteleon",
+      "printed_number": "043",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Inteleon V",
+      "printed_number": "078",
+      "set_code": "FST"
+    },
+    {
+      "name": "Inteleon VMAX",
+      "printed_number": "079",
+      "set_code": "FST"
+    },
+    {
+      "name": "Jolteon V",
+      "printed_number": "SWSH151"
+    },
+    {
+      "name": "Jolteon VMAX",
+      "printed_number": "051",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Kricketune V",
+      "printed_number": "006",
+      "set_code": "BST"
+    },
+    {
+      "name": "Latias",
+      "printed_number": "193",
+      "set_code": "FST"
+    },
+    {
+      "name": "Latios",
+      "printed_number": "194",
+      "set_code": "FST"
+    },
+    {
+      "name": "Leafeon V",
+      "printed_number": "007",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Leafeon VMAX",
+      "printed_number": "008",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Leafeon VSTAR",
+      "printed_number": "SWSH195"
+    },
+    {
+      "name": "Liepard",
+      "printed_number": "091",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Lucario",
+      "printed_number": "079",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Ludicolo",
+      "printed_number": "034",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Lumineon V",
+      "printed_number": "040",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Malamar",
+      "printed_number": "070",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Manaphy",
+      "printed_number": "041",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Medicham V",
+      "printed_number": "083",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Meloetta",
+      "printed_number": "124",
+      "set_code": "FST"
+    },
+    {
+      "name": "Mew V",
+      "printed_number": "113",
+      "set_code": "FST"
+    },
+    {
+      "name": "Mew VMAX",
+      "printed_number": "114",
+      "set_code": "FST"
+    },
+    {
+      "name": "Moltres",
+      "printed_number": "021",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Octillery",
+      "printed_number": "037",
+      "set_code": "BST"
+    },
+    {
+      "name": "Oricorio",
+      "printed_number": "042",
+      "set_code": "FST"
+    },
+    {
+      "name": "Pachirisu",
+      "printed_number": "052",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Passimian",
+      "printed_number": "088",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Raikou V",
+      "printed_number": "048",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Rapid Strike Urshifu V",
+      "printed_number": "087",
+      "set_code": "BST"
+    },
+    {
+      "name": "Rapid Strike Urshifu VMAX",
+      "printed_number": "088",
+      "set_code": "BST"
+    },
+    {
+      "name": "Rayquaza V",
+      "printed_number": "110",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Rayquaza VMAX",
+      "printed_number": "111",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Shadow Rider Calyrex V",
+      "printed_number": "074",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Shadow Rider Calyrex VMAX",
+      "printed_number": "075",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Shaymin V",
+      "printed_number": "013",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Shaymin VSTAR",
+      "printed_number": "014",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Single Strike Urshifu V",
+      "printed_number": "085",
+      "set_code": "BST"
+    },
+    {
+      "name": "Single Strike Urshifu VMAX",
+      "printed_number": "086",
+      "set_code": "BST"
+    },
+    {
+      "name": "Suicune V",
+      "printed_number": "031",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Sylveon V",
+      "printed_number": "074",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Sylveon VMAX",
+      "printed_number": "075",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Tornadus",
+      "printed_number": "126",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Torterra",
+      "printed_number": "008",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Umbreon V",
+      "printed_number": "094",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Umbreon VMAX",
+      "printed_number": "095",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Vaporeon V",
+      "printed_number": "SWSH150"
+    },
+    {
+      "name": "Vaporeon VMAX",
+      "printed_number": "030",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Whimsicott V",
+      "printed_number": "064",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Whimsicott VSTAR",
+      "printed_number": "065",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Wormadam",
+      "printed_number": "010",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Wormadam",
+      "printed_number": "077",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Wormadam",
+      "printed_number": "098",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Zamazenta V",
+      "printed_number": "105",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Zoroark",
+      "printed_number": "103",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Adventurer’s Discovery",
+      "printed_number": "224",
+      "set_code": "FST"
+    },
+    {
+      "name": "Battle VIP Pass",
+      "printed_number": "225",
+      "set_code": "FST"
+    },
+    {
+      "name": "Boost Shake",
+      "printed_number": "142",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Boss’s Orders (Cyrus)",
+      "printed_number": "132",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Bruno",
+      "printed_number": "121",
+      "set_code": "BST"
+    },
+    {
+      "name": "Cheren's Care",
+      "printed_number": "134",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Cheryl",
+      "printed_number": "123",
+      "set_code": "BST"
+    },
+    {
+      "name": "Choice Belt",
+      "printed_number": "135",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Collapsed Stadium",
+      "printed_number": "137",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Copycat",
+      "printed_number": "143",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Cram-o-matic",
+      "printed_number": "229",
+      "set_code": "FST"
+    },
+    {
+      "name": "Crushing Hammer",
+      "printed_number": "159",
+      "set_code": "SSH"
+    },
+    {
+      "name": "Crystal Cave",
+      "printed_number": "144",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Cynthia’s Ambition",
+      "printed_number": "138",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Dream Ball",
+      "printed_number": "146",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Echoing Horn",
+      "printed_number": "136",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Elesa’s Sparkle",
+      "printed_number": "233",
+      "set_code": "FST"
+    },
+    {
+      "name": "Energy Switch",
+      "printed_number": "162",
+      "set_code": "SSH"
+    },
+    {
+      "name": "Escape Rope",
+      "printed_number": "125",
+      "set_code": "BST"
+    },
+    {
+      "name": "Fan of Waves",
+      "printed_number": "127",
+      "set_code": "BST"
+    },
+    {
+      "name": "Fog Crystal",
+      "printed_number": "140",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Gloria",
+      "printed_number": "141",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Great Ball",
+      "printed_number": "164",
+      "set_code": "SSH"
+    },
+    {
+      "name": "Kindler",
+      "printed_number": "143",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Klara",
+      "printed_number": "145",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Korrina’s Focus",
+      "printed_number": "128",
+      "set_code": "BST"
+    },
+    {
+      "name": "Level Ball",
+      "printed_number": "129",
+      "set_code": "BST"
+    },
+    {
+      "name": "Magma Basin",
+      "printed_number": "144",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Melony",
+      "printed_number": "146",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Path to the Peak",
+      "printed_number": "148",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Peonia",
+      "printed_number": "149",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Peony",
+      "printed_number": "150",
+      "set_code": "CRE"
+    },
+    {
+      "name": "Phoebe",
+      "printed_number": "130",
+      "set_code": "BST"
+    },
+    {
+      "name": "Power Tablet",
+      "printed_number": "236",
+      "set_code": "FST"
+    },
+    {
+      "name": "Professor’s Research (Professor Rowan)",
+      "printed_number": "147",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Raihan",
+      "printed_number": "152",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Rare Candy",
+      "printed_number": "180",
+      "set_code": "SSH"
+    },
+    {
+      "name": "Rescue Carrier",
+      "printed_number": "154",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Roseanne’s Backup",
+      "printed_number": "148",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Stormy Mountains",
+      "printed_number": "161",
+      "set_code": "EVS"
+    },
+    {
+      "name": "Switch",
+      "printed_number": "183",
+      "set_code": "SSH"
+    },
+    {
+      "name": "Team Yell’s Cheer",
+      "printed_number": "149",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Tool Jammer",
+      "printed_number": "136",
+      "set_code": "BST"
+    },
+    {
+      "name": "Tower of Darkness",
+      "printed_number": "137",
+      "set_code": "BST"
+    },
+    {
+      "name": "Tower of Waters",
+      "printed_number": "138",
+      "set_code": "BST"
+    },
+    {
+      "name": "Ultra Ball",
+      "printed_number": "150",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Urn of Vitality",
+      "printed_number": "139",
+      "set_code": "BST"
+    },
+    {
+      "name": "Double Turbo Energy",
+      "printed_number": "151",
+      "set_code": "BRS"
+    },
+    {
+      "name": "Fusion Strike Energy",
+      "printed_number": "244",
+      "set_code": "FST"
+    },
+    {
+      "name": "Rapid Strike Energy",
+      "printed_number": "140",
+      "set_code": "BST"
+    },
+    {
+      "name": "Single Strike Energy",
+      "printed_number": "141",
+      "set_code": "BST"
+    }
+  ],
+  "source_acquisition": {
+    "source_type": "archive_official_url_capture",
+    "source_url_official": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+    "fallback_source_url": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+    "archive_capture_timestamp": "20251006052846",
+    "validating_second_capture_url": "https://web.archive.org/web/20251116013418id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+    "validating_second_capture_timestamp": "20251116013418",
+    "byte_identical_second_capture": true,
+    "raw_pdf_path": "temp/prize_pack_series_2_official_raw.pdf",
+    "raw_pdf_sha256": "61899877C13D57DDD6D9AA8B16AA4F707A78869DEB481E205B0165F75161AA59",
+    "raw_pdf_length_bytes": 272834,
+    "raw_pdf_header": "%PDF-1.4"
+  }
+}

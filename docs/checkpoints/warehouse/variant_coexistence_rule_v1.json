@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-04-18T22:39:18.483Z",
+  "workflow": "VARIANT_COEXISTENCE_RULE_V1",
+  "coexistence_shape_verified": true,
+  "contract": "docs/contracts/VARIANT_COEXISTENCE_RULE_V1.md",
+  "runtime_adoption": {
+    "patched": [
+      "backend/identity/variant_coexistence_rule_v1.mjs",
+      "backend/identity/identity_slot_audit_v1.mjs"
+    ],
+    "audited_no_patch_required": [
+      "backend/warehouse/classification_worker_v1.mjs",
+      "backend/warehouse/promotion_executor_v1.mjs"
+    ],
+    "reasoning": {
+      "classification_worker_v1": "Consumes identity audit output; once slot audit returns VARIANT_IDENTITY, classification already resolves PROMOTE_VARIANT and CREATE_CARD_PRINT.",
+      "promotion_executor_v1": "Existing duplicate-target lookup is exact-variant keyed, so distinct variant_key rows do not collide at executor time."
+    }
+  },
+  "blocked_rows_post_repair": [
+    {
+      "warehouse_candidate_id": "e6983551-ad7e-4aa4-b641-863006a4ee1a",
+      "name": "Reshiram ex",
+      "printed_number": "020/086",
+      "effective_set_code": "sv10.5w",
+      "variant_key": "play_pokemon_stamp",
+      "slot_context": {
+        "base_gv_id": "GV-PK-WHT-020",
+        "existing_variant_gv_id": "GV-PK-WHT-020-WHITE-FLARE-STAMP",
+        "existing_variant_key": "white_flare_stamp"
+      },
+      "dry_run_classification": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_reason_code": "VARIANT_COEXISTENCE_ALLOWED",
+        "proposed_action_type": "CREATE_CARD_PRINT"
+      }
+    },
+    {
+      "warehouse_candidate_id": "7209e21c-05e6-4fae-9904-91bcb177047c",
+      "name": "Zekrom ex",
+      "printed_number": "034/086",
+      "effective_set_code": "sv10.5b",
+      "variant_key": "play_pokemon_stamp",
+      "slot_context": {
+        "base_gv_id": "GV-PK-BLK-034",
+        "existing_variant_gv_id": "GV-PK-BLK-034-BLACK-BOLT-STAMP",
+        "existing_variant_key": "black_bolt_stamp"
+      },
+      "dry_run_classification": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_reason_code": "VARIANT_COEXISTENCE_ALLOWED",
+        "proposed_action_type": "CREATE_CARD_PRINT"
+      }
+    }
+  ],
+  "test_summary": {
+    "command": "node --test backend/identity/identity_slot_audit_v1.test.mjs",
+    "passed": 15,
+    "failed": 0
+  },
+  "can_residue_resume": true,
+  "recommended_next_execution_step": "RESUME_PRIZE_PACK_2_ROW_RESIDUE"
+}

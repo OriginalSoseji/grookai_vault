@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-04-22T02:27:28.758Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V20_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.json",
+  "row_count": 2,
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "source_candidate_id": null,
+      "name": "Rillaboom",
+      "candidate_name": "Rillaboom",
+      "printed_number": "014/072",
+      "number_plain": "14",
+      "normalized_number_plain": "14",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "confirmed_series_coverage": [
+        1
+      ],
+      "evidence_sources_v20_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Rillaboom",
+            "printed_number": "014",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh1",
+      "effective_set_code": "swsh1",
+      "effective_routed_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "effective_routed_set_name": "Sword & Shield",
+      "canonical_queue_key": "swsh1::Rillaboom::014/072::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-SSH-14",
+      "base_route": "GV-PK-SSH-14",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SSH-14",
+        "base_route": "GV-PK-SSH-14",
+        "unique_base_route": true,
+        "base_card_name": "Rillaboom"
+      },
+      "reference_hints_payload": {
+        "provenance": "prize_pack_evidence_v20_nonblocked",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          1
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SSH-14",
+          "base_route": "GV-PK-SSH-14"
+        },
+        "effective_routed_set_code": "swsh1",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v20_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "source_candidate_id": null,
+      "name": "Inteleon",
+      "candidate_name": "Inteleon",
+      "printed_number": "058/202",
+      "number_plain": "58",
+      "normalized_number_plain": "58",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "confirmed_series_coverage": [
+        1
+      ],
+      "evidence_sources_v20_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Inteleon",
+            "printed_number": "058",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh1",
+      "effective_set_code": "swsh1",
+      "effective_routed_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "effective_routed_set_name": "Sword & Shield",
+      "canonical_queue_key": "swsh1::Inteleon::058/202::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-SSH-58",
+      "base_route": "GV-PK-SSH-58",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SSH-58",
+        "base_route": "GV-PK-SSH-58",
+        "unique_base_route": true,
+        "base_card_name": "Inteleon"
+      },
+      "reference_hints_payload": {
+        "provenance": "prize_pack_evidence_v20_nonblocked",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          1
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SSH-58",
+          "base_route": "GV-PK-SSH-58"
+        },
+        "effective_routed_set_code": "swsh1",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v20_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    }
+  ]
+}

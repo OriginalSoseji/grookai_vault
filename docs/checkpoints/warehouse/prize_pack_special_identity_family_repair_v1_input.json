@@ -1,0 +1,1422 @@
+{
+  "generated_at": "2026-04-21T13:03:13.974Z",
+  "workflow": "PRIZE_PACK_SPECIAL_IDENTITY_FAMILY_REPAIR_V1",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_series_evidence_sources_v2.json",
+    "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.json"
+  ],
+  "row_identity": {
+    "candidate_name": "Team Rocket's Mewtwo ex",
+    "printed_number": "079/217",
+    "source_family": "prize-pack-series-cards-pokemon",
+    "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+    "proposed_variant_key": "play_pokemon_stamp",
+    "current_blocker_class": "SPECIAL_IDENTITY_FAMILY_COLLISION"
+  },
+  "artifact_materialization": {
+    "v17_input_rows": [
+      {
+        "candidate_name": "Team Rocket's Mewtwo ex",
+        "printed_number": "079/217",
+        "effective_base_owner_gv_id": null,
+        "set_code": null,
+        "source_family": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+        "current_blocker_class": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+        "evidence_tier": "TIER_4",
+        "known_series_appearances": [],
+        "missing_series_checked": [],
+        "prior_evidence_pass_history": [],
+        "blocked_by_official_acquisition": false
+      }
+    ],
+    "v6_route_rows": [
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+        "candidate_name": "Team Rocket's Mewtwo ex",
+        "name": "Team Rocket's Mewtwo ex",
+        "printed_number": "079/217",
+        "normalized_number_plain": "079",
+        "set_code": null,
+        "source_family": "prize-pack-series-cards-pokemon",
+        "proposed_variant_key": "play_pokemon_stamp",
+        "candidate_base_gv_ids": [],
+        "candidate_base_routes": [],
+        "ambiguity_type": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+        "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the special identity family collision cluster has not yet been targeted by a bounded route invariant.",
+        "prior_route_repair_history": [
+          "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+          "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+          "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+          "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+        ],
+        "blocked_by_official_acquisition": false,
+        "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+        "evidence_tier": "TIER_4",
+        "known_series_appearances": [],
+        "missing_series_checked": []
+      }
+    ],
+    "v2_route_rows": [
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+        "candidate_name": "Team Rocket's Mewtwo ex",
+        "name": "Team Rocket's Mewtwo ex",
+        "printed_number": "079/217",
+        "normalized_number_plain": "079",
+        "proposed_variant_key": "play_pokemon_stamp",
+        "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+        "blocked_by_official_acquisition": false,
+        "prior_evidence_pass_history": [],
+        "candidate_base_routes": [],
+        "same_number_route_candidates": [
+          {
+            "gv_id": "GV-PK-BS-79",
+            "card_print_id": "ae57c92d-4ed4-4c26-90a6-edb98bfb9d16",
+            "name": "Super Energy Removal",
+            "set_code": "base1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-B2-79",
+            "card_print_id": "504e5b91-e62d-41a7-824e-ae71b39551ed",
+            "name": "Magnemite",
+            "set_code": "base4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-TR-79",
+            "card_print_id": "1005064a-0123-4b4d-a36d-98b7d70770f7",
+            "name": "Sleep!",
+            "set_code": "base5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-LC-79",
+            "card_print_id": "f53749d1-5761-47da-ab82-ac3a58b05d3b",
+            "name": "Machop",
+            "set_code": "base6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BLW-79",
+            "card_print_id": "e67ff8fa-b1c0-4be4-9989-3783e8d3d7e8",
+            "name": "Watchog",
+            "set_code": "bw1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PLB-79",
+            "card_print_id": "bf615040-b64e-44d1-b8be-521970e9a015",
+            "name": "Cover Fossil",
+            "set_code": "bw10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-LTR-79",
+            "card_print_id": "af563fb9-43d0-4703-8559-e2ec63cfa6f8",
+            "name": "Riolu",
+            "set_code": "bw11",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-EPO-79",
+            "card_print_id": "6046ec69-a6b4-4ed1-9470-54a593015209",
+            "name": "Watchog",
+            "set_code": "bw2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-NVI-79",
+            "card_print_id": "0a633904-ca77-4ff1-a5f8-97dd4fbfabc7",
+            "name": "Hydreigon",
+            "set_code": "bw3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-NXD-79",
+            "card_print_id": "cdcf72c4-d4c0-4f6b-a5a7-4111d937d106",
+            "name": "Wigglytuff",
+            "set_code": "bw4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DEX-79",
+            "card_print_id": "abd5c513-c5c3-41c4-89ba-3a7b6c0f360c",
+            "name": "Bisharp",
+            "set_code": "bw5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DRX-79",
+            "card_print_id": "d9bb4265-b266-46c9-bc3c-cb727db278cb",
+            "name": "Lairon",
+            "set_code": "bw6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BCR-79",
+            "card_print_id": "37155c83-14a8-4778-8ff4-472715ccf80b",
+            "name": "Sandslash",
+            "set_code": "bw7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PLS-79",
+            "card_print_id": "f2e21d12-d24c-4608-aa07-6f0d6097c38e",
+            "name": "Timburr",
+            "set_code": "bw8",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PLF-79",
+            "card_print_id": "8b66ef08-3372-4fd4-a3f8-8015eaade9e6",
+            "name": "Steelix",
+            "set_code": "bw9",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PR-BLW-BW79",
+            "card_print_id": "16b6e16b-2a7f-44ba-997e-bfc612657862",
+            "name": "Landorus",
+            "set_code": "bwp",
+            "number": "BW79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-COL-79",
+            "card_print_id": "da99461b-845f-42c9-a4d0-bfce0cb93913",
+            "name": "Interviewer's Questions",
+            "set_code": "col1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DP-79",
+            "card_print_id": "df108b37-e30c-4fcf-9c84-28f7dd7cd0a4",
+            "name": "Combee",
+            "set_code": "dp1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-MT-79",
+            "card_print_id": "40d96457-0f90-49fa-a3d8-838bb3862271",
+            "name": "Cyndaquil",
+            "set_code": "dp2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SW-79",
+            "card_print_id": "617a960b-06a0-4265-ad1f-ed0398d855fa",
+            "name": "Burmy Sandy Cloak",
+            "set_code": "dp3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-GE-79",
+            "card_print_id": "caebfb9b-d452-4eda-a892-9b36fce7e304",
+            "name": "Mankey",
+            "set_code": "dp4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-MD-79",
+            "card_print_id": "7d3904e0-7b25-4177-9a91-73c84a18d708",
+            "name": "Dawn Stadium",
+            "set_code": "dp5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-LA-79",
+            "card_print_id": "d061dd1e-cbb7-4a45-9cd0-e9c0444d354d",
+            "name": "Unown [V]",
+            "set_code": "dp6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SF-79",
+            "card_print_id": "414ee02a-1de9-4b36-8492-d96de8298a04",
+            "name": "Treecko",
+            "set_code": "dp7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-EX-79",
+            "card_print_id": "e2535b83-6101-452b-a991-e3c36cfe6f75",
+            "name": "Graveler",
+            "set_code": "ecard1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-AQ-79",
+            "card_print_id": "d04fdc3e-239e-4386-bf61-a3ffcefbbf69",
+            "name": "Grimer",
+            "set_code": "ecard2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SK-79",
+            "card_print_id": "add9a676-12d4-4961-9815-5e1cd53ffdc5",
+            "name": "Murkrow",
+            "set_code": "ecard3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-RS-79",
+            "card_print_id": "1fa3c5cb-9471-452f-a6ec-86b1d3a412a9",
+            "name": "Zigzagoon",
+            "set_code": "ex1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UF-79",
+            "card_print_id": "ffeda027-99eb-4192-b5ad-e58061bbc889",
+            "name": "Wooper",
+            "set_code": "ex10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DS-79",
+            "card_print_id": "32eda351-1cb1-4790-ba21-656827b07c4e",
+            "name": "Poochyena",
+            "set_code": "ex11",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-LM-79",
+            "card_print_id": "aa7b8dce-0aef-4d62-8ccf-6c6d9e66382a",
+            "name": "Mysterious Fossil",
+            "set_code": "ex12",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-HP-79",
+            "card_print_id": "638824ef-e7db-4c80-88ed-b105bf8a64e7",
+            "name": "Pikachu δ",
+            "set_code": "ex13",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CG-79",
+            "card_print_id": "81880261-5e8f-45fa-aa51-194a8935e435",
+            "name": "Holon Circle",
+            "set_code": "ex14",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DF-79",
+            "card_print_id": "45ab25e6-ef1d-4ac7-b03b-495d3926ee6c",
+            "name": "Professor Elm's Training Method",
+            "set_code": "ex15",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PK-79",
+            "card_print_id": "25131341-0702-4cdf-990f-657053e78afc",
+            "name": "Phoebe's Stadium",
+            "set_code": "ex16",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SS-79",
+            "card_print_id": "ee114135-e390-4a71-a731-2b59fbf7f93c",
+            "name": "Skitty",
+            "set_code": "ex2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DR-79",
+            "card_print_id": "cd3e5091-ab0b-46d6-9f4c-775583d96bc5",
+            "name": "Trapinch",
+            "set_code": "ex3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-MA-79",
+            "card_print_id": "95465425-e352-4b28-b0a1-13cfc30c06a7",
+            "name": "Team Aqua Technical Machine 01",
+            "set_code": "ex4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-HL-79",
+            "card_print_id": "fb9abbef-81fb-4eaa-8a0d-5985f1f8f98d",
+            "name": "Totodile",
+            "set_code": "ex5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-RG-79",
+            "card_print_id": "47ef6df4-3c82-4bbd-8d16-fbbe058ad1a5",
+            "name": "Shellder",
+            "set_code": "ex6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-TRR-79",
+            "card_print_id": "48337b86-5bf4-4534-96d3-1abaea02bbac",
+            "name": "Swinub",
+            "set_code": "ex7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DX-79",
+            "card_print_id": "2489e97a-2eca-4107-95e0-eb7379a5885c",
+            "name": "Swablu",
+            "set_code": "ex8",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-EM-79",
+            "card_print_id": "a0a98ba7-37c4-4f2b-b17d-6d98e041eed0",
+            "name": "Mr. Stone's Project",
+            "set_code": "ex9",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-GEN-79",
+            "card_print_id": "30290e06-39e2-4482-bb54-1daacbdfa92d",
+            "name": "Psychic Energy",
+            "set_code": "g1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-G1-79",
+            "card_print_id": "6c35767d-9631-4198-812b-53157b6f1722",
+            "name": "Erika's Tangela",
+            "set_code": "gym1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-G2-79",
+            "card_print_id": "d586d4c8-9e53-4092-affe-57d17985adb6",
+            "name": "Koga's Koffing",
+            "set_code": "gym2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-HS-79",
+            "card_print_id": "2d402bea-2521-4f1b-b73b-33f269b8eafb",
+            "name": "Sandshrew",
+            "set_code": "hgss1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UL-79",
+            "card_print_id": "21ac882f-62fa-49e3-b67d-84376565d011",
+            "name": "Life Herb",
+            "set_code": "hgss2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UD-79",
+            "card_print_id": "d84c5227-5d36-45f5-ad47-f58c9978ccf5",
+            "name": "Darkness Energy",
+            "set_code": "hgss3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-TM-79",
+            "card_print_id": "7f17ecd0-b6e9-4912-8f3e-80101692ab12",
+            "name": "Swinub",
+            "set_code": "hgss4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-MEG-79",
+            "card_print_id": "2b9cb590-0d8c-4f21-be00-c47de44c7c97",
+            "name": "Toxicroak",
+            "set_code": "me01",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-N1-79",
+            "card_print_id": "8fe463ca-c1d3-443f-a31a-fa9d4893e58f",
+            "name": "Swinub",
+            "set_code": "neo1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-N4-79",
+            "card_print_id": "f3fc20b9-6cdb-443e-87a0-e6b997101a1e",
+            "name": "Psyduck",
+            "set_code": "neo4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PGO-79",
+            "card_print_id": "71361672-c38f-4f4f-a322-78a023508be4",
+            "name": "Mewtwo VSTAR",
+            "set_code": "pgo",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PL-79",
+            "card_print_id": "41730ea1-7e5f-4c3e-a52f-76a69a54203a",
+            "name": "Lapras",
+            "set_code": "pl1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-RR-79",
+            "card_print_id": "750eb589-f9e9-4db6-a47b-52d4dc0bc6e6",
+            "name": "Shellos East Sea",
+            "set_code": "pl2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SV-79",
+            "card_print_id": "f6f062df-a2d0-4908-a553-e7d8d9a15a6b",
+            "name": "Relicanth",
+            "set_code": "pl3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-AR-79",
+            "card_print_id": "fa81f0e8-6e56-40ab-a743-b5944b308f30",
+            "name": "Treecko",
+            "set_code": "pl4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SUM-79",
+            "card_print_id": "b5d9d044-48a6-4907-b25d-756579e9bbba",
+            "name": "Alolan Persian",
+            "set_code": "sm1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UNB-79",
+            "card_print_id": "41caf7d7-9dbb-4f42-b4a6-2986bed640b3",
+            "name": "Espurr",
+            "set_code": "sm10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UNM-79",
+            "card_print_id": "a8f81485-e78c-4eae-a856-dc012249f2d9",
+            "name": "Jirachi-GX",
+            "set_code": "sm11",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CEC-79",
+            "card_print_id": "836850a6-dcb8-4fd1-8825-8f2c97fbff77",
+            "name": "Xatu",
+            "set_code": "sm12",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-GRI-79",
+            "card_print_id": "30a33c3f-5012-4910-bc6c-23e4986cadea",
+            "name": "Honchkrow",
+            "set_code": "sm2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BUS-79",
+            "card_print_id": "1d7835ee-4949-4576-a5f7-76498046a50d",
+            "name": "Passimian",
+            "set_code": "sm3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CIN-79",
+            "card_print_id": "6d63a97d-bcda-4be7-af6d-b41dd240b80a",
+            "name": "Swablu",
+            "set_code": "sm4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-UPR-79",
+            "card_print_id": "126a4c88-6dfa-4a46-bada-51eb6a6b71bf",
+            "name": "Alolan Dugtrio",
+            "set_code": "sm5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-FLI-79",
+            "card_print_id": "021bbdcd-41f4-46e8-878f-6738f038d2f5",
+            "name": "Yveltal-GX",
+            "set_code": "sm6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CES-79",
+            "card_print_id": "8be0ad97-ffd5-44f5-abfa-3ef237c62cce",
+            "name": "Claydol",
+            "set_code": "sm7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-LOT-79",
+            "card_print_id": "ef9975de-a042-467d-a1df-12feaea8d936",
+            "name": "Raikou",
+            "set_code": "sm8",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-TEU-79",
+            "card_print_id": "be33eccc-893c-43c8-b64b-cc5f68777608",
+            "name": "Larvitar",
+            "set_code": "sm9",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-HIF-SV79",
+            "card_print_id": "4aab616b-665a-45a5-8723-0fdc1fec3699",
+            "name": "Silvally-GX",
+            "set_code": "sma",
+            "number": "SV79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SM-SM79",
+            "card_print_id": "8789faf1-be4d-46f7-a014-3e1fe7a218c4",
+            "name": "Shining Celebi",
+            "set_code": "smp",
+            "number": "SM79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PAL-79",
+            "card_print_id": "427d046e-48e1-4c27-893f-5659d4d38799",
+            "name": "Bellibolt ex",
+            "set_code": "sv02",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PAR-79",
+            "card_print_id": "86adbf4b-9d70-4a53-b9d0-2d6dc160fc2e",
+            "name": "Flittle",
+            "set_code": "sv04",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-TWM-79",
+            "card_print_id": "dabb0204-53f6-4fb6-80a2-46f2a5880040",
+            "name": "Clefable",
+            "set_code": "sv06",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SCR-79",
+            "card_print_id": "08fc7c12-5ffc-49bd-86f8-ce5f21492e5b",
+            "name": "Medicham",
+            "set_code": "sv07",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SSP-79",
+            "card_print_id": "42c5a819-1315-4d8d-93e8-66a247ef3595",
+            "name": "Mesprit",
+            "set_code": "sv08",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-JTG-79",
+            "card_print_id": "50e8c3bc-40dd-4ab7-b437-1720596e08d8",
+            "name": "Mamoswine ex",
+            "set_code": "sv09",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DRI-79",
+            "card_print_id": "7fcd1585-aa0d-4c14-b23d-190e5a826cdd",
+            "name": "Team Rocket's Drowzee",
+            "set_code": "sv10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PAF-79-S",
+            "card_print_id": "120aec52-6134-4ae8-9953-8e20cfc43a9b",
+            "name": "Electric Generator",
+            "set_code": "sv4pt5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SFA-79",
+            "card_print_id": "951ab615-b420-4fed-9460-b4778888c3c8",
+            "name": "Bewear",
+            "set_code": "sv6pt5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PRE-79",
+            "card_print_id": "290262c4-dd7b-46bb-bb44-71efe4c3bc1f",
+            "name": "Dunsparce",
+            "set_code": "sv8pt5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PR-SV-79",
+            "card_print_id": "616f81f1-a3df-4f71-952d-bbb0122fddd6",
+            "name": "Fuecoco",
+            "set_code": "svp",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SSH-79",
+            "card_print_id": "3d4d62cc-b61b-4a4a-8155-da083a1ec531",
+            "name": "Morpeko V",
+            "set_code": "swsh1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-ASR-79",
+            "card_print_id": "c9e65d8a-849b-43ec-9735-851341062ada",
+            "name": "Hippopotas",
+            "set_code": "swsh10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-SIT-79",
+            "card_print_id": "97b4673c-2971-45ad-a8f0-b8660dbf9afa",
+            "name": "Elgyem",
+            "set_code": "swsh12",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-RCL-79",
+            "card_print_id": "e5af41df-2642-436a-aa53-5e430a05d765",
+            "name": "Galarian Cursola",
+            "set_code": "swsh2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DAA-79",
+            "card_print_id": "260a01fe-eea0-4d4b-b29a-de06ffd04523",
+            "name": "Morelull",
+            "set_code": "swsh3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CPA-79",
+            "card_print_id": "14efcf7f-d60d-4dac-b159-e3cd9fddf3f8",
+            "name": "Charizard V",
+            "set_code": "swsh3.5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-VIV-79",
+            "card_print_id": "98d359ce-0478-4eec-b6af-6d2826e10f69",
+            "name": "Diancie",
+            "set_code": "swsh4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BST-79",
+            "card_print_id": "44f52147-dcbc-47e9-9e81-b58636b03466",
+            "name": "Carkol",
+            "set_code": "swsh5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-CRE-79",
+            "card_print_id": "f3c0feab-e863-43ce-a11d-1d3ee947445f",
+            "name": "Galarian Sirfetch'd",
+            "set_code": "swsh6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-EVS-79",
+            "card_print_id": "4a3d6279-2c95-4e2f-be39-7c6598890fcc",
+            "name": "Ribombee",
+            "set_code": "swsh7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-FST-79",
+            "card_print_id": "a295d36f-a4b2-45c3-b00e-b7b20cbf5e58",
+            "name": "Inteleon VMAX",
+            "set_code": "swsh8",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BRS-79",
+            "card_print_id": "53849d0e-2ed7-43ef-8ab7-5efbfa71c1eb",
+            "name": "Lucario",
+            "set_code": "swsh9",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-XY-79",
+            "card_print_id": "1eb61fe7-c035-4b90-aee0-fbe3a82a1dc2",
+            "name": "Yveltal-EX",
+            "set_code": "xy1",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-FCO-79",
+            "card_print_id": "916f9f7f-788b-4caf-b7d6-4120b980fb6e",
+            "name": "Lugia BREAK",
+            "set_code": "xy10",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-STS-79",
+            "card_print_id": "4ff2b5a4-244c-40bb-91c1-e3d6e72d16ea",
+            "name": "M Gardevoir-EX",
+            "set_code": "xy11",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-EVO-79",
+            "card_print_id": "3bb82e7d-7bd9-4b1b-ac44-cb82d96701b6",
+            "name": "Maintenance",
+            "set_code": "xy12",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-FLF-79",
+            "card_print_id": "07b8ae70-479f-40a7-ad9f-0611ec708e44",
+            "name": "M Kangaskhan-EX",
+            "set_code": "xy2",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-FFI-79",
+            "card_print_id": "4bb96f56-c0fb-46e7-8b0e-1b095f5af203",
+            "name": "Lickilicky",
+            "set_code": "xy3",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PHF-79",
+            "card_print_id": "cc13b468-8113-46c7-8336-c276dde06c89",
+            "name": "Fearow",
+            "set_code": "xy4",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PRC-79",
+            "card_print_id": "8edd2265-a523-438b-88b7-2e9ba4b9cf73",
+            "name": "Meditite",
+            "set_code": "xy5",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-ROS-79",
+            "card_print_id": "97168705-ffcf-461f-8850-c2d3c352f80d",
+            "name": "Tranquill",
+            "set_code": "xy6",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-AOR-79",
+            "card_print_id": "f5223cc7-f610-4c70-aaed-78570a1bf185",
+            "name": "Paint Roller",
+            "set_code": "xy7",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BKT-79",
+            "card_print_id": "2f4d43e0-0d6b-4c63-a132-cc55baf7c114",
+            "name": "Marowak BREAK",
+            "set_code": "xy8",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-BKP-79",
+            "card_print_id": "6164333d-bd8a-458b-9e99-60c3ad0cda98",
+            "name": "Ferroseed",
+            "set_code": "xy9",
+            "number": "79",
+            "number_plain": "79",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PR-XY-XY79",
+            "card_print_id": "10953691-c451-4d4b-a1ff-fe5572db89e6",
+            "name": "Latios",
+            "set_code": "xyp",
+            "number": "XY79",
+            "number_plain": "79",
+            "variant_key": null
+          }
+        ],
+        "same_name_route_candidates": [
+          {
+            "gv_id": "GV-PK-ASC-079",
+            "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "me02.5",
+            "number": "079",
+            "number_plain": "079",
+            "variant_key": "base"
+          },
+          {
+            "gv_id": "GV-PK-ASC-281",
+            "card_print_id": "c90c94e2-8c0b-431b-a5dc-3e640cf56937",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "me02.5",
+            "number": "281",
+            "number_plain": "281",
+            "variant_key": "base"
+          },
+          {
+            "gv_id": "GV-PK-DRI-213",
+            "card_print_id": "2978323f-2f58-4d51-ba3f-2f1abe695bdc",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "sv10",
+            "number": "213",
+            "number_plain": "213",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DRI-231",
+            "card_print_id": "18685617-3a39-483f-8f42-de29ce0ee4e6",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "sv10",
+            "number": "231",
+            "number_plain": "231",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DRI-240",
+            "card_print_id": "5bf262c2-6f3e-4ab6-8486-8f2631dcefc1",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "sv10",
+            "number": "240",
+            "number_plain": "240",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-DRI-81",
+            "card_print_id": "0f104920-bf05-427e-85ad-9c775eb0d024",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "sv10",
+            "number": "81",
+            "number_plain": "81",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PR-SV-205",
+            "card_print_id": "18d72dbb-6512-4223-8092-f5e37a8bb512",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "svp",
+            "number": "205",
+            "number_plain": "205",
+            "variant_key": null
+          },
+          {
+            "gv_id": "GV-PK-PR-SV-216",
+            "card_print_id": "e5e57546-80ee-4189-b33b-59f08300e96d",
+            "name": "Team Rocket's Mewtwo ex",
+            "set_code": "svp",
+            "number": "216",
+            "number_plain": "216",
+            "variant_key": null
+          }
+        ],
+        "live_existing_play_pokemon_stamp": [],
+        "exact_name_number_base_match_count": 0,
+        "prior_evidence_v2": null,
+        "prior_promoted_batch": null,
+        "cluster_name": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+        "shared_ambiguity_question": "Does the source row point to a lawful plain-base canon route, or only to a different special-identity family that already carries non-empty variant semantics?",
+        "why_route_is_ambiguous": "The exact name+number slot only matches a special-family canon row with non-empty variant semantics, so the plain Prize Pack route is still unresolved.",
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "route_resolution_preview": null
+      }
+    ],
+    "wait_inspection_rows": [
+      {
+        "card_print_candidate_name": "Team Rocket's Mewtwo ex",
+        "printed_number": "079/217",
+        "printed_number_left": "079",
+        "set_code": null,
+        "base_card_id": null,
+        "base_card_name": "Team Rocket's Mewtwo ex",
+        "base_card_print_id": null,
+        "source_set_family": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+        "source_tcgplayer_id": "677318",
+        "variant_hint": "play_pokemon_stamp",
+        "stamp_label": "Play! Pokémon Stamp",
+        "evidence_sources": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+            "note": "Family-only stamped row without independent series proof."
+          }
+        ],
+        "evidence_tier": "TIER_4",
+        "appearance_in_series": [],
+        "image_url": null,
+        "image_source": null,
+        "image_availability": "no_external_visual_evidence_attached",
+        "why_blocked": "The stamped family row does not yet resolve to one unique base card, so any series evidence would still attach to an ambiguous identity.",
+        "blocker_class": "BASE_ROUTE_AMBIGUOUS",
+        "cluster_name": "BASE_ROUTE_AMBIGUOUS",
+        "decision_reason_v2": "base_route_ambiguous_or_missing",
+        "blocker_detail": "base_route_not_unique",
+        "unique_base_route": false,
+        "duplicate_occurrence_count": 0,
+        "earliest_possible_series": null,
+        "full_supported_coverage": false,
+        "evidence_present": [
+          "Evidence tier: TIER_4",
+          "Evidence sources: JustTCG family-only source row",
+          "Source tcgplayer_id: 677318"
+        ],
+        "evidence_missing": [
+          "A unique underlying base-card route. Series evidence is unsafe until the base identity is singular."
+        ],
+        "research_links": {
+          "justtcg_url": null,
+          "tcgdex_url": null,
+          "google_search_url": "https://www.google.com/search?q=Team%20Rocket's%20Mewtwo%20ex%20079%2F217%20Prize%20Pack%20Play!%20Pokemon",
+          "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Team%20Rocket's%20Mewtwo%20ex%20079%2F217%20Prize%20Pack%20Play!%20Pokemon"
+        },
+        "research_query": "Team Rocket's Mewtwo ex 079/217 Prize Pack Play! Pokemon",
+        "priority_score": 113
+      }
+    ]
+  },
+  "live_source_candidate": {
+    "id": "390f8a75-9dcb-49c7-9385-8fe77255d54c",
+    "source": "justtcg",
+    "raw_import_id": "41420",
+    "upstream_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+    "tcgplayer_id": "677318",
+    "set_id": "prize-pack-series-cards-pokemon",
+    "name_raw": "Team Rocket's Mewtwo ex",
+    "number_raw": "079/217",
+    "normalized_name": "Team Rocket's Mewtwo-EX",
+    "normalized_number_left": "079",
+    "normalized_number_plain": "79",
+    "normalized_printed_total": "217",
+    "match_status": "AMBIGUOUS",
+    "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+    "resolved_set_code": null,
+    "card_print_id": null,
+    "rarity": "Double Rare"
+  },
+  "candidate_canon_owners": {
+    "exact_name_rows": [
+      {
+        "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+        "gv_id": "GV-PK-ASC-079",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "079",
+        "number_plain": "079",
+        "variant_key": "base",
+        "rarity": "Double rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "c90c94e2-8c0b-431b-a5dc-3e640cf56937",
+        "gv_id": "GV-PK-ASC-281",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "281",
+        "number_plain": "281",
+        "variant_key": "base",
+        "rarity": "Special illustration rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "2978323f-2f58-4d51-ba3f-2f1abe695bdc",
+        "gv_id": "GV-PK-DRI-213",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "213",
+        "number_plain": "213",
+        "variant_key": null,
+        "rarity": "Ultra Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:213/182",
+        "external_ids": {
+          "pokemonapi": "sv10-213"
+        }
+      },
+      {
+        "card_print_id": "18685617-3a39-483f-8f42-de29ce0ee4e6",
+        "gv_id": "GV-PK-DRI-231",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "231",
+        "number_plain": "231",
+        "variant_key": null,
+        "rarity": "Special Illustration Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:231/182",
+        "external_ids": {
+          "pokemonapi": "sv10-231"
+        }
+      },
+      {
+        "card_print_id": "5bf262c2-6f3e-4ab6-8486-8f2631dcefc1",
+        "gv_id": "GV-PK-DRI-240",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "240",
+        "number_plain": "240",
+        "variant_key": null,
+        "rarity": "Hyper Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:240/182",
+        "external_ids": {
+          "pokemonapi": "sv10-240"
+        }
+      },
+      {
+        "card_print_id": "0f104920-bf05-427e-85ad-9c775eb0d024",
+        "gv_id": "GV-PK-DRI-81",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "81",
+        "number_plain": "81",
+        "variant_key": null,
+        "rarity": "Double Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:81/182",
+        "external_ids": {
+          "pokemonapi": "sv10-81"
+        }
+      },
+      {
+        "card_print_id": "18d72dbb-6512-4223-8092-f5e37a8bb512",
+        "gv_id": "GV-PK-PR-SV-205",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "205",
+        "number_plain": "205",
+        "variant_key": null,
+        "rarity": "None",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {
+          "tcgdex": "svp-205"
+        }
+      },
+      {
+        "card_print_id": "e5e57546-80ee-4189-b33b-59f08300e96d",
+        "gv_id": "GV-PK-PR-SV-216",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "216",
+        "number_plain": "216",
+        "variant_key": null,
+        "rarity": "None",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {
+          "tcgdex": "svp-216"
+        }
+      }
+    ],
+    "same_number_mewtwo_rows": [
+      {
+        "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+        "gv_id": "GV-PK-ASC-079",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "079",
+        "number_plain": "079",
+        "variant_key": "base",
+        "rarity": "Double rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "71361672-c38f-4f4f-a322-78a023508be4",
+        "gv_id": "GV-PK-PGO-79",
+        "name": "Mewtwo VSTAR",
+        "set_code": "pgo",
+        "number": "79",
+        "number_plain": "79",
+        "variant_key": null,
+        "rarity": "Rare Rainbow",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      }
+    ]
+  },
+  "prior_evidence_pass_history": [
+    "PRIZE_PACK_EVIDENCE_V1",
+    "PRIZE_PACK_EVIDENCE_V2",
+    "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V3-V17_NONBLOCKED"
+  ],
+  "prior_route_repair_history": [
+    "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+    "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+    "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+    "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+    "PRIZE_PACK_BASE_ROUTE_REPAIR_V6"
+  ],
+  "accessible_series_evidence_rows_for_same_name": [
+    {
+      "name": "Team Rocket’s Mewtwo ex",
+      "set_token": "DRI",
+      "number_plain": "81",
+      "raw_line": "Team Rocket’s Mewtwo ex DRI 081 ■"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-04-20T21:57:34.206Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked.json",
+  "row_count": 4,
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+      "name": "Pokegear 3.0",
+      "candidate_name": "Pokegear 3.0",
+      "printed_number": "186/198",
+      "normalized_number_plain": "186",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        3
+      ],
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SVI-186",
+        "base_route": "GV-PK-SVI-186",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          3
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SVI-186",
+          "base_route": "GV-PK-SVI-186"
+        },
+        "effective_routed_set_code": "sv01",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-atticus-uncommon",
+      "name": "Atticus",
+      "candidate_name": "Atticus",
+      "printed_number": "077/091",
+      "normalized_number_plain": "077",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAF-77-S",
+        "base_route": "GV-PK-PAF-77-S",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAF-77-S",
+          "base_route": "GV-PK-PAF-77-S"
+        },
+        "effective_routed_set_code": "sv4pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+      "name": "Moonlit Hill",
+      "candidate_name": "Moonlit Hill",
+      "printed_number": "081/091",
+      "normalized_number_plain": "081",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAF-81-S",
+        "base_route": "GV-PK-PAF-81-S",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAF-81-S",
+          "base_route": "GV-PK-PAF-81-S"
+        },
+        "effective_routed_set_code": "sv4pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+      "name": "Technical Machine: Crisis Punch",
+      "candidate_name": "Technical Machine: Crisis Punch",
+      "printed_number": "090/091",
+      "normalized_number_plain": "090",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAF-90-S",
+        "base_route": "GV-PK-PAF-90-S",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAF-90-S",
+          "base_route": "GV-PK-PAF-90-S"
+        },
+        "effective_routed_set_code": "sv4pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    }
+  ]
+}

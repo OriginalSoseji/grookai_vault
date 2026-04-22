@@ -1,0 +1,302 @@
+{
+  "generated_at": "2026-04-22T03:10:03.826Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V22_NONBLOCKED",
+  "scope": "One small high-signal nonblocked Prize Pack slice using currently accessible evidence only.",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_target_slice.json"
+  ],
+  "current_backlog": {
+    "wait_for_more_evidence": 54,
+    "no_series_confirmation": 53,
+    "nonblocked_no_series_confirmation": 6,
+    "special_identity_family_collision": 1,
+    "blocked_by_official_acquisition": 47,
+    "do_not_canon_total": 187,
+    "promoted_prize_pack_total": 422
+  },
+  "target_slice": {
+    "id": "MEGA_EVOLUTION_MYSTERY_GARDEN_SERIES_8_NEAR_HIT_AUDIT",
+    "label": "Mega Evolution Mystery Garden Series 8 Near-Hit Audit",
+    "row_count": 1,
+    "shared_question": "Across all currently accessible Series 1-8 evidence, does this Mega Evolution printed identity appear exactly as 172/132, as a different-number near hit, or not at all?",
+    "selection_note": "This one-row micro-slice was selected because exact-hit rows are exhausted and this is the strongest remaining near-hit: accessible Series 8 sources show Mystery Garden in the same MEG set token, but at number 122 rather than the candidate printed identity 172/132."
+  },
+  "evidence_sources_used": [
+    {
+      "series": 1,
+      "source_name": "Pokemon.com Prize Pack Series One official checklist",
+      "source_type": "official_checklist_json_import",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json"
+    },
+    {
+      "series": 2,
+      "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+      "source_type": "official_checklist_json_import",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json"
+    },
+    {
+      "series": 4,
+      "source_name": "JustInBasil Prize Pack Series 4 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4"
+    },
+    {
+      "series": 5,
+      "source_name": "JustInBasil Prize Pack Series 5 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps5"
+    },
+    {
+      "series": 6,
+      "source_name": "JustInBasil Prize Pack Series 6 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps6"
+    },
+    {
+      "series": 7,
+      "source_name": "Play! Pokemon Prize Pack Series 7 official checklist",
+      "source_type": "official_checklist_pdf",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf"
+    },
+    {
+      "series": 8,
+      "source_name": "Play! Pokemon Prize Pack Series 8 official checklist",
+      "source_type": "official_checklist_pdf",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf"
+    },
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series 3",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 4,
+      "source_name": "Bulbapedia Prize Pack Series 4",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series 5",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series 6",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series 7",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series 8",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)",
+      "fetch_status": "OK"
+    }
+  ],
+  "summary": {
+    "rows_investigated": 1,
+    "ready_for_warehouse": 0,
+    "do_not_canon": 0,
+    "wait": 1,
+    "excluded_acquisition_blocked": 47,
+    "excluded_special_family": 1,
+    "matched_series_patterns": {
+      "[]": 1
+    },
+    "rows_with_any_prior_exact_or_near_hit": 4
+  },
+  "ready_rows": [],
+  "do_not_canon_rows": [],
+  "still_wait_rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Mystery Garden",
+      "name": "Mystery Garden",
+      "base_card_name": "Mystery Garden",
+      "printed_number": "172/132",
+      "normalized_number_plain": "172",
+      "base_gv_id": "GV-PK-MEG-172",
+      "base_route": "GV-PK-MEG-172",
+      "effective_base_owner_gv_id": "GV-PK-MEG-172",
+      "set_code": "me01",
+      "effective_set_code": "me01",
+      "effective_set_name": "Mega Evolution",
+      "set_token": "MEG",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "source_candidate_id": null,
+      "prior_evidence_pass_history": [],
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V22_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "research_links": null,
+      "unique_base_route": true,
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v22_nonblocked": [],
+      "near_match_evidence_for_v22_nonblocked": [
+        {
+          "series": 8,
+          "source_name": "Play! Pokemon Prize Pack Series 8 official checklist",
+          "source_type": "official_checklist_pdf",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf",
+          "near_match_line": "Mystery Garden MEG 122 ■ ■",
+          "near_match_reason": "name_seen_but_exact_set_token_or_number_not_matched",
+          "observed_set_token": "MEG",
+          "observed_number_plain": "122",
+          "expected_set_token": "MEG",
+          "expected_number_plain": "172"
+        },
+        {
+          "series": 8,
+          "source_name": "Bulbapedia Prize Pack Series 8",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)&action=raw",
+          "near_match_line": "setlist/entry image setsymbolmega evolution.png x18px link mega evolution tcg 122/132 i tcg id mega evolution mystery garden 122 stadium uncommon standard set",
+          "near_match_reason": "name_seen_but_exact_set_or_number_not_matched"
+        }
+      ],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_exact_printed_identity_match_after_v22_nonblocked",
+      "final_reason": "Accessible sources do not exactly match this row by name, set, and printed number."
+    }
+  ],
+  "representative_rows": [
+    {
+      "bucket": "WAIT_IN_SLICE",
+      "name": "Mystery Garden",
+      "printed_number": "172/132",
+      "set_code": "me01",
+      "matched_series_pattern": "[]",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "set_code": "sv10",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "set_code": "sv10",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Carmine",
+      "printed_number": "103/131",
+      "set_code": "sv8pt5",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Professor's Research",
+      "printed_number": "060/072",
+      "set_code": "swsh4.5",
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Victini V",
+      "printed_number": "025/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-v-025-202-ultra-rare"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Cinderace",
+      "printed_number": "034/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinderace-rare"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Drizzile",
+      "printed_number": "056/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-drizzile-uncommon"
+    },
+    {
+      "bucket": "EXCLUDED_SPECIAL_FAMILY",
+      "name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "set_code": null,
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare"
+    }
+  ],
+  "remaining_backlog": {
+    "wait_for_more_evidence": 54,
+    "no_series_confirmation": 53,
+    "nonblocked_no_series_confirmation": 6,
+    "do_not_canon_total_after_v22_nonblocked": 187,
+    "blocked_by_official_acquisition_remaining": 47,
+    "special_identity_family_collision_remaining": 1,
+    "promoted_prize_pack_total": 422
+  },
+  "ready_batch_candidate_created": false,
+  "ready_batch_candidate_path": null,
+  "recommended_next_execution_step": "FINALIZE_PRIZE_PACK_BACKLOG_STATE"
+}

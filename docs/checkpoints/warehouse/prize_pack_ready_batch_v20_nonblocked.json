@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-04-22T02:40:38.303Z",
+  "workflow": "PRIZE_PACK_READY_BATCH_V20_NONBLOCKED",
+  "status": "CLOSED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked_candidate.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.json"
+  ],
+  "selection_summary": {
+    "row_count": 2,
+    "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+    "variant_key": "play_pokemon_stamp",
+    "target_origin": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V20_NONBLOCKED",
+    "batch_size_attempted": 2,
+    "batch_size_completed": 2,
+    "precheck_state_counts": {
+      "ALREADY_IN_WAREHOUSE": 1,
+      "READY_TO_BRIDGE": 1
+    }
+  },
+  "batch_rows_classified": 2,
+  "batch_rows_staged": 2,
+  "batch_rows_approved": 2,
+  "batch_rows_promoted": 2,
+  "batch_rows_mapped": 2,
+  "batch_rows_image_closed": 2,
+  "batch_failures_by_class": {},
+  "blocked_rows": [],
+  "verification": {
+    "mapping_duplicate_active_external_ids": 0,
+    "mapping_multi_active_card_prints": 0,
+    "exact_image_overwrites": 0,
+    "representative_shared_stamp_rows": 2,
+    "missing_representative_rows": 0
+  },
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "name": "Rillaboom",
+      "candidate_name": "Rillaboom",
+      "printed_number": "014/072",
+      "number_plain": "14",
+      "normalized_number_plain": "14",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v20_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Rillaboom",
+            "printed_number": "014",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh1",
+      "effective_set_code": "swsh1",
+      "effective_routed_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "effective_routed_set_name": "Sword & Shield",
+      "canonical_queue_key": "swsh1::Rillaboom::014/072::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-SSH-14",
+      "base_route": "GV-PK-SSH-14",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SSH-14",
+        "base_route": "GV-PK-SSH-14",
+        "unique_base_route": true,
+        "base_card_name": "Rillaboom"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v20_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series.",
+      "pre_intake_audit": {
+        "current_live_state": "ALREADY_IN_WAREHOUSE",
+        "blocker_class": null,
+        "live_source_candidate_id": "acdd8611-2e4b-4771-8a46-c0f5ced07421",
+        "live_raw_import_id": "41575",
+        "live_base_card_print_id": "36dd01b9-ccd6-4e0f-b88a-03701fe3449d",
+        "live_base_gv_id": "GV-PK-SSH-14",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": "a5f1d3f5-16dd-4e46-b714-44d564ec7705",
+        "live_warehouse_state": "RAW",
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "target_base_resolution": {
+        "base_card_print_id": "36dd01b9-ccd6-4e0f-b88a-03701fe3449d",
+        "base_gv_id": "GV-PK-SSH-14"
+      },
+      "underlying_base_proof_summary": {
+        "live_base_card_print_id": "36dd01b9-ccd6-4e0f-b88a-03701fe3449d",
+        "live_base_set_code": "swsh1",
+        "base_gv_id": "GV-PK-SSH-14"
+      },
+      "warehouse_candidate_id": "a5f1d3f5-16dd-4e46-b714-44d564ec7705",
+      "warehouse_state": "PROMOTED",
+      "card_print_id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+      "gv_id": "GV-PK-SSH-014-PLAY-POKEMON-STAMP",
+      "approved_action_type": "CREATE_CARD_PRINT",
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-22T02:40:22.176Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V20_NONBLOCKED founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "staging_id": "32b3cc9d-98d5-4297-b43d-c109d4f2b084",
+      "staging_execution_status": "SUCCEEDED",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh1/14/high.webp",
+      "image_status": "representative_shared_stamp",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex",
+      "staged_executed_at": "2026-04-22T02:40:31.418Z",
+      "mapping_id": "121461",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_active": true,
+      "source_candidate_id": "acdd8611-2e4b-4771-8a46-c0f5ced07421"
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "name": "Inteleon",
+      "candidate_name": "Inteleon",
+      "printed_number": "058/202",
+      "number_plain": "58",
+      "normalized_number_plain": "58",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v20_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Inteleon",
+            "printed_number": "058",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh1",
+      "effective_set_code": "swsh1",
+      "effective_routed_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "effective_routed_set_name": "Sword & Shield",
+      "canonical_queue_key": "swsh1::Inteleon::058/202::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-SSH-58",
+      "base_route": "GV-PK-SSH-58",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SSH-58",
+        "base_route": "GV-PK-SSH-58",
+        "unique_base_route": true,
+        "base_card_name": "Inteleon"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v20_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series.",
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "cc8ac7f4-4817-4523-a8bb-76f4d9e29af8",
+        "live_raw_import_id": "41843",
+        "live_base_card_print_id": "1bb8e700-dd86-4a47-a8a4-453722e779b9",
+        "live_base_gv_id": "GV-PK-SSH-58",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "target_base_resolution": {
+        "base_card_print_id": "1bb8e700-dd86-4a47-a8a4-453722e779b9",
+        "base_gv_id": "GV-PK-SSH-58"
+      },
+      "underlying_base_proof_summary": {
+        "live_base_card_print_id": "1bb8e700-dd86-4a47-a8a4-453722e779b9",
+        "live_base_set_code": "swsh1",
+        "base_gv_id": "GV-PK-SSH-58"
+      },
+      "warehouse_candidate_id": "6f936154-c248-4f05-af43-f1043eb47344",
+      "warehouse_state": "PROMOTED",
+      "card_print_id": "9e35e58a-ea53-423f-847c-28adb253f142",
+      "gv_id": "GV-PK-SSH-058-PLAY-POKEMON-STAMP",
+      "approved_action_type": "CREATE_CARD_PRINT",
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-22T02:40:22.176Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V20_NONBLOCKED founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "staging_id": "046e5478-a18f-4dff-abed-18e394d022f2",
+      "staging_execution_status": "SUCCEEDED",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh1/58/high.webp",
+      "image_status": "representative_shared_stamp",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex",
+      "staged_executed_at": "2026-04-22T02:40:34.539Z",
+      "mapping_id": "121462",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_active": true,
+      "source_candidate_id": "cc8ac7f4-4817-4523-a8bb-76f4d9e29af8"
+    }
+  ],
+  "post_batch_prize_pack_status": {
+    "remaining_wait_rows": 55,
+    "do_not_canon_rows": 186,
+    "blocked_by_official_acquisition_rows": 47,
+    "promoted_prize_pack_total_before_v20": 420,
+    "promoted_prize_pack_total_after_v20": 422
+  },
+  "recommended_next_execution_step": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V21_NONBLOCKED"
+}

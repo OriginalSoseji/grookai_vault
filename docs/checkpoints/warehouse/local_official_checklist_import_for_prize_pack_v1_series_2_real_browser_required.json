@@ -1,0 +1,34 @@
+{
+  "checkpoint": "MANUAL_BROWSER_DOWNLOAD_AND_LOCAL_JSON_IMPORT_FOR_PRIZE_PACK_V1_SERIES_2_REAL_BROWSER_REQUIRED",
+  "created_at": "2026-04-21T10:08:29.7075576-06:00",
+  "status": "STOPPED",
+  "stop_reason": "SERIES_2_RAW_ARTIFACT_IS_HTML_CHALLENGE_CONTENT",
+  "scope": {
+    "series": 2,
+    "allowed_actions": [
+      "official Series 2 acquisition",
+      "local JSON normalization",
+      "source-upgrade validation"
+    ],
+    "disallowed_actions_observed": []
+  },
+  "required_raw_source_file": "C:/grookai_vault/temp/prize_pack_series_2_official_raw.pdf",
+  "raw_source_file_check": {
+    "exists": true,
+    "is_pdf": false,
+    "length_bytes": 4539,
+    "first_bytes_ascii": "<!DOCTYPE html>",
+    "conclusion": "The saved file is not the official checklist PDF. It is HTML challenge content masquerading as .pdf."
+  },
+  "normalized_json_path": "C:/grookai_vault/docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+  "local_json_created": false,
+  "series_2_entry_count": 0,
+  "schema_validated": false,
+  "source_upgrade_run": false,
+  "tier_upgraded_count": 0,
+  "new_ready_count": 0,
+  "new_do_not_canon_count": 0,
+  "ready_batch_candidate_created": false,
+  "ready_batch_candidate_path": "C:/grookai_vault/docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2_candidate.json",
+  "next_step": "MANUAL_BROWSER_DOWNLOAD_AND_LOCAL_JSON_IMPORT_FOR_PRIZE_PACK_V1_SERIES_2_RETRY"
+}

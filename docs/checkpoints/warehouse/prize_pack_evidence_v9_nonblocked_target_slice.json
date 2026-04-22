@@ -1,0 +1,472 @@
+{
+  "generated_at": "2026-04-20T17:04:16.347Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED",
+  "selection_summary": {
+    "id": "ACCESSIBLE_SERIES_1_2_DUPLICATE_SWORDBASE_TRAINER_ITEMS",
+    "label": "Accessible Series 1-2 Sword & Shield Base Duplicate Trainer Items",
+    "row_count": 5,
+    "set_code_counts": {
+      "swsh1": 5
+    },
+    "excluded_blocked_by_official_acquisition_count": 21
+  },
+  "shared_question": "Across currently accessible Prize Pack Series 1 and Series 2 sources, do these Sword & Shield base trainer-item rows appear in both corroborated series lists, proving distribution-only duplicates without any manual official acquisition?",
+  "evidence_sources_used": [
+    {
+      "series": 1,
+      "source_name": "Bulbapedia Prize Pack Series One",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+    },
+    {
+      "series": 2,
+      "source_name": "Bulbapedia Prize Pack Series Two",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-crushing-hammer-uncommon",
+      "candidate_name": "Crushing Hammer",
+      "printed_number": "159/202",
+      "normalized_number_plain": "159",
+      "base_gv_id": "GV-PK-SSH-159",
+      "base_route": "GV-PK-SSH-159",
+      "base_card_print_id": null,
+      "base_card_name": "Crushing Hammer",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-crushing-hammer-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh1-159",
+        "google_search_url": "https://www.google.com/search?q=Crushing%20Hammer%20159%2F202%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Crushing%20Hammer%20159%2F202%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2
+      ],
+      "evidence_sources_used_for_v9_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 159/202|d|{{tcg id|sword & shield|crushing hammer|159}}|item||uncommon|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 159/202|d|{{tcg id|sword & shield|crushing hammer|159}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v9_nonblocked_series_1_2",
+      "final_reason": "Accessible Series 1-2 evidence proves this row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-energy-switch-uncommon",
+      "candidate_name": "Energy Switch",
+      "printed_number": "162/202",
+      "normalized_number_plain": "162",
+      "base_gv_id": "GV-PK-SSH-162",
+      "base_route": "GV-PK-SSH-162",
+      "base_card_print_id": null,
+      "base_card_name": "Energy Switch",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-energy-switch-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh1-162",
+        "google_search_url": "https://www.google.com/search?q=Energy%20Switch%20162%2F202%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Energy%20Switch%20162%2F202%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2
+      ],
+      "evidence_sources_used_for_v9_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 162/202|d|{{tcg id|sword & shield|energy switch|162}}|item||uncommon|standard set}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 162/202|d|{{tcg id|sword & shield|energy switch|162}}|item||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v9_nonblocked_series_1_2",
+      "final_reason": "Accessible Series 1-2 evidence proves this row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-great-ball-uncommon",
+      "candidate_name": "Great Ball",
+      "printed_number": "164/202",
+      "normalized_number_plain": "164",
+      "base_gv_id": "GV-PK-SSH-164",
+      "base_route": "GV-PK-SSH-164",
+      "base_card_print_id": null,
+      "base_card_name": "Great Ball",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-great-ball-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh1-164",
+        "google_search_url": "https://www.google.com/search?q=Great%20Ball%20164%2F202%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Great%20Ball%20164%2F202%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2
+      ],
+      "evidence_sources_used_for_v9_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 164/202|d|{{tcg id|sword & shield|great ball|164}}|item||uncommon|standard set}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 164/202|d|{{tcg id|sword & shield|great ball|164}}|item||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v9_nonblocked_series_1_2",
+      "final_reason": "Accessible Series 1-2 evidence proves this row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rare-candy-180-202-uncommon",
+      "candidate_name": "Rare Candy - 180/202",
+      "printed_number": "180/202",
+      "normalized_number_plain": "180",
+      "base_gv_id": "GV-PK-SSH-180",
+      "base_route": "GV-PK-SSH-180",
+      "base_card_print_id": null,
+      "base_card_name": "Rare Candy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-rare-candy-180-202-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh1-180",
+        "google_search_url": "https://www.google.com/search?q=Rare%20Candy%20180%2F202%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Rare%20Candy%20180%2F202%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2
+      ],
+      "evidence_sources_used_for_v9_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 180/202|d|{{tcg id|sword & shield|rare candy|180}}|item||uncommon|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 180/202|d|{{tcg id|sword & shield|rare candy|180}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v9_nonblocked_series_1_2",
+      "final_reason": "Accessible Series 1-2 evidence proves this row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-switch-183-202-uncommon",
+      "candidate_name": "Switch - 183/202",
+      "printed_number": "183/202",
+      "normalized_number_plain": "183",
+      "base_gv_id": "GV-PK-SSH-183",
+      "base_route": "GV-PK-SSH-183",
+      "base_card_print_id": null,
+      "base_card_name": "Switch",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-switch-183-202-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh1-183",
+        "google_search_url": "https://www.google.com/search?q=Switch%20183%2F202%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Switch%20183%2F202%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V9_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2
+      ],
+      "evidence_sources_used_for_v9_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 183/202|d|{{tcg id|sword & shield|switch|183}}|item||uncommon|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsword and shield.png|18px|link=sword & shield (tcg)]] 183/202|d|{{tcg id|sword & shield|switch|183}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v9_nonblocked_series_1_2",
+      "final_reason": "Accessible Series 1-2 evidence proves this row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "generated_at": "2026-04-18T03:50:00Z",
+  "objective": "STAMPED_MAPPING_AND_IMAGE_CLOSURE_V1",
+  "source_batch_artifacts": [
+    "docs/checkpoints/warehouse/stamped_ready_batch_v1.json",
+    "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.json",
+    "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json"
+  ],
+  "batch_size": 25,
+  "batch_identity": {
+    "counts_by_effective_set_code": {
+      "bwp": 18,
+      "bw4": 2,
+      "bw3": 2,
+      "bw1": 2,
+      "bw2": 1
+    },
+    "rows": [
+      { "batch_index": 1, "card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02", "gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP", "name": "Arcanine", "printed_number": "12/99", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bw4" },
+      { "batch_index": 2, "card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104", "gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP", "name": "Arcanine", "printed_number": "12/99", "variant_key": "staff_prerelease_stamp", "stamp_label": "Staff Prerelease Stamp", "effective_set_code": "bw4" },
+      { "batch_index": 3, "card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab", "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP", "name": "Darmanitan", "printed_number": "25/114", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bw1" },
+      { "batch_index": 4, "card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70", "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP", "name": "Darmanitan", "printed_number": "25/114", "variant_key": "staff_prerelease_stamp", "stamp_label": "Staff Prerelease Stamp", "effective_set_code": "bw1" },
+      { "batch_index": 5, "card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1", "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP", "name": "Victini", "printed_number": "43/101", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bw3" },
+      { "batch_index": 6, "card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d", "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP", "name": "Victini", "printed_number": "43/101", "variant_key": "staff_prerelease_stamp", "stamp_label": "Staff Prerelease Stamp", "effective_set_code": "bw3" },
+      { "batch_index": 7, "card_print_id": "9bc5a43e-13de-411d-a903-719cd149f746", "gv_id": "GV-PK-EPO-53-PRERELEASE-STAMP", "name": "Gigalith", "printed_number": "53/98", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bw2" },
+      { "batch_index": 8, "card_print_id": "dcdddef8-1f41-4545-9562-d725395261c6", "gv_id": "GV-PK-PR-BLW-28-WORLDS-11-STAFF-STAMP", "name": "Tropical Beach", "printed_number": "BW28", "variant_key": "worlds_11_staff_stamp", "stamp_label": "Worlds 11 Staff Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 9, "card_print_id": "3fb6b255-a389-4d58-a6eb-8f9b6b336a43", "gv_id": "GV-PK-PR-BLW-28-WORLDS-11-TOP-16-STAMP", "name": "Tropical Beach", "printed_number": "BW28", "variant_key": "worlds_11_top_16_stamp", "stamp_label": "Worlds 11 Top 16 Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 10, "card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a", "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW29", "variant_key": "battle_road_autumn_2011_3rd_place_stamp", "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 11, "card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718", "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW29", "variant_key": "battle_road_autumn_2012_3rd_place_stamp", "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 12, "card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8", "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW29", "variant_key": "battle_road_spring_2012_3rd_place_stamp", "stamp_label": "Battle Road Spring 2012 3rd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 13, "card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9", "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW29", "variant_key": "battle_road_spring_2013_3rd_place_stamp", "stamp_label": "Battle Road Spring 2013 3rd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 14, "card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4", "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW30", "variant_key": "battle_road_autumn_2011_2nd_place_stamp", "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 15, "card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027", "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW30", "variant_key": "battle_road_autumn_2012_2nd_place_stamp", "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 16, "card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366", "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW30", "variant_key": "battle_road_spring_2012_2nd_place_stamp", "stamp_label": "Battle Road Spring 2012 2nd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 17, "card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff", "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW30", "variant_key": "battle_road_spring_2013_2nd_place_stamp", "stamp_label": "Battle Road Spring 2013 2nd Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 18, "card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5", "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW31", "variant_key": "battle_road_autumn_2011_1st_place_stamp", "stamp_label": "Battle Road Autumn 2011 1st Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 19, "card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925", "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW31", "variant_key": "battle_road_autumn_2012_1st_place_stamp", "stamp_label": "Battle Road Autumn 2012 1st Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 20, "card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e", "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW31", "variant_key": "battle_road_spring_2012_1st_place_stamp", "stamp_label": "Battle Road Spring 2012 1st Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 21, "card_print_id": "668bac23-4c00-472a-afad-9464c778f66a", "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP", "name": "Victory Cup", "printed_number": "BW31", "variant_key": "battle_road_spring_2013_1st_place_stamp", "stamp_label": "Battle Road Spring 2013 1st Place Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 22, "card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e", "gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP", "name": "Volcarona", "printed_number": "BW40", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 23, "card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c", "gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP", "name": "Volcarona", "printed_number": "BW40", "variant_key": "staff_prerelease_stamp", "stamp_label": "Staff Prerelease Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 24, "card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca", "gv_id": "GV-PK-PR-BLW-48-PRERELEASE-STAMP", "name": "Altaria", "printed_number": "BW48", "variant_key": "prerelease_stamp", "stamp_label": "Prerelease Stamp", "effective_set_code": "bwp" },
+      { "batch_index": 25, "card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b", "gv_id": "GV-PK-PR-BLW-48-STAFF-PRERELEASE-STAMP", "name": "Altaria", "printed_number": "BW48", "variant_key": "staff_prerelease_stamp", "stamp_label": "Staff Prerelease Stamp", "effective_set_code": "bwp" }
+    ]
+  },
+  "mapping_closure": {
+    "surface": "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+    "dry_run": {
+      "would_upsert": 25,
+      "conflicts": 0
+    },
+    "apply": {
+      "upserted": 25
+    },
+    "verification": {
+      "active_mappings_by_source": [
+        {
+          "source": "justtcg",
+          "active_mapping_rows": 25,
+          "mapped_rows": 25
+        }
+      ],
+      "unmapped_rows": 0,
+      "duplicate_active_external_ids": 0,
+      "multi_active_card_print_conflicts": 0,
+      "post_apply_rerun_already_correct": 25
+    }
+  },
+  "image_closure": {
+    "surface": "backend/images/source_image_enrichment_worker_v1.mjs --input-json",
+    "dry_run": {
+      "representative_shared_stamp": 25,
+      "missing": 0,
+      "ambiguous": 0,
+      "unmatched": 0
+    },
+    "apply": {
+      "updated": 25
+    },
+    "verification": {
+      "total_rows": 25,
+      "exact_rows": 0,
+      "representative_rows": 25,
+      "representative_shared_rows": 0,
+      "representative_shared_stamp_rows": 25,
+      "representative_shared_collision_rows": 0,
+      "missing_rows": 0,
+      "post_apply_rerun_skipped_existing_representative": 25,
+      "representative_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available."
+    }
+  },
+  "representative_examples": [
+    {
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bw4",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bw4",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bw1",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Victini",
+      "printed_number": "43/101",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bw3",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Gigalith",
+      "printed_number": "53/98",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bw2",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "variant_key": "worlds_11_staff_stamp",
+      "stamp_label": "Worlds 11 Staff Stamp",
+      "effective_set_code": "bwp",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+      "effective_set_code": "bwp",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+      "effective_set_code": "bwp",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "mapping_status": "active_justtcg",
+      "image_status": "representative_shared_stamp"
+    }
+  ],
+  "rows_missing_anything": [],
+  "batch_fully_closed": true,
+  "lessons_learned": [
+    "Source-backed JustTCG mapping is the lawful closure surface for promoted stamped rows in this batch.",
+    "Representative image closure needs a bounded input mode keyed to promoted row identity, not a widened set run.",
+    "effective_set_code + number_plain + name was sufficient to assign representative stamped imagery for the exact 25-row batch.",
+    "Keeping representative imagery in representative_image_url preserved the exact-image truth boundary."
+  ],
+  "recommended_next_execution_step": "STAMPED_READY_BATCH_2_WAREHOUSE_INTAKE_V1"
+}

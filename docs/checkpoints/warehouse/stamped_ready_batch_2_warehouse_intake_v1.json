@@ -1,0 +1,273 @@
+{
+  "generated_at": "2026-04-18T04:55:27.534Z",
+  "workflow": "STAMPED_READY_BATCH_2_WAREHOUSE_INTAKE_V1",
+  "status": "SUCCEEDED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+    "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.json",
+    "docs/contracts/PROMO_PREFIX_IDENTITY_RULE_V1.md",
+    "docs/contracts/REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1.md"
+  ],
+  "scope_boundary": {
+    "source_batch": "exact existing 100 staged Batch 2 rows",
+    "rebridged": false,
+    "reclassified": false,
+    "widened_beyond_exact_100": false,
+    "changed_identity_rules_during_pass": false,
+    "global_mapping_job_run": false,
+    "global_image_job_run": false
+  },
+  "batch_identity": {
+    "batch_size": 100,
+    "counts_by_source_set_id": {
+      "black-and-white-promos-pokemon": 8,
+      "sm-promos-pokemon": 92
+    },
+    "counts_by_stamp_label": {
+      "Prerelease Stamp": 50,
+      "Staff Prerelease Stamp": 50
+    }
+  },
+  "precheck": {
+    "candidate_states": [
+      {
+        "state": "STAGED_FOR_PROMOTION",
+        "current_review_hold_reason": null,
+        "row_count": 100
+      }
+    ],
+    "staging_states": [
+      {
+        "execution_status": "PENDING",
+        "row_count": 100
+      }
+    ]
+  },
+  "phase_counts": {
+    "batch_size_attempted": 100,
+    "batch_size_completed": 100,
+    "batch_rows_classified": 100,
+    "batch_rows_staged": 100,
+    "batch_rows_approved": 100,
+    "batch_rows_promoted": 100,
+    "batch_rows_mapped": 100,
+    "batch_rows_image_closed": 100
+  },
+  "executor": {
+    "dry_run": {
+      "attempted": 100,
+      "succeeded": 100,
+      "failed": 0
+    },
+    "apply": {
+      "promoted": 100,
+      "candidate_states_after_apply": [
+        {
+          "state": "PROMOTED",
+          "current_review_hold_reason": null,
+          "row_count": 100
+        }
+      ],
+      "staging_states_after_apply": [
+        {
+          "execution_status": "SUCCEEDED",
+          "row_count": 100
+        }
+      ],
+      "note": "The initial shell invocation timed out after partial logging, but the same bounded executor process completed in the background and left all 100 rows in terminal success states."
+    },
+    "promo_prefix_fix_behavior": {
+      "smp_prefixed_gv_ids": [
+        "GV-PK-SM-SM10-PRERELEASE-STAMP",
+        "GV-PK-SM-SM72-STAFF-PRERELEASE-STAMP",
+        "GV-PK-SM-SM204-PRERELEASE-STAMP",
+        "GV-PK-SM-SM221-STAFF-PRERELEASE-STAMP"
+      ],
+      "bwp_stable_examples": [
+        "GV-PK-PR-BLW-51-PRERELEASE-STAMP",
+        "GV-PK-PR-BLW-84-STAFF-PRERELEASE-STAMP"
+      ]
+    }
+  },
+  "mapping_closure": {
+    "worker": "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+    "dry_run": {
+      "would_upsert": 100,
+      "conflicts": 0,
+      "unique_card_print_ids": 100,
+      "unique_external_ids": 100
+    },
+    "apply": {
+      "upserted": 100,
+      "mapped_rows": 100,
+      "duplicate_active_external_ids": 0,
+      "rows_with_multiple_active_mappings": 0
+    }
+  },
+  "image_closure": {
+    "worker": "backend/images/source_image_enrichment_worker_v1.mjs",
+    "initial_gap": {
+      "missing_before_repair": 16,
+      "root_cause": "routed promo-source lookup lacked a usable exact image for a subset of stamped SMP rows"
+    },
+    "repair": {
+      "surface": "bounded stamped representative fallback in source_image_enrichment_worker_v1",
+      "rule": "when the routed promo source lacks a usable image, reuse the sibling base canon exact image as representative coverage for the stamped row",
+      "governing_contract": "REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1"
+    },
+    "final_dry_run": {
+      "total_rows": 100,
+      "representative_shared_stamp": 100,
+      "missing": 0,
+      "ambiguous": 0
+    },
+    "apply": {
+      "updated": 100,
+      "exact_rows": 0,
+      "representative_rows": 100,
+      "image_status_counts": {
+        "representative_shared_stamp": 100
+      },
+      "image_source_counts": {
+        "tcgdex": 84,
+        "pokemonapi": 16
+      },
+      "representative_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available."
+    }
+  },
+  "canonical_verification_summary": {
+    "bad_variant_keys": 0,
+    "base_separation": {
+      "stamped_groups": 50,
+      "two_variant_groups": 50,
+      "groups_with_base_row": 50
+    },
+    "identity_collapse_detected": false,
+    "base_rows_mutated": false,
+    "product_noise_leakage": false
+  },
+  "batch_failures_by_class": {},
+  "representative_examples": [
+    {
+      "name": "Crobat",
+      "printed_number": "51",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-51-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Crobat",
+      "printed_number": "51",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-51-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Flygon",
+      "printed_number": "53",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-53-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Flygon",
+      "printed_number": "53",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-53-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Metagross",
+      "printed_number": "75",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-75-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Porygon-Z",
+      "printed_number": "84",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "bwp",
+      "gv_id": "GV-PK-PR-BLW-84-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Shiinotic",
+      "printed_number": "SM10",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM10-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Bruxish",
+      "printed_number": "SM11",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM11-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Alolan Raichu",
+      "printed_number": "SM72",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM72-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Pheromosa",
+      "printed_number": "SM115",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM115-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Necrozma",
+      "printed_number": "SM204",
+      "stamped_variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM204-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    },
+    {
+      "name": "Terrakion",
+      "printed_number": "SM205",
+      "stamped_variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "smp",
+      "gv_id": "GV-PK-SM-SM205-STAFF-PRERELEASE-STAMP",
+      "mapping_status": "mapped",
+      "image_status": "representative_shared_stamp"
+    }
+  ],
+  "scale_readiness_decision": "STAMPED_READY_BATCH_3_WAREHOUSE_INTAKE_V1_250"
+}

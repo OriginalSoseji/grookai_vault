@@ -1,0 +1,3334 @@
+{
+  "generated_at": "2026-04-19T05:26:18.442Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V3_TARGET_SLICE",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v3_input.json",
+  "target_slice_selection_priority": [
+    "unique base route",
+    "strongest existing evidence tier available in the remaining wait pool",
+    "missing early-series exclusion coverage or absent series confirmation",
+    "coherent by effective set code"
+  ],
+  "candidate_clusters": [
+    {
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "row_count": 40
+    },
+    {
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "row_count": 36
+    },
+    {
+      "effective_set_code": "swsh10",
+      "effective_set_name": "Astral Radiance",
+      "row_count": 30
+    },
+    {
+      "effective_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "row_count": 30
+    },
+    {
+      "effective_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "row_count": 29
+    },
+    {
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "row_count": 23
+    },
+    {
+      "effective_set_code": "swsh1",
+      "effective_set_name": "Sword & Shield",
+      "row_count": 22
+    },
+    {
+      "effective_set_code": "swsh8",
+      "effective_set_name": "Fusion Strike",
+      "row_count": 20
+    },
+    {
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "row_count": 19
+    },
+    {
+      "effective_set_code": "swsh3",
+      "effective_set_name": "Darkness Ablaze",
+      "row_count": 14
+    },
+    {
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "row_count": 12
+    },
+    {
+      "effective_set_code": "swsh4",
+      "effective_set_name": "Vivid Voltage",
+      "row_count": 8
+    },
+    {
+      "effective_set_code": "swsh2",
+      "effective_set_name": "Rebel Clash",
+      "row_count": 7
+    },
+    {
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "row_count": 6
+    },
+    {
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "row_count": 6
+    },
+    {
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "row_count": 5
+    },
+    {
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "row_count": 4
+    },
+    {
+      "effective_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "row_count": 4
+    },
+    {
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "row_count": 3
+    },
+    {
+      "effective_set_code": "pgo",
+      "effective_set_name": "Pokémon GO",
+      "row_count": 2
+    },
+    {
+      "effective_set_code": "sv10",
+      "effective_set_name": "Destined Rivals",
+      "row_count": 2
+    },
+    {
+      "effective_set_code": "me01",
+      "effective_set_name": "Mega Evolution",
+      "row_count": 1
+    },
+    {
+      "effective_set_code": "sv03",
+      "effective_set_name": "Obsidian Flames",
+      "row_count": 1
+    },
+    {
+      "effective_set_code": "sv07",
+      "effective_set_name": "Stellar Crown",
+      "row_count": 1
+    },
+    {
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "row_count": 1
+    },
+    {
+      "effective_set_code": "sv8pt5",
+      "effective_set_name": "Prismatic Evolutions",
+      "row_count": 1
+    },
+    {
+      "effective_set_code": "swsh4.5",
+      "effective_set_name": "Shining Fates",
+      "row_count": 1
+    }
+  ],
+  "selected_slice": {
+    "effective_set_code": "swsh9",
+    "effective_set_name": "Brilliant Stars",
+    "row_count": 40,
+    "question": "For the 40 Brilliant Stars (swsh9) Prize Pack family-only rows with unique base routes and no current external series confirmation, do Prize Pack Series 1-8 card-list sources document each card in exactly one series, multiple series, or none?"
+  },
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-grotle-uncommon",
+      "candidate_name": "Grotle",
+      "printed_number": "007/172",
+      "normalized_number_plain": "007",
+      "base_gv_id": "GV-PK-BRS-7",
+      "base_route": "GV-PK-BRS-7",
+      "base_card_print_id": "beda43fc-cfe9-4008-93fb-ef74ed7660b2",
+      "base_card_name": "Grotle",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489316",
+      "image_url": "https://images.pokemontcg.io/swsh9/7_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-grotle-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-007",
+        "google_search_url": "https://www.google.com/search?q=Grotle%20007%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Grotle%20007%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 007/172|f|{{tcg id|brilliant stars|grotle|7}}|grass||uncommon|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 007/172|f|{{tcg id|brilliant stars|grotle|7}}|grass||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-torterra-rare",
+      "candidate_name": "Torterra",
+      "printed_number": "008/172",
+      "normalized_number_plain": "008",
+      "base_gv_id": "GV-PK-BRS-8",
+      "base_route": "GV-PK-BRS-8",
+      "base_card_print_id": "6b32f4eb-384f-4c5a-8a7b-725d0cb45cb3",
+      "base_card_name": "Torterra",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489328",
+      "image_url": "https://images.pokemontcg.io/swsh9/8_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-torterra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-008",
+        "google_search_url": "https://www.google.com/search?q=Torterra%20008%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Torterra%20008%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 008/172|f|{{tcg id|brilliant stars|torterra|8}}|grass||rare holo|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-shaymin-v-ultra-rare",
+      "candidate_name": "Shaymin V",
+      "printed_number": "013/172",
+      "normalized_number_plain": "013",
+      "base_gv_id": "GV-PK-BRS-13",
+      "base_route": "GV-PK-BRS-13",
+      "base_card_print_id": "ce9e9ef9-305a-4181-9007-48f7b22ecca6",
+      "base_card_name": "Shaymin V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489310",
+      "image_url": "https://images.pokemontcg.io/swsh9/13_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-shaymin-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-013",
+        "google_search_url": "https://www.google.com/search?q=Shaymin%20V%20013%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Shaymin%20V%20013%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 013/172|f|[[shaymin v (brilliant stars 13)|shaymin]]{{tcgv}}|grass||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-shaymin-vstar-ultra-rare",
+      "candidate_name": "Shaymin VSTAR",
+      "printed_number": "014/172",
+      "normalized_number_plain": "014",
+      "base_gv_id": "GV-PK-BRS-14",
+      "base_route": "GV-PK-BRS-14",
+      "base_card_print_id": "741d7d14-b71a-4190-9ac7-b8117b6dffbe",
+      "base_card_name": "Shaymin VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489311",
+      "image_url": "https://images.pokemontcg.io/swsh9/14_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-shaymin-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-014",
+        "google_search_url": "https://www.google.com/search?q=Shaymin%20VSTAR%20014%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Shaymin%20VSTAR%20014%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 014/172|f|[[shaymin vstar (brilliant stars 14)|shaymin]]{{vstar}}|grass||rare vstar|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-charizard-vstar-ultra-rare",
+      "candidate_name": "Charizard VSTAR",
+      "printed_number": "018/172",
+      "normalized_number_plain": "018",
+      "base_gv_id": "GV-PK-BRS-18",
+      "base_route": "GV-PK-BRS-18",
+      "base_card_print_id": "f26611be-6390-4dd8-8234-8c646a48e871",
+      "base_card_name": "Charizard VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489291",
+      "image_url": "https://images.pokemontcg.io/swsh9/18_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-charizard-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-018",
+        "google_search_url": "https://www.google.com/search?q=Charizard%20VSTAR%20018%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Charizard%20VSTAR%20018%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 018/172|f|[[charizard vstar (brilliant stars 18)|charizard]]{{vstar}}|fire||rare vstar|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-moltres-rare",
+      "candidate_name": "Moltres",
+      "printed_number": "021/172",
+      "normalized_number_plain": "021",
+      "base_gv_id": "GV-PK-BRS-21",
+      "base_route": "GV-PK-BRS-21",
+      "base_card_print_id": "ebfadb7f-c6ee-4a8d-a386-b6ac91d88f44",
+      "base_card_name": "Moltres",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489324",
+      "image_url": "https://images.pokemontcg.io/swsh9/21_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-moltres-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-021",
+        "google_search_url": "https://www.google.com/search?q=Moltres%20021%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Moltres%20021%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 021/172|f|{{tcg id|brilliant stars|moltres|21}}|fire||rare holo|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 021/172|f|{{tcg id|brilliant stars|moltres|21}}|fire||rare holo|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-entei-v-ultra-rare",
+      "candidate_name": "Entei V",
+      "printed_number": "022/172",
+      "normalized_number_plain": "022",
+      "base_gv_id": "GV-PK-BRS-22",
+      "base_route": "GV-PK-BRS-22",
+      "base_card_print_id": "20037671-7ce3-435e-8cbe-4ce24f0a1742",
+      "base_card_name": "Entei V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489293",
+      "image_url": "https://images.pokemontcg.io/swsh9/22_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-entei-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-022",
+        "google_search_url": "https://www.google.com/search?q=Entei%20V%20022%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Entei%20V%20022%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 022/172|f|[[entei v (brilliant stars 22)|entei]]{{tcgv}}|fire||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 022/172|f|[[entei v (brilliant stars 22)|entei]]{{tcgv}}|fire||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lumineon-v-ultra-rare",
+      "candidate_name": "Lumineon V",
+      "printed_number": "040/172",
+      "normalized_number_plain": "040",
+      "base_gv_id": "GV-PK-BRS-40",
+      "base_route": "GV-PK-BRS-40",
+      "base_card_print_id": "effed533-b077-4100-b629-aba61e09377a",
+      "base_card_name": "Lumineon V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "496345",
+      "image_url": "https://images.pokemontcg.io/swsh9/40_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lumineon-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-040",
+        "google_search_url": "https://www.google.com/search?q=Lumineon%20V%20040%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lumineon%20V%20040%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 040/172|f|[[lumineon v (brilliant stars 40)|lumineon]]{{tcgv}}|water||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 040/172|f|[[lumineon v (brilliant stars 40)|lumineon]]{{tcgv}}|water||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-manaphy-rare",
+      "candidate_name": "Manaphy",
+      "printed_number": "041/172",
+      "normalized_number_plain": "041",
+      "base_gv_id": "GV-PK-BRS-41",
+      "base_route": "GV-PK-BRS-41",
+      "base_card_print_id": "d85ee763-d8f9-4e2f-8292-54bb2821ccc5",
+      "base_card_name": "Manaphy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489322",
+      "image_url": "https://images.pokemontcg.io/swsh9/41_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-manaphy-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-041",
+        "google_search_url": "https://www.google.com/search?q=Manaphy%20041%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Manaphy%20041%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 041/172|f|{{tcg id|brilliant stars|manaphy|41}}|water||rare|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 041/172|f|{{tcg id|brilliant stars|manaphy|41}}|water||rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eiscue-rare",
+      "candidate_name": "Eiscue",
+      "printed_number": "044/172",
+      "normalized_number_plain": "044",
+      "base_gv_id": "GV-PK-BRS-44",
+      "base_route": "GV-PK-BRS-44",
+      "base_card_print_id": "d5454fe9-a76a-4b85-8087-6e2b64a926a7",
+      "base_card_name": "Eiscue",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489314",
+      "image_url": "https://images.pokemontcg.io/swsh9/44_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-eiscue-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-044",
+        "google_search_url": "https://www.google.com/search?q=Eiscue%20044%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Eiscue%20044%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 044/172|e|{{tcg id|brilliant stars|eiscue|44}}|water||rare|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-raichu-v-ultra-rare",
+      "candidate_name": "Raichu V",
+      "printed_number": "045/172",
+      "normalized_number_plain": "045",
+      "base_gv_id": "GV-PK-BRS-45",
+      "base_route": "GV-PK-BRS-45",
+      "base_card_print_id": "590f1715-ed07-4f02-9227-0551397a1584",
+      "base_card_name": "Raichu V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "513812",
+      "image_url": "https://images.pokemontcg.io/swsh9/45_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-raichu-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-045",
+        "google_search_url": "https://www.google.com/search?q=Raichu%20V%20045%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Raichu%20V%20045%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 045/172|f|[[raichu v (brilliant stars 45)|raichu]]{{tcgv}}|lightning||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-raikou-v-ultra-rare",
+      "candidate_name": "Raikou V",
+      "printed_number": "048/172",
+      "normalized_number_plain": "048",
+      "base_gv_id": "GV-PK-BRS-48",
+      "base_route": "GV-PK-BRS-48",
+      "base_card_print_id": "92ad45d7-8d0f-4675-93ea-ee8062dbee57",
+      "base_card_name": "Raikou V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489309",
+      "image_url": "https://images.pokemontcg.io/swsh9/48_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-raikou-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-048",
+        "google_search_url": "https://www.google.com/search?q=Raikou%20V%20048%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Raikou%20V%20048%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 048/172|f|[[raikou v (brilliant stars 48)|raikou]]{{tcgv}}|lightning||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 048/172|f|[[raikou v (brilliant stars 48)|raikou]]{{tcgv}}|lightning||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pachirisu-uncommon",
+      "candidate_name": "Pachirisu",
+      "printed_number": "052/172",
+      "normalized_number_plain": "052",
+      "base_gv_id": "GV-PK-BRS-052",
+      "base_route": "GV-PK-BRS-052",
+      "base_card_print_id": "019df347-fee6-4f6e-a330-eb591622ff2f",
+      "base_card_name": "Pachirisu",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489326",
+      "image_url": "https://assets.tcgdex.net/en/swsh/swsh9/052/high.webp",
+      "image_source": "tcgdex",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pachirisu-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-052",
+        "google_search_url": "https://www.google.com/search?q=Pachirisu%20052%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Pachirisu%20052%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 052/172|f|{{tcg id|brilliant stars|pachirisu|52}}|lightning||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dusknoir-rare",
+      "candidate_name": "Dusknoir",
+      "printed_number": "062/172",
+      "normalized_number_plain": "062",
+      "base_gv_id": "GV-PK-BRS-62",
+      "base_route": "GV-PK-BRS-62",
+      "base_card_print_id": "5337dbc8-6100-4671-a046-4f10cd10c128",
+      "base_card_name": "Dusknoir",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489313",
+      "image_url": "https://images.pokemontcg.io/swsh9/62_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-dusknoir-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-062",
+        "google_search_url": "https://www.google.com/search?q=Dusknoir%20062%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Dusknoir%20062%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 062/172|f|{{tcg id|brilliant stars|dusknoir|62}}|psychic||rare holo|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-vstar-ultra-rare",
+      "candidate_name": "Whimsicott VSTAR",
+      "printed_number": "065/172",
+      "normalized_number_plain": "065",
+      "base_gv_id": "GV-PK-BRS-65",
+      "base_route": "GV-PK-BRS-65",
+      "base_card_print_id": "619083b6-afc2-4069-aa6e-87dd4e3ef6cf",
+      "base_card_name": "Whimsicott VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "498546",
+      "image_url": "https://images.pokemontcg.io/swsh9/65_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-whimsicott-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-065",
+        "google_search_url": "https://www.google.com/search?q=Whimsicott%20VSTAR%20065%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Whimsicott%20VSTAR%20065%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 065/172|f|[[whimsicott vstar (brilliant stars 65)|whimsicott]]{{vstar}}|psychic||rare vstar|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lucario-079-172-rare",
+      "candidate_name": "Lucario - 079/172",
+      "printed_number": "079/172",
+      "normalized_number_plain": "079",
+      "base_gv_id": "GV-PK-BRS-79",
+      "base_route": "GV-PK-BRS-79",
+      "base_card_print_id": "53849d0e-2ed7-43ef-8ab7-5efbfa71c1eb",
+      "base_card_name": "Lucario",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489320",
+      "image_url": "https://images.pokemontcg.io/swsh9/79_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lucario-079-172-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-079",
+        "google_search_url": "https://www.google.com/search?q=Lucario%20079%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lucario%20079%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 079/172|f|{{tcg id|brilliant stars|lucario|79}}|fighting||rare holo|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-honchkrow-v-ultra-rare",
+      "candidate_name": "Honchkrow V",
+      "printed_number": "088/172",
+      "normalized_number_plain": "088",
+      "base_gv_id": "GV-PK-BRS-88",
+      "base_route": "GV-PK-BRS-88",
+      "base_card_print_id": "563c1b25-995a-45b1-99d4-4de7a9562317",
+      "base_card_name": "Honchkrow V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489303",
+      "image_url": "https://images.pokemontcg.io/swsh9/88_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-honchkrow-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-088",
+        "google_search_url": "https://www.google.com/search?q=Honchkrow%20V%20088%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Honchkrow%20V%20088%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 088/172|f|[[honchkrow v (brilliant stars 88)|honchkrow]]{{tcgv}}|darkness||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-liepard-rare",
+      "candidate_name": "Liepard",
+      "printed_number": "091/172",
+      "normalized_number_plain": "091",
+      "base_gv_id": "GV-PK-BRS-91",
+      "base_route": "GV-PK-BRS-91",
+      "base_card_print_id": "a522fee9-61a2-4156-b498-e87c7ea71329",
+      "base_card_name": "Liepard",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489319",
+      "image_url": "https://images.pokemontcg.io/swsh9/91_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-liepard-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-091",
+        "google_search_url": "https://www.google.com/search?q=Liepard%20091%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Liepard%20091%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 091/172|f|{{tcg id|brilliant stars|liepard|91}}|darkness||rare|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 091/172|f|{{tcg id|brilliant stars|liepard|91}}|darkness||rare|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zamazenta-v-105-172-ultra-rare",
+      "candidate_name": "Zamazenta V - 105/172",
+      "printed_number": "105/172",
+      "normalized_number_plain": "105",
+      "base_gv_id": "GV-PK-BRS-105",
+      "base_route": "GV-PK-BRS-105",
+      "base_card_print_id": "a92bd1aa-75b3-4536-af00-4c58719d6406",
+      "base_card_name": "Zamazenta V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "498188",
+      "image_url": "https://images.pokemontcg.io/swsh9/105_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-zamazenta-v-105-172-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-105",
+        "google_search_url": "https://www.google.com/search?q=Zamazenta%20V%20105%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Zamazenta%20V%20105%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 105/172|f|[[zamazenta v (brilliant stars 105)|zamazenta]]{{tcgv}}|metal||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-garchomp-rare",
+      "candidate_name": "Garchomp",
+      "printed_number": "109/172",
+      "normalized_number_plain": "109",
+      "base_gv_id": "GV-PK-BRS-109",
+      "base_route": "GV-PK-BRS-109",
+      "base_card_print_id": "b655f59c-dba4-4f90-8aa9-913a8ac07e3d",
+      "base_card_name": "Garchomp",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489315",
+      "image_url": "https://images.pokemontcg.io/swsh9/109_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-garchomp-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-109",
+        "google_search_url": "https://www.google.com/search?q=Garchomp%20109%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Garchomp%20109%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 109/172|f|{{tcg id|brilliant stars|garchomp|109}}|dragon||rare holo|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bibarel-rare",
+      "candidate_name": "Bibarel",
+      "printed_number": "121/172",
+      "normalized_number_plain": "121",
+      "base_gv_id": "GV-PK-BRS-121",
+      "base_route": "GV-PK-BRS-121",
+      "base_card_print_id": "8168ddc5-6f20-4f0f-8881-33855060c9ca",
+      "base_card_name": "Bibarel",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489332",
+      "image_url": "https://images.pokemontcg.io/swsh9/121_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-bibarel-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-121",
+        "google_search_url": "https://www.google.com/search?q=Bibarel%20121%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Bibarel%20121%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 121/172|f|{{tcg id|brilliant stars|bibarel|121}}|colorless||rare holo|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 121/172|f|{{tcg id|brilliant stars|bibarel|121}}|colorless||rare holo|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-arceus-v-ultra-rare",
+      "candidate_name": "Arceus V",
+      "printed_number": "122/172",
+      "normalized_number_plain": "122",
+      "base_gv_id": "GV-PK-BRS-122",
+      "base_route": "GV-PK-BRS-122",
+      "base_card_print_id": "91a31b70-0146-48a0-bb29-88547e0ca7c8",
+      "base_card_name": "Arceus V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489283",
+      "image_url": "https://images.pokemontcg.io/swsh9/122_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-arceus-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-122",
+        "google_search_url": "https://www.google.com/search?q=Arceus%20V%20122%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Arceus%20V%20122%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 122/172|f|[[arceus v (brilliant stars 122)|arceus]]{{tcgv}}|colorless||ultra-rare rare|standard set foil|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 122/172|f|[[arceus v (brilliant stars 122)|arceus]]{{tcgv}}|colorless||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-arceus-vstar-ultra-rare",
+      "candidate_name": "Arceus VSTAR",
+      "printed_number": "123/172",
+      "normalized_number_plain": "123",
+      "base_gv_id": "GV-PK-BRS-123",
+      "base_route": "GV-PK-BRS-123",
+      "base_card_print_id": "2c9a8de1-4965-4382-9002-9f0216d3e500",
+      "base_card_name": "Arceus VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489286",
+      "image_url": "https://images.pokemontcg.io/swsh9/123_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-arceus-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-123",
+        "google_search_url": "https://www.google.com/search?q=Arceus%20VSTAR%20123%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Arceus%20VSTAR%20123%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 123/172|f|[[arceus vstar (brilliant stars 123)|arceus]]{{vstar}}|colorless||rare vstar|standard set foil|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 123/172|f|[[arceus vstar (brilliant stars 123)|arceus]]{{vstar}}|colorless||rare vstar|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-tornadus-rare",
+      "candidate_name": "Tornadus",
+      "printed_number": "126/172",
+      "normalized_number_plain": "126",
+      "base_gv_id": "GV-PK-BRS-126",
+      "base_route": "GV-PK-BRS-126",
+      "base_card_print_id": "5a875326-872e-412d-b15b-b47e5e5a4658",
+      "base_card_name": "Tornadus",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489327",
+      "image_url": "https://images.pokemontcg.io/swsh9/126_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-tornadus-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-126",
+        "google_search_url": "https://www.google.com/search?q=Tornadus%20126%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Tornadus%20126%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 126/172|f|{{tcg id|brilliant stars|tornadus|126}}|colorless||rare|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 126/172|f|{{tcg id|brilliant stars|tornadus|126}}|colorless||rare|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boss-s-orders-132-172-promo",
+      "candidate_name": "Boss's Orders - 132/172",
+      "printed_number": "132/172",
+      "normalized_number_plain": "132",
+      "base_gv_id": "GV-PK-BRS-132",
+      "base_route": "GV-PK-BRS-132",
+      "base_card_print_id": "9f7b802d-1371-4278-a235-112831588fb5",
+      "base_card_name": "Boss's Orders",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "490484",
+      "image_url": "https://images.pokemontcg.io/swsh9/132_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-boss-s-orders-132-172-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-132",
+        "google_search_url": "https://www.google.com/search?q=Boss's%20Orders%20132%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Boss's%20Orders%20132%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 132/172|f|{{tcg id|brilliant stars|boss's orders|132}} <small>'''[cyrus]'''</small>|supporter||rare holo|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 132/172|f|{{tcg id|brilliant stars|boss's orders|132}} <small>'''[cyrus]'''</small>|supporter||rare holo|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boss-s-orders-rare",
+      "candidate_name": "Boss's Orders",
+      "printed_number": "132/172",
+      "normalized_number_plain": "132",
+      "base_gv_id": "GV-PK-BRS-132",
+      "base_route": "GV-PK-BRS-132",
+      "base_card_print_id": "9f7b802d-1371-4278-a235-112831588fb5",
+      "base_card_name": "Boss's Orders",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "515539",
+      "image_url": "https://images.pokemontcg.io/swsh9/132_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-boss-s-orders-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-132",
+        "google_search_url": "https://www.google.com/search?q=Boss's%20Orders%20132%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Boss's%20Orders%20132%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 132/172|f|{{tcg id|brilliant stars|boss's orders|132}} <small>'''[cyrus]'''</small>|supporter||rare holo|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 132/172|f|{{tcg id|brilliant stars|boss's orders|132}} <small>'''[cyrus]'''</small>|supporter||rare holo|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cheren-s-care-uncommon",
+      "candidate_name": "Cheren's Care",
+      "printed_number": "134/172",
+      "normalized_number_plain": "134",
+      "base_gv_id": "GV-PK-BRS-134",
+      "base_route": "GV-PK-BRS-134",
+      "base_card_print_id": "e851cee4-6ef0-403a-b4d5-389878aa8658",
+      "base_card_name": "Cheren's Care",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489345",
+      "image_url": "https://images.pokemontcg.io/swsh9/134_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cheren-s-care-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-134",
+        "google_search_url": "https://www.google.com/search?q=Cheren's%20Care%20134%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Cheren's%20Care%20134%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 134/172|f|{{tcg id|brilliant stars|cheren's care|134}}|supporter||uncommon|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 134/172|f|{{tcg id|brilliant stars|cheren's care|134}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-choice-belt-uncommon",
+      "candidate_name": "Choice Belt",
+      "printed_number": "135/172",
+      "normalized_number_plain": "135",
+      "base_gv_id": "GV-PK-BRS-135",
+      "base_route": "GV-PK-BRS-135",
+      "base_card_print_id": "b5bdf001-cc96-461f-9054-98f2bf987940",
+      "base_card_name": "Choice Belt",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489334",
+      "image_url": "https://images.pokemontcg.io/swsh9/135_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-choice-belt-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-135",
+        "google_search_url": "https://www.google.com/search?q=Choice%20Belt%20135%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Choice%20Belt%20135%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 135/172|f|{{tcg id|brilliant stars|choice belt|135}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-collapsed-stadium-uncommon",
+      "candidate_name": "Collapsed Stadium",
+      "printed_number": "137/172",
+      "normalized_number_plain": "137",
+      "base_gv_id": "GV-PK-BRS-137",
+      "base_route": "GV-PK-BRS-137",
+      "base_card_print_id": "d976d5b2-49e5-4026-8f2d-25ca470316a6",
+      "base_card_name": "Collapsed Stadium",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489353",
+      "image_url": "https://images.pokemontcg.io/swsh9/137_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-collapsed-stadium-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-137",
+        "google_search_url": "https://www.google.com/search?q=Collapsed%20Stadium%20137%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Collapsed%20Stadium%20137%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 137/172|f|{{tcg id|brilliant stars|collapsed stadium|137}}|stadium||uncommon|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 137/172|f|{{tcg id|brilliant stars|collapsed stadium|137}}|stadium||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-ambition-uncommon",
+      "candidate_name": "Cynthia's Ambition",
+      "printed_number": "138/172",
+      "normalized_number_plain": "138",
+      "base_gv_id": "GV-PK-BRS-138",
+      "base_route": "GV-PK-BRS-138",
+      "base_card_print_id": "3a6d4675-779a-40c4-99fd-4baff941804f",
+      "base_card_name": "Cynthia's Ambition",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489346",
+      "image_url": "https://images.pokemontcg.io/swsh9/138_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cynthia-s-ambition-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-138",
+        "google_search_url": "https://www.google.com/search?q=Cynthia's%20Ambition%20138%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Cynthia's%20Ambition%20138%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 138/172|f|{{tcg id|brilliant stars|cynthia's ambition|138}}|supporter||uncommon|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 138/172|f|{{tcg id|brilliant stars|cynthia's ambition|138}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gloria-uncommon",
+      "candidate_name": "Gloria",
+      "printed_number": "141/172",
+      "normalized_number_plain": "141",
+      "base_gv_id": "GV-PK-BRS-141",
+      "base_route": "GV-PK-BRS-141",
+      "base_card_print_id": "3ccf5c7d-7978-4a81-96da-c62c3be072c6",
+      "base_card_name": "Gloria",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489348",
+      "image_url": "https://images.pokemontcg.io/swsh9/141_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-gloria-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-141",
+        "google_search_url": "https://www.google.com/search?q=Gloria%20141%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Gloria%20141%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 141/172|e|{{tcg id|brilliant stars|gloria|141}}|supporter||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-kindler-uncommon",
+      "candidate_name": "Kindler",
+      "printed_number": "143/172",
+      "normalized_number_plain": "143",
+      "base_gv_id": "GV-PK-BRS-143",
+      "base_route": "GV-PK-BRS-143",
+      "base_card_print_id": "2c973fc9-b5e2-4489-bb58-08d43b4ee67c",
+      "base_card_name": "Kindler",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489349",
+      "image_url": "https://images.pokemontcg.io/swsh9/143_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-kindler-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-143",
+        "google_search_url": "https://www.google.com/search?q=Kindler%20143%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Kindler%20143%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 143/172|f|{{tcg id|brilliant stars|kindler|143}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-magma-basin-uncommon",
+      "candidate_name": "Magma Basin",
+      "printed_number": "144/172",
+      "normalized_number_plain": "144",
+      "base_gv_id": "GV-PK-BRS-144",
+      "base_route": "GV-PK-BRS-144",
+      "base_card_print_id": "f32efe07-f49a-490b-8760-a227fd060a69",
+      "base_card_name": "Magma Basin",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489354",
+      "image_url": "https://images.pokemontcg.io/swsh9/144_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-magma-basin-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-144",
+        "google_search_url": "https://www.google.com/search?q=Magma%20Basin%20144%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Magma%20Basin%20144%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 144/172|f|{{tcg id|brilliant stars|magma basin|144}}|stadium||uncommon|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 144/172|f|{{tcg id|brilliant stars|magma basin|144}}|stadium||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pot-helmet-uncommon",
+      "candidate_name": "Pot Helmet",
+      "printed_number": "146/172",
+      "normalized_number_plain": "146",
+      "base_gv_id": "GV-PK-BRS-146",
+      "base_route": "GV-PK-BRS-146",
+      "base_card_print_id": "535c6ab9-c131-43c7-950d-5c1f2955efe6",
+      "base_card_name": "Pot Helmet",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "515502",
+      "image_url": "https://images.pokemontcg.io/swsh9/146_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pot-helmet-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-146",
+        "google_search_url": "https://www.google.com/search?q=Pot%20Helmet%20146%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Pot%20Helmet%20146%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 146/172|f|{{tcg id|brilliant stars|pot helmet|146}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-rare",
+      "candidate_name": "Professor's Research",
+      "printed_number": "147/172",
+      "normalized_number_plain": "147",
+      "base_gv_id": "GV-PK-BRS-147",
+      "base_route": "GV-PK-BRS-147",
+      "base_card_print_id": "f484d2c5-14e6-42be-804d-33a41a49c70f",
+      "base_card_name": "Professor's Research",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489350",
+      "image_url": "https://images.pokemontcg.io/swsh9/147_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-professor-s-research-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-147",
+        "google_search_url": "https://www.google.com/search?q=Professor's%20Research%20147%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Professor's%20Research%20147%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 147/172|f|{{tcg id|brilliant stars|professor's research|147}} <small>'''[professor rowan]'''</small>|supporter||rare holo|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-roseanne-s-backup-uncommon",
+      "candidate_name": "Roseanne's Backup",
+      "printed_number": "148/172",
+      "normalized_number_plain": "148",
+      "base_gv_id": "GV-PK-BRS-148",
+      "base_route": "GV-PK-BRS-148",
+      "base_card_print_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+      "base_card_name": "Roseanne's Backup",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489351",
+      "image_url": "https://images.pokemontcg.io/swsh9/148_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-roseanne-s-backup-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-148",
+        "google_search_url": "https://www.google.com/search?q=Roseanne's%20Backup%20148%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Roseanne's%20Backup%20148%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 148/172|f|{{tcg id|brilliant stars|roseanne's backup|148}}|supporter||uncommon|standard set}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 148/172|f|{{tcg id|brilliant stars|roseanne's backup|148}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-team-yell-s-cheer-uncommon",
+      "candidate_name": "Team Yell's Cheer",
+      "printed_number": "149/172",
+      "normalized_number_plain": "149",
+      "base_gv_id": "GV-PK-BRS-149",
+      "base_route": "GV-PK-BRS-149",
+      "base_card_print_id": "526e7702-2e42-498b-a9fe-c2cc6d4c71ea",
+      "base_card_name": "Team Yell's Cheer",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489352",
+      "image_url": "https://images.pokemontcg.io/swsh9/149_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-team-yell-s-cheer-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-149",
+        "google_search_url": "https://www.google.com/search?q=Team%20Yell's%20Cheer%20149%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Team%20Yell's%20Cheer%20149%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 149/172|f|{{tcg id|brilliant stars|team yell's cheer|149}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ultra-ball-uncommon",
+      "candidate_name": "Ultra Ball",
+      "printed_number": "150/172",
+      "normalized_number_plain": "150",
+      "base_gv_id": "GV-PK-BRS-150",
+      "base_route": "GV-PK-BRS-150",
+      "base_card_print_id": "62a3aaea-9b24-4018-aa2b-12c2ca671943",
+      "base_card_name": "Ultra Ball",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489337",
+      "image_url": "https://images.pokemontcg.io/swsh9/150_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ultra-ball-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-150",
+        "google_search_url": "https://www.google.com/search?q=Ultra%20Ball%20150%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Ultra%20Ball%20150%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 150/172|f|{{tcg id|brilliant stars|ultra ball|150}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in exactly one corroborated Prize Pack series across the checked Series 1-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-double-turbo-energy-uncommon",
+      "candidate_name": "Double Turbo Energy",
+      "printed_number": "151/172",
+      "normalized_number_plain": "151",
+      "base_gv_id": "GV-PK-BRS-151",
+      "base_route": "GV-PK-BRS-151",
+      "base_card_print_id": "c6fd7c41-8c2d-4236-bd90-671429d90e47",
+      "base_card_name": "Double Turbo Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "489355",
+      "image_url": "https://images.pokemontcg.io/swsh9/151_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-double-turbo-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-151",
+        "google_search_url": "https://www.google.com/search?q=Double%20Turbo%20Energy%20151%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Double%20Turbo%20Energy%20151%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 151/172|f|{{tcg id|brilliant stars|double turbo energy|151}}|energy|colorless|uncommon|standard set foil}}"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbrilliant stars.png|18px|link=brilliant stars (tcg)]] 151/172|f|{{tcg id|brilliant stars|double turbo energy|151}}|energy|colorless|uncommon|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        2,
+        3
+      ],
+      "matched_series_pattern": "[2,3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v3_series_page_coverage",
+      "final_reason": "The card appears in multiple Prize Pack series with no printed series marker, so the generic Play! Pokémon stamp remains distribution-only rather than a distinct canonical split."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-v-160-172-promo",
+      "candidate_name": "Whimsicott V - 160/172",
+      "printed_number": "160/172",
+      "normalized_number_plain": "160",
+      "base_gv_id": "GV-PK-BRS-160",
+      "base_route": "GV-PK-BRS-160",
+      "base_card_print_id": "765fbb01-d302-4316-be40-e7a36b3f56ee",
+      "base_card_name": "Whimsicott V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": "490486",
+      "image_url": "https://images.pokemontcg.io/swsh9/160_hires.png",
+      "image_source": "pokemonapi",
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row already resolves to one base card, but there is no independent external checklist or official source confirming the Prize Pack series appearance yet.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-whimsicott-v-160-172-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh9-160",
+        "google_search_url": "https://www.google.com/search?q=Whimsicott%20V%20160%2F172%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Whimsicott%20V%20160%2F172%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "evidence_sources_used_for_v3": [],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_series_match_after_v3_series_page_coverage",
+      "final_reason": "The checked series sources still do not place this card in any corroborated Prize Pack card list, so the row remains evidence-bound."
+    }
+  ]
+}

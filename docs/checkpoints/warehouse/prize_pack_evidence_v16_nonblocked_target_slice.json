@@ -1,0 +1,365 @@
+{
+  "generated_at": "2026-04-21T03:12:29.493Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED",
+  "selection_summary": {
+    "id": "LATE_SV_ROUTE_NORMALIZED_SERIES_5_TO_8_WINDOW",
+    "label": "Late SV Route-Normalized Series 5-8 Window",
+    "row_count": 5,
+    "set_code_counts": {
+      "me01": 1,
+      "sv05": 1,
+      "sv10": 2,
+      "sv8pt5": 1
+    },
+    "selection_note": "This late-SV known-route slice is the remaining nonblocked group with a realistic current yield from accessible Series 5-8 evidence; it does not depend on official Series 1/2 acquisition.",
+    "excluded_blocked_by_official_acquisition_count": 88,
+    "excluded_special_family_count": 1
+  },
+  "shared_question": "Across accessible Prize Pack Series 5-8 sources, do these late Scarlet & Violet route-normalized rows appear in exactly one corroborated series or multiple?",
+  "evidence_sources_used": [
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series Seven",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series Eight",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Mystery Garden",
+      "name": "Mystery Garden",
+      "base_card_name": "Mystery Garden",
+      "printed_number": "172/132",
+      "normalized_number_plain": "172",
+      "base_gv_id": "GV-PK-MEG-172",
+      "base_route": "GV-PK-MEG-172",
+      "effective_base_owner_gv_id": "GV-PK-MEG-172",
+      "set_code": "me01",
+      "effective_set_code": "me01",
+      "effective_set_name": "Mega Evolution",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v16_nonblocked": [],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED"
+      ],
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v16_nonblocked",
+      "final_reason": "Accessible Series 5-8 sources do not place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Raging Bolt ex",
+      "name": "Raging Bolt ex",
+      "base_card_name": "Raging Bolt ex",
+      "printed_number": "123/162",
+      "normalized_number_plain": "123",
+      "base_gv_id": "GV-PK-TEF-123",
+      "base_route": "GV-PK-TEF-123",
+      "effective_base_owner_gv_id": "GV-PK-TEF-123",
+      "set_code": "sv05",
+      "effective_set_code": "sv05",
+      "effective_set_name": "Temporal Forces",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v16_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltemporal forces.png|x18px|link=temporal forces (tcg)]] 123/162|h|[[raging bolt ex (temporal forces 123)|raging bolt]]{{ex}}|dragon||double rare|standard set foil}}"
+        },
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymboltemporal forces.png|x18px|link=temporal forces (tcg)]] 123/162|h|[[raging bolt ex (temporal forces 123)|raging bolt]]{{ex}}|dragon||double rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        5,
+        6
+      ],
+      "matched_series_pattern": "[5,6]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v16_nonblocked_late_sv_window",
+      "final_reason": "Accessible evidence places this late-SV printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp is distribution-only for this source row."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Cynthia's Gible",
+      "name": "Cynthia's Gible",
+      "base_card_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "normalized_number_plain": "102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "base_route": "GV-PK-DRI-102",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "effective_set_code": "sv10",
+      "effective_set_name": "Destined Rivals",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v16_nonblocked": [],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED"
+      ],
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v16_nonblocked",
+      "final_reason": "Accessible Series 5-8 sources do not place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Cynthia's Gible",
+      "name": "Cynthia's Gible",
+      "base_card_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "normalized_number_plain": "102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "base_route": "GV-PK-DRI-102",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "effective_set_code": "sv10",
+      "effective_set_name": "Destined Rivals",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v16_nonblocked": [],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED"
+      ],
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v16_nonblocked",
+      "final_reason": "Accessible Series 5-8 sources do not place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Carmine",
+      "name": "Carmine",
+      "base_card_name": "Carmine",
+      "printed_number": "103/131",
+      "normalized_number_plain": "103",
+      "base_gv_id": "GV-PK-PRE-103",
+      "base_route": "GV-PK-PRE-103",
+      "effective_base_owner_gv_id": "GV-PK-PRE-103",
+      "set_code": "sv8pt5",
+      "effective_set_code": "sv8pt5",
+      "effective_set_name": "Prismatic Evolutions",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-carmine-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v16_nonblocked": [],
+      "confirmed_series_coverage": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED"
+      ],
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v16_nonblocked",
+      "final_reason": "Accessible Series 5-8 sources do not place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    }
+  ]
+}

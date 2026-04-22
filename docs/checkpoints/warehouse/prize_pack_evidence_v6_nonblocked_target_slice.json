@@ -1,0 +1,2846 @@
+{
+  "generated_at": "2026-04-20T05:06:19.336Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V6_NONBLOCKED",
+  "selection_summary": {
+    "id": "ACCESSIBLE_SERIES_3_4_WINDOW",
+    "label": "Accessible Series 3-4 Window",
+    "row_count": 37,
+    "set_code_counts": {
+      "sv01": 19,
+      "swsh12": 12,
+      "swsh12.5": 6
+    },
+    "excluded_blocked_by_official_acquisition_count": 19
+  },
+  "shared_question": "Across currently accessible Prize Pack Series 3 and Series 4 sources, does this card appear in exactly one corroborated series or in more than one?",
+  "evidence_sources_used": [
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series Three",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+    },
+    {
+      "series": 4,
+      "source_name": "JustInBasil Prize Pack Series 4 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spidops-ex-019-198-double-rare",
+      "candidate_name": "Spidops ex - 019/198",
+      "printed_number": "019/198",
+      "normalized_number_plain": "019",
+      "base_gv_id": "GV-PK-SVI-019",
+      "base_route": "GV-PK-SVI-019",
+      "base_card_print_id": null,
+      "base_card_name": "Spidops ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-spidops-ex-019-198-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-019",
+        "google_search_url": "https://www.google.com/search?q=Spidops%20ex%20019%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Spidops%20ex%20019%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 019/198|g|[[spidops ex (scarlet & violet 19)|spidops]]{{ex}}|grass||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-slowbro-rare",
+      "candidate_name": "Slowbro",
+      "printed_number": "043/198",
+      "normalized_number_plain": "043",
+      "base_gv_id": "GV-PK-SVI-043",
+      "base_route": "GV-PK-SVI-043",
+      "base_card_print_id": null,
+      "base_card_name": "Slowbro",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-slowbro-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-043",
+        "google_search_url": "https://www.google.com/search?q=Slowbro%20043%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Slowbro%20043%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 043/198|g|{{tcg id|scarlet & violet|slowbro|43}}|water||rare|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dondozo-rare",
+      "candidate_name": "Dondozo",
+      "printed_number": "061/198",
+      "normalized_number_plain": "061",
+      "base_gv_id": "GV-PK-SVI-061",
+      "base_route": "GV-PK-SVI-061",
+      "base_card_print_id": null,
+      "base_card_name": "Dondozo",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-dondozo-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-061",
+        "google_search_url": "https://www.google.com/search?q=Dondozo%20061%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Dondozo%20061%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 061/198|g|{{tcg id|scarlet & violet|dondozo|61}}|water||rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-tatsugiri-uncommon",
+      "candidate_name": "Tatsugiri",
+      "printed_number": "062/198",
+      "normalized_number_plain": "062",
+      "base_gv_id": "GV-PK-SVI-062",
+      "base_route": "GV-PK-SVI-062",
+      "base_card_print_id": null,
+      "base_card_name": "Tatsugiri",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-tatsugiri-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-062",
+        "google_search_url": "https://www.google.com/search?q=Tatsugiri%20062%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Tatsugiri%20062%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 062/198|g|{{tcg id|scarlet & violet|tatsugiri|62}}|water||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-magnezone-ex-double-rare",
+      "candidate_name": "Magnezone ex",
+      "printed_number": "065/198",
+      "normalized_number_plain": "065",
+      "base_gv_id": "GV-PK-SVI-065",
+      "base_route": "GV-PK-SVI-065",
+      "base_card_print_id": null,
+      "base_card_name": "Magnezone ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-magnezone-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-065",
+        "google_search_url": "https://www.google.com/search?q=Magnezone%20ex%20065%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Magnezone%20ex%20065%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 065/198|g|[[magnezone ex (scarlet & violet 65)|magnezone]]{{ex}}|lightning||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pawmot-rare",
+      "candidate_name": "Pawmot",
+      "printed_number": "076/198",
+      "normalized_number_plain": "076",
+      "base_gv_id": "GV-PK-SVI-076",
+      "base_route": "GV-PK-SVI-076",
+      "base_card_print_id": null,
+      "base_card_name": "Pawmot",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pawmot-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-076",
+        "google_search_url": "https://www.google.com/search?q=Pawmot%20076%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Pawmot%20076%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 076/198|g|{{tcg id|scarlet & violet|pawmot|76}}|lightning||rare|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-banette-ex-ultra-rare",
+      "candidate_name": "Banette ex",
+      "printed_number": "088/198",
+      "normalized_number_plain": "088",
+      "base_gv_id": "GV-PK-SVI-088",
+      "base_route": "GV-PK-SVI-088",
+      "base_card_print_id": null,
+      "base_card_name": "Banette ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-banette-ex-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-088",
+        "google_search_url": "https://www.google.com/search?q=Banette%20ex%20088%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Banette%20ex%20088%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 088/198|g|[[banette ex (scarlet & violet 88)|banette]]{{ex}}|psychic||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-annihilape-rare",
+      "candidate_name": "Annihilape",
+      "printed_number": "109/198",
+      "normalized_number_plain": "109",
+      "base_gv_id": "GV-PK-SVI-109",
+      "base_route": "GV-PK-SVI-109",
+      "base_card_print_id": null,
+      "base_card_name": "Annihilape",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-annihilape-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-109",
+        "google_search_url": "https://www.google.com/search?q=Annihilape%20109%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Annihilape%20109%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 109/198|g|{{tcg id|scarlet & violet|annihilape|109}}|fighting||rare|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lucario-114-198-uncommon",
+      "candidate_name": "Lucario - 114/198",
+      "printed_number": "114/198",
+      "normalized_number_plain": "114",
+      "base_gv_id": "GV-PK-SVI-114",
+      "base_route": "GV-PK-SVI-114",
+      "base_card_print_id": null,
+      "base_card_name": "Lucario",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lucario-114-198-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-114",
+        "google_search_url": "https://www.google.com/search?q=Lucario%20114%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lucario%20114%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 114/198|g|{{tcg id|scarlet & violet|lucario|114}}|fighting||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hawlucha-rare",
+      "candidate_name": "Hawlucha",
+      "printed_number": "118/198",
+      "normalized_number_plain": "118",
+      "base_gv_id": "GV-PK-SVI-118",
+      "base_route": "GV-PK-SVI-118",
+      "base_card_print_id": null,
+      "base_card_name": "Hawlucha",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-hawlucha-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-118",
+        "google_search_url": "https://www.google.com/search?q=Hawlucha%20118%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Hawlucha%20118%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 118/198|g|{{tcg id|scarlet & violet|hawlucha|118}}|fighting||rare|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-great-tusk-ex-double-rare",
+      "candidate_name": "Great Tusk ex",
+      "printed_number": "123/198",
+      "normalized_number_plain": "123",
+      "base_gv_id": "GV-PK-SVI-123",
+      "base_route": "GV-PK-SVI-123",
+      "base_card_print_id": null,
+      "base_card_name": "Great Tusk ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-great-tusk-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-123",
+        "google_search_url": "https://www.google.com/search?q=Great%20Tusk%20ex%20123%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Great%20Tusk%20ex%20123%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 123/198|g|[[great tusk ex (scarlet & violet 123)|great tusk]]{{ex}}|fighting||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-muk-uncommon",
+      "candidate_name": "Muk",
+      "printed_number": "127/198",
+      "normalized_number_plain": "127",
+      "base_gv_id": "GV-PK-SVI-127",
+      "base_route": "GV-PK-SVI-127",
+      "base_card_print_id": null,
+      "base_card_name": "Muk",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-muk-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-127",
+        "google_search_url": "https://www.google.com/search?q=Muk%20127%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Muk%20127%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 127/198|g|{{tcg id|scarlet & violet|muk|127}}|darkness||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-toxicroak-ex-double-rare",
+      "candidate_name": "Toxicroak ex",
+      "printed_number": "131/198",
+      "normalized_number_plain": "131",
+      "base_gv_id": "GV-PK-SVI-131",
+      "base_route": "GV-PK-SVI-131",
+      "base_card_print_id": null,
+      "base_card_name": "Toxicroak ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-toxicroak-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-131",
+        "google_search_url": "https://www.google.com/search?q=Toxicroak%20ex%20131%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Toxicroak%20ex%20131%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 131/198|g|[[toxicroak ex (scarlet & violet 131)|toxicroak]]{{ex}}|darkness||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-kingambit-rare",
+      "candidate_name": "Kingambit",
+      "printed_number": "134/198",
+      "normalized_number_plain": "134",
+      "base_gv_id": "GV-PK-SVI-134",
+      "base_route": "GV-PK-SVI-134",
+      "base_card_print_id": null,
+      "base_card_name": "Kingambit",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-kingambit-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-134",
+        "google_search_url": "https://www.google.com/search?q=Kingambit%20134%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Kingambit%20134%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 134/198|g|{{tcg id|scarlet & violet|kingambit|134}}|darkness||rare|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-iron-treads-ex-double-rare",
+      "candidate_name": "Iron Treads ex",
+      "printed_number": "143/198",
+      "normalized_number_plain": "143",
+      "base_gv_id": "GV-PK-SVI-143",
+      "base_route": "GV-PK-SVI-143",
+      "base_card_print_id": null,
+      "base_card_name": "Iron Treads ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-iron-treads-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-143",
+        "google_search_url": "https://www.google.com/search?q=Iron%20Treads%20ex%20143%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Iron%20Treads%20ex%20143%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 143/198|g|[[iron treads ex (scarlet & violet 143)|iron treads]]{{ex}}|metal||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-skwovet-common",
+      "candidate_name": "Skwovet",
+      "printed_number": "151/198",
+      "normalized_number_plain": "151",
+      "base_gv_id": "GV-PK-SVI-151",
+      "base_route": "GV-PK-SVI-151",
+      "base_card_print_id": null,
+      "base_card_name": "Skwovet",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-skwovet-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-151",
+        "google_search_url": "https://www.google.com/search?q=Skwovet%20151%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Skwovet%20151%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 151/198|g|{{tcg id|scarlet & violet|skwovet|151}}|colorless||common|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-oinkologne-ex-double-rare",
+      "candidate_name": "Oinkologne ex",
+      "printed_number": "158/198",
+      "normalized_number_plain": "158",
+      "base_gv_id": "GV-PK-SVI-158",
+      "base_route": "GV-PK-SVI-158",
+      "base_card_print_id": null,
+      "base_card_name": "Oinkologne ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-oinkologne-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-158",
+        "google_search_url": "https://www.google.com/search?q=Oinkologne%20ex%20158%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Oinkologne%20ex%20158%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 158/198|g|[[oinkologne ex (scarlet & violet 158)|oinkologne]]{{ex}}|colorless||double rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-miriam-uncommon",
+      "candidate_name": "Miriam",
+      "printed_number": "179/198",
+      "normalized_number_plain": "179",
+      "base_gv_id": "GV-PK-SVI-179",
+      "base_route": "GV-PK-SVI-179",
+      "base_card_print_id": null,
+      "base_card_name": "Miriam",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-miriam-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-179",
+        "google_search_url": "https://www.google.com/search?q=Miriam%20179%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Miriam%20179%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 179/198|g|{{tcg id|scarlet & violet|miriam|179}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-team-star-grunt-uncommon",
+      "candidate_name": "Team Star Grunt",
+      "printed_number": "195/198",
+      "normalized_number_plain": "195",
+      "base_gv_id": "GV-PK-SVI-195",
+      "base_route": "GV-PK-SVI-195",
+      "base_card_print_id": null,
+      "base_card_name": "Team Star Grunt",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-team-star-grunt-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv01-195",
+        "google_search_url": "https://www.google.com/search?q=Team%20Star%20Grunt%20195%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Team%20Star%20Grunt%20195%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 195/198|g|{{tcg id|scarlet & violet|team star grunt|195}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-tsareena-radiant-rare",
+      "candidate_name": "Radiant Tsareena",
+      "printed_number": "016/195",
+      "normalized_number_plain": "016",
+      "base_gv_id": "GV-PK-SIT-16",
+      "base_route": "GV-PK-SIT-16",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Tsareena",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-tsareena-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-016",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Tsareena%20016%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Tsareena%20016%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 016/195|f|{{tcg id|silver tempest|radiant tsareena|16}}|grass||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alolan-vulpix-v-ultra-rare",
+      "candidate_name": "Alolan Vulpix V",
+      "printed_number": "033/195",
+      "normalized_number_plain": "033",
+      "base_gv_id": "GV-PK-SIT-33",
+      "base_route": "GV-PK-SIT-33",
+      "base_card_print_id": null,
+      "base_card_name": "Alolan Vulpix V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-alolan-vulpix-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-033",
+        "google_search_url": "https://www.google.com/search?q=Alolan%20Vulpix%20V%20033%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Alolan%20Vulpix%20V%20033%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 033/195|f|[[alolan vulpix v (silver tempest 33)|alolan vulpix]]{{tcgv}}|water||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alolan-vulpix-vstar-ultra-rare",
+      "candidate_name": "Alolan Vulpix VSTAR",
+      "printed_number": "034/195",
+      "normalized_number_plain": "034",
+      "base_gv_id": "GV-PK-SIT-34",
+      "base_route": "GV-PK-SIT-34",
+      "base_card_print_id": null,
+      "base_card_name": "Alolan Vulpix VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-alolan-vulpix-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-034",
+        "google_search_url": "https://www.google.com/search?q=Alolan%20Vulpix%20VSTAR%20034%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Alolan%20Vulpix%20VSTAR%20034%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 034/195|f|[[alolan vulpix vstar (silver tempest 34)|alolan vulpix]]{{vstar}}|water||rare vstar|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-alakazam-radiant-rare",
+      "candidate_name": "Radiant Alakazam",
+      "printed_number": "059/195",
+      "normalized_number_plain": "059",
+      "base_gv_id": "GV-PK-SIT-59",
+      "base_route": "GV-PK-SIT-59",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Alakazam",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-alakazam-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-059",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Alakazam%20059%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Alakazam%20059%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 059/195|f|{{tcg id|silver tempest|radiant alakazam|59}}|psychic||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hisuian-arcanine-v-ultra-rare",
+      "candidate_name": "Hisuian Arcanine V",
+      "printed_number": "090/195",
+      "normalized_number_plain": "090",
+      "base_gv_id": "GV-PK-SIT-090",
+      "base_route": "GV-PK-SIT-090",
+      "base_card_print_id": null,
+      "base_card_name": "Hisuian Arcanine V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-hisuian-arcanine-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-090",
+        "google_search_url": "https://www.google.com/search?q=Hisuian%20Arcanine%20V%20090%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Hisuian%20Arcanine%20V%20090%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 090/195|f|[[hisuian arcanine v (silver tempest 90)|hisuian arcanine]]{{tcgv}}|fighting||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-jirachi-radiant-rare",
+      "candidate_name": "Radiant Jirachi",
+      "printed_number": "120/195",
+      "normalized_number_plain": "120",
+      "base_gv_id": "GV-PK-SIT-120",
+      "base_route": "GV-PK-SIT-120",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Jirachi",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-jirachi-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-120",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Jirachi%20120%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Jirachi%20120%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 120/195|f|{{tcg id|silver tempest|radiant jirachi|120}}|metal||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ho-oh-v-ultra-rare",
+      "candidate_name": "Ho-Oh V",
+      "printed_number": "140/195",
+      "normalized_number_plain": "140",
+      "base_gv_id": "GV-PK-SIT-140",
+      "base_route": "GV-PK-SIT-140",
+      "base_card_print_id": null,
+      "base_card_name": "Ho-Oh V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ho-oh-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-140",
+        "google_search_url": "https://www.google.com/search?q=Ho-Oh%20V%20140%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Ho-Oh%20V%20140%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 140/195|f|[[ho-oh v (silver tempest 140)|ho-oh]]{{tcgv}}|colorless||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-earthen-seal-stone-rare",
+      "candidate_name": "Earthen Seal Stone",
+      "printed_number": "154/195",
+      "normalized_number_plain": "154",
+      "base_gv_id": "GV-PK-SIT-154",
+      "base_route": "GV-PK-SIT-154",
+      "base_card_print_id": null,
+      "base_card_name": "Earthen Seal Stone",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-earthen-seal-stone-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-154",
+        "google_search_url": "https://www.google.com/search?q=Earthen%20Seal%20Stone%20154%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Earthen%20Seal%20Stone%20154%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 154/195|f|{{tcg id|silver tempest|earthen seal stone|154}}|item||rare holo|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lance-uncommon",
+      "candidate_name": "Lance",
+      "printed_number": "159/195",
+      "normalized_number_plain": "159",
+      "base_gv_id": "GV-PK-SIT-159",
+      "base_route": "GV-PK-SIT-159",
+      "base_card_print_id": null,
+      "base_card_name": "Lance",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lance-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-159",
+        "google_search_url": "https://www.google.com/search?q=Lance%20159%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lance%20159%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 159/195|f|{{tcg id|silver tempest|lance|159}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-leafy-camo-poncho-uncommon",
+      "candidate_name": "Leafy Camo Poncho",
+      "printed_number": "160/195",
+      "normalized_number_plain": "160",
+      "base_gv_id": "GV-PK-SIT-160",
+      "base_route": "GV-PK-SIT-160",
+      "base_card_print_id": null,
+      "base_card_name": "Leafy Camo Poncho",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-leafy-camo-poncho-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-160",
+        "google_search_url": "https://www.google.com/search?q=Leafy%20Camo%20Poncho%20160%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Leafy%20Camo%20Poncho%20160%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 160/195|f|{{tcg id|silver tempest|leafy camo poncho|160}}|item||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-serena-uncommon",
+      "candidate_name": "Serena",
+      "printed_number": "164/195",
+      "normalized_number_plain": "164",
+      "base_gv_id": "GV-PK-SIT-164",
+      "base_route": "GV-PK-SIT-164",
+      "base_card_print_id": null,
+      "base_card_name": "Serena",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-serena-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-164",
+        "google_search_url": "https://www.google.com/search?q=Serena%20164%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Serena%20164%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 164/195|f|{{tcg id|silver tempest|serena|164}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-v-guard-energy-uncommon",
+      "candidate_name": "V Guard Energy",
+      "printed_number": "169/195",
+      "normalized_number_plain": "169",
+      "base_gv_id": "GV-PK-SIT-169",
+      "base_route": "GV-PK-SIT-169",
+      "base_card_print_id": null,
+      "base_card_name": "V Guard Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-v-guard-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12-169",
+        "google_search_url": "https://www.google.com/search?q=V%20Guard%20Energy%20169%2F195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=V%20Guard%20Energy%20169%2F195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsilver tempest.png|18px|link=silver tempest (tcg)]] 169/195|f|{{tcg id|silver tempest|v guard energy|169}}|energy|colorless|uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-charizard-radiant-rare",
+      "candidate_name": "Radiant Charizard",
+      "printed_number": "020/159",
+      "normalized_number_plain": "020",
+      "base_gv_id": "GV-PK-CRZ-020",
+      "base_route": "GV-PK-CRZ-020",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Charizard",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-charizard-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-020",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Charizard%20020%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Charizard%20020%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 020/159|f|{{tcg id|crown zenith|radiant charizard|20}}|fire||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-charjabug-radiant-rare",
+      "candidate_name": "Radiant Charjabug",
+      "printed_number": "051/159",
+      "normalized_number_plain": "051",
+      "base_gv_id": "GV-PK-CRZ-051",
+      "base_route": "GV-PK-CRZ-051",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Charjabug",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-charjabug-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-051",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Charjabug%20051%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Charjabug%20051%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 051/159|f|{{tcg id|crown zenith|radiant charjabug|51}}|lightning||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lunatone-uncommon",
+      "candidate_name": "Lunatone",
+      "printed_number": "062/159",
+      "normalized_number_plain": "062",
+      "base_gv_id": "GV-PK-CRZ-062",
+      "base_route": "GV-PK-CRZ-062",
+      "base_card_print_id": null,
+      "base_card_name": "Lunatone",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lunatone-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-062",
+        "google_search_url": "https://www.google.com/search?q=Lunatone%20062%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lunatone%20062%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 062/159|f|{{tcg id|crown zenith|lunatone|62}}|psychic||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-solrock-uncommon",
+      "candidate_name": "Solrock",
+      "printed_number": "069/159",
+      "normalized_number_plain": "069",
+      "base_gv_id": "GV-PK-CRZ-069",
+      "base_route": "GV-PK-CRZ-069",
+      "base_card_print_id": null,
+      "base_card_name": "Solrock",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-solrock-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-069",
+        "google_search_url": "https://www.google.com/search?q=Solrock%20069%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Solrock%20069%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 069/159|f|{{tcg id|crown zenith|solrock|69}}|fighting||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-eternatus-radiant-rare",
+      "candidate_name": "Radiant Eternatus",
+      "printed_number": "105/159",
+      "normalized_number_plain": "105",
+      "base_gv_id": "GV-PK-CRZ-105",
+      "base_route": "GV-PK-CRZ-105",
+      "base_card_print_id": null,
+      "base_card_name": "Radiant Eternatus",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-radiant-eternatus-radiant-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-105",
+        "google_search_url": "https://www.google.com/search?q=Radiant%20Eternatus%20105%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Radiant%20Eternatus%20105%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 105/159|f|{{tcg id|crown zenith|radiant eternatus|105}}|dragon||rare radiant|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ditto-rare",
+      "candidate_name": "Ditto",
+      "printed_number": "107/159",
+      "normalized_number_plain": "107",
+      "base_gv_id": "GV-PK-CRZ-107",
+      "base_route": "GV-PK-CRZ-107",
+      "base_card_print_id": null,
+      "base_card_name": "Ditto",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ditto-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swsh12.5-107",
+        "google_search_url": "https://www.google.com/search?q=Ditto%20107%2F159%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Ditto%20107%2F159%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        3,
+        4
+      ],
+      "evidence_sources_used_for_v6_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolcrown zenith.png|18px|link=crown zenith (tcg)]] 107/159|f|{{tcg id|crown zenith|ditto|107}}|colorless||rare holo|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v6_nonblocked_series_3_4",
+      "final_reason": "The card appears in exactly one accessible Prize Pack series inside the checked Series 3-4 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    }
+  ]
+}

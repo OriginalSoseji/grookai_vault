@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-04-20T05:52:24.993Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V1",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.md",
+    "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.json"
+  ],
+  "rows": [
+    {
+      "batch_index": 9,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lucario-114-198-uncommon",
+      "source_candidate_id": "7907addc-a89e-4d40-b96b-f64eb95ba7a0",
+      "candidate_name": "Lucario",
+      "printed_number": "114/198",
+      "number_plain": "114",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "blocker_class": "CLASSIFIED_PARTIAL:MULTIPLE_SAME_NAME_SLOT_ROWS",
+      "current_routed_set_code": "sv01",
+      "current_slot_audit_output": {
+        "identity_audit_status": "AMBIGUOUS",
+        "identity_resolution": "BLOCK_AMBIGUOUS",
+        "interpreter_reason_code": "MULTIPLE_SAME_NAME_SLOT_ROWS",
+        "slot_occupants": [
+          {
+            "id": "9658540f-f231-4a4f-86b5-326520116b42",
+            "gv_id": "GV-PK-SVI-114",
+            "set_code": "sv01",
+            "name": "Lucario",
+            "number": "114",
+            "number_plain": "114",
+            "variant_key": "",
+            "tcgplayer_id": null
+          },
+          {
+            "id": "b0f1b7a0-fe44-4ffc-b5f3-3e9b11cd9297",
+            "gv_id": "GV-PK-SVI-114-SCARLET-AND-VIOLET-STAMP",
+            "set_code": "sv01",
+            "name": "Lucario",
+            "number": "114",
+            "number_plain": "114",
+            "variant_key": "scarlet_and_violet_stamp",
+            "tcgplayer_id": "652714"
+          }
+        ]
+      },
+      "current_base_match_output": {
+        "base_gv_id": "GV-PK-SVI-114",
+        "base_route": "GV-PK-SVI-114",
+        "artifact_base_card_print_id": "9658540f-f231-4a4f-86b5-326520116b42",
+        "inspection_base_card_print_id": "9658540f-f231-4a4f-86b5-326520116b42",
+        "live_base_card_print_id": "9658540f-f231-4a4f-86b5-326520116b42",
+        "live_base_gv_id": "GV-PK-SVI-114",
+        "exact_base_row_exists_in_batch_artifact": true
+      }
+    },
+    {
+      "batch_index": 20,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-tsareena-radiant-rare",
+      "source_candidate_id": "7aa0b6ce-ecaf-4df3-b52a-a35a12f2d3e3",
+      "candidate_name": "Radiant Tsareena",
+      "printed_number": "016/195",
+      "number_plain": "016",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "blocker_class": "UNDERLYING_BASE_MISSING",
+      "current_routed_set_code": "swsh12",
+      "current_slot_audit_output": null,
+      "current_base_match_output": {
+        "base_gv_id": "GV-PK-SIT-16",
+        "base_route": "GV-PK-SIT-16",
+        "artifact_base_card_print_id": null,
+        "inspection_base_card_print_id": "0c5f5504-1619-46be-9972-c38802cb801d",
+        "live_base_card_print_id": "0c5f5504-1619-46be-9972-c38802cb801d",
+        "live_base_gv_id": "GV-PK-SIT-16",
+        "exact_base_row_exists_in_batch_artifact": false
+      }
+    },
+    {
+      "batch_index": 21,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alolan-vulpix-v-ultra-rare",
+      "source_candidate_id": "ed9cc818-b5f8-4bc6-8cac-d22e0119299a",
+      "candidate_name": "Alolan Vulpix V",
+      "printed_number": "033/195",
+      "number_plain": "033",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "blocker_class": "UNDERLYING_BASE_MISSING",
+      "current_routed_set_code": "swsh12",
+      "current_slot_audit_output": null,
+      "current_base_match_output": {
+        "base_gv_id": "GV-PK-SIT-33",
+        "base_route": "GV-PK-SIT-33",
+        "artifact_base_card_print_id": null,
+        "inspection_base_card_print_id": "43cd9975-b087-4811-98b3-2550f312a624",
+        "live_base_card_print_id": "43cd9975-b087-4811-98b3-2550f312a624",
+        "live_base_gv_id": "GV-PK-SIT-33",
+        "exact_base_row_exists_in_batch_artifact": false
+      }
+    },
+    {
+      "batch_index": 22,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alolan-vulpix-vstar-ultra-rare",
+      "source_candidate_id": "7de30503-67d2-45a7-9a55-22b6962ba583",
+      "candidate_name": "Alolan Vulpix VSTAR",
+      "printed_number": "034/195",
+      "number_plain": "034",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "blocker_class": "UNDERLYING_BASE_MISSING",
+      "current_routed_set_code": "swsh12",
+      "current_slot_audit_output": null,
+      "current_base_match_output": {
+        "base_gv_id": "GV-PK-SIT-34",
+        "base_route": "GV-PK-SIT-34",
+        "artifact_base_card_print_id": null,
+        "inspection_base_card_print_id": "51102b36-6b19-4fc0-ba4c-b70454f180ce",
+        "live_base_card_print_id": "51102b36-6b19-4fc0-ba4c-b70454f180ce",
+        "live_base_gv_id": "GV-PK-SIT-34",
+        "exact_base_row_exists_in_batch_artifact": false
+      }
+    },
+    {
+      "batch_index": 23,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-radiant-alakazam-radiant-rare",
+      "source_candidate_id": "053bd166-980e-4ea2-9613-fab12437641a",
+      "candidate_name": "Radiant Alakazam",
+      "printed_number": "059/195",
+      "number_plain": "059",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "blocker_class": "UNDERLYING_BASE_MISSING",
+      "current_routed_set_code": "swsh12",
+      "current_slot_audit_output": null,
+      "current_base_match_output": {
+        "base_gv_id": "GV-PK-SIT-59",
+        "base_route": "GV-PK-SIT-59",
+        "artifact_base_card_print_id": null,
+        "inspection_base_card_print_id": "e3720d38-221d-40c3-a569-ef3dea35fd0f",
+        "live_base_card_print_id": "e3720d38-221d-40c3-a569-ef3dea35fd0f",
+        "live_base_gv_id": "GV-PK-SIT-59",
+        "exact_base_row_exists_in_batch_artifact": false
+      }
+    }
+  ]
+}

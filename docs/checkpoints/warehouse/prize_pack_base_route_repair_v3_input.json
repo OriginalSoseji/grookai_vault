@@ -1,0 +1,657 @@
+{
+  "generated_at": "2026-04-20T17:46:17.515Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_clusters.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.json"
+  ],
+  "ambiguous_pool_size": 31,
+  "counts_by_ambiguity_type": {
+    "ALT_ART_ONLY_NUMBER_SLOT_COLLISION": 5,
+    "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED": 12,
+    "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED": 13,
+    "SPECIAL_IDENTITY_FAMILY_COLLISION": 1
+  },
+  "rows": [
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vmax-ultra-rare",
+      "candidate_name": "Glaceon VMAX",
+      "printed_number": "041/203",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact number slot is occupied only by an alt-art canon row, so the generic Prize Pack stamp cannot yet attach to a lawful plain-base route.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-sylveon-v-ultra-rare",
+      "candidate_name": "Sylveon V",
+      "printed_number": "074/203",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact number slot is occupied only by an alt-art canon row, so the generic Prize Pack stamp cannot yet attach to a lawful plain-base route.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-umbreon-vmax-ultra-rare",
+      "candidate_name": "Umbreon VMAX",
+      "printed_number": "095/203",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact number slot is occupied only by an alt-art canon row, so the generic Prize Pack stamp cannot yet attach to a lawful plain-base route.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-rayquaza-vmax-ultra-rare",
+      "candidate_name": "Rayquaza VMAX",
+      "printed_number": "111/203",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact number slot is occupied only by an alt-art canon row, so the generic Prize Pack stamp cannot yet attach to a lawful plain-base route.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-duraludon-v-ultra-rare",
+      "candidate_name": "Duraludon V",
+      "printed_number": "122/203",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact number slot is occupied only by an alt-art canon row, so the generic Prize Pack stamp cannot yet attach to a lawful plain-base route.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+      "candidate_name": "Raging Bolt ex - 123/162 (Wrong Image)",
+      "printed_number": "123/162",
+      "set_code": "sv05",
+      "candidate_base_gv_ids": [
+        "GV-PK-TEF-123"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-TEF-123.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fire-energy-mee002-common",
+      "candidate_name": "Basic Fire Energy - MEE002",
+      "printed_number": "2",
+      "set_code": "sve",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-2"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": "WAIT",
+        "prior_evidence_v2_reason": "no_external_series_confirmation_yet",
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SVE-2.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fighting-energy-mee006-common",
+      "candidate_name": "Basic Fighting Energy - MEE006",
+      "printed_number": "6",
+      "set_code": "sve",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-6"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": "WAIT",
+        "prior_evidence_v2_reason": "no_external_series_confirmation_yet",
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SVE-6.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-darkness-energy-mee007-common",
+      "candidate_name": "Basic Darkness Energy - MEE007",
+      "printed_number": "7",
+      "set_code": "sve",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-7"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": "WAIT",
+        "prior_evidence_v2_reason": "no_external_series_confirmation_yet",
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SVE-7.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-metal-energy-mee008-common",
+      "candidate_name": "Basic Metal Energy - MEE008",
+      "printed_number": "8",
+      "set_code": "sve",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-8"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": "WAIT",
+        "prior_evidence_v2_reason": "no_external_series_confirmation_yet",
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SVE-8.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "candidate_name": "Inteleon (058)",
+      "printed_number": "058/202",
+      "set_code": "swsh1",
+      "candidate_base_gv_ids": [
+        "GV-PK-SSH-58"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SSH-58.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+      "candidate_name": "Altaria - 49/73",
+      "printed_number": "49/73",
+      "set_code": "swsh3.5",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-49"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-CPA-49.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare",
+      "candidate_name": "Professor's Research (Professor Juniper)",
+      "printed_number": "060/072",
+      "set_code": "swsh4.5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SHF-60"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SHF-60.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-43-rare",
+      "candidate_name": "Inteleon (43)",
+      "printed_number": "043/198",
+      "set_code": "swsh6",
+      "candidate_base_gv_ids": [
+        "GV-PK-CRE-43"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-CRE-43.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "candidate_name": "Wormadam (010)",
+      "printed_number": "010/172",
+      "set_code": "swsh9",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-10"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-BRS-10.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "candidate_name": "Wormadam (077)",
+      "printed_number": "077/172",
+      "set_code": "swsh9",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-77"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-BRS-77.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "candidate_name": "Wormadam (098)",
+      "printed_number": "098/172",
+      "set_code": "swsh9",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-98"
+      ],
+      "ambiguity_type": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-BRS-98.",
+        "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+      "candidate_name": "Pokegear 3.0",
+      "printed_number": "186/198",
+      "set_code": "sv01",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVI-186"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SVI-186.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-atticus-uncommon",
+      "candidate_name": "Atticus",
+      "printed_number": "077/091",
+      "set_code": "sv4pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-77-S"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-PAF-77-S.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+      "candidate_name": "Moonlit Hill",
+      "printed_number": "081/091",
+      "set_code": "sv4pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-81-S"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-PAF-81-S.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+      "candidate_name": "Technical Machine: Crisis Punch",
+      "printed_number": "090/091",
+      "set_code": "sv4pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-90-S"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-PAF-90-S.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-galvantula-uncommon",
+      "candidate_name": "Galvantula",
+      "printed_number": "002/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-2"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-2.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-uncommon",
+      "candidate_name": "Genesect",
+      "printed_number": "040/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-40"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-40.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-copperajah-rare",
+      "candidate_name": "Copperajah",
+      "printed_number": "042/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-42"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-42.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+      "candidate_name": "Binding Mochi",
+      "printed_number": "055/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-55"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-55.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+      "candidate_name": "Neutralization Zone",
+      "printed_number": "060/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-60"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-60.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+      "candidate_name": "Night Stretcher",
+      "printed_number": "061/064",
+      "set_code": "sv6pt5",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-61"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SFA-61.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "candidate_name": "Rillaboom",
+      "printed_number": "014/072",
+      "set_code": "swsh1",
+      "candidate_base_gv_ids": [
+        "GV-PK-SSH-14"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-SSH-14.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+      "candidate_name": "Alcremie V",
+      "printed_number": "022/073",
+      "set_code": "swsh3.5",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-22"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-CPA-22.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+      "candidate_name": "Alcremie VMAX",
+      "printed_number": "23/73",
+      "set_code": "swsh3.5",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-23"
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "Normalized source name resolves uniquely to GV-PK-CPA-23.",
+        "why_route_is_ambiguous": "The row has one live canon base route by exact name+number, but that route has not yet been carried through a Prize Pack adjudication artifact.",
+        "blocked_by_official_acquisition": false
+      }
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+      "candidate_name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "set_code": null,
+      "candidate_base_gv_ids": [],
+      "ambiguity_type": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+      "prior_decisions": {
+        "prior_evidence_v2_action": null,
+        "prior_evidence_v2_reason": null,
+        "prior_promoted_batch_artifact": null,
+        "live_existing_play_pokemon_stamp_count": 0
+      },
+      "notes": {
+        "route_notes": "No lawful plain-base row survives the current name+number route audit.",
+        "why_route_is_ambiguous": "The exact name+number slot only matches a special-family canon row with non-empty variant semantics, so the plain Prize Pack route is still unresolved.",
+        "blocked_by_official_acquisition": false
+      }
+    }
+  ]
+}

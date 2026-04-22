@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-04-21T21:14:38.547Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked.json",
+  "row_count": 3,
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "source_candidate_id": null,
+      "name": "Wormadam",
+      "candidate_name": "Wormadam",
+      "printed_number": "010/172",
+      "number_plain": "10",
+      "normalized_number_plain": "10",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "010",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_routed_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "effective_routed_set_name": "Brilliant Stars",
+      "canonical_queue_key": "swsh9::Wormadam::010/172::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BRS-10",
+      "base_route": "GV-PK-BRS-10",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BRS-10",
+        "base_route": "GV-PK-BRS-10",
+        "unique_base_route": true,
+        "base_card_name": "Wormadam"
+      },
+      "reference_hints_payload": {
+        "provenance": "prize_pack_evidence_v19_nonblocked",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-BRS-10",
+          "base_route": "GV-PK-BRS-10"
+        },
+        "effective_routed_set_code": "swsh9",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "source_candidate_id": null,
+      "name": "Wormadam",
+      "candidate_name": "Wormadam",
+      "printed_number": "077/172",
+      "number_plain": "77",
+      "normalized_number_plain": "77",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "077",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_routed_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "effective_routed_set_name": "Brilliant Stars",
+      "canonical_queue_key": "swsh9::Wormadam::077/172::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BRS-77",
+      "base_route": "GV-PK-BRS-77",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BRS-77",
+        "base_route": "GV-PK-BRS-77",
+        "unique_base_route": true,
+        "base_card_name": "Wormadam"
+      },
+      "reference_hints_payload": {
+        "provenance": "prize_pack_evidence_v19_nonblocked",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-BRS-77",
+          "base_route": "GV-PK-BRS-77"
+        },
+        "effective_routed_set_code": "swsh9",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "source_candidate_id": null,
+      "name": "Wormadam",
+      "candidate_name": "Wormadam",
+      "printed_number": "098/172",
+      "number_plain": "98",
+      "normalized_number_plain": "98",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokemon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        2
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "evidence_sources_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "098",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "effective_identity_space": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_routed_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "effective_routed_set_name": "Brilliant Stars",
+      "canonical_queue_key": "swsh9::Wormadam::098/172::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BRS-98",
+      "base_route": "GV-PK-BRS-98",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BRS-98",
+        "base_route": "GV-PK-BRS-98",
+        "unique_base_route": true,
+        "base_card_name": "Wormadam"
+      },
+      "reference_hints_payload": {
+        "provenance": "prize_pack_evidence_v19_nonblocked",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_1",
+        "confirmed_series_coverage": [
+          2
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-BRS-98",
+          "base_route": "GV-PK-BRS-98"
+        },
+        "effective_routed_set_code": "swsh9",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    }
+  ]
+}

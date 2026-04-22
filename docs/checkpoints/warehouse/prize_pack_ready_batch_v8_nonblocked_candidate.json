@@ -1,0 +1,266 @@
+{
+  "generated_at": "2026-04-20T16:28:14.363Z",
+  "workflow": "PRIZE_PACK_READY_BATCH_V8_NONBLOCKED_CANDIDATE",
+  "status": "READY_SUBSET_IDENTIFIED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_target_slice.json"
+  ],
+  "selection_summary": {
+    "row_count": 4,
+    "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+    "variant_key": "play_pokemon_stamp",
+    "target_origin": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+  },
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mimikyu-ex-promo",
+      "source_candidate_id": null,
+      "name": "Mimikyu ex",
+      "candidate_name": "Mimikyu ex",
+      "printed_number": "004",
+      "number_plain": "004",
+      "normalized_number_plain": "004",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "supported_series_list": [
+        3
+      ],
+      "evidence_sources_v8_nonblocked": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mimikyu-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 004|g|[[mimikyu ex (svp promo 4)|mimikyu]]{{ex}}|psychic||-|standard set foil}}"
+        }
+      ],
+      "effective_identity_space": "svp",
+      "effective_set_code": "svp",
+      "effective_routed_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "effective_routed_set_name": "Scarlet & Violet Black Star Promos",
+      "canonical_queue_key": "svp::Mimikyu ex::004::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SV-004",
+      "base_route": "GV-PK-PR-SV-004",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SV-004",
+        "base_route": "GV-PK-PR-SV-004",
+        "unique_base_route": true,
+        "base_card_name": "Mimikyu ex"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ampharos-ex-promo",
+      "source_candidate_id": null,
+      "name": "Ampharos ex",
+      "candidate_name": "Ampharos ex",
+      "printed_number": "016",
+      "number_plain": "016",
+      "normalized_number_plain": "016",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "supported_series_list": [
+        3
+      ],
+      "evidence_sources_v8_nonblocked": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ampharos-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 016|g|[[ampharos ex (svp promo 16)|ampharos]]{{ex}}|lightning||-|standard set foil}}"
+        }
+      ],
+      "effective_identity_space": "svp",
+      "effective_set_code": "svp",
+      "effective_routed_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "effective_routed_set_name": "Scarlet & Violet Black Star Promos",
+      "canonical_queue_key": "svp::Ampharos ex::016::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SV-016",
+      "base_route": "GV-PK-PR-SV-016",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SV-016",
+        "base_route": "GV-PK-PR-SV-016",
+        "unique_base_route": true,
+        "base_card_name": "Ampharos ex"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lucario-ex-promo",
+      "source_candidate_id": null,
+      "name": "Lucario ex",
+      "candidate_name": "Lucario ex",
+      "printed_number": "017",
+      "number_plain": "017",
+      "normalized_number_plain": "017",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "supported_series_list": [
+        3
+      ],
+      "evidence_sources_v8_nonblocked": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lucario-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 017|g|[[lucario ex (svp promo 17)|lucario]]{{ex}}|fighting||-|standard set foil}}"
+        }
+      ],
+      "effective_identity_space": "svp",
+      "effective_set_code": "svp",
+      "effective_routed_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "effective_routed_set_name": "Scarlet & Violet Black Star Promos",
+      "canonical_queue_key": "svp::Lucario ex::017::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SV-17",
+      "base_route": "GV-PK-PR-SV-17",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SV-17",
+        "base_route": "GV-PK-PR-SV-17",
+        "unique_base_route": true,
+        "base_card_name": "Lucario ex"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cyclizar-ex-promo",
+      "source_candidate_id": null,
+      "name": "Cyclizar ex",
+      "candidate_name": "Cyclizar ex",
+      "printed_number": "018",
+      "number_plain": "018",
+      "normalized_number_plain": "018",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "supported_series_list": [
+        3
+      ],
+      "evidence_sources_v8_nonblocked": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cyclizar-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 018|g|[[cyclizar ex (svp promo 18)|cyclizar]]{{ex}}|colorless||-|standard set foil}}"
+        }
+      ],
+      "effective_identity_space": "svp",
+      "effective_set_code": "svp",
+      "effective_routed_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "effective_routed_set_name": "Scarlet & Violet Black Star Promos",
+      "canonical_queue_key": "svp::Cyclizar ex::018::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-PR-SV-18",
+      "base_route": "GV-PK-PR-SV-18",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PR-SV-18",
+        "base_route": "GV-PK-PR-SV-18",
+        "unique_base_route": true,
+        "base_card_name": "Cyclizar ex"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    }
+  ],
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V8_NONBLOCKED"
+}

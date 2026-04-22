@@ -1,0 +1,511 @@
+{
+  "generated_at": "2026-04-21T02:50:41.915Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED",
+  "selection_summary": {
+    "id": "SWSH7_EVOLVING_SKIES_MULTI_SERIES_DUPLICATE_WINDOW",
+    "label": "Evolving Skies Series 1-2 Multi-Series Duplicate Window",
+    "row_count": 5,
+    "set_code_counts": {
+      "swsh7": 5
+    },
+    "selection_note": "This five-row set-family cluster is below the recommended range, but it is the largest remaining coherent nonblocked slice that does not mix unknown-base rows, acquisition-blocked rows, or the special-family lane.",
+    "excluded_blocked_by_official_acquisition_count": 88,
+    "excluded_special_family_count": 1
+  },
+  "shared_question": "Across accessible Prize Pack Series 1-8 sources, do these Evolving Skies rows appear in more than one series, proving duplicate/distribution-only generic stamp identities without requiring blocked official Series 1/2 acquisition?",
+  "evidence_sources_used": [
+    {
+      "series": 1,
+      "source_name": "Bulbapedia Prize Pack Series One",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+    },
+    {
+      "series": 2,
+      "source_name": "Bulbapedia Prize Pack Series Two",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+    },
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series Three",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+    },
+    {
+      "series": 4,
+      "source_name": "Bulbapedia Prize Pack Series Four",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+    },
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series Seven",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series Eight",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vmax-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Glaceon VMAX",
+      "name": "Glaceon VMAX",
+      "base_card_name": "Glaceon VMAX",
+      "printed_number": "041/203",
+      "normalized_number_plain": "41",
+      "base_gv_id": "GV-PK-EVS-41",
+      "base_route": "GV-PK-EVS-41",
+      "effective_base_owner_gv_id": "GV-PK-EVS-41",
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "set_code": "swsh7",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-glaceon-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v14_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 041/203|e|[[glaceon vmax (evolving skies 41)|glaceon]]{{vmax}}|water||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 041/203|e|[[glaceon vmax (evolving skies 41)|glaceon]]{{vmax}}|water||rare vmax|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v14_nonblocked_swsh7_window",
+      "final_reason": "Accessible evidence places this Evolving Skies printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp would be distribution-only and must not create a separate canon row."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-sylveon-v-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Sylveon V",
+      "name": "Sylveon V",
+      "base_card_name": "Sylveon V",
+      "printed_number": "074/203",
+      "normalized_number_plain": "74",
+      "base_gv_id": "GV-PK-EVS-74",
+      "base_route": "GV-PK-EVS-74",
+      "effective_base_owner_gv_id": "GV-PK-EVS-74",
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "set_code": "swsh7",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-sylveon-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v14_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 074/203|e|[[sylveon v (evolving skies 74)|sylveon]]{{tcgv}}|psychic||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 074/203|e|[[sylveon v (evolving skies 74)|sylveon]]{{tcgv}}|psychic||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v14_nonblocked_swsh7_window",
+      "final_reason": "Accessible evidence places this Evolving Skies printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp would be distribution-only and must not create a separate canon row."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-umbreon-vmax-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Umbreon VMAX",
+      "name": "Umbreon VMAX",
+      "base_card_name": "Umbreon VMAX",
+      "printed_number": "095/203",
+      "normalized_number_plain": "95",
+      "base_gv_id": "GV-PK-EVS-95",
+      "base_route": "GV-PK-EVS-95",
+      "effective_base_owner_gv_id": "GV-PK-EVS-95",
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "set_code": "swsh7",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-umbreon-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v14_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 095/203|e|[[umbreon vmax (evolving skies 95)|umbreon]]{{vmax}}|darkness||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 095/203|e|[[umbreon vmax (evolving skies 95)|umbreon]]{{vmax}}|darkness||rare vmax|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v14_nonblocked_swsh7_window",
+      "final_reason": "Accessible evidence places this Evolving Skies printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp would be distribution-only and must not create a separate canon row."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rayquaza-vmax-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Rayquaza VMAX",
+      "name": "Rayquaza VMAX",
+      "base_card_name": "Rayquaza VMAX",
+      "printed_number": "111/203",
+      "normalized_number_plain": "111",
+      "base_gv_id": "GV-PK-EVS-111",
+      "base_route": "GV-PK-EVS-111",
+      "effective_base_owner_gv_id": "GV-PK-EVS-111",
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "set_code": "swsh7",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-rayquaza-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v14_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 111/203|e|[[rayquaza vmax (evolving skies 111)|rayquaza]]{{vmax}}|dragon||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 111/203|e|[[rayquaza vmax (evolving skies 111)|rayquaza]]{{vmax}}|dragon||rare vmax|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v14_nonblocked_swsh7_window",
+      "final_reason": "Accessible evidence places this Evolving Skies printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp would be distribution-only and must not create a separate canon row."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-duraludon-v-ultra-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Duraludon V",
+      "name": "Duraludon V",
+      "base_card_name": "Duraludon V",
+      "printed_number": "122/203",
+      "normalized_number_plain": "122",
+      "base_gv_id": "GV-PK-EVS-122",
+      "base_route": "GV-PK-EVS-122",
+      "effective_base_owner_gv_id": "GV-PK-EVS-122",
+      "effective_set_code": "swsh7",
+      "effective_set_name": "Evolving Skies",
+      "set_code": "swsh7",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null,
+      "unique_base_route": true,
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-duraludon-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v14_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 122/203|e|[[duraludon v (evolving skies 122)|duraludon]]{{tcgv}}|dragon||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolevolving skies.png|18px|link=evolving skies (tcg)]] 122/203|e|[[duraludon v (evolving skies 122)|duraludon]]{{tcgv}}|dragon||ultra-rare rare|standard set foil}}"
+        }
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V14_NONBLOCKED"
+      ],
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v14_nonblocked_swsh7_window",
+      "final_reason": "Accessible evidence places this Evolving Skies printed identity in multiple Prize Pack series with no printed distinction, so the generic Play! Pokemon stamp would be distribution-only and must not create a separate canon row."
+    }
+  ]
+}

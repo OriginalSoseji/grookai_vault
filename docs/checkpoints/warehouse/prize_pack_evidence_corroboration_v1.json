@@ -1,0 +1,4310 @@
+{
+  "generated_at": "2026-04-19T04:44:53.106Z",
+  "workflow": "PRIZE_PACK_EVIDENCE_CORROBORATION_V1",
+  "scope": {
+    "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v2.json",
+    "target_subset_decision_reason": "single_series_match_but_series_1_to_3_coverage_not_resolved_for_this_base_set",
+    "target_subset_size": 52
+  },
+  "sources_checked": [
+    {
+      "series": 1,
+      "source_name": "Bulbapedia Prize Pack Series One",
+      "source_type": "bulbapedia_card_list",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+    },
+    {
+      "series": 2,
+      "source_name": "Bulbapedia Prize Pack Series Two",
+      "source_type": "bulbapedia_card_list",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+    },
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series Three",
+      "source_type": "bulbapedia_card_list",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+    },
+    {
+      "series": 4,
+      "source_name": "Bulbapedia Prize Pack Series Four",
+      "source_type": "bulbapedia_card_list",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+    }
+  ],
+  "summary": {
+    "generated_at": "2026-04-19T04:44:53.106Z",
+    "input_rows": 52,
+    "ready_for_warehouse": 23,
+    "do_not_canon": 29,
+    "unresolved": 0,
+    "counts_by_set": {
+      "swsh12": 14,
+      "swsh11": 6,
+      "sv01": 12,
+      "sv02": 15,
+      "swsh12.5": 5
+    },
+    "matched_series_patterns": {
+      "[3,4]": 29,
+      "[4]": 23
+    }
+  },
+  "ready_rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-artazon-uncommon",
+      "candidate_name": "Artazon",
+      "base_card_name": "Artazon",
+      "printed_number": "171/193",
+      "base_gv_id": "GV-PK-PAL-171",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-artazon-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Artazon PAL 171"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+      "candidate_name": "Bravery Charm",
+      "base_card_name": "Bravery Charm",
+      "printed_number": "173/193",
+      "base_gv_id": "GV-PK-PAL-173",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Bravery Charm PAL 173"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+      "candidate_name": "Capturing Aroma",
+      "base_card_name": "Capturing Aroma",
+      "printed_number": "153/195",
+      "base_gv_id": "GV-PK-SIT-153",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Capturing Aroma SIT 153"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-clavell-common",
+      "candidate_name": "Clavell",
+      "base_card_name": "Clavell",
+      "printed_number": "177/193",
+      "base_gv_id": "GV-PK-PAL-177",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-clavell-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Clavell PAL 177"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+      "candidate_name": "Dedenne ex",
+      "base_card_name": "Dedenne ex",
+      "printed_number": "093/193",
+      "base_gv_id": "GV-PK-PAL-93",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Dedenne ex PAL 93"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-drifloon-common",
+      "candidate_name": "Drifloon",
+      "base_card_name": "Drifloon",
+      "printed_number": "089/198",
+      "base_gv_id": "GV-PK-SVI-089",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-drifloon-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Drifloon SVI 89"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+      "candidate_name": "Emergency Jelly",
+      "base_card_name": "Emergency Jelly",
+      "printed_number": "155/195",
+      "base_gv_id": "GV-PK-SIT-155",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Emergency Jelly SIT 155"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+      "candidate_name": "Fighting Au Lait",
+      "base_card_name": "Fighting Au Lait",
+      "printed_number": "181/193",
+      "base_gv_id": "GV-PK-PAL-181",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Fighting Au Lait PAL 181"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-klefki-rare",
+      "candidate_name": "Klefki",
+      "base_card_name": "Klefki",
+      "printed_number": "096/198",
+      "base_gv_id": "GV-PK-SVI-096",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-klefki-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Klefki SVI 96"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+      "candidate_name": "Kyogre",
+      "base_card_name": "Kyogre",
+      "printed_number": "036/159",
+      "base_gv_id": "GV-PK-CRZ-036",
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-kyogre-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Kyogre CRZ 36"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-luminous-energy-uncommon",
+      "candidate_name": "Luminous Energy",
+      "base_card_name": "Luminous Energy",
+      "printed_number": "191/193",
+      "base_gv_id": "GV-PK-PAL-191",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-luminous-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Luminous Energy PAL 191"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-luxray-071-193-rare",
+      "candidate_name": "Luxray - 071/193",
+      "base_card_name": "Luxray",
+      "printed_number": "071/193",
+      "base_gv_id": "GV-PK-PAL-71",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-luxray-071-193-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Luxray PAL 71"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-meowscarada-ex-double-rare",
+      "candidate_name": "Meowscarada ex",
+      "base_card_name": "Meowscarada ex",
+      "printed_number": "015/193",
+      "base_gv_id": "GV-PK-PAL-15",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-meowscarada-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Meowscarada ex PAL 15"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mimikyu-rare",
+      "candidate_name": "Mimikyu",
+      "base_card_name": "Mimikyu",
+      "printed_number": "097/193",
+      "base_gv_id": "GV-PK-PAL-97",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mimikyu-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Mimikyu PAL 97"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-noivern-ex-double-rare",
+      "candidate_name": "Noivern ex",
+      "base_card_name": "Noivern ex",
+      "printed_number": "153/193",
+      "base_gv_id": "GV-PK-PAL-153",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-noivern-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Noivern ex PAL 153"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pal-pad-common",
+      "candidate_name": "Pal Pad",
+      "base_card_name": "Pal Pad",
+      "printed_number": "182",
+      "base_gv_id": "GV-PK-SVI-182",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pal-pad-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Pal Pad SVI 182"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pelipper-uncommon",
+      "candidate_name": "Pelipper",
+      "base_card_name": "Pelipper",
+      "printed_number": "159/193",
+      "base_gv_id": "GV-PK-PAL-159",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pelipper-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Pelipper PAL 159"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-quaquaval-rare",
+      "candidate_name": "Quaquaval",
+      "base_card_name": "Quaquaval",
+      "printed_number": "054/198",
+      "base_gv_id": "GV-PK-SVI-054",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-quaquaval-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Quaquaval SVI 54"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-skeledirge-ex-037-193-double-rare",
+      "candidate_name": "Skeledirge ex - 037/193",
+      "base_card_name": "Skeledirge ex",
+      "printed_number": "037/193",
+      "base_gv_id": "GV-PK-PAL-37",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-skeledirge-ex-037-193-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Skeledirge ex PAL 37"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiritomb-089-193-rare",
+      "candidate_name": "Spiritomb - 089/193",
+      "base_card_name": "Spiritomb",
+      "printed_number": "089/193",
+      "base_gv_id": "GV-PK-PAL-89",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-spiritomb-089-193-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Spiritomb PAL 89"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-superior-energy-retrieval-uncommon",
+      "candidate_name": "Superior Energy Retrieval",
+      "base_card_name": "Superior Energy Retrieval",
+      "printed_number": "189/193",
+      "base_gv_id": "GV-PK-PAL-189",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-superior-energy-retrieval-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Superior Energy Retrieval PAL 189"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ting-lu-ex-double-rare",
+      "candidate_name": "Ting-Lu ex",
+      "base_card_name": "Ting-Lu ex",
+      "printed_number": "127/193",
+      "base_gv_id": "GV-PK-PAL-127",
+      "effective_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ting-lu-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Ting-Lu ex PAL 127"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-worker-uncommon",
+      "candidate_name": "Worker",
+      "base_card_name": "Worker",
+      "printed_number": "167/195",
+      "base_gv_id": "GV-PK-SIT-167",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+      "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-worker-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Worker SIT 167"
+        }
+      ]
+    }
+  ],
+  "do_not_canon_rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-archeops-rare",
+      "candidate_name": "Archeops",
+      "base_card_name": "Archeops",
+      "printed_number": "147/195",
+      "base_gv_id": "GV-PK-SIT-147",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-archeops-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Archeops SIT 147"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-arezu-uncommon",
+      "candidate_name": "Arezu",
+      "base_card_name": "Arezu",
+      "printed_number": "153/196",
+      "base_gv_id": "GV-PK-LOR-153",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-arezu-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Arezu LOR 153"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-armarouge-rare",
+      "candidate_name": "Armarouge",
+      "base_card_name": "Armarouge",
+      "printed_number": "041/198",
+      "base_gv_id": "GV-PK-SVI-041",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-armarouge-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Armarouge SVI 41"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-beach-court-uncommon",
+      "candidate_name": "Beach Court",
+      "base_card_name": "Beach Court",
+      "printed_number": "167/198",
+      "base_gv_id": "GV-PK-SVI-167",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-beach-court-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Beach Court SVI 167"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-defiance-band-uncommon",
+      "candidate_name": "Defiance Band",
+      "base_card_name": "Defiance Band",
+      "printed_number": "169/198",
+      "base_gv_id": "GV-PK-SVI-169",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-defiance-band-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Defiance Band SVI 169"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dragonite-rare",
+      "candidate_name": "Dragonite",
+      "base_card_name": "Dragonite",
+      "printed_number": "131/195",
+      "base_gv_id": "GV-PK-SIT-131",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-dragonite-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Dragonite SIT 131"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-electric-generator-uncommon",
+      "candidate_name": "Electric Generator",
+      "base_card_name": "Electric Generator",
+      "printed_number": "170/198",
+      "base_gv_id": "GV-PK-SVI-170",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-electric-generator-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Electric Generator SVI 170"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-forest-seal-stone-rare",
+      "candidate_name": "Forest Seal Stone",
+      "base_card_name": "Forest Seal Stone",
+      "printed_number": "156/195",
+      "base_gv_id": "GV-PK-SIT-156",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-forest-seal-stone-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Forest Seal Stone SIT 156"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-giratina-v-ultra-rare",
+      "candidate_name": "Giratina V",
+      "base_card_name": "Giratina V",
+      "printed_number": "130/196",
+      "base_gv_id": "GV-PK-LOR-130",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-giratina-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Giratina V LOR 130"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-giratina-vstar-ultra-rare",
+      "candidate_name": "Giratina VSTAR",
+      "base_card_name": "Giratina VSTAR",
+      "printed_number": "131/196",
+      "base_gv_id": "GV-PK-LOR-131",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-giratina-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Giratina VSTAR LOR 131"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hisuian-goodra-v-ultra-rare",
+      "candidate_name": "Hisuian Goodra V",
+      "base_card_name": "Hisuian Goodra V",
+      "printed_number": "135/196",
+      "base_gv_id": "GV-PK-LOR-135",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-hisuian-goodra-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Hisuian Goodra V LOR 135"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hisuian-goodra-vstar-ultra-rare",
+      "candidate_name": "Hisuian Goodra VSTAR",
+      "base_card_name": "Hisuian Goodra VSTAR",
+      "printed_number": "136/196",
+      "base_gv_id": "GV-PK-LOR-136",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-hisuian-goodra-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Hisuian Goodra VSTAR LOR 136"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-jacq-uncommon",
+      "candidate_name": "Jacq",
+      "base_card_name": "Jacq",
+      "printed_number": "175/198",
+      "base_gv_id": "GV-PK-SVI-175",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-jacq-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Jacq SVI 175"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-kirlia-uncommon",
+      "candidate_name": "Kirlia",
+      "base_card_name": "Kirlia",
+      "printed_number": "068/195",
+      "base_gv_id": "GV-PK-SIT-68",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-kirlia-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Kirlia SIT 68"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-koraidon-ex-double-rare",
+      "candidate_name": "Koraidon ex",
+      "base_card_name": "Koraidon ex",
+      "printed_number": "125/198",
+      "base_gv_id": "GV-PK-SVI-125",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-koraidon-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Koraidon ex SVI 125"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lost-city-uncommon",
+      "candidate_name": "Lost City",
+      "base_card_name": "Lost City",
+      "printed_number": "161/196",
+      "base_gv_id": "GV-PK-LOR-161",
+      "effective_set_code": "swsh11",
+      "effective_set_name": "Lost Origin",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lost-city-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Lost City LOR 161"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lost-vacuum-uncommon",
+      "candidate_name": "Lost Vacuum",
+      "base_card_name": "Lost Vacuum",
+      "printed_number": "135/159",
+      "base_gv_id": "GV-PK-CRZ-135",
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lost-vacuum-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Lost Vacuum CRZ 135"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lugia-v-ultra-rare",
+      "candidate_name": "Lugia V",
+      "base_card_name": "Lugia V",
+      "printed_number": "138/195",
+      "base_gv_id": "GV-PK-SIT-138",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lugia-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Lugia V SIT 138"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lugia-vstar-ultra-rare",
+      "candidate_name": "Lugia VSTAR",
+      "base_card_name": "Lugia VSTAR",
+      "printed_number": "139/195",
+      "base_gv_id": "GV-PK-SIT-139",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lugia-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Lugia VSTAR SIT 139"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-penny-uncommon",
+      "candidate_name": "Penny",
+      "base_card_name": "Penny",
+      "printed_number": "183/198",
+      "base_gv_id": "GV-PK-SVI-183",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-penny-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Penny SVI 183"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-regidrago-v-ultra-rare",
+      "candidate_name": "Regidrago V",
+      "base_card_name": "Regidrago V",
+      "printed_number": "135/195",
+      "base_gv_id": "GV-PK-SIT-135",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-regidrago-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Regidrago V SIT 135"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-regidrago-vstar-ultra-rare",
+      "candidate_name": "Regidrago VSTAR",
+      "base_card_name": "Regidrago VSTAR",
+      "printed_number": "136/195",
+      "base_gv_id": "GV-PK-SIT-136",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-regidrago-vstar-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Regidrago VSTAR SIT 136"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-regieleki-v-ultra-rare",
+      "candidate_name": "Regieleki V",
+      "base_card_name": "Regieleki V",
+      "printed_number": "057/195",
+      "base_gv_id": "GV-PK-SIT-57",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-regieleki-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Regieleki V SIT 57"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-regieleki-vmax-ultra-rare",
+      "candidate_name": "Regieleki VMAX",
+      "base_card_name": "Regieleki VMAX",
+      "printed_number": "058/195",
+      "base_gv_id": "GV-PK-SIT-58",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-regieleki-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Regieleki VMAX SIT 58"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-revavroom-rare",
+      "candidate_name": "Revavroom",
+      "base_card_name": "Revavroom",
+      "printed_number": "142/198",
+      "base_gv_id": "GV-PK-SVI-142",
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-revavroom-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Revavroom SVI 142"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-sky-seal-stone-rare",
+      "candidate_name": "Sky Seal Stone",
+      "base_card_name": "Sky Seal Stone",
+      "printed_number": "143/159",
+      "base_gv_id": "GV-PK-CRZ-143",
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-sky-seal-stone-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Sky Seal Stone CRZ 143"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-trekking-shoes-uncommon",
+      "candidate_name": "Trekking Shoes",
+      "base_card_name": "Trekking Shoes",
+      "printed_number": "145/159",
+      "base_gv_id": "GV-PK-CRZ-145",
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-trekking-shoes-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Trekking Shoes CRZ 145"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ultra-ball-146-159-uncommon",
+      "candidate_name": "Ultra Ball - 146/159",
+      "base_card_name": "Ultra Ball",
+      "printed_number": "146/159",
+      "base_gv_id": "GV-PK-CRZ-146",
+      "effective_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ultra-ball-146-159-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Ultra Ball CRZ 146"
+        }
+      ]
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wailord-uncommon",
+      "candidate_name": "Wailord",
+      "base_card_name": "Wailord",
+      "printed_number": "038/195",
+      "base_gv_id": "GV-PK-SIT-38",
+      "effective_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "evidence_tier": "TIER_2",
+      "variant_hint": "play_pokemon_stamp",
+      "confirmed_series_coverage": [
+        3,
+        4
+      ],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "final_decision": "DO_NOT_CANON",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_reason": "Matched Prize Pack Series 3, 4, so the same base card already appears across multiple Prize Pack series with no printed series marker.",
+      "final_decision_code": "multi_series_duplicate_confirmed_in_series_3_and_4",
+      "corroboration_v1_sources_checked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+        },
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+        },
+        {
+          "series": 4,
+          "source_name": "Bulbapedia Prize Pack Series Four",
+          "source_type": "bulbapedia_card_list",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+        }
+      ],
+      "prior_evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-wailord-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Wailord SIT 38"
+        }
+      ]
+    }
+  ],
+  "unresolved_rows": [],
+  "next_executable_subset": {
+    "subset_id": "PRIZE_PACK_READY_BATCH_V3_23",
+    "row_count": 23,
+    "representative_rows": [
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-artazon-uncommon",
+        "candidate_name": "Artazon",
+        "base_card_name": "Artazon",
+        "printed_number": "171/193",
+        "base_gv_id": "GV-PK-PAL-171",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-artazon-uncommon",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S, H Artazon PAL 171"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+        "candidate_name": "Bravery Charm",
+        "base_card_name": "Bravery Charm",
+        "printed_number": "173/193",
+        "base_gv_id": "GV-PK-PAL-173",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S, H Bravery Charm PAL 173"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+        "candidate_name": "Capturing Aroma",
+        "base_card_name": "Capturing Aroma",
+        "printed_number": "153/195",
+        "base_gv_id": "GV-PK-SIT-153",
+        "effective_set_code": "swsh12",
+        "effective_set_name": "Silver Tempest",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S, H Capturing Aroma SIT 153"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-clavell-common",
+        "candidate_name": "Clavell",
+        "base_card_name": "Clavell",
+        "printed_number": "177/193",
+        "base_gv_id": "GV-PK-PAL-177",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-clavell-common",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "H Clavell PAL 177"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+        "candidate_name": "Dedenne ex",
+        "base_card_name": "Dedenne ex",
+        "printed_number": "093/193",
+        "base_gv_id": "GV-PK-PAL-93",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "H Dedenne ex PAL 93"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-drifloon-common",
+        "candidate_name": "Drifloon",
+        "base_card_name": "Drifloon",
+        "printed_number": "089/198",
+        "base_gv_id": "GV-PK-SVI-089",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-drifloon-common",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "H Drifloon SVI 89"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+        "candidate_name": "Emergency Jelly",
+        "base_card_name": "Emergency Jelly",
+        "printed_number": "155/195",
+        "base_gv_id": "GV-PK-SIT-155",
+        "effective_set_code": "swsh12",
+        "effective_set_name": "Silver Tempest",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S Emergency Jelly SIT 155"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+        "candidate_name": "Fighting Au Lait",
+        "base_card_name": "Fighting Au Lait",
+        "printed_number": "181/193",
+        "base_gv_id": "GV-PK-PAL-181",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S Fighting Au Lait PAL 181"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-klefki-rare",
+        "candidate_name": "Klefki",
+        "base_card_name": "Klefki",
+        "printed_number": "096/198",
+        "base_gv_id": "GV-PK-SVI-096",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-klefki-rare",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "S, H Klefki SVI 96"
+          }
+        ]
+      },
+      {
+        "source": "justtcg",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+        "candidate_name": "Kyogre",
+        "base_card_name": "Kyogre",
+        "printed_number": "036/159",
+        "base_gv_id": "GV-PK-CRZ-036",
+        "effective_set_code": "swsh12.5",
+        "effective_set_name": "Crown Zenith",
+        "evidence_tier": "TIER_2",
+        "variant_hint": "play_pokemon_stamp",
+        "confirmed_series_coverage": [
+          4
+        ],
+        "missing_series_checked": [
+          1,
+          2,
+          3
+        ],
+        "final_decision": "READY_FOR_WAREHOUSE",
+        "final_evidence_class": "CONFIRMED_IDENTITY",
+        "final_reason": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "final_decision_code": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "corroboration_v1_sources_checked": [
+          {
+            "series": 1,
+            "source_name": "Bulbapedia Prize Pack Series One",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+          },
+          {
+            "series": 2,
+            "source_name": "Bulbapedia Prize Pack Series Two",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+          },
+          {
+            "series": 3,
+            "source_name": "Bulbapedia Prize Pack Series Three",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+          },
+          {
+            "series": 4,
+            "source_name": "Bulbapedia Prize Pack Series Four",
+            "source_type": "bulbapedia_card_list",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+          }
+        ],
+        "prior_evidence_sources_v2": [
+          {
+            "source_name": "JustTCG family-only source row",
+            "source_type": "justtcg_source_row",
+            "evidence_tier": "TIER_4",
+            "source_reference": "pokemon-prize-pack-series-cards-kyogre-rare",
+            "note": "Family-only stamped row without independent series proof."
+          },
+          {
+            "source_name": "JustInBasil Prize Pack Series 4 Set List",
+            "source_type": "justinbasil_set_list",
+            "evidence_tier": "TIER_2",
+            "series": 4,
+            "source_url": "https://www.justinbasil.com/set-lists/pps4",
+            "source_line": "H Kyogre CRZ 36"
+          }
+        ]
+      }
+    ]
+  },
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V3_23"
+}

@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-04-20T21:54:24.9507230-06:00",
+  "workflow": "LOCAL_OFFICIAL_CHECKLIST_IMPORT_FOR_PRIZE_PACK_V1",
+  "status": "PARTIAL_SUCCESS_SERIES_1_IMPORTED_SERIES_2_BLOCKED",
+  "source_upgrade_script": "backend/warehouse/prize_pack_evidence_source_upgrade_v1.mjs",
+  "normalizer_script": "backend/warehouse/import_prize_pack_official_checklists_v1.py",
+  "expected_json_schema_discovered_from_code": {
+    "top_level_required": [
+      "entries"
+    ],
+    "top_level_optional": [
+      "source_name",
+      "source_url",
+      "evidence_tier",
+      "imported_at",
+      "status"
+    ],
+    "entry_required_one_of_name_fields": [
+      "name",
+      "card_name",
+      "base_card_name"
+    ],
+    "entry_required_one_of_number_fields": [
+      "printed_number",
+      "number",
+      "number_plain"
+    ],
+    "normalized_shape_used": {
+      "source_name": "Pokemon.com Prize Pack Series One official checklist",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "evidence_tier": "TIER_1",
+      "imported_at": "2026-04-21T03:53:14.810010+00:00",
+      "status": "official_pdf_local_import",
+      "entries": [
+        {
+          "name": "Victini VMAX",
+          "printed_number": "022"
+        }
+      ]
+    }
+  },
+  "official_source_files_acquired": [
+    {
+      "series": 1,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "raw_artifact": "temp/prize_pack_series_1_official_raw.pdf",
+      "status": "official_pdf_acquired"
+    }
+  ],
+  "failed_acquisition_artifacts": [
+    {
+      "series": 2,
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "raw_artifact": "temp/prize_pack_series_2_official_raw.pdf",
+      "status": "html_challenge_not_pdf",
+      "first_bytes": "<!DOCTYPE html>"
+    }
+  ],
+  "local_json_files_created": [
+    {
+      "series": 1,
+      "path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+      "entry_count": 162,
+      "skipped_no_printed_number_count": 8
+    }
+  ],
+  "local_json_files_missing": [
+    {
+      "series": 2,
+      "path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+      "reason": "official Series 2 artifact was not acquired; local file body is HTML challenge content"
+    }
+  ],
+  "validation_result": {
+    "schema_validated_against_runtime": "PARTIAL",
+    "series_1_json_validated": true,
+    "series_2_json_validated": false,
+    "upgrade_script_completed": true
+  },
+  "source_upgrade_rerun_result": {
+    "status": "PARTIAL_SUCCESS",
+    "target_rows": 19,
+    "tier_upgraded": 19,
+    "ready_for_warehouse": 19,
+    "still_wait": 0,
+    "ready_batch_candidate_created": true,
+    "ready_batch_candidate_path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_candidate.json",
+    "official_source_statuses": [
+      {
+        "series": 1,
+        "status": "ready"
+      },
+      {
+        "series": 2,
+        "status": "missing_local_json"
+      }
+    ]
+  },
+  "ready_rows": [
+    "Victini VMAX | 022/163 | swsh5",
+    "Empoleon V | 040/163 | swsh5",
+    "Orbeetle | 065/163 | swsh5",
+    "Crobat | 091/163 | swsh5",
+    "Tyranitar V | 097/163 | swsh5",
+    "Corviknight V | 109/163 | swsh5",
+    "Corviknight VMAX | 110/163 | swsh5",
+    "Exp. Share | 126/163 | swsh5",
+    "Blaziken V | 020/198 | swsh6",
+    "Blaziken VMAX | 021/198 | swsh6",
+    "Froslass | 036/198 | swsh6",
+    "Zeraora V | 053/198 | swsh6",
+    "Gardevoir | 061/198 | swsh6",
+    "Lycanroc | 087/198 | swsh6",
+    "Spiritomb | 103/198 | swsh6",
+    "Single Strike Urshifu | 108/198 | swsh6",
+    "Avery | 130/198 | swsh6",
+    "Impact Energy | 157/198 | swsh6",
+    "Spiral Energy | 159/198 | swsh6"
+  ],
+  "remaining_blocker": {
+    "series": 2,
+    "blocker_class": "OFFICIAL_SOURCE_ACQUISITION_BLOCKED",
+    "detail": "The saved Series 2 artifact is HTML challenge content, not the official checklist PDF. Creating JSON from it would require guessed or unofficial rows."
+  },
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V6_SOURCE_UPGRADE_SERIES_1_AFTER_LIVE_AUDIT"
+}

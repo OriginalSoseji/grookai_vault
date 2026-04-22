@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-04-20T17:46:17.516Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+  "cluster_name": "ANNOTATED_NAME_NORMALIZATION_ROUTE_RESOLVED_BUT_EVIDENCE_STILL_REQUIRED",
+  "row_count": 12,
+  "selection_rationale": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION was audited first and deferred because its exact-number alt slots would require a deeper illustration-family invariant. The annotated-normalization cluster closes cleanly by structure alone and rebuckets out of BASE_ROUTE_AMBIGUOUS without guessing.",
+  "shared_route_question": "If source-side annotations are stripped and exactly one canon base route remains, can these rows leave BASE_ROUTE_AMBIGUOUS even though independent Prize Pack evidence is still missing?",
+  "rows": [
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+      "candidate_name": "Raging Bolt ex - 123/162 (Wrong Image)",
+      "normalized_name": "Raging Bolt ex",
+      "printed_number": "123/162",
+      "candidate_base_gv_ids": [
+        "GV-PK-TEF-123"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-TEF-123",
+        "base_name": "Raging Bolt ex",
+        "effective_set_code": "sv05",
+        "printed_number": "123",
+        "number_plain": "123"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fire-energy-mee002-common",
+      "candidate_name": "Basic Fire Energy - MEE002",
+      "normalized_name": "Basic Fire Energy",
+      "printed_number": "2",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-2"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SVE-2",
+        "base_name": "Basic Fire Energy",
+        "effective_set_code": "sve",
+        "printed_number": "2",
+        "number_plain": "2"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fighting-energy-mee006-common",
+      "candidate_name": "Basic Fighting Energy - MEE006",
+      "normalized_name": "Basic Fighting Energy",
+      "printed_number": "6",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-6"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SVE-6",
+        "base_name": "Basic Fighting Energy",
+        "effective_set_code": "sve",
+        "printed_number": "6",
+        "number_plain": "6"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-darkness-energy-mee007-common",
+      "candidate_name": "Basic Darkness Energy - MEE007",
+      "normalized_name": "Basic Darkness Energy",
+      "printed_number": "7",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-7"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SVE-7",
+        "base_name": "Basic Darkness Energy",
+        "effective_set_code": "sve",
+        "printed_number": "7",
+        "number_plain": "7"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-metal-energy-mee008-common",
+      "candidate_name": "Basic Metal Energy - MEE008",
+      "normalized_name": "Basic Metal Energy",
+      "printed_number": "8",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVE-8"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SVE-8",
+        "base_name": "Basic Metal Energy",
+        "effective_set_code": "sve",
+        "printed_number": "8",
+        "number_plain": "8"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "candidate_name": "Inteleon (058)",
+      "normalized_name": "Inteleon",
+      "printed_number": "058/202",
+      "candidate_base_gv_ids": [
+        "GV-PK-SSH-58"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SSH-58",
+        "base_name": "Inteleon",
+        "effective_set_code": "swsh1",
+        "printed_number": "58",
+        "number_plain": "58"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+      "candidate_name": "Altaria - 49/73",
+      "normalized_name": "Altaria",
+      "printed_number": "49/73",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-49"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-CPA-49",
+        "base_name": "Altaria",
+        "effective_set_code": "swsh3.5",
+        "printed_number": "49",
+        "number_plain": "49"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare",
+      "candidate_name": "Professor's Research (Professor Juniper)",
+      "normalized_name": "Professor's Research",
+      "printed_number": "060/072",
+      "candidate_base_gv_ids": [
+        "GV-PK-SHF-60"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-SHF-60",
+        "base_name": "Professor's Research",
+        "effective_set_code": "swsh4.5",
+        "printed_number": "60",
+        "number_plain": "60"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-43-rare",
+      "candidate_name": "Inteleon (43)",
+      "normalized_name": "Inteleon",
+      "printed_number": "043/198",
+      "candidate_base_gv_ids": [
+        "GV-PK-CRE-43"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-CRE-43",
+        "base_name": "Inteleon",
+        "effective_set_code": "swsh6",
+        "printed_number": "43",
+        "number_plain": "43"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "candidate_name": "Wormadam (010)",
+      "normalized_name": "Wormadam",
+      "printed_number": "010/172",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-10"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-BRS-10",
+        "base_name": "Wormadam",
+        "effective_set_code": "swsh9",
+        "printed_number": "10",
+        "number_plain": "10"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "candidate_name": "Wormadam (077)",
+      "normalized_name": "Wormadam",
+      "printed_number": "077/172",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-77"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-BRS-77",
+        "base_name": "Wormadam",
+        "effective_set_code": "swsh9",
+        "printed_number": "77",
+        "number_plain": "77"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    },
+    {
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "candidate_name": "Wormadam (098)",
+      "normalized_name": "Wormadam",
+      "printed_number": "098/172",
+      "candidate_base_gv_ids": [
+        "GV-PK-BRS-98"
+      ],
+      "route_resolution_preview": {
+        "base_gv_id": "GV-PK-BRS-98",
+        "base_name": "Wormadam",
+        "effective_set_code": "swsh9",
+        "printed_number": "98",
+        "number_plain": "98"
+      },
+      "why_route_is_ambiguous": "The underlying base route resolves after annotation cleanup, but no prior Prize Pack adjudication or live canonical stamped row exists yet."
+    }
+  ]
+}

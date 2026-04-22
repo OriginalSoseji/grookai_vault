@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-04-20T19:41:22.058Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.json",
+  "row_count": 4,
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fire-energy-002-common",
+      "name": "Basic Fire Energy",
+      "candidate_name": "Basic Fire Energy - 002",
+      "printed_number": "002",
+      "normalized_number_plain": "002",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SVE-2",
+        "base_route": "GV-PK-SVE-2",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SVE-2",
+          "base_route": "GV-PK-SVE-2"
+        },
+        "effective_routed_set_code": "sve",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fighting-energy-006-common",
+      "name": "Basic Fighting Energy",
+      "candidate_name": "Basic Fighting Energy - 006",
+      "printed_number": "006",
+      "normalized_number_plain": "006",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SVE-6",
+        "base_route": "GV-PK-SVE-6",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SVE-6",
+          "base_route": "GV-PK-SVE-6"
+        },
+        "effective_routed_set_code": "sve",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-darkness-energy-007-common",
+      "name": "Basic Darkness Energy",
+      "candidate_name": "Basic Darkness Energy - 007",
+      "printed_number": "007",
+      "normalized_number_plain": "007",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SVE-7",
+        "base_route": "GV-PK-SVE-7",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SVE-7",
+          "base_route": "GV-PK-SVE-7"
+        },
+        "effective_routed_set_code": "sve",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-metal-energy-008-common",
+      "name": "Basic Metal Energy",
+      "candidate_name": "Basic Metal Energy - 008",
+      "printed_number": "008",
+      "normalized_number_plain": "008",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SVE-8",
+        "base_route": "GV-PK-SVE-8",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SVE-8",
+          "base_route": "GV-PK-SVE-8"
+        },
+        "effective_routed_set_code": "sve",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    }
+  ]
+}

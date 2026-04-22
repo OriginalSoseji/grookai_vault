@@ -1,0 +1,1497 @@
+{
+  "generated_at": "2026-04-21T17:45:58.209Z",
+  "workflow": "PRIZE_PACK_EVIDENCE_SOURCE_UPGRADE_V1",
+  "status": "PARTIAL_SUCCESS",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v5.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_source_upgrade_v1_target.json"
+  ],
+  "current_backlog": {
+    "wait_for_more_evidence": 251,
+    "do_not_canon_total_after_v5": 165,
+    "already_promoted_total": 252
+  },
+  "target_summary": {
+    "target_count": 19,
+    "series_pattern_counts": {
+      "[1]": 19
+    },
+    "set_code_counts": {
+      "swsh5": 8,
+      "swsh6": 11
+    }
+  },
+  "official_sources": [
+    {
+      "series": 1,
+      "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+      "status": "ready",
+      "available": true,
+      "note": "Local official checklist JSON is available and usable."
+    },
+    {
+      "series": 2,
+      "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+      "status": "ready",
+      "available": true,
+      "note": "Local official checklist JSON is available and usable."
+    }
+  ],
+  "summary": {
+    "target_rows": 19,
+    "tier_upgraded": 19,
+    "ready_for_warehouse": 19,
+    "still_wait": 0
+  },
+  "ready_rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Victini VMAX",
+      "candidate_name": "Victini VMAX",
+      "printed_number": "022/163",
+      "number_plain": "022",
+      "normalized_number_plain": "022",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-victini-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 022/163|e|[[victini vmax (battle styles 22)|victini]]{{vmax}}|fire||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Victini VMAX",
+            "printed_number": "022",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Victini VMAX::022/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-22",
+      "base_route": "GV-PK-BST-22",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-22",
+        "base_route": "GV-PK-BST-22",
+        "unique_base_route": true,
+        "base_card_name": "Victini VMAX"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-empoleon-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Empoleon V",
+      "candidate_name": "Empoleon V",
+      "printed_number": "040/163",
+      "number_plain": "040",
+      "normalized_number_plain": "040",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-empoleon-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 040/163|e|[[empoleon v (battle styles 40)|empoleon]]{{tcgv}}|water||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Empoleon V",
+            "printed_number": "040",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Empoleon V::040/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-40",
+      "base_route": "GV-PK-BST-40",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-40",
+        "base_route": "GV-PK-BST-40",
+        "unique_base_route": true,
+        "base_card_name": "Empoleon V"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-orbeetle-rare",
+      "source_candidate_id": null,
+      "name": "Orbeetle",
+      "candidate_name": "Orbeetle",
+      "printed_number": "065/163",
+      "number_plain": "065",
+      "normalized_number_plain": "065",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-orbeetle-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 065/163|e|{{tcg id|battle styles|orbeetle|65}}|psychic||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Orbeetle",
+            "printed_number": "065",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Orbeetle::065/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-65",
+      "base_route": "GV-PK-BST-65",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-65",
+        "base_route": "GV-PK-BST-65",
+        "unique_base_route": true,
+        "base_card_name": "Orbeetle"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-crobat-rare",
+      "source_candidate_id": null,
+      "name": "Crobat",
+      "candidate_name": "Crobat",
+      "printed_number": "091/163",
+      "number_plain": "091",
+      "normalized_number_plain": "091",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-crobat-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 091/163|e|{{tcg id|battle styles|crobat|91}}|darkness||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Crobat",
+            "printed_number": "091",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Crobat::091/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-91",
+      "base_route": "GV-PK-BST-91",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-91",
+        "base_route": "GV-PK-BST-91",
+        "unique_base_route": true,
+        "base_card_name": "Crobat"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 5,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-tyranitar-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Tyranitar V",
+      "candidate_name": "Tyranitar V",
+      "printed_number": "097/163",
+      "number_plain": "097",
+      "normalized_number_plain": "097",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-tyranitar-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 097/163|e|[[tyranitar v (battle styles 97)|tyranitar]]{{tcgv}}|darkness||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Tyranitar V",
+            "printed_number": "097",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Tyranitar V::097/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-97",
+      "base_route": "GV-PK-BST-97",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-97",
+        "base_route": "GV-PK-BST-97",
+        "unique_base_route": true,
+        "base_card_name": "Tyranitar V"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 6,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-corviknight-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Corviknight V",
+      "candidate_name": "Corviknight V",
+      "printed_number": "109/163",
+      "number_plain": "109",
+      "normalized_number_plain": "109",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-corviknight-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 109/163|e|[[corviknight v (battle styles 109)|corviknight]]{{tcgv}}|metal||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Corviknight V",
+            "printed_number": "109",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Corviknight V::109/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-109",
+      "base_route": "GV-PK-BST-109",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-109",
+        "base_route": "GV-PK-BST-109",
+        "unique_base_route": true,
+        "base_card_name": "Corviknight V"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 7,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-corviknight-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Corviknight VMAX",
+      "candidate_name": "Corviknight VMAX",
+      "printed_number": "110/163",
+      "number_plain": "110",
+      "normalized_number_plain": "110",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-corviknight-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 110/163|e|[[corviknight vmax (battle styles 110)|corviknight]]{{vmax}}|metal||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Corviknight VMAX",
+            "printed_number": "110",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Corviknight VMAX::110/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-110",
+      "base_route": "GV-PK-BST-110",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-110",
+        "base_route": "GV-PK-BST-110",
+        "unique_base_route": true,
+        "base_card_name": "Corviknight VMAX"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 8,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-exp-share-uncommon",
+      "source_candidate_id": null,
+      "name": "Exp. Share",
+      "candidate_name": "Exp. Share",
+      "printed_number": "126/163",
+      "number_plain": "126",
+      "normalized_number_plain": "126",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-exp-share-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolbattle styles.png|18px|link=battle styles (tcg)]] 126/163|e|{{tcg id|battle styles|exp. share|126}}|item||uncommon|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Exp. Share",
+            "printed_number": "126",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh5",
+      "effective_set_code": "swsh5",
+      "effective_routed_set_code": "swsh5",
+      "effective_set_name": "Battle Styles",
+      "effective_routed_set_name": "Battle Styles",
+      "canonical_queue_key": "swsh5::Exp. Share::126/163::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-BST-126",
+      "base_route": "GV-PK-BST-126",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-BST-126",
+        "base_route": "GV-PK-BST-126",
+        "unique_base_route": true,
+        "base_card_name": "Exp. Share"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 9,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-blaziken-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Blaziken V",
+      "candidate_name": "Blaziken V",
+      "printed_number": "020/198",
+      "number_plain": "020",
+      "normalized_number_plain": "020",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-blaziken-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 020/198|e|[[blaziken v (chilling reign 20)|blaziken]]{{tcgv}}|fire||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Blaziken V",
+            "printed_number": "020",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Blaziken V::020/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-20",
+      "base_route": "GV-PK-CRE-20",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-20",
+        "base_route": "GV-PK-CRE-20",
+        "unique_base_route": true,
+        "base_card_name": "Blaziken V"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 10,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-blaziken-vmax-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Blaziken VMAX",
+      "candidate_name": "Blaziken VMAX",
+      "printed_number": "021/198",
+      "number_plain": "021",
+      "normalized_number_plain": "021",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-blaziken-vmax-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 021/198|e|[[blaziken vmax (chilling reign 21)|blaziken]]{{vmax}}|fire||rare vmax|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Blaziken VMAX",
+            "printed_number": "021",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Blaziken VMAX::021/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-21",
+      "base_route": "GV-PK-CRE-21",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-21",
+        "base_route": "GV-PK-CRE-21",
+        "unique_base_route": true,
+        "base_card_name": "Blaziken VMAX"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 11,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-froslass-rare",
+      "source_candidate_id": null,
+      "name": "Froslass",
+      "candidate_name": "Froslass",
+      "printed_number": "036/198",
+      "number_plain": "036",
+      "normalized_number_plain": "036",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-froslass-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 036/198|e|{{tcg id|chilling reign|froslass|36}}|water||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Froslass",
+            "printed_number": "036",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Froslass::036/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-36",
+      "base_route": "GV-PK-CRE-36",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-36",
+        "base_route": "GV-PK-CRE-36",
+        "unique_base_route": true,
+        "base_card_name": "Froslass"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 12,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zeraora-v-ultra-rare",
+      "source_candidate_id": null,
+      "name": "Zeraora V",
+      "candidate_name": "Zeraora V",
+      "printed_number": "053/198",
+      "number_plain": "053",
+      "normalized_number_plain": "053",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-zeraora-v-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 053/198|e|[[zeraora v (chilling reign 53)|zeraora]]{{tcgv}}|lightning||ultra-rare rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Zeraora V",
+            "printed_number": "053",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Zeraora V::053/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-53",
+      "base_route": "GV-PK-CRE-53",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-53",
+        "base_route": "GV-PK-CRE-53",
+        "unique_base_route": true,
+        "base_card_name": "Zeraora V"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 13,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gardevoir-rare",
+      "source_candidate_id": null,
+      "name": "Gardevoir",
+      "candidate_name": "Gardevoir",
+      "printed_number": "061/198",
+      "number_plain": "061",
+      "normalized_number_plain": "061",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-gardevoir-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 061/198|e|{{tcg id|chilling reign|gardevoir|61}}|psychic||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Gardevoir",
+            "printed_number": "061",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Gardevoir::061/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-61",
+      "base_route": "GV-PK-CRE-61",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-61",
+        "base_route": "GV-PK-CRE-61",
+        "unique_base_route": true,
+        "base_card_name": "Gardevoir"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 14,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lycanroc-rare",
+      "source_candidate_id": null,
+      "name": "Lycanroc",
+      "candidate_name": "Lycanroc",
+      "printed_number": "087/198",
+      "number_plain": "087",
+      "normalized_number_plain": "087",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lycanroc-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 087/198|e|{{tcg id|chilling reign|lycanroc|87}}|fighting||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Lycanroc",
+            "printed_number": "087",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Lycanroc::087/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-87",
+      "base_route": "GV-PK-CRE-87",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-87",
+        "base_route": "GV-PK-CRE-87",
+        "unique_base_route": true,
+        "base_card_name": "Lycanroc"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 15,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiritomb-rare",
+      "source_candidate_id": null,
+      "name": "Spiritomb",
+      "candidate_name": "Spiritomb",
+      "printed_number": "103/198",
+      "number_plain": "103",
+      "normalized_number_plain": "103",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-spiritomb-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 103/198|e|{{tcg id|chilling reign|spiritomb|103}}|darkness||rare|standard set foil}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Spiritomb",
+            "printed_number": "103",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Spiritomb::103/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-103",
+      "base_route": "GV-PK-CRE-103",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-103",
+        "base_route": "GV-PK-CRE-103",
+        "unique_base_route": true,
+        "base_card_name": "Spiritomb"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 16,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+      "source_candidate_id": null,
+      "name": "Single Strike Urshifu",
+      "candidate_name": "Single Strike Urshifu",
+      "printed_number": "108/198",
+      "number_plain": "108",
+      "normalized_number_plain": "108",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 108/198|e|{{tcg id|chilling reign|single strike urshifu|108}}|darkness||rare holo|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Single Strike Urshifu",
+            "printed_number": "108",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Single Strike Urshifu::108/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-108",
+      "base_route": "GV-PK-CRE-108",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-108",
+        "base_route": "GV-PK-CRE-108",
+        "unique_base_route": true,
+        "base_card_name": "Single Strike Urshifu"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 17,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-avery-uncommon",
+      "source_candidate_id": null,
+      "name": "Avery",
+      "candidate_name": "Avery",
+      "printed_number": "130/198",
+      "number_plain": "130",
+      "normalized_number_plain": "130",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-avery-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 130/198|e|{{tcg id|chilling reign|avery|130}}|supporter||uncommon|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Avery",
+            "printed_number": "130",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Avery::130/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-130",
+      "base_route": "GV-PK-CRE-130",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-130",
+        "base_route": "GV-PK-CRE-130",
+        "unique_base_route": true,
+        "base_card_name": "Avery"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 18,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-impact-energy-uncommon",
+      "source_candidate_id": null,
+      "name": "Impact Energy",
+      "candidate_name": "Impact Energy",
+      "printed_number": "157/198",
+      "number_plain": "157",
+      "normalized_number_plain": "157",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-impact-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 157/198|e|{{tcg id|chilling reign|impact energy|157}}|energy|colorless|uncommon|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Impact Energy",
+            "printed_number": "157",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Impact Energy::157/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-157",
+      "base_route": "GV-PK-CRE-157",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-157",
+        "base_route": "GV-PK-CRE-157",
+        "unique_base_route": true,
+        "base_card_name": "Impact Energy"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    },
+    {
+      "batch_index": 19,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiral-energy-uncommon",
+      "source_candidate_id": null,
+      "name": "Spiral Energy",
+      "candidate_name": "Spiral Energy",
+      "printed_number": "159/198",
+      "number_plain": "159",
+      "normalized_number_plain": "159",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v6": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-spiral-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "official_card_list_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "official_access_status": "url_resolved_but_bot_gated_in_local_fetch",
+          "matching_line": "{{setlist/entry|[[image:setsymbolchilling reign.png|18px|link=chilling reign (tcg)]] 159/198|e|{{tcg id|chilling reign|spiral energy|159}}|energy|colorless|uncommon|standard set}}"
+        },
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Spiral Energy",
+            "printed_number": "159",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh6",
+      "effective_set_code": "swsh6",
+      "effective_routed_set_code": "swsh6",
+      "effective_set_name": "Chilling Reign",
+      "effective_routed_set_name": "Chilling Reign",
+      "canonical_queue_key": "swsh6::Spiral Energy::159/198::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CRE-159",
+      "base_route": "GV-PK-CRE-159",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CRE-159",
+        "base_route": "GV-PK-CRE-159",
+        "unique_base_route": true,
+        "base_card_name": "Spiral Energy"
+      },
+      "source_upgrade_v1_status": "tier_upgraded_to_tier_1",
+      "source_upgrade_v1_reason": "Matched the locally imported official Prize Pack Series 1 checklist entry for the same base name and printed number."
+    }
+  ],
+  "still_wait_rows": [],
+  "blocker": null,
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V6"
+}

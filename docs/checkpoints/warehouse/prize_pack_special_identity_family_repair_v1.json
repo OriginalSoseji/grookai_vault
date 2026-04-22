@@ -1,0 +1,259 @@
+{
+  "generated_at": "2026-04-21T13:03:13.976Z",
+  "workflow": "PRIZE_PACK_SPECIAL_IDENTITY_FAMILY_REPAIR_V1",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_series_evidence_sources_v2.json",
+    "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.json",
+    "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1_input.json"
+  ],
+  "special_family_row": {
+    "candidate_name": "Team Rocket's Mewtwo ex",
+    "printed_number": "079/217",
+    "source_family": "prize-pack-series-cards-pokemon",
+    "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+    "proposed_variant_key": "play_pokemon_stamp",
+    "current_blocker_class": "SPECIAL_IDENTITY_FAMILY_COLLISION"
+  },
+  "exact_structural_question": "Does this Prize Pack row land inside a special printed-identity family where the current canon has no lawful plain/base owner for a generic Play! Pokemon stamp?",
+  "diagnosis": "SPECIAL_FAMILY_HAS_LAWFUL_BASE_OWNER",
+  "family_route_resolution": "STILL_WAIT_SPECIAL_FAMILY",
+  "final_state": "WAIT",
+  "rebucketed_blocker_class": "NO_SERIES_CONFIRMATION",
+  "final_reason": "Live canon proves one lawful exact printed owner (GV-PK-ASC-079), so the special-family structural collision is closed. The row still lacks exact Prize Pack series evidence; the reachable evidence row is name-level for DRI 081, not ASC 079/217.",
+  "family_audit_summary": {
+    "exact_owner_count": 1,
+    "exact_owner": {
+      "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+      "gv_id": "GV-PK-ASC-079",
+      "name": "Team Rocket's Mewtwo ex",
+      "set_code": "me02.5",
+      "number": "079",
+      "number_plain": "079",
+      "variant_key": "base",
+      "rarity": "Double rare",
+      "printed_set_abbrev": "ASC",
+      "printed_total": 217,
+      "identity_domain": "pokemon_eng_standard",
+      "printed_identity_modifier": null,
+      "set_identity_model": "standard",
+      "print_identity_key": null,
+      "external_ids": {}
+    },
+    "lawful_base_owner_exists": true,
+    "special_family_signals": [
+      "printed_name_contains_team_rocket_ownership_family",
+      "printed_set_abbrev=ASC",
+      "canon_set_code=me02.5",
+      "rarity=Double rare"
+    ],
+    "all_same_name_canon_rows": [
+      {
+        "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+        "gv_id": "GV-PK-ASC-079",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "079",
+        "number_plain": "079",
+        "variant_key": "base",
+        "rarity": "Double rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "c90c94e2-8c0b-431b-a5dc-3e640cf56937",
+        "gv_id": "GV-PK-ASC-281",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "281",
+        "number_plain": "281",
+        "variant_key": "base",
+        "rarity": "Special illustration rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "2978323f-2f58-4d51-ba3f-2f1abe695bdc",
+        "gv_id": "GV-PK-DRI-213",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "213",
+        "number_plain": "213",
+        "variant_key": null,
+        "rarity": "Ultra Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:213/182",
+        "external_ids": {
+          "pokemonapi": "sv10-213"
+        }
+      },
+      {
+        "card_print_id": "18685617-3a39-483f-8f42-de29ce0ee4e6",
+        "gv_id": "GV-PK-DRI-231",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "231",
+        "number_plain": "231",
+        "variant_key": null,
+        "rarity": "Special Illustration Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:231/182",
+        "external_ids": {
+          "pokemonapi": "sv10-231"
+        }
+      },
+      {
+        "card_print_id": "5bf262c2-6f3e-4ab6-8486-8f2631dcefc1",
+        "gv_id": "GV-PK-DRI-240",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "240",
+        "number_plain": "240",
+        "variant_key": null,
+        "rarity": "Hyper Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:240/182",
+        "external_ids": {
+          "pokemonapi": "sv10-240"
+        }
+      },
+      {
+        "card_print_id": "0f104920-bf05-427e-85ad-9c775eb0d024",
+        "gv_id": "GV-PK-DRI-81",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "sv10",
+        "number": "81",
+        "number_plain": "81",
+        "variant_key": null,
+        "rarity": "Double Rare",
+        "printed_set_abbrev": null,
+        "printed_total": 182,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": "sv10:81/182",
+        "external_ids": {
+          "pokemonapi": "sv10-81"
+        }
+      },
+      {
+        "card_print_id": "18d72dbb-6512-4223-8092-f5e37a8bb512",
+        "gv_id": "GV-PK-PR-SV-205",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "205",
+        "number_plain": "205",
+        "variant_key": null,
+        "rarity": "None",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {
+          "tcgdex": "svp-205"
+        }
+      },
+      {
+        "card_print_id": "e5e57546-80ee-4189-b33b-59f08300e96d",
+        "gv_id": "GV-PK-PR-SV-216",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "svp",
+        "number": "216",
+        "number_plain": "216",
+        "variant_key": null,
+        "rarity": "None",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {
+          "tcgdex": "svp-216"
+        }
+      }
+    ],
+    "same_number_mewtwo_rows": [
+      {
+        "card_print_id": "1564a9b5-a5d1-4945-b755-a0f05958cd69",
+        "gv_id": "GV-PK-ASC-079",
+        "name": "Team Rocket's Mewtwo ex",
+        "set_code": "me02.5",
+        "number": "079",
+        "number_plain": "079",
+        "variant_key": "base",
+        "rarity": "Double rare",
+        "printed_set_abbrev": "ASC",
+        "printed_total": 217,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      },
+      {
+        "card_print_id": "71361672-c38f-4f4f-a322-78a023508be4",
+        "gv_id": "GV-PK-PGO-79",
+        "name": "Mewtwo VSTAR",
+        "set_code": "pgo",
+        "number": "79",
+        "number_plain": "79",
+        "variant_key": null,
+        "rarity": "Rare Rainbow",
+        "printed_set_abbrev": null,
+        "printed_total": null,
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "print_identity_key": null,
+        "external_ids": {}
+      }
+    ],
+    "accessible_same_name_series_evidence": [
+      {
+        "name": "Team Rocket’s Mewtwo ex",
+        "set_token": "DRI",
+        "number_plain": "81",
+        "raw_line": "Team Rocket’s Mewtwo ex DRI 081 ■"
+      }
+    ],
+    "accessible_exact_series_evidence_count": 0,
+    "accessible_exact_series_evidence": [],
+    "current_contract_interpretation": [
+      "STAMPED_IDENTITY_RULE_V1 requires one known underlying base printed identity before a stamped row can be ready.",
+      "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 allows a generic Play! Pokemon stamp only after the base route is deterministic and the series evidence reduces to one known series.",
+      "PRINTED_IDENTITY_VS_VARIANT_KEY_RULE_V1 prevents non-null variant_key labels from invalidating an exact printed-number owner by themselves."
+    ]
+  },
+  "new_ready_count": 0,
+  "new_do_not_canon_count": 0,
+  "ready_batch_candidate_created": false,
+  "recommended_next_execution_step": "MANUAL_BROWSER_DOWNLOAD_AND_LOCAL_JSON_IMPORT_FOR_PRIZE_PACK_V1_SERIES_2_REAL_BROWSER_REQUIRED"
+}

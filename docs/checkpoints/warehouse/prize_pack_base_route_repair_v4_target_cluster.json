@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-04-20T18:11:31.924Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+  "cluster_name": "ALT_ART_ONLY_NUMBER_SLOT_COLLISION",
+  "row_count": 5,
+  "rows": [
+    {
+      "candidate_name": "Glaceon VMAX",
+      "printed_number": "041/203",
+      "set_code": "swsh7",
+      "candidate_gv_id": "GV-PK-EVS-41",
+      "candidate_canon_row_details": {
+        "card_print_id": "a120fcb7-9194-469e-97cc-026734e17ac7",
+        "gv_id": "GV-PK-EVS-41",
+        "name": "Glaceon VMAX",
+        "set_code": "swsh7",
+        "number": "41",
+        "number_plain": "41",
+        "variant_key": "alt",
+        "rarity": "Rare Holo VMAX",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh7/41/high.webp"
+      },
+      "why_currently_alt_slot_collision": "The exact printed-number route resolves only to same-name canon rows already labeled alt, with no plain/base owner at that number."
+    },
+    {
+      "candidate_name": "Sylveon V",
+      "printed_number": "074/203",
+      "set_code": "swsh7",
+      "candidate_gv_id": "GV-PK-EVS-74",
+      "candidate_canon_row_details": {
+        "card_print_id": "3f5d13c3-4182-47e8-9959-5a5269ff8a53",
+        "gv_id": "GV-PK-EVS-74",
+        "name": "Sylveon V",
+        "set_code": "swsh7",
+        "number": "74",
+        "number_plain": "74",
+        "variant_key": "alt",
+        "rarity": "Rare Holo V",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh7/74/high.webp"
+      },
+      "why_currently_alt_slot_collision": "The exact printed-number route resolves only to same-name canon rows already labeled alt, with no plain/base owner at that number."
+    },
+    {
+      "candidate_name": "Umbreon VMAX",
+      "printed_number": "095/203",
+      "set_code": "swsh7",
+      "candidate_gv_id": "GV-PK-EVS-95",
+      "candidate_canon_row_details": {
+        "card_print_id": "6a3cc2c0-d647-47d5-aa12-f157672db8af",
+        "gv_id": "GV-PK-EVS-95",
+        "name": "Umbreon VMAX",
+        "set_code": "swsh7",
+        "number": "95",
+        "number_plain": "95",
+        "variant_key": "alt",
+        "rarity": "Rare Holo VMAX",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh7/95/high.webp"
+      },
+      "why_currently_alt_slot_collision": "The exact printed-number route resolves only to same-name canon rows already labeled alt, with no plain/base owner at that number."
+    },
+    {
+      "candidate_name": "Rayquaza VMAX",
+      "printed_number": "111/203",
+      "set_code": "swsh7",
+      "candidate_gv_id": "GV-PK-EVS-111",
+      "candidate_canon_row_details": {
+        "card_print_id": "9bc6fd9e-1386-4624-9768-1bb553c07b6d",
+        "gv_id": "GV-PK-EVS-111",
+        "name": "Rayquaza VMAX",
+        "set_code": "swsh7",
+        "number": "111",
+        "number_plain": "111",
+        "variant_key": "alt",
+        "rarity": "Rare Holo VMAX",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh7/111/high.webp"
+      },
+      "why_currently_alt_slot_collision": "The exact printed-number route resolves only to same-name canon rows already labeled alt, with no plain/base owner at that number."
+    },
+    {
+      "candidate_name": "Duraludon V",
+      "printed_number": "122/203",
+      "set_code": "swsh7",
+      "candidate_gv_id": "GV-PK-EVS-122",
+      "candidate_canon_row_details": {
+        "card_print_id": "0aa86cf0-cf48-48fd-b9a3-04c028d48fe1",
+        "gv_id": "GV-PK-EVS-122",
+        "name": "Duraludon V",
+        "set_code": "swsh7",
+        "number": "122",
+        "number_plain": "122",
+        "variant_key": "alt",
+        "rarity": "Rare Holo V",
+        "image_url": "https://assets.tcgdex.net/en/swsh/swsh7/122/high.webp"
+      },
+      "why_currently_alt_slot_collision": "The exact printed-number route resolves only to same-name canon rows already labeled alt, with no plain/base owner at that number."
+    }
+  ]
+}

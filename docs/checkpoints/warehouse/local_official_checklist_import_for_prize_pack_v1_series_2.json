@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-04-20T22:48:30.0150781-06:00",
+  "workflow": "LOCAL_OFFICIAL_CHECKLIST_IMPORT_FOR_PRIZE_PACK_V1_SERIES_2",
+  "status": "BLOCKED_OFFICIAL_SOURCE_ACQUISITION",
+  "scope": {
+    "series": 2,
+    "canon_writes": false,
+    "promotion_writes": false,
+    "mapping_writes": false,
+    "image_writes": false,
+    "rule_changes": false
+  },
+  "required_artifacts": {
+    "raw_pdf": "temp/prize_pack_series_2_official_raw.pdf",
+    "normalized_json": "docs/checkpoints/warehouse/prize_pack_series_2_official.json"
+  },
+  "expected_json_schema": {
+    "top_level_required": [
+      "entries"
+    ],
+    "top_level_optional": [
+      "source_name",
+      "source_url",
+      "evidence_tier",
+      "imported_at",
+      "status"
+    ],
+    "entry_required_one_of_name_fields": [
+      "name",
+      "card_name",
+      "base_card_name"
+    ],
+    "entry_required_one_of_number_fields": [
+      "printed_number",
+      "number",
+      "number_plain"
+    ]
+  },
+  "official_source_files_acquired": [],
+  "acquisition_attempts": [
+    {
+      "source": "pokemon_static_pdf",
+      "url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "local_artifact": "temp/prize_pack_series_2_official_raw.pdf",
+      "result": "blocked_html_not_pdf",
+      "observed_prefix": "<!DOCTYPE html>"
+    },
+    {
+      "source": "pokemon_static_pdf_browser_style_fetch",
+      "url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "local_artifact": "temp/prize_pack_series_2_official_raw_attempt_iwr.pdf",
+      "result": "blocked_html_not_pdf",
+      "observed_prefix": "<html style=\"height:100%\"><head>"
+    },
+    {
+      "source": "play_pokemon_gallery",
+      "url": "https://play.pokemon.com/en-us/rewards/gallery/",
+      "local_artifact": "temp/play_pokemon_rewards_gallery.html",
+      "result": "official_page_reachable_but_no_series_2_checklist_exposed",
+      "note": "Rendered page currently exposes Series 7 and Series 8 checklist links only."
+    },
+    {
+      "source": "official_cloudfront_pattern_probe",
+      "host": "https://d1wx537rtdixyy.cloudfront.net",
+      "result": "series_2_candidate_paths_404"
+    }
+  ],
+  "local_json_created": false,
+  "series_2_entry_count": 0,
+  "schema_validated": false,
+  "source_upgrade_result": {
+    "upgrade_script_rerun": false,
+    "reason_not_run": "Series 2 normalized JSON is missing; rerunning the existing script would only reprocess the already-closed Series 1 target.",
+    "current_source_upgrade_target_audit": {
+      "path": "docs/checkpoints/warehouse/prize_pack_evidence_source_upgrade_v1_target.json",
+      "row_count": 19,
+      "series_pattern_counts": {
+        "[1]": 19
+      },
+      "series_2_target_rows": 0
+    },
+    "tier_upgraded_count": 0,
+    "new_ready_count": 0,
+    "new_do_not_canon_count": 0,
+    "ready_batch_candidate_created": false
+  },
+  "stop_reason": {
+    "class": "OFFICIAL_SOURCE_ACQUISITION_BLOCKED",
+    "detail": "No clearly official Series 2 PDF/page artifact was acquired. Local Series 2 raw file is HTML challenge content.",
+    "missing_artifact": "docs/checkpoints/warehouse/prize_pack_series_2_official.json"
+  },
+  "recommended_next_execution_step": "MANUAL_BROWSER_DOWNLOAD_AND_LOCAL_JSON_IMPORT_FOR_PRIZE_PACK_V1_SERIES_2_REAL_BROWSER_REQUIRED"
+}

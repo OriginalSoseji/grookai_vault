@@ -1,0 +1,1924 @@
+{
+  "generated_at": "2026-04-18T05:16:47.213Z",
+  "workflow": "STAMPED_READY_BATCH_3_WAREHOUSE_INTAKE_V1_250",
+  "status": "STOPPED_INSUFFICIENT_READY_QUEUE_DEPTH",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.json",
+    "docs/checkpoints/warehouse/stamped_ready_batch_v1.json",
+    "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json"
+  ],
+  "scope_boundary": {
+    "source_batch": "STAMPED_READY_FOR_WAREHOUSE only",
+    "excluded_batch_1_rows": 25,
+    "excluded_batch_2_rows": 100,
+    "widened_beyond_exact_250": false,
+    "bridge_ran": false,
+    "classification_ran": false,
+    "staging_ran": false,
+    "approval_ran": false,
+    "executor_ran": false,
+    "mapping_ran": false,
+    "image_ran": false
+  },
+  "phase_0_materialization": {
+    "requested_batch_size": 250,
+    "total_ready_rows_from_artifact": 173,
+    "batch_1_rows_excluded": 25,
+    "batch_2_rows_excluded": 100,
+    "remaining_ready_rows_after_exclusions": 48,
+    "shortfall": 202,
+    "deterministic_materialization_possible": false,
+    "counts_by_source_set_id": {
+      "black-and-white-promos-pokemon": 2,
+      "diamond-and-pearl-promos-pokemon": 6,
+      "generations-pokemon": 1,
+      "nintendo-promos-pokemon": 31,
+      "sm-promos-pokemon": 8
+    },
+    "counts_by_stamp_label": {
+      "2006 World Championships Staff Stamp": 1,
+      "Detective Pikachu Stamp": 3,
+      "E-league Stamp": 6,
+      "E-league Winner Stamp": 6,
+      "Generations Geodude Stamp": 1,
+      "Origins Game Fair 2008 Staff Stamp": 1,
+      "Prerelease Stamp": 14,
+      "SM Promos Detective Pikachu Sm170 Stamp": 1,
+      "SM Promos Detective Pikachu Sm190 Stamp": 1,
+      "Staff Prerelease Stamp": 8,
+      "Staff Stamp": 2,
+      "World Championships 2018 Staff Stamp": 1,
+      "Worlds 07 Stamp": 1,
+      "Worlds 12 Stamp": 1,
+      "Worlds 12 Top 32 Stamp": 1
+    },
+    "counts_by_stamp_pattern_family": {
+      "explicit_event_stamp": 18,
+      "explicit_named_stamp": 6,
+      "prerelease_marker": 14,
+      "staff_marker": 2,
+      "staff_prerelease_marker": 8
+    }
+  },
+  "live_pre_intake_audit": {
+    "source_rows_found_by_set_and_external_id": 48,
+    "warehouse_rows_found_by_source_identity": 0,
+    "base_rows_found_by_set_hint_and_name": 45,
+    "provisional_classification_counts": {
+      "READY_TO_BRIDGE": 23,
+      "ALREADY_IN_WAREHOUSE": 0,
+      "ALREADY_IN_CANON": 0,
+      "CONFLICT_REVIEW_REQUIRED": 25
+    },
+    "note": "This provisional live audit rechecked the remaining ready pool by source_set_id + source_external_id and same-set-hint base-name presence. It is sufficient to prove the 250-row batch cannot be materialized, but it is not a replacement for a future bounded base-repair pass."
+  },
+  "phase_counts": {
+    "batch_size_attempted": 250,
+    "batch_size_completed": 0,
+    "batch_rows_classified": 0,
+    "batch_rows_staged": 0,
+    "batch_rows_approved": 0,
+    "batch_rows_promoted": 0,
+    "batch_rows_mapped": 0,
+    "batch_rows_image_closed": 0
+  },
+  "batch_failures_by_class": {
+    "INSUFFICIENT_READY_QUEUE_DEPTH": {
+      "requested_rows": 250,
+      "available_ready_rows_after_exclusions": 48,
+      "shortfall": 202
+    }
+  },
+  "secondary_findings": {
+    "provisional_remaining_pool_conflict_rows": 25,
+    "summary": "Even the residual 48-row ready pool is not uniformly clean under live precheck; likely follow-up base/routing audit remains before any further widening."
+  },
+  "representative_examples": [
+    {
+      "source_set_id": "black-and-white-promos-pokemon",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "variant_key": "worlds_12_stamp",
+      "stamp_label": "Worlds 12 Stamp",
+      "effective_set_code": "bwp",
+      "provisional_classification": "READY_TO_BRIDGE"
+    },
+    {
+      "source_set_id": "black-and-white-promos-pokemon",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "variant_key": "worlds_12_top_32_stamp",
+      "stamp_label": "Worlds 12 Top 32 Stamp",
+      "effective_set_code": "bwp",
+      "provisional_classification": "READY_TO_BRIDGE"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Tropical Wind",
+      "printed_number": "DP05",
+      "variant_key": "worlds_07_stamp",
+      "stamp_label": "Worlds 07 Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "READY_TO_BRIDGE"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Gabite",
+      "printed_number": "48/123",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Gabite",
+      "printed_number": "48/124",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Mothim",
+      "printed_number": "42/100",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "dpp",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "generations-pokemon",
+      "name": "Geodude",
+      "printed_number": "043/083",
+      "variant_key": "generations_geodude_stamp",
+      "stamp_label": "Generations Geodude Stamp",
+      "effective_set_code": "g1",
+      "provisional_classification": "READY_TO_BRIDGE"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Tropical Tidal Wave",
+      "printed_number": "036",
+      "variant_key": "2006_world_championships_staff_stamp",
+      "stamp_label": "2006 World Championships Staff Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "READY_TO_BRIDGE"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Leafeon",
+      "printed_number": "17/90",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Dark Houndoom",
+      "printed_number": "37/109",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Milotic",
+      "printed_number": "70/147",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Luxio",
+      "printed_number": "52/130",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Salamence",
+      "printed_number": "19/97",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "effective_set_code": "np",
+      "provisional_classification": "CONFLICT_REVIEW_REQUIRED"
+    }
+  ],
+  "remaining_ready_rows": [
+    {
+      "batch_candidate_index": 1,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw50-worlds-12-promo",
+      "name": "Tropical Beach",
+      "candidate_name": "Tropical Beach - BW50 (Worlds 12)",
+      "printed_number": "BW50",
+      "number_plain": "BW50",
+      "variant_key": "worlds_12_stamp",
+      "stamp_label": "Worlds 12 Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "bwp",
+        "evidence_summary": "base_name=Tropical Beach | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "bwp",
+      "canonical_queue_key": "bwp::Tropical Beach::BW50::worlds_12_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 2,
+        "base_candidate_examples": [
+          {
+            "id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+            "gv_id": "GV-PK-PR-BLW-BW50",
+            "number": "BW50",
+            "number_plain": "50",
+            "variant_key": ""
+          },
+          {
+            "id": "6456900b-a84d-49fa-966c-410df887309b",
+            "gv_id": "GV-PK-PR-BLW-BW28",
+            "number": "BW28",
+            "number_plain": "28",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 2,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw50-worlds-12-top-32-promo",
+      "name": "Tropical Beach",
+      "candidate_name": "Tropical Beach - BW50 (Worlds 12) [Top 32]",
+      "printed_number": "BW50",
+      "number_plain": "BW50",
+      "variant_key": "worlds_12_top_32_stamp",
+      "stamp_label": "Worlds 12 Top 32 Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "bwp",
+        "evidence_summary": "base_name=Tropical Beach | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "bwp",
+      "canonical_queue_key": "bwp::Tropical Beach::BW50::worlds_12_top_32_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 2,
+        "base_candidate_examples": [
+          {
+            "id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+            "gv_id": "GV-PK-PR-BLW-BW50",
+            "number": "BW50",
+            "number_plain": "50",
+            "variant_key": ""
+          },
+          {
+            "id": "6456900b-a84d-49fa-966c-410df887309b",
+            "gv_id": "GV-PK-PR-BLW-BW28",
+            "number": "BW28",
+            "number_plain": "28",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 3,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-tropical-wind-dp05-worlds-07-promo",
+      "name": "Tropical Wind",
+      "candidate_name": "Tropical Wind - DP05 (Worlds 07)",
+      "printed_number": "DP05",
+      "number_plain": "DP05",
+      "variant_key": "worlds_07_stamp",
+      "stamp_label": "Worlds 07 Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Tropical Wind | set_hint=dpp | set_card_prints=56 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Tropical Wind::DP05::worlds_07_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "6611c72d-5fcb-4253-813f-766b25f2184d",
+            "gv_id": "GV-PK-PR-DPP-DP25",
+            "number": "DP25",
+            "number_plain": "25",
+            "variant_key": ""
+          },
+          {
+            "id": "d6294823-1b9a-4cfb-a792-00339e238d33",
+            "gv_id": "GV-PK-PR-DPP-DP05",
+            "number": "DP05",
+            "number_plain": "05",
+            "variant_key": ""
+          },
+          {
+            "id": "3087efa0-9ef8-4365-8820-bcc14e26a7e8",
+            "gv_id": "GV-PK-PR-DPP-DP48",
+            "number": "DP48",
+            "number_plain": "48",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 4,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-gabite-48-123-prerelease-staff-promo",
+      "name": "Gabite",
+      "candidate_name": "Gabite - 48/123 (Prerelease) [Staff]",
+      "printed_number": "48/123",
+      "number_plain": "48",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Gabite | set_hint=dpp | set_card_prints=56 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Gabite::48/123::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 5,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-lucario-53-127-prerelease-staff-promo",
+      "name": "Lucario",
+      "candidate_name": "Lucario - 53/127 (Prerelease) [Staff]",
+      "printed_number": "53/127",
+      "number_plain": "53",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Lucario | set_hint=dpp | set_card_prints=56 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Lucario::53/127::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 6,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-lucario-53-127-prerelease-promo",
+      "name": "Lucario",
+      "candidate_name": "Lucario - 53/127 (Prerelease)",
+      "printed_number": "53/127",
+      "number_plain": "53",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Lucario | set_hint=dpp | set_card_prints=56 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Lucario::53/127::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 7,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-gabite-48-124-prerelease-promo",
+      "name": "Gabite",
+      "candidate_name": "Gabite - 48/124 (Prerelease)",
+      "printed_number": "48/124",
+      "number_plain": "48",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Gabite | set_hint=dpp | set_card_prints=56 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Gabite::48/124::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 8,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-mothim-42-100-prerelease-promo",
+      "name": "Mothim",
+      "candidate_name": "Mothim - 42/100 (Prerelease)",
+      "printed_number": "42/100",
+      "number_plain": "42",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "dpp",
+        "evidence_summary": "base_name=Mothim | set_hint=dpp | set_card_prints=56 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "dpp",
+      "canonical_queue_key": "dpp::Mothim::42/100::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 9,
+      "source": "justtcg",
+      "source_set_id": "generations-pokemon",
+      "source_external_id": "pokemon-generations-geodude-stamped-promo",
+      "name": "Geodude",
+      "candidate_name": "Geodude (Stamped)",
+      "printed_number": "043/083",
+      "number_plain": "043",
+      "variant_key": "generations_geodude_stamp",
+      "stamp_label": "Generations Geodude Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "g1",
+        "evidence_summary": "base_name=Geodude | set_hint=g1 | set_card_prints=116 | global_exact_matches=1 | global_plain_matches=2 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "g1",
+      "canonical_queue_key": "g1::Geodude::043/083::generations_geodude_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "4c1b08c0-634b-4020-8373-0f9b6eddee2f",
+            "gv_id": "GV-PK-GEN-43",
+            "number": "43",
+            "number_plain": "43",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 10,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropical-tidal-wave-036-2006-world-championships-staff-promo",
+      "name": "Tropical Tidal Wave",
+      "candidate_name": "Tropical Tidal Wave - 036 (2006 World Championships) [Staff]",
+      "printed_number": "036",
+      "number_plain": "036",
+      "variant_key": "2006_world_championships_staff_stamp",
+      "stamp_label": "2006 World Championships Staff Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Tropical Tidal Wave | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Tropical Tidal Wave::036::2006_world_championships_staff_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 2,
+        "base_candidate_examples": [
+          {
+            "id": "b1298894-926e-4647-bcc3-a21c279048d8",
+            "gv_id": "GV-PK-PR-NP-36",
+            "number": "36",
+            "number_plain": "36",
+            "variant_key": ""
+          },
+          {
+            "id": "e75a565f-1bf1-440c-b2d0-df09f47c9933",
+            "gv_id": "GV-PK-PR-NP-27",
+            "number": "27",
+            "number_plain": "27",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 11,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-leafeon-17-90-prerelease-staff-promo",
+      "name": "Leafeon",
+      "candidate_name": "Leafeon - 17/90 (Prerelease) [Staff]",
+      "printed_number": "17/90",
+      "number_plain": "17",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Leafeon | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Leafeon::17/90::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 12,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-dark-houndoom-37-109-prerelease-promo",
+      "name": "Dark Houndoom",
+      "candidate_name": "Dark Houndoom - 37/109 (Prerelease)",
+      "printed_number": "37/109",
+      "number_plain": "37",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Dark Houndoom | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Dark Houndoom::37/109::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 13,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-milotic-70-147-prerelease-staff-promo",
+      "name": "Milotic",
+      "candidate_name": "Milotic - 70/147 (Prerelease) [Staff]",
+      "printed_number": "70/147",
+      "number_plain": "70",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Milotic | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=no_same_set_canonical_match_on_clean_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Milotic::70/147::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 14,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-luxio-52-130-prerelease-staff-promo",
+      "name": "Luxio",
+      "candidate_name": "Luxio - 52/130 (Prerelease) [Staff]",
+      "printed_number": "52/130",
+      "number_plain": "52",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Luxio | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=no_same_set_canonical_match_on_clean_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Luxio::52/130::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 15,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-winner-promo",
+      "name": "Salamence",
+      "candidate_name": "Salamence - 19/97 (e-League) [Winner]",
+      "printed_number": "19/97",
+      "number_plain": "19",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Salamence | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Salamence::19/97::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 16,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-pichu-28-123-prerelease-staff-promo",
+      "name": "Pichu",
+      "candidate_name": "Pichu - 28/123 (Prerelease) [Staff]",
+      "printed_number": "28/123",
+      "number_plain": "28",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Pichu | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Pichu::28/123::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 17,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-shellos-east-sea-106-132-origins-game-fair-2008-staff-promo",
+      "name": "Shellos East Sea",
+      "candidate_name": "Shellos East Sea - 106/132 (Origins Game Fair 2008) [Staff]",
+      "printed_number": "106/132",
+      "number_plain": "106",
+      "variant_key": "origins_game_fair_2008_staff_stamp",
+      "stamp_label": "Origins Game Fair 2008 Staff Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Shellos East Sea | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=no_same_set_canonical_match_on_clean_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Shellos East Sea::106/132::origins_game_fair_2008_staff_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 18,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-gyarados-32-97-prerelease-promo",
+      "name": "Gyarados",
+      "candidate_name": "Gyarados - 32/97 (Prerelease)",
+      "printed_number": "32/97",
+      "number_plain": "32",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Gyarados | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Gyarados::32/97::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 19,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-flygon-025-e-league-winner-promo",
+      "name": "Flygon",
+      "candidate_name": "Flygon - 025 (e-League) [Winner]",
+      "printed_number": "025",
+      "number_plain": "025",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Flygon | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Flygon::025::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+            "gv_id": "GV-PK-PR-NP-25",
+            "number": "25",
+            "number_plain": "25",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 20,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-grovyle-004-e-league-winner-promo",
+      "name": "Grovyle",
+      "candidate_name": "Grovyle - 004 (e-League) [Winner]",
+      "printed_number": "004",
+      "number_plain": "004",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Grovyle | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Grovyle::004::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "0c67ca51-812b-4767-9166-779e6d435cdb",
+            "gv_id": "GV-PK-PR-NP-4",
+            "number": "4",
+            "number_plain": "4",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 21,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-marshtomp-011-e-league-winner-promo",
+      "name": "Marshtomp",
+      "candidate_name": "Marshtomp - 011 (e-League) [Winner]",
+      "printed_number": "011",
+      "number_plain": "011",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Marshtomp | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Marshtomp::011::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "909eddf3-cc6b-46c6-9ae1-6724eab5ae76",
+            "gv_id": "GV-PK-PR-NP-11",
+            "number": "11",
+            "number_plain": "11",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 22,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-promo",
+      "name": "Salamence",
+      "candidate_name": "Salamence - 19/97 (e-League)",
+      "printed_number": "19/97",
+      "number_plain": "19",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Salamence | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Salamence::19/97::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 23,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-pichu-28-123-prerelease-promo",
+      "name": "Pichu",
+      "candidate_name": "Pichu - 28/123 (Prerelease)",
+      "printed_number": "28/123",
+      "number_plain": "28",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Pichu | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Pichu::28/123::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 24,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-combusken-009-e-league-winner-promo",
+      "name": "Combusken",
+      "candidate_name": "Combusken - 009 (e-League) [Winner]",
+      "printed_number": "009",
+      "number_plain": "009",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Combusken | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Combusken::009::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "dcc26be2-335e-4908-904a-06269632fbe8",
+            "gv_id": "GV-PK-PR-NP-9",
+            "number": "9",
+            "number_plain": "9",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 25,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropius-52-111-prerelease-staff-promo",
+      "name": "Tropius",
+      "candidate_name": "Tropius - 52/111 (Prerelease) [Staff]",
+      "printed_number": "52/111",
+      "number_plain": "52",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Tropius | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=no_same_set_canonical_match_on_clean_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Tropius::52/111::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 26,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-swalot-50-101-prerelease-promo",
+      "name": "Swalot",
+      "candidate_name": "Swalot - 50/101 (Prerelease)",
+      "printed_number": "50/101",
+      "number_plain": "50",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Swalot | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Swalot::50/101::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 27,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-piloswine-46-100-prerelease-staff-promo",
+      "name": "Piloswine",
+      "candidate_name": "Piloswine - 46/100 (Prerelease) [Staff]",
+      "printed_number": "46/100",
+      "number_plain": "46",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "stamp_pattern_family": "staff_prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Piloswine | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=no_same_set_canonical_match_on_clean_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Piloswine::46/100::staff_prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 28,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-mudkip-010-e-league-promo",
+      "name": "Mudkip",
+      "candidate_name": "Mudkip - 010 (e-League)",
+      "printed_number": "010",
+      "number_plain": "010",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Mudkip | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Mudkip::010::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "da231e0a-84b0-48ab-a517-97838bdeb114",
+            "gv_id": "GV-PK-PR-NP-10",
+            "number": "10",
+            "number_plain": "10",
+            "variant_key": ""
+          },
+          {
+            "id": "a0af13a3-8131-4f33-ab45-5602a3e74f1e",
+            "gv_id": "GV-PK-PR-NP-5",
+            "number": "5",
+            "number_plain": "5",
+            "variant_key": ""
+          },
+          {
+            "id": "2d6b2362-f87a-4c61-92dd-55c70fd3f0c3",
+            "gv_id": "GV-PK-PR-NP-18",
+            "number": "18",
+            "number_plain": "18",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 29,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-milotic-70-147-prerelease-promo",
+      "name": "Milotic",
+      "candidate_name": "Milotic - 70/147 (Prerelease)",
+      "printed_number": "70/147",
+      "number_plain": "70",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Milotic | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Milotic::70/147::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 30,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-flygon-025-e-league-promo",
+      "name": "Flygon",
+      "candidate_name": "Flygon - 025 (e-League)",
+      "printed_number": "025",
+      "number_plain": "025",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Flygon | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Flygon::025::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+            "gv_id": "GV-PK-PR-NP-25",
+            "number": "25",
+            "number_plain": "25",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 31,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-chimecho-024-e-league-winner-promo",
+      "name": "Chimecho",
+      "candidate_name": "Chimecho - 024 (e-League) [Winner]",
+      "printed_number": "024",
+      "number_plain": "024",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Chimecho | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Chimecho::024::e_league_winner_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "daf712b1-90c2-4abd-898d-891735d47702",
+            "gv_id": "GV-PK-PR-NP-24",
+            "number": "24",
+            "number_plain": "24",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 32,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-luxio-52-130-prerelease-promo",
+      "name": "Luxio",
+      "candidate_name": "Luxio - 52/130 (Prerelease)",
+      "printed_number": "52/130",
+      "number_plain": "52",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Luxio | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Luxio::52/130::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 33,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tentacruel-45-92-prerelease-promo",
+      "name": "Tentacruel",
+      "candidate_name": "Tentacruel - 45/92 (Prerelease)",
+      "printed_number": "45/92",
+      "number_plain": "45",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Tentacruel | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Tentacruel::45/92::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 34,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-manectric-38-107-prerelease-promo",
+      "name": "Manectric",
+      "candidate_name": "Manectric - 38/107 (Prerelease)",
+      "printed_number": "38/107",
+      "number_plain": "38",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Manectric | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Manectric::38/107::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 35,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropius-52-111-prerelease-promo",
+      "name": "Tropius",
+      "candidate_name": "Tropius - 52/111 (Prerelease)",
+      "printed_number": "52/111",
+      "number_plain": "52",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Tropius | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Tropius::52/111::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 36,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-torchic-008-e-league-promo",
+      "name": "Torchic",
+      "candidate_name": "Torchic - 008 (e-League)",
+      "printed_number": "008",
+      "number_plain": "008",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Torchic | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Torchic::008::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "d040dd6f-4e7d-466f-b1d6-8bfdccae8a2f",
+            "gv_id": "GV-PK-PR-NP-17",
+            "number": "17",
+            "number_plain": "17",
+            "variant_key": ""
+          },
+          {
+            "id": "10c2a675-65b1-45e4-b76b-f2f1bc1121aa",
+            "gv_id": "GV-PK-PR-NP-6",
+            "number": "6",
+            "number_plain": "6",
+            "variant_key": ""
+          },
+          {
+            "id": "29278f55-eeb2-4218-abda-0b913c4e4c6a",
+            "gv_id": "GV-PK-PR-NP-8",
+            "number": "8",
+            "number_plain": "8",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 37,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-grumpig-29-106-prerelease-promo",
+      "name": "Grumpig",
+      "candidate_name": "Grumpig - 29/106 (Prerelease)",
+      "printed_number": "29/106",
+      "number_plain": "29",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Grumpig | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Grumpig::29/106::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 38,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-piloswine-46-100-prerelease-promo",
+      "name": "Piloswine",
+      "candidate_name": "Piloswine - 46/100 (Prerelease)",
+      "printed_number": "46/100",
+      "number_plain": "46",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "stamp_pattern_family": "prerelease_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Piloswine | set_hint=np | set_card_prints=40 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=parenthetical_modifier | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Piloswine::46/100::prerelease_stamp",
+      "live_precheck": {
+        "provisional_classification": "CONFLICT_REVIEW_REQUIRED",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 0,
+        "base_candidate_examples": []
+      }
+    },
+    {
+      "batch_candidate_index": 39,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-chimecho-024-e-league-promo",
+      "name": "Chimecho",
+      "candidate_name": "Chimecho - 024 (e-League)",
+      "printed_number": "024",
+      "number_plain": "024",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Chimecho | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Chimecho::024::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "daf712b1-90c2-4abd-898d-891735d47702",
+            "gv_id": "GV-PK-PR-NP-24",
+            "number": "24",
+            "number_plain": "24",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 40,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-beldum-022-e-league-promo",
+      "name": "Beldum",
+      "candidate_name": "Beldum - 022 (e-League)",
+      "printed_number": "022",
+      "number_plain": "022",
+      "variant_key": "e_league_stamp",
+      "stamp_label": "E-league Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "np",
+        "evidence_summary": "base_name=Beldum | set_hint=np | set_card_prints=40 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo"
+      },
+      "effective_set_code": "np",
+      "canonical_queue_key": "np::Beldum::022::e_league_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "d9900083-695e-4045-af03-9eefcfd17a48",
+            "gv_id": "GV-PK-PR-NP-22",
+            "number": "22",
+            "number_plain": "22",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 41,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-charizard-sm158-staff-promo",
+      "name": "Charizard",
+      "candidate_name": "Charizard - SM158 [Staff]",
+      "printed_number": "SM158",
+      "number_plain": "SM158",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "stamp_pattern_family": "staff_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Charizard | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Charizard::SM158::staff_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 2,
+        "base_candidate_examples": [
+          {
+            "id": "8d08b439-cef1-48b5-89f0-0edc843a16d9",
+            "gv_id": "GV-PK-SM-SM226",
+            "number": "SM226",
+            "number_plain": "226",
+            "variant_key": ""
+          },
+          {
+            "id": "067ba961-482f-4516-b4b9-5a44961f65a5",
+            "gv_id": "GV-PK-SM-SM158",
+            "number": "SM158",
+            "number_plain": "158",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 42,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-champions-festival-sm148-world-championships-2018-staff-promo",
+      "name": "Champions Festival",
+      "candidate_name": "Champions Festival - SM148 (World Championships 2018) [Staff]",
+      "printed_number": "SM148",
+      "number_plain": "SM148",
+      "variant_key": "world_championships_2018_staff_stamp",
+      "stamp_label": "World Championships 2018 Staff Stamp",
+      "stamp_pattern_family": "explicit_event_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Champions Festival | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Champions Festival::SM148::world_championships_2018_staff_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "b82773df-1780-420d-9b94-137ded3f4123",
+            "gv_id": "GV-PK-SM-SM231",
+            "number": "SM231",
+            "number_plain": "231",
+            "variant_key": ""
+          },
+          {
+            "id": "3cf53009-c92a-4bf4-8ad8-2c446534e4f1",
+            "gv_id": "GV-PK-SM-SM148",
+            "number": "SM148",
+            "number_plain": "148",
+            "variant_key": ""
+          },
+          {
+            "id": "8a18c53e-8047-4695-8aaf-9f6b618864ed",
+            "gv_id": "GV-PK-SM-SM78",
+            "number": "SM78",
+            "number_plain": "78",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 43,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-jirachi-sm161-staff-promo",
+      "name": "Jirachi",
+      "candidate_name": "Jirachi - SM161 [Staff]",
+      "printed_number": "SM161",
+      "number_plain": "SM161",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "stamp_pattern_family": "staff_marker",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Jirachi | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Jirachi::SM161::staff_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "3b12ada7-a6fc-4693-9436-d11978ccef76",
+            "gv_id": "GV-PK-SM-SM161",
+            "number": "SM161",
+            "number_plain": "161",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 44,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-detective-pikachu-sm190-stamped-promo",
+      "name": "Detective Pikachu",
+      "candidate_name": "Detective Pikachu - SM190 (Stamped)",
+      "printed_number": "SM190",
+      "number_plain": "SM190",
+      "variant_key": "sm_promos_detective_pikachu_sm190_stamp",
+      "stamp_label": "SM Promos Detective Pikachu Sm190 Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Detective Pikachu | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Detective Pikachu::SM190::sm_promos_detective_pikachu_sm190_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "64f55711-ca7a-400d-b977-96ddb25efe98",
+            "gv_id": "GV-PK-SM-SM170",
+            "number": "SM170",
+            "number_plain": "170",
+            "variant_key": ""
+          },
+          {
+            "id": "ab0295cb-3b16-4126-8c33-03066a3c4a7a",
+            "gv_id": "GV-PK-SM-SM194",
+            "number": "SM194",
+            "number_plain": "194",
+            "variant_key": ""
+          },
+          {
+            "id": "d5645154-a1c4-4b41-854e-5b3d27a409a8",
+            "gv_id": "GV-PK-SM-SM190",
+            "number": "SM190",
+            "number_plain": "190",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 45,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-psyduck-sm199-detective-pikachu-stamped-promo",
+      "name": "Psyduck",
+      "candidate_name": "Psyduck - SM199 (Detective Pikachu Stamped)",
+      "printed_number": "SM199",
+      "number_plain": "SM199",
+      "variant_key": "detective_pikachu_stamp",
+      "stamp_label": "Detective Pikachu Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Psyduck | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Psyduck::SM199::detective_pikachu_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "0a1c41ff-c58d-4d2f-9512-599e710a784b",
+            "gv_id": "GV-PK-SM-SM199",
+            "number": "SM199",
+            "number_plain": "199",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 46,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-detective-pikachu-sm170-stamped-promo",
+      "name": "Detective Pikachu",
+      "candidate_name": "Detective Pikachu - SM170 (Stamped)",
+      "printed_number": "SM170",
+      "number_plain": "SM170",
+      "variant_key": "sm_promos_detective_pikachu_sm170_stamp",
+      "stamp_label": "SM Promos Detective Pikachu Sm170 Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Detective Pikachu | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Detective Pikachu::SM170::sm_promos_detective_pikachu_sm170_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 3,
+        "base_candidate_examples": [
+          {
+            "id": "64f55711-ca7a-400d-b977-96ddb25efe98",
+            "gv_id": "GV-PK-SM-SM170",
+            "number": "SM170",
+            "number_plain": "170",
+            "variant_key": ""
+          },
+          {
+            "id": "ab0295cb-3b16-4126-8c33-03066a3c4a7a",
+            "gv_id": "GV-PK-SM-SM194",
+            "number": "SM194",
+            "number_plain": "194",
+            "variant_key": ""
+          },
+          {
+            "id": "d5645154-a1c4-4b41-854e-5b3d27a409a8",
+            "gv_id": "GV-PK-SM-SM190",
+            "number": "SM190",
+            "number_plain": "190",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 47,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-bulbasaur-sm198-detective-pikachu-stamped-promo",
+      "name": "Bulbasaur",
+      "candidate_name": "Bulbasaur - SM198 (Detective Pikachu Stamped)",
+      "printed_number": "SM198",
+      "number_plain": "SM198",
+      "variant_key": "detective_pikachu_stamp",
+      "stamp_label": "Detective Pikachu Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Bulbasaur | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Bulbasaur::SM198::detective_pikachu_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "0dff140a-e128-4137-a521-342c9a402c2e",
+            "gv_id": "GV-PK-SM-SM198",
+            "number": "SM198",
+            "number_plain": "198",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "batch_candidate_index": 48,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-snubbull-sm200-detective-pikachu-stamped-promo",
+      "name": "Snubbull",
+      "candidate_name": "Snubbull - SM200 (Detective Pikachu Stamped)",
+      "printed_number": "SM200",
+      "number_plain": "SM200",
+      "variant_key": "detective_pikachu_stamp",
+      "stamp_label": "Detective Pikachu Stamp",
+      "stamp_pattern_family": "explicit_named_stamp",
+      "underlying_base_state": "PROVEN",
+      "underlying_base_proof_summary": {
+        "set_hint": "smp",
+        "evidence_summary": "base_name=Snubbull | set_hint=smp | set_card_prints=248 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo"
+      },
+      "effective_set_code": "smp",
+      "canonical_queue_key": "smp::Snubbull::SM200::detective_pikachu_stamp",
+      "live_precheck": {
+        "provisional_classification": "READY_TO_BRIDGE",
+        "source_row_exists": true,
+        "warehouse_candidate_states": [],
+        "warehouse_candidate_ids": [],
+        "warehouse_hold_reasons": [],
+        "base_candidate_count": 1,
+        "base_candidate_examples": [
+          {
+            "id": "5d97bf40-e235-4a96-acfa-50d29785274f",
+            "gv_id": "GV-PK-SM-SM200",
+            "number": "SM200",
+            "number_plain": "200",
+            "variant_key": ""
+          }
+        ]
+      }
+    }
+  ],
+  "scale_readiness_decision": "STAMPED_BASE_REPAIR_V3"
+}

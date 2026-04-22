@@ -1,0 +1,643 @@
+{
+  "generated_at": "2026-04-20T21:35:32.492Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED",
+  "selection_summary": {
+    "id": "SV6PT5_SHROUDED_FABLE_SERIES_5_TO_8_WINDOW",
+    "label": "Shrouded Fable Series 5-8 Single-Series Window",
+    "row_count": 6,
+    "set_code_counts": {
+      "sv6pt5": 6
+    },
+    "excluded_blocked_by_official_acquisition_count": 88,
+    "excluded_special_family_count": 1
+  },
+  "shared_question": "Across currently accessible Prize Pack Series 5-8 sources, do these Shrouded Fable rows appear in exactly one corroborated series or multiple?",
+  "evidence_sources_used": [
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series Seven",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series Eight",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galvantula-uncommon",
+      "candidate_name": "Galvantula",
+      "printed_number": "002/064",
+      "normalized_number_plain": "002",
+      "base_gv_id": "GV-PK-SFA-2",
+      "base_route": "GV-PK-SFA-2",
+      "base_card_print_id": null,
+      "base_card_name": "Galvantula",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-galvantula-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Galvantula%20002%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Galvantula%20002%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6,
+        7
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-2",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 002/064|h|{{tcg id|shrouded fable|galvantula|2}}|grass||uncommon|standard set foil}}"
+        },
+        {
+          "series": 7,
+          "source_name": "Bulbapedia Prize Pack Series Seven",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 002/064|h|{{tcg id|shrouded fable|galvantula|2}}|grass||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6,7]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v12_nonblocked",
+      "final_reason": "Accessible evidence proves this Shrouded Fable row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-uncommon",
+      "candidate_name": "Genesect",
+      "printed_number": "040/064",
+      "normalized_number_plain": "040",
+      "base_gv_id": "GV-PK-SFA-40",
+      "base_route": "GV-PK-SFA-40",
+      "base_card_print_id": null,
+      "base_card_name": "Genesect",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-genesect-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Genesect%20040%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Genesect%20040%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-40",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 040/064|h|{{tcg id|shrouded fable|genesect|40}}|metal||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v12_nonblocked_shrouded_fable_window",
+      "final_reason": "Accessible evidence places this Shrouded Fable row in exactly one corroborated Prize Pack series across the reachable Series 5-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-copperajah-rare",
+      "candidate_name": "Copperajah",
+      "printed_number": "042/064",
+      "normalized_number_plain": "042",
+      "base_gv_id": "GV-PK-SFA-42",
+      "base_route": "GV-PK-SFA-42",
+      "base_card_print_id": null,
+      "base_card_name": "Copperajah",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-copperajah-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Copperajah%20042%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Copperajah%20042%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-42",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 042/064|h|{{tcg id|shrouded fable|copperajah|42}}|metal||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v12_nonblocked_shrouded_fable_window",
+      "final_reason": "Accessible evidence places this Shrouded Fable row in exactly one corroborated Prize Pack series across the reachable Series 5-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+      "candidate_name": "Binding Mochi",
+      "printed_number": "055/064",
+      "normalized_number_plain": "055",
+      "base_gv_id": "GV-PK-SFA-55",
+      "base_route": "GV-PK-SFA-55",
+      "base_card_print_id": null,
+      "base_card_name": "Binding Mochi",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Binding%20Mochi%20055%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Binding%20Mochi%20055%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-55",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 055/064|h|{{tcg id|shrouded fable|binding mochi|55}}|pokemon tool||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v12_nonblocked_shrouded_fable_window",
+      "final_reason": "Accessible evidence places this Shrouded Fable row in exactly one corroborated Prize Pack series across the reachable Series 5-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+      "candidate_name": "Neutralization Zone",
+      "printed_number": "060/064",
+      "normalized_number_plain": "060",
+      "base_gv_id": "GV-PK-SFA-60",
+      "base_route": "GV-PK-SFA-60",
+      "base_card_print_id": null,
+      "base_card_name": "Neutralization Zone",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Neutralization%20Zone%20060%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Neutralization%20Zone%20060%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-60",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 060/064|h|{{tcg id|shrouded fable|neutralization zone|60}}|stadium|rainbow|ace spec rare|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v12_nonblocked_shrouded_fable_window",
+      "final_reason": "Accessible evidence places this Shrouded Fable row in exactly one corroborated Prize Pack series across the reachable Series 5-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+      "candidate_name": "Night Stretcher",
+      "printed_number": "061/064",
+      "normalized_number_plain": "061",
+      "base_gv_id": "GV-PK-SFA-61",
+      "base_route": "GV-PK-SFA-61",
+      "base_card_print_id": null,
+      "base_card_name": "Night Stretcher",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Night%20Stretcher%20061%2F064%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Night%20Stretcher%20061%2F064%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6,
+        7
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "route_resolution_source": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "route_notes": "Live canon proves exactly one normalized same-name same-number owner for this set slot, so structural route ambiguity is closed. No corroborated Prize Pack series evidence is present yet, so the row returns to WAIT under NO_SERIES_CONFIRMATION.",
+      "effective_base_owner_gv_id": "GV-PK-SFA-61",
+      "set_code": "sv6pt5",
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v12_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 061/064|h|{{tcg id|shrouded fable|night stretcher|61}}|item||uncommon|standard set foil}}"
+        },
+        {
+          "series": 7,
+          "source_name": "Bulbapedia Prize Pack Series Seven",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolshrouded fable.png|x18px|link=shrouded fable (tcg)]] 061/064|h|{{tcg id|shrouded fable|night stretcher|61}}|item||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6,7]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v12_nonblocked",
+      "final_reason": "Accessible evidence proves this Shrouded Fable row appears in more than one Prize Pack series with no printed distinction, so the generic Play! Pokémon stamp is distribution-only."
+    }
+  ]
+}

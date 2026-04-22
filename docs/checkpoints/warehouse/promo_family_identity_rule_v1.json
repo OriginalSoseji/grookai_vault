@@ -1,0 +1,2262 @@
+{
+  "generated_at": "2026-04-18T05:29:08.923Z",
+  "workflow": "PROMO_FAMILY_IDENTITY_RULE_V1",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/stamped_ready_batch_3_v1.json",
+    "docs/contracts/STAMPED_IDENTITY_RULE_V1.md",
+    "docs/contracts/PROMO_SLOT_IDENTITY_RULE_V1.md",
+    "docs/contracts/PROMO_PREFIX_IDENTITY_RULE_V1.md",
+    "docs/contracts/PROMO_FAMILY_IDENTITY_RULE_V1.md"
+  ],
+  "audit_summary": {
+    "audited_row_count": 48,
+    "previous_provisional_counts": {
+      "READY_TO_BRIDGE": 23,
+      "ALREADY_IN_WAREHOUSE": 0,
+      "ALREADY_IN_CANON": 0,
+      "CONFLICT_REVIEW_REQUIRED": 25
+    },
+    "rebucketed_counts": {
+      "READY_FOR_WAREHOUSE": 48,
+      "NEEDS_RULE_EXTENSION": 0,
+      "MANUAL_REVIEW": 0
+    },
+    "identity_shape_counts": {
+      "BWP_PROMO_SLOT_PREFIX_EXISTING": 2,
+      "DPP_PROMO_SLOT_PREFIX": 1,
+      "NP_PROMO_SLOT_NUMERIC": 11,
+      "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP": 5,
+      "PROMO_FAMILY_SLASH_TO_EXPANSION_NP": 20,
+      "SAME_SET_SLASH_OVERLAY_EXISTING": 1,
+      "SMP_PROMO_SLOT_PREFIX_EXISTING": 8
+    },
+    "governing_rule_counts": {
+      "PROMO_FAMILY_IDENTITY_RULE_V1": 37,
+      "PROMO_PREFIX_IDENTITY_RULE_V1": 10,
+      "PROMO_SLOT_IDENTITY_RULE_V1": 2,
+      "STAMPED_IDENTITY_RULE_V1": 48
+    },
+    "new_rule_covered_rows": 37,
+    "existing_rule_only_rows": 11
+  },
+  "representative_examples": [
+    {
+      "source_set_id": "black-and-white-promos-pokemon",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "variant_key": "worlds_12_stamp",
+      "stamp_label": "Worlds 12 Stamp",
+      "identity_shape": "BWP_PROMO_SLOT_PREFIX_EXISTING",
+      "target_set_code": "bwp",
+      "target_gv_id": "GV-PK-PR-BLW-BW50"
+    },
+    {
+      "source_set_id": "black-and-white-promos-pokemon",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "variant_key": "worlds_12_top_32_stamp",
+      "stamp_label": "Worlds 12 Top 32 Stamp",
+      "identity_shape": "BWP_PROMO_SLOT_PREFIX_EXISTING",
+      "target_set_code": "bwp",
+      "target_gv_id": "GV-PK-PR-BLW-BW50"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Tropical Wind",
+      "printed_number": "DP05",
+      "variant_key": "worlds_07_stamp",
+      "stamp_label": "Worlds 07 Stamp",
+      "identity_shape": "DPP_PROMO_SLOT_PREFIX",
+      "target_set_code": "dpp",
+      "target_gv_id": "GV-PK-PR-DPP-DP05"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Gabite",
+      "printed_number": "48/123",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "target_set_code": "dp2",
+      "target_gv_id": "GV-PK-MT-48"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "target_set_code": "pl1",
+      "target_gv_id": "GV-PK-PL-53"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "target_set_code": "pl1",
+      "target_gv_id": "GV-PK-PL-53"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Gabite",
+      "printed_number": "48/124",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "target_set_code": "dp2",
+      "target_gv_id": "GV-PK-MT-48"
+    },
+    {
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "name": "Mothim",
+      "printed_number": "42/100",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "target_set_code": "dp5",
+      "target_gv_id": "GV-PK-MD-42"
+    },
+    {
+      "source_set_id": "generations-pokemon",
+      "name": "Geodude",
+      "printed_number": "043/083",
+      "variant_key": "generations_geodude_stamp",
+      "stamp_label": "Generations Geodude Stamp",
+      "identity_shape": "SAME_SET_SLASH_OVERLAY_EXISTING",
+      "target_set_code": "g1",
+      "target_gv_id": "GV-PK-GEN-43"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Tropical Tidal Wave",
+      "printed_number": "036",
+      "variant_key": "2006_world_championships_staff_stamp",
+      "stamp_label": "2006 World Championships Staff Stamp",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "target_set_code": "np",
+      "target_gv_id": "GV-PK-PR-NP-36"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Leafeon",
+      "printed_number": "17/90",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "target_set_code": "hgss3",
+      "target_gv_id": "GV-PK-UD-17"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Dark Houndoom",
+      "printed_number": "37/109",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "target_set_code": "ex7",
+      "target_gv_id": "GV-PK-TRR-37"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Milotic",
+      "printed_number": "70/147",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "target_set_code": "pl3",
+      "target_gv_id": "GV-PK-SV-70"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Luxio",
+      "printed_number": "52/130",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "target_set_code": "dp1",
+      "target_gv_id": "GV-PK-DP-52"
+    },
+    {
+      "source_set_id": "nintendo-promos-pokemon",
+      "name": "Salamence",
+      "printed_number": "19/97",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "target_set_code": "ex3",
+      "target_gv_id": "GV-PK-DR-19"
+    }
+  ],
+  "rows": [
+    {
+      "backlog_index": 1,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw50-worlds-12-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "BW",
+      "number_plain": "BW50",
+      "stamp_label": "Worlds 12 Stamp",
+      "distribution_context": "WORLDS",
+      "variant_key": "worlds_12_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "BWP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_SLOT_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+        "target_gv_id": "GV-PK-PR-BLW-BW50",
+        "target_set_code": "bwp",
+        "target_number": "BW50",
+        "target_number_plain": "50"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+          "gv_id": "GV-PK-PR-BLW-BW50",
+          "set_code": "bwp",
+          "name": "Tropical Beach",
+          "number": "BW50",
+          "number_plain": "50"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing BW promo-slot rule already covers prefixed BWP identities; Worlds placement remains a stamped variant_key overlay."
+    },
+    {
+      "backlog_index": 2,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw50-worlds-12-top-32-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "BW",
+      "number_plain": "BW50",
+      "stamp_label": "Worlds 12 Top 32 Stamp",
+      "distribution_context": "WORLDS_TOP_CUT",
+      "variant_key": "worlds_12_top_32_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "BWP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_SLOT_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+        "target_gv_id": "GV-PK-PR-BLW-BW50",
+        "target_set_code": "bwp",
+        "target_number": "BW50",
+        "target_number_plain": "50"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "53f84981-d0d3-4a71-a33c-9c3d4fbe239c",
+          "gv_id": "GV-PK-PR-BLW-BW50",
+          "set_code": "bwp",
+          "name": "Tropical Beach",
+          "number": "BW50",
+          "number_plain": "50"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing BW promo-slot rule already covers prefixed BWP identities; Worlds placement remains a stamped variant_key overlay."
+    },
+    {
+      "backlog_index": 3,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-tropical-wind-dp05-worlds-07-promo",
+      "name": "Tropical Wind",
+      "printed_number": "DP05",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "DP",
+      "number_plain": "DP05",
+      "stamp_label": "Worlds 07 Stamp",
+      "distribution_context": "WORLDS",
+      "variant_key": "worlds_07_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "DPP_PROMO_SLOT_PREFIX",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "d6294823-1b9a-4cfb-a792-00339e238d33",
+        "target_gv_id": "GV-PK-PR-DPP-DP05",
+        "target_set_code": "dpp",
+        "target_number": "DP05",
+        "target_number_plain": "05"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "d6294823-1b9a-4cfb-a792-00339e238d33",
+          "gv_id": "GV-PK-PR-DPP-DP05",
+          "set_code": "dpp",
+          "name": "Tropical Wind",
+          "number": "DP05",
+          "number_plain": "05"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "DPP prefixed promo token is the authoritative promo-slot identity; event/stamp rides on the DPP promo base row."
+    },
+    {
+      "backlog_index": 4,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-gabite-48-123-prerelease-staff-promo",
+      "name": "Gabite",
+      "printed_number": "48/123",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "48",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "688025aa-3d29-4215-afdf-93ae8b6b01d0",
+        "target_gv_id": "GV-PK-MT-48",
+        "target_set_code": "dp2",
+        "target_number": "48",
+        "target_number_plain": "48"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "688025aa-3d29-4215-afdf-93ae8b6b01d0",
+          "gv_id": "GV-PK-MT-48",
+          "set_code": "dp2",
+          "name": "Gabite",
+          "number": "48",
+          "number_plain": "48"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 5,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-lucario-53-127-prerelease-staff-promo",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "53",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "b612458b-345c-48a6-bb31-bd740e4968a2",
+        "target_gv_id": "GV-PK-PL-53",
+        "target_set_code": "pl1",
+        "target_number": "53",
+        "target_number_plain": "53"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "b612458b-345c-48a6-bb31-bd740e4968a2",
+          "gv_id": "GV-PK-PL-53",
+          "set_code": "pl1",
+          "name": "Lucario",
+          "number": "53",
+          "number_plain": "53"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 6,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-lucario-53-127-prerelease-promo",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "53",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "b612458b-345c-48a6-bb31-bd740e4968a2",
+        "target_gv_id": "GV-PK-PL-53",
+        "target_set_code": "pl1",
+        "target_number": "53",
+        "target_number_plain": "53"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "b612458b-345c-48a6-bb31-bd740e4968a2",
+          "gv_id": "GV-PK-PL-53",
+          "set_code": "pl1",
+          "name": "Lucario",
+          "number": "53",
+          "number_plain": "53"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 7,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-gabite-48-124-prerelease-promo",
+      "name": "Gabite",
+      "printed_number": "48/124",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "48",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "688025aa-3d29-4215-afdf-93ae8b6b01d0",
+        "target_gv_id": "GV-PK-MT-48",
+        "target_set_code": "dp2",
+        "target_number": "48",
+        "target_number_plain": "48"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "688025aa-3d29-4215-afdf-93ae8b6b01d0",
+          "gv_id": "GV-PK-MT-48",
+          "set_code": "dp2",
+          "name": "Gabite",
+          "number": "48",
+          "number_plain": "48"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 8,
+      "source": "justtcg",
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-mothim-42-100-prerelease-promo",
+      "name": "Mothim",
+      "printed_number": "42/100",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "42",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "0d37e383-cd21-48b1-8d63-1ead761b7c61",
+        "target_gv_id": "GV-PK-MD-42",
+        "target_set_code": "dp5",
+        "target_number": "42",
+        "target_number_plain": "42"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "0d37e383-cd21-48b1-8d63-1ead761b7c61",
+          "gv_id": "GV-PK-MD-42",
+          "set_code": "dp5",
+          "name": "Mothim",
+          "number": "42",
+          "number_plain": "42"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 9,
+      "source": "justtcg",
+      "source_set_id": "generations-pokemon",
+      "source_external_id": "pokemon-generations-geodude-stamped-promo",
+      "name": "Geodude",
+      "printed_number": "043/083",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "043",
+      "stamp_label": "Generations Geodude Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "generations_geodude_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SAME_SET_SLASH_OVERLAY_EXISTING",
+      "reprint_or_unique": "SAME_SET_BASE_OVERLAY",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "4c1b08c0-634b-4020-8373-0f9b6eddee2f",
+        "target_gv_id": "GV-PK-GEN-43",
+        "target_set_code": "g1",
+        "target_number": "43",
+        "target_number_plain": "43"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "4c1b08c0-634b-4020-8373-0f9b6eddee2f",
+          "gv_id": "GV-PK-GEN-43",
+          "set_code": "g1",
+          "name": "Geodude",
+          "number": "43",
+          "number_plain": "43"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Generations Geodude is already a same-set overlay shape; it remains under the existing stamped rule rather than the new promo-family rule."
+    },
+    {
+      "backlog_index": 10,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropical-tidal-wave-036-2006-world-championships-staff-promo",
+      "name": "Tropical Tidal Wave",
+      "printed_number": "036",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "036",
+      "stamp_label": "2006 World Championships Staff Stamp",
+      "distribution_context": "WORLDS",
+      "variant_key": "2006_world_championships_staff_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "b1298894-926e-4647-bcc3-a21c279048d8",
+        "target_gv_id": "GV-PK-PR-NP-36",
+        "target_set_code": "np",
+        "target_number": "36",
+        "target_number_plain": "36"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "b1298894-926e-4647-bcc3-a21c279048d8",
+          "gv_id": "GV-PK-PR-NP-36",
+          "set_code": "np",
+          "name": "Tropical Tidal Wave",
+          "number": "36",
+          "number_plain": "36"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 11,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-leafeon-17-90-prerelease-staff-promo",
+      "name": "Leafeon",
+      "printed_number": "17/90",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "17",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "c153cbf9-57d9-4f14-a427-01aab3fae770",
+        "target_gv_id": "GV-PK-UD-17",
+        "target_set_code": "hgss3",
+        "target_number": "17",
+        "target_number_plain": "17"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "c153cbf9-57d9-4f14-a427-01aab3fae770",
+          "gv_id": "GV-PK-UD-17",
+          "set_code": "hgss3",
+          "name": "Leafeon",
+          "number": "17",
+          "number_plain": "17"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 12,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-dark-houndoom-37-109-prerelease-promo",
+      "name": "Dark Houndoom",
+      "printed_number": "37/109",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "37",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "41385b05-89d1-434a-819a-355a61ae1e69",
+        "target_gv_id": "GV-PK-TRR-37",
+        "target_set_code": "ex7",
+        "target_number": "37",
+        "target_number_plain": "37"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "41385b05-89d1-434a-819a-355a61ae1e69",
+          "gv_id": "GV-PK-TRR-37",
+          "set_code": "ex7",
+          "name": "Dark Houndoom",
+          "number": "37",
+          "number_plain": "37"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 13,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-milotic-70-147-prerelease-staff-promo",
+      "name": "Milotic",
+      "printed_number": "70/147",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "70",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "abc74ec4-d4de-4f15-a75a-340731c35625",
+        "target_gv_id": "GV-PK-SV-70",
+        "target_set_code": "pl3",
+        "target_number": "70",
+        "target_number_plain": "70"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "abc74ec4-d4de-4f15-a75a-340731c35625",
+          "gv_id": "GV-PK-SV-70",
+          "set_code": "pl3",
+          "name": "Milotic",
+          "number": "70",
+          "number_plain": "70"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 14,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-luxio-52-130-prerelease-staff-promo",
+      "name": "Luxio",
+      "printed_number": "52/130",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "52",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "c9be43d6-ebb7-494f-92a4-e6d372d9ecc7",
+        "target_gv_id": "GV-PK-DP-52",
+        "target_set_code": "dp1",
+        "target_number": "52",
+        "target_number_plain": "52"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "c9be43d6-ebb7-494f-92a4-e6d372d9ecc7",
+          "gv_id": "GV-PK-DP-52",
+          "set_code": "dp1",
+          "name": "Luxio",
+          "number": "52",
+          "number_plain": "52"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 15,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-winner-promo",
+      "name": "Salamence",
+      "printed_number": "19/97",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "19",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+        "target_gv_id": "GV-PK-DR-19",
+        "target_set_code": "ex3",
+        "target_number": "19",
+        "target_number_plain": "19"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+          "gv_id": "GV-PK-DR-19",
+          "set_code": "ex3",
+          "name": "Salamence",
+          "number": "19",
+          "number_plain": "19"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 16,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-pichu-28-123-prerelease-staff-promo",
+      "name": "Pichu",
+      "printed_number": "28/123",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "28",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "ddf1275e-c173-4c32-86ce-10fd9011a5ea",
+        "target_gv_id": "GV-PK-HS-28",
+        "target_set_code": "hgss1",
+        "target_number": "28",
+        "target_number_plain": "28"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "ddf1275e-c173-4c32-86ce-10fd9011a5ea",
+          "gv_id": "GV-PK-HS-28",
+          "set_code": "hgss1",
+          "name": "Pichu",
+          "number": "28",
+          "number_plain": "28"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 17,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-shellos-east-sea-106-132-origins-game-fair-2008-staff-promo",
+      "name": "Shellos East Sea",
+      "printed_number": "106/132",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "106",
+      "stamp_label": "Origins Game Fair 2008 Staff Stamp",
+      "distribution_context": "STAFF_EVENT",
+      "variant_key": "origins_game_fair_2008_staff_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "e6eb2743-bc34-4424-945f-5f24d6b95b84",
+        "target_gv_id": "GV-PK-SW-106",
+        "target_set_code": "dp3",
+        "target_number": "106",
+        "target_number_plain": "106"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "e6eb2743-bc34-4424-945f-5f24d6b95b84",
+          "gv_id": "GV-PK-SW-106",
+          "set_code": "dp3",
+          "name": "Shellos East Sea",
+          "number": "106",
+          "number_plain": "106"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 18,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-gyarados-32-97-prerelease-promo",
+      "name": "Gyarados",
+      "printed_number": "32/97",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "32",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "69190fce-19a4-4773-89d3-0d122b627801",
+        "target_gv_id": "GV-PK-DR-32",
+        "target_set_code": "ex3",
+        "target_number": "32",
+        "target_number_plain": "32"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "69190fce-19a4-4773-89d3-0d122b627801",
+          "gv_id": "GV-PK-DR-32",
+          "set_code": "ex3",
+          "name": "Gyarados",
+          "number": "32",
+          "number_plain": "32"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 19,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-flygon-025-e-league-winner-promo",
+      "name": "Flygon",
+      "printed_number": "025",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "025",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+        "target_gv_id": "GV-PK-PR-NP-25",
+        "target_set_code": "np",
+        "target_number": "25",
+        "target_number_plain": "25"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+          "gv_id": "GV-PK-PR-NP-25",
+          "set_code": "np",
+          "name": "Flygon",
+          "number": "25",
+          "number_plain": "25"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 20,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-grovyle-004-e-league-winner-promo",
+      "name": "Grovyle",
+      "printed_number": "004",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "004",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "0c67ca51-812b-4767-9166-779e6d435cdb",
+        "target_gv_id": "GV-PK-PR-NP-4",
+        "target_set_code": "np",
+        "target_number": "4",
+        "target_number_plain": "4"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "0c67ca51-812b-4767-9166-779e6d435cdb",
+          "gv_id": "GV-PK-PR-NP-4",
+          "set_code": "np",
+          "name": "Grovyle",
+          "number": "4",
+          "number_plain": "4"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 21,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-marshtomp-011-e-league-winner-promo",
+      "name": "Marshtomp",
+      "printed_number": "011",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "011",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "909eddf3-cc6b-46c6-9ae1-6724eab5ae76",
+        "target_gv_id": "GV-PK-PR-NP-11",
+        "target_set_code": "np",
+        "target_number": "11",
+        "target_number_plain": "11"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "909eddf3-cc6b-46c6-9ae1-6724eab5ae76",
+          "gv_id": "GV-PK-PR-NP-11",
+          "set_code": "np",
+          "name": "Marshtomp",
+          "number": "11",
+          "number_plain": "11"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 22,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-salamence-19-97-e-league-promo",
+      "name": "Salamence",
+      "printed_number": "19/97",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "19",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+        "target_gv_id": "GV-PK-DR-19",
+        "target_set_code": "ex3",
+        "target_number": "19",
+        "target_number_plain": "19"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "1bf5dbe7-81a5-4e2e-8dad-585073c2c5ae",
+          "gv_id": "GV-PK-DR-19",
+          "set_code": "ex3",
+          "name": "Salamence",
+          "number": "19",
+          "number_plain": "19"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 23,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-pichu-28-123-prerelease-promo",
+      "name": "Pichu",
+      "printed_number": "28/123",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "28",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "ddf1275e-c173-4c32-86ce-10fd9011a5ea",
+        "target_gv_id": "GV-PK-HS-28",
+        "target_set_code": "hgss1",
+        "target_number": "28",
+        "target_number_plain": "28"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "ddf1275e-c173-4c32-86ce-10fd9011a5ea",
+          "gv_id": "GV-PK-HS-28",
+          "set_code": "hgss1",
+          "name": "Pichu",
+          "number": "28",
+          "number_plain": "28"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 24,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-combusken-009-e-league-winner-promo",
+      "name": "Combusken",
+      "printed_number": "009",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "009",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "dcc26be2-335e-4908-904a-06269632fbe8",
+        "target_gv_id": "GV-PK-PR-NP-9",
+        "target_set_code": "np",
+        "target_number": "9",
+        "target_number_plain": "9"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "dcc26be2-335e-4908-904a-06269632fbe8",
+          "gv_id": "GV-PK-PR-NP-9",
+          "set_code": "np",
+          "name": "Combusken",
+          "number": "9",
+          "number_plain": "9"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 25,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropius-52-111-prerelease-staff-promo",
+      "name": "Tropius",
+      "printed_number": "52/111",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "52",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "458440f1-ec6b-48f4-b46b-1ea339570332",
+        "target_gv_id": "GV-PK-RR-52",
+        "target_set_code": "pl2",
+        "target_number": "52",
+        "target_number_plain": "52"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "458440f1-ec6b-48f4-b46b-1ea339570332",
+          "gv_id": "GV-PK-RR-52",
+          "set_code": "pl2",
+          "name": "Tropius",
+          "number": "52",
+          "number_plain": "52"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 26,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-swalot-50-101-prerelease-promo",
+      "name": "Swalot",
+      "printed_number": "50/101",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "50",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "a04082c2-0a6d-47f4-bd24-843ff7bbc72d",
+        "target_gv_id": "GV-PK-HL-50",
+        "target_set_code": "ex5",
+        "target_number": "50",
+        "target_number_plain": "50"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "a04082c2-0a6d-47f4-bd24-843ff7bbc72d",
+          "gv_id": "GV-PK-HL-50",
+          "set_code": "ex5",
+          "name": "Swalot",
+          "number": "50",
+          "number_plain": "50"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 27,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-piloswine-46-100-prerelease-staff-promo",
+      "name": "Piloswine",
+      "printed_number": "46/100",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "46",
+      "stamp_label": "Staff Prerelease Stamp",
+      "distribution_context": "STAFF_PRERELEASE",
+      "variant_key": "staff_prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "045fb348-1214-4297-93e7-fe17a230c4a6",
+        "target_gv_id": "GV-PK-SF-46",
+        "target_set_code": "dp7",
+        "target_number": "46",
+        "target_number_plain": "46"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "045fb348-1214-4297-93e7-fe17a230c4a6",
+          "gv_id": "GV-PK-SF-46",
+          "set_code": "dp7",
+          "name": "Piloswine",
+          "number": "46",
+          "number_plain": "46"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 28,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-mudkip-010-e-league-promo",
+      "name": "Mudkip",
+      "printed_number": "010",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "010",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "da231e0a-84b0-48ab-a517-97838bdeb114",
+        "target_gv_id": "GV-PK-PR-NP-10",
+        "target_set_code": "np",
+        "target_number": "10",
+        "target_number_plain": "10"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "da231e0a-84b0-48ab-a517-97838bdeb114",
+          "gv_id": "GV-PK-PR-NP-10",
+          "set_code": "np",
+          "name": "Mudkip",
+          "number": "10",
+          "number_plain": "10"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 29,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-milotic-70-147-prerelease-promo",
+      "name": "Milotic",
+      "printed_number": "70/147",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "70",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "abc74ec4-d4de-4f15-a75a-340731c35625",
+        "target_gv_id": "GV-PK-SV-70",
+        "target_set_code": "pl3",
+        "target_number": "70",
+        "target_number_plain": "70"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "abc74ec4-d4de-4f15-a75a-340731c35625",
+          "gv_id": "GV-PK-SV-70",
+          "set_code": "pl3",
+          "name": "Milotic",
+          "number": "70",
+          "number_plain": "70"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 30,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-flygon-025-e-league-promo",
+      "name": "Flygon",
+      "printed_number": "025",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "025",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+        "target_gv_id": "GV-PK-PR-NP-25",
+        "target_set_code": "np",
+        "target_number": "25",
+        "target_number_plain": "25"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "f5f19df8-4261-4f4a-9f83-7216437508cc",
+          "gv_id": "GV-PK-PR-NP-25",
+          "set_code": "np",
+          "name": "Flygon",
+          "number": "25",
+          "number_plain": "25"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 31,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-chimecho-024-e-league-winner-promo",
+      "name": "Chimecho",
+      "printed_number": "024",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "024",
+      "stamp_label": "E-league Winner Stamp",
+      "distribution_context": "E_LEAGUE_WINNER",
+      "variant_key": "e_league_winner_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "daf712b1-90c2-4abd-898d-891735d47702",
+        "target_gv_id": "GV-PK-PR-NP-24",
+        "target_set_code": "np",
+        "target_number": "24",
+        "target_number_plain": "24"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "daf712b1-90c2-4abd-898d-891735d47702",
+          "gv_id": "GV-PK-PR-NP-24",
+          "set_code": "np",
+          "name": "Chimecho",
+          "number": "24",
+          "number_plain": "24"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 32,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-luxio-52-130-prerelease-promo",
+      "name": "Luxio",
+      "printed_number": "52/130",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "52",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "c9be43d6-ebb7-494f-92a4-e6d372d9ecc7",
+        "target_gv_id": "GV-PK-DP-52",
+        "target_set_code": "dp1",
+        "target_number": "52",
+        "target_number_plain": "52"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "c9be43d6-ebb7-494f-92a4-e6d372d9ecc7",
+          "gv_id": "GV-PK-DP-52",
+          "set_code": "dp1",
+          "name": "Luxio",
+          "number": "52",
+          "number_plain": "52"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 33,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tentacruel-45-92-prerelease-promo",
+      "name": "Tentacruel",
+      "printed_number": "45/92",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "45",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "48139214-02b3-4b38-ab5a-34021c3aca30",
+        "target_gv_id": "GV-PK-LM-45",
+        "target_set_code": "ex12",
+        "target_number": "45",
+        "target_number_plain": "45"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "48139214-02b3-4b38-ab5a-34021c3aca30",
+          "gv_id": "GV-PK-LM-45",
+          "set_code": "ex12",
+          "name": "Tentacruel",
+          "number": "45",
+          "number_plain": "45"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 34,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-manectric-38-107-prerelease-promo",
+      "name": "Manectric",
+      "printed_number": "38/107",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "38",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "55b5f96b-5ebd-458a-a7f6-17da38e4728a",
+        "target_gv_id": "GV-PK-DX-38",
+        "target_set_code": "ex8",
+        "target_number": "38",
+        "target_number_plain": "38"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "55b5f96b-5ebd-458a-a7f6-17da38e4728a",
+          "gv_id": "GV-PK-DX-38",
+          "set_code": "ex8",
+          "name": "Manectric",
+          "number": "38",
+          "number_plain": "38"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 35,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropius-52-111-prerelease-promo",
+      "name": "Tropius",
+      "printed_number": "52/111",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "52",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "458440f1-ec6b-48f4-b46b-1ea339570332",
+        "target_gv_id": "GV-PK-RR-52",
+        "target_set_code": "pl2",
+        "target_number": "52",
+        "target_number_plain": "52"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "458440f1-ec6b-48f4-b46b-1ea339570332",
+          "gv_id": "GV-PK-RR-52",
+          "set_code": "pl2",
+          "name": "Tropius",
+          "number": "52",
+          "number_plain": "52"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 36,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-torchic-008-e-league-promo",
+      "name": "Torchic",
+      "printed_number": "008",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "008",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "29278f55-eeb2-4218-abda-0b913c4e4c6a",
+        "target_gv_id": "GV-PK-PR-NP-8",
+        "target_set_code": "np",
+        "target_number": "8",
+        "target_number_plain": "8"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "29278f55-eeb2-4218-abda-0b913c4e4c6a",
+          "gv_id": "GV-PK-PR-NP-8",
+          "set_code": "np",
+          "name": "Torchic",
+          "number": "8",
+          "number_plain": "8"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 37,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-grumpig-29-106-prerelease-promo",
+      "name": "Grumpig",
+      "printed_number": "29/106",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "29",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "bfd0c432-a09e-4a89-9efe-97260f780656",
+        "target_gv_id": "GV-PK-EM-29",
+        "target_set_code": "ex9",
+        "target_number": "29",
+        "target_number_plain": "29"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "bfd0c432-a09e-4a89-9efe-97260f780656",
+          "gv_id": "GV-PK-EM-29",
+          "set_code": "ex9",
+          "name": "Grumpig",
+          "number": "29",
+          "number_plain": "29"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 38,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-piloswine-46-100-prerelease-promo",
+      "name": "Piloswine",
+      "printed_number": "46/100",
+      "printed_number_format": "SLASH_NUMBER",
+      "printed_prefix": null,
+      "number_plain": "46",
+      "stamp_label": "Prerelease Stamp",
+      "distribution_context": "PRERELEASE",
+      "variant_key": "prerelease_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "CONFLICT_REVIEW_REQUIRED",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "reprint_or_unique": "UNDERLYING_EXPANSION_REPRINT",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "045fb348-1214-4297-93e7-fe17a230c4a6",
+        "target_gv_id": "GV-PK-SF-46",
+        "target_set_code": "dp7",
+        "target_number": "46",
+        "target_number_plain": "46"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "045fb348-1214-4297-93e7-fe17a230c4a6",
+          "gv_id": "GV-PK-SF-46",
+          "set_code": "dp7",
+          "name": "Piloswine",
+          "number": "46",
+          "number_plain": "46"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Slash-number row in a mixed promo family is treated as an underlying expansion reprint overlay; route to the unique base row and carry the event/stamp in variant_key."
+    },
+    {
+      "backlog_index": 39,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-chimecho-024-e-league-promo",
+      "name": "Chimecho",
+      "printed_number": "024",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "024",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "daf712b1-90c2-4abd-898d-891735d47702",
+        "target_gv_id": "GV-PK-PR-NP-24",
+        "target_set_code": "np",
+        "target_number": "24",
+        "target_number_plain": "24"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "daf712b1-90c2-4abd-898d-891735d47702",
+          "gv_id": "GV-PK-PR-NP-24",
+          "set_code": "np",
+          "name": "Chimecho",
+          "number": "24",
+          "number_plain": "24"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 40,
+      "source": "justtcg",
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-beldum-022-e-league-promo",
+      "name": "Beldum",
+      "printed_number": "022",
+      "printed_number_format": "ZERO_PADDED_NUMERIC_PROMO_TOKEN",
+      "printed_prefix": null,
+      "number_plain": "022",
+      "stamp_label": "E-league Stamp",
+      "distribution_context": "E_LEAGUE",
+      "variant_key": "e_league_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_FAMILY_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "d9900083-695e-4045-af03-9eefcfd17a48",
+        "target_gv_id": "GV-PK-PR-NP-22",
+        "target_set_code": "np",
+        "target_number": "22",
+        "target_number_plain": "22"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "d9900083-695e-4045-af03-9eefcfd17a48",
+          "gv_id": "GV-PK-PR-NP-22",
+          "set_code": "np",
+          "name": "Beldum",
+          "number": "22",
+          "number_plain": "22"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Nintendo promo numeric token remains the promo-slot identity; zero padding belongs to the printed token while join uses number_plain."
+    },
+    {
+      "backlog_index": 41,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-charizard-sm158-staff-promo",
+      "name": "Charizard",
+      "printed_number": "SM158",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM158",
+      "stamp_label": "Staff Stamp",
+      "distribution_context": "STAFF_EVENT",
+      "variant_key": "staff_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "067ba961-482f-4516-b4b9-5a44961f65a5",
+        "target_gv_id": "GV-PK-SM-SM158",
+        "target_set_code": "smp",
+        "target_number": "SM158",
+        "target_number_plain": "158"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "067ba961-482f-4516-b4b9-5a44961f65a5",
+          "gv_id": "GV-PK-SM-SM158",
+          "set_code": "smp",
+          "name": "Charizard",
+          "number": "SM158",
+          "number_plain": "158"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 42,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-champions-festival-sm148-world-championships-2018-staff-promo",
+      "name": "Champions Festival",
+      "printed_number": "SM148",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM148",
+      "stamp_label": "World Championships 2018 Staff Stamp",
+      "distribution_context": "WORLDS",
+      "variant_key": "world_championships_2018_staff_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "3cf53009-c92a-4bf4-8ad8-2c446534e4f1",
+        "target_gv_id": "GV-PK-SM-SM148",
+        "target_set_code": "smp",
+        "target_number": "SM148",
+        "target_number_plain": "148"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "3cf53009-c92a-4bf4-8ad8-2c446534e4f1",
+          "gv_id": "GV-PK-SM-SM148",
+          "set_code": "smp",
+          "name": "Champions Festival",
+          "number": "SM148",
+          "number_plain": "148"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 43,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-jirachi-sm161-staff-promo",
+      "name": "Jirachi",
+      "printed_number": "SM161",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM161",
+      "stamp_label": "Staff Stamp",
+      "distribution_context": "STAFF_EVENT",
+      "variant_key": "staff_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "3b12ada7-a6fc-4693-9436-d11978ccef76",
+        "target_gv_id": "GV-PK-SM-SM161",
+        "target_set_code": "smp",
+        "target_number": "SM161",
+        "target_number_plain": "161"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "3b12ada7-a6fc-4693-9436-d11978ccef76",
+          "gv_id": "GV-PK-SM-SM161",
+          "set_code": "smp",
+          "name": "Jirachi",
+          "number": "SM161",
+          "number_plain": "161"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 44,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-detective-pikachu-sm190-stamped-promo",
+      "name": "Detective Pikachu",
+      "printed_number": "SM190",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM190",
+      "stamp_label": "SM Promos Detective Pikachu Sm190 Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "sm_promos_detective_pikachu_sm190_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "d5645154-a1c4-4b41-854e-5b3d27a409a8",
+        "target_gv_id": "GV-PK-SM-SM190",
+        "target_set_code": "smp",
+        "target_number": "SM190",
+        "target_number_plain": "190"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "d5645154-a1c4-4b41-854e-5b3d27a409a8",
+          "gv_id": "GV-PK-SM-SM190",
+          "set_code": "smp",
+          "name": "Detective Pikachu",
+          "number": "SM190",
+          "number_plain": "190"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 45,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-psyduck-sm199-detective-pikachu-stamped-promo",
+      "name": "Psyduck",
+      "printed_number": "SM199",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM199",
+      "stamp_label": "Detective Pikachu Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "detective_pikachu_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "0a1c41ff-c58d-4d2f-9512-599e710a784b",
+        "target_gv_id": "GV-PK-SM-SM199",
+        "target_set_code": "smp",
+        "target_number": "SM199",
+        "target_number_plain": "199"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "0a1c41ff-c58d-4d2f-9512-599e710a784b",
+          "gv_id": "GV-PK-SM-SM199",
+          "set_code": "smp",
+          "name": "Psyduck",
+          "number": "SM199",
+          "number_plain": "199"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 46,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-detective-pikachu-sm170-stamped-promo",
+      "name": "Detective Pikachu",
+      "printed_number": "SM170",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM170",
+      "stamp_label": "SM Promos Detective Pikachu Sm170 Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "sm_promos_detective_pikachu_sm170_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "64f55711-ca7a-400d-b977-96ddb25efe98",
+        "target_gv_id": "GV-PK-SM-SM170",
+        "target_set_code": "smp",
+        "target_number": "SM170",
+        "target_number_plain": "170"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "64f55711-ca7a-400d-b977-96ddb25efe98",
+          "gv_id": "GV-PK-SM-SM170",
+          "set_code": "smp",
+          "name": "Detective Pikachu",
+          "number": "SM170",
+          "number_plain": "170"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 47,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-bulbasaur-sm198-detective-pikachu-stamped-promo",
+      "name": "Bulbasaur",
+      "printed_number": "SM198",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM198",
+      "stamp_label": "Detective Pikachu Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "detective_pikachu_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "0dff140a-e128-4137-a521-342c9a402c2e",
+        "target_gv_id": "GV-PK-SM-SM198",
+        "target_set_code": "smp",
+        "target_number": "SM198",
+        "target_number_plain": "198"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "0dff140a-e128-4137-a521-342c9a402c2e",
+          "gv_id": "GV-PK-SM-SM198",
+          "set_code": "smp",
+          "name": "Bulbasaur",
+          "number": "SM198",
+          "number_plain": "198"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    },
+    {
+      "backlog_index": 48,
+      "source": "justtcg",
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-snubbull-sm200-detective-pikachu-stamped-promo",
+      "name": "Snubbull",
+      "printed_number": "SM200",
+      "printed_number_format": "PROMO_PREFIX_TOKEN",
+      "printed_prefix": "SM",
+      "number_plain": "SM200",
+      "stamp_label": "Detective Pikachu Stamp",
+      "distribution_context": "NAMED_EVENT",
+      "variant_key": "detective_pikachu_stamp",
+      "underlying_base_state": "PROVEN",
+      "previous_provisional_bucket": "READY_TO_BRIDGE",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "reprint_or_unique": "UNIQUE_PROMO_SLOT_BASE",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "PROMO_PREFIX_IDENTITY_RULE_V1"
+      ],
+      "base_card_exists": true,
+      "target_base_resolution": {
+        "target_card_print_id": "5d97bf40-e235-4a96-acfa-50d29785274f",
+        "target_gv_id": "GV-PK-SM-SM200",
+        "target_set_code": "smp",
+        "target_number": "SM200",
+        "target_number_plain": "200"
+      },
+      "candidate_match_count": 1,
+      "candidate_matches": [
+        {
+          "id": "5d97bf40-e235-4a96-acfa-50d29785274f",
+          "gv_id": "GV-PK-SM-SM200",
+          "set_code": "smp",
+          "name": "Snubbull",
+          "number": "SM200",
+          "number_plain": "200"
+        }
+      ],
+      "rebucketed_classification": "READY_FOR_WAREHOUSE",
+      "reasoning": "Existing SM promo-prefix rule already covers SMP promo-slot identity; named or staff overlays remain variant_key concerns."
+    }
+  ],
+  "next_clean_batch_size": 48
+}

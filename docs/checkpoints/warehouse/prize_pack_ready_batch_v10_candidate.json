@@ -1,0 +1,426 @@
+{
+  "generated_at": "2026-04-20T18:45:03.375Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V10_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v10.json",
+  "row_count": 11,
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-town-store-common",
+      "name": "Town Store",
+      "candidate_name": "Town Store",
+      "printed_number": "196/197",
+      "normalized_number_plain": "196",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv03",
+      "effective_set_name": "Obsidian Flames",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-OBF-196",
+        "base_route": "GV-PK-OBF-196",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-OBF-196",
+          "base_route": "GV-PK-OBF-196"
+        },
+        "effective_routed_set_code": "sv03",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-iron-valiant-ex-double-rare",
+      "name": "Iron Valiant ex",
+      "candidate_name": "Iron Valiant ex",
+      "printed_number": "089/182",
+      "normalized_number_plain": "089",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        5
+      ],
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAR-89",
+        "base_route": "GV-PK-PAR-89",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          5
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAR-89",
+          "base_route": "GV-PK-PAR-89"
+        },
+        "effective_routed_set_code": "sv04",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-blindside-uncommon",
+      "name": "Technical Machine: Blindside",
+      "candidate_name": "Technical Machine: Blindside",
+      "printed_number": "176/182",
+      "normalized_number_plain": "176",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAR-176",
+        "base_route": "GV-PK-PAR-176",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAR-176",
+          "base_route": "GV-PK-PAR-176"
+        },
+        "effective_routed_set_code": "sv04",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-turbo-energize-uncommon",
+      "name": "Technical Machine: Turbo Energize",
+      "candidate_name": "Technical Machine: Turbo Energize",
+      "printed_number": "179/182",
+      "normalized_number_plain": "179",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv04",
+      "effective_set_name": "Paradox Rift",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-PAR-179",
+        "base_route": "GV-PK-PAR-179",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-PAR-179",
+          "base_route": "GV-PK-PAR-179"
+        },
+        "effective_routed_set_code": "sv04",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hyper-aroma-ace-spec-rare",
+      "name": "Hyper Aroma",
+      "candidate_name": "Hyper Aroma",
+      "printed_number": "152/167",
+      "normalized_number_plain": "152",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-TWM-152",
+        "base_route": "GV-PK-TWM-152",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-TWM-152",
+          "base_route": "GV-PK-TWM-152"
+        },
+        "effective_routed_set_code": "sv06",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ogre-s-mask-uncommon",
+      "name": "Ogre's Mask",
+      "candidate_name": "Ogre's Mask",
+      "printed_number": "159/167",
+      "normalized_number_plain": "159",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-TWM-159",
+        "base_route": "GV-PK-TWM-159",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-TWM-159",
+          "base_route": "GV-PK-TWM-159"
+        },
+        "effective_routed_set_code": "sv06",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-scoop-up-cyclone-ace-spec-rare",
+      "name": "Scoop Up Cyclone",
+      "candidate_name": "Scoop Up Cyclone",
+      "printed_number": "162/167",
+      "normalized_number_plain": "162",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-TWM-162",
+        "base_route": "GV-PK-TWM-162",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-TWM-162",
+          "base_route": "GV-PK-TWM-162"
+        },
+        "effective_routed_set_code": "sv06",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-survival-brace-ace-spec-rare",
+      "name": "Survival Brace",
+      "candidate_name": "Survival Brace",
+      "printed_number": "164/167",
+      "normalized_number_plain": "164",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-TWM-164",
+        "base_route": "GV-PK-TWM-164",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-TWM-164",
+          "base_route": "GV-PK-TWM-164"
+        },
+        "effective_routed_set_code": "sv06",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-legacy-energy-ace-spec-rare",
+      "name": "Legacy Energy",
+      "candidate_name": "Legacy Energy",
+      "printed_number": "167/167",
+      "normalized_number_plain": "167",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv06",
+      "effective_set_name": "Twilight Masquerade",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-TWM-167",
+        "base_route": "GV-PK-TWM-167",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-TWM-167",
+          "base_route": "GV-PK-TWM-167"
+        },
+        "effective_routed_set_code": "sv06",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-grand-tree-ace-spec-rare",
+      "name": "Grand Tree",
+      "candidate_name": "Grand Tree",
+      "printed_number": "136/142",
+      "normalized_number_plain": "136",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv07",
+      "effective_set_name": "Stellar Crown",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SCR-136",
+        "base_route": "GV-PK-SCR-136",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SCR-136",
+          "base_route": "GV-PK-SCR-136"
+        },
+        "effective_routed_set_code": "sv07",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-janine-s-secret-art-uncommon",
+      "name": "Janine's Secret Art",
+      "candidate_name": "Janine's Secret Art",
+      "printed_number": "059/064",
+      "normalized_number_plain": "059",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SFA-59",
+        "base_route": "GV-PK-SFA-59",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SFA-59",
+          "base_route": "GV-PK-SFA-59"
+        },
+        "effective_routed_set_code": "sv6pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    }
+  ]
+}

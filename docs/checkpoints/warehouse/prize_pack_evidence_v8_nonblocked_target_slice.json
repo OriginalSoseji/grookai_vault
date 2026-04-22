@@ -1,0 +1,890 @@
+{
+  "generated_at": "2026-04-20T16:28:14.362Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED",
+  "selection_summary": {
+    "id": "PROMO_NUMBER_ACCESSIBLE_SERIES_1_3",
+    "label": "Promo Number Accessible Series 1-3",
+    "row_count": 10,
+    "set_code_counts": {
+      "svp": 4,
+      "swshp": 6
+    },
+    "excluded_blocked_by_official_acquisition_count": 19
+  },
+  "shared_question": "For promo-numbered Prize Pack rows whose accessible raw pages omit a stable base set-name signal, does the combination of base name plus printed promo number across accessible Series 1-3 sources prove one corroborated series or multi-series duplication?",
+  "evidence_sources_used": [
+    {
+      "series": 1,
+      "source_name": "Bulbapedia Prize Pack Series One",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)"
+    },
+    {
+      "series": 2,
+      "source_name": "Bulbapedia Prize Pack Series Two",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)"
+    },
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series Three",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mimikyu-ex-promo",
+      "candidate_name": "Mimikyu ex",
+      "printed_number": "004",
+      "normalized_number_plain": "004",
+      "base_gv_id": "GV-PK-PR-SV-004",
+      "base_route": "GV-PK-PR-SV-004",
+      "base_card_print_id": null,
+      "base_card_name": "Mimikyu ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mimikyu-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/svp-004",
+        "google_search_url": "https://www.google.com/search?q=Mimikyu%20ex%20004%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Mimikyu%20ex%20004%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 004|g|[[mimikyu ex (svp promo 4)|mimikyu]]{{ex}}|psychic||-|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ampharos-ex-promo",
+      "candidate_name": "Ampharos ex",
+      "printed_number": "016",
+      "normalized_number_plain": "016",
+      "base_gv_id": "GV-PK-PR-SV-016",
+      "base_route": "GV-PK-PR-SV-016",
+      "base_card_print_id": null,
+      "base_card_name": "Ampharos ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ampharos-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/svp-016",
+        "google_search_url": "https://www.google.com/search?q=Ampharos%20ex%20016%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Ampharos%20ex%20016%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 016|g|[[ampharos ex (svp promo 16)|ampharos]]{{ex}}|lightning||-|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lucario-ex-promo",
+      "candidate_name": "Lucario ex",
+      "printed_number": "017",
+      "normalized_number_plain": "017",
+      "base_gv_id": "GV-PK-PR-SV-17",
+      "base_route": "GV-PK-PR-SV-17",
+      "base_card_print_id": null,
+      "base_card_name": "Lucario ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-lucario-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/svp-017",
+        "google_search_url": "https://www.google.com/search?q=Lucario%20ex%20017%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Lucario%20ex%20017%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 017|g|[[lucario ex (svp promo 17)|lucario]]{{ex}}|fighting||-|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cyclizar-ex-promo",
+      "candidate_name": "Cyclizar ex",
+      "printed_number": "018",
+      "normalized_number_plain": "018",
+      "base_gv_id": "GV-PK-PR-SV-18",
+      "base_route": "GV-PK-PR-SV-18",
+      "base_card_print_id": null,
+      "base_card_name": "Cyclizar ex",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "svp",
+      "effective_set_name": "Scarlet & Violet Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cyclizar-ex-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/svp-018",
+        "google_search_url": "https://www.google.com/search?q=Cyclizar%20ex%20018%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Cyclizar%20ex%20018%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsvp black star promos.png|x18px|link=svp black star promos (tcg)]] 018|g|[[cyclizar ex (svp promo 18)|cyclizar]]{{ex}}|colorless||-|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in exactly one corroborated series inside the checked Series 1-3 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-rapidash-v-promo",
+      "candidate_name": "Galarian Rapidash V",
+      "printed_number": "SWSH111",
+      "normalized_number_plain": "SWSH111",
+      "base_gv_id": "GV-PK-PR-SW-SWSH111",
+      "base_route": "GV-PK-PR-SW-SWSH111",
+      "base_card_print_id": null,
+      "base_card_name": "Galarian Rapidash V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-galarian-rapidash-v-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH111",
+        "google_search_url": "https://www.google.com/search?q=Galarian%20Rapidash%20V%20SWSH111%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Galarian%20Rapidash%20V%20SWSH111%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh111|e|[[galarian rapidash v (swsh promo 111)|galarian rapidash]]{{tcgv}}|psychic||none|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh111|e|[[galarian rapidash v (swsh promo 111)|galarian rapidash]]{{tcgv}}|psychic||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in more than one corroborated series, so the generic Play! Pokémon stamp remains distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-flareon-v-promo",
+      "candidate_name": "Flareon V",
+      "printed_number": "SWSH149",
+      "normalized_number_plain": "SWSH149",
+      "base_gv_id": "GV-PK-PR-SW-SWSH149",
+      "base_route": "GV-PK-PR-SW-SWSH149",
+      "base_card_print_id": null,
+      "base_card_name": "Flareon V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-flareon-v-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH149",
+        "google_search_url": "https://www.google.com/search?q=Flareon%20V%20SWSH149%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Flareon%20V%20SWSH149%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh149|e|[[flareon v (swsh promo 149)|flareon]]{{tcgv}}|fire||none|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh149|e|[[flareon v (swsh promo 149)|flareon]]{{tcgv}}|fire||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in more than one corroborated series, so the generic Play! Pokémon stamp remains distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-vaporeon-v-promo",
+      "candidate_name": "Vaporeon V",
+      "printed_number": "SWSH150",
+      "normalized_number_plain": "SWSH150",
+      "base_gv_id": "GV-PK-PR-SW-SWSH150",
+      "base_route": "GV-PK-PR-SW-SWSH150",
+      "base_card_print_id": null,
+      "base_card_name": "Vaporeon V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-vaporeon-v-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH150",
+        "google_search_url": "https://www.google.com/search?q=Vaporeon%20V%20SWSH150%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Vaporeon%20V%20SWSH150%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh150|e|[[vaporeon v (swsh promo 150)|vaporeon]]{{tcgv}}|water||none|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh150|e|[[vaporeon v (swsh promo 150)|vaporeon]]{{tcgv}}|water||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in more than one corroborated series, so the generic Play! Pokémon stamp remains distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-jolteon-v-promo",
+      "candidate_name": "Jolteon V",
+      "printed_number": "SWSH151",
+      "normalized_number_plain": "SWSH151",
+      "base_gv_id": "GV-PK-PR-SW-SWSH151",
+      "base_route": "GV-PK-PR-SW-SWSH151",
+      "base_card_print_id": null,
+      "base_card_name": "Jolteon V",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-jolteon-v-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH151",
+        "google_search_url": "https://www.google.com/search?q=Jolteon%20V%20SWSH151%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Jolteon%20V%20SWSH151%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        1,
+        2
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Bulbapedia Prize Pack Series One",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_One_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh151|e|[[jolteon v (swsh promo 151)|jolteon]]{{tcgv}}|lightning||none|standard set foil}}"
+        },
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh151|e|[[jolteon v (swsh promo 151)|jolteon]]{{tcgv}}|lightning||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[1,2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "DUPLICATE_REPRINT",
+      "final_decision": "DO_NOT_CANON",
+      "decision_code": "multi_series_duplicate_confirmed_by_v8_nonblocked_promo_series_1_3",
+      "final_reason": "Accessible Prize Pack promo-number evidence places this row in more than one corroborated series, so the generic Play! Pokémon stamp remains distribution-only."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-leafeon-vstar-promo",
+      "candidate_name": "Leafeon VSTAR",
+      "printed_number": "SWSH195",
+      "normalized_number_plain": "SWSH195",
+      "base_gv_id": "GV-PK-PR-SW-SWSH195",
+      "base_route": "GV-PK-PR-SW-SWSH195",
+      "base_card_print_id": null,
+      "base_card_name": "Leafeon VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-leafeon-vstar-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH195",
+        "google_search_url": "https://www.google.com/search?q=Leafeon%20VSTAR%20SWSH195%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Leafeon%20VSTAR%20SWSH195%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "This row remains outside the nonblocked lane because the next truthful upgrade step depends on official Series 1/2 checklist acquisition.",
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh195|f|[[leafeon vstar (swsh promo 195)|leafeon]]{{vstar}}|grass||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "single_series_1_or_2_promo_match_requires_official_upgrade_after_v8_nonblocked",
+      "final_reason": "Accessible evidence places the promo row in Series 1 or Series 2 only, but the truthful next step still depends on official Series 1/2 checklist acquisition before canonization."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vstar-promo",
+      "candidate_name": "Glaceon VSTAR",
+      "printed_number": "SWSH197",
+      "normalized_number_plain": "SWSH197",
+      "base_gv_id": "GV-PK-PR-SW-SWSH197",
+      "base_route": "GV-PK-PR-SW-SWSH197",
+      "base_card_print_id": null,
+      "base_card_name": "Glaceon VSTAR",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "swshp",
+      "effective_set_name": "SWSH Black Star Promos",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-glaceon-vstar-promo",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH197",
+        "google_search_url": "https://www.google.com/search?q=Glaceon%20VSTAR%20SWSH197%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Glaceon%20VSTAR%20SWSH197%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "This row remains outside the nonblocked lane because the next truthful upgrade step depends on official Series 1/2 checklist acquisition.",
+      "accessible_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "evidence_sources_used_for_v8_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Bulbapedia Prize Pack Series Two",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Two_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|swsh197|f|[[glaceon vstar (swsh promo 197)|glaceon]]{{vstar}}|water||none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_3",
+      "matching_strategy": "promo_name_plus_printed_number",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "single_series_1_or_2_promo_match_requires_official_upgrade_after_v8_nonblocked",
+      "final_reason": "Accessible evidence places the promo row in Series 1 or Series 2 only, but the truthful next step still depends on official Series 1/2 checklist acquisition before canonization."
+    }
+  ]
+}

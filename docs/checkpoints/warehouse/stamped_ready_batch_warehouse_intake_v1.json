@@ -1,0 +1,3849 @@
+{
+  "generated_at": "2026-04-18T02:11:46.340Z",
+  "workflow": "STAMPED_READY_BATCH_WAREHOUSE_INTAKE_V1",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.json",
+    "docs/checkpoints/warehouse/stamped_ready_batch_v1.json"
+  ],
+  "scope_boundary": {
+    "source_batch": "first 25 rows from STAMPED_READY_FOR_WAREHOUSE",
+    "source_set_ids": [
+      "black-and-white-promos-pokemon"
+    ],
+    "widened_beyond_first_25": false,
+    "substituted_rows": false
+  },
+  "summary": {
+    "batch_size_attempted": 25,
+    "batch_rows_bridged": 25,
+    "batch_rows_staged": 0,
+    "batch_rows_approved": 0,
+    "batch_rows_promoted": 0,
+    "dry_run_identity_audit_counts": {
+      "SLOT_CONFLICT": 7,
+      "VARIANT_IDENTITY": 18
+    },
+    "dry_run_identity_resolution_counts": {
+      "BLOCK_REVIEW_REQUIRED": 7,
+      "PROMOTE_VARIANT": 18
+    },
+    "dry_run_proposed_action_counts": {
+      "REVIEW_REQUIRED": 7,
+      "CREATE_CARD_PRINT": 18
+    }
+  },
+  "stop_triggered": true,
+  "stop_reason_class": "STAMPED_NUMBER_NORMALIZATION_SLOT_COLLISION",
+  "stop_reason": "Slash-number prerelease rows normalize onto occupied BW promo collector slots before founder approval or staging, so the bounded batch cannot lawfully advance as a whole.",
+  "bridged_rows": [
+    {
+      "batch_index": 1,
+      "warehouse_candidate_id": "d7bb74eb-8423-4e58-8091-a0b792cc4393",
+      "source_candidate_id": "c1e18472-03a6-4ea6-8960-4b1a26325d33",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 2,
+      "warehouse_candidate_id": "edc8302a-d30b-4525-9ffc-f1a15df06042",
+      "source_candidate_id": "9585caad-3630-4c0f-8c66-10f171c32ef4",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-staff-promo",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 3,
+      "warehouse_candidate_id": "e7dd8c96-a1ee-4473-b689-04dcc490dd48",
+      "source_candidate_id": "d0989109-835f-4a84-a0d6-00798c747566",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-promo",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 4,
+      "warehouse_candidate_id": "65775940-b052-4800-a978-5f0713459bd0",
+      "source_candidate_id": "fa306e3d-4825-446c-a2dd-eb2e29920757",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-staff-promo",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 5,
+      "warehouse_candidate_id": "79ce3c6a-ee4b-4324-95b1-cd9defa3a362",
+      "source_candidate_id": "1b0577e6-ea47-4240-b76f-bf7eae023e96",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-promo",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 6,
+      "warehouse_candidate_id": "a2dccbf7-db39-4a1c-8d18-caba0b41d83a",
+      "source_candidate_id": "af9f6e67-e493-4fa5-8b69-20f8be8cd805",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-staff-promo",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 7,
+      "warehouse_candidate_id": "6f2f3f75-36d9-4589-aa4f-799b46462ef3",
+      "source_candidate_id": "ab69d34f-12b7-4fe1-ab51-fba51b2890f2",
+      "source_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+      "name": "Gigalith",
+      "printed_number": "53/98",
+      "number_plain": "53",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 8,
+      "warehouse_candidate_id": "9167bf3f-0b0f-4236-9170-686b46b8a11c",
+      "source_candidate_id": "0b0c4f50-05de-45a0-9da5-27365f3e7be7",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-staff-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "number_plain": "28",
+      "variant_key": "worlds_11_staff_stamp",
+      "stamp_label": "Worlds 11 Staff Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 9,
+      "warehouse_candidate_id": "06a61a49-d588-4b1f-8136-b7f00e8894c3",
+      "source_candidate_id": "29f50414-0184-475c-b819-dd1e1b7b2683",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-top-16-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "number_plain": "28",
+      "variant_key": "worlds_11_top_16_stamp",
+      "stamp_label": "Worlds 11 Top 16 Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 10,
+      "warehouse_candidate_id": "bf6e892c-4d29-48be-8e68-e6ec79581e04",
+      "source_candidate_id": "3003050d-2e6d-45ca-af4a-0393048cd2eb",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2011-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 11,
+      "warehouse_candidate_id": "a5f6d820-f608-44b2-b447-8d5b3a5fe3b9",
+      "source_candidate_id": "f64677b6-e107-4a09-a839-5d4206749f1c",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2012-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 12,
+      "warehouse_candidate_id": "7dc022e6-ff31-4b1c-b2e2-7b0a7128c6f7",
+      "source_candidate_id": "24fc4a5b-69ae-4217-ab87-480c0e44b30c",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2012-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 13,
+      "warehouse_candidate_id": "3501aa9d-1700-4185-9006-d5c657302e70",
+      "source_candidate_id": "2027c009-6ede-4f23-a1fa-4ed4cf1c0d00",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2013-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 14,
+      "warehouse_candidate_id": "7b0dc1b7-e253-441c-ab87-01bd6e26d4bc",
+      "source_candidate_id": "d1caee38-04f5-4bbd-8220-f21d7f6ae632",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2011-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 15,
+      "warehouse_candidate_id": "f800e93b-0007-41c2-81ef-7b4884709b36",
+      "source_candidate_id": "8f2160f4-44b3-4bf5-8aca-1ceada05a3e1",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2012-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 16,
+      "warehouse_candidate_id": "12424270-dfd3-41f3-b913-ba3c3dbf27e2",
+      "source_candidate_id": "948a8e4b-0d03-4888-b198-fc28c013a748",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2012-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 17,
+      "warehouse_candidate_id": "58e31405-41f5-4b68-aa98-d6a5b06b8c3f",
+      "source_candidate_id": "7e4318ec-38d7-42e5-be84-049060b4ba56",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2013-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 18,
+      "warehouse_candidate_id": "323e3b0a-bce9-4be4-9b8c-acd9c39555a6",
+      "source_candidate_id": "d5e2833f-b548-46e1-b30a-c3f622e2cbc1",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2011-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 19,
+      "warehouse_candidate_id": "efca97c6-7c41-40a2-af6e-905c0d55cd45",
+      "source_candidate_id": "1c5dcc0a-54e6-4a9a-987f-d8d78b7ead54",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2012-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 20,
+      "warehouse_candidate_id": "baf566f5-c434-451a-9ecc-160c6469e230",
+      "source_candidate_id": "bb8b2f87-d186-4e2b-934a-3d6d3429c86d",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2012-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_spring_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 21,
+      "warehouse_candidate_id": "1a19dfbd-4184-4bd7-bbed-f3b697b52c45",
+      "source_candidate_id": "dcd93a60-1d30-4d37-beac-5d5fb40afbea",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2013-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 22,
+      "warehouse_candidate_id": "75115de2-7853-401c-9e8c-fcc0f278279a",
+      "source_candidate_id": "345efd5a-3fc8-4c88-bd29-c6213b3822c2",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-promo",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "number_plain": "40",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 23,
+      "warehouse_candidate_id": "c2a9a683-df16-4c94-964b-3ce6d5f6246c",
+      "source_candidate_id": "95efe90b-6bc7-40b5-a572-ae903fd3b97d",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-staff-promo",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "number_plain": "40",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 24,
+      "warehouse_candidate_id": "a128ad98-57c5-4780-9a0c-78fbcade12aa",
+      "source_candidate_id": "4f799f60-d2b3-45ad-bf2d-b728c4ca1032",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-promo",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "number_plain": "48",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    },
+    {
+      "batch_index": 25,
+      "warehouse_candidate_id": "22fb2be3-4908-4caa-b613-126194ef936d",
+      "source_candidate_id": "aa0dfde4-52a9-4510-ba5d-3f659b140837",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-staff-promo",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "number_plain": "48",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      }
+    }
+  ],
+  "failures_blockers": [
+    {
+      "batch_index": 1,
+      "warehouse_candidate_id": "d7bb74eb-8423-4e58-8091-a0b792cc4393",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #12/99 Arcanine as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+        "set_code": "bwp",
+        "name": "Zorua",
+        "number": "BW12",
+        "number_plain": "12",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW12"
+      }
+    },
+    {
+      "batch_index": 2,
+      "warehouse_candidate_id": "edc8302a-d30b-4525-9ffc-f1a15df06042",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-staff-promo",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #12/99 Arcanine as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+        "set_code": "bwp",
+        "name": "Zorua",
+        "number": "BW12",
+        "number_plain": "12",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW12"
+      }
+    },
+    {
+      "batch_index": 3,
+      "warehouse_candidate_id": "e7dd8c96-a1ee-4473-b689-04dcc490dd48",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-promo",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #25/114 Darmanitan as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+        "set_code": "bwp",
+        "name": "Scraggy",
+        "number": "BW25",
+        "number_plain": "25",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW25"
+      }
+    },
+    {
+      "batch_index": 4,
+      "warehouse_candidate_id": "65775940-b052-4800-a978-5f0713459bd0",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-staff-promo",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #25/114 Darmanitan as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+        "set_code": "bwp",
+        "name": "Scraggy",
+        "number": "BW25",
+        "number_plain": "25",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW25"
+      }
+    },
+    {
+      "batch_index": 5,
+      "warehouse_candidate_id": "79ce3c6a-ee4b-4324-95b1-cd9defa3a362",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-promo",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #43/101 Victini as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+        "set_code": "bwp",
+        "name": "Landorus",
+        "number": "BW43",
+        "number_plain": "43",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW43"
+      }
+    },
+    {
+      "batch_index": 6,
+      "warehouse_candidate_id": "a2dccbf7-db39-4a1c-8d18-caba0b41d83a",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-staff-promo",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #43/101 Victini as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+        "set_code": "bwp",
+        "name": "Landorus",
+        "number": "BW43",
+        "number_plain": "43",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW43"
+      }
+    },
+    {
+      "batch_index": 7,
+      "warehouse_candidate_id": "6f2f3f75-36d9-4589-aa4f-799b46462ef3",
+      "source_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+      "name": "Gigalith",
+      "printed_number": "53/98",
+      "number_plain": "53",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "blocker_class": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+      "explanation": "Identity slot audit classified bwp #53/98 Gigalith as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+      "conflicting_slot_occupant": {
+        "id": "1d89261d-4cf6-40a1-a049-58e9e6112904",
+        "set_code": "bwp",
+        "name": "Flygon",
+        "number": "BW53",
+        "number_plain": "53",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW53"
+      }
+    }
+  ],
+  "ready_but_not_advanced_due_to_batch_stop": [
+    {
+      "batch_index": 8,
+      "warehouse_candidate_id": "9167bf3f-0b0f-4236-9170-686b46b8a11c",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-staff-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "variant_key": "worlds_11_staff_stamp",
+      "stamp_label": "Worlds 11 Staff Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "6456900b-a84d-49fa-966c-410df887309b",
+        "set_code": "bwp",
+        "name": "Tropical Beach",
+        "number": "BW28",
+        "number_plain": "28",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW28"
+      }
+    },
+    {
+      "batch_index": 9,
+      "warehouse_candidate_id": "06a61a49-d588-4b1f-8136-b7f00e8894c3",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-top-16-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "variant_key": "worlds_11_top_16_stamp",
+      "stamp_label": "Worlds 11 Top 16 Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "6456900b-a84d-49fa-966c-410df887309b",
+        "set_code": "bwp",
+        "name": "Tropical Beach",
+        "number": "BW28",
+        "number_plain": "28",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW28"
+      }
+    },
+    {
+      "batch_index": 10,
+      "warehouse_candidate_id": "bf6e892c-4d29-48be-8e68-e6ec79581e04",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2011-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW29",
+        "number_plain": "29",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW29"
+      }
+    },
+    {
+      "batch_index": 11,
+      "warehouse_candidate_id": "a5f6d820-f608-44b2-b447-8d5b3a5fe3b9",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2012-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW29",
+        "number_plain": "29",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW29"
+      }
+    },
+    {
+      "batch_index": 12,
+      "warehouse_candidate_id": "7dc022e6-ff31-4b1c-b2e2-7b0a7128c6f7",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2012-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW29",
+        "number_plain": "29",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW29"
+      }
+    },
+    {
+      "batch_index": 13,
+      "warehouse_candidate_id": "3501aa9d-1700-4185-9006-d5c657302e70",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2013-3rd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW29",
+        "number_plain": "29",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW29"
+      }
+    },
+    {
+      "batch_index": 14,
+      "warehouse_candidate_id": "7b0dc1b7-e253-441c-ab87-01bd6e26d4bc",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2011-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW30",
+        "number_plain": "30",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW30"
+      }
+    },
+    {
+      "batch_index": 15,
+      "warehouse_candidate_id": "f800e93b-0007-41c2-81ef-7b4884709b36",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2012-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW30",
+        "number_plain": "30",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW30"
+      }
+    },
+    {
+      "batch_index": 16,
+      "warehouse_candidate_id": "12424270-dfd3-41f3-b913-ba3c3dbf27e2",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2012-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW30",
+        "number_plain": "30",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW30"
+      }
+    },
+    {
+      "batch_index": 17,
+      "warehouse_candidate_id": "58e31405-41f5-4b68-aa98-d6a5b06b8c3f",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2013-2nd-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW30",
+        "number_plain": "30",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW30"
+      }
+    },
+    {
+      "batch_index": 18,
+      "warehouse_candidate_id": "323e3b0a-bce9-4be4-9b8c-acd9c39555a6",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2011-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW31",
+        "number_plain": "31",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW31"
+      }
+    },
+    {
+      "batch_index": 19,
+      "warehouse_candidate_id": "efca97c6-7c41-40a2-af6e-905c0d55cd45",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2012-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW31",
+        "number_plain": "31",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW31"
+      }
+    },
+    {
+      "batch_index": 20,
+      "warehouse_candidate_id": "baf566f5-c434-451a-9ecc-160c6469e230",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2012-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "variant_key": "battle_road_spring_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW31",
+        "number_plain": "31",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW31"
+      }
+    },
+    {
+      "batch_index": 21,
+      "warehouse_candidate_id": "1a19dfbd-4184-4bd7-bbed-f3b697b52c45",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2013-1st-place-promo",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "set_code": "bwp",
+        "name": "Victory Cup",
+        "number": "BW31",
+        "number_plain": "31",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW31"
+      }
+    },
+    {
+      "batch_index": 22,
+      "warehouse_candidate_id": "75115de2-7853-401c-9e8c-fcc0f278279a",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-promo",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "set_code": "bwp",
+        "name": "Volcarona",
+        "number": "BW40",
+        "number_plain": "40",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW40"
+      }
+    },
+    {
+      "batch_index": 23,
+      "warehouse_candidate_id": "c2a9a683-df16-4c94-964b-3ce6d5f6246c",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-staff-promo",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "set_code": "bwp",
+        "name": "Volcarona",
+        "number": "BW40",
+        "number_plain": "40",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW40"
+      }
+    },
+    {
+      "batch_index": 24,
+      "warehouse_candidate_id": "a128ad98-57c5-4780-9a0c-78fbcade12aa",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-promo",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "set_code": "bwp",
+        "name": "Altaria",
+        "number": "BW48",
+        "number_plain": "48",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW48"
+      }
+    },
+    {
+      "batch_index": 25,
+      "warehouse_candidate_id": "22fb2be3-4908-4caa-b613-126194ef936d",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-staff-promo",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "dry_run_identity_status": "VARIANT_IDENTITY",
+      "dry_run_identity_resolution": "PROMOTE_VARIANT",
+      "dry_run_proposed_action_type": "CREATE_CARD_PRINT",
+      "canonical_base_row": {
+        "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "set_code": "bwp",
+        "name": "Altaria",
+        "number": "BW48",
+        "number_plain": "48",
+        "variant_key": null,
+        "gv_id": "GV-PK-PR-BLW-BW48"
+      }
+    }
+  ],
+  "normalized_stamp_labels_used": [
+    "Battle Road Autumn 2011 1st Place Stamp",
+    "Battle Road Autumn 2011 2nd Place Stamp",
+    "Battle Road Autumn 2011 3rd Place Stamp",
+    "Battle Road Autumn 2012 1st Place Stamp",
+    "Battle Road Autumn 2012 2nd Place Stamp",
+    "Battle Road Autumn 2012 3rd Place Stamp",
+    "Battle Road Spring 2012 1st Place Stamp",
+    "Battle Road Spring 2012 2nd Place Stamp",
+    "Battle Road Spring 2012 3rd Place Stamp",
+    "Battle Road Spring 2013 1st Place Stamp",
+    "Battle Road Spring 2013 2nd Place Stamp",
+    "Battle Road Spring 2013 3rd Place Stamp",
+    "Prerelease Stamp",
+    "Staff Prerelease Stamp",
+    "Worlds 11 Staff Stamp",
+    "Worlds 11 Top 16 Stamp"
+  ],
+  "canonical_verification_summary": {
+    "promoted_card_print_count_delta": 0,
+    "base_rows_changed": false,
+    "stamped_rows_created": 0,
+    "base_stamped_collapse_detected": true,
+    "collapse_rows": [
+      {
+        "batch_index": 1,
+        "name": "Arcanine",
+        "printed_number": "12/99",
+        "variant_key": "prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+          "set_code": "bwp",
+          "name": "Zorua",
+          "number": "BW12",
+          "number_plain": "12",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW12"
+        }
+      },
+      {
+        "batch_index": 2,
+        "name": "Arcanine",
+        "printed_number": "12/99",
+        "variant_key": "staff_prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+          "set_code": "bwp",
+          "name": "Zorua",
+          "number": "BW12",
+          "number_plain": "12",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW12"
+        }
+      },
+      {
+        "batch_index": 3,
+        "name": "Darmanitan",
+        "printed_number": "25/114",
+        "variant_key": "prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+          "set_code": "bwp",
+          "name": "Scraggy",
+          "number": "BW25",
+          "number_plain": "25",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW25"
+        }
+      },
+      {
+        "batch_index": 4,
+        "name": "Darmanitan",
+        "printed_number": "25/114",
+        "variant_key": "staff_prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+          "set_code": "bwp",
+          "name": "Scraggy",
+          "number": "BW25",
+          "number_plain": "25",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW25"
+        }
+      },
+      {
+        "batch_index": 5,
+        "name": "Victini",
+        "printed_number": "43/101",
+        "variant_key": "prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+          "set_code": "bwp",
+          "name": "Landorus",
+          "number": "BW43",
+          "number_plain": "43",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW43"
+        }
+      },
+      {
+        "batch_index": 6,
+        "name": "Victini",
+        "printed_number": "43/101",
+        "variant_key": "staff_prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+          "set_code": "bwp",
+          "name": "Landorus",
+          "number": "BW43",
+          "number_plain": "43",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW43"
+        }
+      },
+      {
+        "batch_index": 7,
+        "name": "Gigalith",
+        "printed_number": "53/98",
+        "variant_key": "prerelease_stamp",
+        "conflicting_slot_occupant": {
+          "id": "1d89261d-4cf6-40a1-a049-58e9e6112904",
+          "set_code": "bwp",
+          "name": "Flygon",
+          "number": "BW53",
+          "number_plain": "53",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW53"
+        }
+      }
+    ],
+    "warehouse_state_counts": {
+      "RAW": 25
+    },
+    "dangling_raw_rows_for_batch": 25,
+    "staging_rows_for_batch": 0,
+    "approved_rows_for_batch": 0,
+    "promoted_rows_for_batch": 0,
+    "mapping_image_follow_up_status": "No mapping or image writer ran in this pass; follow-up remains post-promotion work."
+  },
+  "lessons_learned": [
+    "The stamped bridge path is sound for bounded source-backed intake: all 25 rows bridged cleanly into RAW with deterministic stamped variant payloads.",
+    "The current warehouse identity slot model collapses slash-number stamped promos onto occupied BW promo collector slots because number_plain strips the right-hand total and collides with existing BWxx base rows.",
+    "Base proof was present for every batch row, but several underlying base rows still carry blank-string variant_key values instead of NULL; that drift should be corrected in the base repair pass before widening the backlog.",
+    "Because the stop condition fired during classification dry-run, no founder approval, staging, executor dry-run, or canon write was lawful in this batch pass."
+  ],
+  "broader_173_queue_safe_to_continue": false,
+  "recommended_next_execution_step": "STAMPED_MAPPING_AND_IMAGE_CLOSURE_V1",
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo",
+      "warehouse_candidate_id": "d7bb74eb-8423-4e58-8091-a0b792cc4393",
+      "source_candidate_id": "c1e18472-03a6-4ea6-8960-4b1a26325d33",
+      "raw_import_id": "31557",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Arcanine | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "live_base_set_code": "bw4",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #12/99 Arcanine as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+          "set_code": "bwp",
+          "name": "Zorua",
+          "number": "BW12",
+          "number_plain": "12",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW12"
+        }
+      }
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-staff-promo",
+      "warehouse_candidate_id": "edc8302a-d30b-4525-9ffc-f1a15df06042",
+      "source_candidate_id": "9585caad-3630-4c0f-8c66-10f171c32ef4",
+      "raw_import_id": "31522",
+      "name": "Arcanine",
+      "printed_number": "12/99",
+      "number_plain": "12",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Arcanine | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "live_base_set_code": "bw4",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #12/99 Arcanine as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "f1a34d1a-8e98-4752-b5da-32d4bb2db29a",
+          "set_code": "bwp",
+          "name": "Zorua",
+          "number": "BW12",
+          "number_plain": "12",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW12"
+        }
+      }
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-promo",
+      "warehouse_candidate_id": "e7dd8c96-a1ee-4473-b689-04dcc490dd48",
+      "source_candidate_id": "d0989109-835f-4a84-a0d6-00798c747566",
+      "raw_import_id": "31591",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Darmanitan | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "live_base_set_code": "bw1",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #25/114 Darmanitan as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+          "set_code": "bwp",
+          "name": "Scraggy",
+          "number": "BW25",
+          "number_plain": "25",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW25"
+        }
+      }
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-staff-promo",
+      "warehouse_candidate_id": "65775940-b052-4800-a978-5f0713459bd0",
+      "source_candidate_id": "fa306e3d-4825-446c-a2dd-eb2e29920757",
+      "raw_import_id": "31553",
+      "name": "Darmanitan",
+      "printed_number": "25/114",
+      "number_plain": "25",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Darmanitan | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "live_base_set_code": "bw1",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #25/114 Darmanitan as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "b4e7b7f6-1853-46b2-a2c1-314c972a9dab",
+          "set_code": "bwp",
+          "name": "Scraggy",
+          "number": "BW25",
+          "number_plain": "25",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW25"
+        }
+      }
+    },
+    {
+      "batch_index": 5,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-promo",
+      "warehouse_candidate_id": "79ce3c6a-ee4b-4324-95b1-cd9defa3a362",
+      "source_candidate_id": "1b0577e6-ea47-4240-b76f-bf7eae023e96",
+      "raw_import_id": "31563",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Victini | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "live_base_set_code": "bw3",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #43/101 Victini as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+          "set_code": "bwp",
+          "name": "Landorus",
+          "number": "BW43",
+          "number_plain": "43",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW43"
+        }
+      }
+    },
+    {
+      "batch_index": 6,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-staff-promo",
+      "warehouse_candidate_id": "a2dccbf7-db39-4a1c-8d18-caba0b41d83a",
+      "source_candidate_id": "af9f6e67-e493-4fa5-8b69-20f8be8cd805",
+      "raw_import_id": "31532",
+      "name": "Victini",
+      "printed_number": "43/101",
+      "number_plain": "43",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Victini | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "live_base_set_code": "bw3",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #43/101 Victini as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "107474d3-f3c2-49c9-97f6-5ee864bac226",
+          "set_code": "bwp",
+          "name": "Landorus",
+          "number": "BW43",
+          "number_plain": "43",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW43"
+        }
+      }
+    },
+    {
+      "batch_index": 7,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+      "warehouse_candidate_id": "6f2f3f75-36d9-4589-aa4f-799b46462ef3",
+      "source_candidate_id": "ab69d34f-12b7-4fe1-ab51-fba51b2890f2",
+      "raw_import_id": "31607",
+      "name": "Gigalith",
+      "printed_number": "53/98",
+      "number_plain": "53",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "unique_underlying_canon_match_supports_missing_special_identity",
+        "evidence_summary": "base_name=Gigalith | set_hint=bwp | set_card_prints=101 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=partial_same_set_candidate_surface | rarity=Promo",
+        "live_base_card_print_id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611",
+        "live_base_set_code": "bw2",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_PARTIAL",
+        "identity_audit_status": "SLOT_CONFLICT",
+        "identity_resolution": "BLOCK_REVIEW_REQUIRED",
+        "interpreter_decision": "BLOCKED",
+        "interpreter_reason_code": "SLOT_OCCUPIED_BY_DIFFERENT_NAME",
+        "proposed_action_type": "REVIEW_REQUIRED",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #53/98 Gigalith as SLOT_CONFLICT because the slot is already occupied by a different canonical identity.",
+        "slot_occupant": {
+          "id": "1d89261d-4cf6-40a1-a049-58e9e6112904",
+          "set_code": "bwp",
+          "name": "Flygon",
+          "number": "BW53",
+          "number_plain": "53",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW53"
+        }
+      }
+    },
+    {
+      "batch_index": 8,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-staff-promo",
+      "warehouse_candidate_id": "9167bf3f-0b0f-4236-9170-686b46b8a11c",
+      "source_candidate_id": "0b0c4f50-05de-45a0-9da5-27365f3e7be7",
+      "raw_import_id": "31514",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "number_plain": "28",
+      "variant_key": "worlds_11_staff_stamp",
+      "stamp_label": "Worlds 11 Staff Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Tropical Beach | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "6456900b-a84d-49fa-966c-410df887309b",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW28 Tropical Beach as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "6456900b-a84d-49fa-966c-410df887309b",
+          "set_code": "bwp",
+          "name": "Tropical Beach",
+          "number": "BW28",
+          "number_plain": "28",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW28"
+        }
+      }
+    },
+    {
+      "batch_index": 9,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-top-16-promo",
+      "warehouse_candidate_id": "06a61a49-d588-4b1f-8136-b7f00e8894c3",
+      "source_candidate_id": "29f50414-0184-475c-b819-dd1e1b7b2683",
+      "raw_import_id": "31513",
+      "name": "Tropical Beach",
+      "printed_number": "BW28",
+      "number_plain": "28",
+      "variant_key": "worlds_11_top_16_stamp",
+      "stamp_label": "Worlds 11 Top 16 Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Tropical Beach | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "6456900b-a84d-49fa-966c-410df887309b",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW28 Tropical Beach as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "6456900b-a84d-49fa-966c-410df887309b",
+          "set_code": "bwp",
+          "name": "Tropical Beach",
+          "number": "BW28",
+          "number_plain": "28",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW28"
+        }
+      }
+    },
+    {
+      "batch_index": 10,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2011-3rd-place-promo",
+      "warehouse_candidate_id": "bf6e892c-4d29-48be-8e68-e6ec79581e04",
+      "source_candidate_id": "3003050d-2e6d-45ca-af4a-0393048cd2eb",
+      "raw_import_id": "31536",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW29 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW29",
+          "number_plain": "29",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      }
+    },
+    {
+      "batch_index": 11,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2012-3rd-place-promo",
+      "warehouse_candidate_id": "a5f6d820-f608-44b2-b447-8d5b3a5fe3b9",
+      "source_candidate_id": "f64677b6-e107-4a09-a839-5d4206749f1c",
+      "raw_import_id": "31556",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW29 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW29",
+          "number_plain": "29",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      }
+    },
+    {
+      "batch_index": 12,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2012-3rd-place-promo",
+      "warehouse_candidate_id": "7dc022e6-ff31-4b1c-b2e2-7b0a7128c6f7",
+      "source_candidate_id": "24fc4a5b-69ae-4217-ab87-480c0e44b30c",
+      "raw_import_id": "31550",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW29 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW29",
+          "number_plain": "29",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      }
+    },
+    {
+      "batch_index": 13,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2013-3rd-place-promo",
+      "warehouse_candidate_id": "3501aa9d-1700-4185-9006-d5c657302e70",
+      "source_candidate_id": "2027c009-6ede-4f23-a1fa-4ed4cf1c0d00",
+      "raw_import_id": "31540",
+      "name": "Victory Cup",
+      "printed_number": "BW29",
+      "number_plain": "29",
+      "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW29 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW29",
+          "number_plain": "29",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      }
+    },
+    {
+      "batch_index": 14,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2011-2nd-place-promo",
+      "warehouse_candidate_id": "7b0dc1b7-e253-441c-ab87-01bd6e26d4bc",
+      "source_candidate_id": "d1caee38-04f5-4bbd-8220-f21d7f6ae632",
+      "raw_import_id": "31554",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW30 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW30",
+          "number_plain": "30",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      }
+    },
+    {
+      "batch_index": 15,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2012-2nd-place-promo",
+      "warehouse_candidate_id": "f800e93b-0007-41c2-81ef-7b4884709b36",
+      "source_candidate_id": "8f2160f4-44b3-4bf5-8aca-1ceada05a3e1",
+      "raw_import_id": "31546",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW30 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW30",
+          "number_plain": "30",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      }
+    },
+    {
+      "batch_index": 16,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2012-2nd-place-promo",
+      "warehouse_candidate_id": "12424270-dfd3-41f3-b913-ba3c3dbf27e2",
+      "source_candidate_id": "948a8e4b-0d03-4888-b198-fc28c013a748",
+      "raw_import_id": "31542",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW30 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW30",
+          "number_plain": "30",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      }
+    },
+    {
+      "batch_index": 17,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2013-2nd-place-promo",
+      "warehouse_candidate_id": "58e31405-41f5-4b68-aa98-d6a5b06b8c3f",
+      "source_candidate_id": "7e4318ec-38d7-42e5-be84-049060b4ba56",
+      "raw_import_id": "31541",
+      "name": "Victory Cup",
+      "printed_number": "BW30",
+      "number_plain": "30",
+      "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW30 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW30",
+          "number_plain": "30",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      }
+    },
+    {
+      "batch_index": 18,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2011-1st-place-promo",
+      "warehouse_candidate_id": "323e3b0a-bce9-4be4-9b8c-acd9c39555a6",
+      "source_candidate_id": "d5e2833f-b548-46e1-b30a-c3f622e2cbc1",
+      "raw_import_id": "31529",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW31 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW31",
+          "number_plain": "31",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      }
+    },
+    {
+      "batch_index": 19,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2012-1st-place-promo",
+      "warehouse_candidate_id": "efca97c6-7c41-40a2-af6e-905c0d55cd45",
+      "source_candidate_id": "1c5dcc0a-54e6-4a9a-987f-d8d78b7ead54",
+      "raw_import_id": "31528",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW31 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW31",
+          "number_plain": "31",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      }
+    },
+    {
+      "batch_index": 20,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2012-1st-place-promo",
+      "warehouse_candidate_id": "baf566f5-c434-451a-9ecc-160c6469e230",
+      "source_candidate_id": "bb8b2f87-d186-4e2b-934a-3d6d3429c86d",
+      "raw_import_id": "31526",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_spring_2012_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW31 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW31",
+          "number_plain": "31",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      }
+    },
+    {
+      "batch_index": 21,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2013-1st-place-promo",
+      "warehouse_candidate_id": "1a19dfbd-4184-4bd7-bbed-f3b697b52c45",
+      "source_candidate_id": "dcd93a60-1d30-4d37-beac-5d5fb40afbea",
+      "raw_import_id": "31531",
+      "name": "Victory Cup",
+      "printed_number": "BW31",
+      "number_plain": "31",
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Victory Cup | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW31 Victory Cup as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "name": "Victory Cup",
+          "number": "BW31",
+          "number_plain": "31",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      }
+    },
+    {
+      "batch_index": 22,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-promo",
+      "warehouse_candidate_id": "75115de2-7853-401c-9e8c-fcc0f278279a",
+      "source_candidate_id": "345efd5a-3fc8-4c88-bd29-c6213b3822c2",
+      "raw_import_id": "31580",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "number_plain": "40",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Volcarona | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW40 Volcarona as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "145d1f13-7317-4757-afad-808cb11a379f",
+          "set_code": "bwp",
+          "name": "Volcarona",
+          "number": "BW40",
+          "number_plain": "40",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW40"
+        }
+      }
+    },
+    {
+      "batch_index": 23,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-staff-promo",
+      "warehouse_candidate_id": "c2a9a683-df16-4c94-964b-3ce6d5f6246c",
+      "source_candidate_id": "95efe90b-6bc7-40b5-a572-ae903fd3b97d",
+      "raw_import_id": "31527",
+      "name": "Volcarona",
+      "printed_number": "BW40",
+      "number_plain": "40",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Volcarona | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW40 Volcarona as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "145d1f13-7317-4757-afad-808cb11a379f",
+          "set_code": "bwp",
+          "name": "Volcarona",
+          "number": "BW40",
+          "number_plain": "40",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW40"
+        }
+      }
+    },
+    {
+      "batch_index": 24,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-promo",
+      "warehouse_candidate_id": "a128ad98-57c5-4780-9a0c-78fbcade12aa",
+      "source_candidate_id": "4f799f60-d2b3-45ad-bf2d-b728c4ca1032",
+      "raw_import_id": "31568",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "number_plain": "48",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Altaria | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW48 Altaria as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+          "set_code": "bwp",
+          "name": "Altaria",
+          "number": "BW48",
+          "number_plain": "48",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW48"
+        }
+      }
+    },
+    {
+      "batch_index": 25,
+      "source": "justtcg",
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-staff-promo",
+      "warehouse_candidate_id": "22fb2be3-4908-4caa-b613-126194ef936d",
+      "source_candidate_id": "aa0dfde4-52a9-4510-ba5d-3f659b140837",
+      "raw_import_id": "31533",
+      "name": "Altaria",
+      "printed_number": "BW48",
+      "number_plain": "48",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "same_set_base_match_exists_but_special_identity_row_is_missing",
+        "evidence_summary": "base_name=Altaria | set_hint=bwp | set_card_prints=101 | exact_set_matches=1 | plain_set_matches=1 | global_exact_matches=1 | global_plain_matches=1 | staging_reason=token_lane_unsupported | rarity=Promo",
+        "live_base_card_print_id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "live_base_set_code": "bwp",
+        "live_base_variant_key": ""
+      },
+      "warehouse_state": {
+        "state": "RAW",
+        "current_staging_id": null,
+        "founder_approved_by_user_id": null,
+        "founder_approved_at": null,
+        "promoted_card_print_id": null
+      },
+      "dry_run": {
+        "classification_status": "CLASSIFIED_READY",
+        "identity_audit_status": "VARIANT_IDENTITY",
+        "identity_resolution": "PROMOTE_VARIANT",
+        "interpreter_decision": "ROW",
+        "interpreter_reason_code": "IDENTITY_DELTA_VARIANT_KEY",
+        "proposed_action_type": "CREATE_CARD_PRINT",
+        "terminal_state": "REVIEW_READY",
+        "explanation": "Identity slot audit classified bwp #BW48 Altaria as VARIANT_IDENTITY because the candidate carries a deterministic identity-bearing modifier that belongs on card_prints.variant_key.",
+        "slot_occupant": {
+          "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+          "set_code": "bwp",
+          "name": "Altaria",
+          "number": "BW48",
+          "number_plain": "48",
+          "variant_key": null,
+          "gv_id": "GV-PK-PR-BLW-BW48"
+        }
+      }
+    }
+  ],
+  "current_status": "COMPLETED_AFTER_PROMO_SLOT_REPAIR_AND_PERFECT_ORDER_GUARD_SCOPE_FIX",
+  "resume_execution_summary": {
+    "generated_at": "2026-04-18T03:26:15.373Z",
+    "batch_size_attempted": 25,
+    "batch_rows_classified": 25,
+    "batch_rows_staged": 25,
+    "batch_rows_approved": 25,
+    "batch_rows_promoted": 25,
+    "batch_failures": [],
+    "classification_result_counts": {
+      "REVIEW_READY": 25
+    },
+    "staging_result_counts": {
+      "STAGED_FOR_PROMOTION": 25
+    },
+    "promotion_result_counts": {
+      "CARD_PRINT_CREATED": 25
+    },
+    "mapping_followup_required": "YES",
+    "image_followup_required": "YES",
+    "recommended_next_execution_step": "STAMPED_MAPPING_AND_IMAGE_CLOSURE_V1"
+  },
+  "resume_execution_v1": {
+    "scope_boundary": {
+      "exact_original_batch_only": true,
+      "widened_beyond_first_25": false,
+      "substituted_rows": false
+    },
+    "repaired_stage_guard_fix": {
+      "class": "PERFECT_ORDER_GUARD_SCOPE_FIX",
+      "summary": "Promotion staging/executor now ignore non-Perfect-Order collision groups when validating Perfect Order illustration-category requirements.",
+      "files": [
+        "backend/identity/perfect_order_variant_identity_rule_v1.mjs",
+        "backend/identity/perfect_order_variant_identity_rule_v1.test.mjs"
+      ]
+    },
+    "review_summary": {
+      "grouped_by_source_set_stamp_effective_set_variant": [
+        {
+          "group_key": "black-and-white-promos-pokemon | Prerelease Stamp | bw4 | prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 1,
+              "name": "Arcanine",
+              "printed_number": "12/99",
+              "promoted_card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Staff Prerelease Stamp | bw4 | staff_prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 2,
+              "name": "Arcanine",
+              "printed_number": "12/99",
+              "promoted_card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Prerelease Stamp | bw1 | prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 3,
+              "name": "Darmanitan",
+              "printed_number": "25/114",
+              "promoted_card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Staff Prerelease Stamp | bw1 | staff_prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 4,
+              "name": "Darmanitan",
+              "printed_number": "25/114",
+              "promoted_card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Prerelease Stamp | bw3 | prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 5,
+              "name": "Victini",
+              "printed_number": "43/101",
+              "promoted_card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Staff Prerelease Stamp | bw3 | staff_prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 6,
+              "name": "Victini",
+              "printed_number": "43/101",
+              "promoted_card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Prerelease Stamp | bw2 | prerelease_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 7,
+              "name": "Gigalith",
+              "printed_number": "53/98",
+              "promoted_card_print_id": "9bc5a43e-13de-411d-a903-719cd149f746"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Worlds 11 Staff Stamp | bwp | worlds_11_staff_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 8,
+              "name": "Tropical Beach",
+              "printed_number": "BW28",
+              "promoted_card_print_id": "dcdddef8-1f41-4545-9562-d725395261c6"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Worlds 11 Top 16 Stamp | bwp | worlds_11_top_16_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 9,
+              "name": "Tropical Beach",
+              "printed_number": "BW28",
+              "promoted_card_print_id": "3fb6b255-a389-4d58-a6eb-8f9b6b336a43"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2011 3rd Place Stamp | bwp | battle_road_autumn_2011_3rd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 10,
+              "name": "Victory Cup",
+              "printed_number": "BW29",
+              "promoted_card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2012 3rd Place Stamp | bwp | battle_road_autumn_2012_3rd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 11,
+              "name": "Victory Cup",
+              "printed_number": "BW29",
+              "promoted_card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2012 3rd Place Stamp | bwp | battle_road_spring_2012_3rd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 12,
+              "name": "Victory Cup",
+              "printed_number": "BW29",
+              "promoted_card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2013 3rd Place Stamp | bwp | battle_road_spring_2013_3rd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 13,
+              "name": "Victory Cup",
+              "printed_number": "BW29",
+              "promoted_card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2011 2nd Place Stamp | bwp | battle_road_autumn_2011_2nd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 14,
+              "name": "Victory Cup",
+              "printed_number": "BW30",
+              "promoted_card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2012 2nd Place Stamp | bwp | battle_road_autumn_2012_2nd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 15,
+              "name": "Victory Cup",
+              "printed_number": "BW30",
+              "promoted_card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2012 2nd Place Stamp | bwp | battle_road_spring_2012_2nd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 16,
+              "name": "Victory Cup",
+              "printed_number": "BW30",
+              "promoted_card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2013 2nd Place Stamp | bwp | battle_road_spring_2013_2nd_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 17,
+              "name": "Victory Cup",
+              "printed_number": "BW30",
+              "promoted_card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2011 1st Place Stamp | bwp | battle_road_autumn_2011_1st_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 18,
+              "name": "Victory Cup",
+              "printed_number": "BW31",
+              "promoted_card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Autumn 2012 1st Place Stamp | bwp | battle_road_autumn_2012_1st_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 19,
+              "name": "Victory Cup",
+              "printed_number": "BW31",
+              "promoted_card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2012 1st Place Stamp | bwp | battle_road_spring_2012_1st_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 20,
+              "name": "Victory Cup",
+              "printed_number": "BW31",
+              "promoted_card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Battle Road Spring 2013 1st Place Stamp | bwp | battle_road_spring_2013_1st_place_stamp",
+          "count": 1,
+          "rows": [
+            {
+              "batch_index": 21,
+              "name": "Victory Cup",
+              "printed_number": "BW31",
+              "promoted_card_print_id": "668bac23-4c00-472a-afad-9464c778f66a"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Prerelease Stamp | bwp | prerelease_stamp",
+          "count": 2,
+          "rows": [
+            {
+              "batch_index": 22,
+              "name": "Volcarona",
+              "printed_number": "BW40",
+              "promoted_card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e"
+            },
+            {
+              "batch_index": 24,
+              "name": "Altaria",
+              "printed_number": "BW48",
+              "promoted_card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca"
+            }
+          ]
+        },
+        {
+          "group_key": "black-and-white-promos-pokemon | Staff Prerelease Stamp | bwp | staff_prerelease_stamp",
+          "count": 2,
+          "rows": [
+            {
+              "batch_index": 23,
+              "name": "Volcarona",
+              "printed_number": "BW40",
+              "promoted_card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c"
+            },
+            {
+              "batch_index": 25,
+              "name": "Altaria",
+              "printed_number": "BW48",
+              "promoted_card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b"
+            }
+          ]
+        }
+      ],
+      "representative_examples": [
+        {
+          "batch_index": 1,
+          "base_name": "Arcanine",
+          "printed_number": "12/99",
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "effective_set_code": "bw4",
+          "promoted_card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02"
+        },
+        {
+          "batch_index": 2,
+          "base_name": "Arcanine",
+          "printed_number": "12/99",
+          "stamped_variant_key": "staff_prerelease_stamp",
+          "stamp_label": "Staff Prerelease Stamp",
+          "effective_set_code": "bw4",
+          "promoted_card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104"
+        },
+        {
+          "batch_index": 3,
+          "base_name": "Darmanitan",
+          "printed_number": "25/114",
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "effective_set_code": "bw1",
+          "promoted_card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab"
+        },
+        {
+          "batch_index": 4,
+          "base_name": "Darmanitan",
+          "printed_number": "25/114",
+          "stamped_variant_key": "staff_prerelease_stamp",
+          "stamp_label": "Staff Prerelease Stamp",
+          "effective_set_code": "bw1",
+          "promoted_card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70"
+        },
+        {
+          "batch_index": 5,
+          "base_name": "Victini",
+          "printed_number": "43/101",
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "effective_set_code": "bw3",
+          "promoted_card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1"
+        },
+        {
+          "batch_index": 6,
+          "base_name": "Victini",
+          "printed_number": "43/101",
+          "stamped_variant_key": "staff_prerelease_stamp",
+          "stamp_label": "Staff Prerelease Stamp",
+          "effective_set_code": "bw3",
+          "promoted_card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d"
+        },
+        {
+          "batch_index": 7,
+          "base_name": "Gigalith",
+          "printed_number": "53/98",
+          "stamped_variant_key": "prerelease_stamp",
+          "stamp_label": "Prerelease Stamp",
+          "effective_set_code": "bw2",
+          "promoted_card_print_id": "9bc5a43e-13de-411d-a903-719cd149f746"
+        },
+        {
+          "batch_index": 8,
+          "base_name": "Tropical Beach",
+          "printed_number": "BW28",
+          "stamped_variant_key": "worlds_11_staff_stamp",
+          "stamp_label": "Worlds 11 Staff Stamp",
+          "effective_set_code": "bwp",
+          "promoted_card_print_id": "dcdddef8-1f41-4545-9562-d725395261c6"
+        },
+        {
+          "batch_index": 9,
+          "base_name": "Tropical Beach",
+          "printed_number": "BW28",
+          "stamped_variant_key": "worlds_11_top_16_stamp",
+          "stamp_label": "Worlds 11 Top 16 Stamp",
+          "effective_set_code": "bwp",
+          "promoted_card_print_id": "3fb6b255-a389-4d58-a6eb-8f9b6b336a43"
+        },
+        {
+          "batch_index": 10,
+          "base_name": "Victory Cup",
+          "printed_number": "BW29",
+          "stamped_variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+          "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+          "effective_set_code": "bwp",
+          "promoted_card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a"
+        }
+      ]
+    },
+    "repaired_rows_final_outcomes": [
+      {
+        "batch_index": 1,
+        "name": "Arcanine",
+        "printed_number": "12/99",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "promoted_set_code": "bw4",
+        "promoted_number": "12",
+        "promoted_card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02",
+        "underlying_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4"
+      },
+      {
+        "batch_index": 2,
+        "name": "Arcanine",
+        "printed_number": "12/99",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "promoted_set_code": "bw4",
+        "promoted_number": "12",
+        "promoted_card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104",
+        "underlying_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4"
+      },
+      {
+        "batch_index": 3,
+        "name": "Darmanitan",
+        "printed_number": "25/114",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "promoted_set_code": "bw1",
+        "promoted_number": "25",
+        "promoted_card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+        "underlying_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11"
+      },
+      {
+        "batch_index": 4,
+        "name": "Darmanitan",
+        "printed_number": "25/114",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "promoted_set_code": "bw1",
+        "promoted_number": "25",
+        "promoted_card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+        "underlying_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11"
+      },
+      {
+        "batch_index": 5,
+        "name": "Victini",
+        "printed_number": "43/101",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "promoted_set_code": "bw3",
+        "promoted_number": "43",
+        "promoted_card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1",
+        "underlying_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e"
+      },
+      {
+        "batch_index": 6,
+        "name": "Victini",
+        "printed_number": "43/101",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "promoted_set_code": "bw3",
+        "promoted_number": "43",
+        "promoted_card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d",
+        "underlying_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e"
+      },
+      {
+        "batch_index": 7,
+        "name": "Gigalith",
+        "printed_number": "53/98",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "promoted_set_code": "bw2",
+        "promoted_number": "53",
+        "promoted_card_print_id": "9bc5a43e-13de-411d-a903-719cd149f746",
+        "underlying_base_card_print_id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611"
+      }
+    ],
+    "final_rows": [
+      {
+        "batch_index": 1,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo",
+        "name": "Arcanine",
+        "source_printed_number": "12/99",
+        "normalized_number_plain": "12",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "d7bb74eb-8423-4e58-8091-a0b792cc4393",
+        "source_candidate_id": "c1e18472-03a6-4ea6-8960-4b1a26325d33",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "c0ab7962-b9dd-41fc-bb4a-aca1aca725f0",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "e58b7b0f-09e0-4d54-a9c0-3a865d6bed02",
+        "promoted_set_code": "bw4",
+        "promoted_number": "12",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Arcanine",
+        "promoted_gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw4",
+        "underlying_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "underlying_base_set_code": "bw4",
+        "base_row_state": {
+          "id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+          "set_code": "bw4",
+          "number": "12",
+          "variant_key": "",
+          "name": "Arcanine",
+          "gv_id": "GV-PK-NXD-12"
+        }
+      },
+      {
+        "batch_index": 2,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-arcanine-12-99-prerelease-staff-promo",
+        "name": "Arcanine",
+        "source_printed_number": "12/99",
+        "normalized_number_plain": "12",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "warehouse_candidate_id": "edc8302a-d30b-4525-9ffc-f1a15df06042",
+        "source_candidate_id": "9585caad-3630-4c0f-8c66-10f171c32ef4",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "8a5d5d31-dcc7-48be-9c3f-747c21a4b776",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "b64e200c-3c6d-436a-8581-799fac1ef104",
+        "promoted_set_code": "bw4",
+        "promoted_number": "12",
+        "promoted_variant_key": "staff_prerelease_stamp",
+        "promoted_name": "Arcanine",
+        "promoted_gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw4",
+        "underlying_base_card_print_id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+        "underlying_base_set_code": "bw4",
+        "base_row_state": {
+          "id": "36d97cd2-bdf6-457f-a5ff-ee0ed4858cf4",
+          "set_code": "bw4",
+          "number": "12",
+          "variant_key": "",
+          "name": "Arcanine",
+          "gv_id": "GV-PK-NXD-12"
+        }
+      },
+      {
+        "batch_index": 3,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-promo",
+        "name": "Darmanitan",
+        "source_printed_number": "25/114",
+        "normalized_number_plain": "25",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "e7dd8c96-a1ee-4473-b689-04dcc490dd48",
+        "source_candidate_id": "d0989109-835f-4a84-a0d6-00798c747566",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "f343d106-9d84-4f9f-8f97-941f84c4a874",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "7184d1f1-cfbe-471d-a0d3-e8b8fc491dab",
+        "promoted_set_code": "bw1",
+        "promoted_number": "25",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Darmanitan",
+        "promoted_gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw1",
+        "underlying_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "underlying_base_set_code": "bw1",
+        "base_row_state": {
+          "id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+          "set_code": "bw1",
+          "number": "25",
+          "variant_key": "",
+          "name": "Darmanitan",
+          "gv_id": "GV-PK-BLW-25"
+        }
+      },
+      {
+        "batch_index": 4,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-darmanitan-25-114-prerelease-staff-promo",
+        "name": "Darmanitan",
+        "source_printed_number": "25/114",
+        "normalized_number_plain": "25",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "warehouse_candidate_id": "65775940-b052-4800-a978-5f0713459bd0",
+        "source_candidate_id": "fa306e3d-4825-446c-a2dd-eb2e29920757",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "91781223-5abe-40a4-b2c4-27082f55cf1e",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "88eef516-13c1-4e84-bf4e-d09925994a70",
+        "promoted_set_code": "bw1",
+        "promoted_number": "25",
+        "promoted_variant_key": "staff_prerelease_stamp",
+        "promoted_name": "Darmanitan",
+        "promoted_gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw1",
+        "underlying_base_card_print_id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+        "underlying_base_set_code": "bw1",
+        "base_row_state": {
+          "id": "75e0bfeb-c03e-4b5c-aefb-9b229e601a11",
+          "set_code": "bw1",
+          "number": "25",
+          "variant_key": "",
+          "name": "Darmanitan",
+          "gv_id": "GV-PK-BLW-25"
+        }
+      },
+      {
+        "batch_index": 5,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-promo",
+        "name": "Victini",
+        "source_printed_number": "43/101",
+        "normalized_number_plain": "43",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "79ce3c6a-ee4b-4324-95b1-cd9defa3a362",
+        "source_candidate_id": "1b0577e6-ea47-4240-b76f-bf7eae023e96",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "a8c521aa-c64c-4643-9055-b7800311c271",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "e494bcfc-6812-408d-aa2c-1712cd44d0d1",
+        "promoted_set_code": "bw3",
+        "promoted_number": "43",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Victini",
+        "promoted_gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw3",
+        "underlying_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "underlying_base_set_code": "bw3",
+        "base_row_state": {
+          "id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+          "set_code": "bw3",
+          "number": "43",
+          "variant_key": "",
+          "name": "Victini",
+          "gv_id": "GV-PK-NVI-43"
+        }
+      },
+      {
+        "batch_index": 6,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victini-43-101-prerelease-staff-promo",
+        "name": "Victini",
+        "source_printed_number": "43/101",
+        "normalized_number_plain": "43",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "warehouse_candidate_id": "a2dccbf7-db39-4a1c-8d18-caba0b41d83a",
+        "source_candidate_id": "af9f6e67-e493-4fa5-8b69-20f8be8cd805",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "7d9098d0-4638-4b2b-aebc-aa00501e2e03",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "8519c026-803d-45ad-9fec-9753007cab6d",
+        "promoted_set_code": "bw3",
+        "promoted_number": "43",
+        "promoted_variant_key": "staff_prerelease_stamp",
+        "promoted_name": "Victini",
+        "promoted_gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw3",
+        "underlying_base_card_print_id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+        "underlying_base_set_code": "bw3",
+        "base_row_state": {
+          "id": "c322e8c4-0032-4d7f-bb51-0a190b73197e",
+          "set_code": "bw3",
+          "number": "43",
+          "variant_key": "",
+          "name": "Victini",
+          "gv_id": "GV-PK-NVI-43"
+        }
+      },
+      {
+        "batch_index": 7,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-gigalith-53-98-prerelease-promo",
+        "name": "Gigalith",
+        "source_printed_number": "53/98",
+        "normalized_number_plain": "53",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "6f2f3f75-36d9-4589-aa4f-799b46462ef3",
+        "source_candidate_id": "ab69d34f-12b7-4fe1-ab51-fba51b2890f2",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "f1ccf0b7-aaab-492a-ab0c-a8409d5738d7",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "9bc5a43e-13de-411d-a903-719cd149f746",
+        "promoted_set_code": "bw2",
+        "promoted_number": "53",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Gigalith",
+        "promoted_gv_id": "GV-PK-EPO-53-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bw2",
+        "underlying_base_card_print_id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611",
+        "underlying_base_set_code": "bw2",
+        "base_row_state": {
+          "id": "c86a8b96-0cac-4bed-8a5e-d16ea8920611",
+          "set_code": "bw2",
+          "number": "53",
+          "variant_key": "",
+          "name": "Gigalith",
+          "gv_id": "GV-PK-EPO-53"
+        }
+      },
+      {
+        "batch_index": 8,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-staff-promo",
+        "name": "Tropical Beach",
+        "source_printed_number": "BW28",
+        "normalized_number_plain": "28",
+        "variant_key": "worlds_11_staff_stamp",
+        "stamp_label": "Worlds 11 Staff Stamp",
+        "warehouse_candidate_id": "9167bf3f-0b0f-4236-9170-686b46b8a11c",
+        "source_candidate_id": "0b0c4f50-05de-45a0-9da5-27365f3e7be7",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "2fb152d1-b841-4b4a-8201-0b80c2dc5928",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "dcdddef8-1f41-4545-9562-d725395261c6",
+        "promoted_set_code": "bwp",
+        "promoted_number": "28",
+        "promoted_variant_key": "worlds_11_staff_stamp",
+        "promoted_name": "Tropical Beach",
+        "promoted_gv_id": "GV-PK-PR-BLW-28-WORLDS-11-STAFF-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "6456900b-a84d-49fa-966c-410df887309b",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "6456900b-a84d-49fa-966c-410df887309b",
+          "set_code": "bwp",
+          "number": "BW28",
+          "variant_key": "",
+          "name": "Tropical Beach",
+          "gv_id": "GV-PK-PR-BLW-BW28"
+        }
+      },
+      {
+        "batch_index": 9,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw28-worlds-11-top-16-promo",
+        "name": "Tropical Beach",
+        "source_printed_number": "BW28",
+        "normalized_number_plain": "28",
+        "variant_key": "worlds_11_top_16_stamp",
+        "stamp_label": "Worlds 11 Top 16 Stamp",
+        "warehouse_candidate_id": "06a61a49-d588-4b1f-8136-b7f00e8894c3",
+        "source_candidate_id": "29f50414-0184-475c-b819-dd1e1b7b2683",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "f7196d32-20fc-447c-aeb5-d91965dcf709",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "3fb6b255-a389-4d58-a6eb-8f9b6b336a43",
+        "promoted_set_code": "bwp",
+        "promoted_number": "28",
+        "promoted_variant_key": "worlds_11_top_16_stamp",
+        "promoted_name": "Tropical Beach",
+        "promoted_gv_id": "GV-PK-PR-BLW-28-WORLDS-11-TOP-16-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "6456900b-a84d-49fa-966c-410df887309b",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "6456900b-a84d-49fa-966c-410df887309b",
+          "set_code": "bwp",
+          "number": "BW28",
+          "variant_key": "",
+          "name": "Tropical Beach",
+          "gv_id": "GV-PK-PR-BLW-BW28"
+        }
+      },
+      {
+        "batch_index": 10,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2011-3rd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW29",
+        "normalized_number_plain": "29",
+        "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+        "stamp_label": "Battle Road Autumn 2011 3rd Place Stamp",
+        "warehouse_candidate_id": "bf6e892c-4d29-48be-8e68-e6ec79581e04",
+        "source_candidate_id": "3003050d-2e6d-45ca-af4a-0393048cd2eb",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "2ab9a1c8-40f7-4ef5-92f8-31fbced9d273",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "0723d8a3-8ae2-4cdc-86e7-cfea1ee9557a",
+        "promoted_set_code": "bwp",
+        "promoted_number": "29",
+        "promoted_variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "number": "BW29",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      },
+      {
+        "batch_index": 11,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-autumn-2012-3rd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW29",
+        "normalized_number_plain": "29",
+        "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+        "stamp_label": "Battle Road Autumn 2012 3rd Place Stamp",
+        "warehouse_candidate_id": "a5f6d820-f608-44b2-b447-8d5b3a5fe3b9",
+        "source_candidate_id": "f64677b6-e107-4a09-a839-5d4206749f1c",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "a2e7cc15-180e-4921-ad0e-aedf5a07ff59",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "7dc6496f-4c93-46c5-aee8-7163ce8a0718",
+        "promoted_set_code": "bwp",
+        "promoted_number": "29",
+        "promoted_variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "number": "BW29",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      },
+      {
+        "batch_index": 12,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2012-3rd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW29",
+        "normalized_number_plain": "29",
+        "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+        "stamp_label": "Battle Road Spring 2012 3rd Place Stamp",
+        "warehouse_candidate_id": "7dc022e6-ff31-4b1c-b2e2-7b0a7128c6f7",
+        "source_candidate_id": "24fc4a5b-69ae-4217-ab87-480c0e44b30c",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "8f120674-c28a-4eed-87e3-ad3f85a89525",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "4c933142-8034-4909-a821-c146bdd5aae8",
+        "promoted_set_code": "bwp",
+        "promoted_number": "29",
+        "promoted_variant_key": "battle_road_spring_2012_3rd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "number": "BW29",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      },
+      {
+        "batch_index": 13,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw29-battle-road-spring-2013-3rd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW29",
+        "normalized_number_plain": "29",
+        "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+        "stamp_label": "Battle Road Spring 2013 3rd Place Stamp",
+        "warehouse_candidate_id": "3501aa9d-1700-4185-9006-d5c657302e70",
+        "source_candidate_id": "2027c009-6ede-4f23-a1fa-4ed4cf1c0d00",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "64581d0a-b910-4290-8dcf-b5a007ffd4b0",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "e46196e1-0fa0-48d2-a203-c436dd60bcb9",
+        "promoted_set_code": "bwp",
+        "promoted_number": "29",
+        "promoted_variant_key": "battle_road_spring_2013_3rd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+          "set_code": "bwp",
+          "number": "BW29",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW29"
+        }
+      },
+      {
+        "batch_index": 14,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2011-2nd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW30",
+        "normalized_number_plain": "30",
+        "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+        "stamp_label": "Battle Road Autumn 2011 2nd Place Stamp",
+        "warehouse_candidate_id": "7b0dc1b7-e253-441c-ab87-01bd6e26d4bc",
+        "source_candidate_id": "d1caee38-04f5-4bbd-8220-f21d7f6ae632",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "5f803373-0a50-451e-b353-dade188c76e9",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "6d6ad883-9cd6-4d42-a62e-795f39bad9b4",
+        "promoted_set_code": "bwp",
+        "promoted_number": "30",
+        "promoted_variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "number": "BW30",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      },
+      {
+        "batch_index": 15,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-autumn-2012-2nd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW30",
+        "normalized_number_plain": "30",
+        "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+        "stamp_label": "Battle Road Autumn 2012 2nd Place Stamp",
+        "warehouse_candidate_id": "f800e93b-0007-41c2-81ef-7b4884709b36",
+        "source_candidate_id": "8f2160f4-44b3-4bf5-8aca-1ceada05a3e1",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "25040a9a-5b00-43fe-b273-e20b086a3143",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "457d6990-d464-4bd0-8dad-7c9af6982027",
+        "promoted_set_code": "bwp",
+        "promoted_number": "30",
+        "promoted_variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "number": "BW30",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      },
+      {
+        "batch_index": 16,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2012-2nd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW30",
+        "normalized_number_plain": "30",
+        "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+        "stamp_label": "Battle Road Spring 2012 2nd Place Stamp",
+        "warehouse_candidate_id": "12424270-dfd3-41f3-b913-ba3c3dbf27e2",
+        "source_candidate_id": "948a8e4b-0d03-4888-b198-fc28c013a748",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "82593fcb-c6b1-42d6-a8c9-d747efcf10af",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "80e04978-8bc8-4516-a805-d5a978c75366",
+        "promoted_set_code": "bwp",
+        "promoted_number": "30",
+        "promoted_variant_key": "battle_road_spring_2012_2nd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "number": "BW30",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      },
+      {
+        "batch_index": 17,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw30-battle-road-spring-2013-2nd-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW30",
+        "normalized_number_plain": "30",
+        "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+        "stamp_label": "Battle Road Spring 2013 2nd Place Stamp",
+        "warehouse_candidate_id": "58e31405-41f5-4b68-aa98-d6a5b06b8c3f",
+        "source_candidate_id": "7e4318ec-38d7-42e5-be84-049060b4ba56",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "eaefac9f-d423-404b-b028-07086acf327c",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "27d6e789-43be-4702-a1e0-75e399681aff",
+        "promoted_set_code": "bwp",
+        "promoted_number": "30",
+        "promoted_variant_key": "battle_road_spring_2013_2nd_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+          "set_code": "bwp",
+          "number": "BW30",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW30"
+        }
+      },
+      {
+        "batch_index": 18,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2011-1st-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW31",
+        "normalized_number_plain": "31",
+        "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+        "stamp_label": "Battle Road Autumn 2011 1st Place Stamp",
+        "warehouse_candidate_id": "323e3b0a-bce9-4be4-9b8c-acd9c39555a6",
+        "source_candidate_id": "d5e2833f-b548-46e1-b30a-c3f622e2cbc1",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "a10a3f27-1953-4baf-816c-9502ca0e6d58",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "3e03d567-160a-427a-9b8c-3b50119756d5",
+        "promoted_set_code": "bwp",
+        "promoted_number": "31",
+        "promoted_variant_key": "battle_road_autumn_2011_1st_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "number": "BW31",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      },
+      {
+        "batch_index": 19,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-autumn-2012-1st-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW31",
+        "normalized_number_plain": "31",
+        "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+        "stamp_label": "Battle Road Autumn 2012 1st Place Stamp",
+        "warehouse_candidate_id": "efca97c6-7c41-40a2-af6e-905c0d55cd45",
+        "source_candidate_id": "1c5dcc0a-54e6-4a9a-987f-d8d78b7ead54",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "2cc0cd1d-8686-4318-9fd2-5b070185be9f",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "65704a25-8436-4e92-a875-7cedcd5dd925",
+        "promoted_set_code": "bwp",
+        "promoted_number": "31",
+        "promoted_variant_key": "battle_road_autumn_2012_1st_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "number": "BW31",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      },
+      {
+        "batch_index": 20,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2012-1st-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW31",
+        "normalized_number_plain": "31",
+        "variant_key": "battle_road_spring_2012_1st_place_stamp",
+        "stamp_label": "Battle Road Spring 2012 1st Place Stamp",
+        "warehouse_candidate_id": "baf566f5-c434-451a-9ecc-160c6469e230",
+        "source_candidate_id": "bb8b2f87-d186-4e2b-934a-3d6d3429c86d",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "975268a0-148c-4c42-b09c-c36ea9d628d4",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "ee628c89-cedb-40fd-89e8-76891f2e886e",
+        "promoted_set_code": "bwp",
+        "promoted_number": "31",
+        "promoted_variant_key": "battle_road_spring_2012_1st_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "number": "BW31",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      },
+      {
+        "batch_index": 21,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-victory-cup-bw31-battle-road-spring-2013-1st-place-promo",
+        "name": "Victory Cup",
+        "source_printed_number": "BW31",
+        "normalized_number_plain": "31",
+        "variant_key": "battle_road_spring_2013_1st_place_stamp",
+        "stamp_label": "Battle Road Spring 2013 1st Place Stamp",
+        "warehouse_candidate_id": "1a19dfbd-4184-4bd7-bbed-f3b697b52c45",
+        "source_candidate_id": "dcd93a60-1d30-4d37-beac-5d5fb40afbea",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "484a6573-7865-4f6a-b397-2db4f9774632",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "668bac23-4c00-472a-afad-9464c778f66a",
+        "promoted_set_code": "bwp",
+        "promoted_number": "31",
+        "promoted_variant_key": "battle_road_spring_2013_1st_place_stamp",
+        "promoted_name": "Victory Cup",
+        "promoted_gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+          "set_code": "bwp",
+          "number": "BW31",
+          "variant_key": "",
+          "name": "Victory Cup",
+          "gv_id": "GV-PK-PR-BLW-BW31"
+        }
+      },
+      {
+        "batch_index": 22,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-promo",
+        "name": "Volcarona",
+        "source_printed_number": "BW40",
+        "normalized_number_plain": "40",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "75115de2-7853-401c-9e8c-fcc0f278279a",
+        "source_candidate_id": "345efd5a-3fc8-4c88-bd29-c6213b3822c2",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "8b98c42a-d0f5-4874-9c97-a98d5c07513d",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "1f80b31d-226f-4374-88d5-7b7a169a4c6e",
+        "promoted_set_code": "bwp",
+        "promoted_number": "40",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Volcarona",
+        "promoted_gv_id": "GV-PK-PR-BLW-40-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "145d1f13-7317-4757-afad-808cb11a379f",
+          "set_code": "bwp",
+          "number": "BW40",
+          "variant_key": "",
+          "name": "Volcarona",
+          "gv_id": "GV-PK-PR-BLW-BW40"
+        }
+      },
+      {
+        "batch_index": 23,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-volcarona-bw40-prerelease-staff-promo",
+        "name": "Volcarona",
+        "source_printed_number": "BW40",
+        "normalized_number_plain": "40",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "warehouse_candidate_id": "c2a9a683-df16-4c94-964b-3ce6d5f6246c",
+        "source_candidate_id": "95efe90b-6bc7-40b5-a572-ae903fd3b97d",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "9df15674-08e8-454b-982b-cd12e66ab47c",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "5b7490e5-9463-4130-9a03-65e59ffdea0c",
+        "promoted_set_code": "bwp",
+        "promoted_number": "40",
+        "promoted_variant_key": "staff_prerelease_stamp",
+        "promoted_name": "Volcarona",
+        "promoted_gv_id": "GV-PK-PR-BLW-40-STAFF-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "145d1f13-7317-4757-afad-808cb11a379f",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "145d1f13-7317-4757-afad-808cb11a379f",
+          "set_code": "bwp",
+          "number": "BW40",
+          "variant_key": "",
+          "name": "Volcarona",
+          "gv_id": "GV-PK-PR-BLW-BW40"
+        }
+      },
+      {
+        "batch_index": 24,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-promo",
+        "name": "Altaria",
+        "source_printed_number": "BW48",
+        "normalized_number_plain": "48",
+        "variant_key": "prerelease_stamp",
+        "stamp_label": "Prerelease Stamp",
+        "warehouse_candidate_id": "a128ad98-57c5-4780-9a0c-78fbcade12aa",
+        "source_candidate_id": "4f799f60-d2b3-45ad-bf2d-b728c4ca1032",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "a1f791a6-3d23-4607-85b8-ccb5cd1a9096",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "9f97fb3c-c50f-4a22-9032-d50aa04679ca",
+        "promoted_set_code": "bwp",
+        "promoted_number": "48",
+        "promoted_variant_key": "prerelease_stamp",
+        "promoted_name": "Altaria",
+        "promoted_gv_id": "GV-PK-PR-BLW-48-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+          "set_code": "bwp",
+          "number": "BW48",
+          "variant_key": "",
+          "name": "Altaria",
+          "gv_id": "GV-PK-PR-BLW-BW48"
+        }
+      },
+      {
+        "batch_index": 25,
+        "source": "justtcg",
+        "source_set_id": "black-and-white-promos-pokemon",
+        "source_external_id": "pokemon-black-and-white-promos-altaria-bw48-prerelease-staff-promo",
+        "name": "Altaria",
+        "source_printed_number": "BW48",
+        "normalized_number_plain": "48",
+        "variant_key": "staff_prerelease_stamp",
+        "stamp_label": "Staff Prerelease Stamp",
+        "warehouse_candidate_id": "22fb2be3-4908-4caa-b613-126194ef936d",
+        "source_candidate_id": "aa0dfde4-52a9-4510-ba5d-3f659b140837",
+        "candidate_state": "PROMOTED",
+        "current_staging_id": "12a9e644-83a8-4f4f-be31-564236450333",
+        "approved_by_founder": true,
+        "promotion_result_type": "CARD_PRINT_CREATED",
+        "staging_execution_status": "SUCCEEDED",
+        "staging_approved_action_type": "CREATE_CARD_PRINT",
+        "promoted_card_print_id": "fddba405-804b-42b2-80cf-fb6c8019c47b",
+        "promoted_set_code": "bwp",
+        "promoted_number": "48",
+        "promoted_variant_key": "staff_prerelease_stamp",
+        "promoted_name": "Altaria",
+        "promoted_gv_id": "GV-PK-PR-BLW-48-STAFF-PRERELEASE-STAMP",
+        "promoted_image_path": null,
+        "promoted_mapping_count": 0,
+        "effective_set_code": "bwp",
+        "underlying_base_card_print_id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+        "underlying_base_set_code": "bwp",
+        "base_row_state": {
+          "id": "45bcf8b5-b997-4422-9493-24dd4110407a",
+          "set_code": "bwp",
+          "number": "BW48",
+          "variant_key": "",
+          "name": "Altaria",
+          "gv_id": "GV-PK-PR-BLW-BW48"
+        }
+      }
+    ],
+    "canonical_verification_summary": {
+      "promoted_row_count_matches_batch": true,
+      "stamped_rows_are_distinct_canonical_rows": true,
+      "base_rows_remain_intact": true,
+      "stamped_variant_keys_non_null": true,
+      "repaired_rows_routed_off_bwp": true,
+      "warehouse_terminal_states_closed": true,
+      "product_noise_leakage": "none"
+    }
+  },
+  "mapping_followup_required": "YES",
+  "image_followup_required": "YES"
+}

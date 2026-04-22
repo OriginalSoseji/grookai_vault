@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-04-20T21:35:32.493Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V12_NONBLOCKED",
+  "source_artifact": "docs/checkpoints/warehouse/prize_pack_evidence_v12_nonblocked.json",
+  "row_count": 4,
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-uncommon",
+      "name": "Genesect",
+      "candidate_name": "Genesect",
+      "printed_number": "040/064",
+      "normalized_number_plain": "040",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SFA-40",
+        "base_route": "GV-PK-SFA-40",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SFA-40",
+          "base_route": "GV-PK-SFA-40"
+        },
+        "effective_routed_set_code": "sv6pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-copperajah-rare",
+      "name": "Copperajah",
+      "candidate_name": "Copperajah",
+      "printed_number": "042/064",
+      "normalized_number_plain": "042",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SFA-42",
+        "base_route": "GV-PK-SFA-42",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SFA-42",
+          "base_route": "GV-PK-SFA-42"
+        },
+        "effective_routed_set_code": "sv6pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+      "name": "Binding Mochi",
+      "candidate_name": "Binding Mochi",
+      "printed_number": "055/064",
+      "normalized_number_plain": "055",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SFA-55",
+        "base_route": "GV-PK-SFA-55",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SFA-55",
+          "base_route": "GV-PK-SFA-55"
+        },
+        "effective_routed_set_code": "sv6pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+      "name": "Neutralization Zone",
+      "candidate_name": "Neutralization Zone",
+      "printed_number": "060/064",
+      "normalized_number_plain": "060",
+      "variant_key": "play_pokemon_stamp",
+      "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_3",
+      "confirmed_series_coverage": [
+        6
+      ],
+      "effective_set_code": "sv6pt5",
+      "effective_set_name": "Shrouded Fable",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-SFA-60",
+        "base_route": "GV-PK-SFA-60",
+        "unique_base_route": true
+      },
+      "reference_hints_payload": {
+        "provenance": "justtcg",
+        "source_family": "prize-pack-series-cards-pokemon",
+        "evidence_class": "CONFIRMED_IDENTITY",
+        "evidence_tier": "TIER_3",
+        "confirmed_series_coverage": [
+          6
+        ],
+        "underlying_base_proof": {
+          "base_gv_id": "GV-PK-SFA-60",
+          "base_route": "GV-PK-SFA-60"
+        },
+        "effective_routed_set_code": "sv6pt5",
+        "governing_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1"
+      }
+    }
+  ]
+}

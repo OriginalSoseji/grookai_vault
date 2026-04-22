@@ -1,0 +1,1071 @@
+{
+  "generated_at": "2026-04-21T19:48:30.065Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V18_NONBLOCKED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.json",
+    "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+    "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+    "docs/checkpoints/warehouse/prize_pack_series_evidence_sources_v2.json"
+  ],
+  "current_backlog": {
+    "wait_for_more_evidence": 63,
+    "no_series_confirmation": 62,
+    "nonblocked_no_series_confirmation": 15,
+    "special_identity_family_collision": 1,
+    "blocked_by_official_acquisition": 47,
+    "do_not_canon_total": 186,
+    "promoted_prize_pack_total": 414
+  },
+  "rows": [
+    {
+      "candidate_name": "Mystery Garden",
+      "printed_number": "172/132",
+      "effective_base_owner_gv_id": "GV-PK-MEG-172",
+      "set_code": "me01",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Carmine",
+      "printed_number": "103/131",
+      "effective_base_owner_gv_id": "GV-PK-PRE-103",
+      "set_code": "sv8pt5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Rillaboom",
+      "printed_number": "014/072",
+      "effective_base_owner_gv_id": "GV-PK-SSH-14",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Victini V",
+      "printed_number": "025/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-25",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-v-025-202-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Cinderace",
+      "printed_number": "034/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-34",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinderace-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Drizzile",
+      "printed_number": "056/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-56",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-drizzile-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Inteleon",
+      "printed_number": "058/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-58",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Frosmoth",
+      "printed_number": "064/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-64",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-frosmoth-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Galarian Zigzagoon",
+      "printed_number": "117/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-117",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-zigzagoon-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Zacian V",
+      "printed_number": "138/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-138",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zacian-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Zamazenta V",
+      "printed_number": "139/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-139",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zamazenta-v-139-202-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Cinccino",
+      "printed_number": "147/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-147",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinccino-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Oranguru",
+      "printed_number": "148/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-148",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-oranguru-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Air Balloon",
+      "printed_number": "156/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-156",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-air-balloon-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Big Charm",
+      "printed_number": "158/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-158",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-big-charm-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Evolution Incense",
+      "printed_number": "163/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-163",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-evolution-incense-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Marnie",
+      "printed_number": "169/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-169",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-marnie-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Metal Saucer",
+      "printed_number": "170/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-170",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-metal-saucer-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Ordinary Rod",
+      "printed_number": "171/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-171",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ordinary-rod-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Quick Ball",
+      "printed_number": "179/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-179",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-quick-ball-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Aurora Energy",
+      "printed_number": "186/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-186",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-aurora-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Eldegoss V",
+      "printed_number": "019/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-19",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eldegoss-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Falinks",
+      "printed_number": "109/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-109",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-falinks-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Galarian Weezing",
+      "printed_number": "113/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-113",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-weezing-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Capacious Bucket",
+      "printed_number": "156/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-156",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capacious-bucket-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Scoop Up Net",
+      "printed_number": "165/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-165",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-scoop-up-net-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Capture Energy",
+      "printed_number": "171/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-171",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capture-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Twin Energy",
+      "printed_number": "174/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-174",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-twin-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Decidueye",
+      "printed_number": "013/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-13",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-decidueye-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Charizard VMAX",
+      "printed_number": "020/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-20",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-charizard-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Galarian Mr. Rime",
+      "printed_number": "036/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-36",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-mr-rime-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Dedenne",
+      "printed_number": "078/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-78",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dedenne-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Polteageist",
+      "printed_number": "083/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-83",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-polteageist-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Crobat V",
+      "printed_number": "104/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-104",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-crobat-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Hoopa",
+      "printed_number": "111/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-111",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hoopa-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Eternatus V",
+      "printed_number": "116/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-116",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eternatus-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Eternatus VMAX",
+      "printed_number": "117/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-117",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eternatus-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Bunnelby",
+      "printed_number": "150/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-150",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bunnelby-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Big Parasol",
+      "printed_number": "157/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-157",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-big-parasol-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Bird Keeper",
+      "printed_number": "159/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-159",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bird-keeper-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Cape of Toughness",
+      "printed_number": "160/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-160",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cape-of-toughness-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Turbo Patch",
+      "printed_number": "172/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-172",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-turbo-patch-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Alcremie V",
+      "printed_number": "022/073",
+      "effective_base_owner_gv_id": "GV-PK-CPA-22",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Alcremie VMAX",
+      "printed_number": "23/73",
+      "effective_base_owner_gv_id": "GV-PK-CPA-23",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Altaria",
+      "printed_number": "49/73",
+      "effective_base_owner_gv_id": "GV-PK-CPA-49",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Charizard",
+      "printed_number": "025/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-25",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-charizard-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Pikachu V",
+      "printed_number": "043/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-43",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pikachu-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Pikachu VMAX",
+      "printed_number": "044/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-44",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pikachu-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Whimsicott",
+      "printed_number": "076/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-76",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Snorlax",
+      "printed_number": "131/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-131",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-snorlax-131-185-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Togekiss V",
+      "printed_number": "140/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-140",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-togekiss-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Togekiss VMAX",
+      "printed_number": "141/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-141",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-togekiss-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Nessa",
+      "printed_number": "157/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-157",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-nessa-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Boss's Orders",
+      "printed_number": "058/072",
+      "effective_base_owner_gv_id": "GV-PK-SHF-58",
+      "set_code": "swsh4.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boss-s-orders-058-072-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": true
+    },
+    {
+      "candidate_name": "Professor's Research",
+      "printed_number": "060/072",
+      "effective_base_owner_gv_id": "GV-PK-SHF-60",
+      "set_code": "swsh4.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Inteleon",
+      "printed_number": "043/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-43",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-43-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "010/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-10",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "077/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-77",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "098/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-98",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Whimsicott V",
+      "printed_number": "160/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-160",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-v-160-172-promo",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    },
+    {
+      "candidate_name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "effective_base_owner_gv_id": null,
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+      "current_blocker_class": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "blocked_by_official_acquisition": false
+    }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "generated_at": "2026-04-20T21:16:18.220Z",
+  "workflow": "PRIZE_PACK_BASE_ROUTE_REPAIR_V6",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4.json",
+    "docs/checkpoints/warehouse/prize_pack_base_route_repair_v5.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked.json"
+  ],
+  "current_prize_pack_state": {
+    "promoted_prize_pack_total": 365,
+    "remaining_wait_rows": 131,
+    "do_not_canon_rows": 174,
+    "blocked_by_official_acquisition_rows": 88
+  },
+  "ambiguous_pool": {
+    "total": 14,
+    "counts_by_ambiguity_type": {
+      "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED": 13,
+      "SPECIAL_IDENTITY_FAMILY_COLLISION": 1
+    },
+    "nonblocked": 14,
+    "acquisition_blocked_overlap": 0
+  },
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galvantula-uncommon",
+      "candidate_name": "Galvantula",
+      "name": "Galvantula",
+      "printed_number": "002/064",
+      "normalized_number_plain": "002",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-2"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-2",
+          "card_print_id": "1bb38e5d-4618-4552-a8f2-3386debc259b",
+          "name": "Galvantula",
+          "set_code": "sv6pt5",
+          "number": "2",
+          "number_plain": "2",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "candidate_name": "Rillaboom",
+      "name": "Rillaboom",
+      "printed_number": "014/072",
+      "normalized_number_plain": "014",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SSH-14"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SSH-14",
+          "card_print_id": "36dd01b9-ccd6-4e0f-b88a-03701fe3449d",
+          "name": "Rillaboom",
+          "set_code": "swsh1",
+          "number": "14",
+          "number_plain": "14",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+      "candidate_name": "Alcremie V",
+      "name": "Alcremie V",
+      "printed_number": "022/073",
+      "normalized_number_plain": "022",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-22"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-CPA-22",
+          "card_print_id": "6654d6dd-2ff1-44c5-8153-aa7b594bb5cf",
+          "name": "Alcremie V",
+          "set_code": "swsh3.5",
+          "number": "22",
+          "number_plain": "22",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-uncommon",
+      "candidate_name": "Genesect",
+      "name": "Genesect",
+      "printed_number": "040/064",
+      "normalized_number_plain": "040",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-40"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-40",
+          "card_print_id": "f4a59a05-5448-4df4-9708-bb214af2741e",
+          "name": "Genesect",
+          "set_code": "sv6pt5",
+          "number": "40",
+          "number_plain": "40",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-copperajah-rare",
+      "candidate_name": "Copperajah",
+      "name": "Copperajah",
+      "printed_number": "042/064",
+      "normalized_number_plain": "042",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-42"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-42",
+          "card_print_id": "dc37afc2-79f7-4a80-b422-7efe459a44e7",
+          "name": "Copperajah",
+          "set_code": "sv6pt5",
+          "number": "42",
+          "number_plain": "42",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-binding-mochi-uncommon",
+      "candidate_name": "Binding Mochi",
+      "name": "Binding Mochi",
+      "printed_number": "055/064",
+      "normalized_number_plain": "055",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-55"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-55",
+          "card_print_id": "b4ba2ae4-1da9-4cf7-931c-a67830ee0d89",
+          "name": "Binding Mochi",
+          "set_code": "sv6pt5",
+          "number": "55",
+          "number_plain": "55",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-neutralization-zone-ace-spec-rare",
+      "candidate_name": "Neutralization Zone",
+      "name": "Neutralization Zone",
+      "printed_number": "060/064",
+      "normalized_number_plain": "060",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-60"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-60",
+          "card_print_id": "87adbdb8-5db6-44b6-990a-fb9342df7d92",
+          "name": "Neutralization Zone",
+          "set_code": "sv6pt5",
+          "number": "60",
+          "number_plain": "60",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+      "candidate_name": "Night Stretcher",
+      "name": "Night Stretcher",
+      "printed_number": "061/064",
+      "normalized_number_plain": "061",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SFA-61"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SFA-61",
+          "card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+          "name": "Night Stretcher",
+          "set_code": "sv6pt5",
+          "number": "61",
+          "number_plain": "61",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-atticus-uncommon",
+      "candidate_name": "Atticus",
+      "name": "Atticus",
+      "printed_number": "077/091",
+      "normalized_number_plain": "077",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-77-S"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-PAF-77-S",
+          "card_print_id": "a7ed5d5d-cfc3-454e-b8f9-f3883a0f51cd",
+          "name": "Atticus",
+          "set_code": "sv4pt5",
+          "number": "77",
+          "number_plain": "77",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+      "candidate_name": "Team Rocket's Mewtwo ex",
+      "name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "normalized_number_plain": "079",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [],
+      "candidate_base_routes": [],
+      "ambiguity_type": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the special identity family collision cluster has not yet been targeted by a bounded route invariant.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+      "candidate_name": "Moonlit Hill",
+      "name": "Moonlit Hill",
+      "printed_number": "081/091",
+      "normalized_number_plain": "081",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-81-S"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-PAF-81-S",
+          "card_print_id": "699ea445-ec8b-4386-ba4d-7536ba1eba96",
+          "name": "Moonlit Hill",
+          "set_code": "sv4pt5",
+          "number": "81",
+          "number_plain": "81",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+      "candidate_name": "Technical Machine: Crisis Punch",
+      "name": "Technical Machine: Crisis Punch",
+      "printed_number": "090/091",
+      "normalized_number_plain": "090",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-PAF-90-S"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-PAF-90-S",
+          "card_print_id": "5d1d0163-7054-4f30-ad8e-28928a3f32bf",
+          "name": "Technical Machine: Crisis Punch",
+          "set_code": "sv4pt5",
+          "number": "90",
+          "number_plain": "90",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+      "candidate_name": "Pokegear 3.0",
+      "name": "Pokegear 3.0",
+      "printed_number": "186/198",
+      "normalized_number_plain": "186",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-SVI-186"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-SVI-186",
+          "card_print_id": "052ff267-7efc-4532-a234-b05afb2090f2",
+          "name": "Pokégear 3.0",
+          "set_code": "sv01",
+          "number": "186",
+          "number_plain": "186",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+      "candidate_name": "Alcremie VMAX",
+      "name": "Alcremie VMAX",
+      "printed_number": "23/73",
+      "normalized_number_plain": "23",
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "candidate_base_gv_ids": [
+        "GV-PK-CPA-23"
+      ],
+      "candidate_base_routes": [
+        {
+          "gv_id": "GV-PK-CPA-23",
+          "card_print_id": "c4bb55ff-05a1-49ae-b2d3-807376d3046b",
+          "name": "Alcremie VMAX",
+          "set_code": "swsh3.5",
+          "number": "23",
+          "number_plain": "23",
+          "variant_key": null
+        }
+      ],
+      "ambiguity_type": "EXACT_NAME_NUMBER_UNIQUE_ROUTE_BUT_UNADJUDICATED",
+      "why_it_is_still_not_route_resolved": "This row survived V2-V5 because the exact-name-number unique-route cluster had not yet been explicitly adjudicated into the evidence lane.",
+      "prior_route_repair_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "blocked_by_official_acquisition": false,
+      "current_blocker_class": "BASE_ROUTE_AMBIGUOUS",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": []
+    }
+  ]
+}

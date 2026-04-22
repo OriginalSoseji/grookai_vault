@@ -1,0 +1,93 @@
+{
+  "workflow": "PRIZE_PACK_READY_BATCH_V1_129_RESIDUE_2",
+  "status": "COMPLETED_CLOSED",
+  "summary": {
+    "batch_size_attempted": 2,
+    "batch_size_completed": 2,
+    "batch_rows_classified": 2,
+    "batch_rows_staged": 2,
+    "batch_rows_approved": 2,
+    "batch_rows_promoted": 2,
+    "batch_rows_mapped": 2,
+    "batch_rows_image_closed": 2,
+    "batch_failures_by_class": {},
+    "subset_exhaustion_status": {
+      "official_single_series_confirmed_promoted": 129,
+      "remaining_ready_rows": 0,
+      "remaining_blocked_rows": 0,
+      "remaining_do_not_canon_rows": 18,
+      "remaining_wait_for_more_evidence_rows": 523
+    },
+    "recommended_next_execution_step": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2"
+  },
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+    "docs/checkpoints/warehouse/variant_coexistence_rule_v1_input.json"
+  ],
+  "rows": [
+    {
+      "batch_index": 1,
+      "warehouse_candidate_id": "e6983551-ad7e-4aa4-b641-863006a4ee1a",
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-reshiram-ex-double-rare",
+      "source_candidate_id": "6fa3ea64-d5de-4019-b756-b64ad7e843e6",
+      "name": "Reshiram ex",
+      "printed_number": "020/086",
+      "number_plain": "20",
+      "normalized_number_plain": "020",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "effective_set_code": "sv10.5w",
+      "effective_identity_space": "sv10.5w",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "live_base_card_print_id": "928a3a4e-7c9e-463d-af00-94eb9043daa2",
+        "live_base_gv_id": "GV-PK-WHT-020"
+      },
+      "coexistence_proof_summary": {
+        "base_gv_id": "GV-PK-WHT-020",
+        "existing_variant_gv_id": "GV-PK-WHT-020-WHITE-FLARE-STAMP",
+        "existing_variant_key": "white_flare_stamp",
+        "slot_audit_reason_code": "VARIANT_COEXISTENCE_ALLOWED"
+      },
+      "card_print_id": "420b0250-d950-47c8-8f67-3e4c2616b112",
+      "gv_id": "GV-PK-WHT-020-PLAY-POKEMON-STAMP",
+      "mapping_status": "ACTIVE_JUSTTCG_MAPPING",
+      "image_status": "representative_shared_stamp",
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv10.5w/020/high.webp"
+    },
+    {
+      "batch_index": 2,
+      "warehouse_candidate_id": "7209e21c-05e6-4fae-9904-91bcb177047c",
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zekrom-ex-double-rare",
+      "source_candidate_id": "99e2bfb4-213d-479a-9c9f-0dd884639f75",
+      "name": "Zekrom ex",
+      "printed_number": "034/086",
+      "number_plain": "34",
+      "normalized_number_plain": "034",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "effective_set_code": "sv10.5b",
+      "effective_identity_space": "sv10.5b",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "live_base_card_print_id": "fb628e26-d01d-4788-abc8-aeb0f718bccc",
+        "live_base_gv_id": "GV-PK-BLK-034"
+      },
+      "coexistence_proof_summary": {
+        "base_gv_id": "GV-PK-BLK-034",
+        "existing_variant_gv_id": "GV-PK-BLK-034-BLACK-BOLT-STAMP",
+        "existing_variant_key": "black_bolt_stamp",
+        "slot_audit_reason_code": "VARIANT_COEXISTENCE_ALLOWED"
+      },
+      "card_print_id": "d247f02f-1dae-436e-9342-94377c67e5c0",
+      "gv_id": "GV-PK-BLK-034-PLAY-POKEMON-STAMP",
+      "mapping_status": "ACTIVE_JUSTTCG_MAPPING",
+      "image_status": "representative_shared_stamp",
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv10.5b/034/high.webp"
+    }
+  ]
+}

@@ -1,0 +1,2341 @@
+{
+  "generated_at": "2026-04-21T03:12:29.282Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V16_NONBLOCKED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked.json"
+  ],
+  "current_backlog": {
+    "wait_for_more_evidence": 105,
+    "no_series_confirmation": 104,
+    "special_identity_family_collision": 1,
+    "blocked_by_official_acquisition": 88,
+    "do_not_canon_total": 185,
+    "already_promoted_total": 373
+  },
+  "blocker_counts": {
+    "NO_SERIES_CONFIRMATION": 104,
+    "SPECIAL_IDENTITY_FAMILY_COLLISION": 1
+  },
+  "set_code_counts": {
+    "me01": 1,
+    "sv05": 1,
+    "sv10": 2,
+    "sv8pt5": 1,
+    "swsh1": 19,
+    "swsh2": 7,
+    "swsh3": 14,
+    "swsh3.5": 3,
+    "swsh4": 8,
+    "swsh4.5": 2,
+    "swsh5": 8,
+    "swsh6": 12,
+    "swsh8": 20,
+    "swsh9": 4,
+    "swshp": 2,
+    "UNKNOWN": 1
+  },
+  "rows": [
+    {
+      "candidate_name": "Mystery Garden",
+      "printed_number": "172/132",
+      "effective_base_owner_gv_id": "GV-PK-MEG-172",
+      "base_gv_id": "GV-PK-MEG-172",
+      "set_code": "me01",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Raging Bolt ex",
+      "printed_number": "123/162",
+      "effective_base_owner_gv_id": "GV-PK-TEF-123",
+      "base_gv_id": "GV-PK-TEF-123",
+      "set_code": "sv05",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-raging-bolt-ex-123-162-wrong-image-double-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "set_code": "sv10",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Carmine",
+      "printed_number": "103/131",
+      "effective_base_owner_gv_id": "GV-PK-PRE-103",
+      "base_gv_id": "GV-PK-PRE-103",
+      "set_code": "sv8pt5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Rillaboom",
+      "printed_number": "014/072",
+      "effective_base_owner_gv_id": "GV-PK-SSH-14",
+      "base_gv_id": "GV-PK-SSH-14",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-rillaboom-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Victini V",
+      "printed_number": "025/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-25",
+      "base_gv_id": "GV-PK-SSH-25",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-v-025-202-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cinderace",
+      "printed_number": "034/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-34",
+      "base_gv_id": "GV-PK-SSH-34",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinderace-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Drizzile",
+      "printed_number": "056/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-56",
+      "base_gv_id": "GV-PK-SSH-56",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-drizzile-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Inteleon",
+      "printed_number": "058/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-58",
+      "base_gv_id": "GV-PK-SSH-58",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-058-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Frosmoth",
+      "printed_number": "064/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-64",
+      "base_gv_id": "GV-PK-SSH-64",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-frosmoth-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Galarian Zigzagoon",
+      "printed_number": "117/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-117",
+      "base_gv_id": "GV-PK-SSH-117",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-zigzagoon-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Zacian V",
+      "printed_number": "138/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-138",
+      "base_gv_id": "GV-PK-SSH-138",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zacian-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Zamazenta V",
+      "printed_number": "139/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-139",
+      "base_gv_id": "GV-PK-SSH-139",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zamazenta-v-139-202-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cinccino",
+      "printed_number": "147/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-147",
+      "base_gv_id": "GV-PK-SSH-147",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinccino-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Oranguru",
+      "printed_number": "148/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-148",
+      "base_gv_id": "GV-PK-SSH-148",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-oranguru-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Air Balloon",
+      "printed_number": "156/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-156",
+      "base_gv_id": "GV-PK-SSH-156",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-air-balloon-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Big Charm",
+      "printed_number": "158/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-158",
+      "base_gv_id": "GV-PK-SSH-158",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-big-charm-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Evolution Incense",
+      "printed_number": "163/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-163",
+      "base_gv_id": "GV-PK-SSH-163",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-evolution-incense-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Marnie",
+      "printed_number": "169/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-169",
+      "base_gv_id": "GV-PK-SSH-169",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-marnie-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Metal Saucer",
+      "printed_number": "170/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-170",
+      "base_gv_id": "GV-PK-SSH-170",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-metal-saucer-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Ordinary Rod",
+      "printed_number": "171/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-171",
+      "base_gv_id": "GV-PK-SSH-171",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ordinary-rod-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Quick Ball",
+      "printed_number": "179/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-179",
+      "base_gv_id": "GV-PK-SSH-179",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-quick-ball-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Aurora Energy",
+      "printed_number": "186/202",
+      "effective_base_owner_gv_id": "GV-PK-SSH-186",
+      "base_gv_id": "GV-PK-SSH-186",
+      "set_code": "swsh1",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-aurora-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Eldegoss V",
+      "printed_number": "019/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-19",
+      "base_gv_id": "GV-PK-RCL-19",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eldegoss-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Falinks",
+      "printed_number": "109/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-109",
+      "base_gv_id": "GV-PK-RCL-109",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-falinks-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Galarian Weezing",
+      "printed_number": "113/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-113",
+      "base_gv_id": "GV-PK-RCL-113",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-weezing-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Capacious Bucket",
+      "printed_number": "156/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-156",
+      "base_gv_id": "GV-PK-RCL-156",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capacious-bucket-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Scoop Up Net",
+      "printed_number": "165/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-165",
+      "base_gv_id": "GV-PK-RCL-165",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-scoop-up-net-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Capture Energy",
+      "printed_number": "171/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-171",
+      "base_gv_id": "GV-PK-RCL-171",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capture-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Twin Energy",
+      "printed_number": "174/192",
+      "effective_base_owner_gv_id": "GV-PK-RCL-174",
+      "base_gv_id": "GV-PK-RCL-174",
+      "set_code": "swsh2",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-twin-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Decidueye",
+      "printed_number": "013/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-13",
+      "base_gv_id": "GV-PK-DAA-13",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-decidueye-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Charizard VMAX",
+      "printed_number": "020/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-20",
+      "base_gv_id": "GV-PK-DAA-20",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-charizard-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Galarian Mr. Rime",
+      "printed_number": "036/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-36",
+      "base_gv_id": "GV-PK-DAA-36",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-galarian-mr-rime-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Dedenne",
+      "printed_number": "078/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-78",
+      "base_gv_id": "GV-PK-DAA-78",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dedenne-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Polteageist",
+      "printed_number": "083/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-83",
+      "base_gv_id": "GV-PK-DAA-83",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-polteageist-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Crobat V",
+      "printed_number": "104/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-104",
+      "base_gv_id": "GV-PK-DAA-104",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-crobat-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Hoopa",
+      "printed_number": "111/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-111",
+      "base_gv_id": "GV-PK-DAA-111",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-hoopa-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Eternatus V",
+      "printed_number": "116/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-116",
+      "base_gv_id": "GV-PK-DAA-116",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eternatus-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Eternatus VMAX",
+      "printed_number": "117/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-117",
+      "base_gv_id": "GV-PK-DAA-117",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-eternatus-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Bunnelby",
+      "printed_number": "150/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-150",
+      "base_gv_id": "GV-PK-DAA-150",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bunnelby-common",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Big Parasol",
+      "printed_number": "157/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-157",
+      "base_gv_id": "GV-PK-DAA-157",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-big-parasol-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Bird Keeper",
+      "printed_number": "159/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-159",
+      "base_gv_id": "GV-PK-DAA-159",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bird-keeper-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cape of Toughness",
+      "printed_number": "160/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-160",
+      "base_gv_id": "GV-PK-DAA-160",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cape-of-toughness-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Turbo Patch",
+      "printed_number": "172/189",
+      "effective_base_owner_gv_id": "GV-PK-DAA-172",
+      "base_gv_id": "GV-PK-DAA-172",
+      "set_code": "swsh3",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-turbo-patch-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Alcremie V",
+      "printed_number": "022/073",
+      "effective_base_owner_gv_id": "GV-PK-CPA-22",
+      "base_gv_id": "GV-PK-CPA-22",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Alcremie VMAX",
+      "printed_number": "23/73",
+      "effective_base_owner_gv_id": "GV-PK-CPA-23",
+      "base_gv_id": "GV-PK-CPA-23",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Altaria",
+      "printed_number": "49/73",
+      "effective_base_owner_gv_id": "GV-PK-CPA-49",
+      "base_gv_id": "GV-PK-CPA-49",
+      "set_code": "swsh3.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Charizard",
+      "printed_number": "025/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-25",
+      "base_gv_id": "GV-PK-VIV-25",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-charizard-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Pikachu V",
+      "printed_number": "043/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-43",
+      "base_gv_id": "GV-PK-VIV-43",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pikachu-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Pikachu VMAX",
+      "printed_number": "044/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-44",
+      "base_gv_id": "GV-PK-VIV-44",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pikachu-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Whimsicott",
+      "printed_number": "076/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-76",
+      "base_gv_id": "GV-PK-VIV-76",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Snorlax",
+      "printed_number": "131/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-131",
+      "base_gv_id": "GV-PK-VIV-131",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-snorlax-131-185-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Togekiss V",
+      "printed_number": "140/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-140",
+      "base_gv_id": "GV-PK-VIV-140",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-togekiss-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Togekiss VMAX",
+      "printed_number": "141/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-141",
+      "base_gv_id": "GV-PK-VIV-141",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-togekiss-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Nessa",
+      "printed_number": "157/185",
+      "effective_base_owner_gv_id": "GV-PK-VIV-157",
+      "base_gv_id": "GV-PK-VIV-157",
+      "set_code": "swsh4",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-nessa-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Boss's Orders",
+      "printed_number": "058/072",
+      "effective_base_owner_gv_id": "GV-PK-SHF-58",
+      "base_gv_id": "GV-PK-SHF-58",
+      "set_code": "swsh4.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boss-s-orders-058-072-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Professor's Research",
+      "printed_number": "060/072",
+      "effective_base_owner_gv_id": "GV-PK-SHF-60",
+      "base_gv_id": "GV-PK-SHF-60",
+      "set_code": "swsh4.5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-professor-s-research-professor-juniper-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Victini VMAX",
+      "printed_number": "022/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-22",
+      "base_gv_id": "GV-PK-BST-22",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Empoleon V",
+      "printed_number": "040/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-40",
+      "base_gv_id": "GV-PK-BST-40",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-empoleon-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Orbeetle",
+      "printed_number": "065/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-65",
+      "base_gv_id": "GV-PK-BST-65",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-orbeetle-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Crobat",
+      "printed_number": "091/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-91",
+      "base_gv_id": "GV-PK-BST-91",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-crobat-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Tyranitar V",
+      "printed_number": "097/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-97",
+      "base_gv_id": "GV-PK-BST-97",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-tyranitar-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Corviknight V",
+      "printed_number": "109/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-109",
+      "base_gv_id": "GV-PK-BST-109",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-corviknight-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Corviknight VMAX",
+      "printed_number": "110/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-110",
+      "base_gv_id": "GV-PK-BST-110",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-corviknight-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Exp. Share",
+      "printed_number": "126/163",
+      "effective_base_owner_gv_id": "GV-PK-BST-126",
+      "base_gv_id": "GV-PK-BST-126",
+      "set_code": "swsh5",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-exp-share-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Blaziken V",
+      "printed_number": "020/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-20",
+      "base_gv_id": "GV-PK-CRE-20",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-blaziken-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Blaziken VMAX",
+      "printed_number": "021/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-21",
+      "base_gv_id": "GV-PK-CRE-21",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-blaziken-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Froslass",
+      "printed_number": "036/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-36",
+      "base_gv_id": "GV-PK-CRE-36",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-froslass-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Inteleon",
+      "printed_number": "043/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-43",
+      "base_gv_id": "GV-PK-CRE-43",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-43-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Zeraora V",
+      "printed_number": "053/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-53",
+      "base_gv_id": "GV-PK-CRE-53",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-zeraora-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Gardevoir",
+      "printed_number": "061/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-61",
+      "base_gv_id": "GV-PK-CRE-61",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gardevoir-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Lycanroc",
+      "printed_number": "087/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-87",
+      "base_gv_id": "GV-PK-CRE-87",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-lycanroc-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Spiritomb",
+      "printed_number": "103/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-103",
+      "base_gv_id": "GV-PK-CRE-103",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiritomb-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Single Strike Urshifu",
+      "printed_number": "108/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-108",
+      "base_gv_id": "GV-PK-CRE-108",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-single-strike-urshifu-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Avery",
+      "printed_number": "130/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-130",
+      "base_gv_id": "GV-PK-CRE-130",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-avery-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Impact Energy",
+      "printed_number": "157/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-157",
+      "base_gv_id": "GV-PK-CRE-157",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-impact-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Spiral Energy",
+      "printed_number": "159/198",
+      "effective_base_owner_gv_id": "GV-PK-CRE-159",
+      "base_gv_id": "GV-PK-CRE-159",
+      "set_code": "swsh6",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiral-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [
+        1
+      ],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [
+        {
+          "pass": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V2",
+          "outcome": "WAIT",
+          "decision_code": "no_external_series_confirmation_yet"
+        }
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Oricorio",
+      "printed_number": "042/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-42",
+      "base_gv_id": "GV-PK-FST-42",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-oricorio-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Inteleon V",
+      "printed_number": "078/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-78",
+      "base_gv_id": "GV-PK-FST-78",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Inteleon VMAX",
+      "printed_number": "079/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-79",
+      "base_gv_id": "GV-PK-FST-79",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-inteleon-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Boltund V",
+      "printed_number": "103/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-103",
+      "base_gv_id": "GV-PK-FST-103",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boltund-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Boltund VMAX",
+      "printed_number": "104/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-104",
+      "base_gv_id": "GV-PK-FST-104",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-boltund-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Mew V",
+      "printed_number": "113/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-113",
+      "base_gv_id": "GV-PK-FST-113",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mew-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Mew VMAX",
+      "printed_number": "114/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-114",
+      "base_gv_id": "GV-PK-FST-114",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mew-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Meloetta",
+      "printed_number": "124/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-124",
+      "base_gv_id": "GV-PK-FST-124",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-meloetta-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Gengar V",
+      "printed_number": "156/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-156",
+      "base_gv_id": "GV-PK-FST-156",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gengar-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Gengar VMAX",
+      "printed_number": "157/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-157",
+      "base_gv_id": "GV-PK-FST-157",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-gengar-vmax-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Genesect V",
+      "printed_number": "185/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-185",
+      "base_gv_id": "GV-PK-FST-185",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-genesect-v-ultra-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Latias",
+      "printed_number": "193/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-193",
+      "base_gv_id": "GV-PK-FST-193",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-latias-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Latios",
+      "printed_number": "194/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-194",
+      "base_gv_id": "GV-PK-FST-194",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-latios-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Dunsparce",
+      "printed_number": "207/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-207",
+      "base_gv_id": "GV-PK-FST-207",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dunsparce-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Adventurer's Discovery",
+      "printed_number": "224/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-224",
+      "base_gv_id": "GV-PK-FST-224",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-adventurer-s-discovery-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Battle VIP Pass",
+      "printed_number": "225/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-225",
+      "base_gv_id": "GV-PK-FST-225",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-battle-vip-pass-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Cram-o-matic",
+      "printed_number": "229/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-229",
+      "base_gv_id": "GV-PK-FST-229",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cram-o-matic-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Elesa's Sparkle",
+      "printed_number": "233/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-233",
+      "base_gv_id": "GV-PK-FST-233",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-elesa-s-sparkle-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Power Tablet",
+      "printed_number": "236/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-236",
+      "base_gv_id": "GV-PK-FST-236",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-power-tablet-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Fusion Strike Energy",
+      "printed_number": "244/264",
+      "effective_base_owner_gv_id": "GV-PK-FST-244",
+      "base_gv_id": "GV-PK-FST-244",
+      "set_code": "swsh8",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-fusion-strike-energy-uncommon",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "010/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-10",
+      "base_gv_id": "GV-PK-BRS-10",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "077/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-77",
+      "base_gv_id": "GV-PK-BRS-77",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Wormadam",
+      "printed_number": "098/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-98",
+      "base_gv_id": "GV-PK-BRS-98",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [
+        "route_resolved_by_prior_base_route_repair"
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Whimsicott V",
+      "printed_number": "160/172",
+      "effective_base_owner_gv_id": "GV-PK-BRS-160",
+      "base_gv_id": "GV-PK-BRS-160",
+      "set_code": "swsh9",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-whimsicott-v-160-172-promo",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    },
+    {
+      "candidate_name": "Leafeon VSTAR",
+      "printed_number": "SWSH195",
+      "effective_base_owner_gv_id": "GV-PK-PR-SW-SWSH195",
+      "base_gv_id": "GV-PK-PR-SW-SWSH195",
+      "set_code": "swshp",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-leafeon-vstar-promo",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Glaceon VSTAR",
+      "printed_number": "SWSH197",
+      "effective_base_owner_gv_id": "GV-PK-PR-SW-SWSH197",
+      "base_gv_id": "GV-PK-PR-SW-SWSH197",
+      "set_code": "swshp",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-glaceon-vstar-promo",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_3",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        1,
+        2,
+        3
+      ],
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V8_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": true,
+      "blocked_by_official_acquisition_reason": "Excluded from V16 because the next truthful step depends on blocked official Series 1/2 checklist acquisition.",
+      "research_links": null
+    },
+    {
+      "candidate_name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "effective_base_owner_gv_id": null,
+      "base_gv_id": null,
+      "set_code": null,
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare",
+      "current_blocker_class": "SPECIAL_IDENTITY_FAMILY_COLLISION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "prior_evidence_pass_history": [],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "research_links": null
+    }
+  ]
+}

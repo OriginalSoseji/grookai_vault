@@ -1,0 +1,2921 @@
+{
+  "generated_at": "2026-04-19T05:03:38.806Z",
+  "workflow": "PRIZE_PACK_READY_BATCH_V3_23",
+  "status": "CLOSED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.json",
+    "docs/contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1.md",
+    "docs/contracts/EVIDENCE_TIER_V1.md"
+  ],
+  "selection_summary": {
+    "batch_size": 23,
+    "subset_id": "PRIZE_PACK_CORROBORATED_V1_READY_23",
+    "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+    "pre_intake_live_state_counts": {
+      "READY_TO_BRIDGE": 23
+    },
+    "counts_by_source_set_id": {
+      "prize-pack-series-cards-pokemon": 23
+    },
+    "counts_by_effective_set_code": {
+      "sv02": 15,
+      "swsh12": 3,
+      "sv01": 4,
+      "swsh12.5": 1
+    },
+    "counts_by_number_shape": {
+      "slash_number": 22,
+      "plain_number": 1
+    },
+    "post_bridge_state_counts": {
+      "RAW": 23
+    },
+    "founder_approval_counts": {
+      "APPROVED_BY_FOUNDER": 23
+    },
+    "post_founder_approval_state_counts": {
+      "APPROVED_BY_FOUNDER": 23
+    },
+    "post_staging_execution_status_counts": {
+      "PENDING": 23
+    },
+    "post_executor_candidate_state_counts": {
+      "PROMOTED": 23
+    },
+    "post_executor_staging_execution_status_counts": {
+      "SUCCEEDED": 23
+    },
+    "mapping_summary": {
+      "promoted_rows": 23,
+      "mapped_rows": 23,
+      "duplicate_active_external_ids": 0,
+      "multi_active_mapping_rows": 0
+    },
+    "image_summary": {
+      "promoted_rows": 23,
+      "exact_rows": 0,
+      "representative_rows": 23,
+      "representative_shared_stamp_rows": 23,
+      "missing_rows": 0
+    },
+    "post_classification_state_counts": {
+      "REVIEW_READY": 23
+    },
+    "post_classification_action_counts": {
+      "CREATE_CARD_PRINT": 23
+    },
+    "post_classification_hold_counts": {
+      "FOUNDER_APPROVAL_REQUIRED": 23
+    },
+    "post_stage_state_counts": {
+      "STAGED_FOR_PROMOTION": 23
+    },
+    "post_stage_execution_counts": {
+      "PENDING": 23
+    }
+  },
+  "blocked_rows": [],
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-artazon-uncommon",
+      "source_candidate_id": "a22c18aa-2864-4a1e-840b-b985ccdef400",
+      "name": "Artazon",
+      "candidate_name": "Artazon",
+      "printed_number": "171/193",
+      "number_plain": "171",
+      "normalized_number_plain": "171",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-artazon-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Artazon PAL 171"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Artazon::171/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+        "base_gv_id": "GV-PK-PAL-171",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+        "base_gv_id": "GV-PK-PAL-171",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Artazon",
+        "printed_number": "171",
+        "number_plain": "171"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "a22c18aa-2864-4a1e-840b-b985ccdef400",
+        "live_raw_import_id": "41749",
+        "live_base_card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+        "live_base_gv_id": "GV-PK-PAL-171",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "f32943cf-0195-472a-b804-6b593aca79e4",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "bb095ac9-cd0e-4c71-aa99-a325ce2ab1df",
+      "staging_id": "bb095ac9-cd0e-4c71-aa99-a325ce2ab1df",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "047ff227-5e1f-471c-a735-9c1e38e443b3",
+      "promoted_at": "2026-04-19T05:01:20.415Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-171-PLAY-POKEMON-STAMP",
+      "promoted_name": "Artazon",
+      "promoted_number": "171",
+      "promoted_number_plain": "171",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/171/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "047ff227-5e1f-471c-a735-9c1e38e443b3",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-artazon-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+      "source_candidate_id": "dcea70f5-f5fe-4cdd-9d9f-4f219cc178a9",
+      "name": "Bravery Charm",
+      "candidate_name": "Bravery Charm",
+      "printed_number": "173/193",
+      "number_plain": "173",
+      "normalized_number_plain": "173",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Bravery Charm PAL 173"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Bravery Charm::173/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+        "base_gv_id": "GV-PK-PAL-173",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+        "base_gv_id": "GV-PK-PAL-173",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Bravery Charm",
+        "printed_number": "173",
+        "number_plain": "173"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "dcea70f5-f5fe-4cdd-9d9f-4f219cc178a9",
+        "live_raw_import_id": "41605",
+        "live_base_card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+        "live_base_gv_id": "GV-PK-PAL-173",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "b90c0fd0-a050-4a46-ba19-c092cfaac046",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "755c145d-ace4-4233-ba3d-295eb3033eb6",
+      "staging_id": "755c145d-ace4-4233-ba3d-295eb3033eb6",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "promoted_at": "2026-04-19T05:01:22.301Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP",
+      "promoted_name": "Bravery Charm",
+      "promoted_number": "173",
+      "promoted_number_plain": "173",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/173/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-bravery-charm-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+      "source_candidate_id": "12335991-d200-4132-8684-390569e0171b",
+      "name": "Capturing Aroma",
+      "candidate_name": "Capturing Aroma",
+      "printed_number": "153/195",
+      "number_plain": "153",
+      "normalized_number_plain": "153",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Capturing Aroma SIT 153"
+        }
+      ],
+      "effective_identity_space": "swsh12",
+      "effective_set_code": "swsh12",
+      "effective_routed_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "effective_routed_set_name": "Silver Tempest",
+      "canonical_queue_key": "swsh12::Capturing Aroma::153/195::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "17e4167d-a24e-41f5-bce8-647c6c9678ad",
+        "base_gv_id": "GV-PK-SIT-153",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "17e4167d-a24e-41f5-bce8-647c6c9678ad",
+        "base_gv_id": "GV-PK-SIT-153",
+        "effective_set_code": "swsh12",
+        "effective_set_name": "Silver Tempest",
+        "base_name": "Capturing Aroma",
+        "printed_number": "153",
+        "number_plain": "153"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "12335991-d200-4132-8684-390569e0171b",
+        "live_raw_import_id": "41787",
+        "live_base_card_print_id": "17e4167d-a24e-41f5-bce8-647c6c9678ad",
+        "live_base_gv_id": "GV-PK-SIT-153",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "004b3c47-82ec-403c-8dc7-375e242b1556",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "0d9cce0c-5853-4fc5-bce8-c471ca34f3ad",
+      "staging_id": "0d9cce0c-5853-4fc5-bce8-c471ca34f3ad",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "f993e6ae-bc3d-4951-807b-898bd295f8c3",
+      "promoted_at": "2026-04-19T05:01:24.188Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SIT-153-PLAY-POKEMON-STAMP",
+      "promoted_name": "Capturing Aroma",
+      "promoted_number": "153",
+      "promoted_number_plain": "153",
+      "promoted_set_code": "swsh12",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh12/153/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "f993e6ae-bc3d-4951-807b-898bd295f8c3",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-capturing-aroma-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 4,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-clavell-common",
+      "source_candidate_id": "1cc69aa4-496e-4d2a-93e7-b5fd26c73f01",
+      "name": "Clavell",
+      "candidate_name": "Clavell",
+      "printed_number": "177/193",
+      "number_plain": "177",
+      "normalized_number_plain": "177",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-clavell-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Clavell PAL 177"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Clavell::177/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+        "base_gv_id": "GV-PK-PAL-177",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+        "base_gv_id": "GV-PK-PAL-177",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Clavell",
+        "printed_number": "177",
+        "number_plain": "177"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "1cc69aa4-496e-4d2a-93e7-b5fd26c73f01",
+        "live_raw_import_id": "42043",
+        "live_base_card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+        "live_base_gv_id": "GV-PK-PAL-177",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "fb6ef2f9-adf3-4033-82d0-c1b070dda6b8",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "eb420beb-2557-4b73-9c3b-42220659f2d9",
+      "staging_id": "eb420beb-2557-4b73-9c3b-42220659f2d9",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "93565059-dcfe-4515-860e-4607694a9381",
+      "promoted_at": "2026-04-19T05:01:26.065Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-177-PLAY-POKEMON-STAMP",
+      "promoted_name": "Clavell",
+      "promoted_number": "177",
+      "promoted_number_plain": "177",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/177/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "93565059-dcfe-4515-860e-4607694a9381",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-clavell-common",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 5,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+      "source_candidate_id": "009d03bc-68f7-409e-ac6b-112ef14c8f01",
+      "name": "Dedenne ex",
+      "candidate_name": "Dedenne ex",
+      "printed_number": "093/193",
+      "number_plain": "093",
+      "normalized_number_plain": "093",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Dedenne ex PAL 93"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Dedenne ex::093/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd",
+        "base_gv_id": "GV-PK-PAL-93",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd",
+        "base_gv_id": "GV-PK-PAL-93",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Dedenne ex",
+        "printed_number": "93",
+        "number_plain": "93"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "009d03bc-68f7-409e-ac6b-112ef14c8f01",
+        "live_raw_import_id": "41679",
+        "live_base_card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd",
+        "live_base_gv_id": "GV-PK-PAL-93",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "cfecf2f1-7be9-48bd-89f7-1874aadc4d6a",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "bc653893-8015-4de2-b6eb-c06c367a6d99",
+      "staging_id": "bc653893-8015-4de2-b6eb-c06c367a6d99",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "dbe2a1ae-f598-4ccd-bdf4-09fee621a7f7",
+      "promoted_at": "2026-04-19T05:01:27.888Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-093-PLAY-POKEMON-STAMP",
+      "promoted_name": "Dedenne ex",
+      "promoted_number": "093",
+      "promoted_number_plain": "093",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/093/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "dbe2a1ae-f598-4ccd-bdf4-09fee621a7f7",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-dedenne-ex-double-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 6,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-drifloon-common",
+      "source_candidate_id": "534c30d5-f5cd-4772-a8fb-5c724c4a3d05",
+      "name": "Drifloon",
+      "candidate_name": "Drifloon",
+      "printed_number": "089/198",
+      "number_plain": "089",
+      "normalized_number_plain": "089",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-drifloon-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Drifloon SVI 89"
+        }
+      ],
+      "effective_identity_space": "sv01",
+      "effective_set_code": "sv01",
+      "effective_routed_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "effective_routed_set_name": "Scarlet & Violet",
+      "canonical_queue_key": "sv01::Drifloon::089/198::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "eb77d753-2424-4950-b22d-0ba9ffba9db9",
+        "base_gv_id": "GV-PK-SVI-089",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "eb77d753-2424-4950-b22d-0ba9ffba9db9",
+        "base_gv_id": "GV-PK-SVI-089",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "base_name": "Drifloon",
+        "printed_number": "089",
+        "number_plain": "089"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "534c30d5-f5cd-4772-a8fb-5c724c4a3d05",
+        "live_raw_import_id": "41945",
+        "live_base_card_print_id": "eb77d753-2424-4950-b22d-0ba9ffba9db9",
+        "live_base_gv_id": "GV-PK-SVI-089",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "1bee0ff2-f901-4aff-9d1c-9c0bd751abb5",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "78940343-942b-4046-b87a-fef9d9643b0a",
+      "staging_id": "78940343-942b-4046-b87a-fef9d9643b0a",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "b7ebf8ce-4b39-47b1-ba17-5530ab45e380",
+      "promoted_at": "2026-04-19T05:01:29.709Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SVI-089-PLAY-POKEMON-STAMP",
+      "promoted_name": "Drifloon",
+      "promoted_number": "089",
+      "promoted_number_plain": "089",
+      "promoted_set_code": "sv01",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv01/089/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "b7ebf8ce-4b39-47b1-ba17-5530ab45e380",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-drifloon-common",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 7,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+      "source_candidate_id": "75eb0a5f-81c8-4266-8d1c-3f3db2cf1a7c",
+      "name": "Emergency Jelly",
+      "candidate_name": "Emergency Jelly",
+      "printed_number": "155/195",
+      "number_plain": "155",
+      "normalized_number_plain": "155",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Emergency Jelly SIT 155"
+        }
+      ],
+      "effective_identity_space": "swsh12",
+      "effective_set_code": "swsh12",
+      "effective_routed_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "effective_routed_set_name": "Silver Tempest",
+      "canonical_queue_key": "swsh12::Emergency Jelly::155/195::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "9d9ec2c1-468d-4dca-8f3e-156fa390584b",
+        "base_gv_id": "GV-PK-SIT-155",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "9d9ec2c1-468d-4dca-8f3e-156fa390584b",
+        "base_gv_id": "GV-PK-SIT-155",
+        "effective_set_code": "swsh12",
+        "effective_set_name": "Silver Tempest",
+        "base_name": "Emergency Jelly",
+        "printed_number": "155",
+        "number_plain": "155"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "75eb0a5f-81c8-4266-8d1c-3f3db2cf1a7c",
+        "live_raw_import_id": "42081",
+        "live_base_card_print_id": "9d9ec2c1-468d-4dca-8f3e-156fa390584b",
+        "live_base_gv_id": "GV-PK-SIT-155",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "03ddf784-97e1-453f-a23c-2a727ba7f494",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "5b53af57-38eb-4e5e-80f2-2c466f293836",
+      "staging_id": "5b53af57-38eb-4e5e-80f2-2c466f293836",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+      "promoted_at": "2026-04-19T05:01:31.641Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SIT-155-PLAY-POKEMON-STAMP",
+      "promoted_name": "Emergency Jelly",
+      "promoted_number": "155",
+      "promoted_number_plain": "155",
+      "promoted_set_code": "swsh12",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh12/155/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-emergency-jelly-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 8,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+      "source_candidate_id": "294a8f65-bc5b-47a1-9da6-5d89374ca356",
+      "name": "Fighting Au Lait",
+      "candidate_name": "Fighting Au Lait",
+      "printed_number": "181/193",
+      "number_plain": "181",
+      "normalized_number_plain": "181",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Fighting Au Lait PAL 181"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Fighting Au Lait::181/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+        "base_gv_id": "GV-PK-PAL-181",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+        "base_gv_id": "GV-PK-PAL-181",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Fighting Au Lait",
+        "printed_number": "181",
+        "number_plain": "181"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "294a8f65-bc5b-47a1-9da6-5d89374ca356",
+        "live_raw_import_id": "42023",
+        "live_base_card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+        "live_base_gv_id": "GV-PK-PAL-181",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "1126d509-803e-44d3-b1f0-7d1b7aa05f06",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "762b7568-9a6f-4c60-9b4d-63bcb714d64a",
+      "staging_id": "762b7568-9a6f-4c60-9b4d-63bcb714d64a",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "94037abf-99a9-4f69-b4ed-7f39801dac95",
+      "promoted_at": "2026-04-19T05:01:33.528Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-181-PLAY-POKEMON-STAMP",
+      "promoted_name": "Fighting Au Lait",
+      "promoted_number": "181",
+      "promoted_number_plain": "181",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/181/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "94037abf-99a9-4f69-b4ed-7f39801dac95",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-fighting-au-lait-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 9,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-klefki-rare",
+      "source_candidate_id": "84ea68c0-51e1-4413-8c80-7ac68ac05053",
+      "name": "Klefki",
+      "candidate_name": "Klefki",
+      "printed_number": "096/198",
+      "number_plain": "096",
+      "normalized_number_plain": "096",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-klefki-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Klefki SVI 96"
+        }
+      ],
+      "effective_identity_space": "sv01",
+      "effective_set_code": "sv01",
+      "effective_routed_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "effective_routed_set_name": "Scarlet & Violet",
+      "canonical_queue_key": "sv01::Klefki::096/198::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "8b7df965-aff6-43c2-afc1-eedf2f7f48a4",
+        "base_gv_id": "GV-PK-SVI-096",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "8b7df965-aff6-43c2-afc1-eedf2f7f48a4",
+        "base_gv_id": "GV-PK-SVI-096",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "base_name": "Klefki",
+        "printed_number": "096",
+        "number_plain": "096"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "84ea68c0-51e1-4413-8c80-7ac68ac05053",
+        "live_raw_import_id": "41906",
+        "live_base_card_print_id": "8b7df965-aff6-43c2-afc1-eedf2f7f48a4",
+        "live_base_gv_id": "GV-PK-SVI-096",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "5548919a-2d23-4cdb-8f5b-280ef7979814",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "2b5e977f-1fdc-4068-ba15-e6bd59116f14",
+      "staging_id": "2b5e977f-1fdc-4068-ba15-e6bd59116f14",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "05c961ad-c08f-4521-ae46-c88b1e0b3a18",
+      "promoted_at": "2026-04-19T05:01:35.366Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SVI-096-PLAY-POKEMON-STAMP",
+      "promoted_name": "Klefki",
+      "promoted_number": "096",
+      "promoted_number_plain": "096",
+      "promoted_set_code": "sv01",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv01/096/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "05c961ad-c08f-4521-ae46-c88b1e0b3a18",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-klefki-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 10,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+      "source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+      "name": "Kyogre",
+      "candidate_name": "Kyogre",
+      "printed_number": "036/159",
+      "number_plain": "036",
+      "normalized_number_plain": "036",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-kyogre-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Kyogre CRZ 36"
+        }
+      ],
+      "effective_identity_space": "swsh12.5",
+      "effective_set_code": "swsh12.5",
+      "effective_routed_set_code": "swsh12.5",
+      "effective_set_name": "Crown Zenith",
+      "effective_routed_set_name": "Crown Zenith",
+      "canonical_queue_key": "swsh12.5::Kyogre::036/159::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "base_gv_id": "GV-PK-CRZ-036",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "base_gv_id": "GV-PK-CRZ-036",
+        "effective_set_code": "swsh12.5",
+        "effective_set_name": "Crown Zenith",
+        "base_name": "Kyogre",
+        "printed_number": "036",
+        "number_plain": "036"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "3568e461-5b2a-408f-ae06-fc6c48566172",
+        "live_raw_import_id": "41568",
+        "live_base_card_print_id": "1b93ccb8-ed56-4ae3-941f-40d039582420",
+        "live_base_gv_id": "GV-PK-CRZ-036",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "94409071-c486-4965-88bf-ae54c5601da2",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "7f979c41-8f10-413b-9d14-c516eeb5997c",
+      "staging_id": "7f979c41-8f10-413b-9d14-c516eeb5997c",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72",
+      "promoted_at": "2026-04-19T05:01:37.231Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-CRZ-036-PLAY-POKEMON-STAMP",
+      "promoted_name": "Kyogre",
+      "promoted_number": "036",
+      "promoted_number_plain": "036",
+      "promoted_set_code": "swsh12.5",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh12.5/GG36/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "0628ad3b-d2e4-459d-a635-f846016c0b72",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-kyogre-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 11,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-luminous-energy-uncommon",
+      "source_candidate_id": "e9857699-db42-43e3-b7d6-e8acab13971d",
+      "name": "Luminous Energy",
+      "candidate_name": "Luminous Energy",
+      "printed_number": "191/193",
+      "number_plain": "191",
+      "normalized_number_plain": "191",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-luminous-energy-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Luminous Energy PAL 191"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Luminous Energy::191/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+        "base_gv_id": "GV-PK-PAL-191",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+        "base_gv_id": "GV-PK-PAL-191",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Luminous Energy",
+        "printed_number": "191",
+        "number_plain": "191"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "e9857699-db42-43e3-b7d6-e8acab13971d",
+        "live_raw_import_id": "41615",
+        "live_base_card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+        "live_base_gv_id": "GV-PK-PAL-191",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "4effa276-76bf-40d5-9ddb-8744f84035ff",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "f1bc2bbf-d86f-46cb-a31e-8316a44ab94e",
+      "staging_id": "f1bc2bbf-d86f-46cb-a31e-8316a44ab94e",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "ff65323d-c1f5-44d6-b834-7cf82d6ce2ef",
+      "promoted_at": "2026-04-19T05:01:39.354Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-191-PLAY-POKEMON-STAMP",
+      "promoted_name": "Luminous Energy",
+      "promoted_number": "191",
+      "promoted_number_plain": "191",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/191/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "ff65323d-c1f5-44d6-b834-7cf82d6ce2ef",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-luminous-energy-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 12,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-luxray-071-193-rare",
+      "source_candidate_id": "18f31d7d-3c94-4765-a832-a27fd80cdfe8",
+      "name": "Luxray",
+      "candidate_name": "Luxray - 071/193",
+      "printed_number": "071/193",
+      "number_plain": "071",
+      "normalized_number_plain": "071",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-luxray-071-193-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Luxray PAL 71"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Luxray::071/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+        "base_gv_id": "GV-PK-PAL-71",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+        "base_gv_id": "GV-PK-PAL-71",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Luxray",
+        "printed_number": "71",
+        "number_plain": "71"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "18f31d7d-3c94-4765-a832-a27fd80cdfe8",
+        "live_raw_import_id": "41991",
+        "live_base_card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+        "live_base_gv_id": "GV-PK-PAL-71",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "b1136f4a-7cee-429c-9e0e-f8e761318655",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "2e2490c2-a0dc-403c-8a1c-31b320d53cc8",
+      "staging_id": "2e2490c2-a0dc-403c-8a1c-31b320d53cc8",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "promoted_at": "2026-04-19T05:01:41.181Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP",
+      "promoted_name": "Luxray",
+      "promoted_number": "071",
+      "promoted_number_plain": "071",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/071/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-luxray-071-193-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 13,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-meowscarada-ex-double-rare",
+      "source_candidate_id": "970c9975-8d8a-4d4f-b968-396ea5b8a5ac",
+      "name": "Meowscarada ex",
+      "candidate_name": "Meowscarada ex",
+      "printed_number": "015/193",
+      "number_plain": "015",
+      "normalized_number_plain": "015",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-meowscarada-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Meowscarada ex PAL 15"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Meowscarada ex::015/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "fe593f96-7286-4604-a4be-07383450e816",
+        "base_gv_id": "GV-PK-PAL-15",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "fe593f96-7286-4604-a4be-07383450e816",
+        "base_gv_id": "GV-PK-PAL-15",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Meowscarada ex",
+        "printed_number": "15",
+        "number_plain": "15"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "970c9975-8d8a-4d4f-b968-396ea5b8a5ac",
+        "live_raw_import_id": "41691",
+        "live_base_card_print_id": "fe593f96-7286-4604-a4be-07383450e816",
+        "live_base_gv_id": "GV-PK-PAL-15",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "17e1495a-01d4-4999-8b1c-69132285c1b9",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "fad37791-be87-453b-a8ec-a9fbd27923fb",
+      "staging_id": "fad37791-be87-453b-a8ec-a9fbd27923fb",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "dda6a80d-019b-44e9-a8fb-b6e96b51077b",
+      "promoted_at": "2026-04-19T05:01:43.022Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-015-PLAY-POKEMON-STAMP",
+      "promoted_name": "Meowscarada ex",
+      "promoted_number": "015",
+      "promoted_number_plain": "015",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/015/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "dda6a80d-019b-44e9-a8fb-b6e96b51077b",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-meowscarada-ex-double-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 14,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mimikyu-rare",
+      "source_candidate_id": "cc200bdf-2129-4883-9048-10f62973768b",
+      "name": "Mimikyu",
+      "candidate_name": "Mimikyu",
+      "printed_number": "097/193",
+      "number_plain": "097",
+      "normalized_number_plain": "097",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mimikyu-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Mimikyu PAL 97"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Mimikyu::097/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+        "base_gv_id": "GV-PK-PAL-97",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+        "base_gv_id": "GV-PK-PAL-97",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Mimikyu",
+        "printed_number": "97",
+        "number_plain": "97"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "cc200bdf-2129-4883-9048-10f62973768b",
+        "live_raw_import_id": "41620",
+        "live_base_card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+        "live_base_gv_id": "GV-PK-PAL-97",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "70404c0a-08df-4c60-bd6f-8610a1c9cb73",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "9a0ce879-ea66-43cc-a482-1847b7d49559",
+      "staging_id": "9a0ce879-ea66-43cc-a482-1847b7d49559",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "08a82d5f-a97c-491b-b715-912b5357c5a1",
+      "promoted_at": "2026-04-19T05:01:44.848Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-097-PLAY-POKEMON-STAMP",
+      "promoted_name": "Mimikyu",
+      "promoted_number": "097",
+      "promoted_number_plain": "097",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/097/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "08a82d5f-a97c-491b-b715-912b5357c5a1",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-mimikyu-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 15,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-noivern-ex-double-rare",
+      "source_candidate_id": "6d1b55ea-f09c-459b-9be8-578c13f40cd8",
+      "name": "Noivern ex",
+      "candidate_name": "Noivern ex",
+      "printed_number": "153/193",
+      "number_plain": "153",
+      "normalized_number_plain": "153",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-noivern-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Noivern ex PAL 153"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Noivern ex::153/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+        "base_gv_id": "GV-PK-PAL-153",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+        "base_gv_id": "GV-PK-PAL-153",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Noivern ex",
+        "printed_number": "153",
+        "number_plain": "153"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "6d1b55ea-f09c-459b-9be8-578c13f40cd8",
+        "live_raw_import_id": "41746",
+        "live_base_card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+        "live_base_gv_id": "GV-PK-PAL-153",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "b3568bc8-1882-4e62-8cbf-cf0a4e707a95",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "002a1039-b5a8-4843-b2be-3c6d5115c59c",
+      "staging_id": "002a1039-b5a8-4843-b2be-3c6d5115c59c",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "979101d6-1dc6-4168-b213-21fceb37e780",
+      "promoted_at": "2026-04-19T05:01:46.670Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-153-PLAY-POKEMON-STAMP",
+      "promoted_name": "Noivern ex",
+      "promoted_number": "153",
+      "promoted_number_plain": "153",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/153/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "979101d6-1dc6-4168-b213-21fceb37e780",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-noivern-ex-double-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 16,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pal-pad-common",
+      "source_candidate_id": "09326163-3cbd-4629-ae02-47f2433711e3",
+      "name": "Pal Pad",
+      "candidate_name": "Pal Pad",
+      "printed_number": "182",
+      "number_plain": "182",
+      "normalized_number_plain": "182",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pal-pad-common",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Pal Pad SVI 182"
+        }
+      ],
+      "effective_identity_space": "sv01",
+      "effective_set_code": "sv01",
+      "effective_routed_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "effective_routed_set_name": "Scarlet & Violet",
+      "canonical_queue_key": "sv01::Pal Pad::182::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "0dd85648-d526-42d5-b2d5-5c565927cd38",
+        "base_gv_id": "GV-PK-SVI-182",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "0dd85648-d526-42d5-b2d5-5c565927cd38",
+        "base_gv_id": "GV-PK-SVI-182",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "base_name": "Pal Pad",
+        "printed_number": "182",
+        "number_plain": "182"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "09326163-3cbd-4629-ae02-47f2433711e3",
+        "live_raw_import_id": "41586",
+        "live_base_card_print_id": "0dd85648-d526-42d5-b2d5-5c565927cd38",
+        "live_base_gv_id": "GV-PK-SVI-182",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "129b107e-ef7a-4029-99ab-0a4141104351",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "abb08d6d-d1bf-46b1-adff-6c250d74686d",
+      "staging_id": "abb08d6d-d1bf-46b1-adff-6c250d74686d",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "1b9a0ff9-70bc-4a8b-b920-605a097b15ea",
+      "promoted_at": "2026-04-19T05:01:48.538Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SVI-182-PLAY-POKEMON-STAMP",
+      "promoted_name": "Pal Pad",
+      "promoted_number": "182",
+      "promoted_number_plain": "182",
+      "promoted_set_code": "sv01",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv01/182/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "1b9a0ff9-70bc-4a8b-b920-605a097b15ea",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-pal-pad-common",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 17,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pelipper-uncommon",
+      "source_candidate_id": "b88212bc-7099-4eda-88ff-ffc4ac6150ed",
+      "name": "Pelipper",
+      "candidate_name": "Pelipper",
+      "printed_number": "159/193",
+      "number_plain": "159",
+      "normalized_number_plain": "159",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pelipper-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Pelipper PAL 159"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Pelipper::159/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+        "base_gv_id": "GV-PK-PAL-159",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+        "base_gv_id": "GV-PK-PAL-159",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Pelipper",
+        "printed_number": "159",
+        "number_plain": "159"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "b88212bc-7099-4eda-88ff-ffc4ac6150ed",
+        "live_raw_import_id": "42062",
+        "live_base_card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+        "live_base_gv_id": "GV-PK-PAL-159",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "ee4031c4-ef54-436d-84b2-9f3bd397b826",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "6c5e95d1-2d20-4fad-9a6f-d2539981874a",
+      "staging_id": "6c5e95d1-2d20-4fad-9a6f-d2539981874a",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "c0640ced-2105-4289-adc7-5d46e32843ad",
+      "promoted_at": "2026-04-19T05:01:50.384Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-159-PLAY-POKEMON-STAMP",
+      "promoted_name": "Pelipper",
+      "promoted_number": "159",
+      "promoted_number_plain": "159",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/159/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "c0640ced-2105-4289-adc7-5d46e32843ad",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-pelipper-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 18,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-quaquaval-rare",
+      "source_candidate_id": "d0520b63-962b-483a-8896-60b0cef28318",
+      "name": "Quaquaval",
+      "candidate_name": "Quaquaval",
+      "printed_number": "054/198",
+      "number_plain": "054",
+      "normalized_number_plain": "054",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-quaquaval-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S Quaquaval SVI 54"
+        }
+      ],
+      "effective_identity_space": "sv01",
+      "effective_set_code": "sv01",
+      "effective_routed_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "effective_routed_set_name": "Scarlet & Violet",
+      "canonical_queue_key": "sv01::Quaquaval::054/198::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "8aa19ef4-2383-4860-8b33-40926220cb8b",
+        "base_gv_id": "GV-PK-SVI-054",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "8aa19ef4-2383-4860-8b33-40926220cb8b",
+        "base_gv_id": "GV-PK-SVI-054",
+        "effective_set_code": "sv01",
+        "effective_set_name": "Scarlet & Violet",
+        "base_name": "Quaquaval",
+        "printed_number": "054",
+        "number_plain": "054"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "d0520b63-962b-483a-8896-60b0cef28318",
+        "live_raw_import_id": "41956",
+        "live_base_card_print_id": "8aa19ef4-2383-4860-8b33-40926220cb8b",
+        "live_base_gv_id": "GV-PK-SVI-054",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "aa27ccbf-8d84-470d-9d3e-48cd909d39af",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "14c0e01f-5e29-42b3-a7e5-eafbb8b70079",
+      "staging_id": "14c0e01f-5e29-42b3-a7e5-eafbb8b70079",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "8a648bf8-1703-49ed-b6f7-ecab24a2442a",
+      "promoted_at": "2026-04-19T05:01:52.224Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SVI-054-PLAY-POKEMON-STAMP",
+      "promoted_name": "Quaquaval",
+      "promoted_number": "054",
+      "promoted_number_plain": "054",
+      "promoted_set_code": "sv01",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv01/054/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "8a648bf8-1703-49ed-b6f7-ecab24a2442a",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-quaquaval-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 19,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-skeledirge-ex-037-193-double-rare",
+      "source_candidate_id": "2dfd2ab3-7407-43ce-adab-84d32357c045",
+      "name": "Skeledirge ex",
+      "candidate_name": "Skeledirge ex - 037/193",
+      "printed_number": "037/193",
+      "number_plain": "037",
+      "normalized_number_plain": "037",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-skeledirge-ex-037-193-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Skeledirge ex PAL 37"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Skeledirge ex::037/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8",
+        "base_gv_id": "GV-PK-PAL-37",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8",
+        "base_gv_id": "GV-PK-PAL-37",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Skeledirge ex",
+        "printed_number": "37",
+        "number_plain": "37"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "2dfd2ab3-7407-43ce-adab-84d32357c045",
+        "live_raw_import_id": "41757",
+        "live_base_card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8",
+        "live_base_gv_id": "GV-PK-PAL-37",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "f8475065-62c7-4f5f-b3cc-d31ce0eee33c",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "83625e69-7eab-438a-bb11-6c5c1a5c6517",
+      "staging_id": "83625e69-7eab-438a-bb11-6c5c1a5c6517",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "ac3b2dc3-3198-4382-9a38-43c52f61491d",
+      "promoted_at": "2026-04-19T05:01:54.089Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-037-PLAY-POKEMON-STAMP",
+      "promoted_name": "Skeledirge ex",
+      "promoted_number": "037",
+      "promoted_number_plain": "037",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/037/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "ac3b2dc3-3198-4382-9a38-43c52f61491d",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-skeledirge-ex-037-193-double-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 20,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-spiritomb-089-193-rare",
+      "source_candidate_id": "2d0879c4-c787-468b-9a04-d86ebf42e27a",
+      "name": "Spiritomb",
+      "candidate_name": "Spiritomb - 089/193",
+      "printed_number": "089/193",
+      "number_plain": "089",
+      "normalized_number_plain": "089",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-spiritomb-089-193-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Spiritomb PAL 89"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Spiritomb::089/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+        "base_gv_id": "GV-PK-PAL-89",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+        "base_gv_id": "GV-PK-PAL-89",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Spiritomb",
+        "printed_number": "89",
+        "number_plain": "89"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "2d0879c4-c787-468b-9a04-d86ebf42e27a",
+        "live_raw_import_id": "41868",
+        "live_base_card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+        "live_base_gv_id": "GV-PK-PAL-89",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "6bfe8306-37c3-4ef8-8e2b-d783d5181439",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "b2edf4b4-716b-48c6-b4d3-62d41ea67e32",
+      "staging_id": "b2edf4b4-716b-48c6-b4d3-62d41ea67e32",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "f2273d3a-9737-4ae9-bbfa-58fbd25c93dd",
+      "promoted_at": "2026-04-19T05:01:55.930Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-089-PLAY-POKEMON-STAMP",
+      "promoted_name": "Spiritomb",
+      "promoted_number": "089",
+      "promoted_number_plain": "089",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/089/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "f2273d3a-9737-4ae9-bbfa-58fbd25c93dd",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-spiritomb-089-193-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 21,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-superior-energy-retrieval-uncommon",
+      "source_candidate_id": "8f976b99-21f7-49ea-9a7f-88dd4d5797ef",
+      "name": "Superior Energy Retrieval",
+      "candidate_name": "Superior Energy Retrieval",
+      "printed_number": "189/193",
+      "number_plain": "189",
+      "normalized_number_plain": "189",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-superior-energy-retrieval-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "S, H Superior Energy Retrieval PAL 189"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Superior Energy Retrieval::189/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+        "base_gv_id": "GV-PK-PAL-189",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+        "base_gv_id": "GV-PK-PAL-189",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Superior Energy Retrieval",
+        "printed_number": "189",
+        "number_plain": "189"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "8f976b99-21f7-49ea-9a7f-88dd4d5797ef",
+        "live_raw_import_id": "41684",
+        "live_base_card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+        "live_base_gv_id": "GV-PK-PAL-189",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "ad7fe26d-1266-4b46-b0a5-0eb29478b0ab",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "3466e8c9-1f28-4dc3-98fe-47a2c5810e5a",
+      "staging_id": "3466e8c9-1f28-4dc3-98fe-47a2c5810e5a",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "7393c4e1-c7a9-4e8f-a2fb-4d8ff58593f8",
+      "promoted_at": "2026-04-19T05:01:57.797Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-189-PLAY-POKEMON-STAMP",
+      "promoted_name": "Superior Energy Retrieval",
+      "promoted_number": "189",
+      "promoted_number_plain": "189",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/189/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "7393c4e1-c7a9-4e8f-a2fb-4d8ff58593f8",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-superior-energy-retrieval-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 22,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-ting-lu-ex-double-rare",
+      "source_candidate_id": "ace7a369-c105-448e-9ed1-f1742ec09620",
+      "name": "Ting-Lu ex",
+      "candidate_name": "Ting-Lu ex",
+      "printed_number": "127/193",
+      "number_plain": "127",
+      "normalized_number_plain": "127",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-ting-lu-ex-double-rare",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Ting-Lu ex PAL 127"
+        }
+      ],
+      "effective_identity_space": "sv02",
+      "effective_set_code": "sv02",
+      "effective_routed_set_code": "sv02",
+      "effective_set_name": "Paldea Evolved",
+      "effective_routed_set_name": "Paldea Evolved",
+      "canonical_queue_key": "sv02::Ting-Lu ex::127/193::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+        "base_gv_id": "GV-PK-PAL-127",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+        "base_gv_id": "GV-PK-PAL-127",
+        "effective_set_code": "sv02",
+        "effective_set_name": "Paldea Evolved",
+        "base_name": "Ting-Lu ex",
+        "printed_number": "127",
+        "number_plain": "127"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "ace7a369-c105-448e-9ed1-f1742ec09620",
+        "live_raw_import_id": "41779",
+        "live_base_card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+        "live_base_gv_id": "GV-PK-PAL-127",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "cdd5f692-232a-4952-bb7e-8d54c2564649",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "5d81052a-2025-40f9-b737-ed93cd01f42a",
+      "staging_id": "5d81052a-2025-40f9-b737-ed93cd01f42a",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "7905ce0c-3cbd-4f9b-b152-8d112c027e5f",
+      "promoted_at": "2026-04-19T05:01:59.703Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-PAL-127-PLAY-POKEMON-STAMP",
+      "promoted_name": "Ting-Lu ex",
+      "promoted_number": "127",
+      "promoted_number_plain": "127",
+      "promoted_set_code": "sv02",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/sv/sv02/127/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "7905ce0c-3cbd-4f9b-b152-8d112c027e5f",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-ting-lu-ex-double-rare",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    },
+    {
+      "batch_index": 23,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-worker-uncommon",
+      "source_candidate_id": "6382ff6e-1a44-45a6-a16e-7992d02bb05e",
+      "name": "Worker",
+      "candidate_name": "Worker",
+      "printed_number": "167/195",
+      "number_plain": "167",
+      "normalized_number_plain": "167",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_2",
+      "supported_series_list": [
+        4
+      ],
+      "evidence_sources_v2": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-worker-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        },
+        {
+          "source_name": "JustInBasil Prize Pack Series 4 Set List",
+          "source_type": "justinbasil_set_list",
+          "evidence_tier": "TIER_2",
+          "series": 4,
+          "source_url": "https://www.justinbasil.com/set-lists/pps4",
+          "source_line": "H Worker SIT 167"
+        }
+      ],
+      "effective_identity_space": "swsh12",
+      "effective_set_code": "swsh12",
+      "effective_routed_set_code": "swsh12",
+      "effective_set_name": "Silver Tempest",
+      "effective_routed_set_name": "Silver Tempest",
+      "canonical_queue_key": "swsh12::Worker::167/195::play_pokemon_stamp",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "blocking_reason": "confirmed_series_4_only_after_series_1_to_3_corroboration",
+        "evidence_summary": "Matched Prize Pack Series 4 only after direct checks against Series 1-3 card lists, so the Play! Pokemon stamp resolves to one corroborated generic Prize Pack identity.",
+        "live_base_card_print_id": "cc17e925-eb7b-467e-9b3b-154b86611bc5",
+        "base_gv_id": "GV-PK-SIT-167",
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ]
+      },
+      "target_base_resolution": {
+        "resolution_type": "UNIQUE_BASE_ROUTE",
+        "base_card_print_id": "cc17e925-eb7b-467e-9b3b-154b86611bc5",
+        "base_gv_id": "GV-PK-SIT-167",
+        "effective_set_code": "swsh12",
+        "effective_set_name": "Silver Tempest",
+        "base_name": "Worker",
+        "printed_number": "167",
+        "number_plain": "167"
+      },
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "6382ff6e-1a44-45a6-a16e-7992d02bb05e",
+        "live_raw_import_id": "42028",
+        "live_base_card_print_id": "cc17e925-eb7b-467e-9b3b-154b86611bc5",
+        "live_base_gv_id": "GV-PK-SIT-167",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "evidence_tier": "TIER_2",
+        "supported_series_list": [
+          4
+        ],
+        "confirmed_series_coverage": [
+          4
+        ],
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "warehouse_candidate_id": "27469474-b34a-43c3-88a0-dee19a883edf",
+      "warehouse_state": "PROMOTED",
+      "current_review_hold_reason": null,
+      "blocker_context": null,
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-19T04:59:21.119Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V3_23 founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "current_staging_id": "6ff9b85c-96c9-4601-8c19-3265a0961a5c",
+      "staging_id": "6ff9b85c-96c9-4601-8c19-3265a0961a5c",
+      "staging_execution_status": "SUCCEEDED",
+      "promoted_card_print_id": "9d0a296d-cc09-4a7d-befa-e91ab34bfabe",
+      "promoted_at": "2026-04-19T05:02:01.537Z",
+      "promotion_result_type": "CARD_PRINT_CREATED",
+      "gv_id": "GV-PK-SIT-167-PLAY-POKEMON-STAMP",
+      "promoted_name": "Worker",
+      "promoted_number": "167",
+      "promoted_number_plain": "167",
+      "promoted_set_code": "swsh12",
+      "promoted_variant_key": "play_pokemon_stamp",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh12/167/high.webp",
+      "image_status": "representative_shared_stamp",
+      "card_print_id": "9d0a296d-cc09-4a7d-befa-e91ab34bfabe",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_external_id": "pokemon-prize-pack-series-cards-worker-uncommon",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex"
+    }
+  ],
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V3_23",
+  "batch_result": {
+    "batch_size_attempted": 23,
+    "batch_size_completed": 23,
+    "batch_rows_classified": 23,
+    "batch_rows_staged": 23,
+    "batch_rows_approved": 23,
+    "batch_rows_promoted": 23,
+    "batch_rows_mapped": 23,
+    "batch_rows_image_closed": 23,
+    "batch_failures_by_class": {}
+  }
+}

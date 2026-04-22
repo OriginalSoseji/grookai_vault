@@ -1,0 +1,765 @@
+{
+  "generated_at": "2026-04-20T21:57:34.203Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED",
+  "selection_summary": {
+    "id": "LATE_SV_SET_CODED_SERIES_3_TO_8_WINDOW",
+    "label": "Late SV Set-Coded Series 3-8 Window",
+    "row_count": 8,
+    "set_code_counts": {
+      "me01": 1,
+      "sv01": 1,
+      "sv10": 2,
+      "sv4pt5": 3,
+      "sv8pt5": 1
+    },
+    "excluded_blocked_by_official_acquisition_count": 88,
+    "excluded_special_family_count": 1
+  },
+  "shared_question": "Across accessible Prize Pack Series 3-8 sources, do these late Scarlet & Violet-family set-coded rows appear in exactly one corroborated series or multiple?",
+  "evidence_sources_used": [
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series Three",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)"
+    },
+    {
+      "series": 4,
+      "source_name": "Bulbapedia Prize Pack Series Four",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)"
+    },
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series Seven",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series Eight",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+      "candidate_name": "Mystery Garden",
+      "printed_number": "172/132",
+      "normalized_number_plain": "172",
+      "base_gv_id": "GV-PK-MEG-172",
+      "base_route": "GV-PK-MEG-172",
+      "base_card_print_id": null,
+      "base_card_name": "Mystery Garden",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 8,
+      "effective_set_code": "me01",
+      "effective_set_name": "151",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/me01-172",
+        "google_search_url": "https://www.google.com/search?q=Mystery%20Garden%20172%2F132%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Mystery%20Garden%20172%2F132%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-MEG-172",
+      "prior_evidence_pass_history": [],
+      "set_code": "me01",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v13_nonblocked",
+      "final_reason": "Accessible sources do not yet place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+      "candidate_name": "Pokegear 3.0",
+      "printed_number": "186/198",
+      "normalized_number_plain": "186",
+      "base_gv_id": "GV-PK-SVI-186",
+      "base_route": "GV-PK-SVI-186",
+      "base_card_print_id": null,
+      "base_card_name": "Pokegear 3.0",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks one deterministic underlying base route.",
+      "blocker_detail": "base_route_not_unique",
+      "cluster_name": "BASE_ROUTE_AMBIGUOUS",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv01",
+      "effective_set_name": "Scarlet & Violet",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-pokegear-3-0-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Pokegear%203.0%20186%2F198%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Pokegear%203.0%20186%2F198%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        3
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-SVI-186",
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "set_code": "sv01",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [
+        {
+          "series": 3,
+          "source_name": "Bulbapedia Prize Pack Series Three",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolscarlet and violet.png|x18px|link=scarlet & violet (tcg)]] 186/198|g|{{tcg id|scarlet & violet|pokegear 3.0|186}}|item||common|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[3]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v13_nonblocked_late_sv_window",
+      "final_reason": "Accessible evidence places this late SV-family row in exactly one corroborated Prize Pack series across the reachable Series 3-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+      "candidate_name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "normalized_number_plain": "102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "base_route": "GV-PK-DRI-102",
+      "base_card_print_id": null,
+      "base_card_name": "Cynthia's Gible",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 8,
+      "effective_set_code": "sv10",
+      "effective_set_name": "Destined Rivals",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cynthia-s-gible-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv10-102",
+        "google_search_url": "https://www.google.com/search?q=Cynthia's%20Gible%20102%2F182%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Cynthia's%20Gible%20102%2F182%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "prior_evidence_pass_history": [],
+      "set_code": "sv10",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v13_nonblocked",
+      "final_reason": "Accessible sources do not yet place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+      "candidate_name": "Cynthia's Gible (ERROR)",
+      "printed_number": "102/182",
+      "normalized_number_plain": "102",
+      "base_gv_id": "GV-PK-DRI-102",
+      "base_route": "GV-PK-DRI-102",
+      "base_card_print_id": null,
+      "base_card_name": "Cynthia's Gible",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 8,
+      "effective_set_code": "sv10",
+      "effective_set_name": "Destined Rivals",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv10-102",
+        "google_search_url": "https://www.google.com/search?q=Cynthia's%20Gible%20102%2F182%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Cynthia's%20Gible%20102%2F182%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-DRI-102",
+      "prior_evidence_pass_history": [],
+      "set_code": "sv10",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v13_nonblocked",
+      "final_reason": "Accessible sources do not yet place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-atticus-uncommon",
+      "candidate_name": "Atticus",
+      "printed_number": "077/091",
+      "normalized_number_plain": "077",
+      "base_gv_id": "GV-PK-PAF-77-S",
+      "base_route": "GV-PK-PAF-77-S",
+      "base_card_print_id": null,
+      "base_card_name": "Atticus",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks one deterministic underlying base route.",
+      "blocker_detail": "base_route_not_unique",
+      "cluster_name": "BASE_ROUTE_AMBIGUOUS",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-atticus-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Atticus%20077%2F091%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Atticus%20077%2F091%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-PAF-77-S",
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "set_code": "sv4pt5",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolpaldean fates.png|x18px|link=paldean fates (tcg)]] 077/091|g|{{tcg id|paldean fates|atticus|77}}|supporter||uncommon|standard set}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v13_nonblocked_late_sv_window",
+      "final_reason": "Accessible evidence places this late SV-family row in exactly one corroborated Prize Pack series across the reachable Series 3-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+      "candidate_name": "Moonlit Hill",
+      "printed_number": "081/091",
+      "normalized_number_plain": "081",
+      "base_gv_id": "GV-PK-PAF-81-S",
+      "base_route": "GV-PK-PAF-81-S",
+      "base_card_print_id": null,
+      "base_card_name": "Moonlit Hill",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks one deterministic underlying base route.",
+      "blocker_detail": "base_route_not_unique",
+      "cluster_name": "BASE_ROUTE_AMBIGUOUS",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-moonlit-hill-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Moonlit%20Hill%20081%2F091%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Moonlit%20Hill%20081%2F091%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-PAF-81-S",
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "set_code": "sv4pt5",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolpaldean fates.png|x18px|link=paldean fates (tcg)]] 081/091|g|{{tcg id|paldean fates|moonlit hill|81}}|stadium||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v13_nonblocked_late_sv_window",
+      "final_reason": "Accessible evidence places this late SV-family row in exactly one corroborated Prize Pack series across the reachable Series 3-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+      "candidate_name": "Technical Machine: Crisis Punch",
+      "printed_number": "090/091",
+      "normalized_number_plain": "090",
+      "base_gv_id": "GV-PK-PAF-90-S",
+      "base_route": "GV-PK-PAF-90-S",
+      "base_card_print_id": null,
+      "base_card_name": "Technical Machine: Crisis Punch",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks one deterministic underlying base route.",
+      "blocker_detail": "base_route_not_unique",
+      "cluster_name": "BASE_ROUTE_AMBIGUOUS",
+      "decision_reason_v2": "base_route_ambiguous_or_missing",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sv4pt5",
+      "effective_set_name": "Paldean Fates",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-technical-machine-crisis-punch-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": null,
+        "google_search_url": "https://www.google.com/search?q=Technical%20Machine%3A%20Crisis%20Punch%20090%2F091%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Technical%20Machine%3A%20Crisis%20Punch%20090%2F091%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5",
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        6
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-PAF-90-S",
+      "prior_evidence_pass_history": [
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V2",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V3",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V4",
+        "PRIZE_PACK_BASE_ROUTE_REPAIR_V5"
+      ],
+      "set_code": "sv4pt5",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [
+        {
+          "series": 6,
+          "source_name": "Bulbapedia Prize Pack Series Six",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolpaldean_fates.png|x18px|link=paldean fates (tcg)]] 090/091|g|{{tcg id|paldean fates|technical machine: crisis punch|90}}|pokemon tool||uncommon|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[6]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v13_nonblocked_late_sv_window",
+      "final_reason": "Accessible evidence places this late SV-family row in exactly one corroborated Prize Pack series across the reachable Series 3-8 window, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+      "candidate_name": "Carmine",
+      "printed_number": "103/131",
+      "normalized_number_plain": "103",
+      "base_gv_id": "GV-PK-PRE-103",
+      "base_route": "GV-PK-PRE-103",
+      "base_card_print_id": null,
+      "base_card_name": "Carmine",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": 7,
+      "effective_set_code": "sv8pt5",
+      "effective_set_name": "Prismatic Evolutions",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-carmine-uncommon",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sv8pt5-103",
+        "google_search_url": "https://www.google.com/search?q=Carmine%20103%2F131%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Carmine%20103%2F131%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V13_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "effective_base_owner_gv_id": "GV-PK-PRE-103",
+      "prior_evidence_pass_history": [],
+      "set_code": "sv8pt5",
+      "accessible_series_checked": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v13_nonblocked": [],
+      "matched_series_pattern": "[]",
+      "final_evidence_tier": "TIER_4",
+      "final_evidence_class": "STILL_UNPROVEN",
+      "final_decision": "WAIT",
+      "decision_code": "no_accessible_series_match_after_v13_nonblocked",
+      "final_reason": "Accessible sources do not yet place this row in one deterministic Prize Pack series, so it remains in the evidence backlog."
+    }
+  ]
+}

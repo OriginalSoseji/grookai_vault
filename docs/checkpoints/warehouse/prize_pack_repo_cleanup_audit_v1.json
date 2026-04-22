@@ -1,0 +1,2765 @@
+{
+  "generated_at": "2026-04-22T04:58:31.617Z",
+  "workflow": "CLEANUP_AND_PACKAGE_PRIZE_PACK_MILESTONE_V1",
+  "scope": "Read-only git working tree inventory, classification, suspicious-file audit, duplicate/superseded artifact audit, commit grouping, and command pack. No DB/pipeline/canon work performed.",
+  "git_status_entry_count_including_generated_reports": 335,
+  "inventory_summary": {
+    "RUNTIME_CORE_CHANGES": 9,
+    "RUNTIME_NEW_FILES": 52,
+    "DOCS_CONTRACTS": 15,
+    "DOCS_CHECKPOINTS": 231,
+    "DOCS_PLAYBOOKS": 5,
+    "WORKER_READMES": 16,
+    "TEST_FILES": 6,
+    "MIGRATIONS": 1,
+    "POSSIBLE_MISPLACED_FILES": 6,
+    "POSSIBLE_DUPLICATE_OR_SUPERSEDED_FILES": 5,
+    "FILES_REQUIRING_HUMAN_DECISION": 1
+  },
+  "inventory": {
+    "RUNTIME_CORE_CHANGES": [
+      {
+        "path": "backend/identity/perfect_order_variant_identity_rule_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/images/source_image_enrichment_worker_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/buildCardPrintGvIdV1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/classification_worker_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/metadata_extraction_worker_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/promotion_executor_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/promotion_stage_worker_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      },
+      {
+        "path": "backend/warehouse/source_identity_contract_v1.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Modified runtime worker/helper code."
+      }
+    ],
+    "RUNTIME_NEW_FILES": [
+      {
+        "path": "backend/identity/identity_resolution_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/identity/identity_slot_audit_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/identity/stamped_identity_rule_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/identity/variant_coexistence_rule_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/import_prize_pack_official_checklists_v1.py",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/missing_special_cases_audit_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_backlog_final_state_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_v2.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_v3.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_v4.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_v5.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_v6.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_corroboration_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_source_upgrade_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v10_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v11_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v12_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v13_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v14_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v15_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v16_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v17_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v18_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v19_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v2.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v20_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v21_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v22_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v3.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v4.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v5.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v6_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v7_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v8_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_v9_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v10.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v11_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v12.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v13_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v18_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v19_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v20_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_v8_nonblocked.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_special_identity_family_repair_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_wait_inspection_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/staging_reconciliation_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/stamped_identity_rule_apply_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      },
+      {
+        "path": "backend/warehouse/stamped_manual_review_clusters_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "New runtime worker/helper code added during the milestone."
+      }
+    ],
+    "DOCS_CONTRACTS": [
+      {
+        "path": "docs/CONTRACT_INDEX.md",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/EVENT_AND_PRERELEASE_BASE_ROUTE_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/EVIDENCE_TIER_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/EXPANSION_NAME_STAMP_OVERLAY_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1.md",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/PRINTED_IDENTITY_VS_VARIANT_KEY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/PRIZE_PACK_SERIES_MARKER_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/PROMO_FAMILY_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/PROMO_PREFIX_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/PROMO_SLOT_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/SET_CLOSURE_PLAYBOOK_V1.md",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/STAMPED_IDENTITY_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      },
+      {
+        "path": "docs/contracts/VARIANT_COEXISTENCE_RULE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Contract or contract-index documentation."
+      }
+    ],
+    "DOCS_CHECKPOINTS": [
+      {
+        "path": "docs/checkpoints/identity/alias_mapping_execution_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/identity/identity_audit_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/identity/identity_resolution_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/bridge_generalization_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/missing_card_closure_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/missing_special_cases_audit_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/missing_special_cases_audit_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_backlog_final_state_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_backlog_final_state_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_clusters.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_target_cluster.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_target_cluster.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_target_cluster.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v5.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v5.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_target_cluster.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_source_upgrade_v1_target.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v10_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v10_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v10.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v10.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v12_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v12_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v12_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v12_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v2.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v3_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v3_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v3.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v3.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v4_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v4_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v4.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v4.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v5_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v5_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v5.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v5.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v6.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_target_slice.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v10_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v10.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v10.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v12_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v12.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v12.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72_promoted_subset.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v3_23.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v3_23.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v4_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v4.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v4.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v5_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v5.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v5.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_promoted_subset.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_promoted_subset.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked_candidate.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_repo_cleanup_audit_v1.json",
+        "git_status": "generated",
+        "status_kind": "generated_by_this_pass",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_repo_cleanup_audit_v1.md",
+        "git_status": "generated",
+        "status_kind": "generated_by_this_pass",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_series_evidence_sources_v2.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/promo_family_identity_rule_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/promo_family_identity_rule_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/series_2_official_source_fallback_acquisition_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/series_2_official_source_fallback_acquisition_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_base_repair_v1_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_base_repair_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_base_repair_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_base_repair_v4.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_base_repair_v4.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_identity_population_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_clusters_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_clusters_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_event_and_prerelease_base_route_overlays_ready_batch_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_event_and_prerelease_base_route_overlays_ready_batch_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_misc_expansion_name_stamp_overlays_ready_batch_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_misc_expansion_name_stamp_overlays_ready_batch_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_prize_pack_series_marker_ready_batch_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_manual_review_prize_pack_series_marker_ready_batch_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_2_warehouse_intake_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_2_warehouse_intake_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_3_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/variant_coexistence_rule_v1_input.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/variant_coexistence_rule_v1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      },
+      {
+        "path": "docs/checkpoints/warehouse/variant_coexistence_rule_v1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Milestone checkpoint, audit, source import, or closure artifact."
+      }
+    ],
+    "DOCS_PLAYBOOKS": [
+      {
+        "path": "docs/playbooks/PRIZE_PACK_BACKLOG_BUCKET_DEFINITIONS_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Prize Pack execution playbook, decision tree, bucket definitions, source guide, or worker index."
+      },
+      {
+        "path": "docs/playbooks/PRIZE_PACK_BACKLOG_DECISION_TREE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Prize Pack execution playbook, decision tree, bucket definitions, source guide, or worker index."
+      },
+      {
+        "path": "docs/playbooks/PRIZE_PACK_BACKLOG_EXECUTION_PLAYBOOK_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Prize Pack execution playbook, decision tree, bucket definitions, source guide, or worker index."
+      },
+      {
+        "path": "docs/playbooks/PRIZE_PACK_SOURCE_ACQUISITION_GUIDE_V1.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Prize Pack execution playbook, decision tree, bucket definitions, source guide, or worker index."
+      },
+      {
+        "path": "docs/playbooks/PRIZE_PACK_WORKER_INDEX_V1.json",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Prize Pack execution playbook, decision tree, bucket definitions, source guide, or worker index."
+      }
+    ],
+    "WORKER_READMES": [
+      {
+        "path": "backend/identity/identity_slot_audit_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/images/source_image_enrichment_worker_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/buildCardPrintGvIdV1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/classification_worker_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/external_discovery_to_warehouse_bridge_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_backlog_final_state_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_base_route_repair_family.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_corroboration_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_family.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_evidence_source_upgrade_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_ready_batch_family.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/prize_pack_wait_inspection_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/promote_source_backed_justtcg_mapping_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/promotion_executor_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/source_identity_contract_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      },
+      {
+        "path": "backend/warehouse/stamped_manual_review_clusters_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Worker or worker-family README created for the Prize Pack documentation pack."
+      }
+    ],
+    "TEST_FILES": [
+      {
+        "path": "backend/identity/identity_resolution_v1.test.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      },
+      {
+        "path": "backend/identity/identity_slot_audit_v1.test.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      },
+      {
+        "path": "backend/identity/perfect_order_variant_identity_rule_v1.test.mjs",
+        "git_status": "M",
+        "status_kind": "modified",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      },
+      {
+        "path": "backend/identity/stamped_identity_rule_v1.test.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      },
+      {
+        "path": "backend/warehouse/buildCardPrintGvIdV1.test.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      },
+      {
+        "path": "backend/warehouse/source_identity_contract_v1.test.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Automated test file paired with runtime identity or warehouse behavior."
+      }
+    ],
+    "MIGRATIONS": [
+      {
+        "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "reason": "Supabase migration file."
+      }
+    ],
+    "POSSIBLE_MISPLACED_FILES": [
+      {
+        "path": "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION",
+        "reason": "Executable writes JustTCG/external mapping data and matches existing backend/pricing mapping-worker convention. Prize Pack ready-batch scripts reference this path directly."
+      },
+      {
+        "path": "backend/warehouse/promote_source_backed_justtcg_mapping_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION",
+        "reason": "README was requested with warehouse worker docs because Prize Pack batch closure calls the pricing worker from the warehouse flow. The README explicitly documents the executable path under backend/pricing."
+      },
+      {
+        "path": "backend/identity/identity_slot_audit_v1.mjs",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION",
+        "reason": "Identity-slot audit is read-only identity-domain logic and belongs under backend/identity."
+      },
+      {
+        "path": "backend/identity/identity_slot_audit_v1.README.md",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION",
+        "reason": "README is colocated with its identity executable."
+      },
+      {
+        "path": "backend/warehouse/import_prize_pack_official_checklists_v1.py",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION",
+        "reason": "One-purpose source acquisition normalizer writes warehouse checkpoint JSON and is scoped to Prize Pack warehouse evidence."
+      },
+      {
+        "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+        "git_status": "??",
+        "status_kind": "untracked",
+        "classification": "CORRECT_LOCATION_SEPARATE_COMMIT",
+        "reason": "Migration path and naming match repo convention. It is schema work and should not be bundled with docs or runtime-only commits."
+      }
+    ],
+    "POSSIBLE_DUPLICATE_OR_SUPERSEDED_FILES": [
+      {
+        "classification": "SUPERSEDED_BUT_KEEP",
+        "reason": "Failed/direct Series 2 acquisition attempts are superseded by the official fallback acquisition, but they document why the fallback path was needed.",
+        "paths": [
+          "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.json",
+          "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.md",
+          "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.json",
+          "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.md"
+        ]
+      },
+      {
+        "classification": "KEEP_HISTORICAL",
+        "reason": "Candidate files are exact input manifests proving bounded READY batch execution. Closure files supersede them operationally but do not replace them historically.",
+        "paths": [
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v10_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v12_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v4_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v5_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2_candidate.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked_candidate.json"
+        ]
+      },
+      {
+        "classification": "KEEP_HISTORICAL",
+        "reason": "Evidence input and target-slice artifacts prove how each bounded slice was selected.",
+        "paths": [
+          "docs/checkpoints/warehouse/prize_pack_evidence_v10_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v10_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v12_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v12_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v3_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v3_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v4_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v4_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v5_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v5_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_target_slice.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_input.json",
+          "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_target_slice.json"
+        ]
+      },
+      {
+        "classification": "KEEP_HISTORICAL",
+        "reason": "Route repair input, cluster, and target-cluster artifacts are needed to reproduce structural repair decisions.",
+        "paths": [
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1_input.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_clusters.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_target_cluster.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_input.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_target_cluster.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_input.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_target_cluster.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+          "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_target_cluster.json"
+        ]
+      },
+      {
+        "classification": "KEEP_HISTORICAL",
+        "reason": "Subset and residue files document bounded partial closure and should not be removed without a separate artifact-retention policy.",
+        "paths": [
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72_promoted_subset.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_promoted_subset.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.json",
+          "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_promoted_subset.json"
+        ]
+      }
+    ],
+    "FILES_REQUIRING_HUMAN_DECISION": [
+      {
+        "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+        "git_status": "human_decision",
+        "status_kind": "review",
+        "reason": "Human should decide migration apply/staging timing. Intent is clear enough for SEPARATE_COMMIT classification, but schema deployment is operationally distinct from repo packaging."
+      }
+    ]
+  },
+  "misplaced_files_summary": [
+    {
+      "path": "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+      "classification": "CORRECT_LOCATION",
+      "reason": "Executable writes JustTCG/external mapping data and matches existing backend/pricing mapping-worker convention. Prize Pack ready-batch scripts reference this path directly."
+    },
+    {
+      "path": "backend/warehouse/promote_source_backed_justtcg_mapping_v1.README.md",
+      "classification": "CORRECT_LOCATION",
+      "reason": "README was requested with warehouse worker docs because Prize Pack batch closure calls the pricing worker from the warehouse flow. The README explicitly documents the executable path under backend/pricing."
+    },
+    {
+      "path": "backend/identity/identity_slot_audit_v1.mjs",
+      "classification": "CORRECT_LOCATION",
+      "reason": "Identity-slot audit is read-only identity-domain logic and belongs under backend/identity."
+    },
+    {
+      "path": "backend/identity/identity_slot_audit_v1.README.md",
+      "classification": "CORRECT_LOCATION",
+      "reason": "README is colocated with its identity executable."
+    },
+    {
+      "path": "backend/warehouse/import_prize_pack_official_checklists_v1.py",
+      "classification": "CORRECT_LOCATION",
+      "reason": "One-purpose source acquisition normalizer writes warehouse checkpoint JSON and is scoped to Prize Pack warehouse evidence."
+    },
+    {
+      "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+      "classification": "CORRECT_LOCATION_SEPARATE_COMMIT",
+      "reason": "Migration path and naming match repo convention. It is schema work and should not be bundled with docs or runtime-only commits."
+    }
+  ],
+  "duplicate_or_superseded_summary": [
+    {
+      "classification": "SUPERSEDED_BUT_KEEP",
+      "reason": "Failed/direct Series 2 acquisition attempts are superseded by the official fallback acquisition, but they document why the fallback path was needed.",
+      "paths": [
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.json",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.md",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.json",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.md"
+      ]
+    },
+    {
+      "classification": "KEEP_HISTORICAL",
+      "reason": "Candidate files are exact input manifests proving bounded READY batch execution. Closure files supersede them operationally but do not replace them historically.",
+      "paths": [
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v10_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v12_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v4_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v5_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked_candidate.json"
+      ]
+    },
+    {
+      "classification": "KEEP_HISTORICAL",
+      "reason": "Evidence input and target-slice artifacts prove how each bounded slice was selected.",
+      "paths": [
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_target_slice.json"
+      ]
+    },
+    {
+      "classification": "KEEP_HISTORICAL",
+      "reason": "Route repair input, cluster, and target-cluster artifacts are needed to reproduce structural repair decisions.",
+      "paths": [
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_clusters.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_target_cluster.json"
+      ]
+    },
+    {
+      "classification": "KEEP_HISTORICAL",
+      "reason": "Subset and residue files document bounded partial closure and should not be removed without a separate artifact-retention policy.",
+      "paths": [
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_promoted_subset.json"
+      ]
+    }
+  ],
+  "migration_status": {
+    "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+    "classification": "SEPARATE_COMMIT",
+    "reason": "The file adds warehouse candidate identity audit columns and transition guard constraints. It is structurally related to the warehouse identity milestone, but it is schema work and should be committed separately from runtime, checkpoints, and docs. It was not changed by this cleanup pass.",
+    "do_not_stage_with": [
+      "runtime code",
+      "checkpoint artifacts",
+      "playbook docs"
+    ]
+  },
+  "files_needing_human_decision": [
+    {
+      "path": "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+      "reason": "Human should decide migration apply/staging timing. Intent is clear enough for SEPARATE_COMMIT classification, but schema deployment is operationally distinct from repo packaging."
+    }
+  ],
+  "commit_groups": [
+    {
+      "id": "A",
+      "name": "Runtime / Identity / Warehouse code",
+      "files": [
+        "backend/identity/identity_resolution_v1.mjs",
+        "backend/identity/identity_resolution_v1.test.mjs",
+        "backend/identity/identity_slot_audit_v1.mjs",
+        "backend/identity/identity_slot_audit_v1.test.mjs",
+        "backend/identity/perfect_order_variant_identity_rule_v1.mjs",
+        "backend/identity/perfect_order_variant_identity_rule_v1.test.mjs",
+        "backend/identity/stamped_identity_rule_v1.mjs",
+        "backend/identity/stamped_identity_rule_v1.test.mjs",
+        "backend/identity/variant_coexistence_rule_v1.mjs",
+        "backend/images/source_image_enrichment_worker_v1.mjs",
+        "backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs",
+        "backend/warehouse/buildCardPrintGvIdV1.mjs",
+        "backend/warehouse/buildCardPrintGvIdV1.test.mjs",
+        "backend/warehouse/classification_worker_v1.mjs",
+        "backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs",
+        "backend/warehouse/import_prize_pack_official_checklists_v1.py",
+        "backend/warehouse/metadata_extraction_worker_v1.mjs",
+        "backend/warehouse/missing_special_cases_audit_v1.mjs",
+        "backend/warehouse/prize_pack_backlog_final_state_v1.mjs",
+        "backend/warehouse/prize_pack_base_route_repair_v2.mjs",
+        "backend/warehouse/prize_pack_base_route_repair_v3.mjs",
+        "backend/warehouse/prize_pack_base_route_repair_v4.mjs",
+        "backend/warehouse/prize_pack_base_route_repair_v5.mjs",
+        "backend/warehouse/prize_pack_base_route_repair_v6.mjs",
+        "backend/warehouse/prize_pack_evidence_corroboration_v1.mjs",
+        "backend/warehouse/prize_pack_evidence_source_upgrade_v1.mjs",
+        "backend/warehouse/prize_pack_evidence_v10_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v11_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v12_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v13_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v14_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v15_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v16_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v17_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v18_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v19_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v2.mjs",
+        "backend/warehouse/prize_pack_evidence_v20_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v21_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v22_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v3.mjs",
+        "backend/warehouse/prize_pack_evidence_v4.mjs",
+        "backend/warehouse/prize_pack_evidence_v5.mjs",
+        "backend/warehouse/prize_pack_evidence_v6_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v7_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v8_nonblocked.mjs",
+        "backend/warehouse/prize_pack_evidence_v9_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v10.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v11_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v12.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v13_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v18_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v19_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v20_nonblocked.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.mjs",
+        "backend/warehouse/prize_pack_ready_batch_v8_nonblocked.mjs",
+        "backend/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.mjs",
+        "backend/warehouse/prize_pack_special_identity_family_repair_v1.mjs",
+        "backend/warehouse/prize_pack_wait_inspection_v1.mjs",
+        "backend/warehouse/promotion_executor_v1.mjs",
+        "backend/warehouse/promotion_stage_worker_v1.mjs",
+        "backend/warehouse/source_identity_contract_v1.mjs",
+        "backend/warehouse/source_identity_contract_v1.test.mjs",
+        "backend/warehouse/staging_reconciliation_v1.mjs",
+        "backend/warehouse/stamped_identity_rule_apply_v1.mjs",
+        "backend/warehouse/stamped_manual_review_clusters_v1.mjs"
+      ],
+      "why": "Runtime workers, helper modules, source acquisition scripts, mapping worker, and tests required by the warehouse/stamped/Prize Pack milestone behavior.",
+      "safe_commit_message": "Add Prize Pack warehouse identity and evidence workers"
+    },
+    {
+      "id": "B",
+      "name": "Contracts and core docs",
+      "files": [
+        "docs/CONTRACT_INDEX.md",
+        "docs/contracts/EVENT_AND_PRERELEASE_BASE_ROUTE_RULE_V1.md",
+        "docs/contracts/EVIDENCE_TIER_V1.md",
+        "docs/contracts/EXPANSION_NAME_STAMP_OVERLAY_IDENTITY_RULE_V1.md",
+        "docs/contracts/EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1.md",
+        "docs/contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1.md",
+        "docs/contracts/PRINTED_IDENTITY_VS_VARIANT_KEY_RULE_V1.md",
+        "docs/contracts/PRIZE_PACK_SERIES_MARKER_IDENTITY_RULE_V1.md",
+        "docs/contracts/PROMO_FAMILY_IDENTITY_RULE_V1.md",
+        "docs/contracts/PROMO_PREFIX_IDENTITY_RULE_V1.md",
+        "docs/contracts/PROMO_SLOT_IDENTITY_RULE_V1.md",
+        "docs/contracts/REPRESENTATIVE_IMAGE_FALLBACK_RULE_V1.md",
+        "docs/contracts/SET_CLOSURE_PLAYBOOK_V1.md",
+        "docs/contracts/STAMPED_IDENTITY_RULE_V1.md",
+        "docs/contracts/VARIANT_COEXISTENCE_RULE_V1.md"
+      ],
+      "why": "Binding contract docs and contract index changes that govern the runtime behavior.",
+      "safe_commit_message": "Document stamped identity and Prize Pack contracts"
+    },
+    {
+      "id": "C",
+      "name": "Checkpoints / milestone artifacts",
+      "files": [
+        "docs/checkpoints/identity/alias_mapping_execution_v1.md",
+        "docs/checkpoints/identity/identity_audit_v1.md",
+        "docs/checkpoints/identity/identity_resolution_v1.md",
+        "docs/checkpoints/warehouse/bridge_generalization_v1.md",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1.json",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1.md",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.json",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2.md",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.json",
+        "docs/checkpoints/warehouse/local_official_checklist_import_for_prize_pack_v1_series_2_real_browser_required.md",
+        "docs/checkpoints/warehouse/missing_card_closure_v1.md",
+        "docs/checkpoints/warehouse/missing_special_cases_audit_v1.json",
+        "docs/checkpoints/warehouse/missing_special_cases_audit_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_backlog_final_state_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_backlog_final_state_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v1_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_clusters.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v2_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v3_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v4_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v5.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v5.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6.md",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_input.json",
+        "docs/checkpoints/warehouse/prize_pack_base_route_repair_v6_target_cluster.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_corroboration_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_source_upgrade_v1_target.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v10_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v11_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v12_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v13_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v14_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v15_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v16_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v2.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v2.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v20_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v21_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v22_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v3_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v4_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v5_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v6_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v7_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v8_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_input.json",
+        "docs/checkpoints/warehouse/prize_pack_evidence_v9_nonblocked_target_slice.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v10.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v10.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v10_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v11_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v12.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v12.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v12_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v13_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v1_129_residue_2.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v20_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v2_72_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v3_23.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v3_23.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v4.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v4.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v4_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v5.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v5.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v5_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_nonblocked_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_residue_5.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_nonblocked_promoted_subset.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked.json",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked.md",
+        "docs/checkpoints/warehouse/prize_pack_ready_batch_v8_nonblocked_candidate.json",
+        "docs/checkpoints/warehouse/prize_pack_repo_cleanup_audit_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_repo_cleanup_audit_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+        "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+        "docs/checkpoints/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_series_2_source_upgrade_fallback_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_series_evidence_sources_v2.json",
+        "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1.md",
+        "docs/checkpoints/warehouse/prize_pack_special_identity_family_repair_v1_input.json",
+        "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.json",
+        "docs/checkpoints/warehouse/prize_pack_wait_inspection_v1.md",
+        "docs/checkpoints/warehouse/promo_family_identity_rule_v1.json",
+        "docs/checkpoints/warehouse/promo_family_identity_rule_v1.md",
+        "docs/checkpoints/warehouse/series_2_official_source_fallback_acquisition_v1.json",
+        "docs/checkpoints/warehouse/series_2_official_source_fallback_acquisition_v1.md",
+        "docs/checkpoints/warehouse/stamped_base_repair_v1.json",
+        "docs/checkpoints/warehouse/stamped_base_repair_v1.md",
+        "docs/checkpoints/warehouse/stamped_base_repair_v1_input.json",
+        "docs/checkpoints/warehouse/stamped_base_repair_v4.json",
+        "docs/checkpoints/warehouse/stamped_base_repair_v4.md",
+        "docs/checkpoints/warehouse/stamped_identity_population_v1.json",
+        "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.json",
+        "docs/checkpoints/warehouse/stamped_identity_rule_apply_v1.md",
+        "docs/checkpoints/warehouse/stamped_manual_review_clusters_v1.json",
+        "docs/checkpoints/warehouse/stamped_manual_review_clusters_v1.md",
+        "docs/checkpoints/warehouse/stamped_manual_review_event_and_prerelease_base_route_overlays_ready_batch_v1.json",
+        "docs/checkpoints/warehouse/stamped_manual_review_event_and_prerelease_base_route_overlays_ready_batch_v1.md",
+        "docs/checkpoints/warehouse/stamped_manual_review_misc_expansion_name_stamp_overlays_ready_batch_v1.json",
+        "docs/checkpoints/warehouse/stamped_manual_review_misc_expansion_name_stamp_overlays_ready_batch_v1.md",
+        "docs/checkpoints/warehouse/stamped_manual_review_prize_pack_series_marker_ready_batch_v1.json",
+        "docs/checkpoints/warehouse/stamped_manual_review_prize_pack_series_marker_ready_batch_v1.md",
+        "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.json",
+        "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1.md",
+        "docs/checkpoints/warehouse/stamped_mapping_and_image_closure_v1_input.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_2_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_2_warehouse_intake_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_2_warehouse_intake_v1.md",
+        "docs/checkpoints/warehouse/stamped_ready_batch_3_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_3_warehouse_intake_v1.md",
+        "docs/checkpoints/warehouse/stamped_ready_batch_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.json",
+        "docs/checkpoints/warehouse/stamped_ready_batch_warehouse_intake_v1.md",
+        "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.json",
+        "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.md",
+        "docs/checkpoints/warehouse/variant_coexistence_rule_v1.json",
+        "docs/checkpoints/warehouse/variant_coexistence_rule_v1.md",
+        "docs/checkpoints/warehouse/variant_coexistence_rule_v1_input.json"
+      ],
+      "why": "Reproducible checkpoint chain, source imports, route repairs, evidence passes, ready batch closures, final state, and this cleanup audit.",
+      "safe_commit_message": "Checkpoint Prize Pack backlog milestone state"
+    },
+    {
+      "id": "D",
+      "name": "Playbook pack / worker READMEs",
+      "files": [
+        "backend/identity/identity_slot_audit_v1.README.md",
+        "backend/images/source_image_enrichment_worker_v1.README.md",
+        "backend/warehouse/buildCardPrintGvIdV1.README.md",
+        "backend/warehouse/classification_worker_v1.README.md",
+        "backend/warehouse/external_discovery_to_warehouse_bridge_v1.README.md",
+        "backend/warehouse/prize_pack_backlog_final_state_v1.README.md",
+        "backend/warehouse/prize_pack_base_route_repair_family.README.md",
+        "backend/warehouse/prize_pack_evidence_corroboration_v1.README.md",
+        "backend/warehouse/prize_pack_evidence_family.README.md",
+        "backend/warehouse/prize_pack_evidence_source_upgrade_v1.README.md",
+        "backend/warehouse/prize_pack_ready_batch_family.README.md",
+        "backend/warehouse/prize_pack_wait_inspection_v1.README.md",
+        "backend/warehouse/promote_source_backed_justtcg_mapping_v1.README.md",
+        "backend/warehouse/promotion_executor_v1.README.md",
+        "backend/warehouse/source_identity_contract_v1.README.md",
+        "backend/warehouse/stamped_manual_review_clusters_v1.README.md",
+        "docs/playbooks/PRIZE_PACK_BACKLOG_BUCKET_DEFINITIONS_V1.md",
+        "docs/playbooks/PRIZE_PACK_BACKLOG_DECISION_TREE_V1.md",
+        "docs/playbooks/PRIZE_PACK_BACKLOG_EXECUTION_PLAYBOOK_V1.md",
+        "docs/playbooks/PRIZE_PACK_SOURCE_ACQUISITION_GUIDE_V1.md",
+        "docs/playbooks/PRIZE_PACK_WORKER_INDEX_V1.json"
+      ],
+      "why": "Operational playbooks, machine-readable worker index, bucket definitions, source guide, and worker/family documentation.",
+      "safe_commit_message": "Add Prize Pack backlog execution playbooks"
+    },
+    {
+      "id": "E",
+      "name": "Migration",
+      "files": [
+        "supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql"
+      ],
+      "why": "Schema migration is validly located but should remain a separate review and commit unit.",
+      "safe_commit_message": "Add warehouse identity reconciliation migration"
+    }
+  ],
+  "recommended_git_command_pack": {
+    "commit_A": [
+      "git add -- backend/identity/*.mjs backend/identity/*.test.mjs backend/images/source_image_enrichment_worker_v1.mjs backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs backend/warehouse/*.mjs backend/warehouse/*.py backend/warehouse/*.test.mjs",
+      "git commit -m \"Add Prize Pack warehouse identity and evidence workers\""
+    ],
+    "commit_B": [
+      "git add -- docs/CONTRACT_INDEX.md docs/contracts",
+      "git commit -m \"Document stamped identity and Prize Pack contracts\""
+    ],
+    "commit_C": [
+      "git add -- docs/checkpoints/identity docs/checkpoints/warehouse",
+      "git commit -m \"Checkpoint Prize Pack backlog milestone state\""
+    ],
+    "commit_D": [
+      "git add -- docs/playbooks/PRIZE_PACK_BACKLOG_EXECUTION_PLAYBOOK_V1.md docs/playbooks/PRIZE_PACK_BACKLOG_DECISION_TREE_V1.md docs/playbooks/PRIZE_PACK_WORKER_INDEX_V1.json docs/playbooks/PRIZE_PACK_BACKLOG_BUCKET_DEFINITIONS_V1.md docs/playbooks/PRIZE_PACK_SOURCE_ACQUISITION_GUIDE_V1.md backend/warehouse/*.README.md backend/identity/identity_slot_audit_v1.README.md backend/images/source_image_enrichment_worker_v1.README.md",
+      "git commit -m \"Add Prize Pack backlog execution playbooks\""
+    ],
+    "commit_E": [
+      "git add -- supabase/migrations/20260417100000__warehouse_identity_reconciliation_v1.sql",
+      "git commit -m \"Add warehouse identity reconciliation migration\""
+    ],
+    "do_not_stage_yet": [
+      "Do not stage Commit E with A-D. Review migration apply timing first.",
+      "Do not remove superseded checkpoint inputs/candidates; keep historical unless a separate retention policy is approved."
+    ]
+  },
+  "safe_moves_performed": [],
+  "safe_removals_performed": [],
+  "stop_conditions": []
+}

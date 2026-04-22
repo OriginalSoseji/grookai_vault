@@ -1,0 +1,438 @@
+{
+  "generated_at": "2026-04-21T21:14:38.548Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED",
+  "scope": "One small high-signal nonblocked Prize Pack slice using currently accessible evidence only.",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v17_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v6_source_upgrade_series_1.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v7_source_upgrade_series_2.json",
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_nonblocked.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_input.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v19_nonblocked_target_slice.json"
+  ],
+  "current_backlog": {
+    "wait_for_more_evidence": 60,
+    "no_series_confirmation": 59,
+    "nonblocked_no_series_confirmation": 12,
+    "special_identity_family_collision": 1,
+    "blocked_by_official_acquisition": 47,
+    "do_not_canon_total": 186,
+    "promoted_prize_pack_total": 417
+  },
+  "target_slice": {
+    "id": "BRILLIANT_STARS_WORMADAM_SERIES_2_OFFICIAL_LOCAL_JSON_AUDIT",
+    "label": "Brilliant Stars Wormadam Series 2 Official Local JSON Audit",
+    "row_count": 3,
+    "shared_question": "Across local official Series 1-2 JSON and accessible Series 3-8 sources, does each Brilliant Stars Wormadam printed identity appear in exactly one corroborated Prize Pack series?",
+    "selection_note": "This small Brilliant Stars slice was selected because all three Wormadam rows share the same name family and set, each has an exact Series 2 official local JSON hit by name, set token, and printed number, and checked Series 1 plus Series 3-8 sources do not provide a duplicate exact identity hit."
+  },
+  "evidence_sources_used": [
+    {
+      "series": 1,
+      "source_name": "Pokemon.com Prize Pack Series One official checklist",
+      "source_type": "official_checklist_json_import",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json"
+    },
+    {
+      "series": 2,
+      "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+      "source_type": "official_checklist_json_import",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+      "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json"
+    },
+    {
+      "series": 4,
+      "source_name": "JustInBasil Prize Pack Series 4 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps4"
+    },
+    {
+      "series": 5,
+      "source_name": "JustInBasil Prize Pack Series 5 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps5"
+    },
+    {
+      "series": 6,
+      "source_name": "JustInBasil Prize Pack Series 6 Set List",
+      "source_type": "justinbasil_set_list",
+      "evidence_tier": "TIER_2",
+      "source_url": "https://www.justinbasil.com/set-lists/pps6"
+    },
+    {
+      "series": 7,
+      "source_name": "Play! Pokemon Prize Pack Series 7 official checklist",
+      "source_type": "official_checklist_pdf",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf"
+    },
+    {
+      "series": 8,
+      "source_name": "Play! Pokemon Prize Pack Series 8 official checklist",
+      "source_type": "official_checklist_pdf",
+      "evidence_tier": "TIER_1",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf"
+    },
+    {
+      "series": 3,
+      "source_name": "Bulbapedia Prize Pack Series 3",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Three_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 4,
+      "source_name": "Bulbapedia Prize Pack Series 4",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Four_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series 5",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series 6",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series 7",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)",
+      "fetch_status": "OK"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series 8",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)",
+      "fetch_status": "OK"
+    }
+  ],
+  "summary": {
+    "rows_investigated": 3,
+    "ready_for_warehouse": 3,
+    "do_not_canon": 0,
+    "wait": 0,
+    "excluded_acquisition_blocked": 47,
+    "excluded_special_family": 1,
+    "matched_series_patterns": {
+      "[2]": 3
+    }
+  },
+  "ready_rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Wormadam",
+      "name": "Wormadam",
+      "base_card_name": "Wormadam",
+      "printed_number": "010/172",
+      "normalized_number_plain": "10",
+      "base_gv_id": "GV-PK-BRS-10",
+      "base_route": "GV-PK-BRS-10",
+      "effective_base_owner_gv_id": "GV-PK-BRS-10",
+      "set_code": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "set_token": "BRS",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "source_candidate_id": null,
+      "prior_evidence_pass_history": [],
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "research_links": null,
+      "unique_base_route": true,
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "010",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "near_match_evidence_for_v19_nonblocked": [],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_1",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Wormadam",
+      "name": "Wormadam",
+      "base_card_name": "Wormadam",
+      "printed_number": "077/172",
+      "normalized_number_plain": "77",
+      "base_gv_id": "GV-PK-BRS-77",
+      "base_route": "GV-PK-BRS-77",
+      "effective_base_owner_gv_id": "GV-PK-BRS-77",
+      "set_code": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "set_token": "BRS",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "source_candidate_id": null,
+      "prior_evidence_pass_history": [],
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "research_links": null,
+      "unique_base_route": true,
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "077",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "near_match_evidence_for_v19_nonblocked": [],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_1",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare",
+      "source_family": "prize-pack-series-cards-pokemon",
+      "candidate_name": "Wormadam",
+      "name": "Wormadam",
+      "base_card_name": "Wormadam",
+      "printed_number": "098/172",
+      "normalized_number_plain": "98",
+      "base_gv_id": "GV-PK-BRS-98",
+      "base_route": "GV-PK-BRS-98",
+      "effective_base_owner_gv_id": "GV-PK-BRS-98",
+      "set_code": "swsh9",
+      "effective_set_code": "swsh9",
+      "effective_set_name": "Brilliant Stars",
+      "set_token": "BRS",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [],
+      "source_candidate_id": null,
+      "prior_evidence_pass_history": [],
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED"
+      ],
+      "prior_route_repair_history": [],
+      "blocked_by_official_acquisition": false,
+      "research_links": null,
+      "unique_base_route": true,
+      "accessible_series_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v19_nonblocked": [
+        {
+          "series": 2,
+          "source_name": "Pokemon.com Prize Pack Series Two official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_2_official.json",
+          "matched_entry": {
+            "name": "Wormadam",
+            "printed_number": "098",
+            "set_code": "BRS"
+          }
+        }
+      ],
+      "near_match_evidence_for_v19_nonblocked": [],
+      "confirmed_series_coverage": [
+        2
+      ],
+      "matched_series_pattern": "[2]",
+      "final_evidence_tier": "TIER_1",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v19_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series."
+    }
+  ],
+  "do_not_canon_rows": [],
+  "still_wait_rows": [],
+  "representative_rows": [
+    {
+      "bucket": "READY_FOR_WAREHOUSE",
+      "name": "Wormadam",
+      "printed_number": "010/172",
+      "set_code": "swsh9",
+      "matched_series_pattern": "[2]",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-010-rare"
+    },
+    {
+      "bucket": "READY_FOR_WAREHOUSE",
+      "name": "Wormadam",
+      "printed_number": "077/172",
+      "set_code": "swsh9",
+      "matched_series_pattern": "[2]",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-077-rare"
+    },
+    {
+      "bucket": "READY_FOR_WAREHOUSE",
+      "name": "Wormadam",
+      "printed_number": "098/172",
+      "set_code": "swsh9",
+      "matched_series_pattern": "[2]",
+      "source_external_id": "pokemon-prize-pack-series-cards-wormadam-098-rare"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Mystery Garden",
+      "printed_number": "172/132",
+      "set_code": "me01",
+      "source_external_id": "pokemon-prize-pack-series-cards-mystery-garden-ultra-rare"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "set_code": "sv10",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-common"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Cynthia's Gible",
+      "printed_number": "102/182",
+      "set_code": "sv10",
+      "source_external_id": "pokemon-prize-pack-series-cards-cynthia-s-gible-error-common"
+    },
+    {
+      "bucket": "WAIT_REMAINDER",
+      "name": "Carmine",
+      "printed_number": "103/131",
+      "set_code": "sv8pt5",
+      "source_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Victini V",
+      "printed_number": "025/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-victini-v-025-202-ultra-rare"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Cinderace",
+      "printed_number": "034/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-cinderace-rare"
+    },
+    {
+      "bucket": "EXCLUDED_ACQUISITION_BLOCKED",
+      "name": "Drizzile",
+      "printed_number": "056/202",
+      "set_code": "swsh1",
+      "source_external_id": "pokemon-prize-pack-series-cards-drizzile-uncommon"
+    },
+    {
+      "bucket": "EXCLUDED_SPECIAL_FAMILY",
+      "name": "Team Rocket's Mewtwo ex",
+      "printed_number": "079/217",
+      "set_code": null,
+      "source_external_id": "pokemon-prize-pack-series-cards-team-rocket-s-mewtwo-ex-double-rare"
+    }
+  ],
+  "remaining_backlog": {
+    "wait_for_more_evidence": 57,
+    "no_series_confirmation": 56,
+    "nonblocked_no_series_confirmation": 9,
+    "do_not_canon_total_after_v19_nonblocked": 186,
+    "blocked_by_official_acquisition_remaining": 47,
+    "special_identity_family_collision_remaining": 1,
+    "promoted_prize_pack_total": 417
+  },
+  "ready_batch_candidate_created": true,
+  "ready_batch_candidate_path": "docs/checkpoints/warehouse/prize_pack_ready_batch_v19_nonblocked_candidate.json",
+  "recommended_next_execution_step": "PRIZE_PACK_READY_BATCH_V19_NONBLOCKED"
+}

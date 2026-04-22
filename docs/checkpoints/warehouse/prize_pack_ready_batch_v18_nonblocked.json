@@ -1,0 +1,360 @@
+{
+  "generated_at": "2026-04-21T20:29:51.421Z",
+  "workflow": "PRIZE_PACK_READY_BATCH_V18_NONBLOCKED",
+  "status": "CLOSED",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/prize_pack_ready_batch_v18_candidate.json",
+    "docs/checkpoints/warehouse/prize_pack_evidence_v18_nonblocked.json"
+  ],
+  "selection_summary": {
+    "row_count": 3,
+    "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+    "variant_key": "play_pokemon_stamp",
+    "target_origin": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V18_NONBLOCKED",
+    "batch_size_attempted": 3,
+    "batch_size_completed": 3,
+    "precheck_state_counts": {
+      "READY_TO_BRIDGE": 3
+    }
+  },
+  "batch_rows_classified": 3,
+  "batch_rows_staged": 3,
+  "batch_rows_approved": 3,
+  "batch_rows_promoted": 3,
+  "batch_rows_mapped": 3,
+  "batch_rows_image_closed": 3,
+  "batch_failures_by_class": {},
+  "blocked_rows": [],
+  "verification": {
+    "mapping_duplicate_active_external_ids": 0,
+    "mapping_multi_active_card_prints": 0,
+    "exact_image_overwrites": 0,
+    "representative_shared_stamp_rows": 3,
+    "missing_representative_rows": 0
+  },
+  "rows": [
+    {
+      "batch_index": 1,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-v-ultra-rare",
+      "name": "Alcremie V",
+      "candidate_name": "Alcremie V",
+      "printed_number": "022/073",
+      "number_plain": "22",
+      "normalized_number_plain": "22",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v18_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Alcremie V",
+            "printed_number": "022",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh3.5",
+      "effective_set_code": "swsh3.5",
+      "effective_routed_set_code": "swsh3.5",
+      "effective_set_name": "Champion's Path",
+      "effective_routed_set_name": "Champion's Path",
+      "canonical_queue_key": "swsh3.5::Alcremie V::022/073::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CPA-22",
+      "base_route": "GV-PK-CPA-22",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CPA-22",
+        "base_route": "GV-PK-CPA-22",
+        "unique_base_route": true,
+        "base_card_name": "Alcremie V"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v18_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series.",
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "22fc7347-e9a2-45af-a39b-d8778c828872",
+        "live_raw_import_id": "41436",
+        "live_base_card_print_id": "6654d6dd-2ff1-44c5-8153-aa7b594bb5cf",
+        "live_base_gv_id": "GV-PK-CPA-22",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "target_base_resolution": {
+        "base_card_print_id": "6654d6dd-2ff1-44c5-8153-aa7b594bb5cf",
+        "base_gv_id": "GV-PK-CPA-22"
+      },
+      "underlying_base_proof_summary": {
+        "live_base_card_print_id": "6654d6dd-2ff1-44c5-8153-aa7b594bb5cf",
+        "live_base_set_code": "swsh3.5",
+        "base_gv_id": "GV-PK-CPA-22"
+      },
+      "warehouse_candidate_id": "6d228571-3a89-454a-93e3-e187f0059a6e",
+      "warehouse_state": "PROMOTED",
+      "card_print_id": "3568d7c3-3cc7-4630-86d4-7038337acfbf",
+      "gv_id": "GV-PK-CPA-022-PLAY-POKEMON-STAMP",
+      "approved_action_type": "CREATE_CARD_PRINT",
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-21T20:29:27.774Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V18_NONBLOCKED founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "staging_id": "4d9035dd-f409-4749-9821-44ee96e6af08",
+      "staging_execution_status": "SUCCEEDED",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh3.5/22/high.webp",
+      "image_status": "representative_shared_stamp",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex",
+      "staged_executed_at": "2026-04-21T20:29:40.963Z",
+      "mapping_id": "121455",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_active": true,
+      "source_candidate_id": "22fc7347-e9a2-45af-a39b-d8778c828872"
+    },
+    {
+      "batch_index": 2,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-alcremie-vmax-ultra-rare",
+      "name": "Alcremie VMAX",
+      "candidate_name": "Alcremie VMAX",
+      "printed_number": "23/73",
+      "number_plain": "23",
+      "normalized_number_plain": "23",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v18_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Alcremie VMAX",
+            "printed_number": "023",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh3.5",
+      "effective_set_code": "swsh3.5",
+      "effective_routed_set_code": "swsh3.5",
+      "effective_set_name": "Champion's Path",
+      "effective_routed_set_name": "Champion's Path",
+      "canonical_queue_key": "swsh3.5::Alcremie VMAX::23/73::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CPA-23",
+      "base_route": "GV-PK-CPA-23",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CPA-23",
+        "base_route": "GV-PK-CPA-23",
+        "unique_base_route": true,
+        "base_card_name": "Alcremie VMAX"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v18_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series.",
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "f47997a0-970d-46a6-a404-a80be9ea0137",
+        "live_raw_import_id": "41398",
+        "live_base_card_print_id": "c4bb55ff-05a1-49ae-b2d3-807376d3046b",
+        "live_base_gv_id": "GV-PK-CPA-23",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "target_base_resolution": {
+        "base_card_print_id": "c4bb55ff-05a1-49ae-b2d3-807376d3046b",
+        "base_gv_id": "GV-PK-CPA-23"
+      },
+      "underlying_base_proof_summary": {
+        "live_base_card_print_id": "c4bb55ff-05a1-49ae-b2d3-807376d3046b",
+        "live_base_set_code": "swsh3.5",
+        "base_gv_id": "GV-PK-CPA-23"
+      },
+      "warehouse_candidate_id": "f0d99acb-3019-4950-939b-2c3132714e84",
+      "warehouse_state": "PROMOTED",
+      "card_print_id": "d4396ff7-bc6a-426d-8541-761cd066a02c",
+      "gv_id": "GV-PK-CPA-23-PLAY-POKEMON-STAMP",
+      "approved_action_type": "CREATE_CARD_PRINT",
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-21T20:29:27.774Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V18_NONBLOCKED founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "staging_id": "c7fa029f-e658-4d39-8781-13a440464e29",
+      "staging_execution_status": "SUCCEEDED",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh3.5/23/high.webp",
+      "image_status": "representative_shared_stamp",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex",
+      "staged_executed_at": "2026-04-21T20:29:44.073Z",
+      "mapping_id": "121456",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_active": true,
+      "source_candidate_id": "f47997a0-970d-46a6-a404-a80be9ea0137"
+    },
+    {
+      "batch_index": 3,
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-altaria-49-73-rare",
+      "name": "Altaria",
+      "candidate_name": "Altaria",
+      "printed_number": "49/73",
+      "number_plain": "49",
+      "normalized_number_plain": "49",
+      "proposed_variant_key": "play_pokemon_stamp",
+      "variant_key": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+      "governing_rules": [
+        "STAMPED_IDENTITY_RULE_V1",
+        "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1",
+        "EVIDENCE_TIER_V1"
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "evidence_class": "CONFIRMED_IDENTITY",
+      "evidence_tier": "TIER_1",
+      "supported_series_list": [
+        1
+      ],
+      "evidence_sources_v18_nonblocked": [
+        {
+          "series": 1,
+          "source_name": "Pokemon.com Prize Pack Series One official checklist",
+          "source_type": "official_checklist_json_import",
+          "evidence_tier": "TIER_1",
+          "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+          "local_json_path": "docs/checkpoints/warehouse/prize_pack_series_1_official.json",
+          "matched_entry": {
+            "name": "Altaria",
+            "printed_number": "049",
+            "set_code": null
+          }
+        }
+      ],
+      "effective_identity_space": "swsh3.5",
+      "effective_set_code": "swsh3.5",
+      "effective_routed_set_code": "swsh3.5",
+      "effective_set_name": "Champion's Path",
+      "effective_routed_set_name": "Champion's Path",
+      "canonical_queue_key": "swsh3.5::Altaria::49/73::play_pokemon_stamp",
+      "base_gv_id": "GV-PK-CPA-49",
+      "base_route": "GV-PK-CPA-49",
+      "underlying_base_proof": {
+        "base_gv_id": "GV-PK-CPA-49",
+        "base_route": "GV-PK-CPA-49",
+        "unique_base_route": true,
+        "base_card_name": "Altaria"
+      },
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_exact_identity_confirmed_by_v18_nonblocked",
+      "final_reason": "Accessible evidence exactly matches this printed identity in one Prize Pack series and no other checked accessible series.",
+      "pre_intake_audit": {
+        "current_live_state": "READY_TO_BRIDGE",
+        "blocker_class": null,
+        "live_source_candidate_id": "57ee03ce-86f2-4a55-9f4e-9db75b3b036d",
+        "live_raw_import_id": "41608",
+        "live_base_card_print_id": "e1024d8e-a6f8-47e8-b335-ecd35058d3eb",
+        "live_base_gv_id": "GV-PK-CPA-49",
+        "live_existing_variant_card_print_id": null,
+        "live_existing_variant_gv_id": null,
+        "live_warehouse_candidate_id": null,
+        "live_warehouse_state": null,
+        "live_warehouse_hold_reason": null,
+        "live_promoted_card_print_id": null,
+        "exact_source_row_exists": true,
+        "exact_base_row_exists": true,
+        "exact_variant_absent": true
+      },
+      "target_base_resolution": {
+        "base_card_print_id": "e1024d8e-a6f8-47e8-b335-ecd35058d3eb",
+        "base_gv_id": "GV-PK-CPA-49"
+      },
+      "underlying_base_proof_summary": {
+        "live_base_card_print_id": "e1024d8e-a6f8-47e8-b335-ecd35058d3eb",
+        "live_base_set_code": "swsh3.5",
+        "base_gv_id": "GV-PK-CPA-49"
+      },
+      "warehouse_candidate_id": "dbd717fd-6ffc-4753-b8c2-17cf6d882f93",
+      "warehouse_state": "PROMOTED",
+      "card_print_id": "a5fef13a-d973-40c4-ad58-324fcc0f3bf1",
+      "gv_id": "GV-PK-CPA-49-PLAY-POKEMON-STAMP",
+      "approved_action_type": "CREATE_CARD_PRINT",
+      "founder_approved_by_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "founder_approved_at": "2026-04-21T20:29:27.774Z",
+      "founder_approval_notes": "PRIZE_PACK_READY_BATCH_V18_NONBLOCKED founder approval under GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 review.",
+      "staging_id": "17bc8fee-8931-4c26-ad5d-7854ce9f8da0",
+      "staging_execution_status": "SUCCEEDED",
+      "image_url": null,
+      "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh3.5/49/high.webp",
+      "image_status": "representative_shared_stamp",
+      "image_note": "Identity is confirmed. Displayed image is a representative image until the exact stamped image is available.",
+      "image_source": "tcgdex",
+      "staged_executed_at": "2026-04-21T20:29:47.194Z",
+      "mapping_id": "121457",
+      "mapping_status": "mapped",
+      "mapping_source": "justtcg",
+      "mapping_active": true,
+      "source_candidate_id": "57ee03ce-86f2-4a55-9f4e-9db75b3b036d"
+    }
+  ],
+  "post_batch_prize_pack_status": {
+    "remaining_wait_rows": 60,
+    "do_not_canon_rows": 186,
+    "blocked_by_official_acquisition_rows": 47,
+    "promoted_prize_pack_total_before_v18": 414,
+    "promoted_prize_pack_total_after_v18": 417
+  },
+  "recommended_next_execution_step": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V19_NONBLOCKED"
+}

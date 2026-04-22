@@ -1,0 +1,265 @@
+{
+  "generated_at": "2026-04-18T05:54:13.587Z",
+  "workflow": "STAMPED_BASE_REPAIR_V4",
+  "source_artifacts": [
+    "docs/checkpoints/warehouse/stamped_ready_remainder_batch_v1_48.json",
+    "docs/checkpoints/warehouse/promo_family_identity_rule_v1.json"
+  ],
+  "audited_surfaces": [
+    {
+      "file": "backend/warehouse/source_identity_contract_v1.mjs",
+      "finding": "BW-only slash-number reroute gate caused DPP/NP rows to retain declared promo-family set_code.",
+      "changed": true
+    },
+    {
+      "file": "backend/warehouse/classification_worker_v1.mjs",
+      "finding": "Consumes getSourceBackedIdentity(); no direct family-specific route logic required after shared helper generalization.",
+      "changed": false
+    },
+    {
+      "file": "backend/identity/identity_slot_audit_v1.mjs",
+      "finding": "Slot audit already prefers sourceBackedIdentity.set_code; added explicit underlying-base fallback to keep route selection aligned.",
+      "changed": true
+    },
+    {
+      "file": "backend/warehouse/buildCardPrintGvIdV1.mjs",
+      "finding": "No promo-family slash-number routing logic present; GV-ID preflight continues to consume routed set_code/number from staged payload.",
+      "changed": false
+    }
+  ],
+  "repair_decision": {
+    "rule": "Generalize slash-number rerouting for promo-family rows: if printed_number contains a slash and the underlying base proof is PROVEN with a different set_code, route to the underlying base set.",
+    "helper": "resolveUnderlyingBaseFromPrintedNumberV1",
+    "modified_runtime_files": [
+      "backend/warehouse/source_identity_contract_v1.mjs",
+      "backend/identity/identity_slot_audit_v1.mjs"
+    ],
+    "tests_added_or_updated": [
+      "backend/warehouse/source_identity_contract_v1.test.mjs",
+      "backend/identity/identity_slot_audit_v1.test.mjs"
+    ]
+  },
+  "verification": {
+    "targeted_tests": [
+      {
+        "command": "node --test backend/warehouse/source_identity_contract_v1.test.mjs",
+        "status": "PASS",
+        "pass_count": 6,
+        "fail_count": 0
+      },
+      {
+        "command": "node --test backend/identity/identity_slot_audit_v1.test.mjs",
+        "status": "PASS",
+        "pass_count": 10,
+        "fail_count": 0
+      }
+    ],
+    "dry_run_remainder_counts": {
+      "total_rows": 48,
+      "runtime_set_code_matches_expected": 48,
+      "identity_audit_variant_identity": 48,
+      "create_card_print_actions": 48,
+      "remaining_conflicts": 0
+    },
+    "counts_by_source_set_id": {
+      "black-and-white-promos-pokemon": 2,
+      "diamond-and-pearl-promos-pokemon": 6,
+      "generations-pokemon": 1,
+      "nintendo-promos-pokemon": 31,
+      "sm-promos-pokemon": 8
+    },
+    "counts_by_identity_shape": {
+      "BWP_PROMO_SLOT_PREFIX_EXISTING": 2,
+      "DPP_PROMO_SLOT_PREFIX": 1,
+      "NP_PROMO_SLOT_NUMERIC": 11,
+      "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP": 5,
+      "PROMO_FAMILY_SLASH_TO_EXPANSION_NP": 20,
+      "SAME_SET_SLASH_OVERLAY_EXISTING": 1,
+      "SMP_PROMO_SLOT_PREFIX_EXISTING": 8
+    }
+  },
+  "post_repair_blocked_row_outcomes": {
+    "READY_TO_BRIDGE": 48,
+    "CONFLICT_REVIEW_REQUIRED": 0
+  },
+  "can_remainder_batch_resume": "YES",
+  "recommended_next_execution_step": "STAMPED_READY_REMAINDER_BATCH_V1_48",
+  "representative_rows": [
+    {
+      "batch_index": 1,
+      "source_set_id": "black-and-white-promos-pokemon",
+      "source_external_id": "pokemon-black-and-white-promos-tropical-beach-bw50-worlds-12-promo",
+      "name": "Tropical Beach",
+      "printed_number": "BW50",
+      "variant_key": "worlds_12_stamp",
+      "stamp_label": "Worlds 12 Stamp",
+      "identity_shape": "BWP_PROMO_SLOT_PREFIX_EXISTING",
+      "declared_set_code": "bwp",
+      "expected_set_code": "bwp",
+      "runtime_set_code": "bwp",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 3,
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-tropical-wind-dp05-worlds-07-promo",
+      "name": "Tropical Wind",
+      "printed_number": "DP05",
+      "variant_key": "worlds_07_stamp",
+      "stamp_label": "Worlds 07 Stamp",
+      "identity_shape": "DPP_PROMO_SLOT_PREFIX",
+      "declared_set_code": "dpp",
+      "expected_set_code": "dpp",
+      "runtime_set_code": "dpp",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 4,
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-gabite-48-123-prerelease-staff-promo",
+      "name": "Gabite",
+      "printed_number": "48/123",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "declared_set_code": "dpp",
+      "expected_set_code": "dp2",
+      "runtime_set_code": "dp2",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 5,
+      "source_set_id": "diamond-and-pearl-promos-pokemon",
+      "source_external_id": "pokemon-diamond-and-pearl-promos-lucario-53-127-prerelease-staff-promo",
+      "name": "Lucario",
+      "printed_number": "53/127",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_DPP",
+      "declared_set_code": "dpp",
+      "expected_set_code": "pl1",
+      "runtime_set_code": "pl1",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 10,
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tropical-tidal-wave-036-2006-world-championships-staff-promo",
+      "name": "Tropical Tidal Wave",
+      "printed_number": "036",
+      "variant_key": "2006_world_championships_staff_stamp",
+      "stamp_label": "2006 World Championships Staff Stamp",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "declared_set_code": "np",
+      "expected_set_code": "np",
+      "runtime_set_code": "np",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 11,
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-leafeon-17-90-prerelease-staff-promo",
+      "name": "Leafeon",
+      "printed_number": "17/90",
+      "variant_key": "staff_prerelease_stamp",
+      "stamp_label": "Staff Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "declared_set_code": "np",
+      "expected_set_code": "hgss3",
+      "runtime_set_code": "hgss3",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 12,
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-dark-houndoom-37-109-prerelease-promo",
+      "name": "Dark Houndoom",
+      "printed_number": "37/109",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "declared_set_code": "np",
+      "expected_set_code": "ex7",
+      "runtime_set_code": "ex7",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 24,
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-combusken-009-e-league-winner-promo",
+      "name": "Combusken",
+      "printed_number": "009",
+      "variant_key": "e_league_winner_stamp",
+      "stamp_label": "E-league Winner Stamp",
+      "identity_shape": "NP_PROMO_SLOT_NUMERIC",
+      "declared_set_code": "np",
+      "expected_set_code": "np",
+      "runtime_set_code": "np",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 33,
+      "source_set_id": "nintendo-promos-pokemon",
+      "source_external_id": "pokemon-nintendo-promos-tentacruel-45-92-prerelease-promo",
+      "name": "Tentacruel",
+      "printed_number": "45/92",
+      "variant_key": "prerelease_stamp",
+      "stamp_label": "Prerelease Stamp",
+      "identity_shape": "PROMO_FAMILY_SLASH_TO_EXPANSION_NP",
+      "declared_set_code": "np",
+      "expected_set_code": "ex12",
+      "runtime_set_code": "ex12",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 41,
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-charizard-sm158-staff-promo",
+      "name": "Charizard",
+      "printed_number": "SM158",
+      "variant_key": "staff_stamp",
+      "stamp_label": "Staff Stamp",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "declared_set_code": "smp",
+      "expected_set_code": "smp",
+      "runtime_set_code": "smp",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    },
+    {
+      "batch_index": 48,
+      "source_set_id": "sm-promos-pokemon",
+      "source_external_id": "pokemon-sm-promos-snubbull-sm200-detective-pikachu-stamped-promo",
+      "name": "Snubbull",
+      "printed_number": "SM200",
+      "variant_key": "detective_pikachu_stamp",
+      "stamp_label": "Detective Pikachu Stamp",
+      "identity_shape": "SMP_PROMO_SLOT_PREFIX_EXISTING",
+      "declared_set_code": "smp",
+      "expected_set_code": "smp",
+      "runtime_set_code": "smp",
+      "identity_audit_status": "VARIANT_IDENTITY",
+      "proposed_action_type": "CREATE_CARD_PRINT",
+      "matched_card_print_id": null
+    }
+  ]
+}

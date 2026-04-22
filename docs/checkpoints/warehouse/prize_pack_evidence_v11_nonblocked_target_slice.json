@@ -1,0 +1,374 @@
+{
+  "generated_at": "2026-04-20T19:41:22.057Z",
+  "workflow": "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED",
+  "selection_summary": {
+    "id": "SVE_BASIC_ENERGIES_SERIES_5_ALIAS_NORMALIZATION",
+    "label": "SVE Basic Energies Series 5 Alias-Normalized Window",
+    "row_count": 4,
+    "set_code_counts": {
+      "sve": 4
+    },
+    "excluded_blocked_by_official_acquisition_count": 88
+  },
+  "shared_question": "Across currently accessible Prize Pack Series 5-8 sources, do these Scarlet & Violet Energies rows appear in exactly one corroborated series once the raw source label is normalized from \"SVE Basic Energies\" to the canon energy set family?",
+  "evidence_sources_used": [
+    {
+      "series": 5,
+      "source_name": "Bulbapedia Prize Pack Series Five",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)"
+    },
+    {
+      "series": 6,
+      "source_name": "Bulbapedia Prize Pack Series Six",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Six_(TCG)"
+    },
+    {
+      "series": 7,
+      "source_name": "Bulbapedia Prize Pack Series Seven",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Seven_(TCG)"
+    },
+    {
+      "series": 8,
+      "source_name": "Bulbapedia Prize Pack Series Eight",
+      "source_type": "bulbapedia_card_list",
+      "evidence_tier": "TIER_3",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Eight_(TCG)"
+    }
+  ],
+  "rows": [
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fire-energy-002-common",
+      "candidate_name": "Basic Fire Energy - 002",
+      "printed_number": "002",
+      "normalized_number_plain": "002",
+      "base_gv_id": "GV-PK-SVE-2",
+      "base_route": "GV-PK-SVE-2",
+      "base_card_print_id": null,
+      "base_card_name": "Basic Fire Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-basic-fire-energy-002-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sve-002",
+        "google_search_url": "https://www.google.com/search?q=Basic%20Fire%20Energy%20002%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Basic%20Fire%20Energy%20002%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v11_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsve basic energies.png|x18px|link=sve basic energies (tcg)]] 002|—|{{tcg|basic fire energy}}|energy|fire|none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v11_nonblocked_energy_alias_window",
+      "final_reason": "Accessible evidence places this row in exactly one corroborated Prize Pack series once the raw energy-set alias is normalized, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-fighting-energy-006-common",
+      "candidate_name": "Basic Fighting Energy - 006",
+      "printed_number": "006",
+      "normalized_number_plain": "006",
+      "base_gv_id": "GV-PK-SVE-6",
+      "base_route": "GV-PK-SVE-6",
+      "base_card_print_id": null,
+      "base_card_name": "Basic Fighting Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-basic-fighting-energy-006-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sve-006",
+        "google_search_url": "https://www.google.com/search?q=Basic%20Fighting%20Energy%20006%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Basic%20Fighting%20Energy%20006%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v11_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsve basic energies.png|x18px|link=sve basic energies (tcg)]] 006|—|{{tcg|basic fighting energy}}|energy|fighting|none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v11_nonblocked_energy_alias_window",
+      "final_reason": "Accessible evidence places this row in exactly one corroborated Prize Pack series once the raw energy-set alias is normalized, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-darkness-energy-007-common",
+      "candidate_name": "Basic Darkness Energy - 007",
+      "printed_number": "007",
+      "normalized_number_plain": "007",
+      "base_gv_id": "GV-PK-SVE-7",
+      "base_route": "GV-PK-SVE-7",
+      "base_card_print_id": null,
+      "base_card_name": "Basic Darkness Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-basic-darkness-energy-007-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sve-007",
+        "google_search_url": "https://www.google.com/search?q=Basic%20Darkness%20Energy%20007%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Basic%20Darkness%20Energy%20007%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v11_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsve basic energies.png|x18px|link=sve basic energies (tcg)]] 007|—|{{tcg|basic darkness energy}}|energy|darkness|none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v11_nonblocked_energy_alias_window",
+      "final_reason": "Accessible evidence places this row in exactly one corroborated Prize Pack series once the raw energy-set alias is normalized, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    },
+    {
+      "source": "justtcg",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_external_id": "pokemon-prize-pack-series-cards-basic-metal-energy-008-common",
+      "candidate_name": "Basic Metal Energy - 008",
+      "printed_number": "008",
+      "normalized_number_plain": "008",
+      "base_gv_id": "GV-PK-SVE-8",
+      "base_route": "GV-PK-SVE-8",
+      "base_card_print_id": null,
+      "base_card_name": "Basic Metal Energy",
+      "current_blocker_class": "NO_SERIES_CONFIRMATION",
+      "evidence_tier": "TIER_4",
+      "known_series_appearances": [],
+      "missing_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "source_family": "prize-pack-series-cards-pokemon",
+      "source_tcgplayer_id": null,
+      "image_url": null,
+      "image_source": null,
+      "variant_hint": "play_pokemon_stamp",
+      "stamp_label": "Play! Pokémon Stamp",
+      "why_blocked": "The row still lacks deterministic series corroboration across the supported Prize Pack coverage window.",
+      "blocker_detail": "source_family_plus_unique_base_only",
+      "cluster_name": "SOURCE_PLUS_UNIQUE_BASE_ONLY",
+      "decision_reason_v2": "no_external_series_confirmation_yet",
+      "unique_base_route": true,
+      "duplicate_occurrence_count": 0,
+      "earliest_possible_series": null,
+      "effective_set_code": "sve",
+      "effective_set_name": "Scarlet & Violet Energies",
+      "evidence_sources": [
+        {
+          "source_name": "JustTCG family-only source row",
+          "source_type": "justtcg_source_row",
+          "evidence_tier": "TIER_4",
+          "source_reference": "pokemon-prize-pack-series-cards-basic-metal-energy-008-common",
+          "note": "Family-only stamped row without independent series proof."
+        }
+      ],
+      "research_links": {
+        "justtcg_url": null,
+        "tcgdex_url": "https://api.tcgdex.net/v2/en/cards/sve-008",
+        "google_search_url": "https://www.google.com/search?q=Basic%20Metal%20Energy%20008%20Prize%20Pack%20Play!%20Pokemon",
+        "bulbapedia_search_url": "https://bulbapedia.bulbagarden.net/w/index.php?search=Basic%20Metal%20Energy%20008%20Prize%20Pack%20Play!%20Pokemon"
+      },
+      "previous_evidence_pass_history": [
+        "PRIZE_PACK_FAMILY_ONLY_EVIDENCE_STRATEGY_V11_NONBLOCKED"
+      ],
+      "confirmed_series_coverage": [
+        5
+      ],
+      "blocked_by_official_acquisition": false,
+      "blocked_by_official_acquisition_reason": null,
+      "accessible_series_checked": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "evidence_sources_used_for_v11_nonblocked": [
+        {
+          "series": 5,
+          "source_name": "Bulbapedia Prize Pack Series Five",
+          "source_type": "bulbapedia_card_list",
+          "evidence_tier": "TIER_3",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)",
+          "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Play!_Pok%C3%A9mon_Prize_Pack_Series_Five_(TCG)&action=raw",
+          "matching_line": "{{setlist/entry|[[image:setsymbolsve basic energies.png|x18px|link=sve basic energies (tcg)]] 008|—|{{tcg|basic metal energy}}|energy|metal|none|standard set foil}}"
+        }
+      ],
+      "matched_series_pattern": "[5]",
+      "final_evidence_tier": "TIER_3",
+      "final_evidence_class": "CONFIRMED_IDENTITY",
+      "final_decision": "READY_FOR_WAREHOUSE",
+      "decision_code": "single_series_confirmed_by_v11_nonblocked_energy_alias_window",
+      "final_reason": "Accessible evidence places this row in exactly one corroborated Prize Pack series once the raw energy-set alias is normalized, so the generic Play! Pokémon stamp resolves to one deterministic canonical stamped identity."
+    }
+  ]
+}
