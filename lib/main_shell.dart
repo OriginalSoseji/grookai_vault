@@ -169,7 +169,7 @@ class _AppShellState extends State<AppShell> {
       final directMatch = await _supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,sets(name)',
+            'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,representative_image_url,sets(name)',
           )
           .eq('gv_id', normalizedGvId)
           .maybeSingle();
@@ -183,7 +183,7 @@ class _AppShellState extends State<AppShell> {
           final uppercaseMatch = await _supabase
               .from('card_prints')
               .select(
-                'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,sets(name)',
+                'id,gv_id,name,set_code,number,number_plain,rarity,image_url,image_alt_url,representative_image_url,sets(name)',
               )
               .eq('gv_id', uppercaseGvId)
               .maybeSingle();
@@ -210,9 +210,7 @@ class _AppShellState extends State<AppShell> {
 
     final setData = cardRow['sets'];
     final setName = setData is Map ? _routeText(setData['name']) : '';
-    final imageUrl = _routeText(cardRow['image_url']).isNotEmpty
-        ? _routeText(cardRow['image_url'])
-        : _routeText(cardRow['image_alt_url']);
+    final imageUrl = _routeDisplayImageUrl(cardRow);
     final displayNumber = _routeText(cardRow['number']).isNotEmpty
         ? _routeText(cardRow['number'])
         : _routeText(cardRow['number_plain']);
@@ -234,9 +232,34 @@ class _AppShellState extends State<AppShell> {
         rarity: _routeText(cardRow['rarity']).isEmpty
             ? null
             : _routeText(cardRow['rarity']),
-        imageUrl: imageUrl.isEmpty ? null : imageUrl,
+        imageUrl: imageUrl,
       ),
     );
+  }
+
+  String? _routeDisplayImageUrl(Map<String, dynamic>? row) {
+    if (row == null) {
+      return null;
+    }
+
+    return _routeHttpImageUrl(row['display_image_url']) ??
+        _routeHttpImageUrl(row['image_url']) ??
+        _routeHttpImageUrl(row['image_alt_url']) ??
+        _routeHttpImageUrl(row['representative_image_url']);
+  }
+
+  String? _routeHttpImageUrl(dynamic value) {
+    final normalized = _routeText(value);
+    if (normalized.isEmpty) {
+      return null;
+    }
+
+    final uri = Uri.tryParse(normalized);
+    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
+      return null;
+    }
+
+    return normalized;
   }
 
   static String _routeText(dynamic value) => (value ?? '').toString().trim();
@@ -1089,7 +1112,9 @@ class _LoginPageState extends State<LoginPage> {
                                 'Use one Grookai identity across your vault, wall, and collector feed.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
-                                  color: scheme.onSurface.withValues(alpha: 0.54),
+                                  color: scheme.onSurface.withValues(
+                                    alpha: 0.54,
+                                  ),
                                   height: 1.35,
                                 ),
                               ),

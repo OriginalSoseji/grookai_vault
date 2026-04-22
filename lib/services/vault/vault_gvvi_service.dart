@@ -301,6 +301,7 @@ class VaultGvviService {
       String? variantKey,
       String? printedIdentityModifier,
       String? setIdentityModel,
+      String? displayImageUrl,
     })?
   >
   _fetchCardIdentity({
@@ -315,7 +316,9 @@ class VaultGvviService {
     try {
       final row = await client
           .from('card_prints')
-          .select('variant_key,printed_identity_modifier,sets(identity_model)')
+          .select(
+            'variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(identity_model)',
+          )
           .eq('id', normalizedCardPrintId)
           .maybeSingle();
       if (row == null) {
@@ -330,6 +333,7 @@ class VaultGvviService {
           normalizedRow['printed_identity_modifier'],
         ),
         setIdentityModel: _nullable(setRecord?['identity_model']),
+        displayImageUrl: _displayImageUrl(normalizedRow),
       );
     } catch (_) {
       return null;
@@ -371,6 +375,10 @@ class VaultGvviService {
       client: client,
       cardPrintIds: [cardPrintId],
     );
+    final identity = await _fetchCardIdentity(
+      client: client,
+      cardPrintId: cardPrintId,
+    );
     final pricing = pricingById[cardPrintId];
     final normalizedIntent = _normalizeIntent(data['intent']);
     return PublicGvviData(
@@ -386,10 +394,12 @@ class VaultGvviService {
       setCode: _nullable(data['card_set_code']) ?? 'Unknown set',
       setName: _nullable(data['card_set_name']) ?? 'Unknown set',
       number: _nullable(data['card_number']) ?? '—',
-      imageUrl: _bestPublicImageUrl(
-        primary: data['card_image_url'],
-        fallback: data['card_image_alt_url'],
-      ),
+      imageUrl:
+          identity?.displayImageUrl ??
+          _bestPublicImageUrl(
+            primary: data['card_image_url'],
+            fallback: data['card_image_alt_url'],
+          ),
       frontImageUrl: resolveMediaUrl(_nullable(data['image_url'])),
       backImageUrl: resolveMediaUrl(_nullable(data['image_back_url'])),
       imageDisplayMode: _normalizeImageDisplayMode(data['image_display_mode']),
@@ -471,10 +481,12 @@ class VaultGvviService {
       variantKey: identity?.variantKey,
       printedIdentityModifier: identity?.printedIdentityModifier,
       setIdentityModel: identity?.setIdentityModel,
-      imageUrl: _bestPublicImageUrl(
-        primary: data['card_image_url'],
-        fallback: data['card_image_alt_url'],
-      ),
+      imageUrl:
+          identity?.displayImageUrl ??
+          _bestPublicImageUrl(
+            primary: data['card_image_url'],
+            fallback: data['card_image_alt_url'],
+          ),
       frontImagePath: _nullable(data['image_url']),
       backImagePath: _nullable(data['image_back_url']),
       frontImageUrl: resolveMediaUrl(_nullable(data['image_url'])),
@@ -796,6 +808,17 @@ String? _bestPublicImageUrl({
     return primaryUrl;
   }
   return _normalizeHttpUrl(fallback);
+}
+
+String? _displayImageUrl(Map<String, dynamic>? row) {
+  if (row == null) {
+    return null;
+  }
+
+  return _normalizeHttpUrl(row['display_image_url']) ??
+      _normalizeHttpUrl(row['image_url']) ??
+      _normalizeHttpUrl(row['image_alt_url']) ??
+      _normalizeHttpUrl(row['representative_image_url']);
 }
 
 String? _normalizeHttpUrl(dynamic value) {

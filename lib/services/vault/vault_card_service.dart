@@ -30,14 +30,14 @@ class VaultCardIdentity {
     final set = json['set'] as Map<String, dynamic>?;
     final setName = (set?['name'] ?? json['set_name'] ?? json['set_code'] ?? '')
         .toString();
-    final imageUrl = (json['image_url'] ?? json['image_alt_url'])?.toString();
+    final imageUrl = _cardDisplayImageUrl(json);
     return VaultCardIdentity(
       cardId: (json['id'] ?? '').toString(),
       gvId: (json['gv_id'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
       setName: setName,
       number: json['number_plain']?.toString() ?? json['number']?.toString(),
-      imageUrl: imageUrl == null || imageUrl.isEmpty ? null : imageUrl,
+      imageUrl: imageUrl,
       variantKey: _trimmedOrNull(json['variant_key']),
       printedIdentityModifier: _trimmedOrNull(
         json['printed_identity_modifier'],
@@ -1211,6 +1211,27 @@ class VaultCardService {
 String? _trimmedOrNull(dynamic value) {
   final normalized = value?.toString().trim() ?? '';
   return normalized.isEmpty ? null : normalized;
+}
+
+String? _httpImageOrNull(dynamic value) {
+  final normalized = _trimmedOrNull(value);
+  if (normalized == null) {
+    return null;
+  }
+
+  final parsed = Uri.tryParse(normalized);
+  if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
+    return null;
+  }
+
+  return normalized;
+}
+
+String? _cardDisplayImageUrl(Map<String, dynamic> json) {
+  return _httpImageOrNull(json['display_image_url']) ??
+      _httpImageOrNull(json['image_url']) ??
+      _httpImageOrNull(json['image_alt_url']) ??
+      _httpImageOrNull(json['representative_image_url']);
 }
 
 String? _normalizeCurrency(dynamic value) {

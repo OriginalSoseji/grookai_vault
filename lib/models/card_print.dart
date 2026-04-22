@@ -9,6 +9,32 @@ import 'provisional_card.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
 
+String? _normalizeImageUrl(String? value) {
+  final normalized = (value ?? '').trim();
+  if (normalized.isEmpty) {
+    return null;
+  }
+
+  final parsed = Uri.tryParse(normalized);
+  if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
+    return null;
+  }
+
+  return normalized;
+}
+
+String? _firstImageUrl(
+  String? first,
+  String? second,
+  String? third,
+  String? fourth,
+) {
+  return _normalizeImageUrl(first) ??
+      _normalizeImageUrl(second) ??
+      _normalizeImageUrl(third) ??
+      _normalizeImageUrl(fourth);
+}
+
 class CardSearchOptions {
   const CardSearchOptions({
     this.query = '',
@@ -63,6 +89,7 @@ class CardPrint {
     this.setIdentityModel,
     this.rarity,
     this.imageUrl,
+    this.imageAltUrl,
     this.representativeImageUrl,
     this.imageStatus,
     this.imageNote,
@@ -84,6 +111,7 @@ class CardPrint {
   final String? setIdentityModel;
   final String? rarity;
   final String? imageUrl;
+  final String? imageAltUrl;
   final String? representativeImageUrl;
   final String? imageStatus;
   final String? imageNote;
@@ -95,7 +123,12 @@ class CardPrint {
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
       (numberPlain ?? '').isNotEmpty ? numberPlain! : (number ?? '');
-  String? get displayImage => (imageUrl ?? '').isNotEmpty ? imageUrl : null;
+  String? get displayImage => _firstImageUrl(
+    displayImageUrl,
+    imageUrl,
+    imageAltUrl,
+    representativeImageUrl,
+  );
 
   factory CardPrint.fromJson(Map<String, dynamic> json) {
     final set = json['set'] as Map<String, dynamic>?;
@@ -122,11 +155,17 @@ class CardPrint {
           : json['set_identity_model']?.toString(),
       rarity: json['rarity']?.toString(),
       imageUrl: json['image_url']?.toString(),
+      imageAltUrl: json['image_alt_url']?.toString(),
       representativeImageUrl: json['representative_image_url']?.toString(),
       imageStatus: json['image_status']?.toString(),
       imageNote: json['image_note']?.toString(),
       imageSource: json['image_source']?.toString(),
-      displayImageUrl: json['display_image_url']?.toString(),
+      displayImageUrl: _firstImageUrl(
+        json['display_image_url']?.toString(),
+        json['image_best']?.toString(),
+        null,
+        null,
+      ),
       displayImageKind: json['display_image_kind']?.toString(),
       externalIds: externalIds,
     );

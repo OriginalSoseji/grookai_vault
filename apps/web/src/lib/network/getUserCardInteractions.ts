@@ -1,5 +1,6 @@
 import "server-only";
 
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
@@ -26,6 +27,12 @@ type CardPrintSourceRow = {
   printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
+  display_image_url?: string | null;
   sets:
     | {
         name: string | null;
@@ -297,7 +304,7 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
       ? client
           .from("card_prints")
           .select(
-            "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+            "id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
           )
           .in("id", cardPrintIds)
       : Promise.resolve({ data: [], error: null }),
@@ -334,8 +341,14 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
     throw new Error(`[network:inbox] trade outcome lookup failed: ${tradeOutcomesResponse.error.message}`);
   }
 
+  const resolvedCardRows = await Promise.all(
+    ((cardPrintsResponse.data ?? []) as CardPrintSourceRow[]).map(async (row) => {
+      const imageFields = await resolveCardImageFieldsV1(row);
+      return { ...row, display_image_url: imageFields.display_image_url };
+    }),
+  );
   const cardById = new Map(
-    ((cardPrintsResponse.data ?? []) as CardPrintSourceRow[]).map((row) => [row.id, row]),
+    resolvedCardRows.map((row) => [row.id, row]),
   );
   const profileByUserId = new Map(
     ((profilesResponse.data ?? []) as PublicProfileRow[])
@@ -405,8 +418,10 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
             "Unknown set",
           number: normalizeOptionalText(card.number) ?? "—",
           imageUrl:
+            normalizeOptionalText(card.display_image_url) ??
             getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ??
-            normalizeOptionalText(card.image_url),
+            getBestPublicCardImageUrl(card.representative_image_url) ??
+            null,
         },
       } satisfies UserCardInteractionRow,
     ];

@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
@@ -94,6 +95,11 @@ type CardPrintRow = {
   printed_identity_modifier: string | null;
   image_url: string | null;
   image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets?:
     | {
         name: string | null;
@@ -636,7 +642,7 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
   const { data: cardPrints, error: cardPrintsError } = await supabase
     .from("card_prints")
     .select(
-      "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+      "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
     )
     .in(
       "id",
@@ -653,13 +659,19 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
       .map((row) => [row.id, row]),
   );
 
-  return sharedRows
-    .map((row) => {
+  const resolvedRows = await Promise.all(
+    sharedRows.map(async (row) => {
       const cardPrint = cardPrintById.get(row.card_id);
       if (!cardPrint) {
         return null;
       }
 
+      const imageFields = await resolveCardImageFieldsV1(cardPrint);
+      const displayImageUrl =
+        imageFields.display_image_url ??
+        getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ??
+        getBestPublicCardImageUrl(cardPrint.representative_image_url) ??
+        undefined;
       const setRecord = Array.isArray(cardPrint.sets) ? cardPrint.sets[0] : cardPrint.sets;
       const representativeSharedInstance = representativeSharedInstanceByCardId.get(row.card_id) ?? null;
       const wallState = wallStateByCardId.get(row.card_id);
@@ -677,8 +689,8 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         set_name: setRecord?.name?.trim() || undefined,
         number: cardPrint.number?.trim() || "—",
         rarity: cardPrint.rarity?.trim() || undefined,
-        image_url: getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
-        canonical_image_url: getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ?? undefined,
+        image_url: displayImageUrl,
+        canonical_image_url: displayImageUrl,
         back_image_url: undefined,
         public_note: row.public_note?.trim() || undefined,
         wall_category: normalizeWallCategory(row.wall_category) ?? undefined,
@@ -704,8 +716,10 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         in_play_grade_label: inPlayState?.grade_label,
         in_play_created_at: inPlayState?.created_at ?? undefined,
       };
-    })
-    .filter((row): row is NonNullable<typeof row> => row !== null);
+    }),
+  );
+
+  return resolvedRows.filter((row): row is NonNullable<typeof row> => row !== null);
 });
 
 export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCard[]> => {
@@ -805,7 +819,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
     supabase
       .from("card_prints")
       .select(
-        "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)",
+        "id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
       )
       .in("id", cardPrintIds),
     supabase
@@ -848,10 +862,17 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       ),
   );
 
-  return rows.map((row) => {
+  const resolvedRows = await Promise.all(rows.map(async (row) => {
     const cardPrint = cardPrintById.get(row.cardPrintId) ?? null;
     const shared = sharedByCardId.get(row.cardPrintId) ?? null;
     const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
+    const imageFields = await resolveCardImageFieldsV1(cardPrint);
+    const displayImageUrl =
+      getBestPublicCardImageUrl(row.imageUrl) ??
+      imageFields.display_image_url ??
+      getBestPublicCardImageUrl(cardPrint?.image_url, cardPrint?.image_alt_url) ??
+      getBestPublicCardImageUrl(cardPrint?.representative_image_url) ??
+      undefined;
 
     return {
       card_print_id: row.cardPrintId,
@@ -869,9 +890,8 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
         undefined,
       number: row.number ?? normalizeOptionalText(cardPrint?.number) ?? "—",
       rarity: normalizeOptionalText(cardPrint?.rarity) ?? undefined,
-      image_url: getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ?? undefined,
-      canonical_image_url:
-        getBestPublicCardImageUrl(row.imageUrl, normalizeOptionalText(cardPrint?.image_alt_url)) ?? undefined,
+      image_url: displayImageUrl,
+      canonical_image_url: displayImageUrl,
       public_note: normalizeOptionalText(shared?.public_note) ?? undefined,
       vault_item_id: row.vaultItemId,
       intent: row.intent ?? undefined,
@@ -889,5 +909,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       in_play_created_at: row.createdAt ?? undefined,
       in_play_copies: discoverableCopiesByCardId.get(row.cardPrintId) ?? undefined,
     } satisfies SharedCard;
-  });
+  }));
+
+  return resolvedRows;
 });

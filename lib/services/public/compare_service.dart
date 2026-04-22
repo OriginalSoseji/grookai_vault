@@ -143,7 +143,7 @@ class PublicCompareService {
     final rows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,artist,image_url,image_alt_url,variant_key,printed_identity_modifier,sets(name,release_date,identity_model)',
+          'id,gv_id,name,set_code,number,rarity,artist,image_url,image_alt_url,representative_image_url,variant_key,printed_identity_modifier,sets(name,release_date,identity_model)',
         )
         .inFilter('gv_id', normalizedIds);
 
@@ -206,10 +206,7 @@ class PublicCompareService {
             rarity: _normalizeOptionalText(row['rarity']),
             releaseYear: _parseReleaseYear(setRecord?['release_date']),
             artist: _normalizeOptionalText(row['artist']),
-            imageUrl: _bestImageUrl(
-              primary: row['image_url'],
-              fallback: row['image_alt_url'],
-            ),
+            imageUrl: _displayImageUrl(row),
             rawPrice: priceRow?['base_market'] is num
                 ? (priceRow!['base_market'] as num).toDouble()
                 : null,
@@ -251,16 +248,11 @@ class PublicCompareService {
     return parsed;
   }
 
-  static String? _bestImageUrl({
-    required dynamic primary,
-    required dynamic fallback,
-  }) {
-    final primaryUrl = _normalizeHttpUrl(primary);
-    if (primaryUrl != null) {
-      return primaryUrl;
-    }
-
-    return _normalizeHttpUrl(fallback);
+  static String? _displayImageUrl(Map<String, dynamic> row) {
+    return _normalizeHttpUrl(row['display_image_url']) ??
+        _normalizeHttpUrl(row['image_url']) ??
+        _normalizeHttpUrl(row['image_alt_url']) ??
+        _normalizeHttpUrl(row['representative_image_url']);
   }
 
   static String? _normalizeOptionalText(dynamic value) {

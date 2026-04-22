@@ -285,7 +285,7 @@ class CardInteractionService {
           : client
                 .from('card_prints')
                 .select(
-                  'id,gv_id,name,set_code,number,image_url,image_alt_url,sets(name)',
+                  'id,gv_id,name,set_code,number,image_url,image_alt_url,representative_image_url,sets(name)',
                 )
                 .inFilter('id', cardPrintIds),
       counterpartUserIds.isEmpty
@@ -382,7 +382,7 @@ class CardInteractionService {
                     : _clean(card['set_code']))
               : _clean(setRecord?['name']),
           number: _clean(card['number']).isEmpty ? '—' : _clean(card['number']),
-          imageUrl: _bestImageUrl(card['image_url'], card['image_alt_url']),
+          imageUrl: _displayImageUrl(card),
           vaultItemId: vaultItemId,
           counterpartDisplayName:
               _clean(counterpartProfile?['display_name']).isEmpty
@@ -694,12 +694,11 @@ class CardInteractionService {
     return normalized.isEmpty ? null : normalized;
   }
 
-  static String? _bestImageUrl(dynamic primary, dynamic fallback) {
-    final primaryUrl = _normalizeHttp(primary);
-    if (primaryUrl != null) {
-      return primaryUrl;
-    }
-    return _normalizeHttp(fallback);
+  static String? _displayImageUrl(Map<String, dynamic> row) {
+    return _normalizeHttp(row['display_image_url']) ??
+        _normalizeHttp(row['image_url']) ??
+        _normalizeHttp(row['image_alt_url']) ??
+        _normalizeHttp(row['representative_image_url']);
   }
 
   static String? _normalizeHttp(dynamic value) {

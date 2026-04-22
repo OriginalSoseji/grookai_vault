@@ -140,6 +140,7 @@ class NetworkStreamRow {
     String? variantKey,
     String? printedIdentityModifier,
     String? setIdentityModel,
+    String? imageUrl,
     List<NetworkStreamCopy>? inPlayCopies,
     CardSurfacePricingData? pricing,
     int? listingCount,
@@ -177,7 +178,7 @@ class NetworkStreamRow {
       setIdentityModel: setIdentityModel ?? this.setIdentityModel,
       sourceLabel: sourceLabel ?? this.sourceLabel,
       rarity: rarity ?? this.rarity,
-      imageUrl: imageUrl,
+      imageUrl: imageUrl ?? this.imageUrl,
       inPlayCopies: inPlayCopies ?? this.inPlayCopies,
       pricing: pricing ?? this.pricing,
       listingCount: listingCount ?? this.listingCount,
@@ -230,12 +231,14 @@ class _NetworkCardIdentity {
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
+    this.displayImageUrl,
   });
 
   final String cardPrintId;
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
+  final String? displayImageUrl;
 }
 
 class _NetworkFeedSession {
@@ -1119,7 +1122,7 @@ class NetworkStreamService {
       variantKey: null,
       printedIdentityModifier: null,
       setIdentityModel: null,
-      imageUrl: _httpUrl(row['image_url']),
+      imageUrl: _displayImageUrl(row),
     );
   }
 
@@ -1140,7 +1143,7 @@ class NetworkStreamService {
       final rows = await client
           .from('card_prints')
           .select(
-            'id,variant_key,printed_identity_modifier,sets(identity_model)',
+            'id,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(identity_model)',
           )
           .inFilter('id', normalizedIds);
 
@@ -1158,6 +1161,7 @@ class NetworkStreamService {
           variantKey: _nullable(row['variant_key']),
           printedIdentityModifier: _nullable(row['printed_identity_modifier']),
           setIdentityModel: _nullable(setRecord?['identity_model']),
+          displayImageUrl: _displayImageUrl(row),
         );
       }
 
@@ -1203,6 +1207,7 @@ class NetworkStreamService {
         variantKey: identity?.variantKey,
         printedIdentityModifier: identity?.printedIdentityModifier,
         setIdentityModel: identity?.setIdentityModel,
+        imageUrl: row.imageUrl ?? identity?.displayImageUrl,
         inPlayCopies:
             copiesByGroup[_groupKey(row.ownerUserId, row.cardPrintId)] ??
             const <NetworkStreamCopy>[],
@@ -1297,7 +1302,7 @@ class NetworkStreamService {
     final cardRows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)',
+          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,identity_model)',
         )
         .inFilter('id', rotatedIds);
 
@@ -1341,7 +1346,7 @@ class NetworkStreamService {
     final rawRows = await client
         .from('card_prints')
         .select(
-          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,identity_model)',
+          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,identity_model)',
         )
         .order('name', ascending: true)
         .limit(240);
@@ -1351,8 +1356,7 @@ class NetworkStreamService {
         .where((row) {
           final cardPrintId = _nullable(row['id']);
           final gvId = _nullable(row['gv_id']);
-          final imageUrl =
-              _httpUrl(row['image_url']) ?? _httpUrl(row['image_alt_url']);
+          final imageUrl = _displayImageUrl(row);
           return cardPrintId != null &&
               gvId != null &&
               !excludeCardPrintIds.contains(cardPrintId) &&
@@ -1468,8 +1472,7 @@ class NetworkStreamService {
       printedIdentityModifier: _nullable(cardRow['printed_identity_modifier']),
       setIdentityModel: _nullable(setRecord?['identity_model']),
       rarity: _nullable(cardRow['rarity']),
-      imageUrl:
-          _httpUrl(cardRow['image_url']) ?? _httpUrl(cardRow['image_alt_url']),
+      imageUrl: _displayImageUrl(cardRow),
       pricing: resolvedPricing,
       listingCount: _positiveCount(pricingRow?['ebay_listing_count']),
     );
@@ -1511,6 +1514,17 @@ class NetworkStreamService {
     }
 
     return normalized;
+  }
+
+  static String? _displayImageUrl(Map<String, dynamic>? row) {
+    if (row == null) {
+      return null;
+    }
+
+    return _httpUrl(row['display_image_url']) ??
+        _httpUrl(row['image_url']) ??
+        _httpUrl(row['image_alt_url']) ??
+        _httpUrl(row['representative_image_url']);
   }
 
   static Map<String, dynamic>? _recordFrom(dynamic value) {

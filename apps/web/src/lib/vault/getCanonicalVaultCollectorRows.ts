@@ -16,7 +16,6 @@
  */
 import "server-only";
 
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
@@ -742,12 +741,16 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const price = priceMetadataByCardId.get(cardPrintId) ?? null;
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
     const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
-    const exactCanonicalImageUrl = card ? await resolveCanonImageUrlV1(card) : null;
     const canonicalImageFields = card ? await resolveCardImageFieldsV1(card) : null;
     const canonicalImageUrl =
-      exactCanonicalImageUrl ??
+      canonicalImageFields?.image_url ??
       getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
       getBestPublicCardImageUrl(price?.image_url) ??
+      null;
+    const canonicalDisplayImageUrl =
+      canonicalImageFields?.display_image_url ??
+      canonicalImageUrl ??
+      getBestPublicCardImageUrl(card?.representative_image_url) ??
       null;
     const preferredImageUrl = preferredImageUrlByCardId.get(cardPrintId) ?? null;
     const setRecord = Array.isArray(card?.sets) ? card?.sets[0] : card?.sets;
@@ -798,13 +801,13 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
         rawFallbackPrice,
         priceFreshness,
       }),
-      image_url: preferredImageUrl ?? canonicalImageUrl,
+      image_url: preferredImageUrl ?? canonicalDisplayImageUrl,
       canonical_image_url: canonicalImageUrl,
       canonical_representative_image_url: canonicalImageFields?.representative_image_url ?? null,
       canonical_image_status: canonicalImageFields?.image_status ?? null,
       canonical_image_note: canonicalImageFields?.image_note ?? null,
       canonical_image_source: canonicalImageFields?.image_source ?? null,
-      canonical_display_image_url: canonicalImageFields?.display_image_url ?? null,
+      canonical_display_image_url: canonicalDisplayImageUrl,
       canonical_display_image_kind: canonicalImageFields?.display_image_kind ?? "missing",
       created_at: aggregate.latestCreatedAt ?? representativeBucket.created_at ?? null,
       is_slab: aggregate.slabCount > 0,

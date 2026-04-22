@@ -622,7 +622,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(name,identity_model)',
+            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,set:sets(name,identity_model)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -699,10 +699,7 @@ class PublicCollectorService {
             setIdentityModel: _normalizeOptionalText(
               (cardPrint['set'] as Map?)?['identity_model'],
             ),
-            imageUrl: _bestPublicImageUrl(
-              primary: cardPrint['image_url'],
-              fallback: cardPrint['image_alt_url'],
-            ),
+            imageUrl: _displayImageUrl(cardPrint),
             pricing: pricingById[row.cardPrintId],
             priceDisplayMode: row.priceDisplayMode,
             askingPriceAmount: manualPrice?.askingPriceAmount,
@@ -751,7 +748,7 @@ class PublicCollectorService {
       client
           .from('card_prints')
           .select(
-            'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,set:sets(identity_model)',
+            'id,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,set:sets(identity_model)',
           )
           .inFilter('id', cardPrintIds),
       CardSurfacePricingService.fetchByCardPrintIds(
@@ -836,10 +833,8 @@ class PublicCollectorService {
         setIdentityModel: _normalizeOptionalText(
           (cardPrint?['set'] as Map?)?['identity_model'],
         ),
-        imageUrl: _bestPublicImageUrl(
-          primary: row['image_url'] ?? cardPrint?['image_url'],
-          fallback: cardPrint?['image_alt_url'],
-        ),
+        imageUrl:
+            _normalizeHttpUrl(row['image_url']) ?? _displayImageUrl(cardPrint),
         conditionLabel: _normalizeOptionalText(row['condition_label']),
         intent: _normalizePublicIntent(row['intent']),
         pricing: pricingById[cardPrintId],
@@ -1229,16 +1224,15 @@ class PublicCollectorService {
     return normalized;
   }
 
-  static String? _bestPublicImageUrl({
-    required dynamic primary,
-    required dynamic fallback,
-  }) {
-    final primaryUrl = _normalizeHttpUrl(primary);
-    if (primaryUrl != null) {
-      return primaryUrl;
+  static String? _displayImageUrl(Map<String, dynamic>? row) {
+    if (row == null) {
+      return null;
     }
 
-    return _normalizeHttpUrl(fallback);
+    return _normalizeHttpUrl(row['display_image_url']) ??
+        _normalizeHttpUrl(row['image_url']) ??
+        _normalizeHttpUrl(row['image_alt_url']) ??
+        _normalizeHttpUrl(row['representative_image_url']);
   }
 
   static String? _normalizeHttpUrl(dynamic value) {

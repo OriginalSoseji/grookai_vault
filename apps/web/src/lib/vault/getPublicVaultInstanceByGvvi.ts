@@ -1,7 +1,6 @@
 import "server-only";
 
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import {
   normalizeDiscoverableVaultIntent,
   normalizeVaultIntent,
@@ -70,6 +69,9 @@ type CardPrintRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         name: string | null;
@@ -213,7 +215,7 @@ export async function getPublicVaultInstanceByGvvi(
 
   const { data: cardData } = await admin
     .from("card_prints")
-    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name)")
+    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)")
     .eq("id", cardPrintId)
     .maybeSingle();
 
@@ -222,8 +224,8 @@ export async function getPublicVaultInstanceByGvvi(
   }
 
   const card = cardData as CardPrintRow;
-  const [cardImageUrl, frontImageUrl, backImageUrl, pricingByCardId] = await Promise.all([
-    resolveCanonImageUrlV1(card),
+  const [cardImageFields, frontImageUrl, backImageUrl, pricingByCardId] = await Promise.all([
+    resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(instance.image_url),
     resolveVaultInstanceMediaUrl(instance.image_back_url),
     getPublicPricingByCardIds(admin, [cardPrintId]),
@@ -243,7 +245,7 @@ export async function getPublicVaultInstanceByGvvi(
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
-    imageUrl: cardImageUrl ?? getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
+    imageUrl: cardImageFields.display_image_url,
     frontImageUrl,
     backImageUrl,
     imageDisplayMode: normalizeVaultInstanceImageDisplayMode(instance.image_display_mode) ?? "canonical",

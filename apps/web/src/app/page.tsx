@@ -4,8 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
 
@@ -20,6 +19,9 @@ type FeaturedCardRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets?:
     | {
         identity_model: string | null;
@@ -54,7 +56,7 @@ async function getFeaturedCardByName(
   const { data } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,sets(identity_model)",
+      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
     )
     .eq("name", name)
     .order("gv_id")
@@ -63,10 +65,7 @@ async function getFeaturedCardByName(
   const resolvedRows = await Promise.all(
     ((data ?? []) as FeaturedCardRow[]).map(async (row) => ({
       row,
-      resolvedImageUrl:
-        (await resolveCanonImageUrlV1(row)) ??
-        getBestPublicCardImageUrl(row.image_url, row.image_alt_url) ??
-        null,
+      resolvedImageUrl: (await resolveCardImageFieldsV1(row)).display_image_url,
     })),
   );
   const bestRow = resolvedRows.find(

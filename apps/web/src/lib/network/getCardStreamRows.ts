@@ -1,5 +1,9 @@
 import "server-only";
 
+import {
+  resolveCardImageFieldsV1,
+  type CardDisplayImageKind,
+} from "@/lib/canon/resolveCardImageFieldsV1";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -40,6 +44,15 @@ type CardStreamIdentityRow = {
   id: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
+  display_image_url?: string | null;
+  display_image_kind?: CardDisplayImageKind | null;
   sets:
     | {
         identity_model: string | null;
@@ -173,6 +186,12 @@ function normalizeRow(
   const inPlayCount = Math.max(1, row.in_play_count ?? row.quantity ?? 1);
   const identityRow = identityByCardPrintId.get(cardPrintId);
   const setRecord = Array.isArray(identityRow?.sets) ? identityRow.sets[0] : identityRow?.sets;
+  const displayImageUrl =
+    getBestPublicCardImageUrl(row.image_url) ??
+    normalizeOptionalText(identityRow?.display_image_url) ??
+    getBestPublicCardImageUrl(identityRow?.image_url, identityRow?.image_alt_url) ??
+    getBestPublicCardImageUrl(identityRow?.representative_image_url) ??
+    null;
 
   return {
     vaultItemId,
@@ -202,7 +221,7 @@ function normalizeRow(
     variantKey: normalizeOptionalText(identityRow?.variant_key),
     printedIdentityModifier: normalizeOptionalText(identityRow?.printed_identity_modifier),
     setIdentityModel: normalizeOptionalText(setRecord?.identity_model),
-    imageUrl: getBestPublicCardImageUrl(row.image_url) ?? normalizeOptionalText(row.image_url),
+    imageUrl: displayImageUrl,
     inPlayCopies: [],
   };
 }
@@ -216,14 +235,33 @@ async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
     const batch = normalizedIds.slice(index, index + 500);
     const { data, error } = await client
       .from("card_prints")
-      .select("id,variant_key,printed_identity_modifier,sets(identity_model)")
+      .select(
+        "id,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)",
+      )
       .in("id", batch);
 
     if (error) {
       throw new Error(`[network:stream] card identity lookup failed: ${error.message}`);
     }
 
-    for (const row of (data ?? []) as CardStreamIdentityRow[]) {
+    const rowsWithDisplayImage = await Promise.all(
+      ((data ?? []) as CardStreamIdentityRow[]).map(async (row) => {
+        const imageFields = await resolveCardImageFieldsV1(row);
+        return {
+          ...row,
+          image_url: imageFields.image_url,
+          representative_image_url: imageFields.representative_image_url,
+          image_status: imageFields.image_status,
+          image_note: imageFields.image_note,
+          image_source: imageFields.image_source,
+          image_path: imageFields.image_path,
+          display_image_url: imageFields.display_image_url,
+          display_image_kind: imageFields.display_image_kind,
+        } satisfies CardStreamIdentityRow;
+      }),
+    );
+
+    for (const row of rowsWithDisplayImage) {
       const id = normalizeOptionalText(row.id);
       if (id) {
         identityByCardPrintId.set(id, row);

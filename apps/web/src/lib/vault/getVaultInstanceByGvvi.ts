@@ -1,7 +1,6 @@
 import "server-only";
 
-import { resolveCanonImageUrlV1 } from "@/lib/canon/resolveCanonImageV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
@@ -61,6 +60,9 @@ type CardPrintRow = {
   image_alt_url: string | null;
   image_source: string | null;
   image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets:
     | {
         name: string | null;
@@ -214,7 +216,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
 
   const { data: cardData } = await admin
     .from("card_prints")
-    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,sets(name)")
+    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)")
     .eq("id", resolvedCardPrintId)
     .maybeSingle();
 
@@ -227,8 +229,8 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const frontImagePath = normalizeOptionalText(instance.image_url);
   const backImagePath = normalizeOptionalText(instance.image_back_url);
 
-  const [cardImageUrl, frontImageUrl, backImageUrl, outcomeResult, pricingByCardId] = await Promise.all([
-    resolveCanonImageUrlV1(card),
+  const [cardImageFields, frontImageUrl, backImageUrl, outcomeResult, pricingByCardId] = await Promise.all([
+    resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(frontImagePath),
     resolveVaultInstanceMediaUrl(backImagePath),
     admin
@@ -256,7 +258,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
     setName: normalizeSetName(card.sets),
     number: normalizeOptionalText(card.number) ?? "—",
-    imageUrl: cardImageUrl ?? getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ?? null,
+    imageUrl: cardImageFields.display_image_url,
     conditionLabel: normalizeOptionalText(instance.condition_label),
     intent: normalizeVaultIntent(instance.intent) ?? "hold",
     isGraded: Boolean(instance.slab_cert_id),

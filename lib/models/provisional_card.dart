@@ -25,6 +25,7 @@ class PublicProvisionalCard {
   final String? sourceLabel;
   final String? createdAt;
 
+  String? get displayImageUrl => imageUrl;
   String get displayLabel => provisionalDisplayLabel(provisionalLabel);
   String get identityLine => <String>[
     setHint,

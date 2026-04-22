@@ -5,6 +5,7 @@ import {
   VaultCollectionView,
   type RecentCardData,
 } from "@/components/vault/VaultCollectionView";
+import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
@@ -36,6 +37,13 @@ type RecentIdentityRow = {
   number: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
+  image_url: string | null;
+  image_alt_url: string | null;
+  image_source: string | null;
+  image_path: string | null;
+  representative_image_url: string | null;
+  image_status: string | null;
+  image_note: string | null;
   sets?:
     | {
         name: string | null;
@@ -60,7 +68,7 @@ async function getRecentIdentityByGvId(
   const { data, error } = await supabase
     .from("card_prints")
     .select(
-      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,sets(name,identity_model)",
+      "gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)",
     )
     .in("gv_id", normalizedIds);
 
@@ -75,14 +83,15 @@ async function getRecentIdentityByGvId(
   );
 }
 
-function normalizeRecentItems(
+async function normalizeRecentItems(
   rows: RecentItemRow[] | null | undefined,
   identityByGvId: Map<string, RecentIdentityRow>,
-): RecentCardData[] {
-  return (rows ?? [])
+): Promise<RecentCardData[]> {
+  const resolvedRows = await Promise.all((rows ?? [])
     .filter((row): row is RecentItemRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
-    .map((row) => {
+    .map(async (row) => {
       const identityRow = identityByGvId.get(row.gv_id);
+      const imageFields = await resolveCardImageFieldsV1(identityRow);
       const setRecord = Array.isArray(identityRow?.sets) ? identityRow?.sets[0] : identityRow?.sets;
       const name = identityRow?.name?.trim() || row.name?.trim() || "Unknown card";
       const setCode = identityRow?.set_code?.trim() || row.set_code?.trim() || "Unknown set";
@@ -105,9 +114,13 @@ function normalizeRecentItems(
         set_name: setRecord?.name?.trim() || row.set_name?.trim() || row.set_code?.trim() || "Unknown set",
         number,
         created_at: row.created_at,
-        image_url: getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
+        image_url:
+          imageFields.display_image_url ??
+          getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
       };
-    });
+    }));
+
+  return resolvedRows;
 }
 
 export default async function VaultPage() {
@@ -132,7 +145,7 @@ export default async function VaultPage() {
       .map((row) => row.gv_id)
       .filter((value): value is string => typeof value === "string" && value.length > 0),
   );
-  const recent = normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null, recentIdentityByGvId);
+  const recent = await normalizeRecentItems((recentData ?? null) as RecentItemRow[] | null, recentIdentityByGvId);
   const setLogoPathByCode = Object.fromEntries(
     (await getSetLogoAssetPathMap(items.map((item) => item.set_code))).entries(),
   );

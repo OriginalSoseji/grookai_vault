@@ -126,7 +126,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       final rows = await _client
           .from('card_prints')
           .select(
-            'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,sets(name,release_date,identity_model)',
+            'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,release_date,identity_model)',
           )
           .eq('name', cardName)
           .neq('id', cardPrintId)
@@ -168,10 +168,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
               setIdentityModel: _cleanText(setRecord?['identity_model']).isEmpty
                   ? null
                   : _cleanText(setRecord?['identity_model']),
-              imageUrl: _bestImageUrl(
-                primary: row['image_url'],
-                fallback: row['image_alt_url'],
-              ),
+              imageUrl: _displayImageUrl(row),
             );
           })
           .whereType<_GvviRelatedPrint>()
@@ -755,15 +752,11 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     return (value ?? '').toString().trim();
   }
 
-  static String? _bestImageUrl({
-    required dynamic primary,
-    required dynamic fallback,
-  }) {
-    final primaryUrl = _normalizeHttpUrl(primary);
-    if (primaryUrl != null) {
-      return primaryUrl;
-    }
-    return _normalizeHttpUrl(fallback);
+  static String? _displayImageUrl(Map<String, dynamic> row) {
+    return _normalizeHttpUrl(row['display_image_url']) ??
+        _normalizeHttpUrl(row['image_url']) ??
+        _normalizeHttpUrl(row['image_alt_url']) ??
+        _normalizeHttpUrl(row['representative_image_url']);
   }
 
   static String? _normalizeHttpUrl(dynamic value) {
