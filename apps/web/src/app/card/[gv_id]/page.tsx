@@ -569,7 +569,7 @@ export default async function CardPage({
         <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="space-y-1">
             <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Collector Network</h2>
-            <p className="text-sm text-slate-600">Collectors currently exposing this exact card for trade, sale, or showcase.</p>
+            <p className="text-sm text-slate-600">Collectors with this card marked Trade, Sell, or Showcase.</p>
           </div>
           <div className="space-y-3">
             {networkOffers.map((offer) => (
@@ -591,7 +591,7 @@ export default async function CardPage({
                       ))}
                       <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
                         {offer.inPlayCount > 1
-                          ? `${offer.inPlayCount} copies in play`
+                          ? `${offer.inPlayCount} copies visible`
                           : offer.isGraded
                           ? (offer.gradeLabel ?? [offer.gradeCompany, offer.gradeValue].filter(Boolean).join(" ")) || "Graded"
                           : offer.conditionLabel ?? "Raw"}
@@ -611,7 +611,7 @@ export default async function CardPage({
                         href={singleCopyHref}
                         className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                       >
-                        Open exact copy
+                        Open copy
                       </Link>
                     ) : null}
                   </div>
@@ -624,7 +624,7 @@ export default async function CardPage({
                       ownerDisplayName={offer.ownerDisplayName}
                       cardName={resolvedDisplayIdentity.display_name}
                       intent={groupedContactAnchor.intent}
-                      buttonLabel={groupedContactAnchor.intent ? undefined : "Contact owner"}
+                      buttonLabel={groupedContactAnchor.intent ? undefined : "Message collector"}
                       isAuthenticated={Boolean(user)}
                       loginHref={loginHref}
                       currentPath={currentCardPath}
@@ -672,7 +672,7 @@ export default async function CardPage({
                                 ownerDisplayName={offer.ownerDisplayName}
                                 cardName={resolvedDisplayIdentity.display_name}
                                 intent={copy.intent}
-                                buttonLabel="Contact about this copy"
+                                buttonLabel="Message about this copy"
                                 isAuthenticated={Boolean(user)}
                                 loginHref={loginHref}
                                 currentPath={currentCardPath}
@@ -687,7 +687,7 @@ export default async function CardPage({
                 ) : null}
                 {offer.ownerUserId !== user?.id && !getGroupedOfferContactAnchor(offer) && offer.inPlayCopies.length > 1 ? (
                   <p className="mt-3 text-xs text-slate-500">
-                    Choose a copy above to contact this collector about the exact card in play.
+                    Choose a copy above to message this collector about that card.
                   </p>
                 ) : null}
               </article>

@@ -6,6 +6,7 @@ import '../../models/ownership_state.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
+import '../../services/network/intent_presentation.dart' as intent_presentation;
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../network/network_inbox_screen.dart';
@@ -366,7 +367,8 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                         ownerDisplayName: _data!.ownerDisplayName,
                         cardName: _data!.cardName,
                         intent: _data!.intent,
-                        buttonLabel: 'Inquire about this card',
+                        buttonLabel: intent_presentation
+                            .getVaultIntentActionLabel(_data!.intent),
                       ),
                     ),
                   ],
@@ -403,16 +405,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
   }
 
   String _intentLabel(String intent) {
-    switch (intent) {
-      case 'trade':
-        return 'Trade';
-      case 'sell':
-        return 'Sell';
-      case 'showcase':
-        return 'Showcase';
-      default:
-        return 'Hold';
-    }
+    return intent_presentation.getVaultIntentLabel(intent);
   }
 }
 

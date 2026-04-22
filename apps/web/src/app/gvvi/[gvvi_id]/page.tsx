@@ -8,7 +8,7 @@ import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import VaultInstanceVisiblePricingCard from "@/components/vault/VaultInstanceVisiblePricingCard";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
-import { getVaultIntentLabel } from "@/lib/network/intent";
+import { getVaultIntentActionLabel, getVaultIntentLabel } from "@/lib/network/intent";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
@@ -31,18 +31,6 @@ function formatTimestamp(value: string | null) {
     day: "numeric",
     year: "numeric",
   });
-}
-
-function getContactLabel(intent: "trade" | "sell" | "showcase") {
-  switch (intent) {
-    case "trade":
-      return "Ask to trade";
-    case "sell":
-      return "Ask to buy";
-    case "showcase":
-    default:
-      return "Contact";
-  }
 }
 
 export default async function PublicVaultInstancePage({
@@ -85,7 +73,7 @@ export default async function PublicVaultInstancePage({
         <PageIntro
           eyebrow="Exact Copy"
           title={detail.cardName}
-          description="One discoverable owned copy shared by its collector."
+          description="One public card shared by its collector."
           size="compact"
           actions={
             <>
@@ -165,7 +153,7 @@ export default async function PublicVaultInstancePage({
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
             <SectionHeader
               title="Owned Copy"
-              description="Condition and slab identity for this exact discoverable copy."
+              description="Condition and slab details for this card."
             />
 
             <div className="grid gap-3 md:grid-cols-2">
@@ -249,13 +237,13 @@ export default async function PublicVaultInstancePage({
 
           {contactIntent ? (
             <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
-              <SectionHeader
-                title="Contact"
-                description="Reach out about this exact discoverable copy."
-              />
+            <SectionHeader
+              title="Contact"
+              description="Message this collector about this card."
+            />
               <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
                 <p className="text-sm text-slate-600">
-                  This copy is currently marked <span className="font-medium text-slate-900">{getVaultIntentLabel(detail.intent)}</span>.
+                  This card is marked <span className="font-medium text-slate-900">{getVaultIntentLabel(detail.intent)}</span>.
                 </p>
                 <ContactOwnerButton
                   vaultItemId={detail.vaultItemId}
@@ -265,7 +253,7 @@ export default async function PublicVaultInstancePage({
                   ownerDisplayName={detail.ownerDisplayName}
                   cardName={detail.cardName}
                   intent={contactIntent}
-                  buttonLabel={getContactLabel(contactIntent)}
+                  buttonLabel={getVaultIntentActionLabel(contactIntent)}
                   isAuthenticated={Boolean(user)}
                   loginHref={loginHref}
                   currentPath={currentPath}
@@ -278,7 +266,7 @@ export default async function PublicVaultInstancePage({
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
               title="Share"
-              description="Copy the public exact-copy route for this owned card."
+              description="Copy the public link for this card."
             />
             <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
               <p className="break-all text-sm text-slate-600">{shareUrl}</p>

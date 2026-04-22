@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 
 export type SaveVaultItemIntentInput = {
@@ -24,21 +22,9 @@ export type SaveVaultItemIntentResult =
 export async function saveVaultItemIntentAction(
   input: SaveVaultItemIntentInput,
 ): Promise<SaveVaultItemIntentResult> {
-  const client = createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
-
-  if (!user) {
-    return {
-      ok: false,
-      itemId: input.itemId,
-      message: "Sign in required.",
-    };
-  }
-
   const nextIntent = normalizeVaultIntent(input.intent);
-  if (!input.itemId.trim() || !nextIntent) {
+  const normalizedItemId = input.itemId.trim();
+  if (!normalizedItemId || !nextIntent) {
     return {
       ok: false,
       itemId: input.itemId,
@@ -46,31 +32,12 @@ export async function saveVaultItemIntentAction(
     };
   }
 
-  const { data, error } = await client
-    .from("vault_items")
-    .update({
-      intent: nextIntent,
-    })
-    .eq("id", input.itemId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,intent")
-    .maybeSingle();
-
-  if (error || !data) {
-    return {
-      ok: false,
-      itemId: input.itemId,
-      message: "Vault intent could not be saved.",
-    };
-  }
-
-  revalidatePath("/vault");
-  revalidatePath("/network");
-
+  // LOCK: Do not read or write vault_items.intent for public intent logic.
+  // LOCK: Intent authority is vault_item_instances.intent via exact-copy actions.
   return {
-    ok: true,
-    itemId: data.id,
-    intent: normalizeVaultIntent(data.intent) ?? "hold",
+    ok: false,
+    itemId: normalizedItemId,
+    message:
+      "Grouped vault intent is legacy. Update exact-copy intent instead.",
   };
 }

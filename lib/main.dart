@@ -14,6 +14,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
 import 'models/ownership_state.dart';
+import 'models/provisional_card.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';
@@ -42,6 +43,7 @@ import 'widgets/card_surface_artwork.dart';
 import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
 import 'widgets/app_shell_metrics.dart';
+import 'widgets/provisional/provisional_card_section.dart';
 
 part 'main_shell.dart';
 part 'main_vault.dart';
@@ -2084,6 +2086,8 @@ class HomePageState extends State<HomePage> {
   List<CardPrint> _results = const [];
   List<CardPrint> _visibleResults = const [];
   List<CardPrint> _trending = const [];
+  List<PublicProvisionalCard> _provisionalResults =
+      const <PublicProvisionalCard>[];
   Map<String, OwnershipState> _catalogOwnershipByCardPrintId =
       const <String, OwnershipState>{};
   Map<String, CardSurfacePricingData> _resultPricing = const {};
@@ -2184,6 +2188,7 @@ class HomePageState extends State<HomePage> {
     setState(() {
       _results = const [];
       _visibleResults = const [];
+      _provisionalResults = const <PublicProvisionalCard>[];
       _resultPricing = const {};
       _resolverMeta = null;
       _hasMoreVisibleResults = false;
@@ -2517,6 +2522,7 @@ class HomePageState extends State<HomePage> {
       setState(() {
         _results = resolved.rows;
         _visibleResults = initialVisibleResults;
+        _provisionalResults = resolved.provisionalRows;
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
         _hasMoreVisibleResults = hasMoreVisibleResults;
@@ -2557,6 +2563,7 @@ class HomePageState extends State<HomePage> {
       setState(() {
         _results = const [];
         _visibleResults = const [];
+        _provisionalResults = const <PublicProvisionalCard>[];
         _resultPricing = const {};
         _resolverMeta = null;
         _hasMoreVisibleResults = false;
@@ -3563,7 +3570,10 @@ class HomePageState extends State<HomePage> {
         ? cards.length
         : totalSearchResults.length;
     final visibleResultCount = cards.length;
-    final showEmpty = !isCatalogLoading && totalResultCount == 0;
+    final hasProvisionalResults =
+        !showingCuratedLanding && _provisionalResults.isNotEmpty;
+    final showEmpty =
+        !isCatalogLoading && totalResultCount == 0 && !hasProvisionalResults;
     final theme = Theme.of(context);
     final identityFilterCounts = buildIdentityFilterCounts(
       showingCuratedLanding ? _trending : _results,
@@ -3753,6 +3763,13 @@ class HomePageState extends State<HomePage> {
                         kDebugMode &&
                         kFeedDebugOverlay &&
                         _showFeedDebugOverlay,
+                  ),
+                if (hasProvisionalResults)
+                  SliverToBoxAdapter(
+                    child: ProvisionalCardSection(
+                      cards: _provisionalResults,
+                      compact: true,
+                    ),
                   ),
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),

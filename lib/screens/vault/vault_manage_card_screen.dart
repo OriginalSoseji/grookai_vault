@@ -492,6 +492,23 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         return;
       }
 
+      final updatedCopies = data.copies
+          .map(
+            (copy) => VaultManageCardCopy(
+              instanceId: copy.instanceId,
+              gvviId: copy.gvviId,
+              conditionLabel: copy.conditionLabel,
+              intent: savedIntent,
+              note: copy.note,
+              createdAt: copy.createdAt,
+              grader: copy.grader,
+              grade: copy.grade,
+              certNumber: copy.certNumber,
+              isGraded: copy.isGraded,
+            ),
+          )
+          .toList(growable: false);
+
       setState(() {
         _data = VaultManageCardData(
           vaultItemId: data.vaultItemId,
@@ -509,7 +526,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           totalCopies: data.totalCopies,
           rawCount: data.rawCount,
           slabCount: data.slabCount,
-          inPlayCount: data.inPlayCount,
+          inPlayCount: savedIntent == 'hold' ? 0 : updatedCopies.length,
           intent: savedIntent,
           isShared: data.isShared,
           wallCategory: data.wallCategory,
@@ -521,7 +538,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           askingPriceCurrency: data.askingPriceCurrency,
           publicProfileEnabled: data.publicProfileEnabled,
           vaultSharingEnabled: data.vaultSharingEnabled,
-          copies: data.copies,
+          copies: updatedCopies,
         );
       });
       _showStatus('Intent saved.');
@@ -904,7 +921,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               _CountChip(label: '${data.totalCopies} total'),
               _CountChip(label: '${data.rawCount} raw'),
               _CountChip(label: '${data.slabCount} slab'),
-              _CountChip(label: '${data.inPlayCount} in play'),
+              _CountChip(label: '${data.inPlayCount} visible'),
             ],
           ),
         ],
@@ -930,7 +947,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     final mixTags = <Widget>[
       if (data.inPlayCount > 0)
-        _InlineTag(label: '${data.inPlayCount} In Play'),
+        _InlineTag(label: '${data.inPlayCount} Visible'),
       for (final option in kVaultIntentOptions)
         if (option.value != 'hold')
           if ((copyIntentCounts[option.value] ?? 0) > 0)
@@ -1433,7 +1450,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       case 'showcase':
         return 'Showcase';
       default:
-        return data.inPlayCount > 0 ? 'In Play' : 'Hidden';
+        return data.inPlayCount > 0 ? 'Visible' : 'Hidden';
     }
   }
 
@@ -1460,11 +1477,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     if (data.intent == 'hold') {
       return data.inPlayCount > 0
-          ? 'Grouped card is neutral here while exact copies below are already in play.'
-          : 'On wall, but not presenting an active intent.';
+          ? 'This card is private here, while some copies below are visible to collectors.'
+          : 'On wall, but not visible in the collector network.';
     }
 
-    return 'On wall as $intentLabel.';
+    return '$intentLabel is visible to collectors.';
   }
 
   String _formatRarity(String raw) {

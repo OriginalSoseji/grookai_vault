@@ -49,8 +49,8 @@ export default async function NetworkPage({
       <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
         <PageIntro
           eyebrow="Collector Network"
-          title="Cards open for contact"
-          description="Trade, sell, and showcase cards from collectors who have chosen to be discoverable."
+          title="Cards collectors want to share"
+          description="Message collectors about cards marked Trade, Sell, or Showcase."
           actions={
             user ? (
               <Link
@@ -85,7 +85,7 @@ export default async function NetworkPage({
                 : "border border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950"
             }`}
           >
-            All intents
+            All
           </Link>
           {DISCOVERABLE_VAULT_INTENT_VALUES.map((value) => (
             <Link
@@ -104,15 +104,16 @@ export default async function NetworkPage({
       </PageSection>
 
       <PageSection spacing="compact">
+        {/* LOCK: Intent, discoverability, and contact language must stay calm and product-facing. */}
         <SectionHeader
           title={intent ? `${getVaultIntentLabel(intent)} cards` : "Latest cards"}
-          description="Chronological stream only. No ranking layer."
+          description="Newest cards visible from collectors."
         />
 
         {rows.length === 0 ? (
           <PublicCollectionEmptyState
             title="No cards available right now"
-            body="Collectors will appear here when they mark cards for trade, sale, or showcase."
+            body="Cards appear here when collectors mark them Trade, Sell, or Showcase."
           />
         ) : (
           <div className="space-y-4">

@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../screens/network/network_inbox_screen.dart';
 import '../services/network/card_interaction_service.dart';
+import '../services/network/intent_presentation.dart' as intent_presentation;
 
 enum ContactOwnerButtonVariant { filled, outlined, compact }
 
@@ -197,7 +198,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Contact ${widget.ownerDisplayName}',
+              'Message ${widget.ownerDisplayName}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.3,
@@ -205,7 +206,7 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
             ),
             const SizedBox(height: 6),
             Text(
-              'Start a card-specific message about ${widget.cardName}.',
+              'Start a message about ${widget.cardName}.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Theme.of(
                   context,
@@ -256,15 +257,6 @@ class _ContactComposerSheetState extends State<_ContactComposerSheet> {
   }
 
   String _intentLabel(String intent) {
-    switch (intent.toLowerCase()) {
-      case 'trade':
-        return 'Trade';
-      case 'sell':
-        return 'Sell';
-      case 'showcase':
-        return 'Showcase';
-      default:
-        return 'Collector Network';
-    }
+    return intent_presentation.getVaultIntentLabel(intent);
   }
 }

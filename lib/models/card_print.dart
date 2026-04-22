@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../secrets.dart';
+import 'provisional_card.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
 
@@ -218,11 +219,13 @@ class ResolverStructuredEvidenceFlags {
 class CardPrintSearchResult {
   const CardPrintSearchResult({
     required this.rows,
+    this.provisionalRows = const <PublicProvisionalCard>[],
     required this.meta,
     required this.source,
   });
 
   final List<CardPrint> rows;
+  final List<PublicProvisionalCard> provisionalRows;
   final CardSearchResolverMeta? meta;
   final String source;
 }
@@ -250,6 +253,7 @@ class CardPrintRepository {
 
       return CardPrintSearchResult(
         rows: rows,
+        provisionalRows: const <PublicProvisionalCard>[],
         meta: null,
         source: 'local_browse',
       );
@@ -283,6 +287,7 @@ class CardPrintRepository {
     }
 
     final rowsJson = decoded['rows'];
+    final provisionalJson = decoded['provisional'];
     final metaJson = decoded['meta'];
     var rows = rowsJson is List
         ? rowsJson
@@ -292,6 +297,19 @@ class CardPrintRepository {
         : <CardPrint>[];
 
     rows = _filterByRarity(rows, options.rarity);
+    final provisionalRows = provisionalJson is List
+        ? provisionalJson
+              .whereType<Map<String, dynamic>>()
+              .map((row) {
+                try {
+                  return PublicProvisionalCard.fromJson(row);
+                } catch (_) {
+                  return null;
+                }
+              })
+              .whereType<PublicProvisionalCard>()
+              .toList(growable: false)
+        : const <PublicProvisionalCard>[];
 
     final meta = trimmed.isEmpty
         ? null
@@ -308,9 +326,28 @@ class CardPrintRepository {
 
     return CardPrintSearchResult(
       rows: rows,
+      provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
     );
+  }
+
+  static Future<CardPrint?> getCardPrintByGvId({
+    required SupabaseClient client,
+    required String gvId,
+  }) async {
+    final normalized = gvId.trim();
+    if (!normalized.startsWith('GV-')) {
+      return null;
+    }
+
+    final row = await client
+        .from('card_prints')
+        .select(_cardPrintSelect)
+        .eq('gv_id', normalized)
+        .maybeSingle();
+
+    return row == null ? null : CardPrint.fromJson(row);
   }
 
   static Future<List<CardPrint>> searchCardPrints({
@@ -334,7 +371,7 @@ class CardPrintRepository {
           .from('card_prints')
           .select(_cardPrintSelect)
           .order(options.sort, ascending: true)
-          .limit((options.limit.clamp(1, defaultLimit) as int));
+          .limit(options.limit.clamp(1, defaultLimit));
 
       return data
           .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
@@ -389,7 +426,7 @@ class CardPrintRepository {
         final limited = _applyRarity(
           qb,
           options.rarity,
-        ).limit((options.limit.clamp(1, 25) as int));
+        ).limit(options.limit.clamp(1, 25));
         data = await limited;
       } else if (isSetOnly) {
         mode = 'set';
@@ -401,7 +438,7 @@ class CardPrintRepository {
         final limited = _applyRarity(
           qb,
           options.rarity,
-        ).limit((options.limit.clamp(1, searchLimit) as int));
+        ).limit(options.limit.clamp(1, searchLimit));
         data = await limited;
       } else if (numberInfo.hasNumber) {
         final numPart = numberInfo.norm!;
@@ -415,7 +452,7 @@ class CardPrintRepository {
           final limited = _applyRarity(
             qb,
             options.rarity,
-          ).limit((options.limit.clamp(1, isNumberWithTotal ? 25 : 50) as int));
+          ).limit(options.limit.clamp(1, isNumberWithTotal ? 25 : 50));
           data = await limited;
           return data
               .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
@@ -434,7 +471,7 @@ class CardPrintRepository {
           final limited = _applyRarity(
             qb,
             options.rarity,
-          ).limit((options.limit.clamp(1, 50) as int));
+          ).limit(options.limit.clamp(1, 50));
           data = await limited;
           return data
               .map((row) => CardPrint.fromJson(row as Map<String, dynamic>))
@@ -462,7 +499,7 @@ class CardPrintRepository {
           final limited = _applyRarity(
             qb,
             options.rarity,
-          ).limit((options.limit.clamp(1, 100) as int));
+          ).limit(options.limit.clamp(1, 100));
           data = await limited;
         } else {
           final qb = _buildNameOnlyQuery(
@@ -525,7 +562,7 @@ class CardPrintRepository {
             'q': trimmed,
             'set_code_in': null,
             'number_in': numberInfo.hasNumber ? numberInfo.norm : null,
-            'limit_in': (options.limit.clamp(1, searchLimit) as int),
+            'limit_in': options.limit.clamp(1, searchLimit),
             'offset_in': 0,
           },
         );
@@ -719,7 +756,7 @@ class CardPrintRepository {
           .ilike('name', '%$prefix%')
           .limit(5);
       if (matches.length == 1) {
-        final row = matches.first as Map<String, dynamic>;
+        final row = matches.first;
         return {
           'code': (row['code'] ?? '').toString(),
           'name': (row['name'] ?? '').toString(),

@@ -235,7 +235,7 @@ export default async function HomePage() {
               href="/login?next=%2Faccount"
               className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Put your cards in play
+              Make your cards visible
             </Link>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import {
+  getVaultIntentHelper,
   getVaultIntentLabel,
   type VaultIntent,
 } from "@/lib/network/intent";
@@ -185,6 +186,7 @@ export default function VaultInstanceSettingsCard({
               </option>
             ))}
           </select>
+          <p className="text-xs text-slate-500">{getVaultIntentHelper(intent)}</p>
         </label>
 
         <label className="space-y-2">

@@ -1181,8 +1181,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                                         _buildImageStatusBadge(
                                           theme: theme,
                                           colorScheme: colorScheme,
-                                          label:
-                                              imagePresentation.compactBadgeLabel!,
+                                          label: imagePresentation
+                                              .compactBadgeLabel!,
                                           strong: imagePresentation
                                               .isCollisionRepresentative,
                                         ),
@@ -1294,7 +1294,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               child: _buildImageStatusBadge(
                 theme: theme,
                 colorScheme: colorScheme,
-                label: imagePresentation.detailBadgeLabel ??
+                label:
+                    imagePresentation.detailBadgeLabel ??
                     imagePresentation.compactBadgeLabel!,
                 strong: imagePresentation.isCollisionRepresentative,
               ),
@@ -1484,7 +1485,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               if (_hasExactCopyContext)
                 _buildPrimaryNavCue(
                   eyebrow: 'Exact copy',
-                  label: 'Open exact copy',
+                  label: 'Open copy',
                   supporting: _hasVaultContext
                       ? 'Continue to this owned copy'
                       : 'Continue to this specific copy',
@@ -1884,7 +1885,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Collector Actions', theme, colorScheme),
+          _buildSectionLabel('Collector', theme, colorScheme),
           const SizedBox(height: 6),
           Text(
             _cleanText(widget.contactOwnerDisplayName),
@@ -1894,7 +1895,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           ),
           const SizedBox(height: 2),
           Text(
-            'Use the existing intent path for this exact collector and card.',
+            'Message this collector about this card.',
             style: theme.textTheme.bodySmall?.copyWith(
               color: colorScheme.onSurface.withValues(alpha: 0.68),
             ),

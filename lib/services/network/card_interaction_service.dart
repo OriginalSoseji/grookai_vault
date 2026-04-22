@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'intent_presentation.dart' as intent_presentation;
+
 enum CardInteractionInboxView { inbox, unread, sent, closed }
 
 enum CardInteractionSendStatus {
@@ -660,16 +662,8 @@ class CardInteractionService {
   }
 
   static String contactButtonLabel(String? intent) {
-    switch ((intent ?? '').trim().toLowerCase()) {
-      case 'trade':
-        return 'Ask to trade';
-      case 'sell':
-        return 'Ask to buy';
-      case 'showcase':
-        return 'Contact';
-      default:
-        return 'Contact owner';
-    }
+    // LOCK: Contact language must stay calm, clear, and product-facing.
+    return intent_presentation.getVaultIntentActionLabel(intent);
   }
 
   static String defaultMessage({
@@ -683,13 +677,13 @@ class CardInteractionService {
 
     switch ((intent ?? '').trim().toLowerCase()) {
       case 'trade':
-        return 'Hi $collectorName, I\'m interested in trading for your $cardName. Is it still available?';
+        return 'Hi $collectorName, I saw your $cardName and wanted to ask about a trade.';
       case 'sell':
-        return 'Hi $collectorName, I\'m interested in buying your $cardName. Is it still available?';
+        return 'Hi $collectorName, I saw your $cardName and wanted to ask about buying it.';
       case 'showcase':
-        return 'Hi $collectorName, I saw your $cardName in the collector network and wanted to ask about it.';
+        return 'Hi $collectorName, I saw your $cardName and wanted to ask about it.';
       default:
-        return 'Hi $collectorName, I\'m interested in your $cardName. Is it still available?';
+        return 'Hi $collectorName, I saw your $cardName and wanted to ask about it.';
     }
   }
 

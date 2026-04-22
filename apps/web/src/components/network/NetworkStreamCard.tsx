@@ -27,7 +27,7 @@ function getGroupedContactAnchor(row: CardStreamRow) {
 
 function getOwnershipSummary(row: CardStreamRow) {
   if (row.inPlayCount > 1) {
-    return `${row.inPlayCount} copies in play`;
+    return `${row.inPlayCount} copies visible`;
   }
 
   if (row.isGraded) {
@@ -115,7 +115,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-xs text-slate-500">
               <p>{row.gvId}</p>
-              <p>{row.createdAt ? new Date(row.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recently listed"}</p>
+              <p>{row.createdAt ? new Date(row.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recently added"}</p>
             </div>
             {canContactOwner && groupedContactAnchor ? (
               <ContactOwnerButton
@@ -126,7 +126,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                 ownerDisplayName={row.ownerDisplayName}
                 cardName={displayIdentity.display_name}
                 intent={groupedContactAnchor.intent}
-                buttonLabel={groupedContactAnchor.intent ? undefined : "Contact owner"}
+                buttonLabel={groupedContactAnchor.intent ? undefined : "Message collector"}
                 isAuthenticated={isAuthenticated}
                 loginHref={loginHref}
                 currentPath={currentPath}
@@ -172,7 +172,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
                           ownerDisplayName={row.ownerDisplayName}
                           cardName={displayIdentity.display_name}
                           intent={copy.intent}
-                          buttonLabel={row.inPlayCopies.length > 1 ? "Contact about this copy" : undefined}
+                          buttonLabel={row.inPlayCopies.length > 1 ? "Message about this copy" : undefined}
                           isAuthenticated={isAuthenticated}
                           loginHref={loginHref}
                           currentPath={currentPath}
@@ -187,7 +187,7 @@ export function NetworkStreamCard({ row, isAuthenticated, viewerUserId, currentP
           ) : null}
           {canContactOwner && !groupedContactAnchor && row.inPlayCopies.length > 1 ? (
             <p className="text-xs text-slate-500">
-              Choose a copy above to contact this collector about the exact card in play.
+              Choose a copy above to message this collector about that card.
             </p>
           ) : null}
         </div>

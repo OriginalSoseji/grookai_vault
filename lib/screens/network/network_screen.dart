@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
+import '../../models/provisional_card.dart';
 import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/network/network_stream_service.dart';
+import '../../services/provisional/provisional_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
+import '../../widgets/provisional/provisional_card_section.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_gvvi_screen.dart';
@@ -55,6 +58,8 @@ class NetworkScreenState extends State<NetworkScreen> {
   String? _error;
   NetworkStreamEmptyState _emptyState = NetworkStreamEmptyState.none;
   List<NetworkStreamRow> _rows = const <NetworkStreamRow>[];
+  List<PublicProvisionalCard> _provisionalCards =
+      const <PublicProvisionalCard>[];
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
       const <String, OwnershipState>{};
   int _loadVersion = 0;
@@ -109,7 +114,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     });
 
     try {
-      final page = await NetworkStreamService.fetchRows(
+      final pageFuture = NetworkStreamService.fetchRows(
         client: _client,
         mode: _feedMode,
         intent: _intent,
@@ -118,6 +123,14 @@ class NetworkScreenState extends State<NetworkScreen> {
         limit: pageSize,
         resetSession: resetSession,
       );
+      final provisionalFuture = !append && _intent == null
+          ? ProvisionalService.fetchDiscovery(limit: 6)
+          : Future<List<PublicProvisionalCard>>.value(
+              const <PublicProvisionalCard>[],
+            );
+      final results = await Future.wait([pageFuture, provisionalFuture]);
+      final page = results[0] as NetworkStreamPage;
+      final provisionalCards = results[1] as List<PublicProvisionalCard>;
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -153,6 +166,9 @@ class NetworkScreenState extends State<NetworkScreen> {
 
       setState(() {
         _rows = append ? [..._rows, ...page.rows] : page.rows;
+        if (!append) {
+          _provisionalCards = provisionalCards;
+        }
         _ownershipStatesByCardPrintId = append
             ? <String, OwnershipState>{
                 ..._ownershipStatesByCardPrintId,
@@ -195,6 +211,7 @@ class NetworkScreenState extends State<NetworkScreen> {
           _error = error is Error
               ? error.toString()
               : 'Unable to load the collector network.';
+          _provisionalCards = const <PublicProvisionalCard>[];
           _emptyState = NetworkStreamEmptyState.none;
           _hasMore = false;
           _loading = false;
@@ -350,15 +367,27 @@ class NetworkScreenState extends State<NetworkScreen> {
                             ),
                             const SizedBox(width: 8),
                             _IntentChip(
-                              label: 'Trade',
+                              label: NetworkStreamService.getVaultIntentLabel(
+                                'trade',
+                              ),
                               selected: _intent == 'trade',
                               onPressed: () => _setIntent('trade'),
                             ),
                             const SizedBox(width: 8),
                             _IntentChip(
-                              label: 'Sell',
+                              label: NetworkStreamService.getVaultIntentLabel(
+                                'sell',
+                              ),
                               selected: _intent == 'sell',
                               onPressed: () => _setIntent('sell'),
+                            ),
+                            const SizedBox(width: 8),
+                            _IntentChip(
+                              label: NetworkStreamService.getVaultIntentLabel(
+                                'showcase',
+                              ),
+                              selected: _intent == 'showcase',
+                              onPressed: () => _setIntent('showcase'),
                             ),
                           ],
                         ),
@@ -366,6 +395,13 @@ class NetworkScreenState extends State<NetworkScreen> {
                     ),
                   ),
                   const SliverToBoxAdapter(child: SizedBox(height: 6)),
+                  if (_provisionalCards.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: ProvisionalCardSection(
+                        cards: _provisionalCards,
+                        compact: true,
+                      ),
+                    ),
                   // PERFORMANCE_P1_NETWORK_LAZY_RENDER
                   // Uses lazy sliver rendering so Network feed scales without
                   // eager whole-page builds in grid or list modes.
@@ -481,7 +517,7 @@ class _NetworkContentSliver extends StatelessWidget {
               : (
                   title: 'No cards available right now',
                   body:
-                      'Collectors will appear here when they mark cards for trade, sale, or showcase.',
+                      'Cards appear here when collectors mark them Trade, Sell, or Showcase.',
                 ),
       };
 
@@ -1118,12 +1154,10 @@ class _NetworkActionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final actions = <Widget>[];
-    final usesGenericContactLabel = primaryActionLabel == 'Contact owner';
-    final usesAboutLabel = primaryActionLabel == 'Ask about this card';
-
     if (directContact != null) {
       actions.add(
         _NetworkPrimaryActionShell(
+          // LOCK: Contact language must stay calm, clear, and product-facing.
           child: ContactOwnerButton(
             vaultItemId: directContact!.vaultItemId,
             cardPrintId: row.cardPrintId,
@@ -1131,34 +1165,16 @@ class _NetworkActionBar extends StatelessWidget {
             ownerDisplayName: row.ownerDisplayName,
             cardName: _networkDisplayName(row),
             intent: directContact!.intent,
-            buttonLabel: usesGenericContactLabel
-                ? 'Ask about this card'
-                : primaryActionLabel,
+            buttonLabel: primaryActionLabel,
             variant: ContactOwnerButtonVariant.compact,
           ),
         ),
       );
-      if (!usesGenericContactLabel && !usesAboutLabel) {
-        // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1
-        // Keep only one messaging CTA when the primary label already lands on
-        // the generic card-question conversation flow.
-        actions.add(
-          _NetworkSecondaryContactAction(
-            vaultItemId: directContact!.vaultItemId,
-            cardPrintId: row.cardPrintId,
-            ownerUserId: row.ownerUserId,
-            ownerDisplayName: row.ownerDisplayName,
-            cardName: _networkDisplayName(row),
-            intent: directContact!.intent,
-            label: 'Ask about this card',
-          ),
-        );
-      }
     } else if (onChooseCopy != null) {
       actions.add(
         _NetworkActionLink(
           icon: Icons.question_answer_outlined,
-          label: 'Ask about this card',
+          label: 'Message collector',
           onPressed: onChooseCopy!,
           emphasized: true,
         ),
@@ -1221,59 +1237,6 @@ class _NetworkPrimaryActionShell extends StatelessWidget {
           ),
         ),
         child: child,
-      ),
-    );
-  }
-}
-
-class _NetworkSecondaryContactAction extends StatelessWidget {
-  const _NetworkSecondaryContactAction({
-    required this.vaultItemId,
-    required this.cardPrintId,
-    required this.ownerUserId,
-    required this.ownerDisplayName,
-    required this.cardName,
-    required this.label,
-    this.intent,
-  });
-
-  final String vaultItemId;
-  final String cardPrintId;
-  final String ownerUserId;
-  final String ownerDisplayName;
-  final String cardName;
-  final String label;
-  final String? intent;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final theme = Theme.of(context);
-
-    return Theme(
-      data: theme.copyWith(
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            visualDensity: VisualDensity.compact,
-            foregroundColor: colorScheme.onSurface.withValues(alpha: 0.62),
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
-            minimumSize: Size.zero,
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            textStyle: theme.textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-      ),
-      child: ContactOwnerButton(
-        vaultItemId: vaultItemId,
-        cardPrintId: cardPrintId,
-        ownerUserId: ownerUserId,
-        ownerDisplayName: ownerDisplayName,
-        cardName: cardName,
-        intent: intent,
-        buttonLabel: label,
-        variant: ContactOwnerButtonVariant.compact,
       ),
     );
   }
@@ -1548,7 +1511,7 @@ class _NetworkCopiesSheet extends StatelessWidget {
                               Icons.open_in_new_rounded,
                               size: 16,
                             ),
-                            label: const Text('Open exact copy'),
+                            label: const Text('Open copy'),
                           ),
                         ],
                       ],

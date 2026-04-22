@@ -47,6 +47,8 @@ export async function saveVaultItemInstanceIntentAction(
     };
   }
 
+  // LOCK: Intent authority is instance-level (vault_item_instances.intent).
+  // LOCK: Do not write vault_items.intent for public intent logic.
   const { data: instance, error: instanceError } = await client
     .from("vault_item_instances")
     .select("id,user_id,archived_at,intent")
@@ -84,7 +86,8 @@ export async function saveVaultItemInstanceIntentAction(
 
   revalidatePath("/vault");
   revalidatePath("/network");
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  const gvviId =
+    typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
     revalidatePath(`/gvvi/${gvviId}`);

@@ -35,13 +35,13 @@ function getDefaultMessage(ownerDisplayName: string, cardName: string, intent: D
 
   switch (intent) {
     case "trade":
-      return `Hi ${collectorName}, I'm interested in trading for your ${cardName}. Is it still available?`;
+      return `Hi ${collectorName}, I saw your ${cardName} and wanted to ask about a trade.`;
     case "sell":
-      return `Hi ${collectorName}, I'm interested in buying your ${cardName}. Is it still available?`;
+      return `Hi ${collectorName}, I saw your ${cardName} and wanted to ask about buying it.`;
     case "showcase":
-      return `Hi ${collectorName}, I saw your ${cardName} in the collector network and wanted to ask about it.`;
+      return `Hi ${collectorName}, I saw your ${cardName} and wanted to ask about it.`;
     default:
-      return `Hi ${collectorName}, I'm interested in your ${cardName}. Is it still available?`;
+      return `Hi ${collectorName}, I saw your ${cardName} and wanted to ask about it.`;
   }
 }
 
@@ -177,13 +177,14 @@ export function ContactOwnerButton({
           "inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
         }
       >
-        Sign in to contact
+        Sign in to message
       </Link>
     );
   }
 
   return (
     <div className="space-y-3">
+      {/* LOCK: Contact language must stay calm, clear, and product-facing. */}
       <button
         type="button"
         onClick={() => setIsOpen(true)}
@@ -229,10 +230,10 @@ export function ContactOwnerButton({
                     {intent ? getVaultIntentLabel(intent) : "Collector Network"}
                   </p>
                   <h3 id={`contact-owner-${vaultItemId}`} className="text-2xl font-semibold tracking-tight text-slate-950">
-                    Contact {ownerDisplayName}
+                    Message {ownerDisplayName}
                   </h3>
                   <p className="text-sm leading-6 text-slate-600">
-                    Start a message about {cardName}. This thread stays attached to this specific card.
+                    Start a message about {cardName}.
                   </p>
                 </div>
 
@@ -253,7 +254,7 @@ export function ContactOwnerButton({
                     />
                   </label>
 
-                  <p className="text-xs text-slate-500">Keep it specific to this card. Maximum 2000 characters.</p>
+                  <p className="text-xs text-slate-500">Keep it about this card. Maximum 2000 characters.</p>
 
                   <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                     <button

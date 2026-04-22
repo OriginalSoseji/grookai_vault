@@ -318,7 +318,7 @@ export function VaultStatusBadges({
       ) : null}
       {item.in_play_count > 0 && discoverableIntentKinds > 1 ? (
         <PokemonCardGridBadge tone="accent" size={size}>
-          In Play {item.in_play_count}
+          Visible {item.in_play_count}
         </PokemonCardGridBadge>
       ) : null}
       {item.is_shared ? (

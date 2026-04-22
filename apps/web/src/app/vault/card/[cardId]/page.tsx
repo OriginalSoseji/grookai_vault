@@ -159,7 +159,7 @@ export default async function VaultManageCardPage({
                   </VaultStatPill>
                   <VaultStatPill tone={item.in_play_count > 0 ? "default" : "muted"}>
                     <span className="font-semibold text-slate-900">{item.in_play_count}</span>
-                    <span>in play</span>
+                    <span>visible</span>
                   </VaultStatPill>
                   {item.is_shared ? <VaultStatPill tone="default">On Wall</VaultStatPill> : null}
                 </div>

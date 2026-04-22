@@ -332,8 +332,8 @@ export default async function VaultInstancePage({
               title="Share"
               description={
                 publicSharePath
-                  ? "Copy the public exact-copy route for this discoverable owned card."
-                  : "Only discoverable copies have a public exact-copy route."
+                  ? "Copy the public link for this card."
+                  : "Mark this copy Trade, Sell, or Showcase to share a public link."
               }
             />
             <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">

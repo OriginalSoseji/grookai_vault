@@ -43,9 +43,12 @@ type PublicProfileRow = {
   vault_sharing_enabled: boolean | null;
 };
 
-const WALL_GUARD_MESSAGE = "Enable your public profile and vault sharing in /account before adding cards to your wall.";
+const WALL_GUARD_MESSAGE =
+  "Enable your public profile and vault sharing in /account before adding cards to your wall.";
 
-export async function toggleSharedCardAction(input: ToggleSharedCardInput): Promise<ToggleSharedCardResult> {
+export async function toggleSharedCardAction(
+  input: ToggleSharedCardInput,
+): Promise<ToggleSharedCardResult> {
   const client = createServerComponentClient();
   const {
     data: { user },
@@ -170,7 +173,7 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-        message: WALL_GUARD_MESSAGE,
+      message: WALL_GUARD_MESSAGE,
     };
   }
 
@@ -179,30 +182,30 @@ export async function toggleSharedCardAction(input: ToggleSharedCardInput): Prom
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-        message: WALL_GUARD_MESSAGE,
+      message: WALL_GUARD_MESSAGE,
     };
   }
 
-  const { error: upsertError } = await client
-    .from("shared_cards")
-    .upsert(
-      {
-        user_id: user.id,
-        card_id: row.card_id,
-        gv_id: row.gv_id,
-        is_shared: true,
-        share_intent: "shared",
-      },
-      {
-        onConflict: "user_id,card_id",
-      },
-    );
+  const { error: upsertError } = await client.from("shared_cards").upsert(
+    {
+      user_id: user.id,
+      card_id: row.card_id,
+      gv_id: row.gv_id,
+      is_shared: true,
+      // LOCK: shared_cards.share_intent is wall compatibility only.
+      // LOCK: Public intent authority is vault_item_instances.intent.
+      share_intent: "shared",
+    },
+    {
+      onConflict: "user_id,card_id",
+    },
+  );
 
   if (upsertError) {
     return {
       ok: false,
       itemId: input.itemId ?? input.gvViId ?? "",
-        message: "Couldn’t update wall state.",
+      message: "Couldn’t update wall state.",
     };
   }
 

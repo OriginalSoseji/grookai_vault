@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../network/intent_presentation.dart' as intent_presentation;
+
 class VaultCardIdentity {
   const VaultCardIdentity({
     required this.cardId,
@@ -127,34 +129,15 @@ String? normalizeSharedCardPriceDisplayMode(dynamic value) {
 }
 
 String normalizeVaultIntentValue(dynamic value) {
-  switch ((value ?? '').toString().trim().toLowerCase()) {
-    case 'trade':
-      return 'trade';
-    case 'sell':
-      return 'sell';
-    case 'showcase':
-      return 'showcase';
-    default:
-      return 'hold';
-  }
+  return intent_presentation.normalizeVaultIntentValue(value);
 }
 
 String? normalizeDiscoverableVaultIntentValue(dynamic value) {
-  final normalized = normalizeVaultIntentValue(value);
-  return normalized == 'hold' ? null : normalized;
+  return intent_presentation.normalizeDiscoverableVaultIntentValue(value);
 }
 
 String getVaultIntentLabel(String? intent) {
-  switch (normalizeVaultIntentValue(intent)) {
-    case 'trade':
-      return 'Trade';
-    case 'sell':
-      return 'Sell';
-    case 'showcase':
-      return 'Showcase';
-    default:
-      return 'Hold';
-  }
+  return intent_presentation.getVaultIntentLabel(intent);
 }
 
 class VaultManageCardPricing {
@@ -653,13 +636,6 @@ class VaultCardService {
           .eq('id', cardPrintId)
           .maybeSingle(),
       client
-          .from('vault_items')
-          .select('intent')
-          .eq('id', vaultItemId)
-          .eq('user_id', userId)
-          .filter('archived_at', 'is', null)
-          .maybeSingle(),
-      client
           .from('public_profiles')
           .select('slug,public_profile_enabled,vault_sharing_enabled')
           .eq('user_id', userId)
@@ -667,8 +643,7 @@ class VaultCardService {
     ]);
 
     final canonicalRow = responses[0] as Map<String, dynamic>?;
-    final vaultItemRow = responses[1] as Map<String, dynamic>?;
-    final profileRow = responses[2] as Map<String, dynamic>?;
+    final profileRow = responses[1] as Map<String, dynamic>?;
 
     final identity = canonicalRow == null
         ? null
@@ -702,10 +677,7 @@ class VaultCardService {
         ? totalCopies - slabCount
         : fallbackOwnedCount;
     final inPlayCount = copyRows.where((copy) => copy.intent != 'hold').length;
-    final resolvedIntent = _deriveManageCardIntent(
-      storedIntent: vaultItemRow?['intent'],
-      copies: copyRows,
-    );
+    final resolvedIntent = _deriveManageCardIntent(copies: copyRows);
     final setName =
         _trimmedOrNull(identity?.setName) ??
         _trimmedOrNull(fallbackSetName) ??
@@ -797,6 +769,8 @@ class VaultCardService {
       'card_id': cardPrintId,
       'gv_id': gvId,
       'is_shared': true,
+      // LOCK: shared_cards.share_intent is wall compatibility only.
+      // LOCK: Public intent authority is vault_item_instances.intent.
       'share_intent': 'shared',
     }, onConflict: 'user_id,card_id');
 
@@ -819,20 +793,21 @@ class VaultCardService {
     }
 
     final nextIntent = normalizeVaultIntentValue(intent);
+    // LOCK: Intent authority is instance-level (vault_item_instances.intent).
+    // LOCK: Do not write grouped intent for public discoverability.
     final data = await client
-        .from('vault_items')
+        .from('vault_item_instances')
         .update({'intent': nextIntent})
-        .eq('id', normalizedItemId)
+        .eq('legacy_vault_item_id', normalizedItemId)
         .eq('user_id', userId)
         .filter('archived_at', 'is', null)
-        .select('intent')
-        .maybeSingle();
+        .select('id,intent');
 
-    if (data == null) {
+    if (data.isEmpty) {
       throw Exception('Vault intent could not be saved.');
     }
 
-    return normalizeVaultIntentValue(data['intent']);
+    return nextIntent;
   }
 
   static Future<String?> saveSharedCardWallCategory({
@@ -1260,15 +1235,7 @@ double? _toMoney(dynamic value) {
   return double.parse(parsed.toStringAsFixed(2));
 }
 
-String _deriveManageCardIntent({
-  required dynamic storedIntent,
-  required List<VaultManageCardCopy> copies,
-}) {
-  final normalizedStored = normalizeVaultIntentValue(storedIntent);
-  if (normalizedStored != 'hold') {
-    return normalizedStored;
-  }
-
+String _deriveManageCardIntent({required List<VaultManageCardCopy> copies}) {
   final discoverableIntents = copies
       .map((copy) => normalizeDiscoverableVaultIntentValue(copy.intent))
       .whereType<String>()

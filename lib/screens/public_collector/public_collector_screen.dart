@@ -726,7 +726,7 @@ class _CollectorSegmentControl extends StatelessWidget {
           const SizedBox(width: 6),
           segmentButton(
             segment: _CollectorSegment.inPlay,
-            label: 'In Play',
+            label: 'Visible',
             count: inPlayCount,
           ),
         ],
@@ -996,8 +996,8 @@ class _FeaturedWallSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _WallSectionCard(
-      title: 'In Play',
-      emptyMessage: cards.isEmpty ? 'No cards in play' : null,
+      title: 'Visible',
+      emptyMessage: cards.isEmpty ? 'No visible cards' : null,
       child: cards.isEmpty
           ? null
           : _PublicCardTileList(
@@ -1060,7 +1060,7 @@ class _WallSectionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            title == 'In Play'
+            title == 'Visible'
                 ? Icons.local_offer_outlined
                 : Icons.collections_outlined,
             size: 16,

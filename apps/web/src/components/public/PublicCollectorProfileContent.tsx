@@ -11,7 +11,7 @@ import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity } from "@/hooks/useViewDensity";
-import { getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
+import { getVaultIntentActionLabel, getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
 import {
   getPublicWallCardHref,
   getPublicWallCardPrimaryGvviId,
@@ -39,19 +39,6 @@ function isInPlayCard(card: PublicWallCard): card is PublicWallCard & {
   vault_item_id: string;
 } {
   return typeof card.vault_item_id === "string" && card.vault_item_id.length > 0 && (card.in_play_quantity ?? 0) > 0;
-}
-
-function getInPlayActionLabel(intent: DiscoverableVaultIntent | null | undefined) {
-  switch (intent) {
-    case "trade":
-      return "Ask to trade";
-    case "sell":
-      return "Ask to buy";
-    case "showcase":
-      return "Contact";
-    default:
-      return "Contact";
-  }
 }
 
 function getInPlayIntentBadgeClassName(intent: DiscoverableVaultIntent) {
@@ -86,7 +73,7 @@ function getInPlaySupportBadge(card: PublicWallCard) {
 
 function getInPlayOwnershipSummary(card: PublicWallCard) {
   if ((card.in_play_quantity ?? 0) > 1) {
-    return `${card.in_play_quantity} discoverable copies`;
+    return `${card.in_play_quantity} visible copies`;
   }
 
   if (card.in_play_is_graded) {
@@ -191,7 +178,7 @@ export function PublicCollectorProfileContent({
           {(
             [
               { value: "collection", label: "Collection" },
-              { value: "in-play", label: "In Play" },
+              { value: "in-play", label: "Visible" },
             ] as const
           ).map((segment) => (
             <button
@@ -252,15 +239,14 @@ export function PublicCollectorProfileContent({
         <div className="space-y-4">
           <div className="rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:px-5">
             <div className="space-y-1">
-              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">In Play</p>
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Cards in play</h2>
-              <p className="max-w-2xl text-sm leading-6 text-slate-600">Cards this collector is open to moving.</p>
-              <p className="max-w-2xl text-sm leading-6 text-slate-600">See what this collector is willing to move.</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collector Network</p>
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Visible cards</h2>
+              <p className="max-w-2xl text-sm leading-6 text-slate-600">Cards this collector marked Trade, Sell, or Showcase.</p>
             </div>
 
             <div className="mt-4 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                Available from this collector
+                Visible from this collector
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(["trade", "sell", "showcase"] as const).map((intent) => (
@@ -388,7 +374,7 @@ export function PublicCollectorProfileContent({
                                       isAuthenticated={isAuthenticated}
                                       loginHref={loginHref}
                                       currentPath={currentPath}
-                                      buttonLabel={getInPlayActionLabel(copy.intent)}
+                                      buttonLabel={getVaultIntentActionLabel(copy.intent)}
                                       buttonClassName="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
                                     />
                                   ) : null}
@@ -410,13 +396,13 @@ export function PublicCollectorProfileContent({
                           isAuthenticated={isAuthenticated}
                           loginHref={loginHref}
                           currentPath={currentPath}
-                          buttonLabel={getInPlayActionLabel(groupedContactAnchor.intent)}
+                          buttonLabel={getVaultIntentActionLabel(groupedContactAnchor.intent)}
                           buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
                         />
                       ) : null}
                       {!isOwnProfile && !groupedContactAnchor && card.in_play_copies && card.in_play_copies.length > 1 ? (
                         <p className="text-xs text-slate-500">
-                          Choose a copy above to contact this collector about the exact card in play.
+                          Choose a copy above to message this collector about that card.
                         </p>
                       ) : null}
                     </div>
@@ -429,8 +415,8 @@ export function PublicCollectorProfileContent({
         </div>
       ) : (
         <PublicCollectionEmptyState
-          title="No cards in play yet"
-          body="This collector hasn't marked any cards for trade, sale, or showcase yet."
+          title="No visible cards yet"
+          body="This collector has not marked any cards Trade, Sell, or Showcase yet."
         />
       )}
     </section>

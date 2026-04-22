@@ -258,7 +258,7 @@ function MobileDetailRow({
                 </VaultStatPill>
                 <VaultStatPill tone={item.in_play_count > 0 ? "default" : "muted"}>
                   <span className="font-semibold text-slate-900">{item.in_play_count}</span>
-                  <span>in play</span>
+                  <span>visible</span>
                 </VaultStatPill>
                 <VaultStatPill tone="muted">{formatCopyMixSummary(item)}</VaultStatPill>
               </div>

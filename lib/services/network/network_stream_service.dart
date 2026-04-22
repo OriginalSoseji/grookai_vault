@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../public/card_surface_pricing_service.dart';
 import '../public/following_service.dart';
+import 'intent_presentation.dart' as intent_presentation;
 
 const List<String> kDiscoverableVaultIntents = <String>[
   'trade',
@@ -841,31 +842,16 @@ class NetworkStreamService {
   }
 
   static String? normalizeDiscoverableVaultIntent(String? value) {
-    final normalized = _clean(value).toLowerCase();
-    if (normalized == 'trade' ||
-        normalized == 'sell' ||
-        normalized == 'showcase') {
-      return normalized;
-    }
-    return null;
+    return intent_presentation.normalizeDiscoverableVaultIntentValue(value);
   }
 
   static String getVaultIntentLabel(String? intent) {
-    switch (normalizeDiscoverableVaultIntent(intent)) {
-      case 'trade':
-        return 'Trade';
-      case 'sell':
-        return 'Sell';
-      case 'showcase':
-        return 'Showcase';
-      default:
-        return 'Hold';
-    }
+    return intent_presentation.getVaultIntentLabel(intent);
   }
 
   static String getOwnershipSummary(NetworkStreamRow row) {
     if (row.inPlayCount > 1) {
-      return '${row.inPlayCount} copies in play';
+      return '${row.inPlayCount} copies visible';
     }
 
     if (row.isGraded) {
@@ -890,9 +876,12 @@ class NetworkStreamService {
 
   static List<String> getIntentSummary(NetworkStreamRow row) {
     return <String>[
-      if (row.sellCount > 0) 'Sell ${row.sellCount}',
-      if (row.tradeCount > 0) 'Trade ${row.tradeCount}',
-      if (row.showcaseCount > 0) 'Showcase ${row.showcaseCount}',
+      if (row.sellCount > 0)
+        '${intent_presentation.getVaultIntentLabel('sell')} ${row.sellCount}',
+      if (row.tradeCount > 0)
+        '${intent_presentation.getVaultIntentLabel('trade')} ${row.tradeCount}',
+      if (row.showcaseCount > 0)
+        '${intent_presentation.getVaultIntentLabel('showcase')} ${row.showcaseCount}',
     ];
   }
 
@@ -917,20 +906,8 @@ class NetworkStreamService {
     if (row.isDiscoverySource) {
       return 'Open card';
     }
-    final selectedIntent = getPrimaryIntent(row);
-    switch (selectedIntent) {
-      case 'sell':
-        // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1
-        // Removed the redundant buy CTA because sell inquiries and generic
-        // card questions both route into the same conversation path.
-        return 'Ask about this card';
-      case 'trade':
-        return 'Ask to trade';
-      case 'showcase':
-        return 'Contact owner';
-      default:
-        return 'Contact owner';
-    }
+    // LOCK: Contact language must stay calm, clear, and product-facing.
+    return intent_presentation.getVaultIntentActionLabel(getPrimaryIntent(row));
   }
 
   static String? getListingsLabel(NetworkStreamRow row) {
@@ -944,7 +921,7 @@ class NetworkStreamService {
   static String formatCreatedAtShort(String? value) {
     final parsed = DateTime.tryParse(_clean(value));
     if (parsed == null) {
-      return 'Recently listed';
+      return 'Recently added';
     }
 
     const months = <String>[
