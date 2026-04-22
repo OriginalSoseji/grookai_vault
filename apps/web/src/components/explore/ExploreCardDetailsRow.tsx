@@ -2,6 +2,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
@@ -48,6 +49,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               ) : null}
             </Link>
             <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+            <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
             {imagePresentation.compactBadgeLabel ? (
               <div className="mt-1">
                 <CardImageTruthBadge

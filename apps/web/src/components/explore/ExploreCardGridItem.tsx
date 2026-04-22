@@ -2,6 +2,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
@@ -56,7 +57,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
           ) : null}
         </Link>
       }
-      subtitle={<span className="block truncate">{setLabel}</span>}
+      subtitle={
+        <>
+          <span className="block truncate">{setLabel}</span>
+          <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
+        </>
+      }
       badges={
         <>
           {variantLabels.map((label) => (

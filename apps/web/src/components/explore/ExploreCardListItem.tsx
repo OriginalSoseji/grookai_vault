@@ -2,6 +2,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import PublicCardImage from "@/components/PublicCardImage";
+import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
@@ -50,6 +51,7 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   <span className="block truncate text-sm font-medium text-slate-500">{identitySubtitle}</span>
                 ) : null}
                 <p className="text-sm text-slate-600">{setLabel}</p>
+                <PromotionTransitionNote state={card.promotion_transition} />
               </div>
               {imagePresentation.compactBadgeLabel ? (
                 <CardImageTruthBadge

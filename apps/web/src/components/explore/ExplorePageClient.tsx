@@ -21,6 +21,7 @@ import {
 import ExploreCardDetailsRow from "@/components/explore/ExploreCardDetailsRow";
 import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
+import PublicProvisionalSearchSection from "@/components/provisional/PublicProvisionalSearchSection";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
 import {
@@ -32,6 +33,7 @@ import {
   type ExploreViewMode,
 } from "@/lib/exploreViewModes";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
+import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 
 type ExploreRow = ExploreResultCard;
 type SortMode = "relevance" | "newest" | "oldest";
@@ -151,6 +153,7 @@ export default function ExplorePageClient({
     !exactIllustrator &&
     !isIdentityFilterActive(identityFilter);
   const [rows, setRows] = useState<ExploreRow[]>([]);
+  const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -167,6 +170,7 @@ export default function ExplorePageClient({
         !isIdentityFilterActive(identityFilter)
       ) {
         setRows([]);
+        setProvisionalRows([]);
         setResolverMeta(null);
         setError(null);
         setLoading(false);
@@ -215,6 +219,8 @@ export default function ExplorePageClient({
           ok: boolean;
           error?: string;
           rows?: ExploreRow[];
+          canonical?: ExploreRow[];
+          provisional?: PublicProvisionalCard[];
           meta?: ResolverMeta;
         };
 
@@ -222,7 +228,8 @@ export default function ExplorePageClient({
           throw new Error(payload.error ?? "Search failed.");
         }
 
-        setRows(payload.rows ?? []);
+        setRows(payload.canonical ?? payload.rows ?? []);
+        setProvisionalRows(payload.provisional ?? []);
         setResolverMeta(payload.meta ?? null);
       } catch (searchError) {
         if (controller.signal.aborted) return;
@@ -230,6 +237,7 @@ export default function ExplorePageClient({
           searchError instanceof Error ? searchError.message : "Search failed.",
         );
         setRows([]);
+        setProvisionalRows([]);
         setResolverMeta(null);
       } finally {
         if (!controller.signal.aborted) {
@@ -566,6 +574,8 @@ export default function ExplorePageClient({
               ) : null}
             </div>
           )}
+
+          <PublicProvisionalSearchSection cards={provisionalRows} />
         </div>
       )}
 

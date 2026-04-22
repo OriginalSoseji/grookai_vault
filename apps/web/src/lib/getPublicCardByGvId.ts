@@ -107,6 +107,19 @@ type ActiveIdentityRow = {
   identity_key_version: string | null;
 };
 
+// LOCK: Canonical card route is card_prints-only.
+// LOCK: Non-canonical entities must never resolve through /card/[gv_id].
+export function assertCanonicalCardRouteRow(
+  row: { gv_id: string | null } | null | undefined,
+  requestedGvId: string,
+): asserts row is { gv_id: string } {
+  if (!row?.gv_id) {
+    throw new Error(
+      `SECURITY: Non-canonical entity attempted canonical route: ${requestedGvId}`,
+    );
+  }
+}
+
 function extractTcgdexExternalId(externalIds?: { tcgdex?: string | null } | null) {
   const value = externalIds?.tcgdex;
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
@@ -458,6 +471,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   if (!row) {
     return null;
   }
+  assertCanonicalCardRouteRow(row, gv_id);
   const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
   const [fallbackSet, relatedPrints, imageFields, activeIdentity] = await Promise.all([
     getSetDetailsByCode(row.set_code),

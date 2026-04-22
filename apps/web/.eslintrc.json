@@ -1,3 +1,29 @@
 {
-  "extends": ["next/core-web-vitals"]
+  "extends": ["next/core-web-vitals"],
+  "overrides": [
+    {
+      "files": ["src/**/*.{ts,tsx}"],
+      "excludedFiles": [
+        "src/lib/provisional/getPublicProvisionalCards.ts",
+        "src/lib/provisional/getProvisionalPromotionContinuity.ts",
+        "src/lib/provisional/getPromotionTransitionState.ts",
+        "src/lib/provisional/getRecentlyConfirmedCanonicalCards.ts",
+        "src/lib/warehouse/**/*.{ts,tsx}",
+        "src/app/founder/**/*.{ts,tsx}"
+      ],
+      "rules": {
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "Literal[value='canon_warehouse_candidates']",
+            "message": "SECURITY: public code must not access canon_warehouse_candidates directly. Use getPublicProvisionalCards."
+          },
+          {
+            "selector": "TemplateElement[value.raw=/canon_warehouse_candidates/]",
+            "message": "SECURITY: public code must not access canon_warehouse_candidates directly. Use getPublicProvisionalCards."
+          }
+        ]
+      }
+    }
+  ]
 }

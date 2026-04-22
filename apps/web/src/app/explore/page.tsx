@@ -5,6 +5,8 @@ import LoadingCardGridSkeleton from "@/components/layout/LoadingCardGridSkeleton
 import { getFeaturedExploreCards } from "@/lib/cards/getFeaturedExploreCards";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import { normalizeExploreViewMode } from "@/lib/exploreViewModes";
+import { getDiscoveryProvisionalCards } from "@/lib/provisional/getDiscoveryProvisionalCards";
+import { getRecentlyConfirmedCanonicalCards } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import { getPublicSets } from "@/lib/publicSets";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -85,9 +87,11 @@ export default async function ExplorePage({
   let discoveryContent = null;
 
   if (isDiscoveryMode) {
-    const [featuredCards, allSets] = await Promise.all([
+    const [featuredCards, allSets, recentlyConfirmedCards, provisionalCards] = await Promise.all([
       getFeaturedExploreCards().catch(() => []),
       getPublicSets().catch(() => []),
+      getRecentlyConfirmedCanonicalCards().catch(() => []),
+      getDiscoveryProvisionalCards().catch(() => []),
     ]);
 
     discoveryContent = (
@@ -95,6 +99,8 @@ export default async function ExplorePage({
         compareCards={compareCards}
         featuredCards={featuredCards}
         notableSets={getNotableExploreSets(allSets)}
+        recentlyConfirmedCards={recentlyConfirmedCards}
+        provisionalCards={provisionalCards}
         currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
       />
     );

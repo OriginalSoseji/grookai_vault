@@ -7,11 +7,15 @@ import {
   POKEMON_CARD_DISCOVERY_GRID_CLASSNAME,
 } from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
+import PublicProvisionalDiscoverySection from "@/components/provisional/PublicProvisionalDiscoverySection";
+import RecentlyConfirmedDiscoverySection from "@/components/provisional/RecentlyConfirmedDiscoverySection";
 import PublicCardImage from "@/components/PublicCardImage";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import type { FeaturedExploreCard } from "@/lib/cards/getFeaturedExploreCards";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { ExploreViewMode } from "@/lib/exploreViewModes";
+import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
+import type { RecentlyConfirmedCanonicalCard } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 
@@ -30,6 +34,8 @@ type ExploreDiscoverySectionsProps = {
   compareCards: string[];
   featuredCards: FeaturedExploreCard[];
   notableSets: PublicSetSummary[];
+  provisionalCards: PublicProvisionalCard[];
+  recentlyConfirmedCards: RecentlyConfirmedCanonicalCard[];
   currentView?: ExploreViewMode;
 };
 
@@ -78,6 +84,8 @@ export default function ExploreDiscoverySections({
   compareCards,
   featuredCards,
   notableSets,
+  provisionalCards,
+  recentlyConfirmedCards,
   currentView,
 }: ExploreDiscoverySectionsProps) {
   const getDisplayName = (card: FeaturedExploreCard) =>
@@ -422,6 +430,11 @@ export default function ExploreDiscoverySections({
           )}
         </section>
       </div>
+
+      {/* LOCK: Canonical, recently confirmed, and unconfirmed feed surfaces must remain visually and structurally separated. */}
+      {/* LOCK: Do not blend trust states into a single undifferentiated feed. */}
+      <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} />
+      <PublicProvisionalDiscoverySection cards={provisionalCards} />
     </div>
   );
 }

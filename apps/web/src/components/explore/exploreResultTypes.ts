@@ -1,4 +1,5 @@
 import type { CardSummary } from "@/types/cards";
+import type { PromotionTransitionState } from "@/lib/provisional/publicProvisionalTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
 export type ExploreResultCard = CardSummary & {
@@ -11,4 +12,5 @@ export type ExploreResultCard = CardSummary & {
   printed_identity_modifier?: string;
   set_identity_model?: string;
   variants?: VariantFlags;
+  promotion_transition?: PromotionTransitionState;
 };
