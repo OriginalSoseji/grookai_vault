@@ -7,7 +7,7 @@ import {
 } from "@/components/vault/VaultCollectionView";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import {
   buildVaultValueSummary,
@@ -115,8 +115,12 @@ async function normalizeRecentItems(
         number,
         created_at: row.created_at,
         image_url:
-          imageFields.display_image_url ??
-          getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
+          resolveDisplayImageUrl({
+            display_image_url: imageFields.display_image_url,
+            image_url: row.image_url,
+            image_alt_url: row.image_best ?? row.image_alt_url,
+            representative_image_url: imageFields.representative_image_url,
+          }) ?? undefined,
       };
     }));
 

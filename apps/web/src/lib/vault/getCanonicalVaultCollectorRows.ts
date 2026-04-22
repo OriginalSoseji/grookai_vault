@@ -24,7 +24,7 @@ import {
   getInPlayCount,
   getSingleDiscoverableIntent,
 } from "@/lib/network/intentSummary";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
 import { prefersUploadedVaultInstanceImage } from "@/lib/vaultInstanceImageDisplay";
 
@@ -742,16 +742,16 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
     const rawFallbackPrice = rawFallbackPriceMetadataByCardId.get(cardPrintId) ?? null;
     const priceFreshness = priceFreshnessMetadataByCardId.get(cardPrintId) ?? null;
     const canonicalImageFields = card ? await resolveCardImageFieldsV1(card) : null;
-    const canonicalImageUrl =
-      canonicalImageFields?.image_url ??
-      getBestPublicCardImageUrl(card?.image_url, card?.image_alt_url) ??
-      getBestPublicCardImageUrl(price?.image_url) ??
-      null;
-    const canonicalDisplayImageUrl =
-      canonicalImageFields?.display_image_url ??
-      canonicalImageUrl ??
-      getBestPublicCardImageUrl(card?.representative_image_url) ??
-      null;
+    const canonicalImageUrl = resolveDisplayImageUrl({
+      image_url: canonicalImageFields?.image_url ?? card?.image_url ?? price?.image_url,
+      image_alt_url: card?.image_alt_url,
+    });
+    const canonicalDisplayImageUrl = resolveDisplayImageUrl({
+      display_image_url: canonicalImageFields?.display_image_url,
+      image_url: canonicalImageFields?.image_url ?? card?.image_url ?? price?.image_url,
+      image_alt_url: card?.image_alt_url,
+      representative_image_url: canonicalImageFields?.representative_image_url ?? card?.representative_image_url,
+    });
     const preferredImageUrl = preferredImageUrlByCardId.get(cardPrintId) ?? null;
     const setRecord = Array.isArray(card?.sets) ? card?.sets[0] : card?.sets;
     const primarySlab = aggregate.primarySlab;

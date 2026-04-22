@@ -58,7 +58,7 @@ class _ProvisionalCardScreenState extends State<ProvisionalCardScreen> {
               setCode: card.setCode,
               number: card.displayNumber,
               rarity: card.rarity,
-              imageUrl: card.displayImageUrl ?? card.imageUrl,
+              imageUrl: card.displayImageUrl,
               entrySurface: 'provisional_continuity',
             ),
           ),
@@ -118,7 +118,7 @@ class _ProvisionalDetail extends StatelessWidget {
               aspectRatio: 0.69,
               child: CardSurfaceArtwork(
                 label: card.displayName,
-                imageUrl: card.imageUrl,
+                imageUrl: card.displayImageUrl,
                 borderRadius: 20,
                 enableTapToZoom: false,
                 showShadow: false,

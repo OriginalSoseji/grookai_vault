@@ -13,6 +13,7 @@ import {
   getPromotionTransitionState,
   suppressPromotedProvisionalRows,
 } from "@/lib/provisional/getPromotionTransitionState";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { recentlyConfirmedTestInternals } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import {
   isPublicProvisionalWarehouseRowEligible,
@@ -116,6 +117,52 @@ test("row with private image returns null image", () => {
   });
 
   assert.equal(safeImage(row), null);
+});
+
+test("safe public provisional image is allowed", () => {
+  const row = buildRow({
+    claimed_identity_payload: {
+      name: "Pikachu",
+      set_code: "sv01",
+      printed_number: "025/198",
+      image_url: "https://images.example.com/pikachu.png",
+    },
+  });
+
+  assert.equal(safeImage(row), "https://images.example.com/pikachu.png");
+});
+
+test("display image contract prefers display field before legacy fields", () => {
+  assert.equal(
+    resolveDisplayImageUrl({
+      display_image_url: "https://example.com/display.webp",
+      image_url: "https://example.com/legacy.webp",
+      image_alt_url: "https://example.com/alt.webp",
+      representative_image_url: "https://example.com/rep.webp",
+    }),
+    "https://example.com/display.webp",
+  );
+});
+
+test("display image contract falls back to representative and null safely", () => {
+  assert.equal(
+    resolveDisplayImageUrl({
+      display_image_url: null,
+      image_url: null,
+      image_alt_url: null,
+      representative_image_url: "https://example.com/representative.webp",
+    }),
+    "https://example.com/representative.webp",
+  );
+  assert.equal(
+    resolveDisplayImageUrl({
+      display_image_url: "storage/private/path.webp",
+      image_url: null,
+      image_alt_url: null,
+      representative_image_url: null,
+    }),
+    null,
+  );
 });
 
 test("attempt to route provisional row through canonical card route fails", () => {

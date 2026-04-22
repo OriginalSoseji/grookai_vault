@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../secrets.dart';
+import '../../utils/display_image_contract.dart';
 import 'card_surface_pricing_service.dart';
 
 enum PublicCollectorSurfaceState { notFound, unavailable, empty, success }
@@ -719,7 +720,7 @@ class PublicCollectorService {
     final rawRows = await client
         .from('v_card_stream_v1')
         .select(
-          'vault_item_id,card_print_id,intent,condition_label,created_at,gv_id,name,set_code,set_name,number,image_url',
+          'vault_item_id,card_print_id,intent,condition_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind',
         )
         .eq('owner_slug', ownerSlug)
         .order('created_at', ascending: false)
@@ -833,8 +834,12 @@ class PublicCollectorService {
         setIdentityModel: _normalizeOptionalText(
           (cardPrint?['set'] as Map?)?['identity_model'],
         ),
-        imageUrl:
-            _normalizeHttpUrl(row['image_url']) ?? _displayImageUrl(cardPrint),
+        imageUrl: resolveDisplayImageUrl(
+          displayImageUrl: row['display_image_url'],
+          imageUrl: row['image_url'] ?? cardPrint?['image_url'],
+          imageAltUrl: cardPrint?['image_alt_url'],
+          representativeImageUrl: cardPrint?['representative_image_url'],
+        ),
         conditionLabel: _normalizeOptionalText(row['condition_label']),
         intent: _normalizePublicIntent(row['intent']),
         pricing: pricingById[cardPrintId],
@@ -1225,32 +1230,7 @@ class PublicCollectorService {
   }
 
   static String? _displayImageUrl(Map<String, dynamic>? row) {
-    if (row == null) {
-      return null;
-    }
-
-    return _normalizeHttpUrl(row['display_image_url']) ??
-        _normalizeHttpUrl(row['image_url']) ??
-        _normalizeHttpUrl(row['image_alt_url']) ??
-        _normalizeHttpUrl(row['representative_image_url']);
-  }
-
-  static String? _normalizeHttpUrl(dynamic value) {
-    final url = _cleanText(value);
-    if (url.isEmpty) {
-      return null;
-    }
-
-    final parsed = Uri.tryParse(url);
-    if (parsed == null) {
-      return null;
-    }
-
-    if (parsed.scheme != 'http' && parsed.scheme != 'https') {
-      return null;
-    }
-
-    return url;
+    return resolveDisplayImageUrlFromRow(row);
   }
 
   static String? _resolveProfileMediaUrl(dynamic rawPath) {

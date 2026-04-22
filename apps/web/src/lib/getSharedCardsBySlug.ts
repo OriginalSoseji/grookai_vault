@@ -4,7 +4,7 @@ import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   normalizeWallCategory,
@@ -65,6 +65,8 @@ type CollectorInPlayStreamRow = {
   set_name: string | null;
   number: string | null;
   image_url: string | null;
+  display_image_url: string | null;
+  display_image_kind: string | null;
 };
 
 type InPlayCardState = {
@@ -668,10 +670,12 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
       const imageFields = await resolveCardImageFieldsV1(cardPrint);
       const displayImageUrl =
-        imageFields.display_image_url ??
-        getBestPublicCardImageUrl(cardPrint.image_url, cardPrint.image_alt_url) ??
-        getBestPublicCardImageUrl(cardPrint.representative_image_url) ??
-        undefined;
+        resolveDisplayImageUrl({
+          display_image_url: imageFields.display_image_url,
+          image_url: cardPrint.image_url,
+          image_alt_url: cardPrint.image_alt_url,
+          representative_image_url: cardPrint.representative_image_url,
+        }) ?? undefined;
       const setRecord = Array.isArray(cardPrint.sets) ? cardPrint.sets[0] : cardPrint.sets;
       const representativeSharedInstance = representativeSharedInstanceByCardId.get(row.card_id) ?? null;
       const wallState = wallStateByCardId.get(row.card_id);
@@ -748,7 +752,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
   const { data: streamRows, error: streamError } = await supabase
     .from("v_card_stream_v1")
     .select(
-      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
+      "vault_item_id,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
     )
     .eq("owner_slug", normalizedSlug)
     .order("created_at", { ascending: false })
@@ -780,7 +784,7 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
       setCode: normalizeOptionalText(row.set_code),
       setName: normalizeOptionalText(row.set_name),
       number: normalizeOptionalText(row.number),
-      imageUrl: normalizeOptionalText(row.image_url),
+      imageUrl: normalizeOptionalText(row.display_image_url) ?? normalizeOptionalText(row.image_url),
     }))
     .filter(
       (
@@ -868,11 +872,12 @@ export const getInPlayCardsBySlug = cache(async (slug: string): Promise<SharedCa
     const setRecord = Array.isArray(cardPrint?.sets) ? cardPrint?.sets[0] : cardPrint?.sets;
     const imageFields = await resolveCardImageFieldsV1(cardPrint);
     const displayImageUrl =
-      getBestPublicCardImageUrl(row.imageUrl) ??
-      imageFields.display_image_url ??
-      getBestPublicCardImageUrl(cardPrint?.image_url, cardPrint?.image_alt_url) ??
-      getBestPublicCardImageUrl(cardPrint?.representative_image_url) ??
-      undefined;
+      resolveDisplayImageUrl({
+        display_image_url: imageFields.display_image_url ?? row.imageUrl,
+        image_url: cardPrint?.image_url,
+        image_alt_url: cardPrint?.image_alt_url,
+        representative_image_url: cardPrint?.representative_image_url,
+      }) ?? undefined;
 
     return {
       card_print_id: row.cardPrintId,

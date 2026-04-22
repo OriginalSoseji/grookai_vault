@@ -1,5 +1,7 @@
 begin;
 
+-- LOCK: Product read models expose display_image_url as the primary image.
+-- LOCK: image_url and image_alt_url remain fallback-only compatibility fields.
 create or replace view public.v_card_images with (security_invoker = true) as
 select
   id,

@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 enum CardInteractionInboxView { inbox, unread, sent, closed }
@@ -695,22 +696,7 @@ class CardInteractionService {
   }
 
   static String? _displayImageUrl(Map<String, dynamic> row) {
-    return _normalizeHttp(row['display_image_url']) ??
-        _normalizeHttp(row['image_url']) ??
-        _normalizeHttp(row['image_alt_url']) ??
-        _normalizeHttp(row['representative_image_url']);
-  }
-
-  static String? _normalizeHttp(dynamic value) {
-    final normalized = _clean(value);
-    if (normalized.isEmpty) {
-      return null;
-    }
-    final uri = Uri.tryParse(normalized);
-    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
-      return null;
-    }
-    return normalized;
+    return resolveDisplayImageUrlFromRow(row);
   }
 }
 

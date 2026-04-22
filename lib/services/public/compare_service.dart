@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
+
 const int kMaxCompareCards = 4;
 const int kMinCompareCards = 2;
 
@@ -249,10 +251,7 @@ class PublicCompareService {
   }
 
   static String? _displayImageUrl(Map<String, dynamic> row) {
-    return _normalizeHttpUrl(row['display_image_url']) ??
-        _normalizeHttpUrl(row['image_url']) ??
-        _normalizeHttpUrl(row['image_alt_url']) ??
-        _normalizeHttpUrl(row['representative_image_url']);
+    return resolveDisplayImageUrlFromRow(row);
   }
 
   static String? _normalizeOptionalText(dynamic value) {
@@ -262,23 +261,5 @@ class PublicCompareService {
 
   static String _cleanText(dynamic value) {
     return (value ?? '').toString().trim();
-  }
-
-  static String? _normalizeHttpUrl(dynamic value) {
-    final url = _cleanText(value);
-    if (url.isEmpty) {
-      return null;
-    }
-
-    final parsed = Uri.tryParse(url);
-    if (parsed == null) {
-      return null;
-    }
-
-    if (parsed.scheme != 'http' && parsed.scheme != 'https') {
-      return null;
-    }
-
-    return url;
   }
 }

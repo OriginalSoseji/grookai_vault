@@ -6,7 +6,7 @@ import {
   buildOwnedCardMessagesHref,
   getOwnedCardMessageSummaries,
 } from "@/lib/network/getOwnedCardMessageSummaries";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import {
   normalizeWallCategory,
   type WallCategory,
@@ -140,8 +140,17 @@ function normalizeVaultItems(
           created_at: copyItem.created_at,
         })),
         effective_price: typeof row.effective_price === "number" ? row.effective_price : null,
-        image_url: getBestPublicCardImageUrl(row.image_url, row.canonical_image_url),
-        canonical_image_url: getBestPublicCardImageUrl(row.canonical_image_url),
+        image_url:
+          resolveDisplayImageUrl({
+            display_image_url: row.image_url,
+            image_url: row.canonical_image_url,
+          }) ?? undefined,
+        canonical_image_url:
+          resolveDisplayImageUrl({
+            display_image_url: row.canonical_display_image_url,
+            image_url: row.canonical_image_url,
+            representative_image_url: row.canonical_representative_image_url,
+          }) ?? undefined,
         created_at: row.created_at,
         is_slab: row.is_slab,
         grader: row.grader,

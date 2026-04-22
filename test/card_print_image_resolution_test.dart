@@ -43,6 +43,20 @@ void main() {
     expect(card.displayImage, 'https://example.com/exact.webp');
   });
 
+  test('image_alt_url remains a fallback after image_url', () {
+    final card = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-5',
+      'name': 'Bulbasaur',
+      'set_code': 'base',
+      'display_image_url': null,
+      'image_url': null,
+      'image_alt_url': 'https://example.com/alt.webp',
+      'representative_image_url': 'https://example.com/representative.webp',
+    });
+
+    expect(card.displayImage, 'https://example.com/alt.webp');
+  });
+
   test('invalid and missing image fields resolve to null', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-4',

@@ -4,7 +4,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -152,8 +152,12 @@ async function normalizeFeed(
         number,
         created_at: row.created_at,
         image_url:
-          imageFields.display_image_url ??
-          getBestPublicCardImageUrl(row.image_url, row.image_best ?? row.image_alt_url),
+          resolveDisplayImageUrl({
+            display_image_url: imageFields.display_image_url,
+            image_url: row.image_url,
+            image_alt_url: row.image_best ?? row.image_alt_url,
+            representative_image_url: imageFields.representative_image_url,
+          }) ?? undefined,
       };
     }));
 

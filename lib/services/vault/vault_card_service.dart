@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../utils/display_image_contract.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
 class VaultCardIdentity {
@@ -1213,25 +1214,8 @@ String? _trimmedOrNull(dynamic value) {
   return normalized.isEmpty ? null : normalized;
 }
 
-String? _httpImageOrNull(dynamic value) {
-  final normalized = _trimmedOrNull(value);
-  if (normalized == null) {
-    return null;
-  }
-
-  final parsed = Uri.tryParse(normalized);
-  if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
-    return null;
-  }
-
-  return normalized;
-}
-
 String? _cardDisplayImageUrl(Map<String, dynamic> json) {
-  return _httpImageOrNull(json['display_image_url']) ??
-      _httpImageOrNull(json['image_url']) ??
-      _httpImageOrNull(json['image_alt_url']) ??
-      _httpImageOrNull(json['representative_image_url']);
+  return resolveDisplayImageUrlFromRow(json);
 }
 
 String? _normalizeCurrency(dynamic value) {

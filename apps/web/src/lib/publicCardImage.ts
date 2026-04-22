@@ -42,3 +42,22 @@ export function getBestPublicCardImageUrl(image_url?: string | null, image_alt_u
 
   return undefined;
 }
+
+export type DisplayImageUrlInput = {
+  display_image_url?: string | null;
+  image_url?: string | null;
+  image_alt_url?: string | null;
+  representative_image_url?: string | null;
+};
+
+export function resolveDisplayImageUrl(input: DisplayImageUrlInput) {
+  // LOCK: Product surfaces must prefer display_image_url.
+  // LOCK: Legacy image_url/image_alt_url are fallback-only compatibility fields.
+  return (
+    getBestPublicCardImageUrl(input.display_image_url) ??
+    getBestPublicCardImageUrl(input.image_url) ??
+    getBestPublicCardImageUrl(input.image_alt_url) ??
+    getBestPublicCardImageUrl(input.representative_image_url) ??
+    null
+  );
+}

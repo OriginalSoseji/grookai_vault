@@ -4,7 +4,7 @@ import {
   resolveCardImageFieldsV1,
   type CardDisplayImageKind,
 } from "@/lib/canon/resolveCardImageFieldsV1";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
@@ -38,6 +38,8 @@ type CardStreamSourceRow = {
   set_name: string | null;
   number: string | null;
   image_url: string | null;
+  display_image_url: string | null;
+  display_image_kind: CardDisplayImageKind | null;
 };
 
 type CardStreamIdentityRow = {
@@ -186,12 +188,12 @@ function normalizeRow(
   const inPlayCount = Math.max(1, row.in_play_count ?? row.quantity ?? 1);
   const identityRow = identityByCardPrintId.get(cardPrintId);
   const setRecord = Array.isArray(identityRow?.sets) ? identityRow.sets[0] : identityRow?.sets;
-  const displayImageUrl =
-    getBestPublicCardImageUrl(row.image_url) ??
-    normalizeOptionalText(identityRow?.display_image_url) ??
-    getBestPublicCardImageUrl(identityRow?.image_url, identityRow?.image_alt_url) ??
-    getBestPublicCardImageUrl(identityRow?.representative_image_url) ??
-    null;
+  const displayImageUrl = resolveDisplayImageUrl({
+    display_image_url: row.display_image_url ?? identityRow?.display_image_url,
+    image_url: row.image_url ?? identityRow?.image_url,
+    image_alt_url: identityRow?.image_alt_url,
+    representative_image_url: identityRow?.representative_image_url,
+  });
 
   return {
     vaultItemId,
@@ -386,7 +388,7 @@ export async function getCardStreamRows({
   let query = client
     .from("v_card_stream_v1")
     .select(
-      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url",
+      "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
     )
     .order("created_at", { ascending: false })
     .order("vault_item_id", { ascending: false })

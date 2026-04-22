@@ -79,8 +79,18 @@ class PublicProvisionalCard {
     if (normalized == null) {
       return null;
     }
+    final lowered = normalized.toLowerCase();
     final uri = Uri.tryParse(normalized);
     if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
+      return null;
+    }
+    // LOCK: Provisional images must remain public-safe only.
+    // LOCK: Never expose storage paths or signed/private image URLs.
+    if (lowered.contains('signed') ||
+        lowered.contains('/storage/v1/object/sign/') ||
+        uri.queryParameters.containsKey('token') ||
+        uri.queryParameters.containsKey('signature') ||
+        uri.queryParameters.containsKey('expires')) {
       return null;
     }
     return normalized;

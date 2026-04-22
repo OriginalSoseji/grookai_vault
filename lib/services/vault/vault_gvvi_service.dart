@@ -2,6 +2,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../secrets.dart';
+import '../../utils/display_image_contract.dart';
 import '../public/card_surface_pricing_service.dart';
 
 enum GvviImageSide { front, back }
@@ -811,14 +812,7 @@ String? _bestPublicImageUrl({
 }
 
 String? _displayImageUrl(Map<String, dynamic>? row) {
-  if (row == null) {
-    return null;
-  }
-
-  return _normalizeHttpUrl(row['display_image_url']) ??
-      _normalizeHttpUrl(row['image_url']) ??
-      _normalizeHttpUrl(row['image_alt_url']) ??
-      _normalizeHttpUrl(row['representative_image_url']);
+  return resolveDisplayImageUrlFromRow(row);
 }
 
 String? _normalizeHttpUrl(dynamic value) {

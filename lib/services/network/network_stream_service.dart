@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../public/card_surface_pricing_service.dart';
 import '../public/following_service.dart';
+import '../../utils/display_image_contract.dart';
 import 'intent_presentation.dart' as intent_presentation;
 
 const List<String> kDiscoverableVaultIntents = <String>[
@@ -1502,29 +1503,8 @@ class NetworkStreamService {
     return normalized.isEmpty ? null : normalized;
   }
 
-  static String? _httpUrl(dynamic value) {
-    final normalized = _nullable(value);
-    if (normalized == null) {
-      return null;
-    }
-
-    final uri = Uri.tryParse(normalized);
-    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
-      return null;
-    }
-
-    return normalized;
-  }
-
   static String? _displayImageUrl(Map<String, dynamic>? row) {
-    if (row == null) {
-      return null;
-    }
-
-    return _httpUrl(row['display_image_url']) ??
-        _httpUrl(row['image_url']) ??
-        _httpUrl(row['image_alt_url']) ??
-        _httpUrl(row['representative_image_url']);
+    return resolveDisplayImageUrlFromRow(row);
   }
 
   static Map<String, dynamic>? _recordFrom(dynamic value) {

@@ -101,7 +101,7 @@ class _ProvisionalCardTile extends StatelessWidget {
                 height: 76,
                 child: CardSurfaceArtwork(
                   label: card.displayName,
-                  imageUrl: card.imageUrl,
+                  imageUrl: card.displayImageUrl,
                   borderRadius: 12,
                   padding: const EdgeInsets.all(1),
                   enableTapToZoom: false,

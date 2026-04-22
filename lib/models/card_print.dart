@@ -5,35 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../secrets.dart';
+import '../utils/display_image_contract.dart';
 import 'provisional_card.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
-
-String? _normalizeImageUrl(String? value) {
-  final normalized = (value ?? '').trim();
-  if (normalized.isEmpty) {
-    return null;
-  }
-
-  final parsed = Uri.tryParse(normalized);
-  if (parsed == null || (parsed.scheme != 'http' && parsed.scheme != 'https')) {
-    return null;
-  }
-
-  return normalized;
-}
-
-String? _firstImageUrl(
-  String? first,
-  String? second,
-  String? third,
-  String? fourth,
-) {
-  return _normalizeImageUrl(first) ??
-      _normalizeImageUrl(second) ??
-      _normalizeImageUrl(third) ??
-      _normalizeImageUrl(fourth);
-}
 
 class CardSearchOptions {
   const CardSearchOptions({
@@ -123,11 +98,11 @@ class CardPrint {
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
       (numberPlain ?? '').isNotEmpty ? numberPlain! : (number ?? '');
-  String? get displayImage => _firstImageUrl(
-    displayImageUrl,
-    imageUrl,
-    imageAltUrl,
-    representativeImageUrl,
+  String? get displayImage => resolveDisplayImageUrl(
+    displayImageUrl: displayImageUrl,
+    imageUrl: imageUrl,
+    imageAltUrl: imageAltUrl,
+    representativeImageUrl: representativeImageUrl,
   );
 
   factory CardPrint.fromJson(Map<String, dynamic> json) {
@@ -160,11 +135,9 @@ class CardPrint {
       imageStatus: json['image_status']?.toString(),
       imageNote: json['image_note']?.toString(),
       imageSource: json['image_source']?.toString(),
-      displayImageUrl: _firstImageUrl(
-        json['display_image_url']?.toString(),
-        json['image_best']?.toString(),
-        null,
-        null,
+      displayImageUrl: resolveDisplayImageUrl(
+        displayImageUrl: json['display_image_url'],
+        imageUrl: json['image_best'],
       ),
       displayImageKind: json['display_image_kind']?.toString(),
       externalIds: externalIds,

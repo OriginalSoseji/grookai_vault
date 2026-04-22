@@ -3,7 +3,7 @@ import "server-only";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
-import { getBestPublicCardImageUrl } from "@/lib/publicCardImage";
+import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type CardInteractionSourceRow = {
@@ -417,11 +417,12 @@ export async function getUserCardInteractionGroups(userId: string): Promise<User
             normalizeOptionalText(card.set_code) ??
             "Unknown set",
           number: normalizeOptionalText(card.number) ?? "—",
-          imageUrl:
-            normalizeOptionalText(card.display_image_url) ??
-            getBestPublicCardImageUrl(card.image_url, card.image_alt_url) ??
-            getBestPublicCardImageUrl(card.representative_image_url) ??
-            null,
+          imageUrl: resolveDisplayImageUrl({
+            display_image_url: card.display_image_url,
+            image_url: card.image_url,
+            image_alt_url: card.image_alt_url,
+            representative_image_url: card.representative_image_url,
+          }),
         },
       } satisfies UserCardInteractionRow,
     ];

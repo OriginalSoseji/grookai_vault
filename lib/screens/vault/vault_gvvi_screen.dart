@@ -9,6 +9,7 @@ import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
+import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import 'slab_upgrade_screen.dart';
@@ -753,24 +754,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   }
 
   static String? _displayImageUrl(Map<String, dynamic> row) {
-    return _normalizeHttpUrl(row['display_image_url']) ??
-        _normalizeHttpUrl(row['image_url']) ??
-        _normalizeHttpUrl(row['image_alt_url']) ??
-        _normalizeHttpUrl(row['representative_image_url']);
-  }
-
-  static String? _normalizeHttpUrl(dynamic value) {
-    final url = _cleanText(value);
-    if (url.isEmpty) {
-      return null;
-    }
-
-    final parsed = Uri.tryParse(url);
-    if (parsed == null ||
-        (parsed.scheme != 'http' && parsed.scheme != 'https')) {
-      return null;
-    }
-    return url;
+    return resolveDisplayImageUrlFromRow(row);
   }
 }
 
