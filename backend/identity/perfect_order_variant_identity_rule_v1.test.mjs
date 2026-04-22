@@ -93,3 +93,26 @@ test('unsupported Perfect Order collision label blocks instead of guessing', () 
   assert.equal(blocked.ok, false);
   assert.deepEqual(blocked.missing_requirements, ['deterministic variant_key', 'illustration_category']);
 });
+
+test('non-Perfect-Order collision groups do not trigger Perfect Order promotion guard', () => {
+  const stampedVariantIdentity = {
+    rule: 'STAMPED_IDENTITY_RULE_V1',
+    status: 'RESOLVED_STAMPED_IDENTITY',
+    collision_group_key: 'bwp::Arcanine::12/99::prerelease_stamp',
+    variant_key: 'prerelease_stamp',
+    illustration_category: null,
+    source_evidence: {
+      source_set_id: 'black-and-white-promos-pokemon',
+      upstream_id: 'pokemon-black-and-white-promos-arcanine-12-99-prerelease-promo',
+    },
+  };
+
+  const result = validatePerfectOrderVariantIdentityForPromotion(
+    stampedVariantIdentity,
+    stampedVariantIdentity.variant_key,
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.reason, null);
+  assert.deepEqual(result.missing_requirements, []);
+});

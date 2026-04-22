@@ -1,7 +1,13 @@
 import '../env.mjs';
 
 import pg from 'pg';
+import { auditWarehouseCandidateIdentitySlotV1 } from '../identity/identity_slot_audit_v1.mjs';
+import {
+  resolveIdentityResolutionV1,
+  validateIdentityResolutionForApprovedActionV1,
+} from '../identity/identity_resolution_v1.mjs';
 import { validatePerfectOrderVariantIdentityForPromotion } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
+import { executeAliasMappingWithinTransaction } from './promotion_executor_v1.mjs';
 import {
   buildSourceBackedInterpreterPackage,
   getSourceBackedIdentity,
@@ -184,6 +190,7 @@ function buildComparableStagePayload(payload) {
     evidence_summary: asRecord(normalizedPayload.evidence_summary) ?? null,
     latest_normalized_package: asRecord(normalizedPayload.latest_normalized_package) ?? null,
     latest_classification_package: asRecord(normalizedPayload.latest_classification_package) ?? null,
+    latest_identity_audit_package: asRecord(normalizedPayload.latest_identity_audit_package) ?? null,
     latest_metadata_extraction_package: asRecord(normalizedPayload.latest_metadata_extraction_package) ?? null,
     latest_interpreter_package: asRecord(normalizedPayload.latest_interpreter_package) ?? null,
     write_plan: asRecord(normalizedPayload.write_plan) ?? null,
@@ -259,6 +266,25 @@ function getLatestClassificationPackage(events) {
   return getLatestEventPackage(events, 'classification_package');
 }
 
+function getLatestIdentityAuditPackage(events) {
+  return getLatestEventPackage(events, 'identity_audit_package');
+}
+
+function getLatestIdentityResolutionPackage(classificationPackage, identityAuditPackage = null, candidate = null) {
+  const resolved = asRecord(classificationPackage?.identity_resolution_package);
+  if (resolved) {
+    return resolved;
+  }
+
+  const identityAuditStatus = getIdentityAuditStatus(identityAuditPackage);
+  const inlineResolution = normalizeTextOrNull(classificationPackage?.identity_resolution);
+  if (!identityAuditStatus && !inlineResolution) {
+    return null;
+  }
+
+  return resolveIdentityResolutionV1({ candidate, classificationPackage, identityAuditPackage });
+}
+
 function getMetadataIdentity(metadataExtraction) {
   return asRecord(metadataExtraction?.normalized_metadata_package?.identity);
 }
@@ -286,6 +312,173 @@ function normalizePrintedModifierVariantKey(printedModifier) {
     : `${normalizedFromLabel}_stamp`;
 }
 
+function getIdentityAuditStatus(identityAuditPackage) {
+  return normalizeTextOrNull(identityAuditPackage?.identity_audit_status);
+}
+
+function getIdentityResolution(identityResolutionPackage, classificationPackage = null) {
+  return (
+    normalizeTextOrNull(identityResolutionPackage?.identity_resolution) ??
+    normalizeTextOrNull(classificationPackage?.identity_resolution) ??
+    null
+  );
+}
+
+async function buildAliasExecutionContext(client, artifact) {
+  if (!artifact?.candidate) {
+    return {
+      identityAuditPackage: null,
+      identityResolutionPackage: null,
+      identityResolution: null,
+      mappingPlan: null,
+      currentStaging: null,
+    };
+  }
+
+  let identityAuditPackage = artifact.latestIdentityAuditPackage?.value ?? null;
+  const classificationPackage = artifact.latestClassificationPackage?.value ?? null;
+  if (!identityAuditPackage) {
+    identityAuditPackage = await auditWarehouseCandidateIdentitySlotV1(client, {
+      candidate: artifact.candidate,
+    });
+  }
+
+  const identityResolutionPackage = getLatestIdentityResolutionPackage(
+    classificationPackage,
+    identityAuditPackage,
+    artifact.candidate,
+  );
+  const identityResolution = getIdentityResolution(identityResolutionPackage, classificationPackage);
+  const mappingPlan = identityResolution === 'MAP_ALIAS'
+    ? await buildIdentityResolutionBlockedWritePlan(client, {
+        classificationPackage,
+        identityAuditPackage,
+        candidate: artifact.candidate,
+      })
+    : null;
+
+  return {
+    identityAuditPackage,
+    identityResolutionPackage,
+    identityResolution,
+    mappingPlan,
+    currentStaging: findCurrentStagingRow(artifact),
+  };
+}
+
+function validateAliasExecutionContext(artifact, aliasContext) {
+  const candidate = artifact?.candidate;
+  if (!candidate) {
+    return { ok: false, reason: 'candidate_not_found', missing: ['Candidate'] };
+  }
+
+  if (!normalizeTextOrNull(candidate.founder_approved_by_user_id) || !normalizeTextOrNull(candidate.founder_approved_at)) {
+    return {
+      ok: false,
+      reason: 'founder_approval_missing',
+      missing: ['Founder approval metadata'],
+    };
+  }
+
+  if (aliasContext?.identityResolution !== 'MAP_ALIAS') {
+    return {
+      ok: false,
+      reason: 'identity_resolution_not_map_alias',
+      missing: ['identity_resolution MAP_ALIAS'],
+    };
+  }
+
+  const actionPayload = asRecord(aliasContext.identityResolutionPackage?.action_payload);
+  const missingRequirements = uniqueText([
+    ...(Array.isArray(actionPayload?.missing_requirements) ? actionPayload.missing_requirements : []),
+    !normalizeTextOrNull(actionPayload?.source) ? 'external_source' : null,
+    !normalizeTextOrNull(actionPayload?.external_id) ? 'external_id' : null,
+    !normalizeTextOrNull(actionPayload?.matched_card_print_id) ? 'matched_card_print_id' : null,
+  ]);
+  if (missingRequirements.length > 0) {
+    return {
+      ok: false,
+      reason: 'alias_mapping_payload_incomplete',
+      missing: missingRequirements,
+    };
+  }
+
+  if (candidate.state === 'APPROVED_BY_FOUNDER') {
+    return { ok: true };
+  }
+
+  if (candidate.state === 'STAGED_FOR_PROMOTION') {
+    if (!aliasContext.currentStaging) {
+      return {
+        ok: false,
+        reason: 'alias_candidate_current_staging_missing',
+        missing: ['Current staging row'],
+      };
+    }
+    if (normalizeTextOrNull(aliasContext.currentStaging.execution_status) !== 'FAILED') {
+      return {
+        ok: false,
+        reason: `alias_execution_requires_failed_staging:${normalizeTextOrNull(aliasContext.currentStaging.execution_status) ?? 'null'}`,
+        missing: ['Current staging row in FAILED status'],
+      };
+    }
+    return { ok: true };
+  }
+
+  return {
+    ok: false,
+    reason: `candidate_not_alias_executable:${candidate.state}`,
+    missing: ['Candidate must be APPROVED_BY_FOUNDER or STAGED_FOR_PROMOTION with FAILED staging'],
+  };
+}
+
+function validateIdentityAuditForAction(identityAuditPackage, approvedActionType) {
+  if (approvedActionType === 'ENRICH_CANON_IMAGE') {
+    return { ok: true, status: getIdentityAuditStatus(identityAuditPackage) };
+  }
+
+  const status = getIdentityAuditStatus(identityAuditPackage);
+  if (!status) {
+    return {
+      ok: false,
+      reason: 'identity_audit_missing',
+      missing: ['Identity audit package'],
+    };
+  }
+
+  if (approvedActionType === 'CREATE_CARD_PRINT') {
+    if (status === 'NEW_CANONICAL' || status === 'VARIANT_IDENTITY') {
+      return { ok: true, status };
+    }
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_create_card_print:${status}`,
+      missing: ['Identity audit status NEW_CANONICAL or VARIANT_IDENTITY'],
+    };
+  }
+
+  if (approvedActionType === 'CREATE_CARD_PRINTING') {
+    if (status === 'PRINTING_ONLY') {
+      return { ok: true, status };
+    }
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_create_card_printing:${status}`,
+      missing: ['Identity audit status PRINTING_ONLY'],
+    };
+  }
+
+  if (status === 'ALIAS' || status === 'SLOT_CONFLICT' || status === 'AMBIGUOUS') {
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_promotion:${status}`,
+      missing: ['Identity audit status must not be ALIAS, SLOT_CONFLICT, or AMBIGUOUS'],
+    };
+  }
+
+  return { ok: true, status };
+}
+
 function buildEmptyAction(reason = null) {
   return {
     action: 'NONE',
@@ -311,6 +504,89 @@ function buildBlockedWritePlan(reason, missingRequirements) {
     },
     missing_requirements: uniqueText(missingRequirements),
   };
+}
+
+async function buildIdentityResolutionBlockedWritePlan(client, {
+  classificationPackage,
+  identityAuditPackage,
+  candidate,
+}) {
+  const resolutionPackage = getLatestIdentityResolutionPackage(classificationPackage, identityAuditPackage, candidate);
+  const resolution = getIdentityResolution(resolutionPackage, classificationPackage);
+  if (!resolution) {
+    return buildBlockedWritePlan('Identity resolution is missing from the classification package.', ['identity_resolution']);
+  }
+
+  if (resolution === 'MAP_ALIAS') {
+    const actionPayload = asRecord(resolutionPackage?.action_payload);
+    const matchedCardPrintId = normalizeTextOrNull(actionPayload?.matched_card_print_id);
+    const parent = matchedCardPrintId ? await fetchCardPrintById(client, matchedCardPrintId) : null;
+    const mappingPayload = actionPayload
+      ? {
+          source: normalizeTextOrNull(actionPayload.source),
+          external_id: normalizeTextOrNull(actionPayload.external_id),
+          card_print_id: matchedCardPrintId,
+          active: actionPayload.active === false ? false : true,
+          bridge_source: normalizeTextOrNull(actionPayload.bridge_source),
+          source_set_id: normalizeTextOrNull(actionPayload.source_set_id),
+          source_candidate_id: normalizeTextOrNull(actionPayload.source_candidate_id),
+        }
+      : null;
+    return {
+      status: 'BLOCKED',
+      reason: 'MAP_ALIAS resolves to external mapping attachment and is not executable by promotion staging.',
+      actions: {
+        card_prints: buildEmptyAction('MAP_ALIAS reuses existing canon instead of creating a new parent row.'),
+        card_printings: buildEmptyAction('MAP_ALIAS does not create child printings.'),
+        external_mappings: mappingPayload
+          ? {
+              action: 'UPSERT',
+              target_id: matchedCardPrintId,
+              payload: mappingPayload,
+              reason: 'Attach the upstream alias row to the existing canonical card_print via external_mappings.',
+            }
+          : buildEmptyAction('MAP_ALIAS is missing external mapping inputs.'),
+        image_fields: buildEmptyAction('MAP_ALIAS does not update canon image fields.'),
+      },
+      preview: {
+        before: {
+          card_prints: parent,
+          card_printings: null,
+          external_mappings: null,
+          image_fields: null,
+        },
+        after: {
+          card_prints: parent,
+          card_printings: null,
+          external_mappings: mappingPayload,
+          image_fields: null,
+        },
+      },
+      missing_requirements: uniqueText([
+        'Identity resolution MAP_ALIAS is not executable by promotion staging.',
+        ...(Array.isArray(actionPayload?.missing_requirements) ? actionPayload.missing_requirements : []),
+      ]),
+    };
+  }
+
+  if (resolution === 'BLOCK_REVIEW_REQUIRED') {
+    return buildBlockedWritePlan(
+      resolutionPackage?.explanation ?? 'Identity resolution requires founder review before any lawful action can be chosen.',
+      ['Founder review decision required before promotion staging'],
+    );
+  }
+
+  if (resolution === 'BLOCK_AMBIGUOUS') {
+    return buildBlockedWritePlan(
+      resolutionPackage?.explanation ?? 'Identity resolution remains ambiguous and cannot be staged.',
+      ['Ambiguous identity must be resolved before promotion staging'],
+    );
+  }
+
+  return buildBlockedWritePlan(
+    `Identity resolution ${resolution} is not executable by promotion staging.`,
+    ['Executable identity resolution required before promotion staging'],
+  );
 }
 
 function inferApprovedActionType(writePlan) {
@@ -592,7 +868,28 @@ async function fetchCardPrintingByCardPrintAndFinish(client, cardPrintId, finish
   return rows[0] ?? null;
 }
 
-async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtraction, interpreterPackage, normalizationPackage }) {
+async function buildPromotionWritePlanSnapshot(client, {
+  candidate,
+  metadataExtraction,
+  interpreterPackage,
+  normalizationPackage,
+  identityAuditPackage,
+  classificationPackage,
+}) {
+  const identityResolutionPackage = getLatestIdentityResolutionPackage(
+    classificationPackage,
+    identityAuditPackage,
+    candidate,
+  );
+  const identityResolution = getIdentityResolution(identityResolutionPackage, classificationPackage);
+  if (identityResolution === 'MAP_ALIAS' || identityResolution === 'BLOCK_REVIEW_REQUIRED' || identityResolution === 'BLOCK_AMBIGUOUS') {
+    return buildIdentityResolutionBlockedWritePlan(client, {
+      classificationPackage,
+      identityAuditPackage,
+      candidate,
+    });
+  }
+
   const sourceBackedIdentity = getSourceBackedIdentity(candidate);
   const effectiveInterpreterPackage =
     interpreterPackage ??
@@ -602,7 +899,10 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
             candidate,
             classificationPackage: {
               proposed_action_type: candidate.proposed_action_type,
+              identity_resolution: classificationPackage?.identity_resolution ?? null,
+              identity_resolution_package: classificationPackage?.identity_resolution_package ?? null,
             },
+            identityAuditPackage,
           })
         : null
     );
@@ -621,12 +921,12 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
   const proposedAction =
     normalizeTextOrNull(effectiveInterpreterPackage.proposed_action) ??
     normalizeTextOrNull(candidate.proposed_action_type);
-  const sourceBackedCreateCardPrint =
+  const sourceBackedStageableWithoutNormalization =
     sourceBackedIdentity.auto_ready &&
-    proposedAction === 'CREATE_CARD_PRINT';
+    (proposedAction === 'CREATE_CARD_PRINT' || proposedAction === 'CREATE_CARD_PRINTING');
 
   const normalizationStatus = normalizeTextOrNull(normalizationPackage?.status);
-  if (normalizationStatus !== 'READY' && !sourceBackedCreateCardPrint) {
+  if (normalizationStatus !== 'READY' && !sourceBackedStageableWithoutNormalization) {
     return buildBlockedWritePlan('Normalization asset is not READY for staging.', ['Normalization package']);
   }
 
@@ -662,7 +962,7 @@ async function buildPromotionWritePlanSnapshot(client, { candidate, metadataExtr
   if (proposedAction === 'CREATE_CARD_PRINT') {
     const setRows = await fetchSetRowsByCode(client, setCode);
     if (setRows.length !== 1) {
-      if (!sourceBackedCreateCardPrint) {
+      if (!sourceBackedStageableWithoutNormalization) {
         return buildBlockedWritePlan('UNKNOWN_SET', ['Valid set_code required before staging']);
       }
 
@@ -930,6 +1230,7 @@ function buildFrozenPayload({
   evidenceRows,
   latestNormalizedPackage,
   latestClassificationPackage,
+  latestIdentityAuditPackage,
   metadataExtraction,
   interpreterPackage,
   normalizationPackage,
@@ -957,6 +1258,7 @@ function buildFrozenPayload({
       interpreter_resolved_finish_key: candidate.interpreter_resolved_finish_key,
       needs_promotion_review: candidate.needs_promotion_review === true,
       current_review_hold_reason: candidate.current_review_hold_reason,
+      identity_resolution: normalizeTextOrNull(latestClassificationPackage?.identity_resolution),
     },
     founder_approval: {
       founder_approved_by_user_id: candidate.founder_approved_by_user_id,
@@ -978,6 +1280,9 @@ function buildFrozenPayload({
     },
     latest_normalized_package: latestNormalizedPackage ?? null,
     latest_classification_package: latestClassificationPackage ?? null,
+    latest_identity_audit_package: latestIdentityAuditPackage ?? null,
+    latest_identity_resolution_package:
+      getLatestIdentityResolutionPackage(latestClassificationPackage, latestIdentityAuditPackage, candidate) ?? null,
     latest_metadata_extraction_package: metadataExtraction?.normalized_metadata_package ?? null,
     latest_interpreter_package: interpreterPackage ?? null,
     write_plan: writePlan,
@@ -999,9 +1304,12 @@ function buildFrozenPayload({
 }
 
 function canBuildStagingPayload(artifact, writePlan) {
-  const sourceBackedCreateCardPrint =
+  const sourceBackedStageableWithoutNormalization =
     getSourceBackedIdentity(artifact?.candidate).is_bridge_candidate &&
-    inferApprovedActionType(writePlan) === 'CREATE_CARD_PRINT';
+    (
+      inferApprovedActionType(writePlan) === 'CREATE_CARD_PRINT' ||
+      inferApprovedActionType(writePlan) === 'CREATE_CARD_PRINTING'
+    );
   return Boolean(
     artifact?.candidate &&
       normalizeTextOrNull(artifact.candidate.founder_approved_by_user_id) &&
@@ -1011,7 +1319,7 @@ function canBuildStagingPayload(artifact, writePlan) {
       normalizeTextOrNull(artifact.latestInterpreterPackage?.value?.status) === 'READY' &&
       (
         normalizeTextOrNull(artifact.latestNormalizationPackage?.promotion_image_normalization_package?.status) === 'READY' ||
-        sourceBackedCreateCardPrint
+        sourceBackedStageableWithoutNormalization
       ) &&
       writePlan?.status === 'READY',
   );
@@ -1045,6 +1353,7 @@ async function fetchArtifacts(client, candidateId) {
     latestInterpreterPackage: getLatestInterpreter(eventRows),
     latestNormalizedPackage: getLatestNormalizedPackage(eventRows),
     latestClassificationPackage: getLatestClassificationPackage(eventRows),
+    latestIdentityAuditPackage: getLatestIdentityAuditPackage(eventRows),
   };
 }
 
@@ -1092,10 +1401,10 @@ function validateArtifacts(artifact, writePlan) {
   const normalizationStatus = normalizeTextOrNull(
     artifact.latestNormalizationPackage?.promotion_image_normalization_package?.status,
   );
-  const sourceBackedCreateCardPrint =
+  const sourceBackedStageableWithoutNormalization =
     getSourceBackedIdentity(candidate).is_bridge_candidate &&
-    approvedActionType === 'CREATE_CARD_PRINT';
-  if (normalizationStatus !== 'READY' && !sourceBackedCreateCardPrint) {
+    (approvedActionType === 'CREATE_CARD_PRINT' || approvedActionType === 'CREATE_CARD_PRINTING');
+  if (normalizationStatus !== 'READY' && !sourceBackedStageableWithoutNormalization) {
     return {
       ok: false,
       reason: `normalization_not_ready:${normalizationStatus ?? 'null'}`,
@@ -1117,7 +1426,38 @@ function validateArtifacts(artifact, writePlan) {
     };
   }
 
-  return { ok: true, approvedActionType, sourceBackedCreateCardPrint };
+  const identityAuditValidation = validateIdentityAuditForAction(
+    artifact.latestIdentityAuditPackage?.value ?? null,
+    approvedActionType,
+  );
+  if (!identityAuditValidation.ok) {
+    return {
+      ok: false,
+      reason: identityAuditValidation.reason,
+      missing: identityAuditValidation.missing,
+    };
+  }
+
+  const identityResolutionPackage = getLatestIdentityResolutionPackage(
+    artifact.latestClassificationPackage?.value ?? null,
+    artifact.latestIdentityAuditPackage?.value ?? null,
+    candidate,
+  );
+  if (identityResolutionPackage) {
+    const identityResolutionValidation = validateIdentityResolutionForApprovedActionV1(
+      getIdentityResolution(identityResolutionPackage, artifact.latestClassificationPackage?.value ?? null),
+      approvedActionType,
+    );
+    if (!identityResolutionValidation.ok) {
+      return {
+        ok: false,
+        reason: identityResolutionValidation.reason,
+        missing: identityResolutionValidation.missing,
+      };
+    }
+  }
+
+  return { ok: true, approvedActionType, sourceBackedStageableWithoutNormalization };
 }
 
 async function insertStageEvent(client, payload) {
@@ -1198,6 +1538,7 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
     evidenceRows: artifact.evidenceRows,
     latestNormalizedPackage: artifact.latestNormalizedPackage?.value ?? null,
     latestClassificationPackage: artifact.latestClassificationPackage?.value ?? null,
+    latestIdentityAuditPackage: artifact.latestIdentityAuditPackage?.value ?? null,
     metadataExtraction: artifact.latestMetadataExtractionPackage,
     interpreterPackage: artifact.latestInterpreterPackage?.value ?? null,
     normalizationPackage: artifact.latestNormalizationPackage?.promotion_image_normalization_package ?? null,
@@ -1318,11 +1659,58 @@ async function processCandidate(pool, candidateId, opts) {
     await connection.query('begin');
     try {
       const artifact = await fetchArtifacts(connection, candidateId);
+      const aliasContext = await buildAliasExecutionContext(connection, artifact);
+
+      if (aliasContext.identityResolution === 'MAP_ALIAS') {
+        const validation = validateAliasExecutionContext(artifact, aliasContext);
+        if (opts.dryRun) {
+          await connection.query('rollback');
+          return {
+            status: validation.ok ? 'dry_run' : 'blocked',
+            reason: validation.ok ? 'alias_mapping_ready' : validation.reason,
+            candidate_id: candidateId,
+            candidate_state: artifact.candidate?.state ?? null,
+            identity_resolution: aliasContext.identityResolution,
+            mapping_plan: aliasContext.mappingPlan,
+            missing_requirements: validation.ok ? [] : validation.missing,
+          };
+        }
+
+        if (!validation.ok) {
+          await connection.query('rollback');
+          return {
+            status: 'blocked',
+            reason: validation.reason,
+            candidate_id: candidateId,
+            candidate_state: artifact.candidate?.state ?? null,
+            identity_resolution: aliasContext.identityResolution,
+            mapping_plan: aliasContext.mappingPlan,
+            missing_requirements: validation.missing,
+          };
+        }
+
+        const aliasResult = await executeAliasMappingWithinTransaction(connection, {
+          candidate: artifact.candidate,
+          identityResolutionPackage: aliasContext.identityResolutionPackage,
+          currentStaging: aliasContext.currentStaging,
+        });
+        await connection.query('commit');
+        return {
+          ...aliasResult,
+          candidate_id: candidateId,
+          candidate_state: 'ARCHIVED',
+          identity_resolution: aliasContext.identityResolution,
+          mapping_plan: aliasContext.mappingPlan,
+        };
+      }
+
       const writePlan = await buildPromotionWritePlanSnapshot(connection, {
         candidate: artifact.candidate,
         metadataExtraction: artifact.latestMetadataExtractionPackage,
         interpreterPackage: artifact.latestInterpreterPackage?.value ?? null,
         normalizationPackage: artifact.latestNormalizationPackage?.promotion_image_normalization_package ?? null,
+        identityAuditPackage: artifact.latestIdentityAuditPackage?.value ?? null,
+        classificationPackage: artifact.latestClassificationPackage?.value ?? null,
       });
       const stagedAt = new Date().toISOString();
       const comparablePayload = canBuildStagingPayload(artifact, writePlan)
@@ -1331,6 +1719,7 @@ async function processCandidate(pool, candidateId, opts) {
             evidenceRows: artifact.evidenceRows,
             latestNormalizedPackage: artifact.latestNormalizedPackage?.value ?? null,
             latestClassificationPackage: artifact.latestClassificationPackage?.value ?? null,
+            latestIdentityAuditPackage: artifact.latestIdentityAuditPackage?.value ?? null,
             metadataExtraction: artifact.latestMetadataExtractionPackage,
             interpreterPackage: artifact.latestInterpreterPackage?.value ?? null,
             normalizationPackage: artifact.latestNormalizationPackage?.promotion_image_normalization_package ?? null,

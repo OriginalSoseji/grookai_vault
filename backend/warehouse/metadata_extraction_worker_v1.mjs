@@ -1119,8 +1119,22 @@ async function processCandidate(pool, supabase, candidateId, opts) {
   });
 }
 
-async function main() {
-  const opts = parseArgs(process.argv.slice(2));
+export async function runMetadataExtractionWorkerV1(input = {}) {
+  const opts = {
+    limit:
+      Number.isFinite(Number(input.limit)) && Number(input.limit) > 0
+        ? Math.trunc(Number(input.limit))
+        : 10,
+    candidateId: normalizeText(input.candidateId),
+    dryRun: input.apply ? false : input.dryRun === false ? false : true,
+    apply: Boolean(input.apply),
+    emitLogs: input.emitLogs !== false,
+  };
+
+  if (opts.apply) {
+    opts.dryRun = false;
+  }
+
   if (!process.env.SUPABASE_DB_URL) {
     throw new Error('SUPABASE_DB_URL is required');
   }
@@ -1135,19 +1149,23 @@ async function main() {
       ? [opts.candidateId]
       : await fetchCandidateIds(pool, opts.limit);
 
-    log('worker_start', {
-      mode: opts.apply ? 'apply' : 'dry-run',
-      requested_limit: opts.limit,
-      candidate_id: opts.candidateId,
-      candidate_count: candidateIds.length,
-    });
+    if (opts.emitLogs) {
+      log('worker_start', {
+        mode: opts.apply ? 'apply' : 'dry-run',
+        requested_limit: opts.limit,
+        candidate_id: opts.candidateId,
+        candidate_count: candidateIds.length,
+      });
+    }
 
     const results = [];
     for (const candidateId of candidateIds) {
       try {
         const result = await processCandidate(pool, supabase, candidateId, opts);
         results.push(result);
-        log('candidate_result', result);
+        if (opts.emitLogs) {
+          log('candidate_result', result);
+        }
       } catch (error) {
         const failure = {
           status: 'failed',
@@ -1155,18 +1173,31 @@ async function main() {
           reason: error instanceof Error ? error.message : String(error),
         };
         results.push(failure);
-        log('candidate_failed', failure);
+        if (opts.emitLogs) {
+          log('candidate_failed', failure);
+        }
       }
     }
 
-    log('worker_complete', {
+    const summary = {
       mode: opts.apply ? 'apply' : 'dry-run',
       processed: results.length,
       results,
-    });
+    };
+
+    if (opts.emitLogs) {
+      log('worker_complete', summary);
+    }
+
+    return summary;
   } finally {
     await pool.end();
   }
+}
+
+async function main() {
+  const opts = parseArgs(process.argv.slice(2));
+  await runMetadataExtractionWorkerV1(opts);
 }
 
 if (process.argv[1] && process.argv[1].includes('metadata_extraction_worker_v1.mjs')) {

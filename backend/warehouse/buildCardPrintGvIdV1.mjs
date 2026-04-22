@@ -9,6 +9,10 @@ const ECARD3_SET_CODE_KEY = 'ecard3';
 const ECARD3_NAMESPACE_TOKEN = 'SK';
 const COL1_SET_CODE_KEY = 'col1';
 const COL1_NAMESPACE_TOKEN = 'COL';
+export const PROMO_PREFIX_IDENTITY_RULE_V1 = 'PROMO_PREFIX_IDENTITY_RULE_V1';
+const PROMO_PREFIX_BY_SET_CODE_V1 = Object.freeze({
+  [SMP_SET_CODE_KEY]: SMP_NAMESPACE_TOKEN,
+});
 export const MCD_NAMESPACE_YEAR_BY_SET_CODE_V1 = Object.freeze({
   '2011bw': '2011',
   '2012bw': '2012',
@@ -145,7 +149,12 @@ export function resolveMcdNamespaceYearV1(input = {}) {
 }
 
 export function resolveSmpPromoNumberTokenV1(input = {}) {
-  const promoNumberToken = normalizeUpperAlnumToken(input.number);
+  const promoNumberToken =
+    resolvePromoNumberV1({
+      setCode: input.setCode ?? SMP_SET_CODE_KEY,
+      number: input.number,
+      numberPlain: input.numberPlain,
+    }) ?? normalizeUpperAlnumToken(input.number);
   if (!promoNumberToken) {
     throw new Error('gv_id_smp_promo_number_missing');
   }
@@ -155,6 +164,30 @@ export function resolveSmpPromoNumberTokenV1(input = {}) {
   }
 
   return promoNumberToken;
+}
+
+export function resolvePromoNumberV1(input = {}) {
+  const setCodeKey = normalizeLowerRegistryKey(input.setCode);
+  const numberPrefix = setCodeKey ? PROMO_PREFIX_BY_SET_CODE_V1[setCodeKey] ?? null : null;
+  if (!numberPrefix) {
+    return null;
+  }
+
+  const explicitNumberToken = normalizeUpperAlnumToken(input.number);
+  if (explicitNumberToken?.startsWith(numberPrefix)) {
+    return explicitNumberToken;
+  }
+
+  const numberPlainToken = normalizeUpperAlnumToken(input.numberPlain);
+  if (numberPlainToken && /^[0-9]+$/.test(numberPlainToken)) {
+    return `${numberPrefix}${numberPlainToken}`;
+  }
+
+  if (explicitNumberToken && /^[0-9]+$/.test(explicitNumberToken)) {
+    return `${numberPrefix}${explicitNumberToken}`;
+  }
+
+  return explicitNumberToken || numberPlainToken;
 }
 
 export function resolveEcard3PrintedNumberTokenV1(input = {}) {

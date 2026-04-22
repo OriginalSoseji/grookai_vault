@@ -212,9 +212,11 @@ export function coercePerfectOrderVariantIdentity(value) {
     record.source_evidence && typeof record.source_evidence === 'object' && !Array.isArray(record.source_evidence)
       ? record.source_evidence
       : null;
+  const sourceSetId = normalizeTextOrNull(sourceEvidence?.source_set_id);
+  const isPerfectOrderIdentity = rule === PERFECT_ORDER_RULE || sourceSetId === PERFECT_ORDER_SET_ID;
 
   if (
-    rule !== PERFECT_ORDER_RULE &&
+    !isPerfectOrderIdentity &&
     !variantKey &&
     !illustrationCategory &&
     !collisionGroupKey &&
@@ -223,9 +225,13 @@ export function coercePerfectOrderVariantIdentity(value) {
     return null;
   }
 
+  if (!isPerfectOrderIdentity) {
+    return null;
+  }
+
   return {
     rule: rule ?? PERFECT_ORDER_RULE,
-    applies: rule === PERFECT_ORDER_RULE || Boolean(collisionGroupKey),
+    applies: true,
     status,
     collision_group_key: collisionGroupKey,
     collision_resolution_reason: collisionResolutionReason,

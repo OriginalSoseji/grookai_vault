@@ -1,6 +1,8 @@
 export const SOURCE_IDENTITY_CONTRACT_V1 = 'WAREHOUSE_SOURCE_IDENTITY_CONTRACT_V1';
 export const SOURCE_IDENTITY_TYPE = 'SOURCE_BACKED';
 export const EXTERNAL_DISCOVERY_BRIDGE_SOURCE = 'external_discovery_bridge_v1';
+const RESOLVED_VARIANT_IDENTITY_STATUSES = new Set(['RESOLVED_BY_VARIANT_KEY', 'RESOLVED_STAMPED_IDENTITY']);
+export const PROMO_SLASH_NUMBER_UNDERLYING_BASE_SET_ROUTE = 'PROMO_SLASH_NUMBER_UNDERLYING_BASE_SET_ROUTE';
 
 function asRecord(value) {
   return value && typeof value === 'object' && !Array.isArray(value) ? value : null;
@@ -30,8 +32,86 @@ function normalizeNumberPlain(value) {
     return null;
   }
 
-  const digits = normalized.replace(/[^0-9]/g, '').replace(/^0+/, '');
+  const compact = normalized.replace(/[⁄∕]/g, '/').replace(/\s+/g, '');
+  const left = compact.includes('/') ? compact.split('/', 1)[0] : compact;
+  const digits = left.replace(/[^0-9]/g, '').replace(/^0+/, '');
   return digits.length > 0 ? digits : null;
+}
+
+export function hasSlashPrintedNumberV1(value) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return /[\/⁄∕]/.test(normalized);
+}
+
+function extractStampedUnderlyingBaseProofSummary(claimed, reference, variantIdentity) {
+  return (
+    asRecord(reference?.stamped_identity_evidence)?.underlying_base_proof_summary ??
+    asRecord(claimed?.stamped_identity_evidence)?.underlying_base_proof_summary ??
+    asRecord(variantIdentity?.source_evidence)?.underlying_base_proof_summary ??
+    null
+  );
+}
+
+export function resolveUnderlyingBaseFromPrintedNumberV1({
+  sourceSetId = null,
+  declaredSetCode = null,
+  printedNumber = null,
+  variantIdentityStatus = null,
+  proofSummary = null,
+} = {}) {
+  const normalizedDeclaredSetCode = normalizeLowerOrNull(declaredSetCode);
+  const underlyingBaseState = normalizeTextOrNull(proofSummary?.underlying_base_state);
+  const underlyingBaseSetCode = normalizeLowerOrNull(proofSummary?.live_base_set_code);
+  const underlyingBaseCardPrintId = normalizeTextOrNull(proofSummary?.live_base_card_print_id);
+  const printedNumberHasSlash = hasSlashPrintedNumberV1(printedNumber);
+  const hasResolvedVariantIdentity = RESOLVED_VARIANT_IDENTITY_STATUSES.has(
+    normalizeTextOrNull(variantIdentityStatus),
+  );
+  const hasProvenUnderlyingBase =
+    underlyingBaseState === 'PROVEN' &&
+    underlyingBaseSetCode &&
+    underlyingBaseSetCode !== normalizedDeclaredSetCode;
+  const shouldRouteToUnderlyingBaseSet =
+    printedNumberHasSlash &&
+    hasResolvedVariantIdentity &&
+    hasProvenUnderlyingBase;
+
+  return {
+    source_set_id: normalizeTextOrNull(sourceSetId),
+    declared_set_code: normalizedDeclaredSetCode,
+    effective_set_code: shouldRouteToUnderlyingBaseSet ? underlyingBaseSetCode : normalizedDeclaredSetCode,
+    routing_reason: shouldRouteToUnderlyingBaseSet ? PROMO_SLASH_NUMBER_UNDERLYING_BASE_SET_ROUTE : null,
+    printed_number_has_slash: printedNumberHasSlash,
+    variant_identity_resolved: hasResolvedVariantIdentity,
+    underlying_base_state: underlyingBaseState,
+    underlying_base_set_code: underlyingBaseSetCode,
+    underlying_base_card_print_id: underlyingBaseCardPrintId,
+    underlying_base_proof_summary: asRecord(proofSummary) ?? null,
+    resolution_confidence: shouldRouteToUnderlyingBaseSet ? 'PROVEN_UNDERLYING_BASE' : null,
+  };
+}
+
+function deriveStampedPromoSetRouting({
+  sourceSetId,
+  declaredSetCode,
+  printedNumber,
+  variantIdentityStatus,
+  claimed,
+  reference,
+  variantIdentity,
+}) {
+  const proofSummary = extractStampedUnderlyingBaseProofSummary(claimed, reference, variantIdentity);
+  return resolveUnderlyingBaseFromPrintedNumberV1({
+    sourceSetId,
+    declaredSetCode,
+    printedNumber,
+    variantIdentityStatus,
+    proofSummary,
+  });
 }
 
 function uniqueText(values) {
@@ -90,13 +170,13 @@ export function getSourceBackedIdentity(candidate) {
     normalizeTextOrNull(reference.number_plain) ??
     normalizeNumberPlain(printedNumber);
 
-  const setCode =
+  const declaredSetCode =
     normalizeLowerOrNull(claimed.set_code) ??
     normalizeLowerOrNull(claimed.set_hint) ??
     normalizeLowerOrNull(reference.set_code) ??
     normalizeLowerOrNull(reference.set_hint);
 
-  const setName =
+  const declaredSetName =
     normalizeTextOrNull(claimed.set_name) ??
     normalizeTextOrNull(reference.set_name) ??
     normalizeTextOrNull(reference.source_card_snapshot?.set_name);
@@ -122,6 +202,19 @@ export function getSourceBackedIdentity(candidate) {
     normalizeTextOrNull(variantIdentity?.status) ??
     normalizeTextOrNull(claimed.variant_identity_status) ??
     normalizeTextOrNull(reference.variant_identity_status);
+
+  const setRouting = deriveStampedPromoSetRouting({
+    sourceSetId,
+    declaredSetCode,
+    printedNumber,
+    variantIdentityStatus,
+    claimed,
+    reference,
+    variantIdentity,
+  });
+
+  const setCode = setRouting.effective_set_code;
+  const setName = setRouting.routing_reason ? null : declaredSetName;
 
   const variantIdentityRule =
     normalizeTextOrNull(variantIdentity?.rule) ??
@@ -151,7 +244,7 @@ export function getSourceBackedIdentity(candidate) {
     isComplete &&
     !variantMissing &&
     !hasAmbiguity &&
-    (!requiresVariantKey || variantIdentityStatus === 'RESOLVED_BY_VARIANT_KEY');
+    (!requiresVariantKey || RESOLVED_VARIANT_IDENTITY_STATUSES.has(variantIdentityStatus));
 
   return {
     source_type: isBridgeCandidate ? SOURCE_IDENTITY_TYPE : null,
@@ -163,6 +256,12 @@ export function getSourceBackedIdentity(candidate) {
     number_plain: numberPlain,
     set_code: setCode,
     set_name: setName,
+    declared_set_code: declaredSetCode,
+    declared_set_name: declaredSetName,
+    set_routing_reason: setRouting.routing_reason,
+    underlying_base_set_code: setRouting.underlying_base_set_code,
+    underlying_base_card_print_id: setRouting.underlying_base_card_print_id,
+    underlying_base_proof_summary: setRouting.underlying_base_proof_summary,
     rarity,
     variant_key: variantKey,
     illustration_category: illustrationCategory,
@@ -231,10 +330,15 @@ export function buildSourceBackedMetadataExtractionPackages({ candidate, evidenc
         number_plain: identity.number_plain,
         set_code: identity.set_code,
         set_name: identity.set_name,
+        declared_set_code: identity.declared_set_code,
+        declared_set_name: identity.declared_set_name,
         rarity: identity.rarity,
         variant_key: identity.variant_key,
         illustration_category: identity.illustration_category,
         variant_identity_status: identity.variant_identity_status,
+        set_routing_reason: identity.set_routing_reason,
+        underlying_base_set_code: identity.underlying_base_set_code,
+        underlying_base_card_print_id: identity.underlying_base_card_print_id,
       },
     },
     errors: identity.auto_ready ? [] : ['source_identity_incomplete'],
@@ -254,6 +358,15 @@ export function buildSourceBackedMetadataExtractionPackages({ candidate, evidenc
       set_code: identity.set_code,
       set_name: identity.set_name,
     },
+    canonical_routing: identity.set_routing_reason
+      ? {
+          declared_set_code: identity.declared_set_code,
+          effective_set_code: identity.set_code,
+          reason: identity.set_routing_reason,
+          underlying_base_set_code: identity.underlying_base_set_code,
+          underlying_base_card_print_id: identity.underlying_base_card_print_id,
+        }
+      : null,
     variant_key: identity.variant_key,
     illustration_category: identity.illustration_category,
     variant_identity_status: identity.variant_identity_status,
@@ -290,40 +403,104 @@ export function buildSourceBackedMetadataExtractionPackages({ candidate, evidenc
   };
 }
 
-export function buildSourceBackedInterpreterPackage({ candidate, classificationPackage = null }) {
+export function buildSourceBackedInterpreterPackage({
+  candidate,
+  classificationPackage = null,
+  identityAuditPackage = null,
+}) {
   const identity = getSourceBackedIdentity(candidate);
+  const identityAuditStatus = normalizeTextOrNull(identityAuditPackage?.identity_audit_status);
+  const identityAuditReasonCode = normalizeTextOrNull(identityAuditPackage?.reason_code);
+  const identityResolution = normalizeTextOrNull(classificationPackage?.identity_resolution);
+  const identityResolutionPackage = asRecord(classificationPackage?.identity_resolution_package);
+  const routedVariantKey =
+    normalizeVariantKey(identityAuditPackage?.routing?.variant_key) ??
+    identity.variant_key;
+  const routedFinishKey =
+    normalizeTextOrNull(identityAuditPackage?.routing?.finish_key);
+  const matchedCardPrintId = normalizeTextOrNull(identityAuditPackage?.routing?.matched_card_print_id);
+  const matchedCardPrintingId = normalizeTextOrNull(identityAuditPackage?.routing?.matched_card_printing_id);
   const proposedAction =
     normalizeTextOrNull(classificationPackage?.proposed_action_type) ??
     normalizeTextOrNull(candidate?.proposed_action_type) ??
-    'CREATE_CARD_PRINT';
+    (identityAuditStatus === 'PRINTING_ONLY' ? 'CREATE_CARD_PRINTING' : 'CREATE_CARD_PRINT');
+
+  let status = identity.auto_ready ? 'READY' : 'BLOCKED';
+  let decision = identity.auto_ready ? 'CREATE_NEW_CANON_PARENT' : 'BLOCKED';
+  let founderExplanation = identity.auto_ready
+    ? `Source-backed bridge candidate provides deterministic identity for ${identity.name} ${identity.printed_number}.`
+    : 'Source-backed bridge candidate is missing required identity fields.';
+  let missingFields = uniqueText([
+    !identity.name ? 'card_name' : null,
+    !identity.number_plain ? 'printed_number' : null,
+    !identity.set_code ? 'set_code' : null,
+    identity.variant_missing ? 'variant_key' : null,
+  ]);
+
+  if (identityAuditStatus === 'PRINTING_ONLY') {
+    const ready = Boolean(matchedCardPrintId && routedFinishKey);
+    status = ready ? 'READY' : 'BLOCKED';
+    decision = ready ? 'CREATE_CHILD_PRINTING' : 'BLOCKED';
+    founderExplanation = ready
+      ? 'Identity slot audit resolved the candidate as finish-only under an existing canonical parent.'
+      : 'Identity slot audit resolved a finish-only distinction but did not produce a canonical parent and finish_key.';
+    missingFields = uniqueText([
+      !matchedCardPrintId ? 'matched_card_print_id' : null,
+      !routedFinishKey ? 'finish_key' : null,
+    ]);
+  } else if (identityAuditStatus === 'ALIAS') {
+    status = 'BLOCKED';
+    decision = 'MATCH_EXISTING_CANON_ALIAS';
+    founderExplanation = 'Identity slot audit resolved the candidate as an alias of an existing canonical row. Promotion is not lawful from this state.';
+    missingFields = [];
+  } else if (identityAuditStatus === 'SLOT_CONFLICT') {
+    status = 'BLOCKED';
+    decision = 'SLOT_CONFLICT';
+    founderExplanation = 'Identity slot audit found an occupied canonical slot owned by a different card identity.';
+    missingFields = [];
+  } else if (identityAuditStatus === 'AMBIGUOUS') {
+    status = 'BLOCKED';
+    decision = 'AMBIGUOUS';
+    founderExplanation = 'Identity slot audit could not deterministically resolve a lawful canonical route.';
+  } else if (identityAuditStatus === 'VARIANT_IDENTITY') {
+    status = identity.auto_ready && Boolean(routedVariantKey) ? 'READY' : 'BLOCKED';
+    decision = status === 'READY' ? 'CREATE_NEW_CANON_PARENT' : 'BLOCKED';
+    founderExplanation = status === 'READY'
+      ? `Identity slot audit resolved ${identity.name} ${identity.printed_number} as an identity-bearing variant requiring variant_key=${routedVariantKey}.`
+      : 'Identity slot audit requires a deterministic variant_key before promotion can proceed.';
+    missingFields = uniqueText([
+      !identity.name ? 'card_name' : null,
+      !identity.number_plain ? 'printed_number' : null,
+      !identity.set_code ? 'set_code' : null,
+      !routedVariantKey ? 'variant_key' : null,
+    ]);
+  }
 
   return {
     version: 'V1',
     contract: SOURCE_IDENTITY_CONTRACT_V1,
     source_type: SOURCE_IDENTITY_TYPE,
     bridge_source: identity.bridge_source,
-    status: identity.auto_ready ? 'READY' : 'BLOCKED',
-    decision: identity.auto_ready ? 'CREATE_NEW_CANON_PARENT' : 'BLOCKED',
-    founder_explanation: identity.auto_ready
-      ? `Source-backed bridge candidate provides deterministic identity for ${identity.name} ${identity.printed_number}.`
-      : 'Source-backed bridge candidate is missing required identity fields.',
+    status,
+    decision,
+    founder_explanation: founderExplanation,
+    identity_audit_status: identityAuditStatus,
+    identity_audit_reason_code: identityAuditReasonCode,
+    identity_resolution: identityResolution,
+    identity_resolution_action: identityResolutionPackage?.action_payload ?? null,
     canon_context: {
       canonical_set_code: identity.set_code,
       canonical_set_name: identity.set_name,
-      matched_card_print_id: null,
-      matched_card_printing_id: null,
+      declared_set_code: identity.declared_set_code,
+      matched_card_print_id: matchedCardPrintId,
+      matched_card_printing_id: matchedCardPrintingId,
       number: identity.number_plain,
-      variant_key: identity.variant_key,
-      finish_key: null,
+      variant_key: routedVariantKey,
+      finish_key: routedFinishKey,
     },
-    proposed_action: identity.auto_ready ? proposedAction : null,
+    proposed_action: status === 'READY' ? proposedAction : null,
     variant_identity: identity.variant_identity ?? null,
     ambiguity_flags: identity.ambiguity_notes,
-    missing_fields: uniqueText([
-      !identity.name ? 'card_name' : null,
-      !identity.number_plain ? 'printed_number' : null,
-      !identity.set_code ? 'set_code' : null,
-      identity.variant_missing ? 'variant_key' : null,
-    ]),
+    missing_fields: missingFields,
   };
 }

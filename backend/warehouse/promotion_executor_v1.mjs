@@ -1,13 +1,15 @@
 import '../env.mjs';
 
 import pg from 'pg';
-import { buildCardPrintGvIdV1 } from './buildCardPrintGvIdV1.mjs';
+import { buildCardPrintGvIdV1, resolvePromoNumberV1 } from './buildCardPrintGvIdV1.mjs';
+import { validateIdentityResolutionForApprovedActionV1 } from '../identity/identity_resolution_v1.mjs';
 import { validatePerfectOrderVariantIdentityForPromotion } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
 import { normalizeVariantKey } from './source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
 
 const WORKER_NAME = 'promotion_executor_v1';
+const ALIAS_MAPPING_EXECUTION_VERSION = 'ALIAS_MAPPING_EXECUTION_V1';
 const POKEMON_GAME = 'pokemon';
 const ALLOWED_ACTION_TYPES = new Set([
   'CREATE_CARD_PRINT',
@@ -96,7 +98,9 @@ function normalizeLowerOrNull(value) {
 function normalizeNumberPlain(value) {
   const normalized = normalizeTextOrNull(value);
   if (!normalized) return null;
-  const digits = normalized.replace(/[^0-9]/g, '');
+  const compact = normalized.replace(/[⁄∕]/g, '/').replace(/\s+/g, '');
+  const left = compact.includes('/') ? compact.split('/', 1)[0] : compact;
+  const digits = left.replace(/[^0-9]/g, '');
   return digits.length > 0 ? digits : null;
 }
 
@@ -228,6 +232,28 @@ function extractCardName(payload) {
     normalizeTextOrNull(visibleHints?.card_name) ||
     normalizeTextOrNull(normalizedExtracted?.card_name) ||
     normalizeTextOrNull(classifiedExtracted?.card_name)
+  );
+}
+
+function extractPrintedNumberToken(payload) {
+  const visibleHints = getVisibleIdentityHints(payload);
+  const normalizedPackage = getNormalizedPackage(payload);
+  const classificationPackage = getClassificationPackage(payload);
+  const metadataIdentity = getMetadataIdentity(payload);
+  const frozenIdentity = asRecord(payload?.frozen_identity);
+  const plannedCardPrint = getPlannedCardPrint(payload);
+  const normalizedExtracted = asRecord(normalizedPackage?.raw_metadata_documentation)?.extracted_fields;
+  const classifiedExtracted = asRecord(classificationPackage?.metadata_documentation)?.extracted_fields;
+
+  return (
+    normalizeTextOrNull(plannedCardPrint?.number) ||
+    normalizeTextOrNull(frozenIdentity?.printed_number) ||
+    normalizeTextOrNull(frozenIdentity?.number) ||
+    normalizeTextOrNull(metadataIdentity?.printed_number) ||
+    normalizeTextOrNull(metadataIdentity?.number) ||
+    normalizeTextOrNull(visibleHints?.printed_number) ||
+    normalizeTextOrNull(normalizedExtracted?.printed_number) ||
+    normalizeTextOrNull(classifiedExtracted?.printed_number)
   );
 }
 
@@ -532,6 +558,34 @@ async function fetchExistingCardPrinting(client, cardPrintId, finishKey) {
   return rows[0] ?? null;
 }
 
+async function fetchExternalMappingBySourceExternalId(client, source, externalId) {
+  const normalizedSource = normalizeTextOrNull(source);
+  const normalizedExternalId = normalizeTextOrNull(externalId);
+  if (!normalizedSource || !normalizedExternalId) {
+    return null;
+  }
+
+  const { rows } = await client.query(
+    `
+      select
+        id,
+        card_print_id,
+        source,
+        external_id,
+        meta,
+        synced_at,
+        active
+      from public.external_mappings
+      where source = $1
+        and external_id = $2
+      limit 1
+    `,
+    [normalizedSource, normalizedExternalId],
+  );
+
+  return rows[0] ?? null;
+}
+
 async function finishKeyExists(client, finishKey) {
   const sql = `
     select key
@@ -575,6 +629,197 @@ async function insertExecutorEvent(client, payload) {
   ]);
 }
 
+function getAliasActionPayload(identityResolutionPackage) {
+  return asRecord(identityResolutionPackage?.action_payload);
+}
+
+function buildAliasMappingMeta({ candidate, identityResolutionPackage, mappedAt }) {
+  const actionPayload = getAliasActionPayload(identityResolutionPackage);
+  return {
+    alias_mapping_execution_version: ALIAS_MAPPING_EXECUTION_VERSION,
+    identity_resolution: normalizeTextOrNull(identityResolutionPackage?.identity_resolution),
+    identity_audit_status: normalizeTextOrNull(identityResolutionPackage?.identity_audit_status),
+    identity_audit_reason_code: normalizeTextOrNull(identityResolutionPackage?.identity_audit_reason_code),
+    warehouse_candidate_id: normalizeTextOrNull(candidate?.id),
+    bridge_source: normalizeTextOrNull(actionPayload?.bridge_source),
+    source_set_id: normalizeTextOrNull(actionPayload?.source_set_id),
+    source_candidate_id: normalizeTextOrNull(actionPayload?.source_candidate_id),
+    mapped_at: mappedAt,
+  };
+}
+
+export async function executeAliasMappingWithinTransaction(client, {
+  candidate,
+  identityResolutionPackage,
+  currentStaging = null,
+}) {
+  const candidateId = normalizeTextOrNull(candidate?.id);
+  const candidateState = normalizeTextOrNull(candidate?.state);
+  const founderApprovedByUserId = normalizeTextOrNull(candidate?.founder_approved_by_user_id);
+  const founderApprovedAt = normalizeTextOrNull(candidate?.founder_approved_at);
+
+  if (!candidateId) {
+    throw new ExecutorError('candidate_not_found_for_alias_execution');
+  }
+  if (!founderApprovedByUserId || !founderApprovedAt) {
+    throw new ExecutorError('founder_approval_missing_for_alias_execution', candidateId);
+  }
+
+  const identityResolution = normalizeTextOrNull(identityResolutionPackage?.identity_resolution);
+  if (identityResolution !== 'MAP_ALIAS') {
+    throw new ExecutorError('identity_resolution_not_map_alias', identityResolution ?? 'null');
+  }
+
+  const actionPayload = getAliasActionPayload(identityResolutionPackage);
+  const source = normalizeTextOrNull(actionPayload?.source);
+  const externalId = normalizeTextOrNull(actionPayload?.external_id);
+  const targetCardPrintId = normalizeTextOrNull(actionPayload?.matched_card_print_id);
+  if (!source || !externalId || !targetCardPrintId) {
+    throw new ExecutorError('alias_mapping_payload_incomplete', candidateId, {
+      source,
+      external_id: externalId,
+      matched_card_print_id: targetCardPrintId,
+      missing_requirements: Array.isArray(actionPayload?.missing_requirements) ? actionPayload.missing_requirements : [],
+    });
+  }
+
+  if (!['APPROVED_BY_FOUNDER', 'STAGED_FOR_PROMOTION'].includes(candidateState ?? '')) {
+    throw new ExecutorError('candidate_not_alias_executable', candidateState ?? 'null');
+  }
+
+  if (candidateState === 'STAGED_FOR_PROMOTION') {
+    const currentStagingId = normalizeTextOrNull(candidate?.current_staging_id);
+    if (!currentStagingId) {
+      throw new ExecutorError('candidate_current_staging_missing_for_alias_execution', candidateId);
+    }
+    if (!currentStaging || normalizeTextOrNull(currentStaging?.id) !== currentStagingId) {
+      throw new ExecutorError('candidate_current_staging_unresolved_for_alias_execution', candidateId, {
+        current_staging_id: currentStagingId,
+      });
+    }
+    if (normalizeTextOrNull(currentStaging?.execution_status) !== 'FAILED') {
+      throw new ExecutorError('alias_execution_requires_failed_staging', currentStagingId, {
+        execution_status: currentStaging?.execution_status ?? null,
+      });
+    }
+  }
+
+  const targetCardPrint = await fetchCardPrintById(client, targetCardPrintId);
+  if (!targetCardPrint) {
+    throw new ExecutorError('alias_mapping_target_missing', targetCardPrintId);
+  }
+
+  const existingMapping = await fetchExternalMappingBySourceExternalId(client, source, externalId);
+  if (existingMapping && normalizeTextOrNull(existingMapping.card_print_id) !== targetCardPrintId) {
+    throw new ExecutorError('alias_mapping_conflict', existingMapping.id, {
+      existing_card_print_id: normalizeTextOrNull(existingMapping.card_print_id),
+      target_card_print_id: targetCardPrintId,
+      source,
+      external_id: externalId,
+    });
+  }
+
+  const mappedAt = new Date().toISOString();
+  const meta = buildAliasMappingMeta({ candidate, identityResolutionPackage, mappedAt });
+  const mappingResult = await client.query(
+    `
+      insert into public.external_mappings (
+        card_print_id,
+        source,
+        external_id,
+        meta,
+        synced_at,
+        active
+      )
+      values ($1, $2, $3, $4::jsonb, $5, true)
+      on conflict (source, external_id)
+      do update set
+        card_print_id = excluded.card_print_id,
+        meta = coalesce(public.external_mappings.meta, '{}'::jsonb) || excluded.meta,
+        synced_at = excluded.synced_at,
+        active = true
+      where public.external_mappings.card_print_id = excluded.card_print_id
+      returning id, card_print_id, source, external_id, meta, synced_at, active
+    `,
+    [targetCardPrintId, source, externalId, JSON.stringify(meta), mappedAt],
+  );
+
+  const mappingRow = mappingResult.rows[0] ?? null;
+  if (!mappingRow) {
+    throw new ExecutorError('alias_mapping_upsert_failed', `${source}:${externalId}`, {
+      target_card_print_id: targetCardPrintId,
+    });
+  }
+
+  const previousState = candidateState;
+  const nextState = 'ARCHIVED';
+  const currentStagingId = normalizeTextOrNull(candidate?.current_staging_id);
+  const archiveNotes = `Alias mapping executed: ${source}/${externalId} -> ${targetCardPrintId}.`;
+  const candidateUpdate = await client.query(
+    `
+      update public.canon_warehouse_candidates
+      set
+        state = 'ARCHIVED',
+        current_staging_id = null,
+        current_review_hold_reason = null,
+        archived_by_user_id = $2,
+        archived_at = $3,
+        archive_notes = $4
+      where id = $1
+        and state = $5
+        and (
+          $6::uuid is null
+          or current_staging_id = $6::uuid
+        )
+      returning id
+    `,
+    [candidateId, founderApprovedByUserId, mappedAt, archiveNotes, previousState, currentStagingId],
+  );
+  if (candidateUpdate.rowCount !== 1) {
+    throw new ExecutorError('alias_candidate_archive_update_failed', candidateId, {
+      previous_state: previousState,
+      current_staging_id: currentStagingId,
+    });
+  }
+
+  await insertExecutorEvent(client, {
+    candidateId,
+    stagingId: currentStagingId,
+    eventType: 'ALIAS_MAPPING_EXECUTION_SUCCEEDED',
+    action: 'MAP_ALIAS',
+    previousState,
+    nextState,
+    metadata: {
+      alias_mapping_execution_version: ALIAS_MAPPING_EXECUTION_VERSION,
+      identity_resolution: identityResolution,
+      mapping_id: mappingRow.id,
+      source,
+      external_id: externalId,
+      card_print_id: targetCardPrintId,
+      previous_staging_id: currentStagingId,
+      recovered_failed_staging: previousState === 'STAGED_FOR_PROMOTION',
+    },
+  });
+
+  return {
+    status: 'applied',
+    summary: {
+      candidate_id: candidateId,
+      previous_state: previousState,
+      next_state: nextState,
+      identity_resolution: identityResolution,
+      mapping_id: mappingRow.id,
+      source,
+      external_id: externalId,
+      card_print_id: targetCardPrintId,
+      archived_at: mappedAt,
+      previous_staging_id: currentStagingId,
+      mapping_action: existingMapping ? 'UPDATED' : 'INSERTED',
+    },
+    mapping: mappingRow,
+  };
+}
+
 function buildBaseSummary(stage, candidate, payload) {
   return {
     staging_id: stage.id,
@@ -583,6 +828,92 @@ function buildBaseSummary(stage, candidate, payload) {
     execution_status: stage.execution_status,
     candidate_state: candidate?.state ?? null,
     payload_version: normalizeTextOrNull(payload?.payload_version),
+  };
+}
+
+function getPayloadIdentityAuditPackage(payload) {
+  return asRecord(payload?.latest_identity_audit_package);
+}
+
+function getPayloadIdentityResolutionPackage(payload) {
+  return (
+    asRecord(payload?.latest_identity_resolution_package) ??
+    asRecord(payload?.latest_classification_package?.identity_resolution_package) ??
+    null
+  );
+}
+
+function getPayloadIdentityResolution(payload) {
+  return (
+    normalizeTextOrNull(getPayloadIdentityResolutionPackage(payload)?.identity_resolution) ??
+    normalizeTextOrNull(payload?.latest_classification_package?.identity_resolution) ??
+    null
+  );
+}
+
+function validateApprovedIdentityAuditForExecution(approvedActionType, payload) {
+  if (approvedActionType === 'ENRICH_CANON_IMAGE') {
+    return {
+      ok: true,
+      status: normalizeTextOrNull(getPayloadIdentityAuditPackage(payload)?.identity_audit_status),
+    };
+  }
+
+  const status = normalizeTextOrNull(getPayloadIdentityAuditPackage(payload)?.identity_audit_status);
+  if (!status) {
+    return {
+      ok: false,
+      reason: 'identity_audit_missing_from_payload',
+      missing: ['latest_identity_audit_package.identity_audit_status'],
+    };
+  }
+
+  if (approvedActionType === 'CREATE_CARD_PRINT') {
+    if (status === 'NEW_CANONICAL' || status === 'VARIANT_IDENTITY') {
+      return { ok: true, status };
+    }
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_create_card_print:${status}`,
+      missing: ['Identity audit status NEW_CANONICAL or VARIANT_IDENTITY'],
+    };
+  }
+
+  if (approvedActionType === 'CREATE_CARD_PRINTING') {
+    if (status === 'PRINTING_ONLY') {
+      return { ok: true, status };
+    }
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_create_card_printing:${status}`,
+      missing: ['Identity audit status PRINTING_ONLY'],
+    };
+  }
+
+  if (status === 'ALIAS' || status === 'SLOT_CONFLICT' || status === 'AMBIGUOUS') {
+    return {
+      ok: false,
+      reason: `identity_audit_disallows_promotion:${status}`,
+      missing: ['Identity audit status must not be ALIAS, SLOT_CONFLICT, or AMBIGUOUS'],
+    };
+  }
+
+  return { ok: true, status };
+}
+
+function validateApprovedIdentityResolutionForExecution(approvedActionType, payload) {
+  const identityResolution = getPayloadIdentityResolution(payload);
+  const hasIdentityAuditStatus = normalizeTextOrNull(getPayloadIdentityAuditPackage(payload)?.identity_audit_status);
+  if (!identityResolution && !hasIdentityAuditStatus) {
+    return {
+      ok: true,
+      identity_resolution: null,
+    };
+  }
+  const validation = validateIdentityResolutionForApprovedActionV1(identityResolution, approvedActionType);
+  return {
+    ...validation,
+    identity_resolution: identityResolution,
   };
 }
 
@@ -648,6 +979,20 @@ async function buildExecutionPlan(client, stage, candidate) {
   if (!(await hasExplicitFounderApproval(client, candidate.id))) {
     throw new ExecutorError('explicit_founder_approval_missing');
   }
+  const identityAuditValidation = validateApprovedIdentityAuditForExecution(stage.approved_action_type, payload);
+  if (!identityAuditValidation.ok) {
+    throw new ExecutorError(identityAuditValidation.reason, stage.id, {
+      identity_audit_status: identityAuditValidation.status ?? null,
+      missing_requirements: identityAuditValidation.missing ?? [],
+    });
+  }
+  const identityResolutionValidation = validateApprovedIdentityResolutionForExecution(stage.approved_action_type, payload);
+  if (!identityResolutionValidation.ok) {
+    throw new ExecutorError(identityResolutionValidation.reason, stage.id, {
+      identity_resolution: identityResolutionValidation.identity_resolution ?? null,
+      missing_requirements: identityResolutionValidation.missing ?? [],
+    });
+  }
   if (
     candidate.promotion_result_type !== null ||
     candidate.promoted_card_print_id !== null ||
@@ -659,7 +1004,11 @@ async function buildExecutionPlan(client, stage, candidate) {
     throw new ExecutorError('candidate_already_has_promotion_result');
   }
 
-  const baseSummary = buildBaseSummary(stage, candidate, payload);
+  const baseSummary = {
+    ...buildBaseSummary(stage, candidate, payload),
+    identity_audit_status: identityAuditValidation.status ?? null,
+    identity_resolution: identityResolutionValidation.identity_resolution ?? null,
+  };
 
   switch (stage.approved_action_type) {
     case 'CREATE_CARD_PRINT':
@@ -676,6 +1025,7 @@ async function buildExecutionPlan(client, stage, candidate) {
 async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseSummary) {
   const setCode = extractSetCode(payload);
   const cardName = extractCardName(payload);
+  const printedNumber = extractPrintedNumberToken(payload);
   const numberPlain = extractPrintedNumberPlain(payload);
   const variantKey = extractVariantKey(payload);
   const variantIdentityValidation = validatePerfectOrderVariantIdentityForPromotion(
@@ -708,11 +1058,17 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
 
   const setRow = setRows[0];
+  const canonicalNumber =
+    resolvePromoNumberV1({
+      setCode: setRow.code,
+      number: printedNumber,
+      numberPlain,
+    }) ?? numberPlain;
   let namespaceDecision = null;
   const gvId = buildCardPrintGvIdV1({
     setCode: setRow.code,
     printedSetAbbrev: setRow.printed_set_abbrev,
-    number: numberPlain,
+    number: canonicalNumber,
     numberPlain,
     variantKey,
     onNamespaceDecision(decision) {
@@ -785,14 +1141,14 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
     ok: true,
     action_type: stage.approved_action_type,
     result_type: PROMOTION_RESULT_TYPES.CARD_PRINT_CREATED,
-    mutation: {
-      type: 'insert_card_print',
-      set_id: setRow.id,
-      set_code: setRow.code,
-      number: numberPlain,
-      variant_key: variantKey,
-      name: cardName,
-      rarity,
+      mutation: {
+        type: 'insert_card_print',
+        set_id: setRow.id,
+        set_code: setRow.code,
+        number: canonicalNumber,
+        variant_key: variantKey,
+        name: cardName,
+        rarity,
       tcgplayer_id: tcgplayerId,
       gv_id: gvId,
       image_source: normalizedFrontImagePath ? 'identity' : null,

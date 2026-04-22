@@ -6,6 +6,8 @@ import {
   VERSION_FINISH_DECISIONS,
   interpretVersionVsFinish,
 } from '../printing/version_finish_interpreter_v1.mjs';
+import { auditWarehouseCandidateIdentitySlotV1 } from '../identity/identity_slot_audit_v1.mjs';
+import { resolveIdentityResolutionV1 } from '../identity/identity_resolution_v1.mjs';
 import {
   buildSourceBackedInterpreterPackage,
   buildSourceBackedMetadataExtractionPackages,
@@ -43,6 +45,7 @@ function parseArgs(argv) {
   const opts = {
     limit: 25,
     candidateId: null,
+    reclassifyAll: false,
     dryRun: true,
     apply: false,
   };
@@ -70,6 +73,10 @@ function parseArgs(argv) {
       if (value) {
         opts.candidateId = value;
       }
+      continue;
+    }
+    if (arg === '--reclassify-all') {
+      opts.reclassifyAll = true;
     }
   }
 
@@ -90,7 +97,9 @@ function normalizeLowerOrNull(value) {
 function normalizeNumberPlain(value) {
   const normalized = normalizeTextOrNull(value);
   if (!normalized) return null;
-  const digits = normalized.replace(/[^0-9]/g, '');
+  const compact = normalized.replace(/[⁄∕]/g, '/').replace(/\s+/g, '');
+  const left = compact.includes('/') ? compact.split('/', 1)[0] : compact;
+  const digits = left.replace(/[^0-9]/g, '');
   return digits.length > 0 ? digits : null;
 }
 
@@ -477,6 +486,17 @@ async function fetchRawCandidateIds(client, limit) {
   return rows.map((row) => row.id);
 }
 
+async function fetchCandidateIdsForReclassification(client, limit) {
+  const sql = `
+    select id
+    from public.canon_warehouse_candidates
+    order by created_at asc, id asc
+    limit $1
+  `;
+  const { rows } = await client.query(sql, [limit]);
+  return rows.map((row) => row.id);
+}
+
 async function fetchCandidate(client, candidateId) {
   const sql = `
     select
@@ -488,6 +508,9 @@ async function fetchCandidate(client, candidateId) {
       tcgplayer_id,
       submission_intent,
       state,
+      identity_audit_status,
+      identity_audit_reason_code,
+      identity_resolution,
       claimed_identity_payload,
       reference_hints_payload,
       current_review_hold_reason,
@@ -1039,6 +1062,7 @@ async function buildPackages(client, artifact) {
 
   const provisionalSetHint =
     selectSetHint(scanResolverCandidates, exactConditionMatch ?? exactTcgplayer.rows[0] ?? null) ??
+    sourceBackedIdentity.set_code ??
     claimedIdentityHints.set_hint;
   const provisionalRarityHint =
     selectRarityHint(exactConditionMatch ?? exactTcgplayer.rows[0] ?? null, scanResolverCandidates) ??
@@ -1050,7 +1074,10 @@ async function buildPackages(client, artifact) {
   const visibleIdentityHints = {
     card_name: bestScanHint?.name ?? claimedIdentityHints.card_name ?? null,
     printed_number: normalizePrintedNumber(bestScanHint?.printed_number ?? claimedIdentityHints.printed_number),
-    printed_number_plain: normalizeNumberPlain(bestScanHint?.printed_number ?? claimedIdentityHints.printed_number),
+    printed_number_plain:
+      normalizeTextOrNull(candidate?.claimed_identity_payload?.number_plain) ??
+      normalizeTextOrNull(candidate?.reference_hints_payload?.number_plain) ??
+      normalizeNumberPlain(bestScanHint?.printed_number ?? claimedIdentityHints.printed_number),
     set_hint: provisionalSetHint,
     set_symbol_hint: selectSetSymbolHint(scanResolverCandidates),
     finish_hint: finishSignals.finishHint,
@@ -1211,6 +1238,34 @@ async function buildPackages(client, artifact) {
     );
   }
 
+  const identityAuditPackage = await auditWarehouseCandidateIdentitySlotV1(client, {
+    candidate,
+    visibleIdentityHints,
+    candidateVariantIdentity,
+    sourceBackedIdentity,
+    finishInterpretation,
+    matchedCardPrint,
+    matchedCardPrinting,
+  });
+
+  const identityAuditMatchedCardPrintId = normalizeTextOrNull(
+    identityAuditPackage?.routing?.matched_card_print_id,
+  );
+  for (const flag of identityAuditPackage?.ambiguity_flags ?? []) {
+    pushUnique(ambiguityNotes, flag);
+  }
+  if (identityAuditMatchedCardPrintId && (!matchedCardPrint || matchedCardPrint.id !== identityAuditMatchedCardPrintId)) {
+    const rehydratedRows = await fetchCardPrintsByIds(client, [identityAuditMatchedCardPrintId]);
+    matchedCardPrint = rehydratedRows[0] ?? matchedCardPrint;
+  }
+  if (matchedCardPrint?.id && finishInterpretation.decision === VERSION_FINISH_DECISIONS.CHILD) {
+    matchedCardPrinting = await fetchCardPrintingByParentAndFinish(
+      client,
+      matchedCardPrint.id,
+      finishInterpretation.resolvedFinishKey,
+    );
+  }
+
   let classificationStatus = 'CLASSIFICATION_BLOCKED';
   let interpreterDecision = 'BLOCKED';
   let interpreterReasonCode = 'INSUFFICIENT_IDENTITY_SIGNAL';
@@ -1227,6 +1282,7 @@ async function buildPackages(client, artifact) {
     !!visibleIdentityHints.printed_number ||
     !!matchedCardPrint ||
     !!normalizeTextOrNull(candidate.tcgplayer_id);
+  const identityAuditStatus = normalizeTextOrNull(identityAuditPackage?.identity_audit_status);
 
   if (normalizationStatus === 'NORMALIZATION_BLOCKED') {
     classificationStatus = 'CLASSIFICATION_BLOCKED';
@@ -1234,6 +1290,39 @@ async function buildPackages(client, artifact) {
     interpreterExplanation = 'Blocked warehouse classification because normalization did not produce a usable interpretation package.';
     proposedActionType = 'BLOCKED_NO_PROMOTION';
     needsPromotionReview = true;
+  } else if (identityAuditStatus === 'PRINTING_ONLY') {
+    classificationStatus = 'CLASSIFIED_READY';
+    interpreterDecision = 'CHILD';
+    interpreterReasonCode = normalizeTextOrNull(identityAuditPackage?.reason_code) ?? 'PRINTING_ONLY';
+    interpreterExplanation = identityAuditPackage?.explanation ?? 'Identity slot audit resolved a finish-only child path.';
+    proposedActionType = matchedCardPrinting ? 'ENRICH_CANON_IMAGE' : 'CREATE_CARD_PRINTING';
+    needsPromotionReview = false;
+    interpreterResolvedFinishKey =
+      normalizeTextOrNull(identityAuditPackage?.routing?.finish_key) ??
+      finishInterpretation.resolvedFinishKey;
+    classificationBasis = 'identity_audit';
+    resolverPath = 'identity_slot_audit_v1';
+    resolverConfidence = 1;
+  } else if (identityAuditStatus === 'NEW_CANONICAL' || identityAuditStatus === 'VARIANT_IDENTITY') {
+    classificationStatus = 'CLASSIFIED_READY';
+    interpreterDecision = 'ROW';
+    interpreterReasonCode = normalizeTextOrNull(identityAuditPackage?.reason_code) ?? identityAuditStatus;
+    interpreterExplanation = identityAuditPackage?.explanation ?? 'Identity slot audit resolved a new canonical row path.';
+    proposedActionType = 'CREATE_CARD_PRINT';
+    needsPromotionReview = false;
+    classificationBasis = 'identity_audit';
+    resolverPath = 'identity_slot_audit_v1';
+    resolverConfidence = 1;
+  } else if (identityAuditStatus === 'ALIAS' || identityAuditStatus === 'SLOT_CONFLICT' || identityAuditStatus === 'AMBIGUOUS') {
+    classificationStatus = 'CLASSIFIED_PARTIAL';
+    interpreterDecision = 'BLOCKED';
+    interpreterReasonCode = normalizeTextOrNull(identityAuditPackage?.reason_code) ?? identityAuditStatus;
+    interpreterExplanation = identityAuditPackage?.explanation ?? 'Identity slot audit did not produce a lawful promotion route.';
+    proposedActionType = 'REVIEW_REQUIRED';
+    needsPromotionReview = true;
+    classificationBasis = 'identity_audit';
+    resolverPath = 'identity_slot_audit_v1';
+    resolverConfidence = 1;
   } else if (matchedCardPrint && candidate.submission_intent === 'MISSING_IMAGE' && finishInterpretation.decision !== VERSION_FINISH_DECISIONS.CHILD) {
     classificationStatus = 'CLASSIFIED_READY';
     interpreterDecision = 'ROW';
@@ -1334,7 +1423,7 @@ async function buildPackages(client, artifact) {
   const sourceBackedRequiresFounderReview =
     sourceBackedIdentity.is_bridge_candidate &&
     classificationStatus === 'CLASSIFIED_READY' &&
-    proposedActionType === 'CREATE_CARD_PRINT';
+    (proposedActionType === 'CREATE_CARD_PRINT' || proposedActionType === 'CREATE_CARD_PRINTING');
 
   if (
     sourceBackedRequiresFounderReview &&
@@ -1347,7 +1436,26 @@ async function buildPackages(client, artifact) {
 
   const shouldQueueReview =
     classificationStatus === 'CLASSIFIED_READY' ||
+    classificationBasis === 'identity_audit' ||
     (classificationBasis === 'resolver_match' && lowConfidenceResolverMatch && reviewableCandidate);
+
+  const identityResolutionPackage = resolveIdentityResolutionV1({
+    candidate,
+    identityAuditPackage,
+    classificationPackage: {
+      candidate_id: candidate.id,
+      classification_status: classificationStatus,
+      interpreter_decision: interpreterDecision,
+      interpreter_reason_code: interpreterReasonCode,
+      interpreter_explanation: interpreterExplanation,
+      proposed_action_type: proposedActionType,
+      metadata_documentation: {
+        extracted_fields: {
+          identity_audit_package: identityAuditPackage,
+        },
+      },
+    },
+  });
 
   const classificationPackage = {
     candidate_id: candidate.id,
@@ -1356,6 +1464,8 @@ async function buildPackages(client, artifact) {
     interpreter_reason_code: interpreterReasonCode,
     interpreter_explanation: interpreterExplanation,
     proposed_action_type: proposedActionType,
+    identity_resolution: identityResolutionPackage.identity_resolution,
+    identity_resolution_package: identityResolutionPackage,
     resolver_summary: {
       matched_card_print_id: matchedCardPrint?.id ?? null,
       matched_card_printing_id: matchedCardPrinting?.id ?? null,
@@ -1374,6 +1484,7 @@ async function buildPackages(client, artifact) {
         source_summary: sourceSummary,
         source_type: sourceBackedIdentity.source_type,
         bridge_source: sourceBackedIdentity.bridge_source,
+        identity_audit_package: identityAuditPackage,
         normalized_image_refs: normalizedImageRefs,
         exact_condition_snapshot_card_print_id: exactConditionMatch?.id ?? null,
         scan_result_candidate_ids: scanResolverCandidates.map((row) => row.id),
@@ -1405,6 +1516,7 @@ async function buildPackages(client, artifact) {
       ? buildSourceBackedInterpreterPackage({
           candidate,
           classificationPackage,
+          identityAuditPackage,
         })
       : null;
 
@@ -1494,6 +1606,7 @@ async function buildPackages(client, artifact) {
       metadata: {
         normalized_package: normalizedPackage,
         classification_package: classificationPackage,
+        identity_audit_package: identityAuditPackage,
         raw_extraction_package: sourceBackedMetadata?.rawPackage ?? null,
         normalized_metadata_package: sourceBackedMetadata?.normalizedPackage ?? null,
         interpreter_package: sourceBackedInterpreterPackage,
@@ -1516,6 +1629,7 @@ async function buildPackages(client, artifact) {
         metadata: {
           normalized_package: normalizedPackage,
           classification_package: classificationPackage,
+          identity_audit_package: identityAuditPackage,
         },
       });
     }
@@ -1526,6 +1640,10 @@ async function buildPackages(client, artifact) {
     candidateSummary,
     normalizedPackage,
     classificationPackage,
+    identityAuditPackage,
+    sourceBackedRawExtractionPackage: sourceBackedMetadata?.rawPackage ?? null,
+    sourceBackedNormalizedMetadataPackage: sourceBackedMetadata?.normalizedPackage ?? null,
+    sourceBackedInterpreterPackage,
     writePlan,
     latestEvidenceAt: evidenceRows
       .map((row) => row.created_at)
@@ -1623,7 +1741,10 @@ async function applyWritePlan(pool, buildResult) {
             interpreter_resolved_finish_key = case when $6::text is null then interpreter_resolved_finish_key else $6::text end,
             needs_promotion_review = coalesce($7, needs_promotion_review),
             proposed_action_type = case when $8::text is null then proposed_action_type else $8::text end,
-            current_review_hold_reason = $9::text
+            current_review_hold_reason = $9::text,
+            identity_audit_status = $10::text,
+            identity_audit_reason_code = $11::text,
+            identity_resolution = $12::text
           where id = $1
         `;
         await connection.query(sql, [
@@ -1636,6 +1757,9 @@ async function applyWritePlan(pool, buildResult) {
           typeof step.needsPromotionReview === 'boolean' ? step.needsPromotionReview : null,
           step.proposedActionType ?? null,
           step.currentReviewHoldReason ?? null,
+          buildResult.identityAuditPackage?.identity_audit_status ?? null,
+          buildResult.identityAuditPackage?.reason_code ?? null,
+          buildResult.classificationPackage?.identity_resolution ?? null,
         ]);
         continue;
       }
@@ -1662,6 +1786,101 @@ async function applyWritePlan(pool, buildResult) {
   }
 }
 
+async function applyReclassificationResult(pool, buildResult) {
+  const connection = await pool.connect();
+  try {
+    await connection.query('begin');
+
+    const lockResult = await connection.query(
+      `
+        select id, state
+        from public.canon_warehouse_candidates
+        where id = $1
+        for update
+      `,
+      [buildResult.candidate.id],
+    );
+    const lockedCandidate = lockResult.rows[0] ?? null;
+    if (!lockedCandidate) {
+      throw new Error(`candidate_not_found:${buildResult.candidate.id}`);
+    }
+
+    const evidenceResult = await connection.query(
+      `
+        select max(created_at) as latest_evidence_at
+        from public.canon_warehouse_candidate_evidence
+        where candidate_id = $1
+      `,
+      [buildResult.candidate.id],
+    );
+    const latestEvidenceAt = evidenceResult.rows[0]?.latest_evidence_at ?? null;
+    if (
+      latestEvidenceAt &&
+      buildResult.latestEvidenceAt &&
+      new Date(latestEvidenceAt).getTime() !== new Date(buildResult.latestEvidenceAt).getTime()
+    ) {
+      throw new Error(`candidate_evidence_changed_during_reclassification:${buildResult.candidate.id}`);
+    }
+
+    await connection.query(
+      `
+        update public.canon_warehouse_candidates
+        set
+          interpreter_decision = coalesce($2, interpreter_decision),
+          interpreter_reason_code = coalesce($3, interpreter_reason_code),
+          interpreter_explanation = coalesce($4, interpreter_explanation),
+          interpreter_resolved_finish_key = case when $5::text is null then interpreter_resolved_finish_key else $5::text end,
+          needs_promotion_review = coalesce($6, needs_promotion_review),
+          proposed_action_type = case when $7::text is null then proposed_action_type else $7::text end,
+          current_review_hold_reason = $8::text,
+          identity_audit_status = $9::text,
+          identity_audit_reason_code = $10::text,
+          identity_resolution = $11::text
+        where id = $1
+      `,
+      [
+        buildResult.candidate.id,
+        buildResult.candidateSummary?.interpreter_decision ?? null,
+        buildResult.candidateSummary?.interpreter_reason_code ?? null,
+        buildResult.candidateSummary?.interpreter_explanation ?? null,
+        buildResult.candidateSummary?.interpreter_resolved_finish_key ?? null,
+        typeof buildResult.candidateSummary?.needs_promotion_review === 'boolean'
+          ? buildResult.candidateSummary.needs_promotion_review
+          : null,
+        buildResult.candidateSummary?.proposed_action_type ?? null,
+        buildResult.candidateSummary?.current_review_hold_reason ?? null,
+        buildResult.identityAuditPackage?.identity_audit_status ?? null,
+        buildResult.identityAuditPackage?.reason_code ?? null,
+        buildResult.classificationPackage?.identity_resolution ?? null,
+      ],
+    );
+
+    await insertWarehouseEvent(connection, {
+      candidateId: buildResult.candidate.id,
+      eventType: 'IDENTITY_RECLASSIFIED',
+      action: 'RECONCILE',
+      previousState: lockedCandidate.state,
+      nextState: lockedCandidate.state,
+      notes: buildResult.classificationPackage?.identity_resolution ?? null,
+      metadata: {
+        normalized_package: buildResult.normalizedPackage,
+        classification_package: buildResult.classificationPackage,
+        identity_audit_package: buildResult.identityAuditPackage,
+        raw_extraction_package: buildResult.sourceBackedRawExtractionPackage,
+        normalized_metadata_package: buildResult.sourceBackedNormalizedMetadataPackage,
+        interpreter_package: buildResult.sourceBackedInterpreterPackage,
+      },
+    });
+
+    await connection.query('commit');
+  } catch (error) {
+    await connection.query('rollback');
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
 async function processCandidate(pool, candidateId, opts) {
   const connection = await pool.connect();
   try {
@@ -1671,18 +1890,20 @@ async function processCandidate(pool, candidateId, opts) {
       return { status: 'skipped', reason: 'candidate_not_found' };
     }
 
-    if (artifact.candidate.state !== 'RAW') {
+    if (!opts.reclassifyAll && artifact.candidate.state !== 'RAW') {
       return { status: 'skipped', reason: `candidate_not_raw:${artifact.candidate.state}` };
     }
 
-    const processGate = shouldProcessCandidate(
-      artifact.candidate,
-      artifact.evidenceRows,
-      artifact.events,
-      !!opts.candidateId,
-    );
-    if (!processGate.shouldProcess) {
-      return { status: 'skipped', reason: processGate.reason };
+    if (!opts.reclassifyAll) {
+      const processGate = shouldProcessCandidate(
+        artifact.candidate,
+        artifact.evidenceRows,
+        artifact.events,
+        !!opts.candidateId,
+      );
+      if (!processGate.shouldProcess) {
+        return { status: 'skipped', reason: processGate.reason };
+      }
     }
 
     const buildResult = await buildPackages(connection, artifact);
@@ -1692,6 +1913,8 @@ async function processCandidate(pool, candidateId, opts) {
       submission_intent: buildResult.candidate.submission_intent,
       normalization_status: buildResult.normalizedPackage.normalization_status,
       classification_status: buildResult.classificationPackage.classification_status,
+      identity_audit_status: buildResult.identityAuditPackage?.identity_audit_status ?? null,
+      identity_resolution: buildResult.classificationPackage.identity_resolution ?? null,
       interpreter_decision: buildResult.classificationPackage.interpreter_decision,
       interpreter_reason_code: buildResult.classificationPackage.interpreter_reason_code,
       proposed_action_type: buildResult.classificationPackage.proposed_action_type,
@@ -1701,24 +1924,40 @@ async function processCandidate(pool, candidateId, opts) {
     };
 
     if (opts.dryRun) {
-      log('dry_run_candidate_plan', {
+      log(opts.reclassifyAll ? 'dry_run_reclassification_plan' : 'dry_run_candidate_plan', {
         ...summary,
         candidate_summary: buildResult.candidateSummary,
         normalized_package: buildResult.normalizedPackage,
         classification_package: buildResult.classificationPackage,
+        identity_audit_package: buildResult.identityAuditPackage,
         write_plan: buildResult.writePlan,
       });
       return { status: 'dry_run', summary };
     }
 
-    return { status: 'apply_pending', summary, buildResult };
+    return { status: opts.reclassifyAll ? 'reclassify_pending' : 'apply_pending', summary, buildResult };
   } finally {
     connection.release();
   }
 }
 
-async function main() {
-  const opts = parseArgs(process.argv.slice(2));
+export async function runClassificationWorkerV1(input = {}) {
+  const opts = {
+    limit:
+      Number.isFinite(Number(input.limit)) && Number(input.limit) > 0
+        ? Math.trunc(Number(input.limit))
+        : 25,
+    candidateId: normalizeTextOrNull(input.candidateId),
+    reclassifyAll: Boolean(input.reclassifyAll),
+    dryRun: input.apply ? false : input.dryRun === false ? false : true,
+    apply: Boolean(input.apply),
+    emitLogs: input.emitLogs !== false,
+  };
+
+  if (opts.apply) {
+    opts.dryRun = false;
+  }
+
   if (!process.env.SUPABASE_DB_URL) {
     throw new Error('SUPABASE_DB_URL is required');
   }
@@ -1730,14 +1969,19 @@ async function main() {
   try {
     const candidateIds = opts.candidateId
       ? [opts.candidateId]
-      : await fetchRawCandidateIds(pool, opts.limit);
+      : opts.reclassifyAll
+        ? await fetchCandidateIdsForReclassification(pool, opts.limit)
+        : await fetchRawCandidateIds(pool, opts.limit);
 
-    log('worker_start', {
-      mode: opts.apply ? 'apply' : 'dry-run',
-      requested_limit: opts.limit,
-      candidate_id: opts.candidateId,
-      raw_candidate_count: candidateIds.length,
-    });
+    if (opts.emitLogs) {
+      log('worker_start', {
+        workflow: opts.reclassifyAll ? 'reclassify-all' : 'classify-raw',
+        mode: opts.apply ? 'apply' : 'dry-run',
+        requested_limit: opts.limit,
+        candidate_id: opts.candidateId,
+        candidate_count: candidateIds.length,
+      });
+    }
 
     const results = [];
     for (const candidateId of candidateIds) {
@@ -1746,7 +1990,15 @@ async function main() {
         if (opts.apply && result.status === 'apply_pending') {
           await applyWritePlan(pool, result.buildResult);
           results.push({ candidateId, status: 'applied', summary: result.summary });
-          log('candidate_applied', result.summary);
+          if (opts.emitLogs) {
+            log('candidate_applied', result.summary);
+          }
+        } else if (opts.apply && result.status === 'reclassify_pending') {
+          await applyReclassificationResult(pool, result.buildResult);
+          results.push({ candidateId, status: 'reclassified', summary: result.summary });
+          if (opts.emitLogs) {
+            log('candidate_reclassified', result.summary);
+          }
         } else {
           results.push({ candidateId, ...result });
         }
@@ -1756,18 +2008,32 @@ async function main() {
           status: 'failed',
           reason: error.message,
         });
-        log('candidate_failed', { candidate_id: candidateId, error: error.message });
+        if (opts.emitLogs) {
+          log('candidate_failed', { candidate_id: candidateId, error: error.message });
+        }
       }
     }
 
-    log('worker_complete', {
+    const summary = {
+      workflow: opts.reclassifyAll ? 'reclassify-all' : 'classify-raw',
       mode: opts.apply ? 'apply' : 'dry-run',
       processed: results.length,
       results,
-    });
+    };
+
+    if (opts.emitLogs) {
+      log('worker_complete', summary);
+    }
+
+    return summary;
   } finally {
     await pool.end();
   }
+}
+
+async function main() {
+  const opts = parseArgs(process.argv.slice(2));
+  await runClassificationWorkerV1(opts);
 }
 
 if (process.argv[1] && process.argv[1].includes('classification_worker_v1.mjs')) {

@@ -1,26 +1,35 @@
 import '../env.mjs';
 
+import fs from 'fs';
+import path from 'path';
 import pg from 'pg';
 
 import { derivePerfectOrderVariantIdentity } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
+import { STAMPED_IDENTITY_RULE_V1 } from '../identity/stamped_identity_rule_v1.mjs';
 
 const { Client } = pg;
 
 const BRIDGE_VERSION = 'EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1';
 const BRIDGE_SOURCE = 'external_discovery_bridge_v1';
-const SUPPORTED_SET_ID = 'me03-perfect-order-pokemon';
 const FOUNDER_EMAIL = 'ccabrl@gmail.com';
+const STANDARD_BRIDGE_MATCH_STATUS = 'UNMATCHED';
+const STANDARD_BRIDGE_BUCKET = 'CLEAN_CANON_CANDIDATE';
+const RETROACTIVE_SET_MAPPING_REASON = 'set_mapping_missing';
 
 const PRODUCT_NAME_PATTERN =
   /\b(booster box|box|pack|collection|bundle|deck|case|tin|etb|accessory|sleeve|binder|code card)\b/i;
 
 function printUsage() {
-  console.log(`Usage: node backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs --set-id=<external-set-id> [--apply]`);
+  console.log(
+    `Usage: node backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs --set-id=<external-set-id> [--source-candidate-id=<uuid> ...] [--stamped-batch-file=<path>] [--apply]`,
+  );
 }
 
 function parseArgs(argv) {
   let setId = null;
   let apply = false;
+  let stampedBatchFile = null;
+  const sourceCandidateIds = [];
 
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
@@ -46,6 +55,34 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (value.startsWith('--source-candidate-id=')) {
+      const candidateId = value.slice('--source-candidate-id='.length).trim();
+      if (candidateId) {
+        sourceCandidateIds.push(candidateId);
+      }
+      continue;
+    }
+
+    if (value === '--source-candidate-id') {
+      const candidateId = argv[index + 1]?.trim() || null;
+      if (candidateId) {
+        sourceCandidateIds.push(candidateId);
+      }
+      index += 1;
+      continue;
+    }
+
+    if (value.startsWith('--stamped-batch-file=')) {
+      stampedBatchFile = value.slice('--stamped-batch-file='.length).trim() || null;
+      continue;
+    }
+
+    if (value === '--stamped-batch-file') {
+      stampedBatchFile = argv[index + 1]?.trim() || null;
+      index += 1;
+      continue;
+    }
+
     throw new Error(`unknown_argument:${value}`);
   }
 
@@ -53,7 +90,12 @@ function parseArgs(argv) {
     throw new Error('missing_required_argument:--set-id');
   }
 
-  return { setId, apply };
+  return {
+    setId,
+    apply,
+    stampedBatchFile,
+    sourceCandidateIds: [...new Set(sourceCandidateIds)],
+  };
 }
 
 function normalizeTextOrNull(value) {
@@ -75,6 +117,14 @@ function normalizeNumberPlain(value) {
   return digits.length > 0 ? digits : null;
 }
 
+function resolveInputPath(value) {
+  const normalized = normalizeTextOrNull(value);
+  if (!normalized) {
+    return null;
+  }
+  return path.isAbsolute(normalized) ? normalized : path.join(process.cwd(), normalized);
+}
+
 function asRecord(value) {
   return value && typeof value === 'object' && !Array.isArray(value) ? value : null;
 }
@@ -85,21 +135,52 @@ function uniqueSortedStrings(values) {
   );
 }
 
-function inferCanonicalSetCode(setId) {
-  if (setId === SUPPORTED_SET_ID) {
-    return 'me03';
-  }
-
-  return null;
-}
-
-function inferCanonicalSetName(sourcePayload) {
-  const setName = normalizeTextOrNull(sourcePayload?.set_name);
-  if (!setName) {
+function loadStampedBatchLookup(batchFilePath) {
+  const resolvedPath = resolveInputPath(batchFilePath);
+  if (!resolvedPath) {
     return null;
   }
 
-  return setName.replace(/^ME03:\s*/i, '').trim();
+  const parsed = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
+  const rows = Array.isArray(parsed?.rows) ? parsed.rows : [];
+  const bySourceCandidateId = new Map();
+
+  for (const rawRow of rows) {
+    const row = asRecord(rawRow);
+    if (!row) {
+      continue;
+    }
+
+    const liveSourceCandidateId = normalizeTextOrNull(row.pre_intake_audit?.live_source_candidate_id);
+    if (!liveSourceCandidateId) {
+      continue;
+    }
+
+    bySourceCandidateId.set(liveSourceCandidateId, {
+      batch_index: Number(row.batch_index ?? 0),
+      source_external_id: normalizeTextOrNull(row.source_external_id),
+      source_set_id: normalizeTextOrNull(row.source_set_id),
+      name: normalizeTextOrNull(row.name),
+      candidate_name: normalizeTextOrNull(row.candidate_name),
+      printed_number: normalizeTextOrNull(row.printed_number),
+      number_plain: normalizeNumberPlain(row.number_plain),
+      proposed_variant_key: normalizeTextOrNull(row.proposed_variant_key),
+      governing_rule_source: normalizeTextOrNull(row.governing_rule_source),
+      stamp_label: normalizeTextOrNull(row.stamp_label),
+      canonical_queue_key: normalizeTextOrNull(row.canonical_queue_key),
+      effective_routed_set_code: normalizeTextOrNull(row.effective_routed_set_code),
+      effective_routed_set_name: normalizeTextOrNull(row.effective_routed_set_name),
+      effective_identity_space: normalizeTextOrNull(row.effective_identity_space),
+      underlying_base_proof_summary: asRecord(row.underlying_base_proof_summary) ?? null,
+      target_base_resolution: asRecord(row.target_base_resolution) ?? null,
+      pre_intake_audit: asRecord(row.pre_intake_audit) ?? null,
+    });
+  }
+
+  return {
+    resolvedPath,
+    bySourceCandidateId,
+  };
 }
 
 function isLikelyProductRow(row) {
@@ -115,6 +196,16 @@ function isLikelyProductRow(row) {
     .join(' ');
 
   return PRODUCT_NAME_PATTERN.test(values);
+}
+
+function shouldBypassProductRowExclusion(stampedBatchEntry) {
+  return Boolean(
+    stampedBatchEntry &&
+      normalizeTextOrNull(stampedBatchEntry.governing_rule_source) &&
+      normalizeTextOrNull(stampedBatchEntry.stamp_label) &&
+      normalizeTextOrNull(stampedBatchEntry.effective_routed_set_code) &&
+      asRecord(stampedBatchEntry.target_base_resolution),
+  );
 }
 
 function extractClassificationReason(row) {
@@ -149,6 +240,18 @@ function extractRarity(row) {
   );
 }
 
+function extractBaseNameForBridge(row, stampedBatchEntry = null) {
+  return normalizeTextOrNull(stampedBatchEntry?.name) ?? extractBaseName(row);
+}
+
+function extractNumberPlainForBridge(row, stampedBatchEntry = null) {
+  return (
+    normalizeNumberPlain(stampedBatchEntry?.number_plain) ??
+    normalizeNumberPlain(row.normalized_number_plain) ??
+    normalizeNumberPlain(extractPrintedNumber(row))
+  );
+}
+
 function extractVariantIdentity(row) {
   return derivePerfectOrderVariantIdentity({
     sourceSetId: row.set_id,
@@ -157,6 +260,76 @@ function extractVariantIdentity(row) {
     rawRarity: extractRarity(row),
     upstreamId: row.upstream_id ?? row.payload?._external_id ?? row.raw_payload?._external_id ?? null,
   });
+}
+
+function buildStampedVariantIdentity(row, stampedBatchEntry) {
+  const proposedVariantKey = normalizeTextOrNull(stampedBatchEntry?.proposed_variant_key);
+  if (!proposedVariantKey) {
+    return null;
+  }
+
+  return {
+    rule: normalizeTextOrNull(stampedBatchEntry?.governing_rule_source) ?? STAMPED_IDENTITY_RULE_V1,
+    applies: true,
+    status: 'RESOLVED_STAMPED_IDENTITY',
+    collision_group_key: normalizeTextOrNull(stampedBatchEntry?.canonical_queue_key),
+    collision_resolution_reason: 'resolved_by_stamped_identity_rule_v1_batch',
+    variant_key: proposedVariantKey,
+    illustration_category: null,
+    stamp_label: normalizeTextOrNull(stampedBatchEntry?.stamp_label),
+    source_evidence: {
+      source_set_id: normalizeTextOrNull(stampedBatchEntry?.source_set_id) ?? normalizeTextOrNull(row.set_id),
+      source_external_id: normalizeTextOrNull(stampedBatchEntry?.source_external_id) ?? normalizeTextOrNull(row.upstream_id),
+      canonical_queue_key: normalizeTextOrNull(stampedBatchEntry?.canonical_queue_key),
+      batch_index: Number(stampedBatchEntry?.batch_index ?? 0) || null,
+      underlying_base_proof_summary: stampedBatchEntry?.underlying_base_proof_summary ?? null,
+      pre_intake_audit: stampedBatchEntry?.pre_intake_audit ?? null,
+    },
+  };
+}
+
+function isCleanUnmatchedBridgeCandidate(row) {
+  return (
+    normalizeTextOrNull(row.match_status) === STANDARD_BRIDGE_MATCH_STATUS &&
+    normalizeTextOrNull(row.candidate_bucket) === STANDARD_BRIDGE_BUCKET &&
+    !normalizeTextOrNull(row.card_print_id)
+  );
+}
+
+function isRetroactiveSetMappedBridgeCandidate(row) {
+  return (
+    normalizeTextOrNull(row.match_status) === 'AMBIGUOUS' &&
+    extractClassificationReason(row) === RETROACTIVE_SET_MAPPING_REASON &&
+    !normalizeTextOrNull(row.card_print_id)
+  );
+}
+
+function getBridgeScope(row, stampedBatchEntry = null) {
+  if (stampedBatchEntry) {
+    return {
+      in_scope: true,
+      reason: 'stamped_ready_batch_scope',
+    };
+  }
+
+  if (isCleanUnmatchedBridgeCandidate(row)) {
+    return {
+      in_scope: true,
+      reason: 'clean_unmatched_candidate',
+    };
+  }
+
+  if (isRetroactiveSetMappedBridgeCandidate(row)) {
+    return {
+      in_scope: true,
+      reason: 'retroactive_set_mapping_candidate',
+    };
+  }
+
+  return {
+    in_scope: false,
+    reason: 'outside_bridge_scope',
+  };
 }
 
 function buildVariantSummary(sourcePayload) {
@@ -170,11 +343,11 @@ function buildVariantSummary(sourcePayload) {
   };
 }
 
-function buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, canonicalSetName) {
+function buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, canonicalSetName, stampedBatchEntry = null) {
   const rarity = extractRarity(row);
-  const baseName = extractBaseName(row);
+  const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
   const printedNumber = extractPrintedNumber(row);
-  const numberPlain = normalizeNumberPlain(row.normalized_number_plain);
+  const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
 
   return {
     bridge_source: BRIDGE_SOURCE,
@@ -204,18 +377,19 @@ function buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, can
     variant_identity: variantIdentity ?? null,
     source_evidence: {
       normalized_name: normalizeTextOrNull(row.normalized_name),
-      normalized_number_plain: normalizeNumberPlain(row.normalized_number_plain),
+      normalized_number_plain: extractNumberPlainForBridge(row, stampedBatchEntry),
       classification_reason: extractClassificationReason(row),
+      stamp_label: normalizeTextOrNull(variantIdentity?.stamp_label),
     },
   };
 }
 
-function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, canonicalSetName) {
+function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, canonicalSetName, stampedBatchEntry = null) {
   const sourcePayload = row.raw_payload ?? row.payload ?? {};
   const rarity = extractRarity(row);
-  const baseName = extractBaseName(row);
+  const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
   const printedNumber = extractPrintedNumber(row);
-  const numberPlain = normalizeNumberPlain(row.normalized_number_plain);
+  const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
   const variantSummary = buildVariantSummary(sourcePayload);
 
   return {
@@ -240,7 +414,7 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
     tcgplayer_id: normalizeTextOrNull(row.tcgplayer_id ?? sourcePayload.tcgplayerId),
     normalized_name: normalizeTextOrNull(row.normalized_name),
     normalized_number_left: normalizeTextOrNull(row.normalized_number_left),
-    normalized_number_plain: normalizeNumberPlain(row.normalized_number_plain),
+    normalized_number_plain: extractNumberPlainForBridge(row, stampedBatchEntry),
     normalized_printed_total: normalizeNumberPlain(row.normalized_printed_total),
     has_slash_number: row.has_slash_number === true,
     has_alpha_suffix_number: row.has_alpha_suffix_number === true,
@@ -256,6 +430,7 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
     collision_group_key: normalizeTextOrNull(variantIdentity?.collision_group_key),
     collision_resolution_reason: normalizeTextOrNull(variantIdentity?.collision_resolution_reason),
     variant_identity: variantIdentity ?? null,
+    stamp_label: normalizeTextOrNull(variantIdentity?.stamp_label),
     source_card_snapshot: {
       external_id: normalizeTextOrNull(sourcePayload._external_id ?? row.upstream_id),
       set_external_id: normalizeTextOrNull(sourcePayload._set_external_id ?? row.set_id),
@@ -266,6 +441,14 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
       tcgplayer_id: normalizeTextOrNull(sourcePayload.tcgplayerId),
       variant_summary: variantSummary,
     },
+    stamped_identity_evidence: stampedBatchEntry
+      ? {
+          canonical_queue_key: normalizeTextOrNull(stampedBatchEntry.canonical_queue_key),
+          batch_index: Number(stampedBatchEntry.batch_index ?? 0) || null,
+          underlying_base_proof_summary: stampedBatchEntry.underlying_base_proof_summary ?? null,
+          pre_intake_audit: stampedBatchEntry.pre_intake_audit ?? null,
+        }
+      : null,
     provenance: {
       bridge_source: BRIDGE_SOURCE,
       bridge_version: BRIDGE_VERSION,
@@ -277,8 +460,8 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
   };
 }
 
-function buildNotes(row, variantIdentity, canonicalSetName) {
-  const baseName = extractBaseName(row) ?? 'Unknown Card';
+function buildNotes(row, variantIdentity, canonicalSetName, stampedBatchEntry = null) {
+  const baseName = extractBaseNameForBridge(row, stampedBatchEntry) ?? 'Unknown Card';
   const printedNumber = extractPrintedNumber(row) ?? 'unknown-number';
   const classificationReason = extractClassificationReason(row) ?? 'unknown';
   const suffix = variantIdentity?.illustration_category ? ` [${variantIdentity.illustration_category}]` : '';
@@ -301,6 +484,55 @@ async function fetchFounderUserId(client) {
   return result.rows[0]?.id ?? null;
 }
 
+async function fetchSetContext(client, setId) {
+  const candidateCountSql = `
+    select count(*)::int as candidate_row_count
+    from public.external_discovery_candidates
+    where source = 'justtcg'
+      and set_id = $1
+  `;
+  const candidateCountResult = await client.query(candidateCountSql, [setId]);
+  const candidateRowCount = Number(candidateCountResult.rows[0]?.candidate_row_count ?? 0);
+
+  if (candidateRowCount === 0) {
+    throw new Error(`bridge_set_missing_from_external_discovery_candidates:${setId}`);
+  }
+
+  const mappingSql = `
+    select
+      s.id as canonical_set_id,
+      s.code as canonical_set_code,
+      s.name as canonical_set_name
+    from public.justtcg_set_mappings jsm
+    join public.sets s
+      on s.id = jsm.grookai_set_id
+    where jsm.active is true
+      and jsm.justtcg_set_id = $1
+    order by s.code asc
+  `;
+  const mappingResult = await client.query(mappingSql, [setId]);
+
+  if (mappingResult.rows.length === 1) {
+    return {
+      sourceSetId: setId,
+      candidateRowCount,
+      canonicalSetId: mappingResult.rows[0].canonical_set_id,
+      canonicalSetCode: mappingResult.rows[0].canonical_set_code,
+      canonicalSetName: mappingResult.rows[0].canonical_set_name,
+      rowLevelRoutingRequired: false,
+    };
+  }
+
+  return {
+    sourceSetId: setId,
+    candidateRowCount,
+    canonicalSetId: null,
+    canonicalSetCode: null,
+    canonicalSetName: null,
+    rowLevelRoutingRequired: true,
+  };
+}
+
 async function fetchRawLaneStats(client, setId) {
   const sql = `
     select count(*)::int as raw_card_rows
@@ -315,7 +547,8 @@ async function fetchRawLaneStats(client, setId) {
   };
 }
 
-async function fetchDiscoveryCandidates(client, setId) {
+async function fetchDiscoveryCandidates(client, setId, sourceCandidateIds = []) {
+  const hasSourceCandidateScope = Array.isArray(sourceCandidateIds) && sourceCandidateIds.length > 0;
   const sql = `
     select
       edc.id,
@@ -336,6 +569,8 @@ async function fetchDiscoveryCandidates(client, setId) {
       edc.match_status,
       edc.candidate_bucket,
       edc.classifier_version,
+      edc.resolved_set_code,
+      edc.card_print_id,
       edc.payload,
       edc.created_at,
       ri.payload as raw_payload
@@ -343,6 +578,7 @@ async function fetchDiscoveryCandidates(client, setId) {
     left join public.raw_imports ri
       on ri.id = edc.raw_import_id
     where edc.set_id = $1
+      and ($2::uuid[] is null or edc.id = any($2::uuid[]))
     order by
       case
         when edc.normalized_number_plain ~ '^[0-9]+$' then lpad(edc.normalized_number_plain, 8, '0')
@@ -352,7 +588,7 @@ async function fetchDiscoveryCandidates(client, setId) {
       edc.id asc
   `;
 
-  const result = await client.query(sql, [setId]);
+  const result = await client.query(sql, [setId, hasSourceCandidateScope ? sourceCandidateIds : null]);
   return result.rows.map((row) => ({
     ...row,
     payload: asRecord(row.payload) ?? {},
@@ -379,11 +615,32 @@ async function fetchExistingBridgeCandidates(client, setId) {
   );
 }
 
-function evaluateRows(rows, setId) {
-  const canonicalSetCode = inferCanonicalSetCode(setId);
-  const canonicalSetName = inferCanonicalSetName(rows[0]?.raw_payload ?? rows[0]?.payload ?? {}) ?? 'Perfect Order';
+function resolveEffectiveSetContext(setContext, stampedBatchEntry = null) {
+  const targetBaseResolution = asRecord(stampedBatchEntry?.target_base_resolution);
+  const baseProof = asRecord(stampedBatchEntry?.underlying_base_proof_summary);
+  const effectiveSetCode =
+    normalizeTextOrNull(stampedBatchEntry?.effective_routed_set_code) ??
+    normalizeTextOrNull(targetBaseResolution?.target_set_code) ??
+    normalizeTextOrNull(baseProof?.live_base_set_code) ??
+    normalizeTextOrNull(setContext?.canonicalSetCode);
+  const effectiveSetName =
+    normalizeTextOrNull(stampedBatchEntry?.effective_routed_set_name) ??
+    normalizeTextOrNull(targetBaseResolution?.target_set_name) ??
+    normalizeTextOrNull(setContext?.canonicalSetName);
+
+  return {
+    canonicalSetCode: effectiveSetCode,
+    canonicalSetName: effectiveSetName,
+  };
+}
+
+function evaluateRows(rows, setContext, stampedBatchLookup = null) {
+  const canonicalSetCode = setContext.canonicalSetCode;
+  const canonicalSetName = setContext.canonicalSetName;
   const eligibleRows = [];
   const blockedRows = [];
+  let scopedRowsRead = 0;
+  let outsideBridgeScopeRows = 0;
   let productRowsExcluded = 0;
   let collisionRowsWithVariantIdentity = 0;
   let collisionGroupsResolved = 0;
@@ -391,16 +648,27 @@ function evaluateRows(rows, setId) {
   const resolvedCollisionGroups = new Set();
 
   for (const row of rows) {
-    if (isLikelyProductRow(row)) {
+    const stampedBatchEntry = stampedBatchLookup?.bySourceCandidateId?.get(normalizeTextOrNull(row.id)) ?? null;
+    const bridgeScope = getBridgeScope(row, stampedBatchEntry);
+    if (!bridgeScope.in_scope) {
+      outsideBridgeScopeRows += 1;
+      continue;
+    }
+
+    scopedRowsRead += 1;
+
+    if (isLikelyProductRow(row) && !shouldBypassProductRowExclusion(stampedBatchEntry)) {
       productRowsExcluded += 1;
       continue;
     }
 
-    const baseName = extractBaseName(row);
-    const printedNumber = extractPrintedNumber(row);
-    const numberPlain = normalizeNumberPlain(row.normalized_number_plain);
+    const effectiveSetContext = resolveEffectiveSetContext(setContext, stampedBatchEntry);
 
-    if (!baseName || !printedNumber || !numberPlain || !canonicalSetCode) {
+    const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
+    const printedNumber = extractPrintedNumber(row);
+    const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
+
+    if (!baseName || !printedNumber || !numberPlain || !effectiveSetContext.canonicalSetCode) {
       blockedRows.push({
         source_candidate_id: row.id,
         reason: 'missing_minimum_identity_shape',
@@ -410,7 +678,9 @@ function evaluateRows(rows, setId) {
       continue;
     }
 
-    const variantIdentity = extractVariantIdentity(row);
+    const variantIdentity = stampedBatchEntry
+      ? buildStampedVariantIdentity(row, stampedBatchEntry)
+      : extractVariantIdentity(row);
     if (variantIdentity?.status === 'BLOCKED_UNLABELED_COLLISION') {
       unlabeledCollisionRows += 1;
       blockedRows.push({
@@ -430,17 +700,31 @@ function evaluateRows(rows, setId) {
       }
     }
 
-    const claimedIdentityPayload = buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, canonicalSetName);
-    const referenceHintsPayload = buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, canonicalSetName);
+    const claimedIdentityPayload = buildClaimedIdentityPayload(
+      row,
+      variantIdentity,
+      effectiveSetContext.canonicalSetCode,
+      effectiveSetContext.canonicalSetName,
+      stampedBatchEntry,
+    );
+    const referenceHintsPayload = buildReferenceHintsPayload(
+      row,
+      variantIdentity,
+      effectiveSetContext.canonicalSetCode,
+      effectiveSetContext.canonicalSetName,
+      stampedBatchEntry,
+    );
 
     eligibleRows.push({
       row,
-      canonical_set_code: canonicalSetCode,
-      canonical_set_name: canonicalSetName,
+      bridge_scope_reason: bridgeScope.reason,
+      canonical_set_code: effectiveSetContext.canonicalSetCode,
+      canonical_set_name: effectiveSetContext.canonicalSetName,
+      stamped_batch_entry: stampedBatchEntry,
       variant_identity: variantIdentity,
       claimed_identity_payload: claimedIdentityPayload,
       reference_hints_payload: referenceHintsPayload,
-      notes: buildNotes(row, variantIdentity, canonicalSetName),
+      notes: buildNotes(row, variantIdentity, effectiveSetContext.canonicalSetName, stampedBatchEntry),
       tcgplayer_id: normalizeTextOrNull(row.tcgplayer_id ?? row.payload?.tcgplayerId ?? row.raw_payload?.tcgplayerId),
     });
   }
@@ -450,6 +734,8 @@ function evaluateRows(rows, setId) {
   return {
     canonicalSetCode,
     canonicalSetName,
+    scopedRowsRead,
+    outsideBridgeScopeRows,
     eligibleRows,
     blockedRows,
     productRowsExcluded,
@@ -542,26 +828,27 @@ async function insertCandidate(client, founderUserId, candidate) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  if (args.setId !== SUPPORTED_SET_ID) {
-    throw new Error(`unsupported_set_id_for_bridge_v1:${args.setId}`);
-  }
-
-  const client = new Client({ connectionString: process.env.SUPABASE_DB_URL });
+  const client = new Client({
+    connectionString: process.env.SUPABASE_DB_URL,
+    ssl: { rejectUnauthorized: false },
+  });
   await client.connect();
 
   try {
+    const stampedBatchLookup = loadStampedBatchLookup(args.stampedBatchFile);
     const founderUserId = await fetchFounderUserId(client);
     if (!founderUserId) {
       throw new Error(`founder_user_missing:${FOUNDER_EMAIL}`);
     }
 
-    const [rawLaneStats, discoveryRows, existingBridgeCandidates] = await Promise.all([
+    const [setContext, rawLaneStats, discoveryRows, existingBridgeCandidates] = await Promise.all([
+      fetchSetContext(client, args.setId),
       fetchRawLaneStats(client, args.setId),
-      fetchDiscoveryCandidates(client, args.setId),
+      fetchDiscoveryCandidates(client, args.setId, args.sourceCandidateIds),
       fetchExistingBridgeCandidates(client, args.setId),
     ]);
 
-    const evaluation = evaluateRows(discoveryRows, args.setId);
+    const evaluation = evaluateRows(discoveryRows, setContext, stampedBatchLookup);
     const upstreamProductRowsExcluded = Math.max(rawLaneStats.raw_card_rows - discoveryRows.length, 0);
     const bridgeableRows = [];
     const existingRows = [];
@@ -594,9 +881,19 @@ async function main() {
       bridge_version: BRIDGE_VERSION,
       bridge_source: BRIDGE_SOURCE,
       set_id: args.setId,
+      stamped_batch_file: stampedBatchLookup?.resolvedPath ?? null,
+      source_candidate_scope_count: args.sourceCandidateIds.length,
+      source_rows_read: discoveryRows.length,
+      set_candidate_rows_found: setContext.candidateRowCount,
       canonical_set_code_hint: evaluation.canonicalSetCode,
+      canonical_set_name_hint: evaluation.canonicalSetName,
+      row_level_routing_required: setContext.rowLevelRoutingRequired === true,
       dry_run: !args.apply,
-      candidates_read: discoveryRows.length,
+      candidates_read: evaluation.scopedRowsRead,
+      outside_bridge_scope_rows: evaluation.outsideBridgeScopeRows,
+      eligible: evaluation.eligibleRows.length,
+      blocked: evaluation.blockedRows.length + existingNonRawBlocked.length,
+      collision_rows: evaluation.collisionRowsWithVariantIdentity + evaluation.unlabeledCollisionRows,
       candidates_eligible: evaluation.eligibleRows.length,
       candidates_blocked: evaluation.blockedRows.length + existingNonRawBlocked.length,
       candidates_bridged: args.apply ? 0 : bridgeableRows.length,
