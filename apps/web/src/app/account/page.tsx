@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
+import { WallSectionsSettingsCard } from "@/components/account/WallSectionsSettingsCard";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import {
@@ -9,6 +10,7 @@ import {
 import { isFounderUser } from "@/lib/founder/requireFounderAccess";
 import type { PublicProfileSettingsValues } from "@/lib/publicProfileSettings";
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -77,6 +79,7 @@ export default async function AccountPage({
     bannerPath: profileRow?.banner_path ?? null,
   };
   const showFounderSignals = isFounderUser(user);
+  const wallSectionsModel = await getOwnerWallSections(user.id);
   const activeTab = resolveAccountTab(
     normalizeTabParam(searchParams?.tab),
     showFounderSignals,
@@ -205,6 +208,8 @@ export default async function AccountPage({
             userId={user.id}
             loadError={profileError?.message ?? null}
           />
+
+          <WallSectionsSettingsCard initialModel={wallSectionsModel} />
 
           <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="space-y-4">
