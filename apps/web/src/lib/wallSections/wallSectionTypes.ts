@@ -66,6 +66,17 @@ export type WallSectionMembershipActionResult = {
   sections?: OwnerWallSectionMembership[];
 };
 
+export const PUBLIC_WALL_SECTION_ID = "wall";
+
+export type PublicCollectorSectionView = Readonly<{
+  id: string;
+  kind: "wall" | "custom";
+  name: string;
+  position: number;
+  item_count: number;
+  cards: import("@/lib/sharedCards/publicWall.shared").PublicWallCard[];
+}>;
+
 export const WALL_SECTION_LIMIT_MESSAGE = "You've reached the section limit for your plan.";
 export const WALL_SECTION_STORED_LIMIT_MESSAGE = "You can store up to 20 sections.";
 

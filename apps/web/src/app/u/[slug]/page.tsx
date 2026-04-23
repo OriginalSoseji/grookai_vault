@@ -7,14 +7,28 @@ import { PublicCollectorProfileContent } from "@/components/public/PublicCollect
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
 import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
-import { getInPlayCardsBySlug, getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
+import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+function dedupePublicWallCards(cards: PublicWallCard[]) {
+  const cardByKey = new Map<string, PublicWallCard>();
+
+  for (const card of cards) {
+    const key = card.gv_vi_id ?? card.vault_item_id ?? card.card_print_id ?? card.gv_id;
+    if (!cardByKey.has(key)) {
+      cardByKey.set(key, card);
+    }
+  }
+
+  return [...cardByKey.values()];
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPublicProfileBySlug(params.slug);
@@ -26,7 +40,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const siteOrigin = getSiteOrigin();
   const title = `${profile.display_name} | Grookai Vault`;
-  const description = `${profile.display_name}'s collection on Grookai.`;
+  const description = `${profile.display_name}'s Wall on Grookai.`;
 
   return {
     title,
@@ -58,29 +72,27 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
   }
 
   const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards, inPlayCards, followCounts] = await Promise.all([
+  const [{ data: authData }, sectionViews, followCounts] = await Promise.all([
     supabase.auth.getUser(),
-    profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
-    profile.vault_sharing_enabled ? getInPlayCardsBySlug(profile.slug) : Promise.resolve([]),
+    profile.vault_sharing_enabled ? getPublicCollectorWallSectionsBySlug(profile.slug) : Promise.resolve([]),
     getCollectorFollowCounts(profile.user_id),
   ]);
   const viewerUserId = authData.user?.id ?? null;
   const isOwnProfile = viewerUserId === profile.user_id;
   const initialIsFollowing =
     viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
-  const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
-  const setCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
+  const renderableCards = dedupePublicWallCards(sectionViews.flatMap((section) => section.cards));
+  const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(renderableCards));
+  const setCount = new Set(renderableCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
-    profile.vault_sharing_enabled && sharedCards.length > 0
+    profile.vault_sharing_enabled && renderableCards.length > 0
       ? [
-          { value: `${sharedCards.length}`, label: sharedCards.length === 1 ? "card" : "cards" },
+          { value: `${renderableCards.length}`, label: renderableCards.length === 1 ? "card" : "cards" },
           { value: `${setCount}`, label: setCount === 1 ? "set" : "sets" },
         ]
       : [];
 
-  const description = profile.vault_sharing_enabled
-    ? `${profile.display_name}'s collection on Grookai.`
-    : "A collection on Grookai.";
+  const description = profile.vault_sharing_enabled ? `${profile.display_name}'s Wall on Grookai.` : "A Wall on Grookai.";
 
   return (
     <div className="space-y-8 py-8">
@@ -109,16 +121,15 @@ export default async function PublicProfilePage({ params }: { params: { slug: st
       />
 
       {!profile.vault_sharing_enabled ? (
-        <PublicCollectionEmptyState title="Collection not shared yet" body="This collection isn't shared yet." />
-      ) : sharedCards.length === 0 && inPlayCards.length === 0 ? (
-        <PublicCollectionEmptyState title="No cards yet" body="This collection doesn't have any cards yet." />
+        <PublicCollectionEmptyState title="Nothing to show right now." />
+      ) : renderableCards.length === 0 ? (
+        <PublicCollectionEmptyState title="Nothing to show right now." />
       ) : (
         <PublicCollectorProfileContent
           slug={profile.slug}
           collectorDisplayName={profile.display_name}
           collectorUserId={profile.user_id}
-          cards={sharedCards}
-          inPlayCards={inPlayCards}
+          sections={sectionViews}
           isAuthenticated={Boolean(authData.user)}
           viewerUserId={viewerUserId}
           currentPath={`/u/${profile.slug}`}

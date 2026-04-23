@@ -49,10 +49,11 @@ export function PublicCollectionGrid({
             const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
             const gvviId = getPublicWallCardPrimaryGvviId(card);
             const displayIdentity = resolveDisplayIdentity(card);
+            const cardKey = card.gv_vi_id ?? card.vault_item_id ?? card.card_print_id ?? card.gv_id;
 
             return (
               <PokemonCardGridTile
-                key={card.gv_id}
+                key={cardKey}
                 density={density}
                 imageSrc={card.image_url}
                 imageFallbackSrc={card.canonical_image_url}
