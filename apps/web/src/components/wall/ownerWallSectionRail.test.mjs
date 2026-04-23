@@ -51,6 +51,17 @@ test("owner rail exposes rename and active controls from the Wall context", () =
   assert.match(ownerRail, /Activate/);
 });
 
+test("Wall is fixed and custom section renames update rail state", () => {
+  const ownerRail = readSource("components", "wall", "OwnerWallSectionRail.tsx");
+
+  assert.match(ownerRail, /const selectedSection = sections\.find/);
+  assert.doesNotMatch(ownerRail, /sectionId:\s*PUBLIC_WALL_SECTION_ID/);
+  assert.match(ownerRail, /Wall is fixed\. Choose a section above to manage it\./);
+  assert.match(ownerRail, /setSections\(result\.sections\)/);
+  assert.match(ownerRail, /setNameDrafts\(buildNameDrafts\(result\.sections\)\)/);
+  assert.match(ownerRail, /sections\.map\(\(section\)/);
+});
+
 test("owner section links do not depend on is_public", () => {
   const ownerRail = readSource("components", "wall", "OwnerWallSectionRail.tsx");
   const accountCard = readSource("components", "account", "WallSectionsSettingsCard.tsx");
