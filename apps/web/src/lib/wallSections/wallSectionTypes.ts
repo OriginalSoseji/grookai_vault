@@ -45,6 +45,13 @@ export type WallSectionsSettingsModel = Readonly<{
   loadError: string | null;
 }>;
 
+export type OwnerPublicWallRailModel = Readonly<{
+  isOwner: boolean;
+  sections: OwnerWallSection[];
+  limitState: OwnerWallSectionLimitState | null;
+  loadError: string | null;
+}>;
+
 export type OwnerWallSectionMembership = Readonly<{
   id: string;
   name: string;

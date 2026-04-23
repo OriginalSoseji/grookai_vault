@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
@@ -10,16 +11,26 @@ import { PublicCollectionEmptyState } from "@/components/public/PublicCollection
 import { PublicCollectionGrid } from "@/components/public/PublicCollectionGrid";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useViewDensity } from "@/hooks/useViewDensity";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { getVaultIntentActionLabel, getVaultIntentLabel, type DiscoverableVaultIntent } from "@/lib/network/intent";
 import {
   getPublicWallCardHref,
   getPublicWallCardPrimaryGvviId,
   type PublicWallCard,
 } from "@/lib/sharedCards/publicWall.shared";
+import { createWallSectionAction } from "@/lib/wallSections/createWallSectionAction";
+import { updateWallSectionAction } from "@/lib/wallSections/updateWallSectionAction";
 import {
+  countActiveWallSections,
   getPublicWallHref,
   getPublicSectionShareHref,
+  normalizeWallSectionName,
+  type OwnerPublicWallRailModel,
+  type OwnerWallSection,
   PUBLIC_WALL_SECTION_ID,
+  WALL_SECTION_LIMIT_MESSAGE,
+  WALL_SECTION_STORED_LIMIT_MESSAGE,
+  type WallSectionActionResult,
   type PublicCollectorSectionView,
 } from "@/lib/wallSections/wallSectionTypes";
 
@@ -140,6 +151,42 @@ function buildOrderedSections(sections: PublicCollectorSectionView[]) {
   return [wall, ...customSections];
 }
 
+function mergeOwnerSectionsIntoProfileSections(
+  currentSections: PublicCollectorSectionView[],
+  ownerSections: OwnerWallSection[],
+): PublicCollectorSectionView[] {
+  const currentById = new Map(currentSections.map((section) => [section.id, section]));
+  const wall = currentById.get(PUBLIC_WALL_SECTION_ID) ?? {
+    id: PUBLIC_WALL_SECTION_ID,
+    kind: "wall" as const,
+    name: "Wall",
+    position: -1,
+    item_count: 0,
+    cards: [],
+  };
+  const customSections = ownerSections
+    .filter((section) => section.is_active && section.name.trim().length > 0)
+    .map((section) => {
+      const existing = currentById.get(section.id);
+
+      return {
+        id: section.id,
+        kind: "custom" as const,
+        name: section.name,
+        position: section.position,
+        item_count: section.item_count,
+        cards: existing?.kind === "custom" ? existing.cards : [],
+      };
+    });
+
+  return [wall, ...customSections];
+}
+
+function getCreatedSection(previousSections: OwnerWallSection[], nextSections: OwnerWallSection[] | undefined) {
+  const previousIds = new Set(previousSections.map((section) => section.id));
+  return nextSections?.find((section) => !previousIds.has(section.id)) ?? null;
+}
+
 export function PublicCollectorProfileContent({
   slug,
   collectorDisplayName,
@@ -150,12 +197,37 @@ export function PublicCollectorProfileContent({
   currentPath,
   selectedSectionId = null,
 }: PublicCollectorProfileContentProps) {
-  const orderedSections = useMemo(() => buildOrderedSections(sections), [sections]);
+  const router = useRouter();
+  const clientViewer = useClientViewer(viewerUserId);
+  const [profileSections, setProfileSections] = useState<PublicCollectorSectionView[]>(sections);
+  const [ownerModel, setOwnerModel] = useState<OwnerPublicWallRailModel | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
+  const [createName, setCreateName] = useState("");
+  const [isRenaming, setIsRenaming] = useState(false);
+  const [renameName, setRenameName] = useState("");
+  const [actionResult, setActionResult] = useState<WallSectionActionResult | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const orderedSections = useMemo(() => buildOrderedSections(profileSections), [profileSections]);
   const activeSectionId = selectedSectionId?.trim() || PUBLIC_WALL_SECTION_ID;
   const activeSection = orderedSections.find((section) => section.id === activeSectionId) ?? orderedSections[0];
   const { density, setDensity } = useViewDensity();
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
-  const isOwnProfile = viewerUserId === collectorUserId;
+  const effectiveViewerUserId = clientViewer.userId ?? viewerUserId;
+  const effectiveIsAuthenticated = isAuthenticated || clientViewer.isAuthenticated;
+  const isOwnProfile = effectiveViewerUserId === collectorUserId;
+  const canManageSections = Boolean(ownerModel?.isOwner && ownerModel.limitState);
+  const activeOwnerSectionCount = ownerModel?.sections ? countActiveWallSections(ownerModel.sections) : 0;
+  const normalizedCreateName = normalizeWallSectionName(createName);
+  const selectedCustomSection = activeSection?.kind === "custom" ? activeSection : null;
+  const normalizedRenameName = normalizeWallSectionName(renameName);
+  const createDisabled =
+    isPending ||
+    !canManageSections ||
+    !normalizedCreateName ||
+    activeOwnerSectionCount >= (ownerModel?.limitState?.activeLimit ?? 0) ||
+    (ownerModel?.sections.length ?? 0) >= (ownerModel?.limitState?.storedLimit ?? 0);
+  const renameDisabled =
+    isPending || !canManageSections || !selectedCustomSection || !normalizedRenameName || normalizedRenameName === selectedCustomSection.name;
   const wallCards = useMemo(
     () => [...(activeSection?.cards ?? [])].filter(isWallCard).sort(compareWallCards),
     [activeSection],
@@ -178,34 +250,228 @@ export function PublicCollectorProfileContent({
     [wallCards],
   );
 
+  useEffect(() => {
+    setProfileSections(sections);
+  }, [sections]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!clientViewer.hasCheckedSession) {
+      return;
+    }
+
+    if (clientViewer.userId !== collectorUserId) {
+      setOwnerModel({
+        isOwner: false,
+        sections: [],
+        limitState: null,
+        loadError: null,
+      });
+      return;
+    }
+
+    async function loadOwnerRail() {
+      try {
+        const response = await fetch(`/api/wall/owner-sections?collectorUserId=${encodeURIComponent(collectorUserId)}`, {
+          cache: "no-store",
+          credentials: "same-origin",
+        });
+
+        if (!response.ok) {
+          throw new Error("Owner controls could not be loaded.");
+        }
+
+        const model = (await response.json()) as OwnerPublicWallRailModel;
+
+        if (cancelled) {
+          return;
+        }
+
+        setOwnerModel(model);
+
+        if (model.isOwner) {
+          setProfileSections((current) => mergeOwnerSectionsIntoProfileSections(current, model.sections));
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setOwnerModel({
+            isOwner: false,
+            sections: [],
+            limitState: null,
+            loadError: error instanceof Error ? error.message : "Owner controls could not be loaded.",
+          });
+        }
+      }
+    }
+
+    void loadOwnerRail();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [clientViewer.hasCheckedSession, clientViewer.userId, collectorUserId]);
+
+  useEffect(() => {
+    if (selectedCustomSection) {
+      setRenameName(selectedCustomSection.name);
+      setIsRenaming(false);
+    } else {
+      setRenameName("");
+      setIsRenaming(false);
+    }
+  }, [selectedCustomSection]);
+
+  function applyOwnerActionResult(result: WallSectionActionResult) {
+    setActionResult(result);
+
+    if (result.sections) {
+      setOwnerModel((current) => ({
+        isOwner: current?.isOwner ?? true,
+        sections: result.sections ?? current?.sections ?? [],
+        limitState: result.limitState ?? current?.limitState ?? null,
+        loadError: current?.loadError ?? null,
+      }));
+      setProfileSections((current) => mergeOwnerSectionsIntoProfileSections(current, result.sections ?? []));
+    }
+  }
+
+  function handleCreateSection(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!canManageSections || createDisabled) {
+      return;
+    }
+
+    const previousSections = ownerModel?.sections ?? [];
+    const name = normalizedCreateName;
+
+    startTransition(async () => {
+      const result = await createWallSectionAction({ name });
+      applyOwnerActionResult(result);
+
+      if (result.ok) {
+        const createdSection = getCreatedSection(previousSections, result.sections);
+        setCreateName("");
+        setIsCreating(false);
+
+        if (createdSection) {
+          router.push(getPublicSectionShareHref(slug, createdSection.id));
+          router.refresh();
+        }
+      }
+    });
+  }
+
+  function handleRenameSection(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!selectedCustomSection || !canManageSections || renameDisabled) {
+      return;
+    }
+
+    const sectionId = selectedCustomSection.id;
+    const name = normalizedRenameName;
+
+    startTransition(async () => {
+      const result = await updateWallSectionAction({ sectionId, name });
+      applyOwnerActionResult(result);
+
+      if (result.ok) {
+        setIsRenaming(false);
+        router.refresh();
+      }
+    });
+  }
+
   if (!activeSection) {
     return <PublicCollectionEmptyState title="Nothing to show right now." />;
   }
 
   return (
     <section className="space-y-4">
-      <div className="overflow-x-auto rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
-        <div className="flex min-w-max gap-2">
-          {orderedSections.map((section) => {
-            const active = activeSection.id === section.id;
-            const className = `max-w-[13rem] truncate rounded-[1rem] px-4 py-2.5 text-sm font-medium transition ${
-              active
-                ? "bg-slate-950 text-white shadow-sm"
-                : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
-            }`;
+      <div className="rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
+        <div className="overflow-x-auto">
+          <div className="flex min-w-max gap-2">
+            {/* LOCK: /u/[slug] is the primary Wall experience for both viewing and owner section management. */}
+            {/* LOCK: Owner controls must not appear for public viewers. */}
+            {/* LOCK: Wall is fixed and not renameable. */}
+            {orderedSections.map((section) => {
+              const active = activeSection.id === section.id;
+              const className = `max-w-[13rem] truncate rounded-[1rem] px-4 py-2.5 text-sm font-medium transition ${
+                active
+                  ? "bg-slate-950 text-white shadow-sm"
+                  : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+              }`;
 
-            return (
-              <Link
-                key={section.id}
-                href={section.kind === "custom" ? getPublicSectionShareHref(slug, section.id) : getPublicWallHref(slug)}
-                className={className}
-                aria-current={active ? "page" : undefined}
+              return (
+                <Link
+                  key={section.id}
+                  href={section.kind === "custom" ? getPublicSectionShareHref(slug, section.id) : getPublicWallHref(slug)}
+                  className={className}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {section.name}
+                </Link>
+              );
+            })}
+            {canManageSections ? (
+              <button
+                type="button"
+                onClick={() => setIsCreating((current) => !current)}
+                className="rounded-[1rem] border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
               >
-                {section.name}
-              </Link>
-            );
-          })}
+                + Add Section
+              </button>
+            ) : null}
+          </div>
         </div>
+
+        {canManageSections && isCreating ? (
+          <form className="mt-3 flex flex-col gap-2 px-1 pb-1 sm:flex-row" onSubmit={handleCreateSection}>
+            <label className="min-w-0 flex-1">
+              <span className="sr-only">New section name</span>
+              <input
+                type="text"
+                value={createName}
+                onChange={(event) => setCreateName(event.target.value)}
+                placeholder="New section name"
+                disabled={isPending}
+                autoFocus
+                className="w-full rounded-[1rem] border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
+              />
+            </label>
+            <div className="flex gap-2">
+              <button
+                type="submit"
+                disabled={createDisabled}
+                className="rounded-[1rem] bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+              >
+                + Add Section
+              </button>
+              <button
+                type="button"
+                aria-label="Cancel"
+                disabled={isPending}
+                onClick={() => {
+                  setCreateName("");
+                  setIsCreating(false);
+                }}
+                className="h-10 w-10 rounded-[1rem] border border-slate-300 bg-white text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                x
+              </button>
+            </div>
+          </form>
+        ) : null}
+        {canManageSections && actionResult?.fieldErrors?.name ? (
+          <p className="px-2 pb-1 pt-2 text-sm text-rose-700">{actionResult.fieldErrors.name}</p>
+        ) : null}
+        {canManageSections && ownerModel?.limitState && activeOwnerSectionCount >= ownerModel.limitState.activeLimit ? (
+          <p className="px-2 pb-1 pt-2 text-sm text-slate-500">{WALL_SECTION_LIMIT_MESSAGE}</p>
+        ) : canManageSections && ownerModel?.limitState && (ownerModel?.sections.length ?? 0) >= ownerModel.limitState.storedLimit ? (
+          <p className="px-2 pb-1 pt-2 text-sm text-slate-500">{WALL_SECTION_STORED_LIMIT_MESSAGE}</p>
+        ) : null}
       </div>
 
       {activeSection.kind === "wall" ? (
@@ -242,7 +508,7 @@ export function PublicCollectorProfileContent({
                 const ownershipSummary = getInPlayOwnershipSummary(card);
                 const intentBadges = getIntentBadgeLabels(card);
                 const groupedContactAnchor = getGroupedContactAnchor(card);
-                const exactCopyHref = getPrimaryCopyHref(card, viewerUserId, collectorUserId) ?? `/card/${card.gv_id}`;
+                const exactCopyHref = getPrimaryCopyHref(card, effectiveViewerUserId, collectorUserId) ?? `/card/${card.gv_id}`;
                 const exactCopyGvviId = getPublicWallCardPrimaryGvviId(card);
 
                 return (
@@ -328,7 +594,7 @@ export function PublicCollectorProfileContent({
                                             gv_vi_id: copy.gv_vi_id,
                                             in_play_copies: undefined,
                                           },
-                                          viewerUserId,
+                                          effectiveViewerUserId,
                                           collectorUserId,
                                         ) ?? `/card/${card.gv_id}`}
                                         className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
@@ -341,11 +607,11 @@ export function PublicCollectorProfileContent({
                                         vaultItemId={copy.vault_item_id}
                                         cardPrintId={card.card_print_id}
                                         ownerUserId={collectorUserId}
-                                        viewerUserId={viewerUserId}
+                                        viewerUserId={effectiveViewerUserId}
                                         ownerDisplayName={collectorDisplayName}
                                         cardName={displayIdentity.display_name}
                                         intent={copy.intent}
-                                        isAuthenticated={isAuthenticated}
+                                        isAuthenticated={effectiveIsAuthenticated}
                                         loginHref={loginHref}
                                         currentPath={currentPath}
                                         buttonLabel={getVaultIntentActionLabel(copy.intent)}
@@ -363,11 +629,11 @@ export function PublicCollectorProfileContent({
                             vaultItemId={groupedContactAnchor.vaultItemId}
                             cardPrintId={card.card_print_id}
                             ownerUserId={collectorUserId}
-                            viewerUserId={viewerUserId}
+                            viewerUserId={effectiveViewerUserId}
                             ownerDisplayName={collectorDisplayName}
                             cardName={displayIdentity.display_name}
                             intent={groupedContactAnchor.intent}
-                            isAuthenticated={isAuthenticated}
+                            isAuthenticated={effectiveIsAuthenticated}
                             loginHref={loginHref}
                             currentPath={currentPath}
                             buttonLabel={getVaultIntentActionLabel(groupedContactAnchor.intent)}
@@ -395,6 +661,38 @@ export function PublicCollectorProfileContent({
           <div className="flex flex-col gap-4 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:flex-row sm:items-start sm:justify-between sm:px-5">
             <div className="min-w-0 space-y-1">
               <h2 className="truncate text-2xl font-semibold tracking-tight text-slate-950">{activeSection.name}</h2>
+              {canManageSections && selectedCustomSection ? (
+                <button
+                  type="button"
+                  onClick={() => setIsRenaming((current) => !current)}
+                  className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+                >
+                  Rename
+                </button>
+              ) : null}
+              {canManageSections && selectedCustomSection && isRenaming ? (
+                <form className="mt-3 flex flex-col gap-2 sm:flex-row" onSubmit={handleRenameSection}>
+                  <label className="min-w-0 flex-1">
+                    <span className="sr-only">New section name</span>
+                    <input
+                      type="text"
+                      value={renameName}
+                      onChange={(event) => setRenameName(event.target.value)}
+                      placeholder="New section name"
+                      disabled={isPending}
+                      autoFocus
+                      className="w-full rounded-[1rem] border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={renameDisabled}
+                    className="rounded-[1rem] bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+                  >
+                    Rename
+                  </button>
+                </form>
+              ) : null}
             </div>
             <div className="space-y-1 sm:min-w-fit">
               <p className="text-[11px] font-medium text-slate-500">Display</p>
@@ -406,7 +704,7 @@ export function PublicCollectorProfileContent({
             <PublicCollectionGrid
               cards={activeSection.cards}
               density={density}
-              viewerUserId={viewerUserId}
+              viewerUserId={effectiveViewerUserId}
               ownerUserId={collectorUserId}
             />
           ) : (

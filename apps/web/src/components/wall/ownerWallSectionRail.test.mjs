@@ -71,10 +71,16 @@ test("owner section links do not depend on is_public", () => {
   assert.match(accountCard, /publicProfileSlug && section\.is_active/);
 });
 
-test("public profile rendering remains read-only", () => {
+test("public profile owner controls are server-verified before rendering", () => {
   const publicProfileContent = readSource("components", "public", "PublicCollectorProfileContent.tsx");
+  const ownerSectionsApi = readSource("app", "api", "wall", "owner-sections", "route.ts");
 
-  assert.doesNotMatch(publicProfileContent, /createWallSectionAction|updateWallSectionAction|\+ Add Section|Rename|Deactivate|Activate/);
+  assert.match(publicProfileContent, /Owner controls must not appear for public viewers/);
+  assert.match(publicProfileContent, /canManageSections/);
+  assert.match(publicProfileContent, /ownerModel\?\.isOwner && ownerModel\.limitState/);
+  assert.match(ownerSectionsApi, /user\.id !== collectorUserId/);
+  assert.match(ownerSectionsApi, /isOwner: false/);
+  assert.doesNotMatch(publicProfileContent, /Deactivate|Activate/);
 });
 
 test("section mutations revalidate the owner Wall page", () => {
