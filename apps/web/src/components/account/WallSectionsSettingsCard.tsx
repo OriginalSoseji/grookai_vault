@@ -168,9 +168,7 @@ export function WallSectionsSettingsCard({ initialModel, publicProfileSlug = nul
             const changedName = normalizeWallSectionName(nameDraft) !== section.name;
             const activationBlocked = !section.is_active && activeCount >= limitState.activeLimit;
             const publicSectionHref =
-              publicProfileSlug && section.is_active && section.is_public
-                ? getPublicSectionShareHref(publicProfileSlug, section.id)
-                : null;
+              publicProfileSlug && section.is_active ? getPublicSectionShareHref(publicProfileSlug, section.id) : null;
 
             return (
               <div

@@ -82,9 +82,8 @@ export async function createWallSectionAction(input: CreateWallSectionInput): Pr
     name,
     position: nextPosition,
     is_active: true,
-    // Section sharing is a later task. New owner-created sections stay private
-    // until a dedicated sharing surface exists.
-    is_public: false,
+    // LOCK: Created custom sections surface automatically; is_public is compatibility data, not product visibility.
+    is_public: true,
   });
 
   if (error) {

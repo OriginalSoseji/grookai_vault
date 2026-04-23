@@ -136,7 +136,7 @@ function buildOrderedSections(sections: PublicCollectorSectionView[]) {
     .filter((section) => section.kind === "custom" && section.id !== PUBLIC_WALL_SECTION_ID && section.name.trim().length > 0)
     .sort((left, right) => left.position - right.position || left.name.localeCompare(right.name));
 
-  // LOCK: Public profile rail must render Wall first, then active public custom sections only.
+  // LOCK: Public profile rail must render Wall first, then active custom sections only.
   return [wall, ...customSections];
 }
 

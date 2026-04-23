@@ -16,7 +16,6 @@ type PublicWallSectionRow = {
   position: number | null;
   item_count: number | null;
   is_active: boolean | null;
-  is_public: boolean | null;
 };
 
 function normalizeSlug(value: string) {
@@ -24,7 +23,7 @@ function normalizeSlug(value: string) {
 }
 
 function toPublicWallSectionSummary(row: PublicWallSectionRow): PublicWallSectionSummary | null {
-  if (!row.id || !row.name || row.is_active !== true || row.is_public !== true) {
+  if (!row.id || !row.name || row.is_active !== true) {
     return null;
   }
 
@@ -45,12 +44,11 @@ export const getPublicWallSectionsBySlug = cache(async (slug: string): Promise<P
   const client = createServerComponentClient();
   const { data, error } = await client
     .from("v_wall_sections_v1")
-    // LOCK: Only active public sections may render on public collector surfaces.
-    // LOCK: Do not leak unrelated or private sections through public section navigation.
-    .select("id,name,position,item_count,is_active,is_public")
+    // LOCK: Custom sections surface automatically when active; is_public is not a product visibility gate.
+    // LOCK: Do not leak inactive or unrelated sections through public section navigation.
+    .select("id,name,position,item_count,is_active")
     .eq("owner_slug", normalizedSlug)
     .eq("is_active", true)
-    .eq("is_public", true)
     .order("position", { ascending: true })
     .limit(20);
 

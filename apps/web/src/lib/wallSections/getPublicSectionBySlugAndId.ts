@@ -23,10 +23,11 @@ type PublicSectionRow = {
   name: string | null;
   position: number | null;
   item_count: number | null;
+  is_active: boolean | null;
 };
 
 function toPublicSection(row: PublicSectionRow): PublicSectionShareModel["section"] | null {
-  if (!row.id || !row.name) {
+  if (!row.id || !row.name || row.is_active !== true) {
     return null;
   }
 
@@ -51,11 +52,12 @@ export const getPublicSectionBySlugAndId = cache(async (
   const client = createServerComponentClient();
   const { data, error } = await client
     .from("v_wall_sections_v1")
-    // LOCK: Section share routes must expose only the selected public section.
-    // LOCK: Do not leak unrelated or private sections through share rendering.
-    .select("id,name,position,item_count")
+    // LOCK: Section share routes expose active custom sections automatically.
+    // LOCK: Do not leak inactive or unrelated sections through share rendering.
+    .select("id,name,position,item_count,is_active")
     .eq("owner_slug", profile.slug)
     .eq("id", normalizedSectionId)
+    .eq("is_active", true)
     .maybeSingle();
 
   if (error || !data) {

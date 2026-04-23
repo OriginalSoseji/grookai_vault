@@ -26,8 +26,8 @@ export const getPublicSectionCardsBySlug = cache(async (
   const client = createServerComponentClient();
   const { data, error } = await client
     .from("v_section_cards_v1")
-    // LOCK: Section share routes must expose only the selected public section.
-    // LOCK: Do not leak unrelated or private sections through share rendering.
+    // LOCK: Section share routes expose active custom sections automatically.
+    // LOCK: Do not leak inactive or unrelated sections through share rendering.
     // LOCK: Section rendering is public-safe, instance-level, and fails closed through the view gates.
     .select(
       "section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,image_status,image_note,display_image_url,display_image_kind,public_note",

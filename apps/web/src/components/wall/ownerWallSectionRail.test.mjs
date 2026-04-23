@@ -51,6 +51,15 @@ test("owner rail exposes rename and active controls from the Wall context", () =
   assert.match(ownerRail, /Activate/);
 });
 
+test("owner section links do not depend on is_public", () => {
+  const ownerRail = readSource("components", "wall", "OwnerWallSectionRail.tsx");
+  const accountCard = readSource("components", "account", "WallSectionsSettingsCard.tsx");
+
+  assert.doesNotMatch(`${ownerRail}\n${accountCard}`, /section\.is_public/);
+  assert.match(ownerRail, /publicProfileSlug && selectedSection\.is_active/);
+  assert.match(accountCard, /publicProfileSlug && section\.is_active/);
+});
+
 test("public profile rendering remains read-only", () => {
   const publicProfileContent = readSource("components", "public", "PublicCollectorProfileContent.tsx");
 
