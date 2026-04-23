@@ -14,6 +14,7 @@ import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { buildCompareHref, buildPathWithCompareCards } from "@/lib/compareCards";
 import CardZoomModal from "@/components/compare/CardZoomModal";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 
 type CompareWorkspaceProps = {
   cards: ComparePublicCard[];
@@ -118,6 +119,8 @@ export default function CompareWorkspace({
   canViewPricing,
   pricingSignInHref,
 }: CompareWorkspaceProps) {
+  const viewer = useClientViewer(null);
+  const effectiveCanViewPricing = canViewPricing || viewer.isAuthenticated;
   const [referenceGvId, setReferenceGvId] = useState(cards[0]?.gv_id ?? "");
   const [showDiffOnly, setShowDiffOnly] = useState(false);
   const [gridCols, setGridCols] = useState(cards.length);
@@ -153,7 +156,7 @@ export default function CompareWorkspace({
           description="Compare cards side by side, pin a reference, and focus only on what changes."
           size="compact"
         />
-        {canViewPricing ? (
+        {effectiveCanViewPricing ? (
           <p className="text-sm text-slate-500">Beta market estimate. Derived from active listings and market data.</p>
         ) : null}
 
@@ -241,7 +244,7 @@ export default function CompareWorkspace({
                     ) : null}
                     <p className="truncate text-lg font-semibold text-slate-950">{displayIdentity.display_name}</p>
                     <p className="text-sm text-slate-600">{card.set_name ?? "Unknown set"}</p>
-                    {canViewPricing ? (
+                    {effectiveCanViewPricing ? (
                       <VisiblePrice value={card.raw_price} size="list" />
                     ) : (
                       <LockedPrice href={pricingSignInHref} size="list" />
@@ -362,7 +365,7 @@ export default function CompareWorkspace({
                                 differsFromReference ? "border-l-4 border-amber-400 bg-amber-50" : ""
                               }`}
                             >
-                              {renderAttributeContent(card, row.key, canViewPricing, pricingSignInHref)}
+                              {renderAttributeContent(card, row.key, effectiveCanViewPricing, pricingSignInHref)}
                             </td>
                           );
                         })}

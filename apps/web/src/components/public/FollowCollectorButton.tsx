@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { followCollectorAction } from "@/lib/follows/followCollectorAction";
 import { unfollowCollectorAction } from "@/lib/follows/unfollowCollectorAction";
 
@@ -22,19 +23,52 @@ export default function FollowCollectorButton({
   loginHref,
 }: FollowCollectorButtonProps) {
   const router = useRouter();
+  const viewer = useClientViewer(null);
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+  const [clientIsOwnProfile, setClientIsOwnProfile] = useState(isOwnProfile);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
+  const effectiveIsOwnProfile = isOwnProfile || clientIsOwnProfile;
 
   useEffect(() => {
     setIsFollowing(initialIsFollowing);
   }, [initialIsFollowing]);
 
-  if (isOwnProfile) {
+  useEffect(() => {
+    if (!viewer.userId) {
+      setClientIsOwnProfile(false);
+      return;
+    }
+
+    if (viewer.userId === collectorUserId) {
+      setClientIsOwnProfile(true);
+      return;
+    }
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({ collector_user_id: collectorUserId });
+
+    fetch(`/api/follows/state?${params.toString()}`, {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload: { isFollowing?: boolean } | null) => {
+        if (payload) {
+          setIsFollowing(Boolean(payload.isFollowing));
+        }
+      })
+      .catch(() => undefined);
+
+    return () => controller.abort();
+  }, [collectorUserId, viewer.userId]);
+
+  if (effectiveIsOwnProfile) {
     return null;
   }
 
-  if (!isAuthenticated) {
+  if (!effectiveIsAuthenticated) {
     return (
       <Link
         href={loginHref}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
@@ -9,12 +9,10 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import VaultInstanceVisiblePricingCard from "@/components/vault/VaultInstanceVisiblePricingCard";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { getVaultIntentActionLabel, getVaultIntentLabel } from "@/lib/network/intent";
-import { createServerComponentClient } from "@/lib/supabase/server";
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 function formatTimestamp(value: string | null) {
   if (!value) {
@@ -41,15 +39,6 @@ export default async function PublicVaultInstancePage({
   const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
   if (!detail) {
     notFound();
-  }
-
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user?.id === detail.ownerUserId) {
-    redirect(`/vault/gvvi/${encodeURIComponent(detail.gvviId)}`);
   }
 
   const currentPath = `/gvvi/${encodeURIComponent(detail.gvviId)}`;
@@ -249,12 +238,12 @@ export default async function PublicVaultInstancePage({
                   vaultItemId={detail.vaultItemId}
                   cardPrintId={detail.cardPrintId}
                   ownerUserId={detail.ownerUserId}
-                  viewerUserId={user?.id ?? null}
+                  viewerUserId={null}
                   ownerDisplayName={detail.ownerDisplayName}
                   cardName={detail.cardName}
                   intent={contactIntent}
                   buttonLabel={getVaultIntentActionLabel(contactIntent)}
-                  isAuthenticated={Boolean(user)}
+                  isAuthenticated={false}
                   loginHref={loginHref}
                   currentPath={currentPath}
                   buttonClassName="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"

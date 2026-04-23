@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
-import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
-import { createServerComponentClient } from "@/lib/supabase/server";
-import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
-import { getPublicSectionShareHref, PUBLIC_WALL_SECTION_ID } from "@/lib/wallSections/wallSectionTypes";
+import { getPublicCollectorWallViewBySlug } from "@/lib/wallSections/getPublicCollectorWallViewBySlug";
+import { PUBLIC_WALL_SECTION_ID } from "@/lib/wallSections/wallSectionTypes";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 function dedupePublicWallCards(cards: PublicWallCard[]) {
   const cardByKey = new Map<string, PublicWallCard>();
@@ -29,11 +26,6 @@ function dedupePublicWallCards(cards: PublicWallCard[]) {
   }
 
   return [...cardByKey.values()];
-}
-
-function normalizeSectionParam(value: string | string[] | undefined) {
-  const rawValue = Array.isArray(value) ? value[0] : value;
-  return String(rawValue ?? "").trim();
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -72,10 +64,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function PublicProfilePage({
   params,
-  searchParams,
 }: {
   params: { slug: string };
-  searchParams?: { section?: string | string[] };
 }) {
   const profile = await getPublicProfileBySlug(params.slug);
 
@@ -83,26 +73,11 @@ export default async function PublicProfilePage({
     notFound();
   }
 
-  const sectionParam = normalizeSectionParam(searchParams?.section);
-  if (sectionParam) {
-    if (!profile.vault_sharing_enabled) {
-      notFound();
-    }
-
-    redirect(getPublicSectionShareHref(profile.slug, sectionParam));
-  }
-
-  const supabase = createServerComponentClient();
-  const [{ data: authData }, sectionViews, followCounts] = await Promise.all([
-    supabase.auth.getUser(),
-    profile.vault_sharing_enabled ? getPublicCollectorWallSectionsBySlug(profile.slug) : Promise.resolve([]),
+  const [sectionViews, followCounts] = await Promise.all([
+    profile.vault_sharing_enabled ? getPublicCollectorWallViewBySlug(profile.slug) : Promise.resolve([]),
     getCollectorFollowCounts(profile.user_id),
   ]);
-  const viewerUserId = authData.user?.id ?? null;
-  const isOwnProfile = viewerUserId === profile.user_id;
-  const initialIsFollowing =
-    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
-  const renderableCards = dedupePublicWallCards(sectionViews.flatMap((section) => section.cards));
+  const renderableCards = dedupePublicWallCards(sectionViews.find((section) => section.id === PUBLIC_WALL_SECTION_ID)?.cards ?? []);
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(renderableCards));
   const setCount = new Set(renderableCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -133,9 +108,9 @@ export default async function PublicProfilePage({
         actions={
           <FollowCollectorButton
             collectorUserId={profile.user_id}
-            isAuthenticated={Boolean(authData.user)}
-            isOwnProfile={isOwnProfile}
-            initialIsFollowing={initialIsFollowing}
+            isAuthenticated={false}
+            isOwnProfile={false}
+            initialIsFollowing={false}
             loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}`)}`}
           />
         }
@@ -149,8 +124,8 @@ export default async function PublicProfilePage({
           collectorDisplayName={profile.display_name}
           collectorUserId={profile.user_id}
           sections={sectionViews}
-          isAuthenticated={Boolean(authData.user)}
-          viewerUserId={viewerUserId}
+          isAuthenticated={false}
+          viewerUserId={null}
           currentPath={`/u/${profile.slug}`}
           selectedSectionId={PUBLIC_WALL_SECTION_ID}
         />

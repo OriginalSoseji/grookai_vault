@@ -3,7 +3,7 @@ import "server-only";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
@@ -95,7 +95,7 @@ export async function getPublicCardsByGvIds(gvIds: string[]) {
     new Set(normalizedIds.flatMap((gvId) => getCompatiblePublicGvIdCandidates(gvId))),
   );
 
-  const supabase = createServerComponentClient();
+  const supabase = createPublicServerClient();
   const { data, error } = await supabase
     .from("card_prints")
     .select(

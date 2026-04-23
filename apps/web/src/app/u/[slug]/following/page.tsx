@@ -6,18 +6,14 @@ import { PublicCollectionEmptyState } from "@/components/public/PublicCollection
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
-import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
-import { getCollectorFollowStateMap } from "@/lib/follows/getCollectorFollowStateMap";
 import { getFollowingCollectors } from "@/lib/follows/getFollowingCollectors";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSharedCardsBySlug } from "@/lib/getSharedCardsBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPublicProfileBySlug(params.slug);
@@ -65,22 +61,12 @@ export default async function PublicFollowingPage({ params }: { params: { slug: 
     notFound();
   }
 
-  const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards, followCounts, followedCollectors] = await Promise.all([
-    supabase.auth.getUser(),
+  const [sharedCards, followCounts, followedCollectors] = await Promise.all([
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
     getCollectorFollowCounts(profile.user_id),
     getFollowingCollectors(profile.user_id),
   ]);
 
-  const viewerUserId = authData.user?.id ?? null;
-  const isOwnProfile = viewerUserId === profile.user_id;
-  const initialIsFollowing =
-    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
-  const followStateMap = await getCollectorFollowStateMap(
-    viewerUserId,
-    followedCollectors.map((collector) => collector.userId),
-  );
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const sharedSetCount = new Set(sharedCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -109,9 +95,9 @@ export default async function PublicFollowingPage({ params }: { params: { slug: 
         actions={
           <FollowCollectorButton
             collectorUserId={profile.user_id}
-            isAuthenticated={Boolean(authData.user)}
-            isOwnProfile={isOwnProfile}
-            initialIsFollowing={initialIsFollowing}
+            isAuthenticated={false}
+            isOwnProfile={false}
+            initialIsFollowing={false}
             loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/following`)}`}
           />
         }
@@ -140,9 +126,9 @@ export default async function PublicFollowingPage({ params }: { params: { slug: 
               <CollectorListRow
                 key={collector.userId}
                 collector={collector}
-                viewerUserId={viewerUserId}
-                isAuthenticated={Boolean(authData.user)}
-                initialIsFollowing={followStateMap.has(collector.userId)}
+                viewerUserId={null}
+                isAuthenticated={false}
+                initialIsFollowing={false}
                 loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/following`)}`}
                 metadata={formatFollowedAt(collector.followedAt)}
               />

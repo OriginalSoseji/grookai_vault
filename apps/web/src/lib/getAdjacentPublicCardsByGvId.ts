@@ -1,7 +1,7 @@
 import { cache } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 type CardNavigationSeedRow = {
   gv_id: string | null;
@@ -58,14 +58,7 @@ export type AdjacentPublicCards = {
 };
 
 function createServerSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createPublicServerClient(120);
 }
 
 function splitPrintedNumber(value: string, numberPlain?: string | null) {

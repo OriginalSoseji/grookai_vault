@@ -3,7 +3,7 @@ import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 const INITIAL_CARD_CHUNK = 36;
 
 export default async function SetPage({

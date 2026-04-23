@@ -8,6 +8,8 @@ import {
 } from "@/lib/provisional/getPromotionTransitionState";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 
+export const revalidate = 120;
+
 // LOCK: Canonical and provisional results must remain separate.
 // LOCK: Never merge provisional rows into canonical result arrays.
 function parseSortMode(value: string | null) {
@@ -126,15 +128,22 @@ export async function GET(request: NextRequest) {
       throw new Error("SECURITY: GV-ID found in provisional search results");
     }
 
-    return NextResponse.json({
-      ok: true,
-      query,
-      rows: canonicalResultsWithTransitions,
-      canonical: canonicalResultsWithTransitions,
-      provisional: provisionalResultsForResponse,
-      meta: resolved.meta,
-      source: "web_ranked_resolver_v2",
-    });
+    return NextResponse.json(
+      {
+        ok: true,
+        query,
+        rows: canonicalResultsWithTransitions,
+        canonical: canonicalResultsWithTransitions,
+        provisional: provisionalResultsForResponse,
+        meta: resolved.meta,
+        source: "web_ranked_resolver_v2",
+      },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=300",
+        },
+      },
+    );
   } catch (error) {
     const message = error instanceof Error ? error.message : "Resolver request failed.";
     return NextResponse.json(

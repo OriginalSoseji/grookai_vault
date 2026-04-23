@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getPublicSetCards } from "@/lib/publicSets";
 
+export const revalidate = 300;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const setCode = searchParams.get("set_code");
@@ -17,7 +19,10 @@ export async function GET(request: Request) {
 
   try {
     const items = await getPublicSetCards(setCode, offset, limit);
-    return NextResponse.json({ items });
+    return NextResponse.json(
+      { items },
+      { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } },
+    );
   } catch {
     return NextResponse.json({ items: [], error: "Failed to load more cards." }, { status: 500 });
   }

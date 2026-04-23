@@ -9,9 +9,9 @@ import { getDiscoveryProvisionalCards } from "@/lib/provisional/getDiscoveryProv
 import { getRecentlyConfirmedCanonicalCards } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
 import { getPublicSets } from "@/lib/publicSets";
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 120;
 
 const NOTABLE_SET_CODES = [
   "sv3pt5",
@@ -73,10 +73,6 @@ export default async function ExplorePage({
 }: {
   searchParams?: { q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string };
 }) {
-  const supabase = createServerComponentClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const isDiscoveryMode =
     !normalizeFreeTextQuery(searchParams?.q) &&
@@ -108,7 +104,7 @@ export default async function ExplorePage({
 
   return (
     <Suspense fallback={<LoadingCardGridSkeleton />}>
-      <ExplorePageClient discoveryContent={discoveryContent} canViewPricing={Boolean(user)} />
+      <ExplorePageClient discoveryContent={discoveryContent} canViewPricing={false} />
     </Suspense>
   );
 }

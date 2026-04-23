@@ -53,7 +53,6 @@ export default function PublicSetCardGrid({
     try {
       const response = await fetch(
         `/api/public-set-cards?set_code=${encodeURIComponent(setCode)}&offset=${cards.length}&limit=${chunkSize}`,
-        { cache: "no-store" },
       );
 
       if (!response.ok) {

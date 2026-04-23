@@ -1,8 +1,8 @@
 import "server-only";
 
-import { createClient } from "@supabase/supabase-js";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicSets } from "@/lib/publicSets";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   normalizeSetQuery,
   SET_INTENT_ALIAS_MAP,
@@ -153,14 +153,7 @@ async function measureStage<T>(operation: () => Promise<T> | T): Promise<{ value
 }
 
 function createServerSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createPublicServerClient(120);
 }
 
 function normalizeFallbackQuery(value: string) {

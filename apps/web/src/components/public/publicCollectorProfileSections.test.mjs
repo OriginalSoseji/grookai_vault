@@ -47,10 +47,12 @@ test("created custom sections default to surfaced compatibility state", () => {
 test("section route keeps the public profile rail and selected section state", () => {
   const sectionPage = readSource("app", "u", "[slug]", "section", "[section_id]", "page.tsx");
 
-  assert.match(sectionPage, /getPublicCollectorWallSectionsBySlug/);
+  assert.match(sectionPage, /getPublicWallSectionsBySlug/);
+  assert.match(sectionPage, /getPublicWallCardsBySlug/);
   assert.match(sectionPage, /PublicCollectorProfileContent/);
   assert.match(sectionPage, /selectedSectionId=\{model\.section\.id\}/);
   assert.match(sectionPage, /section\.kind === "custom" && section\.id === model\.section\.id/);
+  assert.match(sectionPage, /cards: section\.id === model\.section\.id \? model\.cards : \[\]/);
 });
 
 test("Wall tab returns to the profile route and custom tabs use canonical section routes", () => {

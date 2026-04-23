@@ -6,7 +6,7 @@ import {
 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { createServerAdminClient } from "@/lib/supabase/admin";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   normalizeDiscoverableVaultIntent,
   type DiscoverableVaultIntent,
@@ -229,7 +229,7 @@ function normalizeRow(
 }
 
 async function fetchCardStreamIdentityMap(cardPrintIds: string[]) {
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const normalizedIds = Array.from(new Set(cardPrintIds.map((value) => normalizeOptionalText(value)).filter((value): value is string => Boolean(value))));
   const identityByCardPrintId = new Map<string, CardStreamIdentityRow>();
 
@@ -379,7 +379,7 @@ export async function getCardStreamRows({
   excludeUserId = null,
   limit = 60,
 }: GetCardStreamRowsOptions = {}): Promise<CardStreamRow[]> {
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const normalizedIntent = normalizeDiscoverableVaultIntent(intent);
   const normalizedCardPrintId = normalizeOptionalText(cardPrintId);
   const normalizedExcludeUserId = normalizeOptionalText(excludeUserId);

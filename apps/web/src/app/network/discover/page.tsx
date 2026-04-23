@@ -5,12 +5,9 @@ import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 import SectionHeader from "@/components/layout/SectionHeader";
 import CollectorListRow from "@/components/public/CollectorListRow";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
-import { getCollectorFollowStateMap } from "@/lib/follows/getCollectorFollowStateMap";
 import { getCollectorDiscoverRows } from "@/lib/network/getCollectorDiscoverRows";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 function normalizeSearchQuery(value: string | null | undefined) {
   if (typeof value !== "string") {
@@ -42,22 +39,13 @@ export default async function NetworkDiscoverPage({
 }: {
   searchParams?: { q?: string };
 }) {
-  const client = createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
-
   const query = normalizeSearchQuery(searchParams?.q);
   const currentPath = query ? `/network/discover?q=${encodeURIComponent(query)}` : "/network/discover";
   const collectors = await getCollectorDiscoverRows({
     query,
-    excludeUserId: user?.id ?? null,
+    excludeUserId: null,
     limit: 30,
   });
-  const followStateMap = await getCollectorFollowStateMap(
-    user?.id ?? null,
-    collectors.map((collector) => collector.userId),
-  );
 
   return (
     <div className="space-y-8 py-8">
@@ -125,9 +113,9 @@ export default async function NetworkDiscoverPage({
               <CollectorListRow
                 key={collector.userId}
                 collector={collector}
-                viewerUserId={user?.id ?? null}
-                isAuthenticated={Boolean(user)}
-                initialIsFollowing={followStateMap.has(collector.userId)}
+                viewerUserId={null}
+                isAuthenticated={false}
+                initialIsFollowing={false}
                 loginHref={`/login?next=${encodeURIComponent(currentPath)}`}
                 metadata={formatJoinedAt(collector.createdAt)}
               />

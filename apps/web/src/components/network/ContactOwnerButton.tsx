@@ -14,6 +14,7 @@ import {
   getVaultIntentLabel,
   type DiscoverableVaultIntent,
 } from "@/lib/network/intent";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 
 type ContactOwnerButtonProps = {
   vaultItemId: string;
@@ -103,6 +104,7 @@ export function ContactOwnerButton({
   buttonClassName,
 }: ContactOwnerButtonProps) {
   const router = useRouter();
+  const viewer = useClientViewer(viewerUserId);
   const [state, formAction] = useFormState(createCardInteractionAction, null);
   const [isOpen, setIsOpen] = useState(false);
   const defaultMessage = useMemo(
@@ -115,7 +117,9 @@ export function ContactOwnerButton({
   const canRenderPortal = typeof document !== "undefined";
   const submissionLockRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const isSelfContact = Boolean(ownerUserId && viewerUserId && ownerUserId === viewerUserId);
+  const effectiveViewerUserId = viewer.userId ?? viewerUserId;
+  const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
+  const isSelfContact = Boolean(ownerUserId && effectiveViewerUserId && ownerUserId === effectiveViewerUserId);
 
   useEffect(() => {
     setDraft(defaultMessage);
@@ -168,7 +172,7 @@ export function ContactOwnerButton({
     return null;
   }
 
-  if (!isAuthenticated) {
+  if (!effectiveIsAuthenticated) {
     return (
       <Link
         href={loginHref}

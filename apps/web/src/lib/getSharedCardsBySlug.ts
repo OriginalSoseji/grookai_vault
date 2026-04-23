@@ -1,8 +1,8 @@
 import "server-only";
 
 import { cache } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
@@ -159,14 +159,7 @@ type RepresentativeSharedInstance = {
 };
 
 function createServerSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createPublicServerClient();
 }
 
 function normalizeSlug(value: string) {

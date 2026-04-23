@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { createClient } from "@supabase/supabase-js";
 import PublicCardImage from "@/components/PublicCardImage";
 import PublicSearchForm from "@/components/PublicSearchForm";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 const FEATURED_CARD_NAMES = ["Pikachu", "Charizard", "Mewtwo"] as const;
+
+export const revalidate = 300;
 
 type FeaturedCardRow = {
   gv_id: string | null;
@@ -39,14 +41,7 @@ type FeaturedCard = {
 };
 
 function createServerSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createPublicServerClient(300);
 }
 
 async function getFeaturedCardByName(

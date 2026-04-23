@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 export type PublicWallSectionSummary = Readonly<{
   id: string;
@@ -41,7 +41,7 @@ export const getPublicWallSectionsBySlug = cache(async (slug: string): Promise<P
     return [];
   }
 
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const { data, error } = await client
     .from("v_wall_sections_v1")
     // LOCK: Custom sections surface automatically when active; is_public is not a product visibility gate.

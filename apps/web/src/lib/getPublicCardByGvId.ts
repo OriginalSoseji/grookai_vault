@@ -257,13 +257,33 @@ async function mapRelatedPrints(rows: RelatedCardRow[]): Promise<RelatedCardPrin
 
 function createServerSupabase() {
   const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
-    throw new Error("Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY/NEXT_PUBLIC_SUPABASE_ANON_KEY.");
+    throw new Error("Missing SUPABASE_URL/NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY/SUPABASE_PUBLISHABLE_KEY.");
   }
 
-  return createClient(url, key);
+  const cachedFetch: typeof fetch = (input, init) =>
+    fetch(input, {
+      ...init,
+      next: {
+        ...((init as { next?: Record<string, unknown> } | undefined)?.next ?? {}),
+        revalidate: 120,
+      },
+    } as RequestInit & { next: { revalidate: number } });
+
+  // LOCK: Public read helpers should be cacheable by default.
+  // LOCK: Prefer bounded revalidation over request-by-request dynamic rendering.
+  return createClient(url, key, {
+    global: {
+      fetch: cachedFetch,
+    },
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+    },
+  });
 }
 
 const getSetDetailsByCode = cache(async (setCode?: string | null) => {

@@ -46,6 +46,80 @@ const nextConfig = {
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabaseAnon,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: supabaseAnon,
   },
+  async headers() {
+    const shortPublicCache = "public, s-maxage=60, stale-while-revalidate=300";
+    const mediumPublicCache = "public, s-maxage=120, stale-while-revalidate=600";
+    const setPublicCache = "public, s-maxage=300, stale-while-revalidate=900";
+
+    // LOCK: Public routes must not depend on global auth/session reads in the root chrome.
+    // LOCK: Public read helpers should be cacheable by default.
+    return [
+      {
+        source: "/",
+        headers: [{ key: "Cache-Control", value: setPublicCache }],
+      },
+      {
+        source: "/explore",
+        headers: [{ key: "Cache-Control", value: mediumPublicCache }],
+      },
+      {
+        source: "/network",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/network/discover",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/compare",
+        headers: [{ key: "Cache-Control", value: mediumPublicCache }],
+      },
+      {
+        source: "/card/:gv_id",
+        headers: [{ key: "Cache-Control", value: mediumPublicCache }],
+      },
+      {
+        source: "/gvvi/:gvvi_id",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug/collection",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug/followers",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug/following",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug/pokemon/:pokemon",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/u/:slug/section/:section_id",
+        headers: [{ key: "Cache-Control", value: shortPublicCache }],
+      },
+      {
+        source: "/sets",
+        headers: [{ key: "Cache-Control", value: setPublicCache }],
+      },
+      {
+        source: "/sets/:set_code",
+        headers: [{ key: "Cache-Control", value: setPublicCache }],
+      },
+      {
+        source: "/set/:set_code",
+        headers: [{ key: "Cache-Control", value: setPublicCache }],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

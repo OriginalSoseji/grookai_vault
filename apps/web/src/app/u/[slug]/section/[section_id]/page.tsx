@@ -4,17 +4,19 @@ import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
-import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
-import { createServerComponentClient } from "@/lib/supabase/server";
-import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
 import { getPublicSectionBySlugAndId } from "@/lib/wallSections/getPublicSectionBySlugAndId";
-import { getPublicSectionShareHref } from "@/lib/wallSections/wallSectionTypes";
+import { getPublicWallCardsBySlug } from "@/lib/wallSections/getPublicWallCardsBySlug";
+import { getPublicWallSectionsBySlug } from "@/lib/wallSections/getPublicWallSectionsBySlug";
+import {
+  getPublicSectionShareHref,
+  PUBLIC_WALL_SECTION_ID,
+  type PublicCollectorSectionView,
+} from "@/lib/wallSections/wallSectionTypes";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 type PublicSectionPageProps = {
   params: {
@@ -74,21 +76,34 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
     redirect(sectionPath);
   }
 
-  const supabase = createServerComponentClient();
-  const [{ data: authData }, followCounts, sectionViews] = await Promise.all([
-    supabase.auth.getUser(),
+  const [followCounts, wallCards, sectionSummaries] = await Promise.all([
     getCollectorFollowCounts(profile.user_id),
-    getPublicCollectorWallSectionsBySlug(profile.slug),
+    getPublicWallCardsBySlug(profile.slug),
+    getPublicWallSectionsBySlug(profile.slug),
   ]);
+  const sectionViews: PublicCollectorSectionView[] = [
+    {
+      id: PUBLIC_WALL_SECTION_ID,
+      kind: "wall",
+      name: "Wall",
+      position: -1,
+      item_count: wallCards.length,
+      cards: wallCards,
+    },
+    ...sectionSummaries.map((section) => ({
+      id: section.id,
+      kind: "custom" as const,
+      name: section.name,
+      position: section.position,
+      item_count: section.item_count,
+      cards: section.id === model.section.id ? model.cards : [],
+    })),
+  ];
   const selectedSection = sectionViews.find((section) => section.kind === "custom" && section.id === model.section.id);
   if (!selectedSection) {
     notFound();
   }
 
-  const viewerUserId = authData.user?.id ?? null;
-  const isOwnProfile = viewerUserId === profile.user_id;
-  const initialIsFollowing =
-    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(model.cards));
   const setCount = new Set(model.cards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
   const stats: PublicCollectorStat[] =
@@ -117,9 +132,9 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
         actions={
           <FollowCollectorButton
             collectorUserId={profile.user_id}
-            isAuthenticated={Boolean(authData.user)}
-            isOwnProfile={isOwnProfile}
-            initialIsFollowing={initialIsFollowing}
+            isAuthenticated={false}
+            isOwnProfile={false}
+            initialIsFollowing={false}
             loginHref={`/login?next=${encodeURIComponent(sectionPath)}`}
           />
         }
@@ -130,8 +145,8 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
         collectorDisplayName={profile.display_name}
         collectorUserId={profile.user_id}
         sections={sectionViews}
-        isAuthenticated={Boolean(authData.user)}
-        viewerUserId={viewerUserId}
+        isAuthenticated={false}
+        viewerUserId={null}
         currentPath={sectionPath}
         selectedSectionId={model.section.id}
       />

@@ -7,7 +7,6 @@ import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
 import { PublicPokemonJumpForm } from "@/components/public/PublicPokemonJumpForm";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
-import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import {
   filterSharedCardsByPokemonSlug,
@@ -18,10 +17,8 @@ import {
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -76,17 +73,10 @@ export default async function PublicPokemonCollectionPage({
     notFound();
   }
 
-  const supabase = createServerComponentClient();
-  const [{ data: authData }, sharedCards, followCounts] = await Promise.all([
-    supabase.auth.getUser(),
+  const [sharedCards, followCounts] = await Promise.all([
     profile.vault_sharing_enabled ? getSharedCardsBySlug(profile.slug) : Promise.resolve([]),
     getCollectorFollowCounts(profile.user_id),
   ]);
-  const user = authData.user ?? null;
-  const viewerUserId = user?.id ?? null;
-  const isOwnProfile = viewerUserId === profile.user_id;
-  const initialIsFollowing =
-    viewerUserId && !isOwnProfile ? await getCollectorFollowState(viewerUserId, profile.user_id) : false;
   const profileSetLogoPathMap = await getSetLogoAssetPathMap(deriveTopSetCodesFromCards(sharedCards));
   const matchingCards = profile.vault_sharing_enabled ? filterSharedCardsByPokemonSlug(sharedCards, params.pokemon) : [];
   const matchingSetCount = new Set(matchingCards.map((card) => card.set_name?.trim()).filter(Boolean)).size;
@@ -119,9 +109,9 @@ export default async function PublicPokemonCollectionPage({
         actions={
           <FollowCollectorButton
             collectorUserId={profile.user_id}
-            isAuthenticated={Boolean(user)}
-            isOwnProfile={isOwnProfile}
-            initialIsFollowing={initialIsFollowing}
+            isAuthenticated={false}
+            isOwnProfile={false}
+            initialIsFollowing={false}
             loginHref={`/login?next=${encodeURIComponent(`/u/${profile.slug}/pokemon/${params.pokemon}`)}`}
           />
         }
@@ -152,7 +142,7 @@ export default async function PublicPokemonCollectionPage({
         ) : (
           <PublicCollectionGrid
             cards={matchingCards}
-            viewerUserId={viewerUserId}
+            viewerUserId={null}
             ownerUserId={profile.user_id}
           />
         )}

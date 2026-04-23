@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   mapWallCardRowsToPublicWallCards,
@@ -18,7 +18,7 @@ export const getPublicWallCardsBySlug = cache(async (slug: string): Promise<Publ
     return [];
   }
 
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const { data, error } = await client
     .from("v_wall_cards_v1")
     // LOCK: Wall is system-derived and always first.

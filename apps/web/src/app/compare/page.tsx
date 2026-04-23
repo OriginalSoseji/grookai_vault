@@ -5,10 +5,8 @@ import PageSection from "@/components/layout/PageSection";
 import type { ComparePublicCard } from "@/lib/cards/getPublicCardsByGvIds";
 import { getPublicCardsByGvIds } from "@/lib/cards/getPublicCardsByGvIds";
 import { buildCompareHref, buildPathWithCompareCards, MIN_COMPARE_CARDS, normalizeCompareCardsParam } from "@/lib/compareCards";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 120;
 
 function CompareUnderfilledState({ cards }: { cards: ComparePublicCard[] }) {
   const selectedIds = cards.map((card) => card.gv_id);
@@ -70,14 +68,8 @@ export default async function ComparePage({
   searchParams?: { cards?: string };
 }) {
   const requestedCards = normalizeCompareCardsParam(searchParams?.cards);
-  const supabase = createServerComponentClient();
-  const [
-    {
-      data: { user },
-    },
-    cards,
-  ] = await Promise.all([supabase.auth.getUser(), getPublicCardsByGvIds(requestedCards)]);
-  const canViewPricing = Boolean(user);
+  const cards = await getPublicCardsByGvIds(requestedCards);
+  const canViewPricing = false;
   const pricingSignInHref = `/login?next=${encodeURIComponent(buildCompareHref(requestedCards))}`;
 
   if (cards.length < MIN_COMPARE_CARDS) {

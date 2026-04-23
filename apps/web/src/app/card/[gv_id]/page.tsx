@@ -77,8 +77,7 @@ function buildCardHref(gvId: string, compareCardsParam?: string) {
   return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 120;
 export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
@@ -128,9 +127,7 @@ export default async function CardPage({
   params: { gv_id: string };
   searchParams?: { cards?: string };
 }) {
-  const supabase = createServerComponentClient();
-  const [{ data: authData }, card, adjacentCards] = await Promise.all([
-    supabase.auth.getUser(),
+  const [card, adjacentCards] = await Promise.all([
     getPublicCardByGvId(params.gv_id),
     getAdjacentPublicCardsByGvId(params.gv_id),
   ]);
@@ -276,7 +273,7 @@ export default async function CardPage({
     };
   }
 
-  const user = authData.user;
+  const user = null as { id: string } | null;
   let vaultCount = 0;
   let ownedObjectSummary: OwnedObjectSummary = {
     totalCount: 0,
@@ -531,7 +528,13 @@ export default async function CardPage({
 
           <aside className="rounded-[24px] border border-slate-200 bg-slate-50/90 p-5 shadow-sm backdrop-blur">
             <div className="space-y-4">
-              <CardPagePricingRail isAuthenticated={canViewPricing} loginHref={loginHref} gvId={resolvedCard.gv_id} pricing={pricingUi} />
+              <CardPagePricingRail
+                isAuthenticated={canViewPricing}
+                loginHref={loginHref}
+                gvId={resolvedCard.gv_id}
+                cardPrintId={resolvedCard.id}
+                pricing={pricingUi}
+              />
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>

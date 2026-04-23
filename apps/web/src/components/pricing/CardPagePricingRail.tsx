@@ -1,11 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 
 type CardPagePricingRailProps = {
   isAuthenticated: boolean;
   loginHref: string;
   gvId: string;
+  cardPrintId?: string | null;
   pricing: CardPricingUiRecord | null;
 };
 
@@ -128,10 +133,37 @@ function AuthenticatedPricingState({ gvId, pricing }: { gvId: string; pricing: C
   );
 }
 
-export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, pricing }: CardPagePricingRailProps) {
-  if (!isAuthenticated) {
+export default function CardPagePricingRail({ isAuthenticated, loginHref, gvId, cardPrintId = null, pricing }: CardPagePricingRailProps) {
+  const viewer = useClientViewer(null);
+  const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
+  const [clientPricing, setClientPricing] = useState<CardPricingUiRecord | null>(pricing);
+
+  useEffect(() => {
+    if (!effectiveIsAuthenticated || clientPricing || !cardPrintId) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({ card_print_id: cardPrintId });
+
+    fetch(`/api/card-pricing?${params.toString()}`, {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload: { pricing?: CardPricingUiRecord | null } | null) => {
+        if (payload && "pricing" in payload) {
+          setClientPricing(payload.pricing ?? null);
+        }
+      })
+      .catch(() => undefined);
+
+    return () => controller.abort();
+  }, [cardPrintId, clientPricing, effectiveIsAuthenticated]);
+
+  if (!effectiveIsAuthenticated) {
     return <LockedPricingState loginHref={loginHref} />;
   }
 
-  return <AuthenticatedPricingState gvId={gvId} pricing={pricing} />;
+  return <AuthenticatedPricingState gvId={gvId} pricing={clientPricing} />;
 }

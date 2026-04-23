@@ -11,10 +11,8 @@ import {
   getVaultIntentLabel,
   normalizeDiscoverableVaultIntent,
 } from "@/lib/network/intent";
-import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 function buildCurrentPath(intent: string | null) {
   const params = new URLSearchParams();
@@ -31,16 +29,11 @@ export default async function NetworkPage({
 }: {
   searchParams?: { intent?: string };
 }) {
-  const client = createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
-
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);
   const currentPath = buildCurrentPath(intent);
   const rows = await getCardStreamRows({
     intent,
-    excludeUserId: user?.id ?? null,
+    excludeUserId: null,
     limit: 60,
   });
 
@@ -52,21 +45,12 @@ export default async function NetworkPage({
           title="Cards collectors want to share"
           description="Message collectors about cards marked Trade, Sell, or Showcase."
           actions={
-            user ? (
-              <Link
-                href="/network/inbox"
-                className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-              >
-                Messages
-              </Link>
-            ) : (
-              <Link
-                href="/login?next=%2Fnetwork"
-                className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-              >
-                Sign in to interact
-              </Link>
-            )
+            <Link
+              href="/login?next=%2Fnetwork"
+              className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+            >
+              Sign in to interact
+            </Link>
           }
         />
       </PageSection>
@@ -121,8 +105,8 @@ export default async function NetworkPage({
               <NetworkStreamCard
                 key={row.vaultItemId}
                 row={row}
-                isAuthenticated={Boolean(user)}
-                viewerUserId={user?.id ?? null}
+                isAuthenticated={false}
+                viewerUserId={null}
                 currentPath={currentPath}
               />
             ))}

@@ -3,8 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { getPublicProfileBySlug } from "@/lib/getPublicProfileBySlug";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPublicProfileBySlug(params.slug);

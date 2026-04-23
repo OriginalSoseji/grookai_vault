@@ -32,6 +32,7 @@ import {
   normalizeExploreViewMode,
   type ExploreViewMode,
 } from "@/lib/exploreViewModes";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 
@@ -131,6 +132,7 @@ export default function ExplorePageClient({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const viewer = useClientViewer(null);
   const q = searchParams.get("q") ?? "";
   const exactSetCode = normalizeSetCode(searchParams.get("set"));
   const exactReleaseYear = parseReleaseYear(searchParams.get("year"));
@@ -157,6 +159,7 @@ export default function ExplorePageClient({
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const effectiveCanViewPricing = canViewPricing || viewer.isAuthenticated;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -211,7 +214,6 @@ export default function ExplorePageClient({
           `/api/resolver/search?${params.toString()}`,
           {
             signal: controller.signal,
-            cache: "no-store",
           },
         );
 
@@ -473,7 +475,7 @@ export default function ExplorePageClient({
                   key={row.id}
                   card={row}
                   href={buildCardHref(row.gv_id)}
-                  canViewPricing={canViewPricing}
+                  canViewPricing={effectiveCanViewPricing}
                   signInHref={pricingSignInHref}
                 />
               ))}
@@ -488,7 +490,7 @@ export default function ExplorePageClient({
                       key={row.id}
                       card={row}
                       href={buildCardHref(row.gv_id)}
-                      canViewPricing={canViewPricing}
+                      canViewPricing={effectiveCanViewPricing}
                       signInHref={pricingSignInHref}
                     />
                   ))}
@@ -531,7 +533,7 @@ export default function ExplorePageClient({
                           key={row.id}
                           card={row}
                           href={buildCardHref(row.gv_id)}
-                          canViewPricing={canViewPricing}
+                          canViewPricing={effectiveCanViewPricing}
                           signInHref={pricingSignInHref}
                         />
                       ))}
@@ -551,7 +553,7 @@ export default function ExplorePageClient({
                   card={row}
                   href={buildCardHref(row.gv_id)}
                   mode="thumb-lg"
-                  canViewPricing={canViewPricing}
+                  canViewPricing={effectiveCanViewPricing}
                 />
               ))}
               {displayRows.length === 0 && !loading ? (
@@ -566,7 +568,7 @@ export default function ExplorePageClient({
                   card={row}
                   href={buildCardHref(row.gv_id)}
                   mode="thumb"
-                  canViewPricing={canViewPricing}
+                  canViewPricing={effectiveCanViewPricing}
                 />
               ))}
               {displayRows.length === 0 && !loading ? (
@@ -581,7 +583,7 @@ export default function ExplorePageClient({
 
       {!isDiscoveryMode &&
       displayRows.length > 0 &&
-      canViewPricing &&
+      effectiveCanViewPricing &&
       viewMode === "details" ? (
         <div className="text-xs text-slate-500 md:hidden">
           Beta market estimate.
@@ -590,7 +592,7 @@ export default function ExplorePageClient({
 
       {!isDiscoveryMode &&
       displayRows.length > 0 &&
-      canViewPricing &&
+      effectiveCanViewPricing &&
       (viewMode === "thumb" ||
         viewMode === "thumb-lg" ||
         viewMode === "list") ? (

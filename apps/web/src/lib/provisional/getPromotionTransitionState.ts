@@ -1,11 +1,11 @@
 import "server-only";
 
-import { createClient } from "@supabase/supabase-js";
 import type {
   PromotionTransitionState,
   PublicProvisionalCard,
 } from "@/lib/provisional/publicProvisionalTypes";
 import { shouldShowPromotionTransitionNote } from "@/lib/provisional/shouldShowPromotionTransitionNote";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 
 export const PROMOTION_TRANSITION_LABEL = "Now confirmed in Grookai";
 
@@ -38,14 +38,7 @@ export type ProvisionalPromotionLink = PublicProvisionalCard & {
 };
 
 function createPublicSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-  }
-
-  return createClient(url, anon);
+  return createPublicServerClient(120);
 }
 
 function normalizeText(value: unknown) {

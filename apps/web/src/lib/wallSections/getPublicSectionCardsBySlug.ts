@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import {
   mapSectionCardRowsToPublicWallCards,
@@ -23,7 +23,7 @@ export const getPublicSectionCardsBySlug = cache(async (
     return [];
   }
 
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const { data, error } = await client
     .from("v_section_cards_v1")
     // LOCK: Section share routes expose active custom sections automatically.

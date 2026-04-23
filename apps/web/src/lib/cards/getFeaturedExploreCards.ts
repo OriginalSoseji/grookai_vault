@@ -1,6 +1,6 @@
 import "server-only";
 
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getRotationOffset } from "@/lib/cards/getFeaturedCardRotation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
@@ -94,7 +94,7 @@ async function normalizeFeaturedExploreCard(row: FeaturedExploreCardRow | null |
 }
 
 async function fetchFeaturedExploreCardCount() {
-  const supabase = createServerComponentClient();
+  const supabase = createPublicServerClient();
   const { count, error } = await supabase
     .from("card_prints")
     .select("gv_id", {
@@ -111,7 +111,7 @@ async function fetchFeaturedExploreCardCount() {
 }
 
 async function getFeaturedExploreCardsFromWindow(offset: number, windowSize: number) {
-  const supabase = createServerComponentClient();
+  const supabase = createPublicServerClient();
   const { data, error } = await supabase
     .from("card_prints")
     .select("gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")

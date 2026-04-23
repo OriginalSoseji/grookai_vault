@@ -1,9 +1,8 @@
 import "server-only";
 
 import { cache } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
-import { getSupabaseServerConfig } from "@/lib/supabase/config";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   matchesPublicSetSearch,
   normalizePublicSetFilter,
@@ -54,9 +53,7 @@ type PublicSetCardRow = {
 };
 
 function createServerSupabase() {
-  const { url, publishableKey } = getSupabaseServerConfig();
-
-  return createClient(url, publishableKey);
+  return createPublicServerClient();
 }
 
 function normalizeSetCode(value?: string | null) {

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
+import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 
 export type AddToVaultActionResult =
@@ -89,6 +90,7 @@ export default function AddToVaultCardAction({
   gvId,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
+  const viewer = useClientViewer(null);
   const [state, formAction] = useFormState(action, null);
   const refreshedSubmissionKeyRef = useRef<number | null>(null);
   const [successPulse, setSuccessPulse] = useState<"added" | "incremented" | null>(null);
@@ -97,6 +99,7 @@ export default function AddToVaultCardAction({
     statusMessage?.tone === "success"
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
       : "border-rose-200 bg-rose-50 text-rose-800";
+  const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
 
   useEffect(() => {
     if (!state?.ok || (state.status !== "added" && state.status !== "incremented")) {
@@ -122,7 +125,7 @@ export default function AddToVaultCardAction({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        {isAuthenticated ? (
+        {effectiveIsAuthenticated ? (
           <form
             action={formAction}
             onSubmit={() => {
@@ -153,7 +156,7 @@ export default function AddToVaultCardAction({
         <div className={`rounded-[12px] border px-4 py-3 ${toneClasses}`}>
           <p className="text-sm font-semibold">{statusMessage.title}</p>
           <p className="mt-1 text-sm">{statusMessage.body}</p>
-          {(state?.status === "login-required" || !isAuthenticated) ? (
+          {(state?.status === "login-required" || !effectiveIsAuthenticated) ? (
             <div className="mt-3 flex flex-wrap gap-3">
               <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">
                 Sign in

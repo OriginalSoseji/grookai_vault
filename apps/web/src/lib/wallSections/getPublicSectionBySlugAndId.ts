@@ -3,7 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { getPublicProfileBySlug, type PublicProfile } from "@/lib/getPublicProfileBySlug";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
-import { createServerComponentClient } from "@/lib/supabase/server";
+import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { getPublicSectionCardsBySlug } from "@/lib/wallSections/getPublicSectionCardsBySlug";
 import { normalizeWallSectionId } from "@/lib/wallSections/wallSectionTypes";
 
@@ -49,7 +49,7 @@ export const getPublicSectionBySlugAndId = cache(async (
     return null;
   }
 
-  const client = createServerComponentClient();
+  const client = createPublicServerClient();
   const { data, error } = await client
     .from("v_wall_sections_v1")
     // LOCK: Section share routes expose active custom sections automatically.
