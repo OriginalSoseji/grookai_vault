@@ -108,6 +108,58 @@ class PublicCollectorCard {
   final List<PublicCollectorCopy> inPlayCopies;
 }
 
+class PublicCollectorSectionSummary {
+  const PublicCollectorSectionSummary({
+    required this.id,
+    required this.name,
+    required this.position,
+    required this.itemCount,
+  });
+
+  final String id;
+  final String name;
+  final int position;
+  final int itemCount;
+}
+
+class CollectorWallView {
+  const CollectorWallView({
+    required this.wallCards,
+    required this.sections,
+    this.sectionCards = const <String, List<PublicCollectorCard>>{},
+  });
+
+  static const empty = CollectorWallView(
+    wallCards: <PublicCollectorCard>[],
+    sections: <PublicCollectorSectionSummary>[],
+  );
+
+  final List<PublicCollectorCard> wallCards;
+  final List<PublicCollectorSectionSummary> sections;
+  final Map<String, List<PublicCollectorCard>> sectionCards;
+
+  List<PublicCollectorCard> cardsForSection(String sectionId) {
+    return sectionCards[PublicCollectorService._normalizeSectionId(
+          sectionId,
+        )] ??
+        const <PublicCollectorCard>[];
+  }
+
+  CollectorWallView withSectionCards({
+    required String sectionId,
+    required List<PublicCollectorCard> cards,
+  }) {
+    return CollectorWallView(
+      wallCards: wallCards,
+      sections: sections,
+      sectionCards: <String, List<PublicCollectorCard>>{
+        ...sectionCards,
+        PublicCollectorService._normalizeSectionId(sectionId): cards,
+      },
+    );
+  }
+}
+
 class _PublicCollectorWallCardSettings {
   const _PublicCollectorWallCardSettings({
     this.publicNote,
@@ -213,12 +265,14 @@ class PublicCollectorSurfaceResult {
     this.profile,
     this.collectionCards = const [],
     this.inPlayCards = const [],
+    this.wallView = CollectorWallView.empty,
   });
 
   final PublicCollectorSurfaceState state;
   final PublicCollectorProfile? profile;
   final List<PublicCollectorCard> collectionCards;
   final List<PublicCollectorCard> inPlayCards;
+  final CollectorWallView wallView;
 
   factory PublicCollectorSurfaceResult.notFound() {
     return const PublicCollectorSurfaceResult._(
@@ -243,12 +297,19 @@ class PublicCollectorSurfaceResult {
     required PublicCollectorProfile profile,
     required List<PublicCollectorCard> collectionCards,
     required List<PublicCollectorCard> inPlayCards,
+    CollectorWallView? wallView,
   }) {
     return PublicCollectorSurfaceResult._(
       state: PublicCollectorSurfaceState.success,
       profile: profile,
       collectionCards: collectionCards,
       inPlayCards: inPlayCards,
+      wallView:
+          wallView ??
+          CollectorWallView(
+            wallCards: inPlayCards,
+            sections: const <PublicCollectorSectionSummary>[],
+          ),
     );
   }
 }
@@ -411,26 +472,198 @@ class PublicCollectorService {
       return PublicCollectorSurfaceResult.unavailable();
     }
 
-    final results = await Future.wait<dynamic>([
-      _loadCollectionCards(client: client, userId: profile.userId),
-      _loadInPlayCards(
-        client: client,
-        ownerUserId: profile.userId,
-        ownerSlug: profile.slug,
-      ),
-    ]);
+    final wallView = await loadCollectorWallViewBySlug(
+      client: client,
+      slug: profile.slug,
+    );
 
-    final collectionCards = results[0] as List<PublicCollectorCard>;
-    final inPlayCards = results[1] as List<PublicCollectorCard>;
-
-    if (collectionCards.isEmpty && inPlayCards.isEmpty) {
+    if (wallView.wallCards.isEmpty && wallView.sections.isEmpty) {
       return PublicCollectorSurfaceResult.empty(profile);
     }
 
     return PublicCollectorSurfaceResult.success(
       profile: profile,
-      collectionCards: collectionCards,
-      inPlayCards: inPlayCards,
+      collectionCards: const <PublicCollectorCard>[],
+      inPlayCards: wallView.wallCards,
+      wallView: wallView,
+    );
+  }
+
+  static Future<CollectorWallView> loadCollectorWallViewBySlug({
+    required SupabaseClient client,
+    required String slug,
+  }) async {
+    final normalizedSlug = _normalizeSlug(slug);
+    if (normalizedSlug.isEmpty) {
+      return CollectorWallView.empty;
+    }
+
+    final results = await Future.wait<dynamic>([
+      loadWallCardsBySlug(client: client, slug: normalizedSlug),
+      loadPublicWallSectionsBySlug(client: client, slug: normalizedSlug),
+    ]);
+
+    return CollectorWallView(
+      wallCards: results[0] as List<PublicCollectorCard>,
+      sections: results[1] as List<PublicCollectorSectionSummary>,
+    );
+  }
+
+  static Future<List<PublicCollectorSectionSummary>>
+  loadPublicWallSectionsBySlug({
+    required SupabaseClient client,
+    required String slug,
+  }) async {
+    final normalizedSlug = _normalizeSlug(slug);
+    if (normalizedSlug.isEmpty) {
+      return const <PublicCollectorSectionSummary>[];
+    }
+
+    final rows = await client
+        .from('v_wall_sections_v1')
+        // LOCK: App public rail renders Wall first, then active custom sections only.
+        // LOCK: is_public is compatibility data, not a product visibility gate.
+        .select('id,name,position,item_count,is_active')
+        .eq('owner_slug', normalizedSlug)
+        .eq('is_active', true)
+        .order('position', ascending: true)
+        .limit(20);
+
+    return (rows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .map((row) {
+          final id = _normalizeSectionId(row['id']);
+          final name = _cleanText(row['name']);
+          if (id.isEmpty || name.isEmpty || row['is_active'] != true) {
+            return null;
+          }
+
+          return PublicCollectorSectionSummary(
+            id: id,
+            name: name,
+            position: _toCount(row['position']),
+            itemCount: _toCount(row['item_count']),
+          );
+        })
+        .whereType<PublicCollectorSectionSummary>()
+        .toList();
+  }
+
+  static Future<List<PublicCollectorCard>> loadWallCardsBySlug({
+    required SupabaseClient client,
+    required String slug,
+  }) async {
+    final normalizedSlug = _normalizeSlug(slug);
+    if (normalizedSlug.isEmpty) {
+      return const <PublicCollectorCard>[];
+    }
+
+    final rows = await client
+        .from('v_wall_cards_v1')
+        // LOCK: Wall cards use public-safe instance rows and display_image_url first.
+        .select(
+          'instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,public_note',
+        )
+        .eq('owner_slug', normalizedSlug)
+        .order('created_at', ascending: false);
+
+    return _mapWallRowsToCards(
+      rows: (rows as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .toList(),
+      client: client,
+    );
+  }
+
+  static Future<List<PublicCollectorCard>> loadSectionCardsBySlug({
+    required SupabaseClient client,
+    required String slug,
+    required String sectionId,
+  }) async {
+    final normalizedSlug = _normalizeSlug(slug);
+    final normalizedSectionId = _normalizeSectionId(sectionId);
+    if (normalizedSlug.isEmpty || normalizedSectionId.isEmpty) {
+      return const <PublicCollectorCard>[];
+    }
+
+    final rows = await client
+        .from('v_section_cards_v1')
+        // LOCK: Section cards are exact-copy public rows and load on demand.
+        .select(
+          'section_id,section_name,section_position,instance_id,gv_vi_id,vault_item_id,card_print_id,intent,condition_label,is_graded,grade_company,grade_value,grade_label,section_added_at,instance_created_at,gv_id,name,set_code,set_name,number,image_url,representative_image_url,display_image_url,public_note',
+        )
+        .eq('owner_slug', normalizedSlug)
+        .eq('section_id', normalizedSectionId)
+        .order('section_added_at', ascending: false);
+
+    return _mapSectionRowsToCards(
+      rows: (rows as List<dynamic>)
+          .map((row) => Map<String, dynamic>.from(row as Map))
+          .toList(),
+      client: client,
+    );
+  }
+
+  static Future<PublicCollectorSectionSummary> createOwnerWallSection({
+    required SupabaseClient client,
+    required String ownerUserId,
+    required String name,
+  }) async {
+    final userId = _cleanText(client.auth.currentUser?.id);
+    final normalizedOwnerUserId = _cleanText(ownerUserId);
+    final normalizedName = _cleanText(name).replaceAll(RegExp(r'\s+'), ' ');
+    if (userId.isEmpty || userId != normalizedOwnerUserId) {
+      throw Exception('Sign in required.');
+    }
+    if (normalizedName.isEmpty) {
+      throw Exception('Section name is required.');
+    }
+    if (normalizedName.toLowerCase() == 'wall') {
+      throw Exception('Wall is managed automatically.');
+    }
+
+    final existingRows = await client
+        .from('wall_sections')
+        .select('id,name,position')
+        .eq('user_id', userId)
+        .order('position', ascending: true);
+    final existing = (existingRows as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+    if (existing.any(
+      (row) =>
+          _cleanText(row['name']).toLowerCase() == normalizedName.toLowerCase(),
+    )) {
+      throw Exception('You already have a section with that name.');
+    }
+
+    final nextPosition =
+        existing.fold<int>(-1, (max, row) {
+          final position = _toCount(row['position']);
+          return position > max ? position : max;
+        }) +
+        1;
+
+    final inserted = await client
+        .from('wall_sections')
+        .insert({
+          'user_id': userId,
+          'name': normalizedName.length > 80
+              ? normalizedName.substring(0, 80)
+              : normalizedName,
+          'position': nextPosition,
+          'is_active': true,
+          'is_public': true,
+        })
+        .select('id,name,position')
+        .single();
+    final row = Map<String, dynamic>.from(inserted as Map);
+
+    return PublicCollectorSectionSummary(
+      id: _normalizeSectionId(row['id']),
+      name: _cleanText(row['name']),
+      position: _toCount(row['position']),
+      itemCount: 0,
     );
   }
 
@@ -474,22 +707,16 @@ class PublicCollectorService {
       );
     }
 
-    final collectionMatches = surface.collectionCards
+    final wallMatches = surface.wallView.wallCards
         .where((card) => card.cardPrintId == normalizedCardPrintId)
         .toList();
-    final inPlayMatches = surface.inPlayCards
-        .where((card) => card.cardPrintId == normalizedCardPrintId)
-        .toList();
-    if (collectionMatches.isEmpty && inPlayMatches.isEmpty) {
+    if (wallMatches.isEmpty) {
       return PublicCollectorOwnershipSnapshot.empty(
         cardPrintId: normalizedCardPrintId,
       );
     }
 
-    final allMatches = <PublicCollectorCard>[
-      ...inPlayMatches,
-      ...collectionMatches,
-    ];
+    final allMatches = <PublicCollectorCard>[...wallMatches];
     final allCopies = allMatches.expand((card) => card.inPlayCopies).toList();
 
     PublicCollectorCopy? primaryCopy;
@@ -516,13 +743,13 @@ class PublicCollectorService {
     );
     final ownedCount = allCopies.isNotEmpty ? allCopies.length : 1;
     final inPlay =
-        inPlayMatches.isNotEmpty ||
+        wallMatches.isNotEmpty ||
         allCopies.any((copy) => _normalizePublicIntent(copy.intent) != 'hold');
 
     return PublicCollectorOwnershipSnapshot(
       cardPrintId: normalizedCardPrintId,
       ownedCount: ownedCount,
-      onWall: collectionMatches.isNotEmpty || primaryGvviId != null,
+      onWall: wallMatches.isNotEmpty || primaryGvviId != null,
       inPlay: inPlay,
       primaryVaultItemId: primaryVaultItemId,
       primaryGvviId: primaryGvviId,
@@ -583,6 +810,186 @@ class PublicCollectorService {
     return cards.where((card) {
       return _normalizePokemonMatchValue(card.name).contains(normalizedPokemon);
     }).toList();
+  }
+
+  static Future<List<PublicCollectorCard>> _mapWallRowsToCards({
+    required SupabaseClient client,
+    required List<Map<String, dynamic>> rows,
+  }) async {
+    if (rows.isEmpty) {
+      return const <PublicCollectorCard>[];
+    }
+
+    final cardPrintIds = rows
+        .map((row) => _cleanText(row['card_print_id']))
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+      client: client,
+      cardPrintIds: cardPrintIds,
+    );
+    final grouped = <String, PublicCollectorCard>{};
+    final latestAtByCardId = <String, int>{};
+
+    for (final row in rows) {
+      final cardPrintId = _cleanText(row['card_print_id']);
+      final gvId = _cleanText(row['gv_id']);
+      final intent = _normalizePublicIntent(row['intent']);
+      if (cardPrintId.isEmpty || gvId.isEmpty || intent == null) {
+        continue;
+      }
+
+      final createdAt = _firstNonEmpty([
+        row['created_at'],
+        row['instance_created_at'],
+        row['section_added_at'],
+      ]);
+      final createdMs =
+          DateTime.tryParse(createdAt ?? '')?.millisecondsSinceEpoch ?? -1;
+      final copy = _copyFromWallRow(row, intent);
+      final existing = grouped[cardPrintId];
+
+      if (existing == null) {
+        grouped[cardPrintId] = _cardFromWallRow(
+          row,
+          pricing: pricingById[cardPrintId],
+          copies: copy == null ? const <PublicCollectorCopy>[] : [copy],
+        );
+        latestAtByCardId[cardPrintId] = createdMs;
+        continue;
+      }
+
+      final nextCopies = copy == null
+          ? existing.inPlayCopies
+          : <PublicCollectorCopy>[...existing.inPlayCopies, copy];
+      final shouldUsePrimary =
+          createdMs > (latestAtByCardId[cardPrintId] ?? -1);
+      if (shouldUsePrimary) {
+        latestAtByCardId[cardPrintId] = createdMs;
+      }
+
+      grouped[cardPrintId] = _cardFromWallRow(
+        shouldUsePrimary ? row : _rowFromCard(existing),
+        pricing: pricingById[cardPrintId],
+        copies: nextCopies,
+      );
+    }
+
+    final cards = grouped.values.toList();
+    cards.sort((left, right) => left.name.compareTo(right.name));
+    return cards;
+  }
+
+  static Future<List<PublicCollectorCard>> _mapSectionRowsToCards({
+    required SupabaseClient client,
+    required List<Map<String, dynamic>> rows,
+  }) async {
+    if (rows.isEmpty) {
+      return const <PublicCollectorCard>[];
+    }
+
+    final cardPrintIds = rows
+        .map((row) => _cleanText(row['card_print_id']))
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList();
+    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
+      client: client,
+      cardPrintIds: cardPrintIds,
+    );
+
+    return rows
+        .map((row) {
+          final cardPrintId = _cleanText(row['card_print_id']);
+          final intent = _normalizePublicIntent(row['intent']);
+          final copy = intent == null ? null : _copyFromWallRow(row, intent);
+          return _cardFromWallRow(
+            row,
+            pricing: pricingById[cardPrintId],
+            copies: copy == null ? const <PublicCollectorCopy>[] : [copy],
+          );
+        })
+        .where((card) => card.cardPrintId.isNotEmpty && card.gvId.isNotEmpty)
+        .toList();
+  }
+
+  static PublicCollectorCard _cardFromWallRow(
+    Map<String, dynamic> row, {
+    required CardSurfacePricingData? pricing,
+    required List<PublicCollectorCopy> copies,
+  }) {
+    final cardPrintId = _cleanText(row['card_print_id']);
+    final gvId = _cleanText(row['gv_id']);
+    final intent = _normalizePublicIntent(row['intent']);
+
+    return PublicCollectorCard(
+      cardPrintId: cardPrintId,
+      gvId: gvId,
+      name: _cleanText(row['name']).isEmpty
+          ? 'Unknown card'
+          : _cleanText(row['name']),
+      vaultItemId: _normalizeOptionalText(row['vault_item_id']),
+      gvviId: _normalizeOptionalText(row['gv_vi_id']),
+      setName:
+          _normalizeOptionalText(row['set_name']) ??
+          _normalizeOptionalText(row['set_code']),
+      setCode: _normalizeOptionalText(row['set_code']),
+      number: _cleanText(row['number']).isNotEmpty
+          ? _cleanText(row['number'])
+          : '—',
+      imageUrl: _displayImageUrl(row),
+      conditionLabel: _normalizeOptionalText(row['condition_label']),
+      intent: intent,
+      pricing: pricing,
+      publicNote: _normalizeOptionalText(row['public_note']),
+      inPlayCopies: copies,
+    );
+  }
+
+  static PublicCollectorCopy? _copyFromWallRow(
+    Map<String, dynamic> row,
+    String intent,
+  ) {
+    final instanceId = _cleanText(row['instance_id']);
+    final vaultItemId = _cleanText(row['vault_item_id']);
+    if (instanceId.isEmpty || vaultItemId.isEmpty) {
+      return null;
+    }
+
+    return PublicCollectorCopy(
+      instanceId: instanceId,
+      vaultItemId: vaultItemId,
+      intent: intent,
+      gvviId: _normalizeOptionalText(row['gv_vi_id']),
+      conditionLabel: _normalizeOptionalText(row['condition_label']),
+      isGraded: row['is_graded'] == true,
+      gradeCompany: _normalizeOptionalText(row['grade_company']),
+      gradeValue: _normalizeOptionalText(row['grade_value']),
+      gradeLabel: _normalizeOptionalText(row['grade_label']),
+      createdAt: _firstNonEmpty([
+        row['section_added_at'],
+        row['instance_created_at'],
+        row['created_at'],
+      ]),
+    );
+  }
+
+  static Map<String, dynamic> _rowFromCard(PublicCollectorCard card) {
+    return <String, dynamic>{
+      'card_print_id': card.cardPrintId,
+      'gv_id': card.gvId,
+      'name': card.name,
+      'set_code': card.setCode,
+      'set_name': card.setName,
+      'number': card.number,
+      'image_url': card.imageUrl,
+      'condition_label': card.conditionLabel,
+      'intent': card.intent,
+      'vault_item_id': card.vaultItemId,
+      'gv_vi_id': card.gvviId,
+      'public_note': card.publicNote,
+    };
   }
 
   static Future<List<PublicCollectorCard>> _loadCollectionCards({
@@ -712,6 +1119,9 @@ class PublicCollectorService {
         .toList();
   }
 
+  // Legacy v_card_stream path is retained only for compatibility with older
+  // helpers; public profile rendering now uses v_wall_cards_v1.
+  // ignore: unused_element
   static Future<List<PublicCollectorCard>> _loadInPlayCards({
     required SupabaseClient client,
     required String ownerUserId,
@@ -1146,6 +1556,10 @@ class PublicCollectorService {
     return _cleanText(value).toLowerCase();
   }
 
+  static String _normalizeSectionId(dynamic value) {
+    return _cleanText(value);
+  }
+
   static String? _normalizeOptionalText(dynamic value) {
     final cleaned = _cleanText(value);
     return cleaned.isEmpty ? null : cleaned;
@@ -1153,6 +1567,16 @@ class PublicCollectorService {
 
   static String _cleanText(dynamic value) {
     return (value ?? '').toString().trim();
+  }
+
+  static String? _firstNonEmpty(Iterable<dynamic> values) {
+    for (final value in values) {
+      final normalized = _cleanText(value);
+      if (normalized.isNotEmpty) {
+        return normalized;
+      }
+    }
+    return null;
   }
 
   static String _normalizePokemonMatchValue(String value) {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,7 +8,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../card_detail_screen.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
-import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
@@ -58,9 +59,11 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
 
   VaultGvviData? _data;
   List<_GvviRelatedPrint> _relatedPrints = const [];
+  List<VaultGvviSectionMembership> _sectionMemberships =
+      const <VaultGvviSectionMembership>[];
   bool _loading = true;
   bool _savingNotes = false;
-  bool _togglingWall = false;
+  String? _busySectionId;
   bool _busyFrontMedia = false;
   bool _busyBackMedia = false;
   bool _removing = false;
@@ -90,7 +93,19 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         client: _client,
         gvviId: widget.gvviId,
       );
-      final relatedPrints = await _fetchRelatedPrints(data);
+      final results = await Future.wait<dynamic>([
+        _fetchRelatedPrints(data),
+        data == null
+            ? Future<List<VaultGvviSectionMembership>>.value(
+                const <VaultGvviSectionMembership>[],
+              )
+            : VaultGvviService.loadSectionMemberships(
+                client: _client,
+                instanceId: data.instanceId,
+              ),
+      ]);
+      final relatedPrints = results[0] as List<_GvviRelatedPrint>;
+      final sectionMemberships = results[1] as List<VaultGvviSectionMembership>;
       if (!mounted) {
         return;
       }
@@ -99,6 +114,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       setState(() {
         _data = data;
         _relatedPrints = relatedPrints;
+        _sectionMemberships = sectionMemberships;
         _loading = false;
         _error = data == null ? 'Exact copy not found.' : null;
       });
@@ -109,6 +125,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       setState(() {
         _loading = false;
         _relatedPrints = const [];
+        _sectionMemberships = const <VaultGvviSectionMembership>[];
         _error = error.toString().replaceFirst('Exception: ', '');
       });
     }
@@ -356,40 +373,55 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
     }
   }
 
-  Future<void> _toggleWall() async {
+  Future<void> _toggleSectionMembership(
+    VaultGvviSectionMembership section,
+  ) async {
     final data = _data;
-    if (data == null || _togglingWall) {
+    if (data == null || _busySectionId != null) {
       return;
     }
 
     setState(() {
-      _togglingWall = true;
+      _busySectionId = section.id;
       _status = null;
     });
 
     try {
-      final nextShared = await VaultCardService.setSharedCardVisibility(
-        client: _client,
-        cardPrintId: data.cardPrintId,
-        gvId: data.gvId,
-        nextShared: !data.isSharedOnWall,
-      );
+      if (section.isMember) {
+        await VaultGvviService.removeSectionMembership(
+          client: _client,
+          instanceId: data.instanceId,
+          sectionId: section.id,
+        );
+      } else {
+        await VaultGvviService.assignSectionMembership(
+          client: _client,
+          instanceId: data.instanceId,
+          sectionId: section.id,
+        );
+      }
       if (!mounted) {
         return;
       }
       setState(() {
-        _data = data.copyWith(isSharedOnWall: nextShared);
-        _togglingWall = false;
-        _status = nextShared
-            ? 'Card is now on your wall.'
-            : 'Removed from wall.';
+        _sectionMemberships = _sectionMemberships
+            .map(
+              (current) => current.id == section.id
+                  ? current.copyWith(isMember: !section.isMember)
+                  : current,
+            )
+            .toList();
+        _busySectionId = null;
+        _status = section.isMember
+            ? 'Removed from section.'
+            : 'Added to section.';
       });
     } catch (error) {
       if (!mounted) {
         return;
       }
       setState(() {
-        _togglingWall = false;
+        _busySectionId = null;
         _status = error.toString().replaceFirst('Exception: ', '');
       });
     }
@@ -612,8 +644,6 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     data: _data!,
                     intentLabel: _intentLabel(_data!.intent),
                     status: _status,
-                    wallBusy: _togglingWall,
-                    onToggleWall: _toggleWall,
                     onManageCard: _openGroupedCard,
                     onViewCard: _openCard,
                     onOpenPublicPage: _data!.canOpenPublicPage
@@ -628,6 +658,15 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                     onUpgradeToSlab: _canUpgradeToSlab(_data!)
                         ? _openSlabUpgradeFlow
                         : null,
+                  ),
+                  const SizedBox(height: 10),
+                  _VaultSectionFrame(
+                    title: 'Add to',
+                    child: _VaultSectionMembershipSurface(
+                      sections: _sectionMemberships,
+                      busySectionId: _busySectionId,
+                      onToggleSection: _toggleSectionMembership,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   _VaultSectionFrame(
@@ -765,8 +804,6 @@ class _VaultTopSurface extends StatelessWidget {
     required this.onManageCard,
     required this.onViewCard,
     required this.status,
-    required this.wallBusy,
-    required this.onToggleWall,
     this.onOpenPublicPage,
     this.onCopyPublicLink,
     this.onAddAnother,
@@ -776,8 +813,6 @@ class _VaultTopSurface extends StatelessWidget {
   final VaultGvviData data;
   final String intentLabel;
   final String? status;
-  final bool wallBusy;
-  final VoidCallback onToggleWall;
   final VoidCallback onManageCard;
   final VoidCallback onViewCard;
   final VoidCallback? onOpenPublicPage;
@@ -803,11 +838,6 @@ class _VaultTopSurface extends StatelessWidget {
           _VaultGvviPriceSurface(data: data, framed: false),
           const SizedBox(height: 10),
           _VaultPrimaryActionsSurface(
-            wallActionLabel: data.isSharedOnWall
-                ? 'Remove from wall'
-                : 'Add to Wall',
-            wallBusy: wallBusy,
-            onToggleWall: onToggleWall,
             onManageCard: onManageCard,
             onViewCard: onViewCard,
             onOpenPublicPage: onOpenPublicPage,
@@ -978,9 +1008,6 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
 
 class _VaultPrimaryActionsSurface extends StatelessWidget {
   const _VaultPrimaryActionsSurface({
-    required this.wallActionLabel,
-    required this.wallBusy,
-    required this.onToggleWall,
     required this.onManageCard,
     required this.onViewCard,
     this.framed = true,
@@ -990,9 +1017,6 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
     this.onUpgradeToSlab,
   });
 
-  final String wallActionLabel;
-  final bool wallBusy;
-  final VoidCallback onToggleWall;
   final VoidCallback onManageCard;
   final VoidCallback onViewCard;
   final bool framed;
@@ -1014,17 +1038,6 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
           spacing: 6,
           runSpacing: 6,
           children: [
-            SizedBox(
-              width: itemWidth,
-              child: _VaultOverviewActionCard(
-                icon: wallActionLabel == 'Add to Wall'
-                    ? Icons.push_pin_outlined
-                    : Icons.push_pin_rounded,
-                label: wallActionLabel,
-                onTap: onToggleWall,
-                busy: wallBusy,
-              ),
-            ),
             if (onOpenPublicPage != null)
               SizedBox(
                 width: itemWidth,
@@ -1100,18 +1113,70 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
   }
 }
 
+class _VaultSectionMembershipSurface extends StatelessWidget {
+  const _VaultSectionMembershipSurface({
+    required this.sections,
+    required this.busySectionId,
+    required this.onToggleSection,
+  });
+
+  final List<VaultGvviSectionMembership> sections;
+  final String? busySectionId;
+  final Future<void> Function(VaultGvviSectionMembership section)
+  onToggleSection;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    if (sections.isEmpty) {
+      return Text(
+        'Not in any sections yet.',
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: colorScheme.onSurface.withValues(alpha: 0.62),
+          height: 1.35,
+        ),
+      );
+    }
+
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final section in sections)
+          FilterChip(
+            label: Text(section.name),
+            selected: section.isMember,
+            avatar: busySectionId == section.id
+                ? SizedBox(
+                    width: 14,
+                    height: 14,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: colorScheme.primary,
+                    ),
+                  )
+                : null,
+            onSelected: busySectionId == null
+                ? (_) => unawaited(onToggleSection(section))
+                : null,
+          ),
+      ],
+    );
+  }
+}
+
 class _VaultOverviewActionCard extends StatelessWidget {
   const _VaultOverviewActionCard({
     required this.icon,
     required this.label,
     required this.onTap,
-    this.busy = false,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-  final bool busy;
 
   @override
   Widget build(BuildContext context) {
@@ -1120,7 +1185,7 @@ class _VaultOverviewActionCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: busy ? null : onTap,
+        onTap: onTap,
         child: Ink(
           padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
           decoration: BoxDecoration(
@@ -1132,16 +1197,7 @@ class _VaultOverviewActionCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              busy
-                  ? SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: colorScheme.primary,
-                      ),
-                    )
-                  : Icon(icon, size: 18, color: colorScheme.primary),
+              Icon(icon, size: 18, color: colorScheme.primary),
               const SizedBox(width: 9),
               Expanded(
                 child: Text(

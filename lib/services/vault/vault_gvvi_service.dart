@@ -122,6 +122,29 @@ class VaultGvviOutcome {
   final String? priceCurrency;
 }
 
+class VaultGvviSectionMembership {
+  const VaultGvviSectionMembership({
+    required this.id,
+    required this.name,
+    required this.position,
+    required this.isMember,
+  });
+
+  final String id;
+  final String name;
+  final int position;
+  final bool isMember;
+
+  VaultGvviSectionMembership copyWith({bool? isMember}) {
+    return VaultGvviSectionMembership(
+      id: id,
+      name: name,
+      position: position,
+      isMember: isMember ?? this.isMember,
+    );
+  }
+}
+
 class VaultGvviData {
   const VaultGvviData({
     required this.instanceId,
@@ -535,6 +558,165 @@ class VaultGvviService {
           )
           .toList(),
     );
+  }
+
+  static Future<List<VaultGvviSectionMembership>> loadSectionMemberships({
+    required SupabaseClient client,
+    required String instanceId,
+  }) async {
+    final userId = _clean(client.auth.currentUser?.id);
+    final normalizedInstanceId = _clean(instanceId);
+    if (userId.isEmpty || normalizedInstanceId.isEmpty) {
+      return const <VaultGvviSectionMembership>[];
+    }
+
+    final instanceRow = await client
+        .from('vault_item_instances')
+        .select('id,user_id,archived_at')
+        .eq('id', normalizedInstanceId)
+        .eq('user_id', userId)
+        .filter('archived_at', 'is', null)
+        .maybeSingle();
+    if (instanceRow == null) {
+      return const <VaultGvviSectionMembership>[];
+    }
+
+    final results = await Future.wait<dynamic>([
+      client
+          .from('wall_sections')
+          .select('id,name,position,is_active')
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .order('position', ascending: true)
+          .order('created_at', ascending: true),
+      client
+          .from('wall_section_memberships')
+          .select('section_id')
+          .eq('vault_item_instance_id', normalizedInstanceId),
+    ]);
+
+    final assignedSectionIds = (results[1] as List<dynamic>)
+        .map((row) => _clean((row as Map)['section_id']))
+        .where((value) => value.isNotEmpty)
+        .toSet();
+
+    return (results[0] as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .map((row) {
+          final id = _clean(row['id']);
+          final name = _clean(row['name']);
+          if (id.isEmpty || name.isEmpty || row['is_active'] != true) {
+            return null;
+          }
+
+          return VaultGvviSectionMembership(
+            id: id,
+            name: name,
+            position: _toInt(row['position']) ?? 0,
+            isMember: assignedSectionIds.contains(id),
+          );
+        })
+        .whereType<VaultGvviSectionMembership>()
+        .toList();
+  }
+
+  static Future<void> assignSectionMembership({
+    required SupabaseClient client,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final userId = _clean(client.auth.currentUser?.id);
+    final normalizedInstanceId = _clean(instanceId);
+    final normalizedSectionId = _clean(sectionId);
+    if (userId.isEmpty ||
+        normalizedInstanceId.isEmpty ||
+        normalizedSectionId.isEmpty ||
+        normalizedSectionId.toLowerCase() == 'wall') {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    await _assertOwnedSectionTarget(
+      client: client,
+      userId: userId,
+      instanceId: normalizedInstanceId,
+      sectionId: normalizedSectionId,
+    );
+
+    final existing = await client
+        .from('wall_section_memberships')
+        .select('section_id')
+        .eq('vault_item_instance_id', normalizedInstanceId)
+        .eq('section_id', normalizedSectionId)
+        .maybeSingle();
+    if (existing != null) {
+      return;
+    }
+
+    // LOCK: App section membership is exact-copy only (vault_item_instances.id).
+    // LOCK: Do not assign sections from grouped card context.
+    await client.from('wall_section_memberships').insert({
+      'section_id': normalizedSectionId,
+      'vault_item_instance_id': normalizedInstanceId,
+    });
+  }
+
+  static Future<void> removeSectionMembership({
+    required SupabaseClient client,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final userId = _clean(client.auth.currentUser?.id);
+    final normalizedInstanceId = _clean(instanceId);
+    final normalizedSectionId = _clean(sectionId);
+    if (userId.isEmpty ||
+        normalizedInstanceId.isEmpty ||
+        normalizedSectionId.isEmpty ||
+        normalizedSectionId.toLowerCase() == 'wall') {
+      throw Exception('Section assignment could not be saved.');
+    }
+
+    await _assertOwnedSectionTarget(
+      client: client,
+      userId: userId,
+      instanceId: normalizedInstanceId,
+      sectionId: normalizedSectionId,
+    );
+
+    // LOCK: App section membership is exact-copy only (vault_item_instances.id).
+    // LOCK: Do not assign sections from grouped card context.
+    await client
+        .from('wall_section_memberships')
+        .delete()
+        .eq('vault_item_instance_id', normalizedInstanceId)
+        .eq('section_id', normalizedSectionId);
+  }
+
+  static Future<void> _assertOwnedSectionTarget({
+    required SupabaseClient client,
+    required String userId,
+    required String instanceId,
+    required String sectionId,
+  }) async {
+    final results = await Future.wait<dynamic>([
+      client
+          .from('vault_item_instances')
+          .select('id,user_id,archived_at')
+          .eq('id', instanceId)
+          .eq('user_id', userId)
+          .filter('archived_at', 'is', null)
+          .maybeSingle(),
+      client
+          .from('wall_sections')
+          .select('id,user_id,is_active')
+          .eq('id', sectionId)
+          .eq('user_id', userId)
+          .eq('is_active', true)
+          .maybeSingle(),
+    ]);
+
+    if (results[0] == null || results[1] == null) {
+      throw Exception('Section assignment could not be saved.');
+    }
   }
 
   static Future<String?> saveNotes({

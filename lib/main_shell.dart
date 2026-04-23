@@ -161,7 +161,12 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _buildCollectorSection(GrookaiCanonicalRoute route) async {
-    await _pushPage<void>(PublicCollectorScreen(slug: route.value));
+    await _pushPage<void>(
+      PublicCollectorScreen(
+        slug: route.value,
+        initialSectionId: route.sectionId,
+      ),
+    );
   }
 
   Future<void> _openCardDetailFromCanonicalGvId(String gvId) async {

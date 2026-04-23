@@ -25,7 +25,7 @@ ResolvedDisplayIdentity _manageCardDisplayIdentity(VaultManageCardData data) {
 
 enum _ManageCardPriceMode { grookai, myPrice, hidden }
 
-enum _ManageCardTab { overview, wall, copies }
+enum _ManageCardTab { overview, copies }
 
 class VaultManageCardScreen extends StatefulWidget {
   const VaultManageCardScreen({
@@ -68,7 +68,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   CardSurfacePricingData? _pricing;
   bool _loading = true;
   bool _intentSaving = false;
-  bool _shareSaving = false;
   bool _noteSaving = false;
   bool _priceSaving = false;
   _ManageCardPriceMode _selectedPriceMode = _ManageCardPriceMode.grookai;
@@ -150,81 +149,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             : 'Unable to load this card.';
         _loading = false;
       });
-    }
-  }
-
-  Future<void> _toggleWall() async {
-    final data = _data;
-    if (data == null || _shareSaving) {
-      return;
-    }
-
-    setState(() {
-      _shareSaving = true;
-      _statusMessage = null;
-    });
-
-    try {
-      final nextShared = await VaultCardService.setSharedCardVisibility(
-        client: _client,
-        cardPrintId: data.cardPrintId,
-        gvId: data.gvId ?? '',
-        nextShared: !data.isShared,
-      );
-
-      if (!mounted) {
-        return;
-      }
-
-      setState(() {
-        _data = VaultManageCardData(
-          vaultItemId: data.vaultItemId,
-          cardPrintId: data.cardPrintId,
-          gvId: data.gvId,
-          name: data.name,
-          setName: data.setName,
-          setCode: data.setCode,
-          number: data.number,
-          rarity: data.rarity,
-          imageUrl: data.imageUrl,
-          variantKey: data.variantKey,
-          printedIdentityModifier: data.printedIdentityModifier,
-          setIdentityModel: data.setIdentityModel,
-          totalCopies: data.totalCopies,
-          rawCount: data.rawCount,
-          slabCount: data.slabCount,
-          inPlayCount: data.inPlayCount,
-          intent: data.intent,
-          isShared: nextShared,
-          wallCategory: nextShared ? data.wallCategory : null,
-          publicNote: nextShared ? data.publicNote : null,
-          publicSlug: data.publicSlug,
-          priceDisplayMode: nextShared ? data.priceDisplayMode : null,
-          primarySharedGvviId: data.primarySharedGvviId,
-          askingPriceAmount: data.askingPriceAmount,
-          askingPriceCurrency: data.askingPriceCurrency,
-          publicProfileEnabled: data.publicProfileEnabled,
-          vaultSharingEnabled: data.vaultSharingEnabled,
-          copies: data.copies,
-        );
-        if (!nextShared) {
-          _publicNoteController.clear();
-          _priceError = null;
-        }
-        _statusMessage = nextShared ? 'Added to wall.' : 'Removed from wall.';
-      });
-    } catch (error) {
-      if (!mounted) {
-        return;
-      }
-
-      _showStatus(error.toString().replaceFirst('Exception: ', ''));
-    } finally {
-      if (mounted) {
-        setState(() {
-          _shareSaving = false;
-        });
-      }
     }
   }
 
@@ -749,12 +673,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                                 ],
                               ),
                               _buildTabListView(
-                                storageKey: 'wall',
-                                children: [
-                                  _buildWallSettings(theme, colorScheme, data),
-                                ],
-                              ),
-                              _buildTabListView(
                                 storageKey: 'copies',
                                 children: [
                                   _buildCopiesSection(theme, colorScheme, data),
@@ -827,7 +745,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         ),
         tabs: const [
           Tab(text: 'Overview'),
-          Tab(text: 'Wall'),
           Tab(text: 'Copies'),
         ],
       ),
@@ -947,7 +864,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     final mixTags = <Widget>[
       if (data.inPlayCount > 0)
-        _InlineTag(label: '${data.inPlayCount} Visible'),
+        _InlineTag(label: '${data.inPlayCount} Public'),
       for (final option in kVaultIntentOptions)
         if (option.value != 'hold')
           if ((copyIntentCounts[option.value] ?? 0) > 0)
@@ -1080,27 +997,6 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           icon: const Icon(Icons.visibility_outlined),
           label: const Text('View card'),
         ),
-        OutlinedButton.icon(
-          onPressed: _shareSaving ? null : _toggleWall,
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(0, 40),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-          ),
-          icon: _shareSaving
-              ? const SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
-              : Icon(
-                  data.isShared
-                      ? Icons.public_off_outlined
-                      : Icons.public_outlined,
-                ),
-          label: Text(data.isShared ? 'Remove from Wall' : 'Add to Wall'),
-        ),
         if (data.canViewWall)
           OutlinedButton.icon(
             onPressed: _openWall,
@@ -1117,6 +1013,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     );
   }
 
+  // Legacy grouped presentation controls are no longer mounted; section
+  // organization now lives on exact-copy GVVI screens.
+  // ignore: unused_element
   Widget _buildWallSettings(
     ThemeData theme,
     ColorScheme colorScheme,
@@ -1186,13 +1085,13 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           DropdownButtonFormField<String>(
             initialValue: data.wallCategory ?? '',
             decoration: const InputDecoration(
-              labelText: 'Wall Category',
+              labelText: 'Section',
               isDense: true,
             ),
             items: [
               const DropdownMenuItem<String>(
                 value: '',
-                child: Text('No category'),
+                child: Text('None'),
               ),
               ...kWallCategoryOptions.map(
                 (option) => DropdownMenuItem<String>(
@@ -1450,7 +1349,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
       case 'showcase':
         return 'Showcase';
       default:
-        return data.inPlayCount > 0 ? 'Visible' : 'Hidden';
+        return data.inPlayCount > 0 ? 'Public' : 'Private';
     }
   }
 
@@ -1477,11 +1376,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     if (data.intent == 'hold') {
       return data.inPlayCount > 0
-          ? 'This card is private here, while some copies below are visible to collectors.'
-          : 'On wall, but not visible in the collector network.';
+          ? 'This card is private here, while some copies below are public to collectors.'
+          : 'Private in the collector network.';
     }
 
-    return '$intentLabel is visible to collectors.';
+    return '$intentLabel is public to collectors.';
   }
 
   String _formatRarity(String raw) {

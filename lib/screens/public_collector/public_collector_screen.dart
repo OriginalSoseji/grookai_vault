@@ -39,16 +39,18 @@ enum PublicCollectorViewState {
   failure,
 }
 
-enum _CollectorSegment { collection, inPlay }
+const String _wallSectionId = 'wall';
 
 class PublicCollectorScreen extends StatefulWidget {
   const PublicCollectorScreen({
     required this.slug,
+    this.initialSectionId,
     this.showAppBar = true,
     super.key,
   });
 
   final String slug;
+  final String? initialSectionId;
   final bool showAppBar;
 
   @override
@@ -61,7 +63,11 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
   PublicCollectorSurfaceResult? _result;
   bool _followStateLoading = false;
   bool _followActionBusy = false;
+  bool _creatingSection = false;
   bool _isFollowing = false;
+  String _selectedSectionId = _wallSectionId;
+  String? _loadingSectionId;
+  String? _sectionError;
   int _loadVersion = 0;
 
   String get _normalizedSlug => widget.slug.trim().toLowerCase();
@@ -88,6 +94,10 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
   @override
   void initState() {
     super.initState();
+    final initialSectionId = (widget.initialSectionId ?? '').trim();
+    _selectedSectionId = initialSectionId.isEmpty
+        ? _wallSectionId
+        : initialSectionId;
     _load();
   }
 
@@ -99,6 +109,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       _result = null;
       _followStateLoading = false;
       _followActionBusy = false;
+      _sectionError = null;
       _isFollowing = false;
     });
 
@@ -115,11 +126,20 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       setState(() {
         _result = result;
         _viewState = _mapResultToState(result);
+        if (_selectedSectionId != _wallSectionId &&
+            !result.wallView.sections.any(
+              (section) => section.id == _selectedSectionId,
+            )) {
+          _selectedSectionId = _wallSectionId;
+        }
       });
 
       final profile = result.profile;
       if (profile != null) {
         unawaited(_loadFollowState(profile: profile, loadVersion: loadVersion));
+      }
+      if (_selectedSectionId != _wallSectionId) {
+        unawaited(_loadSectionCards(_selectedSectionId));
       }
     } catch (_) {
       if (!mounted || loadVersion != _loadVersion) {
@@ -129,6 +149,164 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
       setState(() {
         _result = null;
         _viewState = PublicCollectorViewState.failure;
+      });
+    }
+  }
+
+  Future<void> _loadSectionCards(String sectionId) async {
+    final normalizedSectionId = sectionId.trim();
+    final result = _result;
+    if (normalizedSectionId.isEmpty ||
+        normalizedSectionId == _wallSectionId ||
+        result == null ||
+        result.wallView.sectionCards.containsKey(normalizedSectionId)) {
+      return;
+    }
+
+    setState(() {
+      _loadingSectionId = normalizedSectionId;
+      _sectionError = null;
+    });
+
+    try {
+      final cards = await PublicCollectorService.loadSectionCardsBySlug(
+        client: _client,
+        slug: _normalizedSlug,
+        sectionId: normalizedSectionId,
+      );
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        final current = _result;
+        if (current != null) {
+          _result = PublicCollectorSurfaceResult.success(
+            profile: current.profile!,
+            collectionCards: current.collectionCards,
+            inPlayCards: current.inPlayCards,
+            wallView: current.wallView.withSectionCards(
+              sectionId: normalizedSectionId,
+              cards: cards,
+            ),
+          );
+        }
+        _loadingSectionId = null;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _loadingSectionId = null;
+        _sectionError = error.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<void> _selectWallSection(String sectionId) async {
+    final normalizedSectionId = sectionId.trim().isEmpty
+        ? _wallSectionId
+        : sectionId.trim();
+    setState(() {
+      _selectedSectionId = normalizedSectionId;
+      _sectionError = null;
+    });
+
+    if (normalizedSectionId != _wallSectionId) {
+      await _loadSectionCards(normalizedSectionId);
+    }
+  }
+
+  Future<void> _createSection() async {
+    final result = _result;
+    final profile = result?.profile;
+    if (profile == null || _creatingSection || !_isSelfProfile(profile)) {
+      return;
+    }
+
+    final controller = TextEditingController();
+    final name = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('+ Add Section'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textInputAction: TextInputAction.done,
+          decoration: const InputDecoration(hintText: 'New section name'),
+          onSubmitted: (value) => Navigator.of(dialogContext).pop(value),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () =>
+                Navigator.of(dialogContext).pop(controller.text.trim()),
+            child: const Text('+ Add Section'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+
+    final normalizedName = (name ?? '').trim();
+    if (normalizedName.isEmpty || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _creatingSection = true;
+      _sectionError = null;
+    });
+
+    try {
+      final section = await PublicCollectorService.createOwnerWallSection(
+        client: _client,
+        ownerUserId: profile.userId,
+        name: normalizedName,
+      );
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        final current = _result;
+        if (current != null) {
+          final nextSections = [...current.wallView.sections, section]
+            ..sort((left, right) {
+              final byPosition = left.position.compareTo(right.position);
+              return byPosition != 0
+                  ? byPosition
+                  : left.name.compareTo(right.name);
+            });
+          final nextWallView =
+              CollectorWallView(
+                wallCards: current.wallView.wallCards,
+                sections: nextSections,
+                sectionCards: current.wallView.sectionCards,
+              ).withSectionCards(
+                sectionId: section.id,
+                cards: const <PublicCollectorCard>[],
+              );
+          _result = PublicCollectorSurfaceResult.success(
+            profile: current.profile!,
+            collectionCards: current.collectionCards,
+            inPlayCards: current.inPlayCards,
+            wallView: nextWallView,
+          );
+        }
+        _selectedSectionId = section.id;
+        _creatingSection = false;
+      });
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _creatingSection = false;
+        _sectionError = error.toString().replaceFirst('Exception: ', '');
       });
     }
   }
@@ -432,8 +610,14 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
         }
         return _PublicCollectorWallLayout(
           profile: profile,
-          collectionCards: result.collectionCards,
-          inPlayCards: result.inPlayCards,
+          wallView: result.wallView,
+          selectedSectionId: _selectedSectionId,
+          loadingSectionId: _loadingSectionId,
+          sectionError: _sectionError,
+          isOwner: _isSelfProfile(profile),
+          creatingSection: _creatingSection,
+          onSectionSelected: _selectWallSection,
+          onAddSection: _createSection,
           showFollowAction: _shouldShowFollowAction(profile),
           isFollowing: _isFollowing,
           followStateLoading: _followStateLoading,
@@ -462,8 +646,14 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
 class _PublicCollectorWallLayout extends StatelessWidget {
   const _PublicCollectorWallLayout({
     required this.profile,
-    required this.collectionCards,
-    required this.inPlayCards,
+    required this.wallView,
+    required this.selectedSectionId,
+    required this.loadingSectionId,
+    required this.sectionError,
+    required this.isOwner,
+    required this.creatingSection,
+    required this.onSectionSelected,
+    required this.onAddSection,
     required this.showFollowAction,
     required this.isFollowing,
     required this.followStateLoading,
@@ -472,8 +662,14 @@ class _PublicCollectorWallLayout extends StatelessWidget {
   });
 
   final PublicCollectorProfile profile;
-  final List<PublicCollectorCard> collectionCards;
-  final List<PublicCollectorCard> inPlayCards;
+  final CollectorWallView wallView;
+  final String selectedSectionId;
+  final String? loadingSectionId;
+  final String? sectionError;
+  final bool isOwner;
+  final bool creatingSection;
+  final Future<void> Function(String sectionId) onSectionSelected;
+  final Future<void> Function() onAddSection;
   final bool showFollowAction;
   final bool isFollowing;
   final bool followStateLoading;
@@ -484,8 +680,14 @@ class _PublicCollectorWallLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return _PublicCollectorSegmentedContent(
       profile: profile,
-      collectionCards: collectionCards,
-      inPlayCards: inPlayCards,
+      wallView: wallView,
+      selectedSectionId: selectedSectionId,
+      loadingSectionId: loadingSectionId,
+      sectionError: sectionError,
+      isOwner: isOwner,
+      creatingSection: creatingSection,
+      onSectionSelected: onSectionSelected,
+      onAddSection: onAddSection,
       showFollowAction: showFollowAction,
       isFollowing: isFollowing,
       followStateLoading: followStateLoading,
@@ -498,8 +700,14 @@ class _PublicCollectorWallLayout extends StatelessWidget {
 class _PublicCollectorSegmentedContent extends StatefulWidget {
   const _PublicCollectorSegmentedContent({
     required this.profile,
-    required this.collectionCards,
-    required this.inPlayCards,
+    required this.wallView,
+    required this.selectedSectionId,
+    required this.loadingSectionId,
+    required this.sectionError,
+    required this.isOwner,
+    required this.creatingSection,
+    required this.onSectionSelected,
+    required this.onAddSection,
     required this.showFollowAction,
     required this.isFollowing,
     required this.followStateLoading,
@@ -508,8 +716,14 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
   });
 
   final PublicCollectorProfile profile;
-  final List<PublicCollectorCard> collectionCards;
-  final List<PublicCollectorCard> inPlayCards;
+  final CollectorWallView wallView;
+  final String selectedSectionId;
+  final String? loadingSectionId;
+  final String? sectionError;
+  final bool isOwner;
+  final bool creatingSection;
+  final Future<void> Function(String sectionId) onSectionSelected;
+  final Future<void> Function() onAddSection;
   final bool showFollowAction;
   final bool isFollowing;
   final bool followStateLoading;
@@ -525,7 +739,6 @@ class _PublicCollectorSegmentedContentState
     extends State<_PublicCollectorSegmentedContent> {
   final OwnershipResolverAdapter _ownershipAdapter =
       OwnershipResolverAdapter.instance;
-  late _CollectorSegment _activeSegment;
   Map<String, OwnershipState> _viewerOwnershipByCardPrintId =
       const <String, OwnershipState>{};
   int _ownershipPrimeVersion = 0;
@@ -544,9 +757,6 @@ class _PublicCollectorSegmentedContentState
   @override
   void initState() {
     super.initState();
-    _activeSegment = widget.inPlayCards.isNotEmpty
-        ? _CollectorSegment.inPlay
-        : _CollectorSegment.collection;
     unawaited(_primeViewerOwnership());
   }
 
@@ -554,10 +764,21 @@ class _PublicCollectorSegmentedContentState
   void didUpdateWidget(covariant _PublicCollectorSegmentedContent oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.profile.userId != widget.profile.userId ||
-        !_sameCardSet(oldWidget.collectionCards, widget.collectionCards) ||
-        !_sameCardSet(oldWidget.inPlayCards, widget.inPlayCards)) {
+        oldWidget.selectedSectionId != widget.selectedSectionId ||
+        !_sameCardSet(_activeCardsFor(oldWidget), _activeCardsFor(widget))) {
       unawaited(_primeViewerOwnership());
     }
+  }
+
+  List<PublicCollectorCard> get _activeCards => _activeCardsFor(widget);
+
+  List<PublicCollectorCard> _activeCardsFor(
+    _PublicCollectorSegmentedContent source,
+  ) {
+    if (source.selectedSectionId == _wallSectionId) {
+      return source.wallView.wallCards;
+    }
+    return source.wallView.cardsForSection(source.selectedSectionId);
   }
 
   Future<void> _primeViewerOwnership() async {
@@ -571,10 +792,7 @@ class _PublicCollectorSegmentedContentState
       return;
     }
 
-    final cardPrintIds = [
-      ...widget.collectionCards.map((card) => card.cardPrintId),
-      ...widget.inPlayCards.map((card) => card.cardPrintId),
-    ];
+    final cardPrintIds = _activeCards.map((card) => card.cardPrintId).toList();
 
     try {
       await _ownershipAdapter.primeBatch(cardPrintIds);
@@ -622,6 +840,11 @@ class _PublicCollectorSegmentedContentState
 
   @override
   Widget build(BuildContext context) {
+    final selectedSectionId = widget.selectedSectionId.trim().isEmpty
+        ? _wallSectionId
+        : widget.selectedSectionId.trim();
+    final loadingSelectedSection = widget.loadingSectionId == selectedSectionId;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -634,103 +857,27 @@ class _PublicCollectorSegmentedContentState
           onFollowPressed: widget.onFollowPressed,
         ),
         const SizedBox(height: 8),
-        _CollectorSegmentControl(
-          activeSegment: _activeSegment,
-          onChanged: (segment) {
-            setState(() {
-              _activeSegment = segment;
-            });
-          },
-          collectionCount: widget.collectionCards.length,
-          inPlayCount: widget.inPlayCards.length,
+        _CollectorWallSectionRail(
+          wallCount: widget.wallView.wallCards.length,
+          sections: widget.wallView.sections,
+          selectedSectionId: selectedSectionId,
+          loadingSectionId: widget.loadingSectionId,
+          isOwner: widget.isOwner,
+          creatingSection: widget.creatingSection,
+          onSectionSelected: widget.onSectionSelected,
+          onAddSection: widget.onAddSection,
         ),
         const SizedBox(height: 8),
-        if (_activeSegment == _CollectorSegment.inPlay)
-          _FeaturedWallSection(
-            cards: widget.inPlayCards,
-            viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
-          )
+        if ((widget.sectionError ?? '').trim().isNotEmpty)
+          _WallSectionCard(emptyMessage: widget.sectionError)
+        else if (loadingSelectedSection)
+          const _WallLoadingCard()
         else
-          _PublicCollectionSection(
-            cards: widget.collectionCards,
+          _PublicWallCardsSection(
+            cards: _activeCards,
             viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
           ),
       ],
-    );
-  }
-}
-
-class _CollectorSegmentControl extends StatelessWidget {
-  const _CollectorSegmentControl({
-    required this.activeSegment,
-    required this.onChanged,
-    required this.collectionCount,
-    required this.inPlayCount,
-  });
-
-  final _CollectorSegment activeSegment;
-  final ValueChanged<_CollectorSegment> onChanged;
-  final int collectionCount;
-  final int inPlayCount;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    Widget segmentButton({
-      required _CollectorSegment segment,
-      required String label,
-      required int count,
-    }) {
-      final selected = activeSegment == segment;
-
-      return Expanded(
-        child: FilledButton(
-          onPressed: () => onChanged(segment),
-          style: FilledButton.styleFrom(
-            backgroundColor: selected
-                ? colorScheme.primary
-                : colorScheme.surface.withValues(alpha: 0.58),
-            foregroundColor: selected
-                ? colorScheme.onPrimary
-                : colorScheme.onSurface,
-            elevation: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(999),
-            ),
-            textStyle: theme.textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          child: Text('$label ($count)'),
-        ),
-      );
-    }
-
-    return Container(
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-      ),
-      child: Row(
-        children: [
-          segmentButton(
-            segment: _CollectorSegment.collection,
-            label: 'Collection',
-            count: collectionCount,
-          ),
-          const SizedBox(width: 6),
-          segmentButton(
-            segment: _CollectorSegment.inPlay,
-            label: 'Visible',
-            count: inPlayCount,
-          ),
-        ],
-      ),
     );
   }
 }
@@ -751,6 +898,142 @@ class _CollectorScaffoldBody extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 8, 10, 18),
           children: [child],
         ),
+      ),
+    );
+  }
+}
+
+class _CollectorWallSectionRail extends StatelessWidget {
+  const _CollectorWallSectionRail({
+    required this.wallCount,
+    required this.sections,
+    required this.selectedSectionId,
+    required this.loadingSectionId,
+    required this.isOwner,
+    required this.creatingSection,
+    required this.onSectionSelected,
+    required this.onAddSection,
+  });
+
+  final int wallCount;
+  final List<PublicCollectorSectionSummary> sections;
+  final String selectedSectionId;
+  final String? loadingSectionId;
+  final bool isOwner;
+  final bool creatingSection;
+  final Future<void> Function(String sectionId) onSectionSelected;
+  final Future<void> Function() onAddSection;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _SectionRailChip(
+            label: 'Wall',
+            count: wallCount,
+            selected: selectedSectionId == _wallSectionId,
+            loading: loadingSectionId == _wallSectionId,
+            onTap: () => unawaited(onSectionSelected(_wallSectionId)),
+          ),
+          for (final section in sections) ...[
+            const SizedBox(width: 6),
+            _SectionRailChip(
+              label: section.name,
+              count: section.itemCount,
+              selected: selectedSectionId == section.id,
+              loading: loadingSectionId == section.id,
+              onTap: () => unawaited(onSectionSelected(section.id)),
+            ),
+          ],
+          if (isOwner) ...[
+            const SizedBox(width: 6),
+            ActionChip(
+              onPressed: creatingSection
+                  ? null
+                  : () => unawaited(onAddSection()),
+              avatar: creatingSection
+                  ? SizedBox(
+                      width: 14,
+                      height: 14,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: colorScheme.primary,
+                      ),
+                    )
+                  : const Icon(Icons.add_rounded, size: 17),
+              label: const Text('+ Add Section'),
+              visualDensity: VisualDensity.compact,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionRailChip extends StatelessWidget {
+  const _SectionRailChip({
+    required this.label,
+    required this.count,
+    required this.selected,
+    required this.loading,
+    required this.onTap,
+  });
+
+  final String label;
+  final int count;
+  final bool selected;
+  final bool loading;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return ChoiceChip(
+      selected: selected,
+      onSelected: (_) => onTap(),
+      label: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 132),
+            child: Text(
+              label,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          const SizedBox(width: 5),
+          if (loading)
+            SizedBox(
+              width: 12,
+              height: 12,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: selected
+                    ? colorScheme.onPrimary
+                    : colorScheme.onSurface.withValues(alpha: 0.72),
+              ),
+            )
+          else
+            Text(
+              '$count',
+              style: theme.textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: selected
+                    ? colorScheme.onPrimary.withValues(alpha: 0.78)
+                    : colorScheme.onSurface.withValues(alpha: 0.58),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -983,8 +1266,8 @@ class _ProfileFollowButton extends StatelessWidget {
   }
 }
 
-class _FeaturedWallSection extends StatelessWidget {
-  const _FeaturedWallSection({
+class _PublicWallCardsSection extends StatelessWidget {
+  const _PublicWallCardsSection({
     required this.cards,
     required this.viewerOwnershipStateForCard,
   });
@@ -996,33 +1279,7 @@ class _FeaturedWallSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _WallSectionCard(
-      title: 'Visible',
-      emptyMessage: cards.isEmpty ? 'No visible cards' : null,
-      child: cards.isEmpty
-          ? null
-          : _PublicCardTileList(
-              cards: cards,
-              viewerOwnershipStateForCard: viewerOwnershipStateForCard,
-            ),
-    );
-  }
-}
-
-class _PublicCollectionSection extends StatelessWidget {
-  const _PublicCollectionSection({
-    required this.cards,
-    required this.viewerOwnershipStateForCard,
-  });
-
-  final List<PublicCollectorCard> cards;
-  final OwnershipState? Function(PublicCollectorCard card)
-  viewerOwnershipStateForCard;
-
-  @override
-  Widget build(BuildContext context) {
-    return _WallSectionCard(
-      title: 'Collection',
-      emptyMessage: cards.isEmpty ? 'No public cards yet' : null,
+      emptyMessage: cards.isEmpty ? 'Nothing to show right now.' : null,
       child: cards.isEmpty
           ? null
           : _PublicCardTileList(
@@ -1034,9 +1291,8 @@ class _PublicCollectionSection extends StatelessWidget {
 }
 
 class _WallSectionCard extends StatelessWidget {
-  const _WallSectionCard({required this.title, this.emptyMessage, this.child});
+  const _WallSectionCard({this.emptyMessage, this.child});
 
-  final String title;
   final String? emptyMessage;
   final Widget? child;
 
@@ -1060,16 +1316,14 @@ class _WallSectionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            title == 'Visible'
-                ? Icons.local_offer_outlined
-                : Icons.collections_outlined,
+            Icons.dashboard_customize_outlined,
             size: 16,
             color: colorScheme.onSurface.withValues(alpha: 0.54),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              emptyMessage ?? '$title is empty.',
+              emptyMessage ?? 'Nothing to show right now.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.68),
                 fontWeight: FontWeight.w600,
@@ -1079,6 +1333,18 @@ class _WallSectionCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _WallLoadingCard extends StatelessWidget {
+  const _WallLoadingCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -1105,22 +1371,24 @@ class _PublicCardTileList extends StatelessWidget {
             ? 2
             : 1;
         const spacing = 6.0;
-        final width =
-            (constraints.maxWidth - (spacing * (columns - 1))) / columns;
 
-        return Wrap(
-          spacing: spacing,
-          runSpacing: spacing,
-          children: [
-            for (final card in cards)
-              SizedBox(
-                width: width,
-                child: _PublicCardTile(
-                  card: card,
-                  ownershipState: viewerOwnershipStateForCard(card),
-                ),
-              ),
-          ],
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: cards.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: columns,
+            crossAxisSpacing: spacing,
+            mainAxisSpacing: spacing,
+            childAspectRatio: 0.46,
+          ),
+          itemBuilder: (context, index) {
+            final card = cards[index];
+            return _PublicCardTile(
+              card: card,
+              ownershipState: viewerOwnershipStateForCard(card),
+            );
+          },
         );
       },
     );
@@ -1234,10 +1502,7 @@ class _PublicCardTile extends StatelessWidget {
                         tone: _intentTone(card.intent!),
                       )
                     else
-                      const _TileBadge(
-                        label: 'Collection',
-                        tone: _BadgeTone.neutral,
-                      ),
+                      const _TileBadge(label: 'Wall', tone: _BadgeTone.neutral),
                     if (card.conditionLabel != null)
                       _TileBadge(
                         label: card.conditionLabel!,
