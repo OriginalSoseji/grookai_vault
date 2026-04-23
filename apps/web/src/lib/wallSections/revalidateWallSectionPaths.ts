@@ -5,6 +5,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 
 export async function revalidateOwnerWallSectionPaths(userId: string) {
   revalidatePath("/account");
+  revalidatePath("/wall");
 
   const client = createServerComponentClient();
   const { data: profile } = await client

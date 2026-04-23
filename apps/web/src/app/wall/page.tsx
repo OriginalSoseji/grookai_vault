@@ -1,10 +1,12 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import PublicCardImage from "@/components/PublicCardImage";
+import { OwnerWallSectionRail } from "@/components/wall/OwnerWallSectionRail";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
+import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -61,6 +63,12 @@ type WallIdentityRow = {
         identity_model: string | null;
       }[]
     | null;
+};
+
+type WallPublicProfileRow = {
+  slug: string | null;
+  public_profile_enabled: boolean | null;
+  vault_sharing_enabled: boolean | null;
 };
 
 function formatTimeAgo(value: string | null) {
@@ -167,12 +175,24 @@ async function normalizeFeed(
 export default async function WallPage() {
   const { supabase, user } = await requireServerUser("/wall");
 
-  const { data, error } = await supabase
-    .from("v_recently_added")
-    .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
-    .eq("user_id", user.id)
-    .limit(50)
-    .order("created_at", { ascending: false });
+  const [{ data, error }, { data: profile }, wallSectionsModel] = await Promise.all([
+    supabase
+      .from("v_recently_added")
+      .select("id,gv_id,name,set_code,set_name,number,created_at,image_url,image_best,image_alt_url")
+      .eq("user_id", user.id)
+      .limit(50)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("public_profiles")
+      .select("slug,public_profile_enabled,vault_sharing_enabled")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+    getOwnerWallSections(user.id),
+  ]);
+
+  const profileRow = (profile ?? null) as WallPublicProfileRow | null;
+  const publicProfileSlug =
+    profileRow?.public_profile_enabled && profileRow.vault_sharing_enabled && profileRow.slug ? profileRow.slug : null;
 
   const identityByGvId = await getWallIdentityByGvId(
     supabase,
@@ -187,10 +207,10 @@ export default async function WallPage() {
       <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-sm shadow-slate-200/70 md:px-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Your Wall</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your recent vault activity.</h1>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Wall</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Manage your Wall.</h1>
             <p className="max-w-3xl text-base leading-7 text-slate-600">
-              See the latest cards you have added and jump back into your collection.
+              Create and manage sections here, then organize exact copies from their copy pages.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-4">
@@ -200,6 +220,8 @@ export default async function WallPage() {
           </div>
         </div>
       </section>
+
+      <OwnerWallSectionRail initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
 
       {error ? (
         <section className="rounded-[2rem] border border-rose-200 bg-rose-50 px-6 py-5 text-sm text-rose-700">
