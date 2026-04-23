@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
@@ -17,6 +17,7 @@ import {
   type PublicWallCard,
 } from "@/lib/sharedCards/publicWall.shared";
 import {
+  getPublicWallHref,
   getPublicSectionShareHref,
   PUBLIC_WALL_SECTION_ID,
   type PublicCollectorSectionView,
@@ -30,6 +31,7 @@ type PublicCollectorProfileContentProps = {
   isAuthenticated: boolean;
   viewerUserId: string | null;
   currentPath: string;
+  selectedSectionId?: string | null;
 };
 
 function isWallCard(card: PublicWallCard) {
@@ -131,10 +133,10 @@ function buildOrderedSections(sections: PublicCollectorSectionView[]) {
     cards: [],
   };
   const customSections = sections
-    .filter((section) => section.kind === "custom")
+    .filter((section) => section.kind === "custom" && section.id !== PUBLIC_WALL_SECTION_ID && section.name.trim().length > 0)
     .sort((left, right) => left.position - right.position || left.name.localeCompare(right.name));
 
-  // LOCK: Wall is system-derived and always first.
+  // LOCK: Public profile rail must render Wall first, then active public custom sections only.
   return [wall, ...customSections];
 }
 
@@ -146,11 +148,10 @@ export function PublicCollectorProfileContent({
   isAuthenticated,
   viewerUserId,
   currentPath,
+  selectedSectionId = null,
 }: PublicCollectorProfileContentProps) {
   const orderedSections = useMemo(() => buildOrderedSections(sections), [sections]);
-  const [activeSectionId, setActiveSectionId] = useState(
-    orderedSections[0]?.id ?? PUBLIC_WALL_SECTION_ID,
-  );
+  const activeSectionId = selectedSectionId?.trim() || PUBLIC_WALL_SECTION_ID;
   const activeSection = orderedSections.find((section) => section.id === activeSectionId) ?? orderedSections[0];
   const { density, setDensity } = useViewDensity();
   const loginHref = `/login?next=${encodeURIComponent(currentPath)}`;
@@ -193,25 +194,15 @@ export function PublicCollectorProfileContent({
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
             }`;
 
-            return section.kind === "custom" ? (
+            return (
               <Link
                 key={section.id}
-                href={getPublicSectionShareHref(slug, section.id)}
+                href={section.kind === "custom" ? getPublicSectionShareHref(slug, section.id) : getPublicWallHref(slug)}
                 className={className}
                 aria-current={active ? "page" : undefined}
               >
                 {section.name}
               </Link>
-            ) : (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => setActiveSectionId(section.id)}
-                className={className}
-                aria-pressed={active}
-              >
-                {section.name}
-              </button>
             );
           })}
         </div>

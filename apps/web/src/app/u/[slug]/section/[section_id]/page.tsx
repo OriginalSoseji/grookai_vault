@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
-import { PublicSectionShareContent } from "@/components/public/PublicSectionShareContent";
+import { PublicCollectorProfileContent } from "@/components/public/PublicCollectorProfileContent";
 import { getCollectorFollowCounts } from "@/lib/follows/getCollectorFollowCounts";
 import { getCollectorFollowState } from "@/lib/follows/getCollectorFollowState";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { deriveTopSetCodesFromCards } from "@/lib/profileSetIdentity";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
 import { getPublicSectionBySlugAndId } from "@/lib/wallSections/getPublicSectionBySlugAndId";
 import { getPublicSectionShareHref } from "@/lib/wallSections/wallSectionTypes";
 
@@ -73,13 +74,17 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
     redirect(sectionPath);
   }
 
-  const siteOrigin = getSiteOrigin();
-  const sectionUrl = siteOrigin ? `${siteOrigin}${sectionPath}` : sectionPath;
   const supabase = createServerComponentClient();
-  const [{ data: authData }, followCounts] = await Promise.all([
+  const [{ data: authData }, followCounts, sectionViews] = await Promise.all([
     supabase.auth.getUser(),
     getCollectorFollowCounts(profile.user_id),
+    getPublicCollectorWallSectionsBySlug(profile.slug),
   ]);
+  const selectedSection = sectionViews.find((section) => section.kind === "custom" && section.id === model.section.id);
+  if (!selectedSection) {
+    notFound();
+  }
+
   const viewerUserId = authData.user?.id ?? null;
   const isOwnProfile = viewerUserId === profile.user_id;
   const initialIsFollowing =
@@ -120,13 +125,15 @@ export default async function PublicSectionPage({ params }: PublicSectionPagePro
         }
       />
 
-      <PublicSectionShareContent
+      <PublicCollectorProfileContent
         slug={profile.slug}
-        sectionName={model.section.name}
-        sectionUrl={sectionUrl}
-        cards={model.cards}
+        collectorDisplayName={profile.display_name}
+        collectorUserId={profile.user_id}
+        sections={sectionViews}
+        isAuthenticated={Boolean(authData.user)}
         viewerUserId={viewerUserId}
-        ownerUserId={profile.user_id}
+        currentPath={sectionPath}
+        selectedSectionId={model.section.id}
       />
     </div>
   );

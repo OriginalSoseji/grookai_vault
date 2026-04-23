@@ -13,7 +13,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
-import { getPublicSectionShareHref } from "@/lib/wallSections/wallSectionTypes";
+import { getPublicSectionShareHref, PUBLIC_WALL_SECTION_ID } from "@/lib/wallSections/wallSectionTypes";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -143,8 +143,6 @@ export default async function PublicProfilePage({
 
       {!profile.vault_sharing_enabled ? (
         <PublicCollectionEmptyState title="Nothing to show right now." />
-      ) : renderableCards.length === 0 ? (
-        <PublicCollectionEmptyState title="Nothing to show right now." />
       ) : (
         <PublicCollectorProfileContent
           slug={profile.slug}
@@ -154,6 +152,7 @@ export default async function PublicProfilePage({
           isAuthenticated={Boolean(authData.user)}
           viewerUserId={viewerUserId}
           currentPath={`/u/${profile.slug}`}
+          selectedSectionId={PUBLIC_WALL_SECTION_ID}
         />
       )}
     </div>
