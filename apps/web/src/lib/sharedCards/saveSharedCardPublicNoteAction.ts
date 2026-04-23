@@ -48,6 +48,8 @@ type PublicProfileRow = {
 export async function saveSharedCardPublicNoteAction(
   input: SaveSharedCardPublicNoteInput,
 ): Promise<SaveSharedCardPublicNoteResult> {
+  // LOCK: Legacy grouped public notes must not be presented as section controls.
+  // LOCK: Wall and section curation are exact-copy only.
   const client = createServerComponentClient();
   const {
     data: { user },

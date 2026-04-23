@@ -7,23 +7,11 @@ import {
   getOwnedCardMessageSummaries,
 } from "@/lib/network/getOwnedCardMessageSummaries";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
-import {
-  normalizeWallCategory,
-  type WallCategory,
-} from "@/lib/sharedCards/wallCategories";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   getCanonicalVaultCollectorRows,
   type CanonicalVaultCollectorRow,
 } from "@/lib/vault/getCanonicalVaultCollectorRows";
-
-type SharedCardRow = {
-  card_id: string | null;
-  gv_id: string | null;
-  is_shared: boolean | null;
-  wall_category: string | null;
-  public_note: string | null;
-};
 
 type PublicProfileRow = {
   slug: string | null;
@@ -83,19 +71,11 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
 
 function normalizeVaultItems(
   rows: CanonicalVaultCollectorRow[] | null | undefined,
-  sharedCardIds: Set<string>,
-  sharedGvIds: Set<string>,
-  sharedWallCategoryByCardId: Map<string, WallCategory | null>,
-  sharedWallCategoryByGvId: Map<string, WallCategory | null>,
-  sharedNotesByCardId: Map<string, string | null>,
-  sharedNotesByGvId: Map<string, string | null>,
   messageSummaryByCardPrintId: Map<string, { activeCount: number; unreadCount: number }>,
 ): VaultCardData[] {
   return (rows ?? [])
     .filter((row): row is CanonicalVaultCollectorRow & { gv_id: string } => typeof row.gv_id === "string" && row.gv_id.length > 0)
     .map((row) => {
-      const noteFromCardId = sharedNotesByCardId.get(row.card_id) ?? null;
-
       return {
         id: row.id,
         vault_item_id: row.vault_item_id,
@@ -156,15 +136,8 @@ function normalizeVaultItems(
         grader: row.grader,
         grade: row.grade,
         cert_number: row.cert_number,
-        is_shared: sharedCardIds.has(row.card_id) || sharedGvIds.has(row.gv_id),
-        wall_category:
-          normalizeWallCategory(sharedWallCategoryByCardId.get(row.card_id) ?? null) ??
-          normalizeWallCategory(sharedWallCategoryByGvId.get(row.gv_id) ?? null),
-        public_note: noteFromCardId ?? sharedNotesByGvId.get(row.gv_id) ?? null,
-        show_personal_front: false,
-        show_personal_back: false,
-        has_front_photo: false,
-        has_back_photo: false,
+        // LOCK: Owner Wall status is derived from exact-copy intent, not grouped shared_cards.
+        is_shared: row.in_play_count > 0,
         active_message_count: messageSummaryByCardPrintId.get(row.card_id)?.activeCount ?? 0,
         unread_message_count: messageSummaryByCardPrintId.get(row.card_id)?.unreadCount ?? 0,
         messages_href: messageSummaryByCardPrintId.has(row.card_id)
@@ -211,64 +184,14 @@ export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItem
     });
   }
 
-  const [
-    { data: sharedData, error: sharedError },
-    { data: profileData, error: profileError },
-  ] = await Promise.all([
-    supabase
-      .from("shared_cards")
-      .select("card_id,gv_id,is_shared,wall_category,public_note")
-      .eq("user_id", userId)
-      .eq("is_shared", true),
-    supabase.from("public_profiles").select("slug,public_profile_enabled,vault_sharing_enabled").eq("user_id", userId).maybeSingle(),
-  ]);
-
-  const sharedRows = (sharedData ?? []) as SharedCardRow[];
-  const sharedCardIds = new Set(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => row.card_id ?? "")
-      .filter(Boolean),
-  );
-  const sharedGvIds = new Set(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => row.gv_id ?? "")
-      .filter(Boolean),
-  );
-  const sharedNotesByCardId = new Map(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => [row.card_id ?? "", row.public_note ?? null] as const)
-      .filter(([cardId]) => Boolean(cardId)),
-  );
-  const sharedNotesByGvId = new Map(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => [row.gv_id ?? "", row.public_note ?? null] as const)
-      .filter(([gvId]) => Boolean(gvId)),
-  );
-  const sharedWallCategoryByCardId = new Map(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => [row.card_id ?? "", normalizeWallCategory(row.wall_category)] as const)
-      .filter(([cardId]) => Boolean(cardId)),
-  );
-  const sharedWallCategoryByGvId = new Map(
-    sharedRows
-      .filter((row) => row.is_shared !== false)
-      .map((row) => [row.gv_id ?? "", normalizeWallCategory(row.wall_category)] as const)
-      .filter(([gvId]) => Boolean(gvId)),
-  );
+  const { data: profileData, error: profileError } = await supabase
+    .from("public_profiles")
+    .select("slug,public_profile_enabled,vault_sharing_enabled")
+    .eq("user_id", userId)
+    .maybeSingle();
 
   const items = normalizeVaultItems(
     canonicalRows,
-    sharedCardIds,
-    sharedGvIds,
-    sharedWallCategoryByCardId,
-    sharedWallCategoryByGvId,
-    sharedNotesByCardId,
-    sharedNotesByGvId,
     messageSummaryByCardPrintId,
   );
 
@@ -281,7 +204,7 @@ export async function getOwnerVaultItems(userId: string): Promise<OwnerVaultItem
   return {
     items,
     canonicalRows,
-    itemsError: itemsError ?? sharedError?.message ?? profileError?.message ?? null,
+    itemsError: itemsError ?? profileError?.message ?? null,
     publicProfileHref,
     publicCollectionHref,
   };

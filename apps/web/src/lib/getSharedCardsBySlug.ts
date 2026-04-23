@@ -6,10 +6,6 @@ import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { normalizeDiscoverableVaultIntent } from "@/lib/network/intent";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
-import {
-  normalizeWallCategory,
-  type WallCategory,
-} from "@/lib/sharedCards/wallCategories";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import {
   normalizeVaultInstanceImageDisplayMode,
@@ -19,7 +15,6 @@ import {
 type SharedCardRow = {
   card_id: string | null;
   gv_id: string | null;
-  wall_category: string | null;
   public_note: string | null;
 };
 
@@ -598,11 +593,12 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
 
   const { data, error } = await supabase
     .from("shared_cards")
+    // LOCK: Legacy grouped wall_category must not surface as the section system.
+    // LOCK: Wall and section curation are exact-copy only.
     .select(
       `
         card_id,
         gv_id,
-        wall_category,
         public_note
       `,
     )
@@ -697,7 +693,6 @@ export const getSharedCardsBySlug = cache(async (slug: string): Promise<SharedCa
         canonical_image_url: displayImageUrl,
         back_image_url: undefined,
         public_note: row.public_note?.trim() || undefined,
-        wall_category: normalizeWallCategory(row.wall_category) ?? undefined,
         owned_count: wallState?.total_count,
         raw_count: wallState?.raw_count,
         slab_count: wallState?.slab_count,

@@ -93,7 +93,7 @@ export default async function VaultManageCardPage({
                 Back to Vault
               </Link>
               <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-                {item.is_shared && publicCollectionHref ? (
+                {item.in_play_count > 0 && publicCollectionHref ? (
                   <Link
                     href={publicCollectionHref}
                     className="font-medium underline-offset-4 transition hover:text-slate-900 hover:underline"
@@ -161,7 +161,6 @@ export default async function VaultManageCardPage({
                     <span className="font-semibold text-slate-900">{item.in_play_count}</span>
                     <span>visible</span>
                   </VaultStatPill>
-                  {item.is_shared ? <VaultStatPill tone="default">On Wall</VaultStatPill> : null}
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
@@ -198,7 +197,11 @@ export default async function VaultManageCardPage({
           </PageSection>
         ) : null}
 
-        <VaultManageCardSettingsPanel item={item} publicCollectionHref={item.is_shared ? publicCollectionHref : null} />
+        {/* LOCK: Grouped card pages must not expose Wall or Section write actions. */}
+        <VaultManageCardSettingsPanel
+          item={item}
+          publicCollectionHref={item.in_play_count > 0 ? publicCollectionHref : null}
+        />
 
         <div id="manage-card-copies">
           <PageSection

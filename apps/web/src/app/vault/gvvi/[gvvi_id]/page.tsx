@@ -321,6 +321,7 @@ export default async function VaultInstancePage({
             </PageSection>
           ) : null}
 
+          {/* LOCK: GVVI is the only product surface for exact-copy Wall and Section curation. */}
           <VaultInstanceSettingsCard
             instanceId={detail.instanceId}
             initialIntent={detail.intent}

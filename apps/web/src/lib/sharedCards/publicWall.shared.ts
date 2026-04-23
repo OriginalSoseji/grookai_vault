@@ -1,4 +1,3 @@
-import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 import type { DiscoverableVaultIntent } from "@/lib/network/intent";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import type { VaultInstanceImageDisplayMode } from "@/lib/vaultInstanceImageDisplay";
@@ -34,7 +33,6 @@ export type PublicWallCard = {
   canonical_image_url?: string;
   back_image_url?: string;
   public_note?: string;
-  wall_category?: WallCategory;
   owned_count?: number;
   raw_count?: number;
   slab_count?: number;

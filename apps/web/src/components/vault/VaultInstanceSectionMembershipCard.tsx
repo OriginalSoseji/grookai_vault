@@ -97,9 +97,10 @@ export default function VaultInstanceSectionMembershipCard({
     <div className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-1">
+          {/* LOCK: Wall and section curation are exact-copy only. */}
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Sections</p>
           <p className="text-sm text-slate-600">
-            Add this exact copy to custom sections. Wall stays automatic.
+            Add this exact copy to custom sections. Wall visibility follows copy intent.
           </p>
         </div>
         {sections.length > 0 ? (
@@ -146,7 +147,7 @@ export default function VaultInstanceSectionMembershipCard({
                   </span>
                 </span>
                 <span className="shrink-0 text-xs font-medium">
-                  {pending ? "Saving..." : section.is_member ? "Added" : "Add"}
+                  {pending ? "Saving..." : section.is_member ? "Added" : "Add to section"}
                 </span>
               </button>
             );

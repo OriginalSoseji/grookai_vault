@@ -278,7 +278,7 @@ function MobileDetailRow({
                     href={manageCardHref}
                     className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
                   >
-                    Manage card
+                    Manage copies
                   </Link>
                 ) : null}
               </div>
@@ -289,7 +289,7 @@ function MobileDetailRow({
                 <div className="space-y-1">
                   <VaultFieldLabel>Copies</VaultFieldLabel>
                   <p className="text-xs leading-5 text-slate-500">
-                    Open an exact copy when you want deep edits. Use Manage Card for grouped settings and the full copy list.
+                    Open an exact copy to edit condition, intent, media, sections, or public placement.
                   </p>
                 </div>
 
@@ -345,8 +345,8 @@ function MobileDetailRow({
                     className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
                   >
                     {item.copy_items.length > previewCopies.length
-                      ? `View all ${item.copy_items.length} copies and grouped settings`
-                      : "Open grouped settings"}
+                      ? `View all ${item.copy_items.length} copies`
+                      : "Manage copies"}
                   </Link>
                 </div>
               </div>

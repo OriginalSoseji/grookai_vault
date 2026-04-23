@@ -24,7 +24,6 @@ import {
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
 import { getVaultIntentLabel, type VaultIntent } from "@/lib/network/intent";
-import type { WallCategory } from "@/lib/sharedCards/wallCategories";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -82,12 +81,6 @@ export type VaultCardData = {
   grade: string | null;
   cert_number: string | null;
   is_shared: boolean;
-  wall_category: WallCategory | null;
-  public_note: string | null;
-  show_personal_front: boolean;
-  show_personal_back: boolean;
-  has_front_photo: boolean;
-  has_back_photo: boolean;
   active_message_count: number;
   unread_message_count: number;
   messages_href: string | null;
@@ -215,7 +208,7 @@ export function VaultCardTile({
             href={manageCardHref}
             className="text-xs font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
           >
-            Manage card
+            Manage copies
           </Link>
         ) : null}
       </div>
@@ -231,7 +224,7 @@ export function VaultCardTile({
           <div className="space-y-1">
             <VaultFieldLabel>Copies</VaultFieldLabel>
             <p className="text-xs leading-5 text-slate-500">
-              Open an exact copy when you want to edit deep details. Use Manage Card for grouped settings and the full copy list.
+              Open an exact copy to edit condition, intent, media, sections, or public placement.
             </p>
           </div>
 
@@ -287,8 +280,8 @@ export function VaultCardTile({
               className="text-sm font-medium text-slate-600 underline-offset-4 transition hover:text-slate-950 hover:underline"
             >
               {item.copy_items.length > previewCopies.length
-                ? `View all ${item.copy_items.length} copies and grouped settings`
-                : "Open grouped settings"}
+                ? `View all ${item.copy_items.length} copies`
+                : "Manage copies"}
             </Link>
           </div>
         </div>

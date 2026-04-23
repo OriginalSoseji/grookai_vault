@@ -1,3 +1,5 @@
+// LOCK: Legacy grouped wall_category must not surface as the section system.
+// LOCK: Wall and section curation are exact-copy only.
 export type WallCategory =
   | "grails"
   | "favorites"

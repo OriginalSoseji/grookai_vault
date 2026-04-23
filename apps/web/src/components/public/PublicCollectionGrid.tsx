@@ -10,7 +10,6 @@ import {
   getPublicWallCardPrimaryGvviId,
   type PublicWallCard,
 } from "@/lib/sharedCards/publicWall.shared";
-import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type PublicCollectionGridProps = {
   cards: PublicWallCard[];
@@ -33,7 +32,6 @@ export function PublicCollectionGrid({
       <div className={getPokemonCardCollectionGridClassName(density)}>
         {cards.map((card) => (
           (() => {
-            const wallCategoryLabel = getWallCategoryLabel(card.wall_category);
             const rawCount = card.raw_count ?? 0;
             const slabCount = card.slab_count ?? 0;
             const mixedSummary =
@@ -64,7 +62,6 @@ export function PublicCollectionGrid({
                   <>
                     <div className="flex min-w-0 flex-wrap gap-1.5">
                       {card.is_slab ? <PokemonCardGridBadge tone="warm">Slab</PokemonCardGridBadge> : null}
-                      {wallCategoryLabel ? <PokemonCardGridBadge tone="accent">{wallCategoryLabel}</PokemonCardGridBadge> : null}
                     </div>
                     {ownedCount > 1 ? <PokemonCardGridBadge tone="neutral">Qty {ownedCount}</PokemonCardGridBadge> : <span />}
                   </>

@@ -165,9 +165,10 @@ export default function VaultInstanceSettingsCard({
   return (
     <div className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Exact Copy Controls</p>
+        {/* LOCK: Wall/section product language must reflect exact-copy curation only. */}
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Organize This Copy</p>
         <p className="text-sm text-slate-600">
-          Intent and condition only change this exact owned copy.
+          Intent controls Wall visibility. Condition and image display only change this exact copy.
         </p>
       </div>
 

@@ -6,7 +6,6 @@ import {
   normalizeDiscoverableVaultIntent,
   type VaultIntent,
 } from "@/lib/network/intent";
-import { getWallCategoryLabel } from "@/lib/sharedCards/wallCategories";
 
 type VaultActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   tone?: "default" | "strong" | "quiet";
@@ -59,10 +58,10 @@ export function getVaultPrimaryActionLabel({
   }
 
   if (inPlayCount > 0) {
-    return "Manage";
+    return "Manage copies";
   }
 
-  return "Make available";
+  return "Open copies";
 }
 
 export function formatVaultSlabSummary(item: Pick<VaultCardData, "grader" | "grade">) {
@@ -170,13 +169,11 @@ export function formatVaultSecondaryContext(
     | "condition_label"
     | "owned_count"
     | "is_shared"
-    | "wall_category"
     | "primary_intent"
   >,
 ) {
   const parts: string[] = [];
   const ownershipContext = formatVaultClosedOwnershipContext(item);
-  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
 
   if (ownershipContext) {
     parts.push(ownershipContext);
@@ -184,20 +181,6 @@ export function formatVaultSecondaryContext(
 
   if (item.is_shared) {
     parts.push("On Wall");
-  }
-
-  if (wallCategoryLabel) {
-    const isIntentDuplicate =
-      (wallCategoryLabel === "For Sale" && item.primary_intent === "sell") ||
-      (wallCategoryLabel === "Trades" && item.primary_intent === "trade");
-    const isGraderDuplicate =
-      (wallCategoryLabel === "PSA" && (item.grader ?? "").toUpperCase() === "PSA") ||
-      (wallCategoryLabel === "CGC" && (item.grader ?? "").toUpperCase() === "CGC") ||
-      (wallCategoryLabel === "BGS" && (item.grader ?? "").toUpperCase() === "BGS");
-
-    if (!isIntentDuplicate && !isGraderDuplicate) {
-      parts.push(wallCategoryLabel);
-    }
   }
 
   return parts.length > 0 ? parts.join(" • ") : null;
@@ -280,7 +263,6 @@ export function VaultStatusBadges({
     | "owned_count"
     | "is_slab"
     | "is_shared"
-    | "wall_category"
     | "intent"
     | "in_play_count"
     | "trade_count"
@@ -290,7 +272,6 @@ export function VaultStatusBadges({
   includeQuantity?: boolean;
   size?: "xs" | "sm";
 }) {
-  const wallCategoryLabel = getWallCategoryLabel(item.wall_category);
   const discoverableIntentKinds = [item.trade_count > 0, item.sell_count > 0, item.showcase_count > 0].filter(Boolean).length;
   const singleIntentLabel =
     item.trade_count > 0 && item.sell_count === 0 && item.showcase_count === 0
@@ -324,11 +305,6 @@ export function VaultStatusBadges({
       {item.is_shared ? (
         <PokemonCardGridBadge tone="positive" size={size}>
           On Wall
-        </PokemonCardGridBadge>
-      ) : null}
-      {wallCategoryLabel ? (
-        <PokemonCardGridBadge tone="accent" size={size}>
-          {wallCategoryLabel}
         </PokemonCardGridBadge>
       ) : null}
     </>

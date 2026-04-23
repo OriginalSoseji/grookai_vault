@@ -306,7 +306,7 @@ export function VaultCollectionView({
   );
 
   const duplicateItems = useMemo(() => items.filter((item) => item.owned_count > 1), [items]);
-  const sharedItems = useMemo(() => items.filter((item) => item.is_shared), [items]);
+  const wallItems = useMemo(() => items.filter((item) => item.in_play_count > 0), [items]);
   const pokemonSuggestionNames = useMemo(
     () =>
       Array.from(
@@ -350,7 +350,7 @@ export function VaultCollectionView({
 
   const smartViews: Array<{ key: SmartViewKey; label: string; count?: number }> = [
     { key: "all", label: "All Cards", count: items.length },
-    { key: "shared", label: "On Wall", count: sharedItems.length },
+    { key: "shared", label: "On Wall", count: wallItems.length },
     { key: "duplicates", label: "Duplicates", count: duplicateItems.length },
     { key: "recent", label: "Recently Added", count: recentItems.length },
     { key: "by-set", label: "By Set" },
@@ -456,19 +456,19 @@ export function VaultCollectionView({
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
           : <ViewEmptyState title="No recent cards to show." body="New additions will appear here." />;
   } else if (activeView === "shared") {
-    const filteredSharedItems = applySearch(sharedItems);
+    const filteredWallItems = applySearch(wallItems);
     vaultContent =
-      filteredSharedItems.length > 0
-        ? renderVaultGrid(filteredSharedItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
+      filteredWallItems.length > 0
+        ? renderVaultGrid(filteredWallItems, density, setLogoPathByCode, expandedCardId, handleExpansionToggle)
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-          : <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />;
+          : <ViewEmptyState title="No wall items yet" body="Copies marked Trade, Sell, or Showcase will appear here." />;
     mobileVaultContent =
-      filteredSharedItems.length > 0
-        ? renderMobileVaultItems(filteredSharedItems)
+      filteredWallItems.length > 0
+        ? renderMobileVaultItems(filteredWallItems)
         : searchQuery.trim().length > 0
           ? <ViewEmptyState title="No cards found in your vault." body="Try a different search or clear the current query." />
-          : <ViewEmptyState title="No wall items yet" body="Cards you add to your wall will appear here." />;
+          : <ViewEmptyState title="No wall items yet" body="Copies marked Trade, Sell, or Showcase will appear here." />;
   } else if (activeView === "by-set") {
     const filteredBySetGroups = bySetGroups
       .map((group) => ({

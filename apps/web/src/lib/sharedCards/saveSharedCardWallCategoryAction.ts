@@ -149,6 +149,8 @@ export async function saveSharedCardWallCategoryAction(
     };
   }
 
+  // LOCK: Legacy grouped wall_category must not surface as the section system.
+  // LOCK: Wall and section curation are exact-copy only.
   const { data: existingSharedRow, error: existingSharedError } = await client
     .from("shared_cards")
     .select("id")

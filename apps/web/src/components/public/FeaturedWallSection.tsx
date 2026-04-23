@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { getPublicWallCardHref, type PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
-import {
-  getWallCategoryLabel,
-  WALL_CATEGORY_OPTIONS,
-  type WallCategory,
-} from "@/lib/sharedCards/wallCategories";
 
 type FeaturedWallSectionProps = {
   cards: PublicWallCard[];
@@ -17,8 +11,6 @@ type FeaturedWallSectionProps = {
   viewerUserId?: string | null;
   ownerUserId?: string | null;
 };
-
-type FeaturedWallFilter = "all" | WallCategory;
 
 function getMixedOwnershipSummary(card: PublicWallCard) {
   const rawCount = card.raw_count ?? 0;
@@ -45,7 +37,6 @@ function FeaturedWallCard({
   ownerUserId?: string | null;
 }) {
   const displayIdentity = resolveDisplayIdentity(card);
-  const wallCategoryLabel = getWallCategoryLabel(card.wall_category);
   const mixedSummary = getMixedOwnershipSummary(card);
   const cardHref = getPublicWallCardHref(card, viewerUserId, ownerUserId) ?? `/card/${card.gv_id}`;
 
@@ -79,11 +70,6 @@ function FeaturedWallCard({
               </p>
             </div>
             <div className="flex shrink-0 flex-wrap justify-end gap-2">
-              {wallCategoryLabel ? (
-                <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700">
-                  {wallCategoryLabel}
-                </span>
-              ) : null}
               {card.is_slab ? (
                 <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-700">
                   Slab
@@ -135,24 +121,6 @@ export function FeaturedWallSection({
   viewerUserId = null,
   ownerUserId = null,
 }: FeaturedWallSectionProps) {
-  const [activeFilter, setActiveFilter] = useState<FeaturedWallFilter>("all");
-
-  const orderedCards = useMemo(() => {
-    const categorized = cards.filter((card) => Boolean(card.wall_category));
-    const uncategorized = cards.filter((card) => !card.wall_category);
-    return [...categorized, ...uncategorized];
-  }, [cards]);
-
-  const availableCategories = useMemo(() => new Set(cards.map((card) => card.wall_category).filter(Boolean)), [cards]);
-
-  const filteredCards = useMemo(() => {
-    if (activeFilter === "all") {
-      return orderedCards;
-    }
-
-    return orderedCards.filter((card) => card.wall_category === activeFilter);
-  }, [activeFilter, orderedCards]);
-
   if (cards.length === 0) {
     return null;
   }
@@ -170,62 +138,22 @@ export function FeaturedWallSection({
               </p>
             </div>
             <p className="text-sm font-medium text-slate-500">
-              {filteredCards.length} {filteredCards.length === 1 ? "wall item" : "wall items"}
+              {cards.length} {cards.length === 1 ? "wall item" : "wall items"}
             </p>
           </div>
         </div>
       ) : null}
 
-      <div className="flex flex-wrap gap-2.5">
-        <button
-          type="button"
-          onClick={() => setActiveFilter("all")}
-          className={`inline-flex rounded-full px-3.5 py-2 text-sm font-medium transition ${
-            activeFilter === "all"
-              ? "border border-slate-950 bg-slate-950 text-white"
-              : "border border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-          }`}
-        >
-          All
-        </button>
-        {WALL_CATEGORY_OPTIONS.map((option) => {
-          const hasItems = availableCategories.has(option.value);
-
-          return (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => setActiveFilter(option.value)}
-              className={`inline-flex rounded-full px-3.5 py-2 text-sm font-medium transition ${
-                activeFilter === option.value
-                  ? "border border-slate-950 bg-slate-950 text-white"
-                  : hasItems
-                    ? "border border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white"
-                    : "border border-slate-200 bg-slate-50 text-slate-400"
-              }`}
-            >
-              {option.label}
-            </button>
-          );
-        })}
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
+        {cards.map((card) => (
+          <FeaturedWallCard
+            key={card.gv_vi_id ?? card.vault_item_id ?? card.card_print_id ?? card.gv_id}
+            card={card}
+            viewerUserId={viewerUserId}
+            ownerUserId={ownerUserId}
+          />
+        ))}
       </div>
-
-      {filteredCards.length === 0 ? (
-        <div className="rounded-[1.5rem] border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center">
-          <p className="text-sm text-slate-600">No wall items in this category yet.</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
-          {filteredCards.map((card) => (
-            <FeaturedWallCard
-              key={`${card.gv_id}-${card.wall_category ?? "none"}`}
-              card={card}
-              viewerUserId={viewerUserId}
-              ownerUserId={ownerUserId}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 }

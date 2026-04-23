@@ -49,6 +49,8 @@ const WALL_GUARD_MESSAGE =
 export async function toggleSharedCardAction(
   input: ToggleSharedCardInput,
 ): Promise<ToggleSharedCardResult> {
+  // LOCK: This legacy shared_cards action must not be wired into grouped curation UI.
+  // LOCK: Wall and section curation are exact-copy only.
   const client = createServerComponentClient();
   const {
     data: { user },
