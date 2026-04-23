@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import FollowCollectorButton from "@/components/public/FollowCollectorButton";
 import { PublicCollectorHeader, type PublicCollectorStat } from "@/components/public/PublicCollectorHeader";
@@ -13,6 +13,7 @@ import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getPublicCollectorWallSectionsBySlug } from "@/lib/wallSections/getPublicCollectorWallSectionsBySlug";
+import { getPublicSectionShareHref } from "@/lib/wallSections/wallSectionTypes";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -28,6 +29,11 @@ function dedupePublicWallCards(cards: PublicWallCard[]) {
   }
 
   return [...cardByKey.values()];
+}
+
+function normalizeSectionParam(value: string | string[] | undefined) {
+  const rawValue = Array.isArray(value) ? value[0] : value;
+  return String(rawValue ?? "").trim();
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -64,11 +70,26 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PublicProfilePage({ params }: { params: { slug: string } }) {
+export default async function PublicProfilePage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams?: { section?: string | string[] };
+}) {
   const profile = await getPublicProfileBySlug(params.slug);
 
   if (!profile) {
     notFound();
+  }
+
+  const sectionParam = normalizeSectionParam(searchParams?.section);
+  if (sectionParam) {
+    if (!profile.vault_sharing_enabled) {
+      notFound();
+    }
+
+    redirect(getPublicSectionShareHref(profile.slug, sectionParam));
   }
 
   const supabase = createServerComponentClient();

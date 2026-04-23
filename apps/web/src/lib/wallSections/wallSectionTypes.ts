@@ -77,6 +77,16 @@ export type PublicCollectorSectionView = Readonly<{
   cards: import("@/lib/sharedCards/publicWall.shared").PublicWallCard[];
 }>;
 
+// LOCK: Public section share language must remain short, calm, and collector-friendly.
+export const PUBLIC_SECTION_SHARE_COPY = Object.freeze({
+  section: "Section",
+  backToWall: "Back to wall",
+  viewWall: "View wall",
+  copyLink: "Copy link",
+  copied: "Copied",
+  empty: "Nothing to show right now.",
+});
+
 export const WALL_SECTION_LIMIT_MESSAGE = "You've reached the section limit for your plan.";
 export const WALL_SECTION_STORED_LIMIT_MESSAGE = "You can store up to 20 sections.";
 
@@ -153,6 +163,14 @@ export function canActivateWallSection(input: {
 
 export function normalizeWallSectionId(value: unknown): string {
   return String(value ?? "").trim();
+}
+
+export function getPublicWallHref(slug: string): string {
+  return `/u/${encodeURIComponent(slug.trim().toLowerCase())}`;
+}
+
+export function getPublicSectionShareHref(slug: string, sectionId: string): string {
+  return `${getPublicWallHref(slug)}/section/${encodeURIComponent(normalizeWallSectionId(sectionId))}`;
 }
 
 export function normalizeVaultItemInstanceId(value: unknown): string {

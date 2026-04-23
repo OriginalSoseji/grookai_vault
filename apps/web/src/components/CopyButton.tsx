@@ -2,7 +2,19 @@
 
 import { useEffect, useState } from "react";
 
-export default function CopyButton({ text }: { text: string }) {
+type CopyButtonProps = {
+  text: string;
+  label?: string;
+  copiedLabel?: string;
+  className?: string;
+};
+
+export default function CopyButton({
+  text,
+  label = "Copy",
+  copiedLabel = "Copied!",
+  className = "rounded-full border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-100",
+}: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -25,9 +37,9 @@ export default function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="rounded-full border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-100"
+      className={className}
     >
-      {copied ? "Copied!" : "Copy"}
+      {copied ? copiedLabel : label}
     </button>
   );
 }

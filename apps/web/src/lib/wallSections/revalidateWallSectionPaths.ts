@@ -17,5 +17,16 @@ export async function revalidateOwnerWallSectionPaths(userId: string) {
   if (slug) {
     revalidatePath(`/u/${slug}`);
     revalidatePath(`/u/${slug}/collection`);
+
+    const { data: sections } = await client
+      .from("wall_sections")
+      .select("id")
+      .eq("user_id", userId);
+
+    for (const section of sections ?? []) {
+      if (typeof section.id === "string" && section.id.trim()) {
+        revalidatePath(`/u/${slug}/section/${section.id}`);
+      }
+    }
   }
 }

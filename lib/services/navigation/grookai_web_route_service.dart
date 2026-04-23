@@ -2,13 +2,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../secrets.dart';
 
-enum GrookaiCanonicalRouteKind { card, collector, set }
+enum GrookaiCanonicalRouteKind { card, collector, collectorSection, set }
 
 class GrookaiCanonicalRoute {
   const GrookaiCanonicalRoute._({
     required this.kind,
     required this.path,
     required this.value,
+    this.sectionId,
   });
 
   factory GrookaiCanonicalRoute.card(String gvId) {
@@ -29,6 +30,20 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.collectorSection({
+    required String slug,
+    required String sectionId,
+  }) {
+    final normalizedSlug = slug.trim().toLowerCase();
+    final normalizedSectionId = sectionId.trim();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.collectorSection,
+      path: '/u/$normalizedSlug/section/$normalizedSectionId',
+      value: normalizedSlug,
+      sectionId: normalizedSectionId,
+    );
+  }
+
   factory GrookaiCanonicalRoute.set(String setCode) {
     final normalized = setCode.trim();
     return GrookaiCanonicalRoute._(
@@ -41,6 +56,7 @@ class GrookaiCanonicalRoute {
   final GrookaiCanonicalRouteKind kind;
   final String path;
   final String value;
+  final String? sectionId;
 }
 
 class GrookaiWebRouteService {
@@ -99,6 +115,16 @@ class GrookaiWebRouteService {
       case 'card':
         return GrookaiCanonicalRoute.card(value);
       case 'u':
+        if (segments.length >= 4 && segments[2].toLowerCase() == 'section') {
+          final sectionId = segments[3].trim();
+          if (sectionId.isEmpty) {
+            return null;
+          }
+          return GrookaiCanonicalRoute.collectorSection(
+            slug: value.toLowerCase(),
+            sectionId: sectionId,
+          );
+        }
         return GrookaiCanonicalRoute.collector(value.toLowerCase());
       case 'set':
       case 'sets':

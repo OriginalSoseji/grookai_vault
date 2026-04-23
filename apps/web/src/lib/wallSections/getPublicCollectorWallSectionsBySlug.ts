@@ -24,18 +24,16 @@ export const getPublicCollectorWallSectionsBySlug = cache(async (
     })),
   );
 
-  const customSections = sectionCards
-    .filter(({ cards }) => cards.length > 0)
-    .map(({ section, cards }) =>
-      Object.freeze({
-        id: section.id,
-        kind: "custom" as const,
-        name: section.name,
-        position: section.position,
-        item_count: cards.length,
-        cards,
-      }),
-    );
+  const customSections = sectionCards.map(({ section, cards }) =>
+    Object.freeze({
+      id: section.id,
+      kind: "custom" as const,
+      name: section.name,
+      position: section.position,
+      item_count: cards.length,
+      cards,
+    }),
+  );
 
   // LOCK: Wall is system-derived and always first.
   // LOCK: Custom Sections are durable public presentation layers, not grouped shared_cards categories.

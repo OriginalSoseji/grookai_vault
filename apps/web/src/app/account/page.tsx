@@ -78,6 +78,10 @@ export default async function AccountPage({
     avatarPath: profileRow?.avatar_path ?? null,
     bannerPath: profileRow?.banner_path ?? null,
   };
+  const publicProfileSlug =
+    initialProfileValues.publicProfileEnabled && initialProfileValues.vaultSharingEnabled && initialProfileValues.slug
+      ? initialProfileValues.slug
+      : null;
   const showFounderSignals = isFounderUser(user);
   const wallSectionsModel = await getOwnerWallSections(user.id);
   const activeTab = resolveAccountTab(
@@ -209,7 +213,7 @@ export default async function AccountPage({
             loadError={profileError?.message ?? null}
           />
 
-          <WallSectionsSettingsCard initialModel={wallSectionsModel} />
+          <WallSectionsSettingsCard initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
 
           <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="space-y-4">

@@ -44,6 +44,7 @@ export const getPublicWallSectionsBySlug = cache(async (slug: string): Promise<P
   const { data, error } = await client
     .from("v_wall_sections_v1")
     // LOCK: Only active public sections may render on public collector surfaces.
+    // LOCK: Do not leak unrelated or private sections through public section navigation.
     .select("id,name,position,item_count")
     .eq("owner_slug", normalizedSlug)
     .order("position", { ascending: true })
@@ -55,5 +56,5 @@ export const getPublicWallSectionsBySlug = cache(async (slug: string): Promise<P
 
   return ((data ?? []) as PublicWallSectionRow[])
     .map(toPublicWallSectionSummary)
-    .filter((section): section is PublicWallSectionSummary => Boolean(section && section.item_count > 0));
+    .filter((section): section is PublicWallSectionSummary => Boolean(section));
 });

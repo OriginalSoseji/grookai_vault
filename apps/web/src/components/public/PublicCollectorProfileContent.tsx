@@ -17,6 +17,7 @@ import {
   type PublicWallCard,
 } from "@/lib/sharedCards/publicWall.shared";
 import {
+  getPublicSectionShareHref,
   PUBLIC_WALL_SECTION_ID,
   type PublicCollectorSectionView,
 } from "@/lib/wallSections/wallSectionTypes";
@@ -138,6 +139,7 @@ function buildOrderedSections(sections: PublicCollectorSectionView[]) {
 }
 
 export function PublicCollectorProfileContent({
+  slug,
   collectorDisplayName,
   collectorUserId,
   sections,
@@ -183,21 +185,35 @@ export function PublicCollectorProfileContent({
     <section className="space-y-4">
       <div className="overflow-x-auto rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
         <div className="flex min-w-max gap-2">
-          {orderedSections.map((section) => (
-            <button
-              key={section.id}
-              type="button"
-              onClick={() => setActiveSectionId(section.id)}
-              className={`max-w-[13rem] truncate rounded-[1rem] px-4 py-2.5 text-sm font-medium transition ${
-                activeSection.id === section.id
-                  ? "bg-slate-950 text-white shadow-sm"
-                  : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
-              }`}
-              aria-pressed={activeSection.id === section.id}
-            >
-              {section.name}
-            </button>
-          ))}
+          {orderedSections.map((section) => {
+            const active = activeSection.id === section.id;
+            const className = `max-w-[13rem] truncate rounded-[1rem] px-4 py-2.5 text-sm font-medium transition ${
+              active
+                ? "bg-slate-950 text-white shadow-sm"
+                : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+            }`;
+
+            return section.kind === "custom" ? (
+              <Link
+                key={section.id}
+                href={getPublicSectionShareHref(slug, section.id)}
+                className={className}
+                aria-current={active ? "page" : undefined}
+              >
+                {section.name}
+              </Link>
+            ) : (
+              <button
+                key={section.id}
+                type="button"
+                onClick={() => setActiveSectionId(section.id)}
+                className={className}
+                aria-pressed={active}
+              >
+                {section.name}
+              </button>
+            );
+          })}
         </div>
       </div>
 

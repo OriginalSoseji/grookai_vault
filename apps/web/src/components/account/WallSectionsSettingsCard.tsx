@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { createWallSectionAction } from "@/lib/wallSections/createWallSectionAction";
 import { updateWallSectionAction } from "@/lib/wallSections/updateWallSectionAction";
 import {
   countActiveWallSections,
+  getPublicSectionShareHref,
   normalizeWallSectionName,
   WALL_SECTION_HELPER_COPY,
   WALL_SECTION_LIMIT_MESSAGE,
@@ -17,6 +19,7 @@ import {
 
 type WallSectionsSettingsCardProps = {
   initialModel: WallSectionsSettingsModel;
+  publicProfileSlug?: string | null;
 };
 
 function cx(...classes: Array<string | false | null | undefined>) {
@@ -35,7 +38,7 @@ function resolveStatusTone(result: WallSectionActionResult | null): "success" | 
   return result.ok ? "success" : "error";
 }
 
-export function WallSectionsSettingsCard({ initialModel }: WallSectionsSettingsCardProps) {
+export function WallSectionsSettingsCard({ initialModel, publicProfileSlug = null }: WallSectionsSettingsCardProps) {
   const [sections, setSections] = useState<OwnerWallSection[]>(initialModel.sections);
   const [limitState, setLimitState] = useState<OwnerWallSectionLimitState>(initialModel.limitState);
   const [createName, setCreateName] = useState("");
@@ -164,6 +167,10 @@ export function WallSectionsSettingsCard({ initialModel }: WallSectionsSettingsC
             const nameDraft = nameDrafts[section.id] ?? section.name;
             const changedName = normalizeWallSectionName(nameDraft) !== section.name;
             const activationBlocked = !section.is_active && activeCount >= limitState.activeLimit;
+            const publicSectionHref =
+              publicProfileSlug && section.is_active && section.is_public
+                ? getPublicSectionShareHref(publicProfileSlug, section.id)
+                : null;
 
             return (
               <div
@@ -217,6 +224,14 @@ export function WallSectionsSettingsCard({ initialModel }: WallSectionsSettingsC
                   >
                     {section.is_active ? "Deactivate" : "Activate"}
                   </button>
+                  {publicSectionHref ? (
+                    <Link
+                      href={publicSectionHref}
+                      className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                    >
+                      Open section
+                    </Link>
+                  ) : null}
                 </div>
               </div>
             );
