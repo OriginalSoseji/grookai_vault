@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceMediaProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   isOwnedVaultInstanceMediaPath,
@@ -86,19 +88,47 @@ export async function saveVaultItemInstanceMediaAction(
   const imageField = input.side === "front" ? "image_url" : "image_back_url";
   const sourceField = input.side === "front" ? "image_source" : "image_back_source";
 
-  const { data, error } = await client
-    .from("vault_item_instances")
-    .update({
-      [imageField]: input.storagePath,
-      [sourceField]: input.storagePath ? "user_photo" : null,
-    })
-    .eq("id", normalizedInstanceId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,gv_vi_id")
-    .maybeSingle();
+  let result: Extract<SaveVaultItemInstanceMediaResult, { ok: true }>;
 
-  if (error || !data) {
+  try {
+    result = await executeOwnerWriteV1<Extract<SaveVaultItemInstanceMediaResult, { ok: true }>>({
+      execution_name: "save_vault_item_instance_media",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "saveVaultItemInstanceMediaAction");
+
+        const { data, error } = await context.adminClient
+          .from("vault_item_instances")
+          .update({
+            [imageField]: input.storagePath,
+            [sourceField]: input.storagePath ? "user_photo" : null,
+          })
+          .eq("id", normalizedInstanceId)
+          .eq("user_id", user.id)
+          .is("archived_at", null)
+          .select("id,gv_vi_id")
+          .maybeSingle();
+
+        if (error || !data) {
+          throw new Error("Copy photo could not be saved.");
+        }
+
+        return {
+          ok: true,
+          instanceId: data.id,
+          side: input.side,
+          storagePath: input.storagePath,
+        };
+      },
+      proofs: [
+        createVaultInstanceMediaProofV1(({ result }) => ({
+          instanceId: result.instanceId,
+          side: result.side,
+          expectedStoragePath: result.storagePath,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -107,7 +137,7 @@ export async function saveVaultItemInstanceMediaAction(
     };
   }
 
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  const gvviId = typeof instance.gv_vi_id === "string" ? instance.gv_vi_id.trim() : null;
   revalidatePath("/vault");
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
@@ -115,9 +145,6 @@ export async function saveVaultItemInstanceMediaAction(
   }
 
   return {
-    ok: true,
-    instanceId: data.id,
-    side: input.side,
-    storagePath: input.storagePath,
+    ...result,
   };
 }

@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceConditionProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 const ALLOWED_CONDITIONS = new Set(["NM", "LP", "MP", "HP", "DMG"]);
@@ -89,18 +91,50 @@ export async function saveVaultItemInstanceConditionAction(
     };
   }
 
-  const { data, error } = await client
-    .from("vault_item_instances")
-    .update({
-      condition_label: nextCondition,
-    })
-    .eq("id", normalizedInstanceId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,condition_label,gv_vi_id")
-    .maybeSingle();
+  let result: Extract<SaveVaultItemInstanceConditionResult, { ok: true }>;
 
-  if (error || !data) {
+  try {
+    result = await executeOwnerWriteV1<
+      Extract<SaveVaultItemInstanceConditionResult, { ok: true }>
+    >({
+      execution_name: "save_vault_item_instance_condition",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "saveVaultItemInstanceConditionAction");
+
+        const { data, error } = await context.adminClient
+          .from("vault_item_instances")
+          .update({
+            condition_label: nextCondition,
+          })
+          .eq("id", normalizedInstanceId)
+          .eq("user_id", user.id)
+          .is("archived_at", null)
+          .select("id,condition_label,gv_vi_id")
+          .maybeSingle();
+
+        if (error || !data) {
+          throw new Error("Condition could not be saved.");
+        }
+
+        return {
+          ok: true,
+          instanceId: data.id,
+          conditionLabel:
+            typeof data.condition_label === "string" && data.condition_label.trim().length > 0
+              ? data.condition_label.trim().toUpperCase()
+              : nextCondition,
+          gvviId: typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null,
+        };
+      },
+      proofs: [
+        createVaultInstanceConditionProofV1(({ result }) => ({
+          instanceId: result.instanceId,
+          expectedConditionLabel: result.conditionLabel,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -108,7 +142,7 @@ export async function saveVaultItemInstanceConditionAction(
     };
   }
 
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  const gvviId = result.gvviId;
   revalidatePath("/vault");
   revalidatePath("/network");
   if (gvviId) {
@@ -117,12 +151,7 @@ export async function saveVaultItemInstanceConditionAction(
   }
 
   return {
-    ok: true,
-    instanceId: data.id,
-    conditionLabel:
-      typeof data.condition_label === "string" && data.condition_label.trim().length > 0
-        ? data.condition_label.trim().toUpperCase()
-        : nextCondition,
+    ...result,
     gvviId,
   };
 }

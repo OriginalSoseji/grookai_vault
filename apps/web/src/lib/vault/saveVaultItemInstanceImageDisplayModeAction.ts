@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceImageDisplayModeProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
@@ -87,18 +89,52 @@ export async function saveVaultItemInstanceImageDisplayModeAction(
     };
   }
 
-  const { data, error } = await client
-    .from("vault_item_instances")
-    .update({
-      image_display_mode: imageDisplayMode,
-    })
-    .eq("id", normalizedInstanceId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,image_display_mode,gv_vi_id,card_print_id")
-    .maybeSingle();
+  let result: Extract<SaveVaultItemInstanceImageDisplayModeResult, { ok: true }>;
+  let cardPrintId: string | null = null;
 
-  if (error || !data) {
+  try {
+    result = await executeOwnerWriteV1<
+      Extract<SaveVaultItemInstanceImageDisplayModeResult, { ok: true }>
+    >({
+      execution_name: "save_vault_item_instance_image_display_mode",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "saveVaultItemInstanceImageDisplayModeAction");
+
+        const { data, error } = await context.adminClient
+          .from("vault_item_instances")
+          .update({
+            image_display_mode: imageDisplayMode,
+          })
+          .eq("id", normalizedInstanceId)
+          .eq("user_id", user.id)
+          .is("archived_at", null)
+          .select("id,image_display_mode,gv_vi_id,card_print_id")
+          .maybeSingle();
+
+        if (error || !data) {
+          throw new Error("Image display mode could not be saved.");
+        }
+
+        cardPrintId =
+          typeof data.card_print_id === "string" ? data.card_print_id.trim() : null;
+
+        return {
+          ok: true,
+          instanceId: data.id,
+          imageDisplayMode:
+            normalizeVaultInstanceImageDisplayMode(data.image_display_mode) ?? "canonical",
+          gvviId: typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null,
+        };
+      },
+      proofs: [
+        createVaultInstanceImageDisplayModeProofV1(({ result }) => ({
+          instanceId: result.instanceId,
+          expectedImageDisplayMode: result.imageDisplayMode,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -106,8 +142,7 @@ export async function saveVaultItemInstanceImageDisplayModeAction(
     };
   }
 
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
-  const cardPrintId = typeof data.card_print_id === "string" ? data.card_print_id.trim() : null;
+  const gvviId = result.gvviId;
 
   revalidatePath("/vault");
   if (gvviId) {
@@ -136,9 +171,7 @@ export async function saveVaultItemInstanceImageDisplayModeAction(
   }
 
   return {
-    ok: true,
-    instanceId: data.id,
-    imageDisplayMode: normalizeVaultInstanceImageDisplayMode(data.image_display_mode) ?? "canonical",
+    ...result,
     gvviId,
   };
 }

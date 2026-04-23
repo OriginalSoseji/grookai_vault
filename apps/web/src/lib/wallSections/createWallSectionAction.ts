@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { assertWallSectionStateProof } from "@/lib/contracts/ownershipMutationGuards";
 import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
 import { revalidateOwnerWallSectionPaths } from "@/lib/wallSections/revalidateWallSectionPaths";
 import {
@@ -77,14 +78,18 @@ export async function createWallSectionAction(input: CreateWallSectionInput): Pr
 
   const nextPosition = sections.reduce((max, section) => Math.max(max, section.position), -1) + 1;
 
-  const { error } = await client.from("wall_sections").insert({
-    user_id: user.id,
-    name,
-    position: nextPosition,
-    is_active: true,
-    // LOCK: Created custom sections surface automatically; is_public is compatibility data, not product visibility.
-    is_public: true,
-  });
+  const { data: insertedSection, error } = await client
+    .from("wall_sections")
+    .insert({
+      user_id: user.id,
+      name,
+      position: nextPosition,
+      is_active: true,
+      // LOCK: Created custom sections surface automatically; is_public is compatibility data, not product visibility.
+      is_public: true,
+    })
+    .select("id")
+    .single();
 
   if (error) {
     return {
@@ -95,6 +100,13 @@ export async function createWallSectionAction(input: CreateWallSectionInput): Pr
       limitState: current.limitState,
     };
   }
+
+  await assertWallSectionStateProof({
+    sectionId: insertedSection.id,
+    userId: user.id,
+    expectedName: name,
+    expectedIsActive: true,
+  });
 
   await revalidateOwnerWallSectionPaths(user.id);
   const next = await getOwnerWallSections(user.id);

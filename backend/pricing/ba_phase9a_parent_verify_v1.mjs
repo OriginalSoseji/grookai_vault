@@ -1,3 +1,15 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ * It is NOT part of the runtime authority system.
+ *
+ * RULES:
+ * - must never be executed implicitly
+ * - must never be called by workers
+ * - must never be used in normal flows
+ * - must require explicit operator intent
+ */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -5,6 +17,34 @@ import { fileURLToPath } from 'node:url';
 
 import pg from 'pg';
 
+import { installCanonMaintenanceBoundaryV1 } from '../maintenance/canon_maintenance_boundary_v1.mjs';
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs',
+  );
+}
+
+const DRY_RUN = process.env.CANON_MAINTENANCE_DRY_RUN !== 'false';
+const { assertCanonMaintenanceWriteAllowed } = installCanonMaintenanceBoundaryV1(import.meta.url);
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
+
+void assertCanonMaintenanceWriteAllowed;
 const { Client } = pg;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -540,3 +580,4 @@ main().catch((error) => {
   console.error('[ba-phase9a-parent-verify-v1] fatal', error);
   process.exit(1);
 });
+

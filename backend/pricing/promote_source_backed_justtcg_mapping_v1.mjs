@@ -4,6 +4,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const WORKER_NAME = 'promote_source_backed_justtcg_mapping_v1';
 const TARGET_SOURCE = 'justtcg';
@@ -215,6 +218,18 @@ function log(event, payload = {}) {
 }
 
 async function upsertMapping(supabase, row, batchInputPath) {
+  const payloadSnapshot = {
+    batch_input_path: batchInputPath,
+    batch_index: row.batchIndex,
+    card_print_id: row.cardPrintId,
+    gv_id: row.gvId,
+    source_external_id: row.sourceExternalId,
+    source_candidate_id: row.sourceCandidateId,
+    source_family: row.sourceFamily,
+    variant_key: row.variantKey,
+    effective_set_code: row.effectiveSetCode,
+  };
+
   const meta = {
     promoted_by: WORKER_NAME,
     mapping_mode: 'source_backed_batch_input',
@@ -230,21 +245,86 @@ async function upsertMapping(supabase, row, batchInputPath) {
     source_reason: 'promoted_stamped_row_with_exact_source_backed_identity',
   };
 
-  const { error } = await supabase.from('external_mappings').upsert(
-    {
-      card_print_id: row.cardPrintId,
-      source: TARGET_SOURCE,
-      external_id: row.sourceExternalId,
-      active: true,
-      synced_at: new Date().toISOString(),
-      meta,
-    },
-    { onConflict: 'source,external_id' },
-  );
+  await assertExecuteCanonWriteV1({
+    execution_name: 'promote_source_backed_justtcg_mapping_v1',
+    payload_snapshot: payloadSnapshot,
+    write_target: supabase,
+    audit_target: supabase,
+    ledger_target: supabase,
+    transaction_control: 'none',
+    actor_type: 'system_worker',
+    source_worker: WORKER_NAME,
+    source_system: 'pricing',
+    contract_assertions: [
+      {
+        ok: Boolean(row.cardPrintId),
+        contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
+        violation_type: 'missing_card_print_id',
+        reason: 'Source-backed JustTCG mapping requires card_print_id.',
+      },
+      {
+        ok: Boolean(row.sourceExternalId),
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'missing_source_external_id',
+        reason: 'Source-backed JustTCG mapping requires source_external_id.',
+      },
+      {
+        ok: Boolean(row.sourceCandidateId),
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'missing_source_candidate_id',
+        reason: 'Source-backed JustTCG mapping requires source_candidate_id.',
+      },
+    ],
+    proofs: [
+      {
+        name: 'external_mapping_round_trip',
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'post_write_mapping_missing',
+        async run() {
+          const { data, error: selectError } = await supabase
+            .from('external_mappings')
+            .select('card_print_id,external_id,active')
+            .eq('source', TARGET_SOURCE)
+            .eq('external_id', row.sourceExternalId)
+            .limit(1);
 
-  if (error) {
-    throw new Error(error.message);
-  }
+          if (selectError) {
+            return {
+              ok: false,
+              reason: `JustTCG mapping post-write proof query failed: ${selectError.message}`,
+            };
+          }
+
+          const mapping = Array.isArray(data) ? data[0] ?? null : null;
+          return {
+            ok:
+              mapping?.active === true &&
+              normalizeTextOrNull(mapping.card_print_id) === row.cardPrintId &&
+              normalizeTextOrNull(mapping.external_id) === row.sourceExternalId,
+            reason:
+              `Expected active JustTCG mapping ${row.sourceExternalId} -> ${row.cardPrintId} after upsert.`,
+          };
+        },
+      },
+    ],
+    async write(target) {
+      const { error } = await target.from('external_mappings').upsert(
+        {
+          card_print_id: row.cardPrintId,
+          source: TARGET_SOURCE,
+          external_id: row.sourceExternalId,
+          active: true,
+          synced_at: new Date().toISOString(),
+          meta,
+        },
+        { onConflict: 'source,external_id' },
+      );
+
+      if (error) {
+        throw new Error(error.message);
+      }
+    },
+  });
 }
 
 async function main() {

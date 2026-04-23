@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { assertWallSectionMembershipProof } from "@/lib/contracts/ownershipMutationGuards";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
 import { revalidateOwnerWallSectionPaths } from "@/lib/wallSections/revalidateWallSectionPaths";
@@ -138,6 +139,13 @@ export async function removeWallSectionMembershipAction(
       message: "This card can't be removed from that section.",
     };
   }
+
+  await assertWallSectionMembershipProof({
+    sectionId,
+    vaultItemInstanceId,
+    userId: user.id,
+    shouldExist: false,
+  });
 
   await revalidateOwnerWallSectionPaths(user.id);
   const gvviId = typeof targets.instance.gv_vi_id === "string" ? targets.instance.gv_vi_id.trim() : "";

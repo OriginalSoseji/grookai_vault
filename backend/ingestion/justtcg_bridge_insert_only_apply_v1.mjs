@@ -1,6 +1,46 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ * It is NOT part of the runtime authority system.
+ *
+ * RULES:
+ * - must never be executed implicitly
+ * - must never be called by workers
+ * - must never be used in normal flows
+ * - must require explicit operator intent
+ */
 import '../env.mjs';
 import { Client } from 'pg';
 
+import { installCanonMaintenanceBoundaryV1 } from '../maintenance/canon_maintenance_boundary_v1.mjs';
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs',
+  );
+}
+
+const DRY_RUN = process.env.CANON_MAINTENANCE_DRY_RUN !== 'false';
+const { assertCanonMaintenanceWriteAllowed } = installCanonMaintenanceBoundaryV1(import.meta.url);
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
+
+void assertCanonMaintenanceWriteAllowed;
 const PHASE = 'JUSTTCG_BRIDGE_SPLIT_REMAP_AND_INSERT_V1';
 const WORKER_VERSION = 'JUSTTCG_BRIDGE_INSERT_ONLY_APPLY_V1';
 const SOURCE = 'justtcg';
@@ -528,3 +568,4 @@ run().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+

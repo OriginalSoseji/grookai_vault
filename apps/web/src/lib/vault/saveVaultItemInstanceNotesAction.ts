@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceNotesProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export type SaveVaultItemInstanceNotesInput = {
@@ -81,18 +83,47 @@ export async function saveVaultItemInstanceNotesAction(
     };
   }
 
-  const { data, error } = await client
-    .from("vault_item_instances")
-    .update({
-      notes: nextNotes,
-    })
-    .eq("id", normalizedInstanceId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,notes,gv_vi_id")
-    .maybeSingle();
+  let result: Extract<SaveVaultItemInstanceNotesResult, { ok: true }>;
 
-  if (error || !data) {
+  try {
+    result = await executeOwnerWriteV1<Extract<SaveVaultItemInstanceNotesResult, { ok: true }>>({
+      execution_name: "save_vault_item_instance_notes",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "saveVaultItemInstanceNotesAction");
+
+        const { data, error } = await context.adminClient
+          .from("vault_item_instances")
+          .update({
+            notes: nextNotes,
+          })
+          .eq("id", normalizedInstanceId)
+          .eq("user_id", user.id)
+          .is("archived_at", null)
+          .select("id,notes,gv_vi_id")
+          .maybeSingle();
+
+        if (error || !data) {
+          throw new Error("Notes could not be saved.");
+        }
+
+        return {
+          ok: true,
+          instanceId: data.id,
+          notes:
+            typeof data.notes === "string" && data.notes.trim().length > 0
+              ? data.notes.trim()
+              : null,
+        };
+      },
+      proofs: [
+        createVaultInstanceNotesProofV1(({ result }) => ({
+          instanceId: result.instanceId,
+          expectedNotes: result.notes,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -100,15 +131,13 @@ export async function saveVaultItemInstanceNotesAction(
     };
   }
 
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  const gvviId = typeof instance.gv_vi_id === "string" ? instance.gv_vi_id.trim() : null;
   revalidatePath("/vault");
   if (gvviId) {
     revalidatePath(`/vault/gvvi/${gvviId}`);
   }
 
   return {
-    ok: true,
-    instanceId: data.id,
-    notes: typeof data.notes === "string" && data.notes.trim().length > 0 ? data.notes.trim() : null,
+    ...result,
   };
 }

@@ -4,11 +4,17 @@
     "dotenv": "^17.2.3"
   },
   "scripts": {
+    "contracts:drift-audit": "node scripts/contracts/run_drift_audit_v1.mjs",
+    "contracts:runtime-health": "node scripts/contracts/run_runtime_health_v1.mjs",
+    "contracts:quarantine-report": "node scripts/contracts/run_quarantine_report_v1.mjs",
+    "contracts:deferred-report": "node scripts/contracts/run_deferred_report_v1.mjs",
+    "contracts:test": "node --test tests/contracts/*.test.mjs apps/web/src/components/vault/ownershipMutationGuards.test.mjs",
+    "grookai:preflight": "node scripts/contracts/run_runtime_preflight_v1.mjs",
     "worker:import-prices": "node backend/pricing/import_prices_worker.mjs",
     "worker:system-health": "node backend/infra/system_health_worker.mjs",
     "worker:import-sets": "node backend/sets/import_sets_worker.mjs",
     "worker:sets-health": "node backend/sets/sets_health_report.mjs",
-    "worker:backfill-identity": "node backend/infra/backfill_print_identity_worker.mjs",
+    "worker:backfill-identity": "powershell -ExecutionPolicy Bypass -File scripts/run_backfill_print_identity_worker.ps1",
     "pokemonapi:import:sets": "node backend/sets/import_sets_worker.mjs",
     "pokemonapi:import:cards": "node backend/pokemon/pokemonapi_import_cards_worker.mjs",
     "pokemonapi:normalize": "node backend/pokemon/pokemonapi_normalize_worker.mjs",

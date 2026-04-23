@@ -5,6 +5,9 @@ import { buildCardPrintGvIdV1, resolvePromoNumberV1 } from './buildCardPrintGvId
 import { validateIdentityResolutionForApprovedActionV1 } from '../identity/identity_resolution_v1.mjs';
 import { validatePerfectOrderVariantIdentityForPromotion } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
 import { normalizeVariantKey } from './source_identity_contract_v1.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Pool } = pg;
 
@@ -705,99 +708,186 @@ export async function executeAliasMappingWithinTransaction(client, {
   }
 
   const targetCardPrint = await fetchCardPrintById(client, targetCardPrintId);
-  if (!targetCardPrint) {
-    throw new ExecutorError('alias_mapping_target_missing', targetCardPrintId);
-  }
-
   const existingMapping = await fetchExternalMappingBySourceExternalId(client, source, externalId);
-  if (existingMapping && normalizeTextOrNull(existingMapping.card_print_id) !== targetCardPrintId) {
-    throw new ExecutorError('alias_mapping_conflict', existingMapping.id, {
-      existing_card_print_id: normalizeTextOrNull(existingMapping.card_print_id),
-      target_card_print_id: targetCardPrintId,
-      source,
-      external_id: externalId,
-    });
-  }
+
+  const payloadSnapshot = {
+    candidate_id: candidateId,
+    candidate_state: candidateState,
+    current_staging_id: normalizeTextOrNull(candidate?.current_staging_id),
+    source,
+    external_id: externalId,
+    target_card_print_id: targetCardPrintId,
+    identity_resolution: identityResolution,
+  };
 
   const mappedAt = new Date().toISOString();
+  payloadSnapshot.mapped_at = mappedAt;
   const meta = buildAliasMappingMeta({ candidate, identityResolutionPackage, mappedAt });
-  const mappingResult = await client.query(
-    `
-      insert into public.external_mappings (
-        card_print_id,
-        source,
-        external_id,
-        meta,
-        synced_at,
-        active
-      )
-      values ($1, $2, $3, $4::jsonb, $5, true)
-      on conflict (source, external_id)
-      do update set
-        card_print_id = excluded.card_print_id,
-        meta = coalesce(public.external_mappings.meta, '{}'::jsonb) || excluded.meta,
-        synced_at = excluded.synced_at,
-        active = true
-      where public.external_mappings.card_print_id = excluded.card_print_id
-      returning id, card_print_id, source, external_id, meta, synced_at, active
-    `,
-    [targetCardPrintId, source, externalId, JSON.stringify(meta), mappedAt],
-  );
-
-  const mappingRow = mappingResult.rows[0] ?? null;
-  if (!mappingRow) {
-    throw new ExecutorError('alias_mapping_upsert_failed', `${source}:${externalId}`, {
-      target_card_print_id: targetCardPrintId,
-    });
-  }
-
+  let mappingRow = null;
   const previousState = candidateState;
   const nextState = 'ARCHIVED';
   const currentStagingId = normalizeTextOrNull(candidate?.current_staging_id);
-  const archiveNotes = `Alias mapping executed: ${source}/${externalId} -> ${targetCardPrintId}.`;
-  const candidateUpdate = await client.query(
-    `
-      update public.canon_warehouse_candidates
-      set
-        state = 'ARCHIVED',
-        current_staging_id = null,
-        current_review_hold_reason = null,
-        archived_by_user_id = $2,
-        archived_at = $3,
-        archive_notes = $4
-      where id = $1
-        and state = $5
-        and (
-          $6::uuid is null
-          or current_staging_id = $6::uuid
-        )
-      returning id
-    `,
-    [candidateId, founderApprovedByUserId, mappedAt, archiveNotes, previousState, currentStagingId],
-  );
-  if (candidateUpdate.rowCount !== 1) {
-    throw new ExecutorError('alias_candidate_archive_update_failed', candidateId, {
-      previous_state: previousState,
-      current_staging_id: currentStagingId,
-    });
-  }
+  await assertExecuteCanonWriteV1({
+    execution_name: 'alias_mapping_execution_v1',
+    payload_snapshot: payloadSnapshot,
+    write_target: client,
+    audit_target: client,
+    ledger_target: client,
+    transaction_control: 'external',
+    actor_type: 'system_worker',
+    actor_id: founderApprovedByUserId,
+    source_worker: WORKER_NAME,
+    source_system: 'warehouse',
+    contract_assertions: [
+      {
+        ok: Boolean(candidateId),
+        contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
+        violation_type: 'missing_candidate_id',
+        reason: 'Alias mapping execution requires candidate id.',
+      },
+      {
+        ok: Boolean(source) && Boolean(externalId) && Boolean(targetCardPrintId),
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'alias_mapping_payload_incomplete',
+        reason: 'Alias mapping execution requires source, external_id, and matched_card_print_id.',
+      },
+      {
+        ok: Boolean(targetCardPrint),
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'alias_mapping_target_missing',
+        reason: `Alias mapping target ${targetCardPrintId ?? 'null'} does not exist.`,
+      },
+      {
+        ok: !existingMapping || normalizeTextOrNull(existingMapping.card_print_id) === targetCardPrintId,
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'alias_mapping_conflict',
+        reason:
+          `Alias mapping conflict: ${source}/${externalId} is already owned by ${normalizeTextOrNull(existingMapping?.card_print_id) ?? 'another row'}.`,
+      },
+    ],
+    proofs: [
+      {
+        name: 'alias_mapping_round_trip',
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'post_write_alias_mapping_missing',
+        query: `
+          select card_print_id, active
+          from public.external_mappings
+          where source = $1
+            and external_id = $2
+          limit 1
+        `,
+        params: [source, externalId],
+        evaluate(result) {
+          const row = result.rows[0] ?? null;
+          const cardPrintId = normalizeTextOrNull(row?.card_print_id);
+          return {
+            ok: cardPrintId === targetCardPrintId && row?.active === true,
+            reason: `Alias mapping execution expected ${source}/${externalId} -> ${targetCardPrintId}.`,
+          };
+        },
+      },
+      {
+        name: 'candidate_archived_after_alias_mapping',
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'post_write_alias_candidate_not_archived',
+        query: `
+          select state, current_staging_id
+          from public.canon_warehouse_candidates
+          where id = $1
+          limit 1
+        `,
+        params: [candidateId],
+        evaluate(result) {
+          const row = result.rows[0] ?? null;
+          const state = normalizeTextOrNull(row?.state);
+          const currentStagingId = normalizeTextOrNull(row?.current_staging_id);
+          return {
+            ok: state === 'ARCHIVED' && currentStagingId === null,
+            reason:
+              `Alias mapping execution expected candidate ${candidateId} to be ARCHIVED/null current_staging_id, found ${state ?? 'null'}/${currentStagingId ?? 'null'}.`,
+          };
+        },
+      },
+    ],
+    async write(connection) {
+      const mappingResult = await connection.query(
+        `
+          insert into public.external_mappings (
+            card_print_id,
+            source,
+            external_id,
+            meta,
+            synced_at,
+            active
+          )
+          values ($1, $2, $3, $4::jsonb, $5, true)
+          on conflict (source, external_id)
+          do update set
+            card_print_id = excluded.card_print_id,
+            meta = coalesce(public.external_mappings.meta, '{}'::jsonb) || excluded.meta,
+            synced_at = excluded.synced_at,
+            active = true
+          where public.external_mappings.card_print_id = excluded.card_print_id
+          returning id, card_print_id, source, external_id, meta, synced_at, active
+        `,
+        [targetCardPrintId, source, externalId, JSON.stringify(meta), mappedAt],
+      );
 
-  await insertExecutorEvent(client, {
-    candidateId,
-    stagingId: currentStagingId,
-    eventType: 'ALIAS_MAPPING_EXECUTION_SUCCEEDED',
-    action: 'MAP_ALIAS',
-    previousState,
-    nextState,
-    metadata: {
-      alias_mapping_execution_version: ALIAS_MAPPING_EXECUTION_VERSION,
-      identity_resolution: identityResolution,
-      mapping_id: mappingRow.id,
-      source,
-      external_id: externalId,
-      card_print_id: targetCardPrintId,
-      previous_staging_id: currentStagingId,
-      recovered_failed_staging: previousState === 'STAGED_FOR_PROMOTION',
+      mappingRow = mappingResult.rows[0] ?? null;
+      if (!mappingRow) {
+        throw new ExecutorError('alias_mapping_upsert_failed', `${source}:${externalId}`, {
+          target_card_print_id: targetCardPrintId,
+        });
+      }
+      payloadSnapshot.mapping_id = mappingRow.id;
+
+      const archiveNotes = `Alias mapping executed: ${source}/${externalId} -> ${targetCardPrintId}.`;
+      const candidateUpdate = await connection.query(
+        `
+          update public.canon_warehouse_candidates
+          set
+            state = 'ARCHIVED',
+            current_staging_id = null,
+            current_review_hold_reason = null,
+            archived_by_user_id = $2,
+            archived_at = $3,
+            archive_notes = $4
+          where id = $1
+            and state = $5
+            and (
+              $6::uuid is null
+              or current_staging_id = $6::uuid
+            )
+          returning id
+        `,
+        [candidateId, founderApprovedByUserId, mappedAt, archiveNotes, previousState, currentStagingId],
+      );
+      if (candidateUpdate.rowCount !== 1) {
+        throw new ExecutorError('alias_candidate_archive_update_failed', candidateId, {
+          previous_state: previousState,
+          current_staging_id: currentStagingId,
+        });
+      }
+
+      await insertExecutorEvent(connection, {
+        candidateId,
+        stagingId: currentStagingId,
+        eventType: 'ALIAS_MAPPING_EXECUTION_SUCCEEDED',
+        action: 'MAP_ALIAS',
+        previousState,
+        nextState,
+        metadata: {
+          alias_mapping_execution_version: ALIAS_MAPPING_EXECUTION_VERSION,
+          identity_resolution: identityResolution,
+          mapping_id: mappingRow.id,
+          source,
+          external_id: externalId,
+          card_print_id: targetCardPrintId,
+          previous_staging_id: currentStagingId,
+          recovered_failed_staging: previousState === 'STAGED_FOR_PROMOTION',
+        },
+      });
     },
   });
 
@@ -1795,76 +1885,220 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
 
     const candidate = await fetchCandidateRow(connection, stage.candidate_id);
     const plan = await buildExecutionPlan(connection, stage, candidate);
-    const mutationResult = await applyMutation(connection, plan);
+    const payloadSnapshot = {
+      staging_id: stage.id,
+      candidate_id: candidate?.id ?? null,
+      approved_action_type: stage.approved_action_type,
+      execution_attempt: attemptNumber,
+      planned_result_type: plan.result_type,
+      mutation_type: plan.mutation?.type ?? null,
+      planned_card_print_id: plan.result_linkage?.promoted_card_print_id ?? null,
+      planned_card_printing_id: plan.result_linkage?.promoted_card_printing_id ?? null,
+      planned_image_target_id: plan.result_linkage?.promoted_image_target_id ?? null,
+    };
+    let mutationResult = null;
+    const proofs = [
+      {
+        name: 'stage_marked_succeeded',
+        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+        violation_type: 'post_write_stage_not_succeeded',
+        query: `
+          select execution_status
+          from public.canon_warehouse_promotion_staging
+          where id = $1
+          limit 1
+        `,
+        params: [stage.id],
+        evaluate(result) {
+          const status = normalizeTextOrNull(result.rows[0]?.execution_status);
+          return {
+            ok: status === 'SUCCEEDED',
+            reason: `Promotion executor expected stage ${stage.id} to be SUCCEEDED, found ${status ?? 'null'}.`,
+          };
+        },
+      },
+      {
+        name: 'candidate_marked_promoted',
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'post_write_candidate_not_promoted',
+        query: `
+          select state, current_staging_id
+          from public.canon_warehouse_candidates
+          where id = $1
+          limit 1
+        `,
+        params: [candidate.id],
+        evaluate(result) {
+          const row = result.rows[0] ?? null;
+          const state = normalizeTextOrNull(row?.state);
+          const currentStagingId = normalizeTextOrNull(row?.current_staging_id);
+          return {
+            ok: state === 'PROMOTED' && currentStagingId === stage.id,
+            reason:
+              `Promotion executor expected candidate ${candidate.id} to be PROMOTED with current_staging_id ${stage.id}, found ${state ?? 'null'}/${currentStagingId ?? 'null'}.`,
+          };
+        },
+      },
+    ];
 
-    const stagingUpdateResult = await connection.query(
-      `
-        update public.canon_warehouse_promotion_staging
-        set
-          execution_status = 'SUCCEEDED',
-          last_error = null,
-          last_attempted_at = $2,
-          executed_at = $2
-        where id = $1
-      `,
-      [stage.id, executedAt],
-    );
-    if (stagingUpdateResult.rowCount !== 1) {
-      throw new ExecutorError('staging_success_update_failed', stage.id);
-    }
-
-    // The candidate schema currently requires promoted_by_user_id on PROMOTED.
-    // Executor identity is recorded in warehouse events; founder approval identity is used
-    // here only as the linked user until a dedicated executor-actor column exists.
-    const candidateUpdateResult = await connection.query(
-      `
-        update public.canon_warehouse_candidates
-        set
-          state = 'PROMOTED',
-          promotion_result_type = $2,
-          promoted_card_print_id = $3,
-          promoted_card_printing_id = $4,
-          promoted_image_target_type = $5,
-          promoted_image_target_id = $6,
-          promoted_by_user_id = $7,
-          promoted_at = $8,
-          current_review_hold_reason = null
-        where id = $1
-          and state = 'STAGED_FOR_PROMOTION'
-          and current_staging_id = $9
-      `,
-      [
-        candidate.id,
-        mutationResult.result_type,
-        mutationResult.promoted_card_print_id,
-        mutationResult.promoted_card_printing_id,
-        mutationResult.promoted_image_target_type,
-        mutationResult.promoted_image_target_id,
-        stage.founder_approved_by_user_id,
-        executedAt,
-        stage.id,
+    await assertExecuteCanonWriteV1({
+      execution_name: 'promotion_executor_execute_claimed_stage_v1',
+      payload_snapshot,
+      write_target: connection,
+      audit_target: connection,
+      ledger_target: connection,
+      transaction_control: 'external',
+      actor_type: 'system_worker',
+      actor_id: stage.founder_approved_by_user_id ?? null,
+      source_worker: WORKER_NAME,
+      source_system: 'warehouse',
+      contract_assertions: [
+        {
+          ok: Boolean(stage.id) && Boolean(candidate?.id),
+          contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
+          violation_type: 'missing_stage_or_candidate_id',
+          reason: 'Promotion executor requires stage and candidate ids.',
+        },
+        {
+          ok: Boolean(stage.approved_action_type),
+          contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+          violation_type: 'missing_approved_action_type',
+          reason: 'Promotion executor requires approved action type.',
+        },
+        {
+          ok: Boolean(plan.mutation?.type),
+          contract_name: 'GROOKAI_GUARDRAILS',
+          violation_type: 'missing_mutation_plan',
+          reason: 'Promotion executor buildExecutionPlan returned no mutation.',
+        },
       ],
-    );
-    if (candidateUpdateResult.rowCount !== 1) {
-      throw new ExecutorError('candidate_promotion_update_failed', candidate.id);
-    }
+      proofs: [
+        ...proofs,
+        {
+          name: 'promoted_card_print_exists',
+          contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+          violation_type: 'post_write_card_print_missing',
+          async run() {
+            if (!mutationResult?.promoted_card_print_id) {
+              return { ok: true };
+            }
+            const result = await connection.query(
+              `
+                select id
+                from public.card_prints
+                where id = $1
+                limit 1
+              `,
+              [mutationResult.promoted_card_print_id],
+            );
+            return {
+              ok: Boolean(result.rows[0]?.id),
+              reason: `Promotion executor expected card_print ${mutationResult.promoted_card_print_id} to exist.`,
+            };
+          },
+        },
+        {
+          name: 'promoted_card_printing_exists',
+          contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+          violation_type: 'post_write_card_printing_missing',
+          async run() {
+            if (!mutationResult?.promoted_card_printing_id) {
+              return { ok: true };
+            }
+            const result = await connection.query(
+              `
+                select id
+                from public.card_printings
+                where id = $1
+                limit 1
+              `,
+              [mutationResult.promoted_card_printing_id],
+            );
+            return {
+              ok: Boolean(result.rows[0]?.id),
+              reason:
+                `Promotion executor expected card_printing ${mutationResult.promoted_card_printing_id} to exist.`,
+            };
+          },
+        },
+      ],
+      async write() {
+        mutationResult = await applyMutation(connection, plan);
+        payloadSnapshot.promotion_result_type = mutationResult.result_type;
+        payloadSnapshot.promoted_card_print_id = mutationResult.promoted_card_print_id;
+        payloadSnapshot.promoted_card_printing_id = mutationResult.promoted_card_printing_id;
+        payloadSnapshot.promoted_image_target_id = mutationResult.promoted_image_target_id;
 
-    await insertExecutorEvent(connection, {
-      candidateId: candidate.id,
-      stagingId: stage.id,
-      eventType: 'PROMOTION_EXECUTION_SUCCEEDED',
-      action: 'EXECUTE',
-      previousState: 'STAGED_FOR_PROMOTION',
-      nextState: 'PROMOTED',
-      metadata: {
-        staging_id: stage.id,
-        approved_action_type: stage.approved_action_type,
-        execution_attempt: attemptNumber,
-        promotion_result_type: mutationResult.result_type,
-        promoted_card_print_id: mutationResult.promoted_card_print_id,
-        promoted_card_printing_id: mutationResult.promoted_card_printing_id,
-        promoted_image_target_type: mutationResult.promoted_image_target_type,
-        promoted_image_target_id: mutationResult.promoted_image_target_id,
+        const stagingUpdateResult = await connection.query(
+          `
+            update public.canon_warehouse_promotion_staging
+            set
+              execution_status = 'SUCCEEDED',
+              last_error = null,
+              last_attempted_at = $2,
+              executed_at = $2
+            where id = $1
+          `,
+          [stage.id, executedAt],
+        );
+        if (stagingUpdateResult.rowCount !== 1) {
+          throw new ExecutorError('staging_success_update_failed', stage.id);
+        }
+
+        // The candidate schema currently requires promoted_by_user_id on PROMOTED.
+        // Executor identity is recorded in warehouse events; founder approval identity is used
+        // here only as the linked user until a dedicated executor-actor column exists.
+        const candidateUpdateResult = await connection.query(
+          `
+            update public.canon_warehouse_candidates
+            set
+              state = 'PROMOTED',
+              promotion_result_type = $2,
+              promoted_card_print_id = $3,
+              promoted_card_printing_id = $4,
+              promoted_image_target_type = $5,
+              promoted_image_target_id = $6,
+              promoted_by_user_id = $7,
+              promoted_at = $8,
+              current_review_hold_reason = null
+            where id = $1
+              and state = 'STAGED_FOR_PROMOTION'
+              and current_staging_id = $9
+          `,
+          [
+            candidate.id,
+            mutationResult.result_type,
+            mutationResult.promoted_card_print_id,
+            mutationResult.promoted_card_printing_id,
+            mutationResult.promoted_image_target_type,
+            mutationResult.promoted_image_target_id,
+            stage.founder_approved_by_user_id,
+            executedAt,
+            stage.id,
+          ],
+        );
+        if (candidateUpdateResult.rowCount !== 1) {
+          throw new ExecutorError('candidate_promotion_update_failed', candidate.id);
+        }
+
+        await insertExecutorEvent(connection, {
+          candidateId: candidate.id,
+          stagingId: stage.id,
+          eventType: 'PROMOTION_EXECUTION_SUCCEEDED',
+          action: 'EXECUTE',
+          previousState: 'STAGED_FOR_PROMOTION',
+          nextState: 'PROMOTED',
+          metadata: {
+            staging_id: stage.id,
+            approved_action_type: stage.approved_action_type,
+            execution_attempt: attemptNumber,
+            promotion_result_type: mutationResult.result_type,
+            promoted_card_print_id: mutationResult.promoted_card_print_id,
+            promoted_card_printing_id: mutationResult.promoted_card_printing_id,
+            promoted_image_target_type: mutationResult.promoted_image_target_type,
+            promoted_image_target_id: mutationResult.promoted_image_target_id,
+          },
+        });
       },
     });
 

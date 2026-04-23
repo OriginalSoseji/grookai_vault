@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { assertVaultIntentProof } from "@/lib/contracts/ownershipMutationGuards";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 
@@ -92,6 +93,12 @@ export async function saveVaultItemInstanceIntentAction(
     revalidatePath(`/vault/gvvi/${gvviId}`);
     revalidatePath(`/gvvi/${gvviId}`);
   }
+
+  await assertVaultIntentProof({
+    instanceId: normalizedInstanceId,
+    userId: user.id,
+    expectedIntent: nextIntent,
+  });
 
   return {
     ok: true,

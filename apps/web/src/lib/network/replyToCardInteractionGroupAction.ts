@@ -2,6 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import type { CreateCardInteractionActionResult } from "@/lib/network/createCardInteractionAction";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import {
+  createInteractionExistsProofV1,
+  createInteractionSignalProofV1,
+} from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type ExistingInteractionRow = {
@@ -150,19 +155,93 @@ export async function replyToCardInteractionGroupAction(
     return buildSuccessResult(submissionKey, duplicate.id, counterpartDisplayName);
   }
 
-  const { data: insertedRow, error: insertError } = await client
-    .from("card_interactions")
-    .insert({
-      card_print_id: cardPrintId,
-      vault_item_id: vaultItemId,
-      sender_user_id: user.id,
-      receiver_user_id: counterpartUserId,
-      message,
-    })
-    .select("id")
-    .single();
+  try {
+    const ownerWriteResult = await executeOwnerWriteV1<CreateCardInteractionActionResult>({
+      execution_name: "reply_card_interaction_group",
+      actor_id: user.id,
+      write: async (context) => {
+        const { data: insertedRow, error: insertError } = await client
+          .from("card_interactions")
+          .insert({
+            card_print_id: cardPrintId,
+            vault_item_id: vaultItemId,
+            sender_user_id: user.id,
+            receiver_user_id: counterpartUserId,
+            message,
+          })
+          .select("id")
+          .single();
 
-  if (insertError) {
+        if (insertError) {
+          return {
+            ok: false,
+            status: "error",
+            submissionKey,
+            message: "Reply could not be created.",
+          } satisfies CreateCardInteractionActionResult;
+        }
+
+        await client.from("card_signals").insert({
+          user_id: user.id,
+          card_print_id: cardPrintId,
+          signal_type: "interaction",
+        });
+
+        const inserted = (insertedRow ?? null) as ExistingInteractionRow | null;
+        context.setMetadata("interaction_id", inserted?.id ?? "");
+        context.setMetadata("interaction_receiver_user_id", counterpartUserId);
+        context.setMetadata("interaction_vault_item_id", vaultItemId);
+        context.setMetadata("interaction_card_print_id", cardPrintId);
+        context.setMetadata("interaction_message", message);
+
+        return buildSuccessResult(
+          submissionKey,
+          inserted?.id ?? "",
+          counterpartDisplayName,
+        );
+      },
+      proofs: [
+        createInteractionExistsProofV1<CreateCardInteractionActionResult>(({ result, getMetadata }) => {
+          if (!result.ok) {
+            return null;
+          }
+
+          const interactionId = getMetadata<string>("interaction_id");
+          if (!interactionId) {
+            return null;
+          }
+
+          return {
+            interactionId,
+            receiverUserId: getMetadata<string>("interaction_receiver_user_id"),
+            vaultItemId: getMetadata<string>("interaction_vault_item_id"),
+            cardPrintId: getMetadata<string>("interaction_card_print_id"),
+            message: getMetadata<string>("interaction_message"),
+          };
+        }),
+        createInteractionSignalProofV1<CreateCardInteractionActionResult>(({ result, getMetadata }) => {
+          if (!result.ok) {
+            return null;
+          }
+
+          const cardPrintIdFromWrite = getMetadata<string>("interaction_card_print_id");
+          if (!cardPrintIdFromWrite) {
+            return null;
+          }
+
+          return {
+            cardPrintId: cardPrintIdFromWrite,
+          };
+        }),
+      ],
+    });
+
+    revalidatePath(returnPath);
+    revalidatePath("/network/inbox");
+    revalidatePath("/", "layout");
+
+    return ownerWriteResult;
+  } catch {
     return {
       ok: false,
       status: "error",
@@ -170,17 +249,4 @@ export async function replyToCardInteractionGroupAction(
       message: "Reply could not be created.",
     };
   }
-
-  await client.from("card_signals").insert({
-    user_id: user.id,
-    card_print_id: cardPrintId,
-    signal_type: "interaction",
-  });
-
-  revalidatePath(returnPath);
-  revalidatePath("/network/inbox");
-  revalidatePath("/", "layout");
-
-  const inserted = (insertedRow ?? null) as ExistingInteractionRow | null;
-  return buildSuccessResult(submissionKey, inserted?.id ?? "", counterpartDisplayName);
 }

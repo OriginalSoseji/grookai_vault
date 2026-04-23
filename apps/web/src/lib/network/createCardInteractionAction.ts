@@ -1,6 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import {
+  createInteractionExistsProofV1,
+  createInteractionSignalProofV1,
+} from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type StreamTargetRow = {
@@ -173,19 +178,94 @@ export async function createCardInteractionAction(
     return buildSuccessResult(submissionKey, duplicate.id, target.owner_display_name);
   }
 
-  const { data: insertedRow, error: insertError } = await client
-    .from("card_interactions")
-    .insert({
-      card_print_id: target.card_print_id,
-      vault_item_id: target.vault_item_id,
-      sender_user_id: user.id,
-      receiver_user_id: receiverUserId,
-      message,
-    })
-    .select("id")
-    .single();
+  try {
+    const ownerWriteResult = await executeOwnerWriteV1<CreateCardInteractionActionResult>({
+      execution_name: "create_card_interaction",
+      actor_id: user.id,
+      write: async (context) => {
+        const { data: insertedRow, error: insertError } = await client
+          .from("card_interactions")
+          .insert({
+            card_print_id: target.card_print_id,
+            vault_item_id: target.vault_item_id,
+            sender_user_id: user.id,
+            receiver_user_id: receiverUserId,
+            message,
+          })
+          .select("id")
+          .single();
 
-  if (insertError) {
+        if (insertError) {
+          return {
+            ok: false,
+            status: "error",
+            submissionKey,
+            message: "Message could not be created.",
+          } satisfies CreateCardInteractionActionResult;
+        }
+
+        await client.from("card_signals").insert({
+          user_id: user.id,
+          card_print_id: target.card_print_id,
+          signal_type: "interaction",
+        });
+
+        const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
+        context.setMetadata("interaction_id", inserted?.id ?? "");
+        context.setMetadata("interaction_receiver_user_id", receiverUserId);
+        context.setMetadata("interaction_vault_item_id", target.vault_item_id);
+        context.setMetadata("interaction_card_print_id", target.card_print_id);
+        context.setMetadata("interaction_message", message);
+
+        return buildSuccessResult(
+          submissionKey,
+          inserted?.id ?? "",
+          target.owner_display_name,
+        );
+      },
+      proofs: [
+        createInteractionExistsProofV1<CreateCardInteractionActionResult>(({ result, getMetadata }) => {
+          if (!result.ok) {
+            return null;
+          }
+
+          const interactionId = getMetadata<string>("interaction_id");
+          if (!interactionId) {
+            return null;
+          }
+
+          return {
+            interactionId,
+            receiverUserId: getMetadata<string>("interaction_receiver_user_id"),
+            vaultItemId: getMetadata<string>("interaction_vault_item_id"),
+            cardPrintId: getMetadata<string>("interaction_card_print_id"),
+            message: getMetadata<string>("interaction_message"),
+          };
+        }),
+        createInteractionSignalProofV1<CreateCardInteractionActionResult>(({ result, getMetadata }) => {
+          if (!result.ok) {
+            return null;
+          }
+
+          const cardPrintId = getMetadata<string>("interaction_card_print_id");
+          if (!cardPrintId) {
+            return null;
+          }
+
+          return {
+            cardPrintId,
+          };
+        }),
+      ],
+    });
+
+    revalidatePath(returnPath);
+    revalidatePath("/network");
+    revalidatePath("/network/inbox");
+    revalidatePath("/", "layout");
+
+    return ownerWriteResult;
+  } catch {
     return {
       ok: false,
       status: "error",
@@ -193,19 +273,4 @@ export async function createCardInteractionAction(
       message: "Message could not be created.",
     };
   }
-
-  await client.from("card_signals").insert({
-    user_id: user.id,
-    card_print_id: target.card_print_id,
-    signal_type: "interaction",
-  });
-
-  revalidatePath(returnPath);
-  revalidatePath("/network");
-  revalidatePath("/network/inbox");
-  revalidatePath("/", "layout");
-
-  const inserted = (insertedRow ?? null) as InsertedInteractionRow | null;
-
-  return buildSuccessResult(submissionKey, inserted?.id ?? "", target.owner_display_name);
 }

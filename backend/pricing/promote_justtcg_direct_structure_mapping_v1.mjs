@@ -1,3 +1,14 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ *
+ * RULES:
+ * - not part of runtime authority
+ * - must not be imported into application code
+ * - requires explicit maintenance mode
+ * - defaults to DRY RUN
+ */
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
@@ -6,6 +17,10 @@ import {
   requestJustTcgJson,
   uniqueValues,
 } from './justtcg_client.mjs';
+import {
+  assertCanonMaintenanceWriteAllowed,
+  getCanonMaintenanceDryRun,
+} from '../maintenance/canon_maintenance_boundary_v1.mjs';
 
 const TARGET_SOURCE = 'justtcg';
 const FETCH_PAGE_SIZE = 500;
@@ -13,6 +28,30 @@ const POKEMON_GAME_ID = 'pokemon';
 const DB_RETRY_DELAYS_MS = [250, 750, 1500];
 const DB_IN_FILTER_CHUNK_SIZE = 150;
 const DEFAULT_CONSOLE_ROW_LOG_LIMIT = 60;
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs.',
+  );
+}
+
+const DRY_RUN = getCanonMaintenanceDryRun();
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
 
 if (typeof fetch !== 'function') {
   console.error('❌ Global fetch unavailable; use Node 18+');
@@ -485,6 +524,14 @@ async function loadAnyJustTcgMappingsByExternalId(supabase, externalId) {
 }
 
 async function upsertJustTcgMapping(supabase, cardPrintId, externalId, meta) {
+  if (DRY_RUN) {
+    console.log(
+      `[DRY RUN] would execute: promote_justtcg_direct_structure_mapping_v1 :: UPSERT :: public.external_mappings :: card_print_id=${cardPrintId} external_id=${externalId}`,
+    );
+    return;
+  }
+
+  assertCanonMaintenanceWriteAllowed();
   await withRetries(async () => {
     const { error } = await supabase
       .from('external_mappings')
@@ -507,6 +554,14 @@ async function upsertJustTcgMapping(supabase, cardPrintId, externalId, meta) {
 }
 
 async function upsertAutoSetMapping(supabase, row, alignment) {
+  if (DRY_RUN) {
+    console.log(
+      `[DRY RUN] would execute: promote_justtcg_direct_structure_mapping_v1 :: UPSERT :: public.justtcg_set_mappings :: grookai_set_id=${row.setId ?? 'null'}`,
+    );
+    return;
+  }
+
+  assertCanonMaintenanceWriteAllowed();
   await withRetries(async () => {
     const { error } = await supabase
       .from('justtcg_set_mappings')
@@ -756,6 +811,9 @@ function resolveCardCandidate(row, alignment, override, cards) {
 
 async function main() {
   const options = parseArgs();
+  if (DRY_RUN) {
+    options.apply = false;
+  }
   const { apiKey } = getJustTcgApiConfig();
   if (!apiKey) {
     console.error('❌ Missing JUSTTCG_API_KEY in env');

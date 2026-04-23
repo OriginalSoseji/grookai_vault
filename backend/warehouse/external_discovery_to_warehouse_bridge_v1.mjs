@@ -6,6 +6,9 @@ import pg from 'pg';
 
 import { derivePerfectOrderVariantIdentity } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
 import { STAMPED_IDENTITY_RULE_V1 } from '../identity/stamped_identity_rule_v1.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Client } = pg;
 
@@ -746,6 +749,17 @@ function evaluateRows(rows, setContext, stampedBatchLookup = null) {
 }
 
 async function insertCandidate(client, founderUserId, candidate) {
+  const payloadSnapshot = {
+    founder_user_id: founderUserId,
+    source_candidate_id: candidate.row?.id ?? null,
+    source_set_id: candidate.row?.set_id ?? null,
+    bridge_scope_reason: candidate.bridge_scope_reason ?? null,
+    canonical_set_code: candidate.canonical_set_code ?? null,
+    canonical_set_name: candidate.canonical_set_name ?? null,
+    claimed_identity_payload: candidate.claimed_identity_payload ?? null,
+    reference_hints_payload: candidate.reference_hints_payload ?? null,
+  };
+
   const insertCandidateSql = `
     insert into public.canon_warehouse_candidates (
       submitted_by_user_id,
@@ -795,33 +809,115 @@ async function insertCandidate(client, founderUserId, candidate) {
     )
   `;
 
-  const candidateResult = await client.query(insertCandidateSql, [
-    founderUserId,
-    candidate.notes,
-    candidate.tcgplayer_id,
-    JSON.stringify(candidate.claimed_identity_payload),
-    JSON.stringify(candidate.reference_hints_payload),
-  ]);
+  let candidateId = null;
+  await assertExecuteCanonWriteV1({
+    execution_name: 'external_discovery_to_warehouse_bridge_v1',
+    payload_snapshot,
+    write_target: client,
+    audit_target: client,
+    ledger_target: client,
+    transaction_control: 'external',
+    actor_type: 'system_worker',
+    actor_id: founderUserId,
+    source_worker: BRIDGE_VERSION,
+    source_system: 'warehouse',
+    contract_assertions: [
+      {
+        ok: Boolean(founderUserId),
+        contract_name: 'GROOKAI_GUARDRAILS',
+        violation_type: 'missing_founder_user_id',
+        reason: 'Bridge execution requires founder user id.',
+      },
+      {
+        ok: Boolean(candidate.claimed_identity_payload),
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'missing_claimed_identity_payload',
+        reason: `Bridge candidate ${candidate.row?.id ?? 'unknown'} is missing claimed identity payload.`,
+      },
+      {
+        ok: Boolean(candidate.reference_hints_payload),
+        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
+        violation_type: 'missing_reference_hints_payload',
+        reason: `Bridge candidate ${candidate.row?.id ?? 'unknown'} is missing reference hints payload.`,
+      },
+      {
+        ok: Boolean(candidate.row?.id),
+        contract_name: 'EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1',
+        violation_type: 'missing_source_candidate_id',
+        reason: 'Bridge candidate requires source candidate id.',
+      },
+    ],
+    proofs: [
+      {
+        name: 'warehouse_candidate_inserted',
+        contract_name: 'EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1',
+        violation_type: 'post_write_candidate_missing',
+        query: `
+          select state
+          from public.canon_warehouse_candidates
+          where id = $1
+          limit 1
+        `,
+        params: [candidateId],
+        evaluate(result) {
+          const state = normalizeTextOrNull(result.rows[0]?.state);
+          return {
+            ok: state === 'RAW',
+            reason: `Bridge candidate ${candidateId} expected RAW state after insert, found ${state ?? 'null'}.`,
+          };
+        },
+      },
+      {
+        name: 'warehouse_bridge_event_inserted',
+        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+        violation_type: 'post_write_bridge_event_missing',
+        query: `
+          select count(*)::int as event_count
+          from public.canon_warehouse_candidate_events
+          where candidate_id = $1
+            and event_type = 'EXTERNAL_DISCOVERY_BRIDGED_TO_WAREHOUSE_V1'
+        `,
+        params: [candidateId],
+        evaluate(result) {
+          const eventCount = Number(result.rows[0]?.event_count ?? 0);
+          return {
+            ok: eventCount >= 1,
+            reason: `Bridge candidate ${candidateId} is missing EXTERNAL_DISCOVERY_BRIDGED_TO_WAREHOUSE_V1 event.`,
+          };
+        },
+      },
+    ],
+    async write(connection) {
+      const candidateResult = await connection.query(insertCandidateSql, [
+        founderUserId,
+        candidate.notes,
+        candidate.tcgplayer_id,
+        JSON.stringify(candidate.claimed_identity_payload),
+        JSON.stringify(candidate.reference_hints_payload),
+      ]);
 
-  const candidateId = candidateResult.rows[0]?.id;
-  if (!candidateId) {
-    throw new Error(`bridge_insert_failed:${candidate.row.id}`);
-  }
+      candidateId = candidateResult.rows[0]?.id ?? null;
+      if (!candidateId) {
+        throw new Error(`bridge_insert_failed:${candidate.row.id}`);
+      }
+      payloadSnapshot.candidate_id = candidateId;
 
-  await client.query(insertEventSql, [
-    candidateId,
-    founderUserId,
-    JSON.stringify({
-      bridge_source: BRIDGE_SOURCE,
-      bridge_version: BRIDGE_VERSION,
-      source_candidate_id: candidate.row.id,
-      source_table: 'external_discovery_candidates',
-      source_set_id: candidate.row.set_id,
-      source_raw_import_id: candidate.row.raw_import_id,
-      upstream_id: candidate.row.upstream_id,
-      variant_identity: candidate.variant_identity ?? null,
-    }),
-  ]);
+      await connection.query(insertEventSql, [
+        candidateId,
+        founderUserId,
+        JSON.stringify({
+          bridge_source: BRIDGE_SOURCE,
+          bridge_version: BRIDGE_VERSION,
+          source_candidate_id: candidate.row.id,
+          source_table: 'external_discovery_candidates',
+          source_set_id: candidate.row.set_id,
+          source_raw_import_id: candidate.row.raw_import_id,
+          upstream_id: candidate.row.upstream_id,
+          variant_identity: candidate.variant_identity ?? null,
+        }),
+      ]);
+    },
+  });
 
   return candidateId;
 }

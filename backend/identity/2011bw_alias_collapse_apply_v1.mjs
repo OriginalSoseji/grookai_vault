@@ -1,6 +1,46 @@
+/**
+ * MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical identity outside runtime executor.
+ * It is NOT part of the runtime authority system.
+ *
+ * RULES:
+ * - must never be executed implicitly
+ * - must never be called by workers
+ * - must never be used in normal flows
+ * - must require explicit operator intent
+ */
 import '../env.mjs';
 import { Client } from 'pg';
 
+import { installIdentityMaintenanceBoundaryV1 } from './identity_maintenance_boundary_v1.mjs';
+
+if (!process.env.ENABLE_IDENTITY_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: identity maintenance scripts are disabled. Set ENABLE_IDENTITY_MAINTENANCE_MODE=true for explicit use.',
+  );
+}
+
+if (process.env.IDENTITY_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: IDENTITY_MAINTENANCE_MODE must be 'EXPLICIT'",
+  );
+}
+
+if (process.env.IDENTITY_MAINTENANCE_ENTRYPOINT !== 'backend/identity/run_identity_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: identity maintenance scripts must be launched from backend/identity/run_identity_maintenance_v1.mjs',
+  );
+}
+
+const DRY_RUN = process.env.IDENTITY_MAINTENANCE_DRY_RUN !== 'false';
+const { assertMaintenanceWriteAllowed } = installIdentityMaintenanceBoundaryV1(import.meta.url);
+
+if (DRY_RUN) {
+  console.log('IDENTITY MAINTENANCE: running in DRY RUN mode');
+}
+
+void assertMaintenanceWriteAllowed;
 const PHASE = '2011BW_ALIAS_COLLAPSE_TO_MCD11_V1';
 const HAS_APPLY = process.argv.includes('--apply');
 const HAS_DRY_RUN = process.argv.includes('--dry-run');

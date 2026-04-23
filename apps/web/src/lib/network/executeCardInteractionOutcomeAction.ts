@@ -1,6 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import {
+  assertVaultInstanceActiveProof,
+  assertVaultInstanceArchivedProof,
+} from "@/lib/contracts/ownershipMutationGuards";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type ExecutionOutcomeRpcRow = {
@@ -180,6 +184,8 @@ export async function executeCardInteractionOutcomeAction(
   const resolvedOutcomeType = normalizeOptionalText(outcome?.outcome_type);
   const targetUserId = normalizeOptionalText(outcome?.target_user_id);
   const cardPrintId = normalizeOptionalText(outcome?.card_print_id);
+  const resolvedSourceInstanceId = normalizeOptionalText(outcome?.source_instance_id);
+  const resolvedResultInstanceId = normalizeOptionalText(outcome?.result_instance_id);
 
   if (!resolvedExecutionEventId || (resolvedOutcomeType !== "sale" && resolvedOutcomeType !== "trade")) {
     return {
@@ -241,6 +247,20 @@ export async function executeCardInteractionOutcomeAction(
   }
 
   await Promise.all(revalidationTasks);
+
+  if (resolvedSourceInstanceId) {
+    await assertVaultInstanceArchivedProof({
+      instanceId: resolvedSourceInstanceId,
+      userId: user.id,
+    });
+  }
+  if (resolvedResultInstanceId && targetUserId) {
+    await assertVaultInstanceActiveProof({
+      instanceId: resolvedResultInstanceId,
+      userId: targetUserId,
+      cardPrintId,
+    });
+  }
 
   return {
     ok: true,

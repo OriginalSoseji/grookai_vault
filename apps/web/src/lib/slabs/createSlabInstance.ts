@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceActiveProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizePsaGradeValue } from "@/lib/slabs/normalizePsaGrade";
@@ -23,6 +25,7 @@ export type CreateSlabInstanceInput = {
 export type CreateSlabInstanceResult =
   | {
       ok: true;
+      instanceId: string;
       gvviId: string | null;
       slabCertId: string;
       grade: string;
@@ -262,7 +265,9 @@ async function resolveOrCreateSlabCert({
   };
 }
 
-export async function createSlabInstance(input: CreateSlabInstanceInput): Promise<CreateSlabInstanceResult> {
+async function createSlabInstanceUncheckedV1(
+  input: CreateSlabInstanceInput,
+): Promise<CreateSlabInstanceResult> {
   const userId = input.userId.trim();
   const cardPrintId = input.cardPrintId.trim();
   const gvId = input.gvId.trim();
@@ -455,9 +460,61 @@ export async function createSlabInstance(input: CreateSlabInstanceInput): Promis
 
   return {
     ok: true,
+    instanceId: createdInstance.id,
     gvviId: createdInstance.gv_vi_id ?? null,
     slabCertId: slabCertResult.slabCertId,
     grade: verification.grade,
     certNumber: verification.cert_number,
   };
+}
+
+export async function createSlabInstance(
+  input: CreateSlabInstanceInput,
+): Promise<CreateSlabInstanceResult> {
+  const actorId = input.userId.trim();
+  if (!actorId) {
+    return {
+      ok: false,
+      errorCode: "UNAUTHENTICATED",
+      message: "Sign in required.",
+    };
+  }
+
+  try {
+    return await executeOwnerWriteV1({
+      execution_name: "create_slab_instance",
+      actor_id: actorId,
+      write: async (context) => {
+        const result = await createSlabInstanceUncheckedV1(input);
+        if (result.ok) {
+          context.setMetadata("created_instance_id", result.instanceId);
+          context.setMetadata("created_card_print_id", input.cardPrintId.trim());
+        }
+        return result;
+      },
+      proofs: [
+        createVaultInstanceActiveProofV1(({ result, getMetadata }) => {
+          if (!result.ok) {
+            return null;
+          }
+
+          const instanceId = getMetadata<string>("created_instance_id");
+          if (!instanceId) {
+            return null;
+          }
+
+          return {
+            instanceId,
+            cardPrintId: getMetadata<string>("created_card_print_id") ?? input.cardPrintId,
+          };
+        }),
+      ],
+    });
+  } catch (error) {
+    return {
+      ok: false,
+      errorCode: "CREATE_FAILED",
+      message: error instanceof Error ? error.message : String(error),
+    };
+  }
 }

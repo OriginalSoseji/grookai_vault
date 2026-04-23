@@ -1,3 +1,10 @@
+/**
+ * CONTRACT_RUNTIME_ENFORCEMENT_GUARD
+ * This file previously bypassed canon runtime.
+ * Direct canon writes are now forbidden.
+ * Any write must go through execute_canon_write_v1 or be blocked.
+ */
+
 import '../env.mjs';
 
 import pg from 'pg';
@@ -6,11 +13,16 @@ import {
   IDENTITY_RESOLUTION_STATES,
   resolveIdentityResolutionV1,
 } from '../identity/identity_resolution_v1.mjs';
-import { executeAliasMappingWithinTransaction } from './promotion_executor_v1.mjs';
 
 const { Pool } = pg;
 
 const WORKER_NAME = 'staging_reconciliation_v1';
+const RUNTIME_SAFE_ENV_FLAG = 'ENABLE_STAGING_RECONCILIATION_RUNTIME_SAFE';
+const RUNTIME_DISABLED_ERROR =
+  'RUNTIME_ENFORCEMENT: staging_reconciliation_v1 is disabled until fully runtime-compliant.';
+const RUNTIME_BLOCKED_WRITE_ERROR =
+  'RUNTIME_ENFORCEMENT: staging_reconciliation_v1 direct canon mutation is blocked. Route through execute_canon_write_v1 or refactor.';
+
 const BLOCKING_RESOLUTIONS = new Set([
   IDENTITY_RESOLUTION_STATES.MAP_ALIAS,
   IDENTITY_RESOLUTION_STATES.BLOCK_REVIEW_REQUIRED,
@@ -21,6 +33,19 @@ const EXECUTABLE_RESOLUTIONS = new Set([
   IDENTITY_RESOLUTION_STATES.PROMOTE_VARIANT,
   IDENTITY_RESOLUTION_STATES.ATTACH_PRINTING,
 ]);
+
+export const DIRECT_WRITE_CALLS = [
+  'insertReconciliationEvent @ original lines 199-228',
+  'invalidateCurrentStaging @ original lines 239-281',
+  'requeueCandidateForReview @ original lines 284-302',
+];
+
+export const WRITE_INTENT_CLASSIFICATION = {
+  executeAliasMappingWithinTransaction: 'alias_mapping_related',
+  insertReconciliationEvent: 'reconciliation_event_log',
+  invalidateCurrentStaging: 'staging_state_mutation',
+  requeueCandidateForReview: 'candidate_state_mutation',
+};
 
 function log(event, payload = {}) {
   console.log(JSON.stringify({ ts: new Date().toISOString(), worker: WORKER_NAME, event, ...payload }));
@@ -91,6 +116,69 @@ function buildInvalidReason(identityResolution) {
   return `invalid_after_identity_resolution:${normalizeTextOrNull(identityResolution) ?? 'UNKNOWN'}`;
 }
 
+function isRuntimeSafeEnabled() {
+  return process.env[RUNTIME_SAFE_ENV_FLAG] === 'true';
+}
+
+function createRuntimeEnforcementError(message, details = {}) {
+  const error = new Error(message);
+  error.name = 'RuntimeEnforcementError';
+  Object.assign(error, details);
+  return error;
+}
+
+export function assertStagingReconciliationRuntimeEnabled() {
+  if (!isRuntimeSafeEnabled()) {
+    throw createRuntimeEnforcementError(RUNTIME_DISABLED_ERROR, {
+      worker: WORKER_NAME,
+      env_flag: RUNTIME_SAFE_ENV_FLAG,
+    });
+  }
+}
+
+export function assertDirectMutationBlockedV1(intentName, details = {}) {
+  const classification = WRITE_INTENT_CLASSIFICATION[intentName] ?? 'other';
+  throw createRuntimeEnforcementError(
+    `${RUNTIME_BLOCKED_WRITE_ERROR} intent=${intentName} classification=${classification}`,
+    {
+      worker: WORKER_NAME,
+      intent_name: intentName,
+      classification,
+      ...details,
+    },
+  );
+}
+
+function buildBlockedApplyError({ candidate, currentStaging, identityResolution }) {
+  const intentNames = [];
+
+  if (candidate?.state === 'STAGED_FOR_PROMOTION' && currentStaging) {
+    intentNames.push('invalidateCurrentStaging');
+  }
+
+  if (identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS) {
+    intentNames.push('executeAliasMappingWithinTransaction');
+  } else {
+    intentNames.push('requeueCandidateForReview', 'insertReconciliationEvent');
+  }
+
+  const uniqueIntentNames = [...new Set(intentNames)];
+
+  return createRuntimeEnforcementError(
+    `${RUNTIME_BLOCKED_WRITE_ERROR} candidate_id=${candidate?.id ?? 'unknown'} intents=${uniqueIntentNames.join(',')}`,
+    {
+      worker: WORKER_NAME,
+      candidate_id: candidate?.id ?? null,
+      identity_resolution: identityResolution,
+      intent_names: uniqueIntentNames,
+      intent_classifications: uniqueIntentNames.map((intentName) => ({
+        intent_name: intentName,
+        classification: WRITE_INTENT_CLASSIFICATION[intentName] ?? 'other',
+      })),
+    },
+  );
+}
+
 async function fetchCandidateIds(client, limit) {
   const { rows } = await client.query(
     `
@@ -125,7 +213,7 @@ async function fetchCurrentStateCounts(client) {
   };
 }
 
-async function fetchLockedCandidate(client, candidateId) {
+async function fetchCandidate(client, candidateId) {
   const { rows } = await client.query(
     `
       select
@@ -142,7 +230,6 @@ async function fetchLockedCandidate(client, candidateId) {
         reference_hints_payload
       from public.canon_warehouse_candidates
       where id = $1
-      for update
     `,
     [candidateId],
   );
@@ -169,7 +256,7 @@ async function fetchCandidateEvents(client, candidateId) {
   return rows;
 }
 
-async function fetchLockedCurrentStaging(client, candidate) {
+async function fetchCurrentStaging(client, candidate) {
   const currentStagingId = normalizeTextOrNull(candidate?.current_staging_id);
   if (!currentStagingId) {
     return null;
@@ -189,118 +276,22 @@ async function fetchLockedCurrentStaging(client, candidate) {
       from public.canon_warehouse_promotion_staging
       where id = $1
         and candidate_id = $2
-      for update
     `,
     [currentStagingId, candidate.id],
   );
   return rows[0] ?? null;
 }
 
-async function insertReconciliationEvent(client, {
-  candidateId,
-  stagingId = null,
-  eventType,
-  previousState,
-  nextState,
-  notes = null,
-  metadata = {},
-}) {
-  await client.query(
-    `
-      insert into public.canon_warehouse_candidate_events (
-        candidate_id,
-        staging_id,
-        event_type,
-        action,
-        previous_state,
-        next_state,
-        actor_user_id,
-        actor_type,
-        metadata,
-        created_at
-      )
-      values ($1, $2, $3, 'RECONCILE', $4, $5, null, 'SYSTEM', $6::jsonb, now())
-    `,
-    [
-      candidateId,
-      stagingId,
-      eventType,
-      previousState,
-      nextState,
-      JSON.stringify({
-        worker: WORKER_NAME,
-        system_note: notes,
-        ...metadata,
-      }),
-    ],
-  );
+export async function insertReconciliationEvent() {
+  assertDirectMutationBlockedV1('insertReconciliationEvent');
 }
 
-async function invalidateCurrentStaging(client, candidate, currentStaging, identityResolution) {
-  if (!currentStaging) {
-    return { updated: false, stage: null };
-  }
-
-  const reason = buildInvalidReason(identityResolution);
-  const attemptedAt = new Date().toISOString();
-  const nextLastError = normalizeTextOrNull(currentStaging.last_error) === reason
-    ? currentStaging.last_error
-    : reason;
-
-  const result = await client.query(
-    `
-      update public.canon_warehouse_promotion_staging
-      set
-        execution_status = 'FAILED',
-        last_error = $3,
-        last_attempted_at = $4
-      where id = $1
-        and candidate_id = $2
-        and execution_status <> 'SUCCEEDED'
-      returning
-        id,
-        candidate_id,
-        approved_action_type,
-        execution_status,
-        execution_attempts,
-        last_error,
-        last_attempted_at,
-        executed_at
-    `,
-    [currentStaging.id, candidate.id, nextLastError, attemptedAt],
-  );
-
-  return {
-    updated: result.rowCount === 1,
-    stage: result.rows[0] ?? {
-      ...currentStaging,
-      execution_status: 'FAILED',
-      last_error: nextLastError,
-      last_attempted_at: attemptedAt,
-    },
-  };
+export async function invalidateCurrentStaging() {
+  assertDirectMutationBlockedV1('invalidateCurrentStaging');
 }
 
-async function requeueCandidateForReview(client, candidate, identityResolution) {
-  const reviewHoldReason = buildInvalidReason(identityResolution);
-  const result = await client.query(
-    `
-      update public.canon_warehouse_candidates
-      set
-        state = 'REVIEW_READY',
-        current_staging_id = null,
-        current_review_hold_reason = $2
-      where id = $1
-        and state in ('APPROVED_BY_FOUNDER', 'STAGED_FOR_PROMOTION')
-      returning id
-    `,
-    [candidate.id, reviewHoldReason],
-  );
-
-  return {
-    updated: result.rowCount === 1,
-    review_hold_reason: reviewHoldReason,
-  };
+export async function requeueCandidateForReview() {
+  assertDirectMutationBlockedV1('requeueCandidateForReview');
 }
 
 function summarizeCandidate(candidate, currentStaging) {
@@ -317,136 +308,66 @@ function summarizeCandidate(candidate, currentStaging) {
 async function reconcileCandidate(pool, candidateId, opts) {
   const connection = await pool.connect();
   try {
-    await connection.query('begin');
-    try {
-      const candidate = await fetchLockedCandidate(connection, candidateId);
-      if (!candidate) {
-        await connection.query('rollback');
-        return { status: 'skipped', reason: 'candidate_not_found', candidate_id: candidateId };
-      }
-
-      let currentStaging = await fetchLockedCurrentStaging(connection, candidate);
-      const eventRows = await fetchCandidateEvents(connection, candidateId);
-      const latestClassificationPackage = getLatestEventPackage(eventRows, 'classification_package')?.value ?? null;
-      const latestIdentityAuditPackage = getLatestEventPackage(eventRows, 'identity_audit_package')?.value ?? null;
-      const latestIdentityResolutionPackage =
-        asRecord(latestClassificationPackage?.identity_resolution_package) ??
-        (latestIdentityAuditPackage || latestClassificationPackage
-          ? resolveIdentityResolutionV1({
-              candidate,
-              classificationPackage: latestClassificationPackage,
-              identityAuditPackage: latestIdentityAuditPackage,
-            })
-          : null);
-      const identityResolution =
-        normalizeTextOrNull(candidate.identity_resolution) ??
-        normalizeTextOrNull(latestIdentityResolutionPackage?.identity_resolution) ??
-        normalizeTextOrNull(latestClassificationPackage?.identity_resolution);
-      const summary = summarizeCandidate(candidate, currentStaging);
-
-      if (!identityResolution) {
-        await connection.query('rollback');
-        return { status: 'skipped', reason: 'identity_resolution_missing', ...summary };
-      }
-
-      if (candidate.state === 'PROMOTED' && BLOCKING_RESOLUTIONS.has(identityResolution)) {
-        throw new Error(`promoted_candidate_invalid_after_identity_resolution:${candidate.id}:${identityResolution}`);
-      }
-
-      if (candidate.state === 'STAGED_FOR_PROMOTION' && !currentStaging) {
-        throw new Error(`current_staging_missing:${candidate.id}`);
-      }
-
-      if (candidate.state === 'ARCHIVED' && identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS) {
-        await connection.query('rollback');
-        return { status: 'skipped', reason: 'alias_already_archived', ...summary };
-      }
-
-      if (EXECUTABLE_RESOLUTIONS.has(identityResolution)) {
-        await connection.query('rollback');
-        return { status: 'skipped', reason: 'identity_resolution_stageable', ...summary };
-      }
-
-      if (opts.dryRun) {
-        let dryRunReason = 'review_requeue_required';
-        if (identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS) {
-          dryRunReason = 'alias_execution_required';
-        }
-        await connection.query('rollback');
-        return {
-          status: 'dry_run',
-          reason: dryRunReason,
-          ...summary,
-        };
-      }
-
-      let invalidatedStage = null;
-      if (candidate.state === 'STAGED_FOR_PROMOTION' && currentStaging) {
-        const invalidation = await invalidateCurrentStaging(connection, candidate, currentStaging, identityResolution);
-        invalidatedStage = invalidation.updated ? invalidation.stage : null;
-        currentStaging = invalidation.stage ?? currentStaging;
-      }
-
-      if (identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS) {
-        const aliasResult = await executeAliasMappingWithinTransaction(connection, {
-          candidate: {
-            ...candidate,
-            current_staging_id: currentStaging?.id ?? candidate.current_staging_id,
-          },
-          identityResolutionPackage: latestIdentityResolutionPackage ?? {
-            identity_resolution: identityResolution,
-            identity_audit_status: normalizeTextOrNull(candidate.identity_audit_status),
-            identity_audit_reason_code: normalizeTextOrNull(candidate.identity_audit_reason_code),
-            action_payload: null,
-          },
-          currentStaging,
-        });
-
-        await connection.query('commit');
-        return {
-          status: 'resolved_alias',
-          reason: invalidatedStage ? 'staging_invalidated_and_alias_executed' : 'alias_executed',
-          ...summary,
-          invalidated_staging_id: invalidatedStage?.id ?? null,
-          mapping_id: aliasResult.mapping_id ?? null,
-        };
-      }
-
-      const requeue = await requeueCandidateForReview(connection, candidate, identityResolution);
-      if (!requeue.updated) {
-        await connection.query('rollback');
-        return {
-          status: 'skipped',
-          reason: 'candidate_already_review_ready_or_terminal',
-          ...summary,
-        };
-      }
-
-      await insertReconciliationEvent(connection, {
-        candidateId: candidate.id,
-        stagingId: invalidatedStage?.id ?? currentStaging?.id ?? null,
-        eventType: 'WAREHOUSE_STAGING_RECONCILED',
-        previousState: candidate.state,
-        nextState: 'REVIEW_READY',
-        notes: requeue.review_hold_reason,
-        metadata: {
-          identity_resolution: identityResolution,
-          invalidated_staging_id: invalidatedStage?.id ?? null,
-        },
-      });
-
-      await connection.query('commit');
-      return {
-        status: 'requeued_review',
-        reason: invalidatedStage ? 'staging_invalidated_and_requeued' : 'requeued_after_identity_resolution',
-        ...summary,
-        invalidated_staging_id: invalidatedStage?.id ?? null,
-        review_hold_reason: requeue.review_hold_reason,
-      };
-    } catch (error) {
-      await connection.query('rollback');
-      throw error;
+    const candidate = await fetchCandidate(connection, candidateId);
+    if (!candidate) {
+      return { status: 'skipped', reason: 'candidate_not_found', candidate_id: candidateId };
     }
+
+    const currentStaging = await fetchCurrentStaging(connection, candidate);
+    const eventRows = await fetchCandidateEvents(connection, candidateId);
+    const latestClassificationPackage = getLatestEventPackage(eventRows, 'classification_package')?.value ?? null;
+    const latestIdentityAuditPackage = getLatestEventPackage(eventRows, 'identity_audit_package')?.value ?? null;
+    const latestIdentityResolutionPackage =
+      asRecord(latestClassificationPackage?.identity_resolution_package) ??
+      (latestIdentityAuditPackage || latestClassificationPackage
+        ? resolveIdentityResolutionV1({
+            candidate,
+            classificationPackage: latestClassificationPackage,
+            identityAuditPackage: latestIdentityAuditPackage,
+          })
+        : null);
+    const identityResolution =
+      normalizeTextOrNull(candidate.identity_resolution) ??
+      normalizeTextOrNull(latestIdentityResolutionPackage?.identity_resolution) ??
+      normalizeTextOrNull(latestClassificationPackage?.identity_resolution);
+    const summary = summarizeCandidate(candidate, currentStaging);
+
+    if (!identityResolution) {
+      return { status: 'skipped', reason: 'identity_resolution_missing', ...summary };
+    }
+
+    if (candidate.state === 'PROMOTED' && BLOCKING_RESOLUTIONS.has(identityResolution)) {
+      throw new Error(`promoted_candidate_invalid_after_identity_resolution:${candidate.id}:${identityResolution}`);
+    }
+
+    if (candidate.state === 'STAGED_FOR_PROMOTION' && !currentStaging) {
+      throw new Error(`current_staging_missing:${candidate.id}`);
+    }
+
+    if (candidate.state === 'ARCHIVED' && identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS) {
+      return { status: 'skipped', reason: 'alias_already_archived', ...summary };
+    }
+
+    if (EXECUTABLE_RESOLUTIONS.has(identityResolution)) {
+      return { status: 'skipped', reason: 'identity_resolution_stageable', ...summary };
+    }
+
+    if (opts.dryRun) {
+      return {
+        status: 'dry_run',
+        reason:
+          identityResolution === IDENTITY_RESOLUTION_STATES.MAP_ALIAS
+            ? 'alias_execution_required'
+            : 'review_requeue_required',
+        ...summary,
+      };
+    }
+
+    throw buildBlockedApplyError({
+      candidate,
+      currentStaging,
+      identityResolution,
+    });
   } finally {
     connection.release();
   }
@@ -477,8 +398,36 @@ async function fetchBlockedRowsRemaining(client) {
   return rows[0]?.count ?? 0;
 }
 
-async function main() {
-  const opts = parseArgs(process.argv.slice(2));
+function normalizeRunOptions(input = {}) {
+  const limitValue = Number(input.limit);
+  const limit = Number.isFinite(limitValue) && limitValue > 0 ? Math.trunc(limitValue) : 100;
+  const candidateId = normalizeTextOrNull(input.candidateId);
+  const apply = Boolean(input.apply) || input.dryRun === false;
+  const dryRun = apply ? false : true;
+
+  return {
+    limit,
+    candidateId,
+    dryRun,
+    apply,
+    emitLogs: input.emitLogs !== false,
+  };
+}
+
+export async function runStagingReconciliationV1(input = {}) {
+  assertStagingReconciliationRuntimeEnabled();
+
+  const opts = normalizeRunOptions(input);
+  if (opts.apply) {
+    throw createRuntimeEnforcementError(
+      `${RUNTIME_BLOCKED_WRITE_ERROR} enablement_flag_present=true worker_mode=apply`,
+      {
+        worker: WORKER_NAME,
+        env_flag: RUNTIME_SAFE_ENV_FLAG,
+      },
+    );
+  }
+
   if (!process.env.SUPABASE_DB_URL) {
     throw new Error('SUPABASE_DB_URL is required');
   }
@@ -491,20 +440,24 @@ async function main() {
     const before = await fetchCurrentStateCounts(pool);
     const candidateIds = opts.candidateId ? [opts.candidateId] : await fetchCandidateIds(pool, opts.limit);
 
-    log('worker_start', {
-      mode: opts.apply ? 'apply' : 'dry-run',
-      requested_limit: opts.limit,
-      candidate_id: opts.candidateId,
-      candidate_count: candidateIds.length,
-      before,
-    });
+    if (opts.emitLogs) {
+      log('worker_start', {
+        mode: opts.apply ? 'apply' : 'dry-run',
+        requested_limit: opts.limit,
+        candidate_id: opts.candidateId,
+        candidate_count: candidateIds.length,
+        before,
+      });
+    }
 
     const results = [];
     for (const candidateId of candidateIds) {
       try {
         const result = await reconcileCandidate(pool, candidateId, opts);
         results.push(result);
-        log('candidate_result', result);
+        if (opts.emitLogs) {
+          log('candidate_result', result);
+        }
       } catch (error) {
         const result = {
           status: 'failed',
@@ -512,7 +465,9 @@ async function main() {
           reason: error.message,
         };
         results.push(result);
-        log('candidate_failed', result);
+        if (opts.emitLogs) {
+          log('candidate_failed', result);
+        }
       }
     }
 
@@ -520,17 +475,30 @@ async function main() {
     const invalidCurrentStagingCount = await fetchInvalidCurrentStagingCount(pool);
     const blockedRowsRemaining = await fetchBlockedRowsRemaining(pool);
 
-    log('worker_complete', {
+    const summary = {
       mode: opts.apply ? 'apply' : 'dry-run',
       before,
       after,
       invalid_current_staging_count: invalidCurrentStagingCount,
       blocked_rows_remaining: blockedRowsRemaining,
       results,
-    });
+    };
+
+    if (opts.emitLogs) {
+      log('worker_complete', summary);
+    }
+
+    return summary;
   } finally {
     await pool.end();
   }
+}
+
+export const runStagingReconciliation = runStagingReconciliationV1;
+
+async function main() {
+  const opts = parseArgs(process.argv.slice(2));
+  await runStagingReconciliationV1(opts);
 }
 
 if (process.argv[1] && process.argv[1].includes('staging_reconciliation_v1.mjs')) {

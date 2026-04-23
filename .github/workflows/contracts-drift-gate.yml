@@ -1,0 +1,52 @@
+name: Contracts Drift Gate
+
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - 'docs/contracts/**'
+      - 'docs/checkpoints/contracts/**'
+      - 'scripts/contracts/**'
+      - 'supabase/migrations/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/contracts-drift-gate.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+      - 'docs/contracts/**'
+      - 'docs/checkpoints/contracts/**'
+      - 'scripts/contracts/**'
+      - 'supabase/migrations/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/contracts-drift-gate.yml'
+
+jobs:
+  drift-gate:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Require drift gate database
+        run: |
+          if [ -z "$SUPABASE_DB_URL" ]; then
+            echo "SUPABASE_DB_URL secret is required for the contracts drift gate."
+            exit 1
+          fi
+
+      - name: Run contracts drift gate
+        run: npm run contracts:drift-audit

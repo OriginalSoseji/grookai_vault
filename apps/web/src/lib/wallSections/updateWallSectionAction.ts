@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { assertWallSectionStateProof } from "@/lib/contracts/ownershipMutationGuards";
 import { getOwnerWallSections } from "@/lib/wallSections/getOwnerWallSections";
 import { revalidateOwnerWallSectionPaths } from "@/lib/wallSections/revalidateWallSectionPaths";
 import {
@@ -160,6 +161,14 @@ export async function updateWallSectionAction(input: UpdateWallSectionInput): Pr
       limitState: current.limitState,
     };
   }
+
+  await assertWallSectionStateProof({
+    sectionId: existing.id,
+    userId: user.id,
+    expectedName: updatePayload.name ?? existing.name ?? null,
+    expectedIsActive:
+      typeof updatePayload.is_active === "boolean" ? updatePayload.is_active : Boolean(existing.is_active),
+  });
 
   await revalidateOwnerWallSectionPaths(user.id);
   const next = await getOwnerWallSections(user.id);

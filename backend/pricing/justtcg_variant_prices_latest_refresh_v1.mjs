@@ -1,7 +1,49 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ *
+ * RULES:
+ * - not part of runtime authority
+ * - must not be imported into application code
+ * - requires explicit maintenance mode
+ * - defaults to DRY RUN
+ */
 import '../env.mjs';
 import pg from 'pg';
+import {
+  assertCanonMaintenanceWriteAllowed,
+  getCanonMaintenanceDryRun,
+  installCanonMaintenanceBoundaryV1,
+} from '../maintenance/canon_maintenance_boundary_v1.mjs';
 
 const { Pool } = pg;
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs.',
+  );
+}
+
+const DRY_RUN = getCanonMaintenanceDryRun();
+const { assertCanonMaintenanceWriteAllowed: assertCanonMaintenanceWriteAllowedFromBoundary } =
+  installCanonMaintenanceBoundaryV1(import.meta.url);
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
 
 export const REQUIRED_INDEX_NAME = 'idx_justtcg_variant_price_snapshots_latest_order';
 export const REQUIRED_INDEX_SQL = `create index concurrently if not exists ${REQUIRED_INDEX_NAME}
@@ -577,6 +619,16 @@ export async function runLatestRefreshDryRun(pool, options = {}) {
 export async function runLatestRefreshApply(pool, options = {}) {
   const logger = options.logger ?? console.log;
   const logPrefix = options.logPrefix ?? 'justtcg-latest-refresh';
+
+  if (DRY_RUN) {
+    emitLog(logger, `${logPrefix}.apply_blocked_dry_run`, {
+      reason: 'CANON_MAINTENANCE_DRY_RUN defaults to true unless explicitly disabled.',
+    });
+    return runLatestRefreshDryRun(pool, options);
+  }
+
+  assertCanonMaintenanceWriteAllowed();
+  assertCanonMaintenanceWriteAllowedFromBoundary();
   const client = await pool.connect();
 
   try {

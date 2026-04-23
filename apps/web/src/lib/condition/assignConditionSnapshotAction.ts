@@ -1,5 +1,7 @@
 "use server";
 
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createConditionSnapshotAssignmentProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
@@ -36,6 +38,7 @@ type BucketRow = {
 };
 
 type InstanceRow = {
+  id: string;
   gv_vi_id: string | null;
   user_id: string;
   card_print_id: string | null;
@@ -134,7 +137,7 @@ export async function assignConditionSnapshotAction(
 
   const { data: instanceRow, error: instanceError } = await adminClient
     .from("vault_item_instances")
-    .select("gv_vi_id,user_id,card_print_id,legacy_vault_item_id,archived_at")
+    .select("id,gv_vi_id,user_id,card_print_id,legacy_vault_item_id,archived_at")
     .eq("gv_vi_id", gvviId)
     .eq("user_id", user.id)
     .is("archived_at", null)
@@ -159,18 +162,44 @@ export async function assignConditionSnapshotAction(
     };
   }
 
-  const { data: updatedRow, error: updateError } = await adminClient
-    .from("condition_snapshots")
-    .update({
-      gv_vi_id: gvviId,
-    })
-    .eq("id", snapshotId)
-    .eq("user_id", user.id)
-    .is("gv_vi_id", null)
-    .select("id,gv_vi_id")
-    .maybeSingle();
+  try {
+    await executeOwnerWriteV1<Extract<AssignConditionSnapshotResult, { ok: true }>>({
+      execution_name: "assign_condition_snapshot",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "assignConditionSnapshotAction");
 
-  if (updateError || !updatedRow) {
+        const { data: updatedRow, error: updateError } = await context.adminClient
+          .from("condition_snapshots")
+          .update({
+            gv_vi_id: gvviId,
+          })
+          .eq("id", snapshotId)
+          .eq("user_id", user.id)
+          .is("gv_vi_id", null)
+          .select("id,gv_vi_id")
+          .maybeSingle();
+
+        if (updateError || !updatedRow) {
+          throw new Error("Couldn’t assign this scan.");
+        }
+
+        return {
+          ok: true,
+          snapshotId,
+          gvViId: gvviId,
+        };
+      },
+      proofs: [
+        createConditionSnapshotAssignmentProofV1(() => ({
+          snapshotId,
+          instanceId: instance.id,
+          expectedGvviId: gvviId,
+          expectedCardPrintId: cardPrintId,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       snapshotId,

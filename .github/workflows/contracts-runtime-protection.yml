@@ -1,0 +1,56 @@
+name: Contracts Runtime Protection
+
+on:
+  push:
+    paths:
+      - 'apps/web/src/lib/contracts/**'
+      - 'apps/web/src/lib/network/**'
+      - 'apps/web/src/lib/slabs/**'
+      - 'apps/web/src/lib/vault/**'
+      - 'apps/web/src/lib/wallSections/**'
+      - 'apps/web/src/components/vault/ownershipMutationGuards.test.mjs'
+      - 'backend/**'
+      - 'docs/contracts/**'
+      - 'scripts/contracts/**'
+      - 'tests/contracts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/contracts-runtime-protection.yml'
+  pull_request:
+    paths:
+      - 'apps/web/src/lib/contracts/**'
+      - 'apps/web/src/lib/network/**'
+      - 'apps/web/src/lib/slabs/**'
+      - 'apps/web/src/lib/vault/**'
+      - 'apps/web/src/lib/wallSections/**'
+      - 'apps/web/src/components/vault/ownershipMutationGuards.test.mjs'
+      - 'backend/**'
+      - 'docs/contracts/**'
+      - 'scripts/contracts/**'
+      - 'tests/contracts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/contracts-runtime-protection.yml'
+
+jobs:
+  runtime-protection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run runtime health checks
+        run: npm run contracts:runtime-health
+
+      - name: Run focused contracts test suite
+        run: npm run contracts:test

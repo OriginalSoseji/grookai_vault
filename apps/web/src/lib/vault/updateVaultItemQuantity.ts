@@ -1,6 +1,13 @@
 import "server-only";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import {
+  createNoArchivedLeakProofV1,
+  createVaultCardCountProofV1,
+  createVaultInstanceActiveProofV1,
+  createVaultInstanceArchivedProofV1,
+} from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 
@@ -273,96 +280,138 @@ export async function updateVaultItemQuantity(change: VaultQuantityChange): Prom
   } as VaultQuantityChange;
   const actionLabel = change.type === "increment" ? "increment" : "decrement";
 
-  const { data: row, error: readError } = await normalizedChange.client
-    .from("vault_items")
-    .select("id,card_id,gv_id,condition_label,name,set_name,photo_url")
-    .eq("id", normalizedChange.itemId)
-    .eq("user_id", normalizedChange.userId)
-    .is("archived_at", null)
-    .maybeSingle();
+  return executeOwnerWriteV1({
+    execution_name: "update_vault_item_quantity",
+    actor_id: normalizedChange.userId,
+    write: async (context) => {
+      const { data: row, error: readError } = await normalizedChange.client
+        .from("vault_items")
+        .select("id,card_id,gv_id,condition_label,name,set_name,photo_url")
+        .eq("id", normalizedChange.itemId)
+        .eq("user_id", normalizedChange.userId)
+        .is("archived_at", null)
+        .maybeSingle();
 
-  if (readError) {
-    throw new Error(formatVaultQuantityError("vault_items.read-before-change", readError));
-  }
+      if (readError) {
+        throw new Error(formatVaultQuantityError("vault_items.read-before-change", readError));
+      }
 
-  if (!row) {
-    console.info("[vault:qty]", {
-      user_id: normalizedChange.userId,
-      item_id: normalizedChange.itemId,
-      action: "remove",
-    });
+      if (!row) {
+        console.info("[vault:qty]", {
+          user_id: normalizedChange.userId,
+          item_id: normalizedChange.itemId,
+          action: "remove",
+        });
 
-    return {
-      status: "removed",
-      itemId: normalizedChange.itemId,
-    };
-  }
+        return {
+          status: "removed",
+          itemId: normalizedChange.itemId,
+        };
+      }
 
-  const currentRow = (row ?? null) as LegacyVaultBucketRow | null;
-  if (!currentRow) {
-    return {
-      status: "removed",
-      itemId: normalizedChange.itemId,
-    };
-  }
+      const currentRow = (row ?? null) as LegacyVaultBucketRow | null;
+      if (!currentRow) {
+        return {
+          status: "removed",
+          itemId: normalizedChange.itemId,
+        };
+      }
 
-  const cardPrintId = currentRow.card_id?.trim() ?? "";
-  if (!cardPrintId) {
-    throw new Error("Instance mutation failed: missing cardPrintId on compatibility anchor.");
-  }
+      const cardPrintId = currentRow.card_id?.trim() ?? "";
+      if (!cardPrintId) {
+        throw new Error("Instance mutation failed: missing cardPrintId on compatibility anchor.");
+      }
 
-  if (change.type === "decrement") {
-    const archivedInstance = await archiveRawVaultInstance(normalizedChange, cardPrintId);
-    const counts = await countActiveInstancesForCard({
-      userId: normalizedChange.userId,
-      cardPrintId,
-    });
+      context.setMetadata("card_print_id", cardPrintId);
 
-    console.info("[vault:qty]", {
-      user_id: normalizedChange.userId,
-      item_id: normalizedChange.itemId,
-      gv_id: currentRow.gv_id,
-      action: actionLabel,
-      quantity: counts.totalCount,
-      raw_count: counts.rawCount,
-      slab_count: counts.slabCount,
-      gv_vi_id: archivedInstance.gv_vi_id ?? null,
-    });
+      if (change.type === "decrement") {
+        const archivedInstance = await archiveRawVaultInstance(normalizedChange, cardPrintId);
+        const counts = await countActiveInstancesForCard({
+          userId: normalizedChange.userId,
+          cardPrintId,
+        });
 
-    if (counts.totalCount <= 0) {
+        context.setMetadata("archived_instance_id", archivedInstance.id);
+        context.setMetadata("expected_card_count", counts.totalCount);
+
+        console.info("[vault:qty]", {
+          user_id: normalizedChange.userId,
+          item_id: normalizedChange.itemId,
+          gv_id: currentRow.gv_id,
+          action: actionLabel,
+          quantity: counts.totalCount,
+          raw_count: counts.rawCount,
+          slab_count: counts.slabCount,
+          gv_vi_id: archivedInstance.gv_vi_id ?? null,
+        });
+
+        if (counts.totalCount <= 0) {
+          return {
+            status: "removed",
+            itemId: normalizedChange.itemId,
+          };
+        }
+
+        return {
+          status: "decremented",
+          itemId: normalizedChange.itemId,
+          quantity: counts.totalCount,
+        };
+      }
+
+      const createdInstance = await createVaultInstanceForIncrement(normalizedChange, currentRow);
+      const counts = await countActiveInstancesForCard({
+        userId: normalizedChange.userId,
+        cardPrintId,
+      });
+
+      context.setMetadata("created_instance_id", createdInstance.id);
+      context.setMetadata("expected_card_count", counts.totalCount);
+
+      console.info("[vault:qty]", {
+        user_id: normalizedChange.userId,
+        item_id: normalizedChange.itemId,
+        gv_id: currentRow.gv_id,
+        action: actionLabel,
+        quantity: counts.totalCount,
+        raw_count: counts.rawCount,
+        slab_count: counts.slabCount,
+        gv_vi_id: createdInstance.gv_vi_id ?? null,
+      });
+
       return {
-        status: "removed",
+        status: change.type === "increment" ? "incremented" : "decremented",
         itemId: normalizedChange.itemId,
+        quantity: counts.totalCount,
       };
-    }
+    },
+    proofs: [
+      createVaultInstanceArchivedProofV1(({ getMetadata }) => {
+        const instanceId = getMetadata<string>("archived_instance_id");
+        return instanceId ? { instanceId } : null;
+      }),
+      createVaultInstanceActiveProofV1(({ getMetadata }) => {
+        const instanceId = getMetadata<string>("created_instance_id");
+        const cardPrintId = getMetadata<string>("card_print_id");
+        return instanceId ? { instanceId, cardPrintId } : null;
+      }),
+      createNoArchivedLeakProofV1(({ getMetadata }) => {
+        const instanceId = getMetadata<string>("created_instance_id");
+        const cardPrintId = getMetadata<string>("card_print_id");
+        return instanceId ? { instanceId, cardPrintId } : null;
+      }),
+      createVaultCardCountProofV1(({ getMetadata }) => {
+        const cardPrintId = getMetadata<string>("card_print_id");
+        const expectedCount = getMetadata<number>("expected_card_count");
+        if (!cardPrintId || typeof expectedCount !== "number") {
+          return null;
+        }
 
-    return {
-      status: "decremented",
-      itemId: normalizedChange.itemId,
-      quantity: counts.totalCount,
-    };
-  }
-
-  const createdInstance = await createVaultInstanceForIncrement(normalizedChange, currentRow);
-  const counts = await countActiveInstancesForCard({
-    userId: normalizedChange.userId,
-    cardPrintId,
+        return {
+          cardPrintId,
+          expectedCount,
+        };
+      }),
+    ],
   });
-
-  console.info("[vault:qty]", {
-    user_id: normalizedChange.userId,
-    item_id: normalizedChange.itemId,
-    gv_id: currentRow.gv_id,
-    action: actionLabel,
-    quantity: counts.totalCount,
-    raw_count: counts.rawCount,
-    slab_count: counts.slabCount,
-    gv_vi_id: createdInstance.gv_vi_id ?? null,
-  });
-
-  return {
-    status: change.type === "increment" ? "incremented" : "decremented",
-    itemId: normalizedChange.itemId,
-    quantity: counts.totalCount,
-  };
 }

@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstancePricingProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   normalizeVaultInstancePricingAmount,
@@ -104,21 +106,61 @@ export async function saveVaultItemInstancePricingAction(
     };
   }
 
-  const { data, error } = await client
-    .from("vault_item_instances")
-    .update({
-      pricing_mode: pricingMode,
-      asking_price_amount: askingPriceAmount,
-      asking_price_currency: askingPriceCurrency,
-      asking_price_note: askingPriceNote,
-    })
-    .eq("id", normalizedInstanceId)
-    .eq("user_id", user.id)
-    .is("archived_at", null)
-    .select("id,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note,gv_vi_id")
-    .maybeSingle();
+  let result: Extract<SaveVaultItemInstancePricingResult, { ok: true }>;
 
-  if (error || !data) {
+  try {
+    result = await executeOwnerWriteV1<Extract<SaveVaultItemInstancePricingResult, { ok: true }>>({
+      execution_name: "save_vault_item_instance_pricing",
+      actor_id: user.id,
+      write: async (context) => {
+        context.setMetadata("source", "saveVaultItemInstancePricingAction");
+
+        const { data, error } = await context.adminClient
+          .from("vault_item_instances")
+          .update({
+            pricing_mode: pricingMode,
+            asking_price_amount: askingPriceAmount,
+            asking_price_currency: askingPriceCurrency,
+            asking_price_note: askingPriceNote,
+          })
+          .eq("id", normalizedInstanceId)
+          .eq("user_id", user.id)
+          .is("archived_at", null)
+          .select("id,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note,gv_vi_id")
+          .maybeSingle();
+
+        if (error || !data) {
+          throw new Error("Pricing could not be saved.");
+        }
+
+        return {
+          ok: true,
+          instanceId: data.id,
+          pricingMode: normalizeVaultInstancePricingMode(data.pricing_mode) ?? "market",
+          askingPriceAmount:
+            normalizeVaultInstancePricingAmount(data.asking_price_amount) ?? askingPriceAmount,
+          askingPriceCurrency:
+            typeof data.asking_price_currency === "string"
+              ? data.asking_price_currency.trim().toUpperCase()
+              : askingPriceCurrency,
+          askingPriceNote:
+            typeof data.asking_price_note === "string" && data.asking_price_note.trim().length > 0
+              ? data.asking_price_note.trim()
+              : askingPriceNote,
+          gvviId: typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null,
+        };
+      },
+      proofs: [
+        createVaultInstancePricingProofV1(({ result }) => ({
+          instanceId: result.instanceId,
+          expectedPricingMode: result.pricingMode,
+          expectedAskingPriceAmount: result.askingPriceAmount,
+          expectedAskingPriceCurrency: result.askingPriceCurrency,
+          expectedAskingPriceNote: result.askingPriceNote,
+        })),
+      ],
+    });
+  } catch {
     return {
       ok: false,
       instanceId: normalizedInstanceId,
@@ -126,7 +168,7 @@ export async function saveVaultItemInstancePricingAction(
     };
   }
 
-  const gvviId = typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null;
+  const gvviId = result.gvviId;
   revalidatePath("/vault");
   revalidatePath("/network");
   if (gvviId) {
@@ -135,16 +177,7 @@ export async function saveVaultItemInstancePricingAction(
   }
 
   return {
-    ok: true,
-    instanceId: data.id,
-    pricingMode: normalizeVaultInstancePricingMode(data.pricing_mode) ?? "market",
-    askingPriceAmount: normalizeVaultInstancePricingAmount(data.asking_price_amount) ?? askingPriceAmount,
-    askingPriceCurrency:
-      typeof data.asking_price_currency === "string" ? data.asking_price_currency.trim().toUpperCase() : askingPriceCurrency,
-    askingPriceNote:
-      typeof data.asking_price_note === "string" && data.asking_price_note.trim().length > 0
-        ? data.asking_price_note.trim()
-        : askingPriceNote,
+    ...result,
     gvviId,
   };
 }

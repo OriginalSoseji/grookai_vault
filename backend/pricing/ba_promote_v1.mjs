@@ -1,8 +1,23 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ *
+ * RULES:
+ * - not part of runtime authority
+ * - must not be imported into application code
+ * - requires explicit maintenance mode
+ * - defaults to DRY RUN
+ */
 import '../env.mjs';
 
 import { pathToFileURL } from 'node:url';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
+import {
+  assertCanonMaintenanceWriteAllowed,
+  getCanonMaintenanceDryRun,
+} from '../maintenance/canon_maintenance_boundary_v1.mjs';
 
 // BATTLE_ACADEMY_CANON_CONTRACT_V1 invariants enforced by this worker:
 // - Battle Academy is a first-class canonical domain, not a TK-style mapping lane.
@@ -53,6 +68,30 @@ const CONTRACT_INVARIANTS = [
   'No fuzzy matching, no heuristic identity guessing, no upstream-authority trust, and no partial-canon drift.',
   'If conflicts, mixed numbering spaces, or existing BA canon drift appear, apply stops.',
 ];
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs.',
+  );
+}
+
+const DRY_RUN = getCanonMaintenanceDryRun();
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
 
 function normalizeTextOrNull(value) {
   if (value === undefined || value === null) {
@@ -871,6 +910,7 @@ function printSamples(label, rows, options) {
 }
 
 async function ensureBaSets(supabase) {
+  assertCanonMaintenanceWriteAllowed();
   const created = [];
   const resolved = new Map();
 
@@ -928,6 +968,7 @@ async function upsertBaCardPrints({
   setIdsByCode,
   promotionPlans,
 }) {
+  assertCanonMaintenanceWriteAllowed();
   const created = [];
   const resolved = new Map();
 
@@ -1002,6 +1043,7 @@ async function upsertBaCardPrints({
 }
 
 async function resolveStageRows(supabase, promotionPlans, cardPrintIdsByIdentity) {
+  assertCanonMaintenanceWriteAllowed();
   let updatedRowCount = 0;
 
   for (const plan of promotionPlans) {
@@ -1029,6 +1071,10 @@ async function resolveStageRows(supabase, promotionPlans, cardPrintIdsByIdentity
 async function run() {
   const options = parseArgs(process.argv.slice(2));
   const supabase = createBackendClient();
+
+  if (DRY_RUN) {
+    options.apply = false;
+  }
 
   logContractInvariants();
   console.log(`[ba-promote-v1] mode=${options.apply ? 'apply' : 'dry-run'}`);

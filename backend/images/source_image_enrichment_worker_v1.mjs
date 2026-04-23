@@ -3,6 +3,9 @@ import '../env.mjs';
 import fs from 'node:fs/promises';
 import pg from 'pg';
 import { createTcgdexClient } from '../clients/tcgdex.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Client } = pg;
 
@@ -228,33 +231,99 @@ async function loadInputRows(inputJsonPath) {
 }
 
 async function applyRepresentativeImageUpdates(client, matchedRows) {
+  if (matchedRows.length === 0) {
+    return 0;
+  }
+
+  const payloadSnapshot = {
+    row_count: matchedRows.length,
+    rows: matchedRows.map((row) => ({
+      card_print_id: row.card_print_id,
+      gv_id: row.gv_id ?? null,
+      assignment_kind: row.assignment_kind ?? null,
+      representative_image_url: row.representative_image_url ?? null,
+      image_status: row.image_status ?? null,
+      image_source: row.image_source ?? null,
+    })),
+  };
+
   let updated = 0;
 
   await client.query('begin');
   try {
-    for (const row of matchedRows) {
-      const { rowCount } = await client.query(
-        `
-          update public.card_prints
-          set
-            representative_image_url = $2,
-            image_status = $3,
-            image_note = $4,
-            image_source = $5
-          where id = $1
-            and (image_url is null or btrim(image_url) = '')
-            and (representative_image_url is null or btrim(representative_image_url) = '')
-        `,
-        [
-          row.card_print_id,
-          row.representative_image_url,
-          row.image_status,
-          row.image_note,
-          normalizeLowerOrNull(row.image_source) ?? SOURCE_NAME,
-        ],
-      );
-      updated += rowCount ?? 0;
-    }
+    await assertExecuteCanonWriteV1({
+      execution_name: 'source_image_enrichment_worker_v1',
+      payload_snapshot: payloadSnapshot,
+      write_target: client,
+      audit_target: client,
+      ledger_target: client,
+      transaction_control: 'external',
+      actor_type: 'system_worker',
+      source_worker: WORKER_NAME,
+      source_system: 'images',
+      contract_assertions: matchedRows.flatMap((row) => ([
+        {
+          ok: Boolean(row.card_print_id),
+          contract_name: 'SOURCE_IMAGE_ENRICHMENT_V1',
+          violation_type: 'missing_card_print_id',
+          reason: 'source_image_enrichment_worker_v1 requires card_print_id for every write row.',
+        },
+        {
+          ok: Boolean(row.representative_image_url),
+          contract_name: 'REPRESENTATIVE_IMAGE_CONTRACT_V1',
+          violation_type: 'missing_representative_image_url',
+          reason: `source_image_enrichment_worker_v1 missing representative image for ${row.card_print_id ?? 'unknown'}.`,
+        },
+      ])),
+      proofs: [
+        {
+          name: 'representative_image_round_trip',
+          contract_name: 'REPRESENTATIVE_IMAGE_CONTRACT_V1',
+          violation_type: 'post_write_representative_image_missing',
+          query: `
+            select count(*)::int as matched_count
+            from public.card_prints
+            where id = any($1::uuid[])
+              and representative_image_url is not null
+              and btrim(representative_image_url) <> ''
+          `,
+          params: [matchedRows.map((row) => row.card_print_id)],
+          evaluate(result) {
+            const matchedCount = Number(result.rows[0]?.matched_count ?? 0);
+            return {
+              ok: matchedCount === matchedRows.length,
+              reason:
+                `source_image_enrichment_worker_v1 expected representative images on ${matchedRows.length} rows, found ${matchedCount}.`,
+            };
+          },
+        },
+      ],
+      async write(connection) {
+        for (const row of matchedRows) {
+          const { rowCount } = await connection.query(
+            `
+              update public.card_prints
+              set
+                representative_image_url = $2,
+                image_status = $3,
+                image_note = $4,
+                image_source = $5
+              where id = $1
+                and (image_url is null or btrim(image_url) = '')
+                and (representative_image_url is null or btrim(representative_image_url) = '')
+            `,
+            [
+              row.card_print_id,
+              row.representative_image_url,
+              row.image_status,
+              row.image_note,
+              normalizeLowerOrNull(row.image_source) ?? SOURCE_NAME,
+            ],
+          );
+          updated += rowCount ?? 0;
+        }
+      },
+    });
 
     await client.query('commit');
   } catch (error) {

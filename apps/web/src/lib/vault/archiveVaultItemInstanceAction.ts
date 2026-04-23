@@ -1,6 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import {
+  assertVaultCardCountProof,
+  assertVaultInstanceArchivedProof,
+} from "@/lib/contracts/ownershipMutationGuards";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
@@ -194,6 +198,18 @@ export async function archiveVaultItemInstanceAction(
   await Promise.all(revalidationTasks);
 
   const resolvedRemainingCount = remainingActiveCount ?? bucketQty ?? 0;
+  await assertVaultInstanceArchivedProof({
+    instanceId,
+    userId: user.id,
+  });
+  if (cardPrintId) {
+    await assertVaultCardCountProof({
+      userId: user.id,
+      cardPrintId,
+      expectedCount: resolvedRemainingCount,
+    });
+  }
+
   const message =
     resolvedRemainingCount > 0
       ? "Exact copy removed from your active vault. History was preserved."

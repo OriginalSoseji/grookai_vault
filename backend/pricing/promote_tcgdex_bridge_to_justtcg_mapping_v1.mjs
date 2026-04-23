@@ -1,3 +1,14 @@
+/**
+ * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
+ *
+ * This script mutates canonical data outside runtime executor.
+ *
+ * RULES:
+ * - not part of runtime authority
+ * - must not be imported into application code
+ * - requires explicit maintenance mode
+ * - defaults to DRY RUN
+ */
 import '../env.mjs';
 
 import { createBackendClient } from '../supabase_backend_client.mjs';
@@ -10,6 +21,10 @@ import {
   resolveJustTcgPostBatchSize,
   uniqueValues,
 } from './justtcg_client.mjs';
+import {
+  assertCanonMaintenanceWriteAllowed,
+  getCanonMaintenanceDryRun,
+} from '../maintenance/canon_maintenance_boundary_v1.mjs';
 
 const SOURCE = 'tcgdex';
 const TARGET_SOURCE = 'justtcg';
@@ -24,6 +39,30 @@ const PRODUCT_ID_PATHS = [
   { key: 'unlimited', path: 'pricing.tcgplayer.unlimited.productId' },
   { key: 'unlimited-holofoil', path: 'pricing.tcgplayer.unlimited-holofoil.productId' },
 ];
+
+if (!process.env.ENABLE_CANON_MAINTENANCE_MODE) {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.',
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_MODE !== 'EXPLICIT') {
+  throw new Error(
+    "RUNTIME_ENFORCEMENT: CANON_MAINTENANCE_MODE must be 'EXPLICIT'.",
+  );
+}
+
+if (process.env.CANON_MAINTENANCE_ENTRYPOINT !== 'backend/maintenance/run_canon_maintenance_v1.mjs') {
+  throw new Error(
+    'RUNTIME_ENFORCEMENT: canon maintenance scripts must be launched from backend/maintenance/run_canon_maintenance_v1.mjs.',
+  );
+}
+
+const DRY_RUN = getCanonMaintenanceDryRun();
+
+if (DRY_RUN) {
+  console.log('CANON MAINTENANCE: DRY RUN');
+}
 
 if (typeof fetch !== 'function') {
   console.error('❌ Global fetch unavailable; use Node 18+');
@@ -288,6 +327,14 @@ async function loadAnyJustTcgMappingsByExternalId(supabase, externalId) {
 }
 
 async function upsertJustTcgMapping(supabase, cardPrintId, externalId, meta) {
+  if (DRY_RUN) {
+    console.log(
+      `[DRY RUN] would execute: promote_tcgdex_bridge_to_justtcg_mapping_v1 :: UPSERT :: public.external_mappings :: card_print_id=${cardPrintId} external_id=${externalId}`,
+    );
+    return;
+  }
+
+  assertCanonMaintenanceWriteAllowed();
   const { error } = await supabase
     .from('external_mappings')
     .upsert(
@@ -328,6 +375,9 @@ function printVerificationQueries() {
 
 async function main() {
   const options = parseArgs();
+  if (DRY_RUN) {
+    options.apply = false;
+  }
   const supabase = createBackendClient();
   const tcgdexClient = createTcgdexClient();
   const { apiKey } = getJustTcgApiConfig();

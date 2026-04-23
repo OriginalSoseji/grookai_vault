@@ -13,6 +13,9 @@ import {
   getSourceBackedIdentity,
   normalizeVariantKey,
 } from './source_identity_contract_v1.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Pool } = pg;
 
@@ -1546,6 +1549,15 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
     stagedAt,
   });
 
+  const payloadSnapshot = {
+    candidate_id: artifact.candidate?.id ?? null,
+    approved_action_type: validation.approvedActionType ?? null,
+    payload_version: payload.payload_version ?? null,
+    staging_contract: payload.staging_contract ?? null,
+    staged_at: stagedAt,
+    write_plan_preview: payload.write_plan ?? null,
+  };
+
   const identicalExisting = findIdenticalStagingRow(artifact.stagingRows, payload);
   if (identicalExisting) {
     return {
@@ -1568,62 +1580,161 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
     };
   }
 
-  const { rows } = await client.query(
-    `
-      insert into public.canon_warehouse_promotion_staging (
-        candidate_id,
-        approved_action_type,
-        frozen_payload,
-        founder_approved_by_user_id,
-        founder_approved_at,
-        staged_by_user_id,
-        staged_at,
-        execution_status,
-        execution_attempts
-      )
-      values ($1, $2, $3::jsonb, $4, $5, $6, $7, 'PENDING', 0)
-      returning id
-    `,
-    [
-      artifact.candidate.id,
-      validation.approvedActionType,
-      JSON.stringify(payload),
-      artifact.candidate.founder_approved_by_user_id,
-      artifact.candidate.founder_approved_at,
-      artifact.candidate.founder_approved_by_user_id,
-      stagedAt,
+  let stagingId = null;
+  await assertExecuteCanonWriteV1({
+    execution_name: 'promotion_stage_create_stage_v1',
+    payload_snapshot,
+    write_target: client,
+    audit_target: client,
+    ledger_target: client,
+    transaction_control: 'external',
+    actor_type: 'system_worker',
+    actor_id: artifact.candidate?.founder_approved_by_user_id ?? null,
+    source_worker: WORKER_NAME,
+    source_system: 'warehouse',
+    contract_assertions: [
+      {
+        ok: Boolean(artifact.candidate?.id),
+        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+        violation_type: 'missing_candidate_id',
+        reason: 'promotion_stage_create_stage_v1 requires candidate id.',
+      },
+      {
+        ok: Boolean(validation.approvedActionType),
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'missing_approved_action_type',
+        reason: 'promotion_stage_create_stage_v1 requires approved action type.',
+      },
+      {
+        ok: payload.staging_contract === STAGING_CONTRACT,
+        contract_name: 'GROOKAI_GUARDRAILS',
+        violation_type: 'staging_contract_drift',
+        reason: `promotion_stage_create_stage_v1 expected ${STAGING_CONTRACT}, found ${payload.staging_contract ?? 'null'}.`,
+      },
     ],
-  );
-  const stagingId = rows[0]?.id ?? null;
-  if (!stagingId) {
-    throw new Error('staging_insert_failed');
-  }
+    proofs: [
+      {
+        name: 'active_staging_row_exists',
+        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+        violation_type: 'post_write_staging_missing',
+        query: `
+          select execution_status
+          from public.canon_warehouse_promotion_staging
+          where id = $1
+          limit 1
+        `,
+        params: [stagingId],
+        evaluate(result) {
+          const status = normalizeTextOrNull(result.rows[0]?.execution_status);
+          return {
+            ok: status === 'PENDING',
+            reason: `promotion_stage_create_stage_v1 expected PENDING staging row ${stagingId}, found ${status ?? 'null'}.`,
+          };
+        },
+      },
+      {
+        name: 'candidate_points_to_current_staging',
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'post_write_candidate_stage_drift',
+        query: `
+          select current_staging_id, state
+          from public.canon_warehouse_candidates
+          where id = $1
+          limit 1
+        `,
+        params: [artifact.candidate.id],
+        evaluate(result) {
+          const row = result.rows[0] ?? null;
+          const currentStagingId = normalizeTextOrNull(row?.current_staging_id);
+          const state = normalizeTextOrNull(row?.state);
+          return {
+            ok: currentStagingId === stagingId && state === 'STAGED_FOR_PROMOTION',
+            reason:
+              `promotion_stage_create_stage_v1 expected candidate ${artifact.candidate.id} -> ${stagingId}/STAGED_FOR_PROMOTION, found ${currentStagingId ?? 'null'}/${state ?? 'null'}.`,
+          };
+        },
+      },
+      {
+        name: 'single_active_staging_owner',
+        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+        violation_type: 'post_write_multiple_active_staging_rows',
+        query: `
+          select count(*)::int as active_count
+          from public.canon_warehouse_promotion_staging
+          where candidate_id = $1
+            and execution_status in ('PENDING', 'RUNNING')
+        `,
+        params: [artifact.candidate.id],
+        evaluate(result) {
+          const activeCount = Number(result.rows[0]?.active_count ?? 0);
+          return {
+            ok: activeCount === 1,
+            reason:
+              `promotion_stage_create_stage_v1 expected one active staging row for ${artifact.candidate.id}, found ${activeCount}.`,
+          };
+        },
+      },
+    ],
+    async write(connection) {
+      const { rows } = await connection.query(
+        `
+          insert into public.canon_warehouse_promotion_staging (
+            candidate_id,
+            approved_action_type,
+            frozen_payload,
+            founder_approved_by_user_id,
+            founder_approved_at,
+            staged_by_user_id,
+            staged_at,
+            execution_status,
+            execution_attempts
+          )
+          values ($1, $2, $3::jsonb, $4, $5, $6, $7, 'PENDING', 0)
+          returning id
+        `,
+        [
+          artifact.candidate.id,
+          validation.approvedActionType,
+          JSON.stringify(payload),
+          artifact.candidate.founder_approved_by_user_id,
+          artifact.candidate.founder_approved_at,
+          artifact.candidate.founder_approved_by_user_id,
+          stagedAt,
+        ],
+      );
+      stagingId = rows[0]?.id ?? null;
+      if (!stagingId) {
+        throw new Error('staging_insert_failed');
+      }
+      payloadSnapshot.staging_id = stagingId;
 
-  const candidateUpdate = await client.query(
-    `
-      update public.canon_warehouse_candidates
-      set
-        current_staging_id = $2,
-        state = 'STAGED_FOR_PROMOTION',
-        current_review_hold_reason = null
-      where id = $1
-        and state = 'APPROVED_BY_FOUNDER'
-      returning id
-    `,
-    [artifact.candidate.id, stagingId],
-  );
-  if (candidateUpdate.rowCount !== 1) {
-    throw new Error('candidate_stage_update_failed');
-  }
+      const candidateUpdate = await connection.query(
+        `
+          update public.canon_warehouse_candidates
+          set
+            current_staging_id = $2,
+            state = 'STAGED_FOR_PROMOTION',
+            current_review_hold_reason = null
+          where id = $1
+            and state = 'APPROVED_BY_FOUNDER'
+          returning id
+        `,
+        [artifact.candidate.id, stagingId],
+      );
+      if (candidateUpdate.rowCount !== 1) {
+        throw new Error('candidate_stage_update_failed');
+      }
 
-  await insertStageEvent(client, {
-    candidateId: artifact.candidate.id,
-    stagingId,
-    previousState: 'APPROVED_BY_FOUNDER',
-    nextState: 'STAGED_FOR_PROMOTION',
-    approvedActionType: validation.approvedActionType,
-    writePlan,
-    normalizationAsset: payload.normalization_asset,
+      await insertStageEvent(connection, {
+        candidateId: artifact.candidate.id,
+        stagingId,
+        previousState: 'APPROVED_BY_FOUNDER',
+        nextState: 'STAGED_FOR_PROMOTION',
+        approvedActionType: validation.approvedActionType,
+        writePlan,
+        normalizationAsset: payload.normalization_asset,
+      });
+    },
   });
 
   return {

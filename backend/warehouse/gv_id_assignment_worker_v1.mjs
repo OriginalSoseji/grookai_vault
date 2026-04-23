@@ -2,6 +2,9 @@ import '../env.mjs';
 
 import pg from 'pg';
 import { buildCardPrintGvIdV1 } from './buildCardPrintGvIdV1.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Pool } = pg;
 const WORKER_NAME = 'gv_id_assignment_worker_v1';
@@ -116,7 +119,7 @@ async function assignOne(client, row, apply) {
   });
 
   const conflictingRow = await findConflictingRow(client, plannedGvId, row.id);
-  if (conflictingRow) {
+  if (conflictingRow && !apply) {
     return {
       id: row.id,
       status: 'blocked',
@@ -127,6 +130,18 @@ async function assignOne(client, row, apply) {
     };
   }
 
+  const payloadSnapshot = {
+    card_print_id: row.id,
+    set_code: row.set_code,
+    printed_set_abbrev: row.printed_set_abbrev,
+    number: row.number,
+    number_plain: row.number_plain,
+    variant_key: row.variant_key,
+    planned_gv_id: plannedGvId,
+    namespace_decision: namespaceDecision,
+    apply,
+  };
+
   if (!apply) {
     return {
       id: row.id,
@@ -136,18 +151,91 @@ async function assignOne(client, row, apply) {
     };
   }
 
-  const updateResult = await client.query(
-    `
-      update public.card_prints
-      set gv_id = $2
-      where id = $1
-        and gv_id is null
-      returning id, gv_id
-    `,
-    [row.id, plannedGvId],
-  );
+  let updateResult = null;
+  await assertExecuteCanonWriteV1({
+    execution_name: 'gv_id_assignment_worker_v1',
+    payload_snapshot: payloadSnapshot,
+    write_target: client,
+    audit_target: client,
+    ledger_target: client,
+    transaction_control: 'none',
+    actor_type: 'system_worker',
+    source_worker: WORKER_NAME,
+    source_system: 'warehouse',
+    contract_assertions: [
+      {
+        ok: Boolean(row.id),
+        contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+        violation_type: 'missing_card_print_id',
+        reason: 'gv_id_assignment_worker_v1 requires a target card_print id.',
+      },
+      {
+        ok: typeof plannedGvId === 'string' && plannedGvId.startsWith('GV-'),
+        contract_name: 'GV_ID_ASSIGNMENT_V1',
+        violation_type: 'invalid_gv_id_shape',
+        reason: `gv_id_assignment_worker_v1 produced invalid gv_id ${plannedGvId}.`,
+      },
+      {
+        ok: !conflictingRow,
+        contract_name: 'GV_ID_ASSIGNMENT_V1',
+        violation_type: 'gv_id_collision',
+        reason: `gv_id ${plannedGvId} is already owned by ${conflictingRow?.id ?? 'another row'}.`,
+      },
+    ],
+    proofs: [
+      {
+        name: 'gv_id_round_trip',
+        contract_name: 'GV_ID_ASSIGNMENT_V1',
+        violation_type: 'post_write_gv_id_missing',
+        query: `
+          select gv_id
+          from public.card_prints
+          where id = $1
+          limit 1
+        `,
+        params: [row.id],
+        evaluate(result) {
+          const actualGvId = normalizeTextOrNull(result.rows[0]?.gv_id);
+          return {
+            ok: actualGvId === plannedGvId,
+            reason: `gv_id_assignment_worker_v1 expected ${plannedGvId} on ${row.id}, found ${actualGvId ?? 'null'}.`,
+          };
+        },
+      },
+      {
+        name: 'gv_id_uniqueness',
+        contract_name: 'GV_ID_ASSIGNMENT_V1',
+        violation_type: 'post_write_gv_id_duplicate',
+        query: `
+          select count(*)::int as duplicate_count
+          from public.card_prints
+          where gv_id = $1
+        `,
+        params: [plannedGvId],
+        evaluate(result) {
+          const duplicateCount = Number(result.rows[0]?.duplicate_count ?? 0);
+          return {
+            ok: duplicateCount === 1,
+            reason: `gv_id_assignment_worker_v1 expected one owner for ${plannedGvId}, found ${duplicateCount}.`,
+          };
+        },
+      },
+    ],
+    async write(connection) {
+      updateResult = await connection.query(
+        `
+          update public.card_prints
+          set gv_id = $2
+          where id = $1
+            and gv_id is null
+          returning id, gv_id
+        `,
+        [row.id, plannedGvId],
+      );
+    },
+  });
 
-  if (!updateResult.rows[0]) {
+  if (!updateResult?.rows[0]) {
     const { rows } = await client.query(
       `select id, gv_id from public.card_prints where id = $1 limit 1`,
       [row.id],

@@ -21,6 +21,10 @@ import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMe
 
 type JsonRecord = Record<string, unknown>;
 
+export const FOUNDER_WAREHOUSE_READ_HIDDEN_WRITE_PATHS = [
+  "persistWarehouseInterpreterIfNeeded",
+] as const;
+
 type FounderWarehouseCandidateRow = {
   id: string;
   submitted_by_user_id: string;
@@ -315,96 +319,11 @@ function buildEffectiveCandidate(
   };
 }
 
-function shouldPersistInterpreterSummary(candidate: FounderWarehouseCandidateRow) {
-  return new Set(["RAW", "NORMALIZED", "CLASSIFIED", "REVIEW_READY", "APPROVED_BY_FOUNDER"]).has(
-    candidate.state,
-  );
-}
-
-function sameJson(left: unknown, right: unknown) {
-  return JSON.stringify(left) === JSON.stringify(right);
-}
-
-function isSameCandidateSummary(
-  candidate: FounderWarehouseCandidateRow,
-  summary: WarehouseInterpreterCandidateSummary,
-) {
-  return (
-    candidate.interpreter_decision === summary.interpreter_decision &&
-    candidate.interpreter_reason_code === summary.interpreter_reason_code &&
-    candidate.interpreter_explanation === summary.interpreter_explanation &&
-    candidate.interpreter_resolved_finish_key === summary.interpreter_resolved_finish_key &&
-    Boolean(candidate.needs_promotion_review) === summary.needs_promotion_review &&
-    candidate.proposed_action_type === summary.proposed_action_type &&
-    candidate.current_review_hold_reason === summary.current_review_hold_reason
-  );
-}
-
-async function persistWarehouseInterpreterIfNeeded(params: {
-  admin: ReturnType<typeof createServerAdminClient>;
-  candidate: FounderWarehouseCandidateRow;
-  summary: WarehouseInterpreterCandidateSummary;
-  interpreterPackage: WarehouseInterpreterPackage;
-  latestInterpreterPackage: JsonRecord | null;
-}) {
-  if (!shouldPersistInterpreterSummary(params.candidate)) {
-    return;
-  }
-
-  const summaryChanged = !isSameCandidateSummary(params.candidate, params.summary);
-  const packageChanged = !sameJson(params.latestInterpreterPackage, params.interpreterPackage);
-
-  if (!summaryChanged && !packageChanged) {
-    return;
-  }
-
-  try {
-    if (summaryChanged) {
-      const { error } = await params.admin
-        .from("canon_warehouse_candidates")
-        .update({
-          interpreter_decision: params.summary.interpreter_decision,
-          interpreter_reason_code: params.summary.interpreter_reason_code,
-          interpreter_explanation: params.summary.interpreter_explanation,
-          interpreter_resolved_finish_key: params.summary.interpreter_resolved_finish_key,
-          needs_promotion_review: params.summary.needs_promotion_review,
-          proposed_action_type: params.summary.proposed_action_type,
-          current_review_hold_reason: params.summary.current_review_hold_reason,
-        })
-        .eq("id", params.candidate.id);
-
-      if (error) {
-        throw new Error(`Interpreter summary update failed: ${error.message}`);
-      }
-    }
-
-    if (packageChanged) {
-      const { error } = await params.admin.from("canon_warehouse_candidate_events").insert({
-        candidate_id: params.candidate.id,
-        staging_id: params.candidate.current_staging_id,
-        event_type: "INTERPRETER_V1_REFRESHED",
-        action: "INTERPRET",
-        previous_state: params.candidate.state,
-        next_state: params.candidate.state,
-        actor_user_id: null,
-        actor_type: "SYSTEM",
-        metadata: {
-          interpreter_package: params.interpreterPackage,
-          candidate_summary: params.summary,
-        },
-        created_at: new Date().toISOString(),
-      });
-
-      if (error) {
-        throw new Error(`Interpreter event append failed: ${error.message}`);
-      }
-    }
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "unknown_interpreter_persist_error";
-    console.error(`[warehouse-interpreter-v1] ${params.candidate.id}: ${message}`);
-  }
-}
-
+/**
+ * PURE READ GUARANTEE
+ * This function must never mutate state.
+ * All writes must go through explicit founder mutation paths.
+ */
 export async function getFounderWarehouseCandidateById(
   candidateId: string,
 ): Promise<FounderWarehouseCandidateDetailResult> {
@@ -676,14 +595,6 @@ export async function getFounderWarehouseCandidateById(
     },
     metadataExtraction: latestMetadataExtractionPackage,
     interpreterPackage,
-  });
-
-  await persistWarehouseInterpreterIfNeeded({
-    admin,
-    candidate,
-    summary: finalSummary,
-    interpreterPackage,
-    latestInterpreterPackage,
   });
 
   return {

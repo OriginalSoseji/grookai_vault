@@ -2,8 +2,15 @@
 
 import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import {
+  executeOwnerWriteV1,
+  getActiveOwnerWriteContextV1,
+} from "@/lib/contracts/execute_owner_write_v1";
+import {
+  createImportResultSummaryProofV1,
+  createVaultCardCountBatchProofV1,
+} from "@/lib/contracts/owner_write_proofs_v1";
 import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/normalizeRow";
-import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
@@ -33,9 +40,13 @@ type AggregatedImportRow = {
   notes: string | null;
 };
 
+type ImportCountProofTarget = {
+  cardPrintId: string;
+  expectedCount: number;
+};
+
 type ImportVaultItemsExecutionParams = {
   client: SupabaseClient;
-  adminClient: SupabaseClient;
   userId: string;
   rows: MatchResult[];
 };
@@ -90,12 +101,23 @@ async function fetchExistingOwnedCounts(userId: string, cardIds: string[]) {
   return getOwnedCountsByCardPrintIds(userId, cardIds);
 }
 
+function requireImportOwnerWriteContext() {
+  const context = getActiveOwnerWriteContextV1();
+  if (!context) {
+    throw new Error("OWNER_WRITE: importVaultItems mutation helper called outside executeOwnerWriteV1");
+  }
+  return context;
+}
+
+// LOCK: Import write helpers must only execute from inside executeOwnerWriteV1.
 async function mirrorLegacyBucketQuantity(
   client: SupabaseClient,
   row: AggregatedImportRow,
   anchor: ActiveVaultAnchor,
   insertedAnchorId: string | null,
 ) {
+  requireImportOwnerWriteContext();
+
   if (insertedAnchorId === anchor.id) {
     return;
   }
@@ -133,12 +155,25 @@ function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByCardId: 
     .sort((left, right) => left.gvId.localeCompare(right.gvId));
 }
 
+function buildImportCountProofTargets(
+  rows: AggregatedImportRow[],
+  existingOwnedCounts: Map<string, number>,
+) {
+  return rows
+    .map((row) => ({
+      cardPrintId: row.cardId,
+      expectedCount: (existingOwnedCounts.get(row.cardId) ?? 0) + row.quantityToImport,
+    }))
+    .sort((left, right) => left.cardPrintId.localeCompare(right.cardPrintId));
+}
+
 async function createCanonicalImportInstances(
-  adminClient: SupabaseClient,
   userId: string,
   row: AggregatedImportRow,
   legacyVaultItemId: string,
 ) {
+  const { adminClient } = requireImportOwnerWriteContext();
+
   for (let copyIndex = 0; copyIndex < row.quantityToImport; copyIndex += 1) {
     const { error } = await adminClient.rpc("admin_vault_instance_create_v1", {
       p_user_id: userId,
@@ -160,7 +195,6 @@ async function createCanonicalImportInstances(
 
 export async function importVaultItemsForUser({
   client,
-  adminClient,
   userId,
   rows,
 }: ImportVaultItemsExecutionParams): Promise<ImportVaultItemsResult> {
@@ -199,80 +233,136 @@ export async function importVaultItemsForUser({
     };
   }
 
-  for (const row of reconciledRows) {
-    const quantity = Math.max(0, Math.trunc(row.quantityToImport));
-    if (quantity <= 0) {
-      continue;
-    }
-
-    console.info("vault.import.item", {
-      userId: normalizedUserId,
-      cardPrintId: row.cardId,
-      quantity,
-    });
-
-    try {
-      const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
-        client,
-        userId: normalizedUserId,
-        cardId: row.cardId,
-        createData: {
-          gvId: row.gvId,
-          quantity,
-          conditionLabel: row.condition,
-          acquisitionCost: row.acquisitionCost,
-          createdAt: row.createdAt,
-          notes: row.notes,
-          name: row.name,
-          setName: row.setName,
-        },
-      });
-
-      await createCanonicalImportInstances(adminClient, normalizedUserId, {
-        ...row,
-        quantityToImport: quantity,
-      }, anchor.id);
-
-      try {
-        // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
-        await mirrorLegacyBucketQuantity(client, {
-          ...row,
-          quantityToImport: quantity,
-        }, anchor, insertedAnchorId);
-      } catch (error) {
-        console.error("vault.import.bucket_mirror_failed", {
-          userId: normalizedUserId,
-          cardPrintId: row.cardId,
-          quantity,
-          error,
-        });
-      }
-    } catch (error) {
-      console.error("vault.import.instance_create_failed", {
-        userId: normalizedUserId,
-        cardPrintId: row.cardId,
-        quantity,
-        error,
-      });
-      throw error instanceof Error ? error : new Error("Canonical import create failed.");
-    }
-  }
-
+  const importProofTargets = buildImportCountProofTargets(
+    reconciledRows,
+    existingOwnedCounts,
+  );
   const importedCards = reconciledRows.reduce((sum, row) => sum + row.quantityToImport, 0);
   const importedEntries = reconciledRows.length;
 
-  console.info("[import:write]", {
-    importedCards,
-    importedEntries,
-    needsManualMatch,
-  });
+  return executeOwnerWriteV1<ImportVaultItemsResult>({
+    execution_name: "import_vault_items",
+    actor_id: normalizedUserId,
+    write: async (context) => {
+      context.setMetadata("import_source", "importVaultItems");
+      context.setMetadata("import_count", rows.length);
+      context.setMetadata("import_count_proof_targets", importProofTargets);
+      context.setMetadata("expected_imported_cards", importedCards);
+      context.setMetadata("expected_imported_entries", importedEntries);
+      context.setMetadata("expected_needs_manual_match", needsManualMatch);
+      context.setMetadata("expected_skipped_rows", needsManualMatch);
 
-  return {
-    importedCards,
-    importedEntries,
-    needsManualMatch,
-    skippedRows: needsManualMatch,
-  };
+      for (const row of reconciledRows) {
+        const quantity = Math.max(0, Math.trunc(row.quantityToImport));
+        if (quantity <= 0) {
+          continue;
+        }
+
+        console.info("vault.import.item", {
+          userId: normalizedUserId,
+          cardPrintId: row.cardId,
+          quantity,
+        });
+
+        try {
+          const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
+            client,
+            userId: normalizedUserId,
+            cardId: row.cardId,
+            createData: {
+              gvId: row.gvId,
+              quantity,
+              conditionLabel: row.condition,
+              acquisitionCost: row.acquisitionCost,
+              createdAt: row.createdAt,
+              notes: row.notes,
+              name: row.name,
+              setName: row.setName,
+            },
+          });
+
+          await createCanonicalImportInstances(
+            normalizedUserId,
+            {
+              ...row,
+              quantityToImport: quantity,
+            },
+            anchor.id,
+          );
+
+          try {
+            // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
+            await mirrorLegacyBucketQuantity(
+              client,
+              {
+                ...row,
+                quantityToImport: quantity,
+              },
+              anchor,
+              insertedAnchorId,
+            );
+          } catch (error) {
+            console.error("vault.import.bucket_mirror_failed", {
+              userId: normalizedUserId,
+              cardPrintId: row.cardId,
+              quantity,
+              error,
+            });
+          }
+        } catch (error) {
+          console.error("vault.import.instance_create_failed", {
+            userId: normalizedUserId,
+            cardPrintId: row.cardId,
+            quantity,
+            error,
+          });
+          throw error instanceof Error ? error : new Error("Canonical import create failed.");
+        }
+      }
+
+      console.info("[import:write]", {
+        importedCards,
+        importedEntries,
+        needsManualMatch,
+      });
+
+      return {
+        importedCards,
+        importedEntries,
+        needsManualMatch,
+        skippedRows: needsManualMatch,
+      };
+    },
+    proofs: [
+      createVaultCardCountBatchProofV1<ImportVaultItemsResult>(({ getMetadata }) => {
+        return getMetadata<ImportCountProofTarget[]>("import_count_proof_targets") ?? null;
+      }),
+      createImportResultSummaryProofV1<ImportVaultItemsResult>(({ getMetadata }) => {
+        const expectedImportedCards = getMetadata<number>("expected_imported_cards");
+        const expectedImportedEntries = getMetadata<number>("expected_imported_entries");
+        const expectedNeedsManualMatch = getMetadata<number>("expected_needs_manual_match");
+        const expectedSkippedRows = getMetadata<number>("expected_skipped_rows");
+
+        if (
+          typeof expectedImportedCards !== "number" ||
+          typeof expectedImportedEntries !== "number"
+        ) {
+          return null;
+        }
+
+        return {
+          importedCards: expectedImportedCards,
+          importedEntries: expectedImportedEntries,
+          needsManualMatch:
+            typeof expectedNeedsManualMatch === "number"
+              ? expectedNeedsManualMatch
+              : undefined,
+          skippedRows:
+            typeof expectedSkippedRows === "number" ? expectedSkippedRows : undefined,
+        };
+      }),
+    ],
+  });
 }
 
 export async function importVaultItems(rows: MatchResult[]): Promise<ImportVaultItemsResult> {
@@ -287,7 +377,6 @@ export async function importVaultItems(rows: MatchResult[]): Promise<ImportVault
 
   const result = await importVaultItemsForUser({
     client,
-    adminClient: createServerAdminClient(),
     userId: user.id,
     rows,
   });

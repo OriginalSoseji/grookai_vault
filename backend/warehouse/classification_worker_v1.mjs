@@ -13,6 +13,9 @@ import {
   buildSourceBackedMetadataExtractionPackages,
   getSourceBackedIdentity,
 } from './source_identity_contract_v1.mjs';
+import {
+  assertExecuteCanonWriteV1,
+} from '../lib/contracts/execute_canon_write_v1.mjs';
 
 const { Pool } = pg;
 
@@ -1682,100 +1685,188 @@ async function insertWarehouseEvent(client, payload) {
 }
 
 async function applyWritePlan(pool, buildResult) {
+  const payloadSnapshot = {
+    candidate_id: buildResult.candidate?.id ?? null,
+    latest_evidence_at: buildResult.latestEvidenceAt ?? null,
+    write_step_types: Array.isArray(buildResult.writePlan)
+      ? buildResult.writePlan.map((step) => step.type)
+      : [],
+    proposed_state_changes: Array.isArray(buildResult.writePlan)
+      ? buildResult.writePlan
+          .filter((step) => step.type === 'candidate_update')
+          .map((step) => step.state ?? null)
+      : [],
+  };
+
   const connection = await pool.connect();
   try {
     await connection.query('begin');
+    const candidateStateProofStep =
+      [...buildResult.writePlan]
+        .reverse()
+        .find((step) => step.type === 'candidate_update' && normalizeTextOrNull(step.state)) ?? null;
 
-    const lockSql = `
-      select id, state
-      from public.canon_warehouse_candidates
-      where id = $1
-      for update
-    `;
-    const lockResult = await connection.query(lockSql, [buildResult.candidate.id]);
-    const lockedCandidate = lockResult.rows[0] ?? null;
-    if (!lockedCandidate) {
-      throw new Error(`candidate_not_found:${buildResult.candidate.id}`);
-    }
-    if (lockedCandidate.state !== 'RAW') {
-      throw new Error(`candidate_not_raw:${buildResult.candidate.id}:${lockedCandidate.state}`);
-    }
-
-    const evidenceSql = `
-      select max(created_at) as latest_evidence_at
-      from public.canon_warehouse_candidate_evidence
-      where candidate_id = $1
-    `;
-    const evidenceResult = await connection.query(evidenceSql, [buildResult.candidate.id]);
-    const latestEvidenceAt = evidenceResult.rows[0]?.latest_evidence_at ?? null;
-    if (
-      latestEvidenceAt &&
-      buildResult.latestEvidenceAt &&
-      new Date(latestEvidenceAt).getTime() !== new Date(buildResult.latestEvidenceAt).getTime()
-    ) {
-      throw new Error(`candidate_evidence_changed_during_classification:${buildResult.candidate.id}`);
-    }
-
-    for (const step of buildResult.writePlan) {
-      if (step.type === 'candidate_hold') {
-        await connection.query(
-          `
-            update public.canon_warehouse_candidates
-            set current_review_hold_reason = $2
+    await assertExecuteCanonWriteV1({
+      execution_name: 'classification_apply_write_plan_v1',
+      payload_snapshot: payloadSnapshot,
+      write_target: connection,
+      audit_target: connection,
+      ledger_target: connection,
+      transaction_control: 'external',
+      actor_type: 'system_worker',
+      source_worker: WORKER_NAME,
+      source_system: 'warehouse',
+      contract_assertions: [
+        {
+          ok: Boolean(buildResult.candidate?.id),
+          contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+          violation_type: 'missing_candidate_id',
+          reason: 'classification_apply_write_plan_v1 requires candidate id.',
+        },
+        {
+          ok: Array.isArray(buildResult.writePlan) && buildResult.writePlan.length > 0,
+          contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+          violation_type: 'empty_write_plan',
+          reason: 'classification_apply_write_plan_v1 requires at least one write step.',
+        },
+      ],
+      proofs: [
+        {
+          name: 'candidate_row_round_trip',
+          contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+          violation_type: 'post_write_candidate_missing',
+          query: `
+            select state
+            from public.canon_warehouse_candidates
             where id = $1
+            limit 1
           `,
-          [buildResult.candidate.id, step.holdReason],
-        );
-        continue;
-      }
-
-      if (step.type === 'candidate_update') {
-        const nextState = step.state ?? lockedCandidate.state;
-        const sql = `
-          update public.canon_warehouse_candidates
-          set
-            state = $2,
-            interpreter_decision = coalesce($3, interpreter_decision),
-            interpreter_reason_code = coalesce($4, interpreter_reason_code),
-            interpreter_explanation = coalesce($5, interpreter_explanation),
-            interpreter_resolved_finish_key = case when $6::text is null then interpreter_resolved_finish_key else $6::text end,
-            needs_promotion_review = coalesce($7, needs_promotion_review),
-            proposed_action_type = case when $8::text is null then proposed_action_type else $8::text end,
-            current_review_hold_reason = $9::text,
-            identity_audit_status = $10::text,
-            identity_audit_reason_code = $11::text,
-            identity_resolution = $12::text
+          params: [buildResult.candidate.id],
+          evaluate(result) {
+            const state = normalizeTextOrNull(result.rows[0]?.state);
+            return {
+              ok: Boolean(state),
+              reason: `classification_apply_write_plan_v1 could not round-trip candidate ${buildResult.candidate.id}.`,
+            };
+          },
+        },
+        {
+          name: 'candidate_state_matches_write_plan',
+          contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+          violation_type: 'post_write_candidate_state_drift',
+          query: `
+            select state
+            from public.canon_warehouse_candidates
+            where id = $1
+            limit 1
+          `,
+          params: [buildResult.candidate.id],
+          evaluate(result) {
+            if (!candidateStateProofStep) {
+              return { ok: true };
+            }
+            const state = normalizeTextOrNull(result.rows[0]?.state);
+            return {
+              ok: state === candidateStateProofStep.state,
+              reason:
+                `classification_apply_write_plan_v1 expected state ${candidateStateProofStep.state} on ${buildResult.candidate.id}, found ${state ?? 'null'}.`,
+            };
+          },
+        },
+      ],
+      async write() {
+        const lockSql = `
+          select id, state
+          from public.canon_warehouse_candidates
           where id = $1
+          for update
         `;
-        await connection.query(sql, [
-          buildResult.candidate.id,
-          nextState,
-          step.interpreterDecision ?? null,
-          step.interpreterReasonCode ?? null,
-          step.interpreterExplanation ?? null,
-          step.interpreterResolvedFinishKey ?? null,
-          typeof step.needsPromotionReview === 'boolean' ? step.needsPromotionReview : null,
-          step.proposedActionType ?? null,
-          step.currentReviewHoldReason ?? null,
-          buildResult.identityAuditPackage?.identity_audit_status ?? null,
-          buildResult.identityAuditPackage?.reason_code ?? null,
-          buildResult.classificationPackage?.identity_resolution ?? null,
-        ]);
-        continue;
-      }
+        const lockResult = await connection.query(lockSql, [buildResult.candidate.id]);
+        const lockedCandidate = lockResult.rows[0] ?? null;
+        if (!lockedCandidate) {
+          throw new Error(`candidate_not_found:${buildResult.candidate.id}`);
+        }
+        if (lockedCandidate.state !== 'RAW') {
+          throw new Error(`candidate_not_raw:${buildResult.candidate.id}:${lockedCandidate.state}`);
+        }
 
-      if (step.type === 'event') {
-        await insertWarehouseEvent(connection, {
-          candidateId: buildResult.candidate.id,
-          eventType: step.eventType,
-          action: step.action,
-          previousState: step.previousState,
-          nextState: step.nextState,
-          notes: step.notes ?? null,
-          metadata: step.metadata,
-        });
-      }
-    }
+        const evidenceSql = `
+          select max(created_at) as latest_evidence_at
+          from public.canon_warehouse_candidate_evidence
+          where candidate_id = $1
+        `;
+        const evidenceResult = await connection.query(evidenceSql, [buildResult.candidate.id]);
+        const latestEvidenceAt = evidenceResult.rows[0]?.latest_evidence_at ?? null;
+        if (
+          latestEvidenceAt &&
+          buildResult.latestEvidenceAt &&
+          new Date(latestEvidenceAt).getTime() !== new Date(buildResult.latestEvidenceAt).getTime()
+        ) {
+          throw new Error(`candidate_evidence_changed_during_classification:${buildResult.candidate.id}`);
+        }
+
+        for (const step of buildResult.writePlan) {
+          if (step.type === 'candidate_hold') {
+            await connection.query(
+              `
+                update public.canon_warehouse_candidates
+                set current_review_hold_reason = $2
+                where id = $1
+              `,
+              [buildResult.candidate.id, step.holdReason],
+            );
+            continue;
+          }
+
+          if (step.type === 'candidate_update') {
+            const nextState = step.state ?? lockedCandidate.state;
+            const sql = `
+              update public.canon_warehouse_candidates
+              set
+                state = $2,
+                interpreter_decision = coalesce($3, interpreter_decision),
+                interpreter_reason_code = coalesce($4, interpreter_reason_code),
+                interpreter_explanation = coalesce($5, interpreter_explanation),
+                interpreter_resolved_finish_key = case when $6::text is null then interpreter_resolved_finish_key else $6::text end,
+                needs_promotion_review = coalesce($7, needs_promotion_review),
+                proposed_action_type = case when $8::text is null then proposed_action_type else $8::text end,
+                current_review_hold_reason = $9::text,
+                identity_audit_status = $10::text,
+                identity_audit_reason_code = $11::text,
+                identity_resolution = $12::text
+              where id = $1
+            `;
+            await connection.query(sql, [
+              buildResult.candidate.id,
+              nextState,
+              step.interpreterDecision ?? null,
+              step.interpreterReasonCode ?? null,
+              step.interpreterExplanation ?? null,
+              step.interpreterResolvedFinishKey ?? null,
+              typeof step.needsPromotionReview === 'boolean' ? step.needsPromotionReview : null,
+              step.proposedActionType ?? null,
+              step.currentReviewHoldReason ?? null,
+              buildResult.identityAuditPackage?.identity_audit_status ?? null,
+              buildResult.identityAuditPackage?.reason_code ?? null,
+              buildResult.classificationPackage?.identity_resolution ?? null,
+            ]);
+            continue;
+          }
+
+          if (step.type === 'event') {
+            await insertWarehouseEvent(connection, {
+              candidateId: buildResult.candidate.id,
+              eventType: step.eventType,
+              action: step.action,
+              previousState: step.previousState,
+              nextState: step.nextState,
+              notes: step.notes ?? null,
+              metadata: step.metadata,
+            });
+          }
+        }
+      },
+    });
 
     await connection.query('commit');
   } catch (error) {
@@ -1787,88 +1878,149 @@ async function applyWritePlan(pool, buildResult) {
 }
 
 async function applyReclassificationResult(pool, buildResult) {
+  const payloadSnapshot = {
+    candidate_id: buildResult.candidate?.id ?? null,
+    latest_evidence_at: buildResult.latestEvidenceAt ?? null,
+    identity_resolution: buildResult.classificationPackage?.identity_resolution ?? null,
+    identity_audit_status: buildResult.identityAuditPackage?.identity_audit_status ?? null,
+    hold_reason: buildResult.candidateSummary?.current_review_hold_reason ?? null,
+    proposed_action_type: buildResult.candidateSummary?.proposed_action_type ?? null,
+  };
+
   const connection = await pool.connect();
   try {
     await connection.query('begin');
-
-    const lockResult = await connection.query(
-      `
-        select id, state
-        from public.canon_warehouse_candidates
-        where id = $1
-        for update
-      `,
-      [buildResult.candidate.id],
-    );
-    const lockedCandidate = lockResult.rows[0] ?? null;
-    if (!lockedCandidate) {
-      throw new Error(`candidate_not_found:${buildResult.candidate.id}`);
-    }
-
-    const evidenceResult = await connection.query(
-      `
-        select max(created_at) as latest_evidence_at
-        from public.canon_warehouse_candidate_evidence
-        where candidate_id = $1
-      `,
-      [buildResult.candidate.id],
-    );
-    const latestEvidenceAt = evidenceResult.rows[0]?.latest_evidence_at ?? null;
-    if (
-      latestEvidenceAt &&
-      buildResult.latestEvidenceAt &&
-      new Date(latestEvidenceAt).getTime() !== new Date(buildResult.latestEvidenceAt).getTime()
-    ) {
-      throw new Error(`candidate_evidence_changed_during_reclassification:${buildResult.candidate.id}`);
-    }
-
-    await connection.query(
-      `
-        update public.canon_warehouse_candidates
-        set
-          interpreter_decision = coalesce($2, interpreter_decision),
-          interpreter_reason_code = coalesce($3, interpreter_reason_code),
-          interpreter_explanation = coalesce($4, interpreter_explanation),
-          interpreter_resolved_finish_key = case when $5::text is null then interpreter_resolved_finish_key else $5::text end,
-          needs_promotion_review = coalesce($6, needs_promotion_review),
-          proposed_action_type = case when $7::text is null then proposed_action_type else $7::text end,
-          current_review_hold_reason = $8::text,
-          identity_audit_status = $9::text,
-          identity_audit_reason_code = $10::text,
-          identity_resolution = $11::text
-        where id = $1
-      `,
-      [
-        buildResult.candidate.id,
-        buildResult.candidateSummary?.interpreter_decision ?? null,
-        buildResult.candidateSummary?.interpreter_reason_code ?? null,
-        buildResult.candidateSummary?.interpreter_explanation ?? null,
-        buildResult.candidateSummary?.interpreter_resolved_finish_key ?? null,
-        typeof buildResult.candidateSummary?.needs_promotion_review === 'boolean'
-          ? buildResult.candidateSummary.needs_promotion_review
-          : null,
-        buildResult.candidateSummary?.proposed_action_type ?? null,
-        buildResult.candidateSummary?.current_review_hold_reason ?? null,
-        buildResult.identityAuditPackage?.identity_audit_status ?? null,
-        buildResult.identityAuditPackage?.reason_code ?? null,
-        buildResult.classificationPackage?.identity_resolution ?? null,
+    await assertExecuteCanonWriteV1({
+      execution_name: 'classification_apply_reclassification_result_v1',
+      payload_snapshot: payloadSnapshot,
+      write_target: connection,
+      audit_target: connection,
+      ledger_target: connection,
+      transaction_control: 'external',
+      actor_type: 'system_worker',
+      source_worker: WORKER_NAME,
+      source_system: 'warehouse',
+      contract_assertions: [
+        {
+          ok: Boolean(buildResult.candidate?.id),
+          contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+          violation_type: 'missing_candidate_id',
+          reason: 'classification_apply_reclassification_result_v1 requires candidate id.',
+        },
       ],
-    );
+      proofs: [
+        {
+          name: 'candidate_reclassification_round_trip',
+          contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+          violation_type: 'post_write_reclassification_missing',
+          query: `
+            select identity_resolution, current_review_hold_reason
+            from public.canon_warehouse_candidates
+            where id = $1
+            limit 1
+          `,
+          params: [buildResult.candidate.id],
+          evaluate(result) {
+            const row = result.rows[0] ?? null;
+            const identityResolution = normalizeTextOrNull(row?.identity_resolution);
+            const holdReason = normalizeTextOrNull(row?.current_review_hold_reason);
+            const expectedIdentityResolution =
+              normalizeTextOrNull(buildResult.classificationPackage?.identity_resolution);
+            const expectedHoldReason =
+              normalizeTextOrNull(buildResult.candidateSummary?.current_review_hold_reason);
 
-    await insertWarehouseEvent(connection, {
-      candidateId: buildResult.candidate.id,
-      eventType: 'IDENTITY_RECLASSIFIED',
-      action: 'RECONCILE',
-      previousState: lockedCandidate.state,
-      nextState: lockedCandidate.state,
-      notes: buildResult.classificationPackage?.identity_resolution ?? null,
-      metadata: {
-        normalized_package: buildResult.normalizedPackage,
-        classification_package: buildResult.classificationPackage,
-        identity_audit_package: buildResult.identityAuditPackage,
-        raw_extraction_package: buildResult.sourceBackedRawExtractionPackage,
-        normalized_metadata_package: buildResult.sourceBackedNormalizedMetadataPackage,
-        interpreter_package: buildResult.sourceBackedInterpreterPackage,
+            const identityOk =
+              !expectedIdentityResolution || identityResolution === expectedIdentityResolution;
+            const holdOk = holdReason === expectedHoldReason;
+            return {
+              ok: identityOk && holdOk,
+              reason:
+                `classification_apply_reclassification_result_v1 expected identity_resolution=${expectedIdentityResolution ?? 'null'} and hold_reason=${expectedHoldReason ?? 'null'} on ${buildResult.candidate.id}.`,
+            };
+          },
+        },
+      ],
+      async write() {
+        const lockResult = await connection.query(
+          `
+            select id, state
+            from public.canon_warehouse_candidates
+            where id = $1
+            for update
+          `,
+          [buildResult.candidate.id],
+        );
+        const lockedCandidate = lockResult.rows[0] ?? null;
+        if (!lockedCandidate) {
+          throw new Error(`candidate_not_found:${buildResult.candidate.id}`);
+        }
+
+        const evidenceResult = await connection.query(
+          `
+            select max(created_at) as latest_evidence_at
+            from public.canon_warehouse_candidate_evidence
+            where candidate_id = $1
+          `,
+          [buildResult.candidate.id],
+        );
+        const latestEvidenceAt = evidenceResult.rows[0]?.latest_evidence_at ?? null;
+        if (
+          latestEvidenceAt &&
+          buildResult.latestEvidenceAt &&
+          new Date(latestEvidenceAt).getTime() !== new Date(buildResult.latestEvidenceAt).getTime()
+        ) {
+          throw new Error(`candidate_evidence_changed_during_reclassification:${buildResult.candidate.id}`);
+        }
+
+        await connection.query(
+          `
+            update public.canon_warehouse_candidates
+            set
+              interpreter_decision = coalesce($2, interpreter_decision),
+              interpreter_reason_code = coalesce($3, interpreter_reason_code),
+              interpreter_explanation = coalesce($4, interpreter_explanation),
+              interpreter_resolved_finish_key = case when $5::text is null then interpreter_resolved_finish_key else $5::text end,
+              needs_promotion_review = coalesce($6, needs_promotion_review),
+              proposed_action_type = case when $7::text is null then proposed_action_type else $7::text end,
+              current_review_hold_reason = $8::text,
+              identity_audit_status = $9::text,
+              identity_audit_reason_code = $10::text,
+              identity_resolution = $11::text
+            where id = $1
+          `,
+          [
+            buildResult.candidate.id,
+            buildResult.candidateSummary?.interpreter_decision ?? null,
+            buildResult.candidateSummary?.interpreter_reason_code ?? null,
+            buildResult.candidateSummary?.interpreter_explanation ?? null,
+            buildResult.candidateSummary?.interpreter_resolved_finish_key ?? null,
+            typeof buildResult.candidateSummary?.needs_promotion_review === 'boolean'
+              ? buildResult.candidateSummary.needs_promotion_review
+              : null,
+            buildResult.candidateSummary?.proposed_action_type ?? null,
+            buildResult.candidateSummary?.current_review_hold_reason ?? null,
+            buildResult.identityAuditPackage?.identity_audit_status ?? null,
+            buildResult.identityAuditPackage?.reason_code ?? null,
+            buildResult.classificationPackage?.identity_resolution ?? null,
+          ],
+        );
+
+        await insertWarehouseEvent(connection, {
+          candidateId: buildResult.candidate.id,
+          eventType: 'IDENTITY_RECLASSIFIED',
+          action: 'RECONCILE',
+          previousState: lockedCandidate.state,
+          nextState: lockedCandidate.state,
+          notes: buildResult.classificationPackage?.identity_resolution ?? null,
+          metadata: {
+            normalized_package: buildResult.normalizedPackage,
+            classification_package: buildResult.classificationPackage,
+            identity_audit_package: buildResult.identityAuditPackage,
+            raw_extraction_package: buildResult.sourceBackedRawExtractionPackage,
+            normalized_metadata_package: buildResult.sourceBackedNormalizedMetadataPackage,
+            interpreter_package: buildResult.sourceBackedInterpreterPackage,
+          },
+        });
       },
     });
 

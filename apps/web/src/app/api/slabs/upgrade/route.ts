@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
+import { createVaultInstanceArchivedProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
@@ -66,28 +68,23 @@ function createUserScopedServiceClient(token: string) {
   });
 }
 
-async function rollbackCreatedSlab(token: string, gvviId: string | null | undefined) {
-  const normalizedGvviId = cleanText(gvviId);
-  if (!normalizedGvviId) {
-    return;
+class SlabUpgradeOwnerWriteError extends Error {
+  status: number;
+  code: string;
+  detail?: string;
+
+  constructor(input: {
+    code: string;
+    message: string;
+    status: number;
+    detail?: string;
+  }) {
+    super(input.message);
+    this.name = "SlabUpgradeOwnerWriteError";
+    this.status = input.status;
+    this.code = input.code;
+    this.detail = input.detail;
   }
-
-  const adminClient = createServerAdminClient();
-  const { data: createdRow } = await adminClient
-    .from("vault_item_instances")
-    .select("id")
-    .eq("gv_vi_id", normalizedGvviId)
-    .maybeSingle();
-
-  const createdInstanceId = cleanText(createdRow?.id);
-  if (!createdInstanceId) {
-    return;
-  }
-
-  const userScopedClient = createUserScopedServiceClient(token);
-  await userScopedClient.rpc("vault_archive_exact_instance_v1", {
-    p_instance_id: createdInstanceId,
-  });
 }
 
 function mapFailureStatus(errorCode: string | undefined) {
@@ -229,47 +226,98 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const createResult = await createSlabInstance({
-      userId: user.id,
-      cardPrintId,
-      gvId,
-      cardName,
-      setName,
-      cardImageUrl,
-      grader: "PSA",
-      selectedGrade,
-      certNumber,
-      certNumberConfirm,
-    });
+    let createResult;
+    try {
+      createResult = await executeOwnerWriteV1({
+        execution_name: "slabs_upgrade",
+        actor_id: user.id,
+        write: async (context) => {
+          const slabResult = await createSlabInstance({
+            userId: user.id,
+            cardPrintId,
+            gvId,
+            cardName,
+            setName,
+            cardImageUrl,
+            grader: "PSA",
+            selectedGrade,
+            certNumber,
+            certNumberConfirm,
+          });
 
-    if (!createResult.ok) {
-      return NextResponse.json(
-        {
-          error: createResult.errorCode,
-          message: createResult.message,
+          if (!slabResult.ok) {
+            throw new SlabUpgradeOwnerWriteError({
+              code: slabResult.errorCode,
+              message: slabResult.message,
+              status: mapFailureStatus(slabResult.errorCode),
+            });
+          }
+
+          context.setMetadata("source_instance_id", sourceInstanceId);
+          context.setMetadata("created_gvvi_id", slabResult.gvviId);
+
+          const userScopedClient = createUserScopedServiceClient(token);
+          const { error: archiveError } = await userScopedClient.rpc(
+            "vault_archive_exact_instance_v1",
+            {
+              p_instance_id: sourceInstanceId,
+            },
+          );
+
+          if (archiveError) {
+            throw new SlabUpgradeOwnerWriteError({
+              code: "upgrade_archive_failed",
+              message:
+                "The slab was created, but the raw copy could not be archived. The upgrade was rolled back.",
+              status: 500,
+              detail: archiveError.message,
+            });
+          }
+
+          return slabResult;
         },
-        { status: mapFailureStatus(createResult.errorCode) },
-      );
-    }
+        proofs: [
+          createVaultInstanceArchivedProofV1(({ getMetadata }) => {
+            const instanceId = getMetadata<string>("source_instance_id");
+            return instanceId ? { instanceId } : null;
+          }),
+        ],
+        on_error: async ({ getMetadata, adminClient }) => {
+          const createdGvviId = cleanText(getMetadata<string>("created_gvvi_id"));
+          if (!createdGvviId) {
+            return;
+          }
 
-    const userScopedClient = createUserScopedServiceClient(token);
-    const { error: archiveError } = await userScopedClient.rpc(
-      "vault_archive_exact_instance_v1",
-      {
-        p_instance_id: sourceInstanceId,
-      },
-    );
+          const { data: createdRow } = await adminClient
+            .from("vault_item_instances")
+            .select("id")
+            .eq("gv_vi_id", createdGvviId)
+            .maybeSingle();
 
-    if (archiveError) {
-      await rollbackCreatedSlab(token, createResult.gvviId);
-      return NextResponse.json(
-        {
-          error: "upgrade_archive_failed",
-          message: "The slab was created, but the raw copy could not be archived. The upgrade was rolled back.",
-          detail: archiveError.message,
+          const createdInstanceId = cleanText(createdRow?.id);
+          if (!createdInstanceId) {
+            return;
+          }
+
+          const userScopedClient = createUserScopedServiceClient(token);
+          await userScopedClient.rpc("vault_archive_exact_instance_v1", {
+            p_instance_id: createdInstanceId,
+          });
         },
-        { status: 500 },
-      );
+      });
+    } catch (error) {
+      if (error instanceof SlabUpgradeOwnerWriteError) {
+        return NextResponse.json(
+          {
+            error: error.code,
+            message: error.message,
+            detail: error.detail,
+          },
+          { status: error.status },
+        );
+      }
+
+      throw error;
     }
 
     return NextResponse.json({
