@@ -1819,6 +1819,16 @@ class _ActionSheetMetadataText extends StatelessWidget {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PlatformDispatcher.instance.onError = (error, stackTrace) {
+    if (_isInvalidRefreshTokenRecoveryError(error)) {
+      debugPrint(
+        '[AUTH_STARTUP_V1] clearing invalid persisted session after failed recovery',
+      );
+      unawaited(_clearInvalidPersistedSession());
+      return true;
+    }
+    return false;
+  };
   await _loadEnv();
 
   final url = supabaseUrl;
@@ -1835,6 +1845,21 @@ Future<void> main() async {
     authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
   );
   runApp(const MyApp());
+}
+
+bool _isInvalidRefreshTokenRecoveryError(Object error) {
+  return error is AuthApiException &&
+      error.code == 'refresh_token_not_found';
+}
+
+Future<void> _clearInvalidPersistedSession() async {
+  try {
+    await Supabase.instance.client.auth.signOut();
+  } catch (_) {
+    // The auth client is already in a failed recovery path. Best effort is
+    // enough here because the root auth gate also treats expired sessions as
+    // unresolved until recovery finishes.
+  }
 }
 
 Future<void> _loadEnv() async {
@@ -1871,10 +1896,15 @@ class _MyAppState extends State<MyApp> {
   PendingCanonicalLinkRequest? _pendingCanonicalLink;
   int _nextPendingCanonicalLinkId = 0;
   bool _authCallbackInFlight = false;
+  Session? _authSession;
+  bool _authRecoveryPending = false;
 
   @override
   void initState() {
     super.initState();
+    final initialSession = Supabase.instance.client.auth.currentSession;
+    _authSession = initialSession;
+    _authRecoveryPending = initialSession?.isExpired ?? false;
     _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen((
       event,
     ) {
@@ -1882,6 +1912,25 @@ class _MyAppState extends State<MyApp> {
         'auth state event=${event.event.name} '
         'sessionPresent=${event.session != null}',
       );
+      if (!mounted) {
+        return;
+      }
+      final nextSession = Supabase.instance.client.auth.currentSession;
+      setState(() {
+        _authSession = nextSession;
+        _authRecoveryPending =
+            event.event == AuthChangeEvent.initialSession &&
+            (nextSession?.isExpired ?? false);
+      });
+    }, onError: (error, stackTrace) {
+      _debugGoogleOAuth('auth state error=$error');
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _authSession = Supabase.instance.client.auth.currentSession;
+        _authRecoveryPending = false;
+      });
     });
     unawaited(_attachCanonicalLinkListeners());
   }
@@ -2031,31 +2080,34 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final supabase = Supabase.instance.client;
     final app = MaterialApp(
       title: 'Grookai Vault',
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
       themeMode: ThemeMode.system,
-      home: StreamBuilder<AuthState>(
-        stream: supabase.auth.onAuthStateChange,
-        initialData: AuthState(
-          AuthChangeEvent.initialSession,
-          supabase.auth.currentSession,
-        ),
-        builder: (context, _) {
-          final session = supabase.auth.currentSession;
+      home: Builder(
+        builder: (context) {
+          final session = _authSession;
+          final shellReady =
+              session != null && !_authRecoveryPending && !session.isExpired;
           _debugGoogleOAuth(
             'auth gate sessionPresent=${session != null} '
+            'sessionExpired=${session?.isExpired ?? false} '
+            'recoveryPending=$_authRecoveryPending '
             'pendingCanonicalLink=${_pendingCanonicalLink != null}',
           );
-          return session == null
-              ? const LoginPage()
-              : AppShell(
+          if (_authRecoveryPending) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator.adaptive()),
+            );
+          }
+          return shellReady
+              ? AppShell(
                   pendingCanonicalLink: _pendingCanonicalLink,
                   onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
-                );
+                )
+              : const LoginPage();
         },
       ),
     );
