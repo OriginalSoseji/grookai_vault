@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# GROOKAI_MANAGED_HOOK_V1
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOCAL_HOOK="$HOOK_DIR/pre-push.grookai-local"
+
+echo "Running Grookai pre-push verification..."
+npm run shipcheck
+
+status="$(git status --porcelain)"
+
+filtered_status="$(
+  printf '%s\n' "$status" \
+    | sed '/^ M \.flutter-plugins-dependencies$/d' \
+    | sed '/^$/d'
+)"
+
+if [ -n "$filtered_status" ]; then
+  echo "Pre-push blocked: worktree contains changes outside allowed local noise."
+  printf '%s\n' "$filtered_status"
+  exit 1
+fi
+
+if [ -n "$status" ]; then
+  echo "Allowed local noise present: .flutter-plugins-dependencies"
+fi
+
+if [ -f "$LOCAL_HOOK" ]; then
+  sh "$LOCAL_HOOK" "$@"
+fi

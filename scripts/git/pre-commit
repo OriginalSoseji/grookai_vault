@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# GROOKAI_MANAGED_HOOK_V1
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOCAL_HOOK="$HOOK_DIR/pre-commit.grookai-local"
+
+echo "Running Grookai pre-commit shipcheck..."
+npm run shipcheck
+
+if [ -f "$LOCAL_HOOK" ]; then
+  sh "$LOCAL_HOOK" "$@"
+fi

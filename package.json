@@ -5,6 +5,8 @@
   },
   "scripts": {
     "preflight": "npm run grookai:preflight",
+    "shipcheck": "npm run preflight && npm run contracts:quarantine-report && npm run contracts:deferred-report && npm --prefix apps/web run typecheck && npm --prefix apps/web run lint",
+    "hooks:install": "node scripts/git/install_hooks_v1.mjs",
     "contracts:drift-audit": "node scripts/contracts/run_drift_audit_v1.mjs",
     "contracts:runtime-health": "node scripts/contracts/run_runtime_health_v1.mjs",
     "contracts:quarantine-report": "node scripts/contracts/run_quarantine_report_v1.mjs",
