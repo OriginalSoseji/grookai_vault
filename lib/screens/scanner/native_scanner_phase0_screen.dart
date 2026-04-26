@@ -65,7 +65,7 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   bool _autoCaptureInFlight = false;
   bool _hasAutoCaptured = false;
   bool _autoCaptureArmed = true;
-  final double _zoom = 2.25;
+  final double _zoom = 1.3;
   final double _exposureBias = 0.25;
 
   bool get _isIos => defaultTargetPlatform == TargetPlatform.iOS;

@@ -16,7 +16,7 @@ fileprivate enum ScannerCameraPhase0Error: Error {
 }
 
 private enum ScannerCameraPhase0Defaults {
-  static let zoom: CGFloat = 2.25
+  static let zoom: CGFloat = 1.3
   static let exposureBias: Float = 0.25
   static let captureSettleDelay: TimeInterval = 0.3
   static let stableReadinessDuration: TimeInterval = 0.10
@@ -454,7 +454,7 @@ private final class ScannerCameraPhase0CameraController: NSObject {
       return
     }
 
-    let zoomFactor = max(1.0, min(zoom, device.activeFormat.videoMaxZoomFactor))
+    let zoomFactor = max(1.0, min(zoom, 3.0, device.activeFormat.videoMaxZoomFactor))
 
     do {
       try device.lockForConfiguration()
