@@ -1,7 +1,18 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+void _identityScanTimingLog(String stage, Map<String, Object?> fields) {
+  if (!kDebugMode) {
+    return;
+  }
+  final details = fields.entries
+      .map((entry) => '${entry.key}=${entry.value}')
+      .join(' ');
+  debugPrint('[identity_scan_timing] $stage $details');
+}
 
 class IdentityScanStartResult {
   IdentityScanStartResult({
@@ -46,14 +57,23 @@ class IdentityScanService {
   }
 
   Future<IdentityScanStartResult> startScan({required XFile frontFile}) async {
+    final totalWatch = Stopwatch()..start();
     final user = _client.auth.currentUser;
     if (user == null) throw Exception('auth_required');
 
+    final readWatch = Stopwatch()..start();
     final bytes = await frontFile.readAsBytes();
+    readWatch.stop();
+    _identityScanTimingLog('file_read_done', {
+      'elapsed_ms': readWatch.elapsedMilliseconds,
+      'bytes': bytes.length,
+    });
     var path = _newPath(user.id);
 
     // Upload front image to condition-scans bucket
     String uploadedPath;
+    final uploadWatch = Stopwatch()..start();
+    _identityScanTimingLog('upload_start', {'bytes': bytes.length});
     try {
       uploadedPath = await _client.storage
           .from('identity-scans')
@@ -65,7 +85,7 @@ class IdentityScanService {
               upsert: false,
             ),
           );
-    } on StorageException catch (e) {
+    } on StorageException {
       path = _newPath(user.id);
       try {
         uploadedPath = await _client.storage
@@ -98,6 +118,11 @@ class IdentityScanService {
         throw Exception('upload_failed:$retryErr');
       }
     }
+    uploadWatch.stop();
+    _identityScanTimingLog('upload_done', {
+      'elapsed_ms': uploadWatch.elapsedMilliseconds,
+      'total_ms': totalWatch.elapsedMilliseconds,
+    });
     path = uploadedPath;
 
     final images = {
@@ -106,6 +131,7 @@ class IdentityScanService {
       'front': {'path': path},
     };
 
+    final snapshotWatch = Stopwatch()..start();
     final resp = await _client
         .from('identity_snapshots')
         .insert({
@@ -120,7 +146,13 @@ class IdentityScanService {
         .single();
 
     final snapshotId = resp['id'] as String;
+    snapshotWatch.stop();
+    _identityScanTimingLog('snapshot_created', {
+      'elapsed_ms': snapshotWatch.elapsedMilliseconds,
+      'total_ms': totalWatch.elapsedMilliseconds,
+    });
 
+    final enqueueWatch = Stopwatch()..start();
     final enqueueResp = await _client.functions.invoke(
       'identity_scan_enqueue_v1',
       body: {'snapshot_id': snapshotId},
@@ -133,6 +165,13 @@ class IdentityScanService {
     if (data is! Map) throw Exception('enqueue_bad_shape');
     final eventId = (data['identity_scan_event_id'] ?? '').toString();
     if (eventId.isEmpty) throw Exception('enqueue_missing_event_id');
+    enqueueWatch.stop();
+    totalWatch.stop();
+    _identityScanTimingLog('event_created', {
+      'elapsed_ms': enqueueWatch.elapsedMilliseconds,
+      'total_ms': totalWatch.elapsedMilliseconds,
+      'status': enqueueResp.status,
+    });
 
     return IdentityScanStartResult(
       snapshotId: snapshotId,
@@ -142,6 +181,7 @@ class IdentityScanService {
   }
 
   Future<IdentityScanPollResult> pollOnce(String eventId) async {
+    final pollWatch = Stopwatch()..start();
     final resp = await _client.functions.invoke(
       'identity_scan_get_v1?event_id=$eventId',
       method: HttpMethod.get,
@@ -167,8 +207,8 @@ class IdentityScanService {
         .limit(1)
         .maybeSingle();
 
-    if (resultRow != null && resultRow is Map) {
-      final rr = Map<String, dynamic>.from(resultRow as Map);
+    if (resultRow != null) {
+      final rr = Map<String, dynamic>.from(resultRow);
       status = (rr['status'] ?? status).toString();
       error = rr['error']?.toString() ?? error;
       candidates = rr['candidates'] is List
@@ -178,6 +218,13 @@ class IdentityScanService {
           ? Map<String, dynamic>.from(rr['signals'] as Map)
           : null;
     }
+    pollWatch.stop();
+    _identityScanTimingLog('poll_response', {
+      'elapsed_ms': pollWatch.elapsedMilliseconds,
+      'status': status,
+      'candidates': candidates.length,
+      'has_result_row': resultRow != null,
+    });
 
     return IdentityScanPollResult(
       status: status,

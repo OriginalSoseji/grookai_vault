@@ -77,6 +77,9 @@ class _AppShellState extends State<AppShell> {
     _ensureShellPageBuilt(_destination);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_maybeHandlePendingCanonicalLink());
+      if (kNativeScannerPhase0Enabled) {
+        unawaited(NativeScannerPhase0Bridge.startSession());
+      }
     });
   }
 
@@ -407,6 +410,11 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (kNativeScannerPhase0Enabled) {
+      await _pushPage<void>(const NativeScannerPhase0Screen());
+      return;
+    }
+
     final file = await _pushPage<XFile?>(
       ConditionCameraScreen(
         title: 'Scan Card',

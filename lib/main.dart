@@ -26,11 +26,13 @@ import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
+import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/smart_feed_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
+import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
@@ -49,6 +51,8 @@ part 'main_shell.dart';
 part 'main_vault.dart';
 
 const bool kDebugTouchLog = false;
+const bool kNativeScannerPhase0Enabled =
+    kDebugMode && bool.fromEnvironment('GROOKAI_NATIVE_SCANNER_PHASE0');
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
