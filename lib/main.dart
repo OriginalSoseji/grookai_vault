@@ -51,8 +51,8 @@ part 'main_shell.dart';
 part 'main_vault.dart';
 
 const bool kDebugTouchLog = false;
-const bool kNativeScannerPhase0Enabled =
-    kDebugMode && bool.fromEnvironment('GROOKAI_NATIVE_SCANNER_PHASE0');
+bool get kNativeScannerPhase0Enabled =>
+    defaultTargetPlatform == TargetPlatform.iOS;
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
