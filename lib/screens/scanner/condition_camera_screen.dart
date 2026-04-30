@@ -8,12 +8,20 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 import '../../widgets/scanner/condition_capture_overlay.dart';
 import '../../services/scanner/native_quad_detector.dart';
+import '../../services/scanner_v3/convergence_state_v1.dart';
+import '../../services/scanner_v3/scanner_v3_live_loop_controller.dart';
 
 class ConditionCameraScreen extends StatefulWidget {
   final String title;
   final String? hintText;
+  final bool enableScannerV3LiveLoopPrototype;
 
-  const ConditionCameraScreen({super.key, required this.title, this.hintText});
+  const ConditionCameraScreen({
+    super.key,
+    required this.title,
+    this.hintText,
+    this.enableScannerV3LiveLoopPrototype = false,
+  });
 
   @override
   State<ConditionCameraScreen> createState() => _ConditionCameraScreenState();
@@ -39,11 +47,16 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   bool _didLogTapFocusError = false;
   bool _didLogTapExposureError = false;
   bool _streaming = false;
+  ScannerV3LiveLoopController? _scannerV3LoopController;
+  ScannerV3LiveLoopState _scannerV3LoopState = ScannerV3LiveLoopState.initial;
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
 
   @override
   void initState() {
     super.initState();
+    if (widget.enableScannerV3LiveLoopPrototype) {
+      _scannerV3LoopController = ScannerV3LiveLoopController();
+    }
     _initCamera();
   }
 
@@ -83,12 +96,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         }
       }
       _focusApisReady = true;
+      _startStream();
     });
     if (mounted) {
       setState(() {});
     }
     _startSensors();
-    _startStream();
   }
 
   Future<void> _handlePreviewTap(TapDownDetails details) async {
@@ -146,7 +159,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   void _startStream() {
-    if (_controller == null || _streaming) return;
+    if (_controller == null ||
+        _streaming ||
+        !_controller!.value.isInitialized) {
+      return;
+    }
     _streaming = true;
     _controller!.startImageStream((image) async {
       final now = DateTime.now();
@@ -191,6 +208,40 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
           '[quad] detected=${points != null} overlayMode=$_overlayMode canShoot=$_canShoot',
         );
       }
+      _processScannerV3LiveLoopFrame(image, rotation, points);
+    });
+  }
+
+  void _processScannerV3LiveLoopFrame(
+    CameraImage image,
+    int rotation,
+    List<Offset>? points,
+  ) {
+    final controller = _scannerV3LoopController;
+    if (controller == null) return;
+
+    final nextState = controller.processCameraFrame(
+      image: image,
+      sensorRotation: rotation,
+      quadPointsNorm: points,
+    );
+    if (nextState == null || !mounted) return;
+
+    if (kDebugMode) {
+      debugPrint(
+        '[scanner_v3_live_loop] status=${nextState.statusText} '
+        'best=${nextState.currentBestCandidateId ?? 'none'} '
+        'locked=${nextState.lockedCandidateId ?? 'none'} '
+        'confidence=${nextState.confidenceScore.toStringAsFixed(2)} '
+        'accepted=${nextState.acceptedFrameCount} '
+        'rejected=${nextState.rejectedFrameCount} '
+        'reason=${nextState.lastDecisionReason} '
+        'elapsed_ms=${nextState.lastSampleElapsedMs}',
+      );
+    }
+
+    setState(() {
+      _scannerV3LoopState = nextState;
     });
   }
 
@@ -347,6 +398,15 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                                 focusTapNorm: _lastFocusTapNorm,
                               ),
                             ),
+                            if (widget.enableScannerV3LiveLoopPrototype)
+                              Positioned(
+                                left: 12,
+                                right: 12,
+                                top: 12,
+                                child: IgnorePointer(
+                                  child: _buildScannerV3LiveLoopOverlay(theme),
+                                ),
+                              ),
                           ],
                         ),
                       );
@@ -410,5 +470,82 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       return null;
     }
     return Offset(x.toDouble(), y.toDouble());
+  }
+
+  Widget _buildScannerV3LiveLoopOverlay(ThemeData theme) {
+    final state = _scannerV3LoopState;
+    final candidate =
+        state.lockedCandidateId ?? state.currentBestCandidateId ?? 'none';
+    final confidence = (state.confidenceScore * 100).round();
+    final quality = state.quality;
+    final statusColor = state.locked
+        ? Colors.greenAccent
+        : theme.colorScheme.primaryContainer;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.68),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: statusColor.withValues(alpha: 0.7)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: DefaultTextStyle(
+          style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    state.locked ? Icons.lock : Icons.radar,
+                    size: 16,
+                    color: statusColor,
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      state.locked ? 'Locked' : 'Scanning...',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Text('$confidence%'),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'candidate: $candidate',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'frames: ${state.acceptedFrameCount} accepted / '
+                '${state.rejectedFrameCount} rejected',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'quality: blur ${quality.blurScore.toStringAsFixed(3)} '
+                'bright ${quality.brightnessScore.toStringAsFixed(2)} '
+                'glare ${quality.glareRatio.toStringAsFixed(2)}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (state.lastDecisionReason.isNotEmpty)
+                Text(
+                  'state: ${state.lastDecisionReason}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
