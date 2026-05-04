@@ -10,6 +10,7 @@ import '../../widgets/scanner/condition_capture_overlay.dart';
 import '../../services/scanner/native_quad_detector.dart';
 import '../../services/scanner_v3/convergence_state_v1.dart';
 import '../../services/scanner_v3/scanner_v3_live_loop_controller.dart';
+import 'widgets/scanner_v3_camera_overlay.dart';
 
 class ConditionCameraScreen extends StatefulWidget {
   final String title;
@@ -51,6 +52,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   ScannerV3LiveLoopController? _scannerV3LoopController;
   ScannerV3LiveLoopState _scannerV3LoopState = ScannerV3LiveLoopState.initial;
   bool _scannerV3ArtifactExportEnabled = kDebugMode;
+  bool _scannerV3DebugExpanded = false;
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
 
   @override
@@ -373,6 +375,19 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     });
   }
 
+  void _resetScannerV3Loop() {
+    _scannerV3LoopController?.reset();
+    if (!mounted) return;
+    setState(() {
+      _scannerV3LoopState = ScannerV3LiveLoopState.initial;
+      _scannerV3DebugExpanded = false;
+    });
+  }
+
+  void _openManualSearch() {
+    Navigator.of(context).maybePop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -464,24 +479,33 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                               borderRadius: BorderRadius.circular(12),
                               child: CameraPreview(_controller!),
                             ),
-                            IgnorePointer(
-                              ignoring: true,
-                              child: ConditionCaptureOverlay(
+                            if (widget.enableScannerV3LiveLoopPrototype)
+                              ScannerV3CameraOverlay(
+                                state: _scannerV3LoopState,
                                 guideRect: guideRect,
-                                statusText: _liveStatus,
-                                isReady: _overlayMode == OverlayMode.ready,
-                                mode: _overlayMode,
                                 quadPointsNorm: _quadPoints,
                                 focusTapNorm: _lastFocusTapNorm,
-                              ),
-                            ),
-                            if (widget.enableScannerV3LiveLoopPrototype)
-                              Positioned(
-                                left: 12,
-                                right: 12,
-                                top: 12,
-                                child: IgnorePointer(
-                                  child: _buildScannerV3LiveLoopOverlay(theme),
+                                exportEnabled: _scannerV3ArtifactExportEnabled,
+                                debugExpanded: _scannerV3DebugExpanded,
+                                onToggleDebug: () {
+                                  setState(() {
+                                    _scannerV3DebugExpanded =
+                                        !_scannerV3DebugExpanded;
+                                  });
+                                },
+                                onTryAgain: _resetScannerV3Loop,
+                                onSearchManually: _openManualSearch,
+                              )
+                            else
+                              IgnorePointer(
+                                ignoring: true,
+                                child: ConditionCaptureOverlay(
+                                  guideRect: guideRect,
+                                  statusText: _liveStatus,
+                                  isReady: _overlayMode == OverlayMode.ready,
+                                  mode: _overlayMode,
+                                  quadPointsNorm: _quadPoints,
+                                  focusTapNorm: _lastFocusTapNorm,
                                 ),
                               ),
                           ],
@@ -492,31 +516,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 },
               ),
             ),
-            if (widget.enableScannerV3LiveLoopPrototype)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.70),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: theme.colorScheme.primary.withValues(alpha: 0.75),
-                    ),
-                  ),
-                  child: Text(
-                    'SCANNER V3 LIVE LOOP  |  identity mode: V8',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0,
-                    ),
-                  ),
-                ),
-              )
-            else
+            if (!widget.enableScannerV3LiveLoopPrototype)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: GestureDetector(
@@ -557,157 +557,6 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 ),
               ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildScannerV3LiveLoopOverlay(ThemeData theme) {
-    final state = _scannerV3LoopState;
-    final candidate =
-        state.lockedCandidateId ?? state.currentBestCandidateId ?? 'none';
-    final topCandidates = state.candidates
-        .take(5)
-        .map(
-          (candidate) =>
-              '${candidate.id}:${candidate.score.toStringAsFixed(1)}',
-        )
-        .join(' ');
-    final topCandidatesLabel = topCandidates.isEmpty ? 'none' : topCandidates;
-    final confidence = (state.confidenceScore * 100).round();
-    final quality = state.quality;
-    final statusColor = state.locked
-        ? Colors.greenAccent
-        : state.identityDecisionState == 'candidate_unknown'
-        ? Colors.orangeAccent
-        : state.identityDecisionState == 'candidate_ambiguous'
-        ? Colors.amberAccent
-        : theme.colorScheme.primaryContainer;
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.68),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: statusColor.withValues(alpha: 0.7)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        child: DefaultTextStyle(
-          style: theme.textTheme.labelMedium!.copyWith(color: Colors.white),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'SCANNER V3 LIVE LOOP',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.labelLarge?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 0,
-                ),
-              ),
-              const SizedBox(height: 2),
-              const Text(
-                'identity mode: V8',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 6),
-              Row(
-                children: [
-                  Icon(
-                    state.locked
-                        ? Icons.lock
-                        : state.identityDecisionState == 'candidate_unknown'
-                        ? Icons.help_outline
-                        : state.identityDecisionState == 'candidate_ambiguous'
-                        ? Icons.compare_arrows
-                        : Icons.radar,
-                    size: 16,
-                    color: statusColor,
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      state.statusText,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Text('$confidence%'),
-                ],
-              ),
-              const SizedBox(height: 6),
-              Text(
-                'candidate: $candidate',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'top5: $topCandidatesLabel',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'decision: ${state.identityDecisionState} '
-                'gap ${state.identityScoreGap.toStringAsFixed(1)} '
-                'top ${state.identityTopCandidateScore.toStringAsFixed(1)} '
-                'second ${state.identitySecondCandidateScore.toStringAsFixed(1)}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'support: crops ${state.identityCropSupportCount} '
-                'recent ${state.identityRecentFrameSupportCount} '
-                'dist ${state.identityTopDistance?.toStringAsFixed(3) ?? "n/a"}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'frames: ${state.acceptedFrameCount} accepted / '
-                '${state.rejectedFrameCount} rejected',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'quality: blur ${quality.blurScore.toStringAsFixed(3)} '
-                'bright ${quality.brightnessScore.toStringAsFixed(2)} '
-                'glare ${quality.glareRatio.toStringAsFixed(2)}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'quad: ${state.selectedQuadSource} '
-                'conf ${state.detectorConfidence?.toStringAsFixed(2) ?? "n/a"}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'identity: ${state.identitySignalSource} '
-                'vec ${state.vectorCandidateCount} '
-                'e ${state.embeddingElapsedMs ?? -1}ms '
-                'v ${state.vectorSearchElapsedMs ?? -1}ms',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              if (state.lastDecisionReason.isNotEmpty)
-                Text(
-                  'state: ${state.lastDecisionReason}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              Text(
-                'export: ${_scannerV3ArtifactExportEnabled ? 'on' : 'off'}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
         ),
       ),
     );
