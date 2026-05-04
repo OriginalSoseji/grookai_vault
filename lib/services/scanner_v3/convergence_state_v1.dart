@@ -4,18 +4,36 @@ class CandidateState {
     required this.score,
     required this.occurrences,
     required this.lastSeenFrame,
-    required this.fullCardHash,
-    required this.artworkHash,
-    required this.lastDistance,
+    this.fullCardHash,
+    this.artworkHash,
+    this.lastDistance,
+    this.source = 'hash_cluster',
+    this.vectorDistance,
+    this.topFiveOccurrences,
+    this.bestRank,
+    this.cropContributionCount,
+    this.recentTopFiveCount,
+    this.similarity,
+    this.aggregateScore,
+    this.rerankScore,
   });
 
   final String id;
   final double score;
   final int occurrences;
   final int lastSeenFrame;
-  final String fullCardHash;
-  final String artworkHash;
-  final int lastDistance;
+  final String? fullCardHash;
+  final String? artworkHash;
+  final int? lastDistance;
+  final String source;
+  final double? vectorDistance;
+  final int? topFiveOccurrences;
+  final int? bestRank;
+  final int? cropContributionCount;
+  final int? recentTopFiveCount;
+  final double? similarity;
+  final double? aggregateScore;
+  final double? rerankScore;
 }
 
 class ScannerV3QualitySnapshot {
@@ -60,6 +78,23 @@ class ScannerV3LiveLoopState {
     required this.statusText,
     required this.lastDecisionReason,
     required this.lastSampleElapsedMs,
+    required this.selectedQuadSource,
+    required this.detectorConfidence,
+    required this.detectorElapsedMs,
+    required this.embeddingElapsedMs,
+    required this.vectorSearchElapsedMs,
+    required this.vectorCandidateCount,
+    required this.identitySignalSource,
+    required this.identityDecisionState,
+    required this.identityDecisionReason,
+    required this.identityScoreGap,
+    required this.identityTopCandidateScore,
+    required this.identitySecondCandidateScore,
+    required this.identityFrameScoreGap,
+    required this.identityCropSupportCount,
+    required this.identityRecentFrameSupportCount,
+    required this.identityTopDistance,
+    required this.identityTopSimilarity,
   });
 
   static const initial = ScannerV3LiveLoopState(
@@ -76,6 +111,23 @@ class ScannerV3LiveLoopState {
     statusText: 'Scanning...',
     lastDecisionReason: 'waiting_for_frames',
     lastSampleElapsedMs: 0,
+    selectedQuadSource: 'waiting',
+    detectorConfidence: null,
+    detectorElapsedMs: null,
+    embeddingElapsedMs: null,
+    vectorSearchElapsedMs: null,
+    vectorCandidateCount: 0,
+    identitySignalSource: 'waiting',
+    identityDecisionState: 'scanning',
+    identityDecisionReason: 'waiting_for_candidates',
+    identityScoreGap: 0,
+    identityTopCandidateScore: 0,
+    identitySecondCandidateScore: 0,
+    identityFrameScoreGap: 0,
+    identityCropSupportCount: 0,
+    identityRecentFrameSupportCount: 0,
+    identityTopDistance: null,
+    identityTopSimilarity: null,
   );
 
   final int frameCount;
@@ -91,6 +143,23 @@ class ScannerV3LiveLoopState {
   final String statusText;
   final String lastDecisionReason;
   final int lastSampleElapsedMs;
+  final String selectedQuadSource;
+  final double? detectorConfidence;
+  final int? detectorElapsedMs;
+  final int? embeddingElapsedMs;
+  final int? vectorSearchElapsedMs;
+  final int vectorCandidateCount;
+  final String identitySignalSource;
+  final String identityDecisionState;
+  final String identityDecisionReason;
+  final double identityScoreGap;
+  final double identityTopCandidateScore;
+  final double identitySecondCandidateScore;
+  final double identityFrameScoreGap;
+  final int identityCropSupportCount;
+  final int identityRecentFrameSupportCount;
+  final double? identityTopDistance;
+  final double? identityTopSimilarity;
 
   CandidateState? get bestCandidate {
     if (candidates.isEmpty) return null;

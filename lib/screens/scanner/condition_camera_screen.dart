@@ -47,15 +47,29 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   bool _didLogTapFocusError = false;
   bool _didLogTapExposureError = false;
   bool _streaming = false;
+  bool _processingScannerV3LiveLoopFrame = false;
   ScannerV3LiveLoopController? _scannerV3LoopController;
   ScannerV3LiveLoopState _scannerV3LoopState = ScannerV3LiveLoopState.initial;
+  bool _scannerV3ArtifactExportEnabled = kDebugMode;
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
 
   @override
   void initState() {
     super.initState();
     if (widget.enableScannerV3LiveLoopPrototype) {
-      _scannerV3LoopController = ScannerV3LiveLoopController();
+      _scannerV3LoopController = ScannerV3LiveLoopController(
+        exportArtifactsOnLock: _scannerV3ArtifactExportEnabled,
+        onLockArtifactExported: (result) {
+          if (!kDebugMode) return;
+          if (result.success) {
+            debugPrint(
+              '[scanner_v3_lock_export] saved=${result.outputDirectory}',
+            );
+          } else {
+            debugPrint('[scanner_v3_lock_export] skipped=${result.error}');
+          }
+        },
+      );
     }
     _initCamera();
   }
@@ -170,20 +184,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       if (now.difference(_lastQuadUpdate).inMilliseconds < 200) return;
       _lastQuadUpdate = now;
       final rotation = _controller?.description.sensorOrientation ?? 0;
-      final quad = await _quadDetector.detect(image, rotation);
-      List<Offset>? points;
-      if (quad != null) {
-        final rawPoints = quad['points_norm'];
-        if (rawPoints is List && rawPoints.length == 4) {
-          points = rawPoints
-              .map(_normalizedOffsetFromRawPoint)
-              .whereType<Offset>()
-              .toList();
-          if (points.length != 4) {
-            points = null;
-          }
-        }
-      }
+      final quadDetection = await _quadDetector.detectWithDiagnostics(
+        image,
+        rotation,
+      );
+      final points = quadDetection.success ? quadDetection.pointsNorm : null;
 
       if (points != null) {
         if (mounted &&
@@ -205,26 +210,60 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       }
       if (kDebugMode) {
         debugPrint(
-          '[quad] detected=${points != null} overlayMode=$_overlayMode canShoot=$_canShoot',
+          '[quad] registered=${quadDetection.registered} '
+          'called=${quadDetection.called} '
+          'detected=${points != null} '
+          'confidence=${quadDetection.confidence?.toStringAsFixed(2) ?? "n/a"} '
+          'elapsed_ms=${quadDetection.elapsedMs ?? -1} '
+          'failure=${quadDetection.failureReason ?? 'none'} '
+          'overlayMode=$_overlayMode canShoot=$_canShoot',
         );
       }
-      _processScannerV3LiveLoopFrame(image, rotation, points);
+      await _processScannerV3LiveLoopFrame(
+        image,
+        rotation,
+        points,
+        quadDetection,
+      );
     });
   }
 
-  void _processScannerV3LiveLoopFrame(
+  Future<void> _processScannerV3LiveLoopFrame(
     CameraImage image,
     int rotation,
     List<Offset>? points,
-  ) {
+    NativeQuadDetection quadDetection,
+  ) async {
     final controller = _scannerV3LoopController;
     if (controller == null) return;
+    if (_processingScannerV3LiveLoopFrame) return;
+    _processingScannerV3LiveLoopFrame = true;
 
-    final nextState = controller.processCameraFrame(
-      image: image,
-      sensorRotation: rotation,
-      quadPointsNorm: points,
-    );
+    ScannerV3LiveLoopState? nextState;
+    try {
+      nextState = await controller.processCameraFrame(
+        image: image,
+        sensorRotation: rotation,
+        quadPointsNorm: points,
+        quadDetectorSnapshot: ScannerV3QuadDetectorSnapshot(
+          registered: quadDetection.registered,
+          called: quadDetection.called,
+          success: quadDetection.success,
+          confidence: quadDetection.confidence,
+          elapsedMs: quadDetection.elapsedMs,
+          failureReason: quadDetection.failureReason,
+          rawResponse: quadDetection.rawResponse,
+        ),
+      );
+    } catch (error, stackTrace) {
+      if (kDebugMode) {
+        debugPrint('[scanner_v3_live_loop] identity pipeline error: $error');
+        debugPrint('$stackTrace');
+      }
+      nextState = null;
+    } finally {
+      _processingScannerV3LiveLoopFrame = false;
+    }
     if (nextState == null || !mounted) return;
 
     if (kDebugMode) {
@@ -235,13 +274,26 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         'confidence=${nextState.confidenceScore.toStringAsFixed(2)} '
         'accepted=${nextState.acceptedFrameCount} '
         'rejected=${nextState.rejectedFrameCount} '
+        'quad=${nextState.selectedQuadSource} '
+        'detector_conf=${nextState.detectorConfidence?.toStringAsFixed(2) ?? "n/a"} '
+        'identity=${nextState.identitySignalSource} '
+        'decision=${nextState.identityDecisionState} '
+        'gap=${nextState.identityScoreGap.toStringAsFixed(2)} '
+        'top1=${nextState.identityTopCandidateScore.toStringAsFixed(2)} '
+        'top2=${nextState.identitySecondCandidateScore.toStringAsFixed(2)} '
+        'frame_gap=${nextState.identityFrameScoreGap.toStringAsFixed(3)} '
+        'crops=${nextState.identityCropSupportCount} '
+        'recent=${nextState.identityRecentFrameSupportCount} '
+        'embed_ms=${nextState.embeddingElapsedMs ?? -1} '
+        'vector_ms=${nextState.vectorSearchElapsedMs ?? -1} '
         'reason=${nextState.lastDecisionReason} '
         'elapsed_ms=${nextState.lastSampleElapsedMs}',
       );
     }
 
+    final state = nextState;
     setState(() {
-      _scannerV3LoopState = nextState;
+      _scannerV3LoopState = state;
     });
   }
 
@@ -335,6 +387,31 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: [
+          if (widget.enableScannerV3LiveLoopPrototype && kDebugMode)
+            IconButton(
+              tooltip: _scannerV3ArtifactExportEnabled
+                  ? 'Scanner V3 lock export on'
+                  : 'Scanner V3 lock export off',
+              icon: Icon(
+                _scannerV3ArtifactExportEnabled
+                    ? Icons.save
+                    : Icons.save_outlined,
+              ),
+              onPressed: () {
+                setState(() {
+                  _scannerV3ArtifactExportEnabled =
+                      !_scannerV3ArtifactExportEnabled;
+                });
+                _scannerV3LoopController?.setArtifactExportEnabled(
+                  _scannerV3ArtifactExportEnabled,
+                );
+                debugPrint(
+                  '[scanner_v3_lock_export] enabled=$_scannerV3ArtifactExportEnabled',
+                );
+              },
+            ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -415,71 +492,96 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: GestureDetector(
-                onTap: _canShoot
-                    ? () async {
-                        debugPrint(
-                          '[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}',
-                        );
-                        await _takePicture();
-                      }
-                    : null,
+            if (widget.enableScannerV3LiveLoopPrototype)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                 child: Container(
-                  width: 72,
-                  height: 72,
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _takingPicture
-                        ? theme.colorScheme.primary.withValues(alpha: 0.3)
-                        : _canShoot
-                        ? theme.colorScheme.primary
-                        : theme.colorScheme.primary.withValues(alpha: 0.4),
-                    boxShadow: [
-                      BoxShadow(
-                        color: theme.colorScheme.primary.withValues(
-                          alpha: 0.25,
-                        ),
-                        blurRadius: 12,
-                        spreadRadius: 2,
-                      ),
-                    ],
+                    color: Colors.black.withValues(alpha: 0.70),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: theme.colorScheme.primary.withValues(alpha: 0.75),
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.circle,
-                    color: Colors.white,
-                    size: 28,
+                  child: Text(
+                    'SCANNER V3 LIVE LOOP  |  identity mode: V8',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                ),
+              )
+            else
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: GestureDetector(
+                  onTap: _canShoot
+                      ? () async {
+                          debugPrint(
+                            '[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}',
+                          );
+                          await _takePicture();
+                        }
+                      : null,
+                  child: Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _takingPicture
+                          ? theme.colorScheme.primary.withValues(alpha: 0.3)
+                          : _canShoot
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.primary.withValues(alpha: 0.4),
+                      boxShadow: [
+                        BoxShadow(
+                          color: theme.colorScheme.primary.withValues(
+                            alpha: 0.25,
+                          ),
+                          blurRadius: 12,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.circle,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
 
-  Offset? _normalizedOffsetFromRawPoint(dynamic rawPoint) {
-    if (rawPoint is! List || rawPoint.length < 2) {
-      return null;
-    }
-    final x = rawPoint[0];
-    final y = rawPoint[1];
-    if (x is! num || y is! num) {
-      return null;
-    }
-    return Offset(x.toDouble(), y.toDouble());
-  }
-
   Widget _buildScannerV3LiveLoopOverlay(ThemeData theme) {
     final state = _scannerV3LoopState;
     final candidate =
         state.lockedCandidateId ?? state.currentBestCandidateId ?? 'none';
+    final topCandidates = state.candidates
+        .take(5)
+        .map(
+          (candidate) =>
+              '${candidate.id}:${candidate.score.toStringAsFixed(1)}',
+        )
+        .join(' ');
+    final topCandidatesLabel = topCandidates.isEmpty ? 'none' : topCandidates;
     final confidence = (state.confidenceScore * 100).round();
     final quality = state.quality;
     final statusColor = state.locked
         ? Colors.greenAccent
+        : state.identityDecisionState == 'candidate_unknown'
+        ? Colors.orangeAccent
+        : state.identityDecisionState == 'candidate_ambiguous'
+        ? Colors.amberAccent
         : theme.colorScheme.primaryContainer;
 
     return DecoratedBox(
@@ -496,17 +598,40 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              Text(
+                'SCANNER V3 LIVE LOOP',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0,
+                ),
+              ),
+              const SizedBox(height: 2),
+              const Text(
+                'identity mode: V8',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 6),
               Row(
                 children: [
                   Icon(
-                    state.locked ? Icons.lock : Icons.radar,
+                    state.locked
+                        ? Icons.lock
+                        : state.identityDecisionState == 'candidate_unknown'
+                        ? Icons.help_outline
+                        : state.identityDecisionState == 'candidate_ambiguous'
+                        ? Icons.compare_arrows
+                        : Icons.radar,
                     size: 16,
                     color: statusColor,
                   ),
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(
-                      state.locked ? 'Locked' : 'Scanning...',
+                      state.statusText,
                       style: theme.textTheme.titleSmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -524,6 +649,26 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
+                'top5: $topCandidatesLabel',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'decision: ${state.identityDecisionState} '
+                'gap ${state.identityScoreGap.toStringAsFixed(1)} '
+                'top ${state.identityTopCandidateScore.toStringAsFixed(1)} '
+                'second ${state.identitySecondCandidateScore.toStringAsFixed(1)}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'support: crops ${state.identityCropSupportCount} '
+                'recent ${state.identityRecentFrameSupportCount} '
+                'dist ${state.identityTopDistance?.toStringAsFixed(3) ?? "n/a"}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
                 'frames: ${state.acceptedFrameCount} accepted / '
                 '${state.rejectedFrameCount} rejected',
                 maxLines: 1,
@@ -536,12 +681,31 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
+              Text(
+                'quad: ${state.selectedQuadSource} '
+                'conf ${state.detectorConfidence?.toStringAsFixed(2) ?? "n/a"}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'identity: ${state.identitySignalSource} '
+                'vec ${state.vectorCandidateCount} '
+                'e ${state.embeddingElapsedMs ?? -1}ms '
+                'v ${state.vectorSearchElapsedMs ?? -1}ms',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               if (state.lastDecisionReason.isNotEmpty)
                 Text(
                   'state: ${state.lastDecisionReason}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
+              Text(
+                'export: ${_scannerV3ArtifactExportEnabled ? 'on' : 'off'}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ),
