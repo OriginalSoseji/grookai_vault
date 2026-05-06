@@ -1,9 +1,15 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../services/scanner_v3/convergence_state_v1.dart';
+import 'scanner_actions_bar.dart';
+import 'scanner_confidence_rail.dart';
+import 'scanner_debug_panel.dart';
+import 'scanner_frame_guide.dart';
+import 'scanner_primary_card_tile.dart';
+import 'scanner_shutter_button.dart';
+import 'scanner_state_label.dart';
 
 class ScannerV3CameraOverlay extends StatelessWidget {
   const ScannerV3CameraOverlay({
@@ -13,7 +19,14 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.quadPointsNorm,
     required this.focusTapNorm,
     required this.exportEnabled,
+    required this.flashEnabled,
     required this.debugExpanded,
+    required this.cameraPresetLabel,
+    required this.cameraPreviewSize,
+    required this.cameraInputSize,
+    required this.cameraInitFallbackReason,
+    required this.onClose,
+    required this.onToggleFlash,
     required this.onToggleDebug,
     required this.onTryAgain,
     required this.onSearchManually,
@@ -24,44 +37,76 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final List<Offset>? quadPointsNorm;
   final Offset? focusTapNorm;
   final bool exportEnabled;
+  final bool flashEnabled;
   final bool debugExpanded;
+  final String cameraPresetLabel;
+  final Size? cameraPreviewSize;
+  final Size? cameraInputSize;
+  final String? cameraInitFallbackReason;
+  final VoidCallback onClose;
+  final VoidCallback onToggleFlash;
   final VoidCallback onToggleDebug;
   final VoidCallback onTryAgain;
   final VoidCallback onSearchManually;
 
   @override
   Widget build(BuildContext context) {
-    final tone = _ScannerV3Tone.fromState(state);
+    final tone = ScannerV3UiTone.fromState(state);
+    final edgeLocked = quadPointsNorm != null && quadPointsNorm!.length == 4;
+    final locked = state.identityDecisionState == 'identity_locked';
+    final padding = MediaQuery.of(context).padding;
+    final shutterBottomOffset = tone.showUnknownActions || tone.showRescanAction
+        ? 236.0
+        : tone.showPrimaryCandidate
+        ? 214.0
+        : 168.0;
 
     return Stack(
       fit: StackFit.expand,
       children: [
         IgnorePointer(
-          child: CustomPaint(
-            painter: _ScannerV3GuidePainter(
-              guideRect: guideRect,
-              quadPointsNorm: quadPointsNorm,
-              focusTapNorm: focusTapNorm,
-              accent: tone.accent,
-              locked: state.identityDecisionState == 'identity_locked',
-            ),
+          child: ScannerFrameGuide(
+            guideRect: guideRect,
+            quadPointsNorm: quadPointsNorm,
+            focusTapNorm: focusTapNorm,
+            accent: tone.accent,
+            edgeLocked: edgeLocked,
+            locked: locked,
           ),
         ),
         Positioned(
-          top: 14,
+          top: padding.top + 10,
           left: 16,
           right: 16,
-          child: IgnorePointer(child: _TopStatusPill(tone: tone)),
+          child: _ScannerTopControls(
+            tone: tone,
+            flashEnabled: flashEnabled,
+            onClose: onClose,
+            onToggleFlash: onToggleFlash,
+          ),
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: padding.bottom + shutterBottomOffset,
+          child: Center(
+            child: ScannerShutterButton(tone: tone, onPressed: onTryAgain),
+          ),
         ),
         Positioned(
           left: 14,
           right: 14,
-          bottom: 14,
-          child: _BottomGlassPanel(
+          bottom: padding.bottom + 14,
+          child: _ScannerBottomPanel(
             state: state,
             tone: tone,
+            edgeLocked: edgeLocked,
             exportEnabled: exportEnabled,
             debugExpanded: debugExpanded,
+            cameraPresetLabel: cameraPresetLabel,
+            cameraPreviewSize: cameraPreviewSize,
+            cameraInputSize: cameraInputSize,
+            cameraInitFallbackReason: cameraInitFallbackReason,
             onToggleDebug: onToggleDebug,
             onTryAgain: onTryAgain,
             onSearchManually: onSearchManually,
@@ -72,49 +117,67 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   }
 }
 
-class _TopStatusPill extends StatelessWidget {
-  const _TopStatusPill({required this.tone});
+class _ScannerTopControls extends StatelessWidget {
+  const _ScannerTopControls({
+    required this.tone,
+    required this.flashEnabled,
+    required this.onClose,
+    required this.onToggleFlash,
+  });
 
-  final _ScannerV3Tone tone;
+  final ScannerV3UiTone tone;
+  final bool flashEnabled;
+  final VoidCallback onClose;
+  final VoidCallback onToggleFlash;
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    return Row(
+      children: [
+        _GlassIconButton(
+          icon: Icons.close_rounded,
+          tooltip: 'Close scanner',
+          onPressed: onClose,
+        ),
+        Expanded(
+          child: Center(child: _TopStatusPill(tone: tone)),
+        ),
+        _GlassIconButton(
+          icon: flashEnabled ? Icons.flash_on_rounded : Icons.flash_off_rounded,
+          tooltip: flashEnabled ? 'Flash on' : 'Flash off',
+          onPressed: onToggleFlash,
+        ),
+      ],
+    );
+  }
+}
 
-    return Align(
-      alignment: Alignment.center,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(999),
-        child: BackdropFilter(
-          filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: Colors.black.withValues(alpha: 0.42),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(tone.icon, size: 15, color: tone.accent),
-                  const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      tone.pill,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: textTheme.labelMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+class _GlassIconButton extends StatelessWidget {
+  const _GlassIconButton({
+    required this.icon,
+    required this.tooltip,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.black.withValues(alpha: 0.38),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+          ),
+          child: IconButton(
+            tooltip: tooltip,
+            icon: Icon(icon, color: Colors.white, size: 21),
+            onPressed: onPressed,
           ),
         ),
       ),
@@ -122,148 +185,43 @@ class _TopStatusPill extends StatelessWidget {
   }
 }
 
-class _BottomGlassPanel extends StatelessWidget {
-  const _BottomGlassPanel({
-    required this.state,
-    required this.tone,
-    required this.exportEnabled,
-    required this.debugExpanded,
-    required this.onToggleDebug,
-    required this.onTryAgain,
-    required this.onSearchManually,
-  });
+class _TopStatusPill extends StatelessWidget {
+  const _TopStatusPill({required this.tone});
 
-  final ScannerV3LiveLoopState state;
-  final _ScannerV3Tone tone;
-  final bool exportEnabled;
-  final bool debugExpanded;
-  final VoidCallback onToggleDebug;
-  final VoidCallback onTryAgain;
-  final VoidCallback onSearchManually;
+  final ScannerV3UiTone tone;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final candidate = _displayCandidate(
-      state.lockedCandidateId ?? state.currentBestCandidateId,
-    );
-    final confidence = (state.confidenceScore * 100).clamp(0, 100).round();
-
     return ClipRRect(
-      borderRadius: BorderRadius.circular(22),
+      borderRadius: BorderRadius.circular(999),
       child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+        filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: const Color(0xE6121317),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.11)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.34),
-                blurRadius: 28,
-                offset: const Offset(0, 14),
-              ),
-            ],
+            color: Colors.black.withValues(alpha: 0.40),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+            borderRadius: BorderRadius.circular(999),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            child: Row(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _StateOrb(tone: tone),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tone.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: textTheme.titleMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 0,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            tone.subtitle(candidate),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: textTheme.bodySmall?.copyWith(
-                              color: Colors.white.withValues(alpha: 0.72),
-                              height: 1.2,
-                              letterSpacing: 0,
-                            ),
-                          ),
-                        ],
-                      ),
+                Icon(tone.icon, size: 15, color: tone.accent),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    tone.pill,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.labelMedium?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0,
                     ),
-                    const SizedBox(width: 12),
-                    _ConfidenceBadge(
-                      confidence: confidence,
-                      accent: tone.accent,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 14),
-                _ConfidenceRail(
-                  value: state.confidenceScore.clamp(0.0, 1.0).toDouble(),
-                  accent: tone.accent,
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: onTryAgain,
-                        icon: const Icon(Icons.refresh, size: 18),
-                        label: const Text('Try again'),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          side: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.22),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: FilledButton.icon(
-                        onPressed: onSearchManually,
-                        icon: const Icon(Icons.search, size: 18),
-                        label: const Text('Search manually'),
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: const Color(0xFF111217),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                if (kDebugMode) ...[
-                  const SizedBox(height: 10),
-                  _DebugDisclosure(
-                    state: state,
-                    expanded: debugExpanded,
-                    exportEnabled: exportEnabled,
-                    onToggle: onToggleDebug,
                   ),
-                ],
+                ),
               ],
             ),
           ),
@@ -271,26 +229,146 @@ class _BottomGlassPanel extends StatelessWidget {
       ),
     );
   }
+}
 
-  String _displayCandidate(String? id) {
-    if (id == null || id.isEmpty) return 'candidate';
-    if (id.length <= 14) return id;
-    return '${id.substring(0, 8)}...${id.substring(id.length - 4)}';
+class _ScannerBottomPanel extends StatelessWidget {
+  const _ScannerBottomPanel({
+    required this.state,
+    required this.tone,
+    required this.edgeLocked,
+    required this.exportEnabled,
+    required this.debugExpanded,
+    required this.cameraPresetLabel,
+    required this.cameraPreviewSize,
+    required this.cameraInputSize,
+    required this.cameraInitFallbackReason,
+    required this.onToggleDebug,
+    required this.onTryAgain,
+    required this.onSearchManually,
+  });
+
+  final ScannerV3LiveLoopState state;
+  final ScannerV3UiTone tone;
+  final bool edgeLocked;
+  final bool exportEnabled;
+  final bool debugExpanded;
+  final String cameraPresetLabel;
+  final Size? cameraPreviewSize;
+  final Size? cameraInputSize;
+  final String? cameraInitFallbackReason;
+  final VoidCallback onToggleDebug;
+  final VoidCallback onTryAgain;
+  final VoidCallback onSearchManually;
+
+  @override
+  Widget build(BuildContext context) {
+    final candidate = state.bestCandidate;
+    final candidateId = state.lockedCandidateId ?? state.currentBestCandidateId;
+
+    return AnimatedScale(
+      scale: tone.locked ? 1.0 : 0.995,
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: BackdropFilter(
+          filter: ui.ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: const Color(0xE6111216),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.11)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.36),
+                  blurRadius: 30,
+                  offset: const Offset(0, 16),
+                ),
+              ],
+            ),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 140, maxHeight: 260),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 15, 16, 14),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _StateOrb(tone: tone),
+                        const SizedBox(width: 12),
+                        Expanded(child: ScannerStateLabel(tone: tone)),
+                        const SizedBox(width: 12),
+                        _SignalBadge(label: tone.badge, tone: tone),
+                      ],
+                    ),
+                    if (tone.showPrimaryCandidate) ...[
+                      const SizedBox(height: 12),
+                      ScannerPrimaryCardTile(
+                        candidateId: candidateId,
+                        candidateName: candidate?.name,
+                        setCode: candidate?.setCode,
+                        number: candidate?.number,
+                        locked: tone.locked,
+                        accent: tone.accent,
+                      ),
+                    ],
+                    const SizedBox(height: 14),
+                    ScannerConfidenceRail(
+                      value: tone.progress,
+                      accent: tone.accent,
+                      indeterminate: tone.indeterminateProgress,
+                    ),
+                    const SizedBox(height: 12),
+                    _QualityStrip(
+                      state: state,
+                      tone: tone,
+                      edgeLocked: edgeLocked,
+                    ),
+                    if (tone.showUnknownActions || tone.showRescanAction) ...[
+                      const SizedBox(height: 12),
+                      ScannerActionsBar(
+                        showUnknownActions: tone.showUnknownActions,
+                        showRescanAction: tone.showRescanAction,
+                        onTryAgain: onTryAgain,
+                        onSearchManually: onSearchManually,
+                      ),
+                    ],
+                    ScannerDebugPanel(
+                      state: state,
+                      expanded: debugExpanded,
+                      exportEnabled: exportEnabled,
+                      cameraPresetLabel: cameraPresetLabel,
+                      cameraPreviewSize: cameraPreviewSize,
+                      cameraInputSize: cameraInputSize,
+                      cameraInitFallbackReason: cameraInitFallbackReason,
+                      onToggle: onToggleDebug,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
 class _StateOrb extends StatelessWidget {
   const _StateOrb({required this.tone});
 
-  final _ScannerV3Tone tone;
+  final ScannerV3UiTone tone;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: tone.accent.withValues(alpha: 0.16),
-        border: Border.all(color: tone.accent.withValues(alpha: 0.42)),
+        color: tone.accent.withValues(alpha: 0.15),
+        border: Border.all(color: tone.accent.withValues(alpha: 0.38)),
       ),
       child: SizedBox(
         width: 44,
@@ -301,24 +379,26 @@ class _StateOrb extends StatelessWidget {
   }
 }
 
-class _ConfidenceBadge extends StatelessWidget {
-  const _ConfidenceBadge({required this.confidence, required this.accent});
+class _SignalBadge extends StatelessWidget {
+  const _SignalBadge({required this.label, required this.tone});
 
-  final int confidence;
-  final Color accent;
+  final String label;
+  final ScannerV3UiTone tone;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: accent.withValues(alpha: 0.14),
+        color: tone.accent.withValues(alpha: 0.13),
         borderRadius: BorderRadius.circular(13),
-        border: Border.all(color: accent.withValues(alpha: 0.30)),
+        border: Border.all(color: tone.accent.withValues(alpha: 0.28)),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         child: Text(
-          '$confidence%',
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.w800,
@@ -330,344 +410,107 @@ class _ConfidenceBadge extends StatelessWidget {
   }
 }
 
-class _ConfidenceRail extends StatelessWidget {
-  const _ConfidenceRail({required this.value, required this.accent});
+class _QualityStrip extends StatelessWidget {
+  const _QualityStrip({
+    required this.state,
+    required this.tone,
+    required this.edgeLocked,
+  });
 
-  final double value;
-  final Color accent;
+  final ScannerV3LiveLoopState state;
+  final ScannerV3UiTone tone;
+  final bool edgeLocked;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(999),
-      child: SizedBox(
-        height: 5,
-        child: Stack(
-          fit: StackFit.expand,
+    final glareOk = state.quality.glareRatio < 0.12;
+    final brightnessOk =
+        state.quality.brightnessScore > 0.18 &&
+        state.quality.brightnessScore < 0.86;
+    final qualityText = state.sampledFrameCount == 0
+        ? 'Position card'
+        : state.quality.accepted
+        ? 'Image clear'
+        : tone.hint;
+
+    return Row(
+      children: [
+        Expanded(
+          child: _QualityChip(
+            icon: state.quality.accepted
+                ? Icons.check_rounded
+                : Icons.pan_tool_alt_rounded,
+            label: qualityText,
+            active: state.quality.accepted,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _QualityChip(
+            icon: edgeLocked ? Icons.crop_free_rounded : Icons.fit_screen,
+            label: edgeLocked ? 'Edges locked' : 'Align edges',
+            active: edgeLocked,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _QualityChip(
+            icon: glareOk && brightnessOk
+                ? Icons.light_mode_rounded
+                : Icons.flare_rounded,
+            label: glareOk && brightnessOk ? 'Light good' : 'Reduce glare',
+            active: glareOk && brightnessOk,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _QualityChip extends StatelessWidget {
+  const _QualityChip({
+    required this.icon,
+    required this.label,
+    required this.active,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = active ? Colors.white : Colors.white.withValues(alpha: 0.62);
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: active ? 0.08 : 0.045),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: active ? 0.13 : 0.07),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ColoredBox(color: Colors.white.withValues(alpha: 0.09)),
-            FractionallySizedBox(
-              alignment: Alignment.centerLeft,
-              widthFactor: value,
-              child: ColoredBox(color: accent),
+            Icon(icon, color: color, size: 14),
+            const SizedBox(width: 5),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: color,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0,
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-class _DebugDisclosure extends StatelessWidget {
-  const _DebugDisclosure({
-    required this.state,
-    required this.expanded,
-    required this.exportEnabled,
-    required this.onToggle,
-  });
-
-  final ScannerV3LiveLoopState state;
-  final bool expanded;
-  final bool exportEnabled;
-  final VoidCallback onToggle;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final topCandidates = state.candidates
-        .take(5)
-        .map(
-          (candidate) =>
-              '${candidate.id}:${candidate.score.toStringAsFixed(1)}',
-        )
-        .join(' ');
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-      ),
-      child: Column(
-        children: [
-          InkWell(
-            borderRadius: BorderRadius.circular(14),
-            onTap: onToggle,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              child: Row(
-                children: [
-                  Icon(
-                    expanded ? Icons.expand_more : Icons.chevron_right,
-                    color: Colors.white.withValues(alpha: 0.72),
-                    size: 18,
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      'Diagnostics',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: textTheme.labelMedium?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.74),
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'V8',
-                    style: textTheme.labelSmall?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.58),
-                      letterSpacing: 0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          AnimatedCrossFade(
-            firstChild: const SizedBox.shrink(),
-            secondChild: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
-              child: DefaultTextStyle(
-                style: textTheme.labelSmall!.copyWith(
-                  color: Colors.white.withValues(alpha: 0.62),
-                  height: 1.25,
-                  letterSpacing: 0,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _debugLine(
-                      'decision',
-                      '${state.identityDecisionState}  gap ${state.identityScoreGap.toStringAsFixed(2)}  top ${state.identityTopCandidateScore.toStringAsFixed(2)}',
-                    ),
-                    _debugLine(
-                      'support',
-                      'crops ${state.identityCropSupportCount}  recent ${state.identityRecentFrameSupportCount}  dist ${state.identityTopDistance?.toStringAsFixed(3) ?? "n/a"}',
-                    ),
-                    _debugLine(
-                      'frames',
-                      '${state.acceptedFrameCount} accepted / ${state.rejectedFrameCount} rejected',
-                    ),
-                    _debugLine(
-                      'quality',
-                      'blur ${state.quality.blurScore.toStringAsFixed(3)}  bright ${state.quality.brightnessScore.toStringAsFixed(2)}  glare ${state.quality.glareRatio.toStringAsFixed(2)}',
-                    ),
-                    _debugLine(
-                      'timing',
-                      'embed ${state.embeddingElapsedMs ?? -1}ms  vector ${state.vectorSearchElapsedMs ?? -1}ms  export ${exportEnabled ? "on" : "off"}',
-                    ),
-                    _debugLine(
-                      'top5',
-                      topCandidates.isEmpty ? 'none' : topCandidates,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            crossFadeState: expanded
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 160),
-            sizeCurve: Curves.easeOutCubic,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _debugLine(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5),
-      child: Text(
-        '$label: $value',
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
-    );
-  }
-}
-
-class _ScannerV3GuidePainter extends CustomPainter {
-  _ScannerV3GuidePainter({
-    required this.guideRect,
-    required this.quadPointsNorm,
-    required this.focusTapNorm,
-    required this.accent,
-    required this.locked,
-  });
-
-  final Rect guideRect;
-  final List<Offset>? quadPointsNorm;
-  final Offset? focusTapNorm;
-  final Color accent;
-  final bool locked;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final overlay = Paint()..color = Colors.black.withValues(alpha: 0.30);
-    final fullPath = Path()..addRect(Offset.zero & size);
-    final guidePath = Path()
-      ..addRRect(RRect.fromRectAndRadius(guideRect, const Radius.circular(24)));
-    canvas.drawPath(
-      Path.combine(PathOperation.difference, fullPath, guidePath),
-      overlay,
-    );
-
-    final glowPaint = Paint()
-      ..color = accent.withValues(alpha: locked ? 0.36 : 0.18)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = locked ? 4 : 3
-      ..maskFilter = ui.MaskFilter.blur(ui.BlurStyle.outer, locked ? 9 : 5);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(guideRect, const Radius.circular(24)),
-      glowPaint,
-    );
-
-    final borderPaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.18)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(guideRect, const Radius.circular(24)),
-      borderPaint,
-    );
-
-    final cornerPaint = Paint()
-      ..color = accent.withValues(alpha: locked ? 0.96 : 0.78)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = locked ? 4 : 3
-      ..strokeCap = StrokeCap.round;
-    final corner = (guideRect.width * 0.13).clamp(26.0, 48.0);
-    _drawCorner(canvas, cornerPaint, guideRect.topLeft, corner, true, true);
-    _drawCorner(canvas, cornerPaint, guideRect.topRight, corner, false, true);
-    _drawCorner(
-      canvas,
-      cornerPaint,
-      guideRect.bottomRight,
-      corner,
-      false,
-      false,
-    );
-    _drawCorner(canvas, cornerPaint, guideRect.bottomLeft, corner, true, false);
-
-    final points = quadPointsNorm;
-    if (points != null && points.length == 4) {
-      final quadPath = Path();
-      for (var i = 0; i < points.length; i += 1) {
-        final point = Offset(
-          points[i].dx * size.width,
-          points[i].dy * size.height,
-        );
-        if (i == 0) {
-          quadPath.moveTo(point.dx, point.dy);
-        } else {
-          quadPath.lineTo(point.dx, point.dy);
-        }
-      }
-      quadPath.close();
-      final quadPaint = Paint()
-        ..color = accent.withValues(alpha: 0.62)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2;
-      canvas.drawPath(quadPath, quadPaint);
-    }
-
-    final focus = focusTapNorm;
-    if (focus != null) {
-      final center = Offset(focus.dx * size.width, focus.dy * size.height);
-      final focusPaint = Paint()
-        ..color = Colors.white.withValues(alpha: 0.82)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4;
-      canvas.drawCircle(center, 18, focusPaint);
-      canvas.drawCircle(center, 3, focusPaint);
-    }
-  }
-
-  void _drawCorner(
-    Canvas canvas,
-    Paint paint,
-    Offset point,
-    double length,
-    bool left,
-    bool top,
-  ) {
-    final xDir = left ? 1.0 : -1.0;
-    final yDir = top ? 1.0 : -1.0;
-    canvas.drawLine(point, Offset(point.dx + (length * xDir), point.dy), paint);
-    canvas.drawLine(point, Offset(point.dx, point.dy + (length * yDir)), paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant _ScannerV3GuidePainter oldDelegate) {
-    return oldDelegate.guideRect != guideRect ||
-        oldDelegate.quadPointsNorm != quadPointsNorm ||
-        oldDelegate.focusTapNorm != focusTapNorm ||
-        oldDelegate.accent != accent ||
-        oldDelegate.locked != locked;
-  }
-}
-
-class _ScannerV3Tone {
-  const _ScannerV3Tone({
-    required this.title,
-    required this.pill,
-    required this.subtitle,
-    required this.icon,
-    required this.accent,
-  });
-
-  final String title;
-  final String pill;
-  final String Function(String candidate) subtitle;
-  final IconData icon;
-  final Color accent;
-
-  static _ScannerV3Tone fromState(ScannerV3LiveLoopState state) {
-    switch (state.identityDecisionState) {
-      case 'identity_locked':
-        return _ScannerV3Tone(
-          title: 'Locked',
-          pill: 'Card locked',
-          subtitle: (candidate) => 'Matched $candidate',
-          icon: Icons.lock_rounded,
-          accent: const Color(0xFF7EE7B2),
-        );
-      case 'candidate_unknown':
-        return _ScannerV3Tone(
-          title: 'No confident match',
-          pill: 'Not enough evidence',
-          subtitle: (_) => 'Try again or search manually.',
-          icon: Icons.help_outline_rounded,
-          accent: const Color(0xFFF2C76E),
-        );
-      case 'candidate_ambiguous':
-        return _ScannerV3Tone(
-          title: 'Need another angle',
-          pill: 'Signal is close',
-          subtitle: (_) => 'Tilt slightly and hold steady.',
-          icon: Icons.compare_arrows_rounded,
-          accent: const Color(0xFFFFD37A),
-        );
-      case 'candidate_unstable':
-        return _ScannerV3Tone(
-          title: 'Hold steady',
-          pill: 'Stabilizing',
-          subtitle: (_) => 'Keep the card inside the frame.',
-          icon: Icons.radar_rounded,
-          accent: const Color(0xFFAEC8FF),
-        );
-      default:
-        return _ScannerV3Tone(
-          title: 'Scanning',
-          pill: 'Align card',
-          subtitle: (_) => 'Center the card and fill the guide.',
-          icon: Icons.center_focus_strong_rounded,
-          accent: const Color(0xFFD7DEE8),
-        );
-    }
   }
 }

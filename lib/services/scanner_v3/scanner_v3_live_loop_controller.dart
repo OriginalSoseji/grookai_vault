@@ -61,6 +61,16 @@ class ScannerV3LiveLoopController {
   static const double maxBrightnessScore = 0.90;
   static const double maxGlareRatio = 0.18;
   static const double minCardFillRatio = 0.08;
+  static const double maxCardFillRatio = 0.72;
+  static const double minNativeDetectorConfidence = 0.45;
+  static const double minFallbackBorderConfidence = 0.35;
+  static const double minFallbackCardFillRatio = 0.14;
+  static const double maxFallbackCardFillRatio = 0.60;
+  static const double minArtworkForegroundRatio = 0.015;
+  static const double maxArtworkForegroundRatio = 0.88;
+  static const double minArtworkLumaStdDev = 0.035;
+  static const double minFallbackArtworkForegroundRatio = 0.045;
+  static const double minFallbackArtworkLumaStdDev = 0.055;
   static const int candidateDistanceThreshold = 26;
   static const int minAcceptedFramesToLock = 3;
   static const double lockScoreGap = 6.0;
@@ -125,10 +135,7 @@ class ScannerV3LiveLoopController {
 
     if (normalized == null) {
       _rejectedFrameCount += 1;
-      _decayCandidates();
-      _lastVoteSnapshot = _candidateVoteState.decayOnly(
-        frameIndex: _frameCount,
-      );
+      _clearIdentityState();
       _lastIdentitySignalSource = 'normalization_failed';
       return _publishState(
         quality: const ScannerV3QualitySnapshot(
@@ -146,16 +153,17 @@ class ScannerV3LiveLoopController {
             : 'normalization_failed',
         detectorConfidence: quadDetectorSnapshot?.confidence,
         detectorElapsedMs: quadDetectorSnapshot?.elapsedMs,
+        cardPresent: false,
+        cardPresentReason: quadDetectorSnapshot?.success == true
+            ? 'normalized_empty'
+            : 'no_quad',
       );
     }
 
     final quality = _measureQuality(normalized);
     if (!quality.accepted) {
       _rejectedFrameCount += 1;
-      _decayCandidates();
-      _lastVoteSnapshot = _candidateVoteState.decayOnly(
-        frameIndex: _frameCount,
-      );
+      _clearIdentityState();
       _lastIdentitySignalSource = 'quality_rejected';
       return _publishState(
         quality: quality,
@@ -164,6 +172,25 @@ class ScannerV3LiveLoopController {
         selectedQuadSource: normalized.selectedQuadSource,
         detectorConfidence: normalized.detectorConfidence,
         detectorElapsedMs: normalized.detectorElapsedMs,
+        cardPresent: false,
+        cardPresentReason: _cardAbsentReasonForQuality(quality),
+      );
+    }
+
+    final cardPresent = _evaluateCardPresent(normalized, quality);
+    if (!cardPresent.present) {
+      _rejectedFrameCount += 1;
+      _clearIdentityState();
+      _lastIdentitySignalSource = 'card_absent';
+      return _publishState(
+        quality: quality,
+        decisionReason: 'card_present_false:${cardPresent.reason}',
+        elapsedMs: stopwatch.elapsedMilliseconds,
+        selectedQuadSource: normalized.selectedQuadSource,
+        detectorConfidence: normalized.detectorConfidence,
+        detectorElapsedMs: normalized.detectorElapsedMs,
+        cardPresent: false,
+        cardPresentReason: cardPresent.reason,
       );
     }
 
@@ -283,6 +310,8 @@ class ScannerV3LiveLoopController {
       selectedQuadSource: normalized.selectedQuadSource,
       detectorConfidence: normalized.detectorConfidence,
       detectorElapsedMs: normalized.detectorElapsedMs,
+      cardPresent: true,
+      cardPresentReason: 'card_present',
     );
   }
 
@@ -312,6 +341,24 @@ class ScannerV3LiveLoopController {
     _state = ScannerV3LiveLoopState.initial;
   }
 
+  void _clearIdentityState() {
+    _candidates.clear();
+    _candidateVoteState.reset();
+    _lastVoteSnapshot = CandidateVoteSnapshot.empty;
+    _locked = false;
+    _lockedCandidateId = null;
+    _artifactExported = false;
+    _lastEmbeddingElapsedMs = null;
+    _lastVectorSearchElapsedMs = null;
+    _lastRerankElapsedMs = null;
+    _lastIdentityPipelineElapsedMs = null;
+    _lastVectorCandidateCount = 0;
+    _lastIdentityCropCount = 0;
+    _lastSuccessfulIdentityCropCount = 0;
+    _lastUnifiedIdentityCandidateCount = 0;
+    _lastIdentityErrors = const <String>[];
+  }
+
   _NormalizedFrame? _normalizeFrame({
     required CameraImage image,
     required int sensorRotation,
@@ -332,7 +379,9 @@ class ScannerV3LiveLoopController {
     final displayQuadTargetAspect = targetAspectRatio / displayAspectRatio;
 
     final hasDetectedQuad =
-        quadPointsNorm != null && quadPointsNorm.length == 4;
+        quadPointsNorm != null &&
+        quadPointsNorm.length == 4 &&
+        _nativeDetectorLooksUsable(quadDetectorSnapshot);
     final heuristicDisplayQuad = hasDetectedQuad
         ? null
         : _detectDisplayCardQuadFromFrame(
@@ -418,6 +467,25 @@ class ScannerV3LiveLoopController {
       orderedDisplayQuad: orderedDisplayQuad,
       imageQuad: imageQuad,
     );
+  }
+
+  bool _nativeDetectorLooksUsable(
+    ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
+  ) {
+    if (quadDetectorSnapshot?.success != true) return false;
+    final raw = quadDetectorSnapshot?.rawResponse;
+    final diagnostics = raw == null ? null : raw['diagnostics'];
+    final pipeline = diagnostics is Map
+        ? diagnostics['pipeline']?.toString()
+        : null;
+    final source = diagnostics is Map
+        ? diagnostics['selected_candidate_source']?.toString()
+        : null;
+    if (pipeline == 'recovered_center_quad_fallback' ||
+        source == 'recovered_center_quad_fallback') {
+      return false;
+    }
+    return true;
   }
 
   List<Offset>? _detectDisplayCardQuadFromFrame({
@@ -1279,6 +1347,143 @@ class ScannerV3LiveLoopController {
     );
   }
 
+  _CardPresentDecision _evaluateCardPresent(
+    _NormalizedFrame frame,
+    ScannerV3QualitySnapshot quality,
+  ) {
+    if (!quality.accepted) {
+      return _CardPresentDecision(
+        present: false,
+        reason: _cardAbsentReasonForQuality(quality),
+      );
+    }
+    if (frame.cardFillRatio < minCardFillRatio ||
+        frame.cardFillRatio > maxCardFillRatio) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'fill_ratio_invalid',
+      );
+    }
+
+    final hasNativeQuad = frame.selectedQuadSource == 'native_detector' &&
+        frame.detectorSuccess;
+    final hasStrongFallback = frame.selectedQuadSource == 'yuv_fallback' &&
+        frame.borderConfidence >= minFallbackBorderConfidence;
+    if (!hasNativeQuad && !hasStrongFallback) {
+      return const _CardPresentDecision(present: false, reason: 'no_quad');
+    }
+
+    if (hasNativeQuad &&
+        (frame.detectorConfidence ?? 0) < minNativeDetectorConfidence) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'low_detector_confidence',
+      );
+    }
+    if (hasStrongFallback &&
+        (frame.cardFillRatio < minFallbackCardFillRatio ||
+            frame.cardFillRatio > maxFallbackCardFillRatio)) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'fill_ratio_invalid',
+      );
+    }
+
+    final fullCardStats = _lumaStats(
+      frame,
+      const _NormRect(left: 0, top: 0, right: 1, bottom: 1),
+    );
+    if (fullCardStats.stdDev < minArtworkLumaStdDev * 0.55) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'normalized_empty',
+      );
+    }
+
+    final artworkStats = _lumaStats(
+      frame,
+      const _NormRect(left: 0.08, top: 0.12, right: 0.92, bottom: 0.60),
+    );
+    if (artworkStats.stdDev < minArtworkLumaStdDev ||
+        artworkStats.foregroundRatio < minArtworkForegroundRatio ||
+        artworkStats.foregroundRatio > maxArtworkForegroundRatio) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'artwork_background_dominant',
+      );
+    }
+    if (hasStrongFallback &&
+        (artworkStats.stdDev < minFallbackArtworkLumaStdDev ||
+            artworkStats.foregroundRatio < minFallbackArtworkForegroundRatio)) {
+      return const _CardPresentDecision(
+        present: false,
+        reason: 'artwork_background_dominant',
+      );
+    }
+
+    return const _CardPresentDecision(
+      present: true,
+      reason: 'card_present',
+    );
+  }
+
+  String _cardAbsentReasonForQuality(ScannerV3QualitySnapshot quality) {
+    final reasons = quality.rejectionReasons;
+    if (reasons.contains('card_fill_ratio_below_threshold')) {
+      return 'fill_ratio_invalid';
+    }
+    if (reasons.contains('blur_below_threshold') ||
+        reasons.contains('brightness_too_low') ||
+        reasons.contains('brightness_too_high') ||
+        reasons.contains('glare_above_threshold')) {
+      return 'blur_or_brightness_invalid';
+    }
+    return reasons.isEmpty ? 'card_present_unknown' : reasons.first;
+  }
+
+  _LumaStats _lumaStats(_NormalizedFrame frame, _NormRect rect) {
+    final step = math.max(1, frame.height ~/ 180);
+    final left = (rect.left * (frame.width - 1)).round().clamp(
+      0,
+      frame.width - 1,
+    );
+    final right = (rect.right * (frame.width - 1)).round().clamp(
+      left + 1,
+      frame.width,
+    );
+    final top = (rect.top * (frame.height - 1)).round().clamp(
+      0,
+      frame.height - 1,
+    );
+    final bottom = (rect.bottom * (frame.height - 1)).round().clamp(
+      top + 1,
+      frame.height,
+    );
+
+    var sum = 0.0;
+    var sumSquares = 0.0;
+    var foreground = 0;
+    var count = 0;
+    for (var y = top; y < bottom; y += step) {
+      for (var x = left; x < right; x += step) {
+        final value = frame.bytes[(y * frame.width) + x] / 255.0;
+        sum += value;
+        sumSquares += value * value;
+        if (value < 0.22 || value > 0.78) {
+          foreground += 1;
+        }
+        count += 1;
+      }
+    }
+    if (count == 0) return const _LumaStats(stdDev: 0, foregroundRatio: 0);
+    final mean = sum / count;
+    final variance = math.max(0.0, (sumSquares / count) - (mean * mean));
+    return _LumaStats(
+      stdDev: math.sqrt(variance),
+      foregroundRatio: foreground / count,
+    );
+  }
+
   double _meanBrightness(_NormalizedFrame frame) {
     final step = math.max(1, frame.height ~/ 180);
     var sum = 0;
@@ -1442,6 +1647,8 @@ class ScannerV3LiveLoopController {
     required String selectedQuadSource,
     required double? detectorConfidence,
     required int? detectorElapsedMs,
+    bool cardPresent = true,
+    String? cardPresentReason,
   }) {
     final rankedHashCandidates = _rankedCandidates();
     final voteSnapshot = _lastVoteSnapshot;
@@ -1462,6 +1669,11 @@ class ScannerV3LiveLoopController {
             similarity: candidate.bestSimilarity,
             aggregateScore: candidate.bestAggregateScore,
             rerankScore: candidate.bestRerankScore,
+            name: candidate.name,
+            setCode: candidate.setCode,
+            number: candidate.number,
+            gvId: candidate.gvId,
+            imageUrl: candidate.imageUrl,
           ),
         )
         .toList(growable: false);
@@ -1474,6 +1686,11 @@ class ScannerV3LiveLoopController {
         : rankedHashCandidates.first;
     final confidence = voteSnapshot.confidence;
     final hashClusterReady = _hashClusterWouldLock();
+    final identityServiceError = _identityServiceErrorFor(
+      signalSource: _lastIdentitySignalSource,
+      errors: _lastIdentityErrors,
+      decisionReason: decisionReason,
+    );
 
     _state = ScannerV3LiveLoopState(
       frameCount: _frameCount,
@@ -1510,8 +1727,49 @@ class ScannerV3LiveLoopController {
       identityRecentFrameSupportCount: voteSnapshot.candidateRecentTopFiveCount,
       identityTopDistance: voteSnapshot.candidateDistance,
       identityTopSimilarity: voteSnapshot.candidateSimilarity,
+      identityServiceUnavailable: identityServiceError != null,
+      identityServiceError: identityServiceError,
+      cardPresent: cardPresent,
+      cardPresentReason: cardPresentReason,
     );
     return _state;
+  }
+
+  String? _identityServiceErrorFor({
+    required String signalSource,
+    required List<String> errors,
+    required String decisionReason,
+  }) {
+    final shouldInspect =
+        signalSource == 'identity_error' ||
+        signalSource == 'v8_multicrop_identity_no_successful_crops' ||
+        decisionReason.startsWith('identity_error:') ||
+        decisionReason.startsWith('identity_no_v8_candidates:');
+    if (!shouldInspect) return null;
+
+    final text = <String>[...errors, decisionReason].join(' ').toLowerCase();
+    if (text.contains('endpoint_not_configured')) {
+      return 'identity_endpoint_not_configured';
+    }
+    if (text.contains('invalid_embedding_endpoint') ||
+        text.contains('invalid_vector_endpoint')) {
+      return 'identity_endpoint_invalid';
+    }
+    if (text.contains('socketexception') ||
+        text.contains('connection refused') ||
+        text.contains('failed host lookup') ||
+        text.contains('connection timed out') ||
+        text.contains('timeoutexception')) {
+      return 'identity_service_unreachable';
+    }
+    if (text.contains('embedding_http_') ||
+        text.contains('vector_http_') ||
+        text.contains('request_body_too_large') ||
+        text.contains('missing_embedding') ||
+        text.contains('missing_image_b64')) {
+      return 'identity_service_error';
+    }
+    return null;
   }
 
   String _statusTextForIdentityDecision(String decisionState) {
@@ -1598,6 +1856,20 @@ class _NormalizedFrame {
   final String quadOrderNormalizationResult;
   final List<Offset> orderedDisplayQuad;
   final List<Offset> imageQuad;
+}
+
+class _CardPresentDecision {
+  const _CardPresentDecision({required this.present, required this.reason});
+
+  final bool present;
+  final String reason;
+}
+
+class _LumaStats {
+  const _LumaStats({required this.stdDev, required this.foregroundRatio});
+
+  final double stdDev;
+  final double foregroundRatio;
 }
 
 class _LumaSource {

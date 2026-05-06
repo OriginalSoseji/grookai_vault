@@ -51,14 +51,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   bool _processingScannerV3LiveLoopFrame = false;
   ScannerV3LiveLoopController? _scannerV3LoopController;
   ScannerV3LiveLoopState _scannerV3LoopState = ScannerV3LiveLoopState.initial;
-  bool _scannerV3ArtifactExportEnabled = kDebugMode;
+  final bool _scannerV3ArtifactExportEnabled = kDebugMode;
+  bool _scannerV3FlashEnabled = false;
   bool _scannerV3DebugExpanded = false;
+  ResolutionPreset _cameraResolutionPreset = ResolutionPreset.high;
+  Size? _cameraPreviewSize;
+  Size? _cameraInputSize;
+  String? _cameraInitFallbackReason;
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
+  bool get _useScannerV3LiveLoop =>
+      widget.enableScannerV3LiveLoopPrototype || widget.title == 'Scan Card';
 
   @override
   void initState() {
     super.initState();
-    if (widget.enableScannerV3LiveLoopPrototype) {
+    if (_useScannerV3LiveLoop) {
       _scannerV3LoopController = ScannerV3LiveLoopController(
         exportArtifactsOnLock: _scannerV3ArtifactExportEnabled,
         onLockArtifactExported: (result) {
@@ -87,14 +94,10 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     back ??= cams.isNotEmpty ? cams.first : null;
     if (back == null) return;
-    final controller = CameraController(
-      back,
-      ResolutionPreset.high,
-      enableAudio: false,
-      imageFormatGroup: ImageFormatGroup.yuv420,
-    );
+    final controller = await _createInitializedCameraController(back);
+    if (controller == null) return;
     _controller = controller;
-    _initFuture = controller.initialize().then((_) async {
+    _initFuture = _configureInitializedCamera(controller).then((_) async {
       try {
         await controller.setFocusMode(FocusMode.auto);
       } catch (e) {
@@ -118,6 +121,61 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       setState(() {});
     }
     _startSensors();
+  }
+
+  Future<CameraController?> _createInitializedCameraController(
+    CameraDescription camera,
+  ) async {
+    final presets = _useScannerV3LiveLoop
+        ? const <ResolutionPreset>[
+            ResolutionPreset.veryHigh,
+            ResolutionPreset.high,
+            ResolutionPreset.medium,
+          ]
+        : const <ResolutionPreset>[ResolutionPreset.high];
+    Object? firstError;
+
+    for (final preset in presets) {
+      final controller = CameraController(
+        camera,
+        preset,
+        enableAudio: false,
+        imageFormatGroup: ImageFormatGroup.yuv420,
+      );
+      try {
+        await controller.initialize();
+        _cameraResolutionPreset = preset;
+        _cameraPreviewSize = controller.value.previewSize;
+        _cameraInitFallbackReason = firstError == null
+            ? null
+            : 'fallback_to_${_resolutionPresetLabel(preset)}:$firstError';
+        if (kDebugMode) {
+          debugPrint(
+            '[scanner_camera] preset=${_resolutionPresetLabel(preset)} '
+            'preview=${_formatSize(_cameraPreviewSize)} '
+            'fallback=${_cameraInitFallbackReason ?? "none"}',
+          );
+        }
+        return controller;
+      } catch (error) {
+        firstError ??= error;
+        if (kDebugMode) {
+          debugPrint(
+            '[scanner_camera] init failed preset=${_resolutionPresetLabel(preset)} error=$error',
+          );
+        }
+        unawaited(controller.dispose());
+      }
+    }
+
+    if (kDebugMode) {
+      debugPrint('[scanner_camera] all camera presets failed: $firstError');
+    }
+    return null;
+  }
+
+  Future<void> _configureInitializedCamera(CameraController controller) async {
+    _cameraPreviewSize = controller.value.previewSize;
   }
 
   Future<void> _handlePreviewTap(TapDownDetails details) async {
@@ -182,14 +240,17 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     _streaming = true;
     _controller!.startImageStream((image) async {
+      final imageSize = Size(image.width.toDouble(), image.height.toDouble());
+      if (_cameraInputSize != imageSize && mounted) {
+        setState(() {
+          _cameraInputSize = imageSize;
+        });
+      }
       final now = DateTime.now();
       if (now.difference(_lastQuadUpdate).inMilliseconds < 200) return;
       _lastQuadUpdate = now;
       final rotation = _controller?.description.sensorOrientation ?? 0;
-      final quadDetection = await _quadDetector.detectWithDiagnostics(
-        image,
-        rotation,
-      );
+      final quadDetection = await _detectNativeQuad(image, rotation);
       final points = quadDetection.success ? quadDetection.pointsNorm : null;
 
       if (points != null) {
@@ -218,6 +279,9 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
           'confidence=${quadDetection.confidence?.toStringAsFixed(2) ?? "n/a"} '
           'elapsed_ms=${quadDetection.elapsedMs ?? -1} '
           'failure=${quadDetection.failureReason ?? 'none'} '
+          'preset=${_resolutionPresetLabel(_cameraResolutionPreset)} '
+          'input=${image.width}x${image.height} '
+          'preview=${_formatSize(_cameraPreviewSize)} '
           'overlayMode=$_overlayMode canShoot=$_canShoot',
         );
       }
@@ -234,7 +298,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     CameraImage image,
     int rotation,
     List<Offset>? points,
-    NativeQuadDetection quadDetection,
+    _NativeQuadDetection quadDetection,
   ) async {
     final controller = _scannerV3LoopController;
     if (controller == null) return;
@@ -278,6 +342,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         'rejected=${nextState.rejectedFrameCount} '
         'quad=${nextState.selectedQuadSource} '
         'detector_conf=${nextState.detectorConfidence?.toStringAsFixed(2) ?? "n/a"} '
+        'card_present=${nextState.cardPresent} '
+        'card_reason=${nextState.cardPresentReason ?? "n/a"} '
+        'fill=${nextState.quality.cardFillRatio.toStringAsFixed(3)} '
+        'blur=${nextState.quality.blurScore.toStringAsFixed(3)} '
+        'brightness=${nextState.quality.brightnessScore.toStringAsFixed(3)} '
+        'glare=${nextState.quality.glareRatio.toStringAsFixed(3)} '
         'identity=${nextState.identitySignalSource} '
         'decision=${nextState.identityDecisionState} '
         'gap=${nextState.identityScoreGap.toStringAsFixed(2)} '
@@ -286,6 +356,8 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         'frame_gap=${nextState.identityFrameScoreGap.toStringAsFixed(3)} '
         'crops=${nextState.identityCropSupportCount} '
         'recent=${nextState.identityRecentFrameSupportCount} '
+        'distance=${nextState.identityTopDistance?.toStringAsFixed(3) ?? "n/a"} '
+        'similarity=${nextState.identityTopSimilarity?.toStringAsFixed(3) ?? "n/a"} '
         'embed_ms=${nextState.embeddingElapsedMs ?? -1} '
         'vector_ms=${nextState.vectorSearchElapsedMs ?? -1} '
         'reason=${nextState.lastDecisionReason} '
@@ -297,6 +369,102 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     setState(() {
       _scannerV3LoopState = state;
     });
+  }
+
+  Future<_NativeQuadDetection> _detectNativeQuad(
+    CameraImage image,
+    int rotation,
+  ) async {
+    final stopwatch = Stopwatch()..start();
+    final rawResponse = await _quadDetector.detect(image, rotation);
+    stopwatch.stop();
+
+    if (rawResponse == null) {
+      return _NativeQuadDetection(
+        registered: true,
+        called: true,
+        success: false,
+        elapsedMs: stopwatch.elapsedMilliseconds,
+        failureReason: 'no_native_quad_response',
+      );
+    }
+
+    final points = _extractQuadPoints(rawResponse);
+    return _NativeQuadDetection(
+      registered: true,
+      called: true,
+      success: points != null,
+      pointsNorm: points,
+      confidence: _asDouble(rawResponse['confidence']),
+      elapsedMs:
+          _asInt(rawResponse['elapsed_ms']) ??
+          _asInt(rawResponse['elapsedMs']) ??
+          stopwatch.elapsedMilliseconds,
+      failureReason: points == null
+          ? _asString(rawResponse['failure_reason']) ??
+                _asString(rawResponse['failureReason']) ??
+                'no_card_component'
+          : null,
+      rawResponse: rawResponse,
+    );
+  }
+
+  List<Offset>? _extractQuadPoints(Map<String, dynamic> rawResponse) {
+    final rawPoints =
+        rawResponse['points'] ??
+        rawResponse['points_norm'] ??
+        rawResponse['quad'] ??
+        rawResponse['quad_norm'];
+    if (rawPoints is! List || rawPoints.length < 4) return null;
+
+    final points = <Offset>[];
+    if (rawPoints.length == 8 && rawPoints.every((value) => value is num)) {
+      for (var i = 0; i < 8; i += 2) {
+        points.add(
+          Offset(
+            (rawPoints[i] as num).toDouble(),
+            (rawPoints[i + 1] as num).toDouble(),
+          ),
+        );
+      }
+      return points;
+    }
+
+    for (final point in rawPoints.take(4)) {
+      if (point is Map) {
+        final x = _asDouble(point['x'] ?? point['dx']);
+        final y = _asDouble(point['y'] ?? point['dy']);
+        if (x == null || y == null) return null;
+        points.add(Offset(x, y));
+      } else if (point is List && point.length >= 2) {
+        final x = _asDouble(point[0]);
+        final y = _asDouble(point[1]);
+        if (x == null || y == null) return null;
+        points.add(Offset(x, y));
+      } else {
+        return null;
+      }
+    }
+
+    return points.length == 4 ? points : null;
+  }
+
+  double? _asDouble(Object? value) {
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
+  }
+
+  int? _asInt(Object? value) {
+    if (value is int) return value;
+    if (value is num) return value.round();
+    if (value is String) return int.tryParse(value);
+    return null;
+  }
+
+  String? _asString(Object? value) {
+    if (value == null) return null;
+    return value.toString();
   }
 
   @override
@@ -388,6 +556,24 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     Navigator.of(context).maybePop();
   }
 
+  Future<void> _toggleScannerV3Flash() async {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) return;
+
+    final next = !_scannerV3FlashEnabled;
+    try {
+      await controller.setFlashMode(next ? FlashMode.torch : FlashMode.off);
+      if (!mounted) return;
+      setState(() {
+        _scannerV3FlashEnabled = next;
+      });
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_v3_flash] toggle skipped: $error');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -396,39 +582,20 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       'Invariant violated: overlayMode=ready but shutter cannot shoot. Do not reintroduce split readiness.',
     );
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: [
-          if (widget.enableScannerV3LiveLoopPrototype && kDebugMode)
-            IconButton(
-              tooltip: _scannerV3ArtifactExportEnabled
-                  ? 'Scanner V3 lock export on'
-                  : 'Scanner V3 lock export off',
-              icon: Icon(
-                _scannerV3ArtifactExportEnabled
-                    ? Icons.save
-                    : Icons.save_outlined,
+      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: _useScannerV3LiveLoop,
+      appBar: _useScannerV3LiveLoop
+          ? null
+          : AppBar(
+              title: Text(widget.title),
+              leading: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.of(context).pop(),
               ),
-              onPressed: () {
-                setState(() {
-                  _scannerV3ArtifactExportEnabled =
-                      !_scannerV3ArtifactExportEnabled;
-                });
-                _scannerV3LoopController?.setArtifactExportEnabled(
-                  _scannerV3ArtifactExportEnabled,
-                );
-                debugPrint(
-                  '[scanner_v3_lock_export] enabled=$_scannerV3ArtifactExportEnabled',
-                );
-              },
             ),
-        ],
-      ),
       body: SafeArea(
+        top: !_useScannerV3LiveLoop,
+        bottom: !_useScannerV3LiveLoop,
         child: Column(
           children: [
             Expanded(
@@ -479,14 +646,26 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                               borderRadius: BorderRadius.circular(12),
                               child: CameraPreview(_controller!),
                             ),
-                            if (widget.enableScannerV3LiveLoopPrototype)
+                            if (_useScannerV3LiveLoop)
                               ScannerV3CameraOverlay(
                                 state: _scannerV3LoopState,
                                 guideRect: guideRect,
                                 quadPointsNorm: _quadPoints,
                                 focusTapNorm: _lastFocusTapNorm,
                                 exportEnabled: _scannerV3ArtifactExportEnabled,
+                                flashEnabled: _scannerV3FlashEnabled,
                                 debugExpanded: _scannerV3DebugExpanded,
+                                cameraPresetLabel: _resolutionPresetLabel(
+                                  _cameraResolutionPreset,
+                                ),
+                                cameraPreviewSize: _cameraPreviewSize,
+                                cameraInputSize: _cameraInputSize,
+                                cameraInitFallbackReason:
+                                    _cameraInitFallbackReason,
+                                onClose: () => Navigator.of(context).pop(),
+                                onToggleFlash: () {
+                                  unawaited(_toggleScannerV3Flash());
+                                },
                                 onToggleDebug: () {
                                   setState(() {
                                     _scannerV3DebugExpanded =
@@ -516,7 +695,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 },
               ),
             ),
-            if (!widget.enableScannerV3LiveLoopPrototype)
+            if (!_useScannerV3LiveLoop)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: GestureDetector(
@@ -561,4 +740,48 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       ),
     );
   }
+}
+
+String _resolutionPresetLabel(ResolutionPreset preset) {
+  switch (preset) {
+    case ResolutionPreset.low:
+      return 'low';
+    case ResolutionPreset.medium:
+      return 'medium';
+    case ResolutionPreset.high:
+      return 'high';
+    case ResolutionPreset.veryHigh:
+      return 'veryHigh';
+    case ResolutionPreset.ultraHigh:
+      return 'ultraHigh';
+    case ResolutionPreset.max:
+      return 'max';
+  }
+}
+
+String _formatSize(Size? size) {
+  if (size == null) return 'unknown';
+  return '${size.width.round()}x${size.height.round()}';
+}
+
+class _NativeQuadDetection {
+  const _NativeQuadDetection({
+    required this.registered,
+    required this.called,
+    required this.success,
+    this.pointsNorm,
+    this.confidence,
+    this.elapsedMs,
+    this.failureReason,
+    this.rawResponse,
+  });
+
+  final bool registered;
+  final bool called;
+  final bool success;
+  final List<Offset>? pointsNorm;
+  final double? confidence;
+  final int? elapsedMs;
+  final String? failureReason;
+  final Map<String, dynamic>? rawResponse;
 }

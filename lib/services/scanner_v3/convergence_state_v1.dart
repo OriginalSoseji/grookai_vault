@@ -16,6 +16,11 @@ class CandidateState {
     this.similarity,
     this.aggregateScore,
     this.rerankScore,
+    this.name,
+    this.setCode,
+    this.number,
+    this.gvId,
+    this.imageUrl,
   });
 
   final String id;
@@ -34,6 +39,11 @@ class CandidateState {
   final double? similarity;
   final double? aggregateScore;
   final double? rerankScore;
+  final String? name;
+  final String? setCode;
+  final String? number;
+  final String? gvId;
+  final String? imageUrl;
 }
 
 class ScannerV3QualitySnapshot {
@@ -95,6 +105,10 @@ class ScannerV3LiveLoopState {
     required this.identityRecentFrameSupportCount,
     required this.identityTopDistance,
     required this.identityTopSimilarity,
+    required this.identityServiceUnavailable,
+    required this.identityServiceError,
+    required this.cardPresent,
+    required this.cardPresentReason,
   });
 
   static const initial = ScannerV3LiveLoopState(
@@ -128,6 +142,10 @@ class ScannerV3LiveLoopState {
     identityRecentFrameSupportCount: 0,
     identityTopDistance: null,
     identityTopSimilarity: null,
+    identityServiceUnavailable: false,
+    identityServiceError: null,
+    cardPresent: false,
+    cardPresentReason: 'waiting_for_frames',
   );
 
   final int frameCount;
@@ -160,6 +178,10 @@ class ScannerV3LiveLoopState {
   final int identityRecentFrameSupportCount;
   final double? identityTopDistance;
   final double? identityTopSimilarity;
+  final bool identityServiceUnavailable;
+  final String? identityServiceError;
+  final bool cardPresent;
+  final String? cardPresentReason;
 
   CandidateState? get bestCandidate {
     if (candidates.isEmpty) return null;

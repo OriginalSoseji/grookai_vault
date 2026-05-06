@@ -3,11 +3,11 @@ import 'vector_candidate_service_v1.dart';
 class CandidateVoteState {
   CandidateVoteState({
     this.decayFactor = 0.72,
-    this.lockScoreGap = 1.2,
-    this.identityAcceptScoreGap = 1.2,
+    this.lockScoreGap = 0.6,
+    this.identityAcceptScoreGap = 0.6,
     this.identityAcceptFrameScoreGap = 0.015,
-    this.minScoreThreshold = 2.0,
-    this.maxAcceptedDistance = 0.165,
+    this.minScoreThreshold = 1.2,
+    this.maxAcceptedDistance = 0.195,
     this.minCropTypesToLock = 2,
     this.minCropTypesToAccept = 2,
     this.minTopFiveFramesToLock = 3,
@@ -101,6 +101,7 @@ class CandidateVoteState {
               ? frameScoreGap
               : record.bestTopOneScoreGap;
       }
+      record.mergeDisplayMetadata(candidate);
       if (cropCount > record.bestCropContributionCount) {
         record.bestCropContributionCount = cropCount;
       }
@@ -478,6 +479,11 @@ class CandidateVoteRecord {
     this.lastTopOneScoreGap = 0,
     this.bestTopOneScoreGap = 0,
     this.bestCropContributionCount = 0,
+    this.name,
+    this.setCode,
+    this.number,
+    this.gvId,
+    this.imageUrl,
   });
 
   final String cardId;
@@ -496,6 +502,11 @@ class CandidateVoteRecord {
   double lastTopOneScoreGap;
   double bestTopOneScoreGap;
   int bestCropContributionCount;
+  String? name;
+  String? setCode;
+  String? number;
+  String? gvId;
+  String? imageUrl;
   final List<int> recentTopFiveFrames = <int>[];
 
   void recordTopFiveFrame(int frameIndex, int recentFrameWindow) {
@@ -505,6 +516,14 @@ class CandidateVoteRecord {
     recentTopFiveFrames.removeWhere(
       (seenFrame) => frameIndex - seenFrame > recentFrameWindow,
     );
+  }
+
+  void mergeDisplayMetadata(Candidate candidate) {
+    name ??= candidate.name;
+    setCode ??= candidate.setCode;
+    number ??= candidate.number;
+    gvId ??= candidate.gvId;
+    imageUrl ??= candidate.imageUrl;
   }
 }
 
