@@ -93,6 +93,28 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             locked: locked,
           ),
         ),
+        if (tone.spatialStatusVisible)
+          IgnorePointer(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    _ScannerSpatialStatusChip(
+                      tone: tone,
+                      guideRect: guideRect,
+                      quadPointsNorm: quadPointsNorm,
+                      safePadding: padding,
+                      overlaySize: Size(
+                        constraints.maxWidth,
+                        constraints.maxHeight,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
         Positioned(
           top: padding.top + 10,
           left: 16,
@@ -141,6 +163,136 @@ class ScannerV3CameraOverlay extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ScannerSpatialStatusChip extends StatelessWidget {
+  const _ScannerSpatialStatusChip({
+    required this.tone,
+    required this.guideRect,
+    required this.quadPointsNorm,
+    required this.safePadding,
+    required this.overlaySize,
+  });
+
+  final ScannerV3UiTone tone;
+  final Rect guideRect;
+  final List<Offset>? quadPointsNorm;
+  final EdgeInsets safePadding;
+  final Size overlaySize;
+
+  @override
+  Widget build(BuildContext context) {
+    final target = _targetRect();
+    final chipWidth = (overlaySize.width - 32).clamp(0.0, 210.0).toDouble();
+    if (chipWidth <= 0) return const SizedBox.shrink();
+
+    final left = (target.center.dx - (chipWidth / 2))
+        .clamp(16.0, overlaySize.width - chipWidth - 16.0)
+        .toDouble();
+    final minTop = safePadding.top + 96;
+    final topLimit = overlaySize.height - safePadding.bottom - 286;
+    final maxTop = topLimit < minTop ? minTop : topLimit;
+    final top = (target.top - 52).clamp(minTop, maxTop).toDouble();
+
+    return AnimatedPositioned(
+      duration: const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
+      left: left,
+      top: top,
+      width: chipWidth,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 160),
+        switchInCurve: Curves.easeOutCubic,
+        switchOutCurve: Curves.easeInCubic,
+        child: _ScannerSpatialStatusChipBody(
+          key: ValueKey('${tone.phase}:${tone.spatialLabel}'),
+          tone: tone,
+        ),
+      ),
+    );
+  }
+
+  Rect _targetRect() {
+    final points = quadPointsNorm;
+    if (points == null || points.length != 4) return guideRect;
+
+    var minX = double.infinity;
+    var minY = double.infinity;
+    var maxX = double.negativeInfinity;
+    var maxY = double.negativeInfinity;
+    for (final point in points) {
+      final x = point.dx * overlaySize.width;
+      final y = point.dy * overlaySize.height;
+      if (x < minX) minX = x;
+      if (y < minY) minY = y;
+      if (x > maxX) maxX = x;
+      if (y > maxY) maxY = y;
+    }
+
+    if (!minX.isFinite ||
+        !minY.isFinite ||
+        !maxX.isFinite ||
+        !maxY.isFinite ||
+        maxX <= minX ||
+        maxY <= minY) {
+      return guideRect;
+    }
+    return Rect.fromLTRB(minX, minY, maxX, maxY);
+  }
+}
+
+class _ScannerSpatialStatusChipBody extends StatelessWidget {
+  const _ScannerSpatialStatusChipBody({super.key, required this.tone});
+
+  final ScannerV3UiTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(999),
+        child: BackdropFilter(
+          filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.52),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: tone.accent.withValues(alpha: 0.36)),
+              boxShadow: [
+                BoxShadow(
+                  color: tone.accent.withValues(alpha: 0.18),
+                  blurRadius: 18,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(tone.icon, color: tone.accent, size: 15),
+                  const SizedBox(width: 7),
+                  Flexible(
+                    child: Text(
+                      tone.spatialLabel,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

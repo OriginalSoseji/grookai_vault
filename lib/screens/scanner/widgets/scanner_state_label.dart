@@ -5,6 +5,7 @@ import '../../../services/scanner_v4/scanner_live_behavior_v1.dart';
 
 class ScannerV3UiTone {
   const ScannerV3UiTone({
+    required this.phase,
     required this.title,
     required this.pill,
     required this.subtitle,
@@ -19,6 +20,7 @@ class ScannerV3UiTone {
     required this.indeterminateProgress,
   });
 
+  final ScannerLiveBehaviorPhase phase;
   final String title;
   final String pill;
   final String subtitle;
@@ -34,6 +36,29 @@ class ScannerV3UiTone {
 
   bool get locked => pill == 'Locked';
 
+  bool get spatialStatusVisible => phase != ScannerLiveBehaviorPhase.searching;
+
+  String get spatialLabel {
+    switch (phase) {
+      case ScannerLiveBehaviorPhase.searching:
+        return '';
+      case ScannerLiveBehaviorPhase.aligning:
+        return 'Align';
+      case ScannerLiveBehaviorPhase.cardPresentPending:
+        return 'Hold';
+      case ScannerLiveBehaviorPhase.ready:
+        return 'Ready';
+      case ScannerLiveBehaviorPhase.scanningIdentity:
+        return 'Reading';
+      case ScannerLiveBehaviorPhase.recognized:
+        return 'Card found';
+      case ScannerLiveBehaviorPhase.unknown:
+        return 'Try again';
+      case ScannerLiveBehaviorPhase.blocked:
+        return 'Blocked';
+    }
+  }
+
   static ScannerV3UiTone fromState(
     ScannerV3LiveLoopState state, {
     bool edgeLocked = false,
@@ -47,6 +72,7 @@ class ScannerV3UiTone {
     switch (behavior.phase) {
       case ScannerLiveBehaviorPhase.blocked:
         return const ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.blocked,
           title: 'Scanner identity service unavailable',
           pill: 'Offline',
           subtitle: 'Start the local identity service to show matches',
@@ -62,6 +88,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.recognized:
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.recognized,
           title: 'Card found',
           pill: 'Locked',
           subtitle: 'Ready to review',
@@ -77,6 +104,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.unknown:
         return const ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.unknown,
           title: 'No confident match',
           pill: 'Search available',
           subtitle: 'Try again or search manually',
@@ -92,6 +120,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.cardPresentPending:
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.cardPresentPending,
           title: 'Hold steady',
           pill: 'Hold steady',
           subtitle: 'Keep the card in frame',
@@ -108,6 +137,7 @@ class ScannerV3UiTone {
       case ScannerLiveBehaviorPhase.scanningIdentity:
         if (state.identityDecisionState == 'candidate_ambiguous') {
           return ScannerV3UiTone(
+            phase: ScannerLiveBehaviorPhase.scanningIdentity,
             title: 'Need a clearer angle',
             pill: 'Hold steady',
             subtitle: 'Reduce glare and keep the card flat',
@@ -123,6 +153,7 @@ class ScannerV3UiTone {
           );
         }
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.scanningIdentity,
           title: 'Reading card',
           pill: 'Reading',
           subtitle: softPreviewReady
@@ -140,6 +171,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.ready:
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.ready,
           title: 'Ready',
           pill: 'Ready',
           subtitle: 'Hold still while reading starts',
@@ -155,6 +187,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.aligning:
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.aligning,
           title: 'Align card',
           pill: 'Live scan',
           subtitle: edgeLocked
@@ -172,6 +205,7 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.searching:
         return ScannerV3UiTone(
+          phase: ScannerLiveBehaviorPhase.searching,
           title: 'Find a card',
           pill: 'Live scan',
           subtitle: 'Place one card in frame',

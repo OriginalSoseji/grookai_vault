@@ -16,6 +16,8 @@ void main() {
 
     final tone = ScannerV3UiTone.fromState(ScannerV3LiveLoopState.initial);
     expect(tone.badge, isNot('Ready'));
+    expect(tone.spatialStatusVisible, isFalse);
+    expect(tone.spatialLabel, isEmpty);
   });
 
   test('native quad without card-present remains aligning, not ready', () {
@@ -40,6 +42,8 @@ void main() {
 
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
     expect(tone.badge, isNot('Ready'));
+    expect(tone.spatialStatusVisible, isTrue);
+    expect(tone.spatialLabel, 'Align');
   });
 
   test('card-present persistence pending is a hold state', () {
@@ -66,6 +70,61 @@ void main() {
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
     expect(tone.title, 'Hold steady');
     expect(tone.badge, isNot('Ready'));
+    expect(tone.spatialLabel, 'Hold');
+  });
+
+  test('card-present without identity allowance remains not ready', () {
+    final state = _state(
+      sampledFrameCount: 7,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      cardPresentReason: 'card_present',
+      cardPresentConsecutiveFrames: 3,
+      identityAllowed: false,
+      identityBlockedReason: 'identity_allowed_required_for_ready',
+    );
+
+    final behavior = ScannerLiveBehaviorV1.fromLiveLoopState(
+      state,
+      edgeLocked: true,
+    );
+
+    expect(behavior.phase, ScannerLiveBehaviorPhase.aligning);
+    expect(behavior.readyLabelAllowed, isFalse);
+
+    final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
+    expect(tone.badge, isNot('Ready'));
+    expect(tone.spatialLabel, isNot('Ready'));
+  });
+
+  test('identity-allowed before identity work maps to ready', () {
+    final state = _state(
+      sampledFrameCount: 7,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      cardPresentReason: 'card_present',
+      cardPresentConsecutiveFrames: 3,
+      identityAllowed: true,
+      identityAllowedReason: 'card_present_persistence_satisfied',
+      identitySignalSource: 'card_present_persistence_satisfied',
+      identityDecisionState: IdentityDecisionStateV1.scanning,
+    );
+
+    final behavior = ScannerLiveBehaviorV1.fromLiveLoopState(
+      state,
+      edgeLocked: true,
+    );
+
+    expect(behavior.phase, ScannerLiveBehaviorPhase.ready);
+    expect(behavior.readyLabelAllowed, isTrue);
+
+    final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
+    expect(tone.badge, 'Ready');
+    expect(tone.spatialLabel, 'Ready');
   });
 
   test('identity-allowed card maps to scanning identity', () {
@@ -79,6 +138,9 @@ void main() {
       cardPresentConsecutiveFrames: 3,
       identityAllowed: true,
       identityAllowedReason: 'card_present_persistence_satisfied',
+      identitySignalSource: 'v8_identity_candidates',
+      embeddingElapsedMs: 82,
+      vectorSearchElapsedMs: 34,
       identityDecisionState: IdentityDecisionStateV1.scanning,
     );
 
@@ -93,6 +155,7 @@ void main() {
 
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
     expect(tone.title, 'Reading card');
+    expect(tone.spatialLabel, 'Reading');
   });
 
   test('identity lock maps to recognized', () {
@@ -115,6 +178,9 @@ void main() {
 
     expect(behavior.phase, ScannerLiveBehaviorPhase.recognized);
     expect(behavior.readyLabelAllowed, isTrue);
+
+    final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
+    expect(tone.spatialLabel, 'Card found');
   });
 
   test('identity service unavailable maps to blocked', () {
@@ -136,6 +202,38 @@ void main() {
     expect(behavior.phase, ScannerLiveBehaviorPhase.blocked);
     expect(behavior.readyLabelAllowed, isFalse);
     expect(behavior.identityMayRun, isFalse);
+  });
+
+  test('card-present loss downgrades ready labels', () {
+    final readyState = _state(
+      sampledFrameCount: 9,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      identityAllowed: true,
+      identityAllowedReason: 'card_present_persistence_satisfied',
+      identitySignalSource: 'card_present_persistence_satisfied',
+    );
+    final lostState = _state(
+      sampledFrameCount: 10,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: false,
+      cardPresentReason: 'pokemon_layout_evidence_missing',
+      identityAllowed: false,
+      identityBlockedReason: 'pokemon_layout_evidence_missing',
+    );
+
+    final readyTone = ScannerV3UiTone.fromState(readyState, edgeLocked: true);
+    final lostTone = ScannerV3UiTone.fromState(lostState, edgeLocked: true);
+
+    expect(readyTone.badge, 'Ready');
+    expect(readyTone.spatialLabel, 'Ready');
+    expect(lostTone.badge, isNot('Ready'));
+    expect(lostTone.spatialLabel, isNot('Ready'));
+    expect(lostTone.spatialLabel, 'Align');
   });
 }
 

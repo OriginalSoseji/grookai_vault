@@ -78,18 +78,18 @@ class ScannerLiveBehaviorV1 {
       );
     }
 
-    if (state.identityAllowed) {
+    if (state.identityAllowed && !_hasIdentityWorkStarted(state)) {
       return ScannerLiveBehaviorV1(
-        phase: ScannerLiveBehaviorPhase.scanningIdentity,
-        reason: state.identityAllowedReason ?? state.identityDecisionReason,
+        phase: ScannerLiveBehaviorPhase.ready,
+        reason: state.identityAllowedReason ?? 'identity_allowed',
         edgeLocked: edgeLocked,
       );
     }
 
-    if (state.cardPresent) {
+    if (state.identityAllowed) {
       return ScannerLiveBehaviorV1(
-        phase: ScannerLiveBehaviorPhase.ready,
-        reason: state.cardPresentReason ?? 'card_present',
+        phase: ScannerLiveBehaviorPhase.scanningIdentity,
+        reason: state.identityAllowedReason ?? state.identityDecisionReason,
         edgeLocked: edgeLocked,
       );
     }
@@ -132,6 +132,29 @@ class ScannerLiveBehaviorV1 {
         return true;
       default:
         return false;
+    }
+  }
+
+  static bool _hasIdentityWorkStarted(ScannerV3LiveLoopState state) {
+    if (state.identityDecisionState != IdentityDecisionStateV1.scanning) {
+      return true;
+    }
+    if (state.embeddingElapsedMs != null ||
+        state.vectorSearchElapsedMs != null) {
+      return true;
+    }
+    if (state.vectorCandidateCount > 0 ||
+        state.identityCropSupportCount > 0 ||
+        state.identityRecentFrameSupportCount > 0) {
+      return true;
+    }
+    switch (state.identitySignalSource) {
+      case 'waiting':
+      case 'card_present_persistence_pending':
+      case 'card_present_persistence_satisfied':
+        return false;
+      default:
+        return true;
     }
   }
 }
