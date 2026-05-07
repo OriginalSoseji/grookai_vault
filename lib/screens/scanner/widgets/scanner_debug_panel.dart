@@ -56,6 +56,9 @@ class ScannerDebugPanel extends StatelessWidget {
               '${candidate.id}:${candidate.score.toStringAsFixed(1)}',
         )
         .join(' ');
+    final expandedBodyMaxHeight = (MediaQuery.sizeOf(context).height * 0.34)
+        .clamp(240.0, 320.0)
+        .toDouble();
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -104,7 +107,7 @@ class ScannerDebugPanel extends StatelessWidget {
           AnimatedCrossFade(
             firstChild: const SizedBox.shrink(),
             secondChild: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 360),
+              constraints: BoxConstraints(maxHeight: expandedBodyMaxHeight),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),

@@ -70,8 +70,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tone = ScannerV3UiTone.fromState(state);
     final edgeLocked = quadPointsNorm != null && quadPointsNorm!.length == 4;
+    final tone = ScannerV3UiTone.fromState(state, edgeLocked: edgeLocked);
     final locked = state.identityDecisionState == 'identity_locked';
     final padding = MediaQuery.of(context).padding;
     final shutterBottomOffset = tone.showUnknownActions || tone.showRescanAction

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../services/scanner_v3/convergence_state_v1.dart';
+import '../../../services/scanner_v4/scanner_live_behavior_v1.dart';
 
 class ScannerV3UiTone {
   const ScannerV3UiTone({
@@ -33,27 +34,33 @@ class ScannerV3UiTone {
 
   bool get locked => pill == 'Locked';
 
-  static ScannerV3UiTone fromState(ScannerV3LiveLoopState state) {
+  static ScannerV3UiTone fromState(
+    ScannerV3LiveLoopState state, {
+    bool edgeLocked = false,
+  }) {
     final confidence = state.confidenceScore.clamp(0.0, 1.0).toDouble();
     final softPreviewReady = _softPreviewReady(state);
-    if (state.identityServiceUnavailable) {
-      return const ScannerV3UiTone(
-        title: 'Scanner identity service unavailable',
-        pill: 'Offline',
-        subtitle: 'Start the local identity service to show matches',
-        badge: 'Setup',
-        hint: 'Open Diagnostics',
-        icon: Icons.cloud_off_rounded,
-        accent: Color(0xFFFFC46B),
-        progress: 0.0,
-        showPrimaryCandidate: false,
-        showUnknownActions: true,
-        showRescanAction: false,
-        indeterminateProgress: false,
-      );
-    }
-    switch (state.identityDecisionState) {
-      case 'identity_locked':
+    final behavior = ScannerLiveBehaviorV1.fromLiveLoopState(
+      state,
+      edgeLocked: edgeLocked,
+    );
+    switch (behavior.phase) {
+      case ScannerLiveBehaviorPhase.blocked:
+        return const ScannerV3UiTone(
+          title: 'Scanner identity service unavailable',
+          pill: 'Offline',
+          subtitle: 'Start the local identity service to show matches',
+          badge: 'Setup',
+          hint: 'Open Diagnostics',
+          icon: Icons.cloud_off_rounded,
+          accent: Color(0xFFFFC46B),
+          progress: 0.0,
+          showPrimaryCandidate: false,
+          showUnknownActions: true,
+          showRescanAction: false,
+          indeterminateProgress: false,
+        );
+      case ScannerLiveBehaviorPhase.recognized:
         return ScannerV3UiTone(
           title: 'Card found',
           pill: 'Locked',
@@ -68,7 +75,7 @@ class ScannerV3UiTone {
           showRescanAction: true,
           indeterminateProgress: false,
         );
-      case 'candidate_unknown':
+      case ScannerLiveBehaviorPhase.unknown:
         return const ScannerV3UiTone(
           title: 'No confident match',
           pill: 'Search available',
@@ -83,48 +90,96 @@ class ScannerV3UiTone {
           showRescanAction: false,
           indeterminateProgress: false,
         );
-      case 'candidate_ambiguous':
+      case ScannerLiveBehaviorPhase.cardPresentPending:
         return ScannerV3UiTone(
-          title: 'Need a clearer angle',
+          title: 'Hold steady',
           pill: 'Hold steady',
-          subtitle: 'Reduce glare and keep the card flat',
-          badge: 'Adjust',
-          hint: _hintForQuality(state),
-          icon: Icons.tune_rounded,
-          accent: const Color(0xFFFFD37A),
-          progress: confidence == 0 ? 0.48 : confidence,
+          subtitle: 'Keep the card in frame',
+          badge: 'Hold',
+          hint: 'Stabilizing',
+          icon: Icons.center_focus_strong_rounded,
+          accent: const Color(0xFFAEC8FF),
+          progress: confidence == 0 ? 0.34 : confidence,
           showPrimaryCandidate: false,
           showUnknownActions: false,
           showRescanAction: false,
           indeterminateProgress: true,
         );
-      case 'candidate_unstable':
+      case ScannerLiveBehaviorPhase.scanningIdentity:
+        if (state.identityDecisionState == 'candidate_ambiguous') {
+          return ScannerV3UiTone(
+            title: 'Need a clearer angle',
+            pill: 'Hold steady',
+            subtitle: 'Reduce glare and keep the card flat',
+            badge: 'Adjust',
+            hint: _hintForQuality(state),
+            icon: Icons.tune_rounded,
+            accent: const Color(0xFFFFD37A),
+            progress: confidence == 0 ? 0.48 : confidence,
+            showPrimaryCandidate: false,
+            showUnknownActions: false,
+            showRescanAction: false,
+            indeterminateProgress: true,
+          );
+        }
         return ScannerV3UiTone(
           title: 'Reading card',
           pill: 'Reading',
           subtitle: softPreviewReady
               ? 'Possible match forming. Hold steady'
               : 'Keep the card inside the frame',
-          badge: '${(confidence * 100).round()}%',
+          badge: confidence == 0 ? 'Scan' : '${(confidence * 100).round()}%',
           hint: 'Stabilizing',
           icon: Icons.center_focus_strong_rounded,
           accent: const Color(0xFFAEC8FF),
-          progress: confidence == 0 ? 0.32 : confidence,
+          progress: confidence == 0 ? 0.42 : confidence,
           showPrimaryCandidate: softPreviewReady,
           showUnknownActions: false,
           showRescanAction: false,
           indeterminateProgress: true,
         );
-      default:
+      case ScannerLiveBehaviorPhase.ready:
+        return ScannerV3UiTone(
+          title: 'Ready',
+          pill: 'Ready',
+          subtitle: 'Hold still while reading starts',
+          badge: 'Ready',
+          hint: 'Hold steady',
+          icon: Icons.check_circle_outline_rounded,
+          accent: const Color(0xFF7EE7B2),
+          progress: confidence == 0 ? 0.40 : confidence,
+          showPrimaryCandidate: false,
+          showUnknownActions: false,
+          showRescanAction: false,
+          indeterminateProgress: true,
+        );
+      case ScannerLiveBehaviorPhase.aligning:
         return ScannerV3UiTone(
           title: 'Align card',
           pill: 'Live scan',
-          subtitle: 'Fill the frame with one card',
-          badge: 'Ready',
+          subtitle: edgeLocked
+              ? 'Keep the full card visible'
+              : 'Fill the frame with one card',
+          badge: edgeLocked ? 'Align' : 'Scan',
           hint: state.sampledFrameCount == 0 ? 'Position card' : 'Hold steady',
           icon: Icons.crop_free_rounded,
           accent: const Color(0xFFD7DEE8),
-          progress: state.quality.accepted ? 0.26 : 0.10,
+          progress: state.quality.accepted ? 0.24 : 0.12,
+          showPrimaryCandidate: false,
+          showUnknownActions: false,
+          showRescanAction: false,
+          indeterminateProgress: false,
+        );
+      case ScannerLiveBehaviorPhase.searching:
+        return ScannerV3UiTone(
+          title: 'Find a card',
+          pill: 'Live scan',
+          subtitle: 'Place one card in frame',
+          badge: 'Scan',
+          hint: 'Position card',
+          icon: Icons.crop_free_rounded,
+          accent: const Color(0xFFD7DEE8),
+          progress: 0.08,
           showPrimaryCandidate: false,
           showUnknownActions: false,
           showRescanAction: false,
